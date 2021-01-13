@@ -21,8 +21,11 @@ import { Link } from 'gatsby';
 
 ## Basic Usage
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
   function handleClick() {
@@ -35,14 +38,12 @@ import { Link } from 'gatsby';
 
   return (
     <>
-      <Button size="small" onClick={handleClick}>
-        Show Default Toast
-      </Button>
-      {showToast
-        ? <Toast onDismiss={handleDismiss}>Default Toast</Toast>
-        : null}
+      <Button onClick={handleClick}>Show Default Toast</Button>
+      {showToast ? (
+        <Toast onDismiss={handleDismiss}>Default Toast</Toast>
+      ) : null}
     </>
-  )
+  );
 }
 ```
 
@@ -54,8 +55,11 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
 
 ### Info
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast, AlertVariant } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
   function handleClick() {
@@ -68,14 +72,14 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
 
   return (
     <>
-      <Button size="small" onClick={handleClick}>
-        Show Info Toast
-      </Button>
-      {showToast
-        ? <Toast onDismiss={handleDismiss} variant='info'>Info Toast</Toast>
-        : null}
+      <Button onClick={handleClick}>Show Success Toast</Button>
+      {showToast ? (
+        <Toast onDismiss={handleDismiss} variant={AlertVariant.success}>
+          Success Toast
+        </Toast>
+      ) : null}
     </>
-  )
+  );
 }
 ```
 
@@ -88,16 +92,33 @@ the conditional logic to display the Toast _inside_ the Announce component.
 While toasts appear visually in centered at bottom of the screen, they will exist in the dom where ever they are placed. Keep this in mind when you are structuring your
 markup, to ensure that they have the expected tab order.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Announce, Toast } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
-  return (<>
-    <Button onClick={() => setShowToast(true)}>Show Toast in Announce</Button>
-    <Announce>
-      {showToast && <Toast dismissible onDismiss={() => setShowToast(false)}>Dismissible Toast with <a href="#">linked text</a></Toast>}
-    </Announce>
-  </>)
+  function handleButtonClick() {
+    setShowToast(true);
+  }
+
+  function handleToastDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button onClick={handleButtonClick}>Show Toast in Announce</Button>
+      <Announce>
+        {showToast && (
+          <Toast dismissible onDismiss={handleToastDismiss}>
+            Dismissible Toast
+          </Toast>
+        )}
+      </Announce>
+    </>
+  );
 }
 ```
 
@@ -108,24 +129,60 @@ The first toast will appear at the bottom of the screen, the next toast will app
 that may be added. However if the number of toasts exceeds the amount of space on the screen, layout issues might occur. Try to limit the number of toasts
 appearing on screen at once as much as possible.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, ButtonColor, Toast, AlertVariant } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
   const [showToast2, setShowToast2] = React.useState(false);
   const [showToast3, setShowToast3] = React.useState(false);
 
-  return (<ToastsContainer>
-    <Announce>
-      <Button onClick={() => setShowToast(true)} color="success">Show Toast</Button>
-      {showToast && <Toast id="toast1" onDismiss={() => setShowToast(false)} variant="success">Toast 1</Toast>}
+  return (
+    <ToastsContainer>
+      <Announce>
+        <Button onClick={() => setShowToast(true)} color={ButtonColor.success}>
+          Show Toast
+        </Button>
+        {showToast && (
+          <Toast
+            id="toast1"
+            onDismiss={() => setShowToast(false)}
+            variant={AlertVariant.success}
+          >
+            Toast 1
+          </Toast>
+        )}
 
-      <Button onClick={() => setShowToast2(true)} color="secondary">Show Toast 2</Button>
-      {showToast2 && <Toast id="toast2" onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
+        <Button
+          onClick={() => setShowToast2(true)}
+          color={ButtonColor.secondary}
+        >
+          Show Toast 2
+        </Button>
+        {showToast2 && (
+          <Toast id="toast2" onDismiss={() => setShowToast2(false)}>
+            This is the second toast which is longer than either toast one or
+            three
+          </Toast>
+        )}
 
-      <Button onClick={() => setShowToast3(true)} color="danger">Show Toast 3</Button>
-      {showToast3 && <Toast disableAutoDismiss id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
-    </Announce>
-  </ToastsContainer>)
+        <Button onClick={() => setShowToast3(true)} color={ButtonColor.danger}>
+          Show Toast 3
+        </Button>
+        {showToast3 && (
+          <Toast
+            disableAutoDismiss
+            id="toast3"
+            variant={AlertVariant.danger}
+            onDismiss={() => setShowToast3(false)}
+          >
+            Toast three
+          </Toast>
+        )}
+      </Announce>
+    </ToastsContainer>
+  );
 }
 ```
 
