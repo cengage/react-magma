@@ -22,27 +22,29 @@ The label/group association will be handled via the passed in `id` if one is sup
 
 ## Basic Usage
 
-```.jsx
-<>
-  <FormGroup
-    labelText="Choose One or More Colors">
-    <Checkbox
-        labelText='Red' />
-    <Checkbox
-        labelText='Blue' />
-    <Checkbox
-        labelText='Purple' />
-  </FormGroup>
-  <br />
-  <FormGroup
-    id="myCustomId"
-    labelText="Turn on Notifications for the Following">
-    <Toggle
-        labelText='Product updates' />
-    <Toggle
-        labelText='Promotions and sales' />
-  </FormGroup>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { FormGroup, Checkbox, Toggle } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <FormGroup labelText="Choose One or More Colors">
+        <Checkbox labelText="Red" />
+        <Checkbox labelText="Blue" />
+        <Checkbox labelText="Purple" />
+      </FormGroup>
+      <br />
+      <FormGroup
+        id="myCustomId"
+        labelText="Turn on Notifications for the Following"
+      >
+        <Toggle labelText="Product updates" />
+        <Toggle labelText="Promotions and sales" />
+      </FormGroup>
+    </>
+  );
+}
 ```
 
 ## Labeling Form Groups
@@ -54,59 +56,79 @@ You can use the `labelText` prop, which takes a string or a React Node. This wil
 Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
 This id will become the value of the `aria-labelledby` attribute for the group.
 
-```.jsx
-<>
-  <FormGroup
-    labelText={<>Labelled by <i>Label</i></>}
-    name='labelledByGroup'>
-    <Checkbox
-        labelText='Label' />
-    <Checkbox
-        labelText='Label' />
-  </FormGroup>
-  <FormGroup
-    labelledById="h3Label"
-    name='labelledByGroup'>
-    <h3 id="h3Label">Labelled by H3</h3>
-    <Checkbox
-        labelText='Label' />
-    <Checkbox
-        labelText='Label' />
-  </FormGroup>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { FormGroup, Checkbox, Heading } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <FormGroup
+        labelText={
+          <>
+            Labelled by <i>Label</i>
+          </>
+        }
+        name="labelledByGroup"
+      >
+        <Checkbox labelText="Label" />
+        <Checkbox labelText="Label" />
+      </FormGroup>
+      <FormGroup labelledById="h3Label" name="labelledByGroup">
+        <Heading id="h3Label" level={3}>
+          Labelled by H3
+        </Heading>
+        <Checkbox labelText="Label" />
+        <Checkbox labelText="Label" />
+      </FormGroup>
+    </>
+  );
+}
 ```
 
 ## Custom Styles
 
 Custom styles can be applied by using the `containerStyle` and `labelStyle` props.
 
-```.jsx
-<FormGroup
-  containerStyle={{ border: '1px solid gray', padding: '10px' }}
-  labelStyle={{ fontWeight: '500', color: 'red' }}
-  labelText="Group Label"
-  name='labelledByGroup'>
-  <Checkbox
-      labelText='Checkbox label' />
-  <Checkbox
-      labelText='Checkbox label' />
-</FormGroup>
+```tsx codesandbox=magma
+import React from 'react';
+import { FormGroup, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <FormGroup
+      containerStyle={{ border: '1px solid gray', padding: '10px' }}
+      labelStyle={{ fontWeight: '500', color: 'red' }}
+      labelText="Group Label"
+      name="labelledByGroup"
+    >
+      <Checkbox labelText="Checkbox label" />
+      <Checkbox labelText="Checkbox label" />
+    </FormGroup>
+  );
+}
 ```
 
 ## Visually Hidden Label
 
 The label text for the form group can be hidden visually, but still be read by assistive technology, by using the `isTextVisuallyHidden` prop.
 
-```.jsx
-<FormGroup
-  labelText="Group Label"
-  name='labelledByGroup'
-  isTextVisuallyHidden>
-  <Checkbox
-    labelText='Checkbox label' />
-  <Checkbox
-    labelText='Checkbox label' />
-</FormGroup>
+```tsx codesandbox=magma
+import React from 'react';
+import { FormGroup, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <FormGroup
+      labelText="Group Label"
+      name="labelledByGroup"
+      isTextVisuallyHidden
+    >
+      <Checkbox labelText="Checkbox label" />
+      <Checkbox labelText="Checkbox label" />
+    </FormGroup>
+  );
+}
 ```
 
 ## Form Group Props

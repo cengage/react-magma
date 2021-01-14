@@ -16,15 +16,22 @@ import { Link } from 'gatsby';
 
 The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
 
-```.jsx
-<>
-  <Heading level={1}>Heading 1</Heading>
-  <Heading level={2}>Heading 2</Heading>
-  <Heading level={3}>Heading 3</Heading>
-  <Heading level={4}>Heading 4</Heading>
-  <Heading level={5}>Heading 5</Heading>
-  <Heading level={6}>Heading 6</Heading>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Heading } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Heading level={1}>Heading 1</Heading>
+      <Heading level={2}>Heading 2</Heading>
+      <Heading level={3}>Heading 3</Heading>
+      <Heading level={4}>Heading 4</Heading>
+      <Heading level={5}>Heading 5</Heading>
+      <Heading level={6}>Heading 6</Heading>
+    </>
+  );
+}
 ```
 
 ## Size
@@ -35,20 +42,47 @@ Visual style and heading level can be set independently so you can specify the c
 
 Furthermore, the `visualStyle` prop can also accept the values for the four different paragraph visual styles: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`. These are sizes are also used with the <Link to="/api/paragraph">Paragraph</Link> component.
 
-```.jsx
-<>
-  <Heading level={2} visualStyle="headingXLarge">H2 styled as Heading XLarge</Heading>
-  <Heading level={2} visualStyle="headingLarge">H2 styled as Heading Large</Heading>
-  <Heading level={2} visualStyle="headingMedium">H2 styled as Heading Medium</Heading>
-  <Heading level={2} visualStyle="headingSmall">H2 styled as Heading Small</Heading>
-  <Heading level={2} visualStyle="headingXSmall">H2 styled as Heading XSmall</Heading>
-  <Heading level={2} visualStyle="heading2XSmall">H2 styled as Heading 2XSmall</Heading>
+```tsx codesandbox=magma
+import React from 'react';
+import { Heading, TypographyVisualStyle } from 'react-magma-dom';
 
-  <Heading level={2} visualStyle="bodyLarge">H2 styled as Body Large</Heading>
-  <Heading level={2} visualStyle="bodyMedium">H2 styled as Body Medium</Heading>
-  <Heading level={2} visualStyle="bodySmall">H2 styled as Body Small</Heading>
-  <Heading level={2} visualStyle="bodyXSmall">H2 styled as Body XSmall</Heading>
-</>
+export function Example() {
+  return (
+    <>
+      <Heading level={2} visualStyle={TypographyVisualStyle.headingXLarge}>
+        H2 styled as Heading XLarge
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.headingLarge}>
+        H2 styled as Heading Large
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.headingMedium}>
+        H2 styled as Heading Medium
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.headingSmall}>
+        H2 styled as Heading Small
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.headingXSmall}>
+        H2 styled as Heading XSmall
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.heading2XSmall}>
+        H2 styled as Heading 2XSmall
+      </Heading>
+
+      <Heading level={2} visualStyle={TypographyVisualStyle.bodyLarge}>
+        H2 styled as Body Large
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.bodyMedium}>
+        H2 styled as Body Medium
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.bodySmall}>
+        H2 styled as Body Small
+      </Heading>
+      <Heading level={2} visualStyle={TypographyVisualStyle.bodyXSmall}>
+        H2 styled as Body XSmall
+      </Heading>
+    </>
+  );
+}
 ```
 
 ## Context Variant
@@ -59,110 +93,177 @@ The `expressive` context variant can be used in marketing contexts, which may re
 
 The `narrative` context variant can be used for content-heavy contexts, such as a blog post or an e-reader.
 
-```.jsx
-<>
-  <div style={{marginBottom: '40px'}}>
-    <Heading contextVariant="expressive" level={1}>Expressive Heading 1</Heading>
-    <Heading contextVariant="expressive" level={2}>Expressive Heading 2</Heading>
-    <Heading contextVariant="expressive" level={3}>Expressive Heading 3</Heading>
-    <Heading contextVariant="expressive" level={4}>Expressive Heading 4</Heading>
-    <Heading contextVariant="expressive" level={5}>Expressive Heading 5</Heading>
-    <Heading contextVariant="expressive" level={6}>Expressive Heading 6</Heading>
-  </div>
-  <div>
-    <Heading contextVariant="narrative" level={1}>Narrative Heading 1</Heading>
-    <Heading contextVariant="narrative" level={2}>Narrative Heading 2</Heading>
-    <Heading contextVariant="narrative" level={3}>Narrative Heading 3</Heading>
-    <Heading contextVariant="narrative" level={4}>Narrative Heading 4</Heading>
-    <Heading contextVariant="narrative" level={5}>Narrative Heading 5</Heading>
-    <Heading contextVariant="narrative"  level={6}>Narrative Heading 6</Heading>
-  </div>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Heading, TypographyContextVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <div style={{ marginBottom: '40px' }}>
+        <Heading contextVariant={TypographyContextVariant.expressive} level={1}>
+          Expressive Heading 1
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.expressive} level={2}>
+          Expressive Heading 2
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.expressive} level={3}>
+          Expressive Heading 3
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.expressive} level={4}>
+          Expressive Heading 4
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.expressive} level={5}>
+          Expressive Heading 5
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.expressive} level={6}>
+          Expressive Heading 6
+        </Heading>
+      </div>
+      <div>
+        <Heading contextVariant={TypographyContextVariant.narrative} level={1}>
+          Narrative Heading 1
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.narrative} level={2}>
+          Narrative Heading 2
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.narrative} level={3}>
+          Narrative Heading 3
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.narrative} level={4}>
+          Narrative Heading 4
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.narrative} level={5}>
+          Narrative Heading 5
+        </Heading>
+        <Heading contextVariant={TypographyContextVariant.narrative} level={6}>
+          Narrative Heading 6
+        </Heading>
+      </div>
+    </>
+  );
+}
 ```
 
 ## Color
 
 The `color` prop can be used to change the color of the heading to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
 
-```.jsx
-<>
-  <Heading color="success" level={2}>
-    Success Color Heading
-  </Heading>
+```tsx codesandbox=magma
+import React from 'react';
+import { Heading, TypographyColor } from 'react-magma-dom';
 
-  <Heading color="danger" level={2}>
-    Danger Color Heading
-  </Heading>
+export function Example() {
+  return (
+    <>
+      <Heading color={TypographyColor.success} level={2}>
+        Success Color Heading
+      </Heading>
 
-  <Heading color="subdued" level={2}>
-    Subdued Color Heading
-  </Heading>
-</>
+      <Heading color={TypographyColor.danger} level={2}>
+        Danger Color Heading
+      </Heading>
+
+      <Heading color={TypographyColor.subdued} level={2}>
+        Subdued Color Heading
+      </Heading>
+    </>
+  );
+}
 ```
 
 ## Inverse
 
 The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
 
-```.jsx
-<Card isInverse>
-  <CardBody>
-    <Heading isInverse level={2}>Heading 2</Heading>
+```tsx codesandbox=magma
+import React from 'react';
+import { Card, CardBody, Heading, TypographyColor } from 'react-magma-dom';
 
-    <Heading color="success" isInverse level={2}>
-      Success Color Heading
-    </Heading>
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Heading isInverse level={2}>
+          Heading 2
+        </Heading>
 
-    <Heading color="danger" isInverse level={2}>
-      Danger Color Heading
-    </Heading>
+        <Heading color={TypographyColor.success} isInverse level={2}>
+          Success Color Heading
+        </Heading>
 
-    <Heading isInverse level={2} color="subdued">
-      Heading 2 Subdued
-    </Heading>
-  </CardBody>
-</Card>
+        <Heading color={TypographyColor.danger} isInverse level={2}>
+          Danger Color Heading
+        </Heading>
+
+        <Heading isInverse level={2} color={TypographyColor.subdued}>
+          Heading 2 Subdued
+        </Heading>
+      </CardBody>
+    </Card>
+  );
+}
 ```
 
 ## No Margins
 
 By default, the `Heading` component includes margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
 
-```.jsx
-<>
-  <Heading noMargins level={1}>Heading 1</Heading>
-  <Heading noMargins level={2}>Heading 2</Heading>
-  <Heading noMargins level={3}>Heading 3</Heading>
-  <Heading noMargins level={4}>Heading 4</Heading>
-  <Heading noMargins level={5}>Heading 5</Heading>
-  <Heading noMargins level={6}>Heading 6</Heading>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Heading } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Heading noMargins level={1}>
+        Heading 1
+      </Heading>
+      <Heading noMargins level={2}>
+        Heading 2
+      </Heading>
+      <Heading noMargins level={3}>
+        Heading 3
+      </Heading>
+      <Heading noMargins level={4}>
+        Heading 4
+      </Heading>
+      <Heading noMargins level={5}>
+        Heading 5
+      </Heading>
+      <Heading noMargins level={6}>
+        Heading 6
+      </Heading>
+    </>
+  );
+}
 ```
 
 ## Forward Ref
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal heading.
 
-```.jsx
-() => {
-  const headingRef = React.useRef();
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Heading } from 'react-magma-dom';
+
+export function Example() {
+  const headingRef = React.useRef<HTMLHeadingElement>();
+
+  function handleClick() {
+    headingRef.current.tabIndex = -1;
+    headingRef.current.focus();
+  }
 
   return (
     <>
-      <Heading
-        ref={headingRef}
-        level={1}>
+      <Heading ref={headingRef} level={1}>
         Heading to Be Focused
       </Heading>
 
-      <Button
-        onClick={() => {
-          headingRef.current.tabIndex = -1
-          headingRef.current.focus();
-        }}>Click to focus heading
-      </Button>
+      <Button onClick={handleClick}>Click to focus heading</Button>
     </>
-  )
+  );
 }
 ```
 

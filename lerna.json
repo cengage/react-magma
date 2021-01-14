@@ -10,7 +10,7 @@
     "bootstrap": {
       "forceLocal": true,
       "hoist": [
-	"**"
+	      "**"
       ],
       "nohoist": [
         "react-magma-legacy-selects"

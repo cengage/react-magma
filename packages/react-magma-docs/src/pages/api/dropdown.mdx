@@ -337,7 +337,15 @@ that returns a `DropdownMenuItem`.
 For a custom component you'll receive a `dropdownMenuItemProps` prop that you must spread in to the `DropdownMenuItem` component in your renderer.
 
 ```tsx codesandbox=magma
-() => {
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
+
+export function Example() {
   const OptionalDropdownMenuItem = ({ toggle, dropdownMenuItemProps }) => {
     return toggle ? (
       <DropdownMenuItem {...dropdownMenuItemProps}>
@@ -346,38 +354,37 @@ For a custom component you'll receive a `dropdownMenuItemProps` prop that you mu
     ) : null;
   };
 
+  function handleMenuItem1Click() {
+    alert('Item 1 clicked');
+  }
+
+  function handleMenuItem2Click() {
+    alert('Item 2 clicked');
+  }
+
+  function handleMenuItem3Click() {
+    alert('Item 3 clicked');
+  }
+
   return (
     <Dropdown>
       <DropdownButton>Dropdown Menu Items</DropdownButton>
       <DropdownContent>
-        <DropdownMenuItem
-          onClick={() => {
-            alert('Item 1 clicked');
-          }}
-        >
+        <DropdownMenuItem onClick={handleMenuItem1Click}>
           Menu item 1
         </DropdownMenuItem>
-        <OptionalDropdownMenuItem
-          toggle
-          onClick={() => {
-            alert('Item 2 clicked');
-          }}
-        >
+        <OptionalDropdownMenuItem toggle onClick={handleMenuItem2Click}>
           Menu item 2
         </OptionalDropdownMenuItem>
         <div>
-          <DropdownMenuItem
-            onClick={() => {
-              alert('Item 3 clicked');
-            }}
-          >
+          <DropdownMenuItem onClick={handleMenuItem3Click}>
             Menu item 3
           </DropdownMenuItem>
         </div>
       </DropdownContent>
     </Dropdown>
   );
-};
+}
 ```
 
 ### Leading Icons
@@ -385,13 +392,26 @@ For a custom component you'll receive a `dropdownMenuItemProps` prop that you mu
 The `icon` prop can be used to specify an icon for the `DropdownMenuItem` elements.
 
 ```tsx codesandbox=magma
-<Dropdown>
-  <DropdownButton>Leading Icons</DropdownButton>
-  <DropdownContent>
-    <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
-    <DropdownMenuItem icon={<BellIcon />}>Menu item 2</DropdownMenuItem>
-  </DropdownContent>
-</Dropdown>
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
+import { AsteriskIcon, BellIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Dropdown>
+      <DropdownButton>Leading Icons</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem icon={<BellIcon />}>Menu item 2</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
 ```
 
 ## Dropdown with Form
@@ -403,7 +423,19 @@ While users may navigate between `DropdownMenuItem` components using up and down
 browser default keyboard behavior applies to other content.
 
 ```tsx codesandbox=magma
-() => {
+import React from 'react';
+import {
+  Checkbox,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownDivider,
+  DropdownHeader,
+  DropdownMenuItem,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <>
       <Dropdown width="300px">
@@ -458,7 +490,7 @@ browser default keyboard behavior applies to other content.
       </Dropdown>
     </>
   );
-};
+}
 ```
 
 ## Custom Button
@@ -466,26 +498,45 @@ browser default keyboard behavior applies to other content.
 Both the `DropdownButton` and `DropdownSplitButton`can be customized by using any of the props that the <Link to="/api/button">Button</Link> component accepts. If no`icon`property is provided to the`DropdownButton`, the caret icon will appear.
 
 ```tsx codesandbox=magma
-<>
-  <Dropdown>
-    <DropdownButton size="small" color="marketing">
-      Extra Props Example 1
-    </DropdownButton>
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
-  <Dropdown>
-    <DropdownSplitButton size="large" variant="outline" color="danger">
-      Extra Props Split
-    </DropdownSplitButton>
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
-</>
+import React from 'react';
+import {
+  ButtonColor,
+  ButtonSize,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+  DropdownSplitButton,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Dropdown>
+        <DropdownButton size={ButtonSize.small} color={ButtonColor.marketing}>
+          Extra Props Example 1
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown>
+        <DropdownSplitButton
+          size={ButtonSize.large}
+          variant="outline"
+          color={ButtonColor.danger}
+        >
+          Extra Props Split
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </>
+  );
+}
 ```
 
 ## Custom Icon Button
@@ -493,61 +544,78 @@ Both the `DropdownButton` and `DropdownSplitButton`can be customized by using an
 Similarly, the `DropdownButton` can be customized by using any of the props that the <Link to="/api/icon-button">Icon Button</Link> component accepts, to create a button with an icon.
 
 ```tsx codesandbox=magma
-<>
-  <Dropdown>
-    <DropdownButton
-      aria-label="Extra icon example"
-      color="secondary"
-      size="large"
-      variant="link"
-      icon={<Cog2Icon />}
-    />
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
-  <Dropdown>
-    <DropdownButton
-      aria-label="Extra icon example"
-      color="success"
-      size="large"
-      icon={<MenuIcon />}
-    />
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
-  <Dropdown>
-    <DropdownButton
-      variant="outline"
-      size="small"
-      iconPosition="right"
-      icon={<Cog2Icon />}
-    >
-      Icon Right with Text
-    </DropdownButton>
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
-  <Dropdown>
-    <DropdownButton
-      variant="outline"
-      size="small"
-      iconPosition="left"
-      icon={<Cog2Icon />}
-    >
-      Icon Left with Text
-    </DropdownButton>
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
-</>
+import React from 'react';
+import {
+  ButtonColor,
+  ButtonIconPosition,
+  ButtonSize,
+  ButtonVariant,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
+import { Cog2Icon, MenuIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <Dropdown>
+        <DropdownButton
+          aria-label="Extra icon example"
+          color={ButtonColor.secondary}
+          size={ButtonSize.large}
+          variant={ButtonVariant.link}
+          icon={<Cog2Icon />}
+        />
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown>
+        <DropdownButton
+          aria-label="Extra icon example"
+          color={ButtonColor.success}
+          size={ButtonSize.large}
+          icon={<MenuIcon />}
+        />
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown>
+        <DropdownButton
+          variant={ButtonVariant.outline}
+          size={ButtonSize.small}
+          iconPosition={ButtonIconPosition.right}
+          icon={<Cog2Icon />}
+        >
+          Icon Right with Text
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown>
+        <DropdownButton
+          variant={ButtonVariant.outline}
+          size={ButtonSize.small}
+          iconPosition={ButtonIconPosition.left}
+          icon={<Cog2Icon />}
+        >
+          Icon Left with Text
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </>
+  );
+}
 ```
 
 ## Breaking a Menu Into Groups
@@ -558,24 +626,38 @@ The `DropdownMenuGroup` component accepts a `header` prop to be used to describe
 will be given a `role` of `group` and an `aria-labelledbyId` that corresponds with the header made internally.
 
 ```tsx codesandbox=magma
-<Dropdown>
-  <DropdownButton>Divider and headings</DropdownButton>
-  <DropdownContent>
-    <DropdownMenuGroup header="Section title A">
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-    </DropdownMenuGroup>
-    <DropdownDivider />
-    <DropdownMenuGroup header="Section title B">
-      <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-      <DropdownMenuItem>Menu item 4</DropdownMenuItem>
-    </DropdownMenuGroup>
-    <DropdownDivider />
-    <DropdownMenuGroup>
-      <DropdownMenuItem>Log out</DropdownMenuItem>
-    </DropdownMenuGroup>
-  </DropdownContent>
-</Dropdown>
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownDivider,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Dropdown>
+      <DropdownButton>Divider and headings</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuGroup header="Section title A">
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuGroup header="Section title B">
+          <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 4</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>Log out</DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
 ```
 
 ## Active Item Index
@@ -584,10 +666,18 @@ The `activeIndex` prop can be used to set an item within the dropdown as active.
 When another item is selected, that item will become active and the menu will remain open, rather than closing as usual.
 
 ```tsx codesandbox=magma
-() => {
-  const [activeValue, setActiveValue] = React.useState('two');
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
 
-  function changeActiveValue(value) {
+export function Example() {
+  const [activeValue, setActiveValue] = React.useState<string>('two');
+
+  function changeActiveValue(value: string) {
     setActiveValue(value);
   }
 
@@ -612,7 +702,7 @@ When another item is selected, that item will become active and the menu will re
       </Dropdown>
     </>
   );
-};
+}
 ```
 
 ## Handle Focus on Close
@@ -622,12 +712,20 @@ you should focus the trigger button on closing of the dropdown. For this you can
 the `onClose` function passed to the `Dropdown` component.
 
 ```tsx codesandbox=magma
-() => {
-  const buttonRef = React.useRef();
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
 
-  handleClose = event => {
+export function Example() {
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  function handleClose(event: React.SyntheticEvent) {
     buttonRef.current.focus();
-  };
+  }
 
   return (
     <Dropdown onClose={handleClose}>
@@ -638,7 +736,7 @@ the `onClose` function passed to the `Dropdown` component.
       </DropdownContent>
     </Dropdown>
   );
-};
+}
 ```
 
 ## Prevent Default Focus Handling - Deprecated
