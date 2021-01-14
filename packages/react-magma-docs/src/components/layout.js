@@ -95,6 +95,10 @@ const LinkHeading = props => (
   </Heading>
 );
 
+const H4 = props => <Heading level={4}>{props.children}</Heading>;
+const H5 = props => <Heading level={5}>{props.children}</Heading>;
+const H6 = props => <Heading level={6}>{props.children}</Heading>;
+
 export const Layout = ({ children, pageContext }) => {
   const title =
     pageContext && pageContext.frontmatter
@@ -109,6 +113,9 @@ export const Layout = ({ children, pageContext }) => {
           h1: PageHeading,
           h2: SectionHeading,
           h3: LinkHeading,
+          h4: H4,
+          h5: H5,
+          h6: H6,
           hr: Divider,
         }}
       >
