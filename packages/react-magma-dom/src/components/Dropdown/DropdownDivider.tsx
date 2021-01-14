@@ -9,6 +9,7 @@ export interface DropdownDividerProps
 
 const StyledHr = styled.hr`
   background: ${props => props.theme.colors.neutral06};
+  border: 0;
   height: 1px;
   margin: ${props => props.theme.spaceScale.spacing02} 0;
 `;
