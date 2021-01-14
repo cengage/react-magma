@@ -1357,7 +1357,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7584,
+        "id": 7587,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1541,7 +1541,7 @@
     },
     "typeParameter": [
       {
-        "id": 7673,
+        "id": 7676,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1550,7 +1550,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7513,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -1686,18 +1686,6 @@
         "type": {
           "name": "boolean"
         },
-        "description": "If true, the loading component is shown",
-        "defaultValue": "false",
-        "deprecated": false
-      },
-      "isMulti": {
-        "name": "isMulti",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, multiple items may be selected",
-        "defaultValue": "false",
         "deprecated": false
       },
       "itemListMaxHeight": {
@@ -1873,7 +1861,7 @@
     },
     "typeParameter": [
       {
-        "id": 7741,
+        "id": 7744,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1882,7 +1870,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7513,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -2020,6 +2008,56 @@
         "deprecated": false
       }
     }
+  },
+  {
+    "name": "XORComboboxProps",
+    "kind": 4194304,
+    "kindString": "Type alias",
+    "flags": {
+      "isExported": true
+    },
+    "typeParameter": [
+      {
+        "id": 7790,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
+    "type": {
+      "type": "reference",
+      "typeArguments": [
+        {
+          "type": "reference",
+          "id": 7675,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "ComboboxProps"
+        },
+        {
+          "type": "reference",
+          "id": 7743,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "MultiComboboxProps"
+        }
+      ],
+      "name": "XOR"
+    },
+    "id": "XORComboboxProps",
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "CalendarContextInterface",
@@ -2640,12 +2678,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8911,
+          "id": 8917,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8915,
+          "id": 8921,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -4803,12 +4841,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12104,
+          "id": 12110,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12369,
+          "id": 12375,
           "name": "NavTabComponentProps"
         }
       ],
@@ -6716,7 +6754,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7513,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -6883,7 +6921,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7513,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -7095,16 +7133,6 @@
           "name": "boolean"
         },
         "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
-        "defaultValue": "false",
-        "deprecated": false
-      },
-      "isMulti": {
-        "name": "isMulti",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, multiple items may be selected",
         "defaultValue": "false",
         "deprecated": false
       },
@@ -7339,7 +7367,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7514,
+            "id": 7515,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -7348,7 +7376,7 @@
             },
             "indexSignature": [
               {
-                "id": 7517,
+                "id": 7518,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -7357,7 +7385,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7518,
+                    "id": 7519,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7378,7 +7406,7 @@
             ],
             "children": [
               {
-                "id": 7516,
+                "id": 7517,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7398,7 +7426,7 @@
                 }
               },
               {
-                "id": 7515,
+                "id": 7516,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7423,8 +7451,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7516,
-                  7515
+                  7517,
+                  7516
                 ]
               }
             ],
@@ -7444,6 +7472,56 @@
       ]
     },
     "id": "SelectOptions",
+    "tags": {},
+    "properties": {}
+  },
+  {
+    "name": "XORSelectProps",
+    "kind": 4194304,
+    "kindString": "Type alias",
+    "flags": {
+      "isExported": true
+    },
+    "typeParameter": [
+      {
+        "id": 7540,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
+    "type": {
+      "type": "reference",
+      "typeArguments": [
+        {
+          "type": "reference",
+          "id": 7370,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "SelectProps"
+        },
+        {
+          "type": "reference",
+          "id": 7470,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "MultiSelectProps"
+        }
+      ],
+      "name": "XOR"
+    },
+    "id": "XORSelectProps",
     "tags": {},
     "properties": {}
   },
@@ -8829,12 +8907,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11471,
+          "id": 11477,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11468,
+          "id": 11474,
           "name": "VerticalTabsProps"
         }
       ]

@@ -12,7 +12,7 @@ import { ThemeInterface } from '../../theme/magma';
  */
 export interface HyperlinkProps
   extends ButtonStyles,
-    Omit<React.HTMLAttributes<HTMLAnchorElement>, 'color'> {
+    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> {
   children: React.ReactNode;
   /**
    * How the hyperlink is styled (can look like either a plain link or a button)
@@ -30,7 +30,6 @@ const linkStyles = props => css`
     ? props.theme.colors.neutral08
     : props.theme.colors.primary};
   text-decoration: underline;
-
   &:not([disabled]) {
     &:hover,
     &:focus {
@@ -38,7 +37,6 @@ const linkStyles = props => css`
         ? props.theme.colors.neutral07
         : props.theme.colors.foundation02};
     }
-
     &:focus {
       outline: 2px dotted
         ${props.isInverse
