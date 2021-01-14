@@ -7,6 +7,7 @@ props:
 
 import { Alert } from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
+import { ScopeableLayout } from '../../components/layout';
 
 <DocsHeading to="/design/tooltips/" type="api">
   Tooltip
@@ -274,3 +275,5 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the outer-most `div` element that gets rendered.
 
 <TooltipProps />
+
+export default props => <ScopeableLayout {...props} />;

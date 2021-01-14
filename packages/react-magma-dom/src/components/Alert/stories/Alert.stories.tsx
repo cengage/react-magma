@@ -21,12 +21,24 @@ export default {
 } as Meta;
 
 export const Default = Template.bind({});
-Default.args = {
-  variant: AlertVariant.danger,
-};
+Default.args = {};
 
 export const Dismissible = Template.bind({});
 Dismissible.args = {
-  variant: AlertVariant.danger,
   isDismissible: true,
+};
+
+export const Danger = Template.bind({});
+Danger.args = {
+  variant: AlertVariant.danger,
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  variant: AlertVariant.success,
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  variant: AlertVariant.warning,
 };

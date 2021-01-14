@@ -5,6 +5,7 @@ props:
   - VisuallyHiddenProps
 ---
 
+import { ScopeableLayout } from '../../components/layout';
 import { DocsHeading } from '../../components/DocsHeading';
 <DocsHeading type="api">Visually Hidden</DocsHeading>;
 
@@ -33,3 +34,5 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <VisuallyHiddenProps />
+
+export default props => <ScopeableLayout {...props} />;

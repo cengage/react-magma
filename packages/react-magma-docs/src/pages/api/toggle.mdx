@@ -8,6 +8,7 @@ props:
 import { Alert } from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
 import { Link } from 'gatsby';
+import { ScopeableLayout } from '../../components/layout';
 
 <DocsHeading to="/design/selection-controls" type="api">
   Toggle
@@ -186,3 +187,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <ToggleProps />
+
+export default props => <ScopeableLayout {...props} />;
