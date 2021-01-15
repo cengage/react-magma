@@ -9,7 +9,7 @@ import { Paragraph } from '../Paragraph';
  */
 export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   /**
-   * Form action buttons are supposed to be placed here
+   * React Node containing the form action buttons; will appear under the form fields
    */
   actions: React.ReactNode;
   /**
