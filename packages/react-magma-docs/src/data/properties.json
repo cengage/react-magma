@@ -3301,6 +3301,82 @@
     }
   },
   {
+    "name": "FormProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "FormProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "actions": {
+        "name": "actions",
+        "required": true,
+        "type": {
+          "name": "React.ReactNode"
+        },
+        "description": "Form action buttons are supposed to be placed here",
+        "deprecated": false
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
+      "description": {
+        "name": "description",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "General description of the form",
+        "deprecated": false
+      },
+      "errorMessage": {
+        "name": "errorMessage",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Additional form level validation message",
+        "deprecated": false
+      },
+      "header": {
+        "name": "header",
+        "required": true,
+        "type": {
+          "name": "string"
+        },
+        "description": "Title of the form",
+        "deprecated": false
+      },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Handler for form submission",
+        "deprecated": false
+      }
+    }
+  },
+  {
     "name": "FormGroupContextInterface",
     "kind": 256,
     "kindString": "Interface",
@@ -4841,12 +4917,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12110,
+          "id": 12657,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12375,
+          "id": 12922,
           "name": "NavTabComponentProps"
         }
       ],
@@ -6201,7 +6277,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 10,
                 "character": 11
               }
@@ -6221,7 +6297,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 11,
                 "character": 6
               }
@@ -6241,7 +6317,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 12,
                 "character": 9
               }
@@ -6267,7 +6343,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 13,
                 "character": 12
               }
@@ -6287,7 +6363,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 9,
                 "character": 5
               }
@@ -6307,7 +6383,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 14,
                 "character": 7
               }
@@ -6334,7 +6410,7 @@
         ],
         "sources": [
           {
-            "fileName": "src/components/Select/components.tsx",
+            "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
             "line": 8,
             "character": 34
           }
@@ -6385,7 +6461,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 19,
                 "character": 16
               }
@@ -6413,7 +6489,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 20,
                 "character": 19
               }
@@ -6446,7 +6522,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 22,
                 "character": 6
               }
@@ -6480,7 +6556,7 @@
             },
             "sources": [
               {
-                "fileName": "src/components/Select/components.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
                 "line": 21,
                 "character": 18
               }
@@ -6512,7 +6588,7 @@
         ],
         "sources": [
           {
-            "fileName": "src/components/Select/components.tsx",
+            "fileName": "packages/react-magma-dom/src/components/Select/components.tsx",
             "line": 18,
             "character": 33
           }
@@ -7415,7 +7491,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "src/components/Select/index.tsx",
+                    "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
                     "line": 17,
                     "character": 26
                   }
@@ -7435,7 +7511,7 @@
                 },
                 "sources": [
                   {
-                    "fileName": "src/components/Select/index.tsx",
+                    "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
                     "line": 17,
                     "character": 11
                   }
@@ -7458,7 +7534,7 @@
             ],
             "sources": [
               {
-                "fileName": "src/components/Select/index.tsx",
+                "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
                 "line": 17,
                 "character": 3
               }
@@ -8907,12 +8983,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11477,
+          "id": 12024,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11474,
+          "id": 12021,
           "name": "VerticalTabsProps"
         }
       ]
