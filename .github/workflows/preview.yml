@@ -27,7 +27,6 @@ jobs:
           publish-dir: './packages/react-magma-docs/public'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-pull-request-comment: false
           enable-commit-comment: true
           alias: deploy-preview-${{ github.event.number }}
         env:
