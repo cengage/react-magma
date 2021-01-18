@@ -1,8 +1,13 @@
-import React, { FunctionComponent, memo } from 'react';
-import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
+import React from 'react';
+import useFieldApi, {
+  UseFieldApiConfig,
+} from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
 
 import { v4 as uuidv4 } from 'uuid';
 import { Combobox as MagmaCombobox } from 'react-magma-dom';
+import { XORComboboxProps as MagmaComboboxProps } from 'react-magma-dom/dist/components/Combobox';
+
+export type ComboboxProps = MagmaComboboxProps<ComboOption> & UseFieldApiConfig;
 
 interface ComboOption {
   label: string;
@@ -18,7 +23,7 @@ interface MultiComboOptionEvent {
   selectedItems: ComboOption[];
 }
 
-const ComboboxMapping: FunctionComponent = (props: any) => {
+const ComboboxMapping: React.FunctionComponent<ComboboxProps> = props => {
   const {
     input,
     validateOnMount,
@@ -54,4 +59,4 @@ const ComboboxMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const Combobox = memo(ComboboxMapping);
+export const Combobox = React.memo(ComboboxMapping);

@@ -1,4 +1,5 @@
 import { default as basicComponentTypes } from '@data-driven-forms/react-form-renderer/dist/cjs/component-types';
+import ComponentMapper from '@data-driven-forms/react-form-renderer/dist/cjs/component-mapper';
 
 import { TextField } from '../TextField';
 import { Checkbox } from '../Checkbox';
@@ -25,7 +26,7 @@ export const componentTypes = {
   COMBOBOX: 'COMBOBOX',
 };
 
-export const componentMapper = {
+export const componentMapper: ComponentMapper = {
   [componentTypes.TEXT_FIELD]: TextField,
   [componentTypes.CHECKBOX]: Checkbox,
   [componentTypes.FORM_GROUP]: FormGroup,

@@ -1,10 +1,15 @@
-import React, { FunctionComponent, memo } from 'react';
+import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
-
+import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
-import { PasswordInput } from 'react-magma-dom';
+import {
+  PasswordInput,
+  PasswordInputProps as MagmaPasswordInputProps,
+} from 'react-magma-dom';
 
-const PasswordMapping: FunctionComponent = (props: any) => {
+export type PasswordProps = MagmaPasswordInputProps & UseFieldApiConfig;
+
+const PasswordMapping: React.FunctionComponent<PasswordProps> = props => {
   const {
     input,
     validateOnMount,
@@ -28,4 +33,4 @@ const PasswordMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const Password = memo(PasswordMapping);
+export const Password = React.memo(PasswordMapping);

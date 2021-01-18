@@ -1,10 +1,12 @@
-import React, { FunctionComponent, memo } from 'react';
+import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
-
+import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
-import { Input, InputType } from 'react-magma-dom';
+import { Input, InputType, InputProps } from 'react-magma-dom';
 
-const TextFieldMapping: FunctionComponent = (props: any) => {
+export type TextFieldProps = InputProps & UseFieldApiConfig;
+
+const TextFieldMapping: React.FunctionComponent<TextFieldProps> = props => {
   const {
     input,
     validateOnMount,
@@ -28,4 +30,4 @@ const TextFieldMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const TextField = memo(TextFieldMapping);
+export const TextField = React.memo(TextFieldMapping);

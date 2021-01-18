@@ -1,9 +1,19 @@
-import React, { FunctionComponent, memo } from 'react';
+import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
+import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
-import { Radio as MagmaRadio, RadioProps, RadioGroup } from 'react-magma-dom';
+import {
+  Radio as MagmaRadio,
+  RadioProps,
+  RadioGroup,
+  RadioGroupProps as MagmaRadioGroupProps,
+} from 'react-magma-dom';
 
-export const RadioMapping: FunctionComponent = (props: any) => {
+type RadioGroupProps = MagmaRadioGroupProps & UseFieldApiConfig;
+
+export const RadioMapping: React.FunctionComponent<RadioGroupProps> = (
+  props: any
+) => {
   const {
     input,
     options,
@@ -32,4 +42,4 @@ export const RadioMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const Radio = memo(RadioMapping);
+export const Radio = React.memo(RadioMapping);

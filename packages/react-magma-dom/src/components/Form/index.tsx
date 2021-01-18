@@ -23,7 +23,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   /**
    * Title of the form
    */
-  header: string;
+  title: string;
   /**
    * Handler for form submission
    */
@@ -33,7 +33,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
 export const Form = React.forwardRef<HTMLFormElement, FormProps>(
   (props, ref) => {
     const {
-      header,
+      title,
       description,
       errorMessage,
       actions,
@@ -45,7 +45,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
     const content = (
       <>
         <div>
-          <Heading level={3}>{header}</Heading>
+          <Heading level={3}>{title}</Heading>
           {description && <Paragraph>{description}</Paragraph>}
           {errorMessage && (
             <Alert variant={AlertVariant.danger}>{errorMessage}</Alert>

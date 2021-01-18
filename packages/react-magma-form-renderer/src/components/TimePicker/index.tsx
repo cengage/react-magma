@@ -1,10 +1,15 @@
-import React, { FunctionComponent, memo } from 'react';
+import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
-
+import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
-import { TimePicker as MagmaTimePicker } from 'react-magma-dom';
+import {
+  TimePicker as MagmaTimePicker,
+  TimePickerProps as MagmaTimePickerProps,
+} from 'react-magma-dom';
 
-const TimePickerMapping: FunctionComponent = (props: any) => {
+export type TimePickerProps = MagmaTimePickerProps & UseFieldApiConfig;
+
+const TimePickerMapping: React.FunctionComponent = (props: any) => {
   const {
     input,
     validateOnMount,
@@ -28,4 +33,4 @@ const TimePickerMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const TimePicker = memo(TimePickerMapping);
+export const TimePicker = React.memo(TimePickerMapping);

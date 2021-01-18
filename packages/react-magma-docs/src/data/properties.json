@@ -3356,15 +3356,6 @@
         "description": "Additional form level validation message",
         "deprecated": false
       },
-      "header": {
-        "name": "header",
-        "required": true,
-        "type": {
-          "name": "string"
-        },
-        "description": "Title of the form",
-        "deprecated": false
-      },
       "testId": {
         "name": "testId",
         "required": false,
@@ -3372,6 +3363,15 @@
           "name": "string"
         },
         "description": "Handler for form submission",
+        "deprecated": false
+      },
+      "title": {
+        "name": "title",
+        "required": true,
+        "type": {
+          "name": "string"
+        },
+        "description": "Title of the form",
         "deprecated": false
       }
     }
@@ -4917,12 +4917,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12657,
+          "id": 12656,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12922,
+          "id": 12921,
           "name": "NavTabComponentProps"
         }
       ],
@@ -8983,12 +8983,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 12024,
+          "id": 12023,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 12021,
+          "id": 12020,
           "name": "VerticalTabsProps"
         }
       ]

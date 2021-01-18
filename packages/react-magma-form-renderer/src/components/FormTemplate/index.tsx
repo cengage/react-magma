@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useMemo } from 'react';
+import React from 'react';
 import {
   Button,
   ButtonColor,
@@ -17,7 +17,7 @@ export interface FormTemplateProps {
   submitLabel?: string;
 }
 
-export const FormTemplate: FunctionComponent<FormTemplateProps> = ({
+export const FormTemplate: React.FunctionComponent<FormTemplateProps> = ({
   formFields,
   schema: { cancelLabel = 'Cancel', submitLabel = 'Submit' },
   schema,
@@ -44,7 +44,7 @@ export const FormTemplate: FunctionComponent<FormTemplateProps> = ({
     </>
   );
 
-  const actionsVisible = useMemo(() => {
+  const actionsVisible = React.useMemo(() => {
     if (
       schema.fields &&
       schema.fields.length > 0 &&
@@ -58,7 +58,7 @@ export const FormTemplate: FunctionComponent<FormTemplateProps> = ({
   return (
     <Form
       onSubmit={handleSubmit}
-      header={schema.header}
+      title={schema.title}
       description={schema.description}
       actions={actionsVisible ? actions : undefined}
     >

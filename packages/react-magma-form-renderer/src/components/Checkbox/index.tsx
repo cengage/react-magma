@@ -1,13 +1,22 @@
-import React, { FunctionComponent, memo } from 'react';
+import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
+import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
 import {
   Checkbox as MagmaCheckbox,
-  CheckboxProps,
+  CheckboxProps as MagmaCheckboxProps,
   FormGroup,
+  FormGroupProps as MagmaFormGroupProps,
 } from 'react-magma-dom';
 
-const GroupedCheckbox: FunctionComponent = (props: any) => {
+interface MagmaMultiCheckboxProps extends MagmaFormGroupProps {
+  options: MagmaCheckboxProps[];
+}
+
+type CheckboxProps = MagmaCheckboxProps & UseFieldApiConfig;
+type MultiCheckboxProps = MagmaMultiCheckboxProps & UseFieldApiConfig;
+
+const GroupedCheckbox: React.FunctionComponent<CheckboxProps> = props => {
   const { input } = useFieldApi({
     name: props.name,
     type: 'checkbox',
@@ -16,7 +25,7 @@ const GroupedCheckbox: FunctionComponent = (props: any) => {
   return <MagmaCheckbox {...props} {...input} />;
 };
 
-export const CheckboxMapping: FunctionComponent = (props: any) => {
+export const CheckboxMapping: React.FunctionComponent<MultiCheckboxProps> = props => {
   const {
     input,
     options,
@@ -33,12 +42,8 @@ export const CheckboxMapping: FunctionComponent = (props: any) => {
 
   if (options && options.length > 0) {
     return (
-      <FormGroup
-        // name={name}
-        errorMessage={errorMessage}
-        {...rest}
-      >
-        {options.map((option: CheckboxProps) => {
+      <FormGroup errorMessage={errorMessage} {...rest}>
+        {options.map((option: MagmaCheckboxProps) => {
           return (
             <GroupedCheckbox
               name={name}
@@ -62,4 +67,4 @@ export const CheckboxMapping: FunctionComponent = (props: any) => {
   }
 };
 
-export const Checkbox = memo(CheckboxMapping);
+export const Checkbox = React.memo(CheckboxMapping);

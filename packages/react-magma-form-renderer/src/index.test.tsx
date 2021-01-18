@@ -12,7 +12,7 @@ describe('FormRenderer', () => {
   const handleSubmit = jest.fn();
 
   const baseSchema = {
-    header: 'header',
+    title: 'title',
     description: 'description',
   };
 
@@ -38,7 +38,7 @@ describe('FormRenderer', () => {
         />
       );
 
-      expect(getByText('header')).toBeVisible();
+      expect(getByText('title')).toBeVisible();
       expect(getByText('description')).toBeVisible();
       expect(getByText('Cancel')).toBeDisabled();
     });

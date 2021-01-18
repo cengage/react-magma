@@ -1,9 +1,15 @@
-import React, { FunctionComponent, memo } from 'react';
+import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
+import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
-import { Toggle as MagmaToggle } from 'react-magma-dom';
+import {
+  Toggle as MagmaToggle,
+  ToggleProps as MagmaToggleProps,
+} from 'react-magma-dom';
 
-const ToggleMapping: FunctionComponent = (props: any) => {
+export type ToggleProps = MagmaToggleProps & UseFieldApiConfig;
+
+const ToggleMapping: React.FunctionComponent<ToggleProps> = (props: any) => {
   const {
     input,
     validateOnMount,
@@ -27,4 +33,4 @@ const ToggleMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const Toggle = memo(ToggleMapping);
+export const Toggle = React.memo(ToggleMapping);

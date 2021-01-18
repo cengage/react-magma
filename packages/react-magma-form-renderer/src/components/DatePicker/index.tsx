@@ -1,10 +1,15 @@
-import React, { FunctionComponent, memo } from 'react';
+import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
-
+import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
-import { DatePicker as MagmaDatePicker } from 'react-magma-dom';
+import {
+  DatePicker as MagmaDatePicker,
+  DatePickerProps as MagmaDatePickerProps,
+} from 'react-magma-dom';
 
-const DatePickerMapping: FunctionComponent = (props: any) => {
+export type DatePickerProps = MagmaDatePickerProps & UseFieldApiConfig;
+
+const DatePickerMapping: React.FunctionComponent<DatePickerProps> = props => {
   const {
     input,
     validateOnMount,
@@ -28,4 +33,4 @@ const DatePickerMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const DatePicker = memo(DatePickerMapping);
+export const DatePicker = React.memo(DatePickerMapping);
