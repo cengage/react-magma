@@ -3,11 +3,13 @@
     "packages/react-magma-docs",
     "packages/react-magma-dom",
     "packages/react-magma-icons",
-    "packages/react-magma-landing"
+    "packages/react-magma-landing",
+    "packages/react-magma-form-renderer"
   ],
   "command": {
     "bootstrap": {
-      "forceLocal": true
+      "forceLocal": true,
+      "hoist": true
     },
     "publish": {
       "allowBranch": ["master", "dev", "hotfix/*", "main"],
