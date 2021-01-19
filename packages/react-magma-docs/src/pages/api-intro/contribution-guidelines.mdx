@@ -36,7 +36,55 @@ The react-magma team welcomes your suggestions and contributions. This project w
 
 Communicate often. Make sure you are giving progress updates for any PR. With more communication we can catch things earlier and help you develop using the conventions and practices that we have built in. This will also ensure a much faster PR approval if we are on the same page the whole time.
 
-## Interfaces and Property Tables
+## Updating the docs
+
+The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component should be documented here.
+
+This project uses [MDX](https://mdxjs.com/), allowing the combination of Markdown and React components.
+
+Each component has its own `.mdx` file. If you have created a new component you will need to create a new `.mdx` file under the `pages/api` folder.
+
+Add in the navigation details at the top of the page in the front matter.
+
+```yaml
+---
+pageTitle: '{ComponentName} API'
+title: '{ComponentName}'
+props:
+  - {ComponentName}Props
+---
+```
+
+Import the `DocsHeading` and `ScopeableLayout` components. You may also need other things, such as components from `react-magma-dom` to use outside of examples (such as an `Alert`), or the`Link` from `gatsby` to link to other pages.
+
+```js
+import { DocsHeading } from '../../components/DocsHeading';
+import { ScopeableLayout } from '../../components/layout';
+```
+
+Use the `DocsHeading` component to create a page heading and link to the respective Design Guidelines page if one exists.
+Include the `type` prop of `api`, so that the heading will indicate that the page is in the "Component API section".
+
+```
+<DocsHeading to="/design/{component}/" type="api">
+  {ComponentName}
+</DocsHeading>
+```
+
+Create a basic usage example and an example for each of the different use cases of the component, using CodeSandbox.
+
+````
+```tsx codesandbox=magma
+import React from 'react';
+import { ComponentName } from 'react-magma-dom';
+
+export function Example() {
+  return <ComponentName />;
+}
+```
+````
+
+### Interfaces and Property Tables
 
 The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments. You will also need to add the needed props to the frontmatter in the `mdx` file. This will allow for our props table component to match the props referenced in the frontmatter to build out the props table. For example:
 

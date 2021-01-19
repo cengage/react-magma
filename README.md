@@ -45,6 +45,8 @@ git clone git@github.com:cengage/react-magma.git
 npm ci
 ```
 
+TODO: Should we tell people to look at docs right away? Or look at Storybook?
+
 3. Run the development server for the docs
 
 ```sh
@@ -83,6 +85,10 @@ Once you have finished making your code changes within a package run `npm run bu
 
 You must build before your changes will be reflected in the browser.
 
+### Running examples with Storybook
+
+TODO: Add storybook example and description
+
 ### Running tests
 
 Each package has a `test` command. You can run them from the individual package, or you can run them from the root of the project.
@@ -116,49 +122,123 @@ This repository contributors are welcome to use
 test results immediately as you type, and see the results in
 your editor right next to your code.
 
+### Running the docs locally
+
+You can run the docs from the repository root with
+
+```
+
+npm run docs
+
+```
+
+or from the package directory with
+
+```
+
+npm run develop
+
+```
+
+then visit the docs at [http://localhost:8000](http://localhost:8000)
+
+The docs site will show examples of each component with the more recent (or otherwise-specified) version of `react-magma-dom`. The CodeSandbox examples will not reflect any local changes; to test local changes in a browser, use the Storybook examples.
+
 ### Updating the docs
 
 The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component should be documented here.
 
 This project uses [MDX](https://mdxjs.com/), allowing the combination of Markdown and React components.
 
-Each component has it's own `.mdx` file. If you have created a new component you will need to create a new `.mdx` file under the `pages/api` folder. To import your new component go to the `layout.js` file, import your new component, then add it to the `scope` prop array of the `LiveProvider`. Now you are able to use the component in your newly created `.mdx` file.
+Each component has its own `.mdx` file. If you have created a new component you will need to create a new `.mdx` file under the `pages/api` folder. If you have updated an existing component, you will need to review the existing docs page
+and update it as needed.
 
-Be sure to add in the navigation details at the top of the page in the front matter.
+#### Creating a docs page
+
+Add in the navigation details at the top of the page in the front matter.
 
 ```yaml
 ---
+pageTitle: '{ComponentName} API'
 title: '{ComponentName}'
-order: 2
+props:
+  - {ComponentName}Props
 ---
 
 ```
 
-and import a link to the design guidelines with the correct route
+Import the `DocsHeading` and `ScopeableLayout` components. You may also need other things, such as components from `react-magma-dom` to use outside of examples (such as an `Alert`), or the`Link` from `gatsby` to link to other pages.
 
 ```js
 import { DocsHeading } from '../../components/DocsHeading';
+import { ScopeableLayout } from '../../components/layout';
+```
 
-<DocsHeading to="/design/{component}/" type="design">
+Use the `DocsHeading` component to create a page heading and link to the respective Design Guidelines page if one exists.
+Include the `type` prop of `api`, so that the heading will indicate that the page is in the "Component API section".
+
+```
+<DocsHeading to="/design/{component}/" type="api">
   {ComponentName}
-</DocsHeading>;
+</DocsHeading>
 ```
 
-### Running the docs locally
-
-You can run the docs from the repository root with
-
-```
-npm run docs
-```
-
-or from the package directory with
+Add the `ScopeableLayout` component to the bottom of the file.
+TODO: Do we need a description here?
 
 ```
-npm run develop
+export default props => <ScopeableLayout {...props} />;
 ```
 
-then visit the docs at [http://localhost:8000](http://localhost:8000)
+#### CodeSandbox examples
+
+Create a basic usage example and an example for each of the different use cases of the component, using [CodeSandbox](https://https://codesandbox.io/) .
+
+````
+```tsx codesandbox=magma
+import React from 'react';
+import { ComponentName } from 'react-magma-dom';
+
+export function Example() {
+  return <ComponentName />;
+}
+```
+````
+
+#### Interfaces and Property Tables
+
+The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments. You will also need to add the needed props to the frontmatter in the `mdx` file. This will allow for our props table component to match the props referenced in the frontmatter to build out the props table. For example:
+
+```typescript
+/**
+ * @children required
+ */
+export interface SomeComponentProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The description for a component prop.
+   * @default "the default prop value"
+   */
+  someOptionalComponentProp?: string;
+}
+```
+
+```mdx
+---
+pageTitle: Some Component API
+title: Some Component
+props:
+  - SomeComponentProps
+---
+
+## Examples
+
+...
+
+## props
+
+<SomeComponentProps />
+```
 
 ### Committing code
 
@@ -173,15 +253,17 @@ To make it easier to adhere to this format, there is a root level npm script tha
 **After adding your files to the git stage**, run:
 
 ```
+
 npm run cm
+
 ```
 
 <details>
   <summary>Learn more about SemVer and the commit message format:</summary>
-  
-  SemVer is just a responsible way to release packages and it's the right thing to do.
-  
-  Enforcing a commit message format allows us to automate version number changes, manage release channels (`latest`, `next`, `previous`, `x.x.x-beta.x`, etc.), and automate the creation of a consistent changelog and automate releases.
+
+SemVer is just a responsible way to release packages and it's the right thing to do.
+
+Enforcing a commit message format allows us to automate version number changes, manage release channels (`latest`, `next`, `previous`, `x.x.x-beta.x`, etc.), and automate the creation of a consistent changelog and automate releases.
 
 All commits will have a topic and short description with an optional subject.
 
