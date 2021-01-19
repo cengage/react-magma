@@ -343,10 +343,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "BadgeVariant.counter",
-            "BadgeVariant.label"
-          ]
+          "options": ["BadgeVariant.counter", "BadgeVariant.label"]
         },
         "description": "Indicates the style variant of the component",
         "defaultValue": "BadgeVariant.label",
@@ -1339,10 +1336,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "CheckboxTextPosition.left",
-            "CheckboxTextPosition.right"
-          ]
+          "options": ["CheckboxTextPosition.left", "CheckboxTextPosition.right"]
         },
         "description": "Whether the label appears to the left of the right of the checkbox",
         "defaultValue": "CheckboxTextPosition.right",
@@ -2514,10 +2508,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "ButtonIconPosition.left",
-            "ButtonIconPosition.right"
-          ]
+          "options": ["ButtonIconPosition.left", "ButtonIconPosition.right"]
         },
         "description": "Position within the button for the icon to appear",
         "defaultValue": "`ButtonIconPosition.right`",
@@ -3020,10 +3011,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "DropdownAlignment.end",
-            "DropdownAlignment.start"
-          ]
+          "options": ["DropdownAlignment.end", "DropdownAlignment.start"]
         },
         "deprecated": false
       },
@@ -3188,10 +3176,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "DropdownAlignment.end",
-            "DropdownAlignment.start"
-          ]
+          "options": ["DropdownAlignment.end", "DropdownAlignment.start"]
         },
         "description": "Alignment of the dropdown content",
         "defaultValue": "`DropdownAlignment.start`",
@@ -3801,10 +3786,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "ButtonIconPosition.left",
-            "ButtonIconPosition.right"
-          ]
+          "options": ["ButtonIconPosition.left", "ButtonIconPosition.right"]
         },
         "description": "Position within the button for the icon to appear",
         "defaultValue": "ButtonIconPosition.right",
@@ -4034,10 +4016,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "InputSize.large",
-            "InputSize.medium"
-          ]
+          "options": ["InputSize.large", "InputSize.medium"]
         },
         "deprecated": false
       },
@@ -4162,10 +4141,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "InputIconPosition.left",
-            "InputIconPosition.right"
-          ]
+          "options": ["InputIconPosition.left", "InputIconPosition.right"]
         },
         "description": "Position within the component for the icon to appear",
         "defaultValue": "InputIconPosition.right",
@@ -4185,10 +4161,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "InputSize.large",
-            "InputSize.medium"
-          ]
+          "options": ["InputSize.large", "InputSize.medium"]
         },
         "description": "Relative size of the component",
         "defaultValue": "InputSize.medium",
@@ -4284,10 +4257,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "InputSize.large",
-            "InputSize.medium"
-          ]
+          "options": ["InputSize.large", "InputSize.medium"]
         },
         "deprecated": false
       },
@@ -4515,11 +4485,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "ModalSize.large",
-            "ModalSize.medium",
-            "ModalSize.small"
-          ]
+          "options": ["ModalSize.large", "ModalSize.medium", "ModalSize.small"]
         },
         "description": "The relative size of the modal",
         "defaultValue": "ModalSize.medium",
@@ -4598,10 +4564,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "TabsOrientation.horizontal",
-            "TabsOrientation.vertical"
-          ]
+          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
         },
         "description": "Determines if the tabs are displayed vertically or horizontally",
         "defaultValue": "TabsOrientation.horizontal",
@@ -4670,10 +4633,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "TabsOrientation.horizontal",
-            "TabsOrientation.vertical"
-          ]
+          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
         },
         "description": "Determines if the tabs are displayed vertically or horizontally",
         "defaultValue": "TabsOrientation.horizontal",
@@ -4776,10 +4736,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "TabsOrientation.horizontal",
-            "TabsOrientation.vertical"
-          ]
+          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
         },
         "description": "Determines if the tabs are displayed vertically or horizontally",
         "defaultValue": "TabsOrientation.horizontal",
@@ -4882,10 +4839,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "TabsOrientation.horizontal",
-            "TabsOrientation.vertical"
-          ]
+          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
         },
         "deprecated": false
       }
@@ -5087,10 +5041,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "InputSize.large",
-            "InputSize.medium"
-          ]
+          "options": ["InputSize.large", "InputSize.medium"]
         },
         "description": "Relative size of the component",
         "defaultValue": "InputSize.medium",
@@ -5450,10 +5401,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "RadioTextPosition.left",
-            "RadioTextPosition.right"
-          ]
+          "options": ["RadioTextPosition.left", "RadioTextPosition.right"]
         },
         "description": "Whether the label appears to the left of the right of the radio button",
         "defaultValue": "RadioTextPosition.right",
@@ -5750,10 +5698,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "InputSize.large",
-            "InputSize.medium"
-          ]
+          "options": ["InputSize.large", "InputSize.medium"]
         },
         "description": "Relative size of the component",
         "defaultValue": "InputSize.medium",
@@ -6289,14 +6234,7 @@
           {
             "title": "Variables",
             "kind": 32,
-            "children": [
-              6955,
-              6956,
-              6957,
-              6958,
-              6954,
-              6959
-            ]
+            "children": [6955, 6956, 6957, 6958, 6954, 6959]
           }
         ],
         "sources": [
@@ -6469,12 +6407,7 @@
           {
             "title": "Variables",
             "kind": 32,
-            "children": [
-              6965,
-              6966,
-              6968,
-              6967
-            ]
+            "children": [6965, 6966, 6968, 6967]
           }
         ],
         "sources": [
@@ -7427,10 +7360,7 @@
               {
                 "title": "Variables",
                 "kind": 32,
-                "children": [
-                  7522,
-                  7521
-                ]
+                "children": [7522, 7521]
               }
             ],
             "sources": [
@@ -8560,10 +8490,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "TabsOrientation.horizontal",
-            "TabsOrientation.vertical"
-          ]
+          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
         },
         "deprecated": false
       },
@@ -8680,10 +8607,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "TabsOrientation.horizontal",
-            "TabsOrientation.vertical"
-          ]
+          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
         },
         "deprecated": false
       },
@@ -9424,10 +9348,7 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": [
-            "ToggleTextPosition.left",
-            "ToggleTextPosition.right"
-          ]
+          "options": ["ToggleTextPosition.left", "ToggleTextPosition.right"]
         },
         "description": "Whether the label appears to the left of the right of the toggle switch",
         "defaultValue": "ToggleTextPosition.left",
