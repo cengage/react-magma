@@ -356,17 +356,4 @@ All of the [standard button attributes](https://developer.mozilla.org/en-US/docs
 
 <IconButtonProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      IconButton,
-      AlertIcon,
-      BellIcon,
-      Cog2Icon,
-      CheckIcon,
-      InfoIcon,
-      Alert,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

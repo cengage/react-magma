@@ -47,79 +47,81 @@ and `datePicker.startOfWeek`. These keys have specific types listed below, while
 
 ## Example Usage
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { DatePicker, I18nContext, defaultI18n, es } from 'react-magma-dom';
+export function Example() {
   return (
-    <I18nContext.Provider value={{
-      ...defaultI18n,
-      days: {
-        ...defaultI18n.days,
-        min: {
-          sunday: 'D',
-          monday: 'L',
-          tuesday: 'M',
-          wednesday: 'M',
-          thursday: 'J',
-          friday: 'V',
-          saturday: 'S'
-        }
-      },
-      datePicker: {
-        startOfWeek: "monday",
-        calendarIconAriaLabel: "Calendario",
-        calendarOpenAnnounce: "El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.",
-        calendarCloseAriaLabel: "Cerrar calendario",
-        previousMonthAriaLabel: 'Mes Anterior',
-        nextMonthAriaLabel: 'Próximo Mes',
-        disabledDayAriaLabel: "No disponible. ",
-        selectedDayAriaLabel: "(Seleccionado)",
-        "helpModal": {
-          "header": "Atajos de teclado",
-          "helpButtonAriaLabel": "Ayuda de calendario",
-          "enter": {
-            "ariaLabel": "Introducir clave",
-            "explanation": "Seleccione la fecha en foco."
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        days: {
+          ...defaultI18n.days,
+          min: {
+            sunday: 'D',
+            monday: 'L',
+            tuesday: 'M',
+            wednesday: 'M',
+            thursday: 'J',
+            friday: 'V',
+            saturday: 'S',
           },
-          "rightAndLeftArrowKeys": {
-            "ariaLabel": "Teclas de flecha derecha e izquierda",
-            "explanation": "Muévase hacia atrás (izquierda) y hacia adelante (derecha) un día."
+        },
+        datePicker: {
+          startOfWeek: 'monday',
+          calendarIconAriaLabel: 'Calendario',
+          calendarOpenAnnounce:
+            'El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.',
+          calendarCloseAriaLabel: 'Cerrar calendario',
+          previousMonthAriaLabel: 'Mes Anterior',
+          nextMonthAriaLabel: 'Próximo Mes',
+          disabledDayAriaLabel: 'No disponible. ',
+          selectedDayAriaLabel: '(Seleccionado)',
+          helpModal: {
+            header: 'Atajos de teclado',
+            helpButtonAriaLabel: 'Ayuda de calendario',
+            enter: {
+              ariaLabel: 'Introducir clave',
+              explanation: 'Seleccione la fecha en foco.',
+            },
+            rightAndLeftArrowKeys: {
+              ariaLabel: 'Teclas de flecha derecha e izquierda',
+              explanation:
+                'Muévase hacia atrás (izquierda) y hacia adelante (derecha) un día.',
+            },
+            upAndDownArrowKeys: {
+              ariaLabel: 'teclas de flecha arriba y abajo',
+              explanation:
+                'Muévase hacia atrás (arriba) y hacia adelante (abajo) una semana.',
+            },
+            pageUpAndPageDownKeys: {
+              ariaLabel: 'teclas de página arriba y página abajo',
+              displayValue: 'PGAR/PGAB',
+              explanation: 'Cambiar de mes.',
+            },
+            homeAndEndKeys: {
+              ariaLabel: 'Teclas de inicio y fin',
+              displayValue: 'CASA/FINAL',
+              explanation: 'Ir al primer o último día de una semana.',
+            },
+            escape: {
+              ariaLabel: 'Tecla de escape',
+              displayValue: 'ESCAPAR',
+              explanation: 'Regresar al campo de entrada de fecha.',
+            },
+            questionMark: {
+              ariaLabel: 'Signo de interrogación',
+              explanation: 'Abre este panel.',
+            },
           },
-          "upAndDownArrowKeys": {
-            "ariaLabel": "teclas de flecha arriba y abajo",
-            "explanation": "Muévase hacia atrás (arriba) y hacia adelante (abajo) una semana."
-          },
-          "pageUpAndPageDownKeys": {
-            "ariaLabel": "teclas de página arriba y página abajo",
-            "displayValue": 'PGAR/PGAB',
-            "explanation": "Cambiar de mes."
-          },
-          "homeAndEndKeys": {
-            "ariaLabel": "Teclas de inicio y fin",
-            "displayValue": 'CASA/FINAL',
-            "explanation": "Ir al primer o último día de una semana."
-          },
-          "escape": {
-            "ariaLabel": "Tecla de escape",
-            "displayValue": 'ESCAPAR',
-            "explanation": "Regresar al campo de entrada de fecha."
-          },
-          "questionMark": {
-            "ariaLabel": "Signo de interrogación",
-            "explanation": "Abre este panel."
-          }
-        }
-      },
-      locale: es
-    }}>
+        },
+        locale: es,
+      }}
+    >
       <DatePicker labelText="Español" />
     </I18nContext.Provider>
-  )
+  );
 }
 ```
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ DatePicker, I18nContext, defaultI18n, es }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;
