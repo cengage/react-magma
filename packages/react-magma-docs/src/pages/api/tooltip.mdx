@@ -63,7 +63,6 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 ```tsx codesandbox=magma
 import React from 'react';
 import {
-  Paragraph,
   Tooltip,
   EnumTooltipPosition,
   IconButton,
@@ -78,7 +77,7 @@ import {
 
 export function Example() {
   return (
-    <Paragraph>
+    <>
       <Tooltip position={EnumTooltipPosition.right} content="Tooltip right">
         <IconButton
           aria-label="Right"
@@ -110,7 +109,7 @@ export function Example() {
           variant={ButtonVariant.link}
         />
       </Tooltip>
-    </Paragraph>
+    </>
   );
 }
 ```
