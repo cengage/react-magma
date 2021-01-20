@@ -7,11 +7,10 @@ order: 1
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
 import { ColorSwatch } from '../../components/ColorSwatch';
-import { DocsHeading } from '../../components/DocsHeading';
 import { magma } from 'react-magma-dom';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading type="design">Color</DocsHeading>
+# [Color]('design')
 
 <LeadParagraph>
   Color helps express hierarchy, establish brand presence, give meaning, and
@@ -51,7 +50,6 @@ If you are using dark backgrounds, then the focus color should use the focusInve
     <span>rgb(2, 126, 225)</span>
     <span>4.1:1</span>
   </ColorSwatch>
-
   <ColorSwatch color={magma.colors.focusInverse}>
     <span>
       <strong>focusInverse</strong>
@@ -74,23 +72,25 @@ Our blues are just like us: confident, cool and collected. They also, just like 
     <span>15.6:1</span>
   </ColorSwatch>
   <ColorSwatch color={magma.colors.foundation02}>
-    <span><strong>foundation02</strong></span>
+    <span>
+      <strong>foundation02</strong>
+    </span>
     <span class="color-hex">{magma.colors.foundation02}</span>
     <span>rgb(0,56,101)</span>
     <span>12.0:1</span>
   </ColorSwatch>
-
-<ColorSwatch color={magma.colors.foundation03}>
-  <span>
-    <strong>foundation03</strong>
-  </span>
-  <span class="color-hex">{magma.colors.foundation03}</span>
-  <span>rgb(0,169,224)</span>
-  <span>2.7:1</span>
-</ColorSwatch>
-
+  <ColorSwatch color={magma.colors.foundation03}>
+    <span>
+      <strong>foundation03</strong>
+    </span>
+    <span class="color-hex">{magma.colors.foundation03}</span>
+    <span>rgb(0,169,224)</span>
+    <span>2.7:1</span>
+  </ColorSwatch>
   <ColorSwatch color={magma.colors.foundation04}>
-    <span><strong>foundation04</strong></span>
+    <span>
+      <strong>foundation04</strong>
+    </span>
     <span class="color-hex">{magma.colors.foundation04}</span>
     <span>rgb(113,197,232)</span>
     <span>1.9:1</span>

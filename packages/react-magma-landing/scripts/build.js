@@ -61,7 +61,7 @@ getAllVersions().then(versions => {
     copy(
       path.resolve(__dirname, '../static/**'),
       path.resolve(__dirname, '../dist'),
-      function (err, files) {
+      function(err, files) {
         if (err) throw err;
         Promise.resolve(files);
       }
