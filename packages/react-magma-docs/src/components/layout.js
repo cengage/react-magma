@@ -9,7 +9,33 @@ import { LayoutComponent } from './LayoutComponent';
 import { editorTheme } from './editorTheme';
 import { v4 as uuid } from 'uuid';
 import { SimplePropsTable } from './SimplePropsTable';
+import { Divider } from './Divider';
 import { NetlifyFooter } from './NetlifyFooter';
+import styled from '@emotion/styled';
+import { magma } from 'react-magma-dom';
+
+const PreContainer = styled.div`
+  border: 1px solid ${magma.colors.neutral06};
+  display: grid;
+  max-width: 100%;
+`;
+
+const DemoContainer = styled.div`
+  border: 1px solid ${magma.colors.neutral06};
+  margin-bottom: ${magma.spaceScale.spacing06};
+  padding: ${magma.spaceScale.spacing04};
+`;
+
+const ContentArticle = styled.article`
+  margin: 0 auto ${magma.spaceScale.spacing10};
+  max-width: 900px;
+  width: 80%;
+
+  @media (max-width: 600px) {
+    padding: 0 ${magma.spaceScale.spacing05};
+    width: 100%;
+  }
+`;
 
 const PreComponent = ({ className, components, ...props }) => {
   const hideCode = props.children.props.hideCode;
@@ -28,20 +54,20 @@ const PreComponent = ({ className, components, ...props }) => {
       {!hideCode && (
         <>
           <Label htmlFor={liveEditorId.current}>Code Example</Label>
-          <div className="pre-container">
+          <PreContainer>
             <LiveEditor
               textareaId={liveEditorId.current}
               ignoreTabKey
               tabIndex="-1"
             />
-          </div>
+          </PreContainer>
         </>
       )}
       <LiveError />
       {!hidePreview && (
-        <div className="demo-container">
+        <DemoContainer>
           <LivePreview />
-        </div>
+        </DemoContainer>
       )}
     </LiveProvider>
   ) : (
@@ -49,11 +75,9 @@ const PreComponent = ({ className, components, ...props }) => {
   );
 };
 
-const Table = props => (
-  <div style={{ margin: '10px 0' }}>
-    <table {...props} />
-  </div>
-);
+const Table = props => <table {...props} />;
+
+const PageHeading = props => <Heading level={1}>{props.children}</Heading>;
 
 const SectionHeading = props => (
   <Heading
@@ -71,6 +95,10 @@ const LinkHeading = props => (
   </Heading>
 );
 
+const H4 = props => <Heading level={4}>{props.children}</Heading>;
+const H5 = props => <Heading level={5}>{props.children}</Heading>;
+const H6 = props => <Heading level={6}>{props.children}</Heading>;
+
 export const Layout = ({ children, pageContext }) => {
   const title =
     pageContext && pageContext.frontmatter
@@ -82,13 +110,18 @@ export const Layout = ({ children, pageContext }) => {
       <MDXProvider
         components={{
           table: Table,
+          h1: PageHeading,
           h2: SectionHeading,
           h3: LinkHeading,
+          h4: H4,
+          h5: H5,
+          h6: H6,
+          hr: Divider,
         }}
       >
-        <article className="content-article">
+        <ContentArticle className="content-article">
           <SkipLinkContent>{children}</SkipLinkContent>
-        </article>
+        </ContentArticle>
       </MDXProvider>
       <NetlifyFooter />
     </LayoutComponent>
@@ -105,6 +138,7 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
         table: Table,
         h2: SectionHeading,
         h3: LinkHeading,
+        hr: Divider,
         SimplePropsTable: SimplePropsTable,
         ...properties.reduce((acc, { name, properties }) => {
           return {

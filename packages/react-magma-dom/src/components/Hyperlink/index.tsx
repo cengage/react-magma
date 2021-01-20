@@ -1,18 +1,18 @@
-/** @jsx jsx */
 import * as React from 'react';
 import { ButtonStyles } from '../Button';
-import { css, jsx, ClassNames } from '@emotion/core';
+import styled from '@emotion/styled';
+import { css, ClassNames } from '@emotion/core';
 import { omit, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { buttonStyles } from '../StyledButton';
-import { buildPropsWithDefaultButtonStyles } from '../StyledButton/styles';
+import { BaseStyledButton, buttonStyles } from '../StyledButton';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
  */
 export interface HyperlinkProps
   extends ButtonStyles,
-    Omit<React.HTMLAttributes<HTMLAnchorElement>, 'color'> {
+    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> {
   children: React.ReactNode;
   /**
    * How the hyperlink is styled (can look like either a plain link or a button)
@@ -30,7 +30,6 @@ const linkStyles = props => css`
     ? props.theme.colors.neutral08
     : props.theme.colors.primary};
   text-decoration: underline;
-
   &:not([disabled]) {
     &:hover,
     &:focus {
@@ -38,29 +37,33 @@ const linkStyles = props => css`
         ? props.theme.colors.neutral07
         : props.theme.colors.foundation02};
     }
-
     &:focus {
       outline: 2px dotted
-        ${props.isInverse ? props.theme.focusInverse : props.theme.colors.focus};
+        ${props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
       outline-offset: 3px;
     }
   }
 `;
 
+const StyledLink = styled.a<{ isInverse?: boolean; theme: ThemeInterface }>`
+  ${linkStyles}
+`;
+
 export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
   (props, ref) => {
-    const composedProps = buildPropsWithDefaultButtonStyles(props);
-    const { children, to, styledAs, isInverse, testId, ...rest } = props;
+    const { children, to, styledAs, testId, ...rest } = props;
 
-    const other = omit(['textTransform', 'positionTop', 'positionLeft'], rest);
+    const other = omit(['positionTop', 'positionLeft', 'type'], rest);
     const theme = React.useContext(ThemeContext);
 
-    const composedStyle =
-      styledAs === 'Button'
-        ? buttonStyles({ ...composedProps, theme })
-        : linkStyles({ ...props, theme });
-
     if (typeof children === 'function') {
+      const composedStyle =
+        styledAs === 'Button'
+          ? buttonStyles({ ...props, theme })
+          : linkStyles({ ...props, theme });
+
       return (
         <ClassNames>
           {({ css: composedCss }) => {
@@ -73,16 +76,20 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
         </ClassNames>
       );
     } else {
+      const LinkStyledAsButton = BaseStyledButton.withComponent('a');
+      const HyperlinkComponent =
+        styledAs === 'Button' ? LinkStyledAsButton : StyledLink;
+
       return (
-        <a
+        <HyperlinkComponent
           {...other}
           ref={ref}
           data-testid={testId}
           href={to}
-          css={composedStyle}
+          theme={theme}
         >
           {children}
-        </a>
+        </HyperlinkComponent>
       );
     }
   }

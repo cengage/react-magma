@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.3.2",
+  "version": "2.3.3-alpha.10",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -16,6 +16,7 @@
     "url": "https://github.com/cengage/react-magma.git",
     "directory": "packages/react-magma-dom"
   },
+  "homepage": "https://react-magma.cengage.com",
   "scripts": {
     "test": "tsdx test",
     "test-watch": "tsdx test --watch",
@@ -74,11 +75,11 @@
     "polished": "^3.2.0",
     "postcss-url": "^8.0.0",
     "promise": "^8.0.3",
-    "react-magma-icons": "^1.0.6",
+    "react-magma-icons": "^1.0.7-alpha.10",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",
-    "tsdx": "^0.13.2",
+    "tsdx": "^0.14.1",
     "uuid": "^8.3.0"
   },
   "gitHead": "cadb4fd5f575f1fbe92c1521bf8228c64b8e2336"

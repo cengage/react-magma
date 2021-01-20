@@ -67,11 +67,6 @@ export interface ButtonStyles {
    */
   textTransform?: ButtonTextTransform;
   /**
-   * The type attribute of the button
-   * ButtonType.button
-   */
-  type?: ButtonType;
-  /**
    * The variant of the button
    * @default ButtonVariant.solid
    */
@@ -99,28 +94,10 @@ export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const {
-      children,
-      color,
-      shape,
-      size,
-      textTransform,
-      variant,
-      ...rest
-    } = props;
+    const { children, ...rest } = props;
 
     return (
-      <StyledButton
-        {...rest}
-        ref={ref}
-        color={color ? color : ButtonColor.primary}
-        shape={shape ? shape : ButtonShape.fill}
-        size={size ? size : ButtonSize.medium}
-        textTransform={
-          textTransform ? textTransform : ButtonTextTransform.uppercase
-        }
-        variant={variant ? variant : ButtonVariant.solid}
-      >
+      <StyledButton {...rest} ref={ref}>
         {children}
       </StyledButton>
     );

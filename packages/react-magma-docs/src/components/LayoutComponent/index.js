@@ -1,5 +1,12 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import styled from '@emotion/styled';
+import { magma } from 'react-magma-dom';
+
+const ContentSection = styled.section`
+  grid-area: content;
+  padding: ${magma.spaceScale.spacing07} 0 0;
+`;
 
 export const LayoutComponent = props => (
   <>
@@ -13,7 +20,7 @@ export const LayoutComponent = props => (
       <html lang="en" />
     </Helmet>
     <main>
-      <section className="content">{props.children}</section>
+      <ContentSection className="content">{props.children}</ContentSection>
     </main>
   </>
 );

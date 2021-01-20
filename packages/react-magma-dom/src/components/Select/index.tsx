@@ -10,7 +10,7 @@ import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
-import { useGenerateId } from '../../utils';
+import { useGenerateId, XOR } from '../../utils';
 
 export type SelectOptions =
   | string
@@ -109,6 +109,10 @@ export interface SelectProps<T extends SelectOptions>
    */
   innerRef?: React.Ref<HTMLButtonElement>;
   /**
+   * @internal
+   */
+  isMulti?: false;
+  /**
    * Event that fires when the trigger button loses focus
    */
   onBlur?: (event: React.FocusEvent) => void;
@@ -132,13 +136,17 @@ export interface SelectProps<T extends SelectOptions>
 
 export interface MultiSelectProps<T extends SelectOptions>
   extends UseMultipleSelectionProps<T>,
-    Omit<SelectProps<T>, 'onStateChange' | 'stateReducer'>,
+    Omit<SelectProps<T>, 'onStateChange' | 'stateReducer' | 'isMulti'>,
     InternalMultiProps<T> {
   /**
    * @internal
    */
   hasError?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
+  isMulti: true;
 }
 
 export function instanceOfMultiSelect<T>(
@@ -167,11 +175,13 @@ export function instanceOfToBeCreatedItemObject(
   );
 }
 
+export type XORSelectProps<T> = XOR<SelectProps<T>, MultiSelectProps<T>>;
+
 export const SelectStateChangeTypes = useSelect.stateChangeTypes;
 export const MultipleSelectionStateChangeTypes =
   useMultipleSelection.stateChangeTypes;
 
-export function Select<T>(props: SelectProps<T>) {
+export function Select<T>(props: XORSelectProps<T>) {
   const {
     containerStyle,
     id: defaultId,
@@ -204,7 +214,7 @@ export function Select<T>(props: SelectProps<T>) {
           ariaDescribedBy={descriptionId}
           id={id}
           itemToString={itemToString}
-          {...props}
+          {...(props as MultiSelectProps<T>)}
           hasError={hasError}
         />
       ) : (
@@ -212,7 +222,7 @@ export function Select<T>(props: SelectProps<T>) {
           ariaDescribedBy={descriptionId}
           id={id}
           itemToString={itemToString}
-          {...props}
+          {...(props as SelectProps<T>)}
           hasError={hasError}
         />
       )}

@@ -80,6 +80,8 @@ const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
   display: table;
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   min-width: ${props => props.minWidth}px;
   width: 100%;
 `;

@@ -19,9 +19,11 @@ function getStyles(theme) {
     }
 
     html {
-      scroll-behavior: smooth;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
       font-size: ${theme.typeScale.size03.fontSize};
       line-height: ${theme.typeScale.size03.lineHeight};
+      scroll-behavior: smooth;
     }
 
     html,
@@ -49,6 +51,19 @@ function getStyles(theme) {
       &:focus {
         color: ${theme.colors.foundation02};
       }
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font: inherit;
+      margin: 0;
+    }
+
+    svg:not(:root) {
+      overflow: hidden;
     }
   `;
 }

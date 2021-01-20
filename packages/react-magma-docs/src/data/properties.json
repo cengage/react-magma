@@ -811,20 +811,6 @@
         "defaultValue": "ButtonTextTransform.uppercase",
         "deprecated": false
       },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
-        "deprecated": false
-      },
       "variant": {
         "name": "variant",
         "required": false,
@@ -854,12 +840,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 369,
+          "id": 367,
           "name": "BaseButtonProps"
         },
         {
           "type": "reference",
-          "id": 360,
+          "id": 359,
           "name": "ButtonStyles"
         }
       ]
@@ -1371,7 +1357,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7583,
+        "id": 7587,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1555,7 +1541,7 @@
     },
     "typeParameter": [
       {
-        "id": 7672,
+        "id": 7676,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1564,7 +1550,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -1700,18 +1686,6 @@
         "type": {
           "name": "boolean"
         },
-        "description": "If true, the loading component is shown",
-        "defaultValue": "false",
-        "deprecated": false
-      },
-      "isMulti": {
-        "name": "isMulti",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, multiple items may be selected",
-        "defaultValue": "false",
         "deprecated": false
       },
       "itemListMaxHeight": {
@@ -1887,7 +1861,7 @@
     },
     "typeParameter": [
       {
-        "id": 7740,
+        "id": 7744,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1896,7 +1870,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -2034,6 +2008,56 @@
         "deprecated": false
       }
     }
+  },
+  {
+    "name": "XORComboboxProps",
+    "kind": 4194304,
+    "kindString": "Type alias",
+    "flags": {
+      "isExported": true
+    },
+    "typeParameter": [
+      {
+        "id": 7790,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
+    "type": {
+      "type": "reference",
+      "typeArguments": [
+        {
+          "type": "reference",
+          "id": 7675,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "ComboboxProps"
+        },
+        {
+          "type": "reference",
+          "id": 7743,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "MultiComboboxProps"
+        }
+      ],
+      "name": "XOR"
+    },
+    "id": "XORComboboxProps",
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "CalendarContextInterface",
@@ -2654,12 +2678,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8910,
+          "id": 8917,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8914,
+          "id": 8921,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -2996,20 +3020,6 @@
         "defaultValue": "ButtonTextTransform.uppercase",
         "deprecated": false
       },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
-        "deprecated": false
-      },
       "variant": {
         "name": "variant",
         "required": false,
@@ -3286,6 +3296,82 @@
         },
         "description": "Width of menu",
         "defaultValue": "Width of longest menu item",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "FormProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "FormProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "actions": {
+        "name": "actions",
+        "required": true,
+        "type": {
+          "name": "React.ReactNode"
+        },
+        "description": "React Node containing the form action buttons; will appear under the form fields",
+        "deprecated": false
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
+      "description": {
+        "name": "description",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "General description of the form",
+        "deprecated": false
+      },
+      "errorMessage": {
+        "name": "errorMessage",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Additional form level validation message",
+        "deprecated": false
+      },
+      "header": {
+        "name": "header",
+        "required": true,
+        "type": {
+          "name": "string"
+        },
+        "description": "Title of the form",
+        "deprecated": false
+      },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Handler for form submission",
         "deprecated": false
       }
     }
@@ -3749,20 +3835,6 @@
         "description": "The href value of the link",
         "deprecated": false
       },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
-        "deprecated": false
-      },
       "variant": {
         "name": "variant",
         "required": false,
@@ -3994,12 +4066,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 646,
+          "id": 644,
           "name": "IconOnlyButtonProps"
         },
         {
           "type": "reference",
-          "id": 650,
+          "id": 648,
           "name": "IconTextButtonProps"
         }
       ],
@@ -4845,12 +4917,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12104,
+          "id": 12657,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12369,
+          "id": 12922,
           "name": "NavTabComponentProps"
         }
       ],
@@ -5871,7 +5943,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 6990,
+        "id": 6991,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5962,7 +6034,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7295,
+        "id": 7296,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6048,7 +6120,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7314,
+        "id": 7315,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6144,7 +6216,7 @@
     },
     "typeParameter": [
       {
-        "id": 6945,
+        "id": 6946,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6156,7 +6228,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6946,
+        "id": 6947,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6165,7 +6237,7 @@
         },
         "indexSignature": [
           {
-            "id": 6953,
+            "id": 6954,
             "name": "__index",
             "kind": 8192,
             "kindString": "Index signature",
@@ -6174,7 +6246,7 @@
             },
             "parameters": [
               {
-                "id": 6954,
+                "id": 6955,
                 "name": "key",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -6195,7 +6267,7 @@
         ],
         "children": [
           {
-            "id": 6948,
+            "id": 6949,
             "name": "isFocused",
             "kind": 32,
             "kindString": "Variable",
@@ -6216,7 +6288,7 @@
             }
           },
           {
-            "id": 6949,
+            "id": 6950,
             "name": "item",
             "kind": 32,
             "kindString": "Variable",
@@ -6236,7 +6308,7 @@
             }
           },
           {
-            "id": 6950,
+            "id": 6951,
             "name": "itemRef",
             "kind": 32,
             "kindString": "Variable",
@@ -6262,7 +6334,7 @@
             }
           },
           {
-            "id": 6951,
+            "id": 6952,
             "name": "itemString",
             "kind": 32,
             "kindString": "Variable",
@@ -6282,7 +6354,7 @@
             }
           },
           {
-            "id": 6947,
+            "id": 6948,
             "name": "key",
             "kind": 32,
             "kindString": "Variable",
@@ -6302,7 +6374,7 @@
             }
           },
           {
-            "id": 6952,
+            "id": 6953,
             "name": "theme",
             "kind": 32,
             "kindString": "Variable",
@@ -6327,12 +6399,12 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6948,
               6949,
               6950,
               6951,
-              6947,
-              6952
+              6952,
+              6948,
+              6953
             ]
           }
         ],
@@ -6358,7 +6430,7 @@
     },
     "typeParameter": [
       {
-        "id": 6956,
+        "id": 6957,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6370,7 +6442,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6957,
+        "id": 6958,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6379,7 +6451,7 @@
         },
         "children": [
           {
-            "id": 6958,
+            "id": 6959,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6399,7 +6471,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 931,
+                  "id": 929,
                   "name": "IconButtonProps"
                 }
               ],
@@ -6407,7 +6479,7 @@
             }
           },
           {
-            "id": 6959,
+            "id": 6960,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6440,7 +6512,7 @@
             }
           },
           {
-            "id": 6961,
+            "id": 6962,
             "name": "Item",
             "kind": 32,
             "kindString": "Variable",
@@ -6460,7 +6532,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6944,
+                  "id": 6945,
                   "typeArguments": [
                     {
                       "type": "typeParameter",
@@ -6474,7 +6546,7 @@
             }
           },
           {
-            "id": 6960,
+            "id": 6961,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6494,7 +6566,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6681,
+                  "id": 6682,
                   "name": "SpinnerProps"
                 }
               ],
@@ -6507,10 +6579,10 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6958,
               6959,
-              6961,
-              6960
+              6960,
+              6962,
+              6961
             ]
           }
         ],
@@ -6536,7 +6608,7 @@
     },
     "typeParameter": [
       {
-        "id": 7364,
+        "id": 7365,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6568,7 +6640,7 @@
     },
     "typeParameter": [
       {
-        "id": 7345,
+        "id": 7346,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6749,7 +6821,7 @@
     },
     "typeParameter": [
       {
-        "id": 7470,
+        "id": 7471,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6758,7 +6830,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -6916,7 +6988,7 @@
     },
     "typeParameter": [
       {
-        "id": 7370,
+        "id": 7371,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6925,7 +6997,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7512,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -7137,16 +7209,6 @@
           "name": "boolean"
         },
         "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
-        "defaultValue": "false",
-        "deprecated": false
-      },
-      "isMulti": {
-        "name": "isMulti",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, multiple items may be selected",
         "defaultValue": "false",
         "deprecated": false
       },
@@ -7381,7 +7443,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7513,
+            "id": 7515,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -7390,7 +7452,7 @@
             },
             "indexSignature": [
               {
-                "id": 7516,
+                "id": 7518,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -7399,7 +7461,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7517,
+                    "id": 7519,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7420,7 +7482,7 @@
             ],
             "children": [
               {
-                "id": 7515,
+                "id": 7517,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7440,7 +7502,7 @@
                 }
               },
               {
-                "id": 7514,
+                "id": 7516,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7465,8 +7527,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7515,
-                  7514
+                  7517,
+                  7516
                 ]
               }
             ],
@@ -7486,6 +7548,56 @@
       ]
     },
     "id": "SelectOptions",
+    "tags": {},
+    "properties": {}
+  },
+  {
+    "name": "XORSelectProps",
+    "kind": 4194304,
+    "kindString": "Type alias",
+    "flags": {
+      "isExported": true
+    },
+    "typeParameter": [
+      {
+        "id": 7540,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
+    "type": {
+      "type": "reference",
+      "typeArguments": [
+        {
+          "type": "reference",
+          "id": 7370,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "SelectProps"
+        },
+        {
+          "type": "reference",
+          "id": 7470,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "MultiSelectProps"
+        }
+      ],
+      "name": "XOR"
+    },
+    "id": "XORSelectProps",
     "tags": {},
     "properties": {}
   },
@@ -7723,20 +7835,6 @@
         "description": "The href value of the link",
         "deprecated": false
       },
-      "type": {
-        "name": "type",
-        "required": false,
-        "type": {
-          "name": "enum",
-          "options": [
-            "ButtonType.button",
-            "ButtonType.reset",
-            "ButtonType.submit"
-          ]
-        },
-        "description": "The type attribute of the button\nButtonType.button",
-        "deprecated": false
-      },
       "variant": {
         "name": "variant",
         "required": false,
@@ -7843,14 +7941,6 @@
     "id": "StyledButtonProps",
     "tags": {},
     "properties": {
-      "as": {
-        "name": "as",
-        "required": false,
-        "type": {
-          "name": "any"
-        },
-        "deprecated": false
-      },
       "href": {
         "name": "href",
         "required": false,
@@ -7939,14 +8029,6 @@
         },
         "description": "Determines whether the button appears in all-caps",
         "defaultValue": "ButtonTextTransform.uppercase",
-        "deprecated": false
-      },
-      "to": {
-        "name": "to",
-        "required": false,
-        "type": {
-          "name": "string"
-        },
         "deprecated": false
       },
       "type": {
@@ -8901,12 +8983,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11471,
+          "id": 12024,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11468,
+          "id": 12021,
           "name": "VerticalTabsProps"
         }
       ]
