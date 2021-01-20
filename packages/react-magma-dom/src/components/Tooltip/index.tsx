@@ -51,8 +51,8 @@ const ToolTipContainer = styled.div`
 
 const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
   display: block;
-  height: 0;
-  width: 0;
+  height: ${props => props.theme.tooltip.arrowSize};
+  width: ${props => props.theme.tooltip.arrowSize};
 `;
 
 const StyledTooltip = styled.div<{
@@ -73,9 +73,20 @@ const StyledTooltip = styled.div<{
   line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
   font-weight: ${props => props.theme.tooltip.fontWeight};
   max-width: ${props => props.theme.tooltip.maxWidth};
+  min-height: 2.5em;
   padding: ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing04};
   z-index: ${props => props.theme.tooltip.zIndex};
+
+  &[data-popper-placement='top'],
+  &[data-popper-placement='bottom'] {
+    margin: ${props => props.theme.spaceScale.spacing03} 0;
+  }
+
+  &[data-popper-placement='left'],
+  &[data-popper-placement='right'] {
+    margin: 0 ${props => props.theme.spaceScale.spacing03};
+  }
 
   &[data-popper-placement='top'] > span:last-child {
     border-left: ${props => props.theme.tooltip.arrowSize} solid transparent;
@@ -86,8 +97,6 @@ const StyledTooltip = styled.div<{
           ? props.theme.tooltip.inverse.backgroundColor
           : props.theme.tooltip.backgroundColor};
     bottom: -${props => props.theme.tooltip.arrowSize};
-    left: 50% !important;
-    transform: translateX(-50%) !important;
   }
 
   &[data-popper-placement='bottom'] > span:last-child {
@@ -99,8 +108,6 @@ const StyledTooltip = styled.div<{
           ? props.theme.tooltip.inverse.backgroundColor
           : props.theme.tooltip.backgroundColor};
     top: -${props => props.theme.tooltip.arrowSize};
-    left: 50% !important;
-    transform: translateX(-50%) !important;
   }
 
   &[data-popper-placement='left'] > span:last-child {
@@ -112,8 +119,6 @@ const StyledTooltip = styled.div<{
           ? props.theme.tooltip.inverse.backgroundColor
           : props.theme.tooltip.backgroundColor};
     right: -${props => props.theme.tooltip.arrowSize};
-    top: 50% !important;
-    transform: translateY(-50%) !important;
   }
 
   &[data-popper-placement='right'] > span:last-child {
@@ -125,8 +130,6 @@ const StyledTooltip = styled.div<{
           ? props.theme.tooltip.inverse.backgroundColor
           : props.theme.tooltip.backgroundColor};
     left: -${props => props.theme.tooltip.arrowSize};
-    top: 50% !important;
-    transform: translateY(-50%) !important;
   }
 `;
 
