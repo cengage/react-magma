@@ -148,7 +148,7 @@ interface Select {
 }
 
 export interface Tooltip {
-  arrowSize: string;
+  arrowSize: number;
   backgroundColor: string;
   fontWeight: number | string;
   maxWidth: string;
@@ -495,7 +495,7 @@ export const magma = {
   },
 
   tooltip: {
-    arrowSize: '6px',
+    arrowSize: 4,
     backgroundColor: colors.neutral,
     fontWeight: 600,
     maxWidth: '300px',
