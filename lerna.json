@@ -7,7 +7,13 @@
   ],
   "command": {
     "bootstrap": {
-      "forceLocal": true
+      "forceLocal": true,
+      "hoist": [
+       "**"
+      ],
+      "nohoist": [
+        "react-magma-legacy-selects"
+      ]
     },
     "publish": {
       "allowBranch": ["master", "dev", "hotfix/*", "main"],
@@ -16,7 +22,8 @@
     },
     "version": {
       "changelogPreset": "conventionalcommits",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "exact": true
     }
   },
   "version": "independent",

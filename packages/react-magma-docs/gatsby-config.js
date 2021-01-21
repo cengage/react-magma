@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
@@ -61,6 +63,21 @@ module.exports = {
             options: {
               maxWidth: 1035,
               linkImagesToOriginal: false,
+            },
+          },
+          {
+            resolve: require.resolve('gatsby-remark-inline-codesandbox'),
+            options: {
+              mode: 'iframe',
+              customTemplates: {
+                magma: {
+                  extends: `file:${path.join(
+                    __dirname,
+                    '../react-magma-dom-codesandbox-template'
+                  )}`,
+                  entry: 'src/Example.tsx',
+                },
+              },
             },
           },
         ],

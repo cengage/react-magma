@@ -27,6 +27,6 @@ export const amgamDark = Object.assign({}, magma, {
     disabledText: 'rgba(114, 114, 114, 0.6)',
     disabledInverseText: 'rgba(255, 255, 255, 0.25)',
     toggleBoxShadow:
-      '0 2px 2px -1px rgba(255,255,255, 0.3), 0 0 4px 0 rgba(255,255,255, 0.24),0 0 5px 0 rgba(255,255,255, 0.22)'
-  })
+      '0 2px 2px -1px rgba(255,255,255, 0.3), 0 0 4px 0 rgba(255,255,255, 0.24),0 0 5px 0 rgba(255,255,255, 0.22)',
+  }),
 });

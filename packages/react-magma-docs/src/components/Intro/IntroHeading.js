@@ -5,6 +5,7 @@ import { ThemeContext } from 'react-magma-dom';
 
 const StyledHeading = styled.h2`
   && {
+    border-bottom: 2px solid transparent;
     color: inherit;
     font-family: ${props => props.theme.bodyFont};
     font-size: ${props => (props.isCta ? '2em' : '2.4em')};
@@ -12,10 +13,11 @@ const StyledHeading = styled.h2`
     text-align: center;
     text-transform: uppercase;
     margin-top: -240px;
-    padding-top: 264px;
+    padding: 264px 0 ${props => props.theme.spaceScale.spacing03};
 
     &:focus {
       border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+      outline: 0;
     }
 
     @media (min-width: ${props => props.theme.breakpoints.small}) {
