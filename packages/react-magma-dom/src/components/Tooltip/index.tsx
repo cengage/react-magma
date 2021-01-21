@@ -55,9 +55,9 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
   &&,
   &&:before {
     display: block;
-    height: ${props => props.theme.tooltip.arrowSize * 2}px;
+    height: ${props => props.theme.tooltip.arrowSizeDoubled};
     position: absolute;
-    width: ${props => props.theme.tooltip.arrowSize * 2}px;
+    width: ${props => props.theme.tooltip.arrowSizeDoubled};
     z-index: -1;
   }
 
@@ -96,19 +96,19 @@ const StyledTooltip = styled.div<{
   z-index: ${props => props.theme.tooltip.zIndex};
 
   &[data-popper-placement='top'] > span:last-child {
-    bottom: -${props => props.theme.tooltip.arrowSize}px;
+    bottom: -${props => props.theme.tooltip.arrowSize};
   }
 
   &[data-popper-placement='bottom'] > span:last-child {
-    top: -${props => props.theme.tooltip.arrowSize}px;
+    top: -${props => props.theme.tooltip.arrowSize};
   }
 
   &[data-popper-placement='left'] > span:last-child {
-    right: -${props => props.theme.tooltip.arrowSize}px;
+    right: -${props => props.theme.tooltip.arrowSize};
   }
 
   &[data-popper-placement='right'] > span:last-child {
-    left: -${props => props.theme.tooltip.arrowSize}px;
+    left: -${props => props.theme.tooltip.arrowSize};
   }
 `;
 
