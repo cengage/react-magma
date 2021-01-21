@@ -37,50 +37,68 @@ The label/input association will be handled via the passed in `id` if one is sup
 
 Label text can be a string or a react node.
 
-```.jsx
-<>
-  <Input
-    labelText='Label' />
-  <Input
-    id="myCustomId"
-    labelText={<span>Label <i>with node</i></span>} />
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return (
+    <>
+      <Input labelText="Label" />
+      <Input
+        id="myCustomId"
+        labelText={
+          <span>
+            Label <i>with node</i>
+          </span>
+        }
+      />
+    </>
+  );
+}
 ```
 
 ## Number
 
-```.jsx
-<Input
-  labelText='Number'
-  type='number' />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return <Input labelText="Number" type="number" />;
+}
 ```
 
 ## Disabled
 
-```.jsx
-<Input
-  labelText='Disabled'
-  disabled />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return <Input labelText="Disabled" disabled />;
+}
 ```
 
 ## Default Value
 
 The `defaultValue` of an input can be set using the `defaultValue` prop.
 
-```.jsx
-<Input
-  labelText='Default value'
-  defaultValue='default' />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return <Input labelText="Default value" defaultValue="default" />;
+}
 ```
 
 ## Value
 
 The `value` of an input can be set using the `value` prop.
 
-```.jsx
-<Input
-  labelText='Value'
-  value='abc123' />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return <Input labelText="Value" value="abc123" />;
+}
 ```
 
 ## Placeholder
@@ -89,25 +107,29 @@ The `placeholder` text of an input can be set using the `placeholder` prop.
 Placeholder text should be used to provide supplemental information about the input field. It should not be
 relied upon to take the place of the label text.
 
-```.jsx
-<Input
-  labelText='Email Address'
-  placeholder='yourname@example.com' />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return <Input labelText="Email Address" placeholder="yourname@example.com" />;
+}
 ```
 
 ## Helper Message
 
 The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
 
-```.jsx
-() => {
-  const helperMessage = <>Helper text goes here. <a href="#">Learn more</a></>;
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  const helperMessage = (
+    <>
+      Helper text goes here. <a href="#">Learn more</a>
+    </>
+  );
 
-  return (
-    <Input
-      helperMessage={helperMessage}
-      labelText='Helper Message' />
-  )
+  return <Input helperMessage={helperMessage} labelText="Helper Message" />;
 }
 ```
 
@@ -120,16 +142,17 @@ The `required` prop can be used to indicate when a field is required. It is also
 
 While React Magma provides the error styling, it is up to the consumer app to handle the validation.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Input, Button } from 'react-magma-dom';
+export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [nameValue, setNameValue] = React.useState('');
 
   function submit() {
     if (nameValue === '') {
       setHasError(true);
-    }
-    else {
+    } else {
       setHasError(false);
     }
   }
@@ -142,16 +165,19 @@ While React Magma provides the error styling, it is up to the consumer app to ha
   return (
     <>
       <Input
-        errorMessage={hasError ? 'Please provide name': null}
-        helperMessage='* Required'
-        labelText='Name *'
-        onChange={(event) => setNameValue(event.target.value)}
+        errorMessage={hasError ? 'Please provide name' : null}
+        helperMessage="* Required"
+        labelText="Name *"
+        onChange={event => setNameValue(event.target.value)}
         required
-        value={nameValue} />
+        value={nameValue}
+      />
       <Button onClick={submit}>Submit</Button>
-      <Button onClick={reset} color="secondary">Reset</Button>
+      <Button onClick={reset} color="secondary">
+        Reset
+      </Button>
     </>
-  )
+  );
 }
 ```
 
@@ -163,78 +189,111 @@ Functionality can be added to the icon by using the `onIconClick` and `onIconKey
 
 The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
-```.jsx
-<>
-  <Input
-    labelText='Input with Icon on Left'
-    icon={<EnvelopeOIcon />}
-    type="email" />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input, Spinner } from 'react-magma-dom';
+import { CalendarIcon, EnvelopeOIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <>
+      <Input
+        labelText="Input with Icon on Left"
+        icon={<EnvelopeOIcon />}
+        type="email"
+      />
 
-  <Input
-    iconPosition='right'
-    labelText='Input with Icon on Right'
-    icon={<Spinner />}
-    iconAriaLabel="Loading..." />
+      <Input
+        iconPosition="right"
+        labelText="Input with Icon on Right"
+        icon={<Spinner />}
+        iconAriaLabel="Loading..."
+      />
 
-  <Input
-    labelText='Input with Clickable Icon on Right'
-    iconAriaLabel="Calendar"
-    onIconClick={()=>{alert('Icon clicked')}}
-    icon={<CalendarIcon />} />
-</>
+      <Input
+        labelText="Input with Clickable Icon on Right"
+        iconAriaLabel="Calendar"
+        onIconClick={() => {
+          alert('Icon clicked');
+        }}
+        icon={<CalendarIcon />}
+      />
+    </>
+  );
+}
 ```
 
 ## Input Size
 
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
-```.jsx
-<>
-  <Input
-    labelText='Input large with Icon on Left'
-    inputSize='large'
-    icon={<EnvelopeOIcon />}
-    type="email" />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+import { CalendarIcon, EnvelopeOIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <>
+      <Input
+        labelText="Input large with Icon on Left"
+        inputSize="large"
+        icon={<EnvelopeOIcon />}
+        type="email"
+      />
 
-  <Input
-    labelText='Input large with Clickable Icon on Right'
-    iconAriaLabel="Calendar"
-    inputSize='large'
-    onIconClick={()=>{alert('Icon clicked')}}
-    icon={<CalendarIcon />} />
+      <Input
+        labelText="Input large with Clickable Icon on Right"
+        iconAriaLabel="Calendar"
+        inputSize="large"
+        onIconClick={() => {
+          alert('Icon clicked');
+        }}
+        icon={<CalendarIcon />}
+      />
 
-  <Input
-    errorMessage='Error'
-    inputSize='large'
-    labelText='Large Input With Error' />
-</>
+      <Input
+        errorMessage="Error"
+        inputSize="large"
+        labelText="Large Input With Error"
+      />
+    </>
+  );
+}
 ```
 
 ## Inverse
 
 `isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
-```.jsx
-<Card isInverse>
-  <CardBody>
-    <Input
-      id='inputInverse'
-      isInverse
-      labelText='Inverse Input'
-      placeholder='Type in here' />
+```tsx codesandbox=magma
+import React from 'react';
+import { Card, CardBody, Input } from 'react-magma-dom';
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Input
+          id="inputInverse"
+          isInverse
+          labelText="Inverse Input"
+          placeholder="Type in here"
+        />
 
-    <Input
-      helperMessage='Helper text'
-      isInverse
-      labelText='Inverse Input with Helper Text' />
+        <Input
+          helperMessage="Helper text"
+          isInverse
+          labelText="Inverse Input with Helper Text"
+        />
 
-    <Input
-      errorMessage='Please fill out this field'
-      isInverse
-      labelText='Inverse Input with Error Message'
-      required />
-  </CardBody>
-</Card>
+        <Input
+          errorMessage="Please fill out this field"
+          isInverse
+          labelText="Inverse Input with Error Message"
+          required
+        />
+      </CardBody>
+    </Card>
+  );
+}
 ```
 
 ## Input With Hidden Label
@@ -243,12 +302,20 @@ The `isLabelVisuallyHidden` prop can be used to visually hide the text label, wh
 
 This option should only be used in rare instances, such as a search field. Providing a visual label is helpful for individuals with cognitive disabilities and users who have fine motor control limitations. When there isn't a visible label, the placeholder text should match the invisible label word for word. This is so speech input users can operate the control with voice commands.
 
-```.jsx
-<Input
-  icon={<Search2Icon />}
-  isLabelVisuallyHidden
-  labelText='Search'
-  placeholder='Search' />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+import { Search2Icon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <Input
+      icon={<Search2Icon />}
+      isLabelVisuallyHidden
+      labelText="Search"
+      placeholder="Search"
+    />
+  );
+}
 ```
 
 ## Additional Children (e.g. Help Link)
@@ -257,68 +324,85 @@ Some inputs require more content next to the form field, such as a help link to 
 If you pass children to the input field, it will render immediately after the input. The container is displayed flex, so the content
 will appear to the right of the field.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton, Input, Tooltip } from 'react-magma-dom';
+import { QuestionCircleIcon } from 'react-magma-icons';
+export function Example() {
   const helpLinkLabel = 'Learn more';
-  const onHelpLinkClick= ()=> {alert('Help link clicked!')};
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
 
   return (
-    <Input labelText='Help Link'>
-      <Tooltip
-        content={helpLinkLabel}>
+    <Input labelText="Help Link">
+      <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}
           icon={<QuestionCircleIcon />}
           onClick={onHelpLinkClick}
-          type='button'
-          variant='link'
+          type="button"
+          variant="link"
         />
       </Tooltip>
     </Input>
-  )
-};
+  );
+}
 ```
 
 ## Change Events
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
   const [message, setMessage] = React.useState('');
 
-  return (<div>
-    <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
-    <Input
-      labelText='Test Value'
-      value=''
-      onChange={(event) => setMessage(event.target.value)} />
-  </div>)
+  return (
+    <div>
+      <p>
+        <strong>Changed Value: </strong>{' '}
+        <span id="changedValue">{message}</span>
+      </p>
+      <Input
+        labelText="Test Value"
+        value=""
+        onChange={event => setMessage(event.target.value)}
+      />
+    </div>
+  );
 }
 ```
 
 ## Focus Events
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
   const [focused, setFocused] = React.useState(false);
   const [message, setMessage] = React.useState('');
 
   function changeFocusedMessage() {
     setFocused(prevFocused => {
       setMessage(!prevFocused ? 'Yes' : 'No');
-      return !prevFocused
+      return !prevFocused;
     });
   }
 
   return (
     <div>
-      <p><strong>Focused: </strong> <span id="focused">{message}</span></p>
+      <p>
+        <strong>Focused: </strong> <span id="focused">{message}</span>
+      </p>
       <Input
-        id='inputFocused'
-        labelText='Focused?'
+        id="inputFocused"
+        labelText="Focused?"
         onFocus={changeFocusedMessage}
-        onBlur={changeFocusedMessage} />
+        onBlur={changeFocusedMessage}
+      />
     </div>
-  )
+  );
 }
 ```
 
@@ -326,23 +410,25 @@ will appear to the right of the field.
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal input.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Input } from 'react-magma-dom';
+export function Example() {
   const inputRef = React.useRef();
 
   return (
     <div>
-      <Input
-        ref={inputRef}
-        labelText='Input to be focused' />
+      <Input ref={inputRef} labelText="Input to be focused" />
 
       <Button
         onClick={() => {
           inputRef.current.focus();
-        }}>Click to focus input
+        }}
+      >
+        Click to focus input
       </Button>
     </div>
-  )
+  );
 }
 ```
 
@@ -351,14 +437,21 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
 Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
-```.jsx
-<Input
-  containerStyle={{ 'border': '1px dotted purple', 'padding': '5px'}}
-  errorMessage="Styled error message"
-  inputStyle={{ 'borderRadius': '0'}}
-  labelStyle={{ 'color': 'brown', 'fontStyle': 'italic'}}
-  labelText='Custom Styles for input'
-  messageStyle={{ 'color' : 'green'}} />
+```tsx codesandbox=magma
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return (
+    <Input
+      containerStyle={{ border: '1px dotted purple', padding: '5px' }}
+      errorMessage="Styled error message"
+      inputStyle={{ borderRadius: '0' }}
+      labelStyle={{ color: 'brown', fontStyle: 'italic' }}
+      labelText="Custom Styles for input"
+      messageStyle={{ color: 'green' }}
+    />
+  );
+}
 ```
 
 ## Testing
@@ -573,21 +666,4 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
   }}
 />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      Input,
-      Button,
-      CalendarIcon,
-      EnvelopeOIcon,
-      IconButton,
-      QuestionCircleIcon,
-      Search2Icon,
-      Spinner,
-      Tooltip,
-      Card,
-      CardBody,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

@@ -34,41 +34,113 @@ If no children are included, then they render in the icon-only style.
   button text.
 </Alert>
 
-```.jsx
-<>
-  <p>
-    <IconButton aria-label="Notifications" icon={<BellIcon />} />
-    <IconButton aria-label="Notifications" icon={<BellIcon />} />
-    <IconButton aria-label="Notifications" variant="outline" icon={<BellIcon />} />
-    <IconButton aria-label="Notifications" variant="link" icon={<BellIcon />} />
-    <IconButton aria-label="Settings" color="secondary" icon={<Cog2Icon />} />
-    <IconButton aria-label="Settings" color="secondary" variant="outline" icon={<Cog2Icon />} />
-    <IconButton aria-label="Settings" color="secondary" variant="link" icon={<Cog2Icon />} />
-    <IconButton aria-label="Correct" color="success" icon={<CheckIcon />} />
-    <IconButton aria-label="Correct" color="success"variant="outline" icon={<CheckIcon />} />
-    <IconButton aria-label="Correct" color="success" variant="link" icon={<CheckIcon />} />
-    <IconButton aria-label="Error" color="danger" icon={<AlertIcon />} />
-    <IconButton aria-label="Error" color="danger" variant="outline" icon={<AlertIcon />} />
-    <IconButton aria-label="Error" color="danger" variant="link" icon={<AlertIcon />} />
-    <IconButton aria-label="Notifications" disabled icon={<BellIcon />} />
-  </p>
-    <p>
-    <IconButton icon={<BellIcon />}>Notifications</IconButton>
-    <IconButton icon={<Cog2Icon />} color="secondary" variant="outline" >Settings</IconButton>
-    <IconButton icon={<CheckIcon />} color="success" variant="link">Submit</IconButton>
-  </p>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton, ButtonVariant, ButtonColor } from 'react-magma-dom';
+import {
+  AlertIcon,
+  BellIcon,
+  Cog2Icon,
+  CheckIcon,
+  InfoIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <p>
+        <IconButton aria-label="Notifications" icon={<BellIcon />} />
+        <IconButton aria-label="Notifications" icon={<BellIcon />} />
+        <IconButton
+          aria-label="Notifications"
+          variant={ButtonVariant.outline}
+          icon={<BellIcon />}
+        />
+        <IconButton
+          aria-label="Notifications"
+          variant={ButtonVariant.link}
+          icon={<BellIcon />}
+        />
+        <IconButton
+          aria-label="Settings"
+          color={ButtonColor.secondary}
+          icon={<Cog2Icon />}
+        />
+        <IconButton
+          aria-label="Settings"
+          color={ButtonColor.secondary}
+          variant={ButtonVariant.outline}
+          icon={<Cog2Icon />}
+        />
+        <IconButton
+          aria-label="Settings"
+          color={ButtonColor.secondary}
+          variant={ButtonVariant.link}
+          icon={<Cog2Icon />}
+        />
+        <IconButton aria-label="Correct" color="success" icon={<CheckIcon />} />
+        <IconButton
+          aria-label="Correct"
+          color={ButtonColor.success}
+          variant={ButtonVariant.outline}
+          icon={<CheckIcon />}
+        />
+        <IconButton
+          aria-label="Correct"
+          color={ButtonColor.success}
+          variant={ButtonVariant.link}
+          icon={<CheckIcon />}
+        />
+        <IconButton aria-label="Error" color="danger" icon={<AlertIcon />} />
+        <IconButton
+          aria-label="Error"
+          color={ButtonColor.danger}
+          variant={ButtonVariant.outline}
+          icon={<AlertIcon />}
+        />
+        <IconButton
+          aria-label="Error"
+          color={ButtonColor.danger}
+          variant={ButtonVariant.link}
+          icon={<AlertIcon />}
+        />
+        <IconButton aria-label="Notifications" disabled icon={<BellIcon />} />
+      </p>
+      <p>
+        <IconButton icon={<BellIcon />}>Notifications</IconButton>
+        <IconButton
+          icon={<Cog2Icon />}
+          color={ButtonColor.secondary}
+          variant={ButtonVariant.outline}
+        >
+          Settings
+        </IconButton>
+        <IconButton
+          icon={<CheckIcon />}
+          color={ButtonColor.success}
+          variant={ButtonVariant.link}
+        >
+          Submit
+        </IconButton>
+      </p>
+    </>
+  );
+}
 ```
 
 ## Assign Icon to Variable
 
 If you find JSX being passed in as a prop directly ugly, you can assign an icon to a variable and pass that in as the prop.
 
-```.jsx
-() => {
-  const icon = <BellIcon />
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton } from 'react-magma-dom';
+import { BellIcon } from 'react-magma-icons';
 
-  return <IconButton aria-label="Notifications" icon={icon} />
+export function Example() {
+  const icon = <BellIcon />;
+
+  return <IconButton aria-label="Notifications" icon={icon} />;
 }
 ```
 
@@ -76,11 +148,17 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
 
 Icon buttons have default sizes for small, medium and large icon buttons respectively. However, if a pixel size is specified for an icon itself, that size will take precedence.
 
-```.jsx
-() => {
-  const icon = <BellIcon size={10} />
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton } from 'react-magma-dom';
+import { BellIcon } from 'react-magma-icons';
 
-  return <IconButton icon={icon}>Notification with Custom Icon Size</IconButton>
+export function Example() {
+  const icon = <BellIcon size={10} />;
+
+  return (
+    <IconButton icon={icon}>Notification with Custom Icon Size</IconButton>
+  );
 }
 ```
 
@@ -89,56 +167,112 @@ Icon buttons have default sizes for small, medium and large icon buttons respect
 Use the optional prop `iconPosition` to position the icon of the button on either side of the text.
 The `iconPosition` property takes the values `left` and `right`.
 
-```.jsx
-<>
-  <IconButton icon={<BellIcon />}>Icon Left</IconButton>
-  <IconButton color="secondary" icon={<InfoIcon />} iconPosition="right">Icon Right</IconButton>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton } from 'react-magma-dom';
+import { BellIcon, InfoIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <IconButton icon={<BellIcon />}>Icon Left</IconButton>
+      <IconButton color="secondary" icon={<InfoIcon />} iconPosition="right">
+        Icon Right
+      </IconButton>
+    </>
+  );
+}
 ```
 
 ## Sizes
 
 Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` being the default value.
 
-```.jsx
-<>
-  <p>
-    <IconButton icon={<BellIcon aria-label="Notifications" />} size="small" />
-    <IconButton icon={<BellIcon aria-label="Notifications" />} />
-    <IconButton icon={<BellIcon aria-label="Notifications" />} size="large" />
-  </p>
-  <p>
-    <IconButton icon={<BellIcon />} size="small" iconPosition="left">Small Notifications</IconButton>
-    <IconButton icon={<BellIcon />} iconPosition="left">Medium Notifications</IconButton>
-    <IconButton icon={<BellIcon />} size="large" iconPosition="left">Large Notifications</IconButton>
-  </p>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton } from 'react-magma-dom';
+import { BellIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <p>
+        <IconButton
+          icon={<BellIcon aria-label="Notifications" />}
+          size="small"
+        />
+        <IconButton icon={<BellIcon aria-label="Notifications" />} />
+        <IconButton
+          icon={<BellIcon aria-label="Notifications" />}
+          size="large"
+        />
+      </p>
+      <p>
+        <IconButton icon={<BellIcon />} size="small" iconPosition="left">
+          Small Notifications
+        </IconButton>
+        <IconButton icon={<BellIcon />} iconPosition="left">
+          Medium Notifications
+        </IconButton>
+        <IconButton icon={<BellIcon />} size="large" iconPosition="left">
+          Large Notifications
+        </IconButton>
+      </p>
+    </>
+  );
+}
 ```
 
 ## Shape
 
 Icon only buttons have `shape = round`, by default.
 
-```.jsx
-<>
-  <IconButton icon={<BellIcon aria-label="Notifications"  />} />
-  <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="fill" />
-  <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="rightCap" />
-  <IconButton icon={<BellIcon aria-label="Notifications"  />} shape="leftCap" />
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton } from 'react-magma-dom';
+import { BellIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <IconButton icon={<BellIcon aria-label="Notifications" />} />
+      <IconButton icon={<BellIcon aria-label="Notifications" />} shape="fill" />
+      <IconButton
+        icon={<BellIcon aria-label="Notifications" />}
+        shape="rightCap"
+      />
+      <IconButton
+        icon={<BellIcon aria-label="Notifications" />}
+        shape="leftCap"
+      />
+    </>
+  );
+}
 ```
 
 ## Full-Width Buttons
 
 The `isFullWidth` property will set the button to display full-width. This property does not have any effect on icon-only buttons.
 
-```.jsx
-<>
-  <IconButton icon={<BellIcon />} isFullWidth>Full-Width Notifications Button</IconButton>
-  <IconButton icon={<BellIcon />} isFullWidth iconPosition="right">Full-Width Notifications Button</IconButton>
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton } from 'react-magma-dom';
+import { BellIcon } from 'react-magma-icons';
 
-  <IconButton icon={<BellIcon aria-label="Notifications" />} isFullWidth />
-</>
+export function Example() {
+  return (
+    <>
+      <IconButton icon={<BellIcon />} isFullWidth>
+        Full-Width Notifications Button
+      </IconButton>
+      <IconButton icon={<BellIcon />} isFullWidth iconPosition="right">
+        Full-Width Notifications Button
+      </IconButton>
+
+      <IconButton icon={<BellIcon aria-label="Notifications" />} isFullWidth />
+    </>
+  );
+}
 ```
 
 ## Event Handling
@@ -146,39 +280,48 @@ The `isFullWidth` property will set the button to display full-width. This prope
 The `onClick` event will fire when the button is clicked, or when the enter or spacebar key is pressed.
 Events do not fire on disabled buttons.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { IconButton } from 'react-magma-dom';
+import { BellIcon } from 'react-magma-icons';
+export function Example() {
   const [iconButtonCounter, setIconButtonCounter] = React.useState(0);
   const [textIconButtonCounter, setTextIconButtonCounter] = React.useState(0);
 
   return (
     <>
-      <p><strong>Icon Counter: </strong> {iconButtonCounter} | <strong>Text Icon Counter: </strong> {textIconButtonCounter}</p>
+      <p>
+        <strong>Icon Counter: </strong> {iconButtonCounter} |{' '}
+        <strong>Text Icon Counter: </strong> {textIconButtonCounter}
+      </p>
       <IconButton
         icon={<BellIcon />}
         onClick={() => {
-          setIconButtonCounter(count => count + 1)
-        }}>
+          setIconButtonCounter(count => count + 1);
+        }}
+      >
         Click me
       </IconButton>
       <IconButton
         icon={<BellIcon />}
         textPosition="left"
         onClick={() => {
-          setTextIconButtonCounter(count => count + 1)
-        }}>
+          setTextIconButtonCounter(count => count + 1);
+        }}
+      >
         Click me
       </IconButton>
       <IconButton
         disabled
         icon={<BellIcon />}
         onClick={() => {
-          setIconButtonCounter(count => count + 1)
-        }}>
+          setIconButtonCounter(count => count + 1);
+        }}
+      >
         Click me if you can
       </IconButton>
     </>
-  )
+  );
 }
 ```
 
@@ -213,17 +356,4 @@ All of the [standard button attributes](https://developer.mozilla.org/en-US/docs
 
 <IconButtonProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      IconButton,
-      AlertIcon,
-      BellIcon,
-      Cog2Icon,
-      CheckIcon,
-      InfoIcon,
-      Alert,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;
