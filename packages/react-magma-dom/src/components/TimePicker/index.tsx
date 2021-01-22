@@ -339,8 +339,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           >
             <InputsContainer theme={theme}>
               <StyledNumInput
-                aria-label={i18n.timePicker.hoursAriaLabel}
                 aria-describedby={descriptionId}
+                aria-label={i18n.timePicker.hoursAriaLabel}
                 data-testid="hoursTimeInput"
                 id={hourId}
                 maxLength={2}
