@@ -161,9 +161,4 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 
 <HyperlinkProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ Hyperlink, Card, CardBody, Paragraph }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

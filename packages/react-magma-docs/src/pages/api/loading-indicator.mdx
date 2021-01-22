@@ -20,8 +20,12 @@ When content is loading, the `LoadingIndicator` component can be used to communi
 
 By default, the Loading Indicator uses the <Link to="/api/spinner">Spinner</Link> component.
 
-```.jsx
-<LoadingIndicator />
+```tsx codesandbox=magma
+import React from 'react';
+import { LoadingIndicator } from 'react-magma-dom';
+export function Example() {
+  return <LoadingIndicator />;
+}
 ```
 
 ## Progress Bar
@@ -29,8 +33,10 @@ By default, the Loading Indicator uses the <Link to="/api/spinner">Spinner</Link
 The `type` prop can be used to change what sort of loading animation displays. The default type is `spinner`, but the `progressbar` type can also be used,
 to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { LoadingIndicator } from 'react-magma-dom';
+export function Example() {
   const [percentage, setPercentage] = React.useState(0);
 
   React.useEffect(() => {
@@ -85,10 +91,10 @@ to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
       clearTimeout(timer8);
       clearTimeout(timer9);
       clearTimeout(timer10);
-    }
-  }, [])
+    };
+  }, []);
 
-  return (<LoadingIndicator percentage={percentage} type='progressbar' />)
+  return <LoadingIndicator percentage={percentage} type="progressbar" />;
 }
 ```
 
@@ -97,11 +103,18 @@ to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 The `LoadingIndicator`, supports three levels of messages. One displays immediately, the second one appears after five seconds, and the third appears after 15 seconds.
 These messages can be customized by using the `message1`, `message2` and `message3` props.
 
-```.jsx
-<LoadingIndicator
-  message1="Custom message"
-  message2="An additional custom message"
-  message3="Third and final custom message" />
+```tsx codesandbox=magma
+import React from 'react';
+import { LoadingIndicator } from 'react-magma-dom';
+export function Example() {
+  return (
+    <LoadingIndicator
+      message1="Custom message"
+      message2="An additional custom message"
+      message3="Third and final custom message"
+    />
+  );
+}
 ```
 
 ## Accessibility Considerations
@@ -110,21 +123,25 @@ Loading Indicators are intended to alert users to the fact that wait time is exp
 One way to do this is to use the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute. Be sure to place
 the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` component.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Announce, Button, LoadingIndicator } from 'react-magma-dom';
+export function Example() {
   const [showLoader, setShowLoader] = React.useState(false);
 
   return (
     <>
       <p>
-        <Button onClick={() => setShowLoader(true)}>Show Loading Indicator</Button>
-        <Button onClick={() => setShowLoader(false)}>Hide Loading Indicator</Button>
+        <Button onClick={() => setShowLoader(true)}>
+          Show Loading Indicator
+        </Button>
+        <Button onClick={() => setShowLoader(false)}>
+          Hide Loading Indicator
+        </Button>
       </p>
-      <Announce>
-        {showLoader && <LoadingIndicator />}
-      </Announce>
+      <Announce>{showLoader && <LoadingIndicator />}</Announce>
     </>
-  )
+  );
 }
 ```
 
@@ -134,9 +151,4 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
 
 <LoadingIndicatorProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ LoadingIndicator, Announce, Button }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

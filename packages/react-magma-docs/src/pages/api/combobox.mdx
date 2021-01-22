@@ -1333,19 +1333,4 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 <ComboboxProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      styled,
-      Card,
-      CardBody,
-      Combobox,
-      Alert,
-      uuid,
-      ComboboxStateChangeTypes,
-      I18nContext,
-      defaultI18n,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

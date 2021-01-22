@@ -240,13 +240,13 @@ Passing the `isFullWidth` property will set the button to display full-width.
 
 ```tsx codesandbox=magma
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button, ButtonColor } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
       <Button isFullWidth>Full Width button</Button>
-      <Button isFullWidth color="secondary">
+      <Button isFullWidth color={ButtonColor.secondary}>
         Full Width button
       </Button>
     </>
@@ -379,6 +379,4 @@ All of the [standard button attributes](https://developer.mozilla.org/en-US/docs
 
 <ButtonProps />
 
-export default props => (
-  <ScopeableLayout {...props} components={{ Button, Input, Card, CardBody }} />
-);
+export default props => <ScopeableLayout {...props} />;

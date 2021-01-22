@@ -246,9 +246,4 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 <CardBodyProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ Card, CardBody, CardHeading, magma }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

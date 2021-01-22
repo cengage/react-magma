@@ -50,7 +50,12 @@ The `DropdownContent` component contains the content that appears when the butto
 
 ```tsx codesandbox=magma
 import React from 'react';
-import { Dropdown, DropdownContent, DropdownMenuItem } from 'react-magma-dom';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -425,6 +430,7 @@ browser default keyboard behavior applies to other content.
 ```tsx codesandbox=magma
 import React from 'react';
 import {
+  Button,
   Checkbox,
   Dropdown,
   DropdownButton,
@@ -432,7 +438,9 @@ import {
   DropdownDivider,
   DropdownHeader,
   DropdownMenuItem,
+  Input,
   magma,
+  PasswordInput,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -793,28 +801,4 @@ Examples may include an id, a title, event handlers or various aria attributes. 
 
 <IconButtonProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      AsteriskIcon,
-      BellIcon,
-      Button,
-      Checkbox,
-      Cog2Icon,
-      Dropdown,
-      DropdownContent,
-      DropdownDivider,
-      DropdownHeader,
-      DropdownMenuGroup,
-      DropdownMenuItem,
-      DropdownSplitButton,
-      DropdownButton,
-      Input,
-      MenuIcon,
-      PasswordInput,
-      magma,
-      Modal,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

@@ -93,9 +93,4 @@ All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web
 
 <BreadcrumbItemProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ Breadcrumb, BreadcrumbItem, Card, CardBody }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

@@ -341,9 +341,4 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 
 <DatePickerProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ DatePicker, I18nContext, defaultI18n, es, format }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

@@ -585,20 +585,4 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 
 <IndeterminateCheckboxProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      Alert,
-      Button,
-      Card,
-      CardBody,
-      Checkbox,
-      FormGroup,
-      IndeterminateCheckbox,
-      magma,
-      I18nContext,
-      defaultI18n,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

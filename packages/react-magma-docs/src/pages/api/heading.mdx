@@ -283,9 +283,4 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 <HeadingProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ Heading, Button, Card, CardBody }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

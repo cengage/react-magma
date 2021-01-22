@@ -59,9 +59,4 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 <HideAtBreakpointProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ magma, Card, CardBody, HideAtBreakpoint }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;
