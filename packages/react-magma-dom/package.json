@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.3.4-alpha.2",
+  "version": "2.3.4-alpha.3",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -88,7 +88,7 @@
     "react": "^16.10.0",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.10.0",
-    "react-magma-icons": "1.0.8-alpha.2",
+    "react-magma-icons": "1.0.8-alpha.3",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",
