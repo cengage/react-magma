@@ -1,8 +1,8 @@
-# React magma
+# React Magma
 
 ## Getting started with React Magma in your application
 
-### Setup requirements
+### Setup Requirements
 
 1. Your project needs to be running **React v16.5** or greater
 
@@ -12,7 +12,7 @@
 npm install --save react-magma-dom
 ```
 
-### Documentation site
+### Documentation Site
 
 For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.info/version/latest/)
 
@@ -24,7 +24,7 @@ This site has general usage information, as well as information on all of the av
 
 Node v12.x or greater with npm 6.1.x or greater
 
-### Steps to run documentation locally
+### Steps to Run Documentation :ocally
 
 1. Clone this repo:
 
@@ -69,7 +69,7 @@ npm run develop
 
 Visit the docs at [http://localhost:3000](http://localhost:3000). The docs will not reflect local changes in the CodeSandbox examples.
 
-### Project structure
+### Project Structure
 
 The project is built using a monorepo structure with the help of [Lerna](https://github.com/lerna/lerna).
 
@@ -77,7 +77,7 @@ Each folder under the `packages` folder is it's own, independent package. Each p
 
 Lerna handles dependencies within the monorepo, using symlinks to connect dependent packages. For example,`react-magma-docs` uses `react-magma-dom`. When a dependent project is build the consuming project automatically gets the latest build.
 
-#### Source organization
+#### Source Organization
 
 The project is broken out into multiple packages.
 
@@ -93,7 +93,7 @@ Once you have finished making your code changes within a package run `npm run bu
 
 You must build before your changes will be reflected in the browser.
 
-### Running tests
+### Running Tests
 
 Each package has a `test` command. You can run them from the individual package, or you can run them from the root of the project.
 
@@ -119,7 +119,7 @@ This repository contributors are welcome to use
 test results immediately as you type, and see the results in
 your editor right next to your code.
 
-### Updating the docs
+### Updating the Docs
 
 The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component **must** be accurately captured documented here.
 
@@ -128,7 +128,7 @@ This project uses [MDX](https://mdxjs.com/), allowing the combination of Markdow
 Each component has its own `.mdx` file. If you have created a new component you will need to create a new `.mdx` file under the `pages/api` folder. If you have updated an existing component, you will need to review the existing docs page
 and update it as needed.
 
-#### Creating a docs page
+#### Creating a Docs Page
 
 Add in the navigation details at the top of the page in the front matter.
 
@@ -141,20 +141,10 @@ props:
 ---
 ```
 
-Import the `DocsHeading` and `ScopeableLayout` components. You may also need other things, such as components from `react-magma-dom` to use outside of examples (such as an `Alert`), or the`Link` from `gatsby` to link to other pages.
+Import the `ScopeableLayout` component. You may also need other things, such as components from `react-magma-dom` to use outside of examples (such as an `Alert`), or the`Link` from `gatsby` to link to other pages.
 
 ```js
-import { DocsHeading } from '../../components/DocsHeading';
 import { ScopeableLayout } from '../../components/layout';
-```
-
-Use the `DocsHeading` component to create a page heading and link to the respective Design Guidelines page if one exists.
-Include the `type` prop of `api`, so that the heading will indicate that the page is in the "Component API section".
-
-```
-<DocsHeading to="/design/{component}/" type="api">
-  {ComponentName}
-</DocsHeading>
 ```
 
 Add the `ScopeableLayout` component to the bottom of the file.
@@ -163,7 +153,25 @@ Add the `ScopeableLayout` component to the bottom of the file.
 export default props => <ScopeableLayout {...props} />;
 ```
 
-#### CodeSandbox examples
+#### Page Heading
+
+The heading for the docs page can be created by using markdown with the following syntax:
+
+```
+[{ComponentName}]("/design/{component} 'api')
+```
+
+The URL following the name of the component is the link to respective Designs Docs page, and is optional. The `api` string indicates that the page is in the `Component API`.
+
+Alternatively, you can also import the `DocsHeading` component and use the component with the appropriate props.
+
+```
+import { DocsHeading } from '../../components/DocsHeading;
+
+<DocsHeading to="/design/{component}/" type="api">
+```
+
+#### CodeSandbox Examples
 
 Create a basic usage example and an example for each of the different use cases of the component, using [CodeSandbox](https://https://codesandbox.io/).
 
@@ -213,7 +221,7 @@ props:
 <SomeComponentProps />
 ```
 
-### Storybook examples
+### Storybook Examples
 
 React Magma uses [Storybook](https://storybook.js.org/) for local testing of individual UI components. Each component must have a Storybook story that reflects each of its variations in state. TThe story files live along side the individual component files in a directory named `stories`. Run Storybook from the package folder:
 
@@ -221,7 +229,7 @@ React Magma uses [Storybook](https://storybook.js.org/) for local testing of ind
 npm run storybook
 ```
 
-### Committing code
+### Committing Code
 
 This project adheres to [SemVer](https://semver.org/) and enforces a specific commit message format.
 
@@ -248,7 +256,7 @@ All commits will have a topic and short description with an optional subject.
 
 There is a short version of the format that will pass the `commit-msg` check and a longer version for handling changes that need more explanation and for marking commits that contain breaking changes.
 
-#### Commit message components:
+#### Commit Message Components:
 
 - type (required)
 - subject
