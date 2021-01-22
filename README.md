@@ -45,15 +45,29 @@ git clone git@github.com:cengage/react-magma.git
 npm ci
 ```
 
-TODO: Should we tell people to look at docs right away? Or look at Storybook?
+3.  Run Storybook to view examples of each component with
 
-3. Run the development server for the docs
+```
+cd packages/react-magma-dom
+npm run storybook
+```
 
-```sh
+View Storybook examples at [http://localhost:6006/](http://localhost:6006/).
+
+4. Run the development server for the docs site. You can run the docs from the repository root with
+
+```
 npm run docs
 ```
 
-4. Visit the docs at [http://localhost:3000](http://localhost:3000).
+or from the package directory with
+
+```
+cd packages/react-magma-docs
+npm run develop
+```
+
+Visit the docs at [http://localhost:3000](http://localhost:3000). The docs will not reflect local changes in the CodeSandbox examples.
 
 ### Project structure
 
@@ -73,21 +87,11 @@ The `react-magma-docs` package handles the React Magma documentation, and is bui
 
 The `react-magma-icons` package handles all of the SVG icons in the React Magma library. Being in a separate package allows for changes or additions to the icons to happen without consumers having to update the whole component library.
 
-### Making changes
-
-The source code for each independent package in the project can be found under the `packages` folder.
-
-Any changes to the public-facing API **must** be accurately captured in the docs, and therefore will require updates to `react-magma-docs`.
-
 ### Building
 
 Once you have finished making your code changes within a package run `npm run build` or `npm run build-watch` from inside that package.
 
 You must build before your changes will be reflected in the browser.
-
-### Running examples with Storybook
-
-TODO: Add storybook example and description
 
 ### Running tests
 
@@ -104,13 +108,6 @@ You can also run specific tests from the repository root with:
 npm run test-dom
 ```
 
-or
-
-```sh
-# run the core tests
-npm run test-core
-```
-
 `npm run covg` to see the generated lcov coverage reports.
 
 #### Wallaby.js
@@ -122,31 +119,9 @@ This repository contributors are welcome to use
 test results immediately as you type, and see the results in
 your editor right next to your code.
 
-### Running the docs locally
-
-You can run the docs from the repository root with
-
-```
-
-npm run docs
-
-```
-
-or from the package directory with
-
-```
-
-npm run develop
-
-```
-
-then visit the docs at [http://localhost:8000](http://localhost:8000)
-
-The docs site will show examples of each component with the more recent (or otherwise-specified) version of `react-magma-dom`. The CodeSandbox examples will not reflect any local changes; to test local changes in a browser, use the Storybook examples.
-
 ### Updating the docs
 
-The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component should be documented here.
+The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component **must** be accurately captured documented here.
 
 This project uses [MDX](https://mdxjs.com/), allowing the combination of Markdown and React components.
 
@@ -164,7 +139,6 @@ title: '{ComponentName}'
 props:
   - {ComponentName}Props
 ---
-
 ```
 
 Import the `DocsHeading` and `ScopeableLayout` components. You may also need other things, such as components from `react-magma-dom` to use outside of examples (such as an `Alert`), or the`Link` from `gatsby` to link to other pages.
@@ -184,7 +158,6 @@ Include the `type` prop of `api`, so that the heading will indicate that the pag
 ```
 
 Add the `ScopeableLayout` component to the bottom of the file.
-TODO: Do we need a description here?
 
 ```
 export default props => <ScopeableLayout {...props} />;
@@ -192,7 +165,7 @@ export default props => <ScopeableLayout {...props} />;
 
 #### CodeSandbox examples
 
-Create a basic usage example and an example for each of the different use cases of the component, using [CodeSandbox](https://https://codesandbox.io/) .
+Create a basic usage example and an example for each of the different use cases of the component, using [CodeSandbox](https://https://codesandbox.io/).
 
 ````
 ```tsx codesandbox=magma
@@ -240,6 +213,14 @@ props:
 <SomeComponentProps />
 ```
 
+### Storybook examples
+
+React Magma uses [Storybook](https://storybook.js.org/) for local testing of individual UI components. Each component must have a Storybook story that reflects each of its variations in state. TThe story files live along side the individual component files in a directory named `stories`. Run Storybook from the package folder:
+
+```
+npm run storybook
+```
+
 ### Committing code
 
 This project adheres to [SemVer](https://semver.org/) and enforces a specific commit message format.
@@ -253,9 +234,7 @@ To make it easier to adhere to this format, there is a root level npm script tha
 **After adding your files to the git stage**, run:
 
 ```
-
 npm run cm
-
 ```
 
 <details>
