@@ -1,7 +1,7 @@
 {
   "name": "react-magma-icons",
   "license": "MIT",
-  "version": "1.0.7-alpha.1",
+  "version": "1.0.8-alpha.2",
   "main": "dist/index.js",
   "module": "dist/react-magma-icons.esm.js",
   "typings": "dist/index.d.ts",
@@ -44,9 +44,9 @@
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-unicorn": "^22.0.0",
-    "tsdx": "^0.13.2",
     "react": "^16.10.0",
-    "react-dom": "^16.10.0"
+    "react-dom": "^16.10.0",
+    "tsdx": "^0.14.1"
   },
   "dependencies": {
     "@types/react": "^16.9.0",

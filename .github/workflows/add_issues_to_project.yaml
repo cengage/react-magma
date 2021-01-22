@@ -1,0 +1,18 @@
+name: Auto Assign Issues to Project(s)
+
+on:
+  issues:
+    types: [opened]
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  assign_one_project:
+    runs-on: ubuntu-latest
+    name: Assign Issues to Project
+    steps:
+    - name: Add new issues to react-magma project
+      uses: srggrs/assign-one-project-github-action@1.2.0
+      with:
+        project: 'https://github.com/cengage/react-magma/projects/1'
+        column_name: 'Triage'

@@ -343,7 +343,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["BadgeVariant.counter", "BadgeVariant.label"]
+          "options": [
+            "BadgeVariant.counter",
+            "BadgeVariant.label"
+          ]
         },
         "description": "Indicates the style variant of the component",
         "defaultValue": "BadgeVariant.label",
@@ -1336,7 +1339,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["CheckboxTextPosition.left", "CheckboxTextPosition.right"]
+          "options": [
+            "CheckboxTextPosition.left",
+            "CheckboxTextPosition.right"
+          ]
         },
         "description": "Whether the label appears to the left of the right of the checkbox",
         "defaultValue": "CheckboxTextPosition.right",
@@ -1351,7 +1357,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7593,
+        "id": 7587,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1535,7 +1541,7 @@
     },
     "typeParameter": [
       {
-        "id": 7682,
+        "id": 7676,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1544,7 +1550,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7522,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -1680,18 +1686,6 @@
         "type": {
           "name": "boolean"
         },
-        "description": "If true, the loading component is shown",
-        "defaultValue": "false",
-        "deprecated": false
-      },
-      "isMulti": {
-        "name": "isMulti",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, multiple items may be selected",
-        "defaultValue": "false",
         "deprecated": false
       },
       "itemListMaxHeight": {
@@ -1867,7 +1861,7 @@
     },
     "typeParameter": [
       {
-        "id": 7750,
+        "id": 7744,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1876,7 +1870,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7522,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -2014,6 +2008,56 @@
         "deprecated": false
       }
     }
+  },
+  {
+    "name": "XORComboboxProps",
+    "kind": 4194304,
+    "kindString": "Type alias",
+    "flags": {
+      "isExported": true
+    },
+    "typeParameter": [
+      {
+        "id": 7790,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
+    "type": {
+      "type": "reference",
+      "typeArguments": [
+        {
+          "type": "reference",
+          "id": 7675,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "ComboboxProps"
+        },
+        {
+          "type": "reference",
+          "id": 7743,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "MultiComboboxProps"
+        }
+      ],
+      "name": "XOR"
+    },
+    "id": "XORComboboxProps",
+    "tags": {},
+    "properties": {}
   },
   {
     "name": "CalendarContextInterface",
@@ -2508,7 +2552,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["ButtonIconPosition.left", "ButtonIconPosition.right"]
+          "options": [
+            "ButtonIconPosition.left",
+            "ButtonIconPosition.right"
+          ]
         },
         "description": "Position within the button for the icon to appear",
         "defaultValue": "`ButtonIconPosition.right`",
@@ -2631,12 +2678,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8920,
+          "id": 8917,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8924,
+          "id": 8921,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -3011,7 +3058,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["DropdownAlignment.end", "DropdownAlignment.start"]
+          "options": [
+            "DropdownAlignment.end",
+            "DropdownAlignment.start"
+          ]
         },
         "deprecated": false
       },
@@ -3176,7 +3226,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["DropdownAlignment.end", "DropdownAlignment.start"]
+          "options": [
+            "DropdownAlignment.end",
+            "DropdownAlignment.start"
+          ]
         },
         "description": "Alignment of the dropdown content",
         "defaultValue": "`DropdownAlignment.start`",
@@ -3243,6 +3296,82 @@
         },
         "description": "Width of menu",
         "defaultValue": "Width of longest menu item",
+        "deprecated": false
+      }
+    }
+  },
+  {
+    "name": "FormProps",
+    "kind": 256,
+    "kindString": "Interface",
+    "flags": {
+      "isExported": true
+    },
+    "comment": {
+      "tags": [
+        {
+          "tag": "children",
+          "text": "required\n"
+        }
+      ]
+    },
+    "id": "FormProps",
+    "tags": {
+      "children": "required"
+    },
+    "properties": {
+      "actions": {
+        "name": "actions",
+        "required": true,
+        "type": {
+          "name": "React.ReactNode"
+        },
+        "description": "React Node containing the form action buttons; will appear under the form fields",
+        "deprecated": false
+      },
+      "children": {
+        "name": "children",
+        "required": true,
+        "type": {
+          "name": "ReactNode"
+        },
+        "description": "The content of the component",
+        "deprecated": false
+      },
+      "description": {
+        "name": "description",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "General description of the form",
+        "deprecated": false
+      },
+      "errorMessage": {
+        "name": "errorMessage",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Additional form level validation message",
+        "deprecated": false
+      },
+      "header": {
+        "name": "header",
+        "required": true,
+        "type": {
+          "name": "string"
+        },
+        "description": "Title of the form",
+        "deprecated": false
+      },
+      "testId": {
+        "name": "testId",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Handler for form submission",
         "deprecated": false
       }
     }
@@ -3786,7 +3915,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["ButtonIconPosition.left", "ButtonIconPosition.right"]
+          "options": [
+            "ButtonIconPosition.left",
+            "ButtonIconPosition.right"
+          ]
         },
         "description": "Position within the button for the icon to appear",
         "defaultValue": "ButtonIconPosition.right",
@@ -3963,12 +4095,7 @@
         "name": "status",
         "required": true,
         "type": {
-          "name": "enum",
-          "options": [
-            "IndeterminateCheckboxStatus.checked",
-            "IndeterminateCheckboxStatus.indeterminate",
-            "IndeterminateCheckboxStatus.unchecked"
-          ]
+          "name": "string"
         },
         "description": "Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.",
         "defaultValue": "IndeterminateCheckboxStatus.unchecked",
@@ -4016,7 +4143,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["InputSize.large", "InputSize.medium"]
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         },
         "deprecated": false
       },
@@ -4141,7 +4271,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["InputIconPosition.left", "InputIconPosition.right"]
+          "options": [
+            "InputIconPosition.left",
+            "InputIconPosition.right"
+          ]
         },
         "description": "Position within the component for the icon to appear",
         "defaultValue": "InputIconPosition.right",
@@ -4161,7 +4294,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["InputSize.large", "InputSize.medium"]
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         },
         "description": "Relative size of the component",
         "defaultValue": "InputSize.medium",
@@ -4257,7 +4393,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["InputSize.large", "InputSize.medium"]
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         },
         "deprecated": false
       },
@@ -4485,7 +4624,11 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["ModalSize.large", "ModalSize.medium", "ModalSize.small"]
+          "options": [
+            "ModalSize.large",
+            "ModalSize.medium",
+            "ModalSize.small"
+          ]
         },
         "description": "The relative size of the modal",
         "defaultValue": "ModalSize.medium",
@@ -4564,7 +4707,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         },
         "description": "Determines if the tabs are displayed vertically or horizontally",
         "defaultValue": "TabsOrientation.horizontal",
@@ -4633,7 +4779,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         },
         "description": "Determines if the tabs are displayed vertically or horizontally",
         "defaultValue": "TabsOrientation.horizontal",
@@ -4736,7 +4885,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         },
         "description": "Determines if the tabs are displayed vertically or horizontally",
         "defaultValue": "TabsOrientation.horizontal",
@@ -4765,12 +4917,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12113,
+          "id": 12657,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12378,
+          "id": 12922,
           "name": "NavTabComponentProps"
         }
       ],
@@ -4839,7 +4991,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         },
         "deprecated": false
       }
@@ -5041,7 +5196,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["InputSize.large", "InputSize.medium"]
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         },
         "description": "Relative size of the component",
         "defaultValue": "InputSize.medium",
@@ -5401,7 +5559,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["RadioTextPosition.left", "RadioTextPosition.right"]
+          "options": [
+            "RadioTextPosition.left",
+            "RadioTextPosition.right"
+          ]
         },
         "description": "Whether the label appears to the left of the right of the radio button",
         "defaultValue": "RadioTextPosition.right",
@@ -5698,7 +5859,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["InputSize.large", "InputSize.medium"]
+          "options": [
+            "InputSize.large",
+            "InputSize.medium"
+          ]
         },
         "description": "Relative size of the component",
         "defaultValue": "InputSize.medium",
@@ -5779,7 +5943,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7000,
+        "id": 6991,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5870,7 +6034,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7305,
+        "id": 7296,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -5956,7 +6120,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7324,
+        "id": 7315,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6052,7 +6216,7 @@
     },
     "typeParameter": [
       {
-        "id": 6955,
+        "id": 6946,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6064,7 +6228,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6956,
+        "id": 6947,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6073,7 +6237,7 @@
         },
         "indexSignature": [
           {
-            "id": 6963,
+            "id": 6954,
             "name": "__index",
             "kind": 8192,
             "kindString": "Index signature",
@@ -6082,7 +6246,7 @@
             },
             "parameters": [
               {
-                "id": 6964,
+                "id": 6955,
                 "name": "key",
                 "kind": 32768,
                 "kindString": "Parameter",
@@ -6103,7 +6267,7 @@
         ],
         "children": [
           {
-            "id": 6958,
+            "id": 6949,
             "name": "isFocused",
             "kind": 32,
             "kindString": "Variable",
@@ -6124,7 +6288,7 @@
             }
           },
           {
-            "id": 6959,
+            "id": 6950,
             "name": "item",
             "kind": 32,
             "kindString": "Variable",
@@ -6144,7 +6308,7 @@
             }
           },
           {
-            "id": 6960,
+            "id": 6951,
             "name": "itemRef",
             "kind": 32,
             "kindString": "Variable",
@@ -6170,7 +6334,7 @@
             }
           },
           {
-            "id": 6961,
+            "id": 6952,
             "name": "itemString",
             "kind": 32,
             "kindString": "Variable",
@@ -6190,7 +6354,7 @@
             }
           },
           {
-            "id": 6957,
+            "id": 6948,
             "name": "key",
             "kind": 32,
             "kindString": "Variable",
@@ -6210,7 +6374,7 @@
             }
           },
           {
-            "id": 6962,
+            "id": 6953,
             "name": "theme",
             "kind": 32,
             "kindString": "Variable",
@@ -6235,12 +6399,12 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6958,
-              6959,
-              6960,
-              6961,
-              6957,
-              6962
+              6949,
+              6950,
+              6951,
+              6952,
+              6948,
+              6953
             ]
           }
         ],
@@ -6266,7 +6430,7 @@
     },
     "typeParameter": [
       {
-        "id": 6966,
+        "id": 6957,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6278,7 +6442,7 @@
     "type": {
       "type": "reflection",
       "declaration": {
-        "id": 6967,
+        "id": 6958,
         "name": "__type",
         "kind": 65536,
         "kindString": "Type literal",
@@ -6287,7 +6451,7 @@
         },
         "children": [
           {
-            "id": 6968,
+            "id": 6959,
             "name": "ClearIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6315,7 +6479,7 @@
             }
           },
           {
-            "id": 6969,
+            "id": 6960,
             "name": "DropdownIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6348,7 +6512,7 @@
             }
           },
           {
-            "id": 6971,
+            "id": 6962,
             "name": "Item",
             "kind": 32,
             "kindString": "Variable",
@@ -6368,7 +6532,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6954,
+                  "id": 6945,
                   "typeArguments": [
                     {
                       "type": "typeParameter",
@@ -6382,7 +6546,7 @@
             }
           },
           {
-            "id": 6970,
+            "id": 6961,
             "name": "LoadingIndicator",
             "kind": 32,
             "kindString": "Variable",
@@ -6402,7 +6566,7 @@
               "typeArguments": [
                 {
                   "type": "reference",
-                  "id": 6691,
+                  "id": 6682,
                   "name": "SpinnerProps"
                 }
               ],
@@ -6415,10 +6579,10 @@
             "title": "Variables",
             "kind": 32,
             "children": [
-              6968,
-              6969,
-              6971,
-              6970
+              6959,
+              6960,
+              6962,
+              6961
             ]
           }
         ],
@@ -6444,7 +6608,7 @@
     },
     "typeParameter": [
       {
-        "id": 7374,
+        "id": 7365,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6476,7 +6640,7 @@
     },
     "typeParameter": [
       {
-        "id": 7355,
+        "id": 7346,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6657,7 +6821,7 @@
     },
     "typeParameter": [
       {
-        "id": 7480,
+        "id": 7471,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6666,7 +6830,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7522,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -6824,7 +6988,7 @@
     },
     "typeParameter": [
       {
-        "id": 7380,
+        "id": 7371,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6833,7 +6997,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7522,
+          "id": 7514,
           "name": "SelectOptions"
         }
       }
@@ -7045,16 +7209,6 @@
           "name": "boolean"
         },
         "description": "If true, label text will be hidden visually, but will still be read by assistive technology",
-        "defaultValue": "false",
-        "deprecated": false
-      },
-      "isMulti": {
-        "name": "isMulti",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "description": "If true, multiple items may be selected",
         "defaultValue": "false",
         "deprecated": false
       },
@@ -7289,7 +7443,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7523,
+            "id": 7515,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -7298,7 +7452,7 @@
             },
             "indexSignature": [
               {
-                "id": 7526,
+                "id": 7518,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -7307,7 +7461,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7527,
+                    "id": 7519,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7328,7 +7482,7 @@
             ],
             "children": [
               {
-                "id": 7525,
+                "id": 7517,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7348,7 +7502,7 @@
                 }
               },
               {
-                "id": 7524,
+                "id": 7516,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7373,8 +7527,8 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7525,
-                  7524
+                  7517,
+                  7516
                 ]
               }
             ],
@@ -7394,6 +7548,56 @@
       ]
     },
     "id": "SelectOptions",
+    "tags": {},
+    "properties": {}
+  },
+  {
+    "name": "XORSelectProps",
+    "kind": 4194304,
+    "kindString": "Type alias",
+    "flags": {
+      "isExported": true
+    },
+    "typeParameter": [
+      {
+        "id": 7540,
+        "name": "T",
+        "kind": 131072,
+        "kindString": "Type parameter",
+        "flags": {
+          "isExported": true
+        }
+      }
+    ],
+    "type": {
+      "type": "reference",
+      "typeArguments": [
+        {
+          "type": "reference",
+          "id": 7370,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "SelectProps"
+        },
+        {
+          "type": "reference",
+          "id": 7470,
+          "typeArguments": [
+            {
+              "type": "typeParameter",
+              "name": "T"
+            }
+          ],
+          "name": "MultiSelectProps"
+        }
+      ],
+      "name": "XOR"
+    },
+    "id": "XORSelectProps",
     "tags": {},
     "properties": {}
   },
@@ -8505,7 +8709,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         },
         "deprecated": false
       },
@@ -8622,7 +8829,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["TabsOrientation.horizontal", "TabsOrientation.vertical"]
+          "options": [
+            "TabsOrientation.horizontal",
+            "TabsOrientation.vertical"
+          ]
         },
         "deprecated": false
       },
@@ -8773,12 +8983,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 11480,
+          "id": 12024,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 11477,
+          "id": 12021,
           "name": "VerticalTabsProps"
         }
       ]
@@ -9363,7 +9573,10 @@
         "required": false,
         "type": {
           "name": "enum",
-          "options": ["ToggleTextPosition.left", "ToggleTextPosition.right"]
+          "options": [
+            "ToggleTextPosition.left",
+            "ToggleTextPosition.right"
+          ]
         },
         "description": "Whether the label appears to the left of the right of the toggle switch",
         "defaultValue": "ToggleTextPosition.left",
@@ -9479,10 +9692,10 @@
         "type": {
           "name": "enum",
           "options": [
-            "EnumTooltipPosition.bottom",
-            "EnumTooltipPosition.left",
-            "EnumTooltipPosition.right",
-            "EnumTooltipPosition.top"
+            "TooltipPosition.bottom",
+            "TooltipPosition.left",
+            "TooltipPosition.right",
+            "TooltipPosition.top"
           ]
         },
         "description": "Position the tooltip appears in relation to its trigger",

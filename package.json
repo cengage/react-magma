@@ -16,7 +16,7 @@
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
     "build:storybook": "lerna run build:storybook --scope react-magma-dom --stream --no-progress",
-    "build:docs": "lerna run build --scope react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
+    "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
     "build": "lerna run build --ignore react-magma-dom-codesandbox-template --stream --no-progress",
     "build:landing": "node packages/react-magma-landing/scripts/build.js",

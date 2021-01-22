@@ -55,7 +55,7 @@ const filterJson = () => {
   const findById = id => {
     return jsonOrig.children
       .flatMap(child => child.children)
-      .filter(child => child.id === id)
+      .filter(child => child && child.id === id)
       .pop();
   };
   const findByName = name => {
@@ -69,7 +69,7 @@ const filterJson = () => {
     const ordered = {};
     Object.keys(unordered)
       .sort()
-      .forEach(function (key) {
+      .forEach(function(key) {
         ordered[key] = unordered[key];
       });
     return ordered;
@@ -145,7 +145,8 @@ const filterJson = () => {
     .flatMap(child => child.children)
     .filter(
       child =>
-        child.kindString === 'Interface' || child.kindString === 'Type alias'
+        child &&
+        (child.kindString === 'Interface' || child.kindString === 'Type alias')
     )
     .reduce((acc, child) => {
       const {

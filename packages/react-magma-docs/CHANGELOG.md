@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.1.3-alpha.2 (2021-01-22)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.3-alpha.1 (2021-01-21)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.3-alpha.0 (2021-01-20)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2 (2021-01-20)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.10 (2021-01-19)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.9 (2021-01-19)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.8 (2021-01-19)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.7 (2021-01-15)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.6 (2021-01-14)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.5 (2021-01-14)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.4 (2021-01-14)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.3 (2021-01-11)
+
+**Note:** Version bump only for package react-magma-docs
+
+### 2.1.2-alpha.2 (2021-01-08)
+
+**Note:** Version bump only for package react-magma-docs
+
 ### 2.1.2-alpha.1 (2021-01-06)
 
 **Note:** Version bump only for package react-magma-docs

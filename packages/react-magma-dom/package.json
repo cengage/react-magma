@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.3.3-alpha.1",
+  "version": "2.3.4-alpha.2",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -71,7 +71,7 @@
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
-    "date-fns": "2.16.1",
+    "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
     "eslint": "^7.9.0",
     "eslint-plugin-import": "^2.22.0",
@@ -88,13 +88,13 @@
     "react": "^16.10.0",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.10.0",
-    "react-magma-icons": "^1.0.7-alpha.1",
+    "react-magma-icons": "1.0.8-alpha.2",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",
     "storybook-addon-performance": "^0.13.0",
     "ts-loader": "^8.0.13",
-    "tsdx": "^0.13.2",
+    "tsdx": "^0.14.1",
     "uuid": "^8.3.0"
   },
   "gitHead": "cadb4fd5f575f1fbe92c1521bf8228c64b8e2336"
