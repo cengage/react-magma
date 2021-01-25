@@ -4724,6 +4724,14 @@
         },
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
         "deprecated": false
+      },
+      "to": {
+        "name": "to",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "deprecated": false
       }
     }
   },
@@ -4902,6 +4910,14 @@
         },
         "description": "Test ID attached to an internal element as `data-testid` for consumer testing",
         "deprecated": false
+      },
+      "to": {
+        "name": "to",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "deprecated": false
       }
     }
   },
@@ -4917,12 +4933,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12657,
+          "id": 12658,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12922,
+          "id": 12923,
           "name": "NavTabComponentProps"
         }
       ],
