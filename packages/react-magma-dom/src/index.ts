@@ -137,6 +137,7 @@ export { Toggle, ToggleTextPosition, ToggleProps } from './components/Toggle';
 export {
   Tooltip,
   EnumTooltipPosition,
+  TooltipPosition,
   TooltipProps,
 } from './components/Tooltip';
 export { Textarea, TextareaProps } from './components/Textarea';

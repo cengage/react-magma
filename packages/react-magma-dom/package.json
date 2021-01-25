@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.3.3",
+  "version": "2.3.4-alpha.5",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -32,7 +32,7 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "@emotion/core": "^10.0.27",
+    "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
@@ -49,7 +49,7 @@
     "typedoc": "^0.19.2"
   },
   "devDependencies": {
-    "@emotion/core": "^10.0.27",
+    "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
     "@testing-library/dom": "^4.1.0",
     "@testing-library/jest-dom": "^4.1.0",
@@ -61,7 +61,7 @@
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
-    "date-fns": "^2.12.0",
+    "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
     "eslint": "^7.9.0",
     "eslint-plugin-import": "^2.22.0",
@@ -75,10 +75,14 @@
     "polished": "^3.2.0",
     "postcss-url": "^8.0.0",
     "promise": "^8.0.3",
-    "react-magma-icons": "^1.0.7",
+    "react": "^16.10.0",
+    "react-docgen-typescript-loader": "^3.7.2",
+    "react-dom": "^16.10.0",
+    "react-magma-icons": "1.0.8-alpha.5",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",
+    "ts-loader": "^8.0.13",
     "tsdx": "^0.14.1",
     "uuid": "^8.3.0"
   },

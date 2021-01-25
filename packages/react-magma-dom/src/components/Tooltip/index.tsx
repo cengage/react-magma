@@ -4,12 +4,14 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';
 
-export enum EnumTooltipPosition {
+export enum TooltipPosition {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
   top = 'top', //default
 }
+
+export const EnumTooltipPosition = TooltipPosition;
 
 export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -32,7 +34,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Position the tooltip appears in relation to its trigger
    */
-  position?: EnumTooltipPosition;
+  position?: TooltipPosition;
   testId?: string;
   /**
    * Style properties for the inner tooltip content
@@ -50,14 +52,29 @@ const ToolTipContainer = styled.div`
 `;
 
 const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
-  display: block;
-  height: 0;
-  width: 0;
+  &&,
+  &&:before {
+    display: block;
+    height: ${props => props.theme.tooltip.arrowSizeDoubled};
+    position: absolute;
+    width: ${props => props.theme.tooltip.arrowSizeDoubled};
+    z-index: -1;
+  }
+
+  &&::before {
+    content: '';
+    transform: rotate(45deg);
+    background: ${props =>
+      props.isInverse
+        ? props.theme.tooltip.inverse.backgroundColor
+        : props.theme.tooltip.backgroundColor};
+  }
 `;
 
 const StyledTooltip = styled.div<{
   isInverse?: boolean;
-  position: EnumTooltipPosition;
+  isVisible?: boolean;
+  position: TooltipPosition;
   visible?: boolean;
 }>`
   background: ${props =>
@@ -73,60 +90,25 @@ const StyledTooltip = styled.div<{
   line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
   font-weight: ${props => props.theme.tooltip.fontWeight};
   max-width: ${props => props.theme.tooltip.maxWidth};
+  min-height: 2.5em;
   padding: ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing04};
   z-index: ${props => props.theme.tooltip.zIndex};
 
   &[data-popper-placement='top'] > span:last-child {
-    border-left: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-right: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-top: ${props => props.theme.tooltip.arrowSize} solid
-      ${props =>
-        props.isInverse
-          ? props.theme.tooltip.inverse.backgroundColor
-          : props.theme.tooltip.backgroundColor};
     bottom: -${props => props.theme.tooltip.arrowSize};
-    left: 50% !important;
-    transform: translateX(-50%) !important;
   }
 
   &[data-popper-placement='bottom'] > span:last-child {
-    border-left: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-right: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-bottom: ${props => props.theme.tooltip.arrowSize} solid
-      ${props =>
-        props.isInverse
-          ? props.theme.tooltip.inverse.backgroundColor
-          : props.theme.tooltip.backgroundColor};
     top: -${props => props.theme.tooltip.arrowSize};
-    left: 50% !important;
-    transform: translateX(-50%) !important;
   }
 
   &[data-popper-placement='left'] > span:last-child {
-    border-top: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-bottom: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-left: ${props => props.theme.tooltip.arrowSize} solid
-      ${props =>
-        props.isInverse
-          ? props.theme.tooltip.inverse.backgroundColor
-          : props.theme.tooltip.backgroundColor};
     right: -${props => props.theme.tooltip.arrowSize};
-    top: 50% !important;
-    transform: translateY(-50%) !important;
   }
 
   &[data-popper-placement='right'] > span:last-child {
-    border-top: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-bottom: ${props => props.theme.tooltip.arrowSize} solid transparent;
-    border-right: ${props => props.theme.tooltip.arrowSize} solid
-      ${props =>
-        props.isInverse
-          ? props.theme.tooltip.inverse.backgroundColor
-          : props.theme.tooltip.backgroundColor};
     left: -${props => props.theme.tooltip.arrowSize};
-    top: 50% !important;
-    transform: translateY(-50%) !important;
   }
 `;
 
@@ -142,8 +124,16 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const [arrowElement, setArrowElement] = React.useState<HTMLSpanElement>(null);
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [{ name: 'arrow', options: { element: arrowElement } }],
-    placement: props.position || EnumTooltipPosition.top,
+    modifiers: [
+      { name: 'arrow', options: { element: arrowElement } },
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 12],
+        },
+      },
+    ],
+    placement: props.position || TooltipPosition.top,
   });
 
   const combinedRef = useForkedRef(ref, setReferenceElement);
@@ -222,12 +212,11 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
         <StyledTooltip
           id={id}
           isInverse={!!isInverse}
-          position={position ? position : EnumTooltipPosition.top}
+          position={position ? position : TooltipPosition.top}
           ref={setPopperElement}
           role="tooltip"
           style={combinedTooltipStyles}
           theme={theme}
-          visible={isVisible}
           {...attributes.popper}
         >
           {content}

@@ -13,6 +13,7 @@ import { Divider } from './Divider';
 import { NetlifyFooter } from './NetlifyFooter';
 import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom';
+import { DocsHeading } from './DocsHeading';
 
 const PreContainer = styled.div`
   border: 1px solid ${magma.colors.neutral06};
@@ -98,6 +99,17 @@ const LinkHeading = props => (
 const H4 = props => <Heading level={4}>{props.children}</Heading>;
 const H5 = props => <Heading level={5}>{props.children}</Heading>;
 const H6 = props => <Heading level={6}>{props.children}</Heading>;
+const SmartDocsHeading = props =>
+  props && props.children && props.children.props ? (
+    <DocsHeading
+      to={props.children.props.href}
+      type={props.children.props.title || ''}
+    >
+      {props.children.props.children}
+    </DocsHeading>
+  ) : (
+    <PageHeading {...props} />
+  );
 
 export const Layout = ({ children, pageContext }) => {
   const title =
@@ -110,7 +122,7 @@ export const Layout = ({ children, pageContext }) => {
       <MDXProvider
         components={{
           table: Table,
-          h1: PageHeading,
+          h1: SmartDocsHeading,
           h2: SectionHeading,
           h3: LinkHeading,
           h4: H4,
