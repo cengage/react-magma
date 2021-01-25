@@ -135,7 +135,7 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
             onStepNavigationClick={onStepNavigationClick}
           />
           <StyledContainer>
-            <WizardStep step={step} />
+            <WizardStep {...step} />
             {actions}
           </StyledContainer>
         </TabsContainer>

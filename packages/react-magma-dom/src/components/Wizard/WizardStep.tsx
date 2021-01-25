@@ -20,13 +20,11 @@ export const WizardStep = React.forwardRef<
   return (
     <div>
       <Heading level={4}>
-        {props.step.title}
-        {props.step.optional ? ' - optional' : ''}
+        {props.title}
+        {props.optional ? ' - optional' : ''}
       </Heading>
-      {props.step.description && (
-        <Paragraph>{props.step.description}</Paragraph>
-      )}
-      {props.step.children}
+      {props.description && <Paragraph>{props.description}</Paragraph>}
+      {props.children}
     </div>
   );
 });

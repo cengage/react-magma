@@ -30,7 +30,7 @@ export const WizardNavigation = React.forwardRef<
       aria-label="Navigation for the wizard"
     >
       {props.steps.map((step, index) => (
-        <Tab key={index}>
+        <Tab key={index} disabled={index > props.maxStepIndex}>
           {step.title}
           {step.optional ? ' - optional' : ''}
         </Tab>
