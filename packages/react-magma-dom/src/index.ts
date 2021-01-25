@@ -183,3 +183,5 @@ export {
 export { TableRow, TableRowProps } from './components/Table/TableRow';
 
 export { useMediaQuery } from './hooks/useMediaQuery';
+
+export { Wizard, WizardProps, WizardStepProps } from './components/Wizard';

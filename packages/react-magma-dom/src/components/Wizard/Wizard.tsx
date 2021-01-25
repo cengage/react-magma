@@ -8,22 +8,52 @@ import {
 import { TabsOrientation } from '../Tabs/shared';
 
 export interface WizardProps {
+  /**
+   * Array of steps for the wizard to use.
+   */
   steps: WizardStepProps[];
+  /**
+   * The index of the current active step. You can use this for managing state of the wizard component by your custom logic.
+   */
   activeStepIndex?: number;
+  /**
+   * Orientation of the tabs
+   * @default TabsOrientation.Horizontal
+   */
   orientation?: TabsOrientation;
+  /**
+   * Renders the loading button as loading for asynchronous states such as server side validation.
+   */
   isLoadingNextStep?: boolean;
+  /**
+   * Fired when a user clicks the cancel button.
+   */
   onCancelButtonClick?: () => void;
+  /**
+   * Fired when the user clicks the previous button.
+   */
   onPreviousButtonClick?: (
     navigationStepClickProps: NavigationStepClickProps
   ) => void;
+  /**
+   * Fired when the user clicks the next button.
+   */
   onNextButtonClick?: (
     navigationStepClickProps: NavigationStepClickProps
   ) => boolean;
+  /**
+   * Fired when the user clicks submit.
+   */
   onSubmitButtonClick?: () => void;
+  /**
+   * Fired when the user clicks on a step from the navigation.
+   */
   onStepNavigationClick?: (
     navigationStepClickProps: NavigationStepClickProps
   ) => void;
-  disableStepNavigation?: boolean;
+  /**
+   * Text rendered next to an optional step.
+   */
   optionalText?: string;
 }
 
@@ -33,7 +63,6 @@ export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
       steps,
       optionalText,
       isLoadingNextStep = false,
-      disableStepNavigation = false,
       orientation = TabsOrientation.horizontal,
       onNextButtonClick = () => true,
       onPreviousButtonClick = () => {},
@@ -84,7 +113,6 @@ export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
       activeStepIndex,
       maxStepIndex,
       isLoadingNextStep,
-      disableStepNavigation,
       onNextButtonClick: handleNextButtonClick,
       onPreviousButtonClick: handlePreviousButtonClick,
       onStepNavigationClick: handleStepNavigationClick,

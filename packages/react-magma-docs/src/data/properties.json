@@ -9904,22 +9904,7 @@
         "type": {
           "name": "number"
         },
-        "deprecated": false
-      },
-      "disableStepNavigation": {
-        "name": "disableStepNavigation",
-        "required": false,
-        "type": {
-          "name": "boolean"
-        },
-        "deprecated": false
-      },
-      "getStepNumberLabel": {
-        "name": "getStepNumberLabel",
-        "required": false,
-        "type": {
-          "name": "function"
-        },
+        "description": "The index of the current active step. You can use this for managing state of the wizard component by your custom logic.",
         "deprecated": false
       },
       "isLoadingNextStep": {
@@ -9928,6 +9913,7 @@
         "type": {
           "name": "boolean"
         },
+        "description": "Renders the loading button as loading for asynchronous states such as server side validation.",
         "deprecated": false
       },
       "onCancelButtonClick": {
@@ -9936,6 +9922,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Fired when a user clicks the cancel button.",
         "deprecated": false
       },
       "onNextButtonClick": {
@@ -9944,6 +9931,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Fired when the user clicks the next button.",
         "deprecated": false
       },
       "onPreviousButtonClick": {
@@ -9952,6 +9940,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Fired when the user clicks the previous button.",
         "deprecated": false
       },
       "onStepNavigationClick": {
@@ -9960,6 +9949,7 @@
         "type": {
           "name": "function"
         },
+        "description": "Fired when the user clicks on a step from the navigation.",
         "deprecated": false
       },
       "onSubmitButtonClick": {
@@ -9968,6 +9958,16 @@
         "type": {
           "name": "function"
         },
+        "description": "Fired when the user clicks submit.",
+        "deprecated": false
+      },
+      "optionalText": {
+        "name": "optionalText",
+        "required": false,
+        "type": {
+          "name": "string"
+        },
+        "description": "Text rendered next to an optional step.",
         "deprecated": false
       },
       "orientation": {
@@ -9980,6 +9980,8 @@
             "TabsOrientation.vertical"
           ]
         },
+        "description": "Orientation of the tabs",
+        "defaultValue": "TabsOrientation.Horizontal",
         "deprecated": false
       },
       "steps": {
@@ -9988,6 +9990,7 @@
         "type": {
           "name": "WizardStepProps[]"
         },
+        "description": "Array of steps for the wizard to use.",
         "deprecated": false
       }
     }
@@ -10015,14 +10018,6 @@
         "required": false,
         "type": {
           "name": "boolean"
-        },
-        "deprecated": false
-      },
-      "getStepNumberLabel": {
-        "name": "getStepNumberLabel",
-        "required": false,
-        "type": {
-          "name": "function"
         },
         "deprecated": false
       },
@@ -10079,6 +10074,14 @@
         "required": true,
         "type": {
           "name": "function"
+        },
+        "deprecated": false
+      },
+      "optionalText": {
+        "name": "optionalText",
+        "required": false,
+        "type": {
+          "name": "string"
         },
         "deprecated": false
       },
@@ -10150,30 +10153,6 @@
     "id": "WizardNavigationProps",
     "tags": {},
     "properties": {
-      "activeStepIndex": {
-        "name": "activeStepIndex",
-        "required": true,
-        "type": {
-          "name": "number"
-        },
-        "deprecated": false
-      },
-      "disableStepNavigation": {
-        "name": "disableStepNavigation",
-        "required": true,
-        "type": {
-          "name": "boolean"
-        },
-        "deprecated": false
-      },
-      "getStepNumberLabel": {
-        "name": "getStepNumberLabel",
-        "required": true,
-        "type": {
-          "name": "function"
-        },
-        "deprecated": false
-      },
       "maxStepIndex": {
         "name": "maxStepIndex",
         "required": true,
@@ -10187,6 +10166,14 @@
         "required": false,
         "type": {
           "name": "function"
+        },
+        "deprecated": false
+      },
+      "optionalText": {
+        "name": "optionalText",
+        "required": true,
+        "type": {
+          "name": "string"
         },
         "deprecated": false
       },
@@ -10213,24 +10200,6 @@
     }
   },
   {
-    "name": "InternalWizardStepProps",
-    "kind": 256,
-    "kindString": "Interface",
-    "flags": {},
-    "id": "InternalWizardStepProps",
-    "tags": {},
-    "properties": {
-      "step": {
-        "name": "step",
-        "required": true,
-        "type": {
-          "name": "WizardStepProps"
-        },
-        "deprecated": false
-      }
-    }
-  },
-  {
     "name": "WizardStepProps",
     "kind": 256,
     "kindString": "Interface",
@@ -10242,7 +10211,7 @@
     "properties": {
       "children": {
         "name": "children",
-        "required": true,
+        "required": false,
         "type": {
           "name": "React.ReactNode"
         },
@@ -10255,6 +10224,7 @@
         "type": {
           "name": "string"
         },
+        "description": "The description to be rendered for the wizard step.",
         "deprecated": false
       },
       "optional": {
@@ -10263,6 +10233,7 @@
         "type": {
           "name": "boolean"
         },
+        "description": "Flag to display the optional text next to the step title in the wizard navigation.",
         "deprecated": false
       },
       "title": {
@@ -10271,6 +10242,7 @@
         "type": {
           "name": "string"
         },
+        "description": "The title to be rendered for the wizard step.",
         "deprecated": false
       }
     }
