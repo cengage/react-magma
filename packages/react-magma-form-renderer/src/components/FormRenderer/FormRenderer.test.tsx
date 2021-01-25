@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, cleanup, act } from '@testing-library/react';
-import { FormRenderer, componentTypes } from '.';
+import { FormRenderer, componentTypes } from './FormRenderer';
 
 describe('FormRenderer', () => {
   afterEach(() => {

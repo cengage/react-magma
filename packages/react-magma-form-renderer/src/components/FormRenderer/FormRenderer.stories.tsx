@@ -1,5 +1,9 @@
 import React from 'react';
-import { FormRenderer, FormRendererProps, componentTypes } from '../index';
+import {
+  FormRenderer,
+  FormRendererProps,
+  componentTypes,
+} from './FormRenderer';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Schema } from '@data-driven-forms/react-form-renderer';
