@@ -177,11 +177,6 @@ describe('Tooltip', () => {
 
     expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
-    expect(tooltip).toHaveStyleRule(
-      'border-top',
-      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
-      { target: "[data-popper-placement='top'] > span:last-child" }
-    );
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned bottom', async () => {
@@ -200,11 +195,6 @@ describe('Tooltip', () => {
 
     expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
-    expect(tooltip).toHaveStyleRule(
-      'border-bottom',
-      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
-      { target: "[data-popper-placement='bottom'] > span:last-child" }
-    );
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned left', async () => {
@@ -223,11 +213,6 @@ describe('Tooltip', () => {
 
     expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
-    expect(tooltip).toHaveStyleRule(
-      'border-left',
-      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
-      { target: "[data-popper-placement='left'] > span:last-child" }
-    );
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned right', async () => {
@@ -246,11 +231,6 @@ describe('Tooltip', () => {
 
     expect(tooltip).toHaveStyleRule('background', magma.colors.neutral08);
     expect(tooltip).toHaveStyleRule('color', magma.colors.neutral);
-    expect(tooltip).toHaveStyleRule(
-      'border-right',
-      `${magma.tooltip.arrowSize} solid ${magma.colors.neutral08}`,
-      { target: "[data-popper-placement='right'] > span:last-child" }
-    );
   });
 
   it('should throw an error if the tooltip children is more than one element', () => {

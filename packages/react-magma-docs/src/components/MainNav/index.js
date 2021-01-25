@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
-import { AngleDownIcon } from 'react-magma-icons';
+import { AngleDownIcon, ExternalLinkIcon } from 'react-magma-icons';
 import { SubMenu } from './SubMenu';
 import {
   Accordion,
@@ -59,9 +59,11 @@ const ListItem = styled.li`
 `;
 
 const StyledLink = styled(Link)`
+  align-items: center;
   color: ${magma.colors.neutral03};
-  display: block;
+  display: flex;
   font-size: ${magma.typeScale.size03.fontSize};
+  justify-content: space-between;
   line-height: ${magma.typeScale.size03.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
   text-decoration: none;
@@ -138,6 +140,14 @@ export const MainNav = ({ ...props }) => (
               to="/"
             >
               Introduction
+            </StyledLink>
+            <StyledLink
+              activeStyle={activeStyle}
+              aria-label="View project on GitHub"
+              to="https://github.com/cengage/react-magma"
+            >
+              GitHub
+              <ExternalLinkIcon size={magma.iconSizes.medium} />
             </StyledLink>
           </ListItem>
         </List>

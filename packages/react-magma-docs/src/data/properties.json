@@ -9613,10 +9613,10 @@
         "type": {
           "name": "enum",
           "options": [
-            "EnumTooltipPosition.bottom",
-            "EnumTooltipPosition.left",
-            "EnumTooltipPosition.right",
-            "EnumTooltipPosition.top"
+            "TooltipPosition.bottom",
+            "TooltipPosition.left",
+            "TooltipPosition.right",
+            "TooltipPosition.top"
           ]
         },
         "description": "Position the tooltip appears in relation to its trigger",
