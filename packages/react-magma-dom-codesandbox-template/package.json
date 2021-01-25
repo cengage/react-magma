@@ -1,0 +1,30 @@
+{
+  "name": "react-magma-dom-codesandbox-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
+    "date-fns": "2.16.1",
+    "downshift": "^5.4.5",
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0",
+    "react-magma-dom": "2.3.2",
+    "react-magma-icons": "1.0.6",
+    "react-model": "3.0.4",
+    "typescript": "^3.9.7",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "16.0.11",
+    "cssnano": "^4.1.10",
+    "parcel-bundler": "^1.6.1"
+  },
+  "keywords": []
+}

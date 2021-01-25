@@ -18,7 +18,8 @@
     },
     "version": {
       "changelogPreset": "conventionalcommits",
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "exact": true
     }
   },
   "version": "independent",
