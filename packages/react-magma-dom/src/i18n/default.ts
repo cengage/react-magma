@@ -212,5 +212,6 @@ export const defaultI18n: I18nInterface = {
       cancel: 'cancel',
       submit: 'submit',
     },
+    optional: 'optional',
   },
 };

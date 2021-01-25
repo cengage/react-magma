@@ -11,7 +11,6 @@ export interface WizardProps {
   steps: WizardStepProps[];
   activeStepIndex?: number;
   orientation?: TabsOrientation;
-  getStepNumberLabel?: (stepNumber: number) => string;
   isLoadingNextStep?: boolean;
   onCancelButtonClick?: () => void;
   onPreviousButtonClick?: (
@@ -25,13 +24,14 @@ export interface WizardProps {
     navigationStepClickProps: NavigationStepClickProps
   ) => void;
   disableStepNavigation?: boolean;
+  optionalText?: string;
 }
 
 export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
   (
     {
       steps,
-      getStepNumberLabel = (stepNumber: number) => `Step ${stepNumber}`,
+      optionalText,
       isLoadingNextStep = false,
       disableStepNavigation = false,
       orientation = TabsOrientation.horizontal,
@@ -75,6 +75,7 @@ export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
         onPreviousButtonClick({ requestedStepIndex: target });
       }
     };
+
     const wizardInnerProps: WizardInnerProps = {
       orientation,
       step: steps[activeStepIndex],
@@ -82,7 +83,6 @@ export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
       stepCount: steps.length,
       activeStepIndex,
       maxStepIndex,
-      getStepNumberLabel,
       isLoadingNextStep,
       disableStepNavigation,
       onNextButtonClick: handleNextButtonClick,

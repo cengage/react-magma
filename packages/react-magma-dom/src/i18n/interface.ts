@@ -205,6 +205,7 @@ export interface I18nInterface {
     verticalTabsInstructions: string;
   };
   wizard: {
+    optional: string;
     actions: {
       previous: string;
       next: string;

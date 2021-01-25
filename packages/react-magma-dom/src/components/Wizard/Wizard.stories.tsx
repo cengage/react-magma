@@ -1,7 +1,7 @@
 import React from 'react';
-import { Wizard, WizardProps } from '..';
-import { Input } from '../../Input';
-import { TabsOrientation } from '../../Tabs/shared';
+import { Wizard, WizardProps } from '.';
+import { Input } from '../Input';
+import { TabsOrientation } from '../Tabs/shared';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<WizardProps> = args => (
@@ -23,6 +23,7 @@ const steps = [
     title: 'Step 2',
     description: 'Enter more general information, we like too know everything.',
     children: <Input labelText="input two" />,
+    optional: true,
   },
   {
     title: 'Step 3',

@@ -31,7 +31,7 @@ export interface WizardInnerProps {
   stepCount: number;
   activeStepIndex: number;
   maxStepIndex: number;
-  getStepNumberLabel?: (stepNumber: number) => string;
+  optionalText?: string;
   isLoadingNextStep?: boolean;
   orientation: TabsOrientation;
   onCancelButtonClick: () => void;
@@ -50,14 +50,13 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
   (
     {
       step,
+      optionalText,
       stepsInfo,
       stepCount,
       orientation,
       activeStepIndex,
       maxStepIndex,
-      getStepNumberLabel = (stepNumber: number) => `Step ${stepNumber}`,
       isLoadingNextStep = false,
-      disableStepNavigation = false,
       onNextButtonClick,
       onPreviousButtonClick,
       onStepNavigationClick,
@@ -128,13 +127,11 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
       <Card>
         <TabsContainer activeIndex={activeStepIndex}>
           <WizardNavigation
-            disableStepNavigation={disableStepNavigation}
             steps={stepsInfo}
-            getStepNumberLabel={getStepNumberLabel}
-            activeStepIndex={activeStepIndex}
             maxStepIndex={maxStepIndex}
             orientation={orientation}
             onStepNavigationClick={onStepNavigationClick}
+            optionalText={optionalText || i18n.wizard.optional}
           />
           <StyledContainer>
             <WizardStep {...step} />

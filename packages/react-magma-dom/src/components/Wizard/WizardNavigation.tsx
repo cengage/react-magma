@@ -9,12 +9,10 @@ export interface NavigationStepClickProps {
 
 export interface WizardNavigationProps {
   steps: WizardStepProps[];
-  getStepNumberLabel: (stepNumber: number) => string;
-  activeStepIndex: number;
   maxStepIndex: number;
   onStepNavigationClick?: (stepClickDetail: NavigationStepClickProps) => void;
-  disableStepNavigation: boolean;
   orientation: TabsOrientation;
+  optionalText: string;
 }
 
 export const WizardNavigation = React.forwardRef<
@@ -32,7 +30,7 @@ export const WizardNavigation = React.forwardRef<
       {props.steps.map((step, index) => (
         <Tab key={index} disabled={index > props.maxStepIndex}>
           {step.title}
-          {step.optional ? ' - optional' : ''}
+          {step.optional ? ` - ${props.optionalText}` : ''}
         </Tab>
       ))}
     </Tabs>
