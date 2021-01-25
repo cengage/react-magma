@@ -26,9 +26,7 @@
     "copy-changelog": "node scripts/copy-changelog.js",
     "lint": "eslint ./src",
     "prepublishOnly": "npm run copy-changelog",
-    "postbuild": "npm run generate-properties",
-    "storybook": "start-storybook -p 6006",
-    "build:storybook": "build-storybook"
+    "postbuild": "npm run generate-properties"
   },
   "keywords": [],
   "author": "",
@@ -53,14 +51,6 @@
   "devDependencies": {
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
-    "@storybook/addon-a11y": "^6.1.11",
-    "@storybook/addon-actions": "^6.1.11",
-    "@storybook/addon-controls": "^6.1.11",
-    "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "^6.1.11",
-    "@storybook/addon-toolbars": "^6.1.11",
-    "@storybook/addons": "^6.1.11",
-    "@storybook/react": "^6.1.11",
     "@testing-library/dom": "^4.1.0",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
@@ -92,7 +82,6 @@
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",
-    "storybook-addon-performance": "^0.13.0",
     "ts-loader": "^8.0.13",
     "tsdx": "^0.14.1",
     "uuid": "^8.3.0"

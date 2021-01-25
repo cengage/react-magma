@@ -1,6 +1,6 @@
 import React from 'react';
-import { Form } from '..';
-import { Button, ButtonColor, ButtonType } from '../../Button';
+import { Form } from '.';
+import { Button, ButtonColor, ButtonType } from '../Button';
 
 export default {
   component: Form,
