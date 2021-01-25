@@ -204,4 +204,12 @@ export interface I18nInterface {
     horizontalTabsInstructions: string;
     verticalTabsInstructions: string;
   };
+  wizard: {
+    actions: {
+      previous: string;
+      next: string;
+      submit: string;
+      cancel: string;
+    };
+  };
 }

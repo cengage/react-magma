@@ -205,4 +205,12 @@ export const defaultI18n: I18nInterface = {
     verticalTabsInstructions:
       'use the down and up arrow keys to activate other tabs',
   },
+  wizard: {
+    actions: {
+      next: 'next',
+      previous: 'previous',
+      cancel: 'cancel',
+      submit: 'submit',
+    },
+  },
 };

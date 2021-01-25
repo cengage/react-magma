@@ -12,6 +12,7 @@ import { TabsContainer } from '../Tabs/TabsContainer';
 import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
 import { TabsOrientation } from '../Tabs';
+import { I18nContext } from '../../i18n';
 
 const StyledSpinner = styled(Spinner)<SpinnerProps>`
   margin: '0 0 0 10px';
@@ -65,15 +66,16 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
     },
     ref
   ) => {
+    const i18n = React.useContext(I18nContext);
     const actions = React.useMemo(() => {
       if (activeStepIndex === 0) {
         return (
           <ActionContainer>
             <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
-              CANCEL
+              {i18n.wizard.actions.cancel}
             </Button>
             <Button color={ButtonColor.primary} onClick={onNextButtonClick}>
-              NEXT{' '}
+              {i18n.wizard.actions.next}{' '}
               {isLoadingNextStep && (
                 <StyledSpinner color={magma.colors.focusInverse} />
               )}
@@ -86,16 +88,16 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
         return (
           <ActionContainer>
             <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
-              CANCEL
+              {i18n.wizard.actions.cancel}
             </Button>
             <Button
               color={ButtonColor.secondary}
               onClick={onPreviousButtonClick}
             >
-              PREVIOUS
+              {i18n.wizard.actions.previous}
             </Button>
             <Button color={ButtonColor.primary} onClick={onSubmitButtonClick}>
-              SUBMIT{' '}
+              {i18n.wizard.actions.submit}
               {isLoadingNextStep && (
                 <StyledSpinner color={magma.colors.focusInverse} />
               )}
@@ -107,13 +109,13 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
       return (
         <ActionContainer>
           <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
-            CANCEL
+            {i18n.wizard.actions.cancel}
           </Button>
           <Button color={ButtonColor.secondary} onClick={onPreviousButtonClick}>
-            PREVIOUS
+            {i18n.wizard.actions.previous}
           </Button>
           <Button color={ButtonColor.primary} onClick={onNextButtonClick}>
-            NEXT{' '}
+            {i18n.wizard.actions.next}
             {isLoadingNextStep && (
               <StyledSpinner color={magma.colors.focusInverse} />
             )}
