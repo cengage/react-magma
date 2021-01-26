@@ -30,6 +30,7 @@ export function Select<T>(props: SelectProps<T>) {
     isClearable,
     disabled,
     isInverse,
+    labelPosition,
     menuStyle,
     onBlur,
     onFocus,
@@ -159,6 +160,7 @@ export function Select<T>(props: SelectProps<T>) {
       getLabelProps={getLabelProps}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
     >

@@ -11,6 +11,7 @@ import { MultiSelect } from './MultiSelect';
 import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
 import { useGenerateId, XOR } from '../../utils';
+import { LabelPosition } from '../Label';
 
 export type SelectOptions =
   | string
@@ -71,6 +72,10 @@ export interface InternalSelectProps<T> {
    * Text for label
    */
   labelText: string;
+  /**
+   * Position of label
+   */
+  labelPosition?: LabelPosition;
   /**
    * Style properties for the items menu
    */
@@ -187,6 +192,7 @@ export function Select<T>(props: XORSelectProps<T>) {
     id: defaultId,
     isInverse,
     isMulti,
+    labelPosition,
     errorMessage,
     messageStyle,
     helperMessage,
@@ -213,6 +219,7 @@ export function Select<T>(props: XORSelectProps<T>) {
         <MultiSelect
           ariaDescribedBy={descriptionId}
           id={id}
+          labelPosition={labelPosition || LabelPosition.top}
           itemToString={itemToString}
           {...(props as MultiSelectProps<T>)}
           hasError={hasError}
@@ -222,6 +229,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           ariaDescribedBy={descriptionId}
           id={id}
           itemToString={itemToString}
+          labelPosition={labelPosition || LabelPosition.top}
           {...(props as SelectProps<T>)}
           hasError={hasError}
         />

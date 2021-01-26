@@ -1,11 +1,23 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Label } from '../Label';
+import { Label, LabelPosition } from '../Label';
 import { HiddenLabelText } from '../Input/index';
 import { UseSelectGetLabelPropsOptions } from 'downshift';
 
-export const SelectContainerElement = styled.div`
+export const SelectContainerElement = styled.div<{
+  labelPosition?: LabelPosition;
+}>`
   position: relative;
+
+  align-items: center;
+  display: ${props =>
+    props.labelPosition == LabelPosition.left ? 'flex' : 'block'};
+
+  label {
+    white-space: nowrap;
+    margin-bottom: 0;
+    margin-right: 16px;
+  }
 `;
 
 interface SelectContainerInterface<T> {
@@ -15,6 +27,7 @@ interface SelectContainerInterface<T> {
   hasError?: boolean;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
+  labelPosition?: LabelPosition;
   labelStyle?: React.CSSProperties;
   labelText: string;
 }
@@ -25,11 +38,12 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
     getLabelProps,
     isInverse,
     isLabelVisuallyHidden,
+    labelPosition,
     labelStyle,
     labelText,
   } = props;
   return (
-    <SelectContainerElement>
+    <SelectContainerElement labelPosition={labelPosition}>
       <Label {...getLabelProps()} isInverse={isInverse} style={labelStyle}>
         {isLabelVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>

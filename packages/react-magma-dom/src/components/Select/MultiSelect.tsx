@@ -20,6 +20,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     innerRef,
     itemToString,
     items,
+    labelPosition,
     labelStyle,
     labelText,
     disabled,
@@ -157,6 +158,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     <SelectContainer
       getLabelProps={getLabelProps}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
       isInverse={isInverse}

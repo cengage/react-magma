@@ -3,6 +3,11 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InputSize } from '../InputBase';
 
+export enum LabelPosition {
+  left = 'left',
+  top = 'top', // default
+}
+
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
   isInverse?: boolean;
