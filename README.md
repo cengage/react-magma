@@ -24,7 +24,7 @@ This site has general usage information, as well as information on all of the av
 
 Node v12.x or greater with npm 6.1.x or greater
 
-### Steps to Run Documentation :ocally
+### Steps to Run Documentation locally
 
 1. Clone this repo:
 
@@ -48,7 +48,6 @@ npm ci
 3.  Run Storybook to view examples of each component with
 
 ```
-cd packages/react-magma-dom
 npm run storybook
 ```
 
@@ -223,7 +222,7 @@ props:
 
 ### Storybook Examples
 
-React Magma uses [Storybook](https://storybook.js.org/) for local testing of individual UI components. Each component must have a Storybook story that reflects each of its variations in state. TThe story files live along side the individual component files in a directory named `stories`. Run Storybook from the package folder:
+React Magma uses [Storybook](https://storybook.js.org/) for local testing of individual UI components. Each component should have a Storybook story that reflects each of its variations in state. TThe story files live along side the individual component files. Run Storybook from the root folder:
 
 ```
 npm run storybook
