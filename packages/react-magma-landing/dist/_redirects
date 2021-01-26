@@ -1,4 +1,4 @@
-/version/latest  /version/2.3.3 302
+/version/latest  /version/2.3.4 302
 
 /version/next/*    https://next--upbeat-sinoussi-f675aa.netlify.app/:splat   200
 
@@ -33,4 +33,6 @@
 /version/2.3.2/*   https://2-3-2--upbeat-sinoussi-f675aa.netlify.app/:splat   200
 
 /version/2.3.3/*   https://2-3-3--upbeat-sinoussi-f675aa.netlify.app/:splat   200
+
+/version/2.3.4/*   https://2-3-4--upbeat-sinoussi-f675aa.netlify.app/:splat   200
 
