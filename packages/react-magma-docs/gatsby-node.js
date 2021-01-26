@@ -1,6 +1,6 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
-const propertiesJson = require('./src/data/properties.json');
+const propertiesJson = require('react-magma-dom/dist/properties.json');
 
 const getPathPrefix = path =>
   /design/.test(path)
