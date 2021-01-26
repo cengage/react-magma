@@ -6,17 +6,7 @@ props:
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import {
-  TimePicker,
-  Heading,
-  Button,
-  Card,
-  CardBody,
-  I18nContext,
-  defaultI18n,
-} from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
-import { zhCN } from 'date-fns/locale';
 
 <DocsHeading to="/design/inputs/" type="api">
   Time Picker
@@ -24,24 +14,39 @@ import { zhCN } from 'date-fns/locale';
 
 ## Basic Usage
 
-```.jsx
-<TimePicker labelText="Time Due" />
+```tsx codesandbox=magma
+import React from 'react';
+import { TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <TimePicker labelText="Time Due" />;
+}
 ```
 
 ## Value
 
 There are multiple formats you can send in through the `value` prop. You can do `##:## AM/PM` and `##:##` (which will default to 'AM' when the hour is less than 13 and 'PM' when between the hours of 13 and 23).
 
-```.jsx
-<TimePicker value='01:15 PM' labelText="Time Due" />
+```tsx codesandbox=magma
+import React from 'react';
+import { TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <TimePicker value="01:15 PM" labelText="Time Due" />;
+}
 ```
 
 ## Minutes Step
 
 The `minutesStep` prop can be used to set the stepping interval when using the arrow keys on the minutes input. The default value is 1.
 
-```.jsx
-<TimePicker labelText="Time Due" minutesStep="15" />
+```tsx codesandbox=magma
+import React from 'react';
+import { TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <TimePicker labelText="Time Due" minutesStep="15" />;
+}
 ```
 
 ## Error Message
@@ -49,54 +54,88 @@ The `minutesStep` prop can be used to set the stepping interval when using the a
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
-```.jsx
-<TimePicker errorMessage="Invalid time" labelText="Time Due" />
+```tsx codesandbox=magma
+import React from 'react';
+import { TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <TimePicker errorMessage="Invalid time" labelText="Time Due" />;
+}
 ```
 
 ## Helper Message
 
 The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
 
-```.jsx
-<TimePicker helperMessage="Helper text" labelText="Time Due" />
+```tsx codesandbox=magma
+import React from 'react';
+import { TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <TimePicker helperMessage="Helper text" labelText="Time Due" />;
+}
 ```
 
 ## Inverse
 
-```.jsx
-<Card isInverse>
-  <CardBody>
-    <TimePicker isInverse labelText="Time Due" />
-  </CardBody>
-</Card>
+```tsx codesandbox=magma
+import React from 'react';
+import { Card, CardBody, TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <TimePicker isInverse labelText="Time Due" />
+      </CardBody>
+    </Card>
+  );
+}
 ```
 
 ## Custom Styles
 
 The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be used for custom styling.
 
-```.jsx
-<TimePicker
-  containerStyle={{ border: '1px solid gray'}}
-  labelStyle={{fontStyle: 'italic'}}
-  helperMessage="Helper text" messageStyle={{background: 'pink'}}
-  inputStyle={{ border: '2px dotted black', width: '100%'}}
-  labelText="Time Due" />
+```tsx codesandbox=magma
+import React from 'react';
+import { TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TimePicker
+      containerStyle={{ border: '1px solid gray' }}
+      labelStyle={{ fontStyle: 'italic' }}
+      helperMessage="Helper text"
+      messageStyle={{ background: 'pink' }}
+      inputStyle={{ border: '2px dotted black', width: '100%' }}
+      labelText="Time Due"
+    />
+  );
+}
 ```
 
 ## Internationalization
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { I18nContext, defaultI18n, zhCN, TimePicker } from 'react-magma-dom';
+
+export function Example() {
   return (
-    <I18nContext.Provider value={{
-      ...defaultI18n,
-      locale: zhCN
-    }}>
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        locale: zhCN,
+      }}
+    >
       <TimePicker labelText="International Time" />
-      <TimePicker labelText="International Time with Passed in Value" value="01:30 下午" />
+      <TimePicker
+        labelText="International Time with Passed in Value"
+        value="01:30 下午"
+      />
     </I18nContext.Provider>
-  )
+  );
 }
 ```
 
@@ -108,9 +147,4 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 
 <TimePickerProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ TimePicker, Card, CardBody, I18nContext, defaultI18n, zhCN }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

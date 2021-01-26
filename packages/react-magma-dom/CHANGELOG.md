@@ -7,249 +7,125 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.4 (2021-01-25)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.4-alpha.5 (2021-01-25)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.4-alpha.4 (2021-01-25)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.4-alpha.3 (2021-01-22)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.4-alpha.2 (2021-01-22)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.4-alpha.1 (2021-01-21)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.4-alpha.0 (2021-01-20)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.3 (2021-01-20)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.3-alpha.10 (2021-01-19)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.3-alpha.9 (2021-01-19)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.3-alpha.8 (2021-01-19)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.3-alpha.7 (2021-01-15)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.3-alpha.6 (2021-01-14)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.3-alpha.5 (2021-01-14)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.3-alpha.4 (2021-01-14)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.3-alpha.3 (2021-01-11)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.3-alpha.2 (2021-01-08)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.3-alpha.1 (2021-01-06)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.3-alpha.0 (2021-01-05)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.2 (2020-12-30)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.2-alpha.8 (2020-12-30)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.2-alpha.7 (2020-12-30)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.2-alpha.6 (2020-12-30)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.2-alpha.5 (2020-12-29)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.2-alpha.4 (2020-12-29)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.2-alpha.3 (2020-12-22)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.2-alpha.2 (2020-12-17)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.2-alpha.1 (2020-12-17)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.1-alpha.2 (2020-12-17)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.1-alpha.1 (2020-12-17)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0) (2020-12-11)
 

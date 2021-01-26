@@ -200,7 +200,7 @@ const IconWrapperStyles = css`
 const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
-    props.theme.spaceScale.spacing05};
+  props.theme.spaceScale.spacing05};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     display: none;
