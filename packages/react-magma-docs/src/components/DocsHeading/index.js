@@ -18,9 +18,18 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
+  & + p {
+    line-height: ${magma.typeScale.size04.lineHeight};
+    font-size: ${magma.typeScale.size04.fontSize};
+  }
+
   @media (min-width: ${magma.breakpoints.small}px) {
     align-items: center;
     flex-direction: row;
+    & + p {
+      line-height: ${magma.typeScale.size05.lineHeight};
+      font-size: ${magma.typeScale.size05.fontSize};
+    }
   }
 `;
 
