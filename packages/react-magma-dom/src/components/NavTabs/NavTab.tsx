@@ -33,6 +33,7 @@ export interface BaseNavTabProps
    */
   orientation?: TabsOrientation;
   testId?: string;
+  to?: string;
   /**
    * @internal
    */
@@ -124,10 +125,7 @@ export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
 );
 
 // Using any type because we do not know the element type of a custom tab
-export const NavTab = React.forwardRef<
-  any,
-  Omit<React.PropsWithChildren<NavTabProps>, 'children'>
->((props, ref) => {
+export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
   let children;
   let component;
   const { isActive, icon, testId, to, ...other } = props;
