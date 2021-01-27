@@ -6,6 +6,8 @@ import {
   NavigationStepClickProps,
 } from '.';
 import { TabsOrientation } from '../Tabs/shared';
+import { HeadingProps } from '../Heading';
+import { ParagraphProps } from '../Paragraph';
 
 export interface WizardProps {
   /**
@@ -55,12 +57,24 @@ export interface WizardProps {
    * Text rendered next to an optional step.
    */
   optionalText?: string;
+  /**
+   * Optional props to pass to the heading.
+   * @internal
+   */
+  headingProps?: HeadingProps;
+  /**
+   * Optional props to pass to the description.
+   * @internal
+   */
+  paragraphProps?: ParagraphProps;
 }
 
 export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
   (
     {
       steps,
+      headingProps,
+      paragraphProps,
       optionalText,
       isLoadingNextStep = false,
       orientation = TabsOrientation.horizontal,
@@ -118,6 +132,8 @@ export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
       onStepNavigationClick: handleStepNavigationClick,
       onSubmitButtonClick: onSubmitButtonClick,
       onCancelButtonClick: onCancelButtonClick,
+      headingProps,
+      paragraphProps,
     };
 
     return <WizardInner key={activeStepIndex} {...wizardInnerProps} />;

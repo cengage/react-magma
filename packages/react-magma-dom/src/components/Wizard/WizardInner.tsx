@@ -6,17 +6,20 @@ import {
   WizardNavigation,
   NavigationStepClickProps,
 } from '.';
+import { HeadingProps } from '../Heading';
+import { ParagraphProps } from '../Paragraph';
 import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { TabsContainer } from '../Tabs/TabsContainer';
-import { magma } from '../../theme/magma';
 import styled from '@emotion/styled';
 import { TabsOrientation } from '../Tabs';
 import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 const StyledSpinner = styled(Spinner)<SpinnerProps>`
-  margin: '0 0 0 10px';
+  margin: ${props => `0 0 0 ${props.theme.spaceScale.spacing03}`};
 `;
+
 const StyledContainer = styled.div`
   flex-grow: 1;
 `;
@@ -43,7 +46,8 @@ export interface WizardInnerProps {
   onStepNavigationClick?: (
     navigationStepClickProps: NavigationStepClickProps
   ) => void;
-  disableStepNavigation?: boolean;
+  headingProps?: HeadingProps;
+  paragraphProps?: ParagraphProps;
 }
 
 export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
@@ -66,6 +70,8 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
     ref
   ) => {
     const i18n = React.useContext(I18nContext);
+    const theme = React.useContext(ThemeContext);
+
     const actions = React.useMemo(() => {
       if (activeStepIndex === 0) {
         return (
@@ -75,8 +81,11 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
             </Button>
             <Button color={ButtonColor.primary} onClick={onNextButtonClick}>
               {i18n.wizard.actions.next}{' '}
-              {isLoadingNextStep && (
-                <StyledSpinner color={magma.colors.focusInverse} />
+              {!isLoadingNextStep && (
+                <StyledSpinner
+                  theme={theme}
+                  color={theme.colors.focusInverse}
+                />
               )}
             </Button>
           </ActionContainer>
@@ -98,7 +107,10 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
             <Button color={ButtonColor.primary} onClick={onSubmitButtonClick}>
               {i18n.wizard.actions.submit}
               {isLoadingNextStep && (
-                <StyledSpinner color={magma.colors.focusInverse} />
+                <StyledSpinner
+                  theme={theme}
+                  color={theme.colors.focusInverse}
+                />
               )}
             </Button>
           </ActionContainer>
@@ -116,7 +128,7 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
           <Button color={ButtonColor.primary} onClick={onNextButtonClick}>
             {i18n.wizard.actions.next}
             {isLoadingNextStep && (
-              <StyledSpinner color={magma.colors.focusInverse} />
+              <StyledSpinner theme={theme} color={theme.colors.focusInverse} />
             )}
           </Button>
         </ActionContainer>
@@ -127,14 +139,18 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
       <Card>
         <TabsContainer activeIndex={activeStepIndex}>
           <WizardNavigation
+            navigationLabel={i18n.wizard.navigationLabel}
             steps={stepsInfo}
             maxStepIndex={maxStepIndex}
             orientation={orientation}
             onStepNavigationClick={onStepNavigationClick}
             optionalText={optionalText || i18n.wizard.optional}
           />
-          <StyledContainer>
-            <WizardStep {...step} />
+          <StyledContainer theme={theme}>
+            <WizardStep
+              optionalText={optionalText || i18n.wizard.optional}
+              {...step}
+            />
             {actions}
           </StyledContainer>
         </TabsContainer>

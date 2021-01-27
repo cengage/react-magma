@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Heading } from '../Heading';
-import { Paragraph } from '../Paragraph';
+import { Heading, HeadingProps } from '../Heading';
+import { Paragraph, ParagraphProps } from '../Paragraph';
 
 export interface WizardStepProps {
   /**
@@ -15,6 +15,20 @@ export interface WizardStepProps {
    * Flag to display the optional text next to the step title in the wizard navigation.
    */
   optional?: boolean;
+  /**
+   * Optional props to pass to the heading.
+   * @internal
+   */
+  headingProps?: HeadingProps;
+  /**
+   * Optional props to pass to the description.
+   * @internal
+   */
+  paragraphProps?: ParagraphProps;
+  /**
+   * @internal
+   */
+  optionalText: string;
   children?: React.ReactNode;
 }
 
@@ -22,9 +36,9 @@ export const WizardStep = React.forwardRef<HTMLDivElement, WizardStepProps>(
   (props, ref) => {
     return (
       <div>
-        <Heading level={4}>
+        <Heading level={4} {...props.headingProps}>
           {props.title}
-          {props.optional ? ' - optional' : ''}
+          {props.optional ? ' - ${props.optionalText}' : ''}
         </Heading>
         {props.description && <Paragraph>{props.description}</Paragraph>}
         {props.children}

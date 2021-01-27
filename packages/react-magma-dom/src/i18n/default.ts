@@ -213,5 +213,6 @@ export const defaultI18n: I18nInterface = {
       submit: 'submit',
     },
     optional: 'optional',
+    navigationLabel: 'Navigation for the wizard',
   },
 };

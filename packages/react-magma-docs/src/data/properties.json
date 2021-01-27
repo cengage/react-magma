@@ -10013,11 +10013,11 @@
         },
         "deprecated": false
       },
-      "disableStepNavigation": {
-        "name": "disableStepNavigation",
+      "headingProps": {
+        "name": "headingProps",
         "required": false,
         "type": {
-          "name": "boolean"
+          "name": "HeadingProps"
         },
         "deprecated": false
       },
@@ -10094,6 +10094,14 @@
             "TabsOrientation.horizontal",
             "TabsOrientation.vertical"
           ]
+        },
+        "deprecated": false
+      },
+      "paragraphProps": {
+        "name": "paragraphProps",
+        "required": false,
+        "type": {
+          "name": "ParagraphProps"
         },
         "deprecated": false
       },

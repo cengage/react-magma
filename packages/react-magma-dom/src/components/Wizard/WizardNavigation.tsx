@@ -13,6 +13,7 @@ export interface WizardNavigationProps {
   onStepNavigationClick?: (stepClickDetail: NavigationStepClickProps) => void;
   orientation: TabsOrientation;
   optionalText: string;
+  navigationLabel: string;
 }
 
 export const WizardNavigation = React.forwardRef<
@@ -25,7 +26,7 @@ export const WizardNavigation = React.forwardRef<
       onChange={index =>
         props.onStepNavigationClick({ requestedStepIndex: index })
       }
-      aria-label="Navigation for the wizard"
+      aria-label={props.navigationLabel}
     >
       {props.steps.map((step, index) => (
         <Tab key={index} disabled={index > props.maxStepIndex}>
