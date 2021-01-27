@@ -2,20 +2,14 @@ import * as React from 'react';
 import { BasicTemplate } from '../BasicTemplate';
 import { FormTemplate } from '../FormTemplate';
 
-interface AnyObject {
-  [key: string]: any;
-}
+import { FormTemplateRenderProps } from '@data-driven-forms/react-form-renderer/dist/cjs/form-template-render-props';
 
-interface ExtendedMapperComponent extends AnyObject {
-  component: React.ComponentType | React.FunctionComponent | React.ElementType;
-}
+export type TemplateProps =
+  | React.ComponentType<FormTemplateRenderProps>
+  | React.FunctionComponent<FormTemplateRenderProps>;
 
 export interface TemplateMapper {
-  [key: string]:
-    | React.ComponentType
-    | React.FunctionComponent
-    | React.ElementType
-    | ExtendedMapperComponent;
+  [key: string]: TemplateProps;
 }
 
 export const templateTypes = {

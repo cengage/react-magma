@@ -1,12 +1,11 @@
 import React from 'react';
 
-export interface BasicTemplateProps {
-  formFields: any;
-  schema: any;
-}
+import { FormTemplateRenderProps } from '@data-driven-forms/react-form-renderer/dist/cjs/form-template-render-props';
 
-export const BasicTemplate: React.FunctionComponent<BasicTemplateProps> = ({
-  formFields,
-}) => {
+export type BasicTemplateProps =
+  | React.ComponentType<FormTemplateRenderProps>
+  | React.FunctionComponent<FormTemplateRenderProps>;
+
+export const BasicTemplate: BasicTemplateProps = ({ formFields }) => {
   return <div>{formFields}</div>;
 };

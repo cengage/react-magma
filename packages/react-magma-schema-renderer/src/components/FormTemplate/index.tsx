@@ -13,8 +13,6 @@ import useFormApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-form
 export interface FormTemplateProps {
   formFields: any;
   schema: any;
-  cancelLabel?: string;
-  submitLabel?: string;
 }
 
 export const FormTemplate: React.FunctionComponent<FormTemplateProps> = ({
