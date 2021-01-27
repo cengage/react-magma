@@ -234,16 +234,20 @@ export function Select<T>(props: XORSelectProps<T>) {
           hasError={hasError}
         />
       )}
-      <InputMessage
-        id={descriptionId}
-        isInverse={isInverse}
-        hasError={hasError}
-        style={messageStyle}
-      >
-        {(errorMessage || helperMessage) && (
-          <>{errorMessage ? errorMessage : helperMessage}</>
-        )}
-      </InputMessage>
+      {!(
+        labelPosition === LabelPosition.left && !(errorMessage || helperMessage)
+      ) && (
+        <InputMessage
+          id={descriptionId}
+          isInverse={isInverse}
+          hasError={hasError}
+          style={messageStyle}
+        >
+          {(errorMessage || helperMessage) && (
+            <>{errorMessage ? errorMessage : helperMessage}</>
+          )}
+        </InputMessage>
+      )}
     </div>
   );
 }
