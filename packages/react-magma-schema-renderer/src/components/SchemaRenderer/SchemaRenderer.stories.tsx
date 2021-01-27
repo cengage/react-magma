@@ -1,21 +1,23 @@
 import React from 'react';
 import {
-  FormRenderer,
-  FormRendererProps,
+  Schema,
+  SchemaRenderer,
+  SchemaRendererProps,
   componentTypes,
-} from './FormRenderer';
+} from './SchemaRenderer';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Schema } from '@data-driven-forms/react-form-renderer';
+import { templateTypes } from '../TemplateMapper';
 
 const baseSchema: Schema = {
   title: 'Form Header',
   description: 'Some description for a form.',
+  type: templateTypes.FORM,
   fields: [],
 };
 
-const Template: Story<FormRendererProps> = args => (
-  <FormRenderer
+const Template: Story<SchemaRendererProps> = args => (
+  <SchemaRenderer
     schema={args.schema}
     onSubmit={action('on-submit')}
     onCancel={action('on-cancel')}
@@ -23,12 +25,12 @@ const Template: Story<FormRendererProps> = args => (
 );
 
 export default {
-  title: 'FormRenderer',
-  component: FormRenderer,
+  title: 'SchemaRenderer',
+  component: SchemaRenderer,
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Form = Template.bind({});
+Form.args = {
   schema: {
     ...baseSchema,
     fields: [
@@ -214,6 +216,25 @@ FormGroups.args = {
             },
           },
         ],
+      },
+    ],
+  },
+};
+
+export const Basic = Template.bind({});
+Basic.args = {
+  schema: {
+    type: templateTypes.BASIC,
+    fields: [
+      {
+        component: componentTypes.PARAGRAPH,
+        name: 'paragraph-1',
+        children: 'paragraph one.',
+      },
+      {
+        component: componentTypes.PARAGRAPH,
+        name: 'paragraph-2',
+        children: 'paragraph two.',
       },
     ],
   },

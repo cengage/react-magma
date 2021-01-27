@@ -1,8 +1,9 @@
 import React from 'react';
 import { render, fireEvent, cleanup, act } from '@testing-library/react';
-import { FormRenderer, componentTypes } from './FormRenderer';
+import { SchemaRenderer, componentTypes } from './SchemaRenderer';
+import { templateTypes } from '../TemplateMapper';
 
-describe('FormRenderer', () => {
+describe('SchemaRenderer', () => {
   afterEach(() => {
     jest.resetAllMocks();
     cleanup();
@@ -14,6 +15,7 @@ describe('FormRenderer', () => {
   const baseSchema = {
     title: 'title',
     description: 'description',
+    type: templateTypes.FORM,
   };
 
   describe('Form basic', () => {
@@ -31,7 +33,7 @@ describe('FormRenderer', () => {
 
     it('should render header and description', () => {
       const { getByText } = render(
-        <FormRenderer
+        <SchemaRenderer
           schema={schema}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
@@ -45,7 +47,7 @@ describe('FormRenderer', () => {
 
     it('should trigger cancel event when user clicks the Cancel button', () => {
       const { getByText, getByLabelText } = render(
-        <FormRenderer
+        <SchemaRenderer
           schema={schema}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
@@ -68,7 +70,7 @@ describe('FormRenderer', () => {
 
     it('should trigger submit with the data', () => {
       const { getByLabelText, getByText } = render(
-        <FormRenderer
+        <SchemaRenderer
           schema={schema}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
@@ -96,7 +98,7 @@ describe('FormRenderer', () => {
         cancelLabel: 'Custom Cancel Label',
       };
       const { getByText } = render(
-        <FormRenderer
+        <SchemaRenderer
           schema={customLabelsSchema}
           onSubmit={handleSubmit}
           onCancel={handleCancel}

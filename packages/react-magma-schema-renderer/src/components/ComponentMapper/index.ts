@@ -13,6 +13,7 @@ import { Review } from '../Review';
 import { Password } from '../Password';
 import { Combobox } from '../Combobox';
 import { Select } from '../Select';
+import { Paragraph } from '../Paragraph';
 // import { Wizard } from '../Wizard';
 // import { FieldArray } from '../FieldArray';
 
@@ -24,6 +25,7 @@ export const componentTypes = {
   FORM_GROUP: 'FORM_GROUP',
   PASSWORD: 'PASSWORD',
   COMBOBOX: 'COMBOBOX',
+  PARAGRAPH: 'PARAGRAPH',
 };
 
 export const componentMapper: ComponentMapper = {
@@ -37,6 +39,7 @@ export const componentMapper: ComponentMapper = {
   [componentTypes.TEXTAREA]: Textarea,
   [componentTypes.COMBOBOX]: Combobox,
   [componentTypes.SELECT]: Select,
+  [componentTypes.PARAGRAPH]: Paragraph,
   // [componentTypes.WIZARD]: Wizard,
   // [componentTypes.FIELD_ARRAY]: FieldArray,
   [componentTypes.REVIEW]: Review,

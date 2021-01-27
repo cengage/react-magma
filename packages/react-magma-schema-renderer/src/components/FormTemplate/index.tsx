@@ -19,7 +19,7 @@ export interface FormTemplateProps {
 
 export const FormTemplate: React.FunctionComponent<FormTemplateProps> = ({
   formFields,
-  schema: { cancelLabel = 'Cancel', submitLabel = 'Submit' },
+  schema: { cancelLabel, submitLabel },
   schema,
 }) => {
   const { handleSubmit, onCancel, getState } = useFormApi();
@@ -32,14 +32,14 @@ export const FormTemplate: React.FunctionComponent<FormTemplateProps> = ({
         variant={ButtonVariant.link}
         onClick={onCancel}
       >
-        {cancelLabel}
+        {cancelLabel || 'Cancel'}
       </Button>
       <Button
         disabled={submitting}
         type={ButtonType.submit}
         color={ButtonColor.primary}
       >
-        {submitLabel}
+        {submitLabel || 'Submit'}
       </Button>
     </>
   );
