@@ -6,8 +6,6 @@ props:
   - ToastsContainerProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Button, Toast, ToastsContainer, Announce } from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
 import { Link } from 'gatsby';
 
@@ -21,8 +19,11 @@ import { Link } from 'gatsby';
 
 ## Basic Usage
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
   function handleClick() {
@@ -35,14 +36,12 @@ import { Link } from 'gatsby';
 
   return (
     <>
-      <Button size="small" onClick={handleClick}>
-        Show Default Toast
-      </Button>
-      {showToast
-        ? <Toast onDismiss={handleDismiss}>Default Toast</Toast>
-        : null}
+      <Button onClick={handleClick}>Show Default Toast</Button>
+      {showToast ? (
+        <Toast onDismiss={handleDismiss}>Default Toast</Toast>
+      ) : null}
     </>
-  )
+  );
 }
 ```
 
@@ -54,8 +53,11 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
 
 ### Info
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast, AlertVariant } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
   function handleClick() {
@@ -68,14 +70,14 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
 
   return (
     <>
-      <Button size="small" onClick={handleClick}>
-        Show Info Toast
-      </Button>
-      {showToast
-        ? <Toast onDismiss={handleDismiss} variant='info'>Info Toast</Toast>
-        : null}
+      <Button onClick={handleClick}>Show Success Toast</Button>
+      {showToast ? (
+        <Toast onDismiss={handleDismiss} variant={AlertVariant.success}>
+          Success Toast
+        </Toast>
+      ) : null}
     </>
-  )
+  );
 }
 ```
 
@@ -88,16 +90,33 @@ the conditional logic to display the Toast _inside_ the Announce component.
 While toasts appear visually in centered at bottom of the screen, they will exist in the dom where ever they are placed. Keep this in mind when you are structuring your
 markup, to ensure that they have the expected tab order.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Announce, Toast } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
-  return (<>
-    <Button onClick={() => setShowToast(true)}>Show Toast in Announce</Button>
-    <Announce>
-      {showToast && <Toast dismissible onDismiss={() => setShowToast(false)}>Dismissible Toast with <a href="#">linked text</a></Toast>}
-    </Announce>
-  </>)
+  function handleButtonClick() {
+    setShowToast(true);
+  }
+
+  function handleToastDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button onClick={handleButtonClick}>Show Toast in Announce</Button>
+      <Announce>
+        {showToast && (
+          <Toast dismissible onDismiss={handleToastDismiss}>
+            Dismissible Toast
+          </Toast>
+        )}
+      </Announce>
+    </>
+  );
 }
 ```
 
@@ -108,24 +127,85 @@ The first toast will appear at the bottom of the screen, the next toast will app
 that may be added. However if the number of toasts exceeds the amount of space on the screen, layout issues might occur. Try to limit the number of toasts
 appearing on screen at once as much as possible.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  Announce,
+  Button,
+  ButtonColor,
+  Toast,
+  ToastsContainer,
+  AlertVariant,
+} from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
   const [showToast2, setShowToast2] = React.useState(false);
   const [showToast3, setShowToast3] = React.useState(false);
 
-  return (<ToastsContainer>
-    <Announce>
-      <Button onClick={() => setShowToast(true)} color="success">Show Toast</Button>
-      {showToast && <Toast id="toast1" onDismiss={() => setShowToast(false)} variant="success">Toast 1</Toast>}
+  function handleClick() {
+    setShowToast(true);
+  }
+  function handleDismiss() {
+    setShowToast(false);
+  }
 
-      <Button onClick={() => setShowToast2(true)} color="secondary">Show Toast 2</Button>
-      {showToast2 && <Toast id="toast2" onDismiss={() => setShowToast2(false)}>This is the second toast which is longer than either toast one or three</Toast>}
+  function handleClick2() {
+    setShowToast2(true);
+  }
+  function handleDismiss2() {
+    setShowToast2(false);
+  }
 
-      <Button onClick={() => setShowToast3(true)} color="danger">Show Toast 3</Button>
-      {showToast3 && <Toast disableAutoDismiss id="toast3" variant="danger" onDismiss={() => setShowToast3(false)}>Toast three</Toast>}
-    </Announce>
-  </ToastsContainer>)
+  function handleClick3() {
+    setShowToast3(true);
+  }
+  function handleDismiss3() {
+    setShowToast3(false);
+  }
+
+  return (
+    <ToastsContainer>
+      <Announce>
+        <Button onClick={handleClick} color={ButtonColor.success}>
+          Show Toast
+        </Button>
+        {showToast && (
+          <Toast
+            id="toast1"
+            onDismiss={handleDismiss}
+            variant={AlertVariant.success}
+          >
+            Toast 1
+          </Toast>
+        )}
+
+        <Button onClick={handleClick2} color={ButtonColor.secondary}>
+          Show Toast 2
+        </Button>
+        {showToast2 && (
+          <Toast id="toast2" onDismiss={handleDismiss2}>
+            This is the second toast which is longer than either toast one or
+            three
+          </Toast>
+        )}
+
+        <Button onClick={handleClick3} color={ButtonColor.danger}>
+          Show Toast 3
+        </Button>
+        {showToast3 && (
+          <Toast
+            disableAutoDismiss
+            id="toast3"
+            variant={AlertVariant.danger}
+            onDismiss={handleDismiss3}
+          >
+            Toast three
+          </Toast>
+        )}
+      </Announce>
+    </ToastsContainer>
+  );
 }
 ```
 
@@ -134,14 +214,30 @@ appearing on screen at once as much as possible.
 The `ToastsContainer` component takes an optional `bottomOffset` prop, that indicates the additional number of pixels from the bottom the toasts will render.
 This is useful in cases where toasts are intended to display above a component, such as a toolbar.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast, ToastsContainer } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
-  return (<ToastsContainer bottomOffset={100}>
-      <Button onClick={() => setShowToast(true)} color="success">Show Toast with Bottom Offset</Button>
-      {showToast && <Toast onDismiss={() => setShowToast(false)} variant="success">Toast Container has bottomOffset of 100</Toast>}
-  </ToastsContainer>)
+  function handleClick() {
+    setShowToast(true);
+  }
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <ToastsContainer bottomOffset={100}>
+      <Button onClick={handleClick}>Show Toast with Bottom Offset</Button>
+      {showToast && (
+        <Toast onDismiss={handleDismiss}>
+          Toast Container has bottomOffset of 100
+        </Toast>
+      )}
+    </ToastsContainer>
+  );
 }
 ```
 
@@ -149,27 +245,59 @@ This is useful in cases where toasts are intended to display above a component, 
 
 The `toastDuration` prop can be used to set the number of milliseconds that the toast will remain on the screen before it auto-dismisses. This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
-  return (<>
-    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-    {showToast && <Toast toastDuration={10000} onDismiss={() => setShowToast(false)}>Slow Toast</Toast>}
-  </>)
+  function handleClick() {
+    setShowToast(true);
+  }
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button onClick={handleClick}>Show Toast</Button>
+      {showToast && (
+        <Toast toastDuration={10000} onDismiss={handleDismiss}>
+          Slow Toast
+        </Toast>
+      )}
+    </>
+  );
 }
 ```
 
 ## Disable Auto Dismiss
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
-  return (<>
-    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-    {showToast && <Toast disableAutoDismiss onDismiss={() => setShowToast(false)}>Non-Auto Hiding Dismissible Toast</Toast>}
-  </>)
+  function handleClick() {
+    setShowToast(true);
+  }
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button onClick={handleClick}>Show Toast</Button>
+      {showToast && (
+        <Toast disableAutoDismiss onDismiss={handleDismiss}>
+          Non-Auto Hiding Dismissible Toast
+        </Toast>
+      )}
+    </>
+  );
 }
 ```
 
@@ -177,18 +305,44 @@ The `toastDuration` prop can be used to set the number of milliseconds that the 
 
 When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is will continue running.
 
-```.jsx
-() => {
-  const [showToast, setShowToast] = React.useState(false);
-  const [toastContent, setToastContent] = React.useState('Default Toast Content');
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast } from 'react-magma-dom';
 
-  return (<>
-    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-    {showToast && <Toast
-                    onDismiss={() => setShowToast(false)}
-                    onMouseEnter={() => setAlertContent('Mouse is hovering toast')}
-                    onMouseLeave={() => setAlertContent('Mouse has stopped hovering toast')}>{toastContent}</Toast>}
-  </>)
+export function Example() {
+  const [showToast, setShowToast] = React.useState(false);
+  const [toastContent, setToastContent] = React.useState(
+    'Default Toast Content'
+  );
+
+  function handleClick() {
+    setShowToast(true);
+  }
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  function handleMouseEnter() {
+    setAlertContent('Mouse is hovering toast');
+  }
+  function handleMouseLeave() {
+    setAlertContent('Mouse has stopped hovering toast');
+  }
+
+  return (
+    <>
+      <Button onClick={handleClick}>Show Toast</Button>
+      {showToast && (
+        <Toast
+          onDismiss={handleDismiss}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          {toastContent}
+        </Toast>
+      )}
+    </>
+  );
 }
 ```
 
@@ -198,19 +352,34 @@ Custom styles can be added to a toast using two different props. The `containerS
 which includes the component's positioning and z-index. The `alertStyle` prop controls the style for the internal alert component, which
 includes the element's background, border-radius, and fade animation.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Button, Toast } from 'react-magma-dom';
+
+export function Example() {
   const [showToast, setShowToast] = React.useState(false);
 
-  return (<>
-    <Button onClick={() => setShowToast(true)}>Show Toast</Button>
-    {showToast &&
-      <Toast
-        alertStyle={{border: '4px dotted yellow'}}
-        containerStyle={{'left': 'auto', 'right': '20px', bottom: '150px'}}
-        onDismiss={() => setShowToast(false)}>Toast with custom styles</Toast>
-    }
-  </>)
+  function handleClick() {
+    setShowToast(true);
+  }
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  return (
+    <>
+      <Button onClick={handleClick}>Show Toast</Button>
+      {showToast && (
+        <Toast
+          alertStyle={{ border: '4px dotted yellow' }}
+          containerStyle={{ left: 'auto', right: '20px', bottom: '150px' }}
+          onDismiss={handleDismiss}
+        >
+          Toast with custom styles
+        </Toast>
+      )}
+    </>
+  );
 }
 ```
 
@@ -251,10 +420,3 @@ Passing in the `testId` prop will pass the `testId` to the internal `Alert` elem
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <ToastProps />
-
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ Button, Toast, ToastsContainer, Announce }}
-  />
-);

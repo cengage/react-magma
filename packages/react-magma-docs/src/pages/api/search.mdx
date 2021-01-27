@@ -7,7 +7,6 @@ props:
 
 import { Link } from 'gatsby';
 import { ScopeableLayout } from '../../components/layout';
-import { Search, Card, CardBody } from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
 
 <DocsHeading to="/design/search/" type="api">
@@ -20,8 +19,17 @@ The `Search` component is the standardized use of the <Link to='/api/inputs/'>In
 
 The `onSearch` prop is required and takes a function and fires when the user clicks or presses Enter when focus is on the search icon or the search input. It also fires if the user is focused on the input and presses Enter.
 
-```.jsx
-<Search onSearch={(term) => {alert(term)}} />
+```tsx codesandbox=magma
+import React from 'react';
+import { Search } from 'react-magma-dom';
+
+export function Example() {
+  function handleSearch(term) {
+    alert(term);
+  }
+
+  return <Search onSearch={handleSearch} />;
+}
 ```
 
 ## Label and Placeholder Text
@@ -34,36 +42,75 @@ The `placeholder` refers to the placeholder attribute of the input, which will d
 
 The default value of all of these is `Search`.
 
-```.jsx
-<Search iconAriaLabel='Submit Search' labelText="Search for Articles and Books" onSearch={(term) => {}} placeholder="Search our Library" />
+```tsx codesandbox=magma
+import React from 'react';
+import { Search } from 'react-magma-dom';
+
+export function Example() {
+  function handleSearch(term) {
+    console.log(term);
+  }
+
+  return (
+    <Search
+      iconAriaLabel="Submit Search"
+      labelText="Search for Articles and Books"
+      onSearch={handleSearch}
+      placeholder="Search our Library"
+    />
+  );
+}
 ```
 
 ## Input Size
 
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
-```.jsx
-<Search inputSize='large' onSearch={() => {}} />
+```tsx codesandbox=magma
+import React from 'react';
+import { Search, InputSize } from 'react-magma-dom';
+
+export function Example() {
+  function handleSearch(term) {
+    console.log(term);
+  }
+
+  return <Search inputSize={InputSize.large} onSearch={handleSearch} />;
+}
 ```
 
 ## Inverse
 
 Inverse is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
-```.jsx
-<Card isInverse>
-  <CardBody>
-    <Search isInverse onSearch={(term) => {}} />
-  </CardBody>
-</Card>
+```tsx codesandbox=magma
+import React from 'react';
+import { Search, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  function handleSearch(term) {
+    console.log(term);
+  }
+
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Search isInverse onSearch={term => {}} />
+      </CardBody>
+    </Card>
+  );
+}
 ```
 
 ## Loading
 
 The isLoading boolean prop will determine if a loading animation is shown. The loading animation will replace the search icon button.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Search } from 'react-magma-dom';
+
+export function Example() {
   const [searchValue, setSearchValue] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -72,20 +119,28 @@ The isLoading boolean prop will determine if a loading animation is shown. The l
     setTimeout(() => {
       setSearchValue(`Search value set to ${term}`);
       setIsLoading(false);
-    }, 2500)
+    }, 2500);
+  }
+
+  function handleChange(event) {
+    setSearchValue(event.target.value);
   }
 
   return (
     <div>
-      <p><strong>Search Value: </strong> <span id="changedValue">{searchValue}</span></p>
+      <p>
+        <strong>Search Value: </strong>{' '}
+        <span id="changedValue">{searchValue}</span>
+      </p>
       <Search
-        labelText='Test Value'
+        labelText="Test Value"
         isLoading={isLoading}
-        value=''
-        onChange={(event) => setSearchValue(event.target.value)}
-        onSearch={handleSearch} />
+        value=""
+        onChange={handleChange}
+        onSearch={handleSearch}
+      />
     </div>
-  )
+  );
 }
 ```
 
@@ -94,26 +149,60 @@ The isLoading boolean prop will determine if a loading animation is shown. The l
 Custom styles can be passed into the Search component. The `containerStyle` prop will apply to the container; the `inputStyle` prop will apply to the input field.
 Please use discretion when adding custom styles.
 
-```.jsx
-<Search
-  containerStyle={{ border: '2px solid green', maxWidth:  '300px', padding: '2px' }}
-  inputStyle={{ border: '1px dashed purple', borderRadius: '0' }} />
+```tsx codesandbox=magma
+import React from 'react';
+import { Search } from 'react-magma-dom';
+
+export function Example() {
+  function handleSearch(term) {
+    console.log(term);
+  }
+
+  return (
+    <Search
+      containerStyle={{
+        border: '2px solid green',
+        maxWidth: '300px',
+        padding: '2px',
+      }}
+      inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
+      onSearch={handleSearch}
+    />
+  );
+}
 ```
 
 ## Change Events
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Search } from 'react-magma-dom';
+
+export function Example() {
   const [message, setMessage] = React.useState('');
 
-  return (<div>
-    <p><strong>Changed Value: </strong> <span id="changedValue">{message}</span></p>
-    <Search
-      labelText='Test Value'
-      value=''
-      onChange={(event) => setMessage(event.target.value)}
-      onSearch={(term) => {}} />
-  </div>)
+  function handleSearch(term) {
+    console.log(term);
+  }
+
+  function handleChange(event) {
+    setMessage(event.target.value);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Changed Value: </strong>{' '}
+        <span id="changedValue">{message}</span>
+      </p>
+      <Search
+        labelText="Test Value"
+        value=""
+        onChange={handleChange}
+        onSearch={handleSearch}
+      />
+    </div>
+  );
 }
 ```
 
@@ -125,6 +214,4 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 
 <SearchProps />
 
-export default props => (
-  <ScopeableLayout {...props} components={{ Search, Card, CardBody }} />
-);
+export default props => <ScopeableLayout {...props} />;
