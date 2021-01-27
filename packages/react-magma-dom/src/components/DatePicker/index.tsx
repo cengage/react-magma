@@ -130,10 +130,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const iconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
     const id: string = useGenerateId(props.id);
-    const [
-      showHelperInformation,
-      setShowHelperInformation,
-    ] = React.useState<boolean>(false);
+    const [showHelperInformation, setShowHelperInformation] = React.useState<
+      boolean
+    >(false);
     const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
     const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 

@@ -131,16 +131,16 @@ export const TabStyles = props => css`
   width: ${props.isFullWidth ? '100%' : 'auto'};
 
   ${props.orientation === 'vertical' &&
-  css`
-    align-items: flex-start;
-    justify-content: ${props.iconPosition === 'left'
-      ? 'flex-start'
-      : 'flex-end'};
-    text-align: left;
-    width: 100%;
+    css`
+      align-items: flex-start;
+      justify-content: ${props.iconPosition === 'left'
+        ? 'flex-start'
+        : 'flex-end'};
+      text-align: left;
+      width: 100%;
 
-    align-items: center;
-  `}
+      align-items: center;
+    `}
 
   &:hover,
   &:focus {

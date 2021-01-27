@@ -26,12 +26,18 @@ import { DocsHeading } from '../../components/DocsHeading';
 
 Icons are imported from a separate `react-magma-icons` package.
 
-```.jsx
-<p>
-  <span className='demo-icon-container'>
-    <GroupIcon />
-  </span>
-</p>
+```tsx codesandbox=magma
+import React from 'react';
+import { GroupIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <GroupIcon />
+      </span>
+    </p>
+  );
+}
 ```
 
 ## Title
@@ -41,53 +47,77 @@ The `title` prop can be used to set the `<title>` element within the SVG.
 The title/svg association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied. The `id` of the title is linked to the SVG with `aria-labelledby`,
 so it will be read screen readers.
 
-```.jsx
-<p>
-  <span className='demo-icon-container'>
-    <CrossIcon title="Close This Message" />
-  </span>
-  <span className='demo-icon-container'>
-    <InfoIcon id="infoIcon" title="Info Available" />
-  </span>
-</p>
+```tsx codesandbox=magma
+import React from 'react';
+import { CrossIcon, InfoIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <CrossIcon title="Close This Message" />
+      </span>
+      <span className="demo-icon-container">
+        <InfoIcon id="infoIcon" title="Info Available" />
+      </span>
+    </p>
+  );
+}
 ```
 
 ## Sizes
 
-```.jsx
-<p>
-  <span className='demo-icon-container'>
-    <AngleDownIcon size={20} title="Small Size" />
-  </span>
-  <span className='demo-icon-container'>
-    <AngleDownIcon size={50} title="Large Size" />
-  </span>
-</p>
+```tsx codesandbox=magma
+import React from 'react';
+import { AngleDownIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <AngleDownIcon size={20} title="Small Size" />
+      </span>
+      <span className="demo-icon-container">
+        <AngleDownIcon size={50} title="Large Size" />
+      </span>
+    </p>
+  );
+}
 ```
 
 ## Color
 
-```.jsx
-<p>
-  <span className='demo-icon-container'>
-    <AngleDownIcon title="No Color" />
-  </span>
-  <span className='demo-icon-container'>
-    <AngleDownIcon color="green" title="Some Color" />
-  </span>
-</p>
+```tsx codesandbox=magma
+import React from 'react';
+import { AngleDownIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <AngleDownIcon title="No Color" />
+      </span>
+      <span className="demo-icon-container">
+        <AngleDownIcon color="green" title="Some Color" />
+      </span>
+    </p>
+  );
+}
 ```
 
 ## Accessibility
 
 To improve the experience for assistive technology users and remove the icon and its children from the accessibility tree, add the prop `aria-hidden="true"` to your icon.
 
-```.jsx
-<p>
-  <span className='demo-icon-container'>
-    <HomeIcon aria-hidden="true"/>
-  </span>
-</p>
+```tsx codesandbox=magma
+import React from 'react';
+import { HomeIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <HomeIcon aria-hidden="true" />
+      </span>
+    </p>
+  );
+}
 ```
 
 ## Available Icons
