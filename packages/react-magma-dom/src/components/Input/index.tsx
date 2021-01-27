@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { InputBase, InputBaseProps, InputSize } from '../InputBase';
 import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
-import { useGenerateId } from '../../utils';
+import { useGenerateId, Omit } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { ThemeContext } from '../../theme/ThemeContext';
 

@@ -32,6 +32,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     itemListMaxHeight,
     items,
     itemToString,
+    labelPosition,
     labelStyle,
     labelText,
     menuStyle,
@@ -251,6 +252,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       hasError={hasError}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       isInverse={isInverse}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
     >

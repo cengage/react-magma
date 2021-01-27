@@ -7,17 +7,11 @@ import { UseSelectGetLabelPropsOptions } from 'downshift';
 export const SelectContainerElement = styled.div<{
   labelPosition?: LabelPosition;
 }>`
-  position: relative;
-
   align-items: center;
   display: ${props =>
     props.labelPosition == LabelPosition.left ? 'flex' : 'block'};
 
-  label {
-    white-space: nowrap;
-    margin-bottom: 0;
-    margin-right: 16px;
-  }
+  position: relative;
 `;
 
 interface SelectContainerInterface<T> {
@@ -43,8 +37,16 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
     labelText,
   } = props;
   return (
-    <SelectContainerElement labelPosition={labelPosition}>
-      <Label {...getLabelProps()} isInverse={isInverse} style={labelStyle}>
+    <SelectContainerElement
+      labelPosition={labelPosition}
+      data-testid="selectContainerElement"
+    >
+      <Label
+        {...getLabelProps()}
+        isInverse={isInverse}
+        labelPosition={labelPosition}
+        style={labelStyle}
+      >
         {isLabelVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>
         ) : (

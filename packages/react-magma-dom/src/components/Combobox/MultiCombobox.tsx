@@ -29,6 +29,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     itemListMaxHeight,
     items,
     itemToString,
+    labelPosition,
     labelStyle,
     labelText,
     menuStyle,
@@ -285,6 +286,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       getLabelProps={getLabelProps}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
     >

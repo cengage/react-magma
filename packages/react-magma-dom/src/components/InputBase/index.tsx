@@ -90,9 +90,11 @@ const InputWrapper = styled.div`
 export const inputBaseStyles = props => css`
   background: ${props.theme.colors.neutral08};
   border: 1px solid;
-  border-color: ${props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.neutral03};
+  border-color: ${
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral03
+  };
   border-radius: ${props.theme.borderRadius};
   color: ${props.theme.colors.neutral};
   display: block;
@@ -105,43 +107,43 @@ export const inputBaseStyles = props => css`
   width: 100%;
 
   ${props.iconPosition === 'left' &&
-  css`
-    padding-left: ${props.theme.spaceScale.spacing09};
-  `}
+    css`
+      padding-left: ${props.theme.spaceScale.spacing09};
+    `}
 
   ${props.iconPosition === 'right' &&
-  css`
-    padding-right: ${props.theme.spaceScale.spacing09};
-  `}
+    css`
+      padding-right: ${props.theme.spaceScale.spacing09};
+    `}
   
   ${props.hasError &&
-  css`
-    border-color: ${props.theme.colors.danger};
-    box-shadow: 0 0 0 1px
-      ${props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.danger};
-  `}
+    css`
+      border-color: ${props.theme.colors.danger};
+      box-shadow: 0 0 0 1px
+        ${props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.danger};
+    `}
 
   ${props.inputSize === 'large' &&
-  css`
-    font-size: ${props.theme.typeScale.size04.fontSize};
-    line-height: ${props.theme.typeScale.size04.lineHeight};
-    height: ${props.theme.spaceScale.spacing11};
-    padding: 0 ${props.theme.spaceScale.spacing04};
-  `}
+    css`
+      font-size: ${props.theme.typeScale.size04.fontSize};
+      line-height: ${props.theme.typeScale.size04.lineHeight};
+      height: ${props.theme.spaceScale.spacing11};
+      padding: 0 ${props.theme.spaceScale.spacing04};
+    `}
 
     ${props.iconPosition === 'left' &&
-  props.inputSize === 'large' &&
-  css`
-    padding-left: ${props.theme.spaceScale.spacing10};
-  `}
+      props.inputSize === 'large' &&
+      css`
+        padding-left: ${props.theme.spaceScale.spacing10};
+      `}
   
       ${props.iconPosition === 'right' &&
-  props.inputSize === 'large' &&
-  css`
-    padding-right: ${props.theme.spaceScale.spacing10};
-  `}
+        props.inputSize === 'large' &&
+        css`
+          padding-right: ${props.theme.spaceScale.spacing10};
+        `}
 
   &::placeholder {
     color: ${props.theme.colors.neutral03};
@@ -150,23 +152,25 @@ export const inputBaseStyles = props => css`
 
   &:focus {
     outline: 2px dotted
-      ${props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
+      ${
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus
+      };
     outline-offset: 4px;
   }
 
   ${props.disabled &&
-  css`
-    background: ${props.theme.colors.neutral07};
-    border-color: ${props.theme.colors.neutral05};
-    color: ${props.theme.colors.disabledText};
-    cursor: not-allowed;
-
-    &::placeholder {
+    css`
+      background: ${props.theme.colors.neutral07};
+      border-color: ${props.theme.colors.neutral05};
       color: ${props.theme.colors.disabledText};
-    }
-  `}
+      cursor: not-allowed;
+
+      &::placeholder {
+        color: ${props.theme.colors.disabledText};
+      }
+    `}
 `;
 
 const StyledInput = styled.input<InputBaseProps>`
@@ -199,7 +203,7 @@ const IconWrapper = styled.span<{
     `}
 `;
 
-const StyledIconButton = styled(IconButton)`
+const IconButtonContainer = styled.span`
   bottom: 1px;
   height: auto;
   margin: 0;
@@ -298,21 +302,23 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         )}
 
         {onIconClick && (
-          <StyledIconButton
-            aria-label={iconAriaLabel}
-            icon={icon}
-            onClick={onIconClick}
-            onKeyDown={onIconKeyDown}
-            ref={iconRef}
-            shape={ButtonShape.fill}
-            size={
-              inputSize === InputSize.large
-                ? ButtonSize.large
-                : ButtonSize.medium
-            }
-            type={ButtonType.button}
-            variant={ButtonVariant.link}
-          />
+          <IconButtonContainer>
+            <IconButton
+              aria-label={iconAriaLabel}
+              icon={icon}
+              onClick={onIconClick}
+              onKeyDown={onIconKeyDown}
+              ref={iconRef}
+              shape={ButtonShape.fill}
+              size={
+                inputSize === InputSize.large
+                  ? ButtonSize.large
+                  : ButtonSize.medium
+              }
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+            />
+          </IconButtonContainer>
         )}
         {children}
       </InputWrapper>

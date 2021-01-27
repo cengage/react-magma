@@ -10,7 +10,7 @@ import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
-import { useGenerateId, XOR } from '../../utils';
+import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
 
 export type SelectOptions =
@@ -65,6 +65,10 @@ export interface InternalSelectProps<T> {
    */
   isMulti?: boolean;
   /**
+   * Position of label
+   */
+  labelPosition?: LabelPosition;
+  /**
    * Style properties for the label
    */
   labelStyle?: React.CSSProperties;
@@ -72,10 +76,6 @@ export interface InternalSelectProps<T> {
    * Text for label
    */
   labelText: string;
-  /**
-   * Position of label
-   */
-  labelPosition?: LabelPosition;
   /**
    * Style properties for the items menu
    */

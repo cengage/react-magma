@@ -1357,7 +1357,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7587,
+        "id": 7596,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1541,7 +1541,7 @@
     },
     "typeParameter": [
       {
-        "id": 7676,
+        "id": 7690,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1550,7 +1550,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7514,
+          "id": 7523,
           "name": "SelectOptions"
         }
       }
@@ -1704,6 +1704,19 @@
           "name": "Generic[]"
         },
         "description": "Default selectable options. Can be an array of strings or objects",
+        "deprecated": false
+      },
+      "labelPosition": {
+        "name": "labelPosition",
+        "required": false,
+        "type": {
+          "name": "enum",
+          "options": [
+            "LabelPosition.left",
+            "LabelPosition.top"
+          ]
+        },
+        "description": "Position of label",
         "deprecated": false
       },
       "labelStyle": {
@@ -1861,7 +1874,7 @@
     },
     "typeParameter": [
       {
-        "id": 7744,
+        "id": 7759,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -1870,7 +1883,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7514,
+          "id": 7523,
           "name": "SelectOptions"
         }
       }
@@ -2018,7 +2031,7 @@
     },
     "typeParameter": [
       {
-        "id": 7790,
+        "id": 7805,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -2032,7 +2045,7 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 7675,
+          "id": 7689,
           "typeArguments": [
             {
               "type": "typeParameter",
@@ -2043,7 +2056,7 @@
         },
         {
           "type": "reference",
-          "id": 7743,
+          "id": 7758,
           "typeArguments": [
             {
               "type": "typeParameter",
@@ -2678,12 +2691,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 8917,
+          "id": 8936,
           "name": "IconOnlyDropdownButtonProps"
         },
         {
           "type": "reference",
-          "id": 8921,
+          "id": 8940,
           "name": "IconTextDropdownButtonProps"
         }
       ],
@@ -4388,6 +4401,18 @@
         "defaultValue": "false",
         "deprecated": false
       },
+      "labelPosition": {
+        "name": "labelPosition",
+        "required": false,
+        "type": {
+          "name": "enum",
+          "options": [
+            "LabelPosition.left",
+            "LabelPosition.top"
+          ]
+        },
+        "deprecated": false
+      },
       "size": {
         "name": "size",
         "required": false,
@@ -4933,12 +4958,12 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 12658,
+          "id": 12680,
           "name": "NavTabChildrenProps"
         },
         {
           "type": "reference",
-          "id": 12923,
+          "id": 12945,
           "name": "NavTabComponentProps"
         }
       ],
@@ -6050,7 +6075,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7296,
+        "id": 7300,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6111,6 +6136,18 @@
         },
         "deprecated": false
       },
+      "labelPosition": {
+        "name": "labelPosition",
+        "required": false,
+        "type": {
+          "name": "enum",
+          "options": [
+            "LabelPosition.left",
+            "LabelPosition.top"
+          ]
+        },
+        "deprecated": false
+      },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
@@ -6136,7 +6173,7 @@
     "flags": {},
     "typeParameter": [
       {
-        "id": 7315,
+        "id": 7322,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6624,7 +6661,7 @@
     },
     "typeParameter": [
       {
-        "id": 7365,
+        "id": 7373,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6656,7 +6693,7 @@
     },
     "typeParameter": [
       {
-        "id": 7346,
+        "id": 7353,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6772,6 +6809,19 @@
         "description": "Max-height for the item menu list ul element",
         "deprecated": false
       },
+      "labelPosition": {
+        "name": "labelPosition",
+        "required": false,
+        "type": {
+          "name": "enum",
+          "options": [
+            "LabelPosition.left",
+            "LabelPosition.top"
+          ]
+        },
+        "description": "Position of label",
+        "deprecated": false
+      },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
@@ -6837,7 +6887,7 @@
     },
     "typeParameter": [
       {
-        "id": 7471,
+        "id": 7480,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -6846,7 +6896,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7514,
+          "id": 7523,
           "name": "SelectOptions"
         }
       }
@@ -7004,7 +7054,7 @@
     },
     "typeParameter": [
       {
-        "id": 7371,
+        "id": 7379,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -7013,7 +7063,7 @@
         },
         "type": {
           "type": "reference",
-          "id": 7514,
+          "id": 7523,
           "name": "SelectOptions"
         }
       }
@@ -7269,6 +7319,19 @@
         },
         "deprecated": false
       },
+      "labelPosition": {
+        "name": "labelPosition",
+        "required": false,
+        "type": {
+          "name": "enum",
+          "options": [
+            "LabelPosition.left",
+            "LabelPosition.top"
+          ]
+        },
+        "description": "Position of label",
+        "deprecated": false
+      },
       "labelStyle": {
         "name": "labelStyle",
         "required": false,
@@ -7459,7 +7522,7 @@
         {
           "type": "reflection",
           "declaration": {
-            "id": 7515,
+            "id": 7524,
             "name": "__type",
             "kind": 65536,
             "kindString": "Type literal",
@@ -7468,7 +7531,7 @@
             },
             "indexSignature": [
               {
-                "id": 7518,
+                "id": 7527,
                 "name": "__index",
                 "kind": 8192,
                 "kindString": "Index signature",
@@ -7477,7 +7540,7 @@
                 },
                 "parameters": [
                   {
-                    "id": 7519,
+                    "id": 7528,
                     "name": "key",
                     "kind": 32768,
                     "kindString": "Parameter",
@@ -7498,7 +7561,7 @@
             ],
             "children": [
               {
-                "id": 7517,
+                "id": 7526,
                 "name": "label",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7508,7 +7571,7 @@
                 "sources": [
                   {
                     "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
-                    "line": 17,
+                    "line": 18,
                     "character": 26
                   }
                 ],
@@ -7518,7 +7581,7 @@
                 }
               },
               {
-                "id": 7516,
+                "id": 7525,
                 "name": "value",
                 "kind": 32,
                 "kindString": "Variable",
@@ -7528,7 +7591,7 @@
                 "sources": [
                   {
                     "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
-                    "line": 17,
+                    "line": 18,
                     "character": 11
                   }
                 ],
@@ -7543,15 +7606,15 @@
                 "title": "Variables",
                 "kind": 32,
                 "children": [
-                  7517,
-                  7516
+                  7526,
+                  7525
                 ]
               }
             ],
             "sources": [
               {
                 "fileName": "packages/react-magma-dom/src/components/Select/index.tsx",
-                "line": 17,
+                "line": 18,
                 "character": 3
               }
             ]
@@ -7576,7 +7639,7 @@
     },
     "typeParameter": [
       {
-        "id": 7540,
+        "id": 7549,
         "name": "T",
         "kind": 131072,
         "kindString": "Type parameter",
@@ -7590,7 +7653,7 @@
       "typeArguments": [
         {
           "type": "reference",
-          "id": 7370,
+          "id": 7378,
           "typeArguments": [
             {
               "type": "typeParameter",
@@ -7601,7 +7664,7 @@
         },
         {
           "type": "reference",
-          "id": 7470,
+          "id": 7479,
           "typeArguments": [
             {
               "type": "typeParameter",
@@ -8999,12 +9062,12 @@
       "types": [
         {
           "type": "reference",
-          "id": 12024,
+          "id": 12046,
           "name": "HorizontalTabsProps"
         },
         {
           "type": "reference",
-          "id": 12021,
+          "id": 12043,
           "name": "VerticalTabsProps"
         }
       ]

@@ -22,13 +22,7 @@ export const Default = () => {
 
 export const LeftAlignedLabel = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginTop: '60px',
-      }}
-    >
+    <div>
       <Select
         items={[
           { label: 'Red', value: 'red' },
@@ -58,13 +52,7 @@ export const Multi = () => {
 
 export const MultiLeftAlignedLabel = () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'flex-end',
-        marginTop: '60px',
-      }}
-    >
+    <>
       <Select
         isMulti
         items={[
@@ -74,7 +62,8 @@ export const MultiLeftAlignedLabel = () => {
         ]}
         labelPosition={LabelPosition.left}
         labelText="Multi Left Label"
+        errorMessage="Please correct this error"
       />
-    </div>
+    </>
   );
 };

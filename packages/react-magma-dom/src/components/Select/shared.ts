@@ -27,6 +27,7 @@ export const StyledCard = styled(Card)<{ isOpen?: boolean }>`
   padding: 4px 0 0;
   position: absolute;
   right: 4px;
+  top: 100%;
   z-index: 2;
 `;
 

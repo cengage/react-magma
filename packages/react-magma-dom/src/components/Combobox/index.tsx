@@ -14,7 +14,8 @@ import {
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
 import { InputMessage } from '../Input/InputMessage';
-import { useGenerateId, XOR } from '../../utils';
+import { useGenerateId, XOR, Omit } from '../../utils';
+import { LabelPosition } from '../Label';
 
 export interface ComboboxProps<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
@@ -36,6 +37,10 @@ export interface ComboboxProps<T extends SelectOptions>
    * @internal
    */
   hasError?: boolean;
+  /**
+   * Position of label
+   */
+  labelPosition?: LabelPosition;
   /**
    * Reference to the input element in the combobox
    */
@@ -125,6 +130,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
     id: defaultId,
     isInverse,
     isMulti,
+    labelPosition,
     messageStyle,
     helperMessage,
     testId,
@@ -150,6 +156,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
         <MultiCombobox
           ariaDescribedBy={descriptionId}
           itemToString={itemToString}
+          labelPosition={labelPosition || LabelPosition.top}
           {...(props as MultiComboboxProps<T>)}
           hasError={hasError}
         />
@@ -157,6 +164,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
         <InternalCombobox
           ariaDescribedBy={descriptionId}
           itemToString={itemToString}
+          labelPosition={labelPosition || LabelPosition.top}
           {...(props as ComboboxProps<T>)}
           hasError={hasError}
         />
