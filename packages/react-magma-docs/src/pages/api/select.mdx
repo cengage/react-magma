@@ -6,15 +6,7 @@ props:
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import {
-  Select,
-  SelectStateChangeTypes,
-  Alert,
-  I18nContext,
-  defaultI18n,
-  Card,
-  CardBody,
-} from 'react-magma-dom';
+import { Alert } from 'react-magma-dom';
 import { useSelect } from 'downshift';
 import { Link } from 'gatsby';
 import { v4 as uuid } from 'uuid';
@@ -38,8 +30,11 @@ By default when passing in a `selectedItem` it will be checked to make sure it i
 is able to be used for `items` that are either `strings` or an object with the shape `{item: string; label: string;}`.
 If you are using a custom items format see the [Custom Items example](/api/select/#custom_items).
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
 
   function onSelectedItemChange(changes) {
@@ -55,7 +50,7 @@ If you are using a custom items format see the [Custom Items example](/api/selec
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         selectedItem={selectedItem}
         onSelectedItemChange={onSelectedItemChange}
@@ -68,12 +63,12 @@ If you are using a custom items format see the [Custom Items example](/api/selec
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         selectedItem={{ label: 'Purple', value: 'purple' }}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -92,8 +87,11 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
   <code class="inverse">initialSelectedItem</code>
 </Alert>
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
   return (
     <>
       <Select
@@ -103,7 +101,7 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         initialSelectedItem={{ label: 'Green', value: 'green' }}
       />
@@ -115,12 +113,12 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         initialHighlightedIndex={1}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -130,9 +128,15 @@ You can track specific changes made to the internal state of the `select` using 
 `onIsOpenChange`, and `onSelectedItemChange`. Each of these functions will have a `changes` object as a parameter that
 includes the changes made to the corresponding state from each action.
 
-```.jsx
-() => {
-  const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] = React.useState(0);
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  const [
+    highlightedIndexChangeCount,
+    updateHighlightedIndexChangeCount,
+  ] = React.useState(0);
   const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
   const [selectedItem, updateSelectedItem] = React.useState(undefined);
 
@@ -141,7 +145,7 @@ includes the changes made to the corresponding state from each action.
   }
 
   function onIsOpenChange(changes) {
-    updateIsOpenChangeCount(isOpenChangeCount + 1)
+    updateIsOpenChangeCount(isOpenChangeCount + 1);
   }
 
   function onSelectedItemChange(changes) {
@@ -150,9 +154,16 @@ includes the changes made to the corresponding state from each action.
 
   return (
     <>
-      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
-      <p><strong>Highlighted Index Change Count: </strong>{highlightedIndexChangeCount}</p>
-      <p><strong>Is Open Change Count: </strong>{isOpenChangeCount}</p>
+      <strong>Selected Item: </strong>
+      <pre>{JSON.stringify(selectedItem, null, 2)}</pre>
+      <p>
+        <strong>Highlighted Index Change Count: </strong>
+        {highlightedIndexChangeCount}
+      </p>
+      <p>
+        <strong>Is Open Change Count: </strong>
+        {isOpenChangeCount}
+      </p>
 
       <Select
         id="stateChangesId"
@@ -161,14 +172,14 @@ includes the changes made to the corresponding state from each action.
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         onHighlightedIndexChange={onHighlightedIndexChange}
         onIsOpenChange={onIsOpenChange}
         onSelectedItemChange={onSelectedItemChange}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -187,36 +198,39 @@ The `onStateChange` function passes a `changes` object that includes properties 
 last state change. The `changes` object also includes a `type` property that describes the action taken
 to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/select/#state_change_types) section.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
   const [changes, updateChanges] = React.useState({});
   const [highlightedIndex, updateHighlightedIndex] = React.useState(-1);
   const [isOpen, updateIsOpen] = React.useState(false);
   const [selectedItem, updateSelectedItem] = React.useState('');
 
   function onStateChange(newChanges) {
-    const { type } = newChanges
-    updateChanges(newChanges)
+    const { type } = newChanges;
+    updateChanges(newChanges);
 
-    switch(type) {
+    switch (type) {
       case SelectStateChangeTypes.ToggleButtonClick:
-        updateIsOpen(!isOpen)
+        updateIsOpen(!isOpen);
       case SelectStateChangeTypes.ToggleButtonKeyDownArrowDown:
-        updateIsOpen(newChanges.isOpen)
-        updateHighlightedIndex(newChanges.highlightedIndex)
+        updateIsOpen(newChanges.isOpen);
+        updateHighlightedIndex(newChanges.highlightedIndex);
       case SelectStateChangeTypes.ItemMouseMove:
       case SelectStateChangeTypes.FunctionSetHighlightedIndex:
       case SelectStateChangeTypes.MenuKeyDownArrowDown:
       case SelectStateChangeTypes.MenuKeyDownArrowUp:
-        updateHighlightedIndex(newChanges.highlightedIndex)
+        updateHighlightedIndex(newChanges.highlightedIndex);
       case SelectStateChangeTypes.MenuKeyDownEscape:
       case SelectStateChangeTypes.MenuBlur:
-        updateIsOpen(false)
-        updateHighlightedIndex(newChanges.highlightedIndex)
+        updateIsOpen(false);
+        updateHighlightedIndex(newChanges.highlightedIndex);
       case SelectStateChangeTypes.ItemClick:
-        updateHighlightedIndex(newChanges.highlightedIndex)
-        updateIsOpen(newChanges.isOpen)
-        updateSelectedItem(newChanges.selectedItem)
+        updateHighlightedIndex(newChanges.highlightedIndex);
+        updateIsOpen(newChanges.isOpen);
+        updateSelectedItem(newChanges.selectedItem);
       default:
         break;
     }
@@ -233,7 +247,7 @@ to change the state. You can see the full list of the types in the [`stateChange
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         onStateChange={onStateChange}
         highlightedIndex={highlightedIndex}
@@ -241,7 +255,7 @@ to change the state. You can see the full list of the types in the [`stateChange
         selectedItem={selectedItem}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -251,8 +265,11 @@ If you wish to control the state rather than having it handled internally you ca
 provided. These props are `isOpen`, `selectedItem`, and `highlightedIndex`. If you are using these control props
 you will have to use the handlers mentioned above in the <Link to="/api/select/#state_changes">State Changes</Link> section.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
   const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
   const [isOpen, updateIsOpen] = React.useState(false);
   const [selectedItem, updateSelectedItem] = React.useState('');
@@ -262,7 +279,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/select/#
   }
 
   function onIsOpenChange(changes) {
-    updateIsOpen(changes.isOpen)
+    updateIsOpen(changes.isOpen);
   }
 
   function onSelectedItemChange(changes) {
@@ -271,9 +288,16 @@ you will have to use the handlers mentioned above in the <Link to="/api/select/#
 
   return (
     <>
-      <strong>Selected Item: </strong><pre>{JSON.stringify(selectedItem, null, 2)}</pre>
-      <p><strong>Highlighted Index: </strong>{highlightedIndex}</p>
-      <p><strong>Is Open: </strong>{isOpen.toString()}</p>
+      <strong>Selected Item: </strong>
+      <pre>{JSON.stringify(selectedItem, null, 2)}</pre>
+      <p>
+        <strong>Highlighted Index: </strong>
+        {highlightedIndex}
+      </p>
+      <p>
+        <strong>Is Open: </strong>
+        {isOpen.toString()}
+      </p>
 
       <Select
         id="controlledId"
@@ -282,7 +306,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/select/#
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         isOpen={isOpen}
         highlightedIndex={highlightedIndex}
@@ -292,24 +316,31 @@ you will have to use the handlers mentioned above in the <Link to="/api/select/#
         onSelectedItemChange={onSelectedItemChange}
       />
     </>
-  )
+  );
 }
 ```
 
 ## Disabled
 
-```.jsx
-<Select
-  id="disabledSelectId"
-  disabled
-  name="disabled"
-  labelText="Disabled"
-  items={[
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Green', value: 'green' }
-  ]}
-/>
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      id="disabledSelectId"
+      disabled
+      name="disabled"
+      labelText="Disabled"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+    />
+  );
+}
 ```
 
 ## Clearable
@@ -319,34 +350,41 @@ The optional `isClearable` prop allows the user to clear the field once a select
 When using the `isClearable` prop you can choose a default selected item to be set once the `select` is cleared
 using the `defaultSelectedItem` prop.
 
-```.jsx
-<>
-  <Select
-    id="clearableSelectId"
-    name="clearable"
-    labelText="Clearable"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    initialSelectedItem={{ label: 'Green', value: 'green' }}
-    isClearable
-  />
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
 
-  <Select
-    id="clearableWithDefaultsId"
-    name="clearableWithDefaults"
-    labelText="Clearable With Defaults"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    isClearable
-    defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
-  />
-</>
+export function Example() {
+  return (
+    <>
+      <Select
+        id="clearableSelectId"
+        name="clearable"
+        labelText="Clearable"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
+        isClearable
+      />
+
+      <Select
+        id="clearableWithDefaultsId"
+        name="clearableWithDefaults"
+        labelText="Clearable With Defaults"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        isClearable
+        defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
+      />
+    </>
+  );
+}
 ```
 
 ## Error Message
@@ -354,40 +392,54 @@ using the `defaultSelectedItem` prop.
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
-```.jsx
-<>
-  <Select
-    id="errorMessage"
-    name="error"
-    labelText="Error Message"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    errorMessage="Please select a color"
-  />
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="errorMessage"
+        name="error"
+        labelText="Error Message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        errorMessage="Please select a color"
+      />
+    </>
+  );
+}
 ```
 
 ## Helper Message
 
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
 
-```.jsx
-<>
-  <Select
-    id="helperMessage"
-    name="helper"
-    labelText="Helper Message"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    helperMessage="Helper text goes here"
-  />
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="helperMessage"
+        name="helper"
+        labelText="Helper Message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        helperMessage="Helper text goes here"
+      />
+    </>
+  );
+}
 ```
 
 ## Placeholder
@@ -396,17 +448,24 @@ The `placeholder` prop can be used to replace the default text shown before an i
 Placeholder text should be used to provide supplemental information about the input field. It should not be
 relied upon to take the place of the label text.
 
-```.jsx
-<Select
-  id="placeholderSelect"
-  labelText="Placeholder Example"
-  items={[
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Green', value: 'green' }
-  ]}
-  placeholder="Choose a color"
-/>
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      id="placeholderSelect"
+      labelText="Placeholder Example"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+      placeholder="Choose a color"
+    />
+  );
+}
 ```
 
 ## Accessibility
@@ -420,27 +479,41 @@ whenever an item has been selected.
 For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
 [object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
 
-```.jsx
-<>
-  <Select
-    id="newA11yStatusMessageId"
-    name="newA11yStatusMessage"
-    labelText="New Accessibility Status Message"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    getA11yStatusMessage={({highlightedItem}) => `custom message saying that ${highlightedItem} is highlighted`}
-    getA11ySelectionMessage={({selectedItem}) => `custom message saying that ${selectedItem} is now selected`}
-  />
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="newA11yStatusMessageId"
+        name="newA11yStatusMessage"
+        labelText="New Accessibility Status Message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        getA11yStatusMessage={({ highlightedItem }) =>
+          `custom message saying that ${highlightedItem} is highlighted`
+        }
+        getA11ySelectionMessage={({ selectedItem }) =>
+          `custom message saying that ${selectedItem} is now selected`
+        }
+      />
+    </>
+  );
+}
 ```
 
 ## Multi Select
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
   const [selectedItems, updateSelectedItems] = React.useState([]);
 
   function handleSelectedItemsChange(changes) {
@@ -448,88 +521,95 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
   }
 
   function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(
-      selectedItems.filter(item => item !== removedItem)
-    )
+    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
   }
 
-  return <>
-    <Select
-      id="multiSelectId"
-      isMulti
-      name="multiSelect"
-      labelText="Multi Select"
-      items={[
-        {label: 'Red', value: 'red'},
-        {label: 'Blue', value: 'blue'},
-        {label: 'Green', value: 'green'},
-        {label: 'Orange', value: 'orange'},
-        {label: 'Aqua', value: 'aqua'},
-        {label: 'Gold', value: 'gold'},
-        {label: 'Periwinkle', value: 'periwinkle'},
-        {label: 'Lavender', value: 'lavender'},
-        {label: 'Marigold', value: 'marigold'},
-        {label: 'Yellow', value: 'yellow'},
-        {label: 'Purple', value: 'purple'},
-        {label: 'Dusty Rose', value: 'dusty_rose'},
-        {label: 'Burnt Sienna', value: 'burnt_sienna'}
-      ]}
-      initialSelectedItems={[
-        {label: 'Red', value: 'red'},
-        {label: 'Blue', value: 'blue'},
-        {label: 'Blah', value: 'blah'}
-      ]}
-    />
+  return (
+    <>
+      <Select
+        id="multiSelectId"
+        isMulti
+        name="multiSelect"
+        labelText="Multi Select"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+          { label: 'Orange', value: 'orange' },
+          { label: 'Aqua', value: 'aqua' },
+          { label: 'Gold', value: 'gold' },
+          { label: 'Periwinkle', value: 'periwinkle' },
+          { label: 'Lavender', value: 'lavender' },
+          { label: 'Marigold', value: 'marigold' },
+          { label: 'Yellow', value: 'yellow' },
+          { label: 'Purple', value: 'purple' },
+          { label: 'Dusty Rose', value: 'dusty_rose' },
+          { label: 'Burnt Sienna', value: 'burnt_sienna' },
+        ]}
+        initialSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Blah', value: 'blah' },
+        ]}
+      />
 
-    <Select
-      id="multiSelectControlledId"
-      isMulti
-      name="multiSelectControlled"
-      labelText="Multi Select Controlled"
-      items={[
-        {label: 'Red', value: 'red'},
-        {label: 'Blue', value: 'blue'},
-        {label: 'Green', value: 'green'},
-        {label: 'Orange', value: 'orange'},
-        {label: 'Aqua', value: 'aqua'},
-        {label: 'Gold', value: 'gold'},
-        {label: 'Periwinkle', value: 'periwinkle'},
-        {label: 'Lavender', value: 'lavender'},
-        {label: 'Marigold', value: 'marigold'},
-        {label: 'Yellow', value: 'yellow'},
-        {label: 'Purple', value: 'purple'},
-        {label: 'Dusty Rose', value: 'dusty_rose'},
-        {label: 'Burnt Sienna', value: 'burnt_sienna'}
-      ]}
-      selectedItems={selectedItems}
-      onSelectedItemsChange={handleSelectedItemsChange}
-      onRemoveSelectedItem={handleRemoveSelectedItem}
-    />
-  </>
+      <Select
+        id="multiSelectControlledId"
+        isMulti
+        name="multiSelectControlled"
+        labelText="Multi Select Controlled"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+          { label: 'Orange', value: 'orange' },
+          { label: 'Aqua', value: 'aqua' },
+          { label: 'Gold', value: 'gold' },
+          { label: 'Periwinkle', value: 'periwinkle' },
+          { label: 'Lavender', value: 'lavender' },
+          { label: 'Marigold', value: 'marigold' },
+          { label: 'Yellow', value: 'yellow' },
+          { label: 'Purple', value: 'purple' },
+          { label: 'Dusty Rose', value: 'dusty_rose' },
+          { label: 'Burnt Sienna', value: 'burnt_sienna' },
+        ]}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        onRemoveSelectedItem={handleRemoveSelectedItem}
+      />
+    </>
+  );
 }
 ```
 
 ## Events
 
-```.jsx
-() => {
-  const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(undefined);
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(
+    undefined
+  );
 
   function handleSelectBlur(event) {
-    updateCurrentSelectEvent('Blur')
+    updateCurrentSelectEvent('Blur');
   }
 
   function handleSelectFocus(event) {
-    updateCurrentSelectEvent('Focus')
+    updateCurrentSelectEvent('Focus');
   }
 
   function handleSelectKeyPress(event) {
-    updateCurrentSelectEvent('KeyPress')
+    updateCurrentSelectEvent('KeyPress');
   }
 
   return (
     <>
-      <p><strong>{currentSelectEvent || 'No'} event was triggered</strong></p>
+      <p>
+        <strong>{currentSelectEvent || 'No'} event was triggered</strong>
+      </p>
 
       <Select
         id="selectFocusEventId"
@@ -538,27 +618,29 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
         items={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' }
+          { label: 'Green', value: 'green' },
         ]}
         onBlur={handleSelectBlur}
         onFocus={handleSelectFocus}
         onKeyPress={handleSelectKeyPress}
       />
     </>
-  )
+  );
 }
 ```
 
 ## Inverse
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
 
   function onSelectedItemChange(changes) {
     updateSelectedItem(changes.selectedItem);
   }
-
 
   const [selectedItems, updateSelectedItems] = React.useState([]);
 
@@ -567,9 +649,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
   }
 
   function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(
-      selectedItems.filter(item => item !== removedItem)
-    )
+    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
   }
 
   return (
@@ -583,7 +663,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
           items={[
             { label: 'Red', value: 'red' },
             { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
+            { label: 'Green', value: 'green' },
           ]}
           selectedItem={selectedItem}
           onSelectedItemChange={onSelectedItemChange}
@@ -598,12 +678,12 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
           items={[
             { label: 'Red', value: 'red' },
             { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' }
+            { label: 'Green', value: 'green' },
           ]}
         />
       </CardBody>
     </Card>
-  )
+  );
 }
 ```
 
@@ -611,16 +691,23 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 
 The items list menu has a default max height that can be changed in the theme or using the `itemListMaxHeight` prop.
 
-```.jsx
-<Select
-  labelText="Select Small Item List Menu"
-  items={[
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Green', value: 'green' }
-  ]}
-  itemListMaxHeight='50px'
-/>
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      labelText="Select Small Item List Menu"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+      itemListMaxHeight="50px"
+    />
+  );
+}
 ```
 
 ## Custom Styles
@@ -629,40 +716,45 @@ Custom styles can be passed into the Select component. The `containerStyle` prop
 Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
 Please use discretion when adding custom styles.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
 
   function onSelectedItemChange(changes) {
     updateSelectedItem(changes.selectedItem);
   }
 
-  return <>
-    <Select
-      containerStyle={{ marginBottom: '32px'}}
-      helperMessage="Helper message"
-      inputStyle={{ border: '2px dotted green', width: '200px'}}
-      items={['Red', 'Blue', 'Green']}
-      labelStyle={{ fontStyle: 'italic' }}
-      labelText="Basic with Custom Styles"
-      messageStyle={{ border: '1px solid blue' }}
-      selectedItem={selectedItem}
-      onSelectedItemChange={onSelectedItemChange}
-    />
+  return (
+    <>
+      <Select
+        containerStyle={{ marginBottom: '32px' }}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px' }}
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Basic with Custom Styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
 
-    <Select
-      containerStyle={{ marginBottom: '32px'}}
-      helperMessage="Helper message"
-      inputStyle={{ border: '2px dotted green', width: '200px'}}
-      isMulti
-      items={['Red', 'Blue', 'Green']}
-      labelStyle={{ fontStyle: 'italic' }}
-      labelText="Multi with Custom Styles"
-      messageStyle={{ border: '1px solid blue' }}
-      selectedItem={selectedItem}
-      onSelectedItemChange={onSelectedItemChange}
-    />
-  </>
+      <Select
+        containerStyle={{ marginBottom: '32px' }}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px' }}
+        isMulti
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Multi with Custom Styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  );
 }
 ```
 
@@ -674,43 +766,52 @@ Placeholders are specific keywords surrounded by curly braces.
 - `{labelText}` will be replaced with the comboboxes `labelText`.
 - `{selectedItem}` will be replaced by the current `itemToString` representation of the `selectedItem` of the `select`.
 
-<Link to="/api/internationalization">
-  Full example of internationalization override options
-</Link>
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
 
-```.jsx
-<I18nContext.Provider value={{
-  ...defaultI18n,
-  select: {
-    placeholder: 'Custom Select Placeholder...',
-    clearIndicatorAriaLabel: 'Click to reset selection for {labelText}. {selectedItem} is currently selected'
-  },
-  multiSelect: {
-    selectedItemButtonAriaLabel: 'Click to reset the selected item {selectedItem}'
-  }
-}}>
-  <Select
-    labelText="Internationalization"
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    initialSelectedItem={{ label: 'Red', value: 'red' }}
-    isClearable
-  />
+```tsx codesandbox=magma
+import React from 'react';
+import { Select, I18nContext, defaultI18n } from 'react-magma-dom';
 
-  <Select
-    labelText="Multi Internationalization"
-    isMulti
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' }
-    ]}
-    initialSelectedItems={[{ label: 'Red', value: 'red' }]}
-  />
-</I18nContext.Provider>
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        select: {
+          placeholder: 'Custom Select Placeholder...',
+          clearIndicatorAriaLabel:
+            'Click to reset selection for {labelText}. {selectedItem} is currently selected',
+        },
+        multiSelect: {
+          selectedItemButtonAriaLabel:
+            'Click to reset the selected item {selectedItem}',
+        },
+      }}
+    >
+      <Select
+        labelText="Internationalization"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        initialSelectedItem={{ label: 'Red', value: 'red' }}
+        isClearable
+      />
+
+      <Select
+        labelText="Multi Internationalization"
+        isMulti
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+      />
+    </I18nContext.Provider>
+  );
+}
 ```
 
 ## Custom Items
@@ -726,10 +827,13 @@ which is a function that returns the string representation of your `item` which 
 If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
 custom `type`](/api/select#custom_items_typescript).
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
   function itemToString(item) {
-    return item ? `${item.representation} (${item.hex})` : ''
+    return item ? `${item.representation} (${item.hex})` : '';
   }
 
   return (
@@ -738,26 +842,30 @@ custom `type`](/api/select#custom_items_typescript).
         id="itemToStringId"
         name="itemToString"
         labelText="Item to String"
-        items={[{
-          id: 1,
-          actual: 'red',
-          representation: 'Red',
-          hex: '#FF0000'
-        }, {
-          id: 2,
-          actual: 'blue',
-          representation: 'Blue',
-          hex: '#0000FF'
-        }, {
-          id: 3,
-          actual: 'green',
-          representation: 'Green',
-          hex: '#008000'
-        }]}
+        items={[
+          {
+            id: 1,
+            actual: 'red',
+            representation: 'Red',
+            hex: '#FF0000',
+          },
+          {
+            id: 2,
+            actual: 'blue',
+            representation: 'Blue',
+            hex: '#0000FF',
+          },
+          {
+            id: 3,
+            actual: 'green',
+            representation: 'Green',
+            hex: '#008000',
+          },
+        ]}
         itemToString={itemToString}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -766,38 +874,41 @@ custom `type`](/api/select#custom_items_typescript).
 When using a custom shape for your `items` in a `typescript` project you will need to provide the `Select`
 element with the shape of the `items` you are passing in.
 
-```
-interface CustomSelectItem {
-  id: number;
-  actual: string;
-  representation: string;
-  hex?: string;
-}
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
 
-() => {
+export function Example() {
+  interface CustomSelectItem {
+    id: number;
+    actual: string;
+    representation: string;
+    hex?: string;
+  }
+
   const customItems: CustomSelectItem[] = [
     {
       id: 1,
-      actual: "red",
-      representation: "Red",
-      hex: "#FF0000",
+      actual: 'red',
+      representation: 'Red',
+      hex: '#FF0000',
     },
     {
       id: 2,
-      actual: "blue",
-      representation: "Blue",
-      hex: "#0000FF",
+      actual: 'blue',
+      representation: 'Blue',
+      hex: '#0000FF',
     },
     {
       id: 3,
-      actual: "green",
-      representation: "Green",
-      hex: "#008000",
+      actual: 'green',
+      representation: 'Green',
+      hex: '#008000',
     },
   ];
 
   function itemToString(item: CustomSelectItem) {
-    return item ? `${item.representation} (${item.hex})` : ''
+    return item ? `${item.representation} (${item.hex})` : '';
   }
 
   return (
@@ -809,7 +920,7 @@ interface CustomSelectItem {
         itemToString={itemToString}
       />
     </>
-  )
+  );
 }
 ```
 
@@ -830,19 +941,23 @@ we use internally.
   work.
 </Alert>
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+import styled from '@emotion/styled';
+
+export function Example() {
   const CustomStyledItem = styled.li(props => ({
     alignSelf: 'center',
     background: props.isFocused ? props.theme.colors.neutral07 : 'transparent',
     lineHeight: '24px',
     margin: '0',
-    padding: '8px 16px'
+    padding: '8px 16px',
   }));
 
   const ContainerSpan = styled.span(props => ({
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
   }));
 
   const Hex = styled.span(props => ({
@@ -852,16 +967,16 @@ we use internally.
     display: 'inline-flex',
     height: '16px',
     marginRight: '4px',
-    width: '16px'
+    width: '16px',
   }));
 
   const Description = styled.div(props => ({
     fontSize: '12px',
-    color:  props.theme.colors.neutral02
+    color: props.theme.colors.neutral02,
   }));
 
   function itemToString(item) {
-    return item ? item.representation : ''
+    return item ? item.representation : '';
   }
 
   const CustomItem = props => {
@@ -874,43 +989,70 @@ we use internally.
         </ContainerSpan>
         <Description theme={props.theme}>{item.description}</Description>
       </CustomStyledItem>
-    )
-  }
+    );
+  };
 
   return (
     <Select
       components={{ Item: CustomItem }}
       labelText="Select With Custom Item Render"
       items={[
-        { id: 0, name: 'red', representation: 'Red', hex: '#FF0000', description: 'The color of roses' },
-        { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF', description: 'The color of blueberries'  },
-        { id: 2, name: 'green', representation: 'Green', hex: '#008000', description: 'The color of grass'  }
+        {
+          id: 0,
+          name: 'red',
+          representation: 'Red',
+          hex: '#FF0000',
+          description: 'The color of roses',
+        },
+        {
+          id: 1,
+          name: 'blue',
+          representation: 'Blue',
+          hex: '#0000FF',
+          description: 'The color of blueberries',
+        },
+        {
+          id: 2,
+          name: 'green',
+          representation: 'Green',
+          hex: '#008000',
+          description: 'The color of grass',
+        },
       ]}
       itemToString={itemToString}
     />
-  )
+  );
 }
 ```
 
 ## Other Custom Components
 
-```.jsx
-<Select
-  id="customComponentsId"
-  name="customComponents"
-  labelText="Custom Components"
-  items={[
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Green', value: 'green' }
-  ]}
-  initialSelectedItem={{ label: 'Green', value: 'green' }}
-  isClearable
-  components={{
-    ClearIndicator: (props) => <button onClick={props.onClick}>Clear</button>,
-    DropdownIndicator: () => <span style={{ border: '1px solid'}}>Dropdown</span>
-  }}
-/>
+```tsx codesandbox=magma
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      id="customComponentsId"
+      name="customComponents"
+      labelText="Custom Components"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+      initialSelectedItem={{ label: 'Green', value: 'green' }}
+      isClearable
+      components={{
+        ClearIndicator: props => <button onClick={props.onClick}>Clear</button>,
+        DropdownIndicator: () => (
+          <span style={{ border: '1px solid' }}>Dropdown</span>
+        ),
+      }}
+    />
+  );
+}
 ```
 
 ## State Change Types
@@ -981,20 +1123,4 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 <SelectProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      styled,
-      Select,
-      Alert,
-      useSelect,
-      uuid,
-      SelectStateChangeTypes,
-      I18nContext,
-      defaultI18n,
-      Card,
-      CardBody,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

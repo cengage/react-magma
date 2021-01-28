@@ -6,7 +6,6 @@ props:
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { Spinner, magma } from 'react-magma-dom';
 import { Link } from 'gatsby';
 import { DocsHeading } from '../../components/DocsHeading';
 
@@ -16,24 +15,39 @@ Spinners indicate the loading state of a component or page. Spinners are used wi
 
 ## Basic Usage
 
-```.jsx
-<Spinner />
+```tsx codesandbox=magma
+import React from 'react';
+import { Spinner } from 'react-magma-dom';
+
+export function Example() {
+  return <Spinner />;
+}
 ```
 
 ## Aria-Label
 
 By default, the aria-label for the spinner is "Loading", but this can be customized using the `aria-label` prop.
 
-```.jsx
-<Spinner aria-label="Custom aria label" />
+```tsx codesandbox=magma
+import React from 'react';
+import { Spinner } from 'react-magma-dom';
+
+export function Example() {
+  return <Spinner aria-label="Custom aria label" />;
+}
 ```
 
 ## Color
 
 The default is `magma.colors.primary` (`#006298`), but can be customized using the `color` prop, which takes a string.
 
-```.jsx
-<Spinner color={magma.colors.danger} />
+```tsx codesandbox=magma
+import React from 'react';
+import { Spinner, magma } from 'react-magma-dom';
+
+export function Example() {
+  return <Spinner color={magma.colors.danger} />;
+}
 ```
 
 ## Size
@@ -42,12 +56,19 @@ The `size` prop can be used to set the height and width of the spinner. Can be a
 
 The default value is '16px'.
 
-```.jsx
-<>
-  <Spinner size={30} />
-  <br/>
-  <Spinner size="3em" />
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Spinner } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Spinner size={30} />
+      <br />
+      <Spinner size="3em" />
+    </>
+  );
+}
 ```
 
 ## Spinner Props
@@ -58,6 +79,4 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 <SpinnerProps />
 
-export default props => (
-  <ScopeableLayout {...props} components={{ Spinner, magma }} />
-);
+export default props => <ScopeableLayout {...props} />;

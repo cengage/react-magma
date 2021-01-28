@@ -1,7 +1,7 @@
 {
   "name": "react-magma-icons",
   "license": "MIT",
-  "version": "1.0.8-alpha.3",
+  "version": "1.0.9-alpha.1",
   "main": "dist/index.js",
   "module": "dist/react-magma-icons.esm.js",
   "typings": "dist/index.d.ts",

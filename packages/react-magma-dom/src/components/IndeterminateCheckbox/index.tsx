@@ -23,7 +23,7 @@ export interface IndeterminateCheckboxProps
    * Status of the indeterminate, three-state checkbox, which includes and indeterminate (e.g. mixed) option.
    * @default IndeterminateCheckboxStatus.unchecked
    */
-  status: string;
+  status: IndeterminateCheckboxStatus;
   testId?: string;
 }
 
