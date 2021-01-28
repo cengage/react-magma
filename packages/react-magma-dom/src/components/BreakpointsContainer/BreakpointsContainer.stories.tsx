@@ -1,0 +1,69 @@
+import React from 'react';
+import { Breakpoint, BreakpointsContainer, BreakpointScreenSize } from '.';
+import { Card } from '../Card/index';
+import { CardBody } from '../Card/CardBody';
+import { magma } from '../../theme/magma';
+
+export default {
+  component: BreakpointsContainer,
+  title: 'BreakpointsContainer',
+};
+
+export const Default = () => {
+  return (
+    <BreakpointsContainer>
+      <Breakpoint screenSize={BreakpointScreenSize.xs}>
+        <Card background={magma.colors.pop04}>
+          <CardBody>
+            <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
+            to 599px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
+
+      <Breakpoint screenSize={BreakpointScreenSize.small}>
+        <Card isInverse background={magma.colors.foundation02}>
+          <CardBody>
+            <strong>Small: </strong>This will be shown from 600px pixels up to
+            767px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
+
+      <Breakpoint screenSize={BreakpointScreenSize.medium}>
+        <Card isInverse background={magma.colors.pop}>
+          <CardBody>
+            <strong>Medium: </strong>This text will be visible when the browser
+            width is 768px and up to 1023px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
+
+      <Breakpoint screenSize={BreakpointScreenSize.large}>
+        <Card isInverse background={magma.colors.success}>
+          <CardBody>
+            <strong>Large: </strong>This text will be visible when the browser
+            width is 1024px and to 1199px.
+          </CardBody>
+        </Card>
+      </Breakpoint>
+
+      <Breakpoint screenSize={BreakpointScreenSize.xl}>
+        <Card isInverse background={magma.colors.danger}>
+          <CardBody>
+            <strong>Extra-Large: </strong>This text will be visible when the
+            browser width is 1200px and greater.
+          </CardBody>
+        </Card>
+      </Breakpoint>
+
+      <br />
+
+      <Card>
+        <CardBody>
+          This text will always be visible, as it is not part of a breakpoint.
+        </CardBody>
+      </Card>
+    </BreakpointsContainer>
+  );
+};
