@@ -9,10 +9,12 @@ import { ThemeContext } from '../../theme/ThemeContext';
  */
 export interface TableRowProps
   extends React.HTMLAttributes<HTMLTableRowElement> {
+  color?: string; // TODO: change color prop to have type of TableRowColor instead of string
   testId?: string;
 }
 
 const StyledTableRow = styled.tr<{
+  color?: string;
   hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
@@ -44,7 +46,12 @@ const StyledTableRow = styled.tr<{
         props.isInverse ? props.theme.colors.tint02 : props.theme.colors.tone02
       };
     `}
+
+    background: ${props => (props.color ? props.color : 'inherit')};
 `;
+
+// TODO: set background color and color to the correct colors from the theme based on the `color` prop
+// Make sure this works with zebra stripes, inverse and hover colors
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   (props, ref) => {

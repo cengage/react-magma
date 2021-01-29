@@ -13,45 +13,6 @@ export default {
 };
 
 export const Default = () => {
-  const rows = [
-    [
-      'Lorem ipsum dolor sit amet consectetur',
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum',
-    ],
-    [
-      'Lorem ipsum dolor sit amet',
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum',
-    ],
-    [
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum',
-    ],
-    [
-      'Lorem ipsum dolor sit amet consectetur',
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum',
-    ],
-    [
-      'Lorem ipsum dolor sit amet',
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum',
-    ],
-    [
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum dolor',
-      'Lorem ipsum',
-    ],
-  ];
-
   return (
     <>
       <Card>
@@ -65,13 +26,18 @@ export const Default = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, i) => (
-              <TableRow key={`row${i}`}>
-                {row.map((cell, j) => (
-                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-                ))}
-              </TableRow>
-            ))}
+            <TableRow color="green">
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </Card>

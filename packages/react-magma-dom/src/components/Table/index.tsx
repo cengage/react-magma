@@ -32,6 +32,10 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   testId?: string;
 }
 
+export enum TableRowColor {
+  success = 'success',
+}
+
 export enum TableDensity {
   compact = 'compact',
   loose = 'loose',
