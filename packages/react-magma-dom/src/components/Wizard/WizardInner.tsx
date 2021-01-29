@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Card } from '../Card';
 import {
   WizardStep,
   WizardStepProps,
@@ -79,9 +78,13 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
             <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
               {i18n.wizard.actions.cancel}
             </Button>
-            <Button color={ButtonColor.primary} onClick={onNextButtonClick}>
+            <Button
+              color={ButtonColor.primary}
+              disabled={isLoadingNextStep}
+              onClick={onNextButtonClick}
+            >
               {i18n.wizard.actions.next}{' '}
-              {!isLoadingNextStep && (
+              {isLoadingNextStep && (
                 <StyledSpinner
                   theme={theme}
                   color={theme.colors.focusInverse}
@@ -104,7 +107,11 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
             >
               {i18n.wizard.actions.previous}
             </Button>
-            <Button color={ButtonColor.primary} onClick={onSubmitButtonClick}>
+            <Button
+              color={ButtonColor.primary}
+              disabled={isLoadingNextStep}
+              onClick={onSubmitButtonClick}
+            >
               {i18n.wizard.actions.submit}
               {isLoadingNextStep && (
                 <StyledSpinner
@@ -125,7 +132,11 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
           <Button color={ButtonColor.secondary} onClick={onPreviousButtonClick}>
             {i18n.wizard.actions.previous}
           </Button>
-          <Button color={ButtonColor.primary} onClick={onNextButtonClick}>
+          <Button
+            color={ButtonColor.primary}
+            disabled={isLoadingNextStep}
+            onClick={onNextButtonClick}
+          >
             {i18n.wizard.actions.next}
             {isLoadingNextStep && (
               <StyledSpinner theme={theme} color={theme.colors.focusInverse} />
@@ -136,25 +147,23 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
     }, [activeStepIndex, stepCount, isLoadingNextStep]);
 
     return (
-      <Card>
-        <TabsContainer activeIndex={activeStepIndex}>
-          <WizardNavigation
-            navigationLabel={i18n.wizard.navigationLabel}
-            steps={stepsInfo}
-            maxStepIndex={maxStepIndex}
-            orientation={orientation}
-            onStepNavigationClick={onStepNavigationClick}
+      <TabsContainer activeIndex={activeStepIndex}>
+        <WizardNavigation
+          navigationLabel={i18n.wizard.navigationLabel}
+          steps={stepsInfo}
+          maxStepIndex={maxStepIndex}
+          orientation={orientation}
+          onStepNavigationClick={onStepNavigationClick}
+          optionalText={optionalText || i18n.wizard.optional}
+        />
+        <StyledContainer theme={theme}>
+          <WizardStep
             optionalText={optionalText || i18n.wizard.optional}
+            {...step}
           />
-          <StyledContainer theme={theme}>
-            <WizardStep
-              optionalText={optionalText || i18n.wizard.optional}
-              {...step}
-            />
-            {actions}
-          </StyledContainer>
-        </TabsContainer>
-      </Card>
+          {actions}
+        </StyledContainer>
+      </TabsContainer>
     );
   }
 );

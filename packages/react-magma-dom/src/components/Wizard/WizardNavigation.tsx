@@ -22,11 +22,11 @@ export const WizardNavigation = React.forwardRef<
 >((props, ref) => {
   return (
     <Tabs
-      orientation={props.orientation}
+      aria-label={props.navigationLabel}
       onChange={index =>
         props.onStepNavigationClick({ requestedStepIndex: index })
       }
-      aria-label={props.navigationLabel}
+      orientation={props.orientation}
     >
       {props.steps.map((step, index) => (
         <Tab key={index} disabled={index > props.maxStepIndex}>
