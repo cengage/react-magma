@@ -20,7 +20,7 @@ export interface WizardProps {
   activeStepIndex?: number;
   /**
    * Orientation of the tabs
-   * @default TabsOrientation.Horizontal
+   * @default TabsOrientation.horizontal
    */
   orientation?: TabsOrientation;
   /**
@@ -120,7 +120,7 @@ export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
     };
 
     const wizardInnerProps: WizardInnerProps = {
-      orientation,
+      orientation: orientation || TabsOrientation.horizontal,
       step: steps[activeStepIndex],
       stepsInfo: steps,
       stepCount: steps.length,

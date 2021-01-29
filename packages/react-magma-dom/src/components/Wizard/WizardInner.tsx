@@ -14,6 +14,7 @@ import styled from '@emotion/styled';
 import { TabsOrientation } from '../Tabs';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
 const StyledSpinner = styled(Spinner)<SpinnerProps>`
   margin: ${props => `0 0 0 ${props.theme.spaceScale.spacing03}`};
@@ -23,8 +24,13 @@ const StyledContainer = styled.div`
   flex-grow: 1;
 `;
 
-const ActionContainer = styled.div`
+const ActionContainer = styled.div<{ theme: ThemeInterface }>`
+  margin: ${props => ` 0 ${props.theme.spaceScale.spacing05}`};
   text-align: right;
+
+  button:last-of-type {
+    margin-right: 0;
+  }
 `;
 
 export interface WizardInnerProps {
@@ -74,7 +80,7 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
     const actions = React.useMemo(() => {
       if (activeStepIndex === 0) {
         return (
-          <ActionContainer>
+          <ActionContainer theme={theme}>
             <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
               {i18n.wizard.actions.cancel}
             </Button>
@@ -97,7 +103,7 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
 
       if (activeStepIndex === stepCount - 1) {
         return (
-          <ActionContainer>
+          <ActionContainer theme={theme}>
             <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
               {i18n.wizard.actions.cancel}
             </Button>
@@ -125,7 +131,7 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
       }
 
       return (
-        <ActionContainer>
+        <ActionContainer theme={theme}>
           <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
             {i18n.wizard.actions.cancel}
           </Button>
@@ -159,6 +165,7 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
         <StyledContainer theme={theme}>
           <WizardStep
             optionalText={optionalText || i18n.wizard.optional}
+            orientation={orientation}
             {...step}
           />
           {actions}

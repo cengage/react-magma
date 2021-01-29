@@ -10,7 +10,7 @@ export interface NavigationStepClickProps {
 export interface WizardNavigationProps {
   steps: WizardStepProps[];
   maxStepIndex: number;
-  onStepNavigationClick?: (stepClickDetail: NavigationStepClickProps) => void;
+  onStepNavigationClick: (stepClickDetail: NavigationStepClickProps) => void;
   orientation: TabsOrientation;
   optionalText: string;
   navigationLabel: string;
@@ -19,13 +19,17 @@ export interface WizardNavigationProps {
 export const WizardNavigation = React.forwardRef<
   TabsProps,
   WizardNavigationProps
->((props, ref) => {
+>(props => {
+  function handleTabsChange(index: number) {
+    if (props.onStepNavigationClick) {
+      props.onStepNavigationClick({ requestedStepIndex: index });
+    }
+  }
+
   return (
     <Tabs
       aria-label={props.navigationLabel}
-      onChange={index =>
-        props.onStepNavigationClick({ requestedStepIndex: index })
-      }
+      onChange={handleTabsChange}
       orientation={props.orientation}
     >
       {props.steps.map((step, index) => (

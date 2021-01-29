@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Heading, HeadingProps } from '../Heading';
 import { Paragraph, ParagraphProps } from '../Paragraph';
+import { TabsOrientation } from '../Tabs';
+import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import styled from '@emotion/styled';
@@ -17,6 +19,7 @@ export interface WizardStepProps {
   /**
    * Flag to display the optional text next to the step title in the wizard navigation.
    */
+  orientation?: TabsOrientation;
   optional?: boolean;
   /**
    * Optional props to pass to the heading.
@@ -31,12 +34,18 @@ export interface WizardStepProps {
   /**
    * @internal
    */
-  optionalText: string;
+  optionalText?: string;
   children?: React.ReactNode;
 }
 
-const Step = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing05};
+const Step = styled.div<{
+  orientation?: TabsOrientation;
+  theme?: ThemeInterface;
+}>`
+  padding: ${props =>
+    props.orientation === TabsOrientation.vertical
+      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`
+      : props.theme.spaceScale.spacing05};
 `;
 
 const StyledHeading = styled(Heading)`
@@ -45,16 +54,26 @@ const StyledHeading = styled(Heading)`
 
 export const WizardStep = React.forwardRef<HTMLDivElement, WizardStepProps>(
   (props, ref) => {
+    const i18n = React.useContext(I18nContext);
     const theme = React.useContext(ThemeContext);
 
+    const {
+      children,
+      description,
+      headingProps,
+      optional,
+      optionalText,
+      orientation,
+    } = props;
+
     return (
-      <Step ref={ref} theme={theme}>
-        <StyledHeading level={4} {...props.headingProps}>
+      <Step ref={ref} orientation={orientation} theme={theme}>
+        <StyledHeading level={4} {...headingProps}>
           {props.title}
-          {props.optional ? ' - ${props.optionalText}' : ''}
+          {optional ? ` - ${optionalText || i18n.wizard.optional}` : ''}
         </StyledHeading>
-        {props.description && <Paragraph>{props.description}</Paragraph>}
-        {props.children}
+        {description && <Paragraph>{props.description}</Paragraph>}
+        {children}
       </Step>
     );
   }

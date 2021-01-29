@@ -32,9 +32,8 @@ const steps = [
   },
 ];
 
-export const Default = Template.bind({});
-Default.args = {
-  steps: steps,
+export const Default = () => {
+  return <Template steps={steps} />;
 };
 
 export const Vertical = () => {
