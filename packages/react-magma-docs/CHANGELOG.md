@@ -7,10 +7,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.4-alpha.0 (2021-01-26)
 
 **Note:** Version bump only for package react-magma-docs
