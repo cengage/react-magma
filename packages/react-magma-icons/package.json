@@ -25,7 +25,8 @@
     "build": "npm run generate:icons && tsdx build",
     "build-watch": "tsdx watch",
     "lint": "eslint ./src",
-    "generate:icons": "node scripts/generate.js"
+    "generate:icons": "node scripts/generate.js",
+    "prettier" :"prettier"
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",
@@ -50,6 +51,7 @@
     "fast-glob": "^3.2.5",
     "fastq": "^1.10.1",
     "fs-extra": "^9.1.0",
+    "prettier": "^2.2.1",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "rimraf": "^3.0.2",

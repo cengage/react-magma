@@ -31,6 +31,17 @@ const v2aliases = [
   `export { HelpOutlineIcon as QuestionCircleOIcon} from './icons/Actions/HelpOutlineIcon';`,
   `export { SearchIcon as Search2Icon} from './icons/Actions/SearchIcon';`,
   `export { ScheduleIcon as ClockIcon } from './icons/Actions/ScheduleIcon';`,
+  `export { ExpandMoreIcon as AlertIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as BellIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as CircleDownIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as CircleLeftIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as CircleRightIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as CircleUpIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as Cog2Icon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as EnvelopeOIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as ExternalLinkIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as GraduationCapIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  `export { ExpandMoreIcon as QuestionCircleIcon } from './icons/Navigation/ExpandMoreIcon';`,
 ];
 
 const addIcon = (group, name) => {
@@ -146,8 +157,10 @@ const getNames = path => {
   return path.split(/[/.]/).slice(-3);
 };
 
-const getIconFile = (icon, name) => `import * as React from 'react';
-import { IconProps } from '../../IconProps';
+const getIconFile = (
+  icon,
+  name
+) => `import { IconProps } from '../../IconProps';
 import { renderIcon } from '../../SvgIcon';
 const iconType = ${JSON.stringify(icon, null, 2)};
 

@@ -22,6 +22,17 @@ export { ErrorOutlineIcon as NotificationIcon } from './icons/Alert/ErrorOutline
 export { HelpOutlineIcon as QuestionCircleOIcon } from './icons/Actions/HelpOutlineIcon';
 export { SearchIcon as Search2Icon } from './icons/Actions/SearchIcon';
 export { ScheduleIcon as ClockIcon } from './icons/Actions/ScheduleIcon';
+export { ExpandMoreIcon as AlertIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as BellIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as CircleDownIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as CircleLeftIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as CircleRightIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as CircleUpIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as Cog2Icon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as EnvelopeOIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as ExternalLinkIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as GraduationCapIcon } from './icons/Navigation/ExpandMoreIcon';
+export { ExpandMoreIcon as QuestionCircleIcon } from './icons/Navigation/ExpandMoreIcon';
 export * from './icons/AV';
 export * from './icons/Actions';
 export * from './icons/Alert';

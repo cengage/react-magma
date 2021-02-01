@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { IconProps } from '../../IconProps';
 import { renderIcon } from '../../SvgIcon';
 const iconType = {
