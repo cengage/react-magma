@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>sms</title>
+    <defs>
+        <path d="M20,1.99999996 L3.99999996,1.99999996 C2.89999996,1.99999996 1.99999996,2.89999996 1.99999996,3.99999996 L1.99999996,22 L5.99999996,18 L20,18 C21.1,18 22,17.1 22,16 L22,3.99999996 C22,2.89999996 21.1,1.99999996 20,1.99999996 Z M8.99999998,11 L6.99999998,11 L6.99999998,8.99999999 L8.99999998,8.99999999 L8.99999998,11 Z M13,11 L11,11 L11,8.99999999 L13,8.99999999 L13,11 Z M17,11 L15,11 L15,8.99999999 L17,8.99999999 L17,11 Z" id="path-1"></path>
+    </defs>
+    <g id="sms" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>wl_practice_it</title>
+    <defs>
+        <path d="M9.63636364,11.0909091 L15.0909091,11.0909091 L15.0909091,5.63636364 L9.63636364,5.63636364 L9.63636364,11.0909091 Z M6,22 L9.63636364,22 L9.63636364,14.7272727 L18.7272727,14.7272727 L18.7272727,2 L6,2 L6,22 Z" id="path-1"></path>
+    </defs>
+    <g id="wl_practice_it" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

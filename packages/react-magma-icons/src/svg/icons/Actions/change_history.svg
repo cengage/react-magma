@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>change_history</title>
+    <defs>
+        <path d="M12,7.76999998 L18.39,18 L5.60999997,18 L12,7.76999998 M11.15,5.35999997 L2.94999996,18.47 C2.53999996,19.14 3.01999996,20 3.79999997,20 L20.2,20 C20.99,20 21.46,19.14 21.05,18.47 L12.85,5.35999997 C12.46,4.72999997 11.54,4.72999997 11.15,5.35999997 Z" id="path-1"></path>
+    </defs>
+    <g id="change_history" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>
