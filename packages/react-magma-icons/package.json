@@ -22,11 +22,11 @@
   "scripts": {
     "test": "tsdx test",
     "test-watch": "tsdx test --watch",
-    "build": "npm run generate:icons && tsdx build",
+    "build": "npm run generate:icons && npm run prettier && tsdx build",
     "build-watch": "tsdx watch",
     "lint": "eslint ./src",
     "generate:icons": "node scripts/generate.js",
-    "prettier" :"prettier"
+    "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"src/**/*.{js,jsx,ts,tsx,json}\""
   },
   "peerDependencies": {
     "react": "^15.0.0 || ^16.0.0",

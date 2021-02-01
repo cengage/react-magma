@@ -76,8 +76,8 @@ export const SvgIcon = ({
       data-testid={testId}
     >
       {title && <title id={id}>{title}</title>}
-      {paths.length && renderPaths(paths)}
-      {circles.length && renderCircles(circles)}
+      {paths.length !== 0 && renderPaths(paths)}
+      {circles.length !== 0 && renderCircles(circles)}
     </svg>
   );
 };

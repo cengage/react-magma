@@ -1,0 +1,214 @@
+---
+pageTitle: Icon API
+title: Icon
+---
+
+import { ScopeableLayout } from '../../components/layout';
+import * as ICONS from 'react-magma-icons';
+import {
+  GroupIcon,
+  CrossIcon,
+  InfoIcon,
+  AngleDownIcon,
+  HomeIcon,
+} from 'react-magma-icons';
+import { DatePicker, VisuallyHidden, Alert } from 'react-magma-dom';
+import { SimplePropsTable } from '../../components/SimplePropsTable';
+import { DocsHeading } from '../../components/DocsHeading';
+
+<DocsHeading type="api">Icon</DocsHeading>
+<Alert variant="warning">
+  <strong>Important!</strong> Icons are now imported from `react-magma-icons`
+  which must be installed as a peer dependency.
+</Alert>
+
+## Basic Usage
+
+Icons are imported from a separate `react-magma-icons` package.
+
+```tsx codesandbox=magma
+import React from 'react';
+import { GroupIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <GroupIcon />
+      </span>
+    </p>
+  );
+}
+```
+
+## Title
+
+The `title` prop can be used to set the `<title>` element within the SVG.
+
+The title/svg association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied. The `id` of the title is linked to the SVG with `aria-labelledby`,
+so it will be read screen readers.
+
+```tsx codesandbox=magma
+import React from 'react';
+import { CrossIcon, InfoIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <CrossIcon title="Close This Message" />
+      </span>
+      <span className="demo-icon-container">
+        <InfoIcon id="infoIcon" title="Info Available" />
+      </span>
+    </p>
+  );
+}
+```
+
+## Sizes
+
+```tsx codesandbox=magma
+import React from 'react';
+import { AngleDownIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <AngleDownIcon size={20} title="Small Size" />
+      </span>
+      <span className="demo-icon-container">
+        <AngleDownIcon size={50} title="Large Size" />
+      </span>
+    </p>
+  );
+}
+```
+
+## Color
+
+```tsx codesandbox=magma
+import React from 'react';
+import { AngleDownIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <AngleDownIcon title="No Color" />
+      </span>
+      <span className="demo-icon-container">
+        <AngleDownIcon color="green" title="Some Color" />
+      </span>
+    </p>
+  );
+}
+```
+
+## Accessibility
+
+To improve the experience for assistive technology users and remove the icon and its children from the accessibility tree, add the prop `aria-hidden="true"` to your icon.
+
+```tsx codesandbox=magma
+import React from 'react';
+import { HomeIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <p>
+      <span className="demo-icon-container">
+        <HomeIcon aria-hidden="true" />
+      </span>
+    </p>
+  );
+}
+```
+
+## Available Icons
+
+```.jsx hideCode
+<div className='demo-icon-list-container'>
+  {Object.keys(ICONS).map((icon) => {
+      const id = icon + 'Available';
+      const title = icon + ' Title';
+      const Icon = ICONS[icon];
+
+      return <span className='demo-icon-container' key={id} >
+        <Icon title={title} /><br />
+        {icon}
+      </span>
+    })
+  }
+</div>
+```
+
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the svg element for easier querying in tests.
+
+```html
+<svg
+  aria-hidden="true"
+  data-testid="test-id"
+  class="icon"
+  height="24"
+  width="24"
+  fill="currentColor"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 25.63 25.63"
+>
+  <path
+    d="M15.26,10.15V7.56H12.74v2.59Zm0,10.29v-7.7H12.74v7.7ZM14,1.18A12.82,12.82,0,1,1,1.18,14,12.79,12.79,0,0,1,14,1.18Z"
+    transform="translate(-1.18 -1.18)"
+  ></path>
+</svg>
+```
+
+## Icon Props
+
+**Any other props supplied will be provided to the `svg` element.**
+
+<SimplePropsTable
+  propertyValues={{
+    color: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Hex code for the color',
+      defaultValue: 'inherit',
+    },
+    size: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Number of pixels for the icon height and width',
+      defaultValue: '24',
+    },
+    testId: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description:
+        'Test ID attached to an internal element as `data-testid` for consumer testing',
+    },
+    title: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'The title of the svg element, to be read by screen readers',
+      defaultValue: '',
+    },
+  }}
+/>
+
+export default props => (
+  <ScopeableLayout
+    {...props}
+    components={{
+      ICONS,
+      ...ICONS,
+    }}
+  />
+);
+
+;
