@@ -58,7 +58,13 @@
     "UI's",
     "uuidv",
     "WCAG",
-    "xsmall"
+    "xsmall",
+    "Iphone",
+    "Dehaze",
+    "Hvac",
+    "Ondemand",
+    "Bento",
+    "Kabaddi"
   ],
   "overrides": [
     {
