@@ -13,7 +13,6 @@ import {
 } from '../Select';
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
-import { InputMessage } from '../Input/InputMessage';
 import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
 
@@ -38,7 +37,7 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   hasError?: boolean;
   /**
-   * Position of label
+   * Position of text label relative to form field
    */
   labelPosition?: LabelPosition;
   /**
@@ -128,7 +127,6 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
     containerStyle,
     errorMessage,
     id: defaultId,
-    isInverse,
     isMulti,
     labelPosition,
     messageStyle,
@@ -155,30 +153,26 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
           ariaDescribedBy={descriptionId}
+          errorMessage={errorMessage}
+          hasError={hasError}
+          helperMessage={helperMessage}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
+          messageStyle={messageStyle}
           {...(props as MultiComboboxProps<T>)}
-          hasError={hasError}
         />
       ) : (
         <InternalCombobox
           ariaDescribedBy={descriptionId}
+          errorMessage={errorMessage}
+          hasError={hasError}
+          helperMessage={helperMessage}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
+          messageStyle={messageStyle}
           {...(props as ComboboxProps<T>)}
-          hasError={hasError}
         />
       )}
-      <InputMessage
-        id={descriptionId}
-        isInverse={isInverse}
-        hasError={hasError}
-        style={messageStyle}
-      >
-        {(errorMessage || helperMessage) && (
-          <>{errorMessage ? errorMessage : helperMessage}</>
-        )}
-      </InputMessage>
     </div>
   );
 }

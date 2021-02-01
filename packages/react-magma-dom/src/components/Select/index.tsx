@@ -8,7 +8,7 @@ import {
 
 import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
-import { InputMessage } from '../Input/InputMessage';
+//import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
 import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
@@ -65,7 +65,7 @@ export interface InternalSelectProps<T> {
    */
   isMulti?: boolean;
   /**
-   * Position of label
+   * Position of text label relative to form field
    */
   labelPosition?: LabelPosition;
   /**
@@ -227,26 +227,16 @@ export function Select<T>(props: XORSelectProps<T>) {
       ) : (
         <InternalSelect
           ariaDescribedBy={descriptionId}
+          errorMessage={errorMessage}
           id={id}
+          isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
+          hasError={hasError}
+          helperMessage={helperMessage}
+          messageStyle={messageStyle}
           {...(props as SelectProps<T>)}
-          hasError={hasError}
         />
-      )}
-      {!(
-        labelPosition === LabelPosition.left && !(errorMessage || helperMessage)
-      ) && (
-        <InputMessage
-          id={descriptionId}
-          isInverse={isInverse}
-          hasError={hasError}
-          style={messageStyle}
-        >
-          {(errorMessage || helperMessage) && (
-            <>{errorMessage ? errorMessage : helperMessage}</>
-          )}
-        </InputMessage>
       )}
     </div>
   );

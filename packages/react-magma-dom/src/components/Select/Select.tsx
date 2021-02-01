@@ -17,7 +17,9 @@ export function Select<T>(props: SelectProps<T>) {
     ariaDescribedBy,
     components: customComponents,
     defaultSelectedItem,
+    errorMessage,
     hasError,
+    helperMessage,
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
@@ -38,6 +40,7 @@ export function Select<T>(props: SelectProps<T>) {
     onKeyDown,
     onKeyPress,
     onKeyUp,
+    messageStyle,
     placeholder,
     selectedItem: passedInSelectedItem,
   } = props;
@@ -157,12 +160,16 @@ export function Select<T>(props: SelectProps<T>) {
 
   return (
     <SelectContainer
+      errorMessage={errorMessage}
+      descriptionId={ariaDescribedBy}
       getLabelProps={getLabelProps}
+      helperMessage={helperMessage}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      messageStyle={messageStyle}
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}

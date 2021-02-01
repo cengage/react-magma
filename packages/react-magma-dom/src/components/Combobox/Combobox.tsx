@@ -20,7 +20,9 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     defaultItems,
     defaultSelectedItem,
     disableCreateItem,
+    errorMessage,
     hasError,
+    helperMessage,
     initialSelectedItem,
     inputStyle,
     isClearable,
@@ -36,6 +38,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     labelStyle,
     labelText,
     menuStyle,
+    messageStyle,
     newItemTransform,
     onInputBlur,
     onInputChange,
@@ -248,13 +251,17 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   return (
     <SelectContainer
+      descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
       hasError={hasError}
+      helperMessage={helperMessage}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       isInverse={isInverse}
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      messageStyle={messageStyle}
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}

@@ -76,7 +76,12 @@ LeftAlignedLabel.args = {
   ...Default.args,
   labelPosition: LabelPosition.left,
 };
-LeftAlignedLabel.decorators = [
+
+export const LeftAlignedLabelWithContainer = Template.bind({});
+LeftAlignedLabelWithContainer.args = {
+  ...LeftAlignedLabel.args,
+};
+LeftAlignedLabelWithContainer.decorators = [
   Story => (
     <Card background={magma.colors.neutral07}>
       <CardBody style={{ display: 'flex', justifyContent: 'flex-end' }}>

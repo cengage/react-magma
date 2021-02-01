@@ -30,6 +30,8 @@ Default.args = {
     { label: 'Green', value: 'green' },
   ],
   disableCreateItem: false,
+  errorMessage: '',
+  helperMessage: '',
   isMulti: false,
   isLoading: false,
 };
@@ -71,8 +73,14 @@ export const LeftAlignedLabel = Template.bind({});
 LeftAlignedLabel.args = {
   ...Default.args,
   labelPosition: LabelPosition.left,
+  errorMessage: 'Please fix this error',
 };
-LeftAlignedLabel.decorators = [
+
+export const LeftAlignedLabelWithContainer = Template.bind({});
+LeftAlignedLabelWithContainer.args = {
+  ...LeftAlignedLabel.args,
+};
+LeftAlignedLabelWithContainer.decorators = [
   Story => (
     <Card background={magma.colors.neutral07}>
       <CardBody style={{ display: 'flex', justifyContent: 'flex-end' }}>

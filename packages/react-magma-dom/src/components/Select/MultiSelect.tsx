@@ -14,7 +14,9 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
+    errorMessage,
     hasError,
+    helperMessage,
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
@@ -27,6 +29,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     isInverse,
     itemListMaxHeight,
     menuStyle,
+    messageStyle,
     onBlur,
     onFocus,
     onKeyDown,
@@ -156,12 +159,16 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   return (
     <SelectContainer
+      descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
+      helperMessage={helperMessage}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
       isInverse={isInverse}
+      messageStyle={messageStyle}
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
