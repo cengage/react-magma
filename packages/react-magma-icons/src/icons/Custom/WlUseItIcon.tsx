@@ -6,7 +6,6 @@ const iconType = {
     {
       d: 'M17.5556 17.5556H6.4444V2H2v20h20V2h-4.4444z',
       fillRule: 'evenodd',
-      fill: '#000',
     },
   ],
   circles: [],

@@ -231,7 +231,6 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -470,7 +469,6 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -709,7 +707,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -948,7 +945,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -1185,7 +1181,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -1415,7 +1410,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -1645,7 +1639,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -1875,7 +1868,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -2105,7 +2097,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -2335,7 +2326,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -2565,7 +2555,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
@@ -2793,7 +2782,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
     >
       <path
         d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill="#000"
         fill-rule="evenodd"
       />
     </svg>
