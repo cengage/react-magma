@@ -5,6 +5,7 @@ title: Icon
 
 import { ScopeableLayout } from '../../components/layout';
 import * as ICONS from 'react-magma-icons';
+
 import {
   GroupIcon,
   CrossIcon,
@@ -12,7 +13,7 @@ import {
   AngleDownIcon,
   HomeIcon,
 } from 'react-magma-icons';
-import { DatePicker, VisuallyHidden, Alert } from 'react-magma-dom';
+import { DatePicker, VisuallyHidden, Alert, Heading } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/SimplePropsTable';
 import { DocsHeading } from '../../components/DocsHeading';
 
@@ -123,16 +124,24 @@ export function Example() {
 ## Available Icons
 
 ```.jsx hideCode
-<div className='demo-icon-list-container'>
-  {Object.keys(ICONS).map((icon) => {
-      const id = icon + 'Available';
-      const title = icon + ' Title';
-      const Icon = ICONS[icon];
+<div>
+  {Object.keys(ICONS.categories).map((category) => {
+      return <div>
+        <Heading level={3}>{category}</Heading>
+        <div className='demo-icon-list-container'>
+          {ICONS.categories[category].map((icon) => {
+              const id = icon + 'Available';
+              const title = icon + ' Title';
+              const Icon = ICONS[icon];
 
-      return <span className='demo-icon-container' key={id} >
-        <Icon title={title} /><br />
-        {icon}
-      </span>
+              return <span className='demo-icon-container' key={id} >
+                <Icon title={title} /><br />
+                {icon}
+              </span>
+            })
+          }
+        </div>
+      </div>
     })
   }
 </div>
@@ -205,6 +214,7 @@ export default props => (
   <ScopeableLayout
     {...props}
     components={{
+      Heading,
       ICONS,
       ...ICONS,
     }}
