@@ -116,12 +116,12 @@ const getPaths = (defs = [], use = []) => {
         d.path.reduce(
           (acc, c) => {
             const { d, id } = c['$'];
-            const { transform, fillRule, fill } = {
+            const { transform, fillRule } = {
               ...use
                 .filter(u => u['$'].xlinkHref === `#${id}`)
                 .map(u => u['$'])[0],
             };
-            return { paths: [...acc.paths, { d, transform, fillRule, fill }] };
+            return { paths: [...acc.paths, { d, transform, fillRule }] };
           },
           { paths: [] }
         )
