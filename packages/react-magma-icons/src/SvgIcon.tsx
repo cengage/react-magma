@@ -5,6 +5,8 @@ import { IconProps } from './IconProps';
 interface Path {
   d: string;
   transform?: string;
+  fill?: string;
+  fillRule?: 'nonzero' | 'evenodd' | 'inherit';
 }
 interface Circle {
   cx: number;
@@ -39,9 +41,7 @@ function useGenerateId(newId?: string) {
 function renderPaths(paths: Path[] = []) {
   return paths
     .filter(a => a)
-    .map(({ d, transform }, index) => (
-      <path key={index} d={d} transform={transform} />
-    ));
+    .map(({ d, ...other }, index) => <path key={index} d={d} {...other} />);
 }
 
 function renderCircles(circles: Circle[] = []) {

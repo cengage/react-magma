@@ -1,6 +1,7 @@
 import { IconProps } from '../../IconProps';
 import { renderIcon } from '../../SvgIcon';
 const iconType = {
+  viewBox: '0 0 24 24',
   paths: [
     {
       d:

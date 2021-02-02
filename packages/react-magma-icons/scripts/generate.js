@@ -74,7 +74,7 @@ const svgo = new SVGO({
     { removeHiddenElems: true },
     { removeEmptyText: true },
     { removeEmptyContainers: true },
-    { removeViewBox: true },
+    { removeViewBox: false },
     { cleanupEnableBackground: true },
     { minifyStyles: true },
     { convertStyleToAttrs: true },
@@ -116,10 +116,12 @@ const getPaths = (defs = [], use = []) => {
         d.path.reduce(
           (acc, c) => {
             const { d, id } = c['$'];
-            const transform = use
-              .filter(u => u['$'].xlinkHref === `#${id}`)
-              .map(u => u['$'].transform)[0];
-            return { paths: [...acc.paths, { d, transform }] };
+            const { transform, fillRule, fill } = {
+              ...use
+                .filter(u => u['$'].xlinkHref === `#${id}`)
+                .map(u => u['$'])[0],
+            };
+            return { paths: [...acc.paths, { d, transform, fillRule, fill }] };
           },
           { paths: [] }
         )
@@ -187,7 +189,15 @@ const worker = async (svgPath, cb) => {
     { mergeAttrs: false },
     async (
       err,
-      { svg: { viewBox, width, height, defs, use = [], path: sPath }, svg }
+      {
+        svg: {
+          $: { viewBox, width, height },
+          defs,
+          use = [],
+          path: sPath,
+        },
+        svg,
+      }
     ) => {
       try {
         const svgJson = {

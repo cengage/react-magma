@@ -125,7 +125,7 @@ export function Example() {
 
 ```.jsx hideCode
 <div>
-  {Object.keys(ICONS.categories).map((category) => {
+  {Object.keys(ICONS.categories).sort().map((category) => {
       return <div>
         <Heading level={3}>{category}</Heading>
         <div className='demo-icon-list-container'>
