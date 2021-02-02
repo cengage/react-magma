@@ -6,6 +6,7 @@ import { Label } from '../Label';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { Omit } from '../../utils';
 
 export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
   /**
@@ -33,6 +34,7 @@ export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
    * Style properties for the helper or error message
    */
   messageStyle?: React.CSSProperties;
+  testId?: string;
 }
 
 const Container = styled.div`

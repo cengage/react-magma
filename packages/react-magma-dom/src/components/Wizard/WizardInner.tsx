@@ -11,7 +11,7 @@ import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { TabsContainer } from '../Tabs/TabsContainer';
 import styled from '@emotion/styled';
-import { TabsOrientation } from '../Tabs';
+import { TabsOrientation, Orientation } from '../Tabs';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -41,7 +41,7 @@ export interface WizardInnerProps {
   maxStepIndex: number;
   optionalText?: string;
   isLoadingNextStep?: boolean;
-  orientation: TabsOrientation;
+  orientation?: TabsOrientation;
   onCancelButtonClick: () => void;
   onPreviousButtonClick: () => void;
   onNextButtonClick: () => void;
@@ -55,81 +55,51 @@ export interface WizardInnerProps {
   paragraphProps?: ParagraphProps;
 }
 
-export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
-  (
-    {
-      step,
-      optionalText,
-      stepsInfo,
-      stepCount,
-      orientation,
-      activeStepIndex,
-      maxStepIndex,
-      isLoadingNextStep = false,
-      onNextButtonClick,
-      onPreviousButtonClick,
-      onStepNavigationClick,
-      onSubmitButtonClick,
-      onCancelButtonClick,
-    },
-    ref
-  ) => {
-    const i18n = React.useContext(I18nContext);
-    const theme = React.useContext(ThemeContext);
+export const WizardInner = React.forwardRef<
+  HTMLDivElement,
+  WizardInnerProps & Orientation
+>((props, ref) => {
+  const {
+    step,
+    optionalText,
+    stepsInfo,
+    stepCount,
+    activeStepIndex,
+    maxStepIndex,
+    isLoadingNextStep = false,
+    onNextButtonClick,
+    onPreviousButtonClick,
+    onStepNavigationClick,
+    onSubmitButtonClick,
+    onCancelButtonClick,
+    ...other
+  } = props;
 
-    const actions = React.useMemo(() => {
-      if (activeStepIndex === 0) {
-        return (
-          <ActionContainer theme={theme}>
-            <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
-              {i18n.wizard.actions.cancel}
-            </Button>
-            <Button
-              color={ButtonColor.primary}
-              disabled={isLoadingNextStep}
-              onClick={onNextButtonClick}
-            >
-              {i18n.wizard.actions.next}{' '}
-              {isLoadingNextStep && (
-                <StyledSpinner
-                  theme={theme}
-                  color={theme.colors.focusInverse}
-                />
-              )}
-            </Button>
-          </ActionContainer>
-        );
-      }
+  const i18n = React.useContext(I18nContext);
+  const theme = React.useContext(ThemeContext);
 
-      if (activeStepIndex === stepCount - 1) {
-        return (
-          <ActionContainer theme={theme}>
-            <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
-              {i18n.wizard.actions.cancel}
-            </Button>
-            <Button
-              color={ButtonColor.secondary}
-              onClick={onPreviousButtonClick}
-            >
-              {i18n.wizard.actions.previous}
-            </Button>
-            <Button
-              color={ButtonColor.primary}
-              disabled={isLoadingNextStep}
-              onClick={onSubmitButtonClick}
-            >
-              {i18n.wizard.actions.submit}
-              {isLoadingNextStep && (
-                <StyledSpinner
-                  theme={theme}
-                  color={theme.colors.focusInverse}
-                />
-              )}
-            </Button>
-          </ActionContainer>
-        );
-      }
+  const actions = React.useMemo(() => {
+    if (activeStepIndex === 0) {
+      return (
+        <ActionContainer theme={theme}>
+          <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
+            {i18n.wizard.actions.cancel}
+          </Button>
+          <Button
+            color={ButtonColor.primary}
+            disabled={isLoadingNextStep}
+            onClick={onNextButtonClick}
+          >
+            {i18n.wizard.actions.next}{' '}
+            {isLoadingNextStep && (
+              <StyledSpinner theme={theme} color={theme.colors.focusInverse} />
+            )}
+          </Button>
+        </ActionContainer>
+      );
+    }
 
+    if (activeStepIndex === stepCount - 1) {
       return (
         <ActionContainer theme={theme}>
           <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
@@ -141,36 +111,57 @@ export const WizardInner = React.forwardRef<HTMLDivElement, WizardInnerProps>(
           <Button
             color={ButtonColor.primary}
             disabled={isLoadingNextStep}
-            onClick={onNextButtonClick}
+            onClick={onSubmitButtonClick}
           >
-            {i18n.wizard.actions.next}
+            {i18n.wizard.actions.submit}
             {isLoadingNextStep && (
               <StyledSpinner theme={theme} color={theme.colors.focusInverse} />
             )}
           </Button>
         </ActionContainer>
       );
-    }, [activeStepIndex, stepCount, isLoadingNextStep]);
+    }
 
     return (
-      <TabsContainer activeIndex={activeStepIndex}>
-        <WizardNavigation
-          navigationLabel={i18n.wizard.navigationLabel}
-          steps={stepsInfo}
-          maxStepIndex={maxStepIndex}
-          orientation={orientation}
-          onStepNavigationClick={onStepNavigationClick}
-          optionalText={optionalText || i18n.wizard.optional}
-        />
-        <StyledContainer theme={theme}>
-          <WizardStep
-            optionalText={optionalText || i18n.wizard.optional}
-            orientation={orientation}
-            {...step}
-          />
-          {actions}
-        </StyledContainer>
-      </TabsContainer>
+      <ActionContainer theme={theme}>
+        <Button variant={ButtonVariant.link} onClick={onCancelButtonClick}>
+          {i18n.wizard.actions.cancel}
+        </Button>
+        <Button color={ButtonColor.secondary} onClick={onPreviousButtonClick}>
+          {i18n.wizard.actions.previous}
+        </Button>
+        <Button
+          color={ButtonColor.primary}
+          disabled={isLoadingNextStep}
+          onClick={onNextButtonClick}
+        >
+          {i18n.wizard.actions.next}
+          {isLoadingNextStep && (
+            <StyledSpinner theme={theme} color={theme.colors.focusInverse} />
+          )}
+        </Button>
+      </ActionContainer>
     );
-  }
-);
+  }, [activeStepIndex, stepCount, isLoadingNextStep]);
+
+  return (
+    <TabsContainer activeIndex={activeStepIndex} ref={ref}>
+      <WizardNavigation
+        {...other}
+        aria-label={i18n.wizard.navigationLabel}
+        maxStepIndex={maxStepIndex}
+        onStepNavigationClick={onStepNavigationClick}
+        optionalText={optionalText || i18n.wizard.optional}
+        steps={stepsInfo}
+      />
+      <StyledContainer theme={theme}>
+        <WizardStep
+          {...other}
+          optionalText={optionalText || i18n.wizard.optional}
+          {...step}
+        />
+        {actions}
+      </StyledContainer>
+    </TabsContainer>
+  );
+});

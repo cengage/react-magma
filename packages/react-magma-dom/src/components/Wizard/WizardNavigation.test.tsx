@@ -36,6 +36,7 @@ describe('StepNavigation', () => {
     ];
     const { getByText } = render(
       <WizardNavigation
+        aria-label="hello"
         steps={steps}
         maxStepIndex={2}
         optionalText="Optional"
@@ -61,6 +62,7 @@ describe('StepNavigation', () => {
     ];
     const { getByText } = render(
       <WizardNavigation
+        aria-label="Navigation"
         steps={steps}
         maxStepIndex={2}
         optionalText="Optional label"
@@ -88,6 +90,7 @@ describe('StepNavigation', () => {
     const handleStepNavigationClick = jest.fn();
     const { getByText } = render(
       <WizardNavigation
+        aria-label="Navigation"
         steps={steps}
         maxStepIndex={2}
         optionalText="Optional label"

@@ -1,41 +1,38 @@
 import * as React from 'react';
 import { WizardStepProps } from '.';
-import { Tabs, TabsOrientation, TabsProps } from '../Tabs';
+import { Tabs, TabsOrientation, TabsProps, Orientation } from '../Tabs';
 import { Tab } from '../Tabs/Tab';
 
 export interface NavigationStepClickProps {
   requestedStepIndex: number;
 }
 
-export interface WizardNavigationProps {
-  steps: WizardStepProps[];
+export interface WizardNavigationProps extends TabsProps {
   maxStepIndex: number;
-  onStepNavigationClick: (stepClickDetail: NavigationStepClickProps) => void;
-  orientation: TabsOrientation;
+  onStepNavigationClick?: (stepClickDetail: NavigationStepClickProps) => void;
   optionalText: string;
-  navigationLabel: string;
+  orientation?: TabsOrientation;
+  steps: WizardStepProps[];
 }
 
 export const WizardNavigation = React.forwardRef<
-  TabsProps,
-  WizardNavigationProps
+  HTMLDivElement,
+  WizardNavigationProps & Orientation
 >(props => {
+  const { maxStepIndex, onStepNavigationClick, optionalText, ...other } = props;
+
   function handleTabsChange(index: number) {
-    if (props.onStepNavigationClick) {
-      props.onStepNavigationClick({ requestedStepIndex: index });
+    if (onStepNavigationClick) {
+      onStepNavigationClick({ requestedStepIndex: index });
     }
   }
 
   return (
-    <Tabs
-      aria-label={props.navigationLabel}
-      onChange={handleTabsChange}
-      orientation={props.orientation}
-    >
+    <Tabs onChange={handleTabsChange} {...other}>
       {props.steps.map((step, index) => (
-        <Tab key={index} disabled={index > props.maxStepIndex}>
+        <Tab key={index} disabled={index > maxStepIndex}>
           {step.title}
-          {step.optional ? ` - ${props.optionalText}` : ''}
+          {step.optional ? ` - ${optionalText}` : ''}
         </Tab>
       ))}
     </Tabs>

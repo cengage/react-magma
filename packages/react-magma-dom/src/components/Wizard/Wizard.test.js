@@ -10,15 +10,15 @@ const steps = [
   {
     title: 'Step Title 1',
     description: 'Enter general information',
-    children: <Input testId="step1" />,
+    children: <Input testId="step1" labelText="Step 1" />,
   },
   {
     title: 'Step Title 2',
-    children: <Input testId="step2" />,
+    children: <Input testId="step2" labelText="Step 2" />,
   },
   {
     title: 'Step Title 3',
-    children: <Input testId="step3" />,
+    children: <Input testId="step3" labelText="Step 3" />,
     optional: true,
   },
 ];
@@ -30,6 +30,7 @@ describe('i18n', () => {
         value={{
           ...defaultI18n,
           wizard: {
+            navigationLabel: 'navigation label',
             optional: 'not required',
             actions: {
               next: 'next label',
@@ -145,10 +146,11 @@ describe('Wizard', () => {
     });
   });
 
-  // it('renders accessible component', async () => {
-  //   const { container } = render(<Wizard steps={steps}/>);
-  //   const results = await axe(container);
+  it('Does not violate accessibility standards', () => {
+    const { container } = render(<Wizard steps={steps} />);
 
-  //   expect(results).toHaveNoViolations();
-  // });
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
+  });
 });
