@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
-import { Hyperlink, ThemeContext } from 'react-magma-dom';
+import { Hyperlink, ThemeContext, magma } from 'react-magma-dom';
 import { HexBackground } from './HexBackground';
 import { IntroHeading } from './IntroHeading';
 import { IntroSection } from './IntroSection';
@@ -186,7 +186,7 @@ export class IndexPageContent extends React.Component {
                   >
                     {linkProps => (
                       <Link {...linkProps}>
-                        <CodeIcon size={20} />
+                        <CodeIcon size={magma.iconSizes.medium} />
                         <span>Develop with React Magma</span>
                       </Link>
                     )}
@@ -199,7 +199,7 @@ export class IndexPageContent extends React.Component {
                   >
                     {linkProps => (
                       <Link {...linkProps}>
-                        <PaletteIcon size={20} />
+                        <PaletteIcon size={magma.iconSizes.medium} />
                         <span>Design with React Magma</span>
                       </Link>
                     )}

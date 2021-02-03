@@ -147,7 +147,7 @@ export const MainNav = ({ ...props }) => (
               to="https://github.com/cengage/react-magma"
             >
               GitHub
-              <LaunchIcon size={20} />
+              <LaunchIcon size={magma.iconSizes.small} />
             </StyledLink>
           </ListItem>
         </List>
@@ -159,7 +159,7 @@ export const MainNav = ({ ...props }) => (
                 <AccordionItemTitle>
                   <Heading2>
                     Develop
-                    <ExpandMoreIcon size={24} />
+                    <ExpandMoreIcon size={magma.iconSizes.medium} />
                   </Heading2>
                 </AccordionItemTitle>
                 <AccordionItemBody>
@@ -211,7 +211,7 @@ export const MainNav = ({ ...props }) => (
                 <AccordionItemTitle>
                   <Heading2>
                     Design
-                    <ExpandMoreIcon size={24} />
+                    <ExpandMoreIcon size={magma.iconSizes.medium} />
                   </Heading2>
                 </AccordionItemTitle>
                 <AccordionItemBody>

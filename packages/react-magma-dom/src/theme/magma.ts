@@ -317,9 +317,9 @@ export const magma = {
   },
 
   iconSizes: {
-    small: 16,
-    medium: 20,
-    large: 28,
+    small: 20,
+    medium: 24,
+    large: 32,
   },
 
   // Typography

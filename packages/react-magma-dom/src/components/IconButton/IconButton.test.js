@@ -257,8 +257,8 @@ describe('IconButton', () => {
 
         const svg = container.querySelector('svg');
 
-        expect(svg).toHaveAttribute('height', '28');
-        expect(svg).toHaveAttribute('width', '28');
+        expect(svg).toHaveAttribute('height', '32');
+        expect(svg).toHaveAttribute('width', '32');
       });
 
       it('Medium', () => {
@@ -270,8 +270,8 @@ describe('IconButton', () => {
         );
 
         const svg = container.querySelector('svg');
-        expect(svg).toHaveAttribute('height', '20');
-        expect(svg).toHaveAttribute('width', '20');
+        expect(svg).toHaveAttribute('height', '24');
+        expect(svg).toHaveAttribute('width', '24');
       });
 
       it('Small', () => {
@@ -283,8 +283,8 @@ describe('IconButton', () => {
         );
 
         const svg = container.querySelector('svg');
-        expect(svg).toHaveAttribute('height', '16');
-        expect(svg).toHaveAttribute('width', '16');
+        expect(svg).toHaveAttribute('height', '20');
+        expect(svg).toHaveAttribute('width', '20');
       });
     });
 
