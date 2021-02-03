@@ -12,25 +12,6 @@ props:
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import { AsteriskIcon, BellIcon, Cog2Icon, MenuIcon } from 'react-magma-icons';
-
-import {
-  Alert,
-  Button,
-  Checkbox,
-  Dropdown,
-  DropdownContent,
-  DropdownDivider,
-  DropdownHeader,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownSplitButton,
-  DropdownButton,
-  Input,
-  PasswordInput,
-  magma,
-  Modal,
-} from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
 import { Link } from 'gatsby';
 import { ButtonProps } from '../../components/ButtonProps';
@@ -404,7 +385,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from 'react-magma-dom';
-import { AsteriskIcon, BellIcon } from 'react-magma-icons';
+import { AsteriskIcon, NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -412,7 +393,9 @@ export function Example() {
       <DropdownButton>Leading Icons</DropdownButton>
       <DropdownContent>
         <DropdownMenuItem icon={<AsteriskIcon />}>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem icon={<BellIcon />}>Menu item 2</DropdownMenuItem>
+        <DropdownMenuItem icon={<NotificationsIcon />}>
+          Menu item 2
+        </DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
   );
@@ -563,7 +546,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from 'react-magma-dom';
-import { Cog2Icon, MenuIcon } from 'react-magma-icons';
+import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -574,7 +557,7 @@ export function Example() {
           color={ButtonColor.secondary}
           size={ButtonSize.large}
           variant={ButtonVariant.link}
-          icon={<Cog2Icon />}
+          icon={<SettingsIcon />}
         />
         <DropdownContent>
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -598,7 +581,7 @@ export function Example() {
           variant={ButtonVariant.outline}
           size={ButtonSize.small}
           iconPosition={ButtonIconPosition.right}
-          icon={<Cog2Icon />}
+          icon={<SettingsIcon />}
         >
           Icon Right with Text
         </DropdownButton>
@@ -612,7 +595,7 @@ export function Example() {
           variant={ButtonVariant.outline}
           size={ButtonSize.small}
           iconPosition={ButtonIconPosition.left}
-          icon={<Cog2Icon />}
+          icon={<SettingsIcon />}
         >
           Icon Left with Text
         </DropdownButton>

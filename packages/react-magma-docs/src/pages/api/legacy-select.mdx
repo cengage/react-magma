@@ -5,7 +5,7 @@ title: Legacy Select
 
 import { ScopeableLayout } from '../../components/layout';
 
-import { Search2Icon } from 'react-magma-icons';
+import { SearchIcon } from 'react-magma-icons';
 
 import { Alert, Card, CardBody } from 'react-magma-dom';
 
@@ -234,7 +234,7 @@ For this example I am importing `components` from `react-select` and renaming th
     return (
       ReactSelectComponents.DropdownIndicator && (
         <ReactSelectComponents.DropdownIndicator {...props}>
-          <Search2Icon size={10} />
+          <SearchIcon size={10} />
         </ReactSelectComponents.DropdownIndicator>
       )
     );
@@ -636,7 +636,7 @@ export default props => (
       CreatableSelect,
       AsyncCreatableSelect,
       ReactSelectComponents,
-      Search2Icon,
+      SearchIcon,
       Alert,
     }}
   />

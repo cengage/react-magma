@@ -6,14 +6,7 @@ title: Icon
 import { ScopeableLayout } from '../../components/layout';
 import * as ICONS from 'react-magma-icons';
 
-import {
-  GroupIcon,
-  CrossIcon,
-  InfoIcon,
-  AngleDownIcon,
-  HomeIcon,
-} from 'react-magma-icons';
-import { DatePicker, VisuallyHidden, Alert, Heading } from 'react-magma-dom';
+import { Alert, Heading } from 'react-magma-dom';
 import { SimplePropsTable } from '../../components/SimplePropsTable';
 import { DocsHeading } from '../../components/DocsHeading';
 
@@ -31,13 +24,7 @@ Icons are imported from a separate `react-magma-icons` package.
 import React from 'react';
 import { GroupIcon } from 'react-magma-icons';
 export function Example() {
-  return (
-    <p>
-      <span className="demo-icon-container">
-        <GroupIcon />
-      </span>
-    </p>
-  );
+  return <GroupIcon />;
 }
 ```
 
@@ -53,14 +40,12 @@ import React from 'react';
 import { CrossIcon, InfoIcon } from 'react-magma-icons';
 export function Example() {
   return (
-    <p>
-      <span className="demo-icon-container">
-        <CrossIcon title="Close This Message" />
-      </span>
-      <span className="demo-icon-container">
-        <InfoIcon id="infoIcon" title="Info Available" />
-      </span>
-    </p>
+    <>
+      <CrossIcon title="Close This Message" />
+      <br />
+      <br />
+      <InfoIcon id="infoIcon" title="Info Available" />
+    </>
   );
 }
 ```
@@ -69,17 +54,15 @@ export function Example() {
 
 ```tsx codesandbox=magma
 import React from 'react';
-import { AngleDownIcon } from 'react-magma-icons';
+import { CheckIcon } from 'react-magma-icons';
 export function Example() {
   return (
-    <p>
-      <span className="demo-icon-container">
-        <AngleDownIcon size={20} title="Small Size" />
-      </span>
-      <span className="demo-icon-container">
-        <AngleDownIcon size={50} title="Large Size" />
-      </span>
-    </p>
+    <>
+      <CheckIcon size={20} title="Small Size" />
+      <br />
+      <br />
+      <CheckIcon size={50} title="Large Size" />
+    </>
   );
 }
 ```
@@ -91,14 +74,12 @@ import React from 'react';
 import { AngleDownIcon } from 'react-magma-icons';
 export function Example() {
   return (
-    <p>
-      <span className="demo-icon-container">
-        <AngleDownIcon title="No Color" />
-      </span>
-      <span className="demo-icon-container">
-        <AngleDownIcon color="green" title="Some Color" />
-      </span>
-    </p>
+    <>
+      <AngleDownIcon title="No Color" />
+      <br />
+      <br />
+      <AngleDownIcon color="green" title="Some Color" />
+    </>
   );
 }
 ```
@@ -111,13 +92,7 @@ To improve the experience for assistive technology users and remove the icon and
 import React from 'react';
 import { HomeIcon } from 'react-magma-icons';
 export function Example() {
-  return (
-    <p>
-      <span className="demo-icon-container">
-        <HomeIcon aria-hidden="true" />
-      </span>
-    </p>
-  );
+  return <HomeIcon aria-hidden="true" />;
 }
 ```
 

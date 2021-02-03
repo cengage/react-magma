@@ -4,21 +4,6 @@ title: Input
 ---
 
 import { ScopeableLayout } from '../../components/layout';
-import {
-  CalendarIcon,
-  EnvelopeOIcon,
-  QuestionCircleIcon,
-  Search2Icon,
-} from 'react-magma-icons';
-import {
-  Input,
-  Button,
-  IconButton,
-  Spinner,
-  Tooltip,
-  Card,
-  CardBody,
-} from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
 import { Link } from 'gatsby';
 import { SimplePropsTable } from '../../components/SimplePropsTable';
@@ -192,13 +177,13 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
 ```tsx codesandbox=magma
 import React from 'react';
 import { Input, Spinner } from 'react-magma-dom';
-import { CalendarIcon, EnvelopeOIcon } from 'react-magma-icons';
+import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
       <Input
         labelText="Input with Icon on Left"
-        icon={<EnvelopeOIcon />}
+        icon={<MailOutlineIcon />}
         type="email"
       />
 
@@ -215,7 +200,7 @@ export function Example() {
         onIconClick={() => {
           alert('Icon clicked');
         }}
-        icon={<CalendarIcon />}
+        icon={<EventIcon />}
       />
     </>
   );
@@ -229,14 +214,14 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 ```tsx codesandbox=magma
 import React from 'react';
 import { Input } from 'react-magma-dom';
-import { CalendarIcon, EnvelopeOIcon } from 'react-magma-icons';
+import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
       <Input
         labelText="Input large with Icon on Left"
         inputSize="large"
-        icon={<EnvelopeOIcon />}
+        icon={<MailOutlineIcon />}
         type="email"
       />
 
@@ -247,7 +232,7 @@ export function Example() {
         onIconClick={() => {
           alert('Icon clicked');
         }}
-        icon={<CalendarIcon />}
+        icon={<EventIcon />}
       />
 
       <Input
@@ -305,11 +290,11 @@ This option should only be used in rare instances, such as a search field. Provi
 ```tsx codesandbox=magma
 import React from 'react';
 import { Input } from 'react-magma-dom';
-import { Search2Icon } from 'react-magma-icons';
+import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <Input
-      icon={<Search2Icon />}
+      icon={<SearchIcon />}
       isLabelVisuallyHidden
       labelText="Search"
       placeholder="Search"
@@ -327,7 +312,7 @@ will appear to the right of the field.
 ```tsx codesandbox=magma
 import React from 'react';
 import { IconButton, Input, Tooltip } from 'react-magma-dom';
-import { QuestionCircleIcon } from 'react-magma-icons';
+import { HelpOutlineIcon } from 'react-magma-icons';
 export function Example() {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
@@ -339,7 +324,7 @@ export function Example() {
       <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}
-          icon={<QuestionCircleIcon />}
+          icon={<HelpOutlineIcon />}
           onClick={onHelpLinkClick}
           type="button"
           variant="link"

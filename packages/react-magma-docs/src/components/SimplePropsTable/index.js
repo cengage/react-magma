@@ -25,7 +25,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
   return (
     <div>
       <Paragraph>
-        <AsteriskIcon size="12" color={magma.colors.primary} /> = required prop
+        <AsteriskIcon size={16} color={magma.colors.primary} /> = required prop
       </Paragraph>
       <Table
         hasZebraStripes
@@ -62,7 +62,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                         <span aria-label="Required" className="required">
                           {' '}
                           <AsteriskIcon
-                            size="12"
+                            size={16}
                             color={magma.colors.primary}
                           />
                         </span>
@@ -72,11 +72,9 @@ export const SimplePropsTable = ({ propertyValues }) => {
                           <IconButton
                             aria-label="deprecated"
                             icon={
-                              <NotificationIcon
-                                size={magma.iconSizes.small}
-                                color={magma.colors.danger}
-                              />
+                              <NotificationIcon color={magma.colors.danger} />
                             }
+                            size="small"
                             variant="link"
                           />
                         </Tooltip>

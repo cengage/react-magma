@@ -22,7 +22,7 @@ The `trigger` prop must take a react element (not just a string), and determines
 ```tsx codesandbox=magma
 import React from 'react';
 import { Tooltip, IconButton, ButtonVariant } from 'react-magma-dom';
-import { QuestionCircleIcon } from 'react-magma-icons';
+import { HelpOutlineIcon } from 'react-magma-icons';
 
 export function Example() {
   const tooltipContentShort = 'What is this?';
@@ -31,7 +31,7 @@ export function Example() {
       Lorem ipsum <i>dolor sit amet</i>. Vel molestie no, ut vim.
     </>
   );
-  const icon = <QuestionCircleIcon />;
+  const icon = <HelpOutlineIcon />;
   const ariaLabel = 'Get Help';
 
   return (
@@ -69,10 +69,10 @@ import {
   ButtonVariant,
 } from 'react-magma-dom';
 import {
-  CircleDownIcon,
-  CircleLeftIcon,
-  CircleRightIcon,
-  CircleUpIcon,
+  ArrowDownwardIcon,
+  ArrowForwardIcon,
+  ArrowBackIcon,
+  ArrowUpwardIcon,
 } from 'react-magma-icons';
 
 export function Example() {
@@ -82,7 +82,7 @@ export function Example() {
         <IconButton
           aria-label="Right"
           icon={<CircleRightIcon />}
-          variant={ButtonVariant.link}
+          variant={ButtonVariant.outline}
         />
       </Tooltip>
 
@@ -90,7 +90,7 @@ export function Example() {
         <IconButton
           aria-label="Left"
           icon={<CircleLeftIcon />}
-          variant={ButtonVariant.link}
+          variant={ButtonVariant.outline}
         />
       </Tooltip>
 
@@ -98,7 +98,7 @@ export function Example() {
         <IconButton
           aria-label="Bottom"
           icon={<CircleDownIcon />}
-          variant={ButtonVariant.link}
+          variant={ButtonVariant.outline}
         />
       </Tooltip>
 
@@ -106,7 +106,7 @@ export function Example() {
         <IconButton
           aria-label="Top"
           icon={<CircleUpIcon />}
-          variant={ButtonVariant.link}
+          variant={ButtonVariant.outline}
         />
       </Tooltip>
     </>
@@ -129,10 +129,10 @@ import {
   IconButton,
   ButtonVariant,
 } from 'react-magma-dom';
-import { QuestionCircleIcon } from 'react-magma-icons';
+import { HelpOutlineIcon } from 'react-magma-icons';
 
 export function Example() {
-  const icon = <QuestionCircleIcon />;
+  const icon = <HelpOutlineIcon />;
   const content = 'Inverse tooltip';
   const ariaLabel = 'Get Help';
 
@@ -176,10 +176,10 @@ The `arrowStyle` prop applies to the arrow indicator.
 ```tsx codesandbox=magma
 import React from 'react';
 import { Tooltip, IconButton, ButtonVariant } from 'react-magma-dom';
-import { QuestionCircleIcon } from 'react-magma-icons';
+import { HelpOutlineIcon } from 'react-magma-icons';
 
 export function Example() {
-  const icon = <QuestionCircleIcon />;
+  const icon = <HelpOutlineIcon />;
   const content = 'Styled tooltip';
   const ariaLabel = 'Get Help';
 
@@ -235,10 +235,10 @@ import {
   ThemeContext,
   magma,
 } from 'react-magma-dom';
-import { QuestionCircleIcon } from 'react-magma-icons';
+import { HelpOutlineIcon } from 'react-magma-icons';
 
 export function Example() {
-  const icon = <QuestionCircleIcon />;
+  const icon = <HelpOutlineIcon />;
   const content = 'Tooltip with custom theme';
   const ariaLabel = 'Get Help';
 

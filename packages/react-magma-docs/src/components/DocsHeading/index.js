@@ -61,7 +61,7 @@ export const DocsHeading = ({ children, to, type }) => (
         <Hyperlink color="secondary" styledAs="Button" to={to}>
           {linkProps => (
             <Link {...linkProps}>
-              <PaletteIcon size={magma.iconSizes.small} />
+              <PaletteIcon size={20} />
               <ButtonSpan>View Design Guidelines</ButtonSpan>
             </Link>
           )}
@@ -74,7 +74,7 @@ export const DocsHeading = ({ children, to, type }) => (
         <Hyperlink color="secondary" styledAs="Button" to={to}>
           {linkProps => (
             <Link {...linkProps}>
-              <CodeIcon size={magma.iconSizes.small} />
+              <CodeIcon size={20} />
               <ButtonSpan>View Component API</ButtonSpan>
             </Link>
           )}
