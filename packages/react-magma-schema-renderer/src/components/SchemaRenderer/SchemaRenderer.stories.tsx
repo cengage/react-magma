@@ -273,6 +273,55 @@ Basic.args = {
   },
 };
 
+export const Modal = Template.bind({});
+Modal.args = {
+  schema: {
+    type: templateTypes.BASIC,
+    fields: [
+      {
+        component: componentTypes.MODAL,
+        name: 'modal',
+        heading: 'welcome to the modal',
+        isOpen: true,
+        fields: [
+          {
+            component: componentTypes.ALERT,
+            name: 'ALERT',
+            children: 'THIS IS AN ALERT',
+          },
+          {
+            component: componentTypes.BANNER,
+            name: 'BANNER',
+            children: 'THIS IS A BANNER',
+          },
+          {
+            component: componentTypes.HEADING,
+            level: 1,
+            name: 'HEADING',
+            children: 'THIS IS A HEADING',
+          },
+          {
+            component: componentTypes.HYPERLINK,
+            name: 'HYPERLINK',
+            to: 'https://react-magma.cengage.com',
+            children: 'THIS IS A HYPERLINK',
+          },
+          {
+            component: componentTypes.TOAST,
+            name: 'TOAST',
+            children: 'THIS IS A TOAST',
+          },
+          {
+            component: componentTypes.PARAGRAPH,
+            name: 'PARAGRAPH',
+            children: 'THIS IS A PARAGRAPH',
+          },
+        ],
+      },
+    ],
+  },
+};
+
 export const Array = Template.bind({});
 Array.args = {
   schema: {

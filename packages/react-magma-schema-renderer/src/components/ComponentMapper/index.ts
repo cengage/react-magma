@@ -6,6 +6,7 @@ import { DatePicker } from '../DatePicker';
 // import { FieldArray } from '../FieldArray';
 import { FormGroup } from '../FormGroup';
 import { Input } from '../Input';
+import { Modal } from '../Modal';
 import { PasswordInput } from '../PasswordInput';
 import { Radio } from '../Radio';
 import { Review } from '../Review';
@@ -35,6 +36,7 @@ export enum componentTypes {
   // FIELD_ARRAY = 'FIELD_ARRAY',
   FORM_GROUP = 'FORM_GROUP',
   INPUT = 'INPUT',
+  MODAL = 'MODAL',
   PARAGRAPH = 'PARAGRAPH',
   PASSWORD_INPUT = 'PASSWORD_INPUT',
   RADIO = 'RADIO',
@@ -57,6 +59,7 @@ export const componentMapper: ComponentMapper = {
   // [componentTypes.FIELD_ARRAY]: FieldArray,
   [componentTypes.FORM_GROUP]: FormGroup,
   [componentTypes.INPUT]: Input,
+  [componentTypes.MODAL]: Modal,
   [componentTypes.PARAGRAPH]: Paragraph,
   [componentTypes.PASSWORD_INPUT]: PasswordInput,
   [componentTypes.RADIO]: Radio,
