@@ -3,18 +3,17 @@ import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-fie
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
 import {
-  PasswordInput,
+  PasswordInput as MagmaPasswordInput,
   PasswordInputProps as MagmaPasswordInputProps,
 } from 'react-magma-dom';
 
-export type PasswordProps = MagmaPasswordInputProps & UseFieldApiConfig;
+export type PasswordInputProps = MagmaPasswordInputProps & UseFieldApiConfig;
 
-const PasswordMapping: React.FunctionComponent<PasswordProps> = props => {
+const PasswordInputMapping = (props: PasswordInputProps) => {
   const {
     input,
     validateOnMount,
     showError,
-    type,
     meta: { error, submitFailed },
     ...rest
   } = useFieldApi(props);
@@ -23,7 +22,7 @@ const PasswordMapping: React.FunctionComponent<PasswordProps> = props => {
     ((validateOnMount || submitFailed || showError) && error) || '';
 
   return (
-    <PasswordInput
+    <MagmaPasswordInput
       {...input}
       labelText={rest.labelText}
       id={id}
@@ -33,4 +32,4 @@ const PasswordMapping: React.FunctionComponent<PasswordProps> = props => {
   );
 };
 
-export const Password = React.memo(PasswordMapping);
+export const PasswordInput = React.memo(PasswordInputMapping);

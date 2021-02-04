@@ -11,9 +11,7 @@ import {
 
 type RadioGroupProps = MagmaRadioGroupProps & UseFieldApiConfig;
 
-export const RadioMapping: React.FunctionComponent<RadioGroupProps> = (
-  props: any
-) => {
+const RadioMapping = (props: RadioGroupProps) => {
   const {
     input,
     options,

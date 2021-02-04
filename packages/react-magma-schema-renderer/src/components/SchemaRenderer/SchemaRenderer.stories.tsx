@@ -4,6 +4,7 @@ import {
   SchemaRenderer,
   SchemaRendererProps,
   componentTypes,
+  validatorTypes,
 } from './SchemaRenderer';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
@@ -35,12 +36,12 @@ Form.args = {
     ...baseSchema,
     fields: [
       {
-        component: componentTypes.TEXT_FIELD,
+        component: componentTypes.INPUT,
         name: 'name',
         labelText: 'Name',
       },
       {
-        component: componentTypes.PASSWORD,
+        component: componentTypes.PASSWORD_INPUT,
         name: 'password',
         labelText: 'Password',
       },
@@ -168,17 +169,17 @@ FormGroups.args = {
         name: 'formgroup1',
         fields: [
           {
-            component: componentTypes.TEXT_FIELD,
+            component: componentTypes.INPUT,
             labelText: 'First Name',
             name: 'first-name',
           },
           {
-            component: componentTypes.TEXT_FIELD,
+            component: componentTypes.INPUT,
             labelText: 'Middle Initial',
             name: 'middle-initial',
           },
           {
-            component: componentTypes.TEXT_FIELD,
+            component: componentTypes.INPUT,
             labelText: 'Last Name',
             name: 'last-name',
           },
@@ -235,6 +236,109 @@ Basic.args = {
         component: componentTypes.PARAGRAPH,
         name: 'paragraph-2',
         children: 'paragraph two.',
+      },
+      {
+        component: componentTypes.ALERT,
+        name: 'ALERT',
+        children: 'THIS IS AN ALERT',
+      },
+      {
+        component: componentTypes.BANNER,
+        name: 'BANNER',
+        children: 'THIS IS A BANNER',
+      },
+      {
+        component: componentTypes.HEADING,
+        level: 1,
+        name: 'HEADING',
+        children: 'THIS IS A HEADING',
+      },
+      {
+        component: componentTypes.HYPERLINK,
+        name: 'HYPERLINK',
+        to: 'https://react-magma.cengage.com',
+        children: 'THIS IS A HYPERLINK',
+      },
+      {
+        component: componentTypes.TOAST,
+        name: 'TOAST',
+        children: 'THIS IS A TOAST',
+      },
+      {
+        component: componentTypes.PARAGRAPH,
+        name: 'PARAGRAPH',
+        children: 'THIS IS A PARAGRAPH',
+      },
+    ],
+  },
+};
+
+export const Array = Template.bind({});
+Array.args = {
+  schema: {
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.FIELD_ARRAY,
+        label: 'Attribute Editor',
+        description: 'This is a form array',
+        name: 'fieldArray',
+        helperText: 'You can add up to 6 more items.',
+        minItems: 4,
+        maxItems: 6,
+        noItemsMessage: 'Please add new item',
+        defaultItem: {
+          key: 'key',
+          value: 'value',
+          type: 'type1',
+        },
+        validate: [
+          {
+            type: validatorTypes.MIN_ITEMS,
+            threshold: 4,
+          },
+          {
+            type: validatorTypes.REQUIRED,
+          },
+        ],
+        fields: [
+          {
+            component: componentTypes.INPUT,
+            name: 'key',
+            label: 'Key',
+            validate: [
+              {
+                type: validatorTypes.REQUIRED,
+              },
+            ],
+          },
+          {
+            component: componentTypes.INPUT,
+            name: 'value',
+            label: 'Value',
+            validate: [
+              {
+                type: validatorTypes.REQUIRED,
+              },
+            ],
+          },
+          {
+            component: componentTypes.SELECT,
+            name: 'type',
+            label: 'Type',
+            placeholder: 'Choose the type',
+            options: [
+              { label: 'Type 1', value: 'type1' },
+              { label: 'Type 2', value: 'type2' },
+              { label: 'Type 3', value: 'type3' },
+            ],
+            validate: [
+              {
+                type: validatorTypes.REQUIRED,
+              },
+            ],
+          },
+        ],
       },
     ],
   },

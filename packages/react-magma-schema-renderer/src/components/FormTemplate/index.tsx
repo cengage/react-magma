@@ -15,11 +15,11 @@ export interface FormTemplateProps {
   schema: any;
 }
 
-export const FormTemplate: React.FunctionComponent<FormTemplateProps> = ({
+export const FormTemplate = ({
   formFields,
   schema: { cancelLabel, submitLabel },
   schema,
-}) => {
+}: FormTemplateProps) => {
   const { handleSubmit, onCancel, getState } = useFormApi();
   const { submitting, pristine } = getState();
 

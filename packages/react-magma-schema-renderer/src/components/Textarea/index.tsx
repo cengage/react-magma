@@ -9,7 +9,7 @@ import {
 
 export type TextareaProps = MagmaTextareaProps & UseFieldApiConfig;
 
-const TextareaMapping: React.FunctionComponent<TextareaProps> = props => {
+const TextareaMapping = (props: TextareaProps) => {
   const {
     input,
     validateOnMount,

@@ -2,11 +2,15 @@ import React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import { v4 as uuidv4 } from 'uuid';
-import { Input, InputType, InputProps } from 'react-magma-dom';
+import {
+  Input as MagmaInput,
+  InputType,
+  InputProps as MagmaInputProps,
+} from 'react-magma-dom';
 
-export type TextFieldProps = InputProps & UseFieldApiConfig;
+export type InputProps = MagmaInputProps & UseFieldApiConfig;
 
-const TextFieldMapping: React.FunctionComponent<TextFieldProps> = props => {
+const InputMapping = (props: InputProps) => {
   const {
     input,
     validateOnMount,
@@ -20,9 +24,9 @@ const TextFieldMapping: React.FunctionComponent<TextFieldProps> = props => {
     ((validateOnMount || submitFailed || showError) && error) || '';
 
   return (
-    <Input
+    <MagmaInput
       {...input}
-      type={InputType.text}
+      type={type || InputType.text}
       id={id}
       errorMessage={errorMessage}
       {...rest}
@@ -30,4 +34,4 @@ const TextFieldMapping: React.FunctionComponent<TextFieldProps> = props => {
   );
 };
 
-export const TextField = React.memo(TextFieldMapping);
+export const Input = React.memo(InputMapping);

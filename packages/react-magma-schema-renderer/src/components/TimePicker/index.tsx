@@ -9,7 +9,7 @@ import {
 
 export type TimePickerProps = MagmaTimePickerProps & UseFieldApiConfig;
 
-const TimePickerMapping: React.FunctionComponent = (props: any) => {
+const TimePickerMapping = (props: TimePickerProps) => {
   const {
     input,
     validateOnMount,

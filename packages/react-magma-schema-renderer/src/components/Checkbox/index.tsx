@@ -16,7 +16,7 @@ interface MagmaMultiCheckboxProps extends MagmaFormGroupProps {
 type CheckboxProps = MagmaCheckboxProps & UseFieldApiConfig;
 type MultiCheckboxProps = MagmaMultiCheckboxProps & UseFieldApiConfig;
 
-const GroupedCheckbox: React.FunctionComponent<CheckboxProps> = props => {
+const GroupedCheckbox = (props: CheckboxProps) => {
   const { input } = useFieldApi({
     name: props.name,
     type: 'checkbox',
@@ -25,7 +25,7 @@ const GroupedCheckbox: React.FunctionComponent<CheckboxProps> = props => {
   return <MagmaCheckbox {...props} {...input} />;
 };
 
-export const CheckboxMapping: React.FunctionComponent<MultiCheckboxProps> = props => {
+const CheckboxMapping = (props: MultiCheckboxProps) => {
   const {
     input,
     options,

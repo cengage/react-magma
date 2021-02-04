@@ -10,7 +10,7 @@ export interface FormGroupProps extends MagmaFormGroupProps {
   showError?: boolean;
 }
 
-const FormGroupMapping: React.FunctionComponent<FormGroupProps> = props => {
+const FormGroupMapping = (props: FormGroupProps) => {
   const { renderForm } = useFormApi();
 
   const subfields = React.useMemo(() => {

@@ -23,7 +23,7 @@ interface MultiComboOptionEvent {
   selectedItems: ComboOption[];
 }
 
-const ComboboxMapping: React.FunctionComponent<ComboboxProps> = props => {
+const ComboboxMapping = (props: ComboboxProps) => {
   const {
     input,
     validateOnMount,

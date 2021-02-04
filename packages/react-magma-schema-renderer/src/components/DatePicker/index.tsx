@@ -9,7 +9,7 @@ import {
 
 export type DatePickerProps = MagmaDatePickerProps & UseFieldApiConfig;
 
-const DatePickerMapping: React.FunctionComponent<DatePickerProps> = props => {
+const DatePickerMapping = (props: DatePickerProps) => {
   const {
     input,
     validateOnMount,

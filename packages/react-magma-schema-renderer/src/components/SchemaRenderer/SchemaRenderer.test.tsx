@@ -23,7 +23,7 @@ describe('SchemaRenderer', () => {
       ...baseSchema,
       fields: [
         {
-          component: componentTypes.TEXT_FIELD,
+          component: componentTypes.INPUT,
           name: 'name',
           labelText: 'Name',
           isRequired: true,

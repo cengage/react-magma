@@ -1,4 +1,4 @@
-import React, { FunctionComponent, memo } from 'react';
+import * as React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
 
 import { v4 as uuidv4 } from 'uuid';
@@ -18,7 +18,7 @@ interface MultiSelectOptionEvent {
   selectedItems: SelectOption[];
 }
 
-const SelectMapping: FunctionComponent = (props: any) => {
+const SelectMapping = (props: any) => {
   const {
     input,
     validateOnMount,
@@ -52,4 +52,4 @@ const SelectMapping: FunctionComponent = (props: any) => {
   );
 };
 
-export const Select = memo(SelectMapping);
+export const Select = React.memo(SelectMapping);

@@ -1,47 +1,68 @@
-import { default as basicComponentTypes } from '@data-driven-forms/react-form-renderer/dist/cjs/component-types';
 import ComponentMapper from '@data-driven-forms/react-form-renderer/dist/cjs/component-mapper';
 
-import { TextField } from '../TextField';
 import { Checkbox } from '../Checkbox';
-import { Radio } from '../Radio';
+import { Combobox } from '../Combobox';
 import { DatePicker } from '../DatePicker';
+// import { FieldArray } from '../FieldArray';
+import { FormGroup } from '../FormGroup';
+import { Input } from '../Input';
+import { PasswordInput } from '../PasswordInput';
+import { Radio } from '../Radio';
+import { Review } from '../Review';
+import { Select } from '../Select';
+import { Textarea } from '../Textarea';
 import { TimePicker } from '../TimePicker';
 import { Toggle } from '../Toggle';
-import { Textarea } from '../Textarea';
-import { FormGroup } from '../FormGroup';
-import { Review } from '../Review';
-import { Password } from '../Password';
-import { Combobox } from '../Combobox';
-import { Select } from '../Select';
-import { Paragraph } from '../Paragraph';
-// import { Wizard } from '../Wizard';
-// import { FieldArray } from '../FieldArray';
 
-export const componentTypes = {
-  ...basicComponentTypes,
-  SWITCH: 'TOGGLE',
-  TOGGLE: 'TOGGLE',
-  REVIEW: 'REVIEW',
-  FORM_GROUP: 'FORM_GROUP',
-  PASSWORD: 'PASSWORD',
-  COMBOBOX: 'COMBOBOX',
-  PARAGRAPH: 'PARAGRAPH',
-};
+import {
+  Alert,
+  Banner,
+  Heading,
+  Hyperlink,
+  Toast,
+  Paragraph,
+} from 'react-magma-dom';
+
+export enum componentTypes {
+  ALERT = 'ALERT',
+  BANNER = 'BANNER',
+  HEADING = 'HEADING',
+  HYPERLINK = 'HYPERLINK',
+  TOAST = 'TOAST',
+  CHECKBOX = 'CHECKBOX',
+  COMBOBOX = 'COMBOBOX',
+  DATE_PICKER = 'DATE_PICKER',
+  // FIELD_ARRAY = 'FIELD_ARRAY',
+  FORM_GROUP = 'FORM_GROUP',
+  INPUT = 'INPUT',
+  PARAGRAPH = 'PARAGRAPH',
+  PASSWORD_INPUT = 'PASSWORD_INPUT',
+  RADIO = 'RADIO',
+  REVIEW = 'REVIEW',
+  SELECT = 'SELECT',
+  TEXTAREA = 'TEXTAREA',
+  TIME_PICKER = 'TIME_PICKER',
+  TOGGLE = 'TOGGLE',
+}
 
 export const componentMapper: ComponentMapper = {
-  [componentTypes.TEXT_FIELD]: TextField,
+  [componentTypes.ALERT]: Alert,
+  [componentTypes.BANNER]: Banner,
+  [componentTypes.HEADING]: Heading,
+  [componentTypes.HYPERLINK]: Hyperlink,
+  [componentTypes.TOAST]: Toast,
   [componentTypes.CHECKBOX]: Checkbox,
-  [componentTypes.FORM_GROUP]: FormGroup,
-  [componentTypes.RADIO]: Radio,
+  [componentTypes.COMBOBOX]: Combobox,
   [componentTypes.DATE_PICKER]: DatePicker,
+  // [componentTypes.FIELD_ARRAY]: FieldArray,
+  [componentTypes.FORM_GROUP]: FormGroup,
+  [componentTypes.INPUT]: Input,
+  [componentTypes.PARAGRAPH]: Paragraph,
+  [componentTypes.PASSWORD_INPUT]: PasswordInput,
+  [componentTypes.RADIO]: Radio,
+  [componentTypes.REVIEW]: Review,
+  [componentTypes.SELECT]: Select,
+  [componentTypes.TEXTAREA]: Textarea,
   [componentTypes.TIME_PICKER]: TimePicker,
   [componentTypes.TOGGLE]: Toggle,
-  [componentTypes.TEXTAREA]: Textarea,
-  [componentTypes.COMBOBOX]: Combobox,
-  [componentTypes.SELECT]: Select,
-  [componentTypes.PARAGRAPH]: Paragraph,
-  // [componentTypes.WIZARD]: Wizard,
-  // [componentTypes.FIELD_ARRAY]: FieldArray,
-  [componentTypes.REVIEW]: Review,
-  [componentTypes.PASSWORD]: Password,
 };

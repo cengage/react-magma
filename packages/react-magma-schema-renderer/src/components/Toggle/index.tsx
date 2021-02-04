@@ -9,7 +9,7 @@ import {
 
 export type ToggleProps = MagmaToggleProps & UseFieldApiConfig;
 
-const ToggleMapping: React.FunctionComponent<ToggleProps> = (props: any) => {
+const ToggleMapping = (props: ToggleProps) => {
   const {
     input,
     validateOnMount,
