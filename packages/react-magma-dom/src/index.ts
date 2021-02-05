@@ -131,6 +131,37 @@ export {
 } from './components/SkipLinkContent';
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
+  Table,
+  TableProps,
+  TableDensity,
+  TableCellAlign,
+  TableContext,
+  TableSortDirection,
+  TableBody,
+  TableBodyProps,
+  TableCell,
+  TableCellProps,
+  TableHead,
+  TableHeadProps,
+  TableHeaderCell,
+  TableHeaderCellProps,
+  TableRow,
+  TableRowProps,
+} from './components/Table';
+
+export { TabsContainer } from './components/Tabs/TabsContainer';
+export {
+  Tabs,
+  TabsAlignment,
+  TabsBorderPosition,
+  TabsIconPosition,
+  TabsOrientation,
+} from './components/Tabs';
+export { Tab } from './components/Tabs/Tab';
+export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
+export { TabPanel } from './components/Tabs/TabPanel';
+
+export {
   ToastsContainer,
   ToastsContainerProps,
 } from './components/Toast/ToastsContainer';
@@ -161,34 +192,4 @@ export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
-
-export { TabsContainer } from './components/Tabs/TabsContainer';
-export {
-  Tabs,
-  TabsAlignment,
-  TabsBorderPosition,
-  TabsIconPosition,
-  TabsOrientation,
-} from './components/Tabs';
-export { Tab } from './components/Tabs/Tab';
-export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
-export { TabPanel } from './components/Tabs/TabPanel';
-
-export {
-  Table,
-  TableProps,
-  TableDensity,
-  TableCellAlign,
-  TableContext,
-  TableSortDirection,
-} from './components/Table';
-export { TableBody, TableBodyProps } from './components/Table/TableBody';
-export { TableCell, TableCellProps } from './components/Table/TableCell';
-export { TableHead, TableHeadProps } from './components/Table/TableHead';
-export {
-  TableHeaderCell,
-  TableHeaderCellProps,
-} from './components/Table/TableHeaderCell';
-export { TableRow, TableRowProps } from './components/Table/TableRow';
-
 export { useMediaQuery } from './hooks/useMediaQuery';
