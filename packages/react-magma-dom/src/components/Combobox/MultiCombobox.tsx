@@ -17,9 +17,11 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
+    errorMessage,
     defaultItems,
     disableCreateItem,
     hasError,
+    helperMessage,
     inputStyle,
     disabled,
     innerRef,
@@ -29,9 +31,11 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     itemListMaxHeight,
     items,
     itemToString,
+    labelPosition,
     labelStyle,
     labelText,
     menuStyle,
+    messageStyle,
     newItemTransform,
     onInputBlur,
     onInputChange,
@@ -282,11 +286,16 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   return (
     <SelectContainer
+      descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
+      helperMessage={helperMessage}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      messageStyle={messageStyle}
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}

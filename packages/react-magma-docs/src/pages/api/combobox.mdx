@@ -841,6 +841,30 @@ export function Example() {
 }
 ```
 
+## Label Position
+
+The `labelPosition` prop can be used to set the position of the text label relative to the form field. It accepts either `top` or `left`, with `top` as the default.
+Left-aligned lables are not recommended for use in standard forms; instead they are designed for smaller spaces where vertical space is limited, such as in a toolbar.
+
+```tsx codesandbox=magma
+import React from 'react';
+import { Combobox, LabelPosition } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Combobox
+      labelPosition={LabelPosition.top}
+      labelText="Left-aligned Label"
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+    />
+  );
+}
+```
+
 ## Custom Styles
 
 Custom styles can be passed into the Combobox component. The `containerStyle` property will apply to the container.

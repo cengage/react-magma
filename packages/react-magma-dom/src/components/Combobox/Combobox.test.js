@@ -701,6 +701,19 @@ describe('Combobox', () => {
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
 
+  it('should show a left aligned label', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Combobox labelText={labelText} items={items} labelPosition="left" />
+    );
+
+    expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+      'display',
+      'flex'
+    );
+  });
+
   it('should show loading indicator', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];

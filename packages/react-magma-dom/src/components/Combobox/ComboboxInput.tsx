@@ -37,6 +37,7 @@ const InputContainer = styled.div<{
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
   min-height: ${props => props.theme.spaceScale.spacing09};
+  min-width: ${props => props.theme.spaceScale.spacing13};
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
   width: 100%;
 
