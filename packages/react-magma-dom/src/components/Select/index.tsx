@@ -8,7 +8,6 @@ import {
 
 import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
-//import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
 import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
