@@ -467,6 +467,19 @@ describe('Select', () => {
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
 
+  it('should show a left aligned label', () => {
+    const labelText = 'Label';
+    const items = ['Red', 'Blue', 'Green'];
+    const { getByTestId } = render(
+      <Select labelText={labelText} items={items} labelPosition="left" />
+    );
+
+    expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+      'display',
+      'flex'
+    );
+  });
+
   it('should allow you to send in your own components', () => {
     const labelText = 'Label';
     const items = ['Red', 'Blue', 'Green'];
