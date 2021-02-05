@@ -181,9 +181,9 @@ const IconContainer = styled.span<{ disabled?: boolean; theme?: any }>`
     props.disabled
       ? props.theme.colors.neutral05
       : props.theme.colors.neutral08};
-  left: 7px;
+  left: 5px;
   position: absolute;
-  top: 4px;
+  top: 2px;
 
   svg {
     display: block;
@@ -298,7 +298,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               theme={theme}
             >
               <IconContainer disabled={disabled} theme={theme}>
-                <CheckIcon size={11} />
+                <CheckIcon size={16} />
               </IconContainer>
               <Thumb
                 checked={checked}

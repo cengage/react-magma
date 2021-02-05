@@ -183,11 +183,10 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
 const AlertContents = styled.div`
   align-self: center;
   flex-grow: 1;
-  padding: ${props => props.theme.spaceScale.spacing05}
-    ${props => props.theme.spaceScale.spacing04};
+  padding: ${props => props.theme.spaceScale.spacing04} 0;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding-left: ${props => props.theme.spaceScale.spacing05};
+    padding-left: ${props => props.theme.spaceScale.spacing04};
   }
 `;
 
@@ -200,7 +199,7 @@ const IconWrapperStyles = css`
 const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
-  props.theme.spaceScale.spacing05};
+  props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     display: none;
@@ -233,7 +232,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     ${props => props.theme.borderRadius} 0;
   color: inherit;
   height: auto;
-  padding: 0 ${props => props.theme.spaceScale.spacing05};
+  padding: 0 13px;
   width: auto;
 
   &&:focus:not(:disabled) {
@@ -266,7 +265,7 @@ function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
 
   return (
     <IconWrapper isToast={isToast} theme={theme}>
-      <Icon size={20} />
+      <Icon size={24} />
     </IconWrapper>
   );
 }
@@ -351,7 +350,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                 aria-label={
                   closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
                 }
-                icon={<CrossIcon size={hasTimerRing ? 10 : 13} />}
+                icon={<CrossIcon size={hasTimerRing ? 16 : 20} />}
                 isInverse
                 onClick={forceDismiss || handleDismiss}
                 theme={theme}
