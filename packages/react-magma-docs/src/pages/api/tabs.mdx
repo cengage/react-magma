@@ -33,8 +33,17 @@ The tab system is made up of five components:
 `Tab`, which is each individual menu item within the tabs navigation bar. `TabPanelsContainer`, which contains the tab panels and internally handles the index relationship with `Tabs`.
 And `TabPanel`, which contains the individual content sections for each tab.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <TabsContainer activeIndex={1}>
       <Tabs aria-label="Sample Tabs">
@@ -55,7 +64,8 @@ And `TabPanel`, which contains the individual content sections for each tab.
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-)}
+  );
+}
 ```
 
 ## Vertical Tabs
@@ -64,31 +74,44 @@ The `orientation` prop can be used to display tabs vertically, instead of horizo
 The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
 This prop is specified on the `Tabs` component.
 
-```.jsx
-() => {
-  return (
-    <div>
-      <TabsContainer>
-        <Tabs aria-label="Sample Vertical Tabs" orientation='vertical' backgroundColor='#F7F7F7'>
-          <Tab>Main page with a longer text label</Tab>
-          <Tab>FAQ</Tab>
-          <Tab>About us</Tab>
-        </Tabs>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsOrientation,
+  magma,
+} from 'react-magma-dom';
 
-        <TabPanelsContainer>
-          <TabPanel>
-            <div>Main page</div>
-          </TabPanel>
-          <TabPanel>
-            <div>FAQ</div>
-          </TabPanel>
-          <TabPanel>
-            <div>About us</div>
-          </TabPanel>
-        </TabPanelsContainer>
-      </TabsContainer>
-    </div>
-  )
+export function Example() {
+  return (
+    <TabsContainer>
+      <Tabs
+        aria-label="Sample Vertical Tabs"
+        orientation={TabsOrientation.vertical}
+        backgroundColor={magma.colors.neutral07}
+      >
+        <Tab>Main page with a longer text label</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  );
 }
 ```
 
@@ -101,8 +124,19 @@ By default, horizontal tabs have the indicator placed underneath the tabs. Howev
 The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsBorderPosition,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <TabsContainer>
       <TabPanelsContainer>
@@ -116,13 +150,17 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
           <div>About us</div>
         </TabPanel>
       </TabPanelsContainer>
-      <Tabs aria-label="Sample Border Top Tabs" backgroundColor='#F7F7F7' borderPosition='top'>
+      <Tabs
+        aria-label="Sample Border Top Tabs"
+        backgroundColor={magma.colors.neutral07}
+        borderPosition={TabsBorderPosition.top}
+      >
         <Tab>Main page</Tab>
         <Tab>FAQ</Tab>
         <Tab>About us</Tab>
       </Tabs>
     </TabsContainer>
-  )
+  );
 }
 ```
 
@@ -134,8 +172,20 @@ The `borderPosition` prop is an enum and accepts `left` or `right` for horizonta
 
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsBorderPosition,
+  TabsOrientation,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <TabsContainer>
       <TabPanelsContainer>
@@ -149,13 +199,18 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
           <div>About us</div>
         </TabPanel>
       </TabPanelsContainer>
-      <Tabs aria-label="Sample Border Right Vertical Tabs" backgroundColor='#F7F7F7' borderPosition='right' orientation='vertical'>
+      <Tabs
+        aria-label="Sample Border Right Vertical Tabs"
+        backgroundColor={magma.colors.neutral07}
+        borderPosition={TabsBorderPosition.right}
+        orientation={TabsOrientation.vertical}
+      >
         <Tab>Main page</Tab>
         <Tab>FAQ</Tab>
         <Tab>About us</Tab>
       </Tabs>
     </TabsContainer>
-  )
+  );
 }
 ```
 
@@ -166,11 +221,20 @@ that returns a `Tab`.
 
 For a custom component you'll receive a `tabsProps` prop that you must spread in to the `Tab` component in your renderer.
 
-```.jsx
-() => {
-  const OptionalTab = ({toggle, tabProps}) => {
-    return toggle ? <Tab {...tabProps}>Hello There</Tab> : null
-  }
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  const OptionalTab = ({ toggle, tabProps }) => {
+    return toggle ? <Tab {...tabProps}>Hello There</Tab> : null;
+  };
 
   return (
     <TabsContainer activeIndex={0}>
@@ -194,7 +258,7 @@ For a custom component you'll receive a `tabsProps` prop that you must spread in
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
@@ -202,8 +266,18 @@ For a custom component you'll receive a `tabsProps` prop that you must spread in
 
 This is a simple example of Tab Components with custom switching logic
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   function handleChange(index) {
@@ -214,7 +288,7 @@ This is a simple example of Tab Components with custom switching logic
     <TabsContainer activeIndex={activeIndex}>
       <Tabs
         aria-label="Sample Custom Logic Tabs"
-        backgroundColor='#F7F7F7'
+        backgroundColor={magma.colors.neutral07}
         onChange={handleChange}
       >
         <Tab>First item</Tab>
@@ -234,7 +308,7 @@ This is a simple example of Tab Components with custom switching logic
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
@@ -242,9 +316,17 @@ This is a simple example of Tab Components with custom switching logic
 
 Custom logic can also be added to an individual `Tab`, by using the `onClick` prop.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
 
+export function Example() {
   function customOnClick(index) {
     console.log('Custom OnClick');
   }
@@ -269,16 +351,28 @@ Custom logic can also be added to an individual `Tab`, by using the `onClick` pr
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-)}
+  );
+}
 ```
 
 ## Disabled Tabs
 
 If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
 
-```.jsx
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
 <TabsContainer>
-  <Tabs aria-label="Sample With Disabled Tabs" backgroundColor='#F7F7F7'>
+  <Tabs aria-label="Sample With Disabled Tabs" backgroundColor={magma.colors.neutral07}>
     <Tab>Main page</Tab>
     <Tab disabled>FAQ</Tab>
     <Tab>About us</Tab>
@@ -302,46 +396,42 @@ If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. I
 
 The `alignment` prop determines whether the tabs are aligned `left`, `right` or `center`. `Left` is the default.
 
-```.jsx
-  <TabsContainer>
-    <Tabs aria-label="Sample Center Alignment Tabs" alignment='center'>
-      <Tab>Main page</Tab>
-      <Tab>FAQ</Tab>
-      <Tab>About us</Tab>
-    </Tabs>
-    <TabPanelsContainer>
-      <TabPanel>
-        <div>Main page</div>
-      </TabPanel>
-      <TabPanel>
-        <div>FAQ</div>
-      </TabPanel>
-      <TabPanel>
-        <div>About us</div>
-      </TabPanel>
-    </TabPanelsContainer>
-  </TabsContainer>
-```
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsAlignment,
+} from 'react-magma-dom';
 
-```.jsx
- <TabsContainer>
-   <Tabs aria-label="Sample Right Alignment Tabs" alignment='right'>
-     <Tab>Main page</Tab>
-     <Tab>FAQ</Tab>
-     <Tab>About us</Tab>
-   </Tabs>
-   <TabPanelsContainer>
-     <TabPanel>
-       <div>Main page</div>
-     </TabPanel>
-     <TabPanel>
-       <div>FAQ</div>
-     </TabPanel>
-     <TabPanel>
-       <div>About us</div>
-     </TabPanel>
-   </TabPanelsContainer>
- </TabsContainer>
+export function Example() {
+  return (
+    <TabsContainer>
+      <Tabs
+        aria-label="Sample Center Alignment Tabs"
+        alignment={TabsAlignment.center}
+      >
+        <Tab>Main page</Tab>
+        <Tab>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  );
+}
 ```
 
 ## Full-Width
@@ -350,9 +440,22 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 
 Full width tabs work best when inside a smaller container. This example uses the `useMediaQuery` hook to set this prop only on devices with smaller browser widths.
 
-```.jsx
-() => {
-  const isSmallerScreen = useMediaQuery(`(max-width:${magma.breakpoints.large}px)`);
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  useMediaQuery,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
+  const isSmallerScreen = useMediaQuery(
+    `(max-width:${magma.breakpoints.large}px)`
+  );
 
   return (
     <TabsContainer>
@@ -373,94 +476,126 @@ Full width tabs work best when inside a smaller container. This example uses the
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
 ## Scrollable Tabs
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <div>
       <TabsContainer>
-          <Tabs aria-label="Sample Scrollable Tabs" backgroundColor='#F7F7F7'>
-            <Tab>First item with a longer text label</Tab>
-            <Tab>Second item</Tab>
-            <Tab>Third item</Tab>
-            <Tab>Fourth item</Tab>
-            <Tab>Fifth item</Tab>
-            <Tab>Sixth item</Tab>
-            <Tab>Seventh item</Tab>
-            <Tab>Eighth item</Tab>
-          </Tabs>
+        <Tabs
+          aria-label="Sample Scrollable Tabs"
+          backgroundColor={magma.colors.neutral07}
+        >
+          <Tab>First item with a longer text label</Tab>
+          <Tab>Second item</Tab>
+          <Tab>Third item</Tab>
+          <Tab>Fourth item</Tab>
+          <Tab>Fifth item</Tab>
+          <Tab>Sixth item</Tab>
+          <Tab>Seventh item</Tab>
+          <Tab>Eighth item</Tab>
+        </Tabs>
 
-          <TabPanelsContainer>
-            <TabPanel>
-              <div>First item</div>
-            </TabPanel>
-            <TabPanel>
-              <div>Second item</div>
-            </TabPanel>
-            <TabPanel>
-              <div>Third item</div>
-            </TabPanel>
-            <TabPanel>
-              <div>Fourth item</div>
-            </TabPanel>
-            <TabPanel>
-              <div>Fifth item</div>
-            </TabPanel>
-            <TabPanel>
-              <div>Sixth item</div>
-            </TabPanel>
-            <TabPanel>
-              <div>Seventh item</div>
-            </TabPanel>
-            <TabPanel>
-              <div>Eighth item</div>
-            </TabPanel>
-          </TabPanelsContainer>
+        <TabPanelsContainer>
+          <TabPanel>
+            <div>First item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Second item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Third item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Fourth item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Fifth item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Sixth item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Seventh item</div>
+          </TabPanel>
+          <TabPanel>
+            <div>Eighth item</div>
+          </TabPanel>
+        </TabPanelsContainer>
       </TabsContainer>
     </div>
-  )
+  );
 }
 ```
 
 ## Scrollable Vertical Tabs
 
-```.jsx
-<TabsContainer style={{ height: '200px', overflow: 'hidden'  }}>
-  <Tabs aria-label="Sample Scrollable Vertical Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
-    <Tab>First item</Tab>
-    <Tab>Second item</Tab>
-    <Tab>Third item</Tab>
-    <Tab>Fourth item</Tab>
-    <Tab>Fifth item</Tab>
-    <Tab>Sixth item</Tab>
-  </Tabs>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsOrientation,
+  magma,
+} from 'react-magma-dom';
 
-  <TabPanelsContainer>
-    <TabPanel>
-      <div>First item</div>
-    </TabPanel>
-    <TabPanel>
-      <div>Second item</div>
-    </TabPanel>
-    <TabPanel>
-      <div>Third item</div>
-    </TabPanel>
-    <TabPanel>
-      <div>Fourth item</div>
-    </TabPanel>
-    <TabPanel>
-      <div>Fifth item</div>
-    </TabPanel>
-    <TabPanel>
-      <div>Sixth item</div>
-    </TabPanel>
-  </TabPanelsContainer>
-</TabsContainer>
+export function Example() {
+  return (
+    <TabsContainer style={{ height: '200px', overflow: 'hidden' }}>
+      <Tabs
+        aria-label="Sample Scrollable Vertical Tabs"
+        backgroundColor={magma.colors.neutral07}
+        orientation={TabsOrientation.vertical}
+      >
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+        <Tab>Third item</Tab>
+        <Tab>Fourth item</Tab>
+        <Tab>Fifth item</Tab>
+        <Tab>Sixth item</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>First item</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Second item</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Third item</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Fourth item</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Fifth item</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Sixth item</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  );
+}
 ```
 
 ## Icon
@@ -471,14 +606,30 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 
 `Tab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  magma,
+} from 'react-magma-dom';
+
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+
+export function Example() {
+  const gradIcon = <GraduationCapIcon />;
+  const androidIcon = <AndroidIcon />;
+  const bellIcon = <BellIcon />;
+
   return (
     <TabsContainer>
       <Tabs aria-label="Sample Icon Only Tabs">
-        <Tab aria-label='Graduation' icon={<GraduationCapIcon />} />
-        <Tab aria-label='Android' icon={<AndroidIcon />} />
-        <Tab aria-label='Notifications' icon={<BellIcon />} />
+        <Tab aria-label="Graduation" icon={gradIcon} />
+        <Tab aria-label="Android" icon={androidIcon} />
+        <Tab aria-label="Notifications" icon={bellIcon} />
       </Tabs>
       <TabPanelsContainer>
         <TabPanel>
@@ -492,7 +643,7 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
@@ -501,14 +652,30 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 `Tab` components with children and `icon` prop will display both the icon and the children.
 By default, the icons appear above the children.
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  magma,
+} from 'react-magma-dom';
+
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+
+export function Example() {
+  const gradIcon = <GraduationCapIcon />;
+  const androidIcon = <AndroidIcon />;
+  const bellIcon = <BellIcon />;
+
   return (
     <TabsContainer>
       <Tabs aria-label="Sample Icon With Text Tabs">
-        <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-        <Tab icon={<AndroidIcon />}>Second item</Tab>
-        <Tab icon={<BellIcon />}>Third item</Tab>
+        <Tab icon={gradIcon}>First item with a longer text label</Tab>
+        <Tab icon={androidIcon}>Second item</Tab>
+        <Tab icon={bellIcon}>Third item</Tab>
       </Tabs>
       <TabPanelsContainer>
         <TabPanel>
@@ -522,32 +689,57 @@ By default, the icons appear above the children.
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
 ### Vertical Tabs with Icons
 
-```.jsx
-<TabsContainer>
-  <Tabs aria-label="Sample Vertical Icon Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
-    <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-    <Tab icon={<AndroidIcon />}>Second item</Tab>
-    <Tab icon={<BellIcon />}>Third item</Tab>
-  </Tabs>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsOrientation,
+  magma,
+} from 'react-magma-dom';
 
-  <TabPanelsContainer>
-    <TabPanel>
-      <div>Main page</div>
-    </TabPanel>
-    <TabPanel>
-      <div>FAQ</div>
-    </TabPanel>
-    <TabPanel>
-      <div>About us</div>
-    </TabPanel>
-  </TabPanelsContainer>
-</TabsContainer>
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+
+export function Example() {
+  const gradIcon = <GraduationCapIcon />;
+  const androidIcon = <AndroidIcon />;
+  const bellIcon = <BellIcon />;
+
+  return (
+    <TabsContainer>
+      <Tabs
+        aria-label="Sample Vertical Icon Tabs"
+        backgroundColor={magma.colors.neutral07}
+        orientation={TabsOrientation.vertical}
+      >
+        <Tab icon={gradIcon}>First item with a longer text label</Tab>
+        <Tab icon={androidIcon}>Second item</Tab>
+        <Tab icon={bellIcon}>Third item</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  );
+}
 ```
 
 ### Icon Position
@@ -556,40 +748,77 @@ The `iconPosition` prop can be used to position the icon relative to the childre
 The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `bottom` with `top` being the default for horizontal tabs.
 This prop is specified on the `Tabs` component.
 
-```.jsx
-<>
-  <TabsContainer>
-    <Tabs aria-label="Sample Icon Position Left Tabs" iconPosition="left" backgroundColor='#F7F7F7'>
-      <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-      <Tab icon={<AndroidIcon />}>Second item</Tab>
-      <Tab icon={<BellIcon />}>Third item</Tab>
-    </Tabs>
-  </TabsContainer>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsOrientation,
+  TabsIconPostion,
+  magma,
+} from 'react-magma-dom';
 
-  <br />
-  <br />
-  <br />
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
 
-  <TabsContainer>
-    <Tabs aria-label="Sample Icon Position Bottom Tabs" iconPosition="bottom" backgroundColor='#F7F7F7'>
-      <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-      <Tab icon={<AndroidIcon />}>Second item</Tab>
-      <Tab icon={<BellIcon />}>Third item</Tab>
-    </Tabs>
-  </TabsContainer>
+export function Example() {
+  const gradIcon = <GraduationCapIcon />;
+  const androidIcon = <AndroidIcon />;
+  const bellIcon = <BellIcon />;
 
-  <br />
-  <br />
-  <br />
+  return (
+    <>
+      <TabsContainer>
+        <Tabs
+          aria-label="Sample Icon Position Left Tabs"
+          backgroundColor={magma.colors.neutral07}
+          iconPosition={TabsIconPostion.left}
+        >
+          <Tab icon={gradIcon}>First item with a longer text label</Tab>
+          <Tab icon={androidIcon}>Second item</Tab>
+          <Tab icon={bellIcon}>Third item</Tab>
+        </Tabs>
+      </TabsContainer>
+      <br />
+      <br />
+      <br />
 
-  <TabsContainer>
-    <Tabs aria-label="Sample Icon Position Right Tabs" iconPosition="right" backgroundColor='#F7F7F7'>
-      <Tab icon={<GraduationCapIcon />}>First item with a longer text label</Tab>
-      <Tab icon={<AndroidIcon />}>Second item</Tab>
-      <Tab icon={<BellIcon />}>Third item</Tab>
-    </Tabs>
-  </TabsContainer>
-</>
+      <TabsContainer>
+        <Tabs
+          aria-label="Sample Icon Position Bottom Tabs"
+          backgroundColor={magma.colors.neutral07}
+          iconPosition={TabsIconPostion.bottom}
+        >
+          <Tab icon={<GraduationCapIcon />}>
+            First item with a longer text label
+          </Tab>
+          <Tab icon={<AndroidIcon />}>Second item</Tab>
+          <Tab icon={<BellIcon />}>Third item</Tab>
+        </Tabs>
+      </TabsContainer>
+
+      <br />
+      <br />
+      <br />
+
+      <TabsContainer>
+        <Tabs
+          aria-label="Sample Icon Position Right Tabs"
+          backgroundColor={magma.colors.neutral07}
+          iconPosition={TabsIconPostion.right}
+        >
+          <Tab icon={<GraduationCapIcon />}>
+            First item with a longer text label
+          </Tab>
+          <Tab icon={<AndroidIcon />}>Second item</Tab>
+          <Tab icon={<BellIcon />}>Third item</Tab>
+        </Tabs>
+      </TabsContainer>
+    </>
+  );
+}
 ```
 
 ### Icon Position (vertical)
@@ -597,26 +826,53 @@ This prop is specified on the `Tabs` component.
 Vertical tabs only accept `left` or `right` for the `iconPosition` prop, with `left` being default.
 This prop is specified on the `Tabs` component.
 
-```.jsx
-<TabsContainer>
-  <Tabs aria-label="Sample Icon Position Right Vertical Tabs" backgroundColor='#F7F7F7' iconPosition='right' orientation='vertical'>
-    <Tab icon={<GraduationCapIcon />}>First item</Tab>
-    <Tab icon={<AndroidIcon />}>Second item</Tab>
-    <Tab icon={<BellIcon />}>Third item</Tab>
-  </Tabs>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  TabsOrientation,
+  TabsIconPostion,
+  magma,
+} from 'react-magma-dom';
 
-  <TabPanelsContainer>
-    <TabPanel>
-      <div>Main page</div>
-    </TabPanel>
-    <TabPanel>
-      <div>FAQ</div>
-    </TabPanel>
-    <TabPanel>
-      <div>About us</div>
-    </TabPanel>
-  </TabPanelsContainer>
-</TabsContainer>
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+
+export function Example() {
+  const gradIcon = <GraduationCapIcon />;
+  const androidIcon = <AndroidIcon />;
+  const bellIcon = <BellIcon />;
+
+  return (
+    <TabsContainer>
+      <Tabs
+        aria-label="Sample Icon Position Right Vertical Tabs"
+        backgroundColor={magma.colors.neutral07}
+        iconPosition={TabsIconPostion.right}
+        orientation={TabsOrientation.vertical}
+      >
+        <Tab icon={gradIcon}>First item</Tab>
+        <Tab icon={androidIcon}>Second item</Tab>
+        <Tab icon={bellIcon}>Third item</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  );
+}
 ```
 
 ## Inverse
@@ -627,32 +883,71 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
 ### With Blue Background
 
-```.jsx
-<TabsContainer>
-  <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>
-    <Tab>First item</Tab>
-    <Tab>Second item</Tab>
-    <Tab>Third item</Tab>
-  </Tabs>
-</TabsContainer>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TabsContainer>
+      <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+        <Tab>Third item</Tab>
+      </Tabs>
+    </TabsContainer>
+  );
+}
 ```
 
 ### With Dark Grey Background
 
-```.jsx
-<TabsContainer>
-  <Tabs aria-label="Sample Inverse Colors On Dark Background Tabs" isInverse backgroundColor='#3f3f3f'>
-    <Tab>First item</Tab>
-    <Tab>Second item</Tab>
-    <Tab>Third item</Tab>
-  </Tabs>
-</TabsContainer>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TabsContainer>
+      <Tabs
+        aria-label="Sample Inverse Colors On Dark Background Tabs"
+        isInverse
+        backgroundColor={magma.colors.neutral01}
+      >
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+        <Tab>Third item</Tab>
+      </Tabs>
+    </TabsContainer>
+  );
+}
 ```
 
 ### Applied to Tabs Container
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <TabsContainer activeIndex={0} isInverse>
       <Tabs aria-label="Sample Inverse Colors Tabs">
@@ -673,14 +968,23 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
 ### Applied to Tab Panels Container
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <TabsContainer>
       <Tabs aria-label="Sample Inverse Colors Tabs">
@@ -701,14 +1005,23 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
 ### Applied to Tab Panel
 
-```.jsx
-() => {
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
+
+export function Example() {
   return (
     <TabsContainer>
       <Tabs aria-label="Sample Inverse Colors Tabs">
@@ -729,7 +1042,7 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
-  )
+  );
 }
 ```
 
@@ -777,20 +1090,4 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 <TabPanelProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      Tab,
-      Tabs,
-      TabPanel,
-      TabPanelsContainer,
-      TabsContainer,
-      magma,
-      GraduationCapIcon,
-      BellIcon,
-      AndroidIcon,
-      useMediaQuery,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

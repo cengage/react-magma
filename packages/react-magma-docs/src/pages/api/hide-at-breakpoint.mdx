@@ -16,25 +16,39 @@ It takes two props, `minWidth` and `maxWidth` for the minimum and maximum widths
 
 ## Basic Usage
 
-```.jsx
-<>
-  <HideAtBreakpoint maxWidth={599}>
-    <Card isInverse background={magma.colors.foundation02}>
-      <CardBody><strong>Max-Width:</strong> This text will be visible when the browser width is greater than or equal to 600px.</CardBody>
-    </Card><br/>
-  </HideAtBreakpoint>
-  <HideAtBreakpoint minWidth={600} background={magma.colors.pop}>
-    <Card isInverse background={magma.colors.pop}>
-      <CardBody><strong>Min-Width:</strong> This text will be visible when the browser width is less than 600px.</CardBody>
-    </Card>
-    <br/>
-  </HideAtBreakpoint>
-  <HideAtBreakpoint>
-    <Card isInverse background={magma.colors.success}>
-      <CardBody>This text will always be visible.</CardBody>
-    </Card>
-  </HideAtBreakpoint>
-</>
+```tsx codesandbox=magma
+import React from 'react';
+import { Card, CardBody, HideAtBreakpoint, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <HideAtBreakpoint maxWidth={599}>
+        <Card isInverse background={magma.colors.foundation02}>
+          <CardBody>
+            <strong>Max-Width:</strong> This text will be visible when the
+            browser width is greater than or equal to 600px.
+          </CardBody>
+        </Card>
+        <br />
+      </HideAtBreakpoint>
+      <HideAtBreakpoint minWidth={600} background={magma.colors.pop}>
+        <Card isInverse background={magma.colors.pop}>
+          <CardBody>
+            <strong>Min-Width:</strong> This text will be visible when the
+            browser width is less than 600px.
+          </CardBody>
+        </Card>
+        <br />
+      </HideAtBreakpoint>
+      <HideAtBreakpoint>
+        <Card isInverse background={magma.colors.success}>
+          <CardBody>This text will always be visible.</CardBody>
+        </Card>
+      </HideAtBreakpoint>
+    </>
+  );
+}
 ```
 
 ## Hide at Breakpoint Props
@@ -45,9 +59,4 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 
 <HideAtBreakpointProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{ magma, Card, CardBody, HideAtBreakpoint }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

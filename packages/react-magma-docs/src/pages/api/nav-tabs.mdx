@@ -24,11 +24,19 @@ The `NavTabs` component represents the navigation container, and the `NavTab` co
 
 The `to` prop is used to set the link's `href`.
 
-```.jsx
-<NavTabs aria-label="Nav Tabs">
-  <NavTab isActive to="#">Current Page</NavTab>
-  <NavTab to="http://google.com">Link to Google</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs aria-label="Nav Tabs">
+      <NavTab isActive to="#">
+        Current Page
+      </NavTab>
+      <NavTab to="http://google.com">Link to Google</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## Vertical Tabs
@@ -37,11 +45,22 @@ The `orientation` prop can be used to display nav tabs vertically, instead of ho
 The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
 This prop is specified on the `NavTabs` component.
 
-```.jsx
-<NavTabs aria-label="Vertical Nav Tabs" orientation='vertical'>
-  <NavTab isActive to="#">Link 1</NavTab>
-  <NavTab to="#">Link 2</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Vertical Nav Tabs"
+      orientation={TabsOrientation.vertical}
+    >
+      <NavTab isActive to="#">
+        Link 1
+      </NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## Custom Component
@@ -49,12 +68,20 @@ This prop is specified on the `NavTabs` component.
 By default, the nav tabs will render an `a` tag, using the `to` prop for its `href`. However, you can use a custom element instead, by using the `component` prop.
 In this case, the children should be placed inside the `component` prop, instead of putting content directly inside each `NavTab`. The `to` prop directly on the `NavTab` (instead of the component) will be also ignored.
 
-```.jsx
-<NavTabs aria-label="Sample Custom Component Navigation Tabs">
-  <NavTab component={<Link to="/api/nav-tabs">Main page</Link>} />
-  <NavTab component={<Link to="/api/nav-tab">FAQ</Link>}/>
-  <NavTab component={<Link to="/api/nav-tabs">About us</Link>}/>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs } from 'react-magma-dom';
+export function Example() {
+  // We support Link components from libraries such as react-router/reach-router/gatsby that use the `to` prop in place of `href`
+  const Link = ({ to, ...rest }) => <a href={to} {...rest} />;
+  return (
+    <NavTabs aria-label="Sample Custom Component Navigation Tabs">
+      <NavTab component={<Link to="/api/nav-tabs">Main page</Link>} />
+      <NavTab component={<Link to="/api/nav-tab">FAQ</Link>} />
+      <NavTab component={<Link to="/api/nav-tabs">About us</Link>} />
+    </NavTabs>
+  );
+}
 ```
 
 ## Border Position
@@ -66,11 +93,22 @@ By default, horizontal nav tabs have the indicator placed underneath the tabs. H
 The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
-```.jsx
-<NavTabs aria-label="Border Top Nav Tabs" borderPosition='top'>
-  <NavTab isActive to="#">Link 1</NavTab>
-  <NavTab to="#">Link 2</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, TabsBorderPosition } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Border Top Nav Tabs"
+      borderPosition={TabsBorderPosition.top}
+    >
+      <NavTab isActive to="#">
+        Link 1
+      </NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## Border Position (vertical)
@@ -81,29 +119,68 @@ The `borderPosition` prop is an enum and accepts `left` or `right` for horizonta
 
 The `borderPosition` prop is specified on the `NavTabs` component and will apply to each individual tab.
 
-```.jsx
-<NavTabs aria-label="Border Right Nav Tabs" borderPosition='right'  orientation='vertical'>
-  <NavTab isActive to="#">Link 1</NavTab>
-  <NavTab to="#">Link 2</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  NavTab,
+  NavTabs,
+  TabsBorderPosition,
+  TabsOrientation,
+} from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Border Right Nav Tabs"
+      borderPosition={TabsBorderPosition.right}
+      orientation={TabsOrientation.vertical}
+    >
+      <NavTab isActive to="#">
+        Link 1
+      </NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## Alignment
 
 The `alignment` prop determines whether the nav tabs are aligned `left`, `right` or `center`. `Left` is the default.
 
-```.jsx
-  <NavTabs aria-label="Center Aligned Nav Tabs" alignment='center'>
-    <NavTab isActive to="#">Link 1</NavTab>
-    <NavTab to="#">Link 2</NavTab>
-  </NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, TabsAlignment } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Center Aligned Nav Tabs"
+      alignment={TabsAlignment.center}
+    >
+      <NavTab isActive to="#">
+        Link 1
+      </NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
-```.jsx
-  <NavTabs aria-label="Right Aligned Nav Tabs" alignment='right'>
-    <NavTab isActive to="#">Link 1</NavTab>
-    <NavTab to="#">Link 2</NavTab>
-  </NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, TabsAlignment } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Right Aligned Nav Tabs"
+      alignment={TabsAlignment.right}
+    >
+      <NavTab isActive to="#">
+        Link 1
+      </NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## Full-Width
@@ -112,41 +189,68 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 
 Full width tabs work best when inside a smaller container.
 
-```.jsx
-<NavTabs aria-label="Full-Width Nav Tabs" isFullWidth>
-  <NavTab isActive to="#">Link 1</NavTab>
-  <NavTab to="#">Link 2</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs aria-label="Full-Width Nav Tabs" isFullWidth>
+      <NavTab isActive to="#">
+        Link 1
+      </NavTab>
+      <NavTab to="#">Link 2</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## Scrollable
 
-```.jsx
-<NavTabs aria-label="Sample Scrollable Nav Tabs" backgroundColor='#F7F7F7'>
-  <NavTab to="#">First item with a longer text label</NavTab>
-  <NavTab to="#">Second item</NavTab>
-  <NavTab to="#">Third item</NavTab>
-  <NavTab to="#">Fourth item</NavTab>
-  <NavTab to="#">Fifth item</NavTab>
-  <NavTab to="#">Sixth item</NavTab>
-  <NavTab to="#">Seventh item</NavTab>
-  <NavTab to="#">Eighth item</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, magma } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Sample Scrollable Nav Tabs"
+      backgroundColor={magma.colors.neutral07}
+    >
+      <NavTab to="#">First item with a longer text label</NavTab>
+      <NavTab to="#">Second item</NavTab>
+      <NavTab to="#">Third item</NavTab>
+      <NavTab to="#">Fourth item</NavTab>
+      <NavTab to="#">Fifth item</NavTab>
+      <NavTab to="#">Sixth item</NavTab>
+      <NavTab to="#">Seventh item</NavTab>
+      <NavTab to="#">Eighth item</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## Scrollable Vertical Tabs
 
-```.jsx
-<div style={{ display: 'flex', height: '200px', overflow: 'hidden'  }}>
-  <NavTabs aria-label="Sample Scrollable Vertical Nav Tabs" backgroundColor='#F7F7F7' orientation='vertical'>
-    <NavTab to="#">First item</NavTab>
-    <NavTab to="#">Second item</NavTab>
-    <NavTab to="#">Third item</NavTab>
-    <NavTab to="#">Fourth item</NavTab>
-    <NavTab to="#">Fifth item</NavTab>
-    <NavTab to="#">Sixth item</NavTab>
-  </NavTabs>
-</div>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
+export function Example() {
+  return (
+    <div style={{ display: 'flex', height: '200px', overflow: 'hidden' }}>
+      <NavTabs
+        aria-label="Sample Scrollable Vertical Nav Tabs"
+        backgroundColor={magma.colors.neutral07}
+        orientation={TabsOrientation.vertical}
+      >
+        <NavTab to="#">First item</NavTab>
+        <NavTab to="#">Second item</NavTab>
+        <NavTab to="#">Third item</NavTab>
+        <NavTab to="#">Fourth item</NavTab>
+        <NavTab to="#">Fifth item</NavTab>
+        <NavTab to="#">Sixth item</NavTab>
+      </NavTabs>
+    </div>
+  );
+}
 ```
 
 ## Icon Tabs
@@ -157,12 +261,23 @@ The `icon` prop can be used to display an icon inside the individual `NavTab` co
 
 `NavTab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
 
-```.jsx
-<NavTabs aria-label="Icon Only Nav Tabs">
-  <NavTab aria-label='Graduation' icon={<GraduationCapIcon isActive />} to="#"/>
-  <NavTab aria-label='Android' icon={<AndroidIcon />} to="#" />
-  <NavTab aria-label='Notifications' icon={<BellIcon />} to="#" />
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs } from 'react-magma-dom';
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <NavTabs aria-label="Icon Only Nav Tabs">
+      <NavTab
+        aria-label="Graduation"
+        icon={<GraduationCapIcon isActive />}
+        to="#"
+      />
+      <NavTab aria-label="Android" icon={<AndroidIcon />} to="#" />
+      <NavTab aria-label="Notifications" icon={<BellIcon />} to="#" />
+    </NavTabs>
+  );
+}
 ```
 
 ### Icon with Text
@@ -170,22 +285,51 @@ The `icon` prop can be used to display an icon inside the individual `NavTab` co
 `NavTab` components with children and `icon` prop will display both the icon and the children.
 By default, the icons appear above the children.
 
-```.jsx
-<NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
-  <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-  <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-  <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs } from 'react-magma-dom';
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
+      <NavTab icon={<GraduationCapIcon />} isActive to="#">
+        First item with a longer text label
+      </NavTab>
+      <NavTab icon={<AndroidIcon />} to="#">
+        Second item
+      </NavTab>
+      <NavTab icon={<BellIcon />} to="#">
+        Third item
+      </NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ### Vertical with Icon
 
-```.jsx
-<NavTabs aria-label="Vertical Icon with Text Nav Tabs"  orientation='vertical'>
-  <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-  <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-  <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Vertical Icon with Text Nav Tabs"
+      orientation={TabsOrientation.vertical}
+    >
+      <NavTab icon={<GraduationCapIcon />} isActive to="#">
+        First item with a longer text label
+      </NavTab>
+      <NavTab icon={<AndroidIcon />} to="#">
+        Second item
+      </NavTab>
+      <NavTab icon={<BellIcon />} to="#">
+        Third item
+      </NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ### Icon Position
@@ -194,24 +338,49 @@ The `iconPosition` prop can be used to position the icon relative to the childre
 The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `bottom` with `top` being the default for horizontal tabs.
 This prop is specified on the `NavTabs` component.
 
-```.jsx
-<>
-  <NavTabs aria-label="Icon Position Left Nav Tabs" iconPosition="left">
-    <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-    <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-    <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-  </NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs, TabsIconPosition } from 'react-magma-dom';
+import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+export function Example() {
+  return (
+    <>
+      <NavTabs
+        aria-label="Icon Position Left Nav Tabs"
+        iconPosition={TabsIconPosition.left}
+      >
+        <NavTab icon={<GraduationCapIcon />} isActive to="#">
+          First item with a longer text label
+        </NavTab>
+        <NavTab icon={<AndroidIcon />} to="#">
+          Second item
+        </NavTab>
+        <NavTab icon={<BellIcon />} to="#">
+          Third item
+        </NavTab>
+      </NavTabs>
 
-  <br />
-  <br />
-  <br />
+      <br />
+      <br />
+      <br />
 
-  <NavTabs aria-label="Icon Position Right Nav Tabs" iconPosition="right">
-    <NavTab icon={<GraduationCapIcon />} isActive to="#">First item with a longer text label</NavTab>
-    <NavTab icon={<AndroidIcon />} to="#">Second item</NavTab>
-    <NavTab icon={<BellIcon />} to="#">Third item</NavTab>
-  </NavTabs>
-</>
+      <NavTabs
+        aria-label="Icon Position Right Nav Tabs"
+        iconPosition={TabsIconPosition.right}
+      >
+        <NavTab icon={<GraduationCapIcon />} isActive to="#">
+          First item with a longer text label
+        </NavTab>
+        <NavTab icon={<AndroidIcon />} to="#">
+          Second item
+        </NavTab>
+        <NavTab icon={<BellIcon />} to="#">
+          Third item
+        </NavTab>
+      </NavTabs>
+    </>
+  );
+}
 ```
 
 ## Inverse
@@ -220,22 +389,42 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ### With Blue Background
 
-```.jsx
-<NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
-  <NavTab isActive to="#">First link</NavTab>
-  <NavTab to="#">Second link</NavTab>
-  <NavTab to="#">Third link</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
+      <NavTab isActive to="#">
+        First link
+      </NavTab>
+      <NavTab to="#">Second link</NavTab>
+      <NavTab to="#">Third link</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ### With Blue Background
 
-```.jsx
-<NavTabs aria-label="Sample Inverse Colors Nav Tabs with Dark Background" backgroundColor='#3f3f3f' isInverse>
-  <NavTab isActive to="#">First link</NavTab>
-  <NavTab to="#">Second link</NavTab>
-  <NavTab to="#">Third link</NavTab>
-</NavTabs>
+```tsx codesandbox=magma
+import React from 'react';
+import { NavTab, NavTabs } from 'react-magma-dom';
+export function Example() {
+  return (
+    <NavTabs
+      aria-label="Sample Inverse Colors Nav Tabs with Dark Background"
+      backgroundColor={magma.colors.neutral}
+      isInverse
+    >
+      <NavTab isActive to="#">
+        First link
+      </NavTab>
+      <NavTab to="#">Second link</NavTab>
+      <NavTab to="#">Third link</NavTab>
+    </NavTabs>
+  );
+}
 ```
 
 ## NavTabs Props
@@ -331,16 +520,4 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 
 <NavTabComponentProps />
 
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      NavTabs,
-      NavTab,
-      GraduationCapIcon,
-      BellIcon,
-      AndroidIcon,
-      Link,
-    }}
-  />
-);
+export default props => <ScopeableLayout {...props} />;

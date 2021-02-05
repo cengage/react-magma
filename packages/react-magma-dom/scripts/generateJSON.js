@@ -2,13 +2,16 @@ const TypeDoc = require('typedoc');
 const typescript = require('typescript');
 const fs = require('fs');
 const { type } = require('os');
+const mkdirp = require('mkdirp');
+
+mkdirp('dist');
 
 // specifically point to tsconfig, otherwise TypeDoc fails
 const tsconfig = typescript.findConfigFile(
   '../tsconfig.js',
   typescript.sys.fileExists
 );
-const outPath = '../react-magma-docs/src/data/properties.json';
+const outPath = './dist/properties.json';
 const inPath = ['./src/components'];
 
 const defaultDescriptions = {

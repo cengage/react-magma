@@ -2,8 +2,9 @@ const path = require('path');
 const toPath = _path => path.join(process.cwd(), _path);
 
 module.exports = {
-  stories: ['../src/components/**/stories/*.stories.@(ts|tsx)'],
+  stories: ['../packages/**/src/components/**/*.stories.@(ts|tsx)'],
   addons: [
+    '@storybook/addon-docs',
     '@storybook/addon-actions',
     '@storybook/addon-links',
     'storybook-addon-performance/register',
