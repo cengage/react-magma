@@ -60,7 +60,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 4px 4px 0;
   color: inherit;
   height: auto;
-  padding: 0 16px;
+  padding: 0 13px;
   width: auto;
 }
 
@@ -190,7 +190,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 4px 4px 0;
   color: inherit;
   height: auto;
-  padding: 0 16px;
+  padding: 0 13px;
   width: auto;
 }
 
@@ -272,10 +272,10 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
     aria-labelledby="ignoreButton"
     class="icon"
     fill="currentColor"
-    height="13"
+    height="20"
     id="ignoreSvg"
     viewBox="0 0 24 24"
-    width="13"
+    width="20"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
@@ -344,7 +344,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -361,12 +361,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -438,7 +438,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -455,12 +455,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -491,9 +491,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
         <svg
           class="icon"
           fill="currentColor"
-          height="20"
+          height="24"
           viewBox="0 0 24 24"
-          width="20"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -581,7 +581,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -598,12 +598,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -675,7 +675,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -692,12 +692,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -716,9 +716,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
         <svg
           class="icon"
           fill="currentColor"
-          height="20"
+          height="24"
           viewBox="0 0 24 24"
-          width="20"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -794,7 +794,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -811,12 +811,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -888,7 +888,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -905,12 +905,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -941,9 +941,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
         <svg
           class="icon"
           fill="currentColor"
-          height="20"
+          height="24"
           viewBox="0 0 24 24"
-          width="20"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -1031,7 +1031,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -1048,12 +1048,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -1125,7 +1125,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  padding: 0 8px 0 16px;
+  padding: 0 8px 0 12px;
 }
 
 @media (max-width:600px) {
@@ -1142,12 +1142,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 16px 12px;
+  padding: 12px 0;
 }
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 16px;
+    padding-left: 12px;
   }
 }
 
@@ -1166,9 +1166,9 @@ exports[`Alert should render an alert with default variant 1`] = `
         <svg
           class="icon"
           fill="currentColor"
-          height="20"
+          height="24"
           viewBox="0 0 24 24"
-          width="20"
+          width="24"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path

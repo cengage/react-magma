@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { BreadCrumbContext } from '.';
 
 import { Hyperlink } from '../Hyperlink';
-import { AngleRightIcon } from 'react-magma-icons';
+import { ChevronRightIcon } from 'react-magma-icons';
 
 /**
  * @children required
@@ -22,6 +22,7 @@ const StyledItem = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
+  display: flex;
 `;
 
 const StyledSpan = styled.span<{ isInverse?: boolean }>`
@@ -51,7 +52,7 @@ export const BreadcrumbItem = React.forwardRef<
             {children}
           </Hyperlink>
           <StyledSpan isInverse={isInverse} theme={theme}>
-            <AngleRightIcon size={10} />
+            <ChevronRightIcon size={theme.iconSizes.small} />
           </StyledSpan>
         </>
       ) : (
