@@ -173,7 +173,9 @@ const getAliasFile = ({ v1, v2, category }) => `import * as React from 'react';
 import { IconProps } from '../../IconProps';
 import { ${v2} } from '../${category}/${v2}';  
 export const ${v1} = (props: IconProps) => {
-  console.warn("${v1} has been deprecated");
+  if (process.env.NODE_ENV === 'development') {
+    console.warn("${v1} has been deprecated");
+  }
   return <${v2} {...props} />;
 };
 `;
