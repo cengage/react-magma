@@ -14,7 +14,7 @@ npm install --save react-magma-dom
 
 ### Documentation Site
 
-For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.info/version/latest/)
+For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.com/version/latest/)
 
 This site has general usage information, as well as information on all of the available components, including code examples and demos. It also has design guidelines from the UX team with more details about the why and when to use each component in your project.
 

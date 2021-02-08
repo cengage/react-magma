@@ -1,11 +1,13 @@
 import React from 'react';
 import { Card } from '../Card';
-import { Table } from '.';
-import { TableHead } from './TableHead';
-import { TableRow } from './TableRow';
-import { TableHeaderCell } from './TableHeaderCell';
-import { TableBody } from './TableBody';
-import { TableCell } from './TableCell';
+import {
+  Table,
+  TableCell,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+} from './';
 
 export default {
   component: Table,

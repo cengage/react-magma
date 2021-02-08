@@ -7,11 +7,8 @@ props:
 
 import { ScopeableLayout } from '../../components/layout';
 import { Alert } from 'react-magma-dom';
-import { useSelect } from 'downshift';
 import { Link } from 'gatsby';
-import { v4 as uuid } from 'uuid';
 import { DocsHeading } from '../../components/DocsHeading';
-import styled from '@emotion/styled';
 
 <DocsHeading to="/design/select/" type="api">
   Selects
@@ -705,6 +702,30 @@ export function Example() {
         { label: 'Green', value: 'green' },
       ]}
       itemListMaxHeight="50px"
+    />
+  );
+}
+```
+
+## Label Position
+
+The `labelPosition` prop can be used to set the position of the text label relative to the form field. It accepts either `top` or `left`, with `top` as the default.
+Left-aligned lables are not recommended for use in standard forms; instead they are designed for smaller spaces where vertical space is limited, such as in a toolbar.
+
+```tsx codesandbox=magma
+import React from 'react';
+import { Select, LabelPosition } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      labelPosition={LabelPosition.top}
+      labelText="Left-aligned Label"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
     />
   );
 }
