@@ -9,39 +9,39 @@ const xml2js = require('xml2js');
 const iconMap = {};
 
 const v2aliases = [
-  `export { ExpandMoreIcon as AngleDownIcon} from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ArrowBackIosIcon as AngleLeftIcon} from './icons/Navigation/ArrowBackIosIcon';`,
-  `export { ArrowForwardIosIcon as AngleRightIcon} from './icons/Navigation/ArrowForwardIosIcon';`,
-  `export { ExpandLessIcon as AngleUpIcon} from './icons/Navigation/ExpandLessIcon';`,
-  `export { SortDoubleArrowIcon as ArrowDoubleIcon} from './icons/Navigation/SortDoubleArrowIcon';`,
-  `export { SouthIcon as ArrowDown2Icon} from './icons/Navigation/SouthIcon';`,
-  `export { WestIcon as ArrowLeft2Icon} from './icons/Navigation/WestIcon';`,
-  `export { EastIcon as ArrowRight2Icon} from './icons/Navigation/EastIcon';`,
-  `export { NorthIcon as ArrowUp2Icon} from './icons/Navigation/NorthIcon';`,
-  `export { BlockIcon as BlockedIcon} from './icons/Content/BlockIcon';`,
-  `export { EventIcon as CalendarIcon} from './icons/Actions/EventIcon';`,
-  `export { ArrowDropDownIcon as CaretDownIcon} from './icons/Navigation/ArrowDropDownIcon';`,
-  `export { ArrowLeftIcon as CaretLeftIcon} from './icons/Navigation/ArrowLeftIcon';`,
-  `export { ArrowRightIcon as CaretRightIcon} from './icons/Navigation/ArrowRightIcon';`,
-  `export { ArrowDropUpIcon as CaretUpIcon} from './icons/Navigation/ArrowDropUpIcon';`,
-  `export { CloseIcon as CrossIcon} from './icons/Navigation/CloseIcon';`,
-  `export { InfoIcon as Info2Icon} from './icons/Actions/InfoIcon';`,
-  `export { ErrorIcon as Notification2Icon} from './icons/Alert/ErrorIcon';`,
-  `export { ErrorOutlineIcon as NotificationIcon} from './icons/Alert/ErrorOutlineIcon';`,
-  `export { HelpOutlineIcon as QuestionCircleOIcon} from './icons/Actions/HelpOutlineIcon';`,
-  `export { SearchIcon as Search2Icon} from './icons/Actions/SearchIcon';`,
-  `export { ScheduleIcon as ClockIcon } from './icons/Actions/ScheduleIcon';`,
-  `export { ExpandMoreIcon as AlertIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as BellIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as CircleDownIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as CircleLeftIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as CircleRightIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as CircleUpIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as Cog2Icon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as EnvelopeOIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as ExternalLinkIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as GraduationCapIcon } from './icons/Navigation/ExpandMoreIcon';`,
-  `export { ExpandMoreIcon as QuestionCircleIcon } from './icons/Navigation/ExpandMoreIcon';`,
+  { v1: 'AngleDownIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'AngleLeftIcon', category: 'Navigation', v2: 'ArrowBackIosIcon' },
+  { v1: 'AngleRightIcon', category: 'Navigation', v2: 'ArrowForwardIosIcon' },
+  { v1: 'AngleUpIcon', category: 'Navigation', v2: 'ExpandLessIcon' },
+  { v1: 'ArrowDoubleIcon', category: 'Navigation', v2: 'SortDoubleArrowIcon' },
+  { v1: 'ArrowDown2Icon', category: 'Navigation', v2: 'SouthIcon' },
+  { v1: 'ArrowLeft2Icon', category: 'Navigation', v2: 'WestIcon' },
+  { v1: 'ArrowRight2Icon', category: 'Navigation', v2: 'EastIcon' },
+  { v1: 'ArrowUp2Icon', category: 'Navigation', v2: 'NorthIcon' },
+  { v1: 'BlockedIcon', category: 'Content', v2: 'BlockIcon' },
+  { v1: 'CalendarIcon', category: 'Actions', v2: 'EventIcon' },
+  { v1: 'CaretDownIcon', category: 'Navigation', v2: 'ArrowDropDownIcon' },
+  { v1: 'CaretLeftIcon', category: 'Navigation', v2: 'ArrowLeftIcon' },
+  { v1: 'CaretRightIcon', category: 'Navigation', v2: 'ArrowRightIcon' },
+  { v1: 'CaretUpIcon', category: 'Navigation', v2: 'ArrowDropUpIcon' },
+  { v1: 'CrossIcon', category: 'Navigation', v2: 'CloseIcon' },
+  { v1: 'Info2Icon', category: 'Actions', v2: 'InfoIcon' },
+  { v1: 'Notification2Icon', category: 'Alert', v2: 'ErrorIcon' },
+  { v1: 'NotificationIcon', category: 'Alert', v2: 'ErrorOutlineIcon' },
+  { v1: 'QuestionCircleOIcon', category: 'Actions', v2: 'HelpOutlineIcon' },
+  { v1: 'Search2Icon', category: 'Actions', v2: 'SearchIcon' },
+  { v1: 'ClockIcon', category: 'Actions', v2: 'ScheduleIcon' },
+  { v1: 'AlertIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'BellIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'CircleDownIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'CircleLeftIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'CircleRightIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'CircleUpIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'Cog2Icon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'EnvelopeOIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'ExternalLinkIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'GraduationCapIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
+  { v1: 'QuestionCircleIcon', category: 'Navigation', v2: 'ExpandMoreIcon' },
 ];
 
 const addIcon = (group, name) => {
@@ -169,6 +169,17 @@ const iconType = ${JSON.stringify(icon, null, 2)};
 export const ${name} = (props: IconProps) => renderIcon(props, iconType);
 `;
 
+const getAliasFile = ({ v1, v2, category }) => `import * as React from 'react';
+import { IconProps } from '../../IconProps';
+import { ${v2} } from '../${category}/${v2}';  
+export const ${v1} = (props: IconProps) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.warn("${v1} has been deprecated");
+  }
+  return <${v2} {...props} />;
+};
+`;
+
 const worker = async (svgPath, cb) => {
   const [groupName, iconName] = getNames(svgPath);
   addIcon(groupName, componentName(groupName, iconName));
@@ -232,7 +243,7 @@ const writeGroupIndexes = () => {
     [
       `export { IconProps } from './IconProps';`,
       `export { SvgIcon } from './SvgIcon';`,
-      ...v2aliases,
+      `export * from './icons/Aliases';`,
       ...Object.keys(iconMap).map(group => `export * from './icons/${group}';`),
       `export { categories } from './categories';`,
     ].join('\n')
@@ -246,6 +257,21 @@ const writeGroupIndexes = () => {
         .join('\n')
     );
   });
+
+  v2aliases.forEach(async alias => {
+    await fse.mkdirp(path.join(__dirname, `../src/icons/Aliases`));
+    await fse.writeFile(
+      path.join(__dirname, `../src/icons/Aliases/${alias.v1}.tsx`),
+      getAliasFile(alias)
+    );
+  });
+
+  fse.writeFile(
+    path.join(__dirname, `../src/icons/Aliases/index.ts`),
+    v2aliases
+      .map(icon => `export { ${icon.v1} } from './${icon.v1}';`)
+      .join('\n')
+  );
 
   fse.writeFile(
     path.join(__dirname, `../src/icons/categories.ts`),
