@@ -1,7 +1,7 @@
 import React from 'react';
 import { Alert, AlertProps } from './index';
-import { AlertVariant } from '../AlertBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { AlertVariant } from '../AlertBase';
 
 const Template: Story<AlertProps> = args => (
   <Alert {...args}>I am an Alert</Alert>

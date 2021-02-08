@@ -1,43 +1,91 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Label } from '../Label';
+import { Label, LabelPosition } from '../Label';
 import { HiddenLabelText } from '../Input/index';
 import { UseSelectGetLabelPropsOptions } from 'downshift';
+import { InputMessage } from '../Input/InputMessage';
 
-export const SelectContainerElement = styled.div`
+export const SelectContainerElement = styled.div<{
+  labelPosition?: LabelPosition;
+}>`
+  align-items: baseline;
+  display: ${props =>
+    props.labelPosition == LabelPosition.left ? 'flex' : 'block'};
   position: relative;
+`;
+
+const InputMessageContainer = styled.div`
+  flex-grow: 1;
 `;
 
 interface SelectContainerInterface<T> {
   children: React.ReactNode[];
   containerStyle?: React.CSSProperties;
+  errorMessage?: React.ReactNode;
+  descriptionId?: string;
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
   hasError?: boolean;
+  helperMessage?: React.ReactNode;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
+  labelPosition?: LabelPosition;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  messageStyle?: React.CSSProperties;
 }
 
 export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   const {
     children,
+    descriptionId,
+    errorMessage,
     getLabelProps,
+    helperMessage,
     isInverse,
     isLabelVisuallyHidden,
+    labelPosition,
     labelStyle,
     labelText,
+    messageStyle,
   } = props;
+
+  const hasError = !!errorMessage;
+
   return (
-    <SelectContainerElement>
-      <Label {...getLabelProps()} isInverse={isInverse} style={labelStyle}>
+    <SelectContainerElement
+      labelPosition={labelPosition}
+      data-testid="selectContainerElement"
+    >
+      <Label
+        {...getLabelProps()}
+        isInverse={isInverse}
+        labelPosition={labelPosition}
+        style={labelStyle}
+      >
         {isLabelVisuallyHidden ? (
           <HiddenLabelText>{labelText}</HiddenLabelText>
         ) : (
           labelText
-        )}{' '}
+        )}
       </Label>
-      {children}
+      <InputMessageContainer>
+        {children}
+        {!(
+          labelPosition === LabelPosition.left &&
+          !(errorMessage || helperMessage)
+        ) && (
+          <InputMessage
+            id={descriptionId}
+            isInverse={isInverse}
+            hasError={hasError}
+            style={messageStyle}
+          >
+            {(errorMessage || helperMessage) && (
+              <>{errorMessage ? errorMessage : helperMessage}</>
+            )}
+          </InputMessage>
+        )}
+      </InputMessageContainer>
     </SelectContainerElement>
   );
 }
