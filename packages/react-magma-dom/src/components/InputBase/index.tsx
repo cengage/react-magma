@@ -5,6 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
 import { IconProps } from 'react-magma-icons';
+import { ThemeInterface } from '../../theme/magma';
 
 export enum InputSize {
   large = 'large',
@@ -184,7 +185,6 @@ const IconWrapper = styled.span<{
   color: ${props => props.theme.colors.neutral};
   left: ${props =>
     props.iconPosition === 'left' ? props.theme.spaceScale.spacing04 : 'auto'};
-  margin-top: ${props => props.theme.spaceScale.spacing01};
   right: ${props =>
     props.iconPosition === 'right' ? props.theme.spaceScale.spacing04 : 'auto'};
   position: absolute;
@@ -203,13 +203,21 @@ const IconWrapper = styled.span<{
     `}
 `;
 
-const IconButtonContainer = styled.span`
-  bottom: 1px;
+const IconButtonContainer = styled.span<{
+  size?: InputSize;
+  theme: ThemeInterface;
+}>`
   height: auto;
   margin: 0;
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: ${props =>
+    props.size === InputSize.large
+      ? props.theme.spaceScale.spacing02
+      : props.theme.spaceScale.spacing01};
+  right: ${props =>
+    props.size === InputSize.large
+      ? props.theme.spaceScale.spacing02
+      : props.theme.spaceScale.spacing01};
 `;
 
 function getIconSize(size, theme) {
@@ -302,7 +310,12 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         )}
 
         {onIconClick && (
-          <IconButtonContainer>
+          <IconButtonContainer
+            size={
+              inputSize === InputSize.large ? InputSize.large : InputSize.medium
+            }
+            theme={theme}
+          >
             <IconButton
               aria-label={iconAriaLabel}
               icon={icon}
@@ -312,8 +325,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               shape={ButtonShape.fill}
               size={
                 inputSize === InputSize.large
-                  ? ButtonSize.large
-                  : ButtonSize.medium
+                  ? ButtonSize.medium
+                  : ButtonSize.small
               }
               type={ButtonType.button}
               variant={ButtonVariant.link}

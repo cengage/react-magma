@@ -65,7 +65,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
 
     const [value, setValue] = React.useState<string>(props.value);
 
-    const icon = isLoading ? <Spinner /> : <Search2Icon size={17} />;
+    const icon = isLoading ? <Spinner /> : <Search2Icon />;
 
     React.useEffect(() => {
       setValue(props.value);

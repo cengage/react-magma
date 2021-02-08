@@ -411,7 +411,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           </Announce>
           <Input
             {...other}
-            icon={<CalendarIcon size={20} />}
+            icon={<CalendarIcon />}
             iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
             iconRef={iconRef}
             onIconClick={toggleCalendarOpened}
