@@ -7,6 +7,7 @@ import {
   TableRow,
   TableHeaderCell,
   TableBody,
+  TableSortDirection,
 } from './';
 
 export default {
@@ -60,8 +61,13 @@ export const Default = () => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell
+                isSortable
+                sortDirection={TableSortDirection.ascending}
+              >
+                Column
+              </TableHeaderCell>
+              <TableHeaderCell isSortable>Column</TableHeaderCell>
               <TableHeaderCell>Column</TableHeaderCell>
               <TableHeaderCell>Column</TableHeaderCell>
             </TableRow>
