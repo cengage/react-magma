@@ -10,6 +10,7 @@ import {
   BlockedIcon,
   CrossIcon,
   IconProps,
+  CloseIcon,
 } from 'react-magma-icons';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -232,7 +233,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     ${props => props.theme.borderRadius} 0;
   color: inherit;
   height: auto;
-  padding: 0 13px;
+  padding: 0 ${props => props.theme.spaceScale.spacing04};
   width: auto;
 
   &&:focus:not(:disabled) {
@@ -265,7 +266,7 @@ function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
 
   return (
     <IconWrapper isToast={isToast} theme={theme}>
-      <Icon size={24} />
+      <Icon size={theme.iconSizes.medium} />
     </IconWrapper>
   );
 }
@@ -350,7 +351,15 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                 aria-label={
                   closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
                 }
-                icon={<CrossIcon size={hasTimerRing ? 16 : 20} />}
+                icon={
+                  <CloseIcon
+                    size={
+                      hasTimerRing
+                        ? theme.iconSizes.xSmall
+                        : theme.iconSizes.small
+                    }
+                  />
+                }
                 isInverse
                 onClick={forceDismiss || handleDismiss}
                 theme={theme}
