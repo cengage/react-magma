@@ -8,7 +8,6 @@ import {
   CheckIcon,
   NotificationIcon,
   BlockedIcon,
-  CrossIcon,
   IconProps,
   CloseIcon,
 } from 'react-magma-icons';

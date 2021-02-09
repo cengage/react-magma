@@ -60,7 +60,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 4px 4px 0;
   color: inherit;
   height: auto;
-  padding: 0 13px;
+  padding: 0 12px;
   width: auto;
 }
 
@@ -190,7 +190,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 4px 4px 0;
   color: inherit;
   height: auto;
-  padding: 0 13px;
+  padding: 0 12px;
   width: auto;
 }
 
