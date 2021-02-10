@@ -8,7 +8,9 @@ import { IconProps } from '../../IconProps';
 import { ExpandLessIcon } from '../Navigation/ExpandLessIcon';
 export const AngleUpIcon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn('AngleUpIcon has been deprecated');
+    console.warn(
+      'AngleUpIcon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
+    );
   }
   return <ExpandLessIcon {...props} />;
 };

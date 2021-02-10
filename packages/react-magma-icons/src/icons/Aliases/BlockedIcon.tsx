@@ -8,7 +8,9 @@ import { IconProps } from '../../IconProps';
 import { BlockIcon } from '../Content/BlockIcon';
 export const BlockedIcon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn('BlockedIcon has been deprecated');
+    console.warn(
+      'BlockedIcon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
+    );
   }
   return <BlockIcon {...props} />;
 };

@@ -8,7 +8,9 @@ import { IconProps } from '../../IconProps';
 import { WestIcon } from '../Navigation/WestIcon';
 export const ArrowLeft2Icon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn('ArrowLeft2Icon has been deprecated');
+    console.warn(
+      'ArrowLeft2Icon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
+    );
   }
   return <WestIcon {...props} />;
 };

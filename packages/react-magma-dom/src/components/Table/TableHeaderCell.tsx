@@ -123,7 +123,7 @@ const SortButton = styled.button<{
 const IconWrapper = styled.span`
   padding-left: ${props => props.theme.spaceScale.spacing03};
   position: relative;
-  top: ${props => props.theme.spaceScale.spacing01};
+  top: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const TableHeaderCell = React.forwardRef<

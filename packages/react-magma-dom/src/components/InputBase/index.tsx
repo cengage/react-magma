@@ -20,6 +20,11 @@ export enum InputType {
   text = 'text', // default
 }
 
+export enum InputIconPosition {
+  left = 'left',
+  right = 'right',
+}
+
 export interface InputBaseProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
@@ -75,11 +80,6 @@ export interface InputBaseProps
    * @default InputType.text
    */
   type?: InputType;
-}
-
-export enum InputIconPosition {
-  left = 'left',
-  right = 'right',
 }
 
 const InputWrapper = styled.div`
@@ -184,9 +184,9 @@ const IconWrapper = styled.span<{
 }>`
   color: ${props => props.theme.colors.neutral};
   left: ${props =>
-    props.iconPosition === 'left' ? props.theme.spaceScale.spacing04 : 'auto'};
+    props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
-    props.iconPosition === 'right' ? props.theme.spaceScale.spacing04 : 'auto'};
+    props.iconPosition === 'right' ? props.theme.spaceScale.spacing03 : 'auto'};
   position: absolute;
   top: ${props => props.theme.spaceScale.spacing03};
 
@@ -218,6 +218,17 @@ const IconButtonContainer = styled.span<{
     props.size === InputSize.large
       ? props.theme.spaceScale.spacing02
       : props.theme.spaceScale.spacing01};
+
+  svg {
+    height: ${props =>
+      props.size === InputSize.large
+        ? `${props.theme.iconSizes.large}px`
+        : `${props.theme.iconSizes.medium}px`};
+    width: ${props =>
+      props.size === InputSize.large
+        ? `${props.theme.iconSizes.large}px`
+        : `${props.theme.iconSizes.medium}px`};
+  }
 `;
 
 function getIconSize(size, theme) {

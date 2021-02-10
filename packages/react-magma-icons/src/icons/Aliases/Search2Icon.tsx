@@ -8,7 +8,9 @@ import { IconProps } from '../../IconProps';
 import { SearchIcon } from '../Actions/SearchIcon';
 export const Search2Icon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn('Search2Icon has been deprecated');
+    console.warn(
+      'Search2Icon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
+    );
   }
   return <SearchIcon {...props} />;
 };

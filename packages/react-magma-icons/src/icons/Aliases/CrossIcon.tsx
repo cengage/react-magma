@@ -8,7 +8,9 @@ import { IconProps } from '../../IconProps';
 import { CloseIcon } from '../Navigation/CloseIcon';
 export const CrossIcon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn('CrossIcon has been deprecated');
+    console.warn(
+      'CrossIcon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
+    );
   }
   return <CloseIcon {...props} />;
 };
