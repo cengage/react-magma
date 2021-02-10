@@ -3,7 +3,7 @@ import ComponentMapper from '@data-driven-forms/react-form-renderer/dist/cjs/com
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
 import { DatePicker } from '../DatePicker';
-// import { FieldArray } from '../FieldArray';
+import { FieldArray } from '../FieldArray';
 import { FormGroup } from '../FormGroup';
 import { Input } from '../Input';
 import { Modal } from '../Modal';
@@ -33,7 +33,7 @@ export enum componentTypes {
   CHECKBOX = 'CHECKBOX',
   COMBOBOX = 'COMBOBOX',
   DATE_PICKER = 'DATE_PICKER',
-  // FIELD_ARRAY = 'FIELD_ARRAY',
+  FIELD_ARRAY = 'FIELD_ARRAY',
   FORM_GROUP = 'FORM_GROUP',
   INPUT = 'INPUT',
   MODAL = 'MODAL',
@@ -56,7 +56,7 @@ export const componentMapper: ComponentMapper = {
   [componentTypes.CHECKBOX]: Checkbox,
   [componentTypes.COMBOBOX]: Combobox,
   [componentTypes.DATE_PICKER]: DatePicker,
-  // [componentTypes.FIELD_ARRAY]: FieldArray,
+  [componentTypes.FIELD_ARRAY]: FieldArray,
   [componentTypes.FORM_GROUP]: FormGroup,
   [componentTypes.INPUT]: Input,
   [componentTypes.MODAL]: Modal,

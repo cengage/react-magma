@@ -10,6 +10,8 @@ import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { templateTypes } from '../TemplateMapper';
 
+import { Hyperlink } from 'react-magma-dom';
+
 const baseSchema: Schema = {
   title: 'Form Header',
   description: 'Some description for a form.',
@@ -279,9 +281,18 @@ Modal.args = {
     type: templateTypes.BASIC,
     fields: [
       {
+        component: componentTypes.TOGGLE,
+        name: 'modal-toggle',
+      },
+      {
         component: componentTypes.MODAL,
         name: 'modal',
         heading: 'welcome to the modal',
+        condition: {
+          when: 'modal-toggle',
+          is: true,
+          then: { set: { isOpen: true } },
+        },
         isOpen: true,
         fields: [
           {
@@ -314,7 +325,11 @@ Modal.args = {
           {
             component: componentTypes.PARAGRAPH,
             name: 'PARAGRAPH',
-            children: 'THIS IS A PARAGRAPH',
+            children: (
+              <>
+                THIS IS A PARAGRAPH <Hyperlink to="#">link</Hyperlink>
+              </>
+            ),
           },
         ],
       },
@@ -325,66 +340,32 @@ Modal.args = {
 export const Array = Template.bind({});
 Array.args = {
   schema: {
+    title: 'TODO List',
     type: templateTypes.FORM,
+    description: 'A simple todo list. The penultimate test of any UI.',
     fields: [
       {
         component: componentTypes.FIELD_ARRAY,
-        label: 'Attribute Editor',
-        description: 'This is a form array',
-        name: 'fieldArray',
-        helperText: 'You can add up to 6 more items.',
-        minItems: 4,
-        maxItems: 6,
-        noItemsMessage: 'Please add new item',
-        defaultItem: {
-          key: 'key',
-          value: 'value',
-          type: 'type1',
-        },
-        validate: [
-          {
-            type: validatorTypes.MIN_ITEMS,
-            threshold: 4,
-          },
-          {
-            type: validatorTypes.REQUIRED,
-          },
-        ],
+        name: 'tasks',
+        fieldKey: 'field_array',
+        label: 'Things to do',
+        description: 'What do we need to complete for the day?',
         fields: [
           {
             component: componentTypes.INPUT,
-            name: 'key',
-            label: 'Key',
-            validate: [
-              {
-                type: validatorTypes.REQUIRED,
-              },
-            ],
-          },
-          {
-            component: componentTypes.INPUT,
-            name: 'value',
-            label: 'Value',
-            validate: [
-              {
-                type: validatorTypes.REQUIRED,
-              },
-            ],
+            name: 'task',
+            label: 'Task',
+            placeholder: 'Task',
+            isRequired: true,
           },
           {
             component: componentTypes.SELECT,
-            name: 'type',
-            label: 'Type',
-            placeholder: 'Choose the type',
-            options: [
-              { label: 'Type 1', value: 'type1' },
-              { label: 'Type 2', value: 'type2' },
-              { label: 'Type 3', value: 'type3' },
-            ],
-            validate: [
-              {
-                type: validatorTypes.REQUIRED,
-              },
+            name: 'select',
+            labelText: 'Select',
+            items: [
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
             ],
           },
         ],
