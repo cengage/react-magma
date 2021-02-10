@@ -11,9 +11,28 @@ import { I18nContext } from '../../i18n';
 
 export interface TablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Total number of rows
+   */
   count: number;
   isInverse?: boolean;
+  /**
+   * Event that fires when the page number changes
+   */
+  onChangePage?: (event: any) => void;
+  /**
+   * Event that fires when the number of rows per page changes
+   */
+  onChangeRowsPerPage?: (event: any) => void;
+  /**
+   * Zero-based page number
+   *  @default 0
+   */
   page?: number;
+  /**
+   * Number of rows per page
+   * @default 10
+   */
   rowsPerPage?: number;
   testId?: string;
 }
@@ -45,7 +64,9 @@ export const TablePagination = React.forwardRef<
     testId,
     count,
     isInverse,
-    page = 1,
+    onChangePage,
+    onChangeRowsPerPage,
+    page = 0,
     rowsPerPage = 10,
     ...other
   } = props;
@@ -54,6 +75,30 @@ export const TablePagination = React.forwardRef<
   const i18n = React.useContext(I18nContext);
 
   const selectContainerStyle = { display: 'flex', alignItems: 'center' };
+  const isLastPage = (page + 1) * rowsPerPage >= count;
+
+  const displayPageStart = page * rowsPerPage + 1;
+  const displayPageEnd = isLastPage ? count : (page + 1) * rowsPerPage;
+
+  function handleChangeRowsPerPage(changes) {
+    if (onChangeRowsPerPage) {
+      onChangeRowsPerPage(changes.selectedItem.label);
+    }
+  }
+
+  function handleChangePage(pageNum) {
+    if (onChangePage) {
+      onChangePage(pageNum);
+    }
+  }
+
+  function handlePreviousClick() {
+    handleChangePage(page - 1);
+  }
+
+  function handleNextClick() {
+    handleChangePage(page + 1);
+  }
 
   return (
     <StyledContainer
@@ -70,24 +115,29 @@ export const TablePagination = React.forwardRef<
         initialSelectedItem={{ label: rowsPerPage }}
         isInverse={isInverse}
         items={[{ label: 10 }, { label: 20 }, { label: 50 }, { label: 100 }]}
+        onSelectedItemChange={handleChangeRowsPerPage}
       />
 
       <PageCount isInverse={isInverse} theme={theme}>
-        {`${page}-${rowsPerPage} ${i18n.table.pagination.ofLabel} ${count}`}
+        {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${count}`}
       </PageCount>
 
       <IconButton
         aria-label={i18n.table.pagination.previousAriaLabel}
         color={ButtonColor.secondary}
+        disabled={page <= 0}
         icon={<ArrowLeft2Icon />}
         isInverse={isInverse}
+        onClick={handlePreviousClick}
         variant={ButtonVariant.link}
       />
       <IconButton
         aria-label={i18n.table.pagination.nextAriaLabel}
         color={ButtonColor.secondary}
+        disabled={isLastPage}
         icon={<ArrowRight2Icon />}
         isInverse={isInverse}
+        onClick={handleNextClick}
         variant={ButtonVariant.link}
       />
     </StyledContainer>

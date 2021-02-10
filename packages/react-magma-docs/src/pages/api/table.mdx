@@ -8,6 +8,7 @@ props:
   - TableHeadProps
   - TableHeaderCellProps
   - TableRowProps
+  - TablePaginationProps
 ---
 
 import { ScopeableLayout } from '../../components/layout';
@@ -796,6 +797,218 @@ export function Example() {
 }
 ```
 
+## Pagination
+
+For larger data sets, the `TablePagination` component can be added underneath a table.
+The `TablePagination` takes props for `count`, which is the total number of rows, `page` which is the zero-based page number and `rowsPerPage`.
+It also takes the functions `onChangeRowsPerPage` and `onChangePage`.
+
+This component does not handle the actual pagination of the table itself, it simply provides the UI and allows for the consumer to do the sorting.
+
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  Card,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+  TablePagination,
+} from 'react-magma-dom';
+
+export function Example() {
+  const rows = [
+    [
+      '1 Lorem ipsum dolor sit amet consectetur',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '2 Lorem ipsum dolor sit amet',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '3 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '4 Lorem ipsum dolor sit amet consectetur',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '5 Lorem ipsum dolor sit amet',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '6 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '7  Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '8 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '9 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '10 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '11 Lorem ipsum dolor sit amet consectetur',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '12 Lorem ipsum dolor sit amet',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '13 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '14 Lorem ipsum dolor sit amet',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '15 Lorem ipsum dolor sit amet',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '16 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '17 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '18 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '19 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '20 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '21 Lorem ipsum dolor sit amet consectetur',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '22 Lorem ipsum dolor sit amet',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      '23 Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+  ];
+  const [pageIndex, setPageIndex] = React.useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+
+  function handleRowsPerPageChange(numberOfPages) {
+    setRowsPerPage(numberOfPages);
+    setPageIndex(0);
+  }
+
+  function handlePageChange(page) {
+    setPageIndex(page);
+  }
+
+  const rowsToShow = rows.slice(
+    pageIndex * rowsPerPage,
+    pageIndex * rowsPerPage + rowsPerPage
+  );
+
+  return (
+    <Card>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowsToShow.map((row, i) => (
+            <TableRow key={`row${i}`}>
+              {row.map((cell, j) => (
+                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <TablePagination
+        count={rows.length}
+        onChangeRowsPerPage={handleRowsPerPageChange}
+        onChangePage={handlePageChange}
+        page={pageIndex}
+        rowsPerPage={rowsPerPage}
+      />
+    </Card>
+  );
+}
+```
+
 ## Table Props
 
 **This component uses `forwardRef`. The ref is applied to the `table` element.**
@@ -843,3 +1056,13 @@ All of the [standard tr attributes](https://developer.mozilla.org/en-US/docs/Web
 All of the [standard td attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td) can be provided as props and will be applied to the `td` element that gets rendered.
 
 <TableCellProps />
+
+## Table Pagination Props
+
+**This component uses `forwardRef`. The ref is applied to the Alert container `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<TablePagination />
+
+export default props => <ScopeableLayout {...props} />;

@@ -101,12 +101,80 @@ const rows = [
     'Lorem ipsum dolor',
     'Lorem ipsum',
   ],
+  [
+    '15 Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '16 Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '17 Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '18 Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '19 Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '20 Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '21 Lorem ipsum dolor sit amet consectetur',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '22 Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    '23 Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
 ];
 
-const rowsPerPage = 10;
-const rowsToShow = rows.slice(0, rowsPerPage);
-
 export const Default = () => {
+  const [pageIndex, setPageIndex] = React.useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+
+  function handleRowsPerPageChange(numberOfPages) {
+    setRowsPerPage(numberOfPages);
+    setPageIndex(0);
+  }
+
+  function handlePageChange(page) {
+    setPageIndex(page);
+  }
+
+  const rowsToShow = rows.slice(
+    pageIndex * rowsPerPage,
+    pageIndex * rowsPerPage + rowsPerPage
+  );
+
   return (
     <Card>
       <Table>
@@ -128,12 +196,25 @@ export const Default = () => {
           ))}
         </TableBody>
       </Table>
-      <TablePagination count={rows.length} rowsPerPage={rowsPerPage} />
+      <TablePagination
+        count={rows.length}
+        onChangeRowsPerPage={handleRowsPerPageChange}
+        onChangePage={handlePageChange}
+        page={pageIndex}
+        rowsPerPage={rowsPerPage}
+      />
     </Card>
   );
 };
 
 export const Inverse = () => {
+  const page = 0;
+  const rowsPerPage = 10;
+  const rowsToShow = rows.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  );
+
   return (
     <Card background={magma.colors.neutral} isInverse>
       <Table isInverse>
