@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
 import { AngleDownIcon, ExternalLinkIcon } from 'react-magma-icons';
-import { SubMenu } from './SubMenu';
+import { SubMenu, SubMenu2 } from './SubMenu';
 import {
   Accordion,
   AccordionItem,
@@ -33,9 +33,10 @@ const Heading2 = styled.h2`
 `;
 
 const Heading3 = styled.h3`
+  color: ${magma.colors.neutral};
   font-size: ${magma.typeScale.size04.fontSize};
-  line-height: ${magma.typeScale.size04.lineHeight};
-  margin: ${magma.spaceScale.spacing05} 0 0;
+  font-weight: 700;
+  margin: ${magma.spaceScale.spacing03} 0 0 0;
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
 `;
 
@@ -60,7 +61,7 @@ const ListItem = styled.li`
 
 const StyledLink = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral03};
+  color: ${magma.colors.neutral};
   display: flex;
   font-size: ${magma.typeScale.size03.fontSize};
   justify-content: space-between;
@@ -70,8 +71,24 @@ const StyledLink = styled(Link)`
 
   &:hover,
   &:focus {
-    background: ${magma.colors.neutral07};
-    color: ${magma.colors.neutral03};
+    background: ${magma.colors.neutral06};
+    color: ${magma.colors.neutral};
+  }
+`;
+
+const StyledLink2 = styled(Link)`
+  align-items: center;
+  color: ${magma.colors.neutral};
+  display: flex;
+  font-size: ${magma.typeScale.size03.fontSize};
+  justify-content: space-between;
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background: ${magma.colors.neutral06};
+    color: ${magma.colors.neutral};
   }
 `;
 
@@ -112,7 +129,7 @@ export const MainNav = ({ ...props }) => (
         }
         designIntro: allMdx(
           filter: { fileAbsolutePath: { glob: "**/src/pages/design-intro/**" } }
-          sort: { order: ASC, fields: frontmatter___title }
+          sort: { order: ASC, fields: frontmatter___order }
         ) {
           edges {
             ...navFields
@@ -187,15 +204,15 @@ export const MainNav = ({ ...props }) => (
                   <List>
                     {data.apiDocs.edges.map(({ node }) => (
                       <ListItem key={node.fields.slug}>
-                        <StyledLink
+                        <StyledLink2
                           activeStyle={activeStyle}
                           onClick={props.handleClick}
                           to={node.fields.slug}
                         >
                           {node.frontmatter.title}
-                        </StyledLink>
+                        </StyledLink2>
                         <Router>
-                          <SubMenu
+                          <SubMenu2
                             path={withPrefix(node.fields.slug)}
                             headings={node.headings}
                             handleClick={props.handleClick}
@@ -234,17 +251,20 @@ export const MainNav = ({ ...props }) => (
                         </Router>
                       </ListItem>
                     ))}
+                  </List>
+                  <Heading3>Components</Heading3>
+                  <List>
                     {data.designDocs.edges.map(({ node }) => (
                       <ListItem key={node.fields.slug}>
-                        <StyledLink
+                        <StyledLink2
                           activeStyle={activeStyle}
                           onClick={props.handleClick}
                           to={node.fields.slug}
                         >
                           {node.frontmatter.title}
-                        </StyledLink>
+                        </StyledLink2>
                         <Router>
-                          <SubMenu
+                          <SubMenu2
                             path={withPrefix(node.fields.slug)}
                             headings={node.headings}
                             handleClick={props.handleClick}

@@ -43,7 +43,7 @@ const SubMenuItem = styled.li`
 `;
 
 const SubMenuLink = styled.a`
-  color: ${magma.colors.neutral03};
+  color: ${magma.colors.neutral};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   line-height: ${magma.typeScale.size02.lineHeight};
@@ -53,8 +53,24 @@ const SubMenuLink = styled.a`
 
   &:hover,
   &:focus {
-    background: ${magma.colors.neutral07};
-    color: ${magma.colors.neutral03};
+    background: ${magma.colors.neutral06};
+    color: ${magma.colors.neutral};
+  }
+`;
+
+const SubMenuLink2 = styled.a`
+  color: ${magma.colors.neutral};
+  display: block;
+  font-size: ${magma.typeScale.size02.fontSize};
+  line-height: ${magma.typeScale.size02.lineHeight};
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
+    ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11};
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background: ${magma.colors.neutral06};
+    color: ${magma.colors.neutral};
   }
 `;
 
@@ -79,6 +95,34 @@ export const SubMenu = ({ headings, handleClick }) => {
       })}
     </SubMenuList>
   );
+};
+
+export const SubMenu2 = ({ headings, handleClick }) => {
+  return (
+    <SubMenuList>
+      {headings.map((heading, index) => {
+        const id = convertTextToId(heading.value);
+
+        return (
+          <SubMenuItem key={index}>
+            <SubMenuLink2
+              href={`#${id}`}
+              onClick={e => {
+                handleAnchorLinkClick(id, handleClick, e);
+              }}
+            >
+              {heading.value}
+            </SubMenuLink2>
+          </SubMenuItem>
+        );
+      })}
+    </SubMenuList>
+  );
+};
+
+SubMenu.propTypes = {
+  headings: PropTypes.array,
+  handleClick: PropTypes.func,
 };
 
 SubMenu.propTypes = {

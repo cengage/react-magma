@@ -12,5 +12,4 @@ packages/cengage-ts-react-boilerplate
 packages/react-magma-dom/README.md
 *_cache*
 .npmrc
-packages/react-magma-docs/src/data/properties.json
-packages/react-magma-docs/src/data/properties.json
+packages/react-magma-landing/dist
