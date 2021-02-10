@@ -207,8 +207,8 @@ export const StyledIcon = styled.span<{
   margin: ${props => getIconMargin(props)};
 
   svg {
-    height: ${props => props.theme.iconSizes.medium}px;
-    width: ${props => props.theme.iconSizes.medium}px;
+    height: ${props => props.theme.iconSizes.small}px;
+    width: ${props => props.theme.iconSizes.small}px;
   }
 `;
 

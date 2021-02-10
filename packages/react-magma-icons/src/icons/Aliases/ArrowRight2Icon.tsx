@@ -8,7 +8,9 @@ import { IconProps } from '../../IconProps';
 import { EastIcon } from '../Navigation/EastIcon';
 export const ArrowRight2Icon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn('ArrowRight2Icon has been deprecated');
+    console.warn(
+      'ArrowRight2Icon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons.  The newer icons have padding built in to them, so you may need to increase the icon size by 4px and/or adjust the spacing around the icon.'
+    );
   }
   return <EastIcon {...props} />;
 };

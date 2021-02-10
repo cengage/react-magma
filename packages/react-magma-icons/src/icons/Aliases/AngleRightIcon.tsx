@@ -8,7 +8,9 @@ import { IconProps } from '../../IconProps';
 import { ArrowForwardIosIcon } from '../Navigation/ArrowForwardIosIcon';
 export const AngleRightIcon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn('AngleRightIcon has been deprecated');
+    console.warn(
+      'AngleRightIcon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons.  The newer icons have padding built in to them, so you may need to increase the icon size by 4px and/or adjust the spacing around the icon.'
+    );
   }
   return <ArrowForwardIosIcon {...props} />;
 };
