@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Notification2Icon } from 'react-magma-icons';
+import { ErrorIcon } from 'react-magma-icons';
 import { Announce } from '../Announce';
 import { InputSize } from '../InputBase';
 
@@ -66,7 +66,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
       >
         {hasError && (
           <IconWrapper theme={theme}>
-            <Notification2Icon aria-label="Error" size={18} />
+            <ErrorIcon aria-label="Error" size={18} />
           </IconWrapper>
         )}
         <div>{children}</div>

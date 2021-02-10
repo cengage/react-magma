@@ -32,7 +32,7 @@ const StyledSpan = styled.span<{ isInverse?: boolean }>`
       : props.theme.colors.neutral03};
 
   svg {
-    margin: 0 ${props => props.theme.spaceScale.spacing03};
+    margin: 0 ${props => props.theme.spaceScale.spacing02};
   }
 `;
 

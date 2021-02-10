@@ -4,10 +4,10 @@ import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
-  Info2Icon,
-  CheckIcon,
-  NotificationIcon,
-  BlockedIcon,
+  InfoIcon,
+  CheckCircleIcon,
+  WarningIcon,
+  ErrorIcon,
   IconProps,
   CloseIcon,
 } from 'react-magma-icons';
@@ -20,10 +20,10 @@ import { I18nContext } from '../../i18n';
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
 } = {
-  info: Info2Icon,
-  success: CheckIcon,
-  warning: NotificationIcon,
-  danger: BlockedIcon,
+  info: InfoIcon,
+  success: CheckCircleIcon,
+  warning: WarningIcon,
+  danger: ErrorIcon,
 };
 
 export enum AlertVariant {
@@ -194,6 +194,7 @@ const IconWrapperStyles = css`
   align-items: center;
   display: flex;
   flex-shrink: 0;
+  margin-right: 1px;
 `;
 
 const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`

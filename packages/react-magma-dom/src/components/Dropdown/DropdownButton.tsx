@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { IconButton, ButtonIconPosition } from '../IconButton';
 import {
+  ArrowDropUpIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
   CaretDownIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-  CaretUpIcon,
   IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
@@ -77,11 +77,11 @@ export const DropdownButton = React.forwardRef<
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
       case DropdownDropDirection.left:
-        return <CaretLeftIcon testId="caretLeft" />;
+        return <ArrowLeftIcon testId="caretLeft" />;
       case DropdownDropDirection.right:
-        return <CaretRightIcon testId="caretRight" />;
+        return <ArrowRightIcon testId="caretRight" />;
       case DropdownDropDirection.up:
-        return <CaretUpIcon testId="caretUp" />;
+        return <ArrowDropUpIcon testId="caretUp" />;
 
       default:
         return <CaretDownIcon testId="caretDown" />;
