@@ -8,7 +8,6 @@ import {
 import { I18nContext } from '../../i18n';
 import { SearchIcon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   /**
@@ -63,15 +62,10 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
     } = props;
 
     const i18n = React.useContext(I18nContext);
-    const theme = React.useContext(ThemeContext);
 
     const [value, setValue] = React.useState<string>(props.value);
 
-    const icon = isLoading ? (
-      <Spinner />
-    ) : (
-      <SearchIcon size={theme.iconSizes.medium} />
-    );
+    const icon = isLoading ? <Spinner /> : <SearchIcon />;
 
     React.useEffect(() => {
       setValue(props.value);

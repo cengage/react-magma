@@ -9,7 +9,7 @@ import { ArrowDropDownIcon } from '../Navigation/ArrowDropDownIcon';
 export const CaretDownIcon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
     console.warn(
-      'CaretDownIcon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons.  The newer icons have padding built in to them, so you may need to increase the icon size by 4px and/or adjust the spacing around the icon.'
+      'CaretDownIcon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
     );
   }
   return <ArrowDropDownIcon {...props} />;

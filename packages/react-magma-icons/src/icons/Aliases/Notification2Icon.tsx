@@ -9,7 +9,7 @@ import { ErrorIcon } from '../Alert/ErrorIcon';
 export const Notification2Icon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
     console.warn(
-      'Notification2Icon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons.  The newer icons have padding built in to them, so you may need to increase the icon size by 4px and/or adjust the spacing around the icon.'
+      'Notification2Icon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
     );
   }
   return <ErrorIcon {...props} />;

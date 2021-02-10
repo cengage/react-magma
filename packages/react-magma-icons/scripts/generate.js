@@ -179,7 +179,7 @@ import { IconProps } from '../../IconProps';
 import { ${v2} } from '../${category}/${v2}';  
 export const ${v1} = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
-    console.warn("${v1} has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons.  The newer icons have padding built in to them, so you may need to increase the icon size by 4px and/or adjust the spacing around the icon.");
+    console.warn("${v1} has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.");
   }
   return <${v2} {...props} />;
 };
