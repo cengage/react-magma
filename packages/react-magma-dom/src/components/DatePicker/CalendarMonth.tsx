@@ -222,7 +222,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             color={ButtonColor.secondary}
             icon={<CloseIcon />}
             onClick={props.handleCloseButtonClick}
-            size={ButtonSize.small}
+            size={ButtonSize.medium}
             type={ButtonType.button}
             variant={ButtonVariant.link}
           />

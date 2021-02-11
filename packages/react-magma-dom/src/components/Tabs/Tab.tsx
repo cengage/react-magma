@@ -181,7 +181,7 @@ const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
 
 function getIconMargin(props) {
   if (props.isIconOnly) {
-    return `${props.theme.spaceScale.spacing02} 0`;
+    return `0`;
   }
 
   switch (props.iconPosition) {
