@@ -225,13 +225,13 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
       class="icon"
       fill="currentColor"
       height="28"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="28"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -463,13 +463,13 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
       class="icon"
       fill="currentColor"
       height="16"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -701,13 +701,13 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -939,13 +939,13 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -1175,13 +1175,13 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -1404,13 +1404,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
       class="icon"
       fill="currentColor"
       height="28"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="28"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -1633,13 +1633,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -1862,13 +1862,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
       class="icon"
       fill="currentColor"
       height="16"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="16"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -2091,13 +2091,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -2320,13 +2320,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -2549,13 +2549,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
@@ -2776,13 +2776,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
       class="icon"
       fill="currentColor"
       height="20"
-      viewBox="0 0 29.37 21.88"
+      viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-        transform="translate(-0.87 -3.06)"
+        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+        fill-rule="evenodd"
       />
     </svg>
   </button>
