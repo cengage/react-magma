@@ -27,7 +27,7 @@ By default when passing in a `selectedItem` it will be checked to make sure it i
 is able to be used for `items` that are either `strings` or an object with the shape `{item: string; label: string;}`.
 If you are using a custom items format see the [Custom Items example](/api/select/#custom_items).
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -84,7 +84,7 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
   <code class="inverse">initialSelectedItem</code>
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -125,7 +125,7 @@ You can track specific changes made to the internal state of the `select` using 
 `onIsOpenChange`, and `onSelectedItemChange`. Each of these functions will have a `changes` object as a parameter that
 includes the changes made to the corresponding state from each action.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -195,7 +195,7 @@ The `onStateChange` function passes a `changes` object that includes properties 
 last state change. The `changes` object also includes a `type` property that describes the action taken
 to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/select/#state_change_types) section.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -262,7 +262,7 @@ If you wish to control the state rather than having it handled internally you ca
 provided. These props are `isOpen`, `selectedItem`, and `highlightedIndex`. If you are using these control props
 you will have to use the handlers mentioned above in the <Link to="/api/select/#state_changes">State Changes</Link> section.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -319,7 +319,7 @@ export function Example() {
 
 ## Disabled
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -347,7 +347,7 @@ The optional `isClearable` prop allows the user to clear the field once a select
 When using the `isClearable` prop you can choose a default selected item to be set once the `select` is cleared
 using the `defaultSelectedItem` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -389,7 +389,7 @@ export function Example() {
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -416,7 +416,7 @@ export function Example() {
 
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -445,7 +445,7 @@ The `placeholder` prop can be used to replace the default text shown before an i
 Placeholder text should be used to provide supplemental information about the input field. It should not be
 relied upon to take the place of the label text.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -476,7 +476,7 @@ whenever an item has been selected.
 For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
 [object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -506,7 +506,7 @@ export function Example() {
 
 ## Multi Select
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -581,7 +581,7 @@ export function Example() {
 
 ## Events
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -628,7 +628,7 @@ export function Example() {
 
 ## Inverse
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select, Card, CardBody } from 'react-magma-dom';
 
@@ -688,7 +688,7 @@ export function Example() {
 
 The items list menu has a default max height that can be changed in the theme or using the `itemListMaxHeight` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -712,7 +712,7 @@ export function Example() {
 The `labelPosition` prop can be used to set the position of the text label relative to the form field. It accepts either `top` or `left`, with `top` as the default.
 Left-aligned lables are not recommended for use in standard forms; instead they are designed for smaller spaces where vertical space is limited, such as in a toolbar.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select, LabelPosition } from 'react-magma-dom';
 
@@ -737,7 +737,7 @@ Custom styles can be passed into the Select component. The `containerStyle` prop
 Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
 Please use discretion when adding custom styles.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -789,7 +789,7 @@ Placeholders are specific keywords surrounded by curly braces.
 
 Full example of <Link to="/api/internationalization">internationalization override options</Link>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select, I18nContext, defaultI18n } from 'react-magma-dom';
 
@@ -848,7 +848,7 @@ which is a function that returns the string representation of your `item` which 
 If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
 custom `type`](/api/select#custom_items_typescript).
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -895,7 +895,7 @@ export function Example() {
 When using a custom shape for your `items` in a `typescript` project you will need to provide the `Select`
 element with the shape of the `items` you are passing in.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 
@@ -962,7 +962,7 @@ we use internally.
   work.
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 import styled from '@emotion/styled';
@@ -1048,7 +1048,7 @@ export function Example() {
 
 ## Other Custom Components
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Select } from 'react-magma-dom';
 

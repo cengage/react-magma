@@ -34,7 +34,7 @@ If no children are included, then they render in the icon-only style.
   button text.
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { IconButton, ButtonVariant, ButtonColor } from 'react-magma-dom';
 import {
@@ -140,7 +140,7 @@ export function Example() {
 
 If you find JSX being passed in as a prop directly ugly, you can assign an icon to a variable and pass that in as the prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { IconButton } from 'react-magma-dom';
 import { BellIcon } from 'react-magma-icons';
@@ -156,7 +156,7 @@ export function Example() {
 
 Icon buttons have default sizes for small, medium and large icon buttons respectively. However, if a pixel size is specified for an icon itself, that size will take precedence.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { IconButton } from 'react-magma-dom';
 import { BellIcon } from 'react-magma-icons';
@@ -175,7 +175,7 @@ export function Example() {
 Use the optional prop `iconPosition` to position the icon of the button on either side of the text.
 The `iconPosition` property takes the values `left` and `right`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ButtonColor, ButtonIconPosition, IconButton } from 'react-magma-dom';
 import { BellIcon, InfoIcon } from 'react-magma-icons';
@@ -200,7 +200,7 @@ export function Example() {
 
 Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` being the default value.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ButtonIconPosition, ButtonSize, IconButton } from 'react-magma-dom';
 import { BellIcon } from 'react-magma-icons';
@@ -247,7 +247,7 @@ export function Example() {
 
 Icon only buttons have `shape = round`, by default.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ButtonShape, IconButton } from 'react-magma-dom';
 import { BellIcon } from 'react-magma-icons';
@@ -277,7 +277,7 @@ export function Example() {
 
 The `isFullWidth` property will set the button to display full-width. This property does not have any effect on icon-only buttons.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ButtonIconPosition, IconButton } from 'react-magma-dom';
 import { BellIcon } from 'react-magma-icons';
@@ -307,7 +307,7 @@ export function Example() {
 The `onClick` event will fire when the button is clicked, or when the enter or spacebar key is pressed.
 Events do not fire on disabled buttons.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { IconButton } from 'react-magma-dom';
 import { BellIcon } from 'react-magma-icons';

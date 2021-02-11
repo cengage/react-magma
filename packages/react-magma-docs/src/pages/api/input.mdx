@@ -37,7 +37,7 @@ The label/input association will be handled via the passed in `id` if one is sup
 
 Label text can be a string or a react node.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -59,7 +59,7 @@ export function Example() {
 
 ## Number
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -69,7 +69,7 @@ export function Example() {
 
 ## Disabled
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -81,7 +81,7 @@ export function Example() {
 
 The `defaultValue` of an input can be set using the `defaultValue` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -93,7 +93,7 @@ export function Example() {
 
 The `value` of an input can be set using the `value` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -107,7 +107,7 @@ The `placeholder` text of an input can be set using the `placeholder` prop.
 Placeholder text should be used to provide supplemental information about the input field. It should not be
 relied upon to take the place of the label text.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -119,7 +119,7 @@ export function Example() {
 
 The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -142,7 +142,7 @@ The `required` prop can be used to indicate when a field is required. It is also
 
 While React Magma provides the error styling, it is up to the consumer app to handle the validation.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input, Button } from 'react-magma-dom';
 export function Example() {
@@ -189,7 +189,7 @@ Functionality can be added to the icon by using the `onIconClick` and `onIconKey
 
 The `iconPosition` position prop is optional and takes the values `left` and `right`, with `left` being the default for non-clickable icons.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input, Spinner } from 'react-magma-dom';
 import { CalendarIcon, EnvelopeOIcon } from 'react-magma-icons';
@@ -226,7 +226,7 @@ export function Example() {
 
 The `inputSize` prop can be used to control the input size. Options are `medium` and `large`, with `medium` being the default.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 import { CalendarIcon, EnvelopeOIcon } from 'react-magma-icons';
@@ -264,7 +264,7 @@ export function Example() {
 
 `isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Card, CardBody, Input } from 'react-magma-dom';
 export function Example() {
@@ -302,7 +302,7 @@ The `isLabelVisuallyHidden` prop can be used to visually hide the text label, wh
 
 This option should only be used in rare instances, such as a search field. Providing a visual label is helpful for individuals with cognitive disabilities and users who have fine motor control limitations. When there isn't a visible label, the placeholder text should match the invisible label word for word. This is so speech input users can operate the control with voice commands.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 import { Search2Icon } from 'react-magma-icons';
@@ -324,7 +324,7 @@ Some inputs require more content next to the form field, such as a help link to 
 If you pass children to the input field, it will render immediately after the input. The container is displayed flex, so the content
 will appear to the right of the field.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { IconButton, Input, Tooltip } from 'react-magma-dom';
 import { QuestionCircleIcon } from 'react-magma-icons';
@@ -352,7 +352,7 @@ export function Example() {
 
 ## Change Events
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -376,7 +376,7 @@ export function Example() {
 
 ## Focus Events
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
@@ -410,7 +410,7 @@ export function Example() {
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal input.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Input } from 'react-magma-dom';
 export function Example() {
@@ -437,7 +437,7 @@ export function Example() {
 Custom styles can be passed into the Input component. The `containerStyle` property will apply to the container.
 Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {

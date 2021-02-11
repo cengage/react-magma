@@ -34,7 +34,7 @@ This can be done by supplementing the button label or link text with "(opens mod
 
 More examples of modals can be found on the <Link to="/examples/modal">More Modal Examples</Link> page.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Modal, VisuallyHidden } from 'react-magma-dom';
 export function Example() {
@@ -71,7 +71,7 @@ export function Example() {
 
 Sizes for modals include `small`, `medium`, and `large`, with `medium` being the default value.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Button,
@@ -123,7 +123,7 @@ The modal header prop is optional. It can accept a node or a string, and will be
 If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
 the first actionable element.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Modal, ModalSize, VisuallyHidden } from 'react-magma-dom';
 export function Example() {
@@ -170,7 +170,7 @@ export function Example() {
 
 The close button can be hidden by using the `isCloseButtonHidden` prop. If this prop is used, it is mandatory to provide another way to close the modal.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Modal } from 'react-magma-dom';
 export function Example() {
@@ -197,7 +197,7 @@ export function Example() {
 
 If you would like to add a custom close button to the `Modal` be sure not to use the same `onClose` function as it will mean that the function will be called twice (once internally and once by `react-magma`).
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Modal, VisuallyHidden } from 'react-magma-dom';
 export function Example() {

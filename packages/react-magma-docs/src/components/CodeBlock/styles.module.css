@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Mono:400');
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--psLayoutSpacingLarge);
+}
+.title {
+  &:not(.hack-to-make-more-specific) {
+    margin: 0;
+    margin-right: var(--psLayoutSpacingMedium);
+  }
+}
+
+.codeBlock {
+  margin: 0 0 var(--psLayoutSpacingLarge) 0;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  padding: 0 var(--psLayoutSpacingXSmall);
+  background-color: var(--appColorsBackgroundMed);
+}
+.actionsLeft {
+  margin-right: auto;
+}
+.actionsRight {
+  margin-left: auto;
+}
+
+.preview {
+  padding: var(--psLayoutSpacingMedium);
+  background: var(--appColorsBackgroundLow);
+  border-bottom: 1px solid var(--appColorsBorderLow);
+
+  &.dark {
+    color: var(--psColorsTextIconHighOnDark);
+    background-color: var(--psColorsBackgroundDark2);
+  }
+  &.light {
+    color: var(--psColorsTextIconHighOnLight);
+    background-color: var(--psColorsLightDark2);
+  }
+}
+
+.editor {
+  position: relative;
+  font-family: 'DM Mono', monospace;
+  font-size: var(--psTypeFontSizeSmall);
+  line-height: var(--psTypeLineHeightTight);
+  overflow: auto;
+  padding: var(--psLayoutSpacingSmall) var(--psLayoutSpacingMedium);
+  height: auto;
+  max-height: var(--psLayoutSpacingXLarge);
+  transition: max-height var(--psMotionSpeedFast) ease-out;
+  overflow-y: hidden;
+  background-color: var(--appColorsBackgroundMed);
+}
+.editorExpanded {
+  /* large number so we have something to animate to */
+  max-height: 4000px;
+}
+.editorFade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 45px;
+  pointer-events: none;
+}
+[data-psds-theme='light'] .editorFade {
+  background: linear-gradient(
+    180deg,
+    rgba(247, 249, 250, 0) 20%,
+    rgba(247, 249, 250, 1) 100%
+  );
+}
+[data-psds-theme='dark'] .editorFade {
+  background: linear-gradient(
+    to bottom,
+    rgba(24, 28, 32, 0) 20%,
+    rgba(24, 28, 32, 1) 100%
+  );
+}
+.clickToExpand {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  background: none;
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+}
+.clickToExpand:focus {
+  outline: none;
+}
+
+.example {
+  border-radius: 0.2em;
+  overflow: hidden;
+  border: 1px solid var(--appColorsBorderLow);
+}

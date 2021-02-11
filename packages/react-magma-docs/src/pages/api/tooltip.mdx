@@ -19,7 +19,7 @@ The children of the tooltip, determines the content inside of the tooltip bubble
 
 The `trigger` prop must take a react element (not just a string), and determines the content that triggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Tooltip, IconButton, ButtonVariant } from 'react-magma-dom';
 import { QuestionCircleIcon } from 'react-magma-icons';
@@ -60,7 +60,7 @@ export function Example() {
 
 The `Tooltip` component takes a `position` property, that accepts the following values: bottom, left, right, top. Top is the default value.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Tooltip,
@@ -119,7 +119,7 @@ export function Example() {
 The `isInverse` property is an optional boolean, that reverses the colors so that the component can better appear on a dark background.
 The default value is `false`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -173,7 +173,7 @@ The `arrowStyle` prop applies to the arrow indicator.
   named [popperjs](https://popper.js.org/) to deal with overflow and scrolling.
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Tooltip, IconButton, ButtonVariant } from 'react-magma-dom';
 import { QuestionCircleIcon } from 'react-magma-icons';
@@ -225,7 +225,7 @@ The values of some style properties are set in the Magma theme.
  }
 ```
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Tooltip,

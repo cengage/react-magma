@@ -14,6 +14,7 @@ import { NetlifyFooter } from './NetlifyFooter';
 import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom';
 import { DocsHeading } from './DocsHeading';
+import { CodeBlock } from './CodeBlock';
 
 const PreContainer = styled.div`
   border: 1px solid ${magma.colors.neutral06};
@@ -121,6 +122,7 @@ export const Layout = ({ children, pageContext }) => {
     <LayoutComponent title={title}>
       <MDXProvider
         components={{
+          code: CodeBlock,
           table: Table,
           h1: SmartDocsHeading,
           h2: SectionHeading,

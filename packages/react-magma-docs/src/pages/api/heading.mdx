@@ -16,7 +16,7 @@ import { Link } from 'gatsby';
 
 The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Heading } from 'react-magma-dom';
 
@@ -42,7 +42,7 @@ Visual style and heading level can be set independently so you can specify the c
 
 Furthermore, the `visualStyle` prop can also accept the values for the four different paragraph visual styles: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`. These are sizes are also used with the <Link to="/api/paragraph">Paragraph</Link> component.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Heading, TypographyVisualStyle } from 'react-magma-dom';
 
@@ -93,7 +93,7 @@ The `expressive` context variant can be used in marketing contexts, which may re
 
 The `narrative` context variant can be used for content-heavy contexts, such as a blog post or an e-reader.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Heading, TypographyContextVariant } from 'react-magma-dom';
 
@@ -149,7 +149,7 @@ export function Example() {
 
 The `color` prop can be used to change the color of the heading to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Heading, TypographyColor } from 'react-magma-dom';
 
@@ -176,7 +176,7 @@ export function Example() {
 
 The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Card, CardBody, Heading, TypographyColor } from 'react-magma-dom';
 
@@ -209,7 +209,7 @@ export function Example() {
 
 By default, the `Heading` component includes margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Heading } from 'react-magma-dom';
 
@@ -243,7 +243,7 @@ export function Example() {
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal heading.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Heading } from 'react-magma-dom';
 

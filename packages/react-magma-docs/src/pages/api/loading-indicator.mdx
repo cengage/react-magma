@@ -20,7 +20,7 @@ When content is loading, the `LoadingIndicator` component can be used to communi
 
 By default, the Loading Indicator uses the <Link to="/api/spinner">Spinner</Link> component.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { LoadingIndicator } from 'react-magma-dom';
 export function Example() {
@@ -33,7 +33,7 @@ export function Example() {
 The `type` prop can be used to change what sort of loading animation displays. The default type is `spinner`, but the `progressbar` type can also be used,
 to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { LoadingIndicator } from 'react-magma-dom';
 export function Example() {
@@ -103,7 +103,7 @@ export function Example() {
 The `LoadingIndicator`, supports three levels of messages. One displays immediately, the second one appears after five seconds, and the third appears after 15 seconds.
 These messages can be customized by using the `message1`, `message2` and `message3` props.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { LoadingIndicator } from 'react-magma-dom';
 export function Example() {
@@ -123,7 +123,7 @@ Loading Indicators are intended to alert users to the fact that wait time is exp
 One way to do this is to use the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute. Be sure to place
 the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` component.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Announce, Button, LoadingIndicator } from 'react-magma-dom';
 export function Example() {

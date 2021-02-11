@@ -19,7 +19,7 @@ import { Link } from 'gatsby';
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Toast } from 'react-magma-dom';
 
@@ -53,7 +53,7 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
 
 ### Info
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Toast, AlertVariant } from 'react-magma-dom';
 
@@ -90,7 +90,7 @@ the conditional logic to display the Toast _inside_ the Announce component.
 While toasts appear visually in centered at bottom of the screen, they will exist in the dom where ever they are placed. Keep this in mind when you are structuring your
 markup, to ensure that they have the expected tab order.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Announce, Toast } from 'react-magma-dom';
 
@@ -127,7 +127,7 @@ The first toast will appear at the bottom of the screen, the next toast will app
 that may be added. However if the number of toasts exceeds the amount of space on the screen, layout issues might occur. Try to limit the number of toasts
 appearing on screen at once as much as possible.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Announce,
@@ -214,7 +214,7 @@ export function Example() {
 The `ToastsContainer` component takes an optional `bottomOffset` prop, that indicates the additional number of pixels from the bottom the toasts will render.
 This is useful in cases where toasts are intended to display above a component, such as a toolbar.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Toast, ToastsContainer } from 'react-magma-dom';
 
@@ -245,7 +245,7 @@ export function Example() {
 
 The `toastDuration` prop can be used to set the number of milliseconds that the toast will remain on the screen before it auto-dismisses. This can be useful to set a longer duration for more lengthy toasts. It is recommended that the minimum `toastDuration` is 4000ms. The default is 5000.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Toast } from 'react-magma-dom';
 
@@ -274,7 +274,7 @@ export function Example() {
 
 ## Disable Auto Dismiss
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Toast } from 'react-magma-dom';
 
@@ -305,7 +305,7 @@ export function Example() {
 
 When you hover over the Toast the timer is paused. Once the mouse leaves the Toast the timer is will continue running.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Toast } from 'react-magma-dom';
 
@@ -352,7 +352,7 @@ Custom styles can be added to a toast using two different props. The `containerS
 which includes the component's positioning and z-index. The `alertStyle` prop controls the style for the internal alert component, which
 includes the element's background, border-radius, and fade animation.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, Toast } from 'react-magma-dom';
 

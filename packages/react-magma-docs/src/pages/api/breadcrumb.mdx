@@ -20,7 +20,7 @@ The breadcrumb menu consists of two components: `Breadcrumb` and `BreadcrumbItem
 should be used multiple times within it, and refers to each node in the menu. A `BreadcrumbItem` takes a `to` prop, which determines the href of that item. If that prop is left blank,
 the item will be rendered as a span and will have `aria-current="page"` on it. All items in a breadcrumb menu should have the `to` prop, except for the last one, which represents the current page.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'react-magma-dom';
 
@@ -39,7 +39,7 @@ export function Example() {
 
 IsInverse is an optional boolean prop, that may be used when the breadcrumb menu to be displayed on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody } from 'react-magma-dom';
 
@@ -62,7 +62,7 @@ export function Example() {
 
 By default, the `aria-label` of the Breadcrumb component is `Breadcrumb`. This can be overridden by passing in the `aria-label` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'react-magma-dom';
 
