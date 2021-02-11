@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { TablePagination } from '.';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 describe('Table Pagination', () => {
@@ -24,6 +24,53 @@ describe('Table Pagination', () => {
       'border-top',
       `1px solid ${magma.colors.neutral08}`
     );
+  });
+
+  it('should change page when clicking next', () => {
+    const handleChangePage = jest.fn();
+
+    const { getByTestId } = render(
+      <TablePagination count={20} isInverse onChangePage={handleChangePage} />
+    );
+    const nextBtn = getByTestId('nextBtn');
+
+    fireEvent.click(nextBtn);
+    expect(handleChangePage).toHaveBeenCalled();
+  });
+
+  it('should change page when clicking previous', () => {
+    const handleChangePage = jest.fn();
+
+    const { getByTestId } = render(
+      <TablePagination
+        count={20}
+        page={1}
+        isInverse
+        onChangePage={handleChangePage}
+      />
+    );
+    const prevBtn = getByTestId('previousBtn');
+
+    fireEvent.click(prevBtn);
+    expect(handleChangePage).toHaveBeenCalled();
+  });
+
+  it('should change number of rows per page', () => {
+    const handleChangeRowsPerPage = jest.fn();
+
+    const { getByTestId, getByText } = render(
+      <TablePagination
+        count={20}
+        isInverse
+        onChangeRowsPerPage={handleChangeRowsPerPage}
+      />
+    );
+    const rowsSelect = getByTestId('selectTriggerButton');
+
+    fireEvent.click(rowsSelect);
+    fireEvent.click(getByText('20'));
+
+    expect(handleChangeRowsPerPage).toHaveBeenCalled();
   });
 
   it('Does not violate accessibility standards', () => {

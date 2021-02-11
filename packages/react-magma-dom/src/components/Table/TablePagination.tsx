@@ -42,6 +42,8 @@ const StyledContainer = styled.div<{
   theme: ThemeInterface;
 }>`
   align-items: center;
+  background: ${props =>
+    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
   border-top: 1px solid
     ${props =>
       props.isInverse
@@ -129,6 +131,7 @@ export const TablePagination = React.forwardRef<
         icon={<ArrowLeft2Icon />}
         isInverse={isInverse}
         onClick={handlePreviousClick}
+        testId="previousBtn"
         variant={ButtonVariant.link}
       />
       <IconButton
@@ -138,6 +141,7 @@ export const TablePagination = React.forwardRef<
         icon={<ArrowRight2Icon />}
         isInverse={isInverse}
         onClick={handleNextClick}
+        testId="nextBtn"
         variant={ButtonVariant.link}
       />
     </StyledContainer>

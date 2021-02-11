@@ -8,15 +8,78 @@ import {
   TableHeaderCell,
   TableBody,
   TablePagination,
+  TableProps,
+  TableDensity,
 } from './';
 import { magma } from '../../theme/magma';
-
-export default {
-  component: Table,
-  title: 'Table',
-};
+import { Story, Meta } from '@storybook/react/types-6-0';
 
 const rows = [
+  [
+    'Lorem ipsum dolor sit amet consectetur',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    'Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+];
+
+const Template: Story<TableProps> = args => (
+  <Card>
+    <Table {...args}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map((row, i) => (
+          <TableRow key={`row${i}`}>
+            {row.map((cell, j) => (
+              <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </Card>
+);
+
+export default {
+  title: 'Table',
+  component: Table,
+  argTypes: {
+    density: {
+      control: {
+        type: 'select',
+        options: TableDensity,
+      },
+    },
+  },
+} as Meta;
+
+export const Default = Template.bind({});
+Default.args = {
+  hasHoverStyles: false,
+  hasVerticalBorders: false,
+  hasZebraStripes: false,
+};
+
+const rowsLong = [
   [
     '1 Lorem ipsum dolor sit amet consectetur',
     'Lorem ipsum dolor',
@@ -157,7 +220,7 @@ const rows = [
   ],
 ];
 
-export const Default = () => {
+export const Pagination = () => {
   const [pageIndex, setPageIndex] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
@@ -170,7 +233,7 @@ export const Default = () => {
     setPageIndex(page);
   }
 
-  const rowsToShow = rows.slice(
+  const rowsToShow = rowsLong.slice(
     pageIndex * rowsPerPage,
     pageIndex * rowsPerPage + rowsPerPage
   );
@@ -197,7 +260,7 @@ export const Default = () => {
         </TableBody>
       </Table>
       <TablePagination
-        count={rows.length}
+        count={rowsLong.length}
         onChangeRowsPerPage={handleRowsPerPageChange}
         onChangePage={handlePageChange}
         page={pageIndex}
@@ -207,12 +270,22 @@ export const Default = () => {
   );
 };
 
-export const Inverse = () => {
-  const page = 0;
-  const rowsPerPage = 10;
-  const rowsToShow = rows.slice(
-    page * rowsPerPage,
-    page * rowsPerPage + rowsPerPage
+export const PaginationInverse = () => {
+  const [pageIndex, setPageIndex] = React.useState<number>(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+
+  function handleRowsPerPageChange(numberOfPages) {
+    setRowsPerPage(numberOfPages);
+    setPageIndex(0);
+  }
+
+  function handlePageChange(page) {
+    setPageIndex(page);
+  }
+
+  const rowsToShow = rowsLong.slice(
+    pageIndex * rowsPerPage,
+    pageIndex * rowsPerPage + rowsPerPage
   );
 
   return (
@@ -237,8 +310,11 @@ export const Inverse = () => {
         </TableBody>
       </Table>
       <TablePagination
-        count={rows.length}
+        count={rowsLong.length}
         isInverse
+        onChangeRowsPerPage={handleRowsPerPageChange}
+        onChangePage={handlePageChange}
+        page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
     </Card>
