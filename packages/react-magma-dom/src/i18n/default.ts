@@ -199,6 +199,14 @@ export const defaultI18n: I18nInterface = {
     menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
+  table: {
+    pagination: {
+      ofLabel: 'of',
+      nextAriaLabel: 'Next page',
+      previousAriaLabel: 'Previous page',
+      rowsPerPageLabel: 'Rows per page',
+    },
+  },
   tabs: {
     horizontalTabsInstructions:
       'use the right and left arrow keys to activate other tabs',

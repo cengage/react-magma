@@ -15,17 +15,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-landing
 
-
-
-
-
 ### 1.0.4-alpha.3 (2021-02-05)
 
 **Note:** Version bump only for package react-magma-landing
-
-
-
-
 
 ### 1.0.4-alpha.2 (2021-01-29)
 

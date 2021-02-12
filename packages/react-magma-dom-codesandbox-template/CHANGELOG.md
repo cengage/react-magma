@@ -15,10 +15,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-dom-codesandbox-template
 
-
-
-
-
 ### 1.0.1-alpha.0 (2021-02-05)
 
 **Note:** Version bump only for package react-magma-dom-codesandbox-template
