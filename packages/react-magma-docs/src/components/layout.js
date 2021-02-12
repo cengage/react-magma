@@ -73,7 +73,7 @@ const PreComponent = ({ className, components, ...props }) => {
       )}
     </LiveProvider>
   ) : (
-    <pre {...props} />
+    <div {...props} />
   );
 };
 

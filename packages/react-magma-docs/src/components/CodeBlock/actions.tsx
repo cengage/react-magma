@@ -1,13 +1,18 @@
-import { Button } from 'react-magma-dom';
-// import cx from 'classnames'
+import {
+  IconButton,
+  Button,
+  ButtonSize,
+  ButtonColor,
+  ButtonIconPosition,
+} from 'react-magma-dom';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
+import { ExternalLinkIcon } from 'react-magma-icons';
 import CodeSandboxer from 'react-codesandboxer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-const pkg = require('../../../package.json');
+import styled from '@emotion/styled';
 
-// import usePrevious from '../../hooks/use-previous'
-// import styles from './styles.module.css'
+const pkg = require('../../../package.json');
 
 function usePrevious<T>(value: T) {
   const ref = React.useRef<T>();
@@ -50,28 +55,13 @@ export default function App() {
 }
 `;
 
+const ActionsDiv = styled.div`
+  align-items: flex-end;
+  display: flex;
+`;
+
 export const Actions: React.FC<HTMLAttributes<HTMLDivElement>> = props => {
-  const { className: cn, ...rest } = props;
-  // const className = cx(styles.actions, cn)
-
-  // return <div className={className} {...rest} />
-  return <div {...rest} />;
-};
-
-export const ActionsLeft: React.FC<HTMLAttributes<HTMLDivElement>> = props => {
-  const { className: cn, ...rest } = props;
-  // const className = cx(styles.actionsLeft, cn)
-
-  // return <div className={className} {...rest} />
-  return <div {...rest} />;
-};
-
-export const ActionsRight: React.FC<HTMLAttributes<HTMLDivElement>> = props => {
-  const { className: cn, ...rest } = props;
-  // const className = cx(styles.actionsRight, cn)
-
-  // return <div className={className} {...rest} />
-  return <div {...rest} />;
+  return <ActionsDiv {...props} />;
 };
 
 interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
@@ -115,7 +105,17 @@ export const CodeSandboxAction: React.FC<CodeSandboxActionProps> = props => {
 
         if (error) console.log(error);
 
-        return <Button>{error ? 'Error' : buttonText}</Button>;
+        return (
+          <IconButton
+            color={ButtonColor.secondary}
+            icon={<ExternalLinkIcon />}
+            iconPosition={ButtonIconPosition.right}
+            size={ButtonSize.small}
+            style={{ marginRight: 0 }}
+          >
+            {error ? 'Error' : buttonText}
+          </IconButton>
+        );
       }}
     </CodeSandboxer>
   );
@@ -144,10 +144,14 @@ export const CopyAction: React.FC<CopyActionProps> = props => {
   };
 
   return copied ? (
-    <Button disabled>Copied!</Button>
+    <Button disabled color={ButtonColor.secondary} size={ButtonSize.small}>
+      Copied!
+    </Button>
   ) : (
     <CopyToClipboard text={props.code} onCopy={handleCopy}>
-      <Button>Copy</Button>
+      <Button color={ButtonColor.secondary} size={ButtonSize.small}>
+        Copy
+      </Button>
     </CopyToClipboard>
   );
 };
@@ -158,5 +162,9 @@ interface ExpandActionProps extends HTMLAttributes<HTMLButtonElement> {
 export const ExpandAction: React.FC<ExpandActionProps> = props => {
   const { expanded, ...rest } = props;
 
-  return <Button {...rest}>{expanded ? 'Collapse' : 'Expand'} code</Button>;
+  return (
+    <Button {...rest} color={ButtonColor.secondary} size={ButtonSize.small}>
+      {expanded ? 'Collapse' : 'Expand'} code
+    </Button>
+  );
 };

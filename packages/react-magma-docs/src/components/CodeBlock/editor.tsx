@@ -1,45 +1,36 @@
-// import ScreenReaderOnly from '@pluralsight/ps-design-system-screenreaderonly'
-// import Theme, { useTheme } from '@pluralsight/ps-design-system-theme'
-
-// import cx from 'classnames'
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import React, { useContext, MouseEvent } from 'react';
-
+import styled from '@emotion/styled';
 import { CodeBlockContext } from './context';
-import { VisuallyHidden } from 'react-magma-dom';
-// import styles from './styles.module.css'
-// import { darkTheme, lightTheme } from './theme'
+import { magma } from 'react-magma-dom';
 
 interface EditorProps {
   children: string;
   expanded: boolean;
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
+
+const Pre = styled.pre`
+  background: ${magma.colors.neutral07};
+  border: 1px solid ${magma.colors.neutral06};
+  border-radius: 0;
+  margin: 0;
+`;
+
 export const Editor: React.FC<EditorProps> = props => {
   const context = useContext(CodeBlockContext);
-  // const themeName = useTheme()
-  // const isDarkTheme = themeName === Theme.names.dark
-  // const codeTheme = isDarkTheme ? darkTheme : lightTheme
 
   return (
     <Highlight
       {...defaultProps}
       code={props.children}
       language={context.language}
-      // theme={codeTheme}
     >
       {highlight => {
         const { tokens, getLineProps, getTokenProps } = highlight;
 
-        // const className = cx({
-        //   [highlight.className]: true,
-        //   [styles.editor]: true,
-        //   [styles.editorExpanded]: props.expanded
-        // })
-
         return (
-          // <pre className={className}>
-          <pre>
+          <Pre>
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
@@ -47,20 +38,7 @@ export const Editor: React.FC<EditorProps> = props => {
                 ))}
               </div>
             ))}
-            {!props.expanded && (
-              <>
-                <button
-                  // className={styles.clickToExpand}
-                  onClick={(evt: MouseEvent<HTMLButtonElement>) => {
-                    if (!props.expanded) props.onClick(evt);
-                  }}
-                >
-                  <VisuallyHidden>Click to expand</VisuallyHidden>
-                </button>
-                {/* <div className={styles.editorFade} /> */}
-              </>
-            )}
-          </pre>
+          </Pre>
         );
       }}
     </Highlight>

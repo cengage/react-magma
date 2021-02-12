@@ -1,15 +1,11 @@
 import { transform } from '@babel/core';
-// import Theme from '@pluralsight/ps-design-system-theme'
-// import { canUseDOM } from '@pluralsight/ps-design-system-util'
-// import cx from 'classnames'
 import { Language } from 'prism-react-renderer';
 import React, { HTMLAttributes, useContext } from 'react';
 import { LiveError, LiveProvider, LivePreview } from 'react-live';
 import * as MAGMA from 'react-magma-dom';
+import styled from '@emotion/styled';
 
 import { CodeBlockContext } from './context';
-// import styles from './styles.module.css'
-// import { mapPackageNameToScopes } from './package-map'
 
 const SUPPORTED_LANGUAGES: Language[] = [
   'javascript',
@@ -26,31 +22,32 @@ interface PreviewData {
 interface PreviewProps extends HTMLAttributes<HTMLDivElement> {
   code: string;
 }
+
+const PreviewContainer = styled.div`
+  border: 1px solid ${MAGMA.magma.colors.neutral06};
+  padding: ${MAGMA.magma.spaceScale.spacing04};
+`;
+
 export const Preview: React.FC<PreviewProps> = props => {
   const context = useContext(CodeBlockContext);
   const supported = SUPPORTED_LANGUAGES.includes(context.language);
 
-  // if (!canUseDOM) return null
   if (context.noRender || !supported) return null;
 
   const preview = formatPreview(props.code);
 
   return (
-    <LiveProvider
-      code={preview.code}
-      scope={MAGMA}
-      noInline
-      transformCode={transformCode}
-    >
-      <LiveError />
-      <LivePreview
-      // className={cx({
-      //   [styles.preview]: true,
-      //   [styles.dark]: context.themeNameOverride === Theme.names.dark,
-      //   [styles.light]: context.themeNameOverride === Theme.names.light
-      // })}
-      />
-    </LiveProvider>
+    <PreviewContainer>
+      <LiveProvider
+        code={preview.code}
+        scope={MAGMA}
+        noInline
+        transformCode={transformCode}
+      >
+        <LiveError />
+        <LivePreview />
+      </LiveProvider>
+    </PreviewContainer>
   );
 };
 
@@ -83,7 +80,6 @@ function moveImportsToScope(data: PreviewData): PreviewData {
     newData.code = codeWithoutImport;
     newData.scope = {
       ...newData.scope,
-      // ...mapPackageNameToScopes(range.packageName)
     };
   });
 

@@ -1,20 +1,12 @@
-import { Dropdown, Heading, Paragraph } from 'react-magma-dom';
+import { Label, Paragraph } from 'react-magma-dom';
 
 import frontmatter from '@github-docs/frontmatter';
 import React, { useContext, useState } from 'react';
 
-import {
-  Actions,
-  ActionsLeft,
-  ActionsRight,
-  CopyAction,
-  CodeSandboxAction,
-  ExpandAction,
-} from './actions';
+import { Actions, CopyAction, CodeSandboxAction } from './actions';
 import { CodeBlockContext } from './context';
 import { Editor } from './editor';
 import { Preview } from './preview';
-// import styles from './styles.module.css'
 
 export interface ExampleData {
   code: string;
@@ -23,56 +15,6 @@ export interface ExampleData {
   title: string;
   value: string;
 }
-
-interface ExamplesSwitcherProps {
-  examples: ExampleData[];
-}
-export const ExamplesSwitcher: React.FC<ExamplesSwitcherProps> = props => {
-  const [selectedOption, setSelectedOption] = useState(props.examples[0].value);
-
-  const handleDropdownChange = (_evt: React.FormEvent, value: string) => {
-    setSelectedOption(value);
-  };
-
-  return (
-    <div>
-      {/* <header className={styles.header}> */}
-      <header>
-        <div style={{ flex: 0 }}>
-          <Heading level={3}>Examples:</Heading>
-        </div>
-
-        <div style={{ flex: 2 }}>
-          <Dropdown
-            menu={props.examples.map(example => {
-              return (
-                <Dropdown.Item key={example.id} value={example.value}>
-                  {example.title}
-                </Dropdown.Item>
-              );
-            })}
-            onChange={handleDropdownChange}
-            value={selectedOption}
-          />
-        </div>
-      </header>
-
-      <div>
-        {props.examples
-          .filter(example => example.value === selectedOption)
-          .map(example => {
-            return (
-              <Example
-                key={example.id}
-                code={example.code}
-                description={example.description}
-              />
-            );
-          })}
-      </div>
-    </div>
-  );
-};
 
 function calculateStartExpanded(code: string, startExpanded: boolean) {
   if (startExpanded) return startExpanded;
@@ -95,26 +37,15 @@ export const Example: React.FC<ExampleProps> = props => {
   return (
     <div>
       {props.description && <Paragraph>{props.description}</Paragraph>}
-
-      <div>
-        {/* <div className={styles.example}> */}
-        <Preview code={props.code} />
-
-        <Actions>
-          <ActionsLeft>
-            <ExpandAction expanded={expanded} onClick={toggleExpanded} />
-          </ActionsLeft>
-
-          <ActionsRight>
-            <CopyAction code={props.code} />
-            <CodeSandboxAction code={props.code} />
-          </ActionsRight>
-        </Actions>
-
-        <Editor expanded={expanded} onClick={toggleExpanded}>
-          {props.code}
-        </Editor>
-      </div>
+      <Actions>
+        <Label style={{ flexGrow: 1 }}>Code Example</Label>
+        <CopyAction code={props.code} />
+        <CodeSandboxAction code={props.code} />
+      </Actions>
+      <Editor expanded={expanded} onClick={toggleExpanded}>
+        {props.code}
+      </Editor>
+      <Preview code={props.code} />
     </div>
   );
 };
