@@ -17,7 +17,11 @@ const StyledTableRow = styled.tr<{
   hasZebraStripes?: boolean;
   isInverse?: boolean;
 }>`
-  border-bottom: 1px solid ${props => props.theme.colors.neutral06};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.tint04
+        : props.theme.colors.neutral06};
   color: inherit;
   display: table-row;
   outline: 0;
