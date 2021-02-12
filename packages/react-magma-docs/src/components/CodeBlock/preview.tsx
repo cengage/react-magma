@@ -28,7 +28,7 @@ const PreviewContainer = styled.div`
   padding: ${MAGMA.magma.spaceScale.spacing04};
 `;
 
-export const Preview: React.FC<PreviewProps> = props => {
+export const Preview = ({ ...props }: PreviewProps) => {
   const context = useContext(CodeBlockContext);
   const supported = SUPPORTED_LANGUAGES.includes(context.language);
 

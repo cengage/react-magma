@@ -3,6 +3,7 @@ import React, { useContext, MouseEvent } from 'react';
 import styled from '@emotion/styled';
 import { CodeBlockContext } from './context';
 import { magma } from 'react-magma-dom';
+import { magmaCode } from './magmaCode';
 
 interface EditorProps {
   children: string;
@@ -17,7 +18,7 @@ const Pre = styled.pre`
   margin: 0;
 `;
 
-export const Editor: React.FC<EditorProps> = props => {
+export const Editor = ({ ...props }: EditorProps) => {
   const context = useContext(CodeBlockContext);
 
   return (
@@ -25,6 +26,7 @@ export const Editor: React.FC<EditorProps> = props => {
       {...defaultProps}
       code={props.children}
       language={context.language}
+      theme={magmaCode}
     >
       {highlight => {
         const { tokens, getLineProps, getTokenProps } = highlight;

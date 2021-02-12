@@ -10,11 +10,12 @@ interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
   startExpanded?: boolean;
   themeName?: string;
 }
-export const CodeBlock: React.FC<CodeBlockProps> = ({
+
+export const CodeBlock = ({
   noRender = false,
   startExpanded = false,
   ...props
-}) => {
+}: CodeBlockProps) => {
   const language = props.className?.replace(/language-/, '') as Language;
   const examples = parseCode(props.children);
   const firstExample = examples[0];

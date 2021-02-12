@@ -60,14 +60,14 @@ const ActionsDiv = styled.div`
   display: flex;
 `;
 
-export const Actions: React.FC<HTMLAttributes<HTMLDivElement>> = props => {
+export const Actions = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
   return <ActionsDiv {...props} />;
 };
 
 interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
   code: string;
 }
-export const CodeSandboxAction: React.FC<CodeSandboxActionProps> = props => {
+export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
   return (
     <CodeSandboxer
       example={props.code}
@@ -124,7 +124,7 @@ export const CodeSandboxAction: React.FC<CodeSandboxActionProps> = props => {
 interface CopyActionProps extends HTMLAttributes<HTMLButtonElement> {
   code: string;
 }
-export const CopyAction: React.FC<CopyActionProps> = props => {
+export const CopyAction = ({ ...props }: CopyActionProps) => {
   const [copied, setCopied] = useState(false);
   const prevCopied = usePrevious(copied);
 
@@ -159,7 +159,7 @@ export const CopyAction: React.FC<CopyActionProps> = props => {
 interface ExpandActionProps extends HTMLAttributes<HTMLButtonElement> {
   expanded: boolean;
 }
-export const ExpandAction: React.FC<ExpandActionProps> = props => {
+export const ExpandAction = ({ ...props }: ExpandActionProps) => {
   const { expanded, ...rest } = props;
 
   return (

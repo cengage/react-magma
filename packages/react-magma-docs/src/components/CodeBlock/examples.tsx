@@ -27,7 +27,7 @@ interface ExampleProps {
   description?: string;
   code: string;
 }
-export const Example: React.FC<ExampleProps> = props => {
+export const Example = ({ ...props }: ExampleProps) => {
   const context = useContext(CodeBlockContext);
   const [expanded, setExpanded] = useState<boolean>(
     calculateStartExpanded(props.code, context.startExpanded)
