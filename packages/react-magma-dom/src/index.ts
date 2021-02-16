@@ -145,7 +145,11 @@ export {
   TableHeadProps,
   TableHeaderCell,
   TableHeaderCellProps,
+  TableHeaderCellScope,
+  TablePagination,
+  TablePaginationProps,
   TableRow,
+  TableRowColor,
   TableRowProps,
 } from './components/Table';
 

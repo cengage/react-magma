@@ -6,7 +6,13 @@ import { magma } from '../../theme/magma';
 describe('Table Row', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(<TableRow testId={testId} />);
+    const { getByTestId } = render(
+      <Table>
+        <TableRow testId={testId}>
+          <TableCell />
+        </TableRow>
+      </Table>
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
@@ -35,7 +41,11 @@ describe('Table Row', () => {
     it('should render a table row with danger styles', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
-        <TableRow color={TableRowColor.danger} testId={testId} />
+        <Table>
+          <TableRow color={TableRowColor.danger} testId={testId}>
+            <TableCell />
+          </TableRow>
+        </Table>
       );
 
       expect(getByTestId(testId)).toHaveStyleRule(
@@ -51,7 +61,11 @@ describe('Table Row', () => {
     it('should render a table row with warning styles', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
-        <TableRow color={TableRowColor.warning} testId={testId} />
+        <Table>
+          <TableRow color={TableRowColor.warning} testId={testId}>
+            <TableCell />
+          </TableRow>
+        </Table>
       );
 
       expect(getByTestId(testId)).toHaveStyleRule(
@@ -67,7 +81,11 @@ describe('Table Row', () => {
     it('should render a table row with info styles', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
-        <TableRow color={TableRowColor.info} testId={testId} />
+        <Table>
+          <TableRow color={TableRowColor.info} testId={testId}>
+            <TableCell />
+          </TableRow>
+        </Table>
       );
 
       expect(getByTestId(testId)).toHaveStyleRule(
