@@ -6,7 +6,7 @@ import { render } from '@testing-library/react';
 
 describe('Form', () => {
   const props = {
-    header: 'default heading',
+    title: 'default heading',
     actions: null,
     testId: 'test-id',
   };
@@ -17,15 +17,15 @@ describe('Form', () => {
     expect(getByTestId(props.testId)).toBeInTheDocument();
   });
 
-  it('should render a header', () => {
-    const headerText = 'FROM HEADER PROP';
+  it('should render a title', () => {
+    const titleText = 'FROM TITLE PROP';
     const { getByText } = render(
-      <Form {...props} header={headerText}>
+      <Form {...props} title={titleText}>
         Test Form
       </Form>
     );
 
-    expect(getByText(headerText)).toBeInTheDocument();
+    expect(getByText(titleText)).toBeInTheDocument();
   });
 
   it('should render the actions', () => {

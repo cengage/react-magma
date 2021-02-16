@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react';
 import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
 import { default as DataDrivenFormSchema } from '@data-driven-forms/react-form-renderer/dist/cjs/schema';
-import validatorTypes from '@data-driven-forms/react-form-renderer/dist/cjs/validator-types';
-import { componentMapper, componentTypes } from '../ComponentMapper';
+import { componentMapper } from '../ComponentMapper';
 import { templateMapper } from '../TemplateMapper';
+import { validatorMapper, ValidatorMapper } from '../ValidatorMapper';
 
 export interface Schema extends DataDrivenFormSchema {
   type: string;
@@ -14,9 +14,10 @@ export interface SchemaRendererProps {
   initialValues?: any;
   onSubmit: (values: any) => void;
   onCancel?: () => void;
-  customComponentWrapper?: {
+  customComponentMapper?: {
     [componentType: string]: React.ComponentType;
   };
+  customValidatorMapper?: ValidatorMapper;
 }
 
 export const SchemaRenderer: FunctionComponent<SchemaRendererProps> = ({
@@ -24,11 +25,13 @@ export const SchemaRenderer: FunctionComponent<SchemaRendererProps> = ({
   onSubmit,
   onCancel,
   initialValues,
-  customComponentWrapper,
+  customComponentMapper,
+  customValidatorMapper,
 }) => {
   return (
     <FormRender
-      componentMapper={{ ...componentMapper, ...customComponentWrapper }}
+      componentMapper={{ ...componentMapper, ...customComponentMapper }}
+      validatorMapper={customValidatorMapper}
       FormTemplate={templateMapper[schema.type]}
       schema={schema}
       onSubmit={onSubmit}
@@ -37,5 +40,3 @@ export const SchemaRenderer: FunctionComponent<SchemaRendererProps> = ({
     />
   );
 };
-
-export { componentTypes, validatorTypes };

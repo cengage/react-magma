@@ -2,7 +2,6 @@ import * as React from 'react';
 import useFormApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-form-api';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, ButtonColor } from 'react-magma-dom';
-import styled from '@emotion/styled';
 
 // export interface FieldArrayItemProps {
 //   fields?: any[];

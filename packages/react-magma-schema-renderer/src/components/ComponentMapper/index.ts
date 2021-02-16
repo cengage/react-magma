@@ -2,6 +2,7 @@ import ComponentMapper from '@data-driven-forms/react-form-renderer/dist/cjs/com
 
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
+import { Custom } from '../Custom';
 import { DatePicker } from '../DatePicker';
 import { FieldArray } from '../FieldArray';
 import { FormGroup } from '../FormGroup';
@@ -27,6 +28,7 @@ import {
 export enum componentTypes {
   ALERT = 'ALERT',
   BANNER = 'BANNER',
+  CUSTOM = 'CUSTOM',
   HEADING = 'HEADING',
   HYPERLINK = 'HYPERLINK',
   TOAST = 'TOAST',
@@ -50,6 +52,7 @@ export enum componentTypes {
 export const componentMapper: ComponentMapper = {
   [componentTypes.ALERT]: Alert,
   [componentTypes.BANNER]: Banner,
+  [componentTypes.CUSTOM]: Custom,
   [componentTypes.HEADING]: Heading,
   [componentTypes.HYPERLINK]: Hyperlink,
   [componentTypes.TOAST]: Toast,

@@ -18,7 +18,7 @@ const Actions = () => (
 
 export const Default = () => {
   return (
-    <Form header="Form header" actions={<Actions />}>
+    <Form title="Form Title" actions={<Actions />}>
       <p>Form sections come here</p>
     </Form>
   );
@@ -28,7 +28,7 @@ export const Expanded = () => {
   return (
     <div>
       <Form
-        header="Form header"
+        title="Form Title"
         actions={<Actions />}
         description="Some description"
         errorMessage="Some error description"
