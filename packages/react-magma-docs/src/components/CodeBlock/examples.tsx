@@ -24,6 +24,7 @@ function calculateStartExpanded(code: string, startExpanded: boolean) {
 }
 
 interface ExampleProps {
+  title?: string;
   description?: string;
   code: string;
 }
@@ -38,7 +39,7 @@ export const Example = ({ ...props }: ExampleProps) => {
     <div>
       {props.description && <Paragraph>{props.description}</Paragraph>}
       <Actions>
-        <Label style={{ flexGrow: 1 }}>Code Example</Label>
+        <Label style={{ flexGrow: 1 }}>{props.title}</Label>
         <CopyAction code={props.code} />
         <CodeSandboxAction code={props.code} />
       </Actions>
@@ -54,6 +55,10 @@ export const BasicExample = ({ ...props }: ExampleProps) => {
   return (
     <div>
       {props.description && <Paragraph>{props.description}</Paragraph>}
+      <Actions>
+        <Label style={{ flexGrow: 1 }}>{props.title}</Label>
+        <CopyAction code={props.code} />
+      </Actions>
       <Editor expanded={true} onClick={() => {}}>
         {props.code}
       </Editor>

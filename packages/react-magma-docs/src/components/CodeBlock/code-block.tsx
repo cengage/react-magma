@@ -5,16 +5,19 @@ import { BasicExample, Example, parseCode } from './examples';
 
 interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
   children: string;
+  title?: string;
   noRender?: boolean;
   switcher?: boolean;
   startExpanded?: boolean;
   themeName?: string;
+  basic?: boolean;
 }
 
 export const CodeBlock = ({
   noRender = false,
   startExpanded = false,
   basic = false,
+  title = 'Code Example',
   ...props
 }: CodeBlockProps) => {
   const language = props.className?.replace(/language-/, '') as Language;
@@ -29,10 +32,12 @@ export const CodeBlock = ({
         language,
         noRender: noRender,
         startExpanded: startExpanded,
+        title: title,
         themeNameOverride: props.themeName,
       }}
     >
       <ExampleComponent
+        title={title}
         description={firstExample.description}
         code={firstExample.code}
       />

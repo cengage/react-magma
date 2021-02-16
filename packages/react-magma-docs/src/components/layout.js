@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MDXProvider } from '@mdx-js/react';
-import { SkipLinkContent, Label, Heading } from 'react-magma-dom';
-import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
+import { SkipLinkContent, Heading } from 'react-magma-dom';
 import { convertTextToId } from '../utils';
 import './layout.css';
 import { LayoutComponent } from './LayoutComponent';
-import { editorTheme } from './editorTheme';
-import { v4 as uuid } from 'uuid';
 import { SimplePropsTable } from './SimplePropsTable';
 import { Divider } from './Divider';
 import { NetlifyFooter } from './NetlifyFooter';
@@ -15,18 +12,6 @@ import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom';
 import { DocsHeading } from './DocsHeading';
 import { CodeBlock } from './CodeBlock';
-
-const PreContainer = styled.div`
-  border: 1px solid ${magma.colors.neutral06};
-  display: grid;
-  max-width: 100%;
-`;
-
-const DemoContainer = styled.div`
-  border: 1px solid ${magma.colors.neutral06};
-  margin-bottom: ${magma.spaceScale.spacing06};
-  padding: ${magma.spaceScale.spacing04};
-`;
 
 const ContentArticle = styled.article`
   margin: 0 auto ${magma.spaceScale.spacing10};
@@ -38,44 +23,6 @@ const ContentArticle = styled.article`
     width: 100%;
   }
 `;
-
-const PreComponent = ({ className, components, ...props }) => {
-  const hideCode = props.children.props.hideCode;
-  const hidePreview = props.children.props.hidePreview;
-
-  const liveEditorId = React.useRef(uuid());
-
-  return props.children.props &&
-    props.children.props.className === 'language-.jsx' ? (
-    <LiveProvider
-      mountStylesheet={false}
-      code={props.children.props.children}
-      scope={components}
-      theme={editorTheme}
-    >
-      {!hideCode && (
-        <>
-          <Label htmlFor={liveEditorId.current}>Code Example</Label>
-          <PreContainer>
-            <LiveEditor
-              textareaId={liveEditorId.current}
-              ignoreTabKey
-              tabIndex="-1"
-            />
-          </PreContainer>
-        </>
-      )}
-      <LiveError />
-      {!hidePreview && (
-        <DemoContainer>
-          <LivePreview />
-        </DemoContainer>
-      )}
-    </LiveProvider>
-  ) : (
-    <div {...props} />
-  );
-};
 
 const Table = props => <table {...props} />;
 
@@ -131,6 +78,7 @@ export const Layout = ({ children, pageContext }) => {
           h5: H5,
           h6: H6,
           hr: Divider,
+          pre: props => <div {...props} />,
         }}
       >
         <ContentArticle className="content-article">
@@ -148,11 +96,12 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
   return (
     <MDXProvider
       components={{
-        pre: preProps => <PreComponent {...preProps} components={components} />,
+        code: CodeBlock,
         table: Table,
         h2: SectionHeading,
         h3: LinkHeading,
         hr: Divider,
+        pre: props => <div {...props} />,
         SimplePropsTable: SimplePropsTable,
         ...properties.reduce((acc, { name, properties }) => {
           return {
