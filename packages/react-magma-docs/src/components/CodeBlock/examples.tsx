@@ -1,9 +1,15 @@
-import { Label, Paragraph } from 'react-magma-dom';
+import { Paragraph } from 'react-magma-dom';
 
 import frontmatter from '@github-docs/frontmatter';
 import React, { useContext, useState } from 'react';
 
-import { Actions, CopyAction, CodeSandboxAction } from './actions';
+import {
+  Actions,
+  ActionsLeft,
+  CopyAction,
+  CodeSandboxAction,
+  ExpandAction,
+} from './actions';
 import { CodeBlockContext } from './context';
 import { Editor } from './editor';
 import { Preview } from './preview';
@@ -38,15 +44,17 @@ export const Example = ({ ...props }: ExampleProps) => {
   return (
     <div>
       {props.description && <Paragraph>{props.description}</Paragraph>}
+      <Preview code={props.code} />
       <Actions>
-        <Label style={{ flexGrow: 1 }}>{props.title}</Label>
+        <ActionsLeft>
+          <ExpandAction expanded={expanded} onClick={toggleExpanded} />
+        </ActionsLeft>
         <CopyAction code={props.code} />
         <CodeSandboxAction code={props.code} />
       </Actions>
       <Editor expanded={expanded} onClick={toggleExpanded}>
         {props.code}
       </Editor>
-      <Preview code={props.code} />
     </div>
   );
 };
@@ -56,7 +64,6 @@ export const BasicExample = ({ ...props }: ExampleProps) => {
     <div>
       {props.description && <Paragraph>{props.description}</Paragraph>}
       <Actions>
-        <Label style={{ flexGrow: 1 }}>{props.title}</Label>
         <CopyAction code={props.code} />
       </Actions>
       <Editor expanded={true} onClick={() => {}}>

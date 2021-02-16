@@ -25,6 +25,7 @@ interface PreviewProps extends HTMLAttributes<HTMLDivElement> {
 
 const PreviewContainer = styled.div`
   border: 1px solid ${MAGMA.magma.colors.neutral06};
+  border-bottom: 0;
   padding: ${MAGMA.magma.spaceScale.spacing04};
 `;
 

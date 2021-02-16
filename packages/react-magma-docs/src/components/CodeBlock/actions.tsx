@@ -1,12 +1,11 @@
 import {
-  IconButton,
   Button,
   ButtonSize,
   ButtonColor,
-  ButtonIconPosition,
+  ButtonVariant,
+  magma,
 } from 'react-magma-dom';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
-import { ExternalLinkIcon } from 'react-magma-icons';
 import CodeSandboxer from 'react-codesandboxer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
@@ -57,15 +56,24 @@ export default function App() {
 
 const ActionsDiv = styled.div`
   align-items: flex-end;
+  background: ${magma.colors.neutral07};
+  border: 1px solid ${magma.colors.neutral06};
+  border-bottom: 0;
   display: flex;
-
-  button:last-of-type {
-    margin-right: 0;
-  }
+  justify-content: flex-end;
+  padding: ${magma.spaceScale.spacing03};
 `;
 
 export const Actions = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
   return <ActionsDiv {...props} />;
+};
+
+const ActionsLeftDiv = styled.div`
+  flex-grow: 1;
+`;
+
+export const ActionsLeft = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
+  return <ActionsLeftDiv {...props} />;
 };
 
 interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
@@ -104,20 +112,17 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
       {(props: { error: string; isDeploying: boolean; isLoading: boolean }) => {
         const { error, isDeploying, isLoading } = props;
         const deploying = isDeploying || isLoading || false;
-
-        const buttonText = deploying ? 'Opening...' : 'Open in Codesandbox';
-
         if (error) console.log(error);
 
         return (
-          <IconButton
+          <Button
             color={ButtonColor.secondary}
-            icon={<ExternalLinkIcon />}
-            iconPosition={ButtonIconPosition.right}
+            disabled={deploying}
             size={ButtonSize.small}
+            variant={ButtonVariant.link}
           >
-            {error ? 'Error' : buttonText}
-          </IconButton>
+            Edit in CodeSandbox
+          </Button>
         );
       }}
     </CodeSandboxer>
@@ -146,13 +151,17 @@ export const CopyAction = ({ ...props }: CopyActionProps) => {
     setCopied(true);
   };
 
-  return copied ? (
-    <Button disabled color={ButtonColor.secondary} size={ButtonSize.small}>
-      Copied!
-    </Button>
-  ) : (
+  const copyText = copied ? 'Copied!' : 'Copy';
+
+  return (
     <CopyToClipboard text={props.code} onCopy={handleCopy}>
-      <Button color={ButtonColor.secondary} size={ButtonSize.small}>
+      <Button
+        aria-label={copyText}
+        color={ButtonColor.secondary}
+        disabled={copied}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+      >
         Copy
       </Button>
     </CopyToClipboard>
@@ -166,7 +175,12 @@ export const ExpandAction = ({ ...props }: ExpandActionProps) => {
   const { expanded, ...rest } = props;
 
   return (
-    <Button {...rest} color={ButtonColor.secondary} size={ButtonSize.small}>
+    <Button
+      {...rest}
+      color={ButtonColor.secondary}
+      size={ButtonSize.small}
+      variant={ButtonVariant.link}
+    >
       {expanded ? 'Collapse' : 'Expand'} code
     </Button>
   );
