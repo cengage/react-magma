@@ -15,12 +15,12 @@ How to use React Magma components. The examples here use the <Link to="/api/butt
 To use a component, simply import the component and add it to your UI. The styles are already bundled with the component.
 Here is a most basic example:
 
-```.tsx
-import React from 'react'
-import { Button } from 'react-magma-dom'
+```typescript
+import React from 'react';
+import { Button } from 'react-magma-dom';
 
 function Demo() {
-  return <Button>Hello World</Button>
+  return <Button>Hello World</Button>;
 }
 ```
 
@@ -32,12 +32,12 @@ This would render as:
 
 When using a prop that takes an enum, you must import that type from React Magma if you are using TypeScript.
 
-```.js
-import React from 'react'
-import { Button, ButtonVariant } from 'react-magma-dom'
+```typescript
+import React from 'react';
+import { Button, ButtonVariant } from 'react-magma-dom';
 
 function Demo() {
-  return <Button variant={ButtonVariant.outline}>Hello World</Button>
+  return <Button variant={ButtonVariant.outline}>Hello World</Button>;
 }
 ```
 
@@ -55,14 +55,16 @@ To use the `GlobalStyles` object, simply import it from `react-magma-dom` and in
 
 The `GlobalStyles` component can be nested inside the <Link to="/api/theme">ThemeContext.Provider</Link> to inherit styles from the theme.
 
-```.js
-import React from 'react'
-import { GlobalStyles } from 'react-magma-dom'
+```js noRender startExpanded
+import React from 'react';
+import { GlobalStyles } from 'react-magma-dom';
 
 function App() {
-  return <div>
-    <GlobalStyles />
-  </div>
+  return (
+    <div>
+      <GlobalStyles />
+    </div>
+  );
 }
 ```
 
@@ -74,21 +76,18 @@ you can import `magma` and reference these values in your application's styles.
 The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/acc469c1499da986248c312009951a9d74ed8f16/packages/react-magma-dom/src/theme/magma.ts).
 For more information about colors, see the <Link to="/design/colors">Design Documentation</Link>.
 
-```.js
-import React from 'react'
-import { magma } from 'react-magma-dom'
+```js noRender startExpanded
+import React from 'react';
+import { magma } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
 function Demo() {
-
   const StyledDiv = styled.div`
     background: ${magma.colors.neutral};
     color: ${magma.colors.neutral08};
   `;
 
-  return <StyledDiv>
-    Hello world
-  </StyledDiv>
+  return <StyledDiv>Hello world</StyledDiv>;
 }
 ```
 

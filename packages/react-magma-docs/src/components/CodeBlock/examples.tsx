@@ -50,6 +50,18 @@ export const Example = ({ ...props }: ExampleProps) => {
   );
 };
 
+export const BasicExample = ({ ...props }: ExampleProps) => {
+  return (
+    <div>
+      {props.description && <Paragraph>{props.description}</Paragraph>}
+      <Editor expanded={true} onClick={() => {}}>
+        {props.code}
+      </Editor>
+      <Preview code={props.code} />
+    </div>
+  );
+};
+
 export function parseCode(
   code: string,
   delimiter = '\n\n===\n\n'
