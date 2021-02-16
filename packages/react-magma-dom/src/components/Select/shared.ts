@@ -20,13 +20,16 @@ export const SelectText = styled.span`
   padding: 0 8px 0 4px;
 `;
 
-export const StyledCard = styled(Card)<{ isOpen?: boolean }>`
+export const StyledCard = styled(Card)<{
+  isOpen?: boolean;
+}>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: 4px;
   margin-top: 4px;
   padding: 4px 0 0;
   position: absolute;
   right: 4px;
+  top: auto;
   z-index: 2;
 `;
 

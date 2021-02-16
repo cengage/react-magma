@@ -3,7 +3,8 @@
     "packages/react-magma-docs",
     "packages/react-magma-dom",
     "packages/react-magma-icons",
-    "packages/react-magma-landing"
+    "packages/react-magma-landing",
+    "packages/react-magma-dom-codesandbox-template"
   ],
   "command": {
     "bootstrap": {
@@ -12,7 +13,8 @@
        "**"
       ],
       "nohoist": [
-        "react-magma-legacy-selects"
+        "react-magma-legacy-selects",
+        "packages/react-magma-dom-codesandbox-template"
       ]
     },
     "publish": {

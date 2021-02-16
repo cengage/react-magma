@@ -1,10 +1,12 @@
 import React from 'react';
-import { Table } from '.';
-import { TableBody } from './TableBody';
-import { TableCell } from './TableCell';
-import { TableHead } from './TableHead';
-import { TableHeaderCell } from './TableHeaderCell';
-import { TableRow } from './TableRow';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeaderCell,
+  TableRow,
+} from '.';
 
 import { magma } from '../../theme/magma';
 

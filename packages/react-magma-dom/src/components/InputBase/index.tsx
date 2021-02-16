@@ -203,7 +203,7 @@ const IconWrapper = styled.span<{
     `}
 `;
 
-const StyledIconButton = styled(IconButton)`
+const IconButtonContainer = styled.span`
   bottom: 1px;
   height: auto;
   margin: 0;
@@ -302,21 +302,23 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         )}
 
         {onIconClick && (
-          <StyledIconButton
-            aria-label={iconAriaLabel}
-            icon={icon}
-            onClick={onIconClick}
-            onKeyDown={onIconKeyDown}
-            ref={iconRef}
-            shape={ButtonShape.fill}
-            size={
-              inputSize === InputSize.large
-                ? ButtonSize.large
-                : ButtonSize.medium
-            }
-            type={ButtonType.button}
-            variant={ButtonVariant.link}
-          />
+          <IconButtonContainer>
+            <IconButton
+              aria-label={iconAriaLabel}
+              icon={icon}
+              onClick={onIconClick}
+              onKeyDown={onIconKeyDown}
+              ref={iconRef}
+              shape={ButtonShape.fill}
+              size={
+                inputSize === InputSize.large
+                  ? ButtonSize.large
+                  : ButtonSize.medium
+              }
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+            />
+          </IconButtonContainer>
         )}
         {children}
       </InputWrapper>
