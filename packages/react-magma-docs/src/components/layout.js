@@ -97,6 +97,7 @@ export const ScopeableLayout = ({ children, components, pageContext }) => {
     <MDXProvider
       components={{
         code: CodeBlock,
+        inlineCode: props => <code {...props} />,
         table: Table,
         h2: SectionHeading,
         h3: LinkHeading,
