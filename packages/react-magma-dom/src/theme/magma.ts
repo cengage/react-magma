@@ -33,6 +33,7 @@ export interface Colors {
   tint: string;
   tint02: string;
   tint03: string;
+  tint04: string;
   tone: string;
   tone02: string;
 }
