@@ -5,20 +5,6 @@ props:
   - ComboboxProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  Card,
-  CardBody,
-  Combobox,
-  ComboboxStateChangeTypes,
-  Alert,
-  I18nContext,
-  defaultI18n,
-} from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { v4 as uuid } from 'uuid';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/select/" type="api">
   Combobox
 </DocsHeading>
@@ -1357,5 +1343,3 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 ## Combobox Props
 
 <ComboboxProps />
-
-export default props => <ScopeableLayout {...props} />;

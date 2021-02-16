@@ -7,10 +7,6 @@ props:
   - CardBodyProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Card, CardBody, CardHeading, magma } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/card/" type="api">
   Card
 </DocsHeading>
@@ -245,5 +241,3 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <CardBodyProps />
-
-export default props => <ScopeableLayout {...props} />;

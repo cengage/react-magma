@@ -5,11 +5,6 @@ props:
   - AlertProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Alert, Button } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
-
 <DocsHeading to="/design/alerts/" type="api">
   Alert
 </DocsHeading>
@@ -134,5 +129,3 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <AlertProps />
-
-export default props => <ScopeableLayout {...props} />;

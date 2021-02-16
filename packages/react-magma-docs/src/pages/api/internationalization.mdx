@@ -3,17 +3,6 @@ pageTitle: Internationalization API
 title: Internationalization
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  Alert,
-  Heading,
-  DatePicker,
-  I18nContext,
-  defaultI18n,
-} from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-import { es } from 'date-fns/locale';
-
 <DocsHeading type="api">Internationalization</DocsHeading>
 
 React Magma exposes an `I18nContext` object and an object named `defaultI18n` that contains the default
@@ -41,15 +30,25 @@ and `datePicker.startOfWeek`. These keys have specific types listed below, while
 
 ## Default Context Object
 
-<pre>
-  <code>{JSON.stringify(defaultI18n, null, 2)}</code>
-</pre>
+```typescript noCode noCopy noCodeSandbox
+import React from 'react';
+import { defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <pre>
+      <code>{JSON.stringify(defaultI18n, null, 2)}</code>
+    </pre>
+  );
+}
+```
 
 ## Example Usage
 
 ```tsx
 import React from 'react';
 import { DatePicker, I18nContext, defaultI18n, es } from 'react-magma-dom';
+
 export function Example() {
   return (
     <I18nContext.Provider
@@ -123,5 +122,3 @@ export function Example() {
   );
 }
 ```
-
-export default props => <ScopeableLayout {...props} />;

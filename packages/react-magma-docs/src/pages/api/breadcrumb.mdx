@@ -6,10 +6,6 @@ props:
   - BreadcrumbItemProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/breadcrumb/" type="api">
   Breadcrumb
 </DocsHeading>
@@ -92,5 +88,3 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) can be provided as props and will be applied to the wrapping `li` element that gets rendered.
 
 <BreadcrumbItemProps />
-
-export default props => <ScopeableLayout {...props} />;

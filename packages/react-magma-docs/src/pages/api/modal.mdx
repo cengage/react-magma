@@ -5,18 +5,6 @@ props:
   - ModalProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  Modal,
-  Button,
-  Radio,
-  RadioGroup,
-  Toggle,
-  VisuallyHidden,
-} from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
-
 <DocsHeading to="/design/modals/" type="api">
   Modal
 </DocsHeading>
@@ -245,5 +233,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that wraps the modal content.
 
 <ModalProps />
-
-export default props => <ScopeableLayout {...props} />;

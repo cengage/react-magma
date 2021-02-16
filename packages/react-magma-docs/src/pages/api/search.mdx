@@ -5,10 +5,6 @@ props:
   - SearchProps
 ---
 
-import { Link } from 'gatsby';
-import { ScopeableLayout } from '../../components/layout';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/search/" type="api">
   Search
 </DocsHeading>
@@ -213,5 +209,3 @@ export function Example() {
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <SearchProps />
-
-export default props => <ScopeableLayout {...props} />;

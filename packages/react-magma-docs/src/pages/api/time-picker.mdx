@@ -5,9 +5,6 @@ props:
   - TimePickerProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/inputs/" type="api">
   Time Picker
 </DocsHeading>
@@ -119,7 +116,8 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { I18nContext, defaultI18n, zhCN, TimePicker } from 'react-magma-dom';
+import { I18nContext, defaultI18n, TimePicker } from 'react-magma-dom';
+import { zhCN } from 'date-fns/locale';
 
 export function Example() {
   return (
@@ -146,5 +144,3 @@ export function Example() {
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the outer `input` element that gets rendered.
 
 <TimePickerProps />
-
-export default props => <ScopeableLayout {...props} />;

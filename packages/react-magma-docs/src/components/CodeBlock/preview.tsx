@@ -2,8 +2,12 @@ import { transform } from '@babel/core';
 import { Language } from 'prism-react-renderer';
 import React, { HTMLAttributes, useContext } from 'react';
 import { LiveError, LiveProvider, LivePreview } from 'react-live';
+
 import * as MAGMA from 'react-magma-dom';
+import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
+import { es, zhCN } from 'date-fns/locale';
+// import { format } from 'date-fns';
 
 import { CodeBlockContext } from './context';
 
@@ -41,7 +45,7 @@ export const Preview = ({ ...props }: PreviewProps) => {
     <PreviewContainer>
       <LiveProvider
         code={preview.code}
-        scope={{ styled, ...MAGMA }}
+        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS }}
         noInline
         transformCode={transformCode}
       >
@@ -57,7 +61,7 @@ export function formatPreview(code: string): PreviewData {
 }
 
 function moveImportsToScope(data: PreviewData): PreviewData {
-  const findAllImports = /import .+ from '.+';?/g;
+  const findAllImports = /import [a-zA-Z0-9,{} \n]+ from '.+';?/g;
   let singleImportMatch = null;
   const newData = { ...data };
 

@@ -5,11 +5,6 @@ props:
   - FormGroupProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { FormGroup, Checkbox, Heading, Toggle, magma } from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Form Group</DocsHeading>
 
 `FormGroup` components wrap controls such as the <Link to="/api/checkbox">Checkbox</Link> and <Link to="/api/toggle">Toggle</Link> components.
@@ -138,5 +133,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <FormGroupProps />
-
-export default props => <ScopeableLayout {...props} />;

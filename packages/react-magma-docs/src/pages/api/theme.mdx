@@ -3,13 +3,6 @@ pageTitle: Theming API
 title: Theming
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Select, ThemeContext, magma } from 'react-magma-dom';
-import { DemoComponent } from '../../components/DemoComponent';
-import { amgam } from '../../themes/amgam.ts';
-import { amgamDark } from '../../themes/amgamDark.ts';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Theming</DocsHeading>
 
 ## Using Themes
@@ -201,17 +194,3 @@ spaceScale: {
   spacing14: '160px'
 }
 ```
-
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      Select,
-      ThemeContext,
-      DemoComponent,
-      magma,
-      amgam,
-      amgamDark,
-    }}
-  />
-);

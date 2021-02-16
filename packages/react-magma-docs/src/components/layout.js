@@ -9,9 +9,12 @@ import { SimplePropsTable } from './SimplePropsTable';
 import { Divider } from './Divider';
 import { NetlifyFooter } from './NetlifyFooter';
 import styled from '@emotion/styled';
-import { magma } from 'react-magma-dom';
+import { magma, Alert } from 'react-magma-dom';
 import { DocsHeading } from './DocsHeading';
 import { CodeBlock } from './CodeBlock';
+import { Link } from 'gatsby';
+import { IconButtonProps } from '../components/IconButtonProps';
+import { ButtonProps } from '../components/ButtonProps';
 
 const ContentArticle = styled.article`
   margin: 0 auto ${magma.spaceScale.spacing10};
@@ -65,6 +68,8 @@ export const Layout = ({ children, pageContext }) => {
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
       : '';
 
+  const properties = (pageContext && pageContext.properties) || [];
+
   return (
     <LayoutComponent title={title}>
       <MDXProvider
@@ -78,7 +83,21 @@ export const Layout = ({ children, pageContext }) => {
           h5: H5,
           h6: H6,
           hr: Divider,
+          Alert,
+          Link,
+          DocsHeading,
+          ButtonProps,
+          IconButtonProps,
+          SimplePropsTable,
           pre: props => <div {...props} />,
+          ...properties.reduce((acc, { name, properties }) => {
+            return {
+              ...acc,
+              [name]: args => (
+                <SimplePropsTable propertyValues={properties} {...args} />
+              ),
+            };
+          }, {}),
         }}
       >
         <ContentArticle className="content-article">

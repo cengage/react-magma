@@ -3,19 +3,6 @@ pageTitle: Icon API
 title: Icon
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import * as ICONS from 'react-magma-icons';
-import {
-  GroupIcon,
-  CrossIcon,
-  InfoIcon,
-  AngleDownIcon,
-  HomeIcon,
-} from 'react-magma-icons';
-import { DatePicker, VisuallyHidden, Alert } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/SimplePropsTable';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Icon</DocsHeading>
 <Alert variant="warning">
   <strong>Important!</strong> Icons are now imported from `react-magma-icons`
@@ -224,13 +211,3 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
     },
   }}
 />
-
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      ICONS,
-      ...ICONS,
-    }}
-  />
-);

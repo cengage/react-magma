@@ -3,18 +3,6 @@ pageTitle: Icon Button API
 title: Icon Button
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  AlertIcon,
-  BellIcon,
-  Cog2Icon,
-  CheckIcon,
-  InfoIcon,
-} from 'react-magma-icons';
-import { Alert, IconButton } from 'react-magma-dom';
-import { IconButtonProps } from '../../components/IconButtonProps';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Icon Button</DocsHeading>
 
 ## Basic Usage
@@ -24,14 +12,14 @@ If no children are included, then they render in the icon-only style.
 
 <Alert>
   For icon only buttons you <strong>must</strong> include an{' '}
-  <code class="inverse">aria-label</code> property that accurately describes the
-  function of the button, so that screen-reader users will know the button's
-  purpose.
+  <inlineCode class="inverse">aria-label</inlineCode> property that accurately
+  describes the function of the button, so that screen-reader users will know
+  the button's purpose.
 </Alert>
 <Alert>
-  For icon buttons with text, an <code class="inverse">aria-label</code> is not
-  needed, as the function of the button should be described in the visible
-  button text.
+  For icon buttons with text, an{' '}
+  <inlineCode class="inverse">aria-label</inlineCode> is not needed, as the
+  function of the button should be described in the visible button text.
 </Alert>
 
 ```tsx
@@ -382,5 +370,3 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
 
 <IconButtonProps />
-
-export default props => <ScopeableLayout {...props} />;

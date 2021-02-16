@@ -5,10 +5,6 @@ props:
   - SpinnerProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Spinner</DocsHeading>
 
 Spinners indicate the loading state of a component or page. Spinners are used within the <Link to="/api/loading-indicator">Loading Indicator</Link> component.
@@ -78,5 +74,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `span` element that gets rendered.
 
 <SpinnerProps />
-
-export default props => <ScopeableLayout {...props} />;

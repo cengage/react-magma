@@ -1,46 +1,45 @@
 import React, { HTMLAttributes } from 'react';
 import { Language } from 'prism-react-renderer';
 import { CodeBlockContext } from './context';
-import { BasicExample, Example, parseCode } from './examples';
+import { Example } from './examples';
 
 interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
   children: string;
   title?: string;
   noRender?: boolean;
+  noCode?: boolean;
   switcher?: boolean;
   startExpanded?: boolean;
   themeName?: string;
-  basic?: boolean;
+  noCopy?: boolean;
+  noCodeSandbox?: boolean;
 }
 
 export const CodeBlock = ({
+  noCode = false,
   noRender = false,
   startExpanded = false,
-  basic = false,
+  noCopy = false,
+  noCodeSandbox = false,
   title = 'Code Example',
   ...props
 }: CodeBlockProps) => {
   const language = props.className?.replace(/language-/, '') as Language;
-  const examples = parseCode(props.children);
-  const firstExample = examples[0];
-
-  const ExampleComponent = basic ? BasicExample : Example;
 
   return (
     <CodeBlockContext.Provider
       value={{
         language,
-        noRender: noRender,
-        startExpanded: startExpanded,
-        title: title,
+        noRender,
+        noCode,
+        noCopy,
+        noCodeSandbox,
+        startExpanded,
+        title,
         themeNameOverride: props.themeName,
       }}
     >
-      <ExampleComponent
-        title={title}
-        description={firstExample.description}
-        code={firstExample.code}
-      />
+      <Example title={title} code={props.children} />
     </CodeBlockContext.Provider>
   );
 };

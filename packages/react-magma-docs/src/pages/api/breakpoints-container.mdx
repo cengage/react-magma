@@ -6,19 +6,6 @@ props:
   - BreakpointContainerProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  magma,
-  Breakpoint,
-  BreakpointsContainer,
-  BreakpointScreenSize,
-  Button,
-  Card,
-  CardBody,
-} from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Breakpoints Container</DocsHeading>
 
 The `BreakpointsContainer` component can be used to hide/show content at different screen sizes. Breakpoint values are defined in the theme, and can be overridden at the component level.
@@ -220,5 +207,3 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <BreakpointProps />
-
-export default props => <ScopeableLayout {...props} />;

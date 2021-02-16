@@ -6,21 +6,7 @@ props:
   - IndeterminateCheckboxProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  Alert,
-  Button,
-  Card,
-  CardBody,
-  Checkbox,
-  FormGroup,
-  IndeterminateCheckbox,
-  magma,
-  I18nContext,
-  defaultI18n,
-} from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
 
 <DocsHeading to="/design/selection-controls" type="api">
   Checkbox
@@ -584,5 +570,3 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 **Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**
 
 <IndeterminateCheckboxProps />
-
-export default props => <ScopeableLayout {...props} />;

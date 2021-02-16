@@ -38,6 +38,8 @@ const Pre = styled.pre<{ expanded?: boolean }>`
 export const Editor = ({ ...props }: EditorProps) => {
   const context = useContext(CodeBlockContext);
 
+  if (context.noCode) return null;
+
   return (
     <Highlight
       {...defaultProps}

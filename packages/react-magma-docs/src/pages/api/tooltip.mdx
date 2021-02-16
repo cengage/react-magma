@@ -5,10 +5,6 @@ props:
   - TooltipProps
 ---
 
-import { Alert } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-import { ScopeableLayout } from '../../components/layout';
-
 <DocsHeading to="/design/tooltips/" type="api">
   Tooltip
 </DocsHeading>
@@ -168,9 +164,11 @@ The `tooltipStyle` prop applies to the tooltip popover content itself, and inclu
 The `arrowStyle` prop applies to the arrow indicator.
 
 <Alert variant="warning">
-  Be careful changing the positioning styles for the <code>tooltipStyle</code>{' '}
-  or the <code>arrowStyle</code> as they are brought in by an outside library
-  named [popperjs](https://popper.js.org/) to deal with overflow and scrolling.
+  Be careful changing the positioning styles for the{' '}
+  <inlineCode>tooltipStyle</inlineCode> or the{' '}
+  <inlineCode>arrowStyle</inlineCode> as they are brought in by an outside
+  library named [popperjs](https://popper.js.org/) to deal with overflow and
+  scrolling.
 </Alert>
 
 ```tsx
@@ -275,5 +273,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the outer-most `div` element that gets rendered.
 
 <TooltipProps />
-
-export default props => <ScopeableLayout {...props} />;

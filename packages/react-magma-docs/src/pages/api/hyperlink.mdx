@@ -5,12 +5,6 @@ props:
   - HyperlinkProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Hyperlink, Card, CardBody, Paragraph } from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { Button } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Hyperlink</DocsHeading>
 
 ## Usage Guidelines
@@ -160,5 +154,3 @@ export function Example() {
 All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) can be provided as props and will be applied to the `a` element that gets rendered.
 
 <HyperlinkProps />
-
-export default props => <ScopeableLayout {...props} />;

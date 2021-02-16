@@ -5,10 +5,6 @@ props:
   - ParagraphProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Paragraph</DocsHeading>
 
 The `Paragraph` component is used to present paragraph content in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
@@ -260,5 +256,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `p` element that gets rendered.
 
 <ParagraphProps />
-
-export default props => <ScopeableLayout {...props} />;

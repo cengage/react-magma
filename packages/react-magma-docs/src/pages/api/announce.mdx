@@ -5,11 +5,6 @@ props:
   - AnnounceProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Announce, Button } from 'react-magma-dom';
-import { Divider } from '../../components/Divider';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Announce</DocsHeading>
 
 When dynamically changing content on a page, it is important that all users become aware of these changes. While changes may be visually apparent to users who cans see the page,
@@ -109,5 +104,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <AnnounceProps />
-
-export default props => <ScopeableLayout {...props} />;

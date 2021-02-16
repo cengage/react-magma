@@ -6,11 +6,6 @@ props:
   - SkipLinkContentProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Button } from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Skip Link</DocsHeading>
 
 Because the main content is often not the first thing on a page, it is valuable to provide a Skip Navigation link
@@ -49,8 +44,6 @@ Or
 
 When the user tabs to the first element, a hyperlink with this appearance will display in focus:
 
-<Button>Skip Navigation</Button>
-
 ## Button Variations
 
 By default, the `SkipLink` looks like a standard button with `color` as`primary`, `variant` as `solid`, and `isInverse` as false.
@@ -67,12 +60,6 @@ For more information, see the <Link to="/api/button">Button Component documentat
   variant="outline" />
 ```
 
-This would render the button as:
-
-<Button color="success" variant="outline">
-  Skip Navigation
-</Button>
-
 ## Button Text
 
 By default, the text inside the button says "Skip Navigation". This can be overridden using the `buttonText` prop.
@@ -81,10 +68,6 @@ By default, the text inside the button says "Skip Navigation". This can be overr
 <SkipLink
   buttonText='Skip to main content' />
 ```
-
-This would render the button as:
-
-<Button>Skip to main content</Button>
 
 ## Positioning
 
@@ -110,5 +93,3 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 ## Skip Link Content Props
 
 <SkipLinkContentProps />
-
-export default props => <ScopeableLayout {...props} components={{ Button }} />;
