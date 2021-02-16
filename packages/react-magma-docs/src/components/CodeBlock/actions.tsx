@@ -58,6 +58,10 @@ export default function App() {
 const ActionsDiv = styled.div`
   align-items: flex-end;
   display: flex;
+
+  button:last-of-type {
+    margin-right: 0;
+  }
 `;
 
 export const Actions = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
@@ -111,7 +115,6 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
             icon={<ExternalLinkIcon />}
             iconPosition={ButtonIconPosition.right}
             size={ButtonSize.small}
-            style={{ marginRight: 0 }}
           >
             {error ? 'Error' : buttonText}
           </IconButton>
