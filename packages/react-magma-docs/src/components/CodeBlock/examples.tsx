@@ -31,6 +31,7 @@ export const Example = ({ ...props }: ExampleProps) => {
 
   return (
     <div>
+      <Preview code={props.code} />
       <Actions>
         <ActionsLeft>
           <ExpandAction expanded={expanded} onClick={toggleExpanded} />
@@ -41,7 +42,6 @@ export const Example = ({ ...props }: ExampleProps) => {
       <Editor expanded={expanded} onClick={toggleExpanded}>
         {props.code}
       </Editor>
-      <Preview code={props.code} />
     </div>
   );
 };
