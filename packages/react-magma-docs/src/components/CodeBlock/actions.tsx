@@ -80,7 +80,6 @@ interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
   code: string;
 }
 export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
-  console.log(pkg);
   return (
     <CodeSandboxer
       name="react-magma-example"
