@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, TableCell, TableRow, TableRowColor } from '.';
+import { Table, TableBody, TableCell, TableRow, TableRowColor } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
@@ -8,9 +8,11 @@ describe('Table Row', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
       <Table>
-        <TableRow testId={testId}>
-          <TableCell />
-        </TableRow>
+        <TableBody>
+          <TableRow testId={testId}>
+            <TableCell />
+          </TableRow>
+        </TableBody>
       </Table>
     );
 
@@ -22,9 +24,11 @@ describe('Table Row', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
         <Table>
-          <TableRow color={TableRowColor.success} testId={testId}>
-            <TableCell />
-          </TableRow>
+          <TableBody>
+            <TableRow color={TableRowColor.success} testId={testId}>
+              <TableCell />
+            </TableRow>
+          </TableBody>
         </Table>
       );
 
@@ -42,9 +46,11 @@ describe('Table Row', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
         <Table>
-          <TableRow color={TableRowColor.danger} testId={testId}>
-            <TableCell />
-          </TableRow>
+          <TableBody>
+            <TableRow color={TableRowColor.danger} testId={testId}>
+              <TableCell />
+            </TableRow>
+          </TableBody>
         </Table>
       );
 
@@ -62,9 +68,11 @@ describe('Table Row', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
         <Table>
-          <TableRow color={TableRowColor.warning} testId={testId}>
-            <TableCell />
-          </TableRow>
+          <TableBody>
+            <TableRow color={TableRowColor.warning} testId={testId}>
+              <TableCell />
+            </TableRow>
+          </TableBody>
         </Table>
       );
 
@@ -82,9 +90,11 @@ describe('Table Row', () => {
       const testId = 'test-id';
       const { getByTestId } = render(
         <Table>
-          <TableRow color={TableRowColor.info} testId={testId}>
-            <TableCell />
-          </TableRow>
+          <TableBody>
+            <TableRow color={TableRowColor.info} testId={testId}>
+              <TableCell />
+            </TableRow>
+          </TableBody>
         </Table>
       );
 
