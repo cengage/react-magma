@@ -34,7 +34,9 @@ export const Example = ({ ...props }: ExampleProps) => {
       <Preview code={props.code} />
       <Actions>
         <ActionsLeft>
-          <ExpandAction expanded={expanded} onClick={toggleExpanded} />
+          {!context.noCode && (
+            <ExpandAction expanded={expanded} onClick={toggleExpanded} />
+          )}
         </ActionsLeft>
         {!context.noCopy && <CopyAction code={props.code} />}
         {!context.noCodeSandbox && <CodeSandboxAction code={props.code} />}
