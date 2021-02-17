@@ -19,8 +19,9 @@ interface CalendarHeaderProps {
 const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
-  padding: ${props => props.theme.spaceScale.spacing08} 0
+  padding: ${props => props.theme.spaceScale.spacing10} 0
     ${props => props.theme.spaceScale.spacing03};
+  margin-top: -${props => props.theme.spaceScale.spacing01};
 `;
 
 const CalendarIconButton = styled.div<{ next?: boolean }>`
