@@ -1,7 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { Breadcrumb } from '.';
-import { BreadcrumbItem } from './Item';
+import { Breadcrumb, BreadcrumbItem } from '.';
 
 import { render } from '@testing-library/react';
 import { I18nContext } from '../../i18n';
