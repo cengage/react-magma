@@ -12,8 +12,61 @@ and pass in your custom theme as the `value` property. Any descendants of the co
 
 Use the dropdown to change the theme for the demo component.
 
-```.jsx
-() => {
+```tsx
+import React from 'react';
+import {
+  Button,
+  ButtonColor,
+  Card,
+  CardBody,
+  CardHeading,
+  Input,
+  Radio,
+  RadioGroup,
+  Select,
+  ThemeContext,
+  magma,
+} from 'react-magma-dom';
+
+const magmaDark = Object.assign({}, magma, {
+  colors: Object.assign({}, magma.colors, {
+    primary: '#d3efff', // link color
+    focus: '#FFFFFF',
+    success: '#91CF60',
+    success02: '#91CF60',
+    danger: '#F59295',
+    neutral: '#FFFFFF',
+    neutral02: '#F7F7F7',
+    neutral03: '#DFDFDF',
+    neutral04: '#BFBFBF',
+    neutral05: '#8f8f8f',
+    neutral06: '#727272',
+    neutral07: '#575757',
+    neutral08: '#3F3F3F',
+  }),
+});
+
+function DemoComponent() {
+  return (
+    <Card>
+      <CardBody>
+        <CardHeading level={3}>Theme Example</CardHeading>
+        <Input labelText="Text input" helperMessage="Helper text" />
+        <Input labelText="Text input with error" errorMessage="Error message" />
+        <RadioGroup labelText="Radio Group" name="radio">
+          <Radio labelText="Radio 1" value="1" />
+          <Radio labelText="Radio 2" value="2" />
+        </RadioGroup>
+        <Button>Button</Button>
+        <Button color={ButtonColor.secondary}>Secondary Button</Button>
+        <Button color={ButtonColor.success}>Success Button</Button>
+        <Button color={ButtonColor.danger}>Danger Button</Button>
+      </CardBody>
+    </Card>
+  );
+}
+
+export function Example() {
   const [theme, setTheme] = React.useState(magma);
 
   function handleItemChange(changes) {
@@ -26,22 +79,22 @@ Use the dropdown to change the theme for the demo component.
         id="themeSwitcher"
         labelText="Select Theme"
         onSelectedItemChange={handleItemChange}
-        items={[{
-          value: magma,
-          label: 'Magma (default)'
-        }, {
-          value: amgam,
-          label: 'Amgam'
-        }, {
-          value: amgamDark,
-          label: 'Amgam Dark'
-        }]} />
-
+        items={[
+          {
+            value: magma,
+            label: 'Magma (default)',
+          },
+          {
+            value: magmaDark,
+            label: 'Magma Dark',
+          },
+        ]}
+      />
       <ThemeContext.Provider value={theme}>
-        <DemoComponent idPrefix="theme1" />
+        <DemoComponent />
       </ThemeContext.Provider>
     </div>
-  )
+  );
 }
 ```
 
