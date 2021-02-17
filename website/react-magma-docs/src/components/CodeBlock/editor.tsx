@@ -18,6 +18,7 @@ const Pre = styled.pre<{ expanded?: boolean }>`
   border-radius: 0;
   margin: 0 0 ${magma.spaceScale.spacing04};
   max-height: ${props => (props.expanded ? 'auto' : '7.5em')};
+  overflow: hidden;
   position: relative;
 
   :after {
