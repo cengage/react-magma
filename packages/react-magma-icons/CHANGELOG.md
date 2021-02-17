@@ -7,17 +7,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 ### 1.0.9-alpha.7 (2021-02-17)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 ### 1.0.9-alpha.6 (2021-02-12)
 

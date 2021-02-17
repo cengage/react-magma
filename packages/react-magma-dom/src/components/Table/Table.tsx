@@ -52,6 +52,13 @@ export enum TableSortDirection {
   none = 'none', // default
 }
 
+export enum TableRowColor {
+  danger = 'danger',
+  info = 'info',
+  success = 'success',
+  warning = 'warning',
+}
+
 interface TableContextInterface {
   density?: TableDensity;
   hasHoverStyles?: boolean;

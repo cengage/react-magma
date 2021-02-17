@@ -10,6 +10,7 @@ import {
   TablePagination,
   TableProps,
   TableDensity,
+  TableRowColor,
 } from './';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
@@ -317,6 +318,107 @@ export const PaginationInverse = () => {
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
+    </Card>
+  );
+};
+
+export const RowColors = () => {
+  return (
+    <Card>
+      <Table hasHoverStyles hasZebraStripes>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow color={TableRowColor.success}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.danger}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.info}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.warning}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Card>
+  );
+};
+
+export const RowColorsInverse = () => {
+  return (
+    <Card background={magma.colors.neutral} isInverse>
+      <Table isInverse>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow color={TableRowColor.success}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.danger}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.info}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.warning}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </Card>
   );
 };
