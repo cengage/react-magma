@@ -1,6 +1,5 @@
 import React from 'react';
-import { Breadcrumb } from '.';
-import { BreadcrumbItem } from './Item';
+import { Breadcrumb, BreadcrumbItem } from '.';
 
 export default {
   component: Breadcrumb,

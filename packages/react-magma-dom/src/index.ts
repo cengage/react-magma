@@ -8,8 +8,12 @@ export {
   BadgeVariant,
 } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
-export { Breadcrumb, BreadcrumbProps } from './components/Breadcrumb';
-export { BreadcrumbItem } from './components/Breadcrumb/Item';
+export {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbItemProps,
+  BreadcrumbProps,
+} from './components/Breadcrumb';
 export {
   BreakpointsContainer,
   Breakpoint,
