@@ -109,35 +109,6 @@ export const Layout = ({ children, pageContext }) => {
   );
 };
 
-export const ScopeableLayout = ({ children, components, pageContext }) => {
-  const properties = (pageContext && pageContext.properties) || [];
-
-  return (
-    <MDXProvider
-      components={{
-        code: CodeBlock,
-        inlineCode: props => <code {...props} />,
-        table: Table,
-        h2: SectionHeading,
-        h3: LinkHeading,
-        hr: Divider,
-        pre: props => <div {...props} />,
-        SimplePropsTable: SimplePropsTable,
-        ...properties.reduce((acc, { name, properties }) => {
-          return {
-            ...acc,
-            [name]: args => (
-              <SimplePropsTable propertyValues={properties} {...args} />
-            ),
-          };
-        }, {}),
-      }}
-    >
-      {children}
-    </MDXProvider>
-  );
-};
-
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
