@@ -1005,6 +1005,82 @@ export function Example() {
 }
 ```
 
+## Table Row Color
+
+The `TableRow` component, takes an optional `color` prop, to give contextual meaning to teh content. It accepts the values: `danger`, `info`, `success` and `warning`.
+
+```tsx codesandbox=magma
+import React from 'react';
+import {
+  Card,
+  Table,
+  TableHead,
+  TableRow,
+  TableRowColor,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.success}>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.info}>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.warning}>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.danger}>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Card>
+  );
+}
+```
+
 ## Table Props
 
 **This component uses `forwardRef`. The ref is applied to the `table` element.**
