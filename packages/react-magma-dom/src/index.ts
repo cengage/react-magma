@@ -155,8 +155,6 @@ export {
   TableRow,
   TableRowColor,
   TableRowProps,
-  TablePagination,
-  TablePaginationProps,
 } from './components/Table';
 
 export { TabsContainer } from './components/Tabs/TabsContainer';
