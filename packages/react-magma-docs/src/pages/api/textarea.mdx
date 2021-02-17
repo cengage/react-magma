@@ -5,16 +5,13 @@ props:
   - TextareaProps
 ---
 
-import { DocsHeading } from '../../components/DocsHeading';
-import { ScopeableLayout } from '../../components/layout';
-
 <DocsHeading to="/design/inputs/" type="api">
   Textarea
 </DocsHeading>
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Textarea } from 'react-magma-dom';
 
@@ -25,7 +22,7 @@ export function Example() {
 
 ## Default Value
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Textarea } from 'react-magma-dom';
 
@@ -36,7 +33,7 @@ export function Example() {
 
 ## Error Message
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Textarea } from 'react-magma-dom';
 
@@ -52,7 +49,7 @@ export function Example() {
 
 ## Helper Message
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Textarea } from 'react-magma-dom';
 
@@ -68,7 +65,7 @@ export function Example() {
 
 ## Disabled
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Textarea } from 'react-magma-dom';
 
@@ -79,7 +76,7 @@ export function Example() {
 
 ## Inverse
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Card, CardBody, Textarea } from 'react-magma-dom';
 
@@ -106,5 +103,3 @@ export function Example() {
 All of the [standard textarea attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) can be provided as props and will be applied to the `textarea` element that gets rendered.
 
 <TextareaProps />
-
-export default props => <ScopeableLayout {...props} />;

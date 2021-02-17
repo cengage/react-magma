@@ -5,12 +5,6 @@ props:
   - ButtonProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Button, Input, Card, CardBody } from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-import { ButtonProps } from '../../components/ButtonProps';
-
 <DocsHeading to="/design/button/" type="api">
   Button
 </DocsHeading>
@@ -25,7 +19,7 @@ When used with icons, the Button component takes a slightly different set of pro
 
 Sizes for buttons include `small`, `medium`, and `large`, with `medium` being the default value.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonSize } from 'react-magma-dom';
 
@@ -44,7 +38,7 @@ export function Example() {
 
 Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `marketing` with `primary` being the default value.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonColor } from 'react-magma-dom';
 
@@ -67,7 +61,7 @@ Variants for buttons include `solid`, `outline`, and `link`, with `solid` being 
 
 The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonColor, ButtonVariant } from 'react-magma-dom';
 
@@ -127,7 +121,7 @@ export function Example() {
 
 Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being the default value.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonColor, ButtonShape } from 'react-magma-dom';
 
@@ -156,7 +150,7 @@ online affects `solid isInverse buttons`.
 
 The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Button,
@@ -215,7 +209,7 @@ export function Example() {
 Options for the `textTransform` prop for buttons include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
 This sets the CSS `text-transform` property.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonTextTransform } from 'react-magma-dom';
 
@@ -238,7 +232,7 @@ export function Example() {
 
 Passing the `isFullWidth` property will set the button to display full-width.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonColor } from 'react-magma-dom';
 
@@ -256,7 +250,7 @@ export function Example() {
 
 ## Disabled
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonVariant } from 'react-magma-dom';
 
@@ -280,7 +274,7 @@ export function Example() {
 The button types `submit` and `reset` are able to be passed in to change the buttons behavior in forms.
 By default, buttons will have a type of `button`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button, ButtonType, Input } from 'react-magma-dom';
 
@@ -312,7 +306,7 @@ export function Example() {
 The `onClick` event will fire when the button is clicked, or when the enter or space bar key is pressed.
 Events do not fire on disabled buttons.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button } from 'react-magma-dom';
 
@@ -342,7 +336,7 @@ export function Example() {
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal button.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Button } from 'react-magma-dom';
 
@@ -378,5 +372,3 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
 
 <ButtonProps />
-
-export default props => <ScopeableLayout {...props} />;

@@ -6,13 +6,6 @@ props:
   - NavTabComponentProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { NavTabs, NavTab } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/SimplePropsTable';
-import { GraduationCapIcon, BellIcon, AndroidIcon } from 'react-magma-icons';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Nav Tabs</DocsHeading>
 
 ## Basic Usage
@@ -24,7 +17,7 @@ The `NavTabs` component represents the navigation container, and the `NavTab` co
 
 The `to` prop is used to set the link's `href`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
@@ -45,7 +38,7 @@ The `orientation` prop can be used to display nav tabs vertically, instead of ho
 The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
 This prop is specified on the `NavTabs` component.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
 export function Example() {
@@ -68,7 +61,7 @@ export function Example() {
 By default, the nav tabs will render an `a` tag, using the `to` prop for its `href`. However, you can use a custom element instead, by using the `component` prop.
 In this case, the children should be placed inside the `component` prop, instead of putting content directly inside each `NavTab`. The `to` prop directly on the `NavTab` (instead of the component) will be also ignored.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
@@ -93,7 +86,7 @@ By default, horizontal nav tabs have the indicator placed underneath the tabs. H
 The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsBorderPosition } from 'react-magma-dom';
 export function Example() {
@@ -119,7 +112,7 @@ The `borderPosition` prop is an enum and accepts `left` or `right` for horizonta
 
 The `borderPosition` prop is specified on the `NavTabs` component and will apply to each individual tab.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   NavTab,
@@ -147,7 +140,7 @@ export function Example() {
 
 The `alignment` prop determines whether the nav tabs are aligned `left`, `right` or `center`. `Left` is the default.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsAlignment } from 'react-magma-dom';
 export function Example() {
@@ -165,7 +158,7 @@ export function Example() {
 }
 ```
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsAlignment } from 'react-magma-dom';
 export function Example() {
@@ -189,7 +182,7 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 
 Full width tabs work best when inside a smaller container.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
@@ -206,7 +199,7 @@ export function Example() {
 
 ## Scrollable
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, magma } from 'react-magma-dom';
 export function Example() {
@@ -230,7 +223,7 @@ export function Example() {
 
 ## Scrollable Vertical Tabs
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
 export function Example() {
@@ -261,7 +254,7 @@ The `icon` prop can be used to display an icon inside the individual `NavTab` co
 
 `NavTab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
@@ -285,7 +278,7 @@ export function Example() {
 `NavTab` components with children and `icon` prop will display both the icon and the children.
 By default, the icons appear above the children.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
@@ -308,7 +301,7 @@ export function Example() {
 
 ### Vertical with Icon
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
 import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
@@ -338,7 +331,7 @@ The `iconPosition` prop can be used to position the icon relative to the childre
 The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `bottom` with `top` being the default for horizontal tabs.
 This prop is specified on the `NavTabs` component.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsIconPosition } from 'react-magma-dom';
 import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
@@ -389,7 +382,7 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ### With Blue Background
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
@@ -407,7 +400,7 @@ export function Example() {
 
 ### With Blue Background
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
@@ -519,5 +512,3 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 ### NavTab With Passed in Component
 
 <NavTabComponentProps />
-
-export default props => <ScopeableLayout {...props} />;

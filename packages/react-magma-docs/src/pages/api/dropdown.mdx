@@ -11,31 +11,6 @@ props:
   - DropdownSplitButtonProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { AsteriskIcon, BellIcon, Cog2Icon, MenuIcon } from 'react-magma-icons';
-
-import {
-  Alert,
-  Button,
-  Checkbox,
-  Dropdown,
-  DropdownContent,
-  DropdownDivider,
-  DropdownHeader,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownSplitButton,
-  DropdownButton,
-  Input,
-  PasswordInput,
-  magma,
-  Modal,
-} from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
-import { ButtonProps } from '../../components/ButtonProps';
-import { IconButtonProps } from '../../components/IconButtonProps';
-
 <DocsHeading to="/design/dropdown/" type="api">
   Dropdown
 </DocsHeading>
@@ -48,7 +23,7 @@ The `DropdownButton` is a button that handles the opening and closing of the men
 
 The `DropdownContent` component contains the content that appears when the button is clicked. That content may contain individual menu items, represented in `DropdownMenuItem` components, or it may contain other markup.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -74,7 +49,7 @@ export function Example() {
 
 Instead of using the `DropdownButton`, a `DropdownSplitButton` can be used instead. When using this, the larger part of the button will accept an `onClick` event, and only the caret icon will open and close the menu.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -106,7 +81,7 @@ export function Example() {
 
 Using the `dropDirection` prop will change where the menu appears. Options are `down` and `up`, with `down` being default.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -155,7 +130,7 @@ and a drop-left or a drop-right will have the content aligned to the top of the 
 The other option is `end`, meaning that a drop-down or a drop-up, will have the dropdown content aligned to the right side of the button,
 and a drop-left or a drop-right will have the content aligned to the bottom of the button.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -224,7 +199,7 @@ export function Example() {
 By default, the dropdown content will be as wide as the largest item. However, you may limit the width using the `width` prop, in which case items will wrap if needed.
 The `width` prop can either be a string or a number. If a number is provided, then pixels will be used for the unit.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -258,7 +233,7 @@ export function Example() {
 By default, the max-height of the dropdown content is 250px. That can be changed by using the `maxHeight` prop.
 The `maxHeight` prop can either be a string or a number. If a number is provided, then pixels will be used for the unit.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -293,7 +268,7 @@ export function Example() {
 The `DropdownMenuItem` component can be used within the `DropdownContent` to indicate individual menu items, which will render as buttons.
 The items accept an `onClick` event. The `disabled` prop can be used on an item to disable that action. These items can be navigated by using the up and down arrow keys.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -341,7 +316,7 @@ that returns a `DropdownMenuItem`.
 
 For a custom component you'll receive a `dropdownMenuItemProps` prop that you must spread in to the `DropdownMenuItem` component in your renderer.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -396,7 +371,7 @@ export function Example() {
 
 The `icon` prop can be used to specify an icon for the `DropdownMenuItem` elements.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -427,7 +402,7 @@ The following examples include form elements, styled with inline styles includin
 While users may navigate between `DropdownMenuItem` components using up and down arrow keys,
 browser default keyboard behavior applies to other content.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Button,
@@ -505,7 +480,7 @@ export function Example() {
 
 Both the `DropdownButton` and `DropdownSplitButton`can be customized by using any of the props that the <Link to="/api/button">Button</Link> component accepts. If no`icon`property is provided to the`DropdownButton`, the caret icon will appear.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   ButtonColor,
@@ -551,7 +526,7 @@ export function Example() {
 
 Similarly, the `DropdownButton` can be customized by using any of the props that the <Link to="/api/icon-button">Icon Button</Link> component accepts, to create a button with an icon.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   ButtonColor,
@@ -633,7 +608,7 @@ A `DropdownMenu` can be broken into multiple groups, by using the `DropdownMenuG
 The `DropdownMenuGroup` component accepts a `header` prop to be used to describe the group. The menu group `div`
 will be given a `role` of `group` and an `aria-labelledbyId` that corresponds with the header made internally.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -673,7 +648,7 @@ export function Example() {
 The `activeIndex` prop can be used to set an item within the dropdown as active.
 When another item is selected, that item will become active and the menu will remain open, rather than closing as usual.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -719,7 +694,7 @@ By default the consumer is expected to handle the focusing of elements when item
 you should focus the trigger button on closing of the dropdown. For this you can use a `ref` passed to the `DropdownButton` or `DropdownSplitButton` and focus that ref in
 the `onClose` function passed to the `Dropdown` component.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -800,5 +775,3 @@ Examples may include an id, a title, event handlers or various aria attributes. 
 **The DropdownButton can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.**
 
 <IconButtonProps />
-
-export default props => <ScopeableLayout {...props} />;

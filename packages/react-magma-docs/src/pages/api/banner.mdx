@@ -5,10 +5,6 @@ props:
   - BannerProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Banner, Button } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/alerts/" type="api">
   Banner
 </DocsHeading>
@@ -20,7 +16,7 @@ Banners are typically used for system or application level alerts. They fill the
 The `variant` prop accepts the following values: `info`, `success`, `warning` and `danger`, with info being the default value.
 This prop determines the icon and color scheme used to style the Banner.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Banner, AlertVariant } from 'react-magma-dom';
 
@@ -46,15 +42,9 @@ The isDismissible prop is optional, and if provided the Banner will render a dis
 
 The aria-label, by default is Close this message but can be overridden using the optional closeAriaLabel prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
-import {
-  Banner,
-  AlertVariant,
-  Button,
-  ButtonColor,
-  ButtonSize,
-} from 'react-magma-dom';
+import { Banner, AlertVariant, Button, ButtonColor, ButtonSize, from 'react-magma-dom';
 
 export function Example() {
   const [showBanner, updateShowBanner] = React.useState<boolean>(true);
@@ -97,7 +87,7 @@ export function Example() {
 A single button can be added to a Banner Alert to provide the user with an action to take. The `actionButtonText` prop is a string that sets the text of the button.
 The `actionButtonOnClick` prop takes a function and fires when the action button is clicked. Both props must be present for the button to appear.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Banner } from 'react-magma-dom';
 
@@ -124,5 +114,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <BannerProps />
-
-export default props => <ScopeableLayout {...props} />;

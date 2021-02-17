@@ -3,11 +3,6 @@ pageTitle: Global Styles API
 title: Global Styles
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { GlobalStyles } from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Global Styles</DocsHeading>
 
 The `GlobalStyles` component should be included at the top of your application to provide global css, including the required fonts,
@@ -16,7 +11,15 @@ body styles, and some generic styles for links and headings.
 The `GlobalStyles` component can be nested inside the <Link to="/api/theme">ThemeContext.Provider</Link> to inherit styles from the theme.
 
 ```tsx
-<GlobalStyles />
-```
+import React from 'react';
+import { Button, Input } from 'react-magma-dom';
 
-export default props => <ScopeableLayout {...props} />;
+export function Example() {
+  return (
+    <>
+      <GlobalStyles />
+      <div>Styles applied</div>
+    </>
+  );
+}
+```

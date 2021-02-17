@@ -65,22 +65,6 @@ module.exports = {
               linkImagesToOriginal: false,
             },
           },
-          {
-            resolve: require.resolve('gatsby-remark-inline-codesandbox'),
-            options: {
-              mode: 'iframe',
-              query: { codemirror: 1, hidenavigation: 1 },
-              customTemplates: {
-                magma: {
-                  extends: `file:${path.join(
-                    __dirname,
-                    '../react-magma-dom-codesandbox-template'
-                  )}`,
-                  entry: 'src/Example.tsx',
-                },
-              },
-            },
-          },
         ],
       },
     },

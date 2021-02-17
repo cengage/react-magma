@@ -6,17 +6,18 @@ props:
   - SkipLinkContentProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Button } from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Skip Link</DocsHeading>
 
 Because the main content is often not the first thing on a page, it is valuable to provide a Skip Navigation link
 to allow users who navigate via keyboard and/or screen reader to jump directly to the content.
 
 Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is important that you only have one pair of these elements on a page.
+
+<Alert variant="info">
+  Due to the nature of SkipLinks the best way to view the examples is to click
+  "EDIT IN CODESANDBOX". When codesandbox loads click "open in new window" and
+  hit tab to give focus to the SkipLink.
+</Alert>
 
 ## Basic Usage
 
@@ -26,30 +27,44 @@ Users will not see the component unless they are navigating by keyboard.
 The `SkipLinkContent` component is the div that is the target of the `SkipLink`. It can either be used as a wrapper for your content, or as a sibling of your content.
 If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus. Otherwise, just the SkipLinkContent div itself will get focus.
 
-```
-<div>
-  <SkipLink />
-  <YourNav />
-  <SkipLinkContent>
-    <YourContent />
-  </SkipLinkContent>
-</div>
-```
+```tsx noRender
+import React from 'react';
+import {
+  SkipLink,
+  SkipLinkContent,
+  Paragraph,
+  Hyperlink,
+} from 'react-magma-dom';
 
-Or
+const SideNav = ({ length }) => {
+  return (
+    <nav>
+      {[...Array(length).keys()].map(index => (
+        <div>
+          <Hyperlink key={index} to={`#${index}`}>
+            Link ${index}
+          </Hyperlink>
+        </div>
+      ))}
+    </nav>
+  );
+};
 
-```
-<div>
-  <SkipLink />
-  <YourNav />
-  <SkipLinkContent />
-  <YourContent />
-</div>
+export function Example() {
+  return (
+    <div>
+      <SkipLink />
+      <SideNav length={500} />
+      <SkipLinkContent>
+        <Paragraph>Content to jump to.</Paragraph>
+      </SkipLinkContent>
+      <Paragraph>Additional content.</Paragraph>
+    </div>
+  );
+}
 ```
 
 When the user tabs to the first element, a hyperlink with this appearance will display in focus:
-
-<Button>Skip Navigation</Button>
 
 ## Button Variations
 
@@ -61,40 +76,126 @@ IsInverse is can be either `true` or `false`, and is used when the SkipLink is t
 
 For more information, see the <Link to="/api/button">Button Component documentation</Link>.
 
-```
-<SkipLink
-  color="success"
-  variant="outline" />
-```
+```tsx noRender
+import React from 'react';
+import {
+  SkipLink,
+  SkipLinkContent,
+  Paragraph,
+  Hyperlink,
+  ButtonColor,
+  ButtonVariant,
+} from 'react-magma-dom';
 
-This would render the button as:
+const SideNav = ({ length }) => {
+  return (
+    <nav>
+      {[...Array(length).keys()].map(index => (
+        <div>
+          <Hyperlink key={index} to={`#${index}`}>
+            Link ${index}
+          </Hyperlink>
+        </div>
+      ))}
+    </nav>
+  );
+};
 
-<Button color="success" variant="outline">
-  Skip Navigation
-</Button>
+export function Example() {
+  return (
+    <div>
+      <SkipLink color={ButtonColor.success} variant={ButtonVariant.outline} />
+      <SideNav length={500} />
+      <SkipLinkContent>
+        <Paragraph>Content to jump to.</Paragraph>
+      </SkipLinkContent>
+      <Paragraph>Additional content.</Paragraph>
+    </div>
+  );
+}
+```
 
 ## Button Text
 
 By default, the text inside the button says "Skip Navigation". This can be overridden using the `buttonText` prop.
 
-```
-<SkipLink
-  buttonText='Skip to main content' />
-```
+```tsx noRender
+import React from 'react';
+import {
+  SkipLink,
+  SkipLinkContent,
+  Paragraph,
+  Hyperlink,
+} from 'react-magma-dom';
 
-This would render the button as:
+const SideNav = ({ length }) => {
+  return (
+    <nav>
+      {[...Array(length).keys()].map(index => (
+        <div>
+          <Hyperlink key={index} to={`#${index}`}>
+            Link ${index}
+          </Hyperlink>
+        </div>
+      ))}
+    </nav>
+  );
+};
 
-<Button>Skip to main content</Button>
+export function Example() {
+  return (
+    <div>
+      <SkipLink buttonText="Skip to main content" />
+      <SideNav length={500} />
+      <SkipLinkContent>
+        <Paragraph>Content to jump to.</Paragraph>
+      </SkipLinkContent>
+      <Paragraph>Additional content.</Paragraph>
+    </div>
+  );
+}
+```
 
 ## Positioning
 
 By default, the `SkipLink` is fixed positioned 10px from the top and 10px from left of the screen. This can be customized using the optional `positionLeft`
 and `positionTop` properties, which take numeric values.
 
-```
-<SkipLink
-  positionLeft={25}
-  positionTop={25} />
+```tsx noRender
+import React from 'react';
+import {
+  SkipLink,
+  SkipLinkContent,
+  Paragraph,
+  Hyperlink,,
+} from 'react-magma-dom';
+
+const SideNav = ({ length }) => {
+  return (
+    <nav>
+      {[...Array(length).keys()].map(index => (
+        <div>
+          <Hyperlink key={index} to={`#${index}`}>
+            Link ${index}
+          </Hyperlink>
+        </div>
+      ))}
+    </nav>
+  );
+};
+
+export function Example() {
+  return (
+    <div>
+      <SkipLink positionLeft={25} positionTop={25} />
+      <SideNav length={500} />
+      <SkipLinkContent>
+        <Paragraph>Content to jump to.</Paragraph>
+      </SkipLinkContent>
+      <Paragraph>Additional content.</Paragraph>
+    </div>
+  );
+}
 ```
 
 This would render the button 25px from the top, and 25px from the left of the browser window.
@@ -110,5 +211,3 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 ## Skip Link Content Props
 
 <SkipLinkContentProps />
-
-export default props => <ScopeableLayout {...props} components={{ Button }} />;

@@ -5,17 +5,13 @@ props:
   - SpinnerProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Spinner</DocsHeading>
 
 Spinners indicate the loading state of a component or page. Spinners are used within the <Link to="/api/loading-indicator">Loading Indicator</Link> component.
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Spinner } from 'react-magma-dom';
 
@@ -28,7 +24,7 @@ export function Example() {
 
 By default, the aria-label for the spinner is "Loading", but this can be customized using the `aria-label` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Spinner } from 'react-magma-dom';
 
@@ -41,7 +37,7 @@ export function Example() {
 
 The default is `magma.colors.primary` (`#006298`), but can be customized using the `color` prop, which takes a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Spinner, magma } from 'react-magma-dom';
 
@@ -56,7 +52,7 @@ The `size` prop can be used to set the height and width of the spinner. Can be a
 
 The default value is '16px'.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Spinner } from 'react-magma-dom';
 
@@ -78,5 +74,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `span` element that gets rendered.
 
 <SpinnerProps />
-
-export default props => <ScopeableLayout {...props} />;

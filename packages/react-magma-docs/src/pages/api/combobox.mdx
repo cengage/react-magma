@@ -5,21 +5,6 @@ props:
   - ComboboxProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  Card,
-  CardBody,
-  Combobox,
-  ComboboxStateChangeTypes,
-  Alert,
-  I18nContext,
-  defaultI18n,
-} from 'react-magma-dom';
-import { Link } from 'gatsby';
-import { v4 as uuid } from 'uuid';
-import { DocsHeading } from '../../components/DocsHeading';
-import styled from '@emotion/styled';
-
 <DocsHeading to="/design/select/" type="api">
   Combobox
 </DocsHeading>
@@ -31,7 +16,7 @@ However, a combobox also allows users to type in the field, either to create the
 
 For simple Select functionality, please see the <Link to="/api/select">Select component</Link>.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -56,17 +41,17 @@ export function Example() {
 Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
 
 <Alert variant="info">
-  When using any of the <code class="inverse">initial*</code> props be aware
-  that passing in the controlled version of that prop will overwrite the initial
-  version.
+  When using any of the <inlineCode class="inverse">initial*</inlineCode> props
+  be aware that passing in the controlled version of that prop will overwrite
+  the initial version.
   <br />
   <br />
   <strong>Ex: </strong>
-  <code class="inverse">selectedItem</code> takes precedence over{' '}
-  <code class="inverse">initialSelectedItem</code>
+  <inlineCode class="inverse">selectedItem</inlineCode> takes precedence over{' '}
+  <inlineCode class="inverse">initialSelectedItem</inlineCode>
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -107,7 +92,7 @@ includes the changes made to state from each action as well as a `type` that des
 
 `onStateChange` is best used when using the `select` in a controlled state because it is called on every state change.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -166,9 +151,10 @@ export function Example() {
 ## Generic State Change
 
 <Alert variant="warning">
-  Using <code>onStateChange</code> and controlling every piece of{' '}
-  <code>state</code> will result in losing most of the functionality that has
-  been built in to this component. Only use this feature as a last resort.
+  Using <inlineCode>onStateChange</inlineCode> and controlling every piece of{' '}
+  <inlineCode>state</inlineCode> will result in losing most of the functionality
+  that has been built in to this component. Only use this feature as a last
+  resort.
 </Alert>
 
 `onStateChange` is called when any internal state is changed. Therefore, it is best used when using the
@@ -178,7 +164,7 @@ The `onStateChange` function passes a `changes` object that includes properties 
 last state change. The `changes` object also includes a `type` property that describes the action taken
 to change the state. You can see the full list of the types in the [`stateChangeTypes`](/api/combobox/#state_change_types) section.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox, ComboboxStateChangeTypes } from 'react-magma-dom';
 
@@ -254,7 +240,7 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
 
 **NOTE**: Your created items will not be added to the `items` list internally. You will have to pass the updated `items` array to the `items` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -300,7 +286,7 @@ export function Example() {
 
 ## Disabled
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -327,7 +313,7 @@ The optional `isClearable` prop allows the user to clear the field once a select
 When using the `isClearable` prop you can choose a default selected item to be set once the `combobox` is cleared
 using the `defaultSelectedItem` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -367,7 +353,7 @@ export function Example() {
 If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -391,7 +377,7 @@ export function Example() {
 
 The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -417,7 +403,7 @@ The `placeholder` text of an input can be set using the `placeholder` prop.
 Placeholder text should be used to provide supplemental information about the input field. It should not be
 relied upon to take the place of the label text.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -436,7 +422,7 @@ export function Example() {
 
 The isInverse prop is an optional boolean, that used when the component is to be displayed on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Card, CardBody, Combobox } from 'react-magma-dom';
 
@@ -505,7 +491,7 @@ whenever an item has been selected.
 For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
 [object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -539,7 +525,7 @@ export function Example() {
 The `disableCreateItem` prop is an optional boolean and can be used to prevent the user from creating their own items.
 This is commonly used to provide a typeahead dropdown without allowing custom options.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -561,7 +547,7 @@ export function Example() {
 
 ## Multi Combobox
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -660,7 +646,7 @@ export function Example() {
 
 ## Events
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -706,7 +692,7 @@ export function Example() {
 
 ## Async
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -760,7 +746,7 @@ export function Example() {
 
 ## Inverse
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Card, CardBody, Combobox } from 'react-magma-dom';
 
@@ -822,7 +808,7 @@ export function Example() {
 
 The items list menu has a default max height that can be changed in the theme or using the `itemListMaxHeight` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -846,7 +832,7 @@ export function Example() {
 The `labelPosition` prop can be used to set the position of the text label relative to the form field. It accepts either `top` or `left`, with `top` as the default.
 Left-aligned lables are not recommended for use in standard forms; instead they are designed for smaller spaces where vertical space is limited, such as in a toolbar.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox, LabelPosition } from 'react-magma-dom';
 
@@ -871,7 +857,7 @@ Custom styles can be passed into the Combobox component. The `containerStyle` pr
 Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
 Please use discretion when adding custom styles.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -920,13 +906,14 @@ for each `item`. If you need to pass in a custom shape for your `items` you can 
 which is a function that returns the string representation of your `item` which will be applied as the label.
 
 <Alert variant="warning">
-  <strong>WARNING</strong> Your function must include a <code>null</code> check.
+  <strong>WARNING</strong> Your function must include a{' '}
+  <inlineCode>null</inlineCode> check.
 </Alert>
 
 If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
 custom `type`](/api/combobox#custom_items_typescript).
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -1006,7 +993,7 @@ export function Example() {
 When using a custom shape for your `items` in a `typescript` project you will need to provide the `Combobox`
 element with the shape of the `items` you are passing in.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -1082,12 +1069,12 @@ would just like to be able to fully customize the look of your items you can pas
 we use internally.
 
 <Alert variant="warning">
-  Be aware. You must pass a <code>ref</code> to your custom item component to
-  make sure the functionality of the entire <code>Combobox</code> continues to
-  work.
+  Be aware. You must pass a <inlineCode>ref</inlineCode> to your custom item
+  component to make sure the functionality of the entire{' '}
+  <inlineCode>Combobox</inlineCode> continues to work.
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import styled from '@emotion/styled';
 import { Combobox } from 'react-magma-dom';
@@ -1174,7 +1161,7 @@ export function Example() {
 
 ### Other Custom Components
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
@@ -1247,7 +1234,7 @@ Placeholders are specific keywords surrounded by curly braces.
 
 Full example of <Link to="/api/internationalization">internationalization override options</Link>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Combobox, I18nContext, defaultI18n } from 'react-magma-dom';
 
@@ -1303,15 +1290,15 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
-  <code class="inverse">
+  <inlineCode class="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown =
     '__input_keydown_arrow_down__'
-  </code>
+  </inlineCode>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg: <code class="inverse">
+  (eg: <inlineCode class="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
-  </code>
+  </inlineCode>
   ).
 </Alert>
 
@@ -1356,5 +1343,3 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 ## Combobox Props
 
 <ComboboxProps />
-
-export default props => <ScopeableLayout {...props} />;

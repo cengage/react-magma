@@ -5,11 +5,6 @@ props:
   - AlertProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Alert, Button } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
-
 <DocsHeading to="/design/alerts/" type="api">
   Alert
 </DocsHeading>
@@ -21,7 +16,7 @@ Alerts are available for any length of text, and may contain HTML markup. They m
 Alerts render where ever they are placed contextually in the DOM. The `Toast` component is similar but renders with a fixed position and has auto dismiss functionality.
 See the <Link to="/api/toast/">Toasts documentation</Link> for more information.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Alert } from 'react-magma-dom';
 
@@ -42,7 +37,7 @@ export function Example() {
 The optional `variant` prop accepts the following values: `info`, `success`, `warning` and `danger`, with `info` being the default value.
 This prop determines the icon and color scheme used to style the Alert.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Alert, AlertVariant } from 'react-magma-dom';
 
@@ -76,7 +71,7 @@ you must also include a function in the `onDismiss` prop to handle the dismiss b
 
 The aria-label, by default is `Close this message` but can be overridden using the optional `closeAriaLabel` prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Alert, Button } from 'react-magma-dom';
 
@@ -134,5 +129,3 @@ Passing in the `testId` prop will add the `data-testid` attribute to the wrapper
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <AlertProps />
-
-export default props => <ScopeableLayout {...props} />;

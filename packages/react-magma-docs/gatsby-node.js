@@ -2,6 +2,14 @@ const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const propertiesJson = require('react-magma-dom/dist/properties.json');
 
+exports.onCreateWebpackConfig = ({ actions }) => {
+  actions.setWebpackConfig({
+    node: {
+      fs: 'empty',
+    },
+  });
+};
+
 const getPathPrefix = path =>
   /design/.test(path)
     ? /intro/.test(path)

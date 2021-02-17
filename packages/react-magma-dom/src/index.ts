@@ -101,7 +101,7 @@ export {
   InputType,
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
-export { Label } from './components/Label';
+export { Label, LabelPosition } from './components/Label';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -155,6 +155,8 @@ export {
   TableRow,
   TableRowColor,
   TableRowProps,
+  TablePagination,
+  TablePaginationProps,
 } from './components/Table';
 
 export { TabsContainer } from './components/Tabs/TabsContainer';

@@ -5,16 +5,13 @@ props:
   - TimePickerProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/inputs/" type="api">
   Time Picker
 </DocsHeading>
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { TimePicker } from 'react-magma-dom';
 
@@ -27,7 +24,7 @@ export function Example() {
 
 There are multiple formats you can send in through the `value` prop. You can do `##:## AM/PM` and `##:##` (which will default to 'AM' when the hour is less than 13 and 'PM' when between the hours of 13 and 23).
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { TimePicker } from 'react-magma-dom';
 
@@ -40,7 +37,7 @@ export function Example() {
 
 The `minutesStep` prop can be used to set the stepping interval when using the arrow keys on the minutes input. The default value is 1.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { TimePicker } from 'react-magma-dom';
 
@@ -54,7 +51,7 @@ export function Example() {
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { TimePicker } from 'react-magma-dom';
 
@@ -67,7 +64,7 @@ export function Example() {
 
 The `helperMessage` appears underneath the input field. It will not appear if an error message is present. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { TimePicker } from 'react-magma-dom';
 
@@ -78,7 +75,7 @@ export function Example() {
 
 ## Inverse
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Card, CardBody, TimePicker } from 'react-magma-dom';
 
@@ -97,7 +94,7 @@ export function Example() {
 
 The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be used for custom styling.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { TimePicker } from 'react-magma-dom';
 
@@ -117,9 +114,10 @@ export function Example() {
 
 ## Internationalization
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
-import { I18nContext, defaultI18n, zhCN, TimePicker } from 'react-magma-dom';
+import { I18nContext, defaultI18n, TimePicker } from 'react-magma-dom';
+import { zhCN } from 'date-fns/locale';
 
 export function Example() {
   return (
@@ -146,5 +144,3 @@ export function Example() {
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the outer `input` element that gets rendered.
 
 <TimePickerProps />
-
-export default props => <ScopeableLayout {...props} />;

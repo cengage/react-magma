@@ -11,10 +11,6 @@ props:
   - TablePaginationProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading to="/design/tables/" type="api">
   Table
 </DocsHeading>
@@ -24,7 +20,7 @@ A table contains a header row at the top that lists column names, followed by ro
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -108,7 +104,7 @@ export function Example() {
 
 The `hasVerticalBorders` boolean prop may be used to give table cells vertical borders between them.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -156,7 +152,7 @@ export function Example() {
 
 The `hasHoverStyles` boolean prop may be used to visually highlight a row when hovered over.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -204,7 +200,7 @@ export function Example() {
 
 The `hasZebraStripes` boolean prop may be used to give each alternating row a different background color.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -264,7 +260,7 @@ export function Example() {
 
 The `density` property controls the amount of padding inside each cell. It accepts the values `compact`, `normal`, and `loose`, with `normal` being the default.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -342,7 +338,7 @@ The `sortDirection` prop indicates the direction by which the column is sorted, 
 
 These props do not handle the actual sorting of the table, just the visual appearance.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -471,7 +467,7 @@ export function Example() {
 
 `IsInverse` is an optional boolean prop, that may be used when a table is displayed on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -572,7 +568,7 @@ export function Example() {
 
 ## Cell Alignment
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -621,7 +617,7 @@ export function Example() {
 
 ## Cell Width
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -692,7 +688,7 @@ The `minWidth` prop specifies the number in pixels for the minimum width of the 
 If the table is larger than the width of its container, it will scroll horizontally so that all of the content can be accessed.
 The horizontal scrolling is useful for responsive behavior to ensure that the content can be viewed, even on small screens.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -743,7 +739,7 @@ export function Example() {
 
 Content other than just text, such as buttons, inputs and other elements can be included inside a table cell.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -1140,5 +1136,3 @@ All of the [standard td attributes](https://developer.mozilla.org/en-US/docs/Web
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <TablePagination />
-
-export default props => <ScopeableLayout {...props} />;

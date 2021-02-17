@@ -6,11 +6,6 @@ props:
   - RadioGroupProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Alert } from 'react-magma-dom';
-import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
-
 <DocsHeading to="/design/selection-controls" type="api">
   Radio Button
 </DocsHeading>
@@ -23,7 +18,7 @@ See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/toggle">Tog
 
 The label/radio association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -46,7 +41,7 @@ export function Example() {
 
 To set a selected value by default, use the `value` prop on the `RadioGroup` to pass in the `value` of the option you wish to select.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -78,7 +73,7 @@ export function Example() {
 
 By default, the radio buttons use the theme's primary color. But any other color may be passed in.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio, magma } from 'react-magma-dom';
 
@@ -111,7 +106,7 @@ export function Example() {
 
 ## Disabled
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -143,7 +138,7 @@ export function Example() {
 
 The `helperMessage` appears underneath the group of radio buttons. It will not appear if an error message is present. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -170,7 +165,7 @@ You will also need to indicate the required field to the user in the UI.
 If a radio group has an `errorMessage`, the radio buttons will be styled to highlight the error state and the error message will appear below the fields.
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio, Button, ButtonColor } from 'react-magma-dom';
 
@@ -226,7 +221,7 @@ export function Example() {
 
 The `isInverse` property is an optional boolean can be applied to the containing `RadioGroup`, that reverses the colors so that the radio buttons can better appear on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio, Card, CardBody, magma } from 'react-magma-dom';
 
@@ -295,7 +290,7 @@ export function Example() {
 Custom styles can be passed into both the RadioGroup component and the Radio component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -326,7 +321,7 @@ export function Example() {
 
 The `labelText` prop can either be a string, or it can be a React Node.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -367,7 +362,7 @@ You can use the `labelText` prop, which takes a string. This string will be disp
 Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
 This id will become the value of the `aria-labelledby` attribute for the group.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -394,7 +389,7 @@ export function Example() {
 Use the optional prop `textPosition` to position the label text on either side of the radio button.
 The `textPosition` property takes the values `left` and `right`. The default value is `right`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio, RadioTextPosition } from 'react-magma-dom';
 
@@ -417,15 +412,15 @@ export function Example() {
 Adding the `isTextVisuallyHidden` prop will make the label text for either the radio group or the radio button available to screen readers, but will hide it visually.
 
 <Alert variant="warning">
-  Use caution when using the <code>isTextVisuallyHidden</code> prop; it should
-  only be used in rare circumstances when the purpose of the radio button is
-  conveyed in another way. While screen readers will announce the label when the
-  radio button gains focus, it is still best to have a visual label. This is
-  especially helpful for individuals with cognitive disabilities and users who
-  have fine motor control limitations.
+  Use caution when using the <inlineCode>isTextVisuallyHidden</inlineCode> prop;
+  it should only be used in rare circumstances when the purpose of the radio
+  button is conveyed in another way. While screen readers will announce the
+  label when the radio button gains focus, it is still best to have a visual
+  label. This is especially helpful for individuals with cognitive disabilities
+  and users who have fine motor control limitations.
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio } from 'react-magma-dom';
 
@@ -458,7 +453,7 @@ export function Example() {
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { RadioGroup, Radio, Button, ButtonColor } from 'react-magma-dom';
 
@@ -540,5 +535,3 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <RadioProps />
-
-export default props => <ScopeableLayout {...props} />;

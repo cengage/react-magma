@@ -5,10 +5,6 @@ props:
   - ProgressBarProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
-
 <DocsHeading to="/design/progress-bar/" type="api">
   Progress Bar
 </DocsHeading>
@@ -17,7 +13,7 @@ A progress bar can be used to show a user how far along they are in a process. P
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ProgressBar } from 'react-magma-dom';
 
@@ -30,7 +26,7 @@ export function Example() {
 
 The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0. This value can be adjusted dynamically.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ProgressBar, Button, Paragraph } from 'react-magma-dom';
 
@@ -63,7 +59,7 @@ export function Example() {
 
 ## Animated
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ProgressBar } from 'react-magma-dom';
 
@@ -77,7 +73,7 @@ export function Example() {
 The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop`, `pop02`, `success`.
 The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ProgressBar, ProgressBarColor } from 'react-magma-dom';
 
@@ -105,7 +101,7 @@ The `height` prop can be used to set the height of the progress bar. Can be a st
 
 The default value is '16px'.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ProgressBar } from 'react-magma-dom';
 
@@ -125,7 +121,7 @@ export function Example() {
 `isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background. When the `isInverse` prop is used,
 the default background color of the progress bar is `#00A9E0` or `magma.colors.foundation03`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ProgressBar, Card, CardBody } from 'react-magma-dom';
 
@@ -144,7 +140,7 @@ export function Example() {
 
 If the `isLabelVisible` prop is true, the percentage value will display to the right of the progress bar.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { ProgressBar } from 'react-magma-dom';
 
@@ -160,5 +156,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <ProgressBarProps />
-
-export default props => <ScopeableLayout {...props} />;

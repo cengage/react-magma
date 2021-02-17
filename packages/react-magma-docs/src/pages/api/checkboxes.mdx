@@ -6,21 +6,7 @@ props:
   - IndeterminateCheckboxProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import {
-  Alert,
-  Button,
-  Card,
-  CardBody,
-  Checkbox,
-  FormGroup,
-  IndeterminateCheckbox,
-  magma,
-  I18nContext,
-  defaultI18n,
-} from 'react-magma-dom';
 import { DocsHeading } from '../../components/DocsHeading';
-import { Link } from 'gatsby';
 
 <DocsHeading to="/design/selection-controls" type="api">
   Checkbox
@@ -39,7 +25,7 @@ If you do not want to have your checkbox be in a controlled state, but need the 
 
 See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox, FormGroup } from 'react-magma-dom';
 
@@ -74,7 +60,7 @@ export function Example() {
 
 By default, the checkboxes use the theme's primary color. But any other color may be passed in.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox, FormGroup, magma } from 'react-magma-dom';
 
@@ -106,7 +92,7 @@ The `status` is used to represent the state of a group of checkboxes that goes u
 
 The `indeterminate` status cannot be changed by direct user action, it can only be changed by updating the prop.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Checkbox,
@@ -168,7 +154,7 @@ export function Example() {
 
 Adding the optional boolean prop `disabled` will apply disabled styles and add the disabled attribute to the underlying HTML element.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Checkbox,
@@ -206,7 +192,7 @@ export function Example() {
 
 `isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Card,
@@ -278,7 +264,7 @@ export function Example() {
 Use the optional prop `textPosition` to position the label text on either side of the checkbox.
 The `textPosition` property takes the values `left` and `right`. The default value is `right`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox, CheckboxTextPosition, FormGroup } from 'react-magma-dom';
 
@@ -299,7 +285,7 @@ export function Example() {
 
 The `errorMessage` prop can be used on the `FormGroup` component to display an error message for the group. Each checkbox within the group will display with error styles.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox, FormGroup } from 'react-magma-dom';
 
@@ -366,7 +352,7 @@ An `errorMessage` can also be supplied to an individual checkbox, without the us
 The `required` attribute can be used on a single checkbox if that individual checkbox is required.
 An example of when to use this would be for a terms and conditions checkbox.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox } from 'react-magma-dom';
 
@@ -403,7 +389,7 @@ Adding the `isTextVisuallyHidden` prop will make the label text available to scr
   have fine motor control limitations.
 </Alert>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox } from 'react-magma-dom';
 
@@ -417,7 +403,7 @@ export function Example() {
 Custom styles can be passed into the Checkbox component. The `containerStyle` property will apply to the container.
 Additional `labelStyle` and `inputStyle` properties are available to style the respective elements. Please use discretion when adding custom styles.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox } from 'react-magma-dom';
 
@@ -442,7 +428,7 @@ export function Example() {
 
 The `labelText` prop can either be a string, or it can be a React Node.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Checkbox } from 'react-magma-dom';
 
@@ -466,7 +452,7 @@ Placeholders are specific keywords surrounded by curly braces.
 
 Full example of <Link to="/api/internationalization">internationalization override options</Link>
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Checkbox,
@@ -584,5 +570,3 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
 **Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**
 
 <IndeterminateCheckboxProps />
-
-export default props => <ScopeableLayout {...props} />;

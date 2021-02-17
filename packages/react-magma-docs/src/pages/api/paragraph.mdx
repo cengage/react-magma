@@ -5,17 +5,13 @@ props:
   - ParagraphProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Link } from 'gatsby';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Paragraph</DocsHeading>
 
 The `Paragraph` component is used to present paragraph content in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Paragraph } from 'react-magma-dom';
 
@@ -32,7 +28,7 @@ The default `visualStyle` is `bodyMedium`.
 In addition to the paragraph visual styles, the `visualStyle` prop can also accept the values for the different heading visual styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`.
 These visual styles are also used with the <Link to="/api/heading">Heading</Link> component. The underlying HTML will still render as a `p` element.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Paragraph, TypographyVisualStyle } from 'react-magma-dom';
 
@@ -91,7 +87,7 @@ The `expressive` context variant can be used in marketing contexts, which may re
 
 The `narrative` context variant can be used for content-heavy contexts, such as a blog-post or an e-reader.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import {
   Paragraph,
@@ -166,7 +162,7 @@ export function Example() {
 
 The `color` prop can be used to change the color of the paragraph to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Paragraph, TypographyColor } from 'react-magma-dom';
 
@@ -193,7 +189,7 @@ export function Example() {
 
 The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Card, CardBody, Paragraph, TypographyColor } from 'react-magma-dom';
 
@@ -226,7 +222,7 @@ export function Example() {
 
 By default, the `Paragraph` component includes margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Paragraph, TypographyVisualStyle } from 'react-magma-dom';
 
@@ -260,5 +256,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `p` element that gets rendered.
 
 <ParagraphProps />
-
-export default props => <ScopeableLayout {...props} />;

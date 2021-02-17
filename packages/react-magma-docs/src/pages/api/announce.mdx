@@ -5,11 +5,6 @@ props:
   - AnnounceProps
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import { Announce, Button } from 'react-magma-dom';
-import { Divider } from '../../components/Divider';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Announce</DocsHeading>
 
 When dynamically changing content on a page, it is important that all users become aware of these changes. While changes may be visually apparent to users who cans see the page,
@@ -17,7 +12,7 @@ they may not be clear to users of assistive technology. The `Announce` component
 
 ## Basic Usage
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Announce, Button } from 'react-magma-dom';
 
@@ -52,7 +47,7 @@ This sets the value of the `aria-live` attribute and is used to set the priority
 When `polite` is used, assistive technology will notify a users of a change after the current task is complete. When `assertive` is used, assistive technologies will notify the user immediately,
 possibly interrupting the current task. Using `off` will silence these updates, so they will not be read.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { Announce, Button } from 'react-magma-dom';
 
@@ -109,5 +104,3 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <AnnounceProps />
-
-export default props => <ScopeableLayout {...props} />;

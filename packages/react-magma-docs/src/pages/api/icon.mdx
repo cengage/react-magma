@@ -3,19 +3,6 @@ pageTitle: Icon API
 title: Icon
 ---
 
-import { ScopeableLayout } from '../../components/layout';
-import * as ICONS from 'react-magma-icons';
-import {
-  GroupIcon,
-  CrossIcon,
-  InfoIcon,
-  AngleDownIcon,
-  HomeIcon,
-} from 'react-magma-icons';
-import { DatePicker, VisuallyHidden, Alert } from 'react-magma-dom';
-import { SimplePropsTable } from '../../components/SimplePropsTable';
-import { DocsHeading } from '../../components/DocsHeading';
-
 <DocsHeading type="api">Icon</DocsHeading>
 <Alert variant="warning">
   <strong>Important!</strong> Icons are now imported from `react-magma-icons`
@@ -26,7 +13,7 @@ import { DocsHeading } from '../../components/DocsHeading';
 
 Icons are imported from a separate `react-magma-icons` package.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { GroupIcon } from 'react-magma-icons';
 export function Example() {
@@ -47,7 +34,7 @@ The `title` prop can be used to set the `<title>` element within the SVG.
 The title/svg association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied. The `id` of the title is linked to the SVG with `aria-labelledby`,
 so it will be read screen readers.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { CrossIcon, InfoIcon } from 'react-magma-icons';
 export function Example() {
@@ -66,7 +53,7 @@ export function Example() {
 
 ## Sizes
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { AngleDownIcon } from 'react-magma-icons';
 export function Example() {
@@ -85,7 +72,7 @@ export function Example() {
 
 ## Color
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { AngleDownIcon } from 'react-magma-icons';
 export function Example() {
@@ -106,7 +93,7 @@ export function Example() {
 
 To improve the experience for assistive technology users and remove the icon and its children from the accessibility tree, add the prop `aria-hidden="true"` to your icon.
 
-```tsx codesandbox=magma
+```tsx
 import React from 'react';
 import { HomeIcon } from 'react-magma-icons';
 export function Example() {
@@ -122,44 +109,56 @@ export function Example() {
 
 ## Available Icons
 
-```.jsx hideCode
-<div className='demo-icon-list-container'>
-  {Object.keys(ICONS).filter((icon) => {
-    return ![
-      'ArrowDown2Icon',
-      'ArrowLeft2Icon',
-      'ArrowRight2Icon',
-      'ArrowUp2Icon',
-      'Book2Icon',
-      'Bug2Icon',
-      'Cloud2Icon',
-      'Cog2Icon',
-      'Download2Icon',
-      'Extracredit2Icon',
-      'Eye2Icon',
-      'Feed5Icon',
-      'Filter2Icon',
-      'Flag3Icon',
-      'Home32Icon',
-      'Key3Icon',
-      'MTAct1TimeIcon',
-      'Music2Icon',
-      'Pencil3Icon',
-      'Reading2Icon',
-      'Search2Icon',
-      'Upload2Icon'
-    ].includes(icon)}).map((icon) => {
-      const id = icon + 'Available';
-      const title = icon + ' Title';
-      const Icon = ICONS[icon];
+```typescript noCode noCodeSandbox noCopy
+import React from 'react';
+import ICONS from 'react-magma-icons';
 
-      return <span className='demo-icon-container' key={id} >
-        <Icon title={title} /><br />
-        {icon}
-      </span>
-    })
-  }
-</div>
+export function Example() {
+  return (
+    <div className="demo-icon-list-container">
+      {Object.keys(ICONS)
+        .filter(icon => {
+          return ![
+            'ArrowDown2Icon',
+            'ArrowLeft2Icon',
+            'ArrowRight2Icon',
+            'ArrowUp2Icon',
+            'Book2Icon',
+            'Bug2Icon',
+            'Cloud2Icon',
+            'Cog2Icon',
+            'Download2Icon',
+            'Extracredit2Icon',
+            'Eye2Icon',
+            'Feed5Icon',
+            'Filter2Icon',
+            'Flag3Icon',
+            'Home32Icon',
+            'Key3Icon',
+            'MTAct1TimeIcon',
+            'Music2Icon',
+            'Pencil3Icon',
+            'Reading2Icon',
+            'Search2Icon',
+            'Upload2Icon',
+          ].includes(icon);
+        })
+        .map(icon => {
+          const id = icon + 'Available';
+          const title = icon + ' Title';
+          const Icon = ICONS[icon];
+
+          return (
+            <span className="demo-icon-container" key={id}>
+              <Icon title={title} />
+              <br />
+              {icon}
+            </span>
+          );
+        })}
+    </div>
+  );
+}
 ```
 
 ## Testing
@@ -224,13 +223,3 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
     },
   }}
 />
-
-export default props => (
-  <ScopeableLayout
-    {...props}
-    components={{
-      ICONS,
-      ...ICONS,
-    }}
-  />
-);
