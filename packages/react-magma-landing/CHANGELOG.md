@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 1.0.4-alpha.10 (2021-02-17)
+
+
+### Bug Fixes
+
+* **table:** duplicate exports ([1583413](https://github.com/cengage/react-magma/commit/15834130d3aa24ecbe5f479632b74081fa0ab5c9))
+
+
+
 ### 1.0.4-alpha.9 (2021-02-17)
 
 **Note:** Version bump only for package react-magma-landing
