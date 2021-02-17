@@ -7,10 +7,12 @@ import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
 
-// export const default = {
-//   component: Modal,
-//   title: 'Modal',
-// };
+const info = {
+  component: Modal,
+  title: 'Modal',
+};
+
+export default info;
 
 export const Default = () => {
   const [showModal, setShowModal] = React.useState(false);
