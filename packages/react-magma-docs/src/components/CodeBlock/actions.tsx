@@ -80,8 +80,10 @@ interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
   code: string;
 }
 export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
+  console.log(pkg);
   return (
     <CodeSandboxer
+      name="react-magma-example"
       example={props.code}
       examplePath="does/not/do/anything/but/is/required.tsx"
       pkgJSON={pkg}
@@ -92,14 +94,14 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         host: 'github',
       }}
       dependencies={{
-        '@emotion/core': '10.0.35',
-        '@emotion/styled': '10.0.27',
-        'date-fns': '2.16.0',
-        downshift: '5.4.7',
-        react: '16.13.1',
-        'react-dom': '16.13.1',
-        'react-magma-icons': 'latest',
-        'react-magma-dom': 'latest',
+        '@emotion/core': pkg.dependencies['@emotion/core'],
+        '@emotion/styled': pkg.dependencies['@emotion/styled'],
+        'date-fns': pkg.dependencies['date-fns'],
+        downshift: pkg.dependencies['downshift'],
+        react: pkg.dependencies['react'],
+        'react-dom': pkg.dependencies['react-dom'],
+        'react-magma-icons': pkg.dependencies['react-magma-icons'],
+        'react-magma-dom': pkg.dependencies['react-magma-dom'],
         uuid: '8.3.0',
       }}
       providedFiles={{

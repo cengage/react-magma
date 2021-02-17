@@ -7,7 +7,6 @@ import * as MAGMA from 'react-magma-dom';
 import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
 import { es, zhCN } from 'date-fns/locale';
-// import { format } from 'date-fns';
 
 import { CodeBlockContext } from './context';
 
