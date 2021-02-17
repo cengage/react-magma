@@ -13,7 +13,7 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
+          node-version: '14.x'
       - name: Install
         run: npm ci
       - name: Test
@@ -47,9 +47,9 @@ jobs:
         if: github.ref == 'refs/heads/dev'
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './packages/react-magma-docs/public'
+          publish-dir: './website/react-magma-docs/public'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: 'Deploy from GitHub Actions'
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
@@ -66,9 +66,9 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './packages/react-magma-docs/public'
+          publish-dir: './website/react-magma-docs/public'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: 'Deploy from GitHub Actions'
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
@@ -81,9 +81,9 @@ jobs:
       - name: Update landing page on Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './packages/react-magma-landing/dist'
+          publish-dir: './website/react-magma-landing/dist'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy Landing page from GitHub Actions"
+          deploy-message: 'Deploy Landing page from GitHub Actions'
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
@@ -98,4 +98,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           source-branch: main
           target-branch: dev
-

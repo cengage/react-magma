@@ -28,7 +28,7 @@ jobs:
       - name: Deploy Doc Preview to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './packages/react-magma-docs/public'
+          publish-dir: './website/react-magma-docs/public'
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
