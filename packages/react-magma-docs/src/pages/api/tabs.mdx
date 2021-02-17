@@ -20,7 +20,7 @@ The tab system is made up of five components:
 `Tab`, which is each individual menu item within the tabs navigation bar. `TabPanelsContainer`, which contains the tab panels and internally handles the index relationship with `Tabs`.
 And `TabPanel`, which contains the individual content sections for each tab.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -61,7 +61,7 @@ The `orientation` prop can be used to display tabs vertically, instead of horizo
 The `orientation` prop is an enum that accepts either `horizontal` or `vertical` with `horizontal` being the default.
 This prop is specified on the `Tabs` component.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -111,7 +111,7 @@ By default, horizontal tabs have the indicator placed underneath the tabs. Howev
 The `borderPosition` prop is an enum and accepts `top` or `bottom` for horizontal tabs.
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -159,7 +159,7 @@ The `borderPosition` prop is an enum and accepts `left` or `right` for horizonta
 
 The `borderPosition` prop is specified on the `Tabs` component and will apply to each individual tab.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -208,7 +208,7 @@ that returns a `Tab`.
 
 For a custom component you'll receive a `tabsProps` prop that you must spread in to the `Tab` component in your renderer.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -253,7 +253,7 @@ export function Example() {
 
 This is a simple example of Tab Components with custom switching logic
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -303,7 +303,7 @@ export function Example() {
 
 Custom logic can also be added to an individual `Tab`, by using the `onClick` prop.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -346,7 +346,7 @@ export function Example() {
 
 If a `Tab` is `disabled` using the `disabled` prop, it will not be actionable. It will still appear in the menu, but will be styled to appear greyed out.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -358,32 +358,38 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-<TabsContainer>
-  <Tabs aria-label="Sample With Disabled Tabs" backgroundColor={magma.colors.neutral07}>
-    <Tab>Main page</Tab>
-    <Tab disabled>FAQ</Tab>
-    <Tab>About us</Tab>
-  </Tabs>
+  return (
+    <TabsContainer>
+      <Tabs
+        aria-label="Sample With Disabled Tabs"
+        backgroundColor={magma.colors.neutral07}
+      >
+        <Tab>Main page</Tab>
+        <Tab disabled>FAQ</Tab>
+        <Tab>About us</Tab>
+      </Tabs>
 
-  <TabPanelsContainer>
-    <TabPanel>
-      <div>Main page</div>
-    </TabPanel>
-    <TabPanel>
-      <div>FAQ</div>
-    </TabPanel>
-    <TabPanel>
-      <div>About us</div>
-    </TabPanel>
-  </TabPanelsContainer>
-</TabsContainer>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+        <TabPanel>
+          <div>About us</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  );
+}
 ```
 
 ## Alignment
 
 The `alignment` prop determines whether the tabs are aligned `left`, `right` or `center`. `Left` is the default.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -427,7 +433,7 @@ The `isFullWidth` prop is an optional boolean that will cause the tabs to take u
 
 Full width tabs work best when inside a smaller container. This example uses the `useMediaQuery` hook to set this prop only on devices with smaller browser widths.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -469,7 +475,7 @@ export function Example() {
 
 ## Scrollable Tabs
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -532,7 +538,7 @@ export function Example() {
 
 ## Scrollable Vertical Tabs
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -593,7 +599,7 @@ The `icon` prop can be used to display an icon inside the individual `Tab` compo
 
 `Tab` components without children can be used to display an icon only version of the tabs. Be sure to include an `aria-label` for each tab, when using this pattern.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -639,7 +645,7 @@ export function Example() {
 `Tab` components with children and `icon` prop will display both the icon and the children.
 By default, the icons appear above the children.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -682,7 +688,7 @@ export function Example() {
 
 ### Vertical Tabs with Icons
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -735,7 +741,7 @@ The `iconPosition` prop can be used to position the icon relative to the childre
 The `iconPosition` prop is an enum that accepts `left`, `top`, `right` or `bottom` with `top` being the default for horizontal tabs.
 This prop is specified on the `Tabs` component.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -744,7 +750,7 @@ import {
   TabPanelsContainer,
   TabPanel,
   TabsOrientation,
-  TabsIconPostion,
+  TabsIconPosition,
   magma,
 } from 'react-magma-dom';
 
@@ -761,7 +767,7 @@ export function Example() {
         <Tabs
           aria-label="Sample Icon Position Left Tabs"
           backgroundColor={magma.colors.neutral07}
-          iconPosition={TabsIconPostion.left}
+          iconPosition={TabsIconPosition.left}
         >
           <Tab icon={gradIcon}>First item with a longer text label</Tab>
           <Tab icon={androidIcon}>Second item</Tab>
@@ -776,7 +782,7 @@ export function Example() {
         <Tabs
           aria-label="Sample Icon Position Bottom Tabs"
           backgroundColor={magma.colors.neutral07}
-          iconPosition={TabsIconPostion.bottom}
+          iconPosition={TabsIconPosition.bottom}
         >
           <Tab icon={<GraduationCapIcon />}>
             First item with a longer text label
@@ -794,7 +800,7 @@ export function Example() {
         <Tabs
           aria-label="Sample Icon Position Right Tabs"
           backgroundColor={magma.colors.neutral07}
-          iconPosition={TabsIconPostion.right}
+          iconPosition={TabsIconPosition.right}
         >
           <Tab icon={<GraduationCapIcon />}>
             First item with a longer text label
@@ -813,7 +819,7 @@ export function Example() {
 Vertical tabs only accept `left` or `right` for the `iconPosition` prop, with `left` being default.
 This prop is specified on the `Tabs` component.
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -822,7 +828,7 @@ import {
   TabPanelsContainer,
   TabPanel,
   TabsOrientation,
-  TabsIconPostion,
+  TabsIconPosition,
   magma,
 } from 'react-magma-dom';
 
@@ -838,7 +844,7 @@ export function Example() {
       <Tabs
         aria-label="Sample Icon Position Right Vertical Tabs"
         backgroundColor={magma.colors.neutral07}
-        iconPosition={TabsIconPostion.right}
+        iconPosition={TabsIconPosition.right}
         orientation={TabsOrientation.vertical}
       >
         <Tab icon={gradIcon}>First item</Tab>
@@ -870,7 +876,7 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
 ### With Blue Background
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -895,7 +901,7 @@ export function Example() {
 
 ### With Dark Grey Background
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -924,7 +930,7 @@ export function Example() {
 
 ### Applied to Tabs Container
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -961,7 +967,7 @@ export function Example() {
 
 ### Applied to Tab Panels Container
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
@@ -998,7 +1004,7 @@ export function Example() {
 
 ### Applied to Tab Panel
 
-```tsx noRender
+```tsx
 import React from 'react';
 import {
   TabsContainer,
