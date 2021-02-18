@@ -207,6 +207,7 @@ const IconButtonContainer = styled.span`
   bottom: 1px;
   height: auto;
   margin: 0;
+  overflow: hidden;
   position: absolute;
   top: 1px;
   right: 1px;
@@ -315,6 +316,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                   ? ButtonSize.large
                   : ButtonSize.medium
               }
+              style={{ margin: 0 }}
               type={ButtonType.button}
               variant={ButtonVariant.link}
             />
