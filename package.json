@@ -19,7 +19,7 @@
     "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
     "build": "lerna run build --ignore react-magma-dom-codesandbox-template --stream --no-progress",
-    "build:landing": "node packages/react-magma-landing/scripts/build.js",
+    "build:landing": "node website/react-magma-landing/scripts/build.js",
     "build:storybook": "build-storybook",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
