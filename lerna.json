@@ -1,21 +1,12 @@
 {
   "packages": [
-    "packages/react-magma-docs",
-    "packages/react-magma-dom",
-    "packages/react-magma-icons",
-    "packages/react-magma-landing",
-    "packages/react-magma-dom-codesandbox-template"
+    "website/*",
+    "packages/*"
   ],
   "command": {
     "bootstrap": {
       "forceLocal": true,
-      "hoist": [
-       "**"
-      ],
-      "nohoist": [
-        "react-magma-legacy-selects",
-        "packages/react-magma-dom-codesandbox-template"
-      ]
+      "hoist": true
     },
     "publish": {
       "allowBranch": ["master", "dev", "hotfix/*", "main"],

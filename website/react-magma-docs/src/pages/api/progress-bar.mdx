@@ -1,0 +1,158 @@
+---
+pageTitle: Progress Bar API
+title: Progress Bar
+props:
+  - ProgressBarProps
+---
+
+<DocsHeading to="/design/progress-bar/" type="api">
+  Progress Bar
+</DocsHeading>
+
+A progress bar can be used to show a user how far along they are in a process. Progress bars are used within the <Link to="/api/loading-indicator">Loading Indicator</Link> component.
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+import { ProgressBar } from 'react-magma-dom';
+
+export function Example() {
+  return <ProgressBar percentage={25} />;
+}
+```
+
+## Percentage
+
+The `percentage` prop is used to display how much of the bar should be filled in. The default value is 0. This value can be adjusted dynamically.
+
+```tsx
+import React from 'react';
+import { ProgressBar, Button, Paragraph } from 'react-magma-dom';
+
+export function Example() {
+  const [percentage, setPercentage] = React.useState(0);
+
+  function handleIncrease() {
+    setPercentage(percent => percent + 10);
+  }
+
+  function handleDecrease() {
+    setPercentage(percent => percent - 10);
+  }
+
+  return (
+    <>
+      <ProgressBar percentage={percentage} />
+      <Paragraph>
+        <Button disabled={percentage >= 100} onClick={handleIncrease}>
+          Increase
+        </Button>
+        <Button disabled={percentage <= 0} onClick={handleDecrease}>
+          Decrease
+        </Button>
+      </Paragraph>
+    </>
+  );
+}
+```
+
+## Animated
+
+```tsx
+import React from 'react';
+import { ProgressBar } from 'react-magma-dom';
+
+export function Example() {
+  return <ProgressBar isAnimated percentage={25} />;
+}
+```
+
+## Background Color
+
+The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop`, `pop02`, `success`.
+The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
+
+```tsx
+import React from 'react';
+import { ProgressBar, ProgressBarColor } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <ProgressBar color={ProgressBarColor.danger} percentage={25} />
+      <br />
+      <ProgressBar color={ProgressBarColor.pop} percentage={25} />
+      <br />
+      <ProgressBar color={ProgressBarColor.pop02} percentage={25} />
+      <br />
+      <ProgressBar color={ProgressBarColor.primary} percentage={25} />
+      <br />
+      <ProgressBar color={ProgressBarColor.success} percentage={25} />
+      <br />
+    </>
+  );
+}
+```
+
+## Height
+
+The `height` prop can be used to set the height of the progress bar. Can be a string or a number; if a number is provided the height will be in pixels.
+
+The default value is '16px'.
+
+```tsx
+import React from 'react';
+import { ProgressBar } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <ProgressBar height={10} percentage={25} />
+      <br />
+      <ProgressBar height="2em" percentage={25} />
+    </>
+  );
+}
+```
+
+## Inverse
+
+`isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background. When the `isInverse` prop is used,
+the default background color of the progress bar is `#00A9E0` or `magma.colors.foundation03`.
+
+```tsx
+import React from 'react';
+import { ProgressBar, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <ProgressBar isInverse percentage={25} />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Label Visible
+
+If the `isLabelVisible` prop is true, the percentage value will display to the right of the progress bar.
+
+```tsx
+import React from 'react';
+import { ProgressBar } from 'react-magma-dom';
+
+export function Example() {
+  return <ProgressBar isLabelVisible percentage={25} />;
+}
+```
+
+## Progress Bar Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<ProgressBarProps />
