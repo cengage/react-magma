@@ -2,12 +2,12 @@ const fs = require('fs');
 
 fs.copyFile(
   './CHANGELOG.md',
-  '../react-magma-docs/src/pages/api-intro/changelog.mdx',
+  '../../website/react-magma-docs/src/pages/api-intro/changelog.mdx',
   err => {
     if (err) throw err;
     console.log('[react-magma-dom] Changelog was copied to destination');
 
-    const file = '../react-magma-docs/src/pages/api-intro/changelog.mdx';
+    const file = '../../website/react-magma-docs/src/pages/api-intro/changelog.mdx';
 
     const data = fs.readFileSync(file);
     const fd = fs.openSync(file, 'w+');
