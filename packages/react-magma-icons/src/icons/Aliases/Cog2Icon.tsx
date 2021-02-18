@@ -5,12 +5,12 @@
 
 import * as React from 'react';
 import { IconProps } from '../../IconProps';
-import { ExpandMoreIcon } from '../Navigation/ExpandMoreIcon';
+import { SettingsIcon } from '../Actions/SettingsIcon';
 export const Cog2Icon = (props: IconProps) => {
   if (process.env.NODE_ENV === 'development') {
     console.warn(
       'Cog2Icon has been deprecated, and will be removed in the next major release.  Please check the React Magma docs to find the new set of icons adjust the size/spacing as needed.'
     );
   }
-  return <ExpandMoreIcon {...props} />;
+  return <SettingsIcon {...props} />;
 };
