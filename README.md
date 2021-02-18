@@ -1,8 +1,8 @@
-# React magma
+# React Magma
 
 ## Getting started with React Magma in your application
 
-### Setup requirements
+### Setup Requirements
 
 1. Your project needs to be running **React v16.5** or greater
 
@@ -12,9 +12,9 @@
 npm install --save react-magma-dom
 ```
 
-### Documentation site
+### Documentation Site
 
-For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.info/version/latest/)
+For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.com/version/latest/)
 
 This site has general usage information, as well as information on all of the available components, including code examples and demos. It also has design guidelines from the UX team with more details about the why and when to use each component in your project.
 
@@ -24,7 +24,7 @@ This site has general usage information, as well as information on all of the av
 
 Node v12.x or greater with npm 6.1.x or greater
 
-### Steps to run documentation locally
+### Steps to Run Documentation locally
 
 1. Clone this repo:
 
@@ -45,15 +45,30 @@ git clone git@github.com:cengage/react-magma.git
 npm ci
 ```
 
-3. Run the development server for the docs
+3.  Run Storybook to view examples of each component with
 
-```sh
+```
+npm run storybook
+```
+
+View Storybook examples at [http://localhost:6006/](http://localhost:6006/).
+
+4. Run the development server for the docs site. You can run the docs from the repository root with
+
+```
 npm run docs
 ```
 
-4. Visit the docs at [http://localhost:3000](http://localhost:3000).
+or from the package directory with
 
-### Project structure
+```
+cd packages/react-magma-docs
+npm run develop
+```
+
+Visit the docs at [http://localhost:3000](http://localhost:3000). The docs will not reflect local changes in the CodeSandbox examples.
+
+### Project Structure
 
 The project is built using a monorepo structure with the help of [Lerna](https://github.com/lerna/lerna).
 
@@ -61,7 +76,7 @@ Each folder under the `packages` folder is it's own, independent package. Each p
 
 Lerna handles dependencies within the monorepo, using symlinks to connect dependent packages. For example,`react-magma-docs` uses `react-magma-dom`. When a dependent project is build the consuming project automatically gets the latest build.
 
-#### Source organization
+#### Source Organization
 
 The project is broken out into multiple packages.
 
@@ -71,19 +86,13 @@ The `react-magma-docs` package handles the React Magma documentation, and is bui
 
 The `react-magma-icons` package handles all of the SVG icons in the React Magma library. Being in a separate package allows for changes or additions to the icons to happen without consumers having to update the whole component library.
 
-### Making changes
-
-The source code for each independent package in the project can be found under the `packages` folder.
-
-Any changes to the public-facing API **must** be accurately captured in the docs, and therefore will require updates to `react-magma-docs`.
-
 ### Building
 
 Once you have finished making your code changes within a package run `npm run build` or `npm run build-watch` from inside that package.
 
 You must build before your changes will be reflected in the browser.
 
-### Running tests
+### Running Tests
 
 Each package has a `test` command. You can run them from the individual package, or you can run them from the root of the project.
 
@@ -98,13 +107,6 @@ You can also run specific tests from the repository root with:
 npm run test-dom
 ```
 
-or
-
-```sh
-# run the core tests
-npm run test-core
-```
-
 `npm run covg` to see the generated lcov coverage reports.
 
 #### Wallaby.js
@@ -116,51 +118,117 @@ This repository contributors are welcome to use
 test results immediately as you type, and see the results in
 your editor right next to your code.
 
-### Updating the docs
+### Updating the Docs
 
-The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component should be documented here.
+The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component **must** be accurately captured documented here.
 
 This project uses [MDX](https://mdxjs.com/), allowing the combination of Markdown and React components.
 
-Each component has it's own `.mdx` file. If you have created a new component you will need to create a new `.mdx` file under the `pages/api` folder. To import your new component go to the `layout.js` file, import your new component, then add it to the `scope` prop array of the `LiveProvider`. Now you are able to use the component in your newly created `.mdx` file.
+Each component has its own `.mdx` file. If you have created a new component you will need to create a new `.mdx` file under the `pages/api` folder. If you have updated an existing component, you will need to review the existing docs page
+and update it as needed.
 
-Be sure to add in the navigation details at the top of the page in the front matter.
+#### Creating a Docs Page
+
+Add in the navigation details at the top of the page in the front matter.
 
 ```yaml
 ---
+pageTitle: '{ComponentName} API'
 title: '{ComponentName}'
-order: 2
+props:
+  - {ComponentName}Props
 ---
-
 ```
 
-and import a link to the design guidelines with the correct route
+Import the `ScopeableLayout` component. You may also need other things, such as components from `react-magma-dom` to use outside of examples (such as an `Alert`), or the`Link` from `gatsby` to link to other pages.
 
 ```js
-import { DocsHeading } from '../../components/DocsHeading';
-
-<DocsHeading to="/design/{component}/" type="design">
-  {ComponentName}
-</DocsHeading>;
+import { ScopeableLayout } from '../../components/layout';
 ```
 
-### Running the docs locally
-
-You can run the docs from the repository root with
+Add the `ScopeableLayout` component to the bottom of the file.
 
 ```
-npm run docs
+export default props => <ScopeableLayout {...props} />;
 ```
 
-or from the package directory with
+#### Page Heading
+
+The heading for the docs page can be created by using markdown with the following syntax:
 
 ```
-npm run develop
+[{ComponentName}]("/design/{component} 'api')
 ```
 
-then visit the docs at [http://localhost:8000](http://localhost:8000)
+The URL following the name of the component is the link to respective Designs Docs page, and is optional. The `api` string indicates that the page is in the `Component API`.
 
-### Committing code
+Alternatively, you can also import the `DocsHeading` component and use the component with the appropriate props.
+
+```
+import { DocsHeading } from '../../components/DocsHeading;
+
+<DocsHeading to="/design/{component}/" type="api">
+```
+
+#### CodeSandbox Examples
+
+Create a basic usage example and an example for each of the different use cases of the component, using [CodeSandbox](https://https://codesandbox.io/).
+
+````
+```tsx codesandbox=magma
+import React from 'react';
+import { ComponentName } from 'react-magma-dom';
+
+export function Example() {
+  return <ComponentName />;
+}
+```
+````
+
+#### Interfaces and Property Tables
+
+The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments. You will also need to add the needed props to the frontmatter in the `mdx` file. This will allow for our props table component to match the props referenced in the frontmatter to build out the props table. For example:
+
+```typescript
+/**
+ * @children required
+ */
+export interface SomeComponentProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The description for a component prop.
+   * @default "the default prop value"
+   */
+  someOptionalComponentProp?: string;
+}
+```
+
+```mdx
+---
+pageTitle: Some Component API
+title: Some Component
+props:
+  - SomeComponentProps
+---
+
+## Examples
+
+...
+
+## props
+
+<SomeComponentProps />
+```
+
+### Storybook Examples
+
+React Magma uses [Storybook](https://storybook.js.org/) for local testing of individual UI components. Each component should have a Storybook story that reflects each of its variations in state. TThe story files live along side the individual component files. Run Storybook from the root folder:
+
+```
+npm run storybook
+```
+
+### Committing Code
 
 This project adheres to [SemVer](https://semver.org/) and enforces a specific commit message format.
 
@@ -178,16 +246,16 @@ npm run cm
 
 <details>
   <summary>Learn more about SemVer and the commit message format:</summary>
-  
-  SemVer is just a responsible way to release packages and it's the right thing to do.
-  
-  Enforcing a commit message format allows us to automate version number changes, manage release channels (`latest`, `next`, `previous`, `x.x.x-beta.x`, etc.), and automate the creation of a consistent changelog and automate releases.
+
+SemVer is just a responsible way to release packages and it's the right thing to do.
+
+Enforcing a commit message format allows us to automate version number changes, manage release channels (`latest`, `next`, `previous`, `x.x.x-beta.x`, etc.), and automate the creation of a consistent changelog and automate releases.
 
 All commits will have a topic and short description with an optional subject.
 
 There is a short version of the format that will pass the `commit-msg` check and a longer version for handling changes that need more explanation and for marking commits that contain breaking changes.
 
-#### Commit message components:
+#### Commit Message Components:
 
 - type (required)
 - subject

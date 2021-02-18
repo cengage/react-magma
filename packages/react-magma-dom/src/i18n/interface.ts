@@ -200,6 +200,14 @@ export interface I18nInterface {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
   };
+  table: {
+    pagination: {
+      ofLabel: string;
+      nextAriaLabel: string;
+      previousAriaLabel: string;
+      rowsPerPageLabel: string;
+    };
+  };
   tabs: {
     horizontalTabsInstructions: string;
     verticalTabsInstructions: string;

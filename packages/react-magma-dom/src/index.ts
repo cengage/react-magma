@@ -8,11 +8,16 @@ export {
   BadgeVariant,
 } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
-export { Breadcrumb, BreadcrumbProps } from './components/Breadcrumb';
-export { BreadcrumbItem } from './components/Breadcrumb/Item';
+export {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbItemProps,
+  BreadcrumbProps,
+} from './components/Breadcrumb';
 export {
   BreakpointsContainer,
   Breakpoint,
+  BreakpointScreenSize,
 } from './components/BreakpointsContainer';
 export {
   Button,
@@ -85,6 +90,7 @@ export {
 export {
   IndeterminateCheckbox,
   IndeterminateCheckboxProps,
+  IndeterminateCheckboxStatus,
 } from './components/IndeterminateCheckbox';
 export { Input, InputProps } from './components/Input';
 export {
@@ -95,7 +101,7 @@ export {
   InputType,
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
-export { Label } from './components/Label';
+export { Label, LabelPosition } from './components/Label';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -129,6 +135,41 @@ export {
 } from './components/SkipLinkContent';
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
+  Table,
+  TableProps,
+  TableDensity,
+  TableCellAlign,
+  TableContext,
+  TableSortDirection,
+  TableBody,
+  TableBodyProps,
+  TableCell,
+  TableCellProps,
+  TableHead,
+  TableHeadProps,
+  TableHeaderCell,
+  TableHeaderCellProps,
+  TableHeaderCellScope,
+  TablePagination,
+  TablePaginationProps,
+  TableRow,
+  TableRowColor,
+  TableRowProps,
+} from './components/Table';
+
+export { TabsContainer } from './components/Tabs/TabsContainer';
+export {
+  Tabs,
+  TabsAlignment,
+  TabsBorderPosition,
+  TabsIconPosition,
+  TabsOrientation,
+} from './components/Tabs';
+export { Tab } from './components/Tabs/Tab';
+export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
+export { TabPanel } from './components/Tabs/TabPanel';
+
+export {
   ToastsContainer,
   ToastsContainerProps,
 } from './components/Toast/ToastsContainer';
@@ -159,27 +200,4 @@ export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
-
-export { TabsContainer } from './components/Tabs/TabsContainer';
-export {
-  Tabs,
-  TabsAlignment,
-  TabsBorderPosition,
-  TabsIconPosition,
-  TabsOrientation,
-} from './components/Tabs';
-export { Tab } from './components/Tabs/Tab';
-export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
-export { TabPanel } from './components/Tabs/TabPanel';
-
-export { Table, TableProps } from './components/Table';
-export { TableBody, TableBodyProps } from './components/Table/TableBody';
-export { TableCell, TableCellProps } from './components/Table/TableCell';
-export { TableHead, TableHeadProps } from './components/Table/TableHead';
-export {
-  TableHeaderCell,
-  TableHeaderCellProps,
-} from './components/Table/TableHeaderCell';
-export { TableRow, TableRowProps } from './components/Table/TableRow';
-
 export { useMediaQuery } from './hooks/useMediaQuery';

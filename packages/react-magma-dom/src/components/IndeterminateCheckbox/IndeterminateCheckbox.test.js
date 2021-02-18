@@ -176,6 +176,15 @@ describe('Indeterminate Checkbox', () => {
     );
   });
 
+  it('should work with checked status', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <IndeterminateCheckbox testId={testId} status="checked" />
+    );
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
   it('should trigger the passed in onChange when value of the checkbox is changed', () => {
     const onChangeSpy = jest.fn();
     const testId = 'abc123';
