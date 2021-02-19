@@ -610,23 +610,23 @@ import {
   magma,
 } from 'react-magma-dom';
 
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
-  const gradIcon = <GraduationCapIcon />;
+  const emailIcon = <EmailIcon />;
   const androidIcon = <AndroidIcon />;
-  const bellIcon = <BellIcon />;
+  const bellIcon = <NotificationsIcon />;
 
   return (
     <TabsContainer>
       <Tabs aria-label="Sample Icon Only Tabs">
-        <Tab aria-label="Graduation" icon={gradIcon} />
+        <Tab aria-label="Email" icon={emailIcon} />
         <Tab aria-label="Android" icon={androidIcon} />
         <Tab aria-label="Notifications" icon={bellIcon} />
       </Tabs>
       <TabPanelsContainer>
         <TabPanel>
-          <div>Graduation</div>
+          <div>Email</div>
         </TabPanel>
         <TabPanel>
           <div>Android</div>
@@ -656,23 +656,23 @@ import {
   magma,
 } from 'react-magma-dom';
 
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
-  const gradIcon = <GraduationCapIcon />;
+  const emailIcon = <EmailIcon />;
   const androidIcon = <AndroidIcon />;
-  const bellIcon = <BellIcon />;
+  const bellIcon = <NotificationsIcon />;
 
   return (
     <TabsContainer>
       <Tabs aria-label="Sample Icon With Text Tabs">
-        <Tab icon={gradIcon}>First item with a longer text label</Tab>
+        <Tab icon={emailIcon}>First item with a longer text label</Tab>
         <Tab icon={androidIcon}>Second item</Tab>
         <Tab icon={bellIcon}>Third item</Tab>
       </Tabs>
       <TabPanelsContainer>
         <TabPanel>
-          <div>Graduation</div>
+          <div>Email</div>
         </TabPanel>
         <TabPanel>
           <div>Android</div>
@@ -700,12 +700,12 @@ import {
   magma,
 } from 'react-magma-dom';
 
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
-  const gradIcon = <GraduationCapIcon />;
+  const emailIcon = <EmailIcon />;
   const androidIcon = <AndroidIcon />;
-  const bellIcon = <BellIcon />;
+  const bellIcon = <NotificationsIcon />;
 
   return (
     <TabsContainer>
@@ -714,20 +714,20 @@ export function Example() {
         backgroundColor={magma.colors.neutral07}
         orientation={TabsOrientation.vertical}
       >
-        <Tab icon={gradIcon}>First item with a longer text label</Tab>
+        <Tab icon={emailIcon}>First item with a longer text label</Tab>
         <Tab icon={androidIcon}>Second item</Tab>
         <Tab icon={bellIcon}>Third item</Tab>
       </Tabs>
 
       <TabPanelsContainer>
         <TabPanel>
-          <div>Main page</div>
+          <div>Email</div>
         </TabPanel>
         <TabPanel>
-          <div>FAQ</div>
+          <div>Android</div>
         </TabPanel>
         <TabPanel>
-          <div>About us</div>
+          <div>Bell</div>
         </TabPanel>
       </TabPanelsContainer>
     </TabsContainer>
@@ -754,12 +754,12 @@ import {
   magma,
 } from 'react-magma-dom';
 
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
-  const gradIcon = <GraduationCapIcon />;
+  const emailIcon = <EmailIcon />;
   const androidIcon = <AndroidIcon />;
-  const bellIcon = <BellIcon />;
+  const bellIcon = <NotificationsIcon />;
 
   return (
     <>
@@ -769,7 +769,7 @@ export function Example() {
           backgroundColor={magma.colors.neutral07}
           iconPosition={TabsIconPosition.left}
         >
-          <Tab icon={gradIcon}>First item with a longer text label</Tab>
+          <Tab icon={emailIcon}>First item with a longer text label</Tab>
           <Tab icon={androidIcon}>Second item</Tab>
           <Tab icon={bellIcon}>Third item</Tab>
         </Tabs>
@@ -784,11 +784,9 @@ export function Example() {
           backgroundColor={magma.colors.neutral07}
           iconPosition={TabsIconPosition.bottom}
         >
-          <Tab icon={<GraduationCapIcon />}>
-            First item with a longer text label
-          </Tab>
-          <Tab icon={<AndroidIcon />}>Second item</Tab>
-          <Tab icon={<BellIcon />}>Third item</Tab>
+          <Tab icon={emailIcon}>First item with a longer text label</Tab>
+          <Tab icon={androidIcon}>Second item</Tab>
+          <Tab icon={bellIcon}>Third item</Tab>
         </Tabs>
       </TabsContainer>
 
@@ -802,11 +800,9 @@ export function Example() {
           backgroundColor={magma.colors.neutral07}
           iconPosition={TabsIconPosition.right}
         >
-          <Tab icon={<GraduationCapIcon />}>
-            First item with a longer text label
-          </Tab>
-          <Tab icon={<AndroidIcon />}>Second item</Tab>
-          <Tab icon={<BellIcon />}>Third item</Tab>
+          <Tab icon={emailIcon}>First item with a longer text label</Tab>
+          <Tab icon={androidIcon}>Second item</Tab>
+          <Tab icon={bellIcon}>Third item</Tab>
         </Tabs>
       </TabsContainer>
     </>
@@ -832,10 +828,10 @@ import {
   magma,
 } from 'react-magma-dom';
 
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
 
 export function Example() {
-  const gradIcon = <GraduationCapIcon />;
+  const emailIcon = <EmailIcon />;
   const androidIcon = <AndroidIcon />;
   const bellIcon = <BellIcon />;
 
@@ -847,7 +843,7 @@ export function Example() {
         iconPosition={TabsIconPosition.right}
         orientation={TabsOrientation.vertical}
       >
-        <Tab icon={gradIcon}>First item</Tab>
+        <Tab icon={emailIcon}>First item</Tab>
         <Tab icon={androidIcon}>Second item</Tab>
         <Tab icon={bellIcon}>Third item</Tab>
       </Tabs>

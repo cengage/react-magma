@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>north</title>
+    <defs>
+        <path d="M5.70999997,9.69999999 L5.70999997,9.69999999 C6.09999998,10.09 6.72999998,10.09 7.11999998,9.69999999 L11,5.82999997 L11,21 C11,21.55 11.45,22 12,22 L12,22 C12.55,22 13,21.55 13,21 L13,5.82999997 L16.88,9.70999999 C17.27,10.1 17.9,10.1 18.29,9.70999999 L18.29,9.70999999 C18.68,9.31999999 18.68,8.68999999 18.29,8.29999998 L12.7,2.69999996 C12.31,2.30999996 11.68,2.30999996 11.29,2.69999996 L5.70999997,8.28999998 C5.31999997,8.67999999 5.31999997,9.31999999 5.70999997,9.69999999 Z" id="path-1"></path>
+    </defs>
+    <g id="north" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

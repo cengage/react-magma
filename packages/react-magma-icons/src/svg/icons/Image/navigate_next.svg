@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>navigate_next</title>
+    <defs>
+        <path d="M9.30999999,6.70999998 C8.91999999,7.09999998 8.91999999,7.72999998 9.30999999,8.11999998 L13.19,12 L9.30999999,15.88 C8.91999999,16.27 8.91999999,16.9 9.30999999,17.29 C9.69999999,17.68 10.33,17.68 10.72,17.29 L15.31,12.7 C15.7,12.31 15.7,11.68 15.31,11.29 L10.72,6.69999998 C10.34,6.31999998 9.69999999,6.31999998 9.30999999,6.70999998 Z" id="path-1"></path>
+    </defs>
+    <g id="navigate_next" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

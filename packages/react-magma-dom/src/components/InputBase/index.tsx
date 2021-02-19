@@ -5,6 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
 import { IconProps } from 'react-magma-icons';
+import { ThemeInterface } from '../../theme/magma';
 
 export enum InputSize {
   large = 'large',
@@ -17,6 +18,11 @@ export enum InputType {
   password = 'password',
   search = 'search',
   text = 'text', // default
+}
+
+export enum InputIconPosition {
+  left = 'left',
+  right = 'right',
 }
 
 export interface InputBaseProps
@@ -74,11 +80,6 @@ export interface InputBaseProps
    * @default InputType.text
    */
   type?: InputType;
-}
-
-export enum InputIconPosition {
-  left = 'left',
-  right = 'right',
 }
 
 const InputWrapper = styled.div`
@@ -183,10 +184,9 @@ const IconWrapper = styled.span<{
 }>`
   color: ${props => props.theme.colors.neutral};
   left: ${props =>
-    props.iconPosition === 'left' ? props.theme.spaceScale.spacing04 : 'auto'};
-  margin-top: ${props => props.theme.spaceScale.spacing01};
+    props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
-    props.iconPosition === 'right' ? props.theme.spaceScale.spacing04 : 'auto'};
+    props.iconPosition === 'right' ? props.theme.spaceScale.spacing03 : 'auto'};
   position: absolute;
   top: ${props => props.theme.spaceScale.spacing03};
 
@@ -203,14 +203,32 @@ const IconWrapper = styled.span<{
     `}
 `;
 
-const IconButtonContainer = styled.span`
-  bottom: 1px;
+const IconButtonContainer = styled.span<{
+  size?: InputSize;
+  theme: ThemeInterface;
+}>`
   height: auto;
   margin: 0;
-  overflow: hidden;
   position: absolute;
-  top: 1px;
-  right: 1px;
+  top: ${props =>
+    props.size === InputSize.large
+      ? props.theme.spaceScale.spacing02
+      : props.theme.spaceScale.spacing01};
+  right: ${props =>
+    props.size === InputSize.large
+      ? props.theme.spaceScale.spacing02
+      : props.theme.spaceScale.spacing01};
+
+  svg {
+    height: ${props =>
+      props.size === InputSize.large
+        ? `${props.theme.iconSizes.large}px`
+        : `${props.theme.iconSizes.medium}px`};
+    width: ${props =>
+      props.size === InputSize.large
+        ? `${props.theme.iconSizes.large}px`
+        : `${props.theme.iconSizes.medium}px`};
+  }
 `;
 
 function getIconSize(size, theme) {
@@ -303,7 +321,12 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         )}
 
         {onIconClick && (
-          <IconButtonContainer>
+          <IconButtonContainer
+            size={
+              inputSize === InputSize.large ? InputSize.large : InputSize.medium
+            }
+            theme={theme}
+          >
             <IconButton
               aria-label={iconAriaLabel}
               icon={icon}
@@ -313,10 +336,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               shape={ButtonShape.fill}
               size={
                 inputSize === InputSize.large
-                  ? ButtonSize.large
-                  : ButtonSize.medium
+                  ? ButtonSize.medium
+                  : ButtonSize.small
               }
-              style={{ margin: 0 }}
               type={ButtonType.button}
               variant={ButtonVariant.link}
             />

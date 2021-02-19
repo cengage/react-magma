@@ -27,7 +27,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -122,7 +122,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -228,7 +228,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 16px;
   margin: 4px;
   min-width: 0;
   overflow: hidden;
@@ -323,7 +323,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 16px;
   margin: 4px;
   min-width: 0;
   overflow: hidden;
@@ -429,7 +429,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -524,7 +524,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -631,7 +631,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -726,7 +726,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -833,7 +833,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -928,7 +928,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -1033,7 +1033,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -1127,7 +1127,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;

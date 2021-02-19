@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="24px" viewBox="0 0 23 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>filter_alt</title>
+    <defs>
+        <path d="M4.19532663,6.48615385 C6.3368651,9.23692309 9.50301896,13.3076923 9.50301896,13.3076923 L9.50301896,17.923077 C9.50301896,18.9384616 10.3337882,19.7692308 11.3491728,19.7692308 L11.3491728,19.7692308 C12.3645574,19.7692308 13.1953267,18.9384616 13.1953267,17.923077 L13.1953267,13.3076923 C13.1953267,13.3076923 16.3614805,9.23692309 18.503019,6.48615385 C18.9737882,5.87692308 18.5399421,5 17.7645575,5 L4.9245574,5 C4.15840355,5 3.7245574,5.87692308 4.19532663,6.48615385 Z" id="path-1"></path>
+    </defs>
+    <g id="filter_alt" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

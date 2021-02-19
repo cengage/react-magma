@@ -4,12 +4,12 @@ import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
-  Info2Icon,
-  CheckIcon,
-  NotificationIcon,
-  BlockedIcon,
-  CrossIcon,
+  InfoIcon,
+  CheckCircleIcon,
+  WarningIcon,
+  ErrorIcon,
   IconProps,
+  CloseIcon,
 } from 'react-magma-icons';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -20,10 +20,10 @@ import { I18nContext } from '../../i18n';
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
 } = {
-  info: Info2Icon,
-  success: CheckIcon,
-  warning: NotificationIcon,
-  danger: BlockedIcon,
+  info: InfoIcon,
+  success: CheckCircleIcon,
+  warning: WarningIcon,
+  danger: ErrorIcon,
 };
 
 export enum AlertVariant {
@@ -183,11 +183,10 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
 const AlertContents = styled.div`
   align-self: center;
   flex-grow: 1;
-  padding: ${props => props.theme.spaceScale.spacing05}
-    ${props => props.theme.spaceScale.spacing04};
+  padding: ${props => props.theme.spaceScale.spacing04} 0;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding-left: ${props => props.theme.spaceScale.spacing05};
+    padding-left: ${props => props.theme.spaceScale.spacing04};
   }
 `;
 
@@ -195,12 +194,13 @@ const IconWrapperStyles = css`
   align-items: center;
   display: flex;
   flex-shrink: 0;
+  margin-right: 1px;
 `;
 
 const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
-  props.theme.spaceScale.spacing05};
+  props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     display: none;
@@ -233,7 +233,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     ${props => props.theme.borderRadius} 0;
   color: inherit;
   height: auto;
-  padding: 0 ${props => props.theme.spaceScale.spacing05};
+  padding: 0 ${props => props.theme.spaceScale.spacing04};
   width: auto;
 
   &&:focus:not(:disabled) {
@@ -266,7 +266,7 @@ function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
 
   return (
     <IconWrapper isToast={isToast} theme={theme}>
-      <Icon size={20} />
+      <Icon size={theme.iconSizes.medium} />
     </IconWrapper>
   );
 }
@@ -351,7 +351,15 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                 aria-label={
                   closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
                 }
-                icon={<CrossIcon size={hasTimerRing ? 10 : 13} />}
+                icon={
+                  <CloseIcon
+                    size={
+                      hasTimerRing
+                        ? theme.iconSizes.xSmall
+                        : theme.iconSizes.small
+                    }
+                  />
+                }
                 isInverse
                 onClick={forceDismiss || handleDismiss}
                 theme={theme}

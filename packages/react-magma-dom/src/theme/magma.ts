@@ -47,6 +47,7 @@ export interface Breakpoints {
 }
 
 export interface IconSizes {
+  xSmall: number;
   small: number;
   medium: number;
   large: number;
@@ -318,9 +319,10 @@ export const magma = {
   },
 
   iconSizes: {
-    small: 16,
-    medium: 20,
-    large: 28,
+    xSmall: 16,
+    small: 20,
+    medium: 24,
+    large: 32,
   },
 
   // Typography

@@ -140,7 +140,9 @@ export const StyledFakeInput = styled.span<{
       : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
-    props.textPosition === 'left' ? '2px 0 0 10px' : '2px 10px 0 0'};
+    props.textPosition === 'left'
+      ? `${props.theme.spaceScale.spacing01} 0 0 ${props.theme.spaceScale.spacing03}`
+      : `${props.theme.spaceScale.spacing01} ${props.theme.spaceScale.spacing03} 0 0`};
 
   svg {
     display: ${props => (props.checked ? 'block' : 'none')};
@@ -257,7 +259,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               textPosition={textPosition}
               theme={theme}
             >
-              <CheckIcon size={12} />
+              <CheckIcon size={theme.iconSizes.medium} />
             </StyledFakeInput>
 
             {isTextVisuallyHidden ? (

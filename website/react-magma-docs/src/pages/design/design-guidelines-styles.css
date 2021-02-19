@@ -28,6 +28,10 @@
   width: 100%;
 }
 
+.gatsby-resp-image-wrapper {
+  border: 1px solid #dfdfdf;
+}
+
 figure .image-container {
   border: 1px solid #dfdfdf;
   display: flex;
@@ -83,11 +87,6 @@ figcaption .title-incorrect {
 figcaption .title-caution {
   background: #f2a900;
   color: #3f3f3f;
-}
-
-.two-col img,
-figure img {
-  border: 1px solid #dfdfdf;
 }
 
 .swatch-rows {

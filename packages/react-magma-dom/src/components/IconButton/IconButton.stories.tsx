@@ -1,99 +1,101 @@
 import React from 'react';
 import { IconButton } from '.';
-import { AlertIcon, BellIcon, CheckIcon, Cog2Icon } from 'react-magma-icons';
-import { ButtonColor, ButtonVariant } from '../Button';
+import { SettingsIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  ButtonProps,
+  ButtonColor,
+  ButtonShape,
+  ButtonSize,
+  ButtonTextTransform,
+  ButtonType,
+  ButtonVariant,
+} from '../Button';
+
+import { Card } from '../Card';
+import { CardBody } from '../Card/CardBody';
+import { magma } from '../../theme/magma';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+const Template: Story<ButtonProps> = args => (
+  <IconButton icon={<SettingsIcon />} {...args}>
+    Button
+  </IconButton>
+);
 
 export default {
-  component: IconButton,
   title: 'IconButton',
+  component: IconButton,
+  argTypes: {
+    color: {
+      control: {
+        type: 'select',
+        options: ButtonColor,
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ButtonSize,
+      },
+    },
+    variant: {
+      control: {
+        type: 'select',
+        options: ButtonVariant,
+      },
+    },
+    shape: {
+      control: {
+        type: 'select',
+        options: ButtonShape,
+      },
+    },
+    textTransform: {
+      control: {
+        type: 'select',
+        options: ButtonTextTransform,
+      },
+    },
+    type: {
+      control: {
+        type: 'select',
+        options: ButtonType,
+      },
+    },
+  },
+} as Meta;
+
+export const Default = Template.bind({});
+Default.args = {
+  isInverse: false,
+  isFullWidth: false,
+  disabled: false,
+  onClick: () => {},
 };
 
-export const Default = () => {
-  return (
-    <>
-      <p>
-        <IconButton aria-label="Notifications" icon={<BellIcon />} />
-        <IconButton aria-label="Notifications" icon={<BellIcon />} />
-        <IconButton
-          aria-label="Notifications"
-          variant={ButtonVariant.outline}
-          icon={<BellIcon />}
-        />
-        <IconButton
-          aria-label="Notifications"
-          variant={ButtonVariant.link}
-          icon={<BellIcon />}
-        />
-        <IconButton
-          aria-label="Settings"
-          color={ButtonColor.secondary}
-          icon={<Cog2Icon />}
-        />
-        <IconButton
-          aria-label="Settings"
-          color={ButtonColor.secondary}
-          variant={ButtonVariant.outline}
-          icon={<Cog2Icon />}
-        />
-        <IconButton
-          aria-label="Settings"
-          color={ButtonColor.secondary}
-          variant={ButtonVariant.link}
-          icon={<Cog2Icon />}
-        />
-        <IconButton
-          aria-label="Correct"
-          color={ButtonColor.success}
-          icon={<CheckIcon />}
-        />
-        <IconButton
-          aria-label="Correct"
-          color={ButtonColor.success}
-          variant={ButtonVariant.outline}
-          icon={<CheckIcon />}
-        />
-        <IconButton
-          aria-label="Correct"
-          color={ButtonColor.success}
-          variant={ButtonVariant.link}
-          icon={<CheckIcon />}
-        />
-        <IconButton
-          aria-label="Error"
-          color={ButtonColor.danger}
-          icon={<AlertIcon />}
-        />
-        <IconButton
-          aria-label="Error"
-          color={ButtonColor.danger}
-          variant={ButtonVariant.outline}
-          icon={<AlertIcon />}
-        />
-        <IconButton
-          aria-label="Error"
-          color={ButtonColor.danger}
-          variant={ButtonVariant.link}
-          icon={<AlertIcon />}
-        />
-        <IconButton aria-label="Notifications" disabled icon={<BellIcon />} />
-      </p>
-      <p>
-        <IconButton icon={<BellIcon />}>Notifications</IconButton>
-        <IconButton
-          icon={<Cog2Icon />}
-          color={ButtonColor.secondary}
-          variant={ButtonVariant.outline}
-        >
-          Settings
-        </IconButton>
-        <IconButton
-          icon={<CheckIcon />}
-          color={ButtonColor.success}
-          variant={ButtonVariant.link}
-        >
-          Submit
-        </IconButton>
-      </p>
-    </>
-  );
+export const Inverse = Template.bind({});
+Inverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
+Inverse.decorators = [
+  Story => (
+    <Card background={magma.colors.foundation} isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];
+
+const IconOnlyTemplate: Story<ButtonProps> = args => (
+  <IconButton icon={<NotificationsIcon />} aria-label="Button" {...args} />
+);
+
+export const IconOnly = IconOnlyTemplate.bind({});
+IconOnly.args = {
+  isInverse: false,
+  isFullWidth: false,
+  disabled: false,
+  onClick: () => {},
 };
