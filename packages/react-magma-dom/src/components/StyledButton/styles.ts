@@ -38,6 +38,18 @@ export function buildButtonFontSize(props) {
   }
 }
 
+export function buildButtonLineHeight(props) {
+  switch (props.size) {
+    case 'small':
+      return props.theme.typeScale.size01.lineHeight;
+    case 'large':
+      return props.theme.typeScale.size04.lineHeight;
+    default:
+      //medium
+      return props.theme.typeScale.size03.lineHeight;
+  }
+}
+
 export function buildButtonSize(props) {
   switch (props.size) {
     case 'small':

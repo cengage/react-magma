@@ -1,12 +1,17 @@
 import * as React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { IconProps } from './iconProps';
-
-const defaultSize = 24;
+import { IconProps } from './IconProps';
 
 interface Path {
   d: string;
   transform?: string;
+  fill?: string;
+  fillRule?: 'nonzero' | 'evenodd' | 'inherit';
+}
+interface Circle {
+  cx: number;
+  cy: number;
+  r: number;
 }
 
 export interface SvgIconProps extends React.HTMLAttributes<HTMLOrSVGElement> {
@@ -14,7 +19,8 @@ export interface SvgIconProps extends React.HTMLAttributes<HTMLOrSVGElement> {
   testId?: string;
   title?: string;
   viewBox: string;
-  paths: Path[];
+  paths?: Path[];
+  circles?: Circle[];
   style?: React.CSSProperties;
   color?: string;
   size?: number;
@@ -32,31 +38,46 @@ function useGenerateId(newId?: string) {
   return id;
 }
 
-function renderPaths(paths: Path[]) {
-  return paths.map(({ d, transform }, index) => (
-    <path key={index} d={d} transform={transform} />
-  ));
+function renderPaths(paths: Path[] = []) {
+  return paths
+    .filter(a => a)
+    .map(({ d, ...other }, index) => <path key={index} d={d} {...other} />);
 }
 
-export const SvgIcon: React.FunctionComponent<SvgIconProps> = (
-  props: SvgIconProps
-) => {
-  const { color, id: defaultId, size, title, testId, paths, ...other } = props;
+function renderCircles(circles: Circle[] = []) {
+  return circles
+    .filter(a => a)
+    .map(({ cx, cy, r }, index) => (
+      <circle key={index} cx={cx} cy={cy} r={r} />
+    ));
+}
+
+export const SvgIcon = ({
+  color = 'currentColor',
+  size = 24,
+  id: defaultId,
+  title,
+  testId,
+  paths = [],
+  circles = [],
+  ...other
+}: SvgIconProps) => {
   const id = useGenerateId(defaultId);
 
   return (
     <svg
       {...other}
       className="icon"
-      height={size || defaultSize}
-      width={size || defaultSize}
-      fill={color || 'currentColor'}
       xmlns="http://www.w3.org/2000/svg"
+      fill={color}
+      height={size}
+      width={size}
       aria-labelledby={title ? id : undefined}
       data-testid={testId}
     >
       {title && <title id={id}>{title}</title>}
-      {renderPaths(paths)}
+      {paths.length !== 0 && renderPaths(paths)}
+      {circles.length !== 0 && renderCircles(circles)}
     </svg>
   );
 };

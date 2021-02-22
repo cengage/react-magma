@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>polymer</title>
+    <defs>
+        <polygon id="path-1" points="19 3.99999997 15 3.99999997 7.10999998 16.63 4.49999997 12 8.99999999 3.99999997 4.99999997 3.99999997 0.499999952 12 4.99999997 20 8.99999999 20 16.89 7.36999998 19.5 12 15 20 19 20 23.5 12"></polygon>
+    </defs>
+    <g id="polymer" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

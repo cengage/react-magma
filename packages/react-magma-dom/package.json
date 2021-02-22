@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.3.6",
+  "version": "2.3.7-alpha.3",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -38,7 +38,7 @@
     "downshift": "^5.4.5",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "react-magma-icons": "^1.0.0",
+    "react-magma-icons": "^2.0.0",
     "uuid": "^8.3.0"
   },
   "dependencies": {
@@ -61,7 +61,7 @@
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-eslint": "^10.1.0",
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.17.0",
     "downshift": "^5.4.5",
     "eslint": "^7.9.0",
     "eslint-plugin-import": "^2.22.0",
@@ -79,7 +79,7 @@
     "react": "^16.10.0",
     "react-docgen-typescript-loader": "^3.7.2",
     "react-dom": "^16.10.0",
-    "react-magma-icons": "1.0.10",
+    "react-magma-icons": "2.0.0-alpha.3",
     "react-test-renderer": "^16.13.1",
     "regenerator-runtime": "^0.13.7",
     "rimraf": "^3.0.2",

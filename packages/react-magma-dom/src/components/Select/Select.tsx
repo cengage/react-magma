@@ -3,7 +3,7 @@ import { SelectProps } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
@@ -184,7 +184,7 @@ export function Select<T>(props: SelectProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CrossIcon size={10} />}
+            icon={<CloseIcon size={10} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             style={{ marginTop: '0', marginBottom: '0' }}

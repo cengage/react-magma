@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>priority_high</title>
+    <defs>
+        <path d="M12,17 C13.1045695,17 14,17.8954305 14,19 C14,20.1045695 13.1045695,21 12,21 C10.8954305,21 9.99999999,20.1045695 9.99999999,19 C9.99999999,17.8954305 10.8954305,17 12,17 Z M12,2.99999996 C13.1,2.99999996 14,3.89999997 14,4.99999996 L14,4.99999996 L14,13 C14,14.1 13.1,15 12,15 C10.9,15 9.99999999,14.1 9.99999999,13 L9.99999999,13 L9.99999999,4.99999996 C9.99999999,3.89999997 10.9,2.99999996 12,2.99999996 Z" id="path-1"></path>
+    </defs>
+    <g id="priority_high" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

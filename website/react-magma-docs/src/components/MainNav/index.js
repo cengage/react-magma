@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
-import { AngleDownIcon, ExternalLinkIcon } from 'react-magma-icons';
+import { ExpandMoreIcon, LaunchIcon } from 'react-magma-icons';
 import { SubMenu, SubMenu2 } from './SubMenu';
 import {
   Accordion,
@@ -164,7 +164,7 @@ export const MainNav = ({ ...props }) => (
               to="https://github.com/cengage/react-magma"
             >
               GitHub
-              <ExternalLinkIcon size={magma.iconSizes.medium} />
+              <LaunchIcon size={magma.iconSizes.small} />
             </StyledLink>
           </ListItem>
         </List>
@@ -176,7 +176,7 @@ export const MainNav = ({ ...props }) => (
                 <AccordionItemTitle>
                   <Heading2>
                     Develop
-                    <AngleDownIcon size="16" />
+                    <ExpandMoreIcon size={magma.iconSizes.medium} />
                   </Heading2>
                 </AccordionItemTitle>
                 <AccordionItemBody>
@@ -228,7 +228,7 @@ export const MainNav = ({ ...props }) => (
                 <AccordionItemTitle>
                   <Heading2>
                     Design
-                    <AngleDownIcon size="16" />
+                    <ExpandMoreIcon size={magma.iconSizes.medium} />
                   </Heading2>
                 </AccordionItemTitle>
                 <AccordionItemBody>

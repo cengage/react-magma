@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import { QuestionCircleOIcon, CrossIcon } from 'react-magma-icons';
+import { CloseIcon, HelpOutlineIcon } from 'react-magma-icons';
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
@@ -204,8 +204,9 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
         <HelperButton theme={theme}>
           <IconButton
             aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
-            icon={<QuestionCircleOIcon />}
+            icon={<HelpOutlineIcon />}
             onClick={openHelperInformation}
+            size={ButtonSize.small}
             onFocus={turnOffDateFocused}
             type={ButtonType.button}
             variant={ButtonVariant.link}
@@ -219,9 +220,9 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           <IconButton
             aria-label={i18n.datePicker.calendarCloseAriaLabel}
             color={ButtonColor.secondary}
-            icon={<CrossIcon />}
+            icon={<CloseIcon />}
             onClick={props.handleCloseButtonClick}
-            size={ButtonSize.small}
+            size={ButtonSize.medium}
             type={ButtonType.button}
             variant={ButtonVariant.link}
           />

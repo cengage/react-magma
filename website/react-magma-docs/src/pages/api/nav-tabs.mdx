@@ -225,7 +225,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
+import { NavTab, NavTabs, TabsOrientation, magma } from 'react-magma-dom';
 export function Example() {
   return (
     <div style={{ display: 'flex', height: '200px', overflow: 'hidden' }}>
@@ -257,17 +257,13 @@ The `icon` prop can be used to display an icon inside the individual `NavTab` co
 ```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <NavTabs aria-label="Icon Only Nav Tabs">
-      <NavTab
-        aria-label="Graduation"
-        icon={<GraduationCapIcon isActive />}
-        to="#"
-      />
+      <NavTab aria-label="Email" icon={<EmailIcon isActive />} to="#" />
       <NavTab aria-label="Android" icon={<AndroidIcon />} to="#" />
-      <NavTab aria-label="Notifications" icon={<BellIcon />} to="#" />
+      <NavTab aria-label="Notifications" icon={<NotificationsIcon />} to="#" />
     </NavTabs>
   );
 }
@@ -281,17 +277,17 @@ By default, the icons appear above the children.
 ```tsx
 import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
-      <NavTab icon={<GraduationCapIcon />} isActive to="#">
+      <NavTab icon={<EmailIcon />} isActive to="#">
         First item with a longer text label
       </NavTab>
       <NavTab icon={<AndroidIcon />} to="#">
         Second item
       </NavTab>
-      <NavTab icon={<BellIcon />} to="#">
+      <NavTab icon={<NotificationsIcon />} to="#">
         Third item
       </NavTab>
     </NavTabs>
@@ -304,20 +300,20 @@ export function Example() {
 ```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <NavTabs
       aria-label="Vertical Icon with Text Nav Tabs"
       orientation={TabsOrientation.vertical}
     >
-      <NavTab icon={<GraduationCapIcon />} isActive to="#">
+      <NavTab icon={<EmailIcon />} isActive to="#">
         First item with a longer text label
       </NavTab>
       <NavTab icon={<AndroidIcon />} to="#">
         Second item
       </NavTab>
-      <NavTab icon={<BellIcon />} to="#">
+      <NavTab icon={<NotificationsIcon />} to="#">
         Third item
       </NavTab>
     </NavTabs>
@@ -334,7 +330,7 @@ This prop is specified on the `NavTabs` component.
 ```tsx
 import React from 'react';
 import { NavTab, NavTabs, TabsIconPosition } from 'react-magma-dom';
-import { GraduationCapIcon, AndroidIcon, BellIcon } from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
@@ -342,13 +338,13 @@ export function Example() {
         aria-label="Icon Position Left Nav Tabs"
         iconPosition={TabsIconPosition.left}
       >
-        <NavTab icon={<GraduationCapIcon />} isActive to="#">
+        <NavTab icon={<EmailIcon />} isActive to="#">
           First item with a longer text label
         </NavTab>
         <NavTab icon={<AndroidIcon />} to="#">
           Second item
         </NavTab>
-        <NavTab icon={<BellIcon />} to="#">
+        <NavTab icon={<NotificationsIcon />} to="#">
           Third item
         </NavTab>
       </NavTabs>
@@ -361,13 +357,13 @@ export function Example() {
         aria-label="Icon Position Right Nav Tabs"
         iconPosition={TabsIconPosition.right}
       >
-        <NavTab icon={<GraduationCapIcon />} isActive to="#">
+        <NavTab icon={<EmailIcon />} isActive to="#">
           First item with a longer text label
         </NavTab>
         <NavTab icon={<AndroidIcon />} to="#">
           Second item
         </NavTab>
-        <NavTab icon={<BellIcon />} to="#">
+        <NavTab icon={<NotificationsIcon />} to="#">
           Third item
         </NavTab>
       </NavTabs>
@@ -402,7 +398,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { NavTab, NavTabs } from 'react-magma-dom';
+import { NavTab, NavTabs, magma } from 'react-magma-dom';
 export function Example() {
   return (
     <NavTabs

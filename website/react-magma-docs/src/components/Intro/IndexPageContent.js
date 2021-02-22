@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
-import { Hyperlink, ThemeContext } from 'react-magma-dom';
+import { Hyperlink, ThemeContext, magma } from 'react-magma-dom';
 import { HexBackground } from './HexBackground';
 import { IntroHeading } from './IntroHeading';
 import { IntroSection } from './IntroSection';
@@ -54,7 +54,7 @@ const List = styled.ol`
     list-style: none;
     justify-content: space-between;
     margin: 0;
-    padding: 0 20px;
+    padding: 0 ${props => props.theme.spaceScale.spacing05};
     position: fixed;
     right: 0;
     top: 80px;
@@ -70,10 +70,10 @@ const ButtonContainer = styled.div`
   text-align: center;
 
   a {
-    min-width: 325px;
+    min-width: 320px;
 
     span {
-      margin-left: 10px;
+      margin-left: ${props => props.theme.spaceScale.spacing03};
     }
   }
 
@@ -186,7 +186,7 @@ export class IndexPageContent extends React.Component {
                   >
                     {linkProps => (
                       <Link {...linkProps}>
-                        <CodeIcon size="16" />
+                        <CodeIcon size={magma.iconSizes.medium} />
                         <span>Develop with React Magma</span>
                       </Link>
                     )}
@@ -199,7 +199,7 @@ export class IndexPageContent extends React.Component {
                   >
                     {linkProps => (
                       <Link {...linkProps}>
-                        <PaletteIcon size="16" />
+                        <PaletteIcon size={magma.iconSizes.medium} />
                         <span>Design with React Magma</span>
                       </Link>
                     )}
