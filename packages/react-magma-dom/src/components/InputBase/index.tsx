@@ -14,6 +14,7 @@ export enum InputSize {
 
 export enum InputType {
   email = 'email',
+  file = 'file',
   number = 'number',
   password = 'password',
   search = 'search',
