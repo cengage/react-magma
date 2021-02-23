@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>carpenter</title>
+    <defs>
+        <path d="M19.73,14.23 L7.70999998,2.20999996 C7.31999998,1.81999996 6.68999998,1.81999996 6.29999998,2.20999996 L3.69999997,4.79999997 C3.35999996,5.13999997 3.30999996,5.67999997 3.58999996,6.07999998 L11.24,17.06 C10.46,17.84 10.46,19.11 11.24,19.89 L12.65,21.3 C13.43,22.08 14.7,22.08 15.48,21.3 L19.72,17.06 C20.51,16.28 20.51,15.01 19.73,14.23 Z M14.07,19.88 L12.66,18.47 L16.9,14.23 L18.31,15.64 L14.07,19.88 Z" id="path-1"></path>
+    </defs>
+    <g id="carpenter" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

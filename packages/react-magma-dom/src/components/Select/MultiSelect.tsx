@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MultiSelectProps } from '.';
 import { useSelect, useMultipleSelection } from 'downshift';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
@@ -200,7 +200,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                 >
                   {multiSelectedItemString}
                   <IconWrapper>
-                    <CrossIcon size={8} />
+                    <CloseIcon size={8} />
                   </IconWrapper>
                 </SelectedItemButton>
               );

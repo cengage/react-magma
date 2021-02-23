@@ -1,16 +1,17 @@
 import * as React from 'react';
-
 import { IconButton, ButtonIconPosition } from '../IconButton';
 import {
+  ArrowDropUpIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
   CaretDownIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-  CaretUpIcon,
   IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
-import { ButtonProps } from '../Button';
+import { ButtonProps, ButtonSize } from '../Button';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
@@ -51,11 +52,23 @@ function instanceOfIconOnlyDropdownButton(
   return 'icon' in object && !('children' in object);
 }
 
+function getButtonPadding(theme: ThemeInterface, size?: ButtonSize) {
+  switch (size) {
+    case 'small':
+      return theme.spaceScale.spacing02;
+    case 'large':
+      return theme.spaceScale.spacing05;
+    default:
+      return theme.spaceScale.spacing03;
+  }
+}
+
 export const DropdownButton = React.forwardRef<
   HTMLButtonElement,
   DropdownButtonProps
 >((props, forwardedRef) => {
   const context = React.useContext(DropdownContext);
+  const theme = React.useContext(ThemeContext);
 
   context.dropdownButtonId.current = useGenerateId(props.id);
 
@@ -64,14 +77,14 @@ export const DropdownButton = React.forwardRef<
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
       case DropdownDropDirection.left:
-        return <CaretLeftIcon size={10} testId="caretLeft" />;
+        return <ArrowLeftIcon testId="caretLeft" />;
       case DropdownDropDirection.right:
-        return <CaretRightIcon size={10} testId="caretRight" />;
+        return <ArrowRightIcon testId="caretRight" />;
       case DropdownDropDirection.up:
-        return <CaretUpIcon size={10} testId="caretUp" />;
+        return <ArrowDropUpIcon testId="caretUp" />;
 
       default:
-        return <CaretDownIcon size={10} testId="caretDown" />;
+        return <CaretDownIcon testId="caretDown" />;
     }
   }
 
@@ -111,6 +124,10 @@ export const DropdownButton = React.forwardRef<
       onClick={handleClick}
       onKeyDown={context.handleButtonKeyDown}
       ref={ref}
+      style={{
+        paddingRight: getButtonPadding(theme, props.size),
+        ...props.style,
+      }}
     >
       {children}
     </IconButton>

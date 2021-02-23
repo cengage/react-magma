@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>expand_more</title>
+    <defs>
+        <path d="M15.88,9.28999999 L12,13.17 L8.11999998,9.28999999 C7.72999998,8.89999999 7.09999998,8.89999999 6.70999998,9.28999999 C6.31999998,9.67999999 6.31999998,10.31 6.70999998,10.7 L11.3,15.29 C11.69,15.68 12.32,15.68 12.71,15.29 L17.3,10.7 C17.69,10.31 17.69,9.67999999 17.3,9.28999999 C16.91,8.90999999 16.27,8.89999999 15.88,9.28999999 L15.88,9.28999999 Z" id="path-1"></path>
+    </defs>
+    <g id="expand_more" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

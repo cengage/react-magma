@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>arrow_back_ios</title>
+    <defs>
+        <path d="M16.62,2.98999996 C16.13,2.49999996 15.34,2.49999996 14.85,2.98999996 L6.53999998,11.3 C6.14999998,11.69 6.14999998,12.32 6.53999998,12.71 L14.85,21.02 C15.34,21.51 16.13,21.51 16.62,21.02 C17.11,20.53 17.11,19.74 16.62,19.25 L9.37999999,12 L16.63,4.74999997 C17.11,4.26999997 17.11,3.46999996 16.62,2.98999996 Z" id="path-1"></path>
+    </defs>
+    <g id="arrow_back_ios" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

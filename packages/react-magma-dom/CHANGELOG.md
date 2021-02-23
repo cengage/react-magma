@@ -3,17 +3,117 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.8-alpha.0 (2021-02-22)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+### 2.3.7 (2021-02-22)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+### 2.3.7-alpha.3 (2021-02-19)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+### 2.3.7-alpha.2 (2021-02-19)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+### 2.3.7-alpha.1 (2021-02-19)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+### 2.3.7-alpha.0 (2021-02-19)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
+### 2.3.6 (2021-02-18)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.5 (2021-02-12)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.6-alpha.0 (2021-02-18)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5 (2021-02-18)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.13 (2021-02-18)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.12 (2021-02-17)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.11 (2021-02-17)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.10 (2021-02-17)
+
+### Bug Fixes
+
+- **table:** duplicate exports ([1583413](https://github.com/cengage/react-magma/commit/15834130d3aa24ecbe5f479632b74081fa0ab5c9))
+
+### 2.3.5-alpha.9 (2021-02-17)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.8 (2021-02-17)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.7 (2021-02-17)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.6 (2021-02-12)
+
+**Note:** Version bump only for package react-magma-dom
+
+### 2.3.5-alpha.5 (2021-02-12)
+
+**Note:** Version bump only for package react-magma-dom
+
+> > > > > > > dev
+
+### 2.3.5-alpha.4 (2021-02-12)
+
+**Note:** Version bump only for package react-magma-dom
+
 ### 2.3.5-alpha.3 (2021-02-05)
 
 **Note:** Version bump only for package react-magma-dom
-
-<<<<<<< HEAD
-
-### 2.3.4-alpha.5 (2021-01-25)
-
-**Note:** Version bump only for package react-magma-dom
-
-=======
 
 ### 2.3.5-alpha.2 (2021-01-29)
 
@@ -34,8 +134,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### 2.3.4-alpha.5 (2021-01-25)
 
 **Note:** Version bump only for package react-magma-dom
-
-> > > > > > > dev
 
 ### 2.3.4-alpha.4 (2021-01-25)
 

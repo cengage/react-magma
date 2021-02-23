@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { instanceOfDefaultItemObject } from '../Select';
 import { useCombobox } from 'downshift';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { defaultComponents } from '../Select/components';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
@@ -286,7 +286,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CrossIcon size={10} />}
+            icon={<CloseIcon size={10} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             variant={ButtonVariant.link}

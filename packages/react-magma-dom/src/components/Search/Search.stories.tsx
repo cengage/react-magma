@@ -1,17 +1,29 @@
 import React from 'react';
-import { Search } from '.';
+import { Search, SearchProps } from '.';
+import { InputSize } from '../InputBase';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+const Template: Story<SearchProps> = args => (
+  <Search
+    {...args}
+    onSearch={term => {
+      alert(term);
+    }}
+  />
+);
 
 export default {
-  component: Search,
   title: 'Search',
-};
+  component: Search,
+  argTypes: {
+    inputSize: {
+      control: {
+        type: 'select',
+        options: InputSize,
+      },
+    },
+  },
+} as Meta;
 
-export const Default = () => {
-  return (
-    <Search
-      onSearch={term => {
-        alert(term);
-      }}
-    />
-  );
-};
+export const Default = Template.bind({});
+Default.args = {};

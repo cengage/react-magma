@@ -9,7 +9,7 @@ module.exports = {
     '!**/react-magma-legacy-selects/**',
   ],
   coverageDirectory: '<rootDir>/coverage',
-  coverageReporters: ['text'],
+  coverageReporters: ['text', 'lcov'],
   projects: ['<rootDir>/packages/*/jest.config.js'],
   setupFiles: [
     // '<rootDir>/jest.overrides.js',

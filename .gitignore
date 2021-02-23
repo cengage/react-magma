@@ -1,14 +1,13 @@
 storybook-static
-dist
+dist/
 .vscode
-node_modules
+node_modules/
 *.log
 coverage
 .nyc_output
 .cache
-public
+public/
 .DS_Store
-packages/cengage-ts-react-boilerplate
 packages/react-magma-dom/README.md
 *_cache*
 .npmrc

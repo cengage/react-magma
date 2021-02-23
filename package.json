@@ -15,13 +15,13 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
-    "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006",
     "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
     "build": "lerna run build --ignore react-magma-dom-codesandbox-template --stream --no-progress",
-    "build:landing": "node packages/react-magma-landing/scripts/build.js",
+    "build:landing": "node website/react-magma-landing/scripts/build.js",
     "build:storybook": "build-storybook",
-    "bootstrap": "lerna bootstrap && rimraf packages/react-magma-docs/node_modules/react packages/react-magma-docs/node_modules/react-dom",
+    "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "develop": "npm run docs",
     "docs": "lerna run --stream --scope react-magma-docs develop",
@@ -53,15 +53,14 @@
     "@babel/preset-typescript": "^7.1.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
-    "@storybook/addon-a11y": "^6.1.17",
-    "@storybook/addon-actions": "^6.1.17",
-    "@storybook/addon-controls": "^6.1.17",
-    "@storybook/addon-docs": "^6.1.17",
-    "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "^6.1.17",
-    "@storybook/addon-toolbars": "^6.1.17",
-    "@storybook/addons": "^6.1.17",
-    "@storybook/react": "^6.1.17",
+    "@storybook/addon-a11y": "^6.1.18",
+    "@storybook/addon-actions": "^6.1.18",
+    "@storybook/addon-controls": "^6.1.18",
+    "@storybook/addon-docs": "^6.1.18",
+    "@storybook/addon-links": "^6.1.18",
+    "@storybook/addon-toolbars": "^6.1.18",
+    "@storybook/addons": "^6.1.18",
+    "@storybook/react": "^6.1.18",
     "@testing-library/dom": "^4.1.0",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
@@ -103,7 +102,7 @@
     "jest-watch-typeahead": "^0.6.1",
     "lerna": "3.22.1",
     "lint-staged": "^10.4.0",
-    "prettier": "^1.14.2",
+    "prettier": "^2.2.1",
     "regenerator-runtime": "^0.13.7",
     "storybook-addon-performance": "^0.14.0",
     "typescript": "^3.9.7"
@@ -112,6 +111,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "dependencies": {}
+  }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>table_chart</title>
+    <defs>
+        <path d="M9.99999999,10.02 L15,10.02 L15,21 L9.99999999,21 L9.99999999,10.02 Z M17,21 L20,21 C21.1,21 22,20.1 22,19 L22,9.99999999 L17,9.99999999 L17,21 Z M20,2.99999996 L4.99999996,2.99999996 C3.89999997,2.99999996 2.99999996,3.89999997 2.99999996,4.99999996 L2.99999996,7.99999996 L22,7.99999996 L22,4.99999996 C22,3.89999997 21.1,2.99999996 20,2.99999996 Z M2.99999996,19 C2.99999996,20.1 3.89999997,21 4.99999996,21 L7.99999996,21 L7.99999996,9.99999999 L2.99999996,9.99999999 L2.99999996,19 Z" id="path-1"></path>
+    </defs>
+    <g id="table_chart" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

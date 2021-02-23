@@ -181,7 +181,7 @@ const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
 
 function getIconMargin(props) {
   if (props.isIconOnly) {
-    return '3px 0';
+    return `0`;
   }
 
   switch (props.iconPosition) {
@@ -207,8 +207,8 @@ export const StyledIcon = styled.span<{
   margin: ${props => getIconMargin(props)};
 
   svg {
-    height: 20px;
-    width: 20px;
+    height: ${props => props.theme.iconSizes.small}px;
+    width: ${props => props.theme.iconSizes.small}px;
   }
 `;
 

@@ -8,8 +8,12 @@ export {
   BadgeVariant,
 } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
-export { Breadcrumb, BreadcrumbProps } from './components/Breadcrumb';
-export { BreadcrumbItem } from './components/Breadcrumb/Item';
+export {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbItemProps,
+  BreadcrumbProps,
+} from './components/Breadcrumb';
 export {
   BreakpointsContainer,
   Breakpoint,
@@ -97,7 +101,7 @@ export {
   InputType,
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
-export { Label } from './components/Label';
+export { Label, LabelPosition } from './components/Label';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -145,7 +149,11 @@ export {
   TableHeadProps,
   TableHeaderCell,
   TableHeaderCellProps,
+  TableHeaderCellScope,
+  TablePagination,
+  TablePaginationProps,
   TableRow,
+  TableRowColor,
   TableRowProps,
 } from './components/Table';
 

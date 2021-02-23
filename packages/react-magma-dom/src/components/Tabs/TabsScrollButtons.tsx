@@ -6,10 +6,10 @@ import { TabsOrientation } from './shared';
 import { ThemeInterface } from '../../theme/magma';
 
 import {
-  AngleRightIcon,
-  AngleLeftIcon,
-  AngleUpIcon,
-  AngleDownIcon,
+  ArrowBackIosIcon,
+  ExpandLessIcon,
+  ExpandMoreIcon,
+  ArrowForwardIosIcon,
 } from 'react-magma-icons';
 
 export interface ScrollButtonProps
@@ -108,9 +108,9 @@ export const ButtonPrev = React.forwardRef<
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <AngleUpIcon size={16} />
+        <ExpandLessIcon size={16} />
       ) : (
-        <AngleLeftIcon size={16} />
+        <ArrowBackIosIcon size={16} />
       )}
     </StyledButtonPrev>
   );
@@ -132,9 +132,9 @@ export const ButtonNext = React.forwardRef<
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <AngleDownIcon size={16} />
+        <ExpandMoreIcon size={16} />
       ) : (
-        <AngleRightIcon size={16} />
+        <ArrowForwardIosIcon size={16} />
       )}
     </StyledButtonNext>
   );

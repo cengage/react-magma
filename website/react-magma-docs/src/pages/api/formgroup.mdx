@@ -1,0 +1,135 @@
+---
+pageTitle: Form Group API
+title: Form Group
+props:
+  - FormGroupProps
+---
+
+<DocsHeading type="api">Form Group</DocsHeading>
+
+`FormGroup` components wrap controls such as the <Link to="/api/checkbox">Checkbox</Link> and <Link to="/api/toggle">Toggle</Link> components.
+For <Link to="/api/radio">Radio Buttons</Link>, you should use the <Link to="/api/radio/#labeling_radio%20groups">Radio Group</Link> component.
+
+Form groups are not necessary when displaying only a single checkbox or toggle. However, if more than one checkbox or toggle fit together to answer a single question,
+form groups should be used to make that association, both visually and for users of assistive technology.
+
+The label/group association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+import { FormGroup, Checkbox, Toggle } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <FormGroup labelText="Choose One or More Colors">
+        <Checkbox labelText="Red" />
+        <Checkbox labelText="Blue" />
+        <Checkbox labelText="Purple" />
+      </FormGroup>
+      <br />
+      <FormGroup
+        id="myCustomId"
+        labelText="Turn on Notifications for the Following"
+      >
+        <Toggle labelText="Product updates" />
+        <Toggle labelText="Promotions and sales" />
+      </FormGroup>
+    </>
+  );
+}
+```
+
+## Labeling Form Groups
+
+To meet accessibility requirements, a form group _must_ have a label. You can provide a label in one of two ways.
+
+You can use the `labelText` prop, which takes a string or a React Node. This will be displayed on screen inside a `<label>` element and be associated with your form group.
+
+Or you can use the `labelledById` prop, which also takes a string. This string should refer to an ID of an element that exists somewhere else on the page.
+This id will become the value of the `aria-labelledby` attribute for the group.
+
+```tsx
+import React from 'react';
+import { FormGroup, Checkbox, Heading } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <FormGroup
+        labelText={
+          <>
+            Labelled by <i>Label</i>
+          </>
+        }
+        name="labelledByGroup"
+      >
+        <Checkbox labelText="Label" />
+        <Checkbox labelText="Label" />
+      </FormGroup>
+      <FormGroup labelledById="h3Label" name="labelledByGroup">
+        <Heading id="h3Label" level={3}>
+          Labelled by H3
+        </Heading>
+        <Checkbox labelText="Label" />
+        <Checkbox labelText="Label" />
+      </FormGroup>
+    </>
+  );
+}
+```
+
+## Custom Styles
+
+Custom styles can be applied by using the `containerStyle` and `labelStyle` props.
+
+```tsx
+import React from 'react';
+import { FormGroup, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <FormGroup
+      containerStyle={{ border: '1px solid gray', padding: '10px' }}
+      labelStyle={{ fontWeight: '500', color: 'red' }}
+      labelText="Group Label"
+      name="labelledByGroup"
+    >
+      <Checkbox labelText="Checkbox label" />
+      <Checkbox labelText="Checkbox label" />
+    </FormGroup>
+  );
+}
+```
+
+## Visually Hidden Label
+
+The label text for the form group can be hidden visually, but still be read by assistive technology, by using the `isTextVisuallyHidden` prop.
+
+```tsx
+import React from 'react';
+import { FormGroup, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <FormGroup
+      labelText="Group Label"
+      name="labelledByGroup"
+      isTextVisuallyHidden
+    >
+      <Checkbox labelText="Checkbox label" />
+      <Checkbox labelText="Checkbox label" />
+    </FormGroup>
+  );
+}
+```
+
+## Form Group Props
+
+**This component uses `forwardRef`. The ref is applied to the Form Group `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<FormGroupProps />

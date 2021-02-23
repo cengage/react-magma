@@ -7,6 +7,7 @@ import {
   buildAfterBackground,
   buildButtonBorderRadius,
   buildButtonFontSize,
+  buildButtonLineHeight,
   buildButtonSize,
   buildButtonPadding,
   buildBorderColor,
@@ -41,7 +42,7 @@ export const buttonStyles = props => css`
   font-weight: 600;
   height: ${buildButtonSize(props)};
   justify-content: center;
-  line-height: 1;
+  line-height: ${buildButtonLineHeight(props)};
   margin: ${props.isFullWidth
     ? `${props.theme.spaceScale.spacing02} 0`
     : props.theme.spaceScale.spacing02};

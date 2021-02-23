@@ -7,7 +7,7 @@ import { InputType } from '../InputBase';
 import { isAfter, isBefore, isValid, isSameDay } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
-import { CalendarIcon } from 'react-magma-icons';
+import { EventIcon } from 'react-magma-icons';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
   handleKeyPress,
@@ -411,7 +411,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           </Announce>
           <Input
             {...other}
-            icon={<CalendarIcon size={17} />}
+            icon={<EventIcon />}
             iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
             iconRef={iconRef}
             onIconClick={toggleCalendarOpened}

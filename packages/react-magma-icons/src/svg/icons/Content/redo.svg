@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>redo</title>
+    <defs>
+        <path d="M18.4,10.6 C16.55,8.98999999 14.15,7.99999998 11.5,7.99999998 C7.33999998,7.99999998 3.75999997,10.42 2.05999996,13.93 C1.73999996,14.6 2.09999996,15.4 2.80999996,15.64 C3.39999996,15.84 4.03999997,15.56 4.30999997,15 C5.60999997,12.34 8.33999998,10.5 11.5,10.5 C13.45,10.5 15.23,11.22 16.62,12.38 L14.71,14.29 C14.08,14.92 14.52,16 15.41,16 L21,16 C21.55,16 22,15.55 22,15 L22,9.40999999 C22,8.51999999 20.92,8.06999998 20.29,8.69999999 L18.4,10.6 Z" id="path-1"></path>
+    </defs>
+    <g id="redo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>
