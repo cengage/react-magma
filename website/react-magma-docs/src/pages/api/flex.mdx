@@ -1,0 +1,74 @@
+---
+pageTitle: Flex API
+title: Flex
+props:
+  - FlexProps
+---
+
+<DocsHeading type="api">Flex</DocsHeading>
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+import {
+  Flex,
+  FlexProps,
+  FlexAlignContent,
+  FlexAlignItems,
+  FlexDirection,
+  FlexJustify,
+  FlexWrap,
+  Card,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Flex isContainer spacing={2}>
+      <Flex isItem xs={12}>
+        <Card>
+          <CardBody>xs=12</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={12} sm={6}>
+        <Card>
+          <CardBody>xs=12 sm=6</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={12} sm={6}>
+        <Card>
+          <CardBody>xs=12 sm=6</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} sm={3}>
+        <Card>
+          <CardBody>xs=6 sm=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} sm={3}>
+        <Card>
+          <CardBody>xs=6 sm=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} sm={3}>
+        <Card>
+          <CardBody>xs=6 sm=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} sm={3}>
+        <Card>
+          <CardBody>xs=6 sm=3</CardBody>
+        </Card>
+      </Flex>
+    </Flex>
+  );
+}
+```
+
+## Flex Props
+
+**This component uses `forwardRef`. The ref is applied to the Announce container `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<FlexProps />
