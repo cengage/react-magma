@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, InputProps } from '.';
-import { InputIconPosition, InputSize } from '../InputBase';
+import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { NotificationsIcon } from 'react-magma-icons';
 
@@ -28,6 +28,11 @@ Default.args = {};
 export const Error = Template.bind({});
 Error.args = {
   errorMessage: 'Please correct this error',
+};
+
+export const File = Template.bind({});
+File.args = {
+  type: InputType.file,
 };
 
 export const Large = Template.bind({});
