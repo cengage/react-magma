@@ -92,3 +92,54 @@ export const Default = Template.bind({});
 Default.args = {
   spacing: 2,
 };
+
+const TemplateFixedWidth: Story<FlexProps> = args => (
+  <Flex isContainer {...args}>
+    <Flex isItem>
+      <Card width={200}>
+        <CardBody>Card has fixed width</CardBody>
+      </Card>
+    </Flex>
+    <Flex isItem>
+      <Card width={200}>
+        <CardBody>Card has fixed width</CardBody>
+      </Card>
+    </Flex>
+    <Flex isItem>
+      <Card width={200}>
+        <CardBody>Card has fixed width</CardBody>
+      </Card>
+    </Flex>
+  </Flex>
+);
+
+export const FixedWidth = TemplateFixedWidth.bind({});
+FixedWidth.args = {
+  spacing: 2,
+  justify: FlexJustify.center,
+};
+
+const TemplateAutoWidth: Story<FlexProps> = args => (
+  <Flex isContainer {...args}>
+    <Flex isItem xs>
+      <Card>
+        <CardBody>Auto width</CardBody>
+      </Card>
+    </Flex>
+    <Flex isItem xs>
+      <Card>
+        <CardBody>Auto width</CardBody>
+      </Card>
+    </Flex>
+    <Flex isItem xs>
+      <Card>
+        <CardBody>Auto width</CardBody>
+      </Card>
+    </Flex>
+  </Flex>
+);
+
+export const AutoWidth = TemplateAutoWidth.bind({});
+AutoWidth.args = {
+  spacing: 2,
+};

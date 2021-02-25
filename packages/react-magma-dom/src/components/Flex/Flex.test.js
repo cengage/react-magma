@@ -11,6 +11,25 @@ describe('Flex', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should render a flex container with the correct styles', () => {
+    const text = 'Test Flex';
+    const { getByText } = render(<Flex isContainer>{text}</Flex>);
+
+    expect(getByText(text)).toHaveStyleRule('align-content', 'stretch');
+  });
+
+  it('should render a flex item with the correct styles', () => {
+    const text = 'Test Flex';
+    const { getByText } = render(
+      <Flex isItem xs={6}>
+        {text}
+      </Flex>
+    );
+
+    expect(getByText(text)).toHaveStyleRule('max-width', '50%');
+    expect(getByText(text)).toHaveStyleRule('flex-basis', '50%');
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(<Flex>test text</Flex>);
 

@@ -52,14 +52,14 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   isContainer?: boolean;
   isItem?: boolean;
   justify?: FlexJustify;
-  spacing?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  spacing?: number;
   testId?: string;
   wrap?: FlexWrap;
-  xs?: false | 'auto' | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  sm?: false | 'auto' | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  md?: false | 'auto' | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  lg?: false | 'auto' | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
-  xl?: false | 'auto' | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  xs?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  sm?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  md?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  lg?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  xl?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
 
 function getWidth(size) {
@@ -87,39 +87,43 @@ const StyledFlex = styled.div<FlexProps>`
   ${props =>
     props.isItem &&
     css`
-      flex-grow: 0;
-      flex-basis: ${getWidth(props.xs)};
-      max-width: ${getWidth(props.xs)};
+      flex-grow: ${props.xs === true ? '1' : '0'};
+      flex-basis: ${props.xs === true ? '0' : getWidth(props.xs)};
+      max-width: ${props.xs === true ? '100%' : getWidth(props.xs)};
 
       ${props.sm &&
       css`
         @media (min-width: ${props.theme.breakpoints.small}px) {
-          flex-basis: ${getWidth(props.sm)};
-          max-width: ${getWidth(props.sm)};
+          flex-grow: ${props.sm === true ? '1' : '0'};
+          flex-basis: ${props.sm === true ? '0' : getWidth(props.sm)};
+          max-width: ${props.sm === true ? '100%' : getWidth(props.sm)};
         }
       `};
 
       ${props.md &&
       css`
         @media (min-width: ${props.theme.breakpoints.medium}px) {
-          flex-basis: ${getWidth(props.md)};
-          max-width: ${getWidth(props.md)};
+          flex-grow: ${props.md === true ? '1' : '0'};
+          flex-basis: ${props.md === true ? '0' : getWidth(props.md)};
+          max-width: ${props.md === true ? '100%' : getWidth(props.md)};
         }
       `};
 
       ${props.lg &&
       css`
         @media (min-width: ${props.theme.breakpoints.large}px) {
-          flex-basis: ${getWidth(props.lg)};
-          max-width: ${getWidth(props.lg)};
+          flex-grow: ${props.lg === true ? '1' : '0'};
+          flex-basis: ${props.lg === true ? '0' : getWidth(props.lg)};
+          max-width: ${props.lg === true ? '100%' : getWidth(props.lg)};
         }
       `};
 
       ${props.xl &&
       css`
         @media (min-width: ${props.theme.breakpoints.xl}px) {
-          flex-basis: ${getWidth(props.xl)};
-          max-width: ${getWidth(props.xl)};
+          flex-grow: ${props.xl === true ? '1' : '0'};
+          flex-basis: ${props.xl === true ? '0' : getWidth(props.xl)};
+          max-width: ${props.xl === true ? '100%' : getWidth(props.xl)};
         }
       `};
     `};
