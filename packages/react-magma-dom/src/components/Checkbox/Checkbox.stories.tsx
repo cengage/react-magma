@@ -1,13 +1,8 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
-import { Checkbox, CheckboxTextPosition } from '.';
+import { Checkbox } from '.';
 import { FormGroup } from '../FormGroup';
-import {
-  IndeterminateCheckbox,
-  IndeterminateCheckboxStatus,
-} from '../IndeterminateCheckbox';
 import { magma } from '../../theme/magma';
-import { Form } from '../Form';
 
 export default {
   component: Checkbox,
@@ -21,12 +16,12 @@ export const Default = () => {
       <FormGroup labelText="Choose One or More">
         <Checkbox
           checked
-          labelText="Uncontrolled Checkbox"
+          labelText="Uncontrolled checkbox"
           onChange={() => updateChecked(!checked)}
         />
 
         <Checkbox
-          labelText="Controlled Checkbox"
+          labelText="Controlled checkbox"
           onChange={() => updateChecked(!checked)}
         />
 
@@ -89,23 +84,13 @@ export const Inverse = () => {
     <Card isInverse>
       <CardBody>
         <FormGroup labelText="Choose One or More">
-          <Checkbox
-            isInverse
-            checked
-            labelText="Uncontrolled Checkbox"
-            onChange={() => updateChecked(!checked)}
-          />
+          <Checkbox isInverse checked labelText="Uncontrolled checkbox" />
 
-          <Checkbox
-            isInverse
-            labelText="Controlled Checkbox"
-            onChange={() => updateChecked(!checked)}
-          />
+          <Checkbox isInverse labelText="Controlled checkbox" />
 
           <Checkbox
             isInverse
             labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines"
-            onChange={() => updateChecked(!checked)}
           />
         </FormGroup>
         <FormGroup labelText="Colors">
@@ -114,14 +99,12 @@ export const Inverse = () => {
             checked
             color={magma.colors.primary}
             labelText="Primary checked"
-            onChange={() => updateChecked(!checked)}
           />
           <Checkbox
             isInverse
             checked
             color={magma.colors.success}
             labelText="Success checked"
-            onChange={() => updateChecked(!checked)}
           />
 
           <Checkbox
@@ -129,7 +112,6 @@ export const Inverse = () => {
             checked
             color={magma.colors.danger}
             labelText="Danger checked"
-            onChange={() => updateChecked(!checked)}
           />
 
           <Checkbox
@@ -137,7 +119,6 @@ export const Inverse = () => {
             checked
             color={magma.colors.pop02}
             labelText="Pop checked"
-            onChange={() => updateChecked(!checked)}
           />
         </FormGroup>
         <FormGroup labelText="Disabled">

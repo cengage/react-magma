@@ -37,16 +37,16 @@ export function Example() {
   }
 
   return (
-    <FormGroup labelText="Choose One or More">
+    <FormGroup labelText="Choose one or more">
       <Checkbox
         defaultChecked={true}
         id="customId"
-        labelText="Uncontrolled Checkbox"
+        labelText="Uncontrolled checkbox"
       />
 
       <Checkbox
         checked={checked}
-        labelText="Controlled Checkbox"
+        labelText="Controlled checkbox"
         onChange={handleUpdateChecked}
       />
 
@@ -66,7 +66,7 @@ import { Checkbox, FormGroup, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <FormGroup labelText="Choose One or More Colors">
+    <FormGroup labelText="Choose one or more colors">
       <Checkbox checked labelText="Default color" />
       <Checkbox
         checked
@@ -138,7 +138,7 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <FormGroup labelText="Choose Inverse Options">
+        <FormGroup labelText="Choose inverse options">
           <Checkbox isInverse labelText="Inverse" />
           <Checkbox checked isInverse labelText="Inverse checked" />
           <Checkbox
@@ -200,7 +200,7 @@ import { Checkbox, CheckboxTextPosition, FormGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <FormGroup labelText="Text Positions">
+    <FormGroup labelText="Text positions">
       <Checkbox
         labelText="Text left"
         textPosition={CheckboxTextPosition.left}
@@ -245,7 +245,7 @@ export function Example() {
     <>
       <p>* indicates required fields</p>
       <FormGroup
-        labelText="Choose One or More Colors *"
+        labelText="Choose one or more colors *"
         errorMessage={hasError ? 'Please choose at least one color' : null}
       >
         <Checkbox
@@ -403,16 +403,18 @@ export function Example() {
     ? IndeterminateCheckboxStatus.indeterminate
     : IndeterminateCheckboxStatus.unchecked;
 
-  function handleUpdateIndeterminateChecked(event: React.ChangeEventHandler) {
-    setCheckedItems([e.target.checked, e.target.checked]);
+  function handleUpdateIndeterminateChecked(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    setCheckedItems([event.target.checked, event.target.checked]);
   }
 
-  function handleUpdateRedChecked(event: React.ChangeEventHandler) {
-    setCheckedItems([e.target.checked, checkedItems[1]]);
+  function handleUpdateRedChecked(event: React.ChangeEvent<HTMLInputElement>) {
+    setCheckedItems([event.target.checked, checkedItems[1]]);
   }
 
-  function handleUpdateBlueChecked(event: React.ChangeEventHandler) {
-    setCheckedItems([checkedItems[0], e.target.checked]);
+  function handleUpdateBlueChecked(event: React.ChangeEvent<HTMLInputElement>) {
+    setCheckedItems([checkedItems[0], event.target.checked]);
   }
 
   return (
