@@ -4,11 +4,13 @@ import {
   SchemaRenderer,
   SchemaRendererProps,
   componentTypes,
-  validatorTypes,
 } from './SchemaRenderer';
+
+import { InputType } from 'react-magma-dom';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { templateTypes } from '../TemplateMapper';
+import { FormSpy } from '@data-driven-forms/react-form-renderer';
 
 import { Hyperlink } from 'react-magma-dom';
 
@@ -373,3 +375,43 @@ Array.args = {
     ],
   },
 };
+
+
+
+
+
+export function Example() {
+  const [values, setValues] = React.useState();
+
+  const schema: Schema = {
+    title: 'File Uploader',
+    description: 'An example file upload component.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.FIELD_ARRAY,
+        name: 'tasks',
+        fieldKey: 'field_array',
+        label: 'Things to do',
+        description: 'What do we need to complete for the day?',
+        fields: [
+      {
+        component: componentTypes.FILE_UPLOAD,
+        name: 'file-uploaded',
+        labelText: 'file-uploaded',
+      },
+    ],
+  },
+  ],
+  };
+
+  return (
+    <div>
+      {values &&  <pre>{JSON.stringify(values, null, 2)}</pre>}
+      <SchemaRenderer schema={schema}  
+        onSubmit={(values: any) => {
+          setValues(values)
+      }} />
+    </div>
+  );
+}

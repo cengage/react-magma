@@ -1,0 +1,65 @@
+---
+pageTitle: Schema Renderer API
+title: Schema Renderer
+---
+
+<DocsHeading type="api">SchemaRenderer</DocsHeading>
+
+## Image Upload
+
+```tsx
+import React from 'react';
+import { SchemaRenderer, Schema, templateTypes, componentTypes } from 'react-magma-schema-renderer';
+import { InputType } from 'react-magma-dom';
+
+const schema: Schema = {
+  title: 'File Uploader',
+  description: 'An example file upload component.',
+  type: templateTypes.FORM,
+  fields: [
+    {
+      component: componentTypes.INPUT,
+      name: 'name',
+      labelText: 'Name',
+      type: InputType.file
+    },
+  ],
+};
+
+const toBase64 = (file) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+
+const submitFunction = async (values, formApi) => {
+  const myFile = values.formApi.fileInputs[0]; // there can be multiple inputs of this type
+  const fileList = myFile.inputFiles; // list of file renferences that should be uploaded to somewhere
+  const base64Encoded = await toBase64(fileList[0]); // files list is always an array
+  const formData = new FormData();
+  formData.append(formApi.fileInputs[0], fileList[0]);
+  return {
+    base64Encoded,
+    formData
+  };
+};
+
+export function Example() {
+  const [image, setImage] = React.useState();
+  const [values, setValues] = React.useState();
+  return (
+    <div>
+      {values &&  <pre>{JSON.stringify(values, null, 2)}</pre>}
+      {image && <img src={image} alt="" />}
+      <SchemaRenderer schema={schema} 
+        onSubmit={async (values, formApi) => {
+          setValues(values);
+          const encoded = await submitFunction(values, formApi);
+          setImage(encoded.base64Encoded);
+        }}/>
+    </div>
+  );
+}
+```

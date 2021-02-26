@@ -1,12 +1,8 @@
 import validatorTypes from '@data-driven-forms/react-form-renderer/dist/cjs/validator-types';
-import { Validators } from '@data-driven-forms/react-form-renderer';
+import { ValidatorFunction } from '@data-driven-forms/react-form-renderer/dist/cjs/validators';
 
 export interface ValidatorMapper {
-  [key: string]: (options?: object) => (value: any, allValues: object) => string | undefined;
+  [key: string]: (options?: object) => ValidatorFunction;
 }
 
 export { validatorTypes };
-
-export const validatorMapper: ValidatorMapper = {
-  ...Validators
-}

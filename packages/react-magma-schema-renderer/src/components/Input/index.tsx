@@ -15,20 +15,22 @@ const InputMapping = (props: InputProps) => {
     input,
     validateOnMount,
     showError,
-    type,
     meta: { error, submitFailed },
+    input: {type='text', ...inputRest},
     ...rest
   } = useFieldApi(props);
+  const fields = useFieldApi(props);
   const id = input.name || uuidv4();
   const errorMessage =
     ((validateOnMount || submitFailed || showError) && error) || '';
 
   return (
     <MagmaInput
-      {...input}
-      type={type || InputType.text}
+      {...inputRest}
+      type={InputType[type as keyof typeof InputType] || InputType.text }
       id={id}
       errorMessage={errorMessage}
+      helperMessage={JSON.stringify({props, fields}, null, 2)}
       {...rest}
     />
   );

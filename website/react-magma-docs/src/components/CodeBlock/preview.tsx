@@ -3,6 +3,7 @@ import { Language } from 'prism-react-renderer';
 import React, { HTMLAttributes, useContext } from 'react';
 import { LiveError, LiveProvider, LivePreview } from 'react-live';
 
+import * as SCHEMA from 'react-magma-schema-renderer';
 import * as MAGMA from 'react-magma-dom';
 import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
@@ -44,7 +45,7 @@ export const Preview = ({ ...props }: PreviewProps) => {
     <PreviewContainer>
       <LiveProvider
         code={preview.code}
-        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS }}
+        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ...SCHEMA, ICONS }}
         noInline
         transformCode={transformCode}
       >
