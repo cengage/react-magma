@@ -34,7 +34,7 @@ module.exports = {
     '/react-magma-legacy-selects/',
   ],
   transform: {
-    '^.+\\.(j|t)s(x)?$': 'babel-jest',
+    '^.+\\.(j|t)s(x)?$': ['babel-jest', { cwd: __dirname }],
   },
   watchPlugins: [
     'jest-watch-typeahead/filename',
