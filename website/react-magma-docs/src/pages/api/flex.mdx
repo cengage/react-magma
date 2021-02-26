@@ -7,7 +7,195 @@ props:
 
 <DocsHeading type="api">Flex</DocsHeading>
 
+The `Flex` component provides an easy way to lay out elements in rows or columns using CSS flex-box. It is based on a 12-column layout, and can be responsive to different screen sizes.
+
 ## Basic Usage
+
+The `Flex` component has two types of layout, container and item, which is set using the props `isContainer` and `isItem`.
+Item widths are set in percentages, so they’re always fluid and sized relative to their parent element. To specify the number of columns an item should take up, use a number 1-12 in the `xs` prop (meaning all screen sizes, extra-small and up).
+
+```tsx
+import React from 'react';
+import { Flex, FlexProps, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Flex isContainer spacing={2}>
+      <Flex isItem xs={12}>
+        <Card>
+          <CardBody>xs=12</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6}>
+        <Card>
+          <CardBody>xs=6</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} sm={6}>
+        <Card>
+          <CardBody>xs=6</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={3}>
+        <Card>
+          <CardBody>xs=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={3}>
+        <Card>
+          <CardBody>xs=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={3}>
+        <Card>
+          <CardBody>xs=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={3}>
+        <Card>
+          <CardBody>xs=3</CardBody>
+        </Card>
+      </Flex>
+    </Flex>
+  );
+}
+```
+
+## Responsive behavior
+
+To specify a different layout for different screen sizes, you can use any of the five breakpoint props: `xs`, `sm`, `md`, `lg`, `xl`. The items will take up the specified number of columns for that breakpoint and up.
+
+```tsx
+import React from 'react';
+import { Flex, FlexProps, Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Flex isContainer spacing={2}>
+      <Flex isItem xs={12}>
+        <Card>
+          <CardBody>xs=12</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={12} md={6}>
+        <Card>
+          <CardBody>xs=12 md=6</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={12} md={6}>
+        <Card>
+          <CardBody>xs=12 md=6</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} md={3}>
+        <Card>
+          <CardBody>xs=6 md=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} md={3}>
+        <Card>
+          <CardBody>xs=6 md=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} md={3}>
+        <Card>
+          <CardBody>xs=6 md=3</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={6} md={3}>
+        <Card>
+          <CardBody>xs=6 md=3</CardBody>
+        </Card>
+      </Flex>
+    </Flex>
+  );
+}
+```
+
+## Spacing
+
+The `spacing` prop can be used to determine the amount of space between flex items. The value of the `spacing` prop is multiplied by the theme `spacingMultiplier`, which is 8px, but can be overridden with a custom theme.
+
+```tsx
+import React from 'react';
+import { Flex, FlexProps, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Flex isContainer spacing={4}>
+      <Flex isItem xs={4}>
+        <Card width={200}>
+          <CardBody>Content</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={4}>
+        <Card width={200}>
+          <CardBody>Content</CardBody>
+        </Card>
+      </Flex>
+      <Flex isItem xs={4}>
+        <Card width={200}>
+          <CardBody>Content</CardBody>
+        </Card>
+      </Flex>
+    </Flex>
+  );
+}
+```
+
+## Auto-Width
+
+If you simply set the value of a breakpoint prop to `true`, the item will fill the available space, sharing the space equally with other items. That also means you can set the width of one item and the others will automatically resize around it.
+
+```tsx
+import React from 'react';
+import { Flex, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Flex isContainer spacing={2}>
+        <Flex isItem xs>
+          <Card>
+            <CardBody>Auto-width</CardBody>
+          </Card>
+        </Flex>
+        <Flex isItem xs>
+          <Card>
+            <CardBody>Auto-width</CardBody>
+          </Card>
+        </Flex>
+        <Flex isItem xs>
+          <Card>
+            <CardBody>Auto-width</CardBody>
+          </Card>
+        </Flex>
+      </Flex>
+      <Flex isContainer spacing={2}>
+        <Flex isItem xs={6}>
+          <Card>
+            <CardBody>6 colums</CardBody>
+          </Card>
+        </Flex>
+        <Flex isItem xs>
+          <Card>
+            <CardBody>Auto-width</CardBody>
+          </Card>
+        </Flex>
+        <Flex isItem xs>
+          <Card>
+            <CardBody>Auto-width</CardBody>
+          </Card>
+        </Flex>
+      </Flex>
+    </>
+  );
+}
+```
+
+## Other Flex Properties
+
+The `alignItems`, `alignContent`, `justify`, `direction` and `wrap` props can be used to set the css values for `align-items`, `align-content`, `justify-content`, `flex-direction` and `flex-wrap` respectively.
 
 ```tsx
 import React from 'react';
@@ -19,45 +207,42 @@ import {
   FlexDirection,
   FlexJustify,
   FlexWrap,
-  Card,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
+  const cardStyles = { height: '100%', 'text-align': 'center' };
+
   return (
-    <Flex isContainer spacing={2}>
-      <Flex isItem xs={12}>
-        <Card>
-          <CardBody>xs=12</CardBody>
+    <Flex
+      isContainer
+      alignItems={FlexAlignItems.center}
+      justify={FlexJustify.center}
+      spacing={2}
+      wrap={FlexWrap.nowrap}
+    >
+      <Flex isItem>
+        <Card style={cardStyles}>
+          <CardBody>Card Item</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={12} sm={6}>
-        <Card>
-          <CardBody>xs=12 sm=6</CardBody>
+      <Flex isItem>
+        <Card style={cardStyles}>
+          <CardBody>
+            Taller
+            <br />
+            Card Item
+          </CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={12} sm={6}>
-        <Card>
-          <CardBody>xs=12 sm=6</CardBody>
+      <Flex isItem>
+        <Card style={cardStyles}>
+          <CardBody>Card Item</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={6} sm={3}>
-        <Card>
-          <CardBody>xs=6 sm=3</CardBody>
-        </Card>
-      </Flex>
-      <Flex isItem xs={6} sm={3}>
-        <Card>
-          <CardBody>xs=6 sm=3</CardBody>
-        </Card>
-      </Flex>
-      <Flex isItem xs={6} sm={3}>
-        <Card>
-          <CardBody>xs=6 sm=3</CardBody>
-        </Card>
-      </Flex>
-      <Flex isItem xs={6} sm={3}>
-        <Card>
-          <CardBody>xs=6 sm=3</CardBody>
+      <Flex isItem>
+        <Card style={cardStyles}>
+          <CardBody>Card Item</CardBody>
         </Card>
       </Flex>
     </Flex>

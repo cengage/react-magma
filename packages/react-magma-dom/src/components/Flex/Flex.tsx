@@ -46,19 +46,69 @@ export enum FlexWrap {
  * @children required
  */
 export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Defines the align-content style property. It's applied for all screen sizes.
+   * @default FlexAlignContent.stretch
+   */
   alignContent?: FlexAlignContent;
+  /**
+   * Defines the align-items style property. It's applied for all screen sizes.
+   * @default FlexAlignItems.stretch
+   */
   alignItems?: FlexAlignItems;
-  direction?: any;
+  /**
+   * Defines the flex-direction style property. It's applied for all screen sizes.
+   * @default FlexDirection.row
+   */
+  direction?: FlexDirection;
+  /**
+   * If true, the component will have the flex container behavior. You should be wrapping items with a container.
+   */
   isContainer?: boolean;
+  /**
+   * If true, the component will have the flex item behavior. You should be wrapping items with a container.
+   */
   isItem?: boolean;
+  /**
+   * Defines the justify-content style property. It's applied for all screen sizes.
+   * @default FlexJustify.flexStart
+   */
   justify?: FlexJustify;
+  /**
+   * Defines the space between the type item component. Spacing will be this number multiplied by 8px. It can only be used on a type container component.
+   * @default 0
+   */
   spacing?: number;
   testId?: string;
+  /**
+   * Defines the flex-wrap style property. It's applied for all screen sizes.
+   * @default FlexWrap.wrap
+   */
   wrap?: FlexWrap;
+  /**
+   * Defines the number of grids the component is going to use. It's applied for all the screen sizes with the lowest priority.
+   * @default false
+   */
   xs?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  /**
+   * Defines the number of grids the component is going to use. It's applied for the small breakpoint and wider screens.
+   * @default false
+   */
   sm?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  /**
+   * Defines the number of grids the component is going to use. It's applied for the medium breakpoint and wider screens.
+   * @default false
+   */
   md?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  /**
+   * Defines the number of grids the component is going to use. It's applied for the large breakpoint and wider screens.
+   * @default false
+   */
   lg?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  /**
+   * Defines the number of grids the component is going to use. It's applied for the extra-large breakpoint and wider screens.
+   * @default false
+   */
   xl?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
 
@@ -73,9 +123,9 @@ const StyledFlex = styled.div<FlexProps>`
       align-content: ${props.alignContent};
       align-items: ${props.alignItems};
       flex-direction: ${props.direction};
-      justify-content: ${props.justify};
-      flex-wrap: ${props.wrap};
       display: flex;
+      flex-wrap: ${props.wrap};
+      justify-content: ${props.justify};
       margin: ${0 - props.spacing * 4}px;
       width: calc(100% + ${props.spacing * props.theme.spacingMultiplier}px);
 
