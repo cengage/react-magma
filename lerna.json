@@ -1,7 +1,8 @@
 {
   "packages": [
     "website/*",
-    "packages/*"
+    "packages/*",
+    "patterns/*"
   ],
   "command": {
     "bootstrap": {
