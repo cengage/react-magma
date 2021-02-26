@@ -44,9 +44,9 @@ export const DropdownSplitButton = React.forwardRef<
 
   const buttonIcon =
     context.dropDirection === DropdownDropDirection.up ? (
-      <ArrowDropUpIcon size={10} testId="caretUp" />
+      <ArrowDropUpIcon size={24} testId="caretUp" />
     ) : (
-      <CaretDownIcon size={10} testId="caretDown" />
+      <CaretDownIcon size={24} testId="caretDown" />
     );
 
   function handleClick(event: React.SyntheticEvent) {

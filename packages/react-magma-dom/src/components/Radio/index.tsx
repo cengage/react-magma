@@ -8,6 +8,10 @@ import {
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
+import {
+  RadioButtonCheckedIcon,
+  RadioButtonUncheckedIcon,
+} from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 // Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
@@ -126,25 +130,13 @@ const StyledFakeInput = styled.span<{
   }
 `;
 
-const SelectedIcon = styled.span<{ color: string; theme?: any }>`
-  background: ${props =>
-    props.color ? props.color : props.theme.colors.primary};
-  border-radius: 100%;
-  display: none;
-  height: 10px;
-  width: 10px;
-
-  ${HiddenInput}:checked + label & {
-    display: block;
-  }
-`;
-
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (props, ref) => {
     const id = useGenerateId(props.id);
     const context = React.useContext(RadioContext);
+    const theme = React.useContext(ThemeContext);
     const {
-      color,
+      color = theme.colors.primary,
       containerStyle,
       disabled,
       inputStyle,
@@ -158,8 +150,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       value,
       ...other
     } = props;
-
-    const theme = React.useContext(ThemeContext);
 
     return (
       <StyledContainer style={containerStyle}>
@@ -198,7 +188,11 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             textPosition={textPosition}
             theme={theme}
           >
-            <SelectedIcon color={color ? color : ''} theme={theme} />
+            {context.selectedValue === value ? (
+              <RadioButtonCheckedIcon color={color} />
+            ) : (
+              <RadioButtonUncheckedIcon color={theme.colors.neutral02} />
+            )}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (
             <HiddenLabelText>{labelText}</HiddenLabelText>

@@ -10,7 +10,7 @@ import {
 import { FormGroupContext } from '../FormGroup';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
-import { CheckIcon } from 'react-magma-icons';
+import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
@@ -88,40 +88,24 @@ export const HiddenInput = styled.input`
   ${HiddenStyles};
 `;
 
-export function buildCheckboxBackground(props) {
-  if (props.isInverse) {
-    if (
-      (props.checked && !props.disabled) ||
-      (props.isIndeterminate && !props.disabled)
-    ) {
-      return props.theme.colors.neutral08;
+function buildCheckIconColor(props) {
+  if (props.disabled) {
+    if (props.isInverse) {
+      return props.theme.colors.tint04;
     }
-    return 'none';
-  }
-  if (props.disabled) {
-    return props.theme.colors.neutral06;
-  }
-  if (props.checked) {
-    return props.color ? props.color : props.theme.colors.primary;
-  }
-  return props.theme.colors.neutral08;
-}
-
-export function buildCheckIconColor(props) {
-  if (props.disabled) {
-    return props.theme.colors.disabledText;
+    return props.theme.colors.neutral05;
   }
   if (props.isInverse) {
-    if (props.color) {
-      return props.color;
-    }
-    return props.theme.colors.primary;
+    return props.theme.colors.neutral08;
   }
-  return props.theme.colors.neutral08;
+  if (props.isChecked) {
+    return props.color;
+  }
+  return props.theme.colors.neutral02;
 }
 
 export const StyledFakeInput = styled.span<{
-  checked?: boolean;
+  isChecked?: boolean;
   color: string;
   disabled?: boolean;
   isIndeterminate?: boolean;
@@ -131,23 +115,16 @@ export const StyledFakeInput = styled.span<{
   theme?: any;
 }>`
   ${DisplayInputStyles};
-  background: ${props => buildCheckboxBackground(props)};
+  border:2px solid;
   border-color: ${props => buildDisplayInputBorderColor(props)};
-  border-radius: 3px;
-  box-shadow: ${props =>
-    props.isInverse && props.hasError
-      ? `0 0 0 1px ${props.theme.colors.neutral08}`
-      : '0 0 0'};
+  color:${props => buildCheckIconColor(props)};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
     props.textPosition === 'left'
       ? `${props.theme.spaceScale.spacing01} 0 0 ${props.theme.spaceScale.spacing03}`
-      : `${props.theme.spaceScale.spacing01} ${props.theme.spaceScale.spacing03} 0 0`};
+      : `0 ${props.theme.spaceScale.spacing03} 0 0`};
 
   svg {
-    display: ${props => (props.checked ? 'block' : 'none')};
-    fill: ${props => buildCheckIconColor(props)};
-    opacity: ${props => (props.checked ? '1' : '0')};
     pointer-events: none;
     transition: all 0.2s ease-out;
   }
@@ -201,7 +178,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const context = React.useContext(FormGroupContext);
 
     const {
-      color,
+      color = theme.colors.primary,
       containerStyle,
       disabled,
       errorMessage,
@@ -250,7 +227,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               labelText}
 
             <StyledFakeInput
-              checked={isChecked}
+              isChecked={isChecked}
               color={color ? color : ''}
               disabled={disabled}
               hasError={hasError}
@@ -259,7 +236,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               textPosition={textPosition}
               theme={theme}
             >
-              <CheckIcon size={theme.iconSizes.medium} />
+              {isChecked ? (
+                <CheckBoxIcon size={theme.iconSizes.medium} />
+              ) : (
+                <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
+              )}
             </StyledFakeInput>
 
             {isTextVisuallyHidden ? (

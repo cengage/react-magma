@@ -1,0 +1,87 @@
+---
+pageTitle: Indeterminate API
+title: Indeterminate
+props:
+  - IndeterminateProps
+  - IndeterminateCheckboxProps
+---
+
+import { DocsHeading } from '../../components/DocsHeading';
+
+<DocsHeading to="/design/selection-controls" type="api">
+  Indeterminate
+</DocsHeading>
+
+The `IndeterminateCheckbox` component is similar to the `Checkbox` component, except that instead of accepting a boolean `checked` value,
+it takes the `status` prop, with three possible statuses: `indeterminate`, `checked` and `unchecked`. The default status is `unchecked`.
+The `status` is used to represent the state of a group of checkboxes that goes underneath it.
+
+- `checked` means all of the checkboxes in the group are checked.
+- `indeterminate` means that some, but not all, checkboxes in the group are checked.
+- `unchecked` means that none of the checkboxes in the group are checked.
+
+The `indeterminate` status cannot be changed by direct user action, it can only be changed by updating the prop.
+
+```tsx
+import React from 'react';
+import {
+  Checkbox,
+  FormGroup,
+  IndeterminateCheckbox,
+  IndeterminateCheckboxStatus,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [checkedItems, setCheckedItems] = React.useState<Array<boolean>>([
+    true,
+    false,
+  ]);
+
+  const status: IndeterminateCheckboxStatus = checkedItems.every(Boolean)
+    ? IndeterminateCheckboxStatus.checked
+    : checkedItems.some(Boolean)
+    ? IndeterminateCheckboxStatus.indeterminate
+    : IndeterminateCheckboxStatus.unchecked;
+
+  function handleUpdateIndeterminateChecked(event: React.ChangeEventHandler) {
+    setCheckedItems([e.target.checked, e.target.checked]);
+  }
+
+  function handleUpdateRedChecked(event: React.ChangeEventHandler) {
+    setCheckedItems([e.target.checked, checkedItems[1]]);
+  }
+
+  function handleUpdateBlueChecked(event: React.ChangeEventHandler) {
+    setCheckedItems([checkedItems[0], e.target.checked]);
+  }
+
+  return (
+    <FormGroup labelText="Categories">
+      <IndeterminateCheckbox
+        onChange={handleUpdateIndeterminateChecked}
+        status={status}
+        labelText="Colors"
+      />
+      <div style={{ marginLeft: magma.spaceScale.spacing08 }}>
+        <Checkbox
+          checked={checkedItems[0]}
+          onChange={handleUpdateRedChecked}
+          labelText="Red"
+        />
+        <Checkbox
+          checked={checkedItems[1]}
+          onChange={handleUpdateBlueChecked}
+          labelText="Blue"
+        />
+      </div>
+    </FormGroup>
+  );
+}
+```
+
+## Indeterminate Checkbox Props
+
+**Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**
+
+<IndeterminateCheckboxProps />
