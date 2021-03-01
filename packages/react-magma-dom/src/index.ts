@@ -194,7 +194,7 @@ export {
   VisuallyHiddenProps,
 } from './components/VisuallyHidden';
 
-export { magma } from './theme/magma';
+export { magma, ThemeInterface } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';

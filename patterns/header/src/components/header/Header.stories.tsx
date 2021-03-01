@@ -1,6 +1,8 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { Header, HeaderProps } from './Header';
+import { CengageLogo, Header, HeaderProps } from './';
+import { PersonIcon, SettingsIcon, NotificationsIcon } from 'react-magma-icons';
+import { Badge } from 'react-magma-dom';
 
 const meta: Meta = {
   title: 'Patterns/Header',
@@ -26,5 +28,71 @@ const Template: Story<HeaderProps> = args => <Header {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  children: 'header'
+  callToAction: '',
+  isCompact: false,
+  isInverse: false,
+  hasSearch: false,
+};
+
+export const IconButtons = Template.bind({});
+
+IconButtons.args = {
+  ...Default.args,
+  iconButtons: [
+    { icon: <SettingsIcon />, ariaLabel: 'Settings', onClick: () => {} },
+    {
+      icon: <NotificationsIcon />,
+      ariaLabel: 'Notifications',
+      onClick: () => {},
+    },
+    { icon: <PersonIcon />, ariaLabel: 'UserMenu', onClick: () => {} },
+  ],
+};
+
+export const Logo = Template.bind({});
+
+Logo.args = {
+  ...Default.args,
+  logo: <CengageLogo />,
+};
+
+export const CallToAction = Template.bind({});
+
+CallToAction.args = {
+  ...Default.args,
+  callToAction: 'Enter an Access Code',
+};
+
+export const Search = Template.bind({});
+
+Search.args = {
+  ...Default.args,
+  hasSearch: true,
+};
+
+export const CustomChildren = Template.bind({});
+
+CustomChildren.args = {
+  ...Default.args,
+  children: <Badge>Custom children</Badge>,
+};
+
+export const Everything = Template.bind({});
+
+Everything.args = {
+  ...Default.args,
+  callToAction: 'Enter an Access Code',
+  children: <Badge>Custom children</Badge>,
+  hasSearch: true,
+  iconButtons: [
+    { icon: <SettingsIcon />, ariaLabel: 'Settings', onClick: () => {} },
+    {
+      icon: <NotificationsIcon />,
+      ariaLabel: 'Notifications',
+      onClick: () => {},
+    },
+    { icon: <PersonIcon />, ariaLabel: 'UserMenu', onClick: () => {} },
+  ],
+  isCompact: true,
+  isInverse: true,
 };
