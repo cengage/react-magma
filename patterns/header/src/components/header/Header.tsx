@@ -7,6 +7,7 @@ import {
   ThemeContext,
   ThemeInterface,
 } from 'react-magma-dom';
+import { IconProps } from 'react-magma-icons';
 import styled from '@emotion/styled';
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
@@ -23,9 +24,11 @@ export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
 
 interface IconButtonProps {
   ariaLabel: string;
-  icon: React.ReactNode;
-  onClick: any;
+  icon: React.ReactElement<IconProps>;
+  onClick: () => void;
 }
+
+//TODO: Responsive behavior including hamburger menu
 
 const StyledHeader = styled.header<{
   isCompact?: boolean;
