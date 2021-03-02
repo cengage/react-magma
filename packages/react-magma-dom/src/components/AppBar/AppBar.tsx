@@ -7,9 +7,16 @@ import { ThemeInterface } from '../../theme/magma';
  * @children required
  */
 export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * If true, the component will render at a shorter height with less padding
+   * @default false
+   **/
   isCompact?: boolean;
   isInverse?: boolean;
   testId?: string;
+  /*
+   * @internal
+   */
   theme?: ThemeInterface;
 }
 

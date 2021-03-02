@@ -5,7 +5,9 @@ title: Header Pattern
 
 <DocsHeading type="api">Header</DocsHeading>
 
-Using the `Header` component.
+The `Header` pattern is a highly-opinionated, advanced component composed of smaller React Magma components. It includes options for a logo, a call to action, a search bar, and icon buttons.
+
+If you have a need for a header with different features in it, you can use the simpler <Link to='/api/appbar'>AppBar component</Link> wrapper.
 
 ## Basic Usage
 
@@ -14,6 +16,6 @@ import React from 'react';
 import { Header } from '@cengage-patterns/header';
 
 export function Example() {
-  return <Header>Hello</Header>;
+  return <Header />;
 }
 ```

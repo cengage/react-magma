@@ -31,7 +31,14 @@ Default.args = {
   callToAction: '',
   isCompact: false,
   isInverse: false,
-  hasSearch: false,
+  searchProps: {},
+};
+
+export const Logo = Template.bind({});
+
+Logo.args = {
+  ...Default.args,
+  logo: <CengageLogo />,
 };
 
 export const IconButtons = Template.bind({});
@@ -49,13 +56,6 @@ IconButtons.args = {
   ],
 };
 
-export const Logo = Template.bind({});
-
-Logo.args = {
-  ...Default.args,
-  logo: <CengageLogo />,
-};
-
 export const CallToAction = Template.bind({});
 
 CallToAction.args = {
@@ -67,7 +67,7 @@ export const Search = Template.bind({});
 
 Search.args = {
   ...Default.args,
-  hasSearch: true,
+  searchProps: { onSearch: () => {} },
 };
 
 export const CustomChildren = Template.bind({});
@@ -82,8 +82,7 @@ export const Everything = Template.bind({});
 Everything.args = {
   ...Default.args,
   callToAction: 'Enter an Access Code',
-  children: <Badge>Custom children</Badge>,
-  hasSearch: true,
+  searchProps: { onSearch: () => {} },
   iconButtons: [
     { icon: <SettingsIcon />, ariaLabel: 'Settings', onClick: () => {} },
     {

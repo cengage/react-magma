@@ -81,7 +81,11 @@ export {
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
-export { HideAtBreakpoint } from './components/HideAtBreakpoint';
+export {
+  HideAtBreakpoint,
+  HideAtBreakpointDisplayType,
+  HideAtBreakpointProps,
+} from './components/HideAtBreakpoint';
 export { Hyperlink, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,

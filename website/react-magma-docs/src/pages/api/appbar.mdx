@@ -1,0 +1,62 @@
+---
+pageTitle: AppBar API
+title: AppBar
+props:
+  - AppBarProps
+---
+
+<DocsHeading type="api">AppBar</DocsHeading>
+
+The `AppBar` component is a relatively simple container, rendering a `header` element, used to display information and actions relating to the current screen.
+
+It is the foundation for the <Link to="/patterns/header">Header Pattern</Link>, a more robust, more opinionated component that also handles the rendering of several components inside of it.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { AppBar } from 'react-magma-dom';
+
+export function Example() {
+  return <AppBar>AppBar content</AppBar>;
+}
+```
+
+## Compact
+
+```typescript
+import React from 'react';
+import { AppBar } from 'react-magma-dom';
+
+export function Example() {
+  return <AppBar isCompact>AppBar content</AppBar>;
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import { AppBar } from 'react-magma-dom';
+
+export function Example() {
+  return <AppBar isInverse>AppBar content</AppBar>;
+}
+```
+
+## Nav Tabs
+
+```typescript
+import React from 'react';
+import { AppBar, NavTabs, NavTab } from 'react-magma-dom';
+
+export function Example() {
+  return <AppBar isInverse>AppBar content</AppBar>;
+}
+```
+
+# AppBar Props
+
+**Any other props supplied will be provided to the wrapping `header` element.**
+
+<AppBarProps />
