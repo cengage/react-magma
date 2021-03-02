@@ -1,5 +1,6 @@
 import React, { HTMLAttributes } from 'react';
 import {
+  AppBar,
   ButtonVariant,
   Hyperlink,
   IconButton,
@@ -30,42 +31,21 @@ interface IconButtonProps {
 
 //TODO: Responsive behavior including hamburger menu
 
-const StyledHeader = styled.header<{
-  isCompact?: boolean;
-  isInverse?: boolean;
-  theme: ThemeInterface;
-}>`
-  align-items: center;
-  background: ${props =>
-    props.isInverse
-      ? props.theme.colors.foundation02
-      : props.theme.colors.neutral08};
-  border-bottom: 1px solid ${props => props.theme.colors.neutral06};
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
-  display: flex;
-  height: ${props =>
-    props.isCompact ? '56px' : '88px'}; // TODO: Remove hardcoded values
-  padding: ${props =>
-    props.isCompact
-      ? props.theme.spaceScale.spacing05
-      : props.theme.spaceScale.spacing06};
-`;
-
 const LogoWrapper = styled.span<{ theme: ThemeInterface }>`
   flex-grow: 1;
   margin-right: ${props => props.theme.spaceScale.spacing12};
+  white-space: nowrap;
 `;
 
 const ChildrenWrapper = styled.span<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing06};
+  white-space: nowrap;
 `;
 
 const StyledLink = styled(Hyperlink)<{ theme: ThemeInterface }>`
   text-decoration: none;
   margin-right: ${props => props.theme.spaceScale.spacing06};
+  white-space: nowrap;
 `;
 
 export const Header = ({
@@ -75,18 +55,12 @@ export const Header = ({
   iconButtons,
   isInverse,
   hasSearch,
-  testId,
   ...other
 }: HeaderProps) => {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <StyledHeader
-      data-testid={testId}
-      isInverse={isInverse}
-      theme={theme}
-      {...other}
-    >
+    <AppBar isInverse={isInverse} theme={theme} {...other}>
       <LogoWrapper theme={theme}>
         {logo || <strong>YOUR LOGO HERE</strong>}
       </LogoWrapper>
@@ -112,6 +86,6 @@ export const Header = ({
             variant={ButtonVariant.link}
           />
         ))}
-    </StyledHeader>
+    </AppBar>
   );
 };
