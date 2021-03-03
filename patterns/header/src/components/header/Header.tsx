@@ -5,8 +5,11 @@ import {
   HideAtBreakpoint,
   HideAtBreakpointDisplayType,
   Hyperlink,
+  HyperlinkProps,
   IconButton,
+  I18nContext,
   Search,
+  SearchProps,
   ThemeContext,
   ThemeInterface,
 } from 'react-magma-dom';
@@ -14,36 +17,42 @@ import { IconProps, MenuIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
-  callToAction?: string; //TODO: Make link props not string
-  iconButtons?: IconButtonProps[];
+  breakpoint?: number;
+  callToAction?: HyperlinkProps;
+  iconButtons?: HeaderIconButtonProps[];
   isCompact?: boolean;
   isInverse?: boolean;
-  hasSidebar?: boolean; //TODO: Do everything related to this :)
+  hasSidebar?: boolean;
   logo?: React.ReactNode;
-  searchProps?: SearchProps;
+  onMenuButtonClick?: () => void;
+  search?: SearchProps;
   testId?: string;
 }
 
-interface IconButtonProps {
+interface HeaderIconButtonProps {
   ariaLabel: string;
   icon: React.ReactElement<IconProps>;
   onClick: () => void;
 }
 
-interface SearchProps {
-  iconAriaLabel?: string; // default Search
-  labelText?: string; // default Search
-  placeholder?: string; // default Search
-  onSearch?: (term: string) => void;
-  value?: string;
-}
-
-//TODO: Responsive behavior including hamburger menu
-
-const LogoWrapper = styled.span<{ theme: ThemeInterface }>`
+const LogoWrapper = styled.span<{ isCompact?: boolean; theme: ThemeInterface }>`
+  align-items: center;
+  display: flex;
   flex-grow: 1;
+  height: ${props =>
+    props.isCompact
+      ? props.theme.spaceScale.spacing06
+      : props.theme.spaceScale.spacing09};
   margin-right: ${props => props.theme.spaceScale.spacing12};
   white-space: nowrap;
+
+  svg,
+  img {
+    height: ${props =>
+      props.isCompact
+        ? props.theme.spaceScale.spacing06
+        : props.theme.spaceScale.spacing09};
+  }
 `;
 
 const ChildrenWrapper = styled.span<{ theme: ThemeInterface }>`
@@ -58,57 +67,57 @@ const StyledLink = styled(Hyperlink)<{ theme: ThemeInterface }>`
 `;
 
 export const Header = ({
+  breakpoint,
   children,
   callToAction,
   logo,
   iconButtons,
+  isCompact,
   isInverse,
-  searchProps,
+  onMenuButtonClick,
+  search,
   ...other
 }: HeaderProps) => {
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   return (
-    <AppBar isInverse={isInverse} theme={theme} {...other}>
-      <HideAtBreakpoint minWidth={1024}>
-        <IconButton
-          aria-label="Open navigation menu"
-          icon={<MenuIcon />}
-          isInverse={isInverse}
-          style={{ marginLeft: '-4px' }}
-          variant={ButtonVariant.link}
-        />
-      </HideAtBreakpoint>
+    <AppBar
+      isCompact={isCompact}
+      isInverse={isInverse}
+      theme={theme}
+      {...other}
+    >
+      {breakpoint && onMenuButtonClick && (
+        <HideAtBreakpoint minWidth={breakpoint + 1}>
+          <IconButton
+            aria-label={i18n.alert.dismissAriaLabel}
+            icon={<MenuIcon />}
+            onClick={onMenuButtonClick}
+            isInverse={isInverse}
+            style={{ marginLeft: `-${theme.spaceScale.spacing02}` }}
+            variant={ButtonVariant.link}
+          />
+        </HideAtBreakpoint>
+      )}
 
-      <LogoWrapper theme={theme}>
-        {logo || <strong>YOUR LOGO HERE</strong>}
+      <LogoWrapper isCompact={isCompact} theme={theme}>
+        {logo}
       </LogoWrapper>
 
       <HideAtBreakpoint
         displayType={HideAtBreakpointDisplayType.flex}
-        maxWidth={1023}
+        maxWidth={breakpoint}
         style={{ alignItems: 'center' }}
       >
-        {children && (
-          <ChildrenWrapper theme={theme}>{children}</ChildrenWrapper>
-        )}
-
         {callToAction && (
-          <StyledLink isInverse={isInverse} theme={theme} to="#">
-            {callToAction}
-          </StyledLink>
+          <StyledLink isInverse={isInverse} theme={theme} {...callToAction} />
         )}
 
-        {searchProps && searchProps.onSearch && (
-          <Search
-            {...searchProps}
-            isInverse={isInverse}
-            onSearch={searchProps.onSearch}
-          />
-        )}
+        {search && <Search {...search} isInverse={isInverse} />}
 
         {iconButtons &&
-          iconButtons.map((icon: IconButtonProps, i: number) => (
+          iconButtons.map((icon: HeaderIconButtonProps, i: number) => (
             <IconButton
               aria-label={icon.ariaLabel}
               icon={icon.icon}
@@ -118,6 +127,10 @@ export const Header = ({
               variant={ButtonVariant.link}
             />
           ))}
+
+        {children && (
+          <ChildrenWrapper theme={theme}>{children}</ChildrenWrapper>
+        )}
       </HideAtBreakpoint>
     </AppBar>
   );

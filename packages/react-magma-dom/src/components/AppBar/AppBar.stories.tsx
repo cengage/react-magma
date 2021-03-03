@@ -2,7 +2,8 @@ import React from 'react';
 import { AppBar, AppBarProps } from './index';
 import { NavTabs, NavTab } from '../NavTabs';
 import { Search } from '../Search';
-import { ImageIcon } from 'react-magma-icons';
+import { magma } from '../../theme/magma';
+import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<AppBarProps> = args => (
@@ -23,39 +24,41 @@ Default.args = {
 
 const TabsTemplate: Story<AppBarProps> = args => (
   <AppBar {...args}>
-    <>
-      <strong
-        style={{
-          alignItems: 'center',
-          display: 'flex',
-          paddingRight: '64px',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        <ImageIcon
-          size={args.isCompact ? 24 : 40}
-          style={{ marginRight: '8px' }}
-        />
-        LOGO
-      </strong>
-      <Search
-        containerStyle={{ flexShrink: 0, marginRight: '24px' }}
-        isInverse={args.isInverse}
-        onSearch={() => {}}
-        placeholder="Search for content..."
+    <strong
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        paddingRight: magma.spaceScale.spacing12,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      <ImageIcon
+        size={args.isCompact ? 24 : 40}
+        style={{ marginRight: magma.spaceScale.spacing03 }}
       />
-      <NavTabs
-        aria-label="Navigation"
-        backgroundColor="transparent"
-        isInverse={args.isInverse}
-      >
-        <NavTab isActive to="#">
-          Lorem
-        </NavTab>
-        <NavTab to="#">Ipsum</NavTab>
-        <NavTab to="#">Dolar</NavTab>
-      </NavTabs>
-    </>
+      LOGO
+    </strong>
+    <Search
+      containerStyle={{
+        flexShrink: 0,
+        marginRight: magma.spaceScale.spacing06,
+      }}
+      isInverse={args.isInverse}
+      onSearch={() => {}}
+      placeholder="Search for content..."
+    />
+    <NavTabs
+      aria-label="Navigation"
+      backgroundColor="transparent"
+      isInverse={args.isInverse}
+    >
+      <NavTab icon={<FavoriteIcon />} isActive to="#">
+        Favorites
+      </NavTab>
+      <NavTab icon={<WorkIcon />} to="#">
+        Workspace
+      </NavTab>
+    </NavTabs>
   </AppBar>
 );
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { CengageLogo, Header, HeaderProps } from './';
 import { PersonIcon, SettingsIcon, NotificationsIcon } from 'react-magma-icons';
-import { Badge } from 'react-magma-dom';
+import { Badge, magma } from 'react-magma-dom';
 
 const meta: Meta = {
   title: 'Patterns/Header',
@@ -28,10 +28,9 @@ const Template: Story<HeaderProps> = args => <Header {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  callToAction: '',
   isCompact: false,
   isInverse: false,
-  searchProps: {},
+  logo: <strong>LOGO GOES HERE</strong>,
 };
 
 export const Logo = Template.bind({});
@@ -60,14 +59,19 @@ export const CallToAction = Template.bind({});
 
 CallToAction.args = {
   ...Default.args,
-  callToAction: 'Enter an Access Code',
+  callToAction: {
+    children: 'Enter an Access Code',
+    styledAs: 'Button',
+    target: '_blank',
+    to: '#',
+  },
 };
 
 export const Search = Template.bind({});
 
 Search.args = {
   ...Default.args,
-  searchProps: { onSearch: () => {} },
+  search: { onSearch: () => {} },
 };
 
 export const CustomChildren = Template.bind({});
@@ -81,8 +85,13 @@ export const Everything = Template.bind({});
 
 Everything.args = {
   ...Default.args,
-  callToAction: 'Enter an Access Code',
-  searchProps: { onSearch: () => {} },
+  breakpoint: magma.breakpoints.large,
+  callToAction: {
+    children: 'Enter an Access Code',
+    to: '#',
+  },
+  children: <strong>Welcome, Joanne!</strong>,
+  search: { onSearch: () => {}, placeholder: 'Search our catalog' },
   iconButtons: [
     { icon: <SettingsIcon />, ariaLabel: 'Settings', onClick: () => {} },
     {

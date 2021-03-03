@@ -24,6 +24,8 @@ export function Example() {
 
 ## Compact
 
+The `isCompact` prop will render a shorter appbar with less padding.
+
 ```typescript
 import React from 'react';
 import { AppBar } from 'react-magma-dom';
@@ -34,6 +36,8 @@ export function Example() {
 ```
 
 ## Inverse
+
+The `isInverse` prop will render an appbar with a dark background and light text. Components inside will also need to have the `isInverse` prop added to them.
 
 ```typescript
 import React from 'react';
@@ -46,12 +50,46 @@ export function Example() {
 
 ## Nav Tabs
 
+This is a more complex example of putting mutliple elements inside an `AppBar`.
+
 ```typescript
 import React from 'react';
-import { AppBar, NavTabs, NavTab } from 'react-magma-dom';
+import { AppBar, NavTabs, NavTab, Search, magma } from 'react-magma-dom';
+import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 
 export function Example() {
-  return <AppBar isInverse>AppBar content</AppBar>;
+  return (
+    <AppBar isInverse>
+      <strong
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          paddingRight: magma.spaceScale.spacing12,
+          whiteSpace: 'nowrap',
+        }}
+      >
+        <ImageIcon
+          size={24}
+          style={{ marginRight: magma.spaceScale.spacing03 }}
+        />
+        LOGO
+      </strong>
+      <Search
+        containerStyle={{ marginRight: magma.spaceScale.spacing06 }}
+        isInverse
+        onSearch={() => {}}
+        placeholder="Search for content..."
+      />
+      <NavTabs aria-label="Navigation" backgroundColor="transparent" isInverse>
+        <NavTab icon={<FavoriteIcon />} isActive to="#">
+          Favorites
+        </NavTab>
+        <NavTab icon={<WorkIcon />} to="#">
+          Workspace
+        </NavTab>
+      </NavTabs>
+    </AppBar>
+  );
 }
 ```
 
