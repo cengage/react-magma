@@ -54,7 +54,14 @@ This is a more complex example of putting mutliple elements inside an `AppBar`.
 
 ```typescript
 import React from 'react';
-import { AppBar, NavTabs, NavTab, Search, magma } from 'react-magma-dom';
+import {
+  AppBar,
+  NavTabs,
+  NavTab,
+  Search,
+  TabsIconPosition,
+  magma,
+} from 'react-magma-dom';
 import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -80,7 +87,12 @@ export function Example() {
         onSearch={() => {}}
         placeholder="Search for content..."
       />
-      <NavTabs aria-label="Navigation" backgroundColor="transparent" isInverse>
+      <NavTabs
+        aria-label="Navigation"
+        backgroundColor="transparent"
+        isInverse
+        iconPosition={TabsIconPosition.left}
+      >
         <NavTab icon={<FavoriteIcon />} isActive to="#">
           Favorites
         </NavTab>

@@ -103,4 +103,5 @@ Everything.args = {
   ],
   isCompact: true,
   isInverse: true,
+  onMenuButtonClick: () => {},
 };

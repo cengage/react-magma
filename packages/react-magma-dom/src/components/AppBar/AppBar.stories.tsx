@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, AppBarProps } from './index';
 import { NavTabs, NavTab } from '../NavTabs';
 import { Search } from '../Search';
+import { TabsIconPosition } from '../Tabs';
 import { magma } from '../../theme/magma';
 import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
@@ -50,6 +51,7 @@ const TabsTemplate: Story<AppBarProps> = args => (
     <NavTabs
       aria-label="Navigation"
       backgroundColor="transparent"
+      iconPosition={TabsIconPosition.left}
       isInverse={args.isInverse}
     >
       <NavTab icon={<FavoriteIcon />} isActive to="#">
