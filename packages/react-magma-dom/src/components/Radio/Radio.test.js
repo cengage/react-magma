@@ -154,219 +154,208 @@ describe('Radio', () => {
     expect(radio).toHaveAttribute('required');
   });
 
-  // it('should disable the radio button', () => {
-  //   const { container, getByLabelText } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" disabled />
-  //     </RadioContext.Provider>
-  //   );
-  //   const radio = getByLabelText('blue');
-  //   const span = container.querySelector('span');
+  it('should disable the radio button', () => {
+    const { container, getByLabelText } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" disabled />
+      </RadioContext.Provider>
+    );
+    const radio = getByLabelText('blue');
+    const span = container.querySelector('span');
 
-  //   expect(radio).toBeDisabled();
-  //   expect(span).toHaveStyleRule('background', magma.colors.neutral06);
-  //   expect(span).toHaveStyleRule('border-color', magma.colors.neutral05);
-  // });
+    expect(radio).toBeDisabled();
+    expect(span).toHaveStyleRule('color', magma.colors.neutral05);
+  });
 
-  // it('should render a passed in color', () => {
-  //   const color = '#FFFFFF';
-  //   const { container } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio
-  //         labelText="blue"
-  //         name="colors"
-  //         value="blue"
-  //         color={color}
-  //         checked
-  //       />
-  //     </RadioContext.Provider>
-  //   );
-  //   const span = container.querySelector('span');
+  it('should render a passed in color', () => {
+    const color = '#FFFFFF';
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio
+          labelText="blue"
+          name="colors"
+          value="blue"
+          color={color}
+          checked
+        />
+      </RadioContext.Provider>
+    );
+    const span = container.querySelector('span');
 
-  //   expect(span).toHaveStyleRule('background', color);
-  // });
+    expect(span).toHaveStyleRule('color', color);
+  });
 
-  // it('should render an inverse radio with the correct styles', () => {
-  //   const { container } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" isInverse />
-  //     </RadioContext.Provider>
-  //   );
-  //   const span = container.querySelector('span');
+  it('should render an inverse radio with the correct styles', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" isInverse />
+      </RadioContext.Provider>
+    );
+    const span = container.querySelector('span');
 
-  //   expect(span).toHaveStyleRule('background', 'none');
-  //   expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
-  // });
+    expect(span).toHaveStyleRule('color', magma.colors.neutral08);
+  });
 
-  // it('should render an inverse, disabled radio with the correct styles', () => {
-  //   const { container } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" isInverse disabled />
-  //     </RadioContext.Provider>
-  //   );
-  //   const span = container.querySelector('span');
+  it('should render an inverse, disabled radio with the correct styles', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" isInverse disabled />
+      </RadioContext.Provider>
+    );
+    const span = container.querySelector('span');
 
-  //   expect(span).toHaveStyleRule('background', 'none');
-  //   expect(span).toHaveStyleRule(
-  //     'border-color',
-  //     magma.colors.disabledInverseText
-  //   );
-  // });
+    expect(span).toHaveStyleRule('color', magma.colors.tint04);
+  });
 
-  // it('should render a radio with hidden label text with the correct styles', () => {
-  //   const { getByLabelText } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio
-  //         labelText="blue"
-  //         name="colors"
-  //         value="blue"
-  //         isTextVisuallyHidden
-  //       />
-  //     </RadioContext.Provider>
-  //   );
-  //   const span = getByLabelText('blue');
+  it('should render a radio with hidden label text with the correct styles', () => {
+    const { getByLabelText } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio
+          labelText="blue"
+          name="colors"
+          value="blue"
+          isTextVisuallyHidden
+        />
+      </RadioContext.Provider>
+    );
+    const span = getByLabelText('blue');
 
-  //   expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
-  // });
+    expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+  });
 
-  // it("should be checked if selected value equals it's value", () => {
-  //   const { getByLabelText } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" />
-  //     </RadioContext.Provider>
-  //   );
-  //   const radio = getByLabelText('blue');
+  it("should be checked if selected value equals it's value", () => {
+    const { getByLabelText } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
+    const radio = getByLabelText('blue');
 
-  //   expect(radio).toHaveAttribute('checked');
-  // });
+    expect(radio).toHaveAttribute('checked');
+  });
 
-  // it('should render a radio button with error styles', () => {
-  //   const { container } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         hasError: true,
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" />
-  //     </RadioContext.Provider>
-  //   );
+  it('should render a radio button with error styles', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          hasError: true,
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
 
-  //   const span = container.querySelector('span');
+    const span = container.querySelector('span');
 
-  //   expect(span).toHaveStyleRule('border-color', magma.colors.danger);
-  //   expect(span).toHaveStyleRule('box-shadow', '0 0 0');
-  // });
+    expect(span).toHaveStyleRule('color', magma.colors.danger);
+  });
 
-  // it('should render an inverse radio button with error styles', () => {
-  //   const { container } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         hasError: true,
-  //         isInverse: true,
-  //         onChange: jest.fn(),
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" />
-  //     </RadioContext.Provider>
-  //   );
+  it('should render an inverse radio button with error styles', () => {
+    const { container } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          hasError: true,
+          isInverse: true,
+          onChange: jest.fn(),
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
 
-  //   const span = container.querySelector('span');
+    const span = container.querySelector('span');
 
-  //   expect(span).toHaveStyleRule('border-color', magma.colors.danger);
-  //   expect(span).toHaveStyleRule(
-  //     'box-shadow',
-  //     `0 0 0 1px ${magma.colors.neutral08}`
-  //   );
-  // });
+    expect(span).toHaveStyleRule('color', magma.colors.dangerInverse);
+  });
 
-  // it('blurring a radio button calls the passed in onBlur function', () => {
-  //   const onBlur = jest.fn();
-  //   const { getByLabelText } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //         onBlur,
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" />
-  //     </RadioContext.Provider>
-  //   );
+  it('blurring a radio button calls the passed in onBlur function', () => {
+    const onBlur = jest.fn();
+    const { getByLabelText } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+          onBlur,
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
 
-  //   fireEvent(
-  //     getByLabelText('blue'),
-  //     new MouseEvent('blur', {
-  //       bubbles: true,
-  //       cancelable: true,
-  //     })
-  //   );
+    fireEvent(
+      getByLabelText('blue'),
+      new MouseEvent('blur', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
 
-  //   expect(onBlur).toHaveBeenCalledTimes(1);
-  // });
+    expect(onBlur).toHaveBeenCalledTimes(1);
+  });
 
-  // it('focusing a radio button calls the passed in onFocus function', () => {
-  //   const onFocus = jest.fn();
-  //   const { getByLabelText } = render(
-  //     <RadioContext.Provider
-  //       value={{
-  //         name: 'colors',
-  //         selectedValue: 'blue',
-  //         onChange: jest.fn(),
-  //         onFocus,
-  //       }}
-  //     >
-  //       <Radio labelText="blue" name="colors" value="blue" />
-  //     </RadioContext.Provider>
-  //   );
+  it('focusing a radio button calls the passed in onFocus function', () => {
+    const onFocus = jest.fn();
+    const { getByLabelText } = render(
+      <RadioContext.Provider
+        value={{
+          name: 'colors',
+          selectedValue: 'blue',
+          onChange: jest.fn(),
+          onFocus,
+        }}
+      >
+        <Radio labelText="blue" name="colors" value="blue" />
+      </RadioContext.Provider>
+    );
 
-  //   fireEvent(
-  //     getByLabelText('blue'),
-  //     new MouseEvent('focus', {
-  //       bubbles: true,
-  //       cancelable: true,
-  //     })
-  //   );
+    fireEvent(
+      getByLabelText('blue'),
+      new MouseEvent('focus', {
+        bubbles: true,
+        cancelable: true,
+      })
+    );
 
-  //   expect(onFocus).toHaveBeenCalledTimes(1);
-  // });
+    expect(onFocus).toHaveBeenCalledTimes(1);
+  });
 });

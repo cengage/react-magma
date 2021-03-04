@@ -37,22 +37,6 @@ export enum IndeterminateCheckboxStatus {
   unchecked = 'unchecked', //default
 }
 
-// const IndeterminateIcon = styled.span<{
-//   color?: string;
-//   disabled?: boolean;
-//   theme?: any;
-// }>`
-//   background: ${props =>
-//     props.disabled
-//       ? props.theme.colors.disabledText
-//       : props.color
-//       ? props.color
-//       : props.theme.colors.primary};
-//   height: 2px;
-//   width: 10px;
-//   display: block;
-// `;
-
 export const IndeterminateCheckbox = React.forwardRef<
   HTMLInputElement,
   IndeterminateCheckboxProps
@@ -177,7 +161,10 @@ export const IndeterminateCheckbox = React.forwardRef<
             theme={theme}
           >
             {isIndeterminate ? (
-              <IndeterminateCheckBoxIcon size={theme.iconSizes.medium} />
+              <IndeterminateCheckBoxIcon
+                testId="indeterminateIcon"
+                size={theme.iconSizes.medium}
+              />
             ) : isChecked ? (
               <CheckBoxIcon size={theme.iconSizes.medium} />
             ) : (
@@ -199,7 +186,7 @@ export const IndeterminateCheckbox = React.forwardRef<
           id={descriptionId}
           hasError
           isInverse={isInverse}
-          style={{ paddingLeft: '30px' }}
+          style={{ paddingLeft: theme.spaceScale.spacing08 }}
         >
           {errorMessage}
         </InputMessage>

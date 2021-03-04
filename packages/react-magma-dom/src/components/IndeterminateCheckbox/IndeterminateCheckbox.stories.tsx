@@ -17,6 +17,7 @@ export const Default = () => {
   return (
     <FormGroup>
       <IndeterminateCheckbox
+        color={magma.colors.primary}
         defaultChecked={true}
         status={IndeterminateCheckboxStatus.indeterminate}
         labelText="Indeterminate checkbox"

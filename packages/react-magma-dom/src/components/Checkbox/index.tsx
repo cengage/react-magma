@@ -98,7 +98,7 @@ function buildCheckIconColor(props) {
   if (props.isInverse) {
     return props.theme.colors.neutral08;
   }
-  if (props.isChecked) {
+  if (props.isChecked || props.isIndeterminate) {
     return props.color;
   }
   return props.theme.colors.neutral02;
@@ -125,6 +125,7 @@ export const StyledFakeInput = styled.span<{
       : `0 ${props.theme.spaceScale.spacing03} 0 0`};
 
   svg {
+    flex-shrink:0;
     pointer-events: none;
     transition: all 0.2s ease-out;
   }
@@ -228,7 +229,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
             <StyledFakeInput
               isChecked={isChecked}
-              color={color ? color : ''}
+              color={color}
               disabled={disabled}
               hasError={hasError}
               isInverse={context.isInverse || isInverse}
