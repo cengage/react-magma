@@ -40,8 +40,8 @@ const StyledHeader = styled.header<{
     props.isCompact ? '56px' : '88px'}; // TODO: Remove hardcoded values
   padding: ${props =>
     props.isCompact
-      ? props.theme.spaceScale.spacing05
-      : props.theme.spaceScale.spacing06};
+      ? `${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing06}`
+      : `${props.theme.spaceScale.spacing06} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing06} ${props.theme.spaceScale.spacing06}`};
 `;
 
 export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(

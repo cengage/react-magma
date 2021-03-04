@@ -13,26 +13,19 @@ import {
   ThemeContext,
   ThemeInterface,
 } from 'react-magma-dom';
-import { IconProps, MenuIcon } from 'react-magma-icons';
+import { MenuIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
 
 export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
   breakpoint?: number;
-  callToAction?: HyperlinkProps;
-  iconButtons?: HeaderIconButtonProps[];
+  callToActionProps?: HyperlinkProps;
   isCompact?: boolean;
   isInverse?: boolean;
   hasSidebar?: boolean;
   logo?: React.ReactNode;
   onMenuButtonClick?: () => void;
-  search?: SearchProps;
+  searchProps?: SearchProps;
   testId?: string;
-}
-
-interface HeaderIconButtonProps {
-  ariaLabel: string;
-  icon: React.ReactElement<IconProps>;
-  onClick: () => void;
 }
 
 const LogoWrapper = styled.span<{ isCompact?: boolean; theme: ThemeInterface }>`
@@ -55,27 +48,28 @@ const LogoWrapper = styled.span<{ isCompact?: boolean; theme: ThemeInterface }>`
   }
 `;
 
-const ChildrenWrapper = styled.span<{ theme: ThemeInterface }>`
-  margin: 0 ${props => props.theme.spaceScale.spacing06};
-  white-space: nowrap;
-`;
-
 const StyledLink = styled(Hyperlink)<{ theme: ThemeInterface }>`
   text-decoration: none;
   margin-right: ${props => props.theme.spaceScale.spacing06};
   white-space: nowrap;
 `;
 
+const ChildrenWrapper = styled.span<{ theme: ThemeInterface }>`
+  align-items: center;
+  display: flex;
+  margin: 0 0 0 ${props => props.theme.spaceScale.spacing06};
+  white-space: nowrap;
+`;
+
 export const Header = ({
   breakpoint,
   children,
-  callToAction,
+  callToActionProps,
   logo,
-  iconButtons,
   isCompact,
   isInverse,
   onMenuButtonClick,
-  search,
+  searchProps,
   ...other
 }: HeaderProps) => {
   const theme = React.useContext(ThemeContext);
@@ -110,23 +104,15 @@ export const Header = ({
         maxWidth={breakpoint}
         style={{ alignItems: 'center' }}
       >
-        {callToAction && (
-          <StyledLink isInverse={isInverse} theme={theme} {...callToAction} />
+        {callToActionProps && (
+          <StyledLink
+            isInverse={isInverse}
+            theme={theme}
+            {...callToActionProps}
+          />
         )}
 
-        {search && <Search {...search} isInverse={isInverse} />}
-
-        {iconButtons &&
-          iconButtons.map((icon: HeaderIconButtonProps, i: number) => (
-            <IconButton
-              aria-label={icon.ariaLabel}
-              icon={icon.icon}
-              isInverse={isInverse}
-              key={i}
-              onClick={icon.onClick}
-              variant={ButtonVariant.link}
-            />
-          ))}
+        {searchProps && <Search {...searchProps} isInverse={isInverse} />}
 
         {children && (
           <ChildrenWrapper theme={theme}>{children}</ChildrenWrapper>

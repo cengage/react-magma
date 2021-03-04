@@ -24,7 +24,7 @@ describe('AppBar', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'padding',
-      magma.spaceScale.spacing05
+      `${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing06}`
     );
   });
 

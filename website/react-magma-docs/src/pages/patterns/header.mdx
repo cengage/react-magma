@@ -48,39 +48,9 @@ export function Example() {
 }
 ```
 
-## Icon Buttons
-
-The `iconButtons` prop takes an array of objects, with each object representing the props of an icon-only version of an <Link to="/api/icon-button">IconButton component</Link>. The props for each icon button object are:
-
-```typescript
-import React from 'react';
-import { Header } from '@cengage-patterns/header';
-import { NotificationsIcon, PersonIcon, SettingsIcon } from 'react-magma-icons';
-
-export function Example() {
-  const iconButtons = [
-    { icon: <SettingsIcon />, ariaLabel: 'Settings', onClick: () => {} },
-    {
-      icon: <NotificationsIcon />,
-      ariaLabel: 'Notifications',
-      onClick: () => {},
-    },
-    { icon: <PersonIcon />, ariaLabel: 'UserMenu', onClick: () => {} },
-  ];
-  return (
-    <Header
-      iconButtons={iconButtons}
-      isCompact
-      isInverse
-      logo={<strong>LOGO</strong>}
-    />
-  );
-}
-```
-
 ## Search
 
-The `search` prop takes an object of <Link to="/api/search/#search_props">Search Props</Link> from the <Link to="/api/search">Search component</Link>.
+The `searchProps` prop takes an object of <Link to="/api/search/#search_props">Search Props</Link> from the <Link to="/api/search">Search component</Link>.
 
 ```typescript
 import React from 'react';
@@ -92,7 +62,7 @@ export function Example() {
       isCompact
       isInverse
       logo={<strong>LOGO</strong>}
-      search={{
+      searchProps={{
         onSearch: term => {},
         placeholder: 'Search example',
       }}
@@ -103,7 +73,7 @@ export function Example() {
 
 ## Call to Action
 
-The `callToAction` prop takes an object of <Link to="/api/hyperlink/#search_props">Hyperlink Props</Link> from the <Link to="/api/hyperlink">Hyperlink component</Link>.
+The `callToActionProps` prop takes an object of <Link to="/api/hyperlink/#search_props">Hyperlink Props</Link> from the <Link to="/api/hyperlink">Hyperlink component</Link>.
 
 ```typescript
 import React from 'react';
@@ -115,12 +85,58 @@ export function Example() {
       isCompact
       isInverse
       logo={<strong>LOGO</strong>}
-      callToAction={{
+      callToActionProps={{
         children: 'Enter an Access Code',
         target: '_blank',
         to: '#',
       }}
     />
+  );
+}
+```
+
+## Children
+
+The `children` are displayed at the end of the Header, after the logo, call to action and search.
+
+```typescript
+import React from 'react';
+import { Header } from '@cengage-patterns/header';
+import { NotificationsIcon, PersonIcon, SettingsIcon } from 'react-magma-icons';
+import { IconButton, ButtonVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Header
+      isCompact
+      isInverse
+      logo={<strong>LOGO</strong>}
+      searchProps={{
+        onSearch: term => {},
+      }}
+    >
+      <IconButton
+        aria-label="Settings"
+        icon={<SettingsIcon />}
+        isInverse
+        onClick={() => {}}
+        variant={ButtonVariant.link}
+      />
+      <IconButton
+        aria-label="Notifications"
+        icon={<NotificationsIcon />}
+        isInverse
+        onClick={() => {}}
+        variant={ButtonVariant.link}
+      />
+      <IconButton
+        aria-label="Person"
+        icon={<PersonIcon />}
+        isInverse
+        onClick={() => {}}
+        variant={ButtonVariant.link}
+      />
+    </Header>
   );
 }
 ```
@@ -139,7 +155,7 @@ export function Example() {
   return (
     <Header
       breakpoint={768}
-      callToAction={{
+      callToActionProps={{
         children: 'Enter an Access Code',
         target: '_blank',
         to: '#',
@@ -148,7 +164,7 @@ export function Example() {
       isInverse
       logo={<strong>LOGO</strong>}
       onMenuButtonClick={() => {}}
-      search={{
+      searchProps={{
         onSearch: term => {},
         placeholder: 'Search example',
       }}

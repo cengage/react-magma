@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { CengageLogo, Header, HeaderProps } from './';
 import { PersonIcon, SettingsIcon, NotificationsIcon } from 'react-magma-icons';
-import { Badge, magma } from 'react-magma-dom';
+import { Badge, ButtonVariant, IconButton, magma } from 'react-magma-dom';
 
 const meta: Meta = {
   title: 'Patterns/Header',
@@ -40,26 +40,11 @@ Logo.args = {
   logo: <CengageLogo />,
 };
 
-export const IconButtons = Template.bind({});
-
-IconButtons.args = {
-  ...Default.args,
-  iconButtons: [
-    { icon: <SettingsIcon />, ariaLabel: 'Settings', onClick: () => {} },
-    {
-      icon: <NotificationsIcon />,
-      ariaLabel: 'Notifications',
-      onClick: () => {},
-    },
-    { icon: <PersonIcon />, ariaLabel: 'UserMenu', onClick: () => {} },
-  ],
-};
-
 export const CallToAction = Template.bind({});
 
 CallToAction.args = {
   ...Default.args,
-  callToAction: {
+  callToActionProps: {
     children: 'Enter an Access Code',
     styledAs: 'Button',
     target: '_blank',
@@ -71,7 +56,7 @@ export const Search = Template.bind({});
 
 Search.args = {
   ...Default.args,
-  search: { onSearch: () => {} },
+  searchProps: { onSearch: () => {} },
 };
 
 export const CustomChildren = Template.bind({});
@@ -81,27 +66,114 @@ CustomChildren.args = {
   children: <Badge>Custom children</Badge>,
 };
 
+export const IconButtonsAsChildren = Template.bind({});
+
+IconButtonsAsChildren.args = {
+  ...Default.args,
+  isInverse: true,
+  children: (
+    <>
+      <IconButton
+        aria-label="Settings"
+        icon={<SettingsIcon />}
+        isInverse
+        onClick={() => {}}
+        variant={ButtonVariant.link}
+      />
+      <IconButton
+        aria-label="Notifications"
+        icon={<NotificationsIcon />}
+        isInverse
+        onClick={() => {}}
+        variant={ButtonVariant.link}
+      />
+      <IconButton
+        aria-label="Person"
+        icon={<PersonIcon />}
+        isInverse
+        onClick={() => {}}
+        variant={ButtonVariant.link}
+      />
+    </>
+  ),
+};
+
 export const Everything = Template.bind({});
 
 Everything.args = {
   ...Default.args,
   breakpoint: magma.breakpoints.large,
-  callToAction: {
+  callToActionProps: {
     children: 'Enter an Access Code',
     to: '#',
   },
-  children: <strong>Welcome, Joanne!</strong>,
-  search: { onSearch: () => {}, placeholder: 'Search our catalog' },
-  iconButtons: [
-    { icon: <SettingsIcon />, ariaLabel: 'Settings', onClick: () => {} },
-    {
-      icon: <NotificationsIcon />,
-      ariaLabel: 'Notifications',
-      onClick: () => {},
-    },
-    { icon: <PersonIcon />, ariaLabel: 'UserMenu', onClick: () => {} },
-  ],
+  children: (
+    <>
+      <nav>
+        <IconButton
+          aria-label="Settings"
+          icon={<SettingsIcon />}
+          onClick={() => {}}
+          variant={ButtonVariant.link}
+        />
+        <IconButton
+          aria-label="Notifications"
+          icon={<NotificationsIcon />}
+          onClick={() => {}}
+          variant={ButtonVariant.link}
+        />
+        <IconButton
+          aria-label="Person"
+          icon={<PersonIcon />}
+          onClick={() => {}}
+          variant={ButtonVariant.link}
+        />
+      </nav>
+    </>
+  ),
+  isCompact: true,
+  onMenuButtonClick: () => {},
+  searchProps: { onSearch: () => {}, placeholder: 'Search our catalog' },
+};
+
+export const EverythingInverse = Template.bind({});
+
+EverythingInverse.args = {
+  ...Default.args,
+  breakpoint: magma.breakpoints.large,
+  callToActionProps: {
+    children: 'Enter an Access Code',
+    to: '#',
+  },
+  children: (
+    <>
+      <nav>
+        <IconButton
+          aria-label="Settings"
+          icon={<SettingsIcon />}
+          isInverse
+          onClick={() => {}}
+          variant={ButtonVariant.link}
+        />
+        <IconButton
+          aria-label="Notifications"
+          icon={<NotificationsIcon />}
+          isInverse
+          onClick={() => {}}
+          variant={ButtonVariant.link}
+        />
+        <IconButton
+          aria-label="Person"
+          icon={<PersonIcon />}
+          isInverse
+          onClick={() => {}}
+          variant={ButtonVariant.link}
+        />
+      </nav>
+    </>
+  ),
   isCompact: true,
   isInverse: true,
   onMenuButtonClick: () => {},
+  searchProps: { onSearch: () => {}, placeholder: 'Search our catalog' },
 };
