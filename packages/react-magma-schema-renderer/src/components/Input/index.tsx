@@ -19,7 +19,6 @@ const InputMapping = (props: InputProps) => {
     input: {type='text', ...inputRest},
     ...rest
   } = useFieldApi(props);
-  const fields = useFieldApi(props);
   const id = input.name || uuidv4();
   const errorMessage =
     ((validateOnMount || submitFailed || showError) && error) || '';
@@ -30,7 +29,6 @@ const InputMapping = (props: InputProps) => {
       type={InputType[type as keyof typeof InputType] || InputType.text }
       id={id}
       errorMessage={errorMessage}
-      helperMessage={JSON.stringify({props, fields}, null, 2)}
       {...rest}
     />
   );

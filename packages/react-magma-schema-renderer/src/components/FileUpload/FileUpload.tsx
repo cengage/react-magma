@@ -1,4 +1,3 @@
-import { AnyObject } from "@data-driven-forms/react-form-renderer";
 import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from '@emotion/styled';
