@@ -250,6 +250,76 @@ blockquote footer {
   text-transform: uppercase;
 }
 
+td .space-example {
+  display: block;
+  background: #92278F;
+}
+
+.space-example.se-01 {
+  width: 2px;
+  height: 2px;
+}
+.space-example.se-02 {
+  width: 4px;
+  height: 4px;
+}
+.space-example.se-03 {
+  width: 8px;
+  height: 8px;
+}
+.space-example.se-04 {
+  width: 12px;
+  height: 12px;
+}
+.space-example.se-05 {
+  width: 16px;
+  height: 16px;
+}
+.space-example.se-06 {
+  width: 24px;
+  height: 24px;
+}
+
+.space-example.se-07 {
+  width: 28px;
+  height: 28px;
+}
+
+.space-example.se-08 {
+  width: 32px;
+  height: 32px;
+}
+
+.space-example.se-09 {
+  width: 40px;
+  height: 40px;
+}
+
+.space-example.se-10 {
+  width: 48px;
+  height: 48px;
+}
+
+.space-example.se-11 {
+  width: 56px;
+  height: 56px;
+}
+
+.space-example.se-12 {
+  width: 64px;
+  height: 64px;
+}
+
+.space-example.se-13 {
+  width: 96px;
+  height: 96px;
+}
+
+.space-example.se-14 {
+  width: 160px;
+  height: 160px;
+}
+
 @media only screen and (max-width: 680px) {
   figure .image-container {
     padding-top: 10px;

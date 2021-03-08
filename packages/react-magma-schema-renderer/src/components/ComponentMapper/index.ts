@@ -1,4 +1,4 @@
-import ComponentMapper from '@data-driven-forms/react-form-renderer/dist/cjs/component-mapper';
+import { ComponentMapper } from '@data-driven-forms/react-form-renderer';
 
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
