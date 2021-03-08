@@ -66,6 +66,8 @@ export const FileUpload = (props: any) => {
     multiple: true,
     noDrag: false,
     onDrop: (acceptedFiles) => onDrop(acceptedFiles, setFiles),
+    noClick: true,
+    noKeyboard: true
   });
 
   const removeFile = (file:any) => () => {
