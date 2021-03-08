@@ -34,7 +34,7 @@ const RadioMapping = (props: RadioGroupProps) => {
       {...rest}
     >
       {options.map((option: RadioProps) => {
-        return <MagmaRadio {...option} value={option.value?.toString()} key={option.value?.toString()} />;
+        return <MagmaRadio {...option} key={option.value?.toString()} />;
       })}
     </RadioGroup>
   );

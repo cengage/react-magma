@@ -23,6 +23,7 @@ const SelectMapping = (props: any) => {
     input,
     validateOnMount,
     showError,
+    options,
     type,
     meta: { error, submitFailed },
     ...rest
@@ -44,7 +45,7 @@ const SelectMapping = (props: any) => {
   return (
     <MagmaSelect
       id={name}
-      items={rest.items}
+      items={options.map(({labelText, ...rest}:{labelText:string}) => { return {label: labelText, ...rest}})}
       errorMessage={errorMessage}
       labelText={rest.labelText}
       {...rest}

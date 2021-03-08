@@ -29,6 +29,7 @@ const ComboboxMapping = (props: ComboboxProps) => {
     validateOnMount,
     showError,
     type,
+    options,
     meta: { error, submitFailed },
     ...rest
   } = useFieldApi(props);
@@ -37,14 +38,30 @@ const ComboboxMapping = (props: ComboboxProps) => {
     ((validateOnMount || submitFailed || showError) && error) || '';
   const innerRef = React.useRef<HTMLInputElement>(null);
 
+  const [items, updateItems] = React.useState(options.map(({labelText, ...rest}:{labelText:string}) => {return {label:labelText, ...rest}}));
+
+  const newItemTransform = ({value}:{value:string}) => {
+    return {
+      label: value,
+      value: value.toLowerCase(),
+    };
+  }
+
+  const onItemCreated = (item: any) => {
+    updateItems([...items, item]);
+    input.onChange(item.value);
+  }
+
   if (rest.isMulti) {
     rest.onSelectedItemsChange = (evt: MultiComboOptionEvent) => {
       input.onChange(evt.selectedItems.map(item => item.value));
     };
+    rest.selectedItems = items.filter((item:{value:string}) => input.value.includes(item.value))
   } else {
     rest.onSelectedItemChange = (evt: ComboOptionEvent) => {
       input.onChange(evt.selectedItem.value);
     };
+    rest.selectedItem = items.filter((item:{value:string}) => item.value === input.value).pop();
   }
 
   return (
@@ -52,6 +69,9 @@ const ComboboxMapping = (props: ComboboxProps) => {
       {...input}
       id={name}
       innerRef={innerRef}
+      items={items}
+      newItemTransform={newItemTransform}
+      onItemCreated={onItemCreated}
       errorMessage={errorMessage}
       labelText={rest.labelText}
       {...rest}

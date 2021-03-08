@@ -185,7 +185,7 @@ describe('SchemaRenderer', () => {
             component: componentTypes.CUSTOM,
             name: 'custom',
             labelText: 'This is the content of custom component',
-            CustomComponent: CustomComponentSimple,
+            customComponent: CustomComponentSimple,
           },
         ],
       };
@@ -219,7 +219,7 @@ describe('SchemaRenderer', () => {
           {
             component: componentTypes.CUSTOM,
             name: 'text',
-            CustomComponent: CustomComponentComplex,
+            customComponent: CustomComponentComplex,
           },
         ],
       };

@@ -9,7 +9,59 @@ title: Schema Renderer
 
 The `SchemaRenderer` is an advanced component which maps other React Magma components to a defined Schema. This allows developers to render data driven pages and forms at runtime.
 
-## Basic Form
+
+## Basic Template
+
+The `SchemaRenderer` 
+
+```tsx
+import React from 'react';
+import { SchemaRenderer, Schema, templateTypes, componentTypes } from 'react-magma-schema-renderer';
+
+const schema: Schema = {
+  title: 'Basic form',
+  description: 'The most simplest of forms.',
+  type: templateTypes.BASIC,
+  fields: [
+    {
+      component: componentTypes.PARAGRAPH,
+      name: 'name',
+      children: 'Hello. This is a Paragraph.'
+    },
+    // {
+    //   component: componentTypes.ALERT,
+    //   name: 'ALERT'
+    // },
+    // {
+    //   component: componentTypes.BANNER,
+    //   name: 'BANNER'
+    // },
+    // {
+    //   component: componentTypes.CUSTOM,
+    //   name: 'CUSTOM'
+    // },
+    // {
+    //   component: componentTypes.HEADING,
+    //   name: 'HEADING'
+    // },
+    // {
+    //   component: componentTypes.HYPERLINK,
+    //   name: 'HYPERLINK'
+    // },
+  ],
+};
+
+export function Example() {
+  return (
+    <div>
+      <SchemaRenderer schema={schema} 
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+    </div>
+  );
+}
+```
+
+## Form Template
 
 The `SchemaRenderer` 
 
@@ -26,15 +78,126 @@ const schema: Schema = {
     {
       component: componentTypes.INPUT,
       name: 'name',
-      labelText: 'Label text',
+      labelText: 'Input',
       type: InputType.text
     },
     {
-      component: componentTypes.REVIEW,
+      component: componentTypes.RADIO,
+      name: 'radio',
+      labelText: 'Radio',
+      options: [
+        {labelText: 'one', value: "1"},
+        {labelText: 'two', value: "2"},
+        {labelText: 'three', value: "3"},
+      ]
+    },
+    {
+      component: componentTypes.CHECKBOX,
+      name: 'checkbox',
+      labelText: 'Checkbox',
+      value: 'checked'
+    },
+    {
+      component: componentTypes.CHECKBOX,
+      name: 'checkbox-group',
+      labelText: 'Checkbox group',
+      options: [
+        {labelText: 'one', value: "1"},
+        {labelText: 'two', value: "2"},
+        {labelText: 'three', value: "3"},
+      ]
+    },
+    {
+      component: componentTypes.COMBOBOX,
+      name: 'combobox',
+      labelText: 'Combobox',
+      options: [
+        {labelText: 'one', value: "1"},
+        {labelText: 'two', value: "2"},
+        {labelText: 'three', value: "3"},
+      ]
+    },
+    {
+      component: componentTypes.COMBOBOX,
+      name: 'combobox-multi',
+      labelText: 'Multi combobox',
+      isMulti: true,
+      options: [
+        {labelText: 'one', value: "1"},
+        {labelText: 'two', value: "2"},
+        {labelText: 'three', value: "3"},
+      ]
+    },
+    {
+      component: componentTypes.DATE_PICKER,
+      name: 'date_picker',
+      labelText: 'Date picker',
+    },
+    // {
+    //   component: componentTypes.FIELD_ARRAY,
+    //   name: 'field_array',
+    //   labelText: 'Field_array',
+    // },
+    // {
+    //   component: componentTypes.FILE_UPLOAD,
+    //   name: 'file_upload',
+    //   labelText: 'File_upload',
+    // },
+    // {
+    //   component: componentTypes.FORM_GROUP,
+    //   name: 'form_group',
+    //   labelText: 'Form_group',
+    // },
+    // {
+    //   component: componentTypes.INPUT,
+    //   name: 'input',
+    //   labelText: 'Input',
+    // },
+    {
+      component: componentTypes.PASSWORD_INPUT,
+      name: 'password_input',
+      labelText: 'Password input',
+    },
+    {
+      component: componentTypes.SELECT,
+      name: 'select',
+      labelText: 'Select',
+      options: [
+        {labelText: 'one', value: "1"},
+        {labelText: 'two', value: "2"},
+        {labelText: 'three', value: "3"},
+      ]
+    },
+    {
+      component: componentTypes.SELECT,
+      name: 'select-multi',
+      labelText: 'Multi select',
+      isMulti: true,
+      options: [
+        {labelText: 'one', value: "1"},
+        {labelText: 'two', value: "2"},
+        {labelText: 'three', value: "3"},
+      ]
+    },
+    {
+      component: componentTypes.TEXTAREA,
+      name: 'textarea',
+      labelText: 'Textarea',
+    },
+    {
+      component: componentTypes.TIME_PICKER,
+      name: 'time_picker',
+      labelText: 'Time_picker',
+    },
+    {
+      component: componentTypes.TOGGLE,
+      name: 'toggle',
+      labelText: 'Toggle',
+    },
+    {
+      component: componentTypes.SPY,
       name: 'review',
-      labelText: 'review',
-      subscription: {pristine: true },
-      template: (formState) => <pre>{JSON.stringify(formState, null, 2)}</pre>
+      template: ({values}) => <pre>{JSON.stringify(values, null, 2)}</pre>
     },
   ],
 };
@@ -49,6 +212,83 @@ export function Example() {
 }
 ```
 
-## Image Upload
+
+## Custom Component
+
+The `SchemaRenderer` 
+
+```tsx
+import React from 'react';
+import { Button, Toast } from 'react-magma-dom';
+import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+
+export function Example() {
+  const [ isOpen, setIsOpen ] = React.useState(false);
+  const [ showToast, setShowToast ] = React.useState(false);
+  const CustomButton = ({ labelText, ...props }: any) => <Button {...props}>{labelText}</Button>;
+  const CustomToast = ({ showToast, ...props }: any) => <>{showToast && <Toast {...props}/>}</>;
+
+  const mapper: ComponentMapper = {
+    [componentTypes.CUSTOM]: componentMapper[componentTypes.CUSTOM],
+    [componentTypes.MODAL]: componentMapper[componentTypes.MODAL],
+    [componentTypes.PARAGRAPH]: componentMapper[componentTypes.PARAGRAPH],
+  };
+
+  const schema: Schema = {
+    title: 'Custom Component',
+    description: 'The most simplest of forms.',
+    type: templateTypes.BASIC,
+    fields: [
+      {
+        component: componentTypes.MODAL,
+        name: 'name',
+        isOpen,
+        onClose: () => setIsOpen(false),
+        header: 'Data Driven Modal',
+        fields: [
+          {
+            component: componentTypes.PARAGRAPH,
+            name: 'name',
+            children: 'Hello. This is a Paragraph inside a Modal.'
+          }
+        ]
+      },
+      {
+        component: componentTypes.CUSTOM,
+        name: 'toast',
+        onDismiss: () => setShowToast(false),
+        showToast,
+        customComponent: CustomToast,
+        children: 'data driven toast.'
+      },
+      {
+        component: componentTypes.CUSTOM,
+        name: 'button-modal',
+        onClick: () => setIsOpen(true),
+        disabled: isOpen,
+        labelText: 'OPEN MODAL',
+        customComponent: CustomButton
+      },
+      {
+        component: componentTypes.CUSTOM,
+        name: 'button-toast',
+        onClick: () => setShowToast(true),
+        disabled: showToast,
+        labelText: 'OPEN Toast',
+        customComponent: CustomButton
+      },
+    ],
+  };
+  
+  return (
+    <div>
+      <SchemaRenderer 
+      schema={schema}
+      customComponentMapper={mapper} 
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+    </div>
+  );
+}
+```
 
 

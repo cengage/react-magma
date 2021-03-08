@@ -11,7 +11,7 @@ import { Input } from '../Input';
 import { Modal } from '../Modal';
 import { PasswordInput } from '../PasswordInput';
 import { Radio } from '../Radio';
-import { Review } from '../Review';
+import { Spy } from '../Spy';
 import { Select } from '../Select';
 import { Textarea } from '../Textarea';
 import { TimePicker } from '../TimePicker';
@@ -44,7 +44,7 @@ export enum componentTypes {
   PARAGRAPH = 'PARAGRAPH',
   PASSWORD_INPUT = 'PASSWORD_INPUT',
   RADIO = 'RADIO',
-  REVIEW = 'REVIEW',
+  SPY = 'SPY',
   SELECT = 'SELECT',
   TEXTAREA = 'TEXTAREA',
   TIME_PICKER = 'TIME_PICKER',
@@ -69,9 +69,11 @@ export const componentMapper: ComponentMapper = {
   [componentTypes.PARAGRAPH]: Paragraph,
   [componentTypes.PASSWORD_INPUT]: PasswordInput,
   [componentTypes.RADIO]: Radio,
-  [componentTypes.REVIEW]: Review,
+  [componentTypes.SPY]: Spy,
   [componentTypes.SELECT]: Select,
   [componentTypes.TEXTAREA]: Textarea,
   [componentTypes.TIME_PICKER]: TimePicker,
   [componentTypes.TOGGLE]: Toggle,
 };
+
+export { ComponentMapper }
