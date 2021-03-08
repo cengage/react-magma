@@ -17,21 +17,17 @@ export interface SchemaRendererProps extends FormRendererProps {
 
 export const SchemaRenderer: FunctionComponent<SchemaRendererProps> = ({
   schema,
-  onSubmit,
-  onCancel,
-  initialValues,
   customComponentMapper=componentMapper,
   customValidatorMapper,
+  ...rest
 }) => {
   return (
     <FormRender
+      {...rest}
       componentMapper={customComponentMapper }
       validatorMapper={customValidatorMapper}
       FormTemplate={templateMapper[schema.type]}
-      schema={schema}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      initialValues={initialValues}
+      schema={schema}      
     />
   );
 };

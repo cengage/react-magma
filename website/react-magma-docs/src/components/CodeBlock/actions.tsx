@@ -103,6 +103,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         'react-magma-icons': pkg.dependencies['react-magma-icons'],
         'react-magma-dom': pkg.dependencies['react-magma-dom'],
         'react-magma-schema-renderer': pkg.dependencies['react-magma-schema-renderer'],
+        'react-dropzone': pkg.dependencies['react-dropzone'],
         uuid: pkg.dependencies['uuid'],
       }}
       providedFiles={{

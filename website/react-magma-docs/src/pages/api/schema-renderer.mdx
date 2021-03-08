@@ -12,42 +12,42 @@ The `SchemaRenderer` is an advanced component which maps other React Magma compo
 
 ## Basic Template
 
-The `SchemaRenderer` 
+Several Basic Components from `react-magma-dom` are mapped in `react-magma-schema-renderer` by default. Refer to each component api page to find the props that each component supports.
 
 ```tsx
 import React from 'react';
 import { SchemaRenderer, Schema, templateTypes, componentTypes } from 'react-magma-schema-renderer';
 
 const schema: Schema = {
-  title: 'Basic form',
-  description: 'The most simplest of forms.',
+  title: 'Basic Components',
   type: templateTypes.BASIC,
   fields: [
     {
       component: componentTypes.PARAGRAPH,
       name: 'name',
-      children: 'Hello. This is a Paragraph.'
+      children: 'This is a data driven Paragraph.'
     },
-    // {
-    //   component: componentTypes.ALERT,
-    //   name: 'ALERT'
-    // },
-    // {
-    //   component: componentTypes.BANNER,
-    //   name: 'BANNER'
-    // },
-    // {
-    //   component: componentTypes.CUSTOM,
-    //   name: 'CUSTOM'
-    // },
-    // {
-    //   component: componentTypes.HEADING,
-    //   name: 'HEADING'
-    // },
-    // {
-    //   component: componentTypes.HYPERLINK,
-    //   name: 'HYPERLINK'
-    // },
+    {
+      component: componentTypes.ALERT,
+      name: 'ALERT',
+      children: 'This is a data driven Alert'
+    },
+    {
+      component: componentTypes.BANNER,
+      name: 'BANNER',
+      children: 'This is a data driven Banner'
+    },
+    {
+      component: componentTypes.HEADING,
+      name: 'HEADING',
+      children: 'This is a data driven heading'
+    },
+    {
+      component: componentTypes.HYPERLINK,
+      name: 'HYPERLINK',
+      to: 'https://react-magma.cengage.com',
+      children: 'This is a data driven link'
+    },
   ],
 };
 
@@ -63,7 +63,7 @@ export function Example() {
 
 ## Form Template
 
-The `SchemaRenderer` 
+The `SchemaRenderer` supports data-driven forms. This allows the creation of fully feature forms without having to write custom logic for validation and submission.
 
 ```tsx
 import React from 'react';
@@ -72,7 +72,7 @@ import { InputType } from 'react-magma-dom';
 
 const schema: Schema = {
   title: 'Basic form',
-  description: 'The most simplest of forms.',
+  description: 'A collection of form components.',
   type: templateTypes.FORM,
   fields: [
     {
@@ -133,26 +133,6 @@ const schema: Schema = {
       name: 'date_picker',
       labelText: 'Date picker',
     },
-    // {
-    //   component: componentTypes.FIELD_ARRAY,
-    //   name: 'field_array',
-    //   labelText: 'Field_array',
-    // },
-    // {
-    //   component: componentTypes.FILE_UPLOAD,
-    //   name: 'file_upload',
-    //   labelText: 'File_upload',
-    // },
-    // {
-    //   component: componentTypes.FORM_GROUP,
-    //   name: 'form_group',
-    //   labelText: 'Form_group',
-    // },
-    // {
-    //   component: componentTypes.INPUT,
-    //   name: 'input',
-    //   labelText: 'Input',
-    // },
     {
       component: componentTypes.PASSWORD_INPUT,
       name: 'password_input',
@@ -196,8 +176,9 @@ const schema: Schema = {
     },
     {
       component: componentTypes.SPY,
-      name: 'review',
-      template: ({values}) => <pre>{JSON.stringify(values, null, 2)}</pre>
+      name: 'spy',
+      subscription: { values: true },
+      template: ({values}) => <pre>{JSON.stringify({values}, null, 2)}</pre>
     },
   ],
 };
@@ -212,6 +193,131 @@ export function Example() {
 }
 ```
 
+## Sub Forms
+
+Some components support sub fields
+
+```tsx
+import React from 'react';
+import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+
+export function Example() {
+
+  const schema: Schema = {
+    title: 'Sub Form',
+    description: 'A form within a foorm.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.FORM_GROUP,
+        name: 'form_group',
+        labelText: 'Register',
+        fields: [
+          {
+            component: componentTypes.INPUT,
+            name: 'name',
+            labelText: 'Name',
+            type: InputType.text
+          },
+          {
+            component: componentTypes.INPUT,
+            name: 'email',
+            labelText: 'Email',
+            type: InputType.text
+          },
+          {
+            component: componentTypes.PASSWORD_INPUT,
+            name: 'password',
+            labelText: 'Password',
+          },
+        ]
+      }
+    ],
+  };
+  
+  return (
+    <div>
+      <SchemaRenderer 
+      schema={schema}
+      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+    </div>
+  );
+}
+```
+
+## Field Array
+
+The `SchemaRenderer` supports field arrays for repeating groups of inputs.
+
+```tsx
+import React from 'react';
+import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+
+export function Example() {
+
+  const schema: Schema = {
+    title: 'Field Array',
+    description: 'What becomes a repeating subform.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.FIELD_ARRAY,
+        name: 'field_array',
+        labelText: 'Field_array',
+        fields: [
+          {
+            component: componentTypes.INPUT,
+            name: 'name',
+            labelText: 'Input',
+            type: InputType.text
+          },
+        ]
+      },
+    ],
+  };
+  
+  return (
+    <div>
+      <SchemaRenderer 
+      schema={schema}
+      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+    </div>
+  );
+}
+```
+
+## File Uploads
+
+The `SchemaRenderer` supports file uploads.
+
+```tsx
+import React from 'react';
+import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+
+export function Example() {
+
+  const schema: Schema = {
+    title: 'File Uploader',
+    description: 'An example file upload component.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.FILE_UPLOAD,
+        name: 'file-uploaded',
+        labelText: 'file-uploaded',
+      },
+    ],
+  };
+  
+  return (
+    <div>
+      <SchemaRenderer 
+      schema={schema}
+      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+    </div>
+  );
+}
+```
 
 ## Custom Component
 
@@ -227,12 +333,6 @@ export function Example() {
   const [ showToast, setShowToast ] = React.useState(false);
   const CustomButton = ({ labelText, ...props }: any) => <Button {...props}>{labelText}</Button>;
   const CustomToast = ({ showToast, ...props }: any) => <>{showToast && <Toast {...props}/>}</>;
-
-  const mapper: ComponentMapper = {
-    [componentTypes.CUSTOM]: componentMapper[componentTypes.CUSTOM],
-    [componentTypes.MODAL]: componentMapper[componentTypes.MODAL],
-    [componentTypes.PARAGRAPH]: componentMapper[componentTypes.PARAGRAPH],
-  };
 
   const schema: Schema = {
     title: 'Custom Component',
@@ -284,11 +384,105 @@ export function Example() {
     <div>
       <SchemaRenderer 
       schema={schema}
-      customComponentMapper={mapper} 
         onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
     </div>
   );
 }
 ```
 
+## Form Spy
 
+`SchemaRenderer` has a mapped component to register a [Form Spy](https://final-form.org/docs/react-final-form/api/FormSpy). This component will rerender whenever any of the state that it is subscribed to changes (which defaults to everything).
+
+```tsx
+import React from 'react';
+import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+
+export function Example() {
+
+  const schema: Schema = {
+    title: 'Form Spy',
+    description: 'Registering to the form state.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.INPUT,
+        name: 'input',
+        labelText: 'Some input',
+      },
+      {
+        component: componentTypes.SPY,
+        name: 'spy',
+        template: (formState) => <pre>{JSON.stringify(formState, null, 2)}</pre>
+      },
+    ],
+  };
+  
+  return (
+    <div>
+      <SchemaRenderer 
+      schema={schema}
+      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+    </div>
+  );
+}
+```
+
+## Validators
+
+```tsx
+import React from 'react';
+import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper, validatorTypes } from 'react-magma-schema-renderer';
+import { Alert, AlertVariant } from 'react-magma-dom';
+
+export function Example() {
+
+  const schema: Schema = {
+    title: 'Field Validation',
+    description: 'Tossing some validation on an input.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.SPY,
+        name: 'spy',
+        subscription: {errors: true},
+        template: ({errors}) => <>{Object.keys(errors).map(error => <Alert variant={AlertVariant.danger}>{errors[error]}</Alert>)}</>
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'input-foo',
+        labelText: 'Some input',
+        helperMessage: 'Value must be equal to Foo',
+        initializeOnMount: true,
+        validate: [
+          {
+            type: validatorTypes.PATTERN,
+            pattern: /^Foo$/i
+          }
+        ]
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'input-bar',
+        labelText: 'Some input',
+        helperMessage: 'Value must be equal to Bar',
+        initializeOnMount: true,
+        validate: [
+          {
+            type: validatorTypes.PATTERN,
+            pattern: /^Bar$/i
+          }
+        ]
+      },
+    ],
+  };
+  
+  return (
+    <div>
+      <SchemaRenderer 
+      schema={schema}
+      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+    </div>
+  );
+}
+```
