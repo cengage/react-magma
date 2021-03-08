@@ -109,7 +109,9 @@ const StyledFakeInput = styled.span<{
   border-radius: 100%;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
-    props.textPosition === 'left' ? '0 0 0 10px' : '0 10px 0 0'};
+    props.textPosition === 'left'
+      ? `0 0 0 ${props.theme.spaceScale.spacing03}`
+      : `0 ${props.theme.spaceScale.spacing03} 0 0`};
 
   ${HiddenInput}:checked:not (:disabled) + label & {
     background: ${props => {
@@ -123,16 +125,12 @@ const StyledFakeInput = styled.span<{
     // focus state
     &:before {
       ${props => buildDisplayInputFocusStyles(props)};
-      top: -3px;
-      left: -3px;
     }
   }
 
   &:after {
     // active state
     background: ${props => buildDisplayInputActiveBackground(props)};
-    top: -8px;
-    left: -8px;
   }
 
   ${HiddenInput}:not(:disabled):active + label & {

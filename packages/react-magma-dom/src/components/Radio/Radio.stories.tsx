@@ -12,7 +12,12 @@ export default {
 export const Default = () => {
   return (
     <>
-      <RadioGroup labelText="Basic Usage" id="basicGroup" name="basic">
+      <RadioGroup
+        labelText="Basic Usage"
+        id="basicGroup"
+        name="basic"
+        value="selectedOption"
+      >
         <Radio id="radio1" labelText="Option one label" value="1" />
 
         <Radio
@@ -22,9 +27,19 @@ export const Default = () => {
           value="2"
         />
       </RadioGroup>
-      <RadioGroup labelText="Disabled" id="basicGroup" name="basic">
+      <RadioGroup
+        labelText="Disabled"
+        id="basicGroup"
+        name="basic"
+        value="selectedOption"
+      >
         <Radio id="radio4" disabled labelText="Disabled" value="4" />
-        <Radio id="radio5" disabled labelText="Disabled checked" value="5" />
+        <Radio
+          id="radio5"
+          disabled
+          labelText="Disabled checked"
+          value="selectedOption"
+        />
       </RadioGroup>
     </>
   );
@@ -39,6 +54,7 @@ export const Inverse = () => {
           id="inverseGroup"
           isInverse
           name="inverse"
+          value="selectedOption"
         >
           <Radio id="inverseRadio" labelText="Inverse" value="default" />
           <Radio
@@ -46,7 +62,7 @@ export const Inverse = () => {
             disabled
             id="disabledInverseRadio"
             labelText="Disabled inverse"
-            value="disabled"
+            value="selectedOption"
           />
         </RadioGroup>
       </CardBody>

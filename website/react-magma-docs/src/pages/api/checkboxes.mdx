@@ -23,6 +23,9 @@ The label/checkbox association will be handled via the passed in `id` if one is 
 Checkboxes can either be controlled or uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
 If you do not want to have your checkbox be in a controlled state, but need the initial checked value to be set, pass in the `defaultChecked` prop with the value you would like on initial render.
 
+<Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to standard
+checkboxes but with three available statuses.
+
 See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ```tsx
@@ -141,24 +144,6 @@ export function Example() {
         <FormGroup labelText="Choose inverse options">
           <Checkbox isInverse labelText="Inverse" />
           <Checkbox checked isInverse labelText="Inverse checked" />
-          <Checkbox
-            checked
-            color={magma.colors.success}
-            isInverse
-            labelText="Success inverse"
-          />
-          <Checkbox
-            checked
-            color={magma.colors.danger}
-            isInverse
-            labelText="Danger inverse"
-          />
-          <Checkbox
-            checked
-            color={magma.colors.pop02}
-            isInverse
-            labelText="Pop inverse"
-          />
           <IndeterminateCheckbox
             status={IndeterminateCheckboxStatus.indeterminate}
             isInverse

@@ -115,9 +115,9 @@ export const StyledFakeInput = styled.span<{
   theme?: any;
 }>`
   ${DisplayInputStyles};
-  border:2px solid;
+  border: 2px solid;
   border-color: ${props => buildDisplayInputBorderColor(props)};
-  color:${props => buildCheckIconColor(props)};
+  color: ${props => buildCheckIconColor(props)};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
     props.textPosition === 'left'
@@ -125,7 +125,7 @@ export const StyledFakeInput = styled.span<{
       : `0 ${props.theme.spaceScale.spacing03} 0 0`};
 
   svg {
-    flex-shrink:0;
+    flex-shrink: 0;
     pointer-events: none;
     transition: all 0.2s ease-out;
   }
@@ -139,6 +139,8 @@ export const StyledFakeInput = styled.span<{
   &:after {
     // active state
     background: ${props => buildDisplayInputActiveBackground(props)};
+    top: -10px;
+    left: -10px;
   }
 
   /* prettier-ignore */

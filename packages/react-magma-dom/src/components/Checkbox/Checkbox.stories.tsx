@@ -93,34 +93,6 @@ export const Inverse = () => {
             labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines"
           />
         </FormGroup>
-        <FormGroup labelText="Colors">
-          <Checkbox
-            isInverse
-            checked
-            color={magma.colors.primary}
-            labelText="Primary checked"
-          />
-          <Checkbox
-            isInverse
-            checked
-            color={magma.colors.success}
-            labelText="Success checked"
-          />
-
-          <Checkbox
-            isInverse
-            checked
-            color={magma.colors.danger}
-            labelText="Danger checked"
-          />
-
-          <Checkbox
-            isInverse
-            checked
-            color={magma.colors.pop02}
-            labelText="Pop checked"
-          />
-        </FormGroup>
         <FormGroup labelText="Disabled">
           <Checkbox isInverse disabled labelText="Disabled checkbox" />
 

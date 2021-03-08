@@ -6,6 +6,7 @@ import { ArrowDropUpIcon, CaretDownIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
 import { I18nContext } from '../../i18n';
 import { useForkedRef, useGenerateId } from '../../utils';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
   /**
@@ -38,15 +39,17 @@ export const DropdownSplitButton = React.forwardRef<
 
   const context = React.useContext(DropdownContext);
 
+  const theme = React.useContext(ThemeContext);
+
   const ref = useForkedRef(forwardedRef, context.toggleRef);
 
   context.dropdownButtonId.current = useGenerateId(id);
 
   const buttonIcon =
     context.dropDirection === DropdownDropDirection.up ? (
-      <ArrowDropUpIcon size={24} testId="caretUp" />
+      <ArrowDropUpIcon size={theme.iconSizes.medium} testId="caretUp" />
     ) : (
-      <CaretDownIcon size={24} testId="caretDown" />
+      <CaretDownIcon size={theme.iconSizes.medium} testId="caretDown" />
     );
 
   function handleClick(event: React.SyntheticEvent) {

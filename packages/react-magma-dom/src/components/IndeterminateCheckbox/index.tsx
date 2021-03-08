@@ -15,7 +15,6 @@ import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-// import styled from '@emotion/styled';
 import { useGenerateId, Omit } from '../../utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { Announce } from '../Announce';

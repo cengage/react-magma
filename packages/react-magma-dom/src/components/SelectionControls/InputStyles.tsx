@@ -1,14 +1,14 @@
 import { css } from '@emotion/core';
 
-export const DisplayInputStyles = css`
+export const DisplayInputStyles = props => css`
   align-items: center;
   display: flex;
-  height: 24px;
+  height: ${props.theme.spaceScale.spacing06};
   flex-shrink: 0;
   justify-content: center;
   position: relative;
   transition: all 0.2s ease-out;
-  width: 24px;
+  width: ${props.theme.spaceScale.spacing06};
 
   &:before,
   &:after {
@@ -20,14 +20,14 @@ export const DisplayInputStyles = css`
   &:after {
     // active state
     border-radius: 50%;
-    height: 40px;
-    left: -10px;
+    height: ${props.theme.spaceScale.spacing09};
+    left: -${props.theme.spaceScale.spacing03};
     opacity: 0;
     padding: 50%;
-    top: -10px;
+    top: -${props.theme.spaceScale.spacing03};
     transform: scale(1);
     transition: opacity 1s, transform 0.5s;
-    width: 40px;
+    width: ${props.theme.spaceScale.spacing09};
   }
 `;
 
@@ -64,7 +64,5 @@ export function buildDisplayInputFocusStyles(props) {
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
-    top: -5px;
-    left: -5px;
   `;
 }
