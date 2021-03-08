@@ -56,6 +56,11 @@ export default {
         options: ButtonType,
       },
     },
+    isLoading: {
+      control: {
+        type: 'boolean'
+      }
+    }
   },
 } as Meta;
 
@@ -72,6 +77,7 @@ Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
+
 Inverse.decorators = [
   Story => (
     <Card background={magma.colors.foundation} isInverse>

@@ -2,6 +2,10 @@
 
 exports[`Button Base Button Snapshot should render with large size 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -45,18 +49,18 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -75,12 +79,12 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -90,13 +94,17 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -140,18 +148,18 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -170,12 +178,12 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -185,7 +193,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -193,16 +201,24 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 
 <div>
   <button
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     id="testId"
   >
-    Test Text
+    <span
+      class="emotion-0 emotion-1"
+    >
+      Test Text
+    </span>
   </button>
 </div>
 `;
 
 exports[`Button Base Button Snapshot should render with small size 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -246,18 +262,18 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -276,12 +292,12 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -291,13 +307,17 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -341,18 +361,18 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -371,12 +391,12 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -386,7 +406,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -394,16 +414,24 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 
 <div>
   <button
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     id="testId"
   >
-    Test Text
+    <span
+      class="emotion-0 emotion-1"
+    >
+      Test Text
+    </span>
   </button>
 </div>
 `;
 
 exports[`Button Base Button Snapshot should render with updated color 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -447,18 +475,18 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -477,12 +505,12 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -492,13 +520,17 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -542,18 +574,18 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -572,12 +604,12 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -587,7 +619,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -595,17 +627,25 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 
 <div>
   <button
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     color="secondary"
     id="testId"
   >
-    Test Text
+    <span
+      class="emotion-0 emotion-1"
+    >
+      Test Text
+    </span>
   </button>
 </div>
 `;
 
 exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -649,18 +689,18 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -679,12 +719,12 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -694,13 +734,17 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -744,18 +788,18 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -774,12 +818,12 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -789,7 +833,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -797,17 +841,25 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 
 <div>
   <button
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     id="testId"
     shape="round"
   >
-    Test Text
+    <span
+      class="emotion-0 emotion-1"
+    >
+      Test Text
+    </span>
   </button>
 </div>
 `;
 
 exports[`Button Base Button Snapshot should render with updated textTransform 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -851,18 +903,18 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -881,12 +933,12 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -896,13 +948,17 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -946,18 +1002,18 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -976,12 +1032,12 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -991,7 +1047,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -999,16 +1055,24 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 
 <div>
   <button
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     id="testId"
   >
-    Test Text
+    <span
+      class="emotion-0 emotion-1"
+    >
+      Test Text
+    </span>
   </button>
 </div>
 `;
 
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1051,18 +1115,18 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -1081,12 +1145,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1096,13 +1160,17 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1145,18 +1213,18 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -1175,12 +1243,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1190,7 +1258,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1198,10 +1266,14 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 <div>
   <button
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     id="testId"
   >
-    Test Text
+    <span
+      class="emotion-0 emotion-1"
+    >
+      Test Text
+    </span>
   </button>
 </div>
 `;

@@ -82,7 +82,6 @@ describe('Banner', () => {
         Test
       </Banner>
     );
-
     expect(getByText('btn text')).toHaveStyleRule('color', magma.colors.danger);
   });
 

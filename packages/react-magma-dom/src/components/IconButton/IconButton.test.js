@@ -24,6 +24,47 @@ describe('IconButton', () => {
     });
   });
 
+  it('A button in the loading state does not violate detectible accessibility standards', () => {
+    const icon = <CheckIcon />;
+    const { container } = render(
+      <IconButton icon={icon} isLoading>
+        click
+      </IconButton>
+    );
+
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
+  });
+
+  it('shows a spinner icon when isLoading is true', () => {
+    const icon = <CheckIcon />;
+    const buttonText = 'Test';
+    const testId = 'test-id';
+    const spinnerTestId = `${testId}-spinner`;
+    const {
+      getByTestId,
+      getByText,
+      queryByText,
+      rerender,
+      queryByTestId,
+    } = render(
+      <IconButton icon={icon} testId={testId} isLoading>
+        {buttonText}
+      </IconButton>
+    );
+    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(spinnerTestId)).toBeInTheDocument();
+    expect(queryByText(buttonText)).not.toBeInTheDocument();
+    rerender(
+      <IconButton icon={icon} testId={testId} isLoading={false}>
+        {buttonText}
+      </IconButton>
+    );
+    expect(queryByTestId(spinnerTestId)).not.toBeInTheDocument();
+    expect(getByText(buttonText)).toBeInTheDocument();
+  });
+
   describe('Icon Only Button', () => {
     it('should render an icon only button with passed in icon', () => {
       const icon = <CheckIcon />;
@@ -33,6 +74,33 @@ describe('IconButton', () => {
       );
 
       expect(getByLabelText(buttonLabel)).toBeInTheDocument();
+    });
+
+    it('shows a spinner icon when isLoading is true', () => {
+      const icon = <CheckIcon />;
+      const buttonText = 'Test';
+      const testId = 'test-id';
+      const spinnerTestId = `${testId}-spinner`;
+      const { getByTestId, rerender, queryByTestId } = render(
+        <IconButton
+          icon={icon}
+          testId={testId}
+          isLoading
+          aria-label={buttonText}
+        />
+      );
+      expect(getByTestId(testId)).toBeInTheDocument();
+      expect(getByTestId(spinnerTestId)).toBeInTheDocument();
+
+      rerender(
+        <IconButton
+          icon={icon}
+          testId={testId}
+          isLoading={false}
+          aria-label={buttonText}
+        />
+      );
+      expect(queryByTestId(spinnerTestId)).not.toBeInTheDocument();
     });
 
     describe('Size', () => {

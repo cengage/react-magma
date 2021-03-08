@@ -2,6 +2,10 @@
 
 exports[`IconButton Icon Only Button Snapshot should render with large size 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -56,18 +60,18 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -86,12 +90,12 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -101,13 +105,17 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -162,18 +170,18 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -192,12 +200,12 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -207,7 +215,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -216,30 +224,38 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     color="primary"
     id="testId"
     shape="round"
   >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="32"
-      viewBox="0 0 24 24"
-      width="32"
-      xmlns="http://www.w3.org/2000/svg"
+    <span
+      class="emotion-0 emotion-1"
     >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="32"
+        viewBox="0 0 24 24"
+        width="32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon Only Button Snapshot should render with small size 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -294,18 +310,18 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -324,12 +340,12 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -339,13 +355,17 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -400,18 +420,18 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -430,12 +450,12 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -445,7 +465,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -454,30 +474,38 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     color="primary"
     id="testId"
     shape="round"
   >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="20"
-      viewBox="0 0 24 24"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
+    <span
+      class="emotion-0 emotion-1"
     >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="20"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon Only Button Snapshot should render with updated color 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -532,18 +560,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -562,12 +590,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -577,13 +605,17 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -638,18 +670,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -668,12 +700,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -683,7 +715,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -692,30 +724,38 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     color="secondary"
     id="testId"
     shape="round"
   >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
+    <span
+      class="emotion-0 emotion-1"
     >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon Only Button Snapshot should render with updated shape 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -770,18 +810,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -800,12 +840,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -815,13 +855,17 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -876,18 +920,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -906,12 +950,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -921,7 +965,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -930,30 +974,38 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     color="primary"
     id="testId"
     shape="fill"
   >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
+    <span
+      class="emotion-0 emotion-1"
     >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon Only Button Snapshot should render with updated variant 1`] = `
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1007,18 +1059,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -1037,12 +1089,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1052,13 +1104,17 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
 .emotion-0 {
+  visibility: visible;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1112,18 +1168,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   padding: 0;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -1142,12 +1198,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1157,7 +1213,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1166,30 +1222,38 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-2 emotion-3"
     color="primary"
     id="testId"
     shape="round"
   >
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
+    <span
+      class="emotion-0 emotion-1"
     >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
+    </span>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with large size 1`] = `
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1233,18 +1297,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1263,12 +1327,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1278,7 +1342,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1289,6 +1353,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1332,18 +1400,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1362,12 +1430,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1377,7 +1445,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1390,35 +1458,43 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1 emotion-2"
+    class="emotion-3 emotion-4"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="emotion-0"
+      class="emotion-1 emotion-2"
     >
-      Test Text
+      <span
+        class="emotion-0"
+      >
+        Test Text
+      </span>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="32"
+        viewBox="0 0 24 24"
+        width="32"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
     </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="32"
-      viewBox="0 0 24 24"
-      width="32"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with medium size 1`] = `
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1462,18 +1538,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1492,12 +1568,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1507,7 +1583,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1518,6 +1594,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1561,18 +1641,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1591,12 +1671,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1606,7 +1686,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1619,35 +1699,43 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1 emotion-2"
+    class="emotion-3 emotion-4"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="emotion-0"
+      class="emotion-1 emotion-2"
     >
-      Test Text
+      <span
+        class="emotion-0"
+      >
+        Test Text
+      </span>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
     </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with small size 1`] = `
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1691,18 +1779,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1721,12 +1809,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1736,7 +1824,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1747,6 +1835,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1790,18 +1882,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1820,12 +1912,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1835,7 +1927,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1848,35 +1940,43 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1 emotion-2"
+    class="emotion-3 emotion-4"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="emotion-0"
+      class="emotion-1 emotion-2"
     >
-      Test Text
+      <span
+        class="emotion-0"
+      >
+        Test Text
+      </span>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="20"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
     </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="20"
-      viewBox="0 0 24 24"
-      width="20"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated color 1`] = `
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1920,18 +2020,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -1950,12 +2050,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -1965,7 +2065,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1976,6 +2076,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2019,18 +2123,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -2049,12 +2153,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -2064,7 +2168,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2077,35 +2181,43 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1 emotion-2"
+    class="emotion-3 emotion-4"
     color="secondary"
     id="testId"
     shape="fill"
   >
     <span
-      class="emotion-0"
+      class="emotion-1 emotion-2"
     >
-      Test Text
+      <span
+        class="emotion-0"
+      >
+        Test Text
+      </span>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
     </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated shape 1`] = `
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2149,18 +2261,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2179,12 +2291,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -2194,7 +2306,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2205,6 +2317,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-1 {
+  visibility: visible;
+}
+
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2248,18 +2364,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2278,12 +2394,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -2293,7 +2409,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2306,39 +2422,47 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1 emotion-2"
+    class="emotion-3 emotion-4"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="emotion-0"
+      class="emotion-1 emotion-2"
     >
-      Test Text
+      <span
+        class="emotion-0"
+      >
+        Test Text
+      </span>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
     </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated text transform 1`] = `
+.emotion-1 {
+  visibility: visible;
+}
+
 .emotion-0 {
   padding-right: 8px;
 }
 
-.emotion-1 {
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2382,18 +2506,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2412,12 +2536,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -2427,17 +2551,21 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-1 {
+  visibility: visible;
 }
 
 .emotion-0 {
   padding-right: 8px;
 }
 
-.emotion-1 {
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2481,18 +2609,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2511,12 +2639,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -2526,7 +2654,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2535,39 +2663,47 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1 emotion-2"
+    class="emotion-3 emotion-4"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="emotion-0"
+      class="emotion-1 emotion-2"
     >
-      Test Text
+      <span
+        class="emotion-0"
+      >
+        Test Text
+      </span>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
     </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
   </button>
 </div>
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated variant 1`] = `
+.emotion-1 {
+  visibility: visible;
+}
+
 .emotion-0 {
   padding-right: 8px;
 }
 
-.emotion-1 {
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2610,18 +2746,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -2640,12 +2776,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -2655,17 +2791,21 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-1 {
+  visibility: visible;
 }
 
 .emotion-0 {
   padding-right: 8px;
 }
 
-.emotion-1 {
+.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2708,18 +2848,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: auto;
 }
 
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-1:not(:disabled):hover,
-.emotion-1:not(:disabled):focus {
+.emotion-3:not(:disabled):hover,
+.emotion-3:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-1:not(:disabled):after {
+.emotion-3:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -2738,12 +2878,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: 28px;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-3:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-1:not(:disabled):active:after {
+.emotion-3:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -2753,7 +2893,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   transition: transform 0s;
 }
 
-.emotion-1 svg {
+.emotion-3 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2762,29 +2902,33 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-1 emotion-2"
+    class="emotion-3 emotion-4"
     color="primary"
     id="testId"
     shape="fill"
   >
     <span
-      class="emotion-0"
+      class="emotion-1 emotion-2"
     >
-      Test Text
+      <span
+        class="emotion-0"
+      >
+        Test Text
+      </span>
+      <svg
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
+          fill-rule="evenodd"
+        />
+      </svg>
     </span>
-    <svg
-      class="icon"
-      fill="currentColor"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M9 16.17L5.53 12.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L9 16.17z"
-        fill-rule="evenodd"
-      />
-    </svg>
   </button>
 </div>
 `;
