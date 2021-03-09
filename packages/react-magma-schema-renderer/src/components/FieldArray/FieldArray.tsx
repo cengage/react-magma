@@ -17,7 +17,7 @@ export const FieldArray = ({ ...props }: any) => {
     meta,
     minItems,
     maxItems,
-    noItemsMessage = 'no items.',
+    noItemsMessage = "You haven't added any items yet!",
     FormControlProps,
     ...rest
   } = useFieldApi(props);

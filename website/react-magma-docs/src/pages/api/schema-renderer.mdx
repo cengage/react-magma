@@ -5,10 +5,12 @@ title: Schema Renderer
 
 <DocsHeading type="api">SchemaRenderer</DocsHeading>
 
-<Alert variant="warning">The Schema Renderer is currently early beta. It is a work in progress and may have breaking changes.</Alert>
+<Alert variant="warning">
+  The Schema Renderer is currently early beta. It is a work in progress and may
+  have breaking changes.
+</Alert>
 
 The `SchemaRenderer` is an advanced component which maps other React Magma components to a defined Schema. This allows developers to render data driven pages and forms at runtime.
-
 
 ## Basic Template
 
@@ -16,37 +18,44 @@ Several Basic Components from `react-magma-dom` are mapped in `react-magma-schem
 
 ```tsx
 import React from 'react';
-import { SchemaRenderer, Schema, templateTypes, componentTypes } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+} from 'react-magma-schema-renderer';
 
 const schema: Schema = {
   title: 'Basic Components',
   type: templateTypes.BASIC,
   fields: [
     {
-      component: componentTypes.PARAGRAPH,
-      name: 'name',
-      children: 'This is a data driven Paragraph.'
-    },
-    {
-      component: componentTypes.ALERT,
-      name: 'ALERT',
-      children: 'This is a data driven Alert'
-    },
-    {
       component: componentTypes.BANNER,
       name: 'BANNER',
-      children: 'This is a data driven Banner'
+      children: 'This is a data driven Banner',
     },
     {
       component: componentTypes.HEADING,
       name: 'HEADING',
-      children: 'This is a data driven heading'
+      children: 'Data Driven Heading',
+      level: 2,
+    },
+    {
+      component: componentTypes.PARAGRAPH,
+      name: 'name',
+      children: 'This is a data driven Paragraph.',
+    },
+    {
+      component: componentTypes.ALERT,
+      name: 'ALERT',
+      children: 'This is a data driven Alert',
+      variant: 'warning',
     },
     {
       component: componentTypes.HYPERLINK,
       name: 'HYPERLINK',
       to: 'https://react-magma.cengage.com',
-      children: 'This is a data driven link'
+      children: 'This is a data driven link',
     },
   ],
 };
@@ -54,8 +63,10 @@ const schema: Schema = {
 export function Example() {
   return (
     <div>
-      <SchemaRenderer schema={schema} 
-        onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }
@@ -67,11 +78,16 @@ The `SchemaRenderer` supports data-driven forms. This allows the creation of ful
 
 ```tsx
 import React from 'react';
-import { SchemaRenderer, Schema, templateTypes, componentTypes } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+} from 'react-magma-schema-renderer';
 import { InputType } from 'react-magma-dom';
 
 const schema: Schema = {
-  title: 'Basic form',
+  title: 'Basic Form',
   description: 'A collection of form components.',
   type: templateTypes.FORM,
   fields: [
@@ -79,43 +95,43 @@ const schema: Schema = {
       component: componentTypes.INPUT,
       name: 'name',
       labelText: 'Input',
-      type: InputType.text
+      type: InputType.text,
     },
     {
       component: componentTypes.RADIO,
       name: 'radio',
       labelText: 'Radio',
       options: [
-        {labelText: 'one', value: "1"},
-        {labelText: 'two', value: "2"},
-        {labelText: 'three', value: "3"},
-      ]
+        { labelText: 'one', value: '1' },
+        { labelText: 'two', value: '2' },
+        { labelText: 'three', value: '3' },
+      ],
     },
     {
       component: componentTypes.CHECKBOX,
       name: 'checkbox',
       labelText: 'Checkbox',
-      value: 'checked'
+      value: 'checked',
     },
     {
       component: componentTypes.CHECKBOX,
       name: 'checkbox-group',
       labelText: 'Checkbox group',
       options: [
-        {labelText: 'one', value: "1"},
-        {labelText: 'two', value: "2"},
-        {labelText: 'three', value: "3"},
-      ]
+        { labelText: 'one', value: '1' },
+        { labelText: 'two', value: '2' },
+        { labelText: 'three', value: '3' },
+      ],
     },
     {
       component: componentTypes.COMBOBOX,
       name: 'combobox',
       labelText: 'Combobox',
       options: [
-        {labelText: 'one', value: "1"},
-        {labelText: 'two', value: "2"},
-        {labelText: 'three', value: "3"},
-      ]
+        { labelText: 'one', value: '1' },
+        { labelText: 'two', value: '2' },
+        { labelText: 'three', value: '3' },
+      ],
     },
     {
       component: componentTypes.COMBOBOX,
@@ -123,10 +139,10 @@ const schema: Schema = {
       labelText: 'Multi combobox',
       isMulti: true,
       options: [
-        {labelText: 'one', value: "1"},
-        {labelText: 'two', value: "2"},
-        {labelText: 'three', value: "3"},
-      ]
+        { labelText: 'one', value: '1' },
+        { labelText: 'two', value: '2' },
+        { labelText: 'three', value: '3' },
+      ],
     },
     {
       component: componentTypes.DATE_PICKER,
@@ -143,21 +159,21 @@ const schema: Schema = {
       name: 'select',
       labelText: 'Select',
       options: [
-        {labelText: 'one', value: "1"},
-        {labelText: 'two', value: "2"},
-        {labelText: 'three', value: "3"},
-      ]
+        { labelText: 'one', value: '1' },
+        { labelText: 'two', value: '2' },
+        { labelText: 'three', value: '3' },
+      ],
     },
     {
       component: componentTypes.SELECT,
       name: 'select-multi',
-      labelText: 'Multi select',
+      labelText: 'Multi-select',
       isMulti: true,
       options: [
-        {labelText: 'one', value: "1"},
-        {labelText: 'two', value: "2"},
-        {labelText: 'three', value: "3"},
-      ]
+        { labelText: 'one', value: '1' },
+        { labelText: 'two', value: '2' },
+        { labelText: 'three', value: '3' },
+      ],
     },
     {
       component: componentTypes.TEXTAREA,
@@ -167,7 +183,7 @@ const schema: Schema = {
     {
       component: componentTypes.TIME_PICKER,
       name: 'time_picker',
-      labelText: 'Time_picker',
+      labelText: 'Time picker',
     },
     {
       component: componentTypes.TOGGLE,
@@ -178,7 +194,9 @@ const schema: Schema = {
       component: componentTypes.SPY,
       name: 'spy',
       subscription: { values: true },
-      template: ({values}) => <pre>{JSON.stringify({values}, null, 2)}</pre>
+      template: ({ values }) => (
+        <pre>{JSON.stringify({ values }, null, 2)}</pre>
+      ),
     },
   ],
 };
@@ -186,8 +204,10 @@ const schema: Schema = {
 export function Example() {
   return (
     <div>
-      <SchemaRenderer schema={schema} 
-        onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }
@@ -199,13 +219,19 @@ Some components support sub fields
 
 ```tsx
 import React from 'react';
-import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+} from 'react-magma-schema-renderer';
 
 export function Example() {
-
   const schema: Schema = {
     title: 'Sub Form',
-    description: 'A form within a foorm.',
+    description: 'A form within a form.',
     type: templateTypes.FORM,
     fields: [
       {
@@ -217,29 +243,30 @@ export function Example() {
             component: componentTypes.INPUT,
             name: 'name',
             labelText: 'Name',
-            type: InputType.text
+            type: InputType.text,
           },
           {
             component: componentTypes.INPUT,
             name: 'email',
             labelText: 'Email',
-            type: InputType.text
+            type: InputType.text,
           },
           {
             component: componentTypes.PASSWORD_INPUT,
             name: 'password',
             labelText: 'Password',
           },
-        ]
-      }
+        ],
+      },
     ],
   };
-  
+
   return (
     <div>
-      <SchemaRenderer 
-      schema={schema}
-      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }
@@ -251,10 +278,16 @@ The `SchemaRenderer` supports field arrays for repeating groups of inputs.
 
 ```tsx
 import React from 'react';
-import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+} from 'react-magma-schema-renderer';
 
 export function Example() {
-
   const schema: Schema = {
     title: 'Field Array',
     description: 'What becomes a repeating subform.',
@@ -269,18 +302,19 @@ export function Example() {
             component: componentTypes.INPUT,
             name: 'name',
             labelText: 'Input',
-            type: InputType.text
+            type: InputType.text,
           },
-        ]
+        ],
       },
     ],
   };
-  
+
   return (
     <div>
-      <SchemaRenderer 
-      schema={schema}
-      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }
@@ -292,10 +326,16 @@ The `SchemaRenderer` supports file uploads.
 
 ```tsx
 import React from 'react';
-import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+} from 'react-magma-schema-renderer';
 
 export function Example() {
-
   const schema: Schema = {
     title: 'File Uploader',
     description: 'An example file upload component.',
@@ -308,12 +348,13 @@ export function Example() {
       },
     ],
   };
-  
+
   return (
     <div>
-      <SchemaRenderer 
-      schema={schema}
-      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }
@@ -321,18 +362,31 @@ export function Example() {
 
 ## Custom Component
 
-The `SchemaRenderer` 
+The `SchemaRenderer`
 
 ```tsx
 import React from 'react';
 import { Button, ButtonType, Toast } from 'react-magma-dom';
-import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+} from 'react-magma-schema-renderer';
 
 export function Example() {
-  const [ isOpen, setIsOpen ] = React.useState(false);
-  const [ showToast, setShowToast ] = React.useState(false);
-  const CustomButton = ({ labelText, ...props }: any) => <Button type={ButtonType.button} {...props}>{labelText}</Button>;
-  const CustomToast = ({ showToast, ...props }: any) => <>{showToast && <Toast {...props}/>}</>;
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [showToast, setShowToast] = React.useState(false);
+  const CustomButton = ({ labelText, ...props }: any) => (
+    <Button type={ButtonType.button} {...props}>
+      {labelText}
+    </Button>
+  );
+  const CustomToast = ({ showToast, ...props }: any) => (
+    <>{showToast && <Toast {...props} />}</>
+  );
 
   const schema: Schema = {
     title: 'Custom Component',
@@ -349,9 +403,9 @@ export function Example() {
           {
             component: componentTypes.PARAGRAPH,
             name: 'name',
-            children: 'Hello. This is a Paragraph inside a Modal.'
-          }
-        ]
+            children: 'Hello. This is a Paragraph inside a Modal.',
+          },
+        ],
       },
       {
         component: componentTypes.CUSTOM,
@@ -359,7 +413,7 @@ export function Example() {
         onDismiss: () => setShowToast(false),
         showToast,
         customComponent: CustomToast,
-        children: 'data driven toast.'
+        children: 'data driven toast.',
       },
       {
         component: componentTypes.CUSTOM,
@@ -367,7 +421,7 @@ export function Example() {
         onClick: () => setIsOpen(true),
         disabled: isOpen,
         labelText: 'OPEN MODAL',
-        customComponent: CustomButton
+        customComponent: CustomButton,
       },
       {
         component: componentTypes.CUSTOM,
@@ -375,16 +429,17 @@ export function Example() {
         onClick: () => setShowToast(true),
         disabled: showToast,
         labelText: 'OPEN Toast',
-        customComponent: CustomButton
+        customComponent: CustomButton,
       },
     ],
   };
-  
+
   return (
     <div>
-      <SchemaRenderer 
-      schema={schema}
-        onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }
@@ -396,10 +451,16 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+} from 'react-magma-schema-renderer';
 
 export function Example() {
-
   const schema: Schema = {
     title: 'Form Spy',
     description: 'Registering to the form state.',
@@ -413,16 +474,17 @@ export function Example() {
       {
         component: componentTypes.SPY,
         name: 'spy',
-        template: (formState) => <pre>{JSON.stringify(formState, null, 2)}</pre>
+        template: formState => <pre>{JSON.stringify(formState, null, 2)}</pre>,
       },
     ],
   };
-  
+
   return (
     <div>
-      <SchemaRenderer 
-      schema={schema}
-      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }
@@ -432,11 +494,18 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper, validatorTypes } from 'react-magma-schema-renderer';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+  validatorTypes,
+} from 'react-magma-schema-renderer';
 import { Alert, AlertVariant } from 'react-magma-dom';
 
 export function Example() {
-
   const schema: Schema = {
     title: 'Field Validation',
     description: 'Tossing some validation on an input.',
@@ -445,8 +514,14 @@ export function Example() {
       {
         component: componentTypes.SPY,
         name: 'spy',
-        subscription: {errors: true},
-        template: ({errors}) => <>{Object.keys(errors).map(error => <Alert variant={AlertVariant.danger}>{errors[error]}</Alert>)}</>
+        subscription: { errors: true },
+        template: ({ errors }) => (
+          <>
+            {Object.keys(errors).map(error => (
+              <Alert variant={AlertVariant.danger}>{errors[error]}</Alert>
+            ))}
+          </>
+        ),
       },
       {
         component: componentTypes.INPUT,
@@ -457,9 +532,9 @@ export function Example() {
         validate: [
           {
             type: validatorTypes.PATTERN,
-            pattern: /^Foo$/i
-          }
-        ]
+            pattern: /^Foo$/i,
+          },
+        ],
       },
       {
         component: componentTypes.INPUT,
@@ -470,18 +545,19 @@ export function Example() {
         validate: [
           {
             type: validatorTypes.PATTERN,
-            pattern: /^Bar$/i
-          }
-        ]
+            pattern: /^Bar$/i,
+          },
+        ],
       },
     ],
   };
-  
+
   return (
     <div>
-      <SchemaRenderer 
-      schema={schema}
-      onSubmit={values => alert(JSON.stringify(values, null, 2))}/>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
     </div>
   );
 }

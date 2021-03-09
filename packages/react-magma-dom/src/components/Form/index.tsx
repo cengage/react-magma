@@ -3,6 +3,7 @@ import { Alert } from '../Alert';
 import { AlertVariant } from '../AlertBase';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -30,6 +31,11 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   testId?: string;
 }
 
+const ActionsContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const Form = React.forwardRef<HTMLFormElement, FormProps>(
   (props, ref) => {
     const {
@@ -44,15 +50,13 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
 
     const content = (
       <>
-        <div>
-          <Heading level={3}>{title}</Heading>
-          {description && <Paragraph>{description}</Paragraph>}
-          {errorMessage && (
-            <Alert variant={AlertVariant.danger}>{errorMessage}</Alert>
-          )}
-        </div>
+        <Heading level={3}>{title}</Heading>
+        {description && <Paragraph>{description}</Paragraph>}
+        {errorMessage && (
+          <Alert variant={AlertVariant.danger}>{errorMessage}</Alert>
+        )}
         <div>{children}</div>
-        <div>{actions}</div>
+        <ActionsContainer>{actions}</ActionsContainer>
       </>
     );
 
