@@ -21,6 +21,7 @@ function calculateStartExpanded(code: string, startExpanded: boolean) {
 interface ExampleProps {
   title?: string;
   code: string;
+  noBorder?: boolean;
 }
 export const Example = ({ ...props }: ExampleProps) => {
   const context = useContext(CodeBlockContext);
@@ -31,7 +32,7 @@ export const Example = ({ ...props }: ExampleProps) => {
 
   return (
     <div>
-      <Preview code={props.code} />
+      <Preview code={props.code} noBorder={context.noBorder} />
       <Actions>
         <ActionsLeft>
           {!context.noCode && (

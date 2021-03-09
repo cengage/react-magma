@@ -116,6 +116,7 @@ export function Example() {
       labelText="Disabled Radio Buttons"
       id="disabledGroup"
       name="disabled"
+      value="selectedOption"
     >
       <Radio
         disabled
@@ -128,6 +129,12 @@ export function Example() {
         id="disabledRadio2"
         labelText="Disabled radio 2"
         value="2"
+      />
+      <Radio
+        disabled
+        id="disabledRadio3"
+        labelText="Disabled radio 3 selected"
+        value="selectedOption"
       />
     </RadioGroup>
   );
@@ -235,6 +242,7 @@ export function Example() {
             id="inverseGroup"
             isInverse
             name="inverse"
+            value="selectedOption"
           >
             <Radio id="inverseRadio" labelText="Inverse" value="default" />
             <Radio
@@ -260,6 +268,12 @@ export function Example() {
               id="disabledInverseRadio"
               labelText="Disabled inverse"
               value="disabled"
+            />
+            <Radio
+              disabled
+              id="disabledInverseRadio"
+              labelText="Disabled inverse selected"
+              value="selectedOption"
             />
           </RadioGroup>
         </CardBody>
