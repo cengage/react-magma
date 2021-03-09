@@ -15,6 +15,7 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { omit, useGenerateId } from '../../utils';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export enum CheckboxTextPosition {
   left = 'left',
@@ -230,6 +231,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const hasError = context.hasError || !!errorMessage;
 
+    const inverseContext = React.useContext(InverseContext);
+    const isInverseFromContext = getIsInverse(inverseContext, isInverse);
+
     return (
       <>
         <StyledContainer style={containerStyle}>
@@ -244,7 +248,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             type="checkbox"
             onChange={handleChange}
           />
-          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+          <StyledLabel
+            htmlFor={id}
+            isInverse={isInverseFromContext}
+            style={labelStyle}
+          >
             {!isTextVisuallyHidden &&
               textPosition === CheckboxTextPosition.left &&
               labelText}
@@ -254,7 +262,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               color={color ? color : ''}
               disabled={disabled}
               hasError={hasError}
-              isInverse={context.isInverse || isInverse}
+              isInverse={isInverseFromContext}
               style={inputStyle}
               textPosition={textPosition}
               theme={theme}
@@ -272,7 +280,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
+          <InputMessage
+            id={descriptionId}
+            hasError
+            isInverse={isInverseFromContext}
+          >
             {errorMessage}
           </InputMessage>
         )}

@@ -3,6 +3,10 @@ import { Alert } from '../Alert';
 import { AlertVariant } from '../AlertBase';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
+import { InverseContext } from '../../inverse';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -24,42 +28,68 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
    * Title of the form
    */
   header: string;
+  isInverse?: boolean;
   /**
    * Handler for form submission
    */
   testId?: string;
 }
 
+const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.foundation02
+      : props.theme.colors.neutral08};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral};
+  padding: ${props =>
+    `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing06}`};
+`;
+
+const FormActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
+
 export const Form = React.forwardRef<HTMLFormElement, FormProps>(
   (props, ref) => {
     const {
+      actions,
+      children,
       header,
       description,
       errorMessage,
-      actions,
-      children,
+      isInverse,
       testId,
       ...other
     } = props;
 
-    const content = (
-      <>
-        <div>
+    const theme = React.useContext(ThemeContext);
+
+    return (
+      <InverseContext.Provider
+        value={{
+          isInverse,
+        }}
+      >
+        <StyledForm
+          ref={ref}
+          data-testid={testId}
+          isInverse={isInverse}
+          theme={theme}
+          {...other}
+        >
           <Heading level={3}>{header}</Heading>
           {description && <Paragraph>{description}</Paragraph>}
           {errorMessage && (
             <Alert variant={AlertVariant.danger}>{errorMessage}</Alert>
           )}
-        </div>
-        <div>{children}</div>
-        <div>{actions}</div>
-      </>
-    );
-
-    return (
-      <form ref={ref} data-testid={testId} {...other}>
-        {content}
-      </form>
+          <div>{children}</div>
+          <FormActions>{actions}</FormActions>
+        </StyledForm>
+      </InverseContext.Provider>
     );
   }
 );

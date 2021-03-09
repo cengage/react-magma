@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InputSize } from '../InputBase';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export enum LabelPosition {
   left = 'left',
@@ -52,12 +53,13 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       ...other
     } = props;
     const theme = React.useContext(ThemeContext);
+    const inverseContext = React.useContext(InverseContext);
 
     return (
       <StyledLabel
         {...other}
         data-testid={testId}
-        isInverse={isInverse}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
         size={size ? size : InputSize.medium}

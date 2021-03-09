@@ -5,6 +5,7 @@ import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { useGenerateId, Omit } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
+import { InverseContext, getIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
@@ -65,12 +66,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
     const theme = React.useContext(ThemeContext);
+    const inverseContext = React.useContext(InverseContext);
 
     return (
       <Container theme={theme} style={containerStyle}>
         {labelText && (
           <Label
-            isInverse={isInverse}
+            isInverse={getIsInverse(inverseContext, isInverse)}
             htmlFor={id}
             size={inputSize || InputSize.medium}
             style={labelStyle}
@@ -98,7 +100,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </InputBase>
         <InputMessage
           hasError={!!errorMessage}
-          isInverse={isInverse}
+          isInverse={getIsInverse(inverseContext, isInverse)}
           id={descriptionId}
           inputSize={inputSize || InputSize.medium}
           style={messageStyle}

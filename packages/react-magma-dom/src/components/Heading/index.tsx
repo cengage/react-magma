@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { InverseContext, getIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   TypographyColor,
@@ -35,8 +36,9 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
-    const { level, testId, visualStyle, children, ...other } = props;
+    const { isInverse, level, testId, visualStyle, children, ...other } = props;
     const theme = React.useContext(ThemeContext);
+    const inverseContext = React.useContext(InverseContext);
 
     const stylesFromLevel = {
       1: TypographyVisualStyle.headingXLarge,
@@ -54,6 +56,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
         {...other}
         as={headingElement}
         data-testid={testId}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         ref={ref}
         visualStyle={visualStyle ? visualStyle : stylesFromLevel[level]}
         theme={theme}

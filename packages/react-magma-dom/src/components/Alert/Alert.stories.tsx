@@ -41,4 +41,5 @@ Success.args = {
 export const Warning = Template.bind({});
 Warning.args = {
   variant: AlertVariant.warning,
+  isDismissible: true,
 };

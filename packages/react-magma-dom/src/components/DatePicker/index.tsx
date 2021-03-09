@@ -19,6 +19,7 @@ import {
 } from './utils';
 import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export interface DatePickerProps
   extends Omit<
@@ -130,9 +131,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const iconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
     const id: string = useGenerateId(props.id);
-    const [showHelperInformation, setShowHelperInformation] = React.useState<
-      boolean
-    >(false);
+    const [
+      showHelperInformation,
+      setShowHelperInformation,
+    ] = React.useState<boolean>(false);
     const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
     const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 
@@ -370,7 +372,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(opened => !opened);
     }
 
-    const { placeholder, testId, ...rest } = props;
+    const { isInverse, placeholder, testId, ...rest } = props;
     const other = omit(
       ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
       rest
@@ -382,6 +384,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const dateFormat = i18n.dateFormat;
 
     const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
+
+    const inverseContext = React.useContext(InverseContext);
 
     return (
       <CalendarContext.Provider
@@ -417,6 +421,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             onIconClick={toggleCalendarOpened}
             onIconKeyDown={handleInputKeyDown}
             id={id}
+            isInverse={getIsInverse(inverseContext, isInverse)}
             ref={ref}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
@@ -426,21 +431,22 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             type={InputType.text}
             value={inputValue}
           />
-
-          <DatePickerCalendar
-            data-testid="calendarContainer"
-            opened={calendarOpened}
-            theme={theme}
-          >
-            <CalendarMonth
-              focusOnOpen={
-                calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
-              }
-              handleCloseButtonClick={handleCloseButtonClick}
-              calendarOpened={calendarOpened}
-              setDateFocused={setDateFocused}
-            />
-          </DatePickerCalendar>
+          <InverseContext.Provider value={{ isInverse: false }}>
+            <DatePickerCalendar
+              data-testid="calendarContainer"
+              opened={calendarOpened}
+              theme={theme}
+            >
+              <CalendarMonth
+                focusOnOpen={
+                  calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
+                }
+                handleCloseButtonClick={handleCloseButtonClick}
+                calendarOpened={calendarOpened}
+                setDateFocused={setDateFocused}
+              />
+            </DatePickerCalendar>
+          </InverseContext.Provider>
         </DatePickerContainer>
       </CalendarContext.Provider>
     );

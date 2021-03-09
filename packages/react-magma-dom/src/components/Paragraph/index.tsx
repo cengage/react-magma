@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { InverseContext, getIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   TypographyVisualStyle,
@@ -42,14 +43,16 @@ export interface ParagraphProps
 
 export const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
   (props, ref) => {
-    const { color, testId, visualStyle, children, ...other } = props;
+    const { color, isInverse, testId, visualStyle, children, ...other } = props;
     const theme = React.useContext(ThemeContext);
+    const inverseContext = React.useContext(InverseContext);
 
     return (
       <TypographyComponent
         {...other}
         color={color || TypographyColor.default}
         data-testid={testId}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         ref={ref}
         theme={theme}
         visualStyle={visualStyle || TypographyVisualStyle.bodyMedium}

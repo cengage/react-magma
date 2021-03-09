@@ -4,6 +4,7 @@ import { InputMessage } from '../Input/InputMessage';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -45,12 +46,10 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 export interface FormGroupContextInterface {
   descriptionId?: string;
   hasError?: boolean;
-  isInverse?: boolean;
 }
 
 export const FormGroupContext = React.createContext<FormGroupContextInterface>({
   hasError: false,
-  isInverse: false,
 });
 
 export const FormGroupLabel = styled.label`
@@ -85,6 +84,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);
+    const inverseContext = React.useContext(InverseContext);
 
     return (
       <div
@@ -99,7 +99,6 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           value={{
             descriptionId,
             hasError: !!errorMessage,
-            isInverse,
           }}
         >
           {labelText && isTextVisuallyHidden && (
@@ -118,7 +117,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           <InputMessage
             id={descriptionId}
             hasError={!!errorMessage}
-            isInverse={isInverse}
+            isInverse={getIsInverse(inverseContext, isInverse)}
           >
             {(errorMessage || helperMessage) && (
               <>{errorMessage ? errorMessage : helperMessage}</>

@@ -10,6 +10,7 @@ import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export interface TimePickerProps {
   /**
@@ -300,15 +301,17 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       }
     }
 
+    const inverseContext = React.useContext(InverseContext);
+
     return (
       <TimePickerContainer
-        isInverse={isInverse}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         style={containerStyle}
         theme={theme}
       >
         <StyledFieldset>
           <StyledLegend
-            isInverse={isInverse}
+            isInverse={getIsInverse(inverseContext, isInverse)}
             labelStyle={labelStyle}
             theme={theme}
           >
@@ -320,7 +323,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             errorMessage={errorMessage}
             helperMessage={helperMessage}
             icon={<ClockIcon />}
-            isInverse={isInverse}
+            isInverse={getIsInverse(inverseContext, isInverse)}
             id={id}
             inputStyle={{
               background: `${theme.colors.neutral08}`,

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { InverseContext, getIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -33,13 +34,13 @@ interface TabsContainerContextInterface {
   setActiveTabIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const TabsContainerContext = React.createContext<
-  TabsContainerContextInterface
->({
-  activeTabIndex: 0,
-  isInverseContainer: false,
-  setActiveTabIndex: () => 0,
-});
+export const TabsContainerContext = React.createContext<TabsContainerContextInterface>(
+  {
+    activeTabIndex: 0,
+    isInverseContainer: false,
+    setActiveTabIndex: () => 0,
+  }
+);
 
 export const TabsContainer = React.forwardRef<
   HTMLDivElement,
@@ -55,6 +56,8 @@ export const TabsContainer = React.forwardRef<
 
   const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex || 0);
 
+  //const inverseContext = React.useContext(InverseContext);
+
   React.useEffect(() => {
     setIsInverseContainer(Boolean(props.isInverse));
   }, [props.isInverse]);
@@ -67,7 +70,11 @@ export const TabsContainer = React.forwardRef<
 
   return (
     <TabsContainerContext.Provider
-      value={{ activeTabIndex, setActiveTabIndex, isInverseContainer }}
+      value={{
+        activeTabIndex,
+        setActiveTabIndex,
+        isInverseContainer,
+      }}
     >
       <StyledTabsContainer
         ref={ref}

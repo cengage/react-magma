@@ -6,6 +6,7 @@ import {
   InputType,
 } from '../InputBase';
 import { I18nContext } from '../../i18n';
+import { InverseContext, getIsInverse } from '../../inverse';
 import { SearchIcon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
 
@@ -54,6 +55,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
   (props, ref) => {
     const {
       iconAriaLabel,
+      isInverse,
       isLoading,
       labelText,
       placeholder,
@@ -90,6 +92,8 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
       onSearch(value);
     }
 
+    const inverseContext = React.useContext(InverseContext);
+
     return (
       <InputBase
         {...other}
@@ -99,6 +103,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
           iconAriaLabel ? iconAriaLabel : i18n.search.iconAriaLabel
         }
         iconPosition={InputIconPosition.right}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         onChange={handleChange}
         onIconClick={isLoading ? null : handleSearch}
         onKeyDown={handleKeyPress}

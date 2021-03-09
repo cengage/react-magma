@@ -7,6 +7,7 @@ import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType } from '../Button';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
+import { InverseContext, getIsInverse } from '../../inverse';
 import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -159,11 +160,12 @@ export const PasswordInput = React.forwardRef<
 
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
   const theme = React.useContext(ThemeContext);
+  const inverseContext = React.useContext(InverseContext);
 
   return (
     <Container style={containerStyle} theme={theme}>
       <Label
-        isInverse={isInverse}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         htmlFor={id}
         size={inputSize ? inputSize : InputSize.medium}
         style={labelStyle}
@@ -185,7 +187,7 @@ export const PasswordInput = React.forwardRef<
         id={id}
         hasError={!!errorMessage}
         inputSize={inputSize ? inputSize : InputSize.medium}
-        isInverse={isInverse}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         ref={ref}
         theme={theme}
         type={passwordShown ? InputType.text : InputType.password}
@@ -198,6 +200,7 @@ export const PasswordInput = React.forwardRef<
                   ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
                   : SHOW_PASSWORD_BUTTON_ARIA_LABEL
               }
+              isInverse={false}
               onClick={togglePasswordShown}
               style={{
                 borderRadius: theme.borderRadius,
@@ -225,7 +228,7 @@ export const PasswordInput = React.forwardRef<
         )}
       </InputBase>
       <InputMessage
-        isInverse={isInverse}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         id={descriptionId}
         hasError={!!errorMessage}
         style={messageStyle}

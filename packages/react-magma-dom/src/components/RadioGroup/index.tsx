@@ -3,6 +3,7 @@ import { FormGroupLabel } from '../FormGroup';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
@@ -130,6 +131,8 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     const theme = React.useContext(ThemeContext);
 
+    const inverseContext = React.useContext(InverseContext);
+
     return (
       <div
         {...other}
@@ -143,7 +146,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
           value={{
             descriptionId,
             hasError: !!errorMessage,
-            isInverse,
+            isInverse: getIsInverse(inverseContext, isInverse),
             required,
             name,
             selectedValue,
@@ -168,7 +171,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
           <InputMessage
             id={descriptionId}
             hasError={!!errorMessage}
-            isInverse={isInverse}
+            isInverse={getIsInverse(inverseContext, isInverse)}
           >
             {(errorMessage || helperMessage) && (
               <>{errorMessage ? errorMessage : helperMessage}</>

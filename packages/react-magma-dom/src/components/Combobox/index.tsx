@@ -15,6 +15,7 @@ import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
 import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export interface ComboboxProps<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
@@ -127,6 +128,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
     containerStyle,
     errorMessage,
     id: defaultId,
+    isInverse,
     isMulti,
     labelPosition,
     messageStyle,
@@ -145,8 +147,9 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
   const hasError = !!errorMessage;
 
   const id = useGenerateId(defaultId);
-
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
+  const inverseContext = React.useContext(InverseContext);
 
   return (
     <div style={containerStyle} data-testid={testId}>
@@ -156,6 +159,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
           errorMessage={errorMessage}
           hasError={hasError}
           helperMessage={helperMessage}
+          isInverse={getIsInverse(inverseContext, isInverse)}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
@@ -167,6 +171,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
           errorMessage={errorMessage}
           hasError={hasError}
           helperMessage={helperMessage}
+          isInverse={getIsInverse(inverseContext, isInverse)}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}

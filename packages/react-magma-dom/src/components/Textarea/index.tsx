@@ -6,6 +6,7 @@ import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export interface TextareaProps
   extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
@@ -104,9 +105,15 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       setValue(event.target.value);
     }
 
+    const inverseContext = React.useContext(InverseContext);
+
     return (
       <Container style={containerStyle} theme={theme}>
-        <Label isInverse={isInverse} htmlFor={id} style={labelStyle}>
+        <Label
+          isInverse={getIsInverse(inverseContext, isInverse)}
+          htmlFor={id}
+          style={labelStyle}
+        >
           {isLabelVisuallyHidden ? (
             <HiddenLabelText>{labelText}</HiddenLabelText>
           ) : (
@@ -122,7 +129,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           data-testid={testId}
           hasError={!!errorMessage}
           id={id}
-          isInverse={isInverse}
+          isInverse={getIsInverse(inverseContext, isInverse)}
           onChange={handleChange}
           ref={ref}
           style={textareaStyle}
@@ -131,7 +138,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         />
 
         <InputMessage
-          isInverse={isInverse}
+          isInverse={getIsInverse(inverseContext, isInverse)}
           id={descriptionId}
           hasError={!!errorMessage}
           style={messageStyle}

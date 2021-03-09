@@ -6,6 +6,7 @@ import { omit, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { BaseStyledButton, buttonStyles } from '../StyledButton';
 import { ThemeInterface } from '../../theme/magma';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -53,10 +54,11 @@ const StyledLink = styled.a<{ isInverse?: boolean; theme: ThemeInterface }>`
 
 export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
   (props, ref) => {
-    const { children, to, styledAs, testId, ...rest } = props;
+    const { children, isInverse, to, styledAs, testId, ...rest } = props;
 
     const other = omit(['positionTop', 'positionLeft', 'type'], rest);
     const theme = React.useContext(ThemeContext);
+    const inverseContext = React.useContext(InverseContext);
 
     if (typeof children === 'function') {
       const composedStyle =
@@ -86,6 +88,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
           ref={ref}
           data-testid={testId}
           href={to}
+          isInverse={getIsInverse(inverseContext, isInverse)}
           theme={theme}
         >
           {children}

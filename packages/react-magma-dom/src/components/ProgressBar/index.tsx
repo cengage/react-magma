@@ -3,6 +3,7 @@ import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString } from '../../utils';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -158,6 +159,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       theme.spaceScale.spacing05
     );
 
+    const inverseContext = React.useContext(InverseContext);
+
     return (
       <Container {...other} isLoadingIndicator={isLoadingIndicator}>
         {isLoadingIndicator && (
@@ -166,7 +169,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         <Track
           data-testid={testId}
           height={heightString}
-          isInverse={isInverse}
+          isInverse={getIsInverse(inverseContext, isInverse)}
           ref={ref}
           theme={theme}
         >
@@ -176,7 +179,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             aria-valuemax={100}
             color={color}
             isAnimated={isAnimated}
-            isInverse={isInverse}
+            isInverse={getIsInverse(inverseContext, isInverse)}
             percentage={percentageValue}
             role="progressbar"
             theme={theme}

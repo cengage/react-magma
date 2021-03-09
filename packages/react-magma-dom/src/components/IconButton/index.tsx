@@ -12,6 +12,7 @@ import {
 import { IconProps } from 'react-magma-icons';
 import { omit, Omit, XOR } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -87,7 +88,15 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
-    const { color, shape, size, textTransform, variant, ...rest } = props;
+    const {
+      color,
+      isInverse,
+      shape,
+      size,
+      textTransform,
+      variant,
+      ...rest
+    } = props;
 
     const theme = React.useContext(ThemeContext);
 
@@ -101,6 +110,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const other = omit(['iconPosition', 'textPosition'], rest);
 
+    const inverseContext = React.useContext(InverseContext);
+
     if (icon && !children) {
       return (
         <StyledButton
@@ -108,6 +119,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           ref={ref}
           color={color ? color : ButtonColor.primary}
           iconOnly
+          isInverse={getIsInverse(inverseContext, isInverse)}
           shape={shape ? shape : ButtonShape.round}
           size={size ? size : ButtonSize.medium}
           variant={variant ? variant : ButtonVariant.solid}
@@ -127,6 +139,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {...other}
         ref={ref}
         color={color ? color : ButtonColor.primary}
+        isInverse={getIsInverse(inverseContext, isInverse)}
         shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
         textTransform={

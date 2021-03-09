@@ -11,6 +11,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export enum ToggleTextPosition {
   left = 'left', // default
@@ -264,6 +265,8 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
 
     const hasError = context.hasError || !!errorMessage;
 
+    const inverseContext = React.useContext(InverseContext);
+
     return (
       <>
         <StyledContainer>
@@ -280,7 +283,11 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
             ref={ref}
             role="switch"
           />
-          <StyledLabel htmlFor={id} style={containerStyle}>
+          <StyledLabel
+            htmlFor={id}
+            isInverse={getIsInverse(inverseContext, isInverse)}
+            style={containerStyle}
+          >
             {textPosition !== ToggleTextPosition.right &&
               renderLabelText(
                 isTextVisuallyHidden,
@@ -293,7 +300,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               data-testid="toggle-track"
               disabled={disabled}
               hasError={hasError}
-              isInverse={isInverse}
+              isInverse={getIsInverse(inverseContext, isInverse)}
               style={trackStyle}
               theme={theme}
             >
@@ -317,7 +324,11 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
+          <InputMessage
+            id={descriptionId}
+            hasError
+            isInverse={getIsInverse(inverseContext, isInverse)}
+          >
             {errorMessage}
           </InputMessage>
         )}
