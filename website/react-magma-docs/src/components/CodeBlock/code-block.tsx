@@ -13,6 +13,7 @@ interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
   themeName?: string;
   noCopy?: boolean;
   noCodeSandbox?: boolean;
+  noBorder?: boolean;
 }
 
 export const CodeBlock = ({
@@ -21,6 +22,7 @@ export const CodeBlock = ({
   startExpanded = false,
   noCopy = false,
   noCodeSandbox = false,
+  noBorder = false,
   title = 'Code Example',
   ...props
 }: CodeBlockProps) => {
@@ -34,6 +36,7 @@ export const CodeBlock = ({
         noCode,
         noCopy,
         noCodeSandbox,
+        noBorder,
         startExpanded,
         title,
         themeNameOverride: props.themeName,
