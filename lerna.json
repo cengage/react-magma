@@ -5,7 +5,6 @@
   ],
   "command": {
     "bootstrap": {
-      "forceLocal": true,
       "hoist": true
     },
     "publish": {
@@ -15,8 +14,7 @@
     },
     "version": {
       "changelogPreset": "conventionalcommits",
-      "conventionalCommits": true,
-      "exact": true
+      "conventionalCommits": true
     }
   },
   "version": "independent",
