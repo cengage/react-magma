@@ -1,5 +1,3 @@
-import { ComponentMapper } from '@data-driven-forms/react-form-renderer';
-
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
 import { Custom } from '../Custom';
@@ -25,6 +23,18 @@ import {
   Toast,
   Paragraph,
 } from 'react-magma-dom';
+
+interface AnyObject {
+  [key: string]: any;
+}
+
+interface ExtendedMapperComponent extends AnyObject {
+  component: React.ComponentType | React.FunctionComponent | React.ElementType;
+}
+
+interface ComponentMapper {
+  [key: string]: React.ComponentType | React.FunctionComponent | React.ElementType | ExtendedMapperComponent;
+}
 
 export enum componentTypes {
   ALERT = 'ALERT',

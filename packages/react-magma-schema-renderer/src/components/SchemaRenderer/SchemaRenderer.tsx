@@ -5,7 +5,7 @@ import { componentMapper, ComponentMapper } from '../ComponentMapper';
 import { templateMapper } from '../TemplateMapper';
 import { ValidatorMapper } from '../ValidatorMapper';
 
-export interface Schema extends DataDrivenFormSchema {
+export interface Schema extends Omit<DataDrivenFormSchema, 'FormTemplate'> {
   type: string;
 }
 
@@ -26,7 +26,7 @@ export const SchemaRenderer: FunctionComponent<SchemaRendererProps> = ({
       {...rest}
       componentMapper={customComponentMapper }
       validatorMapper={customValidatorMapper}
-      FormTemplate={templateMapper[schema.type]}
+      FormTemplate={templateMapper[schema.type]}s
       schema={schema}      
     />
   );

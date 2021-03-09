@@ -3,14 +3,13 @@ import {
   Schema,
   SchemaRenderer,
   SchemaRendererProps,
-  componentTypes,
 } from './SchemaRenderer';
 
-import { InputType } from 'react-magma-dom';
+import {componentTypes} from '../ComponentMapper';
+
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { templateTypes } from '../TemplateMapper';
-import { FormSpy } from '@data-driven-forms/react-form-renderer';
 
 import { Hyperlink } from 'react-magma-dom';
 
@@ -408,10 +407,10 @@ export function Example() {
   return (
     <div>
       {values &&  <pre>{JSON.stringify(values, null, 2)}</pre>}
-      <SchemaRenderer schema={schema}  
-        onSubmit={(values: any) => {
-          setValues(values)
-      }} />
+      <SchemaRenderer 
+        schema={schema}  
+        onSubmit={(values: any) => {setValues(values)}} 
+      />
     </div>
   );
 }
