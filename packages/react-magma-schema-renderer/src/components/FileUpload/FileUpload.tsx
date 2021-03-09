@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import styled from '@emotion/styled';
 import { Previews } from './Previews';
-import { IconButton, ProgressBar } from "react-magma-dom";
+import { IconButton, ProgressBar, ButtonType } from "react-magma-dom";
 import { CloudUploadIcon } from "react-magma-icons";
 
 const getColor = (props:any) => {
@@ -93,7 +93,7 @@ export const FileUpload = (props: any) => {
       <Container {...getRootProps({isDragActive, isDragAccept, isDragReject})}>        
         <input {...getInputProps()} />
         <p>Drag some files here, or click to select files</p>
-        <IconButton icon={<CloudUploadIcon />} onClick={open}>Upload files</IconButton>
+        <IconButton icon={<CloudUploadIcon />} type={ButtonType.button} onClick={open}>Upload files</IconButton>
       </Container>
       {files.length !== 0 && <ProgressBar isAnimated={files.length!==length} percentage={(files.length / length) * 100} />}
       <Previews onRemoveFile={removeFile} files={files} />

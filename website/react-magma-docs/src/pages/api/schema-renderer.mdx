@@ -325,13 +325,13 @@ The `SchemaRenderer`
 
 ```tsx
 import React from 'react';
-import { Button, Toast } from 'react-magma-dom';
+import { Button, ButtonType, Toast } from 'react-magma-dom';
 import { SchemaRenderer, Schema, templateTypes, componentTypes, componentMapper, ComponentMapper } from 'react-magma-schema-renderer';
 
 export function Example() {
   const [ isOpen, setIsOpen ] = React.useState(false);
   const [ showToast, setShowToast ] = React.useState(false);
-  const CustomButton = ({ labelText, ...props }: any) => <Button {...props}>{labelText}</Button>;
+  const CustomButton = ({ labelText, ...props }: any) => <Button type={ButtonType.button} {...props}>{labelText}</Button>;
   const CustomToast = ({ showToast, ...props }: any) => <>{showToast && <Toast {...props}/>}</>;
 
   const schema: Schema = {
