@@ -21,13 +21,6 @@ const Preview = styled.div`
   box-sizing: border-box;
 `;
 
-const PreviewThumbnail = styled.div`
-  display: flex;
-  min-width: 0;
-  overflow: hidden;
-  width: 100px;
-`;
-
 const PreviewActions = styled.div`
   display: flex;
   min-width: 0;
@@ -39,12 +32,6 @@ const PreviewDetails = styled.div`
   width: 250px;
 `;
 
-const Image = styled.img`
-  display: block;
-  width: auto;
-  height: 100%;
-`;
-
 export const Previews = (props:{files:Array<any>, onRemoveFile:any}) => <Container>
   {
     props.files.map((file:any) => (
@@ -52,15 +39,9 @@ export const Previews = (props:{files:Array<any>, onRemoveFile:any}) => <Contain
         <PreviewActions>
           <IconButton onClick={props.onRemoveFile(file)}  color={ButtonColor.danger} aria-label="Remove File" icon={<DeleteIcon />} />
         </PreviewActions>
-        <PreviewThumbnail>
-          {file.encoded && <Image
-            src={file.encoded}
-            alt=""
-          />}
-          <PreviewDetails>
-          {file.path} - {file.size} bytes
-          </PreviewDetails>
-        </PreviewThumbnail>
+        <PreviewDetails>
+        {file.path} - {file.size} bytes
+        </PreviewDetails>
       </Preview>
     ))
   }
