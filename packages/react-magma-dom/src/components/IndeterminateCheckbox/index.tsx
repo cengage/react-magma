@@ -6,12 +6,15 @@ import {
   HiddenInput,
   StyledFakeInput,
 } from '../Checkbox';
-import { CheckIcon } from 'react-magma-icons';
+import {
+  CheckBoxIcon,
+  CheckBoxOutlineBlankIcon,
+  IndeterminateCheckBoxIcon,
+} from 'react-magma-icons';
 import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled from '@emotion/styled';
 import { useGenerateId, Omit } from '../../utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { Announce } from '../Announce';
@@ -32,22 +35,6 @@ export enum IndeterminateCheckboxStatus {
   indeterminate = 'indeterminate',
   unchecked = 'unchecked', //default
 }
-
-const IndeterminateIcon = styled.span<{
-  color?: string;
-  disabled?: boolean;
-  theme?: any;
-}>`
-  background: ${props =>
-    props.disabled
-      ? props.theme.colors.disabledText
-      : props.color
-      ? props.color
-      : props.theme.colors.primary};
-  height: 2px;
-  width: 10px;
-  display: block;
-`;
 
 export const IndeterminateCheckbox = React.forwardRef<
   HTMLInputElement,
@@ -86,7 +73,7 @@ export const IndeterminateCheckbox = React.forwardRef<
   const context = React.useContext(FormGroupContext);
 
   const {
-    color,
+    color = theme.colors.primary,
     containerStyle,
     disabled,
     errorMessage,
@@ -163,8 +150,8 @@ export const IndeterminateCheckbox = React.forwardRef<
         />
         <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
           <StyledFakeInput
-            checked={isChecked}
-            color={color ? color : ''}
+            isChecked={isChecked}
+            color={color}
             disabled={disabled}
             hasError={hasError}
             isIndeterminate={isIndeterminate}
@@ -172,15 +159,16 @@ export const IndeterminateCheckbox = React.forwardRef<
             style={inputStyle}
             theme={theme}
           >
-            {isIndeterminate && (
-              <IndeterminateIcon
-                data-testid="indeterminateIcon"
-                color={color ? color : ''}
-                disabled={disabled}
-                theme={theme}
+            {isIndeterminate ? (
+              <IndeterminateCheckBoxIcon
+                testId="indeterminateIcon"
+                size={theme.iconSizes.medium}
               />
+            ) : isChecked ? (
+              <CheckBoxIcon size={theme.iconSizes.medium} />
+            ) : (
+              <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
             )}
-            {isChecked && <CheckIcon size={12} />}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (
             <HiddenLabelText>{labelText}</HiddenLabelText>
@@ -197,7 +185,7 @@ export const IndeterminateCheckbox = React.forwardRef<
           id={descriptionId}
           hasError
           isInverse={isInverse}
-          style={{ paddingLeft: '30px' }}
+          style={{ paddingLeft: theme.spaceScale.spacing08 }}
         >
           {errorMessage}
         </InputMessage>
