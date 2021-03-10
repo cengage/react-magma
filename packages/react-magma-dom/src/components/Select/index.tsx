@@ -212,7 +212,9 @@ export function Select<T>(props: XORSelectProps<T>) {
   const id = useGenerateId(defaultId);
 
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
   const inverseContext = React.useContext(InverseContext);
+  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
   return (
     <div style={containerStyle} data-testid={testId}>
@@ -220,7 +222,7 @@ export function Select<T>(props: XORSelectProps<T>) {
         <MultiSelect
           ariaDescribedBy={descriptionId}
           id={id}
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={isInverseFromContext}
           labelPosition={labelPosition || LabelPosition.top}
           itemToString={itemToString}
           {...(props as MultiSelectProps<T>)}
@@ -231,7 +233,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
           id={id}
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={isInverseFromContext}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           hasError={hasError}

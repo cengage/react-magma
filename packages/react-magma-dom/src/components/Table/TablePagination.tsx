@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export interface TablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -76,6 +77,9 @@ export const TablePagination = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
+  const inverseContext = React.useContext(InverseContext);
+  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+
   const selectContainerStyle = { display: 'flex', alignItems: 'center' };
   const isLastPage = (page + 1) * rowsPerPage >= count;
 
@@ -106,7 +110,7 @@ export const TablePagination = React.forwardRef<
     <StyledContainer
       {...other}
       data-testid={testId}
-      isInverse={isInverse}
+      isInverse={isInverseFromContext}
       ref={ref}
       theme={theme}
     >
@@ -115,12 +119,12 @@ export const TablePagination = React.forwardRef<
         labelPosition={LabelPosition.left}
         labelText={`${i18n.table.pagination.rowsPerPageLabel}:`}
         initialSelectedItem={{ label: rowsPerPage }}
-        isInverse={isInverse}
+        isInverse={isInverseFromContext}
         items={[{ label: 10 }, { label: 20 }, { label: 50 }, { label: 100 }]}
         onSelectedItemChange={handleChangeRowsPerPage}
       />
 
-      <PageCount isInverse={isInverse} theme={theme}>
+      <PageCount isInverse={isInverseFromContext} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${count}`}
       </PageCount>
 
@@ -129,7 +133,7 @@ export const TablePagination = React.forwardRef<
         color={ButtonColor.secondary}
         disabled={page <= 0}
         icon={<ArrowLeft2Icon />}
-        isInverse={isInverse}
+        isInverse={isInverseFromContext}
         onClick={handlePreviousClick}
         testId="previousBtn"
         variant={ButtonVariant.link}
@@ -139,7 +143,7 @@ export const TablePagination = React.forwardRef<
         color={ButtonColor.secondary}
         disabled={isLastPage}
         icon={<ArrowRight2Icon />}
-        isInverse={isInverse}
+        isInverse={isInverseFromContext}
         onClick={handleNextClick}
         testId="nextBtn"
         variant={ButtonVariant.link}

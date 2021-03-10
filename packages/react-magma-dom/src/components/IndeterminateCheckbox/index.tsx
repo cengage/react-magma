@@ -134,7 +134,9 @@ export const IndeterminateCheckbox = React.forwardRef<
       : null;
 
   const hasError = context.hasError || !!errorMessage;
+
   const inverseContext = React.useContext(InverseContext);
+  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
   return (
     <>
@@ -150,14 +152,18 @@ export const IndeterminateCheckbox = React.forwardRef<
           type="checkbox"
           onChange={handleChange}
         />
-        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+        <StyledLabel
+          htmlFor={id}
+          isInverse={isInverseFromContext}
+          style={labelStyle}
+        >
           <StyledFakeInput
             isChecked={isChecked}
             color={color}
             disabled={disabled}
             hasError={hasError}
             isIndeterminate={isIndeterminate}
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
             style={inputStyle}
             theme={theme}
           >
@@ -186,7 +192,7 @@ export const IndeterminateCheckbox = React.forwardRef<
         <InputMessage
           id={descriptionId}
           hasError
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={isInverseFromContext}
           style={{ paddingLeft: theme.spaceScale.spacing08 }}
         >
           {errorMessage}

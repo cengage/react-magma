@@ -160,6 +160,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     );
 
     const inverseContext = React.useContext(InverseContext);
+    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <Container {...other} isLoadingIndicator={isLoadingIndicator}>
@@ -169,7 +170,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         <Track
           data-testid={testId}
           height={heightString}
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={isInverseFromContext}
           ref={ref}
           theme={theme}
         >
@@ -179,7 +180,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             aria-valuemax={100}
             color={color}
             isAnimated={isAnimated}
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
             percentage={percentageValue}
             role="progressbar"
             theme={theme}

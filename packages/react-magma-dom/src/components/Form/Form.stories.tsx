@@ -22,6 +22,14 @@ import { RadioGroup } from '../RadioGroup';
 import { Radio } from '../Radio';
 import { Search } from '../Search';
 import { Select } from '../Select';
+import { NavTabs, NavTab } from '../NavTabs';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from '../Tabs';
 import { Textarea } from '../Textarea';
 import { TimePicker } from '../TimePicker';
 import { Toggle } from '../Toggle';
@@ -98,6 +106,31 @@ const Fields = () => (
         </DropdownContent>
       </Dropdown>
     </Paragraph>
+
+    <NavTabs aria-label="Sample Nav Tabs" style={{ marginBottom: '16px' }}>
+      <NavTab to="#">Link 1</NavTab>
+      <NavTab to="#">Link 1</NavTab>
+    </NavTabs>
+
+    <TabsContainer
+      activeIndex={1}
+      isInverse={false}
+      style={{ marginBottom: '16px' }}
+    >
+      <Tabs aria-label="Sample Tabs">
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+      </Tabs>
+
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Main page</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
 
     <Alert variant={AlertVariant.warning} isDismissible>
       This is a warning alert. <Hyperlink to="#">Follow this link</Hyperlink>

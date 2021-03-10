@@ -14,6 +14,7 @@ import { Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
+import { InverseContext, getIsInverse } from '../../inverse';
 
 export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
 
@@ -72,13 +73,16 @@ export const NavTabs = React.forwardRef<
   } = tabsHandleMethods;
   const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
 
+  const inverseContext = React.useContext(InverseContext);
+  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+
   return (
     <StyledContainer
       aria-label={rest['aria-label']}
       as="nav"
       backgroundColor={backgroundColor}
       data-testid={testId}
-      isInverse={isInverse}
+      isInverse={isInverseFromContext}
       orientation={orientation || TabsOrientation.horizontal}
       ref={ref}
       theme={theme}
@@ -87,7 +91,7 @@ export const NavTabs = React.forwardRef<
       <ButtonPrev
         backgroundColor={background}
         buttonVisible={displayScroll.start}
-        isInverse={isInverse}
+        isInverse={isInverseFromContext}
         onClick={handleStartScrollClick}
         orientation={orientation || TabsOrientation.horizontal}
         ref={prevButtonRef}
@@ -108,7 +112,7 @@ export const NavTabs = React.forwardRef<
             value={{
               borderPosition,
               iconPosition,
-              isInverse,
+              isInverse: isInverseFromContext,
               isFullWidth,
               orientation,
             }}
@@ -120,7 +124,7 @@ export const NavTabs = React.forwardRef<
       <ButtonNext
         backgroundColor={background}
         buttonVisible={displayScroll.end}
-        isInverse={isInverse}
+        isInverse={isInverseFromContext}
         onClick={handleEndScrollClick}
         orientation={orientation || TabsOrientation.horizontal}
         ref={nextButtonRef}

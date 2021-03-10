@@ -56,10 +56,10 @@ export const TabsContainer = React.forwardRef<
 
   const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex || 0);
 
-  //const inverseContext = React.useContext(InverseContext);
+  const inverseContext = React.useContext(InverseContext);
 
   React.useEffect(() => {
-    setIsInverseContainer(Boolean(props.isInverse));
+    setIsInverseContainer(getIsInverse(inverseContext, props.isInverse));
   }, [props.isInverse]);
 
   const [isInverseContainer, setIsInverseContainer] = React.useState(

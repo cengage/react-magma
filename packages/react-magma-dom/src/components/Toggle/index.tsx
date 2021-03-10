@@ -266,6 +266,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
     const hasError = context.hasError || !!errorMessage;
 
     const inverseContext = React.useContext(InverseContext);
+    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <>
@@ -285,7 +286,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
           />
           <StyledLabel
             htmlFor={id}
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
             style={containerStyle}
           >
             {textPosition !== ToggleTextPosition.right &&
@@ -300,7 +301,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               data-testid="toggle-track"
               disabled={disabled}
               hasError={hasError}
-              isInverse={getIsInverse(inverseContext, isInverse)}
+              isInverse={isInverseFromContext}
               style={trackStyle}
               theme={theme}
             >
@@ -327,7 +328,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
           <InputMessage
             id={descriptionId}
             hasError
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
           >
             {errorMessage}
           </InputMessage>

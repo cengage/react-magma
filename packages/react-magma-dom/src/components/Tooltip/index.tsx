@@ -200,6 +200,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const combinedArrowStyle = { ...styles.arrow, ...arrowStyle };
 
   const inverseContext = React.useContext(InverseContext);
+  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
   return (
     <ToolTipContainer
@@ -214,7 +215,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
       {isVisible && (
         <StyledTooltip
           id={id}
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={isInverseFromContext}
           position={position ? position : TooltipPosition.top}
           ref={setPopperElement}
           role="tooltip"
@@ -224,7 +225,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
         >
           {content}
           <ToolTipArrow
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
             ref={setArrowElement}
             style={combinedArrowStyle}
             theme={theme}

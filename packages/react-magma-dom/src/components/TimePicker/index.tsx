@@ -302,16 +302,17 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     }
 
     const inverseContext = React.useContext(InverseContext);
+    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <TimePickerContainer
-        isInverse={getIsInverse(inverseContext, isInverse)}
+        isInverse={isInverseFromContext}
         style={containerStyle}
         theme={theme}
       >
         <StyledFieldset>
           <StyledLegend
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
             labelStyle={labelStyle}
             theme={theme}
           >
@@ -323,7 +324,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             errorMessage={errorMessage}
             helperMessage={helperMessage}
             icon={<ClockIcon />}
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
             id={id}
             inputStyle={{
               background: `${theme.colors.neutral08}`,

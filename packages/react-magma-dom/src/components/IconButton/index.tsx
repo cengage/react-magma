@@ -111,6 +111,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     const other = omit(['iconPosition', 'textPosition'], rest);
 
     const inverseContext = React.useContext(InverseContext);
+    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
     if (icon && !children) {
       return (
@@ -119,7 +120,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           ref={ref}
           color={color ? color : ButtonColor.primary}
           iconOnly
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={isInverseFromContext}
           shape={shape ? shape : ButtonShape.round}
           size={size ? size : ButtonSize.medium}
           variant={variant ? variant : ButtonVariant.solid}
@@ -139,7 +140,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {...other}
         ref={ref}
         color={color ? color : ButtonColor.primary}
-        isInverse={getIsInverse(inverseContext, isInverse)}
+        isInverse={isInverseFromContext}
         shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
         textTransform={

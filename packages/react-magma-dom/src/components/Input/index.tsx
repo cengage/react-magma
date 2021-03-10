@@ -66,13 +66,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
     const theme = React.useContext(ThemeContext);
+
     const inverseContext = React.useContext(InverseContext);
+    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <Container theme={theme} style={containerStyle}>
         {labelText && (
           <Label
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverseFromContext}
             htmlFor={id}
             size={inputSize || InputSize.medium}
             style={labelStyle}
@@ -100,7 +102,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         </InputBase>
         <InputMessage
           hasError={!!errorMessage}
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={isInverseFromContext}
           id={descriptionId}
           inputSize={inputSize || InputSize.medium}
           style={messageStyle}

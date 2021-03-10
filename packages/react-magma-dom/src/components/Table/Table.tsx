@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { InverseContext, getIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
@@ -109,13 +110,16 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const theme = React.useContext(ThemeContext);
 
+    const inverseContext = React.useContext(InverseContext);
+    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+
     return (
       <TableContext.Provider
         value={{
           hasHoverStyles,
           hasZebraStripes,
           hasVerticalBorders,
-          isInverse,
+          isInverse: isInverseFromContext,
           density,
         }}
       >
@@ -123,7 +127,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           <StyledTable
             {...other}
             data-testid={testId}
-            isInverse={isInverse}
+            isInverse={isInverseFromContext}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
             theme={theme}
