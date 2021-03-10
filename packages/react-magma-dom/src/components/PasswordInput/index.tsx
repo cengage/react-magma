@@ -123,7 +123,6 @@ export const PasswordInput = React.forwardRef<
     isPasswordMaskButtonHidden,
     id: defaultId,
     inputSize,
-    isInverse,
     labelStyle,
     labelText,
     isLabelVisuallyHidden,
@@ -162,12 +161,12 @@ export const PasswordInput = React.forwardRef<
   const theme = React.useContext(ThemeContext);
 
   const inverseContext = React.useContext(InverseContext);
-  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = getIsInverse(inverseContext, props.isInverse);
 
   return (
     <Container style={containerStyle} theme={theme}>
       <Label
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         htmlFor={id}
         size={inputSize ? inputSize : InputSize.medium}
         style={labelStyle}
@@ -189,7 +188,7 @@ export const PasswordInput = React.forwardRef<
         id={id}
         hasError={!!errorMessage}
         inputSize={inputSize ? inputSize : InputSize.medium}
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         ref={ref}
         theme={theme}
         type={passwordShown ? InputType.text : InputType.password}
@@ -230,7 +229,7 @@ export const PasswordInput = React.forwardRef<
         )}
       </InputBase>
       <InputMessage
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         id={descriptionId}
         hasError={!!errorMessage}
         style={messageStyle}

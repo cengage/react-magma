@@ -42,6 +42,7 @@ export {
   CheckboxTextPosition,
   CheckboxProps,
 } from './components/Checkbox';
+export { Container, ContainerProps } from './components/Container';
 export { DatePicker, DatePickerProps } from './components/DatePicker';
 export {
   Dropdown,

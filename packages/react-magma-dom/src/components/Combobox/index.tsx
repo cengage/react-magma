@@ -128,7 +128,6 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
     containerStyle,
     errorMessage,
     id: defaultId,
-    isInverse,
     isMulti,
     labelPosition,
     messageStyle,
@@ -150,7 +149,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   const inverseContext = React.useContext(InverseContext);
-  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = getIsInverse(inverseContext, props.isInverse);
 
   return (
     <div style={containerStyle} data-testid={testId}>
@@ -160,7 +159,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
           errorMessage={errorMessage}
           hasError={hasError}
           helperMessage={helperMessage}
-          isInverse={isInverseFromContext}
+          isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
@@ -172,7 +171,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
           errorMessage={errorMessage}
           hasError={hasError}
           helperMessage={helperMessage}
-          isInverse={isInverseFromContext}
+          isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}

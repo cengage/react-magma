@@ -1,7 +1,5 @@
 import React from 'react';
 import { Button, ButtonColor, ButtonType } from '../Button';
-import { Alert } from '../Alert';
-import { AlertVariant } from '../AlertBase';
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
 import { DatePicker } from '../DatePicker';
@@ -13,7 +11,6 @@ import {
 } from '../Dropdown';
 import { Form, FormProps } from '.';
 import { FormGroup } from '../FormGroup';
-import { Hyperlink } from '../Hyperlink';
 import { IconButton } from '../IconButton';
 import { Input } from '../Input';
 import { Paragraph } from '../Paragraph';
@@ -22,14 +19,6 @@ import { RadioGroup } from '../RadioGroup';
 import { Radio } from '../Radio';
 import { Search } from '../Search';
 import { Select } from '../Select';
-import { NavTabs, NavTab } from '../NavTabs';
-import {
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanelsContainer,
-  TabPanel,
-} from '../Tabs';
 import { Textarea } from '../Textarea';
 import { TimePicker } from '../TimePicker';
 import { Toggle } from '../Toggle';
@@ -93,7 +82,6 @@ const Fields = () => (
     <TimePicker labelText="Timepicker" />
     <Toggle labelText="Toggle switch" />
 
-    <Paragraph>Paragraph content</Paragraph>
     <Paragraph>
       <Tooltip content="Settings">
         <IconButton aria-label="Settings" icon={<SettingsIcon />} />
@@ -106,38 +94,6 @@ const Fields = () => (
         </DropdownContent>
       </Dropdown>
     </Paragraph>
-
-    <NavTabs aria-label="Sample Nav Tabs" style={{ marginBottom: '16px' }}>
-      <NavTab to="#">Link 1</NavTab>
-      <NavTab to="#">Link 1</NavTab>
-    </NavTabs>
-
-    <TabsContainer
-      activeIndex={1}
-      isInverse={false}
-      style={{ marginBottom: '16px' }}
-    >
-      <Tabs aria-label="Sample Tabs">
-        <Tab>First item</Tab>
-        <Tab>Second item</Tab>
-      </Tabs>
-
-      <TabPanelsContainer>
-        <TabPanel>
-          <div>Main page</div>
-        </TabPanel>
-        <TabPanel>
-          <div>FAQ</div>
-        </TabPanel>
-      </TabPanelsContainer>
-    </TabsContainer>
-
-    <Alert variant={AlertVariant.warning} isDismissible>
-      This is a warning alert. <Hyperlink to="#">Follow this link</Hyperlink>
-    </Alert>
-    <Alert variant={AlertVariant.success} isDismissible>
-      This is a success alert. <Hyperlink to="#">Follow this link</Hyperlink>
-    </Alert>
   </>
 );
 
@@ -156,4 +112,5 @@ Expanded.args = {
   description: 'Some description',
   errorMessage: 'Some error message',
   isInverse: true,
+  style: { padding: '4px 16px 16px' },
 };

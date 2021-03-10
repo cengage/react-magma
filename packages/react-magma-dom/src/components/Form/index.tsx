@@ -5,7 +5,7 @@ import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { InverseContext } from '../../inverse';
+import { InverseContext, getIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 
 /**
@@ -44,8 +44,6 @@ const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
-  padding: ${props =>
-    `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing06}`};
 `;
 
 const FormActions = styled.div`
@@ -61,12 +59,14 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
       header,
       description,
       errorMessage,
-      isInverse,
       testId,
       ...other
     } = props;
 
     const theme = React.useContext(ThemeContext);
+
+    const inverseContext = React.useContext(InverseContext);
+    const isInverse = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <InverseContext.Provider

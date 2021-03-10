@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext } from '../../inverse';
+import { InverseContext, getIsInverse } from '../../inverse';
+import { convertStyleValueToString } from '../../utils';
 import styled from '@emotion/styled';
 
 /**
@@ -9,11 +10,16 @@ import styled from '@emotion/styled';
  */
 export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
+  /**
+   * Max-width of the component, set by CSS.  If a number is provided, value will be in pixels
+   */
+  maxWidth?: number | string;
   testId?: string;
 }
 
 const StyledContainer = styled.div<{
   isInverse?: boolean;
+  maxWidth: string;
   theme: ThemeInterface;
 }>`
   background: ${props =>
@@ -24,15 +30,22 @@ const StyledContainer = styled.div<{
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
-  padding: ${props =>
-    `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing06}`};
+  display: flow-root;
+  margin: 0 auto;
+  max-width: ${props => props.maxWidth};
+  padding: ${props => `0 ${props.theme.spaceScale.spacing06}`};
 `;
 
 export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   (props, ref) => {
-    const { children, isInverse, testId, ...other } = props;
+    const { children, maxWidth, testId, ...other } = props;
 
     const theme = React.useContext(ThemeContext);
+
+    const maxWidthString = convertStyleValueToString(maxWidth, 'none');
+
+    const inverseContext = React.useContext(InverseContext);
+    const isInverse = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <InverseContext.Provider
@@ -44,6 +57,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
           ref={ref}
           data-testid={testId}
           isInverse={isInverse}
+          maxWidth={maxWidthString}
           theme={theme}
           {...other}
         >

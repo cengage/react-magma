@@ -102,7 +102,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       hasHoverStyles,
       hasVerticalBorders,
       hasZebraStripes,
-      isInverse,
       minWidth,
       testId,
       ...other
@@ -111,7 +110,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     const theme = React.useContext(ThemeContext);
 
     const inverseContext = React.useContext(InverseContext);
-    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <TableContext.Provider
@@ -119,7 +118,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           hasHoverStyles,
           hasZebraStripes,
           hasVerticalBorders,
-          isInverse: isInverseFromContext,
+          isInverse: isInverse,
           density,
         }}
       >
@@ -127,7 +126,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           <StyledTable
             {...other}
             data-testid={testId}
-            isInverse={isInverseFromContext}
+            isInverse={isInverse}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
             theme={theme}

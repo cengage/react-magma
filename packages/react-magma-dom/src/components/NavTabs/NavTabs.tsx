@@ -44,13 +44,15 @@ export const NavTabs = React.forwardRef<
     borderPosition,
     children,
     iconPosition,
-    isInverse,
     isFullWidth,
     orientation,
     testId,
     ...rest
   } = props;
   const theme = React.useContext(ThemeContext);
+
+  const inverseContext = React.useContext(InverseContext);
+  const isInverse = getIsInverse(inverseContext, props.isInverse);
 
   const background = backgroundColor
     ? backgroundColor
@@ -73,16 +75,13 @@ export const NavTabs = React.forwardRef<
   } = tabsHandleMethods;
   const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
 
-  const inverseContext = React.useContext(InverseContext);
-  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
-
   return (
     <StyledContainer
       aria-label={rest['aria-label']}
       as="nav"
       backgroundColor={backgroundColor}
       data-testid={testId}
-      isInverse={isInverseFromContext}
+      isInverse={isInverse}
       orientation={orientation || TabsOrientation.horizontal}
       ref={ref}
       theme={theme}
@@ -91,7 +90,7 @@ export const NavTabs = React.forwardRef<
       <ButtonPrev
         backgroundColor={background}
         buttonVisible={displayScroll.start}
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         onClick={handleStartScrollClick}
         orientation={orientation || TabsOrientation.horizontal}
         ref={prevButtonRef}
@@ -112,7 +111,7 @@ export const NavTabs = React.forwardRef<
             value={{
               borderPosition,
               iconPosition,
-              isInverse: isInverseFromContext,
+              isInverse: isInverse,
               isFullWidth,
               orientation,
             }}
@@ -124,7 +123,7 @@ export const NavTabs = React.forwardRef<
       <ButtonNext
         backgroundColor={background}
         buttonVisible={displayScroll.end}
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         onClick={handleEndScrollClick}
         orientation={orientation || TabsOrientation.horizontal}
         ref={nextButtonRef}

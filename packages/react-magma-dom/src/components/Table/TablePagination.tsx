@@ -66,7 +66,6 @@ export const TablePagination = React.forwardRef<
   const {
     testId,
     count,
-    isInverse,
     onChangePage,
     onChangeRowsPerPage,
     page = 0,
@@ -78,7 +77,7 @@ export const TablePagination = React.forwardRef<
   const i18n = React.useContext(I18nContext);
 
   const inverseContext = React.useContext(InverseContext);
-  const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = getIsInverse(inverseContext, props.isInverse);
 
   const selectContainerStyle = { display: 'flex', alignItems: 'center' };
   const isLastPage = (page + 1) * rowsPerPage >= count;
@@ -110,7 +109,7 @@ export const TablePagination = React.forwardRef<
     <StyledContainer
       {...other}
       data-testid={testId}
-      isInverse={isInverseFromContext}
+      isInverse={isInverse}
       ref={ref}
       theme={theme}
     >
@@ -119,12 +118,12 @@ export const TablePagination = React.forwardRef<
         labelPosition={LabelPosition.left}
         labelText={`${i18n.table.pagination.rowsPerPageLabel}:`}
         initialSelectedItem={{ label: rowsPerPage }}
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         items={[{ label: 10 }, { label: 20 }, { label: 50 }, { label: 100 }]}
         onSelectedItemChange={handleChangeRowsPerPage}
       />
 
-      <PageCount isInverse={isInverseFromContext} theme={theme}>
+      <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${count}`}
       </PageCount>
 
@@ -133,7 +132,7 @@ export const TablePagination = React.forwardRef<
         color={ButtonColor.secondary}
         disabled={page <= 0}
         icon={<ArrowLeft2Icon />}
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         onClick={handlePreviousClick}
         testId="previousBtn"
         variant={ButtonVariant.link}
@@ -143,7 +142,7 @@ export const TablePagination = React.forwardRef<
         color={ButtonColor.secondary}
         disabled={isLastPage}
         icon={<ArrowRight2Icon />}
-        isInverse={isInverseFromContext}
+        isInverse={isInverse}
         onClick={handleNextClick}
         testId="nextBtn"
         variant={ButtonVariant.link}

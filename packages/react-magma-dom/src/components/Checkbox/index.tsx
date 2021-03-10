@@ -187,7 +187,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       disabled,
       errorMessage,
       inputStyle,
-      isInverse,
       labelStyle,
       labelText,
       isTextVisuallyHidden,
@@ -212,7 +211,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const hasError = context.hasError || !!errorMessage;
 
     const inverseContext = React.useContext(InverseContext);
-    const isInverseFromContext = getIsInverse(inverseContext, isInverse);
+    const isInverse = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <>
@@ -228,11 +227,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             type="checkbox"
             onChange={handleChange}
           />
-          <StyledLabel
-            htmlFor={id}
-            isInverse={isInverseFromContext}
-            style={labelStyle}
-          >
+          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
             {!isTextVisuallyHidden &&
               textPosition === CheckboxTextPosition.left &&
               labelText}
@@ -242,7 +237,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               color={color}
               disabled={disabled}
               hasError={hasError}
-              isInverse={isInverseFromContext}
+              isInverse={isInverse}
               style={inputStyle}
               textPosition={textPosition}
               theme={theme}
@@ -264,11 +259,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage
-            id={descriptionId}
-            hasError
-            isInverse={isInverseFromContext}
-          >
+          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
             {errorMessage}
           </InputMessage>
         )}

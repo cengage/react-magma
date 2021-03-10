@@ -234,7 +234,6 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       disabled,
       errorMessage,
       id: defaultId,
-      isInverse,
       isTextVisuallyHidden,
       labelStyle,
       labelText,
@@ -266,7 +265,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
     const hasError = context.hasError || !!errorMessage;
 
     const inverseContext = React.useContext(InverseContext);
-    const isInverseFromContext = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = getIsInverse(inverseContext, props.isInverse);
 
     return (
       <>
@@ -286,7 +285,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
           />
           <StyledLabel
             htmlFor={id}
-            isInverse={isInverseFromContext}
+            isInverse={isInverse}
             style={containerStyle}
           >
             {textPosition !== ToggleTextPosition.right &&
@@ -301,7 +300,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               data-testid="toggle-track"
               disabled={disabled}
               hasError={hasError}
-              isInverse={isInverseFromContext}
+              isInverse={isInverse}
               style={trackStyle}
               theme={theme}
             >
@@ -325,11 +324,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
           </StyledLabel>
         </StyledContainer>
         {!!errorMessage && (
-          <InputMessage
-            id={descriptionId}
-            hasError
-            isInverse={isInverseFromContext}
-          >
+          <InputMessage id={descriptionId} hasError isInverse={isInverse}>
             {errorMessage}
           </InputMessage>
         )}
