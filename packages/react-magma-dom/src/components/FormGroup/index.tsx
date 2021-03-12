@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
+import { Label } from '../Label';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -53,13 +54,6 @@ export const FormGroupContext = React.createContext<FormGroupContextInterface>({
   isInverse: false,
 });
 
-export const FormGroupLabel = styled.label`
-  display: block;
-  font-weight: bold;
-  margin-bottom: ${props => props.theme.spaceScale.spacing02};
-  width: 100%;
-`;
-
 const HiddenLabel = styled.label`
   ${HiddenStyles};
 `;
@@ -109,9 +103,14 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           )}
 
           {labelText && !isTextVisuallyHidden && (
-            <FormGroupLabel id={id} style={labelStyle} theme={theme}>
+            <Label
+              id={id}
+              isInverse={isInverse}
+              style={labelStyle}
+              theme={theme}
+            >
               {labelText}
-            </FormGroupLabel>
+            </Label>
           )}
           {children}
 

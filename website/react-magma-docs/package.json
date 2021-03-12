@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs - take 2",
-  "version": "2.1.7-alpha.1",
+  "version": "2.1.8-alpha.6",
   "private": true,
   "repository": {
     "type": "git",
@@ -44,7 +44,7 @@
     "react-focus-lock": "1.18.3",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "2.3.8-alpha.1",
+    "react-magma-dom": "2.3.9-alpha.6",
     "react-magma-icons": "1.0.11-alpha.0",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",

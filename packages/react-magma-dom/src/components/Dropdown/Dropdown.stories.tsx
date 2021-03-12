@@ -8,6 +8,7 @@ import {
 import { DropdownButton } from './DropdownButton';
 import { DropdownContent } from './DropdownContent';
 import { DropdownMenuItem } from './DropdownMenuItem';
+import { DropdownSplitButton } from './DropdownSplitButton';
 import { ButtonSize } from '../Button';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -68,3 +69,18 @@ const SmallTemplate: Story<DropdownProps> = args => (
 
 export const SmallButton = SmallTemplate.bind({});
 SmallButton.args = { ...Default.args };
+
+const SplitTemplate: Story<DropdownProps> = args => (
+  <Dropdown {...args}>
+    <DropdownSplitButton size={ButtonSize.small}>
+      Basic Dropdown
+    </DropdownSplitButton>
+    <DropdownContent>
+      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+    </DropdownContent>
+  </Dropdown>
+);
+
+export const SplitButton = SplitTemplate.bind({});
+SplitButton.args = { ...Default.args };
