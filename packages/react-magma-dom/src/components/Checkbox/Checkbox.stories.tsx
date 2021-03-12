@@ -13,11 +13,11 @@ export const Default = () => {
   const [checked, updateChecked] = React.useState(false);
   return (
     <>
-      <FormGroup labelText="Choose One or More">
+      <FormGroup labelText="Choose one or more">
         <Checkbox
           checked
           labelText="Uncontrolled checkbox"
-          onChange={() => updateChecked(!checked)}
+          defaultChecked={true}
         />
 
         <Checkbox
@@ -64,7 +64,6 @@ export const Default = () => {
         <Checkbox
           defaultChecked={true}
           disabled
-          id="customId"
           labelText="Disabled checked checkbox"
         />
       </FormGroup>
@@ -83,32 +82,24 @@ export const Inverse = () => {
   return (
     <Card isInverse>
       <CardBody>
-        <FormGroup labelText="Choose One or More">
-          <Checkbox isInverse checked labelText="Uncontrolled checkbox" />
-
-          <Checkbox isInverse labelText="Controlled checkbox" />
-
-          <Checkbox
-            isInverse
-            labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines"
-          />
+        <FormGroup labelText="Choose one or more" isInverse>
+          <Checkbox isInverse checked labelText="Checked checkbox" />
+          <Checkbox isInverse labelText="Unchecked checkbox" />
         </FormGroup>
-        <FormGroup labelText="Disabled">
+        <FormGroup labelText="Disabled" isInverse>
           <Checkbox isInverse disabled labelText="Disabled checkbox" />
 
           <Checkbox
             isInverse
             defaultChecked={true}
             disabled
-            id="customId"
             labelText="Disabled checked checkbox"
           />
         </FormGroup>
-        <FormGroup labelText="Error">
+        <FormGroup labelText="Error" isInverse>
           <Checkbox
             isInverse
             errorMessage="Please check this box"
-            id="customId"
             labelText="Checkbox with error"
           />
         </FormGroup>
