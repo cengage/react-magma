@@ -4,6 +4,7 @@ import {
   FlexProps,
   FlexAlignContent,
   FlexAlignItems,
+  FlexBehavior,
   FlexDirection,
   FlexJustify,
   FlexWrap,
@@ -50,38 +51,38 @@ export default {
 } as Meta;
 
 const Template: Story<FlexProps> = args => (
-  <Flex isContainer {...args}>
-    <Flex isItem xs={12}>
+  <Flex behavior={FlexBehavior.container} {...args}>
+    <Flex behavior={FlexBehavior.item} xs={12}>
       <Card>
         <CardBody>xs=12</CardBody>
       </Card>
     </Flex>
-    <Flex isItem xs={12} sm={6}>
+    <Flex behavior={FlexBehavior.item} xs={12} sm={6}>
       <Card>
         <CardBody>xs=12 sm=6</CardBody>
       </Card>
     </Flex>
-    <Flex isItem xs={12} sm={6}>
+    <Flex behavior={FlexBehavior.item} xs={12} sm={6}>
       <Card>
         <CardBody>xs=12 sm=6</CardBody>
       </Card>
     </Flex>
-    <Flex isItem xs={6} sm={3}>
+    <Flex behavior={FlexBehavior.item} xs={6} sm={3}>
       <Card>
         <CardBody>xs=6 sm=3</CardBody>
       </Card>
     </Flex>
-    <Flex isItem xs={6} sm={3}>
+    <Flex behavior={FlexBehavior.item} xs={6} sm={3}>
       <Card>
         <CardBody>xs=6 sm=3 elit.</CardBody>
       </Card>
     </Flex>
-    <Flex isItem xs={6} sm={3}>
+    <Flex behavior={FlexBehavior.item} xs={6} sm={3}>
       <Card>
         <CardBody>xs=6 sm=3</CardBody>
       </Card>
     </Flex>
-    <Flex isItem xs={6} sm={3}>
+    <Flex behavior={FlexBehavior.item} xs={6} sm={3}>
       <Card>
         <CardBody>xs=6 sm=3</CardBody>
       </Card>
@@ -95,18 +96,18 @@ Default.args = {
 };
 
 const TemplateFixedWidth: Story<FlexProps> = args => (
-  <Flex isContainer {...args}>
-    <Flex isItem>
+  <Flex behavior={FlexBehavior.container} {...args}>
+    <Flex behavior={FlexBehavior.item}>
       <Card width={200}>
         <CardBody>Card has fixed width</CardBody>
       </Card>
     </Flex>
-    <Flex isItem>
+    <Flex behavior={FlexBehavior.item}>
       <Card width={200}>
         <CardBody>Card has fixed width.</CardBody>
       </Card>
     </Flex>
-    <Flex isItem>
+    <Flex behavior={FlexBehavior.item}>
       <Card width={200}>
         <CardBody>Card has fixed width</CardBody>
       </Card>
@@ -121,18 +122,18 @@ FixedWidth.args = {
 };
 
 const TemplateAutoWidth: Story<FlexProps> = args => (
-  <Flex isContainer {...args}>
-    <Flex isContainer isItem xs>
+  <Flex behavior={FlexBehavior.container} {...args}>
+    <Flex behavior={FlexBehavior.item} xs>
       <Card>
         <CardBody>Auto width</CardBody>
       </Card>
     </Flex>
-    <Flex isContainer isItem xs>
+    <Flex behavior={FlexBehavior.item} xs>
       <Card>
         <CardBody>Auto width</CardBody>
       </Card>
     </Flex>
-    <Flex isContainer isItem xs>
+    <Flex behavior={FlexBehavior.item} xs>
       <Card>
         <CardBody>Auto width</CardBody>
       </Card>
@@ -146,18 +147,18 @@ AutoWidth.args = {
 };
 
 const TemplateOneSetWidth: Story<FlexProps> = args => (
-  <Flex isContainer {...args}>
-    <Flex isContainer isItem xs={6}>
+  <Flex behavior={FlexBehavior.container} {...args}>
+    <Flex behavior={FlexBehavior.item} xs={6}>
       <Card>
         <CardBody>Auto width</CardBody>
       </Card>
     </Flex>
-    <Flex isContainer isItem xs>
+    <Flex behavior={FlexBehavior.item} xs>
       <Card>
         <CardBody>Auto width</CardBody>
       </Card>
     </Flex>
-    <Flex isContainer isItem xs>
+    <Flex behavior={FlexBehavior.item} xs>
       <Card>
         <CardBody>Auto width</CardBody>
       </Card>
@@ -172,7 +173,7 @@ OneSetWidth.args = {
 
 const TemplateContainerOnly: Story<FlexProps> = args => (
   <Card>
-    <Flex isContainer {...args}>
+    <Flex behavior={FlexBehavior.container} {...args}>
       <Button color={ButtonColor.secondary}>Cancel</Button>
       <Button>Save</Button>
     </Flex>
@@ -186,53 +187,53 @@ ContainerOnly.args = {
 };
 
 const TemplateNested: Story<FlexProps> = args => (
-  <Flex isContainer spacing={1} {...args}>
-    <Flex isContainer isItem xs={12} spacing={3}>
-      <Flex isItem xs={4}>
+  <Flex behavior={FlexBehavior.container} spacing={1} {...args}>
+    <Flex behavior={FlexBehavior.both} xs={12} spacing={3}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 1A</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={4}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 2A</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={4}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 3A</CardBody>
         </Card>
       </Flex>
     </Flex>
-    <Flex isContainer isItem xs={12} spacing={3}>
-      <Flex isItem xs={4}>
+    <Flex behavior={FlexBehavior.both} xs={12} spacing={3}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 1B</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={4}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 2B</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={4}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 3B</CardBody>
         </Card>
       </Flex>
     </Flex>
-    <Flex isContainer isItem xs={12} spacing={3}>
-      <Flex isItem xs={4}>
+    <Flex behavior={FlexBehavior.both} xs={12} spacing={3}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 1C</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={4}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 2C</CardBody>
         </Card>
       </Flex>
-      <Flex isItem xs={4}>
+      <Flex behavior={FlexBehavior.item} xs={4}>
         <Card>
           <CardBody>item 3C</CardBody>
         </Card>
@@ -249,13 +250,13 @@ FixedWidth.args = {
 const cardStyles = { height: '100%', 'text-align': 'center' };
 
 const TemplateOtherProps: Story<FlexProps> = args => (
-  <Flex isContainer {...args}>
-    <Flex isItem>
+  <Flex behavior={FlexBehavior.container} {...args}>
+    <Flex behavior={FlexBehavior.item}>
       <Card style={cardStyles}>
         <CardBody>Card Item</CardBody>
       </Card>
     </Flex>
-    <Flex isItem>
+    <Flex behavior={FlexBehavior.item}>
       <Card style={cardStyles}>
         <CardBody>
           Taller
@@ -264,12 +265,12 @@ const TemplateOtherProps: Story<FlexProps> = args => (
         </CardBody>
       </Card>
     </Flex>
-    <Flex isItem>
+    <Flex behavior={FlexBehavior.item}>
       <Card style={cardStyles}>
         <CardBody>Card Item</CardBody>
       </Card>
     </Flex>
-    <Flex isItem>
+    <Flex behavior={FlexBehavior.item}>
       <Card style={cardStyles}>
         <CardBody>Card Item</CardBody>
       </Card>

@@ -6,14 +6,18 @@ import { render } from '@testing-library/react';
 describe('Flex', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(<Flex testId={testId}>Test Flex</Flex>);
+    const { getByTestId } = render(
+      <Flex behavior="container" testId={testId}>
+        Test Flex
+      </Flex>
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a flex container with the correct styles', () => {
     const text = 'Test Flex';
-    const { getByText } = render(<Flex isContainer>{text}</Flex>);
+    const { getByText } = render(<Flex behavior="container">{text}</Flex>);
 
     expect(getByText(text)).toHaveStyleRule('align-content', 'stretch');
   });
@@ -21,7 +25,7 @@ describe('Flex', () => {
   it('should render a flex item with the correct styles', () => {
     const text = 'Test Flex';
     const { getByText } = render(
-      <Flex isItem xs={6}>
+      <Flex behavior="item" xs={6}>
         {text}
       </Flex>
     );
@@ -31,7 +35,7 @@ describe('Flex', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = render(<Flex>test text</Flex>);
+    const { container } = render(<Flex behavior="container">test text</Flex>);
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

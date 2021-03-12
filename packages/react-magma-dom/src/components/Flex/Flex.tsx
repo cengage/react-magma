@@ -20,6 +20,12 @@ export enum FlexAlignItems {
   stretch = 'stretch', // default
 }
 
+export enum FlexBehavior {
+  container = 'container',
+  item = 'item',
+  both = 'both',
+}
+
 export enum FlexDirection {
   column = 'column',
   columnReverse = 'column-reverse',
@@ -57,21 +63,16 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   alignItems?: FlexAlignItems;
   /**
+   *  Defines the flex behavior for the component. Options are container, item or both. You should be wrapping items with a container.
+   */
+  behavior: FlexBehavior;
+  /**
    * Defines the flex-direction style property. It's applied for all screen sizes.
    * @default FlexDirection.row
    */
   direction?: FlexDirection;
   /**
-   * If true, the component will have the flex container behavior. You should be wrapping items with a container.
-   */
-  isContainer?: boolean;
-  /**
    * If true, the component will have the flex item behavior. You should be wrapping items with a container.
-   */
-  isItem?: boolean;
-  /**
-   * Defines the justify-content style property. It's applied for all screen sizes.
-   * @default FlexJustify.flexStart
    */
   justify?: FlexJustify;
   /**
@@ -118,7 +119,7 @@ function getWidth(size) {
 
 const StyledFlex = styled.div<FlexProps>`
   ${props =>
-    props.isContainer &&
+    props.behavior !== FlexBehavior.item &&
     css`
       align-content: ${props.alignContent};
       align-items: ${props.alignItems};
@@ -135,7 +136,7 @@ const StyledFlex = styled.div<FlexProps>`
     `};
 
   ${props =>
-    props.isItem &&
+    props.behavior !== FlexBehavior.container &&
     css`
       flex-grow: ${props.xs === true ? '1' : '0'};
       flex-basis: ${props.xs === true ? '0' : getWidth(props.xs)};
@@ -186,8 +187,6 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
       alignContent = FlexAlignContent.stretch,
       alignItems = FlexAlignItems.stretch,
       direction = FlexDirection.row,
-      isContainer = false,
-      isItem = false,
       justify = FlexJustify.flexStart,
       spacing = 0,
       testId,
@@ -204,8 +203,6 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
         alignItems={alignItems}
         data-testid={testId}
         direction={direction}
-        isContainer={isContainer}
-        isItem={isItem}
         justify={justify}
         ref={ref}
         spacing={spacing}
