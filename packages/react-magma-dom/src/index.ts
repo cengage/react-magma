@@ -133,6 +133,7 @@ export {
   SkipLinkContent,
   SkipLinkContentProps,
 } from './components/SkipLinkContent';
+export { Spacer, SpacerProps, SpacerAxis } from './components/Spacer';
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
   Table,
