@@ -41,6 +41,7 @@ export const FieldArrayItem = ({
             aria-label={removeLabel}
             icon={<DeleteIcon />}
             variant={ButtonVariant.link}
+            
             onClick={() => remove(fieldIndex)}
             disabled={length <= minItems}
           />

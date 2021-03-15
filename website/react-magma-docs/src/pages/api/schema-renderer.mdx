@@ -3,14 +3,16 @@ pageTitle: Schema Renderer API
 title: Schema Renderer
 ---
 
-<DocsHeading type="api">SchemaRenderer</DocsHeading>
+<DocsHeading type='api'>SchemaRenderer</DocsHeading>
 
-<Alert variant="warning">
+<Alert variant='warning'>
   The Schema Renderer is currently early beta. It is a work in progress and may
   have breaking changes.
 </Alert>
 
 The `SchemaRenderer` is an advanced component which maps other React Magma components to a defined Schema. This allows developers to render data driven pages and forms at runtime.
+
+
 
 ## Basic Template
 
@@ -31,29 +33,29 @@ const schema: Schema = {
   fields: [
     {
       component: componentTypes.BANNER,
-      name: 'BANNER',
+      name: 'basic-banner',
       children: 'This is a data driven Banner',
     },
     {
       component: componentTypes.HEADING,
-      name: 'HEADING',
+      name: 'basic-heading',
       children: 'Data Driven Heading',
       level: 2,
     },
     {
       component: componentTypes.PARAGRAPH,
-      name: 'name',
+      name: 'basic-paragraph',
       children: 'This is a data driven Paragraph.',
     },
     {
       component: componentTypes.ALERT,
-      name: 'ALERT',
+      name: 'basic.alert',
       children: 'This is a data driven Alert',
       variant: 'warning',
     },
     {
       component: componentTypes.HYPERLINK,
-      name: 'HYPERLINK',
+      name: 'basic.hyperlink',
       to: 'https://react-magma.cengage.com',
       children: 'This is a data driven link',
     },
@@ -93,13 +95,13 @@ const schema: Schema = {
   fields: [
     {
       component: componentTypes.INPUT,
-      name: 'name',
+      name: 'form-input',
       labelText: 'Input',
       type: InputType.text,
     },
     {
       component: componentTypes.RADIO,
-      name: 'radio',
+      name: 'form-radio',
       labelText: 'Radio',
       options: [
         { labelText: 'one', value: '1' },
@@ -109,13 +111,13 @@ const schema: Schema = {
     },
     {
       component: componentTypes.CHECKBOX,
-      name: 'checkbox',
+      name: 'form-checkbox',
       labelText: 'Checkbox',
       value: 'checked',
     },
     {
       component: componentTypes.CHECKBOX,
-      name: 'checkbox-group',
+      name: 'form-checkbox-group',
       labelText: 'Checkbox group',
       options: [
         { labelText: 'one', value: '1' },
@@ -125,7 +127,7 @@ const schema: Schema = {
     },
     {
       component: componentTypes.COMBOBOX,
-      name: 'combobox',
+      name: 'form-combobox',
       labelText: 'Combobox',
       options: [
         { labelText: 'one', value: '1' },
@@ -135,7 +137,7 @@ const schema: Schema = {
     },
     {
       component: componentTypes.COMBOBOX,
-      name: 'combobox-multi',
+      name: 'form-combobox-multi',
       labelText: 'Multi combobox',
       isMulti: true,
       options: [
@@ -146,17 +148,17 @@ const schema: Schema = {
     },
     {
       component: componentTypes.DATE_PICKER,
-      name: 'date_picker',
+      name: 'form-date-picker',
       labelText: 'Date picker',
     },
     {
       component: componentTypes.PASSWORD_INPUT,
-      name: 'password_input',
+      name: 'form-password-input',
       labelText: 'Password input',
     },
     {
       component: componentTypes.SELECT,
-      name: 'select',
+      name: 'form-select',
       labelText: 'Select',
       options: [
         { labelText: 'one', value: '1' },
@@ -166,7 +168,7 @@ const schema: Schema = {
     },
     {
       component: componentTypes.SELECT,
-      name: 'select-multi',
+      name: 'form-select-multi',
       labelText: 'Multi-select',
       isMulti: true,
       options: [
@@ -177,22 +179,22 @@ const schema: Schema = {
     },
     {
       component: componentTypes.TEXTAREA,
-      name: 'textarea',
+      name: 'form-textarea',
       labelText: 'Textarea',
     },
     {
       component: componentTypes.TIME_PICKER,
-      name: 'time_picker',
+      name: 'form-time-picker',
       labelText: 'Time picker',
     },
     {
       component: componentTypes.TOGGLE,
-      name: 'toggle',
+      name: 'form-toggle',
       labelText: 'Toggle',
     },
     {
       component: componentTypes.SPY,
-      name: 'spy',
+      name: 'form-spy',
       subscription: { values: true },
       template: ({ values }) => (
         <pre>{JSON.stringify({ values }, null, 2)}</pre>
@@ -236,24 +238,24 @@ export function Example() {
     fields: [
       {
         component: componentTypes.FORM_GROUP,
-        name: 'form_group',
+        name: 'sub-form-group',
         labelText: 'Register',
         fields: [
           {
             component: componentTypes.INPUT,
-            name: 'name',
+            name: 'sub-name',
             labelText: 'Name',
             type: InputType.text,
           },
           {
             component: componentTypes.INPUT,
-            name: 'email',
+            name: 'sub-email',
             labelText: 'Email',
             type: InputType.text,
           },
           {
             component: componentTypes.PASSWORD_INPUT,
-            name: 'password',
+            name: 'sub-password',
             labelText: 'Password',
           },
         ],
@@ -295,12 +297,12 @@ export function Example() {
     fields: [
       {
         component: componentTypes.FIELD_ARRAY,
-        name: 'field_array',
+        name: 'field-array',
         labelText: 'Field_array',
         fields: [
           {
             component: componentTypes.INPUT,
-            name: 'name',
+            name: 'field-array-name',
             labelText: 'Input',
             type: InputType.text,
           },
@@ -395,21 +397,21 @@ export function Example() {
     fields: [
       {
         component: componentTypes.MODAL,
-        name: 'name',
+        name: 'custom-name',
         isOpen,
         onClose: () => setIsOpen(false),
         header: 'Data Driven Modal',
         fields: [
           {
             component: componentTypes.PARAGRAPH,
-            name: 'name',
+            name: 'custom-modal-name',
             children: 'Hello. This is a Paragraph inside a Modal.',
           },
         ],
       },
       {
         component: componentTypes.CUSTOM,
-        name: 'toast',
+        name: 'custom-toast',
         onDismiss: () => setShowToast(false),
         showToast,
         customComponent: CustomToast,
@@ -417,7 +419,7 @@ export function Example() {
       },
       {
         component: componentTypes.CUSTOM,
-        name: 'button-modal',
+        name: 'custom-button-modal',
         onClick: () => setIsOpen(true),
         disabled: isOpen,
         labelText: 'OPEN MODAL',
@@ -425,7 +427,7 @@ export function Example() {
       },
       {
         component: componentTypes.CUSTOM,
-        name: 'button-toast',
+        name: 'custom-button-toast',
         onClick: () => setShowToast(true),
         disabled: showToast,
         labelText: 'OPEN Toast',
@@ -468,12 +470,12 @@ export function Example() {
     fields: [
       {
         component: componentTypes.INPUT,
-        name: 'input',
+        name: 'spy-input',
         labelText: 'Some input',
       },
       {
         component: componentTypes.SPY,
-        name: 'spy',
+        name: 'spy-spy',
         template: formState => <pre>{JSON.stringify(formState, null, 2)}</pre>,
       },
     ],
@@ -513,22 +515,23 @@ export function Example() {
     fields: [
       {
         component: componentTypes.SPY,
-        name: 'spy',
+        name: 'validator-spy',
         subscription: { errors: true },
         template: ({ errors }) => (
           <>
-            {Object.keys(errors).map(error => (
-              <Alert variant={AlertVariant.danger}>{errors[error]}</Alert>
+            {Object.keys(errors).map((error) => (
+              <Alert variant={AlertVariant.danger}>
+                [{error}] - {errors[error]}
+              </Alert>
             ))}
           </>
         ),
       },
       {
         component: componentTypes.INPUT,
-        name: 'input-foo',
+        name: 'validator-input',
         labelText: 'Some input',
         helperMessage: 'Value must be equal to Foo',
-        initializeOnMount: true,
         validate: [
           {
             type: validatorTypes.PATTERN,
@@ -538,14 +541,113 @@ export function Example() {
       },
       {
         component: componentTypes.INPUT,
-        name: 'input-bar',
-        labelText: 'Some input',
-        helperMessage: 'Value must be equal to Bar',
-        initializeOnMount: true,
+        name: 'validator-length',
+        labelText: 'Length field',
+        helperMessage: 'min 5 characters, max 10',
         validate: [
           {
-            type: validatorTypes.PATTERN,
-            pattern: /^Bar$/i,
+            type: validatorTypes.MIN_LENGTH,
+            threshold: 5,
+          },
+          {
+            type: validatorTypes.MAX_LENGTH,
+            threshold: 10,
+          },
+        ],
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'validator-exact-length',
+        labelText: 'Exact length field',
+        helperMessage: 'must be 3 characters long',
+        validate: [
+          {
+            type: validatorTypes.EXACT_LENGTH,
+            threshold: 3,
+          },
+        ],
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'validator-number-size',
+        labelText: 'Number value validator',
+        helperMessage: 'Value of the number must be between 1.36 and 33.3',
+        type: InputType.number,
+        validate: [
+          {
+            type: validatorTypes.MIN_NUMBER_VALUE,
+            includeThreshold: true,
+            value: 1.36,
+          },
+          {
+            type: validatorTypes.MAX_NUMBER_VALUE,
+            includeThreshold: false,
+            value: 33.3,
+          },
+        ],
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'validator-required-field',
+        labelText: 'Required field',
+        required: true,
+        helperMessage: '* Required',
+        validate: [
+          {
+            type: validatorTypes.REQUIRED,
+          },
+        ],
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'validator-url-default-config',
+        labelText: 'Default validator',
+        helperMessage:
+          'type some address like: https://react-magma-cengage.com/',
+        validate: [
+          {
+            type: validatorTypes.URL,
+          },
+        ],
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'validator-url-protocol-config',
+        labelText: 'Custom protocol',
+        helperMessage:
+          'type some address with custom gopher protocol like: gopher://react-magma.cengage.com/',
+        validate: [
+          {
+            type: validatorTypes.URL,
+            protocol: 'gopher',
+          },
+        ],
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'validator-url-without-config',
+        labelText: 'Without protocol',
+        helperMessage: 'type some address with like: react-magma.cengage.com/',
+        validate: [
+          {
+            type: validatorTypes.URL,
+            protocolIdentifier: false,
+          },
+        ],
+      },
+      {
+        component: componentTypes.INPUT,
+        name: 'validator-custom-message',
+        labelText: 'Age (with custom error message)',
+        type: InputType.number,
+        helperMessage: 'Enter an age greater than 12',
+        validate: [
+          {
+            type: validatorTypes.MIN_NUMBER_VALUE,
+            includeThreshold: true,
+            value: 18,
+            message:
+              'You must be at least 12 years old to ride this attraction',
           },
         ],
       },
@@ -556,7 +658,119 @@ export function Example() {
     <div>
       <SchemaRenderer
         schema={schema}
-        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+        onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+      />
+    </div>
+  );
+}
+```
+
+### Custom Validators
+
+As validator you can provide your custom function. This function takes `value`, `allValues` and `meta` as arguments and returns the error message when it fails, otherwise it returns undefined. Please see [final form validate prop](https://final-form.org/docs/react-final-form/types/FieldProps#validate).
+
+```tsx
+import React from 'react';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+  validatorTypes,
+} from 'react-magma-schema-renderer';
+import { Alert, AlertVariant } from 'react-magma-dom';
+
+export function Example() {
+  const schema: Schema = {
+    title: 'Field Validation',
+    description: 'Tossing some validation on an input.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.INPUT,
+        name: 'custom-validator',
+        label: 'Custom validator',
+        helperMessage: 'Type name Andy to fail validation.',
+        validate: [(value) => (value === 'Andy' ? 'Andy is not allowed' : undefined)]
+      },
+    ],
+  };
+
+  return (
+    <div>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
+      />
+    </div>
+  );
+}
+```
+
+### Async Validators
+
+You can use a Async function as a validator. But it must be first in the validate array. Other async validators will be ignored. This rule was created to prevent long asynchronous validation sequences.
+
+You can either use custom function, or custom validator from validator mapper.
+
+Validator inputs and results are being cached so you will get immediate feedback for recurring values before the validation is actually finished.
+
+If you do not want to trigger the async validator after every stroke, you can use a debounce promise library (or any other implementation of debouncing.)
+
+```tsx
+import React from 'react';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+  validatorTypes,
+} from 'react-magma-schema-renderer';
+
+const mockEndpoint = (value) =>
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (value === 'Andy') {
+        reject({ message: 'Andy is not allowed' });
+      }
+      resolve({ message: 'validation sucesfull' });
+    }, 2000);
+  });
+const asyncValidator = (value) =>
+  mockEndpoint(value)
+    .catch(({ message }) => {
+      // error must only throw valid react child eg: string, number, node, etc.
+      throw message;
+    })
+    .then(() => {
+      // possible success handler
+    });
+
+export function Example() {
+  const schema: Schema = {
+    title: 'Field Validation',
+    description: 'Tossing some validation on an input.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.INPUT,
+        name: 'async-validator',
+        label: 'Async validator',
+        helperMessage: 'Type name Andy to fail validation. Validation will take 2 seconds.',
+        validate: [asyncValidator]
+      },
+    ],
+  };
+
+  return (
+    <div>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
       />
     </div>
   );
