@@ -28,20 +28,22 @@ const StyledHeader = styled.header<{
   align-items: center;
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.foundation02
-      : props.theme.colors.neutral08};
+      ? props.theme.appBar.inverse.backgroundColor
+      : props.theme.appBar.backgroundColor};
   border-bottom: 1px solid ${props => props.theme.colors.neutral06};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.appBar.inverse.textColor
+      : props.theme.appBar.textColor};
   display: flex;
   height: ${props =>
-    props.isCompact ? '56px' : '88px'}; // TODO: Remove hardcoded values
+    props.isCompact
+      ? props.theme.appBar.compact.height
+      : props.theme.appBar.height};
   padding: ${props =>
     props.isCompact
-      ? `${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing06}`
-      : `${props.theme.spaceScale.spacing06} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing06} ${props.theme.spaceScale.spacing06}`};
+      ? props.theme.appBar.compact.padding
+      : props.theme.appBar.padding};
 `;
 
 export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(

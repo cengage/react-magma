@@ -10,6 +10,7 @@ import {
   I18nContext,
   Search,
   SearchProps,
+  Spacer,
   ThemeContext,
   ThemeInterface,
 } from 'react-magma-dom';
@@ -32,11 +33,6 @@ const LogoWrapper = styled.span<{ isCompact?: boolean; theme: ThemeInterface }>`
   align-items: center;
   display: flex;
   flex-grow: 1;
-  height: ${props =>
-    props.isCompact
-      ? props.theme.spaceScale.spacing06
-      : props.theme.spaceScale.spacing09};
-  margin-right: ${props => props.theme.spaceScale.spacing12};
   white-space: nowrap;
 
   svg,
@@ -48,16 +44,14 @@ const LogoWrapper = styled.span<{ isCompact?: boolean; theme: ThemeInterface }>`
   }
 `;
 
-const StyledLink = styled(Hyperlink)<{ theme: ThemeInterface }>`
+const StyledLink = styled(Hyperlink)`
   text-decoration: none;
-  margin-right: ${props => props.theme.spaceScale.spacing06};
   white-space: nowrap;
 `;
 
-const ChildrenWrapper = styled.span<{ theme: ThemeInterface }>`
+const ChildrenWrapper = styled.span`
   align-items: center;
   display: flex;
-  margin: 0 0 0 ${props => props.theme.spaceScale.spacing06};
   white-space: nowrap;
 `;
 
@@ -99,23 +93,38 @@ export const Header = ({
         {logo}
       </LogoWrapper>
 
+      <Spacer size={theme.spaceScale.spacing12} />
+
       <HideAtBreakpoint
         displayType={HideAtBreakpointDisplayType.flex}
         maxWidth={breakpoint}
         style={{ alignItems: 'center' }}
       >
         {callToActionProps && (
-          <StyledLink
-            isInverse={isInverse}
-            theme={theme}
-            {...callToActionProps}
-          />
+          <>
+            <StyledLink
+              isInverse={isInverse}
+              theme={theme}
+              {...callToActionProps}
+            />
+            {(searchProps || children) && (
+              <Spacer size={theme.spaceScale.spacing06} />
+            )}
+          </>
         )}
 
-        {searchProps && <Search {...searchProps} isInverse={isInverse} />}
+        {searchProps && (
+          <>
+            <Search {...searchProps} isInverse={isInverse} />
+            {children && <Spacer size={theme.spaceScale.spacing06} />}
+          </>
+        )}
 
         {children && (
-          <ChildrenWrapper theme={theme}>{children}</ChildrenWrapper>
+          <ChildrenWrapper theme={theme}>
+            <Spacer size={theme.spaceScale.spacing06} />
+            {children}
+          </ChildrenWrapper>
         )}
       </HideAtBreakpoint>
     </AppBar>

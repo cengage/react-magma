@@ -59,6 +59,7 @@ import {
   NavTabs,
   NavTab,
   Search,
+  Spacer,
   TabsIconPosition,
   magma,
 } from 'react-magma-dom';
@@ -71,22 +72,20 @@ export function Example() {
         style={{
           alignItems: 'center',
           display: 'flex',
-          paddingRight: magma.spaceScale.spacing12,
           whiteSpace: 'nowrap',
         }}
       >
-        <ImageIcon
-          size={24}
-          style={{ marginRight: magma.spaceScale.spacing03 }}
-        />
+        <ImageIcon size={24} />
+        <Spacer size={magma.spaceScale.spacing03} />
         LOGO
       </strong>
+      <Spacer size={magma.spaceScale.spacing12} />
       <Search
-        containerStyle={{ marginRight: magma.spaceScale.spacing06 }}
         isInverse
         onSearch={() => {}}
         placeholder="Search for content..."
       />
+      <Spacer size={magma.spaceScale.spacing06} />
       <NavTabs
         aria-label="Navigation"
         backgroundColor="transparent"

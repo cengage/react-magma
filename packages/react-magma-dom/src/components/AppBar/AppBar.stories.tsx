@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, AppBarProps } from './index';
 import { NavTabs, NavTab } from '../NavTabs';
 import { Search } from '../Search';
+import { Spacer } from '../Spacer';
 import { TabsIconPosition } from '../Tabs';
 import { magma } from '../../theme/magma';
 import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
@@ -29,25 +30,20 @@ const TabsTemplate: Story<AppBarProps> = args => (
       style={{
         alignItems: 'center',
         display: 'flex',
-        paddingRight: magma.spaceScale.spacing12,
         whiteSpace: 'nowrap',
       }}
     >
-      <ImageIcon
-        size={args.isCompact ? 24 : 40}
-        style={{ marginRight: magma.spaceScale.spacing03 }}
-      />
+      <ImageIcon size={args.isCompact ? 24 : 40} />
+      <Spacer size={magma.spaceScale.spacing03} />
       LOGO
     </strong>
+    <Spacer size={magma.spaceScale.spacing12} />
     <Search
-      containerStyle={{
-        flexShrink: 0,
-        marginRight: magma.spaceScale.spacing06,
-      }}
       isInverse={args.isInverse}
       onSearch={() => {}}
       placeholder="Search for content..."
     />
+    <Spacer size={magma.spaceScale.spacing06} />
     <NavTabs
       aria-label="Navigation"
       backgroundColor="transparent"
