@@ -173,6 +173,7 @@ export interface ThemeInterface {
   dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
+  spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
@@ -291,6 +292,7 @@ export const magma = {
   headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
+  spacingMultiplier: 8,
 
   // breakpoints
   breakpoints: {
