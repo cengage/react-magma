@@ -3,11 +3,14 @@ import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
   buildDisplayInputActiveBackground,
-  buildDisplayInputBorderColor,
   buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
+import {
+  RadioButtonCheckedIcon,
+  RadioButtonUncheckedIcon,
+} from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 // Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
@@ -70,8 +73,30 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
   ${HiddenStyles};
 `;
 
+function buildRadioIconColor(props) {
+  if (props.disabled) {
+    if (props.isInverse) {
+      return props.theme.colors.tint04;
+    }
+    return props.theme.colors.neutral05;
+  }
+  if (props.isInverse) {
+    if (props.hasError) {
+      return props.theme.colors.dangerInverse;
+    }
+    return props.theme.colors.neutral08;
+  }
+  if (props.isChecked) {
+    return props.color;
+  }
+  if (props.hasError) {
+    return props.theme.colors.danger;
+  }
+  return props.theme.colors.neutral02;
+}
+
 const StyledFakeInput = styled.span<{
-  checked?: boolean;
+  isChecked?: boolean;
   hasError?: boolean;
   isInverse: boolean;
   disabled: boolean;
@@ -80,26 +105,15 @@ const StyledFakeInput = styled.span<{
   theme?: any;
 }>`
   ${DisplayInputStyles};
-  background: ${props => {
-    if (props.isInverse) {
-      return 'none';
-    }
-    if (props.disabled) {
-      return props.theme.colors.neutral06;
-    }
-    return props.theme.colors.neutral08;
-  }};
-  border-color: ${props => buildDisplayInputBorderColor(props)};
+  color: ${props => buildRadioIconColor(props)};
   border-radius: 100%;
-  box-shadow: ${props =>
-    props.isInverse && props.hasError
-      ? `0 0 0 1px ${props.theme.colors.neutral08}`
-      : '0 0 0'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
-    props.textPosition === 'left' ? '2px 0 0 10px' : '2px 10px 0 0'};
+    props.textPosition === 'left'
+      ? `0 0 0 ${props.theme.spaceScale.spacing03}`
+      : `0 ${props.theme.spaceScale.spacing03} 0 0`};
 
-  ${HiddenInput}:checked:not(:disabled) + label & {
+  ${HiddenInput}:checked:not (:disabled) + label & {
     background: ${props => {
       if (props.isInverse) {
         return props.theme.colors.neutral08;
@@ -126,25 +140,13 @@ const StyledFakeInput = styled.span<{
   }
 `;
 
-const SelectedIcon = styled.span<{ color: string; theme?: any }>`
-  background: ${props =>
-    props.color ? props.color : props.theme.colors.primary};
-  border-radius: 100%;
-  display: none;
-  height: 10px;
-  width: 10px;
-
-  ${HiddenInput}:checked + label & {
-    display: block;
-  }
-`;
-
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (props, ref) => {
     const id = useGenerateId(props.id);
     const context = React.useContext(RadioContext);
+    const theme = React.useContext(ThemeContext);
     const {
-      color,
+      color = theme.colors.primary,
       containerStyle,
       disabled,
       inputStyle,
@@ -158,8 +160,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       value,
       ...other
     } = props;
-
-    const theme = React.useContext(ThemeContext);
 
     return (
       <StyledContainer style={containerStyle}>
@@ -189,8 +189,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             labelText}
 
           <StyledFakeInput
-            checked={context.selectedValue === value}
-            color={color ? color : ''}
+            isChecked={context.selectedValue === value}
+            color={color}
             disabled={disabled}
             isInverse={context.isInverse || isInverse}
             hasError={context.hasError}
@@ -198,7 +198,11 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             textPosition={textPosition}
             theme={theme}
           >
-            <SelectedIcon color={color ? color : ''} theme={theme} />
+            {context.selectedValue === value ? (
+              <RadioButtonCheckedIcon />
+            ) : (
+              <RadioButtonUncheckedIcon />
+            )}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (
             <HiddenLabelText>{labelText}</HiddenLabelText>

@@ -176,6 +176,13 @@ export const MainNav = ({ ...props }) => (
             </StyledLink>
             <StyledLink
               activeStyle={activeStyle}
+              aria-label="Contribution Guidelines"
+              to="/contribution-guidelines/"
+            >
+              Contribution Guidelines
+            </StyledLink>
+            <StyledLink
+              activeStyle={activeStyle}
               aria-label="View project on GitHub"
               to="https://github.com/cengage/react-magma"
             >

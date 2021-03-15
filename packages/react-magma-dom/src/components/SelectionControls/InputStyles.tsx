@@ -1,15 +1,14 @@
 import { css } from '@emotion/core';
 
-export const DisplayInputStyles = css`
+export const DisplayInputStyles = props => css`
   align-items: center;
-  border: 2px solid;
   display: flex;
-  height: 20px;
+  height: ${props.theme.spaceScale.spacing06};
   flex-shrink: 0;
   justify-content: center;
   position: relative;
   transition: all 0.2s ease-out;
-  width: 20px;
+  width: ${props.theme.spaceScale.spacing06};
 
   &:before,
   &:after {
@@ -21,14 +20,14 @@ export const DisplayInputStyles = css`
   &:after {
     // active state
     border-radius: 50%;
-    height: 40px;
-    left: -12px;
+    height: ${props.theme.spaceScale.spacing09};
+    left: -${props.theme.spaceScale.spacing03};
     opacity: 0;
     padding: 50%;
-    top: -12px;
+    top: -${props.theme.spaceScale.spacing03};
     transform: scale(1);
     transition: opacity 1s, transform 0.5s;
-    width: 40px;
+    width: ${props.theme.spaceScale.spacing09};
   }
 `;
 
@@ -47,25 +46,13 @@ export function buildDisplayInputActiveBackground(props) {
 }
 
 export function buildDisplayInputBorderColor(props) {
-  if (props.isInverse) {
-    if (props.disabled) {
-      return props.theme.colors.disabledInverseText;
-    }
-    if (props.hasError) {
-      return props.theme.colors.danger;
-    }
-    return props.theme.colors.neutral08;
-  }
-  if (props.disabled) {
-    return props.theme.colors.neutral05;
-  }
   if (props.hasError) {
+    if (props.isInverse) {
+      return props.theme.colors.dangerInverse;
+    }
     return props.theme.colors.danger;
   }
-  if (!props.checked && !props.isIndeterminate) {
-    return props.theme.colors.neutral02;
-  }
-  return props.color ? props.color : props.theme.colors.primary;
+  return 'transparent';
 }
 
 export function buildDisplayInputFocusStyles(props) {
@@ -77,7 +64,5 @@ export function buildDisplayInputFocusStyles(props) {
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
-    top: -7px;
-    left: -7px;
   `;
 }
