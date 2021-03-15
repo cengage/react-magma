@@ -7,7 +7,7 @@ import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType } from '../Button';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -160,8 +160,7 @@ export const PasswordInput = React.forwardRef<
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
   const theme = React.useContext(ThemeContext);
 
-  const inverseContext = React.useContext(InverseContext);
-  const isInverse = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <Container style={containerStyle} theme={theme}>

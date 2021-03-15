@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -198,8 +198,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   };
   const combinedArrowStyle = { ...styles.arrow, ...arrowStyle };
 
-  const inverseContext = React.useContext(InverseContext);
-  const isInverse = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <ToolTipContainer

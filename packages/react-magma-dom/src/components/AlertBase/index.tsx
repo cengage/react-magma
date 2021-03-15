@@ -16,7 +16,7 @@ import { IconButton } from '../IconButton';
 import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { InverseContext, useIsInverse } from '../../inverse';
 
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
@@ -316,7 +316,6 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
-    const inverseContext = React.useContext(InverseContext);
 
     return (
       <StyledAlert
@@ -324,7 +323,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         data-testid={testId}
         id={id}
         tabIndex={-1}
-        isInverse={getIsInverse(inverseContext, isInverse)}
+        isInverse={useIsInverse(isInverse)}
         isExiting={isExiting}
         isToast={isToast}
         ref={ref}

@@ -10,7 +10,7 @@ import {
 import { DropdownContext, DropdownDropDirection } from '.';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -114,8 +114,6 @@ export const DropdownButton = React.forwardRef<
     ? ButtonIconPosition.left
     : ButtonIconPosition.right;
 
-  const inverseContext = React.useContext(InverseContext);
-
   return (
     <IconButton
       {...other}
@@ -124,7 +122,7 @@ export const DropdownButton = React.forwardRef<
       icon={icon}
       iconPosition={iconPositionToUse}
       id={context.dropdownButtonId.current}
-      isInverse={getIsInverse(inverseContext, isInverse)}
+      isInverse={useIsInverse(isInverse)}
       onClick={handleClick}
       onKeyDown={context.handleButtonKeyDown}
       ref={ref}

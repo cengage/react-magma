@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyledButton } from '../StyledButton';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -96,14 +96,9 @@ export type ButtonProps = BaseButtonProps & ButtonStyles;
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const { children, isInverse, ...rest } = props;
-    const inverseContext = React.useContext(InverseContext);
 
     return (
-      <StyledButton
-        {...rest}
-        isInverse={getIsInverse(inverseContext, isInverse)}
-        ref={ref}
-      >
+      <StyledButton {...rest} isInverse={useIsInverse(isInverse)} ref={ref}>
         {children}
       </StyledButton>
     );

@@ -10,7 +10,7 @@ import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export interface TimePickerProps {
   /**
@@ -300,8 +300,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       }
     }
 
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <TimePickerContainer

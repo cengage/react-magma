@@ -1,7 +1,10 @@
 import React from 'react';
 import { Alert, AlertProps } from './index';
-import { Story, Meta } from '@storybook/react/types-6-0';
 import { AlertVariant } from '../AlertBase';
+import { Card } from '../Card';
+import { CardBody } from '../Card/CardBody';
+import { magma } from '../../theme/magma';
+import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<AlertProps> = args => (
   <Alert {...args}>I am an Alert</Alert>
@@ -43,3 +46,18 @@ Warning.args = {
   variant: AlertVariant.warning,
   isDismissible: true,
 };
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  isDismissible: true,
+  isInverse: true,
+};
+Inverse.decorators = [
+  Story => (
+    <Card background={magma.colors.foundation} isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];

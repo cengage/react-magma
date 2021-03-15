@@ -11,7 +11,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export enum ToggleTextPosition {
   left = 'left', // default
@@ -264,8 +264,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
 
     const hasError = context.hasError || !!errorMessage;
 
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <>

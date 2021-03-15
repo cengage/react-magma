@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -28,8 +28,7 @@ export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <InverseContext.Provider value={{ isInverse }}>

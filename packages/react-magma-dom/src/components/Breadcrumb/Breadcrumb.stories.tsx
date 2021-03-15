@@ -1,5 +1,7 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbProps } from '.';
+import { Card, CardBody } from '../Card';
+import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<BreadcrumbProps> = args => (
@@ -19,3 +21,18 @@ export const Default = Template.bind({});
 Default.args = {
   isInverse: false,
 };
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
+Inverse.decorators = [
+  Story => (
+    <Card background={magma.colors.foundation} isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];

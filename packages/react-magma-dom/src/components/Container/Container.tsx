@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { InverseContext, useIsInverse } from '../../inverse';
 import { convertStyleValueToString } from '../../utils';
 import styled from '@emotion/styled';
 
@@ -44,8 +44,7 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
 
     const maxWidthString = convertStyleValueToString(maxWidth, 'none');
 
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <InverseContext.Provider

@@ -19,7 +19,7 @@ import { useGenerateId, Omit } from '../../utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { Announce } from '../Announce';
 import { I18nContext } from '../../i18n';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {
@@ -134,8 +134,7 @@ export const IndeterminateCheckbox = React.forwardRef<
 
   const hasError = context.hasError || !!errorMessage;
 
-  const inverseContext = React.useContext(InverseContext);
-  const isInverse = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <>

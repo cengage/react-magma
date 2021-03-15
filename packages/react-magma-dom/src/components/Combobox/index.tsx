@@ -15,7 +15,7 @@ import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
 import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export interface ComboboxProps<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
@@ -148,8 +148,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
   const id = useGenerateId(defaultId);
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-  const inverseContext = React.useContext(InverseContext);
-  const isInverse = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <div style={containerStyle} data-testid={testId}>

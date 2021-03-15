@@ -5,7 +5,7 @@ import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { InverseContext, useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 
 /**
@@ -65,8 +65,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
 
     const theme = React.useContext(ThemeContext);
 
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <InverseContext.Provider

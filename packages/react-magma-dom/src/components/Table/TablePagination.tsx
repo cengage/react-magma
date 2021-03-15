@@ -8,7 +8,7 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export interface TablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -76,8 +76,7 @@ export const TablePagination = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
-  const inverseContext = React.useContext(InverseContext);
-  const isInverse = getIsInverse(inverseContext, props.isInverse);
+  const isInverse = useIsInverse(props.isInverse);
 
   const selectContainerStyle = { display: 'flex', alignItems: 'center' };
   const isLastPage = (page + 1) * rowsPerPage >= count;

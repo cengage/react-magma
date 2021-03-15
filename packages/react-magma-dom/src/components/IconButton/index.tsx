@@ -12,7 +12,7 @@ import {
 import { IconProps } from 'react-magma-icons';
 import { omit, Omit, XOR } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -102,8 +102,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const other = omit(['iconPosition', 'textPosition'], rest);
 
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     if (icon && !children) {
       return (

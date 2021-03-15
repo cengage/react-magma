@@ -5,7 +5,7 @@ import { InputMessage } from './InputMessage';
 import { Label } from '../Label';
 import { useGenerateId, Omit } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
@@ -66,8 +66,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const theme = React.useContext(ThemeContext);
 
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <Container theme={theme} style={containerStyle}>

@@ -9,8 +9,7 @@ import {
   ButtonType,
   ButtonVariant,
 } from '.';
-import { Card } from '../Card';
-import { CardBody } from '../Card/CardBody';
+import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 

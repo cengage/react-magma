@@ -8,10 +8,9 @@ export const InverseContext = React.createContext<InverseInterface>({
   isInverse: false,
 });
 
-export function getIsInverse(
-  inverseContext: InverseInterface,
-  inverseProp?: boolean
-) {
+export function useIsInverse(inverseProp?: boolean) {
+  const inverseContext = React.useContext(InverseContext);
+
   return typeof inverseProp !== 'undefined'
     ? Boolean(inverseProp)
     : inverseContext.isInverse;

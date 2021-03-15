@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString } from '../../utils';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -158,8 +158,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       theme.spaceScale.spacing05
     );
 
-    const inverseContext = React.useContext(InverseContext);
-    const isInverse = getIsInverse(inverseContext, props.isInverse);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <Container {...other} isLoadingIndicator={isLoadingIndicator}>

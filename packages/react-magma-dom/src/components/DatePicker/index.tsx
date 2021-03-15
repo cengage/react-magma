@@ -19,7 +19,7 @@ import {
 } from './utils';
 import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { InverseContext, useIsInverse } from '../../inverse';
 
 export interface DatePickerProps
   extends Omit<
@@ -385,8 +385,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
 
-    const inverseContext = React.useContext(InverseContext);
-
     return (
       <CalendarContext.Provider
         value={{
@@ -421,7 +419,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             onIconClick={toggleCalendarOpened}
             onIconKeyDown={handleInputKeyDown}
             id={id}
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={useIsInverse(isInverse)}
             ref={ref}
             onChange={handleInputChange}
             onBlur={handleInputBlur}

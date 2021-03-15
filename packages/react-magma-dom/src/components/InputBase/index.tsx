@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
 import { IconProps } from 'react-magma-icons';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 
 export enum InputSize {
@@ -247,7 +247,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       icon,
       iconAriaLabel,
       iconRef,
-      isInverse,
       onIconClick,
       onIconKeyDown,
       inputSize,
@@ -284,8 +283,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       setValue(event.target.value);
     }
 
-    const inverseContext = React.useContext(InverseContext);
-
     return (
       <InputWrapper style={containerStyle}>
         <StyledInput
@@ -295,7 +292,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           hasError={hasError}
           iconPosition={iconPosition}
           inputSize={inputSize ? inputSize : InputSize.medium}
-          isInverse={getIsInverse(inverseContext, isInverse)}
+          isInverse={useIsInverse(props.isInverse)}
           ref={ref}
           onChange={handleChange}
           style={inputStyle}

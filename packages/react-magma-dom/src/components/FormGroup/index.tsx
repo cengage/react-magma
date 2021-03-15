@@ -5,7 +5,7 @@ import { Label } from '../Label';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, getIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -68,7 +68,6 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
       labelledById,
       labelStyle,
       labelText,
-      isInverse,
       isTextVisuallyHidden,
       testId,
       children,
@@ -78,7 +77,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);
-    const inverseContext = React.useContext(InverseContext);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <div
@@ -116,7 +115,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           <InputMessage
             id={descriptionId}
             hasError={!!errorMessage}
-            isInverse={getIsInverse(inverseContext, isInverse)}
+            isInverse={isInverse}
           >
             {(errorMessage || helperMessage) && (
               <>{errorMessage ? errorMessage : helperMessage}</>
