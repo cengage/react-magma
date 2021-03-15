@@ -91,6 +91,7 @@ export function Example() {
   return <HomeIcon aria-hidden="true" />;
 }
 ```
+---
 
 ## Available Icons
 
@@ -119,9 +120,9 @@ export function Example() {
 
                   return (
                     <span className="demo-icon-container" key={id}>
-                      <Icon title={title} />
+                      <Icon size={40} title={title} />
                       <br />
-                      {icon}
+                      <span class="icon-name">{icon}</span>
                     </span>
                   );
                 })}
@@ -133,6 +134,7 @@ export function Example() {
   );
 }
 ```
+---
 
 ## Testing
 

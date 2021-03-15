@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormGroupLabel } from '../FormGroup';
+import { Label } from '../Label';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -162,9 +162,14 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
           )}
 
           {labelText && !isTextVisuallyHidden && (
-            <FormGroupLabel id={id} style={labelStyle} theme={theme}>
+            <Label
+              id={id}
+              style={labelStyle}
+              isInverse={isInverse}
+              theme={theme}
+            >
               {labelText}
-            </FormGroupLabel>
+            </Label>
           )}
           {children}
 
