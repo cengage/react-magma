@@ -70,7 +70,7 @@ const StyledItem = styled.div<{
 const IconWrapper = styled.span`
   color: ${props => props.theme.colors.neutral03};
   display: inline-flex;
-  margin-right: ${props => props.theme.spaceScale.spacing05};
+  margin-right: '${props => props.theme.spaceScale.spacing05}';
 
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
