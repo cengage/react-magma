@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs - take 2",
-  "version": "2.1.8-alpha.0",
+  "version": "2.1.8-alpha.9",
   "private": true,
   "repository": {
     "type": "git",
@@ -39,12 +39,12 @@
     "react-animate-on-scroll": "^2.1.5",
     "react-codesandboxer": "^3.1.5",
     "react-copy-to-clipboard": "^5.0.3",
-    "react-dev-utils": "6.1.1",
+    "react-dev-utils": "11.0.4",
     "react-dom": "^16.10.0",
     "react-focus-lock": "1.18.3",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "2.3.9-alpha.0",
+    "react-magma-dom": "2.3.9-alpha.9",
     "react-magma-icons": "1.0.11-alpha.0",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",

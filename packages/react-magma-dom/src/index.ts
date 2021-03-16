@@ -77,6 +77,7 @@ export {
   DropdownButton,
   DropdownButtonProps,
 } from './components/Dropdown/DropdownButton';
+export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
@@ -133,6 +134,7 @@ export {
   SkipLinkContent,
   SkipLinkContentProps,
 } from './components/SkipLinkContent';
+export { Spacer, SpacerProps, SpacerAxis } from './components/Spacer';
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
   Table,
