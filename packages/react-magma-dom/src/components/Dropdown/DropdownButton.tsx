@@ -4,7 +4,7 @@ import {
   ArrowDropUpIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CaretDownIcon,
+  ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from '.';
@@ -84,7 +84,7 @@ export const DropdownButton = React.forwardRef<
         return <ArrowDropUpIcon testId="caretUp" />;
 
       default:
-        return <CaretDownIcon testId="caretDown" />;
+        return <ArrowDropDownIcon testId="caretDown" />;
     }
   }
 
