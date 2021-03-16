@@ -79,7 +79,7 @@ export const Header = ({
       {breakpoint && onMenuButtonClick && (
         <HideAtBreakpoint minWidth={breakpoint + 1}>
           <IconButton
-            aria-label={i18n.alert.dismissAriaLabel}
+            aria-label={i18n.header.navigationButtonLabel}
             icon={<MenuIcon />}
             onClick={onMenuButtonClick}
             isInverse={isInverse}
@@ -89,7 +89,11 @@ export const Header = ({
         </HideAtBreakpoint>
       )}
 
-      <LogoWrapper isCompact={isCompact} theme={theme}>
+      <LogoWrapper
+        isCompact={isCompact}
+        data-testid="logoWrapper"
+        theme={theme}
+      >
         {logo}
       </LogoWrapper>
 

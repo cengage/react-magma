@@ -14,7 +14,21 @@ describe('AppBar', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should render the app bar with compact padding', () => {
+  it('should render the app bar with standard styles', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <AppBar testId={testId}>Test AppBar</AppBar>
+    );
+
+    const appBar = getByTestId(testId);
+
+    expect(appBar).toHaveStyleRule('padding', magma.appBar.padding);
+    expect(appBar).toHaveStyleRule('height', magma.appBar.height);
+    expect(appBar).toHaveStyleRule('background', magma.appBar.backgroundColor);
+    expect(appBar).toHaveStyleRule('color', magma.appBar.textColor);
+  });
+
+  it('should render the app bar with compact styles', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
       <AppBar testId={testId} isCompact>
@@ -22,10 +36,10 @@ describe('AppBar', () => {
       </AppBar>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
-      'padding',
-      `${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing06}`
-    );
+    const appBar = getByTestId(testId);
+
+    expect(appBar).toHaveStyleRule('padding', magma.appBar.compact.padding);
+    expect(appBar).toHaveStyleRule('height', magma.appBar.compact.height);
   });
 
   it('should render the app bar with inverse styles', () => {
@@ -38,11 +52,11 @@ describe('AppBar', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'background',
-      magma.colors.foundation02
+      magma.appBar.inverse.backgroundColor
     );
     expect(getByTestId(testId)).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.appBar.inverse.textColor
     );
   });
 
