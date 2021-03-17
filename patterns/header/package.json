@@ -26,7 +26,7 @@
     "downshift": "^5.4.5",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "react-magma-dom": "2.3.8-alpha.1",
+    "react-magma-dom": "^2.3.9-alpha.9",
     "react-magma-icons": "^2.0.1-alpha.1",
     "uuid": "^8.3.0"
   },
@@ -43,7 +43,7 @@
     "downshift": "^5.4.5",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
-    "react-magma-dom": "^2.3.8-alpha.1",
+    "react-magma-dom": "^2.3.9-alpha.9",
     "react-magma-icons": "^2.0.1-alpha.1",
     "ts-loader": "^8.0.13",
     "tsdx": "^0.14.1",
