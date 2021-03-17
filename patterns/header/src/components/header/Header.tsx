@@ -90,8 +90,8 @@ export const Header = ({
       )}
 
       <LogoWrapper
-        isCompact={isCompact}
         data-testid="logoWrapper"
+        isCompact={isCompact}
         theme={theme}
       >
         {logo}

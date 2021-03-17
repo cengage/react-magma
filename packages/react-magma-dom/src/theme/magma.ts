@@ -123,6 +123,21 @@ export interface TypographyVisualStyles {
   bodyXSmall: VisualStyle;
 }
 
+interface AppBar {
+  backgroundColor: string;
+  height: string;
+  padding: string;
+  textColor: string;
+  compact: {
+    height: string;
+    padding: string;
+  };
+  inverse: {
+    backgroundColor: string;
+    textColor: string;
+  };
+}
+
 export interface Modal {
   width: {
     small: string;
@@ -162,7 +177,7 @@ export interface Tooltip {
 }
 
 export interface ThemeInterface {
-  appBar: any;
+  appBar: AppBar;
   breakpoints: Breakpoints;
   bodyFont: string;
   bodyExpressiveFont: string;
