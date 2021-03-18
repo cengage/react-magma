@@ -278,7 +278,7 @@ const colors = {
   dangerInverse: '#F59295',
   neutral: '#3F3F3F', // main dark grey text color
   neutral02: '#575757',
-  neutral03: '#727272',
+  neutral03: '#707070',
   neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
   neutral05: '#BFBFBF',
   neutral06: '#DFDFDF',
