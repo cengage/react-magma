@@ -11,6 +11,7 @@ import {
   Search,
   SearchProps,
   Spacer,
+  SpacerAxis,
   ThemeContext,
   ThemeInterface,
 } from 'react-magma-dom';
@@ -83,8 +84,12 @@ export const Header = ({
             icon={<MenuIcon />}
             onClick={onMenuButtonClick}
             isInverse={isInverse}
-            style={{ marginLeft: `-${theme.spaceScale.spacing02}` }}
+            style={{ marginLeft: `-${theme.spaceScale.spacing04}` }}
             variant={ButtonVariant.link}
+          />
+          <Spacer
+            axis={SpacerAxis.horizontal}
+            size={theme.spaceScale.spacing03}
           />
         </HideAtBreakpoint>
       )}
@@ -125,10 +130,7 @@ export const Header = ({
         )}
 
         {children && (
-          <ChildrenWrapper theme={theme}>
-            <Spacer size={theme.spaceScale.spacing06} />
-            {children}
-          </ChildrenWrapper>
+          <ChildrenWrapper theme={theme}>{children}</ChildrenWrapper>
         )}
       </HideAtBreakpoint>
     </AppBar>

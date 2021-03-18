@@ -147,22 +147,29 @@ export function Example() {
 
 By specifying a `breakpoint` in pixels, the `Header` pattern will only display all content other than the header when the width of the browser is above that breakpoint. When the browser is more narrow than that breakpoint, a menu icon will appear if a `onMenuButtonClick` prop is provided.
 
+The <Link to="api/use-media-query/">useMediaQuery hook</Link> can be used to change the `isCompact` prop for different screen sizes.
+
 The `Header` does not provide a way to display the items that are hidden at smaller screen sizes. It is the responsibility of the consumer to display those items in another way.
 
 ```typescript
 import React from 'react';
-import { AppBar } from 'react-magma-dom';
+import { Header } from '@cengage-patterns/header';
+import { useMediaQuery, magma } from 'react-magma-dom';
 
 export function Example() {
+  const isSmallerScreen = useMediaQuery(
+    `(max-width:${magma.breakpoints.medium}px)`
+  );
+
   return (
     <Header
-      breakpoint={768}
+      breakpoint={magma.breakpoints.medium}
       callToActionProps={{
         children: 'Enter an Access Code',
         target: '_blank',
         to: '#',
       }}
-      isCompact
+      isCompact={isSmallerScreen}
       isInverse
       logo={<strong>LOGO</strong>}
       onMenuButtonClick={() => {}}
