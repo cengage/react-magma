@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -13,17 +13,26 @@ export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
    **/
   isCompact?: boolean;
   isInverse?: boolean;
+  position?: AppBarPosition;
   testId?: string;
-  /*
+  /**
    * @internal
    */
   theme?: ThemeInterface;
 }
 
+export enum AppBarPosition {
+  absolute = 'absolute',
+  fixed = 'fixed',
+  relative = 'relative',
+  static = 'static', // default
+  sticky = 'sticky',
+}
+
 const StyledHeader = styled.header<{
   isCompact?: boolean;
   isInverse?: boolean;
-  theme: ThemeInterface;
+  position: AppBarPosition;
 }>`
   align-items: center;
   background: ${props =>
@@ -40,19 +49,34 @@ const StyledHeader = styled.header<{
     props.isCompact
       ? props.theme.appBar.compact.height
       : props.theme.appBar.height};
+  left: 0;
   padding: ${props =>
     props.isCompact
       ? props.theme.appBar.compact.padding
       : props.theme.appBar.padding};
+  position: ${props => props.position};
+  right: 0;
+  top: 0;
 `;
 
 export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
   (props, ref) => {
-    const { children, testId, ...other } = props;
+    const {
+      children,
+      position = AppBarPosition.static,
+      testId,
+      ...other
+    } = props;
     const theme = React.useContext(ThemeContext);
 
     return (
-      <StyledHeader {...other} ref={ref} data-testid={testId} theme={theme}>
+      <StyledHeader
+        {...other}
+        data-testid={testId}
+        position={position}
+        ref={ref}
+        theme={theme}
+      >
         {children}
       </StyledHeader>
     );

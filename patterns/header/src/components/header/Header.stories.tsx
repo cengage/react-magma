@@ -2,7 +2,13 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { CengageLogo, Header, HeaderProps } from './';
 import { PersonIcon, SettingsIcon, NotificationsIcon } from 'react-magma-icons';
-import { Badge, ButtonVariant, IconButton, magma } from 'react-magma-dom';
+import {
+  AppBarPosition,
+  Badge,
+  ButtonVariant,
+  IconButton,
+  magma,
+} from 'react-magma-dom';
 
 const meta: Meta = {
   title: 'Patterns/Header',
@@ -11,6 +17,12 @@ const meta: Meta = {
     children: {
       control: {
         type: 'text',
+      },
+    },
+    position: {
+      control: {
+        type: 'select',
+        options: AppBarPosition,
       },
     },
   },
@@ -23,8 +35,6 @@ export default meta;
 
 const Template: Story<HeaderProps> = args => <Header {...args} />;
 
-// By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
-// https://storybook.js.org/docs/react/workflows/unit-testing
 export const Default = Template.bind({});
 
 Default.args = {

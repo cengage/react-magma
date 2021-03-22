@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, AppBarProps } from './index';
+import { AppBar, AppBarProps, AppBarPosition } from './index';
 import { NavTabs, NavTab } from '../NavTabs';
 import { Search } from '../Search';
 import { Spacer } from '../Spacer';
@@ -15,6 +15,14 @@ const Template: Story<AppBarProps> = args => (
 export default {
   title: 'AppBar',
   component: AppBar,
+  argTypes: {
+    position: {
+      control: {
+        type: 'select',
+        options: AppBarPosition,
+      },
+    },
+  },
 } as Meta;
 
 export const Default = Template.bind({});

@@ -1,6 +1,7 @@
-import React, { HTMLAttributes } from 'react';
+import React from 'react';
 import {
   AppBar,
+  AppBarProps,
   ButtonVariant,
   HideAtBreakpoint,
   HideAtBreakpointDisplayType,
@@ -18,12 +19,9 @@ import {
 import { MenuIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
 
-export interface HeaderProps extends HTMLAttributes<HTMLDivElement> {
+export interface HeaderProps extends AppBarProps {
   breakpoint?: number;
   callToActionProps?: HyperlinkProps;
-  isCompact?: boolean;
-  isInverse?: boolean;
-  hasSidebar?: boolean;
   logo?: React.ReactNode;
   onMenuButtonClick?: () => void;
   searchProps?: SearchProps;
@@ -125,7 +123,7 @@ export const Header = ({
         {searchProps && (
           <>
             <Search {...searchProps} isInverse={isInverse} />
-            {children && <Spacer size={theme.spaceScale.spacing06} />}
+            {children && <Spacer size={theme.spaceScale.spacing05} />}
           </>
         )}
 

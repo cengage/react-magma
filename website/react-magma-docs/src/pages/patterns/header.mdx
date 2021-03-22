@@ -143,6 +143,57 @@ export function Example() {
 }
 ```
 
+## Position
+
+The `position` prop will set the positioning type with CSS. It accepts values `absolute`, `fixed`, `relative`, `static` and `sticky`, with `static` being the default.
+
+```tsx
+import React from 'react';
+import { AppBarPosition, Heading, Paragraph } from 'react-magma-dom';
+import { Header } from '@cengage-patterns/header';
+
+export function Example() {
+  return (
+    <div style={{ height: '300px', overflow: 'auto', position: 'relative' }}>
+      <Header
+        isCompact
+        isInverse
+        logo={<strong>LOGO</strong>}
+        position={AppBarPosition.sticky}
+      />
+      <Heading level={2}>Lorem Ipsum</Heading>
+      <Paragraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis,
+        libero eu posuere hendrerit, turpis massa placerat ex, sit amet luctus
+        enim nunc a arcu. Mauris at lobortis urna. Nam suscipit purus convallis
+        mauris iaculis, vitae fermentum ipsum faucibus. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit. Donec congue eu felis a blandit.
+      </Paragraph>
+      <Paragraph>
+        Phasellus sodales ut lorem at semper. Curabitur id hendrerit est, ac
+        vestibulum neque. Curabitur ac elementum elit. Quisque eleifend tortor
+        vitae ultrices tristique. Integer a elementum magna. Cras eget erat
+        feugiat, dignissim ante in, blandit lectus. Donec sodales justo ligula,
+        ornare congue felis facilisis mattis.
+      </Paragraph>
+      <Paragraph>
+        Fusce faucibus venenatis arcu, ac sollicitudin nibh iaculis vitae. Nam
+        risus nunc, mattis et maximus ac, dignissim at lectus. Sed eleifend
+        euismod diam, at ornare lectus vestibulum et. Maecenas at sodales magna.
+        Proin mollis elit nec lorem rhoncus, a suscipit metus imperdiet.
+        Vestibulum ut magna imperdiet, bibendum felis semper, volutpat est. Duis
+        congue porta justo, et interdum ligula vulputate et.
+      </Paragraph>
+      <Paragraph>
+        Fusce vitae convallis ante. Pellentesque et enim ac dolor cursus
+        ultricies at eget quam. Vestibulum euismod volutpat nulla eget
+        porttitor. Morbi tempor fermentum viverra. Suspendisse potenti.
+      </Paragraph>
+    </div>
+  );
+}
+```
+
 ## Responsive Behavior
 
 By specifying a `breakpoint` in pixels, the `Header` pattern will only display all content other than the header when the width of the browser is above that breakpoint. When the browser is more narrow than that breakpoint, a menu icon will appear if a `onMenuButtonClick` prop is provided.
