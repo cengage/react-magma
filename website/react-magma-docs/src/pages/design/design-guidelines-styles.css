@@ -32,12 +32,18 @@
   border: 1px solid #dfdfdf;
 }
 
+figure .background {
+  background: #f7f7f7;
+  border: 1px solid #dfdfdf;
+  padding: 8px 0;
+}
+
 figure .image-container {
   border: 1px solid #dfdfdf;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 40px 10px 0 10px;
+  padding: 40px 8px 0 8px;
   background: #f7f7f7;
 }
 
@@ -252,7 +258,7 @@ blockquote footer {
 
 td .space-example {
   display: block;
-  background: #92278F;
+  background: #92278f;
 }
 
 .space-example.se-01 {
