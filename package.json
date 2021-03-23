@@ -8,6 +8,12 @@
     "type": "git",
     "url": "https://github.com/cengage/react-magma.git"
   },
+  {
+  "engines": {
+      "npm": "^7.3.0",
+      "node": "^14.15.0"
+    }
+  },
   "scripts": {
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
