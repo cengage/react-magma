@@ -39,7 +39,11 @@ const StyledHeader = styled.header<{
     props.isInverse
       ? props.theme.appBar.inverse.backgroundColor
       : props.theme.appBar.backgroundColor};
-  border-bottom: 1px solid ${props => props.theme.colors.neutral06};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.foundation
+        : props.theme.colors.neutral06};
   box-shadow: ${props =>
     props.position === AppBarPosition.sticky ||
     props.position === AppBarPosition.fixed
@@ -62,6 +66,7 @@ const StyledHeader = styled.header<{
   position: ${props => props.position};
   right: 0;
   top: 0;
+  z-index: 10;
 `;
 
 export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
