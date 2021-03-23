@@ -40,6 +40,11 @@ const StyledHeader = styled.header<{
       ? props.theme.appBar.inverse.backgroundColor
       : props.theme.appBar.backgroundColor};
   border-bottom: 1px solid ${props => props.theme.colors.neutral06};
+  box-shadow: ${props =>
+    props.position === AppBarPosition.sticky ||
+    props.position === AppBarPosition.fixed
+      ? '0 2px 3px 0 rgb(0 0 0 / 37%)'
+      : '0 0 0'};
   color: ${props =>
     props.isInverse
       ? props.theme.appBar.inverse.textColor
