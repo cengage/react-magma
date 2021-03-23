@@ -69,6 +69,7 @@ export const SelectedItemButton = styled.button`
   border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;
+  display: flex;
   font-size: 12px;
   line-height: 16px;
   height: 24px;
