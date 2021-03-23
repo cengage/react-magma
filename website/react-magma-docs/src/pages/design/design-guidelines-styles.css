@@ -54,7 +54,7 @@ figure .image-container img {
 
 figcaption {
   font-size: 13px;
-  color: #727272;
+  color: #707070;
   line-height: 1.5em;
   display: flex;
   flex-direction: column;
@@ -134,7 +134,7 @@ figcaption .title-caution {
 .type-specs p {
   font-size: 14px;
   line-height: 20px;
-  color: #727272;
+  color: #707070;
   margin: 0 0 10px 0;
 }
 
