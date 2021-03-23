@@ -17,7 +17,7 @@ import {
   buildFocusColor,
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonProps } from '../Button';
+import { ButtonProps, ButtonType } from '../Button';
 
 interface StyledButtonProps extends ButtonProps {
   href?: string;
@@ -125,8 +125,7 @@ export const BaseStyledButton = styled.button`
 export const StyledButton = React.forwardRef<
   HTMLButtonElement,
   StyledButtonProps
->((props, ref) => {
-  const { children, testId, ...other } = props;
+>(({ children, testId, type=ButtonType.button, ...other }, ref) => {
   const theme = React.useContext(ThemeContext);
 
   return (
