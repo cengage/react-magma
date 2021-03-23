@@ -447,6 +447,66 @@ export function Example() {
 }
 ```
 
+## Conditionals
+
+Fields can be rendered/visable based on conditions. Please see the [data-driven-forms documentation](https://data-driven-forms.org/schema/complex-condition-example) for more examples.
+
+```tsx
+import React from 'react';
+import {
+  SchemaRenderer,
+  Schema,
+  templateTypes,
+  componentTypes,
+  componentMapper,
+  ComponentMapper,
+} from 'react-magma-schema-renderer';
+
+export function Example() {
+  const schema: Schema = {
+    title: 'Conditional Fields',
+    description: 'Fields may come. Fields may go.',
+    type: templateTypes.FORM,
+    fields: [      
+      {
+        component: componentTypes.INPUT,
+        name: 'conditional-name',
+        labelText: 'What is your name?',
+        helperMessage: 'Try to be Andy',
+        type: InputType.text,
+      },
+      {
+        component: componentTypes.TOGGLE,
+        name: 'conditional-toggle',
+        labelText: 'Are you sure?',
+        condition: {
+          when: 'conditional-name',
+          is: 'Andy',
+        },
+      },
+      {
+        component: componentTypes.TOGGLE,
+        name: 'conditional-toggle-two',
+        labelText: 'Are you really sure?',
+        condition: {
+          when: 'conditional-toggle',
+          is: true,
+        },
+      },
+    ],
+  };
+
+  return (
+    <div>
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={values => alert(JSON.stringify(values, null, 2))}
+      />
+    </div>
+  );
+}
+```
+
 ## Form Spy
 
 `SchemaRenderer` has a mapped component to register a [Form Spy](https://final-form.org/docs/react-final-form/api/FormSpy). This component will rerender whenever any of the state that it is subscribed to changes (which defaults to everything).
