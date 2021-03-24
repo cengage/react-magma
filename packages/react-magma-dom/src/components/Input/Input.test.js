@@ -114,7 +114,6 @@ describe('Input', () => {
       magma.colors.danger
     );
 
-    expect(errorMessage).toHaveStyleRule('background', 'none');
     expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
   });
 
@@ -130,7 +129,6 @@ describe('Input', () => {
 
     expect(input).toHaveStyleRule('border-color', magma.colors.danger);
 
-    expect(errorMessage).toHaveStyleRule('background', 'none');
     expect(errorMessage).toHaveStyleRule('color', magma.colors.dangerInverse);
   });
 

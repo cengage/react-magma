@@ -15,7 +15,6 @@ export interface InputMessageProps
 
 const Message = styled.div<InputMessageProps>`
   align-items: center;
-  background: none;
   border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
     props.isInverse
@@ -31,7 +30,6 @@ const Message = styled.div<InputMessageProps>`
       ? props.theme.spaceScale.spacing03
       : props.theme.spaceScale.spacing02};
   min-height: ${props => props.theme.spaceScale.spacing06};
-  padding: 0;
   text-align: left;
 `;
 
