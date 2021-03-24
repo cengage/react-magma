@@ -3,93 +3,117 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-### 2.0.1 (2021-03-01)
+### 2.0.2-alpha.13 (2021-03-23)
 
 **Note:** Version bump only for package react-magma-icons
 
 
 
 
+
+### 2.0.2-alpha.12 (2021-03-23)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 2.0.2-alpha.11 (2021-03-18)
+
+**Note:** Version bump only for package react-magma-icons
+
+
+
+
+
+### 2.0.2-alpha.10 (2021-03-17)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.9 (2021-03-15)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.8 (2021-03-15)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.7 (2021-03-15)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.6 (2021-03-12)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.5 (2021-03-12)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.4 (2021-03-11)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.3 (2021-03-11)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.2 (2021-03-09)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.1 (2021-03-09)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.2-alpha.0 (2021-03-05)
+
+**Note:** Version bump only for package react-magma-icons
+
+### 2.0.1 (2021-03-01)
+
+**Note:** Version bump only for package react-magma-icons
 
 ### 2.0.1-alpha.4 (2021-02-26)
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 ### 2.0.1-alpha.3 (2021-02-26)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 ### 2.0.1-alpha.2 (2021-02-26)
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 ### 2.0.1-alpha.1 (2021-02-24)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 ### 2.0.1-alpha.0 (2021-02-22)
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 ## 2.0.0 (2021-02-22)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 ## 2.0.0-alpha.3 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 ## 2.0.0-alpha.2 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 ## 2.0.0-alpha.1 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-icons
 
-
-
-
-
 ### 1.0.11-alpha.0 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-icons
-
-
-
-
 
 ### 1.0.10 (2021-02-18)
 

@@ -23,6 +23,9 @@ The label/checkbox association will be handled via the passed in `id` if one is 
 Checkboxes can either be controlled or uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
 If you do not want to have your checkbox be in a controlled state, but need the initial checked value to be set, pass in the `defaultChecked` prop with the value you would like on initial render.
 
+<Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to standard
+checkboxes but with three available statuses.
+
 See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ```tsx
@@ -75,77 +78,6 @@ export function Example() {
       />
       <Checkbox checked color={magma.colors.danger} labelText="Danger color" />
       <Checkbox checked color={magma.colors.pop02} labelText="Pop color" />
-    </FormGroup>
-  );
-}
-```
-
-## Indeterminate
-
-The `IndeterminateCheckbox` component is similar to the `Checkbox` component, except that instead of accepting a boolean `checked` value,
-it takes the `status` prop, with three possible statuses: `indeterminate`, `checked` and `unchecked`. The default status is `unchecked`.
-The `status` is used to represent the state of a group of checkboxes that goes underneath it.
-
-- `checked` means all of the checkboxes in the group are checked.
-- `indeterminate` means that some, but not all, checkboxes in the group are checked.
-- `unchecked` means that none of the checkboxes in the group are checked.
-
-The `indeterminate` status cannot be changed by direct user action, it can only be changed by updating the prop.
-
-```tsx
-import React from 'react';
-import {
-  Checkbox,
-  FormGroup,
-  IndeterminateCheckbox,
-  IndeterminateCheckboxStatus,
-  magma,
-} from 'react-magma-dom';
-
-export function Example() {
-  const [checkedItems, setCheckedItems] = React.useState<Array<boolean>>([
-    true,
-    false,
-  ]);
-
-  const status: IndeterminateCheckboxStatus = checkedItems.every(Boolean)
-    ? IndeterminateCheckboxStatus.checked
-    : checkedItems.some(Boolean)
-    ? IndeterminateCheckboxStatus.indeterminate
-    : IndeterminateCheckboxStatus.unchecked;
-
-  function handleUpdateIndeterminateChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    setCheckedItems([event.target.checked, event.target.checked]);
-  }
-
-  function handleUpdateRedChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    setCheckedItems([event.target.checked, checkedItems[1]]);
-  }
-
-  function handleUpdateBlueChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    setCheckedItems([checkedItems[0], event.target.checked]);
-  }
-
-
-  return (
-    <FormGroup labelText="Categories">
-      <IndeterminateCheckbox
-        onChange={handleUpdateIndeterminateChecked}
-        status={status}
-        labelText="Colors"
-      />
-      <div style={{ marginLeft: magma.spaceScale.spacing08 }}>
-        <Checkbox
-          checked={checkedItems[0]}
-          onChange={handleUpdateRedChecked}
-          labelText="Red"
-        />
-        <Checkbox
-          checked={checkedItems[1]}
-          onChange={handleUpdateBlueChecked}
-          labelText="Blue"
-        />
-      </div>
     </FormGroup>
   );
 }
@@ -209,27 +141,9 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <FormGroup labelText="Choose inverse options">
+        <FormGroup isInverse labelText="Choose inverse options">
           <Checkbox isInverse labelText="Inverse" />
           <Checkbox checked isInverse labelText="Inverse checked" />
-          <Checkbox
-            checked
-            color={magma.colors.success}
-            isInverse
-            labelText="Success inverse"
-          />
-          <Checkbox
-            checked
-            color={magma.colors.danger}
-            isInverse
-            labelText="Danger inverse"
-          />
-          <Checkbox
-            checked
-            color={magma.colors.pop02}
-            isInverse
-            labelText="Pop inverse"
-          />
           <IndeterminateCheckbox
             status={IndeterminateCheckboxStatus.indeterminate}
             isInverse
@@ -382,10 +296,10 @@ export function Example() {
 Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
 <Alert variant="warning">
-  Use caution when using the <inlineCode>isTextVisuallyHidden</inlineCode> prop; it should
-  only be used in rare circumstances when the purpose of the checkbox is
-  conveyed in another way. While screen readers will announce the label when the
-  checkbox gains focus, it is still best to have a visual label. This is
+  Use caution when using the <inlineCode>isTextVisuallyHidden</inlineCode> prop;
+  it should only be used in rare circumstances when the purpose of the checkbox
+  is conveyed in another way. While screen readers will announce the label when
+  the checkbox gains focus, it is still best to have a visual label. This is
   especially helpful for individuals with cognitive disabilities and users who
   have fine motor control limitations.
 </Alert>
@@ -474,7 +388,9 @@ export function Example() {
     ? IndeterminateCheckboxStatus.indeterminate
     : IndeterminateCheckboxStatus.unchecked;
 
-  function handleUpdateIndeterminateChecked(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleUpdateIndeterminateChecked(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
     setCheckedItems([event.target.checked, event.target.checked]);
   }
 
@@ -565,9 +481,3 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <CheckboxProps />
-
-## Indeterminate Checkbox Props
-
-**Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**
-
-<IndeterminateCheckboxProps />

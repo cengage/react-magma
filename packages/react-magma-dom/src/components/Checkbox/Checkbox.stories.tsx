@@ -1,9 +1,6 @@
 import React from 'react';
+import { Card, CardBody } from '../Card';
 import { Checkbox } from '.';
-import {
-  IndeterminateCheckbox,
-  IndeterminateCheckboxStatus,
-} from '../IndeterminateCheckbox';
 import { FormGroup } from '../FormGroup';
 import { magma } from '../../theme/magma';
 
@@ -15,69 +12,98 @@ export default {
 export const Default = () => {
   const [checked, updateChecked] = React.useState(false);
   return (
-    <FormGroup labelText="Choose One or More">
-      <Checkbox
-        defaultChecked={true}
-        id="customId"
-        labelText="Uncontrolled Checkbox"
-      />
+    <>
+      <FormGroup labelText="Choose one or more">
+        <Checkbox
+          checked
+          labelText="Uncontrolled checkbox"
+          defaultChecked={true}
+        />
 
-      <Checkbox
-        checked={checked}
-        labelText="Controlled Checkbox"
-        onChange={() => updateChecked(!checked)}
-      />
+        <Checkbox
+          labelText="Controlled checkbox"
+          onChange={() => updateChecked(!checked)}
+        />
 
-      <Checkbox labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines" />
-    </FormGroup>
+        <Checkbox
+          labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines"
+          onChange={() => updateChecked(!checked)}
+        />
+      </FormGroup>
+      <FormGroup labelText="Colors">
+        <Checkbox
+          checked
+          color={magma.colors.primary}
+          labelText="Primary checked"
+          onChange={() => updateChecked(!checked)}
+        />
+        <Checkbox
+          checked
+          color={magma.colors.success}
+          labelText="Success checked"
+          onChange={() => updateChecked(!checked)}
+        />
+
+        <Checkbox
+          checked
+          color={magma.colors.danger}
+          labelText="Danger checked"
+          onChange={() => updateChecked(!checked)}
+        />
+
+        <Checkbox
+          checked
+          color={magma.colors.pop02}
+          labelText="Pop checked"
+          onChange={() => updateChecked(!checked)}
+        />
+      </FormGroup>
+      <FormGroup labelText="Disabled">
+        <Checkbox disabled labelText="Disabled checkbox" />
+
+        <Checkbox
+          defaultChecked={true}
+          disabled
+          labelText="Disabled checked checkbox"
+        />
+      </FormGroup>
+      <FormGroup labelText="Error">
+        <Checkbox
+          errorMessage="Please check this box"
+          id="customId"
+          labelText="Checkbox with error"
+        />
+      </FormGroup>
+    </>
   );
 };
 
-export const Indeterminate = () => {
-  const [checkedItems, setCheckedItems] = React.useState<Array<boolean>>([
-    true,
-    false,
-  ]);
-
-  const status: IndeterminateCheckboxStatus = checkedItems.every(Boolean)
-    ? IndeterminateCheckboxStatus.checked
-    : checkedItems.some(Boolean)
-    ? IndeterminateCheckboxStatus.indeterminate
-    : IndeterminateCheckboxStatus.unchecked;
-
-  function handleUpdateIndeterminateChecked(
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
-    setCheckedItems([event.target.checked, event.target.checked]);
-  }
-
-  function handleUpdateRedChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    setCheckedItems([event.target.checked, checkedItems[1]]);
-  }
-
-  function handleUpdateBlueChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    setCheckedItems([checkedItems[0], event.target.checked]);
-  }
-
+export const Inverse = () => {
   return (
-    <>
-      <IndeterminateCheckbox
-        onChange={handleUpdateIndeterminateChecked}
-        status={status}
-        labelText="Colors"
-      />
-      <div style={{ marginLeft: magma.spaceScale.spacing08 }}>
-        <Checkbox
-          checked={checkedItems[0]}
-          onChange={handleUpdateRedChecked}
-          labelText="Red"
-        />
-        <Checkbox
-          checked={checkedItems[1]}
-          onChange={handleUpdateBlueChecked}
-          labelText="Blue"
-        />
-      </div>
-    </>
+    <Card isInverse>
+      <CardBody>
+        <FormGroup labelText="Choose one or more" isInverse>
+          <Checkbox isInverse checked labelText="Checked checkbox" />
+          <Checkbox isInverse labelText="Unchecked checkbox" />
+        </FormGroup>
+        <FormGroup labelText="Disabled" isInverse>
+          <Checkbox isInverse disabled labelText="Disabled checkbox" />
+
+          <Checkbox
+            isInverse
+            defaultChecked={true}
+            disabled
+            labelText="Disabled checked checkbox"
+          />
+        </FormGroup>
+        <FormGroup labelText="Error" isInverse>
+          <Checkbox
+            isInverse
+            errorMessage="Please check this box"
+            labelText="Checkbox with error"
+          />
+        </FormGroup>
+      </CardBody>
+    </Card>
   );
 };

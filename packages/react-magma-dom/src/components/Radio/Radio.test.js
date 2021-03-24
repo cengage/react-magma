@@ -170,8 +170,7 @@ describe('Radio', () => {
     const span = container.querySelector('span');
 
     expect(radio).toBeDisabled();
-    expect(span).toHaveStyleRule('background', magma.colors.neutral06);
-    expect(span).toHaveStyleRule('border-color', magma.colors.neutral05);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral05);
   });
 
   it('should render a passed in color', () => {
@@ -195,7 +194,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('background', color);
+    expect(span).toHaveStyleRule('color', color);
   });
 
   it('should render an inverse radio with the correct styles', () => {
@@ -212,8 +211,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('background', 'none');
-    expect(span).toHaveStyleRule('border-color', magma.colors.neutral08);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
   it('should render an inverse, disabled radio with the correct styles', () => {
@@ -230,11 +228,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('background', 'none');
-    expect(span).toHaveStyleRule(
-      'border-color',
-      magma.colors.disabledInverseText
-    );
+    expect(span).toHaveStyleRule('color', magma.colors.tint04);
   });
 
   it('should render a radio with hidden label text with the correct styles', () => {
@@ -291,8 +285,7 @@ describe('Radio', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
-    expect(span).toHaveStyleRule('box-shadow', '0 0 0');
+    expect(span).toHaveStyleRule('color', magma.colors.danger);
   });
 
   it('should render an inverse radio button with error styles', () => {
@@ -311,11 +304,7 @@ describe('Radio', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
-    expect(span).toHaveStyleRule(
-      'box-shadow',
-      `0 0 0 1px ${magma.colors.neutral08}`
-    );
+    expect(span).toHaveStyleRule('color', magma.colors.dangerInverse);
   });
 
   it('blurring a radio button calls the passed in onBlur function', () => {
