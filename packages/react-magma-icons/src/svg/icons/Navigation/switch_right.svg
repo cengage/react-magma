@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>switch_right</title>
+    <defs>
+        <path d="M15.5,15.38 L15.5,8.61999999 L18.88,12 L15.5,15.38 M20.29,12.71 C20.68,12.32 20.68,11.69 20.29,11.3 L15.7,6.70999998 C15.08,6.07999998 14,6.51999998 14,7.40999998 L14,16.58 C14,17.47 15.08,17.92 15.71,17.29 L20.29,12.71 Z M9.99999999,16.59 L9.99999999,7.40999998 C9.99999999,6.51999998 8.91999999,6.06999998 8.28999998,6.69999998 L3.69999997,11.29 C3.30999996,11.68 3.30999996,12.31 3.69999997,12.7 L8.28999998,17.29 C8.91999999,17.92 9.99999999,17.48 9.99999999,16.59 Z" id="path-1"></path>
+    </defs>
+    <g id="switch_right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

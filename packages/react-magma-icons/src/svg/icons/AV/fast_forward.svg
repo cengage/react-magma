@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>fast_forward</title>
+    <defs>
+        <path d="M5.57999997,16.89 L11.35,12.82 C11.91,12.42 11.91,11.58 11.35,11.19 L5.57999997,7.10999998 C4.90999997,6.64999998 3.99999997,7.11999998 3.99999997,7.92999998 L3.99999997,16.07 C3.99999997,16.88 4.90999997,17.35 5.57999997,16.89 Z M13,7.92999998 L13,16.07 C13,16.88 13.91,17.35 14.58,16.89 L20.35,12.82 C20.91,12.42 20.91,11.58 20.35,11.19 L14.58,7.11999998 C13.91,6.64999998 13,7.11999998 13,7.92999998 L13,7.92999998 Z" id="path-1"></path>
+    </defs>
+    <g id="fast_forward" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

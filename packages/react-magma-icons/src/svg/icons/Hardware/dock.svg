@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>dock</title>
+    <defs>
+        <path d="M8.99999998,23 L15,23 C15.55,23 16,22.55 16,22 C16,21.45 15.55,21 15,21 L8.99999998,21 C8.44999999,21 7.99999998,21.45 7.99999998,22 C7.99999998,22.55 8.44999999,23 8.99999998,23 Z M16,1.00999995 L7.99999998,0.999999954 C6.89999998,0.999999954 5.99999998,1.89999996 5.99999998,2.99999995 L5.99999998,17 C5.99999998,18.1 6.89999998,19 7.99999998,19 L16,19 C17.1,19 18,18.1 18,17 L18,2.99999995 C18,1.89999996 17.1,1.00999995 16,1.00999995 Z M16,15 L7.99999998,15 L7.99999998,4.99999997 L16,4.99999997 L16,15 Z" id="path-1"></path>
+    </defs>
+    <g id="dock" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

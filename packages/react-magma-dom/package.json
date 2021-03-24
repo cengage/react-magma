@@ -85,6 +85,7 @@
     "rimraf": "^3.0.2",
     "ts-loader": "^8.0.13",
     "tsdx": "^0.14.1",
+    "typescript": "^3.9.9",
     "uuid": "^8.3.0"
   },
   "gitHead": "cadb4fd5f575f1fbe92c1521bf8228c64b8e2336"
