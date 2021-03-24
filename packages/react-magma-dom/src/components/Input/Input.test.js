@@ -97,7 +97,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.dangerInverse);
   });
 
   it('should render an input with a correctly styled error message', () => {
@@ -130,8 +130,8 @@ describe('Input', () => {
 
     expect(input).toHaveStyleRule('border-color', magma.colors.danger);
 
-    expect(errorMessage).toHaveStyleRule('background', magma.colors.danger);
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(errorMessage).toHaveStyleRule('background', 'none');
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.dangerInverse);
   });
 
   it('should render an input with a right-aligned icon by default', () => {
