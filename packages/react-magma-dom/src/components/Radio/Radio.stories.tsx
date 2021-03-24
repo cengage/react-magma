@@ -1,4 +1,6 @@
 import React from 'react';
+import { Card, CardBody } from '../Card';
+import { magma } from '../../theme/magma';
 import { Radio } from '.';
 import { RadioGroup } from '../RadioGroup';
 
@@ -9,14 +11,61 @@ export default {
 
 export const Default = () => {
   return (
-    <RadioGroup labelText="Basic Usage" id="basicGroup" name="basic">
-      <Radio id="radio1" labelText="Option one label" value="1" />
+    <>
+      <RadioGroup
+        labelText="Basic Usage"
+        id="basicGroup"
+        name="basic"
+        value="selectedOption"
+      >
+        <Radio id="radio1" labelText="Option one label" value="1" />
 
-      <Radio
-        id="radio2"
-        labelText="Option two label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines"
-        value="2"
-      />
-    </RadioGroup>
+        <Radio
+          id="radio2"
+          color={magma.colors.success}
+          labelText="Option two label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines"
+          value="2"
+        />
+      </RadioGroup>
+      <RadioGroup
+        labelText="Disabled"
+        id="basicGroup"
+        name="basic"
+        value="selectedOption"
+      >
+        <Radio id="radio4" disabled labelText="Disabled" value="4" />
+        <Radio
+          id="radio5"
+          disabled
+          labelText="Disabled checked"
+          value="selectedOption"
+        />
+      </RadioGroup>
+    </>
+  );
+};
+
+export const Inverse = () => {
+  return (
+    <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
+      <CardBody>
+        <RadioGroup
+          labelText="Inverse Radio Buttons"
+          id="inverseGroup"
+          isInverse
+          name="inverse"
+          value="selectedOption"
+        >
+          <Radio id="inverseRadio" labelText="Inverse" value="default" />
+          <Radio
+            isInverse
+            disabled
+            id="disabledInverseRadio"
+            labelText="Disabled inverse"
+            value="selectedOption"
+          />
+        </RadioGroup>
+      </CardBody>
+    </Card>
   );
 };

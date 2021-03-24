@@ -7,7 +7,7 @@ import * as MAGMA from 'react-magma-dom';
 import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
 import { es, zhCN } from 'date-fns/locale';
-import { Header } from '@cengage-patterns/header';
+import * as HEADER from '@cengage-patterns/header';
 
 import { CodeBlockContext } from './context';
 
@@ -25,12 +25,14 @@ interface PreviewData {
 
 interface PreviewProps extends HTMLAttributes<HTMLDivElement> {
   code: string;
+  noBorder?: boolean;
 }
 
-const PreviewContainer = styled.div`
-  border: 1px solid ${MAGMA.magma.colors.neutral06};
+const PreviewContainer = styled.div<{ noBorder?: boolean }>`
+  border: ${props =>
+    props.noBorder ? 0 : `1px solid ${MAGMA.magma.colors.neutral06}`};
   border-bottom: 0;
-  padding: ${MAGMA.magma.spaceScale.spacing04};
+  padding: ${props => (props.noBorder ? 0 : MAGMA.magma.spaceScale.spacing04)};
 `;
 
 export const Preview = ({ ...props }: PreviewProps) => {
@@ -42,10 +44,10 @@ export const Preview = ({ ...props }: PreviewProps) => {
   const preview = formatPreview(props.code);
 
   return (
-    <PreviewContainer>
+    <PreviewContainer noBorder={props.noBorder}>
       <LiveProvider
         code={preview.code}
-        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS, Header }}
+        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS, ...HEADER }}
         noInline
         transformCode={transformCode}
       >
