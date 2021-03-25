@@ -13,7 +13,12 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
+          node-version: '14'
+          check-latest: true
+      - name: Check Node version
+        run: node -v
+      - name: Check NPM version
+        run: npm -v
       - name: Install
         run: npm ci
       - name: Test
