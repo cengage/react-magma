@@ -18,8 +18,8 @@ jobs:
           check-latest: true
       - name: Check Node version
         run: node -v
-      - name: Check NPM version
-        run: npm -v
+      - name: Update NPM version
+        run: npm install -g "npm@^7.6.3"
       - name: Install
         run: npm ci
       - name: Test
