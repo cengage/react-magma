@@ -82,3 +82,9 @@ MaxWidth.args = {
   ...Default.args,
   maxWidth: '1024px',
 };
+
+export const Gutters = Template.bind({});
+Gutters.args = {
+  ...Default.args,
+  gutterWidth: 80,
+};

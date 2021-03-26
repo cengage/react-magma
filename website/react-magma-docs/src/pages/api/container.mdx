@@ -67,6 +67,26 @@ export function Example() {
 }
 ```
 
+## Gutter Width
+
+By default, a `Container` component has left and right padding of 24px. This can be adjusted using the `gutterWidth` prop, which accepts a number (as pixels) or a string.
+
+```tsx
+import React from 'react';
+import { Container, Heading, Paragraph, Hyperlink } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse gutterWidth={80}>
+      <Heading level="3">Basic Container</Heading>
+      <Paragraph>
+        Paragraph with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Paragraph>
+    </Container>
+  );
+}
+```
+
 ## Container Props
 
 **This component uses `forwardRef`. The ref is applied to the Container container `div` element.**
