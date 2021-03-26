@@ -17,10 +17,12 @@ const Message = styled.div<InputMessageProps>`
   align-items: center;
   border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
-    props.isInverse
+    props.isInverse && props.hasError
       ? props.theme.colors.dangerInverse
       : props.hasError
       ? props.theme.colors.danger
+      : props.isInverse && !props.hasError
+      ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};

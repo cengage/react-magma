@@ -97,7 +97,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.dangerInverse);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
   it('should render an input with a correctly styled error message', () => {
