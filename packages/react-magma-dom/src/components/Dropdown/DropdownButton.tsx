@@ -1,16 +1,18 @@
+import { css } from '@emotion/core';
 import * as React from 'react';
 import { IconButton, ButtonIconPosition } from '../IconButton';
 import {
   ArrowDropUpIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  CaretDownIcon,
+  ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
-import { DropdownContext, DropdownDropDirection } from '.';
+import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
 import { useIsInverse } from '../../inverse';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -64,6 +66,21 @@ function getButtonPadding(theme: ThemeInterface, size?: ButtonSize) {
   }
 }
 
+const StyledIconButton = styled(IconButton)`
+  ${props =>
+    props.iconPosition === ButtonIconPosition.right &&
+    props.children &&
+    css`
+      padding-right: ${getButtonPadding(props.theme, props.size)};
+    `}
+  ${props =>
+    props.iconPosition === ButtonIconPosition.left &&
+    props.children &&
+    css`
+      padding-left: ${getButtonPadding(props.theme, props.size)};
+    `}
+`;
+
 export const DropdownButton = React.forwardRef<
   HTMLButtonElement,
   DropdownButtonProps
@@ -85,7 +102,7 @@ export const DropdownButton = React.forwardRef<
         return <ArrowDropUpIcon testId="caretUp" />;
 
       default:
-        return <CaretDownIcon testId="caretDown" />;
+        return <ArrowDropDownIcon testId="caretDown" />;
     }
   }
 
@@ -115,7 +132,7 @@ export const DropdownButton = React.forwardRef<
     : ButtonIconPosition.right;
 
   return (
-    <IconButton
+    <StyledIconButton
       {...other}
       aria-expanded={context.isOpen}
       aria-haspopup="true"
@@ -126,12 +143,9 @@ export const DropdownButton = React.forwardRef<
       onClick={handleClick}
       onKeyDown={context.handleButtonKeyDown}
       ref={ref}
-      style={{
-        paddingRight: getButtonPadding(theme, props.size),
-        ...props.style,
-      }}
+      theme={theme}
     >
       {children}
-    </IconButton>
+    </StyledIconButton>
   );
 });

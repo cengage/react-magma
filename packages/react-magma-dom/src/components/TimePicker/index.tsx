@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Announce } from '../Announce';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
-import { ClockIcon } from 'react-magma-icons';
+import { ScheduleIcon } from 'react-magma-icons';
 import { Input } from '../Input';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
@@ -321,7 +321,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             disabled
             errorMessage={errorMessage}
             helperMessage={helperMessage}
-            icon={<ClockIcon />}
+            icon={<ScheduleIcon />}
             isInverse={isInverse}
             id={id}
             inputStyle={{

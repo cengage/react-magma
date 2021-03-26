@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IconButton } from '../IconButton';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { Select } from '../Select';
-import { ArrowRight2Icon, ArrowLeft2Icon } from 'react-magma-icons';
+import { EastIcon, WestIcon } from 'react-magma-icons';
 import { Label, LabelPosition } from '../Label';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -130,7 +130,7 @@ export const TablePagination = React.forwardRef<
         aria-label={i18n.table.pagination.previousAriaLabel}
         color={ButtonColor.secondary}
         disabled={page <= 0}
-        icon={<ArrowLeft2Icon />}
+        icon={<WestIcon />}
         isInverse={isInverse}
         onClick={handlePreviousClick}
         testId="previousBtn"
@@ -140,7 +140,7 @@ export const TablePagination = React.forwardRef<
         aria-label={i18n.table.pagination.nextAriaLabel}
         color={ButtonColor.secondary}
         disabled={isLastPage}
-        icon={<ArrowRight2Icon />}
+        icon={<EastIcon />}
         isInverse={isInverse}
         onClick={handleNextClick}
         testId="nextBtn"
