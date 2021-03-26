@@ -8,7 +8,7 @@ import {
   ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
-import { DropdownContext, DropdownDropDirection } from '.';
+import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
 import styled from '../../theme/styled';
