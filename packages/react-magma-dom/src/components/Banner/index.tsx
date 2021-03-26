@@ -190,7 +190,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
               aria-label={
                 closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
-              icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+              icon={<CloseIcon size={theme.iconSizes.small} />}
               isInverse
               onClick={onDismiss}
               theme={theme}

@@ -74,7 +74,10 @@ export const SelectedItemButton = styled.button`
   line-height: 16px;
   height: 24px;
   margin: 4px 2px 4px 4px;
-  padding: 4px 8px;
+  padding: ${props => props.theme.spaceScale.spacing02}
+    ${props => props.theme.spaceScale.spacing02}
+    ${props => props.theme.spaceScale.spacing02}
+    ${props => props.theme.spaceScale.spacing03};
   position: relative;
   white-space: nowrap;
 `;
