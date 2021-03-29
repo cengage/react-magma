@@ -184,7 +184,7 @@ export function Select<T>(props: SelectProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon size={10} />}
+            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             style={{ marginTop: '0', marginBottom: '0' }}

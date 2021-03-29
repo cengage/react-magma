@@ -200,7 +200,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                 >
                   {multiSelectedItemString}
                   <IconWrapper>
-                    <CloseIcon size={8} />
+                    <CloseIcon size={theme.iconSizes.xSmall} />
                   </IconWrapper>
                 </SelectedItemButton>
               );
