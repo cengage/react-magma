@@ -115,5 +115,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "victory": "^35.4.12"
   }
 }
