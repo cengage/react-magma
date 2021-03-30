@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { jsx } from '@emotion/core';
 
-import { NavTabsContext } from './';
+import { NavTabsContext } from './NavTabs';
 import { StyledTabsChild, StyledIcon, TabStyles } from '../Tabs/Tab';
 import { TabsIconPosition } from '../Tabs';
 import { TabsOrientation } from '../Tabs/shared';
