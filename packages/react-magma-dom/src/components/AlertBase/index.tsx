@@ -282,7 +282,6 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
       isDismissed,
       isDismissible,
       isExiting: externalIsExiting,
-      isInverse,
       isPaused,
       isToast,
       onDismiss,
@@ -294,6 +293,8 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
 
     const id = useGenerateId(defaultId);
     const [isExiting, setIsExiting] = React.useState(false);
+
+    const isInverse = useIsInverse(props.isInverse);
 
     React.useEffect(() => {
       if (isExiting) {
@@ -323,7 +324,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         data-testid={testId}
         id={id}
         tabIndex={-1}
-        isInverse={useIsInverse(isInverse)}
+        isInverse={isInverse}
         isExiting={isExiting}
         isToast={isToast}
         ref={ref}

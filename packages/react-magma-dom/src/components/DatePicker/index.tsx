@@ -372,11 +372,13 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(opened => !opened);
     }
 
-    const { isInverse, placeholder, testId, ...rest } = props;
+    const { placeholder, testId, ...rest } = props;
     const other = omit(
       ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
       rest
     );
+
+    const isInverse = useIsInverse(props.isInverse);
 
     const minDate = getDateFromString(props.minDate);
     const maxDate = getDateFromString(props.maxDate);
@@ -419,7 +421,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             onIconClick={toggleCalendarOpened}
             onIconKeyDown={handleInputKeyDown}
             id={id}
-            isInverse={useIsInverse(isInverse)}
+            isInverse={isInverse}
             ref={ref}
             onChange={handleInputChange}
             onBlur={handleInputBlur}

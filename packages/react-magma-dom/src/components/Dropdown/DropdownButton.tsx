@@ -109,7 +109,9 @@ export const DropdownButton = React.forwardRef<
   const buttonIcon = getButtonIcon(context.dropDirection);
 
   let children;
-  const { icon = buttonIcon, iconPosition, isInverse, ...other } = props;
+  const { icon = buttonIcon, iconPosition, ...other } = props;
+
+  const isInverse = useIsInverse(props.isInverse);
 
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
@@ -139,7 +141,7 @@ export const DropdownButton = React.forwardRef<
       icon={icon}
       iconPosition={iconPositionToUse}
       id={context.dropdownButtonId.current}
-      isInverse={useIsInverse(isInverse)}
+      isInverse={isInverse}
       onClick={handleClick}
       onKeyDown={context.handleButtonKeyDown}
       ref={ref}

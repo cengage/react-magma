@@ -95,10 +95,12 @@ export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { children, isInverse, ...rest } = props;
+    const { children, ...rest } = props;
+
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <StyledButton {...rest} isInverse={useIsInverse(isInverse)} ref={ref}>
+      <StyledButton {...rest} isInverse={isInverse} ref={ref}>
         {children}
       </StyledButton>
     );

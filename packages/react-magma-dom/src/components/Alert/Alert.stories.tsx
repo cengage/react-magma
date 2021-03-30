@@ -1,8 +1,7 @@
 import React from 'react';
 import { Alert, AlertProps } from './index';
 import { AlertVariant } from '../AlertBase';
-import { Card } from '../Card';
-import { CardBody } from '../Card/CardBody';
+import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
