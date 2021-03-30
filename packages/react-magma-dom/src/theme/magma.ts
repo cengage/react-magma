@@ -151,7 +151,7 @@ interface Select {
 
 interface Tabs {
   approxTabSize: {
-    horiztonal: number;
+    horizontal: number;
     vertical: number;
   };
 }
