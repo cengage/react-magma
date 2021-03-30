@@ -509,7 +509,7 @@ export const magma = {
   },
 
   tabs: {
-    tabSize: {
+    approxTabSize: {
       horizontal: 120,
       vertical: 80,
     },

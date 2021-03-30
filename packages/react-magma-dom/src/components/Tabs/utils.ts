@@ -14,8 +14,8 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
 
   const approxTabSize = vertical
-    ? theme.tabs.tabSize.vertical
-    : theme.tabs.tabSize.horizontal;
+    ? theme.tabs.approxTabSize.vertical
+    : theme.tabs.approxTabSize.horizontal;
 
   const background = backgroundColor
     ? backgroundColor
