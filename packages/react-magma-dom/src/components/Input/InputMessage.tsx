@@ -13,17 +13,18 @@ export interface InputMessageProps
   isInverse?: boolean;
 }
 
+function BuildMessageColor(props) {
+  const { isInverse, hasError, theme } = props;
+  if (isInverse) {
+    return hasError ? theme.colors.dangerInverse : theme.colors.neutral08;
+  }
+  return hasError ? theme.colors.danger : theme.colors.neutral03;
+}
+
 const Message = styled.div<InputMessageProps>`
   align-items: center;
-  background: ${props =>
-    props.isInverse && props.hasError ? props.theme.colors.danger : 'none'};
   border-radius: ${props => props.theme.borderRadius};
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.hasError
-      ? props.theme.colors.danger
-      : props.theme.colors.neutral03};
+  color: ${props => BuildMessageColor(props)};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
@@ -32,10 +33,6 @@ const Message = styled.div<InputMessageProps>`
       ? props.theme.spaceScale.spacing03
       : props.theme.spaceScale.spacing02};
   min-height: ${props => props.theme.spaceScale.spacing06};
-  padding: ${props =>
-    props.isInverse && props.hasError
-      ? `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`
-      : '0'};
   text-align: left;
 `;
 
