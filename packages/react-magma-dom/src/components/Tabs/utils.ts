@@ -13,7 +13,9 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
 
-  const approxTabSize = vertical ? 80 : 120;
+  const approxTabSize = vertical
+    ? theme.tabs.tabSize.vertical
+    : theme.tabs.tabSize.horizontal;
 
   const background = backgroundColor
     ? backgroundColor
