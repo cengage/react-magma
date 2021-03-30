@@ -277,7 +277,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           >
             {itemToString(multiSelectedItem)}
             <IconWrapper>
-              <CloseIcon size={9} />
+              <CloseIcon size={theme.iconSizes.xSmall} />
             </IconWrapper>
           </SelectedItemButton>
         ))}

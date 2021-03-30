@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { BreadCrumbContext } from '.';
+import { BreadCrumbContext } from './Breadcrumb';
 
 import { Hyperlink } from '../Hyperlink';
 import { ChevronRightIcon } from 'react-magma-icons';

@@ -2,7 +2,11 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { Card } from '../Card';
-import { DropdownContext, DropdownAlignment, DropdownDropDirection } from '.';
+import {
+  DropdownContext,
+  DropdownAlignment,
+  DropdownDropDirection,
+} from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
@@ -72,12 +76,12 @@ const StyledCard = styled(Card)<{
     `}
 
  ${props =>
-   props.alignment === 'end' &&
-   (props.dropDirection === 'left' || props.dropDirection === 'right') &&
-   css`
-     bottom: ${props.theme.spaceScale.spacing02};
-     top: auto;
-   `}
+    props.alignment === 'end' &&
+    (props.dropDirection === 'left' || props.dropDirection === 'right') &&
+    css`
+      bottom: ${props.theme.spaceScale.spacing02};
+      top: auto;
+    `}
 `;
 
 const StyledDiv = styled.div`
