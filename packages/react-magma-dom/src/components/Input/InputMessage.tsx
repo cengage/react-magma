@@ -13,17 +13,18 @@ export interface InputMessageProps
   isInverse?: boolean;
 }
 
+function BuildMessageColor(props) {
+  const { isInverse, hasError, theme } = props;
+  if (isInverse) {
+    return hasError ? theme.colors.dangerInverse : theme.colors.neutral08;
+  }
+  return hasError ? theme.colors.danger : theme.colors.neutral03;
+}
+
 const Message = styled.div<InputMessageProps>`
   align-items: center;
   border-radius: ${props => props.theme.borderRadius};
-  color: ${props =>
-    props.isInverse && props.hasError
-      ? props.theme.colors.dangerInverse
-      : props.hasError
-      ? props.theme.colors.danger
-      : props.isInverse && !props.hasError
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+  color: ${props => BuildMessageColor(props)};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
