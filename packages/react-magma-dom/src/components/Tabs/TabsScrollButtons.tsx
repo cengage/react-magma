@@ -33,6 +33,7 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
   cursor: pointer;
   display: ${props => (props.buttonVisible ? 'flex' : 'none')};
   justify-content: center;
+  outline-offset: 0;
   position: absolute;
   -webkit-appearance: none;
   z-index: 2;
