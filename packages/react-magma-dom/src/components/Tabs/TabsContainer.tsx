@@ -47,7 +47,7 @@ export const TabsContainer = React.forwardRef<
   TabsContainerProps
 >((props, ref) => {
   const { activeIndex, children, testId } = props;
-az
+
   React.useEffect(() => {
     if (activeIndex >= 0) {
       setActiveTabIndex(activeIndex);
