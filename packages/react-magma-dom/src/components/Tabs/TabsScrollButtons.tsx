@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import { transparentize } from 'polished';
 import { TabsOrientation } from './shared';
 import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 import {
   ArrowBackIosIcon,
@@ -32,6 +33,7 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
   cursor: pointer;
   display: ${props => (props.buttonVisible ? 'flex' : 'none')};
   justify-content: center;
+  outline-offset: 0;
   position: absolute;
   -webkit-appearance: none;
   z-index: 2;
@@ -96,8 +98,11 @@ export const ButtonPrev = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
+  const theme = React.useContext(ThemeContext);
+
   return (
     <StyledButtonPrev
+      aria-hidden
       backgroundColor={props.backgroundColor}
       buttonVisible={props.buttonVisible}
       data-testid="buttonPrev"
@@ -105,12 +110,13 @@ export const ButtonPrev = React.forwardRef<
       onClick={props.onClick}
       orientation={props.orientation}
       ref={ref}
+      tabIndex={-1}
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <ExpandLessIcon size={16} />
+        <ExpandLessIcon size={theme.iconSizes.small} />
       ) : (
-        <ArrowBackIosIcon size={16} />
+        <ArrowBackIosIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonPrev>
   );
@@ -120,8 +126,11 @@ export const ButtonNext = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
+  const theme = React.useContext(ThemeContext);
+
   return (
     <StyledButtonNext
+      aria-hidden
       backgroundColor={props.backgroundColor}
       buttonVisible={props.buttonVisible}
       data-testid="buttonNext"
@@ -129,12 +138,13 @@ export const ButtonNext = React.forwardRef<
       onClick={props.onClick}
       orientation={props.orientation}
       ref={ref}
+      tabIndex={-1}
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <ExpandMoreIcon size={16} />
+        <ExpandMoreIcon size={theme.iconSizes.small} />
       ) : (
-        <ArrowForwardIosIcon size={16} />
+        <ArrowForwardIosIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonNext>
   );

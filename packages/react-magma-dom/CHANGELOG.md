@@ -15,33 +15,17 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.10-alpha.1 (2021-03-29)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.10-alpha.0 (2021-03-25)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.9 (2021-03-24)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.9-alpha.13 (2021-03-23)
 
