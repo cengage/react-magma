@@ -3,8 +3,12 @@ import styled from '@emotion/styled';
 import { jsx } from '@emotion/core';
 
 import { NavTabsContext } from './NavTabs';
-import { StyledTabsChild, StyledIcon, TabStyles } from '../Tabs/Tab';
-import { TabsIconPosition } from '../Tabs';
+import {
+  StyledTabsChild,
+  StyledIcon,
+  TabStyles,
+  TabsIconPosition,
+} from '../Tabs';
 import { TabsOrientation } from '../Tabs/shared';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, XOR } from '../../utils';

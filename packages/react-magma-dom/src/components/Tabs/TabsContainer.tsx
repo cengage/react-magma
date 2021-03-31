@@ -4,21 +4,6 @@ import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
-const StyledTabsContainer = styled.div<{
-  isInverse?: boolean;
-  theme: ThemeInterface;
-}>`
-  background: ${props =>
-    props.isInverse ? props.theme.colors.foundation02 : 'none'};
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-`;
-
 interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The index of the current active tab. You can use this for managing state of the tabs component by your custom logic.
@@ -42,12 +27,27 @@ export const TabsContainerContext = React.createContext<TabsContainerContextInte
   }
 );
 
+const StyledTabsContainer = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
+  background: ${props =>
+    props.isInverse ? props.theme.colors.foundation02 : 'none'};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral};
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+`;
+
 export const TabsContainer = React.forwardRef<
   HTMLDivElement,
   TabsContainerProps
 >((props, ref) => {
   const { activeIndex, children, testId } = props;
-
+az
   React.useEffect(() => {
     if (activeIndex >= 0) {
       setActiveTabIndex(activeIndex);
