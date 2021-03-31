@@ -42,7 +42,6 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     customComponents,
     hasError,
     disabled,
-    isInverse,
     style: passedInStyle,
     toggleButtonProps,
   } = props;
@@ -61,7 +60,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       data-testid="selectTriggerButton"
       hasError={hasError}
       disabled={disabled}
-      isInverse={isInverse}
+      isInverse={false}
       role="button"
       style={style}
       theme={theme}

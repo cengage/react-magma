@@ -11,6 +11,7 @@ import { MultiSelect } from './MultiSelect';
 import { SelectComponents } from './components';
 import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
+import { useIsInverse } from '../../inverse';
 
 export type SelectOptions =
   | string
@@ -189,7 +190,6 @@ export function Select<T>(props: XORSelectProps<T>) {
   const {
     containerStyle,
     id: defaultId,
-    isInverse,
     isMulti,
     labelPosition,
     errorMessage,
@@ -212,12 +212,15 @@ export function Select<T>(props: XORSelectProps<T>) {
 
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
+  const isInverse = useIsInverse(props.isInverse);
+
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
           id={id}
+          isInverse={isInverse}
           labelPosition={labelPosition || LabelPosition.top}
           itemToString={itemToString}
           {...(props as MultiSelectProps<T>)}

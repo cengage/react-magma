@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   TypographyColor,
@@ -54,6 +55,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
         {...other}
         as={headingElement}
         data-testid={testId}
+        isInverse={useIsInverse(props.isInverse)}
         ref={ref}
         visualStyle={visualStyle ? visualStyle : stylesFromLevel[level]}
         theme={theme}
