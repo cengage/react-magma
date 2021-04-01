@@ -112,6 +112,7 @@
     "prettier": "^2.2.1",
     "regenerator-runtime": "^0.13.7",
     "storybook-addon-performance": "^0.14.0",
+    "typedoc": "^0.19.2",
     "typescript": "^3.9.7"
   },
   "config": {

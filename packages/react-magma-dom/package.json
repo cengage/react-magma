@@ -49,8 +49,6 @@
   "devDependencies": {
     "mkdirp": "^1.0.4",
     "react-magma-icons": "^2.0.0",
-    "tsdx": "^0.14.1",
-    "typedoc": "^0.20.34"
-  },
-  "gitHead": "cadb4fd5f575f1fbe92c1521bf8228c64b8e2336"
+    "tsdx": "^0.14.1"
+  }
 }

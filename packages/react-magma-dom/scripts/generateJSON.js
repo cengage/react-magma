@@ -35,7 +35,11 @@ const generateJson = () => {
 
   app.bootstrap({
     tsconfig,
+    mode: 'modules',
+    includeDeclarations: true,
     excludeExternals: true,
+    stripInternal: true,
+    ignoreCompilerErrors: true,
   });
 
   const project = app.convert(app.expandInputFiles(inPath));
@@ -208,4 +212,5 @@ const filterJson = () => {
 };
 
 generateJson();
-// filterJson();
+filterJson();
+
