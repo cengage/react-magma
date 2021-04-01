@@ -1,0 +1,96 @@
+---
+pageTitle: Container API
+title: Container
+props:
+  - ContainerProps
+---
+
+<DocsHeading type="api">Container</DocsHeading>
+
+The `Container` component centers your content horizontally. It is the most basic layout element.
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+import { Container } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container>
+      <Heading level="3">Basic Container</Heading>
+      <Paragraph>
+        Paragraph with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Paragraph>
+    </Container>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` prop will give the `Container` component a dark background with light text. All of the components inside will also receive the `isInverse` prop.
+
+```tsx
+import React from 'react';
+import { Container, Heading, Paragraph, Hyperlink } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse>
+      <Heading level="3">Basic Container</Heading>
+      <Paragraph>
+        Paragraph with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Paragraph>
+    </Container>
+  );
+}
+```
+
+## Max-Width
+
+By default, a `Container` does not have a max-width. The `maxWidth` prop allows you to set a max-width on the `Container` which will be centered inside it's containing element. The `maxWidth` prop can either be a number or a string. If a number is provided, then the max-width will be set in pixels.
+
+```tsx
+import React from 'react';
+import { Container, Heading, Paragraph, Hyperlink } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse maxWidth={600}>
+      <Heading level="3">Basic Container</Heading>
+      <Paragraph>
+        Paragraph with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Paragraph>
+    </Container>
+  );
+}
+```
+
+## Gutter Width
+
+By default, a `Container` component has left and right padding of 24px. This can be adjusted using the `gutterWidth` prop, which accepts a number (as pixels) or a string.
+
+```tsx
+import React from 'react';
+import { Container, Heading, Paragraph, Hyperlink } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse gutterWidth={80}>
+      <Heading level="3">Basic Container</Heading>
+      <Paragraph>
+        Paragraph with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Paragraph>
+    </Container>
+  );
+}
+```
+
+## Container Props
+
+**This component uses `forwardRef`. The ref is applied to the Container container `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<ContainerProps />

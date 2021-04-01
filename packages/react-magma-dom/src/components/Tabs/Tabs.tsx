@@ -9,65 +9,6 @@ import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
 import { useTabsMeta } from './utils';
 import { I18nContext } from '../../i18n';
 
-export const StyledContainer = styled('div', {
-  shouldForwardProp: isPropValid,
-})<{
-  as?: string;
-  orientation: TabsOrientation;
-  isInverse: boolean;
-  backgroundColor: string;
-  theme: ThemeInterface;
-}>`
-  background-color: ${props =>
-    props.backgroundColor
-      ? props.backgroundColor
-      : props.isInverse
-      ? props.theme.colors.foundation
-      : 'transparent'};
-  background: backgroundColor;
-  display: flex;
-  height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
-
-  position: relative;
-  width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
-`;
-
-export const StyledTabsWrapper = styled('div', {
-  shouldForwardProp: isPropValid,
-})<{
-  orientation: TabsOrientation;
-}>`
-  display: flex;
-  flex-grow: 1;
-  overflow-x: ${props => (props.orientation === 'vertical' ? '' : 'auto')};
-  overflow-y: ${props => (props.orientation === 'vertical' ? 'auto' : '')};
-
-  &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-  }
-  scrollbar-width: none;
-`;
-
-export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
-  alignment?: TabsAlignment;
-  orientation: TabsOrientation;
-}>`
-  align-items: center;
-  display: flex;
-  flex-direction: ${props =>
-    props.orientation === 'vertical' ? 'column' : 'row'};
-  justify-content: ${props =>
-    props.alignment === 'center'
-      ? 'center'
-      : props.alignment === 'right'
-      ? 'flex-end'
-      : ''};
-  margin: 0;
-  padding: 0;
-  width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
-`;
-
 export enum TabsAlignment {
   center = 'center',
   left = 'left',
@@ -132,6 +73,7 @@ export interface TabsProps
    * The onChange handler for managing state of Tabs component by your custom logic.
    */
   onChange?: (newActiveIndex: number) => void;
+  orientation?: TabsOrientation;
   testId?: string;
 }
 
@@ -161,6 +103,65 @@ export const TabsContext = React.createContext<TabsContextInterface>({
   orientation: TabsOrientation.horizontal,
   registerTabButton: (elements, element) => {},
 });
+
+export const StyledContainer = styled('div', {
+  shouldForwardProp: isPropValid,
+})<{
+  as?: string;
+  orientation: TabsOrientation;
+  isInverse: boolean;
+  backgroundColor: string;
+  theme: ThemeInterface;
+}>`
+  background-color: ${props =>
+    props.backgroundColor
+      ? props.backgroundColor
+      : props.isInverse
+      ? props.theme.colors.foundation
+      : 'transparent'};
+  background: backgroundColor;
+  display: flex;
+  height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
+
+  position: relative;
+  width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
+`;
+
+export const StyledTabsWrapper = styled('div', {
+  shouldForwardProp: isPropValid,
+})<{
+  orientation: TabsOrientation;
+}>`
+  display: flex;
+  flex-grow: 1;
+  overflow-x: ${props => (props.orientation === 'vertical' ? '' : 'auto')};
+  overflow-y: ${props => (props.orientation === 'vertical' ? 'auto' : '')};
+
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+  scrollbar-width: none;
+`;
+
+export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
+  alignment?: TabsAlignment;
+  orientation: TabsOrientation;
+}>`
+  align-items: center;
+  display: flex;
+  flex-direction: ${props =>
+    props.orientation === 'vertical' ? 'column' : 'row'};
+  justify-content: ${props =>
+    props.alignment === 'center'
+      ? 'center'
+      : props.alignment === 'right'
+      ? 'flex-end'
+      : ''};
+  margin: 0;
+  padding: 0;
+  width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
+`;
 
 export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
   (props, ref) => {

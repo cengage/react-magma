@@ -109,13 +109,13 @@ export const buttonStyles = props => css`
   }
 
   ${props.iconOnly &&
-    css`
-      display: inline-flex;
-      justify-content: center;
-      line-height: 1;
-      min-width: 0;
-      padding: 0;
-    `}
+  css`
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    min-width: 0;
+    padding: 0;
+  `}
 `;
 
 export const BaseStyledButton = styled.button`
@@ -125,7 +125,7 @@ export const BaseStyledButton = styled.button`
 export const StyledButton = React.forwardRef<
   HTMLButtonElement,
   StyledButtonProps
->(({ children, testId, type=ButtonType.button, ...other }, ref) => {
+>(({ children, testId, type = ButtonType.button, ...other }, ref) => {
   const theme = React.useContext(ThemeContext);
 
   return (

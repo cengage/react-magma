@@ -15,6 +15,7 @@ import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { omit, useGenerateId } from '../../utils';
+import { useIsInverse } from '../../inverse';
 
 export enum CheckboxTextPosition {
   left = 'left',
@@ -186,7 +187,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       disabled,
       errorMessage,
       inputStyle,
-      isInverse,
       labelStyle,
       labelText,
       isTextVisuallyHidden,
@@ -209,6 +209,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         : null;
 
     const hasError = context.hasError || !!errorMessage;
+
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <>
@@ -234,7 +236,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               color={color}
               disabled={disabled}
               hasError={hasError}
-              isInverse={context.isInverse || isInverse}
+              isInverse={isInverse}
               style={inputStyle}
               textPosition={textPosition}
               theme={theme}

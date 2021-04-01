@@ -3,6 +3,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';
+import { useIsInverse } from '../../inverse';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -171,7 +172,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     content,
     containerStyle,
     id: defaultId,
-    isInverse,
     position,
     testId,
     tooltipStyle,
@@ -198,6 +198,8 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   };
   const combinedArrowStyle = { ...styles.arrow, ...arrowStyle };
 
+  const isInverse = useIsInverse(props.isInverse);
+
   return (
     <ToolTipContainer
       {...other}
@@ -211,7 +213,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
       {isVisible && (
         <StyledTooltip
           id={id}
-          isInverse={!!isInverse}
+          isInverse={isInverse}
           position={position ? position : TooltipPosition.top}
           ref={setPopperElement}
           role="tooltip"
@@ -221,7 +223,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
         >
           {content}
           <ToolTipArrow
-            isInverse={!!isInverse}
+            isInverse={isInverse}
             ref={setArrowElement}
             style={combinedArrowStyle}
             theme={theme}

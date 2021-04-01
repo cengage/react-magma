@@ -5,6 +5,7 @@ import { Label } from '../Label';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -46,12 +47,10 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 export interface FormGroupContextInterface {
   descriptionId?: string;
   hasError?: boolean;
-  isInverse?: boolean;
 }
 
 export const FormGroupContext = React.createContext<FormGroupContextInterface>({
   hasError: false,
-  isInverse: false,
 });
 
 const HiddenLabel = styled.label`
@@ -69,7 +68,6 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
       labelledById,
       labelStyle,
       labelText,
-      isInverse,
       isTextVisuallyHidden,
       testId,
       children,
@@ -79,6 +77,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <div
@@ -93,7 +92,6 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           value={{
             descriptionId,
             hasError: !!errorMessage,
-            isInverse,
           }}
         >
           {labelText && isTextVisuallyHidden && (

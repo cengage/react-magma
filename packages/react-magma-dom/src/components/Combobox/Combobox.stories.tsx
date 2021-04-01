@@ -35,6 +35,7 @@ Default.args = {
   disableCreateItem: false,
   errorMessage: '',
   helperMessage: '',
+  isClearable: false,
   isMulti: false,
   isLoading: false,
 };
