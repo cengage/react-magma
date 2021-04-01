@@ -14,6 +14,7 @@ import { Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
+import { useIsInverse } from '../../inverse';
 
 export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
 
@@ -43,13 +44,14 @@ export const NavTabs = React.forwardRef<
     borderPosition,
     children,
     iconPosition,
-    isInverse,
     isFullWidth,
     orientation,
     testId,
     ...rest
   } = props;
   const theme = React.useContext(ThemeContext);
+
+  const isInverse = useIsInverse(props.isInverse);
 
   const background = backgroundColor
     ? backgroundColor
@@ -108,7 +110,7 @@ export const NavTabs = React.forwardRef<
             value={{
               borderPosition,
               iconPosition,
-              isInverse,
+              isInverse: isInverse,
               isFullWidth,
               orientation,
             }}

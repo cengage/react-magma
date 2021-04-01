@@ -79,7 +79,6 @@ describe('Textarea', () => {
       magma.colors.danger
     );
 
-    expect(errorMessage).toHaveStyleRule('background', 'none');
     expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
 
     const helperMessage = queryByText(testHelperMessage);

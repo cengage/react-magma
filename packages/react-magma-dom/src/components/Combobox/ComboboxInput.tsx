@@ -62,18 +62,18 @@ const InputContainer = styled.div<{
     `}
 
     ${props =>
-      props.disabled &&
-      css`
-        background: ${props.theme.colors.neutral07};
-        border-color: ${props.theme.colors.neutral05};
-        color: ${props.theme.colors.disabledText};
-        cursor: not-allowed;
-        outline: 0;
+    props.disabled &&
+    css`
+      background: ${props.theme.colors.neutral07};
+      border-color: ${props.theme.colors.neutral05};
+      color: ${props.theme.colors.disabledText};
+      cursor: not-allowed;
+      outline: 0;
 
-        &::placeholder {
-          color: ${props.theme.colors.disabledText};
-        }
-      `}
+      &::placeholder {
+        color: ${props.theme.colors.disabledText};
+      }
+    `}
 `;
 
 const StyledInput = styled.input`
@@ -206,7 +206,10 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
             style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
           />
         )}
-        <DropdownIndicator aria-label="toggle menu" />
+        <DropdownIndicator
+          aria-label="toggle menu"
+          color={theme.colors.neutral}
+        />
       </InputContainer>
     </ComboBoxContainer>
   );

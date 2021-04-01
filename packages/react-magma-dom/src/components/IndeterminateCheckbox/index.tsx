@@ -19,6 +19,7 @@ import { useGenerateId, Omit } from '../../utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { Announce } from '../Announce';
 import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
 
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {
@@ -78,7 +79,6 @@ export const IndeterminateCheckbox = React.forwardRef<
     disabled,
     errorMessage,
     inputStyle,
-    isInverse,
     labelStyle,
     labelText,
     isTextVisuallyHidden,
@@ -133,6 +133,8 @@ export const IndeterminateCheckbox = React.forwardRef<
       : null;
 
   const hasError = context.hasError || !!errorMessage;
+
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <>

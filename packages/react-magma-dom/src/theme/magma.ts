@@ -164,6 +164,13 @@ interface Select {
   };
 }
 
+interface Tabs {
+  approxTabSize: {
+    horizontal: number;
+    vertical: number;
+  };
+}
+
 export interface Tooltip {
   arrowSize: string;
   arrowSizeDoubled: string;
@@ -199,6 +206,7 @@ export interface ThemeInterface {
   typographyExpressiveVisualStyles: TypographyVisualStyles;
   typographyNarrativeVisualStyles: TypographyVisualStyles;
   modal: Modal;
+  tabs: Tabs;
   tooltip: Tooltip;
 }
 
@@ -513,17 +521,24 @@ export const magma = {
     },
   },
 
+  modal: {
+    width: {
+      small: '300px',
+      medium: '600px',
+      large: '900px',
+    },
+  },
+
   dropdown: {
     content: {
       maxHeight: '250px',
     },
   },
 
-  modal: {
-    width: {
-      small: '300px',
-      medium: '600px',
-      large: '900px',
+  tabs: {
+    approxTabSize: {
+      horizontal: 120,
+      vertical: 80,
     },
   },
 

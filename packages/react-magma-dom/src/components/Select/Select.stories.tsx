@@ -1,12 +1,12 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Select, SelectProps } from './';
+import { Select, SelectOptions, SelectProps, MultiSelectProps } from './';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { magma } from '../../theme/magma';
 
-const Template: Story<SelectProps> = args => <Select {...args} />;
+const Template: Story<SelectProps<SelectOptions>> = args => <Select {...args} />;
 
 export default {
   title: 'Select',
@@ -29,7 +29,6 @@ Default.args = {
     { label: 'Blue', value: 'blue' },
     { label: 'Green', value: 'green' },
   ],
-  disableCreateItem: false,
   errorMessage: '',
   helperMessage: '',
   isClearable: false,
@@ -37,12 +36,9 @@ Default.args = {
   isMulti: false,
   labelPosition: LabelPosition.top,
 };
+//
 
-export const Multi = Template.bind({});
-Multi.args = {
-  ...Default.args,
-  isMulti: true,
-};
+export const Multi = (props: MultiSelectProps<SelectOptions>) =>  <Select isMulti {...props} />
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {
