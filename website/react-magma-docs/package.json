@@ -62,9 +62,5 @@
     "serve": "gatsby serve",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\""
-  },
-  "devDependencies": {
-    "prettier": "^2.2.1"
-  },
-  "gitHead": "cadb4fd5f575f1fbe92c1521bf8228c64b8e2336"
+  }
 }

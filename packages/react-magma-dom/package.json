@@ -47,8 +47,6 @@
     "react-popper": "^2.2.4"
   },
   "devDependencies": {
-    "mkdirp": "^1.0.4",
-    "react-magma-icons": "^2.0.0",
-    "tsdx": "^0.14.1"
+    "mkdirp": "^1.0.4"
   }
 }
