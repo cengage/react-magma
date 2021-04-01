@@ -51,14 +51,14 @@ describe('Form', () => {
   });
 
   it('should render errors', () => {
-    const errorText = 'FORM ERROR FROM PROP';
+    const errorMessage = 'FORM ERROR FROM PROP';
     const { getByText } = render(
-      <Form {...props} errorText={errorText}>
+      <Form {...props} errorMessage={errorMessage}>
         Test Form
       </Form>
     );
 
-    expect(getByText(errorText)).toBeInTheDocument();
+    expect(getByText(errorMessage)).toBeInTheDocument();
   });
 
   it('should render content', () => {
