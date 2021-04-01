@@ -290,7 +290,7 @@ export const ModalInAModal = () => {
           This is <a href="/"> some more linked text</a> in the modal
         </p>
         <div>
-          <DatePicker />
+          <DatePicker labelText="Pick a date"/>
         </div>
         <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
 
