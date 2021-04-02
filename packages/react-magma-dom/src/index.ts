@@ -1,6 +1,7 @@
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
+export { AppBar, AppBarProps, AppBarPosition } from './components/AppBar';
 export {
   Badge,
   BadgeColor,
@@ -82,7 +83,11 @@ export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
-export { HideAtBreakpoint } from './components/HideAtBreakpoint';
+export {
+  HideAtBreakpoint,
+  HideAtBreakpointDisplayType,
+  HideAtBreakpointProps,
+} from './components/HideAtBreakpoint';
 export { Hyperlink, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,
@@ -197,7 +202,7 @@ export {
   VisuallyHiddenProps,
 } from './components/VisuallyHidden';
 
-export { magma } from './theme/magma';
+export { magma, ThemeInterface } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';

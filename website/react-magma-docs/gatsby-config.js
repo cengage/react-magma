@@ -36,6 +36,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `api-intro`,
+        path: `${__dirname}/src/pages/api-intro`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `design`,
         path: `${__dirname}/src/pages/design`,
       },
@@ -50,8 +57,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `api-intro`,
-        path: `${__dirname}/src/pages/api-intro`,
+        name: `patterns`,
+        path: `${__dirname}/src/pages/patterns`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `patterns-intro`,
+        path: `${__dirname}/src/pages/patterns-intro`,
       },
     },
     {

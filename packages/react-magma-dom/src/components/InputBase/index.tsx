@@ -86,6 +86,7 @@ export interface InputBaseProps
 const InputWrapper = styled.div`
   align-items: center;
   display: flex;
+  flex-shrink: 0;
   position: relative;
 `;
 

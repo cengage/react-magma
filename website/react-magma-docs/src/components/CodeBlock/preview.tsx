@@ -7,6 +7,7 @@ import * as MAGMA from 'react-magma-dom';
 import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
 import { es, zhCN } from 'date-fns/locale';
+import * as HEADER from '@cengage-patterns/header';
 
 import { CodeBlockContext } from './context';
 
@@ -46,7 +47,7 @@ export const Preview = ({ ...props }: PreviewProps) => {
     <PreviewContainer noBorder={props.noBorder}>
       <LiveProvider
         code={preview.code}
-        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS }}
+        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS, ...HEADER }}
         noInline
         transformCode={transformCode}
       >
