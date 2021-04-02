@@ -49,7 +49,7 @@ export const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
             // tickFormat specifies how ticks should be displayed
             tickFormat={x => `$${x / 1000}k`}
           />
-          <VictoryStack colorScale={'warm'}>
+          <VictoryStack>
             <VictoryBar data={data2012} x="quarter" y="earnings" />
             <VictoryBar data={data2013} x="quarter" y="earnings" />
             <VictoryBar data={data2014} x="quarter" y="earnings" />
