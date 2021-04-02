@@ -35,5 +35,11 @@
     "react-magma-icons": "2.0.3-alpha.7"
   },
   "name": "@cengage-patterns/header",
-  "module": "dist/header.esm.js"
+  "module": "dist/header.esm.js",
+  "homepage": "https://react-magma.cengage.com/version/next/patterns/header/",
+  "repository": {
+    "type": "git",
+    "directory": "patterns/header",
+    "url": "https://github.com/cengage/react-magma.git"
+  }
 }
