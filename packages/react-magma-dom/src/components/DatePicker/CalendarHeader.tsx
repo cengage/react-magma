@@ -66,7 +66,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
   const currentMonth = format(focusedDate, 'MMMM yyyy', locale);
 
   const capitalizeCurrentMonth =
-    currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
+  currentMonth && currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
 
   return (
     <CalendarHeaderContainer theme={theme}>
