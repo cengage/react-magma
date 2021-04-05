@@ -57,7 +57,7 @@ const List = styled.ol`
     padding: 0 ${props => props.theme.spaceScale.spacing05};
     position: fixed;
     right: 0;
-    top: 80px;
+    top: 88px;
     z-index: 2;
   }
 

@@ -127,6 +127,14 @@ export const MainNav = ({ ...props }) => (
             ...navFields
           }
         }
+        patternsDocs: allMdx(
+          filter: { fileAbsolutePath: { glob: "**/src/pages/patterns/**" } }
+          sort: { order: ASC, fields: frontmatter___title }
+        ) {
+          edges {
+            ...navFields
+          }
+        }
         designIntro: allMdx(
           filter: { fileAbsolutePath: { glob: "**/src/pages/design-intro/**" } }
           sort: { order: ASC, fields: frontmatter___order }
@@ -137,6 +145,14 @@ export const MainNav = ({ ...props }) => (
         }
         apiIntro: allMdx(
           filter: { fileAbsolutePath: { glob: "**/src/pages/api-intro/**" } }
+          sort: { order: ASC, fields: frontmatter___order }
+        ) {
+          edges {
+            ...navFields
+          }
+        }
+        patternsIntro: allMdx(
+          filter: { fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" } }
           sort: { order: ASC, fields: frontmatter___order }
         ) {
           edges {
@@ -262,6 +278,58 @@ export const MainNav = ({ ...props }) => (
                   <Heading3>Components</Heading3>
                   <List>
                     {data.designDocs.edges.map(({ node }) => (
+                      <ListItem key={node.fields.slug}>
+                        <StyledLink2
+                          activeStyle={activeStyle}
+                          onClick={props.handleClick}
+                          to={node.fields.slug}
+                        >
+                          {node.frontmatter.title}
+                        </StyledLink2>
+                        <Router>
+                          <SubMenu2
+                            path={withPrefix(node.fields.slug)}
+                            headings={node.headings}
+                            handleClick={props.handleClick}
+                          />
+                        </Router>
+                      </ListItem>
+                    ))}
+                  </List>
+                </AccordionItemBody>
+              </AccordionItem>
+              <HR />
+              <AccordionItem expanded={location.pathname.includes('patterns')}>
+                <AccordionItemTitle>
+                  <Heading2>
+                    Patterns
+                    <ExpandMoreIcon size={magma.iconSizes.medium} />
+                  </Heading2>
+                </AccordionItemTitle>
+                <AccordionItemBody>
+                  <List>
+                    {data.patternsIntro.edges.map(({ node }) => (
+                      <ListItem key={node.fields.slug}>
+                        <StyledLink
+                          activeStyle={activeStyle}
+                          onClick={props.handleClick}
+                          to={node.fields.slug}
+                        >
+                          {node.frontmatter.title}
+                        </StyledLink>
+                        <Router>
+                          <SubMenu
+                            path={withPrefix(node.fields.slug)}
+                            headings={node.headings}
+                            handleClick={props.handleClick}
+                          />
+                        </Router>
+                      </ListItem>
+                    ))}
+                  </List>
+                  <Heading3>Packages</Heading3>
+                  <List>
+                    {data.patternsDocs.edges.map(({ node }) => (
                       <ListItem key={node.fields.slug}>
                         <StyledLink2
                           activeStyle={activeStyle}

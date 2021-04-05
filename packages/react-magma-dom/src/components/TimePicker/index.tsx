@@ -10,6 +10,7 @@ import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { useIsInverse } from '../../inverse';
 
 export interface TimePickerProps {
   /**
@@ -148,7 +149,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       errorMessage,
       helperMessage,
       inputStyle,
-      isInverse,
       labelStyle,
       labelText,
       minutesStep,
@@ -299,6 +299,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         toggleAmPm();
       }
     }
+
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <TimePickerContainer

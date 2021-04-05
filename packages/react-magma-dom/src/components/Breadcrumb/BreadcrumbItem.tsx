@@ -1,9 +1,8 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { BreadCrumbContext } from '.';
-
 import { Hyperlink } from '../Hyperlink';
+import { useIsInverse } from '../../inverse';
 import { ChevronRightIcon } from 'react-magma-icons';
 
 /**
@@ -42,7 +41,7 @@ export const BreadcrumbItem = React.forwardRef<
 >((props, ref) => {
   const { children, to, testId, ...other } = props;
   const theme = React.useContext(ThemeContext);
-  const { isInverse } = React.useContext(BreadCrumbContext);
+  const isInverse = useIsInverse();
 
   return (
     <StyledItem {...other} data-testid={testId} ref={ref}>

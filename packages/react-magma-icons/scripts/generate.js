@@ -296,7 +296,7 @@ q.drain = () => {
 
 const icons = fg.sync(path.join(__dirname, '../src/svg/icons/**/*.svg'));
 icons.forEach(icon =>
-  q.push(icon, function(err, result) {
+  q.push(icon, function (err, result) {
     if (err) {
       throw err;
     }

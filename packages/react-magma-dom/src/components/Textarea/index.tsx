@@ -6,6 +6,7 @@ import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
+import { useIsInverse } from '../../inverse';
 
 export interface TextareaProps
   extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
@@ -73,7 +74,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
-      isInverse,
       labelStyle,
       labelText,
       messageStyle,
@@ -103,6 +103,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
       setValue(event.target.value);
     }
+
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <Container style={containerStyle} theme={theme}>

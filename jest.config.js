@@ -2,7 +2,8 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/packages/**/src/**/*.{js,jsx,ts,tsx}',
-    '!**/?(*.)+(spec|test).{js,ts,mjs}',
+    '**/patterns/**/src/**/*.{js,jsx,ts,tsx}',
+    '!**/?(*.)+(spec|test|stories).{js,ts,mjs,jsx,tsx}',
     '!**/archived-packages/**',
     '!**/react-magma-docs/**',
     '!**/react-magma-landing/**',
@@ -10,7 +11,10 @@ module.exports = {
   ],
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['text', 'lcov'],
-  projects: ['<rootDir>/packages/*/jest.config.js'],
+  projects: [
+    '<rootDir>/packages/*/jest.config.js',
+    '<rootDir>/patterns/*/jest.config.js',
+  ],
   setupFiles: [
     // '<rootDir>/jest.overrides.js',
   ],
