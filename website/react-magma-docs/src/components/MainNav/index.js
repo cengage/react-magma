@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
 import { ExpandMoreIcon, LaunchIcon } from 'react-magma-icons';
-import { SubMenu, SubMenu2 } from './SubMenu';
+import { SubMenu2 } from './SubMenu';
 import {
   Accordion,
   AccordionItem,
@@ -99,6 +99,7 @@ export const MainNav = ({ ...props }) => (
         node {
           frontmatter {
             title
+            isPattern
           }
           fileAbsolutePath
           fields {
@@ -111,8 +112,22 @@ export const MainNav = ({ ...props }) => (
         }
       }
       query NavQuery {
-        designDocs: allMdx(
-          filter: { fileAbsolutePath: { glob: "**/src/pages/design/**" } }
+        designComponentDocs: allMdx(
+          filter: {
+            fileAbsolutePath: { glob: "**/src/pages/design/**" }
+            frontmatter: { isPattern: { ne: true } }
+          }
+          sort: { order: ASC, fields: frontmatter___title }
+        ) {
+          edges {
+            ...navFields
+          }
+        }
+        designPatternDocs: allMdx(
+          filter: {
+            fileAbsolutePath: { glob: "**/src/pages/design/**" }
+            frontmatter: { isPattern: { eq: true } }
+          }
           sort: { order: ASC, fields: frontmatter___title }
         ) {
           edges {
@@ -228,7 +243,28 @@ export const MainNav = ({ ...props }) => (
                   </List>
                   <Heading3>Components</Heading3>
                   <List>
-                    {data.designDocs.edges.map(({ node }) => (
+                    {data.designComponentDocs.edges.map(({ node }) => (
+                      <ListItem key={node.fields.slug}>
+                        <StyledLink2
+                          activeStyle={activeStyle}
+                          onClick={props.handleClick}
+                          to={node.fields.slug}
+                        >
+                          {node.frontmatter.title}
+                        </StyledLink2>
+                        <Router>
+                          <SubMenu2
+                            path={withPrefix(node.fields.slug)}
+                            headings={node.headings}
+                            handleClick={props.handleClick}
+                          />
+                        </Router>
+                      </ListItem>
+                    ))}
+                  </List>
+                  <Heading3>Patterns</Heading3>
+                  <List>
+                    {data.designPatternDocs.edges.map(({ node }) => (
                       <ListItem key={node.fields.slug}>
                         <StyledLink2
                           activeStyle={activeStyle}
