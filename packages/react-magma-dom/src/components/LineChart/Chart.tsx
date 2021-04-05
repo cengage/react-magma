@@ -7,6 +7,7 @@ import {
   VictoryScatter,
   VictoryTooltip,
   VictoryLegend,
+  Point,
 } from 'victory';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -107,6 +108,12 @@ export const Chart = props => {
             }}
             size={4}
             data={dataset}
+            dataComponent={
+              <Point
+                tabIndex={0}
+                ariaLabel={({ datum }) => `x: ${datum.label}`}
+              />
+            }
             labelComponent={Tooltip}
             key={`scatter${i}`}
           />

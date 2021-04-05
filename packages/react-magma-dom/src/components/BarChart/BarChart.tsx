@@ -31,6 +31,7 @@ const data2015 = [
   { quarter: 3, earnings: 15000 },
   { quarter: 4, earnings: 12000 },
 ];
+
 export const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
   (props, ref) => {
     const { testId, ...other } = props;
