@@ -3,6 +3,14 @@
 exports[`IconButton Icon Only Button Snapshot should render with large size 1`] = `
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -113,6 +121,14 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -253,6 +269,14 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 exports[`IconButton Icon Only Button Snapshot should render with small size 1`] = `
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -363,6 +387,14 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -503,6 +535,14 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 exports[`IconButton Icon Only Button Snapshot should render with updated color 1`] = `
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -613,6 +653,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -753,6 +801,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 exports[`IconButton Icon Only Button Snapshot should render with updated shape 1`] = `
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -863,6 +919,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -1003,6 +1067,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 exports[`IconButton Icon Only Button Snapshot should render with updated variant 1`] = `
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -1112,6 +1184,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 
 .emotion-0 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-2 {
@@ -1251,6 +1331,14 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 exports[`IconButton Icon With Text Button Snapshot should render with large size 1`] = `
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -1354,6 +1442,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -1492,6 +1588,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 exports[`IconButton Icon With Text Button Snapshot should render with medium size 1`] = `
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -1595,6 +1699,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -1733,6 +1845,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 exports[`IconButton Icon With Text Button Snapshot should render with small size 1`] = `
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -1836,6 +1956,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -1974,6 +2102,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 exports[`IconButton Icon With Text Button Snapshot should render with updated color 1`] = `
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -2077,6 +2213,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -2215,6 +2359,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 exports[`IconButton Icon With Text Button Snapshot should render with updated shape 1`] = `
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -2318,6 +2470,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-3 {
@@ -2456,6 +2616,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 exports[`IconButton Icon With Text Button Snapshot should render with updated text transform 1`] = `
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
@@ -2559,6 +2727,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
@@ -2697,6 +2873,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 exports[`IconButton Icon With Text Button Snapshot should render with updated variant 1`] = `
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
@@ -2799,6 +2983,14 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 
 .emotion-1 {
   visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {

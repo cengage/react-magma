@@ -87,7 +87,15 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
-    const { color, shape, size, textTransform, variant, ...rest } = props;
+    const {
+      color,
+      shape,
+      size,
+      testId,
+      textTransform,
+      variant,
+      ...rest
+    } = props;
 
     const theme = React.useContext(ThemeContext);
 
@@ -108,6 +116,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           ref={ref}
           color={color ? color : ButtonColor.primary}
           iconOnly
+          testId={testId}
           shape={shape ? shape : ButtonShape.round}
           size={size ? size : ButtonSize.medium}
           variant={variant ? variant : ButtonVariant.solid}
@@ -129,6 +138,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         color={color ? color : ButtonColor.primary}
         shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
+        testId={testId}
         textTransform={
           textTransform ? textTransform : ButtonTextTransform.uppercase
         }
@@ -142,6 +152,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {React.Children.only(
           React.cloneElement(icon, {
             size: icon.props.size ? icon.props.size : getIconSize(size, theme),
+            'data-testid': `${testId}-icon`,
           })
         )}
         {iconPosition !== ButtonIconPosition.right && (

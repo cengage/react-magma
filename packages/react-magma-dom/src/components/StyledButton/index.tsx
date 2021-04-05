@@ -149,8 +149,10 @@ export const StyledButton = React.forwardRef<
     display: flex;
   `;
 
-  const ChildrenWrapper = styled.span<{ isLoading: boolean }>`
+  const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
     visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
+    display: inline-flex;
+    align-items: center;
   `;
 
   return (
@@ -170,7 +172,9 @@ export const StyledButton = React.forwardRef<
           />
         </SpinnerWrapper>
       )}
-      <ChildrenWrapper isLoading={isLoading}>{children}</ChildrenWrapper>
+      <ChildrenWrapper isLoading={isLoading} testId={`${testId}-children`}>
+        {children}
+      </ChildrenWrapper>
     </BaseStyledButton>
   );
 });

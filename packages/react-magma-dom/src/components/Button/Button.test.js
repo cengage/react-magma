@@ -1,4 +1,4 @@
-/// <reference types="jest-dom/extend-expect"/>
+// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
 import {

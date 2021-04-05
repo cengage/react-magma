@@ -1,4 +1,3 @@
-/// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
 import { render } from '@testing-library/react';
@@ -42,13 +41,7 @@ describe('IconButton', () => {
     const buttonText = 'Test';
     const testId = 'test-id';
     const spinnerTestId = `${testId}-spinner`;
-    const {
-      getByTestId,
-      getByText,
-      queryByText,
-      rerender,
-      queryByTestId,
-    } = render(
+    const { getByTestId, queryByText, rerender, queryByTestId } = render(
       <IconButton icon={icon} testId={testId} isLoading>
         {buttonText}
       </IconButton>
@@ -62,7 +55,7 @@ describe('IconButton', () => {
       </IconButton>
     );
     expect(queryByTestId(spinnerTestId)).not.toBeInTheDocument();
-    expect(getByText(buttonText)).toBeInTheDocument();
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   describe('Icon Only Button', () => {
@@ -291,14 +284,14 @@ describe('IconButton', () => {
         </IconButton>
       );
 
-      const [firstEl, secondEl] = container.firstChild.childNodes;
-      expect(firstEl.nodeName).toBe('svg');
+      const [secondEl] = container.firstChild.childNodes;
+      expect(getByText(buttonText).parentElement).toBe('svg');
       expect(getByText(buttonText)).toBe(secondEl);
     });
 
     it('should change padding based on position and size', () => {
       const icon = <CheckIcon />;
-      const { container } = render(
+      const { getByText } = render(
         <IconButton
           icon={icon}
           iconPosition={ButtonIconPosition.left}
@@ -308,7 +301,7 @@ describe('IconButton', () => {
         </IconButton>
       );
 
-      expect(container.querySelector('span')).toHaveStyleRule(
+      expect(getByText('Click me')).toHaveStyleRule(
         'padding-left',
         magma.spaceScale.spacing05
       );
