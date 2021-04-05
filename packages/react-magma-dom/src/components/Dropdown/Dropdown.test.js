@@ -77,7 +77,7 @@ describe('Dropdown', () => {
   it('should render a dropleft', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="left">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
@@ -88,12 +88,16 @@ describe('Dropdown', () => {
       magma.spaceScale.spacing02
     );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '100%');
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-left',
+      magma.spaceScale.spacing03
+    );
   });
 
   it('should render a dropright', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="right">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
@@ -104,6 +108,42 @@ describe('Dropdown', () => {
       magma.spaceScale.spacing02
     );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('left', '100%');
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-right',
+      magma.spaceScale.spacing03
+    );
+  });
+
+  it('should render a dropdown with a small button', () => {
+    const { getByTestId } = render(
+      <Dropdown>
+        <DropdownButton testId="dropdownButton" size="small">
+          Toggle me
+        </DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-right',
+      magma.spaceScale.spacing02
+    );
+  });
+
+  it('should render a dropdown with a large button', () => {
+    const { getByTestId } = render(
+      <Dropdown>
+        <DropdownButton testId="dropdownButton" size="large">
+          Toggle me
+        </DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-right',
+      magma.spaceScale.spacing05
+    );
   });
 
   it('should render a right aligned menu', () => {
@@ -159,6 +199,34 @@ describe('Dropdown', () => {
     );
 
     expect(getByLabelText('Custom label')).toBeInTheDocument();
+  });
+
+  it('should render a split dropdown with margin left on solid variants', () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton>Toggle me</DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByLabelText('Toggle menu')).toHaveAttribute(
+      'style',
+      'margin-left: 2px;'
+    );
+  });
+
+  it('should render a split dropdown with no margin on outline variants', () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton variant="outline">Toggle me</DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByLabelText('Toggle menu')).toHaveAttribute(
+      'style',
+      'margin-left: 0px;'
+    );
   });
 
   it('should render a split dropup', () => {

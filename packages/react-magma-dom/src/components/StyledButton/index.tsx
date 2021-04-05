@@ -17,7 +17,7 @@ import {
   buildFocusColor,
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonProps, ButtonSize, ButtonVariant } from '../Button';
+import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
 import { Spinner } from '../Spinner';
 
 export interface StyledButtonProps extends ButtonProps {
@@ -128,7 +128,15 @@ export const StyledButton = React.forwardRef<
   HTMLButtonElement,
   StyledButtonProps
 >((props, ref) => {
-  const { size, variant, isInverse, children, testId, isLoading } = props;
+  const {
+    size,
+    variant,
+    isInverse,
+    children,
+    type = ButtonType.button,
+    testId,
+    isLoading,
+  } = props;
   const theme = React.useContext(ThemeContext);
 
   const spinnerColor =
@@ -160,6 +168,7 @@ export const StyledButton = React.forwardRef<
       {...props}
       data-testid={testId}
       ref={ref}
+      type={type}
       theme={theme}
       disabled={isLoading || props.disabled}
     >

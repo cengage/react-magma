@@ -291,6 +291,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   color="primary"
   id="ignoreButton"
   shape="round"
+  type="button"
 >
   <span
     aria-labelledby="ignoreButton"
@@ -408,7 +409,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-3 {
@@ -503,7 +503,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 <div>
@@ -596,7 +595,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {
@@ -691,7 +689,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {
@@ -862,7 +859,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-3 {
@@ -957,7 +953,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 <div>
@@ -1050,7 +1045,6 @@ exports[`Alert should render an alert with default variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {
@@ -1145,7 +1139,6 @@ exports[`Alert should render an alert with default variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {

@@ -244,6 +244,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
     color="primary"
     id="testId"
     shape="round"
+    type="button"
   >
     <span
       class="emotion-0 emotion-1"
@@ -510,6 +511,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
     color="primary"
     id="testId"
     shape="round"
+    type="button"
   >
     <span
       class="emotion-0 emotion-1"
@@ -776,6 +778,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
     color="secondary"
     id="testId"
     shape="round"
+    type="button"
   >
     <span
       class="emotion-0 emotion-1"
@@ -1042,6 +1045,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
     color="primary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-0 emotion-1"
@@ -1306,6 +1310,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
     color="primary"
     id="testId"
     shape="round"
+    type="button"
   >
     <span
       class="emotion-0 emotion-1"
@@ -1558,6 +1563,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
     color="primary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-1 emotion-2"
@@ -1815,6 +1821,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
     color="primary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-1 emotion-2"
@@ -2072,6 +2079,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
     color="primary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-1 emotion-2"
@@ -2329,6 +2337,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
     color="secondary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-1 emotion-2"
@@ -2586,6 +2595,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
     color="primary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-1 emotion-2"
@@ -2843,6 +2853,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
     color="primary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-1 emotion-2"
@@ -3098,6 +3109,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
     color="primary"
     id="testId"
     shape="fill"
+    type="button"
   >
     <span
       class="emotion-1 emotion-2"

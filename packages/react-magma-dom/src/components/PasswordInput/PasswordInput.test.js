@@ -151,7 +151,6 @@ it('should render an input with a correctly styled error message', () => {
     magma.colors.danger
   );
 
-  expect(errorMessage).toHaveStyleRule('background', 'none');
   expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
 
   const helperMessage = queryByText(testHelperMessage);

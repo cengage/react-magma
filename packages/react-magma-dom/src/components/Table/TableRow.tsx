@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
-import { TableContext, TableRowColor } from './';
+import { TableContext, TableRowColor } from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 /**

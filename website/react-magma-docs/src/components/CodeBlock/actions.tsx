@@ -101,6 +101,8 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         'react-dom': pkg.dependencies['react-dom'],
         'react-magma-icons': pkg.dependencies['react-magma-icons'],
         'react-magma-dom': pkg.dependencies['react-magma-dom'],
+        '@cengage-patterns/header':
+          pkg.dependencies['@cengage-patterns/header'],
         uuid: '8.3.0',
       }}
       providedFiles={{

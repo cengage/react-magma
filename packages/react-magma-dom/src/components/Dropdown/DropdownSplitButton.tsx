@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { Button, ButtonShape, ButtonStyles } from '../Button';
+import { Button, ButtonShape, ButtonStyles, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import { ArrowDropUpIcon, CaretDownIcon } from 'react-magma-icons';
-import { DropdownContext, DropdownDropDirection } from '.';
+import { ArrowDropUpIcon, ArrowDropDownIcon } from 'react-magma-icons';
+import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
 import { useForkedRef, useGenerateId } from '../../utils';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
   /**
@@ -34,9 +35,18 @@ export const DropdownSplitButton = React.forwardRef<
   HTMLButtonElement,
   DropdownSplitButtonProps
 >((props, forwardedRef) => {
-  const { 'aria-label': ariaLabel, children, id, onClick, ...other } = props;
+  const {
+    'aria-label': ariaLabel,
+    children,
+    id,
+    variant = ButtonVariant.solid,
+    onClick,
+    ...other
+  } = props;
 
   const context = React.useContext(DropdownContext);
+
+  const theme = React.useContext(ThemeContext);
 
   const ref = useForkedRef(forwardedRef, context.toggleRef);
 
@@ -44,9 +54,9 @@ export const DropdownSplitButton = React.forwardRef<
 
   const buttonIcon =
     context.dropDirection === DropdownDropDirection.up ? (
-      <ArrowDropUpIcon size={10} testId="caretUp" />
+      <ArrowDropUpIcon size={theme.iconSizes.medium} testId="caretUp" />
     ) : (
-      <CaretDownIcon size={10} testId="caretDown" />
+      <ArrowDropDownIcon size={theme.iconSizes.medium} testId="caretDown" />
     );
 
   function handleClick(event: React.SyntheticEvent) {
@@ -67,6 +77,7 @@ export const DropdownSplitButton = React.forwardRef<
         onClick={onClick}
         shape={ButtonShape.leftCap}
         style={{ borderRight: 0, marginRight: 0 }}
+        variant={variant}
       >
         {children}
       </Button>
@@ -78,8 +89,12 @@ export const DropdownSplitButton = React.forwardRef<
         icon={buttonIcon}
         onClick={handleClick}
         shape={ButtonShape.rightCap}
-        style={{ marginLeft: 0 }}
+        style={{
+          marginLeft:
+            variant === ButtonVariant.outline ? 0 : theme.spaceScale.spacing01,
+        }}
         ref={ref}
+        variant={variant}
       />
     </>
   );

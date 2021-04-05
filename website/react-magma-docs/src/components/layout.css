@@ -100,15 +100,16 @@ pre code {
 
 /* Demo styles for specific components */
 .demo-icon-container {
-  margin: 8px;
-  min-width: 200px;
   padding: 16px;
   text-align: center;
 }
 
 .demo-icon-list-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto;
+  column-gap: 16px;
+  row-gap: 16px;
 }
 
 .demo-icon-list-container .demo-icon-container {
@@ -117,9 +118,20 @@ pre code {
   font-size: 12px;
 }
 
+.icon-name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
 @media (max-width: 600px) {
-  .demo-icon-list-container .demo-icon-container {
-    margin: 4px 0;
-    width: 100%;
+  .demo-icon-list-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto;
+    column-gap: 16px;
+    row-gap: 16px;
   }
 }

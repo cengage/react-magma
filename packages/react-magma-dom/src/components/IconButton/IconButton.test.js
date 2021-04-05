@@ -48,7 +48,7 @@ describe('IconButton', () => {
     );
     expect(getByTestId(testId)).toBeInTheDocument();
     expect(getByTestId(spinnerTestId)).toBeInTheDocument();
-    expect(queryByText(buttonText)).not.toBeInTheDocument();
+    expect(queryByText(buttonText)).not.toBeVisible();
     rerender(
       <IconButton icon={icon} testId={testId} isLoading={false}>
         {buttonText}
@@ -271,6 +271,7 @@ describe('IconButton', () => {
         <IconButton icon={icon}>{buttonText}</IconButton>
       );
       expect(getByTestId(iconTestId, { selector: 'svg' })).toBeInTheDocument();
+
       expect(getByText(buttonText)).toBeInTheDocument();
     });
 
@@ -284,9 +285,9 @@ describe('IconButton', () => {
         </IconButton>
       );
 
-      const [secondEl] = container.firstChild.childNodes;
-      expect(getByText(buttonText).parentElement).toBe('svg');
-      expect(getByText(buttonText)).toBe(secondEl);
+      expect(getByText(buttonText).previousElementSibling).toHaveAttribute(
+        'viewBox'
+      );
     });
 
     it('should change padding based on position and size', () => {

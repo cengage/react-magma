@@ -13,6 +13,10 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   const scrollStart = vertical ? 'scrollTop' : 'scrollLeft';
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
 
+  const approxTabSize = vertical
+    ? theme.tabs.approxTabSize.vertical
+    : theme.tabs.approxTabSize.horizontal;
+
   const background = backgroundColor
     ? backgroundColor
     : isInverse
@@ -47,11 +51,11 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   }
 
   function handleStartScrollClick() {
-    moveTabsScroll(-tabsWrapperRef.current[clientSize]);
+    moveTabsScroll(-tabsWrapperRef.current[clientSize] + approxTabSize);
   }
 
   function handleEndScrollClick() {
-    moveTabsScroll(tabsWrapperRef.current[clientSize]);
+    moveTabsScroll(tabsWrapperRef.current[clientSize] - approxTabSize);
   }
 
   function updateScrollButtonState() {

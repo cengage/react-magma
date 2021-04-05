@@ -1,8 +1,7 @@
 import React from 'react';
-import { IconButton } from '.';
+import { IconButton, IconButtonProps } from '.';
 import { SettingsIcon, NotificationsIcon } from 'react-magma-icons';
 import {
-  ButtonProps,
   ButtonColor,
   ButtonShape,
   ButtonSize,
@@ -16,7 +15,7 @@ import { CardBody } from '../Card/CardBody';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-const Template: Story<ButtonProps> = args => (
+const Template: Story<IconButtonProps> = args => (
   <IconButton icon={<SettingsIcon />} {...args}>
     Button
   </IconButton>
@@ -65,7 +64,7 @@ export default {
     isLoading: {
       control: {
         type: 'boolean',
-      }
+      },
     },
   },
 } as Meta;
@@ -93,7 +92,7 @@ Inverse.decorators = [
   ),
 ];
 
-const IconOnlyTemplate: Story<ButtonProps> = args => (
+const IconOnlyTemplate: Story<IconButtonProps> = args => (
   <IconButton icon={<NotificationsIcon />} aria-label="Button" {...args} />
 );
 

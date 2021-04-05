@@ -491,11 +491,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          subWeeks(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subWeeks(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -516,11 +512,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          subDays(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subDays(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -541,11 +533,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          startOfWeek(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(startOfWeek(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -566,11 +554,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          subMonths(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subMonths(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -591,11 +575,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          addMonths(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addMonths(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -616,11 +596,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          addWeeks(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addWeeks(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -641,11 +617,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          addDays(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addDays(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -666,11 +638,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          endOfWeek(defaultDate)
-            .getDate()
-            .toString()
-        )
+        getByText(endOfWeek(defaultDate).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
