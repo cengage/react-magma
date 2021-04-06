@@ -2,7 +2,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -31,8 +31,8 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "react-magma-dom": "2.3.10-alpha.9",
-    "react-magma-icons": "2.0.3-alpha.10"
+    "react-magma-dom": "2.3.10-alpha.10",
+    "react-magma-icons": "2.0.3-alpha.11"
   },
   "name": "@cengage-patterns/header",
   "module": "dist/header.esm.js",
