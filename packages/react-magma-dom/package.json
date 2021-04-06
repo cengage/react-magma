@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "2.3.10-alpha.8",
+  "version": "2.3.10-alpha.9",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -48,6 +48,6 @@
   },
   "devDependencies": {
     "mkdirp": "^1.0.4",
-    "react-magma-icons": "2.0.3-alpha.9"
+    "react-magma-icons": "2.0.3-alpha.10"
   }
 }
