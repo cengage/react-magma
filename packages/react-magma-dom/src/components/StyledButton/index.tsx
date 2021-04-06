@@ -23,7 +23,6 @@ import { Spinner } from '../Spinner';
 export interface StyledButtonProps extends ButtonProps {
   href?: string;
   iconOnly?: boolean;
-  isLoading?: boolean;
 }
 
 export const buttonStyles = props => css`
