@@ -2,8 +2,9 @@ import Highlight, { defaultProps } from 'prism-react-renderer';
 import React, { useContext, MouseEvent } from 'react';
 import styled from '@emotion/styled';
 import { CodeBlockContext } from './context';
-import { magma } from 'react-magma-dom';
+import { magma, useIsInverse } from 'react-magma-dom';
 import { magmaCode } from './magmaCode';
+import { magmaCodeDark } from './magmaCodeDark';
 
 interface EditorProps {
   children: string;
@@ -11,9 +12,12 @@ interface EditorProps {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Pre = styled.pre<{ expanded?: boolean }>`
-  background: ${magma.colors.neutral07};
-  border: 1px solid ${magma.colors.neutral06};
+const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
+  background: ${props =>
+    props.isInverse ? magma.colors.neutral : magma.colors.neutral07};
+  border: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.neutral02 : magma.colors.neutral06};
   border-top: 0;
   border-radius: 0;
   margin: 0 0 ${magma.spaceScale.spacing04};
@@ -25,8 +29,10 @@ const Pre = styled.pre<{ expanded?: boolean }>`
     background: linear-gradient(
       180deg,
       rgba(24, 28, 32, 0) 20%,
-      ${magma.colors.neutral07}
+      ${props =>
+        props.isInverse ? magma.colors.neutral02 : magma.colors.neutral07}
     );
+
     bottom: 0;
     content: '';
     height: ${magma.spaceScale.spacing09};
@@ -41,18 +47,20 @@ export const Editor = ({ ...props }: EditorProps) => {
 
   if (context.noCode) return null;
 
+  const isInverse = useIsInverse();
+
   return (
     <Highlight
       {...defaultProps}
       code={props.children}
       language={context.language}
-      theme={magmaCode}
+      theme={isInverse ? magmaCodeDark : magmaCode}
     >
       {highlight => {
         const { tokens, getLineProps, getTokenProps } = highlight;
 
         return (
-          <Pre expanded={props.expanded}>
+          <Pre expanded={props.expanded} isInverse={isInverse}>
             {tokens.map((line, i) => (
               <div key={i} {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (

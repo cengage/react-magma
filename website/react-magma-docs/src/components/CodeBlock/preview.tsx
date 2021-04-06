@@ -28,9 +28,18 @@ interface PreviewProps extends HTMLAttributes<HTMLDivElement> {
   noBorder?: boolean;
 }
 
-const PreviewContainer = styled.div<{ noBorder?: boolean }>`
+const PreviewContainer = styled.div<{
+  noBorder?: boolean;
+  isInverse?: boolean;
+}>`
   border: ${props =>
-    props.noBorder ? 0 : `1px solid ${MAGMA.magma.colors.neutral06}`};
+    props.noBorder
+      ? 0
+      : `1px solid ${
+          props.isInverse
+            ? MAGMA.magma.colors.neutral02
+            : MAGMA.magma.colors.neutral06
+        }`};
   border-bottom: 0;
   padding: ${props => (props.noBorder ? 0 : MAGMA.magma.spaceScale.spacing04)};
 `;
@@ -43,8 +52,10 @@ export const Preview = ({ ...props }: PreviewProps) => {
 
   const preview = formatPreview(props.code);
 
+  const isInverse = MAGMA.useIsInverse();
+
   return (
-    <PreviewContainer noBorder={props.noBorder}>
+    <PreviewContainer isInverse={isInverse} noBorder={props.noBorder}>
       <LiveProvider
         code={preview.code}
         scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS, ...HEADER }}
