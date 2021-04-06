@@ -394,6 +394,19 @@ describe('Date Picker', () => {
     expect(getByText(/select the date/i)).toBeInTheDocument();
   });
 
+  it('should default to the min date when it is later than today', () => {
+    const now = new Date();
+    const minDate = format(addMonths(now, 2), 'MM/dd/yyyy');
+    const monthYear = format(addMonths(now, 2), 'MMMM yyyy');
+
+    const { getByLabelText, getByText } = render(
+      <DatePicker minDate={minDate} labelText="Date Picker Label" />
+    );
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
+  });
+
   it('should handle a day click', () => {
     const onChange = jest.fn();
     const onDateChange = jest.fn();
