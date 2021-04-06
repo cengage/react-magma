@@ -182,8 +182,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       if (inDateRange(newDate, convertedMinDate, convertedMaxDate)) {
         return newDate;
       } else if (convertedMaxDate || convertedMinDate) {
-        return isBefore(convertedMinDate, newDate)
-          ? convertedMinDate
+        return convertedMinDate? convertedMinDate
           : convertedMaxDate;
       }
     }
