@@ -18,6 +18,10 @@ function getStyles(theme) {
       outline-offset: 4px;
     }
 
+    .isInverse *:focus {
+      outline: 2px dotted ${theme.colors.focusInverse};
+    }
+
     html {
       -ms-text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
@@ -49,7 +53,16 @@ function getStyles(theme) {
 
       &:hover,
       &:focus {
-        color: ${theme.colors.foundation02};
+        color: ${theme.colors.focus};
+      }
+    }
+
+    .isInverse a {
+      color: ${theme.colors.neutral08};
+
+      &:hover,
+      &:focus {
+        color: ${theme.colors.neutral08};
       }
     }
 

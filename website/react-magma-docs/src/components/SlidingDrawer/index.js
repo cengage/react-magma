@@ -3,7 +3,7 @@ import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
 import { MenuIcon, CrossIcon } from 'react-magma-icons';
-import { IconButton, magma } from 'react-magma-dom';
+import { Container, IconButton, magma } from 'react-magma-dom';
 import { MainNav } from '../MainNav';
 
 export class SlidingDrawer extends React.Component {
@@ -74,11 +74,11 @@ export class SlidingDrawer extends React.Component {
             to   { transform: translateX(-280px); }
         `;
 
-    const Panel = styled.div`
-      background: ${magma.colors.neutral08};
+    const Panel = styled(Container)`
       border-right: 1px solid ${magma.colors.neutral06};
       bottom: 0;
       grid-area: nav;
+      margin: 0;
       overflow: auto;
       padding-bottom: 20px;
       position: fixed;
@@ -154,36 +154,38 @@ export class SlidingDrawer extends React.Component {
 
     return (
       <FocusLock disabled={!isOpen}>
-        <nav aria-label="Main site navigation">
-          {true && (
-            <MenuButton>
-              <IconButton
-                aria-label="Open navigation menu"
-                aria-expanded={isOpen}
-                icon={<MenuIcon />}
-                isInverse
-                onClick={this.openMenu}
-                ref={this.toggleButtonRef}
-                variant="link"
-              />
-            </MenuButton>
-          )}
-          <Panel isOpen={isOpen} isActivated={isActivated}>
-            <PanelInner isOpen={isOpen}>
-              <CloseButton>
+        <Container gutterWidth={0}>
+          <nav aria-label="Main site navigation">
+            {true && (
+              <MenuButton>
                 <IconButton
-                  aria-label="Close navigation menu"
-                  color="secondary"
-                  icon={<CrossIcon />}
-                  onClick={this.handleCloseMenu}
+                  aria-label="Open navigation menu"
+                  aria-expanded={isOpen}
+                  icon={<MenuIcon />}
+                  isInverse
+                  onClick={this.openMenu}
+                  ref={this.toggleButtonRef}
                   variant="link"
                 />
-              </CloseButton>
-              <MainNav handleClick={this.handleCloseMenuFromNav} />
-            </PanelInner>
-          </Panel>
-          {isOpen && <Overlay onClick={this.handleCloseMenu} />}
-        </nav>
+              </MenuButton>
+            )}
+            <Panel isOpen={isOpen} isActivated={isActivated}>
+              <PanelInner isOpen={isOpen}>
+                <CloseButton>
+                  <IconButton
+                    aria-label="Close navigation menu"
+                    color="secondary"
+                    icon={<CrossIcon />}
+                    onClick={this.handleCloseMenu}
+                    variant="link"
+                  />
+                </CloseButton>
+                <MainNav handleClick={this.handleCloseMenuFromNav} />
+              </PanelInner>
+            </Panel>
+            {isOpen && <Overlay onClick={this.handleCloseMenu} />}
+          </nav>
+        </Container>
       </FocusLock>
     );
   }

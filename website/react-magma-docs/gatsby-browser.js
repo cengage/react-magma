@@ -9,7 +9,13 @@ import { Layout } from './src/components/layout';
 import { MainContainer } from './src/components/MainContainer';
 import { Masthead } from './src/components/Masthead';
 import { SlidingDrawer } from './src/components/SlidingDrawer';
-import { SkipLink, GlobalStyles } from 'react-magma-dom';
+import {
+  SkipLink,
+  GlobalStyles,
+  magma,
+  Container,
+  Toggle,
+} from 'react-magma-dom';
 import styled from '@emotion/styled';
 
 const StyledSkipLink = styled(SkipLink)`
@@ -24,11 +30,18 @@ const StyledSkipLink = styled(SkipLink)`
   }
 `;
 
+const HeaderToggle = <Toggle labelText="Dark mode" />;
+
 export const wrapPageElement = ({ element, props }) => {
   // props provide same data to Layout as Page element will get
   // including location, data, etc - you don't need to pass it
   return (
-    <>
+    <Container
+      className="isInverse"
+      gutterWidth={0}
+      isInverse
+      style={{ background: magma.colors.foundation }}
+    >
       <GlobalStyles />
       <StyledSkipLink
         isInverse
@@ -37,10 +50,10 @@ export const wrapPageElement = ({ element, props }) => {
         variant="outline"
       />
       <MainContainer>
-        <Masthead />
+        <Masthead>{HeaderToggle}</Masthead>
         <SlidingDrawer />
         <Layout {...props}>{element}</Layout>
       </MainContainer>
-    </>
+    </Container>
   );
 };

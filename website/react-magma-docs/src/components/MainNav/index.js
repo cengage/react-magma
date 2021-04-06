@@ -68,12 +68,6 @@ const StyledLink = styled(Link)`
   line-height: ${magma.typeScale.size03.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
   text-decoration: none;
-
-  &:hover,
-  &:focus {
-    background: ${magma.colors.neutral06};
-    color: ${magma.colors.neutral};
-  }
 `;
 
 const StyledLink2 = styled(Link)`
@@ -152,7 +146,9 @@ export const MainNav = ({ ...props }) => (
           }
         }
         patternsIntro: allMdx(
-          filter: { fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" } }
+          filter: {
+            fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" }
+          }
           sort: { order: ASC, fields: frontmatter___order }
         ) {
           edges {

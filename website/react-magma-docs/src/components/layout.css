@@ -77,7 +77,8 @@ code {
   color: #003865;
   margin: 0 2px;
 }
-code.inverse {
+code.inverse,
+.isInverse code {
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #fff;
@@ -107,7 +108,7 @@ pre code {
 .demo-icon-list-container {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: auto; 
+  grid-template-rows: auto;
   column-gap: 16px;
   row-gap: 16px;
 }
@@ -127,11 +128,10 @@ pre code {
 }
 
 @media (max-width: 600px) {
-
   .demo-icon-list-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto; 
+    grid-template-rows: auto;
     column-gap: 16px;
     row-gap: 16px;
   }

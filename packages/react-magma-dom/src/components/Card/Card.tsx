@@ -3,6 +3,7 @@ import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import { useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -116,7 +117,9 @@ export const CardContext = React.createContext<NavTabsContextInterface>({
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (props, ref) => {
-    const { align, children, isInverse, testId, width, ...other } = props;
+    const { align, children, testId, width, ...other } = props;
+
+    const isInverse = useIsInverse(props.isInverse);
 
     const theme = React.useContext(ThemeContext);
 
