@@ -46,17 +46,12 @@ const TabsTemplate: Story<AppBarProps> = args => (
       LOGO
     </strong>
     <Spacer size={magma.spaceScale.spacing12} />
-    <Search
-      isInverse={args.isInverse}
-      onSearch={() => {}}
-      placeholder="Search for content..."
-    />
+    <Search onSearch={() => {}} placeholder="Search for content..." />
     <Spacer size={magma.spaceScale.spacing06} />
     <NavTabs
       aria-label="Navigation"
       backgroundColor="transparent"
       iconPosition={TabsIconPosition.left}
-      isInverse={args.isInverse}
     >
       <NavTab icon={<FavoriteIcon />} isActive to="#">
         Favorites
