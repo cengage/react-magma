@@ -56,12 +56,12 @@ export interface ButtonStyles {
    * Defines the border radius
    * @default ButtonShape.fill
    */
+  shape?: ButtonShape;
   /**
    *  Set the button to a loading state
    * @default false
    */
   isLoading?: boolean;
-  shape?: ButtonShape;
   /**
    * The relative size of the button
    * @default ButtonSize.medium
