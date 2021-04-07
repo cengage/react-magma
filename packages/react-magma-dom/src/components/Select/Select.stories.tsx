@@ -6,7 +6,9 @@ import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { magma } from '../../theme/magma';
 
-const Template: Story<SelectProps<SelectOptions>> = args => <Select {...args} />;
+const Template: Story<SelectProps<SelectOptions>> = args => (
+  <Select {...args} />
+);
 
 export default {
   title: 'Select',
@@ -38,7 +40,9 @@ Default.args = {
 };
 //
 
-export const Multi = (props: MultiSelectProps<SelectOptions>) =>  <Select isMulti {...props} />
+export const Multi = (props: MultiSelectProps<SelectOptions>) => (
+  <Select isMulti {...props} />
+);
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {

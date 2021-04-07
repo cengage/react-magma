@@ -72,7 +72,7 @@ const filterJson = () => {
     const ordered = {};
     Object.keys(unordered)
       .sort()
-      .forEach(function(key) {
+      .forEach(function (key) {
         ordered[key] = unordered[key];
       });
     return ordered;
@@ -213,4 +213,3 @@ const filterJson = () => {
 
 generateJson();
 filterJson();
-

@@ -107,7 +107,7 @@ pre code {
 .demo-icon-list-container {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-  grid-template-rows: auto; 
+  grid-template-rows: auto;
   column-gap: 16px;
   row-gap: 16px;
 }
@@ -127,11 +127,10 @@ pre code {
 }
 
 @media (max-width: 600px) {
-
   .demo-icon-list-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto; 
+    grid-template-rows: auto;
     column-gap: 16px;
     row-gap: 16px;
   }

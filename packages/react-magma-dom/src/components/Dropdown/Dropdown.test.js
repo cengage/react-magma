@@ -240,14 +240,13 @@ describe('Dropdown', () => {
   });
 
   it('should render a button with custom icon', () => {
-    const { container, queryByTestId } = render(
+    const { queryByTestId, getByText } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />}>Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
-
-    expect(container.querySelector('span')).toHaveStyleRule(
+    expect(getByText('Toggle me')).toHaveStyleRule(
       'padding-left',
       magma.spaceScale.spacing03
     );
@@ -257,7 +256,7 @@ describe('Dropdown', () => {
   });
 
   it('should render a button with custom icon with specified icon position', () => {
-    const { container } = render(
+    const { getByText } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />} iconPosition="right">
           Toggle me
@@ -266,7 +265,7 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(container.querySelector('span')).toHaveStyleRule(
+    expect(getByText('Toggle me')).toHaveStyleRule(
       'padding-right',
       magma.spaceScale.spacing03
     );
@@ -367,16 +366,16 @@ describe('Dropdown', () => {
   });
 
   it('should close the menu the dropdown button is focused and the tab key is pressed', () => {
-    const { getByText, getByTestId } = render(
+    const { getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdown-button">Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );
 
-    const toggleButton = getByText('Toggle me').parentElement;
+    const toggleButton = getByTestId('dropdown-button');
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
     fireEvent.click(toggleButton);
@@ -394,16 +393,16 @@ describe('Dropdown', () => {
   });
 
   it('should close the menu the dropdown button is focused and shift + the tab key is pressed', () => {
-    const { getByText, getByTestId } = render(
+    const { getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdown-button">Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );
 
-    const toggleButton = getByText('Toggle me').parentElement;
+    const toggleButton = getByTestId('dropdown-button');
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
     fireEvent.click(toggleButton);
