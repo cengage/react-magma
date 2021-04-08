@@ -1,0 +1,75 @@
+---
+pageTitle: Pagination API
+title: Pagination
+props:
+  - PaginationProps
+---
+
+<DocsHeading to="/design/Pagination/" type="api">
+  Pagination
+</DocsHeading>
+
+The `Pagination` component is a relatively simple container. It is used to contain interactive controls and sublit inPaginationation to a web server.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import {
+  Button,
+  Input,
+  NavButton,
+  StyledList,
+  StyledListItem,
+  StyledNav,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <StyledNav {...other} theme={theme}>
+      <StyledList>
+        <StyledListItem>
+          <NavButton
+            color={ButtonColor.secondary}
+            aria-label="Previous"
+            icon={<ArrowBackIcon />}
+            theme={theme}
+            shape={ButtonShape.leftCap}
+            size={buttonSize}
+          />
+        </StyledListItem>
+        <StyledListItem>
+          <PageButton size={buttonSize}>1</PageButton>
+        </StyledListItem>
+        <StyledListItem>
+          <PageButton isSelected size={buttonSize}>
+            2
+          </PageButton>
+        </StyledListItem>
+        <StyledListItem>
+          <PageButton size={buttonSize}>3</PageButton>
+        </StyledListItem>
+        <StyledListItem>
+          <PageButton size={buttonSize}>4</PageButton>
+        </StyledListItem>
+        <StyledListItem>
+          <NavButton
+            color={ButtonColor.secondary}
+            aria-label="Previous"
+            icon={<ArrowForwardIcon />}
+            theme={theme}
+            shape={ButtonShape.rightCap}
+            size={buttonSize}
+          />
+        </StyledListItem>
+      </StyledList>
+    </StyledNav>
+  );
+}
+```
+
+# Pagination Props
+
+**Any other props supplied will be provided to the wrapping `Pagination` element.**
+
+<PaginationProps />
