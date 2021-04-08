@@ -9,11 +9,11 @@ props:
   Pagination
 </DocsHeading>
 
-The `Pagination` component is a relatively simple container. It is used to contain interactive controls and sublit inPaginationation to a web server.
+The `Pagination` component is an interactive indexed navigation element.
 
 ## Basic Usage
 
-```typescript
+<!-- ```typescript
 import React from 'react';
 import {
   Button,
@@ -30,43 +30,36 @@ export function Example() {
       <StyledList>
         <StyledListItem>
           <NavButton
+            onClick={handlePreviousClick}
             color={ButtonColor.secondary}
             aria-label="Previous"
             icon={<ArrowBackIcon />}
+            isInverse={isInverse}
             theme={theme}
             shape={ButtonShape.leftCap}
             size={buttonSize}
+            disabled={activePage === 1 ? true : false}
           />
         </StyledListItem>
-        <StyledListItem>
-          <PageButton size={buttonSize}>1</PageButton>
-        </StyledListItem>
-        <StyledListItem>
-          <PageButton isSelected size={buttonSize}>
-            2
-          </PageButton>
-        </StyledListItem>
-        <StyledListItem>
-          <PageButton size={buttonSize}>3</PageButton>
-        </StyledListItem>
-        <StyledListItem>
-          <PageButton size={buttonSize}>4</PageButton>
-        </StyledListItem>
+        {buttons}
         <StyledListItem>
           <NavButton
+            onClick={handleNextClick}
             color={ButtonColor.secondary}
-            aria-label="Previous"
+            aria-label="Next"
             icon={<ArrowForwardIcon />}
+            isInverse={isInverse}
             theme={theme}
             shape={ButtonShape.rightCap}
             size={buttonSize}
+            disabled={activePage === count ? true : false}
           />
         </StyledListItem>
       </StyledList>
     </StyledNav>
   );
 }
-```
+``` -->
 
 # Pagination Props
 
