@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
+import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -21,31 +22,16 @@ const StyledList = styled.ol<BreadcrumbProps>`
   padding: 0;
 `;
 
-export interface BreadCrumbContextInterface {
-  isInverse?: boolean;
-}
-
-export const BreadCrumbContext = React.createContext<
-  BreadCrumbContextInterface
->({
-  isInverse: false,
-});
-
 export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
   (props, ref) => {
-    const {
-      'aria-label': ariaLabel,
-      children,
-      isInverse,
-      testId,
-      ...other
-    } = props;
+    const { 'aria-label': ariaLabel, children, testId, ...other } = props;
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <BreadCrumbContext.Provider value={{ isInverse }}>
+      <InverseContext.Provider value={{ isInverse }}>
         <nav
           {...other}
           aria-label={ariaLabel ? ariaLabel : i18n.breadcrumb.navAriaLabel}
@@ -55,7 +41,7 @@ export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
             {children}
           </StyledList>
         </nav>
-      </BreadCrumbContext.Provider>
+      </InverseContext.Provider>
     );
   }
 );

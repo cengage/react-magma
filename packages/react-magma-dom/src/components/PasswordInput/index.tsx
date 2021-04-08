@@ -7,6 +7,7 @@ import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType } from '../Button';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
+import { useIsInverse } from '../../inverse';
 import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -122,7 +123,6 @@ export const PasswordInput = React.forwardRef<
     isPasswordMaskButtonHidden,
     id: defaultId,
     inputSize,
-    isInverse,
     labelStyle,
     labelText,
     isLabelVisuallyHidden,
@@ -159,6 +159,8 @@ export const PasswordInput = React.forwardRef<
 
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
   const theme = React.useContext(ThemeContext);
+
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <Container style={containerStyle} theme={theme}>
@@ -198,6 +200,7 @@ export const PasswordInput = React.forwardRef<
                   ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
                   : SHOW_PASSWORD_BUTTON_ARIA_LABEL
               }
+              isInverse={false}
               onClick={togglePasswordShown}
               style={{
                 borderRadius: theme.borderRadius,

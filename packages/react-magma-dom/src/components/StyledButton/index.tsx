@@ -17,9 +17,10 @@ import {
   buildFocusColor,
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonProps, ButtonType } from '../Button';
+import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
+import { Spinner } from '../Spinner';
 
-interface StyledButtonProps extends ButtonProps {
+export interface StyledButtonProps extends ButtonProps {
   href?: string;
   iconOnly?: boolean;
 }
@@ -126,12 +127,63 @@ export const BaseStyledButton = styled.button`
 export const StyledButton = React.forwardRef<
   HTMLButtonElement,
   StyledButtonProps
->(({ children, testId, type = ButtonType.button, ...other }, ref) => {
+>((props, ref) => {
+  const {
+    size,
+    variant,
+    isInverse,
+    children,
+    type = ButtonType.button,
+    testId,
+    isLoading,
+  } = props;
   const theme = React.useContext(ThemeContext);
 
+  const spinnerColor =
+    isInverse &&
+    (variant === ButtonVariant.outline || variant === ButtonVariant.link)
+      ? theme.colors.neutral08
+      : theme.colors.neutral03;
+
+  const spinnerSize =
+    size === ButtonSize.small
+      ? theme.iconSizes.xSmall
+      : size === ButtonSize.large
+      ? theme.iconSizes.large
+      : theme.iconSizes.medium;
+
+  const SpinnerWrapper = styled.span`
+    position: absolute;
+    display: flex;
+  `;
+
+  const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
+    visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
+    display: inline-flex;
+    align-items: center;
+  `;
+
   return (
-    <BaseStyledButton {...other} data-testid={testId} ref={ref} theme={theme}>
-      {children}
+    <BaseStyledButton
+      {...props}
+      data-testid={testId}
+      ref={ref}
+      type={type}
+      theme={theme}
+      disabled={isLoading || props.disabled}
+    >
+      {isLoading && (
+        <SpinnerWrapper>
+          <Spinner
+            testId={`${testId}-spinner`}
+            color={spinnerColor}
+            size={spinnerSize}
+          />
+        </SpinnerWrapper>
+      )}
+      <ChildrenWrapper isLoading={isLoading} testId={`${testId}-children`}>
+        {children}
+      </ChildrenWrapper>
     </BaseStyledButton>
   );
 });

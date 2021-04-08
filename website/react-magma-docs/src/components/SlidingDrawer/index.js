@@ -103,7 +103,7 @@ export class SlidingDrawer extends React.Component {
       @media (min-width: 1024px) {
         animation: none;
         padding-top: 20px;
-        top: 80px;
+        top: 88px;
         transform: translateX(0);
       }
     `;
@@ -128,12 +128,12 @@ export class SlidingDrawer extends React.Component {
 
     const MenuButton = styled.span`
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 4px;
+      left: 2px;
       z-index: 11;
 
-      @media (min-width: 600px) {
-        top: 15px;
+      @media (min-width: 769px) {
+        top: 20px;
       }
 
       @media (min-width: 1024px) {
@@ -155,17 +155,19 @@ export class SlidingDrawer extends React.Component {
     return (
       <FocusLock disabled={!isOpen}>
         <nav aria-label="Main site navigation">
-          <MenuButton>
-            <IconButton
-              aria-label="Open navigation menu"
-              aria-expanded={isOpen}
-              icon={<MenuIcon />}
-              isInverse
-              onClick={this.openMenu}
-              ref={this.toggleButtonRef}
-              variant="link"
-            />
-          </MenuButton>
+          {true && (
+            <MenuButton>
+              <IconButton
+                aria-label="Open navigation menu"
+                aria-expanded={isOpen}
+                icon={<MenuIcon />}
+                isInverse
+                onClick={this.openMenu}
+                ref={this.toggleButtonRef}
+                variant="link"
+              />
+            </MenuButton>
+          )}
           <Panel isOpen={isOpen} isActivated={isActivated}>
             <PanelInner isOpen={isOpen}>
               <CloseButton>

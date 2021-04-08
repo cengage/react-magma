@@ -11,6 +11,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
+import { useIsInverse } from '../../inverse';
 
 export enum ToggleTextPosition {
   left = 'left', // default
@@ -233,7 +234,6 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       disabled,
       errorMessage,
       id: defaultId,
-      isInverse,
       isTextVisuallyHidden,
       labelStyle,
       labelText,
@@ -264,6 +264,8 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
 
     const hasError = context.hasError || !!errorMessage;
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return (
       <>
         <StyledContainer>
@@ -280,7 +282,11 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
             ref={ref}
             role="switch"
           />
-          <StyledLabel htmlFor={id} style={containerStyle}>
+          <StyledLabel
+            htmlFor={id}
+            isInverse={isInverse}
+            style={containerStyle}
+          >
             {textPosition !== ToggleTextPosition.right &&
               renderLabelText(
                 isTextVisuallyHidden,

@@ -10,14 +10,25 @@ exports.onCreateWebpackConfig = ({ actions }) => {
   });
 };
 
-const getPathPrefix = path =>
-  /design/.test(path)
-    ? /intro/.test(path)
-      ? 'design-intro'
-      : 'design'
-    : /intro/.test(path)
-    ? 'api-intro'
-    : 'api';
+const getPathPrefix = path => {
+  if(/design/.test(path)){
+    if(/intro/.test(path)) {
+      return 'design-intro';
+    }
+    return 'design';
+  } else if(/api/.test(path)){
+    if(/intro/.test(path)) {
+      return 'api-intro';
+    }
+    return 'api';
+  } else if(/patterns/.test(path)){
+    if(/intro/.test(path)) {
+      return 'patterns-intro';
+    }
+    return 'patterns';
+  } 
+}
+
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;

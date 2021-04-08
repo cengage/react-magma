@@ -3,6 +3,7 @@ import { axe } from 'jest-axe';
 import { Banner } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { Button } from '../Button';
 
 describe('Banner', () => {
   it('should find element by testId', () => {
@@ -64,7 +65,7 @@ describe('Banner', () => {
       </Banner>
     );
 
-    const btn = getByText('btn text');
+    const btn = getByText('btn text').parentElement;
 
     expect(btn).toHaveStyleRule('color', magma.colors.primary);
 
@@ -82,8 +83,10 @@ describe('Banner', () => {
         Test
       </Banner>
     );
-
-    expect(getByText('btn text')).toHaveStyleRule('color', magma.colors.danger);
+    expect(getByText('btn text').parentElement).toHaveStyleRule(
+      'color',
+      magma.colors.danger
+    );
   });
 
   it('should render an action button with success styles', () => {
@@ -97,7 +100,7 @@ describe('Banner', () => {
       </Banner>
     );
 
-    expect(getByText('btn text')).toHaveStyleRule(
+    expect(getByText('btn text').parentElement).toHaveStyleRule(
       'color',
       magma.colors.success
     );
@@ -114,7 +117,7 @@ describe('Banner', () => {
       </Banner>
     );
 
-    expect(getByText('btn text')).toHaveStyleRule(
+    expect(getByText('btn text').parentElement).toHaveStyleRule(
       'color',
       magma.colors.neutral
     );

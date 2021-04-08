@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { CardContext } from './';
+import { CardContext } from './Card';
 import { Heading } from '../Heading';
 import { TypographyColor, TypographyVisualStyle } from '../Typography';
 
