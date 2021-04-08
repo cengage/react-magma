@@ -83,20 +83,30 @@ export interface InputBaseProps
   type?: InputType;
 }
 
-const InputWrapper = styled.div`
+const InputWrapper = styled.div<InputBaseProps>`
   align-items: center;
   display: flex;
   flex-shrink: 0;
   position: relative;
+  border: 1px solid;
+  border-color: ${props => props.isInverse
+    ? props.theme.colors.neutral08
+    : props.theme.colors.neutral03};
+  border-radius: ${props => props.theme.borderRadius};
+
+  &:focus-within {
+    outline: 2px dotted
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: 4px;
+  }
 `;
 
 export const inputBaseStyles = props => css`
   background: ${props.theme.colors.neutral08};
-  border: 1px solid;
-  border-color: ${props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.neutral03};
-  border-radius: ${props.theme.borderRadius};
+  border: 0;
   color: ${props.theme.colors.neutral};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
@@ -152,11 +162,7 @@ export const inputBaseStyles = props => css`
   }
 
   &:focus {
-    outline: 2px dotted
-      ${props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
-    outline-offset: 4px;
+    outline: 0;
   }
 
   ${props.disabled &&
@@ -285,7 +291,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     }
 
     return (
-      <InputWrapper style={containerStyle}>
+      <InputWrapper isInverse={props.isInverse} theme={theme} style={containerStyle}>
         <StyledInput
           {...other}
           aria-invalid={hasError}
