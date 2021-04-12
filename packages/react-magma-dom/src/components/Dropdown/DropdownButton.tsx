@@ -143,7 +143,7 @@ export const DropdownButton = React.forwardRef<
       id={context.dropdownButtonId.current}
       isInverse={isInverse}
       onClick={handleClick}
-      onKeyDown={context.handleButtonKeyDown}
+      onBlur={context.handleButtonBlur}
       ref={ref}
       theme={theme}
     >

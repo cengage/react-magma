@@ -10,7 +10,9 @@ import { DropdownContent } from './DropdownContent';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
-import { ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import { Input } from '../Input';
+import { PasswordInput } from '../PasswordInput';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -199,3 +201,27 @@ const LinkMenuTemplate: Story<DropdownProps> = args => (
 
 export const LinkMenu = LinkMenuTemplate.bind({});
 LinkMenu.args = { ...Default.args };
+
+const FormTemplate: Story<DropdownProps> = args => (
+  <Dropdown {...args}>
+    <DropdownButton>Dropdown with form</DropdownButton>
+    <DropdownContent>
+      <form style={{ margin: 0, padding: '16px' }}>
+        <Input labelText="Email Address" />
+        <PasswordInput labelText="Password" />
+        <div style={{ textAlign: 'center' }}>
+          <p>
+            By signing in, you agree to our <a href="#terms">Terms of use</a>.
+          </p>
+          <Button isFullWidth>Sign In</Button>
+          <p>
+            <a href="#password">Forgot password?</a>
+          </p>
+        </div>
+      </form>
+    </DropdownContent>
+  </Dropdown>
+);
+
+export const Form = FormTemplate.bind({});
+Form.args = { ...Default.args };
