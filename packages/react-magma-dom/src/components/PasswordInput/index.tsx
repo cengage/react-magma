@@ -96,8 +96,6 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const PasswordMaskWrapper = styled.span``;
-
 export const PasswordInput = React.forwardRef<
   HTMLInputElement,
   PasswordInputProps
@@ -188,7 +186,7 @@ export const PasswordInput = React.forwardRef<
         type={passwordShown ? InputType.text : InputType.password}
       >
         {!isPasswordMaskButtonHidden && (
-          <PasswordMaskWrapper theme={theme}>
+          <>
             <Button
               aria-label={
                 passwordShown
@@ -219,7 +217,7 @@ export const PasswordInput = React.forwardRef<
                   : HIDDEN_PASSWORD_ANNOUNCE_TEXT}
               </Announce>
             </VisuallyHidden>
-          </PasswordMaskWrapper>
+          </>
         )}
       </InputBase>
       <InputMessage
