@@ -1,6 +1,5 @@
 import React from 'react';
 import { AsteriskIcon } from 'react-magma-icons';
-import { Button } from '../Button';
 import { Dropdown } from '.';
 import { DropdownContent } from './DropdownContent';
 import { DropdownDivider } from './DropdownDivider';
@@ -316,7 +315,7 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  it('should close the menu when blurred', () => {
+  it('should close the menu when menu is blurred', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
@@ -337,6 +336,32 @@ describe('Dropdown', () => {
     fireEvent.click(menuItem);
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should close the menu when button is blurred', () => {
+    jest.useFakeTimers();
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    fireEvent.blur(getByText('Toggle me'));
+
+    act(jest.runAllTimers);
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    jest.useRealTimers();
   });
 
   it('should close the menu when escape key is pressed', () => {
