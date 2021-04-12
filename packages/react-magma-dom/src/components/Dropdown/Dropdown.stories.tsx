@@ -8,6 +8,7 @@ import {
 import { DropdownButton } from './DropdownButton';
 import { DropdownContent } from './DropdownContent';
 import { DropdownMenuItem } from './DropdownMenuItem';
+import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
@@ -19,6 +20,7 @@ const Template: Story<DropdownProps> = args => (
     <DropdownContent>
       <DropdownMenuItem>Menu item 1</DropdownMenuItem>
       <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
     </DropdownContent>
   </Dropdown>
 );
@@ -170,6 +172,30 @@ const SplitTemplate: Story<DropdownProps> = args => (
     </Dropdown>
   </>
 );
-
 export const SplitButton = SplitTemplate.bind({});
 SplitButton.args = { ...Default.args };
+
+const LinkMenuTemplate: Story<DropdownProps> = args => (
+  <Dropdown {...args}>
+    <DropdownButton>Dropdown of links</DropdownButton>
+    <DropdownContent>
+      <DropdownMenuNavItem
+        icon={<SettingsIcon />}
+        to="http://www.google.com"
+        target="_blank"
+      >
+        Google
+      </DropdownMenuNavItem>
+      <DropdownMenuNavItem
+        icon={<MenuIcon />}
+        to="http://www.cengage.com"
+        target="_blank"
+      >
+        Cengage
+      </DropdownMenuNavItem>
+    </DropdownContent>
+  </Dropdown>
+);
+
+export const LinkMenu = LinkMenuTemplate.bind({});
+LinkMenu.args = { ...Default.args };

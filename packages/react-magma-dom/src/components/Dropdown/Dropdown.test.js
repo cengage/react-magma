@@ -8,6 +8,7 @@ import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuGroup } from './DropdownMenuGroup';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
+import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { magma } from '../../theme/magma';
 
 import { act, render, fireEvent } from '@testing-library/react';
@@ -717,5 +718,41 @@ describe('Dropdown', () => {
     fireEvent.click(getByText('aaa'));
     expect(getByText('aaa')).toHaveStyleRule('padding', activeStylePadding);
     expect(getByText('bbb')).toHaveStyleRule('padding', inActiveStylePadding);
+  });
+
+  it('should render a dropdown with links', () => {
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuNavItem to="http://www.google.com">
+            Google
+          </DropdownMenuNavItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByText('Google')).toHaveAttribute(
+      'href',
+      'http://www.google.com'
+    );
+  });
+
+  it('should render a dropdown with a link with an icon', () => {
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuNavItem
+            icon={<AsteriskIcon />}
+            to="http://www.google.com"
+          >
+            Google
+          </DropdownMenuNavItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByText('Google').querySelector('svg')).toBeInTheDocument();
   });
 });
