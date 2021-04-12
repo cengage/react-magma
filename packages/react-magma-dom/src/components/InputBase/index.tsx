@@ -89,9 +89,10 @@ const InputWrapper = styled.div<InputBaseProps>`
   flex-shrink: 0;
   position: relative;
   border: 1px solid;
-  border-color: ${props => props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.neutral03};
+  border-color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral03};
   border-radius: ${props => props.theme.borderRadius};
 
   &:focus-within {
@@ -107,6 +108,7 @@ const InputWrapper = styled.div<InputBaseProps>`
 export const inputBaseStyles = props => css`
   background: ${props.theme.colors.neutral08};
   border: 0;
+  border-radius: ${props.theme.borderRadius};
   color: ${props.theme.colors.neutral};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
@@ -291,7 +293,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     }
 
     return (
-      <InputWrapper isInverse={props.isInverse} theme={theme} style={containerStyle}>
+      <InputWrapper
+        isInverse={props.isInverse}
+        theme={theme}
+        style={containerStyle}
+      >
         <StyledInput
           {...other}
           aria-invalid={hasError}

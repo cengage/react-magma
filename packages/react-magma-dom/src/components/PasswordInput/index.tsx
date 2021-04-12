@@ -96,12 +96,7 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const PasswordMaskWrapper = styled.span`
-  // margin: 0;
-  // position: absolute;
-  // right: ${props => props.theme.spaceScale.spacing02};
-  // top: ${props => props.theme.spaceScale.spacing02};
-`;
+const PasswordMaskWrapper = styled.span``;
 
 export const PasswordInput = React.forwardRef<
   HTMLInputElement,
@@ -208,7 +203,7 @@ export const PasswordInput = React.forwardRef<
                   inputSize == InputSize.large
                     ? theme.spaceScale.spacing10
                     : theme.spaceScale.spacing08,
-                margin: 0,
+                margin: ' 0 3px 0 0 ',
               }}
               type={ButtonType.button}
               variant={ButtonVariant.link}
