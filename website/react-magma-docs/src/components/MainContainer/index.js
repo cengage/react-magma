@@ -2,7 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Masthead } from '../Masthead';
 import { SlidingDrawer } from '../SlidingDrawer';
-import { SkipLink, magma, Container, Toggle } from 'react-magma-dom';
+import {
+  SkipLink,
+  magma,
+  Container,
+  Toggle,
+  GlobalStyles,
+} from 'react-magma-dom';
 
 const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {
@@ -51,6 +57,7 @@ export const MainContainer = ({ children }) => {
       isInverse={isInverse}
       className={isInverse && 'isInverse'}
     >
+      <GlobalStyles />
       <StyledSkipLink
         isInverse
         positionLeft={275}
@@ -59,7 +66,7 @@ export const MainContainer = ({ children }) => {
       />
       <StyledContainer>
         <Masthead>{HeaderToggle}</Masthead>
-        <SlidingDrawer />
+        <SlidingDrawer isInverse={isInverse} />
         {children}
       </StyledContainer>
     </Container>

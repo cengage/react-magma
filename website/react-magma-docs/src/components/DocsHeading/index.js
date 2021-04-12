@@ -9,6 +9,7 @@ import {
   TypographyVisualStyle,
   magma,
   TypographyColor,
+  useIsInverse,
 } from 'react-magma-dom';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
 
@@ -44,45 +45,54 @@ const ButtonSpan = styled.span`
   padding-left: ${magma.spaceScale.spacing03};
 `;
 
-export const DocsHeading = ({ children, to, type }) => (
-  <Container>
-    <div>
-      <Paragraph
-        color={TypographyColor.subdued}
-        noMargins
-        visualStyle={TypographyVisualStyle.heading2XSmall}
-      >
-        {type === 'api' ? 'Component API' : 'Design Guidelines'}
-      </Paragraph>
-      <Heading level={1}>{children}</Heading>
-    </div>
-    {type === 'api' && to && (
-      <ButtonContainer>
-        <Hyperlink color="secondary" styledAs="Button" to={to}>
-          {linkProps => (
-            <Link {...linkProps}>
-              <PaletteIcon size={magma.iconSizes.medium} />
-              <ButtonSpan>View Design Guidelines</ButtonSpan>
-            </Link>
-          )}
-        </Hyperlink>
-      </ButtonContainer>
-    )}
+export const DocsHeading = ({ children, to, type }) => {
+  const isInverse = useIsInverse();
 
-    {type === 'design' && to && (
-      <ButtonContainer>
-        <Hyperlink color="secondary" styledAs="Button" to={to}>
-          {linkProps => (
-            <Link {...linkProps}>
-              <CodeIcon size={magma.iconSizes.medium} />
-              <ButtonSpan>View Component API</ButtonSpan>
-            </Link>
-          )}
-        </Hyperlink>
-      </ButtonContainer>
-    )}
-  </Container>
-);
+  return (
+    <Container>
+      <div>
+        <Paragraph
+          color={TypographyColor.subdued}
+          noMargins
+          visualStyle={TypographyVisualStyle.heading2XSmall}
+        >
+          {type === 'api' ? 'Component API' : 'Design Guidelines'}
+        </Paragraph>
+        <Heading level={1}>{children}</Heading>
+      </div>
+      {type === 'api' && to && (
+        <ButtonContainer>
+          <Hyperlink
+            color="secondary"
+            isInverse={isInverse}
+            styledAs="Button"
+            to={to}
+          >
+            {linkProps => (
+              <Link {...linkProps}>
+                <PaletteIcon size={magma.iconSizes.medium} />
+                <ButtonSpan>View Design Guidelines</ButtonSpan>
+              </Link>
+            )}
+          </Hyperlink>
+        </ButtonContainer>
+      )}
+
+      {type === 'design' && to && (
+        <ButtonContainer>
+          <Hyperlink color="secondary" styledAs="Button" to={to}>
+            {linkProps => (
+              <Link {...linkProps}>
+                <CodeIcon size={magma.iconSizes.medium} />
+                <ButtonSpan>View Component API</ButtonSpan>
+              </Link>
+            )}
+          </Hyperlink>
+        </ButtonContainer>
+      )}
+    </Container>
+  );
+};
 
 DocsHeading.propTypes = {
   children: PropTypes.node.isRequired,

@@ -75,12 +75,14 @@ export class SlidingDrawer extends React.Component {
         `;
 
     const Panel = styled(Container)`
-      border-right: 1px solid ${magma.colors.neutral06};
+      border-right: 1px solid
+        ${props =>
+          props.isInverse ? magma.colors.neutral02 : magma.colors.neutral06};
       bottom: 0;
       grid-area: nav;
       margin: 0;
       overflow: auto;
-      padding-bottom: 20px;
+      padding: 0 0 24px;
       position: fixed;
       top: 0;
       transform: translateX(-280px);
@@ -151,6 +153,7 @@ export class SlidingDrawer extends React.Component {
     `;
 
     const { isOpen, isActivated } = this.state;
+    const { isInverse } = this.props;
 
     return (
       <FocusLock disabled={!isOpen}>
@@ -169,7 +172,11 @@ export class SlidingDrawer extends React.Component {
                 />
               </MenuButton>
             )}
-            <Panel isOpen={isOpen} isActivated={isActivated}>
+            <Panel
+              isOpen={isOpen}
+              isActivated={isActivated}
+              isInverse={isInverse}
+            >
               <PanelInner isOpen={isOpen}>
                 <CloseButton>
                   <IconButton
