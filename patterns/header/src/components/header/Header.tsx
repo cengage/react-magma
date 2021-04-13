@@ -15,6 +15,7 @@ import {
   SpacerAxis,
   ThemeContext,
   ThemeInterface,
+  useIsInverse,
 } from 'react-magma-dom';
 import { MenuIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
@@ -54,19 +55,22 @@ const ChildrenWrapper = styled.span`
   white-space: nowrap;
 `;
 
-export const Header = ({
-  breakpoint,
-  children,
-  callToActionProps,
-  logo,
-  isCompact,
-  isInverse,
-  onMenuButtonClick,
-  searchProps,
-  ...other
-}: HeaderProps) => {
+export const Header = (props: HeaderProps) => {
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+
+  const {
+    breakpoint,
+    children,
+    callToActionProps,
+    logo,
+    isCompact,
+    onMenuButtonClick,
+    searchProps,
+    ...other
+  } = props;
+
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <AppBar
@@ -81,7 +85,6 @@ export const Header = ({
             aria-label={i18n.header.navigationButtonLabel}
             icon={<MenuIcon />}
             onClick={onMenuButtonClick}
-            isInverse={isInverse}
             style={{ marginLeft: `-${theme.spaceScale.spacing04}` }}
             variant={ButtonVariant.link}
           />
@@ -91,7 +94,6 @@ export const Header = ({
           />
         </HideAtBreakpoint>
       )}
-
       <LogoWrapper
         data-testid="logoWrapper"
         isCompact={isCompact}
@@ -99,9 +101,7 @@ export const Header = ({
       >
         {logo}
       </LogoWrapper>
-
       <Spacer size={theme.spaceScale.spacing12} />
-
       <HideAtBreakpoint
         displayType={HideAtBreakpointDisplayType.flex}
         maxWidth={breakpoint}
@@ -109,11 +109,7 @@ export const Header = ({
       >
         {callToActionProps && (
           <>
-            <StyledLink
-              isInverse={isInverse}
-              theme={theme}
-              {...callToActionProps}
-            />
+            <StyledLink theme={theme} {...callToActionProps} />
             {(searchProps || children) && (
               <Spacer size={theme.spaceScale.spacing06} />
             )}
@@ -122,7 +118,7 @@ export const Header = ({
 
         {searchProps && (
           <>
-            <Search {...searchProps} isInverse={isInverse} />
+            <Search {...searchProps} />
             {children && <Spacer size={theme.spaceScale.spacing05} />}
           </>
         )}

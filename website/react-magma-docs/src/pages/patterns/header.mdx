@@ -44,7 +44,7 @@ export function Example() {
 
 ## Inverse
 
-The `isInverse` prop will render an appbar with a dark background and light text.
+The `isInverse` prop will render an appbar with a dark background and light text. The components inside the header will inherit the `isInverse` prop unless specified otherwise.
 
 ```typescript
 import React from 'react';
@@ -125,21 +125,18 @@ export function Example() {
       <IconButton
         aria-label="Settings"
         icon={<SettingsIcon />}
-        isInverse
         onClick={() => {}}
         variant={ButtonVariant.link}
       />
       <IconButton
         aria-label="Notifications"
         icon={<NotificationsIcon />}
-        isInverse
         onClick={() => {}}
         variant={ButtonVariant.link}
       />
       <IconButton
         aria-label="Person"
         icon={<PersonIcon />}
-        isInverse
         onClick={() => {}}
         variant={ButtonVariant.link}
       />

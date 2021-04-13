@@ -1,4 +1,4 @@
-/// <reference types="jest-dom/extend-expect"/>
+// <reference types="jest-dom/extend-expect"/>
 import React from 'react';
 import { axe } from 'jest-axe';
 import {
@@ -9,7 +9,7 @@ import {
   ButtonTextTransform,
   ButtonVariant,
 } from '.';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 
 describe('Button', () => {
   it('should correctly apply the testId', () => {
@@ -28,8 +28,54 @@ describe('Button', () => {
     expect(getByText(buttonText)).toBeInTheDocument();
   });
 
+  it('should run the clickHandler on click', () => {
+    const buttonText = 'Test';
+    const clickHandler = jest.fn();
+    const { getByText } = render(
+      <Button onClick={clickHandler}>{buttonText}</Button>
+    );
+    const button = getByText(buttonText);
+
+    fireEvent.click(button);
+    expect(clickHandler).toHaveBeenCalled();
+  });
+
+  it('shows a spinner icon when isLoading is true', () => {
+    const buttonText = 'Test';
+    const testId = 'test-id';
+    const spinnerTestId = `${testId}-spinner`;
+    const {
+      getByTestId,
+      getByText,
+      queryByText,
+      rerender,
+      queryByTestId,
+    } = render(
+      <Button testId={testId} isLoading>
+        {buttonText}
+      </Button>
+    );
+    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(spinnerTestId)).toBeInTheDocument();
+    expect(queryByText(buttonText)).not.toBeVisible();
+    rerender(
+      <Button testId={testId} isLoading={false}>
+        {buttonText}
+      </Button>
+    );
+    expect(queryByTestId(spinnerTestId)).not.toBeInTheDocument();
+    expect(getByText(buttonText)).toBeInTheDocument();
+  });
+
   it('A text-only button does not violate detectible accessibility standards', () => {
     const { container } = render(<Button>click</Button>);
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
+  });
+
+  it('A button in the loading state does not violate detectible accessibility standards', () => {
+    const { container } = render(<Button isLoading>click</Button>);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });

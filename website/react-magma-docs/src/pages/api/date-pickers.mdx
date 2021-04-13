@@ -162,8 +162,9 @@ export function Example() {
         <strong>Chosen Date: </strong>
         {chosenDate && (
           <span>
-            {`${chosenDate.getMonth() +
-              1}/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
           </span>
         )}
       </p>

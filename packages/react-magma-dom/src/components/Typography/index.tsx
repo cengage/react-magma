@@ -54,25 +54,23 @@ export function getBodyFontFamily(props) {
 }
 
 export const colorStyles = props => css`
-  color: ${
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.contextVariant === 'expressive'
-      ? props.theme.colors.foundation02
-      : props.theme.colors.neutral
-  };
+  color: ${props.isInverse
+    ? props.theme.colors.neutral08
+    : props.contextVariant === 'expressive'
+    ? props.theme.colors.foundation02
+    : props.theme.colors.neutral};
 
   ${props.color === TypographyColor.danger &&
-    !props.isInverse &&
-    css`
-      color: ${props.theme.colors.danger};
-    `}
+  !props.isInverse &&
+  css`
+    color: ${props.theme.colors.danger};
+  `}
 
   ${props.color === TypographyColor.success &&
-    !props.isInverse &&
-    css`
-      color: ${props.theme.colors.success};
-    `}
+  !props.isInverse &&
+  css`
+    color: ${props.theme.colors.success};
+  `}
 
 ${props.color === TypographyColor.subdued &&
   !props.isInverse &&
@@ -81,16 +79,16 @@ ${props.color === TypographyColor.subdued &&
   `}
 
   ${props.color === TypographyColor.danger &&
-    props.isInverse &&
-    css`
-      color: ${props.theme.colors.dangerInverse};
-    `}
+  props.isInverse &&
+  css`
+    color: ${props.theme.colors.dangerInverse};
+  `}
 
   ${props.color === TypographyColor.success &&
-    props.isInverse &&
-    css`
-      color: ${props.theme.colors.successInverse};
-    `}
+  props.isInverse &&
+  css`
+    color: ${props.theme.colors.successInverse};
+  `}
 
 ${props.color === TypographyColor.subdued &&
   props.isInverse &&
@@ -111,49 +109,44 @@ export const paragraphLargeStyles = props => css`
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing06} 0`};
 
   font-size: ${props.theme.typographyVisualStyles.bodyLarge.mobile.fontSize};
-  line-height: ${
-    props.theme.typographyVisualStyles.bodyLarge.mobile.lineHeight
-  };
+  line-height: ${props.theme.typographyVisualStyles.bodyLarge.mobile
+    .lineHeight};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodyLarge.desktop.fontSize};
-    line-height: ${
-      props.theme.typographyVisualStyles.bodyLarge.desktop.lineHeight
-    };
+    line-height: ${props.theme.typographyVisualStyles.bodyLarge.desktop
+      .lineHeight};
   }
 
   ${props.contextVariant === TypographyContextVariant.expressive &&
-    css`
-      font-size: ${props.theme.typographyExpressiveVisualStyles.bodyLarge.mobile
-        .fontSize};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.bodyLarge
-        .mobile.lineHeight};
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.bodyLarge.mobile
+      .fontSize};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.bodyLarge.mobile
+      .lineHeight};
 
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVisualStyles.bodyLarge
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVisualStyles.bodyLarge
-          .desktop.lineHeight};
-      }
-    `};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.bodyLarge
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.bodyLarge
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const paragraphMediumStyles = props => css`
   ${baseParagraphStyles(props)}
 
   font-size: ${props.theme.typographyVisualStyles.bodyMedium.mobile.fontSize};
-  line-height: ${
-    props.theme.typographyVisualStyles.bodyMedium.mobile.lineHeight
-  };
+  line-height: ${props.theme.typographyVisualStyles.bodyMedium.mobile
+    .lineHeight};
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing06} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
-    font-size: ${
-      props.theme.typographyVisualStyles.bodyMedium.desktop.fontSize
-    };
-    line-height: ${
-      props.theme.typographyVisualStyles.bodyMedium.desktop.lineHeight
-    };
+    font-size: ${props.theme.typographyVisualStyles.bodyMedium.desktop
+      .fontSize};
+    line-height: ${props.theme.typographyVisualStyles.bodyMedium.desktop
+      .lineHeight};
   }
 `;
 
@@ -161,16 +154,14 @@ export const paragraphSmallStyles = props => css`
   ${baseParagraphStyles(props)}
 
   font-size: ${props.theme.typographyVisualStyles.bodySmall.mobile.fontSize};
-  line-height: ${
-    props.theme.typographyVisualStyles.bodySmall.mobile.lineHeight
-  };
+  line-height: ${props.theme.typographyVisualStyles.bodySmall.mobile
+    .lineHeight};
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing05} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
-    line-height: ${
-      props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight
-    };
+    line-height: ${props.theme.typographyVisualStyles.bodySmall.desktop
+      .lineHeight};
   }
 `;
 
@@ -178,18 +169,15 @@ export const paragraphXSmallStyles = props => css`
   ${baseParagraphStyles(props)}
 
   font-size: ${props.theme.typographyVisualStyles.bodyXSmall.mobile.fontSize};
-  line-height: ${
-    props.theme.typographyVisualStyles.bodyXSmall.mobile.lineHeight
-  };
+  line-height: ${props.theme.typographyVisualStyles.bodyXSmall.mobile
+    .lineHeight};
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing03} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
-    font-size: ${
-      props.theme.typographyVisualStyles.bodyXSmall.desktop.fontSize
-    };
-    line-height: ${
-      props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight
-    };
+    font-size: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
+      .fontSize};
+    line-height: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
+      .lineHeight};
   }
 `;
 
@@ -224,56 +212,52 @@ const baseHeadingStyles = props => css`
 export const headingXLargeStyles = props => css`
   ${baseHeadingStyles(props)}
 
-  font-size: ${
-    props.theme.typographyVisualStyles.headingXLarge.mobile.fontSize
-  };
+  font-size: ${props.theme.typographyVisualStyles.headingXLarge.mobile
+    .fontSize};
   font-weight: ${props.theme.typographyVisualStyles.headingXLarge.fontWeight};
-  line-height: ${
-    props.theme.typographyVisualStyles.headingXLarge.mobile.lineHeight
-  };
+  line-height: ${props.theme.typographyVisualStyles.headingXLarge.mobile
+    .lineHeight};
   margin: ${props.noMargins ? 0 : `0 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
-    font-size: ${
-      props.theme.typographyVisualStyles.headingXLarge.desktop.fontSize
-    };
-    line-height: ${
-      props.theme.typographyVisualStyles.headingXLarge.desktop.lineHeight
-    };
+    font-size: ${props.theme.typographyVisualStyles.headingXLarge.desktop
+      .fontSize};
+    line-height: ${props.theme.typographyVisualStyles.headingXLarge.desktop
+      .lineHeight};
   }
 
   ${props.contextVariant === 'expressive' &&
-    css`
-      font-size: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
-        .fontWeight};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
-        .mobile.lineHeight};
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
+      .mobile.lineHeight};
 
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVisualStyles
-          .headingXLarge.desktop.lineHeight};
-      }
-    `};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
+        .desktop.lineHeight};
+    }
+  `};
 
   ${props.contextVariant === 'narrative' &&
-    css`
+  css`
+    font-size: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
+      .fontWeight};
+    line-height: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
+      .mobile.lineHeight};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
-        .fontWeight};
+        .desktop.fontSize};
       line-height: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
-        .mobile.lineHeight};
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyNarrativeVisualStyles.headingXLarge
-          .desktop.lineHeight};
-      }
-    `};
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const headingLargeStyles = props => css`
@@ -281,56 +265,51 @@ export const headingLargeStyles = props => css`
 
   font-size: ${props.theme.typographyVisualStyles.headingLarge.mobile.fontSize};
   font-weight: ${props.theme.typographyVisualStyles.headingLarge.fontWeight};
-  line-height: ${
-    props.theme.typographyVisualStyles.headingLarge.mobile.lineHeight
-  };
-  margin: ${
-    props.noMargins
-      ? 0
-      : `${props.theme.spaceScale.spacing10} 0 ${props.theme.spaceScale.spacing05}`
-  };
+  line-height: ${props.theme.typographyVisualStyles.headingLarge.mobile
+    .lineHeight};
+  margin: ${props.noMargins
+    ? 0
+    : `${props.theme.spaceScale.spacing10} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
-    font-size: ${
-      props.theme.typographyVisualStyles.headingLarge.desktop.fontSize
-    };
-    line-height: ${
-      props.theme.typographyVisualStyles.headingLarge.desktop.lineHeight
-    };
+    font-size: ${props.theme.typographyVisualStyles.headingLarge.desktop
+      .fontSize};
+    line-height: ${props.theme.typographyVisualStyles.headingLarge.desktop
+      .lineHeight};
   }
 
   ${props.contextVariant === 'expressive' &&
-    css`
-      font-size: ${props.theme.typographyExpressiveVisualStyles.headingLarge
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingLarge
-        .fontWeight};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.headingLarge
-        .mobile.lineHeight};
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.headingLarge
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.headingLarge
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.headingLarge
+      .mobile.lineHeight};
 
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVisualStyles.headingLarge
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVisualStyles.headingLarge
-          .desktop.lineHeight};
-      }
-    `};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.headingLarge
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.headingLarge
+        .desktop.lineHeight};
+    }
+  `};
 
   ${props.contextVariant === 'narrative' &&
-    css`
+  css`
+    font-size: ${props.theme.typographyNarrativeVisualStyles.headingLarge.mobile
+      .fontSize};
+    font-weight: ${props.theme.typographyNarrativeVisualStyles.headingLarge
+      .fontWeight};
+    line-height: ${props.theme.typographyNarrativeVisualStyles.headingLarge
+      .mobile.lineHeight};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.headingLarge
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyNarrativeVisualStyles.headingLarge
-        .fontWeight};
+        .desktop.fontSize};
       line-height: ${props.theme.typographyNarrativeVisualStyles.headingLarge
-        .mobile.lineHeight};
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyNarrativeVisualStyles.headingLarge
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyNarrativeVisualStyles.headingLarge
-          .desktop.lineHeight};
-      }
-    `};
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const headingMediumStyles = props => css`
@@ -353,37 +332,37 @@ export const headingMediumStyles = props => css`
   }
 
   ${props.contextVariant === 'expressive' &&
-    css`
-      font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingMedium
-        .fontWeight};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.headingMedium
-        .mobile.lineHeight};
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.headingMedium
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.headingMedium
+      .mobile.lineHeight};
 
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVisualStyles
-          .headingMedium.desktop.lineHeight};
-      }
-    `};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.headingMedium
+        .desktop.lineHeight};
+    }
+  `};
 
   ${props.contextVariant === 'narrative' &&
-    css`
+  css`
+    font-size: ${props.theme.typographyNarrativeVisualStyles.headingMedium
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyNarrativeVisualStyles.headingMedium
+      .fontWeight};
+    line-height: ${props.theme.typographyNarrativeVisualStyles.headingMedium
+      .mobile.lineHeight};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.headingMedium
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyNarrativeVisualStyles.headingMedium
-        .fontWeight};
+        .desktop.fontSize};
       line-height: ${props.theme.typographyNarrativeVisualStyles.headingMedium
-        .mobile.lineHeight};
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyNarrativeVisualStyles.headingMedium
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyNarrativeVisualStyles.headingMedium
-          .desktop.lineHeight};
-      }
-    `};
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const headingSmallStyles = props => css`
@@ -391,175 +370,158 @@ export const headingSmallStyles = props => css`
 
   font-size: ${props.theme.typographyVisualStyles.headingSmall.mobile.fontSize};
   font-weight: ${props.theme.typographyVisualStyles.headingSmall.fontWeight};
-  line-height: ${
-    props.theme.typographyVisualStyles.headingSmall.mobile.lineHeight
-  };
-  margin: ${
-    props.noMargins
-      ? 0
-      : `${props.theme.spaceScale.spacing08} 0 ${props.theme.spaceScale.spacing05}`
-  };
+  line-height: ${props.theme.typographyVisualStyles.headingSmall.mobile
+    .lineHeight};
+  margin: ${props.noMargins
+    ? 0
+    : `${props.theme.spaceScale.spacing08} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
-    font-size: ${
-      props.theme.typographyVisualStyles.headingSmall.desktop.fontSize
-    };
-    line-height: ${
-      props.theme.typographyVisualStyles.headingSmall.desktop.lineHeight
-    };
+    font-size: ${props.theme.typographyVisualStyles.headingSmall.desktop
+      .fontSize};
+    line-height: ${props.theme.typographyVisualStyles.headingSmall.desktop
+      .lineHeight};
   }
   ${props.contextVariant === 'expressive' &&
-    css`
-      font-size: ${props.theme.typographyExpressiveVisualStyles.headingSmall
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingSmall
-        .fontWeight};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.headingSmall
-        .mobile.lineHeight};
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.headingSmall
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.headingSmall
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.headingSmall
+      .mobile.lineHeight};
 
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVisualStyles.headingSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVisualStyles.headingSmall
-          .desktop.lineHeight};
-      }
-    `};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.headingSmall
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.headingSmall
+        .desktop.lineHeight};
+    }
+  `};
 
   ${props.contextVariant === 'narrative' &&
-    css`
+  css`
+    font-size: ${props.theme.typographyNarrativeVisualStyles.headingSmall.mobile
+      .fontSize};
+    font-weight: ${props.theme.typographyNarrativeVisualStyles.headingSmall
+      .fontWeight};
+    line-height: ${props.theme.typographyNarrativeVisualStyles.headingSmall
+      .mobile.lineHeight};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.headingSmall
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyNarrativeVisualStyles.headingSmall
-        .fontWeight};
+        .desktop.fontSize};
       line-height: ${props.theme.typographyNarrativeVisualStyles.headingSmall
-        .mobile.lineHeight};
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyNarrativeVisualStyles.headingSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyNarrativeVisualStyles.headingSmall
-          .desktop.lineHeight};
-      }
-    `};
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const headingXSmallStyles = props => css`
   ${baseHeadingStyles(props)}
 
-  font-size: ${
-    props.theme.typographyVisualStyles.headingXSmall.mobile.fontSize
-  };
+  font-size: ${props.theme.typographyVisualStyles.headingXSmall.mobile
+    .fontSize};
   font-weight: ${props.theme.typographyVisualStyles.headingXSmall.fontWeight};
-  line-height: ${
-    props.theme.typographyVisualStyles.headingXSmall.mobile.lineHeight
-  };
-  margin: ${
-    props.noMargins
-      ? 0
-      : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing05}`
-  };
+  line-height: ${props.theme.typographyVisualStyles.headingXSmall.mobile
+    .lineHeight};
+  margin: ${props.noMargins
+    ? 0
+    : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
-    font-size: ${
-      props.theme.typographyVisualStyles.headingXSmall.desktop.fontSize
-    };
-    line-height: ${
-      props.theme.typographyVisualStyles.headingXSmall.desktop.lineHeight
-    };
+    font-size: ${props.theme.typographyVisualStyles.headingXSmall.desktop
+      .fontSize};
+    line-height: ${props.theme.typographyVisualStyles.headingXSmall.desktop
+      .lineHeight};
   }
 
   ${props.contextVariant === 'expressive' &&
-    css`
-      font-size: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
-        .fontWeight};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
-        .mobile.lineHeight};
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
+      .mobile.lineHeight};
 
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVisualStyles
-          .headingXSmall.desktop.lineHeight};
-      }
-    `};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.headingXSmall
+        .desktop.lineHeight};
+    }
+  `};
 
   ${props.contextVariant === 'narrative' &&
-    css`
+  css`
+    font-size: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
+      .fontWeight};
+    line-height: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
+      .mobile.lineHeight};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
-        .fontWeight};
+        .desktop.fontSize};
       line-height: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
-        .mobile.lineHeight};
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyNarrativeVisualStyles.headingXSmall
-          .desktop.lineHeight};
-      }
-    `};
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const heading2XSmallStyles = props => css`
   ${baseHeadingStyles(props)}
 
-  font-size: ${
-    props.theme.typographyVisualStyles.heading2XSmall.mobile.fontSize
-  };
+  font-size: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
+    .fontSize};
   font-weight: ${props.theme.typographyVisualStyles.heading2XSmall.fontWeight};
-  line-height: ${
-    props.theme.typographyVisualStyles.heading2XSmall.mobile.lineHeight
-  };
+  line-height: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
+    .lineHeight};
   text-transform: uppercase;
-  margin: ${
-    props.noMargins
-      ? 0
-      : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing03}`
-  };
+  margin: ${props.noMargins
+    ? 0
+    : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing03}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
-    font-size: ${
-      props.theme.typographyVisualStyles.heading2XSmall.desktop.fontSize
-    };
-    line-height: ${
-      props.theme.typographyVisualStyles.heading2XSmall.desktop.lineHeight
-    };
+    font-size: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
+      .fontSize};
+    line-height: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
+      .lineHeight};
   }
 
   ${props.contextVariant === 'expressive' &&
-    css`
-      font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
-        .fontWeight};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
-        .mobile.lineHeight};
-      text-transform: none;
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
+      .mobile.lineHeight};
+    text-transform: none;
 
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyExpressiveVisualStyles
-          .heading2XSmall.desktop.lineHeight};
-      }
-    `};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
+        .desktop.lineHeight};
+    }
+  `};
 
   ${props.contextVariant === 'narrative' &&
-    css`
+  css`
+    font-size: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
+      .fontWeight};
+    line-height: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
+      .mobile.lineHeight};
+    @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
-        .mobile.fontSize};
-      font-weight: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
-        .fontWeight};
+        .desktop.fontSize};
       line-height: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
-        .mobile.lineHeight};
-      @media (min-width: ${props.theme.breakpoints.small}px) {
-        font-size: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
-          .desktop.fontSize};
-        line-height: ${props.theme.typographyNarrativeVisualStyles
-          .heading2XSmall.desktop.lineHeight};
-      }
-    `};
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 function getTypographyStyles(props) {

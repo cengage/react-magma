@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -78,17 +79,24 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
       ...other
     } = props;
     const theme = React.useContext(ThemeContext);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <StyledHeader
-        {...other}
-        data-testid={testId}
-        position={position}
-        ref={ref}
-        theme={theme}
+      <InverseContext.Provider
+        value={{
+          isInverse,
+        }}
       >
-        {children}
-      </StyledHeader>
+        <StyledHeader
+          {...other}
+          data-testid={testId}
+          position={position}
+          ref={ref}
+          theme={theme}
+        >
+          {children}
+        </StyledHeader>
+      </InverseContext.Provider>
     );
   }
 );
