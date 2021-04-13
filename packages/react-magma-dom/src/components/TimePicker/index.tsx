@@ -67,17 +67,6 @@ const TimePickerContainer = styled.div<{
   theme: ThemeInterface;
 }>`
   position: relative;
-
-  &:focus-within {
-    input[type='text'] {
-      outline: 2px dotted
-        ${props =>
-          props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
-      outline-offset: 4px;
-    }
-  }
 `;
 
 const StyledFieldset = styled.fieldset`
