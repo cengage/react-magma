@@ -9,4 +9,5 @@ export { ChartDonutIcon } from './ChartDonutIcon';
 export { ChartDotIcon } from './ChartDotIcon';
 export { ChartLineIcon } from './ChartLineIcon';
 export { ChartPieIcon } from './ChartPieIcon';
+export { ChartProbabilityPlotIcon } from './ChartProbabilityPlotIcon';
 export { ChartScatterIcon } from './ChartScatterIcon';
