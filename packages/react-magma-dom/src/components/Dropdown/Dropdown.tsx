@@ -63,7 +63,7 @@ interface DropdownContextInterface {
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   dropdownButtonId?: React.MutableRefObject<string>;
   dropDirection?: DropdownDropDirection;
-  handleButtonKeyDown?: (event: React.KeyboardEvent) => void;
+  handleButtonBlur?: (event: React.FocusEvent) => void;
   handleMenuBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   isFixedWidth?: boolean;
@@ -209,12 +209,14 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }
 
-    function handleButtonKeyDown(event: React.KeyboardEvent) {
-      const { key, shiftKey } = event;
+    function handleButtonBlur() {
+      setTimeout(() => {
+        const isInMenu = menuRef.current.contains(document.activeElement);
 
-      if ((key === 'Tab' || (shiftKey && key === 'Tab')) && isOpen) {
-        setIsOpen(false);
-      }
+        if (!isInMenu && isOpen) {
+          setIsOpen(false);
+        }
+      }, 0);
     }
 
     function handleMenuBlur(event: React.SyntheticEvent) {
@@ -244,7 +246,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           closeDropdown,
           dropdownButtonId,
           dropDirection,
-          handleButtonKeyDown,
+          handleButtonBlur,
           handleMenuBlur,
           itemRefArray,
           isFixedWidth: !!width,
