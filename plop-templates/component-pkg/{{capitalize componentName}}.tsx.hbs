@@ -45,15 +45,15 @@ const Styled{{capitalize componentName}} = styled.div<{{capitalize componentName
   {{/if}}
   {{/if}}
 `;
-  
 
 export const {{capitalize componentName}} = React.forwardRef<HTMLDivElement, {{capitalize componentName}}Props>(
   (props, ref) => {
+    const {children, testId, {{#if useInverse}}isInverse: isInverseProp, {{/if}} ...rest} = props;
     {{#if useTheme}}
     const theme = React.useContext(ThemeContext);
     {{/if}}
     {{#if useInverse}}
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(isInverseProp);
     {{/if}}
     {{#if useI18n}}
     const i18n = React.useContext(I18nContext);
@@ -64,8 +64,9 @@ export const {{capitalize componentName}} = React.forwardRef<HTMLDivElement, {{c
       {{#if useTheme}} theme={theme} {{/if}}
       {{#if useInverse}} isInverse={isInverse}{{/if}}
       ref={ref}
-      data-testid={props.testId}>
-        {props.children}
+      data-testid={props.testId}
+      {...rest} >
+        {children}
         {{#if useI18n}}<div><pre>{i18n.example}</pre></div>{{/if}}
       </Styled{{capitalize componentName}}>
     {{#if useInverse}}</InverseContext.Provider>{{/if}});
