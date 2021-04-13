@@ -103,8 +103,9 @@ export const SubMenu = ({ headings, handleClick }) => {
 };
 
 export const SubMenu2 = ({ headings, handleClick }) => {
+  const isInverse = useIsInverse();
   return (
-    <SubMenuList>
+    <SubMenuList isInverse={isInverse}>
       {headings.map((heading, index) => {
         const id = convertTextToId(heading.value);
 
@@ -112,6 +113,7 @@ export const SubMenu2 = ({ headings, handleClick }) => {
           <SubMenuItem key={index}>
             <SubMenuLink2
               href={`#${id}`}
+              isInverse={isInverse}
               onClick={e => {
                 handleAnchorLinkClick(id, handleClick, e);
               }}

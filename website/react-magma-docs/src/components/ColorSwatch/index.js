@@ -23,7 +23,6 @@ const SwatchColor = styled.div`
 `;
 
 const ColorDetails = styled.div`
-  color: ${magma.colors.neutral};
   border-top: 1px solid ${magma.colors.neutral06};
   font-size: ${magma.typeScale.size01.fontSize};
   line-height: ${magma.typeScale.size01.lineHeight};

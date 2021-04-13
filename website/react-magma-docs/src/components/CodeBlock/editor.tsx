@@ -28,9 +28,9 @@ const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
   :after {
     background: linear-gradient(
       180deg,
-      rgba(24, 28, 32, 0) 20%,
+      transparent 20%,
       ${props =>
-        props.isInverse ? magma.colors.neutral02 : magma.colors.neutral07}
+        props.isInverse ? magma.colors.neutral : magma.colors.neutral07}
     );
 
     bottom: 0;
