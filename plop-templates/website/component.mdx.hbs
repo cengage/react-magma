@@ -38,6 +38,7 @@ return <{{capitalize componentName}} isInverse>{{capitalize componentName}} cont
 ```
 {{/if}}
 
+{{#if useI18n}}
 ## Internationalization
 
 If you're using strings in your component, they must be internationalized.
@@ -62,6 +63,7 @@ export function Example() {
   );
 }
 ```
+{{/if}}
 
 # {{capitalize componentName}} Props
 

@@ -74,7 +74,14 @@ async function createPackage() {
         data: { description, componentName, useTheme, useI18n, useInverse},
         abortOnFail: true,
         force: true,
-    })
+      })
+
+      actions.push({
+        type: 'append',
+        path: '../packages/react-magma-dom/src/index.ts',
+        template: "export * from './components/{{capitalize componentName}}'",
+        unique: true,
+      })
 
       return actions
     },
