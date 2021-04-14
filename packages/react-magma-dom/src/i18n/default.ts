@@ -214,6 +214,8 @@ export const defaultI18n: I18nInterface = {
       'use the right and left arrow keys to activate other tabs',
     verticalTabsInstructions:
       'use the down and up arrow keys to activate other tabs',
+    nextButtonLabel: 'Scroll tabs forward',
+    previousButtonLabel: 'Scroll tabs back',
   },
   timePicker: {
     hoursAriaLabel: 'Hour',
