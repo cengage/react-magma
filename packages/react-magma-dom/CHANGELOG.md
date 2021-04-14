@@ -3,45 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-### 2.3.10-alpha.12 (2021-04-07)
+### 2.3.10-alpha.13 (2021-04-13)
 
 **Note:** Version bump only for package react-magma-dom
 
+### 2.3.10-alpha.12 (2021-04-07)
 
-
-
+**Note:** Version bump only for package react-magma-dom
 
 ### 2.3.10-alpha.11 (2021-04-07)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.10-alpha.10 (2021-04-06)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.10-alpha.9 (2021-04-06)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.10-alpha.8 (2021-04-05)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.10-alpha.7 (2021-04-02)
 
