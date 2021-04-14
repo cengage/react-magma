@@ -1,6 +1,7 @@
 import { Locale } from 'date-fns';
 
 export interface I18nInterface {
+  example: string;
   locale: Locale;
   dateFormat: 'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM';
   timeFormat: '12' | '24';
