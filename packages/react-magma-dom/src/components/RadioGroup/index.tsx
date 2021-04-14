@@ -3,6 +3,7 @@ import { Label } from '../Label';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useIsInverse } from '../../inverse';
 
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
@@ -113,7 +114,6 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       containerStyle,
       errorMessage,
       helperMessage,
-      isInverse,
       required,
       isTextVisuallyHidden,
       labelledById,
@@ -129,6 +129,8 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
     const theme = React.useContext(ThemeContext);
+
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <div

@@ -1,6 +1,7 @@
 import { Locale } from 'date-fns';
 
 export interface I18nInterface {
+  example: string;
   locale: Locale;
   dateFormat: 'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM';
   timeFormat: '12' | '24';
@@ -70,43 +71,9 @@ export interface I18nInterface {
   breadcrumb: {
     navAriaLabel: string;
   };
-  indeterminateCheckbox: {
-    isCheckedAnnounce: string;
-    isIndeterminateAnnounce: string;
-    isUncheckedAnnounce: string;
-  };
-  modal: {
-    closeAriaLabel: string;
-  };
-  password: {
-    shown: {
-      ariaLabel: string;
-      buttonText: string;
-      announce: string;
-    };
-    hidden: {
-      ariaLabel: string;
-      buttonText: string;
-      announce: string;
-    };
-  };
-  search: {
-    input: {
-      ariaLabel: string;
-      placeholder: string;
-    };
-    iconAriaLabel: string;
-  };
-  spinner: {
-    ariaLabel: string;
-  };
-  timePicker: {
-    hoursAriaLabel: string;
-    minutesAriaLabel: string;
-    amButtonAriaLabel: string;
-    pmButtonAriaLabel: string;
-    amSelectedAnnounce: string;
-    pmSelectedAnnounce: string;
+  combobox: {
+    clearIndicatorAriaLabel: string;
+    createLabel: string;
   };
   datePicker: {
     startOfWeek:
@@ -162,6 +129,25 @@ export interface I18nInterface {
       };
     };
   };
+  dropdown: {
+    menuItemSelectedAriaLabel: string;
+    toggleMenuAriaLabel: string;
+  };
+  header: {
+    navigationButtonLabel: string;
+    search: {
+      input: {
+        ariaLabel: string;
+        placeholder: string;
+      };
+      iconAriaLabel: string;
+    };
+  };
+  indeterminateCheckbox: {
+    isCheckedAnnounce: string;
+    isIndeterminateAnnounce: string;
+    isUncheckedAnnounce: string;
+  };
   loadingIndicator: {
     progressBar: {
       messages: {
@@ -178,27 +164,44 @@ export interface I18nInterface {
       };
     };
   };
-  skipLink: {
-    buttonText: string;
+  modal: {
+    closeAriaLabel: string;
   };
-  select: {
-    placeholder: string;
-    clearIndicatorAriaLabel: string;
+  multiCombobox: {
+    selectedItemButtonAriaLabel: string;
   };
   multiSelect: {
     placeholder: string;
     selectedItemButtonAriaLabel: string;
   };
-  combobox: {
+  password: {
+    shown: {
+      ariaLabel: string;
+      buttonText: string;
+      announce: string;
+    };
+    hidden: {
+      ariaLabel: string;
+      buttonText: string;
+      announce: string;
+    };
+  };
+  search: {
+    input: {
+      ariaLabel: string;
+      placeholder: string;
+    };
+    iconAriaLabel: string;
+  };
+  select: {
+    placeholder: string;
     clearIndicatorAriaLabel: string;
-    createLabel: string;
   };
-  multiCombobox: {
-    selectedItemButtonAriaLabel: string;
+  skipLink: {
+    buttonText: string;
   };
-  dropdown: {
-    menuItemSelectedAriaLabel: string;
-    toggleMenuAriaLabel: string;
+  spinner: {
+    ariaLabel: string;
   };
   table: {
     pagination: {
@@ -211,5 +214,15 @@ export interface I18nInterface {
   tabs: {
     horizontalTabsInstructions: string;
     verticalTabsInstructions: string;
+    previousButtonLabel: string;
+    nextButtonLabel: string;
+  };
+  timePicker: {
+    hoursAriaLabel: string;
+    minutesAriaLabel: string;
+    amButtonAriaLabel: string;
+    pmButtonAriaLabel: string;
+    amSelectedAnnounce: string;
+    pmSelectedAnnounce: string;
   };
 }

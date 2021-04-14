@@ -16,7 +16,7 @@ describe('PasswordInput', () => {
 
   it('renders a show/hide button on password inputs', () => {
     const { getByText } = render(<PasswordInput />);
-    const showText = getByText('Show');
+    const showText = getByText('Show').parentElement;
     expect(showText).toBeInTheDocument();
     expect(showText).toHaveAttribute(
       'aria-label',
@@ -35,7 +35,7 @@ describe('PasswordInput', () => {
     );
 
     expect(getByText('Test button text')).toBeInTheDocument();
-    expect(getByText('Test button text')).toHaveAttribute(
+    expect(getByText('Test button text').parentElement).toHaveAttribute(
       'aria-label',
       'Test button aria label'
     );
@@ -55,7 +55,7 @@ describe('PasswordInput', () => {
     const { getByText, getByLabelText } = render(
       <PasswordInput labelText={labelText} />
     );
-    const button = getByText('Show');
+    const button = getByText('Show').parentElement;
     const input = getByLabelText(labelText);
 
     fireEvent.click(button);
@@ -76,7 +76,7 @@ describe('PasswordInput', () => {
         shownPasswordAnnounceText="Test announce text"
       />
     );
-    const button = getByText('Show');
+    const button = getByText('Show').parentElement;
     const input = getByLabelText(labelText);
 
     fireEvent.click(button);
@@ -92,7 +92,7 @@ describe('PasswordInput', () => {
     const { getByText, getByLabelText } = render(
       <PasswordInput labelText={labelText} />
     );
-    const button = getByText('Show');
+    const button = getByText('Show').parentElement;
     const input = getByLabelText(labelText);
 
     fireEvent.click(button);
@@ -151,7 +151,6 @@ it('should render an input with a correctly styled error message', () => {
     magma.colors.danger
   );
 
-  expect(errorMessage).toHaveStyleRule('background', 'none');
   expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
 
   const helperMessage = queryByText(testHelperMessage);

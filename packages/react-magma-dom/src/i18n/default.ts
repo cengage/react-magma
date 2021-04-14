@@ -4,6 +4,8 @@ export const defaultI18n: I18nInterface = {
   locale: null,
   dateFormat: 'MM/dd/yyyy',
   timeFormat: '12',
+  example:
+    'i18n defaults must be set in packages/react-magma-dom/src/i18n/default.ts',
   months: {
     long: {
       january: 'January',
@@ -70,47 +72,10 @@ export const defaultI18n: I18nInterface = {
   breadcrumb: {
     navAriaLabel: 'Breadcrumb',
   },
-  indeterminateCheckbox: {
-    isCheckedAnnounce: 'All subitems are checked for {labelText} checkbox',
-    isIndeterminateAnnounce:
-      'Some, but not all, subitems are checked for {labelText} checkbox',
-    isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox',
-  },
-  modal: {
-    closeAriaLabel: 'Close dialog',
-  },
-  password: {
-    shown: {
-      ariaLabel:
-        'Show password. Note: this will visually expose your password on the screen',
-      buttonText: 'Show',
-      announce: 'Password is now visible',
-    },
-    hidden: {
-      ariaLabel: 'Hide password',
-      buttonText: 'Hide',
-      announce: 'Password is now hidden',
-    },
-  },
-  search: {
-    input: {
-      ariaLabel: 'Search',
-      placeholder: 'Search',
-    },
-    iconAriaLabel: 'Search',
-  },
-  spinner: {
-    ariaLabel: 'Loading',
-  },
-  timePicker: {
-    hoursAriaLabel: 'Hour',
-    minutesAriaLabel: 'Minute',
-    amButtonAriaLabel:
-      'AM selected.  To change to PM press the p or enter button.',
-    pmButtonAriaLabel:
-      'PM selected.  To change to AM press the a or enter button.',
-    amSelectedAnnounce: 'AM is now selected',
-    pmSelectedAnnounce: 'PM is now selected',
+  combobox: {
+    clearIndicatorAriaLabel:
+      'reset selection for {labelText}. {selectedItem} is selected',
+    createLabel: 'Create "{inputValue}"',
   },
   datePicker: {
     startOfWeek: 'sunday',
@@ -159,6 +124,26 @@ export const defaultI18n: I18nInterface = {
       },
     },
   },
+  dropdown: {
+    menuItemSelectedAriaLabel: '(selected)',
+    toggleMenuAriaLabel: 'Toggle menu',
+  },
+  header: {
+    navigationButtonLabel: 'Open navigation menu',
+    search: {
+      input: {
+        ariaLabel: 'Search',
+        placeholder: 'Search',
+      },
+      iconAriaLabel: 'Search',
+    },
+  },
+  indeterminateCheckbox: {
+    isCheckedAnnounce: 'All subitems are checked for {labelText} checkbox',
+    isIndeterminateAnnounce:
+      'Some, but not all, subitems are checked for {labelText} checkbox',
+    isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox',
+  },
   loadingIndicator: {
     progressBar: {
       messages: {
@@ -175,29 +160,46 @@ export const defaultI18n: I18nInterface = {
       },
     },
   },
-  skipLink: {
-    buttonText: 'Skip Navigation',
+  modal: {
+    closeAriaLabel: 'Close dialog',
+  },
+  multiSelect: {
+    placeholder: 'Select...',
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+  },
+  multiCombobox: {
+    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+  },
+  password: {
+    shown: {
+      ariaLabel:
+        'Show password. Note: this will visually expose your password on the screen',
+      buttonText: 'Show',
+      announce: 'Password is now visible',
+    },
+    hidden: {
+      ariaLabel: 'Hide password',
+      buttonText: 'Hide',
+      announce: 'Password is now hidden',
+    },
+  },
+  search: {
+    input: {
+      ariaLabel: 'Search',
+      placeholder: 'Search',
+    },
+    iconAriaLabel: 'Search',
   },
   select: {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
   },
-  multiSelect: {
-    placeholder: 'Select...',
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+  skipLink: {
+    buttonText: 'Skip Navigation',
   },
-  combobox: {
-    clearIndicatorAriaLabel:
-      'reset selection for {labelText}. {selectedItem} is selected',
-    createLabel: 'Create "{inputValue}"',
-  },
-  multiCombobox: {
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
-  },
-  dropdown: {
-    menuItemSelectedAriaLabel: '(selected)',
-    toggleMenuAriaLabel: 'Toggle menu',
+  spinner: {
+    ariaLabel: 'Loading',
   },
   table: {
     pagination: {
@@ -212,5 +214,17 @@ export const defaultI18n: I18nInterface = {
       'use the right and left arrow keys to activate other tabs',
     verticalTabsInstructions:
       'use the down and up arrow keys to activate other tabs',
+    nextButtonLabel: 'Scroll tabs forward',
+    previousButtonLabel: 'Scroll tabs back',
+  },
+  timePicker: {
+    hoursAriaLabel: 'Hour',
+    minutesAriaLabel: 'Minute',
+    amButtonAriaLabel:
+      'AM selected.  To change to PM press the p or enter button.',
+    pmButtonAriaLabel:
+      'PM selected.  To change to AM press the a or enter button.',
+    amSelectedAnnounce: 'AM is now selected',
+    pmSelectedAnnounce: 'PM is now selected',
   },
 };

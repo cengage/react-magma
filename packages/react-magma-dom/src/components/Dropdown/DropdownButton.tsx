@@ -8,9 +8,10 @@ import {
   ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
-import { DropdownContext, DropdownDropDirection } from '.';
+import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
+import { useIsInverse } from '../../inverse';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -110,6 +111,8 @@ export const DropdownButton = React.forwardRef<
   let children;
   const { icon = buttonIcon, iconPosition, ...other } = props;
 
+  const isInverse = useIsInverse(props.isInverse);
+
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
   }
@@ -138,8 +141,9 @@ export const DropdownButton = React.forwardRef<
       icon={icon}
       iconPosition={iconPositionToUse}
       id={context.dropdownButtonId.current}
+      isInverse={isInverse}
       onClick={handleClick}
-      onKeyDown={context.handleButtonKeyDown}
+      onBlur={context.handleButtonBlur}
       ref={ref}
       theme={theme}
     >

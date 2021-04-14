@@ -1,12 +1,15 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Combobox, ComboboxProps } from '.';
+import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
+import { SelectOptions } from '../Select';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { magma } from '../../theme/magma';
 
-const Template: Story<ComboboxProps> = args => <Combobox {...args} />;
+const Template: Story<ComboboxProps<SelectOptions>> = args => (
+  <Combobox {...args} />
+);
 
 export default {
   title: 'Combobox',
@@ -32,15 +35,14 @@ Default.args = {
   disableCreateItem: false,
   errorMessage: '',
   helperMessage: '',
+  isClearable: false,
   isMulti: false,
   isLoading: false,
 };
 
-export const Multi = Template.bind({});
-Multi.args = {
-  ...Default.args,
-  isMulti: true,
-};
+export const Multi = (props: MultiComboboxProps<SelectOptions>) => (
+  <Combobox isMulti {...props} />
+);
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {

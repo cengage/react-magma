@@ -8,6 +8,10 @@
     "type": "git",
     "url": "https://github.com/cengage/react-magma.git"
   },
+  "engines": {
+    "npm": "^7.3.0",
+    "node": "^14.15.0"
+  },
   "scripts": {
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
@@ -17,8 +21,8 @@
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
     "storybook": "start-storybook -p 6006",
     "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
-    "build:lite": "lerna run build --ignore react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
-    "build": "lerna run build --ignore react-magma-dom-codesandbox-template --stream --no-progress",
+    "build:lite": "lerna run build --ignore react-magma-docs --stream --no-progress",
+    "build": "lerna run build --stream --no-progress",
     "build:landing": "node website/react-magma-landing/scripts/build.js",
     "build:storybook": "build-storybook",
     "bootstrap": "lerna bootstrap",
@@ -31,7 +35,8 @@
     "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
     "copy:readme": "copy README.md packages/react-magma-dom",
     "publish": "npm run copy:readme && lerna publish",
-    "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
+    "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
+    "plop": "ts-node scripts/plopfile.ts"
   },
   "husky": {
     "hooks": {
@@ -66,6 +71,11 @@
     "@testing-library/react": "^9.1.4",
     "@testing-library/react-hooks": "^3.2.1",
     "@testing-library/user-event": "^12.1.5",
+    "@types/jest": "^26.0.9",
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^12.6.8",
+    "@types/react": "^16.9.0",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-core": "7.0.0-bridge.0",
@@ -92,7 +102,7 @@
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-unicorn": "^22.0.0",
-    "husky": "^4.3.0",
+    "husky": "^4.3.8",
     "jest": "^26.4.2",
     "jest-axe": "3.1.0",
     "jest-cli": "^26.6.3",
@@ -102,9 +112,16 @@
     "jest-watch-typeahead": "^0.6.1",
     "lerna": "^4.0.0",
     "lint-staged": "^10.4.0",
+    "lodash": "^4.17.21",
+    "node-plop": "^0.26.2",
     "prettier": "^2.2.1",
+    "react-test-renderer": "^15.0.0 || ^16.0.0",
     "regenerator-runtime": "^0.13.7",
+    "shelljs": "^0.8.4",
     "storybook-addon-performance": "^0.14.0",
+    "ts-node": "^9.1.1",
+    "tsdx": "^0.14.1",
+    "typedoc": "^0.19.2",
     "typescript": "^3.9.7"
   },
   "config": {

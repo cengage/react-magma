@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button, ButtonShape, ButtonStyles, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ArrowDropUpIcon, ArrowDropDownIcon } from 'react-magma-icons';
-import { DropdownContext, DropdownDropDirection } from '.';
+import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';

@@ -1,22 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-
-const StyledTabsContainer = styled.div<{
-  isInverse?: boolean;
-  theme: ThemeInterface;
-}>`
-  background: ${props =>
-    props.isInverse ? props.theme.colors.foundation02 : 'none'};
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-`;
 
 interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -33,13 +19,28 @@ interface TabsContainerContextInterface {
   setActiveTabIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const TabsContainerContext = React.createContext<
-  TabsContainerContextInterface
->({
-  activeTabIndex: 0,
-  isInverseContainer: false,
-  setActiveTabIndex: () => 0,
-});
+export const TabsContainerContext = React.createContext<TabsContainerContextInterface>(
+  {
+    activeTabIndex: 0,
+    isInverseContainer: false,
+    setActiveTabIndex: () => 0,
+  }
+);
+
+const StyledTabsContainer = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
+  background: ${props =>
+    props.isInverse ? props.theme.colors.foundation02 : 'none'};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral};
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+`;
 
 export const TabsContainer = React.forwardRef<
   HTMLDivElement,
@@ -55,8 +56,10 @@ export const TabsContainer = React.forwardRef<
 
   const [activeTabIndex, setActiveTabIndex] = React.useState(activeIndex || 0);
 
+  const isInverse = useIsInverse(props.isInverse);
+
   React.useEffect(() => {
-    setIsInverseContainer(Boolean(props.isInverse));
+    setIsInverseContainer(isInverse);
   }, [props.isInverse]);
 
   const [isInverseContainer, setIsInverseContainer] = React.useState(
@@ -67,7 +70,11 @@ export const TabsContainer = React.forwardRef<
 
   return (
     <TabsContainerContext.Provider
-      value={{ activeTabIndex, setActiveTabIndex, isInverseContainer }}
+      value={{
+        activeTabIndex,
+        setActiveTabIndex,
+        isInverseContainer,
+      }}
     >
       <StyledTabsContainer
         ref={ref}

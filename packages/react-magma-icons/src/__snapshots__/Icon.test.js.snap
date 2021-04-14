@@ -5911,6 +5911,29 @@ exports[`Icon Snapshot Tests should render ChartPieIcon icon 1`] = `
 </div>
 `;
 
+exports[`Icon Snapshot Tests should render ChartProbabilityPlotIcon icon 1`] = `
+<div>
+  <svg
+    aria-labelledby="ChartProbabilityPlotIconAvailable"
+    class="icon"
+    fill="currentColor"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title
+      id="ChartProbabilityPlotIconAvailable"
+    >
+      ChartProbabilityPlotIcon Title
+    </title>
+    <path
+      d="M3 2c.553 0 1 .448 1 1v17h17a.9991.9991 0 01.9933.8832L22 21c0 .553-.447 1-1 1H3c-.553 0-1-.447-1-1V3c0-.552.447-1 1-1zm5 12c1.104 0 2 .896 2 2s-.896 2-2 2-2-.896-2-2 .896-2 2-2zm4-4c1.104 0 2 .896 2 2s-.896 2-2 2-2-.896-2-2 .896-2 2-2zm3-5c1.104 0 2 .896 2 2s-.896 2-2 2-2-.896-2-2 .896-2 2-2zm5-3c1.104 0 2 .896 2 2s-.896 2-2 2-2-.896-2-2 .896-2 2-2z"
+    />
+  </svg>
+</div>
+`;
+
 exports[`Icon Snapshot Tests should render ChartScatterIcon icon 1`] = `
 <div>
   <svg
@@ -30765,6 +30788,29 @@ exports[`Icon Snapshot Tests should render UnfoldMoreIcon icon 1`] = `
     <path
       d="M12 5.83l2.46 2.46c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L12.7 3.7a.9959.9959 0 00-1.41 0L8.12 6.88c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 5.83zm0 12.34l-2.46-2.46a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41l3.17 3.18c.39.39 1.02.39 1.41 0l3.17-3.17c.39-.39.39-1.02 0-1.41a.9959.9959 0 00-1.41 0L12 18.17z"
       fill-rule="evenodd"
+    />
+  </svg>
+</div>
+`;
+
+exports[`Icon Snapshot Tests should render UnitIcon icon 1`] = `
+<div>
+  <svg
+    aria-labelledby="UnitIconAvailable"
+    class="icon"
+    fill="currentColor"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <title
+      id="UnitIconAvailable"
+    >
+      UnitIcon Title
+    </title>
+    <path
+      d="M12.7692 20.0408l7.6923-4.1946V8.2015l-7.6923 2.8008zM12 9.6438l8.3892-3.053L12 3.5377l-8.3892 3.053zm10-3.0284v9.2308c0 .2805-.072.541-.2162.7815-.144.2405-.3405.4287-.5892.5646l-8.4615 4.6154C12.5085 21.9359 12.264 22 12 22s-.5085-.0641-.733-.1923l-8.4616-4.6154c-.2482-.1364-.4446-.3246-.5892-.5646A1.4816 1.4816 0 012 15.8462V6.6154c0-.3205.092-.613.2762-.8777s.4284-.4528.733-.5646l8.4616-3.077C11.6472 2.0322 11.8236 2 12 2s.3528.032.5292.0962l8.4616 3.0769c.3046.1123.549.3005.733.5646S22 6.2944 22 6.6154z"
     />
   </svg>
 </div>

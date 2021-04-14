@@ -1,8 +1,13 @@
 const path = require('path');
+const { convertCompilerOptionsFromJson } = require('typescript');
 const toPath = _path => path.join(process.cwd(), _path);
+const babelConfig = require('../babel.config');
 
 module.exports = {
-  stories: ['../packages/**/src/components/**/*.stories.@(ts|tsx)'],
+  stories: [
+    '../packages/react-magma-dom/src/components/**/*.stories.tsx',
+    '../patterns/header/src/components/**/*.stories.tsx',
+  ],
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-actions',
@@ -14,14 +19,17 @@ module.exports = {
   ],
   typescript: {
     reactDocgen: false,
+    // check: true,
   },
   webpackFinal: async config => {
     return {
       ...config,
+      // devtool: 'eval',
       resolve: {
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
+          'react-magma-dom': toPath('packages/react-magma-dom/src'),
         },
       },
     };

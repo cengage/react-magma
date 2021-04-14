@@ -1,17 +1,18 @@
 {
   "packages": [
     "website/*",
-    "packages/*"
+    "packages/*",
+    "patterns/*"
   ],
   "command": {
     "bootstrap": {
-      "forceLocal": true,
       "hoist": true
     },
     "publish": {
-      "allowBranch": ["master", "dev", "hotfix/*", "main"],
+      "allowBranch": ["dev", "hotfix/*", "main"],
       "preDistTag": "next",
-      "message": "chore(release): publish"
+      "message": "chore(release): publish",
+      "ignoreChanges": ["**/*.stories.tsx", "**/*.tests.js"]
     },
     "version": {
       "changelogPreset": "conventionalcommits",
@@ -19,6 +20,5 @@
       "exact": true
     }
   },
-  "version": "independent",
-  "granularPathspec": false
+  "version": "independent"
 }

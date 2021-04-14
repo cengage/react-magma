@@ -394,6 +394,19 @@ describe('Date Picker', () => {
     expect(getByText(/select the date/i)).toBeInTheDocument();
   });
 
+  it('should default to the min date when it is later than today', () => {
+    const now = new Date();
+    const minDate = format(addMonths(now, 2), 'MM/dd/yyyy');
+    const monthYear = format(addMonths(now, 2), 'MMMM yyyy');
+
+    const { getByLabelText, getByText } = render(
+      <DatePicker minDate={minDate} labelText="Date Picker Label" />
+    );
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
+  });
+
   it('should handle a day click', () => {
     const onChange = jest.fn();
     const onDateChange = jest.fn();
@@ -491,11 +504,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          subWeeks(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subWeeks(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -516,11 +525,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          subDays(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subDays(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -541,11 +546,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          startOfWeek(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(startOfWeek(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -566,11 +567,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          subMonths(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(subMonths(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -591,11 +588,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          addMonths(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addMonths(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -616,11 +609,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          addWeeks(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addWeeks(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -641,11 +630,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          addDays(defaultDate, 1)
-            .getDate()
-            .toString()
-        )
+        getByText(addDays(defaultDate, 1).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
@@ -666,11 +651,7 @@ describe('Date Picker', () => {
       });
 
       expect(
-        getByText(
-          endOfWeek(defaultDate)
-            .getDate()
-            .toString()
-        )
+        getByText(endOfWeek(defaultDate).getDate().toString())
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 

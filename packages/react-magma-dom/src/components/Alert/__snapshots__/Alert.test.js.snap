@@ -2,6 +2,18 @@
 
 exports[`Alert Dismissible should render a dismissible icon button with the warning variant 1`] = `
 .emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -64,18 +76,18 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted rgba(255,255,255,0.7);
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: rgba(0,0,0,0.3);
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -94,12 +106,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: rgba(0,0,0,0.5);
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -109,29 +121,41 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0.emotion-0:focus:not(:disabled) {
+.emotion-2.emotion-2:focus:not(:disabled) {
   outline: 2px dotted #027EE1;
   outline-offset: 0 !important;
 }
 
-.emotion-0:hover:not(:disabled):before,
-.emotion-0:focus:not(:disabled):before {
+.emotion-2:hover:not(:disabled):before,
+.emotion-2:focus:not(:disabled):before {
   background: #027EE1;
   opacity: 0.15;
 }
 
-.emotion-0:hover:after,
-.emotion-0:focus:after {
+.emotion-2:hover:after,
+.emotion-2:focus:after {
   display: none;
 }
 
 .emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -194,18 +218,18 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px dotted rgba(255,255,255,0.7);
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: rgba(0,0,0,0.3);
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-2:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -224,12 +248,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: rgba(0,0,0,0.5);
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -239,51 +263,56 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0.emotion-0:focus:not(:disabled) {
+.emotion-2.emotion-2:focus:not(:disabled) {
   outline: 2px dotted #027EE1;
   outline-offset: 0 !important;
 }
 
-.emotion-0:hover:not(:disabled):before,
-.emotion-0:focus:not(:disabled):before {
+.emotion-2:hover:not(:disabled):before,
+.emotion-2:focus:not(:disabled):before {
   background: #027EE1;
   opacity: 0.15;
 }
 
-.emotion-0:hover:after,
-.emotion-0:focus:after {
+.emotion-2:hover:after,
+.emotion-2:focus:after {
   display: none;
 }
 
 <button
   aria-label="Close this message"
-  class="emotion-0 emotion-1"
+  class="emotion-2 emotion-3"
   color="primary"
   id="ignoreButton"
   shape="round"
+  type="button"
 >
-  <svg
+  <span
     aria-labelledby="ignoreButton"
-    class="icon"
-    fill="currentColor"
-    height="20"
+    class="emotion-0 emotion-1"
     id="ignoreSvg"
-    viewBox="0 0 24 24"
-    width="20"
-    xmlns="http://www.w3.org/2000/svg"
   >
-    <path
-      d="M18.3 5.71a.9959.9959 0 00-1.41 0L12 10.59 7.11 5.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"
-      fill-rule="evenodd"
+    <svg
+      class="icon"
+      fill="currentColor"
+      height="20"
       id="ignoreTitle"
-    />
-  </svg>
+      viewBox="0 0 24 24"
+      width="20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M18.3 5.71a.9959.9959 0 00-1.41 0L12 10.59 7.11 5.7a.9959.9959 0 00-1.41 0c-.39.39-.39 1.02 0 1.41L10.59 12 5.7 16.89c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0L12 13.41l4.89 4.89c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"
+        fill-rule="evenodd"
+      />
+    </svg>
+  </span>
 </button>
 `;
 
@@ -380,7 +409,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-3 {
@@ -475,7 +503,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 <div>
@@ -568,7 +595,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {
@@ -663,7 +689,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {
@@ -834,7 +859,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-3 {
@@ -929,7 +953,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 <div>
@@ -1022,7 +1045,6 @@ exports[`Alert should render an alert with default variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {
@@ -1117,7 +1139,6 @@ exports[`Alert should render an alert with default variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  z-index: 2;
 }
 
 .emotion-0 {

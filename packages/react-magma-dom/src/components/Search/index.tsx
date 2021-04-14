@@ -6,6 +6,7 @@ import {
   InputType,
 } from '../InputBase';
 import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
 import { SearchIcon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
 
@@ -99,6 +100,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
           iconAriaLabel ? iconAriaLabel : i18n.search.iconAriaLabel
         }
         iconPosition={InputIconPosition.right}
+        isInverse={useIsInverse(props.isInverse)}
         onChange={handleChange}
         onIconClick={isLoading ? null : handleSearch}
         onKeyDown={handleKeyPress}

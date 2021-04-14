@@ -7,7 +7,7 @@ import {
   TableContext,
   TableDensity,
   TableSortDirection,
-} from './';
+} from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
 
@@ -74,10 +74,10 @@ const StyledTableHeaderCell = styled.th<{
     `}
 
     ${props =>
-      props.width &&
-      css`
-        width: ${props.width};
-      `}
+    props.width &&
+    css`
+      width: ${props.width};
+    `}
 `;
 
 const SortButton = styled.button<{

@@ -9,8 +9,7 @@ import {
   ButtonType,
   ButtonVariant,
 } from '.';
-import { Card } from '../Card';
-import { CardBody } from '../Card/CardBody';
+import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -56,6 +55,11 @@ export default {
         options: ButtonType,
       },
     },
+    isLoading: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -72,6 +76,7 @@ Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
+
 Inverse.decorators = [
   Story => (
     <Card background={magma.colors.foundation} isInverse>
