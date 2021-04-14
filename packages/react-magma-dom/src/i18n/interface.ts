@@ -213,6 +213,8 @@ export interface I18nInterface {
   tabs: {
     horizontalTabsInstructions: string;
     verticalTabsInstructions: string;
+    previousButtonLabel: string;
+    nextButtonLabel: string;
   };
   timePicker: {
     hoursAriaLabel: string;
