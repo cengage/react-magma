@@ -67,6 +67,7 @@ const TimePickerContainer = styled.div<{
   theme: ThemeInterface;
 }>`
   position: relative;
+  width: fit-content;
 `;
 
 const StyledFieldset = styled.fieldset`
@@ -315,6 +316,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             id={id}
             inputStyle={{
               background: `${theme.colors.neutral08}`,
+              border: '1px solid',
               borderColor: `${
                 errorMessage
                   ? theme.colors.danger

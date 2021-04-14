@@ -33,6 +33,10 @@ export interface InputBaseProps
    */
   containerStyle?: React.CSSProperties;
   /**
+   * @default true
+   */
+  hasBorder?: boolean;
+  /**
    * @internal
    */
   hasError?: boolean;
@@ -88,12 +92,12 @@ const InputWrapper = styled.div<InputBaseProps>`
   display: flex;
   flex-shrink: 0;
   position: relative;
-  border: 1px solid;
+  width: ${props => props.width || '100%'};
+  border: ${props => (props.hasBorder ? '1px solid' : '0')}
   border-color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral03};
-  border-radius: ${props => props.theme.borderRadius};
 
   &:focus-within {
     outline: 2px dotted
@@ -107,8 +111,6 @@ const InputWrapper = styled.div<InputBaseProps>`
 
 export const inputBaseStyles = props => css`
   background: ${props.theme.colors.neutral08};
-  border: 0;
-  border-radius: ${props.theme.borderRadius};
   color: ${props.theme.colors.neutral};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
@@ -118,6 +120,11 @@ export const inputBaseStyles = props => css`
   padding: ${props.theme.spaceScale.spacing03};
   -webkit-appearance: none;
   width: 100%;
+  border-radius: ${props.theme.borderRadius};
+  border: ${props.hasBorder ? '1px' : '0'} solid
+    ${props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral03};
 
   ${props.iconPosition === 'left' &&
   css`
@@ -129,7 +136,8 @@ export const inputBaseStyles = props => css`
     padding-right: ${props.theme.spaceScale.spacing09};
   `}
   
-  ${props.hasError &&
+  ${props.hasBorder &&
+  props.hasError &&
   css`
     border-color: ${props.theme.colors.danger};
     box-shadow: 0 0 0 1px
@@ -267,6 +275,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
     const theme = React.useContext(ThemeContext);
 
+    const hasBorder = type !== InputType.password;
+
     const iconPosition =
       icon && onIconClick
         ? InputIconPosition.right
@@ -302,6 +312,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           {...other}
           aria-invalid={hasError}
           data-testid={testId}
+          hasBorder={hasBorder}
           hasError={hasError}
           iconPosition={iconPosition}
           inputSize={inputSize ? inputSize : InputSize.medium}

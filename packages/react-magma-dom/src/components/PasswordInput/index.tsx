@@ -5,7 +5,7 @@ import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType } from '../Button';
-import { HiddenLabelText } from '../Input';
+import { HiddenLabelText, InputProps } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { useIsInverse } from '../../inverse';
 import { Label } from '../Label';
@@ -96,6 +96,18 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
+const InputWrapper = styled.div<InputProps>`
+  border: 1px solid;
+  border-color: ${props =>
+    (props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral03) ||
+    (props.hasError
+      ? props.theme.colors.danger
+      : props.theme.colors.neutral08)};
+  border-radius: ${props => props.theme.borderRadius};
+`;
+
 export const PasswordInput = React.forwardRef<
   HTMLInputElement,
   PasswordInputProps
@@ -169,6 +181,7 @@ export const PasswordInput = React.forwardRef<
           labelText
         )}
       </Label>
+
       <InputBase
         autoCorrect="off"
         autoCapitalize="none"
@@ -177,8 +190,8 @@ export const PasswordInput = React.forwardRef<
           descriptionId ? descriptionId : props['aria-describedby']
         }
         aria-invalid={!!errorMessage}
-        id={id}
         hasError={!!errorMessage}
+        id={id}
         inputSize={inputSize ? inputSize : InputSize.medium}
         isInverse={isInverse}
         ref={ref}
@@ -220,6 +233,7 @@ export const PasswordInput = React.forwardRef<
           </>
         )}
       </InputBase>
+
       <InputMessage
         isInverse={isInverse}
         id={descriptionId}
