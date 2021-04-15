@@ -106,6 +106,7 @@ const StyledFakeInput = styled.span<{
 }>`
   ${DisplayInputStyles};
   color: ${props => buildRadioIconColor(props)};
+  border-color: ${props => buildRadioIconColor(props)};
   border-radius: 100%;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>

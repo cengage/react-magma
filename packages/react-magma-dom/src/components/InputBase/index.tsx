@@ -97,32 +97,44 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex-shrink: 0;
   position: relative;
   width: ${props.width || '100%'};
-  border: 1px solid ${props.isInverse ? props.theme.colors.neutral08 : props.theme.colors.neutral03};
+  border-radius: ${props.theme.borderRadius};
+  border: 1px solid ${
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral03
+  };
 
   &:focus-within {
     outline: 2px dotted
-      ${props.isInverse
+      ${
+        props.isInverse
           ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          : props.theme.colors.focus
+      };
     outline-offset: 4px;
   }
 
-  ${props.hasError &&
+  ${
+    props.hasError &&
     css`
       border-color: ${props.theme.colors.danger};
       box-shadow: 0 0 0 1px
         ${props.isInverse
           ? props.theme.colors.neutral08
           : props.theme.colors.danger};
-    `}
+    `
+  }
   }
 
-  ${props.disabled && css`
-    border-color: ${props.theme.colors.neutral05};
-  `}
+  ${
+    props.disabled &&
+    css`
+      border-color: ${props.theme.colors.neutral05};
+    `
+  }
 `;
 
-export interface InputBaseStylesProps{
+export interface InputBaseStylesProps {
   isInverse?: boolean;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
@@ -132,6 +144,7 @@ export interface InputBaseStylesProps{
 
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
+  border-radius: ${props.theme.borderRadius};
   background: ${props.theme.colors.neutral08};
   color: ${props.theme.colors.neutral};
   display: block;
@@ -196,7 +209,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
 
 const InputWrapper = styled.div<InputWrapperStylesProps>`
   ${inputWrapperStyles}
-`
+`;
 
 const StyledInput = styled.input<InputBaseStylesProps>`
   ${inputBaseStyles}
