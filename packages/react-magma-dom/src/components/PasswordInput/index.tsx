@@ -5,7 +5,7 @@ import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType } from '../Button';
-import { HiddenLabelText, InputProps } from '../Input';
+import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { useIsInverse } from '../../inverse';
 import { Label } from '../Label';
@@ -94,18 +94,6 @@ export interface PasswordInputProps
 
 const Container = styled.div`
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
-`;
-
-const InputWrapper = styled.div<InputProps>`
-  border: 1px solid;
-  border-color: ${props =>
-    (props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03) ||
-    (props.hasError
-      ? props.theme.colors.danger
-      : props.theme.colors.neutral08)};
-  border-radius: ${props => props.theme.borderRadius};
 `;
 
 export const PasswordInput = React.forwardRef<
