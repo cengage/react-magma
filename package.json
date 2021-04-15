@@ -13,6 +13,9 @@
     "node": "^14.15.0"
   },
   "scripts": {
+    "pkg": "manypkg run",
+    "check:pkgs": "manypkg check",
+    "fix:pkgs": "manypkg fix",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "postinstall": "npm run bootstrap && npm run build:lite",
@@ -44,7 +47,12 @@
       "pre-commit": "lint-staged"
     }
   },
-  "devDependencies": {
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
@@ -58,6 +66,7 @@
     "@babel/preset-typescript": "^7.1.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
+    "@manypkg/cli": "^0.17.0",
     "@storybook/addon-a11y": "^6.1.18",
     "@storybook/addon-actions": "^6.1.18",
     "@storybook/addon-controls": "^6.1.18",
@@ -123,10 +132,5 @@
     "tsdx": "^0.14.1",
     "typedoc": "^0.19.2",
     "typescript": "^3.9.7"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   }
 }

@@ -27,12 +27,20 @@
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
     "react-magma-dom": "2.3.10-alpha.5",
-    "react-magma-icons": "2.0.3-alpha.6",
+    "react-magma-icons": "2.0.4-alpha.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "react-magma-dom": "2.3.11-alpha.0",
-    "react-magma-icons": "2.0.4-alpha.0"
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
+    "@types/uuid": "^8.3.0",
+    "date-fns": "^2.16.1",
+    "downshift": "^5.4.5",
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0",
+    "react-magma-dom": "2.3.10-alpha.5",
+    "react-magma-icons": "2.0.4-alpha.0",
+    "uuid": "^8.3.0"
   },
   "name": "@cengage-patterns/header",
   "module": "dist/header.esm.js",
