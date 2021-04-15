@@ -88,7 +88,7 @@ The `react-magma-icons` package handles all of the SVG icons in the React Magma 
 
 ### Adding new components
 
-React-Magma uses [PlopJS](https://plopjs.com/) to scaffold new components. This simultaneously increases consistency with new compoonents and speeds up the time it takes a developer to get started with a new componoent. Simply run `npm run plop` and answer the prompts. This will create a skeleton for the component with stories, tests and a page in the documentation.
+React-Magma uses [PlopJS](https://plopjs.com/) to scaffold new components. This simultaneously increases consistency with new components and speeds up the time it takes a developer to get started with a new component. Simply run `npm run plop` and answer the prompts. This will create a skeleton for the component with stories, tests and a page in the documentation.
 
 ### Building
 
