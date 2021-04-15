@@ -39,7 +39,9 @@
     "copy:readme": "copy README.md packages/react-magma-dom",
     "publish": "npm run copy:readme && lerna publish",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
-    "plop": "ts-node scripts/plopfile.ts"
+    "plop": "ts-node scripts/plopfile.ts",
+    "version:pkgs": "changeset version",
+    "release": "changeset publish"
   },
   "husky": {
     "hooks": {
@@ -132,5 +134,9 @@
     "tsdx": "^0.14.1",
     "typedoc": "^0.19.2",
     "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.0",
+    "@changesets/cli": "^2.16.0"
   }
 }
