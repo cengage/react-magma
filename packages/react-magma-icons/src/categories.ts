@@ -419,6 +419,7 @@ export const categories = {
     'ChartDotIcon',
     'ChartLineIcon',
     'ChartPieIcon',
+    'ChartProbabilityPlotIcon',
     'ChartScatterIcon',
   ],
   Communication: [
@@ -599,6 +600,7 @@ export const categories = {
     'MtIcon',
     'NonMindtapActivityIcon',
     'PracticeIcon',
+    'UnitIcon',
     'WlGotItIcon',
     'WlLearnItIcon',
     'WlPracticeItIcon',

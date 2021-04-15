@@ -4,6 +4,8 @@ export const defaultI18n: I18nInterface = {
   locale: null,
   dateFormat: 'MM/dd/yyyy',
   timeFormat: '12',
+  example:
+    'i18n defaults must be set in packages/react-magma-dom/src/i18n/default.ts',
   months: {
     long: {
       january: 'January',
@@ -212,6 +214,8 @@ export const defaultI18n: I18nInterface = {
       'use the right and left arrow keys to activate other tabs',
     verticalTabsInstructions:
       'use the down and up arrow keys to activate other tabs',
+    nextButtonLabel: 'Scroll tabs forward',
+    previousButtonLabel: 'Scroll tabs back',
   },
   timePicker: {
     hoursAriaLabel: 'Hour',

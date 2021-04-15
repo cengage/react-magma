@@ -7,6 +7,7 @@ props:
   - DropdownHeaderProps
   - DropdownMenuGroupProps
   - DropdownMenuItemProps
+  - DropdownMenuNavItemProps
   - DropdownButtonProps
   - DropdownSplitButtonProps
 ---
@@ -303,6 +304,36 @@ export function Example() {
         <DropdownMenuItem onClick={handleMenuItem3Click}>
           Menu item 3
         </DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
+## DropdownMenuNavItem
+
+To render links within a dropdown, use the `DropdownMenuNavItem` component. It accepts a `to` prop, which is used as the link's href and accepts any other props that an anchor element would accept.
+
+```tsx
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuNavItem,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Dropdown>
+      <DropdownButton>Dropdown Menu Items</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuNavItem to="http://www.google.com" target="_blank">
+          Google
+        </DropdownMenuNavItem>
+        <DropdownMenuNavItem to="http://www.cengage.com" target="_blank">
+          Cengage
+        </DropdownMenuNavItem>
       </DropdownContent>
     </Dropdown>
   );
@@ -777,3 +808,9 @@ Examples may include an id, a title, event handlers or various aria attributes. 
 **The DropdownButton can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.**
 
 <IconButtonProps />
+
+## Dropdown Menu Nav Item
+
+**Any other props supplied will be provided to the wrapping `a` element.**
+
+<DropdownMenuNavItemProps />

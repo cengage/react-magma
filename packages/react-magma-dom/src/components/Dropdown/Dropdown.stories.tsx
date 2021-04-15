@@ -8,8 +8,11 @@ import {
 import { DropdownButton } from './DropdownButton';
 import { DropdownContent } from './DropdownContent';
 import { DropdownMenuItem } from './DropdownMenuItem';
+import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
-import { ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import { Input } from '../Input';
+import { PasswordInput } from '../PasswordInput';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -19,6 +22,7 @@ const Template: Story<DropdownProps> = args => (
     <DropdownContent>
       <DropdownMenuItem>Menu item 1</DropdownMenuItem>
       <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
     </DropdownContent>
   </Dropdown>
 );
@@ -170,6 +174,54 @@ const SplitTemplate: Story<DropdownProps> = args => (
     </Dropdown>
   </>
 );
-
 export const SplitButton = SplitTemplate.bind({});
 SplitButton.args = { ...Default.args };
+
+const LinkMenuTemplate: Story<DropdownProps> = args => (
+  <Dropdown {...args}>
+    <DropdownButton>Dropdown of links</DropdownButton>
+    <DropdownContent>
+      <DropdownMenuNavItem
+        icon={<SettingsIcon />}
+        to="http://www.google.com"
+        target="_blank"
+      >
+        Google
+      </DropdownMenuNavItem>
+      <DropdownMenuNavItem
+        icon={<MenuIcon />}
+        to="http://www.cengage.com"
+        target="_blank"
+      >
+        Cengage
+      </DropdownMenuNavItem>
+    </DropdownContent>
+  </Dropdown>
+);
+
+export const LinkMenu = LinkMenuTemplate.bind({});
+LinkMenu.args = { ...Default.args };
+
+const FormTemplate: Story<DropdownProps> = args => (
+  <Dropdown {...args}>
+    <DropdownButton>Dropdown with form</DropdownButton>
+    <DropdownContent>
+      <form style={{ margin: 0, padding: '16px' }}>
+        <Input labelText="Email Address" />
+        <PasswordInput labelText="Password" />
+        <div style={{ textAlign: 'center' }}>
+          <p>
+            By signing in, you agree to our <a href="#terms">Terms of use</a>.
+          </p>
+          <Button isFullWidth>Sign In</Button>
+          <p>
+            <a href="#password">Forgot password?</a>
+          </p>
+        </div>
+      </form>
+    </DropdownContent>
+  </Dropdown>
+);
+
+export const Form = FormTemplate.bind({});
+Form.args = { ...Default.args };
