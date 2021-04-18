@@ -2,7 +2,7 @@ import React from 'react';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
-import { MenuIcon, CrossIcon } from 'react-magma-icons';
+import { MenuIcon, CloseIcon } from 'react-magma-icons';
 import { Container, IconButton, magma } from 'react-magma-dom';
 import { MainNav } from '../MainNav';
 
@@ -182,7 +182,7 @@ export class SlidingDrawer extends React.Component {
                   <IconButton
                     aria-label="Close navigation menu"
                     color="secondary"
-                    icon={<CrossIcon />}
+                    icon={<CloseIcon />}
                     onClick={this.handleCloseMenu}
                     variant="link"
                   />

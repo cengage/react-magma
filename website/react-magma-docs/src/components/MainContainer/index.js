@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { DarkModeToggle } from '../DarkModeToggle';
 import { Masthead } from '../Masthead';
 import { SlidingDrawer } from '../SlidingDrawer';
 import {
   SkipLink,
   magma,
   Container,
-  Toggle,
   GlobalStyles,
+  Toggle,
+  //useLocalStorage,
 } from 'react-magma-dom';
 
 const StyledContainer = styled.div`
@@ -34,28 +36,26 @@ const StyledSkipLink = styled(SkipLink)`
 `;
 
 export const MainContainer = ({ children }) => {
-  const [checked, updateChecked] = React.useState(false);
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
 
-  function handleUpdateChecked() {
-    updateChecked(!checked);
+  const isBrowser = typeof window !== 'undefined';
+
+  React.useEffect(() => {
+    if (localStorage.getItem('isRMDarkMode') == 'true') {
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  function handleDarkModeClick() {
+    localStorage.setItem('isRMDarkMode', !isDarkMode);
+    setIsDarkMode(!isDarkMode);
   }
-
-  const HeaderToggle = (
-    <Toggle
-      checked={checked}
-      isInverse
-      labelText="Dark mode"
-      onChange={handleUpdateChecked}
-    />
-  );
-
-  const isInverse = checked;
 
   return (
     <Container
       gutterWidth={0}
-      isInverse={isInverse}
-      className={isInverse && 'isInverse'}
+      isInverse={isDarkMode}
+      className={isDarkMode && 'isInverse'}
     >
       <GlobalStyles />
       <StyledSkipLink
@@ -65,8 +65,15 @@ export const MainContainer = ({ children }) => {
         variant="outline"
       />
       <StyledContainer>
-        <Masthead>{HeaderToggle}</Masthead>
-        <SlidingDrawer isInverse={isInverse} />
+        <Masthead>
+          {isBrowser && (
+            <DarkModeToggle
+              isDarkMode={isDarkMode}
+              onClick={handleDarkModeClick}
+            />
+          )}
+        </Masthead>
+        <SlidingDrawer isInverse={isDarkMode} />
         {children}
       </StyledContainer>
     </Container>
