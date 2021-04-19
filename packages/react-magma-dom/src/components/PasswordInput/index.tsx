@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { InputBase, InputSize, InputType } from '../InputBase';
-import { Button, ButtonVariant, ButtonType } from '../Button';
+import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { useIsInverse } from '../../inverse';
@@ -196,6 +196,7 @@ export const PasswordInput = React.forwardRef<
               }
               isInverse={false}
               onClick={togglePasswordShown}
+              size={ButtonSize.small}
               style={{
                 borderRadius: theme.borderRadius,
                 height:
