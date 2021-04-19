@@ -316,14 +316,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             id={id}
             inputStyle={{
               background: `${theme.colors.neutral08}`,
-              // border: '1px solid',
-              // borderColor: `${
-              //   errorMessage
-              //     ? theme.colors.danger
-              //     : isInverse
-              //     ? theme.colors.neutral08
-              //     : theme.colors.neutral04
-              // }`,
               cursor: 'default',
               width: '144px',
               ...inputStyle,
