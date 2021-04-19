@@ -3,14 +3,7 @@ import styled from '@emotion/styled';
 import { DarkModeToggle } from '../DarkModeToggle';
 import { Masthead } from '../Masthead';
 import { SlidingDrawer } from '../SlidingDrawer';
-import {
-  SkipLink,
-  magma,
-  Container,
-  GlobalStyles,
-  Toggle,
-  //useLocalStorage,
-} from 'react-magma-dom';
+import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 
 const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {
@@ -41,7 +34,7 @@ export const MainContainer = ({ children }) => {
   const isBrowser = typeof window !== 'undefined';
 
   React.useEffect(() => {
-    if (localStorage.getItem('isRMDarkMode') == 'true') {
+    if (localStorage.getItem('isRMDarkMode') === 'true') {
       setIsDarkMode(true);
     }
   }, []);
