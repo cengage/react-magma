@@ -71,9 +71,10 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     const timerAutoHide = React.useRef<any>();
     const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
     const [isPaused, setIsPaused] = React.useState<boolean>(false);
-    const [timerTimeRemaining, setTimerTimeRemaining] = React.useState<
-      number
-    >();
+    const [
+      timerTimeRemaining,
+      setTimerTimeRemaining,
+    ] = React.useState<number>();
 
     const {
       alertStyle,

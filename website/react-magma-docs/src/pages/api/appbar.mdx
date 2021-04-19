@@ -39,7 +39,7 @@ export function Example() {
 
 ## Inverse
 
-The `isInverse` prop will render an appbar with a dark background and light text. Components inside will also need to have the `isInverse` prop added to them.
+The `isInverse` prop will render an appbar with a dark background and light text. The components inside the app bar will inherit the `isInverse` prop unless specified otherwise.
 
 ```typescript
 import React from 'react';
@@ -131,16 +131,11 @@ export function Example() {
         LOGO
       </strong>
       <Spacer size={magma.spaceScale.spacing12} />
-      <Search
-        isInverse
-        onSearch={() => {}}
-        placeholder="Search for content..."
-      />
+      <Search onSearch={() => {}} placeholder="Search for content..." />
       <Spacer size={magma.spaceScale.spacing06} />
       <NavTabs
         aria-label="Navigation"
         backgroundColor="transparent"
-        isInverse
         iconPosition={TabsIconPosition.left}
       >
         <NavTab icon={<FavoriteIcon />} isActive to="#">

@@ -140,6 +140,24 @@ export function Example() {
 }
 ```
 
+## Loading
+
+When a button is in a loading state, the label can be replaced with a loading spinner using the `isLoading` prop.
+
+```tsx
+import React from 'react';
+import { Button } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Button isLoading>Save</Button>
+      <Button isLoading={false}>Save</Button>
+    </>
+  );
+}
+```
+
 ## Inverse
 
 The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.

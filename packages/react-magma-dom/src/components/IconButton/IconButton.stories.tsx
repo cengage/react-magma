@@ -61,6 +61,11 @@ export default {
         options: ButtonType,
       },
     },
+    isLoading: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 

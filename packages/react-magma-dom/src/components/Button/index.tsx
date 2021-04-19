@@ -58,6 +58,11 @@ export interface ButtonStyles {
    */
   shape?: ButtonShape;
   /**
+   *  Set the button to a loading state
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
    * The relative size of the button
    * @default ButtonSize.medium
    */

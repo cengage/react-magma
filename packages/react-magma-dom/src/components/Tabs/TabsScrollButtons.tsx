@@ -5,6 +5,7 @@ import { transparentize } from 'polished';
 import { TabsOrientation } from './shared';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 
 import {
   ArrowBackIosIcon,
@@ -99,10 +100,11 @@ export const ButtonPrev = React.forwardRef<
   ScrollButtonProps
 >((props, ref) => {
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   return (
     <StyledButtonPrev
-      aria-hidden
+      aria-label={i18n.tabs.previousButtonLabel}
       backgroundColor={props.backgroundColor}
       buttonVisible={props.buttonVisible}
       data-testid="buttonPrev"
@@ -110,7 +112,6 @@ export const ButtonPrev = React.forwardRef<
       onClick={props.onClick}
       orientation={props.orientation}
       ref={ref}
-      tabIndex={-1}
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
@@ -127,10 +128,11 @@ export const ButtonNext = React.forwardRef<
   ScrollButtonProps
 >((props, ref) => {
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   return (
     <StyledButtonNext
-      aria-hidden
+      aria-label={i18n.tabs.nextButtonLabel}
       backgroundColor={props.backgroundColor}
       buttonVisible={props.buttonVisible}
       data-testid="buttonNext"
@@ -138,7 +140,6 @@ export const ButtonNext = React.forwardRef<
       onClick={props.onClick}
       orientation={props.orientation}
       ref={ref}
-      tabIndex={-1}
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
