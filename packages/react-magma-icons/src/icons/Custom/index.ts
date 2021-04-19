@@ -13,6 +13,7 @@ export { ManualGradedIcon } from './ManualGradedIcon';
 export { MtIcon } from './MtIcon';
 export { NonMindtapActivityIcon } from './NonMindtapActivityIcon';
 export { PracticeIcon } from './PracticeIcon';
+export { UnitIcon } from './UnitIcon';
 export { WlGotItIcon } from './WlGotItIcon';
 export { WlLearnItIcon } from './WlLearnItIcon';
 export { WlPracticeItIcon } from './WlPracticeItIcon';

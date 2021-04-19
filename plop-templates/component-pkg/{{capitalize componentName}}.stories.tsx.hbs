@@ -1,0 +1,21 @@
+import React from 'react';
+import { {{capitalize componentName}} } from '.';
+
+export default {
+  component: {{capitalize componentName}},
+  title: '{{capitalize componentName}}',
+  argTypes: {
+    {{#if useInverse}}
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    {{/if}}
+  },
+};
+
+export const Default = (args) => {
+  return <{{capitalize componentName}} {...args}>Sample text</{{capitalize componentName}}>;
+};
+
