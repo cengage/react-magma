@@ -2,7 +2,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.1.1-alpha.0",
+  "version": "0.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -26,8 +26,8 @@
     "downshift": "^5.4.5",
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
-    "react-magma-dom": "2.3.10-alpha.5",
-    "react-magma-icons": "2.0.4-alpha.0",
+    "react-magma-dom": "2.3.11",
+    "react-magma-icons": "2.0.4",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
@@ -38,8 +38,8 @@
     "downshift": "^5.4.5",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
-    "react-magma-dom": "2.3.10-alpha.5",
-    "react-magma-icons": "2.0.4-alpha.0",
+    "react-magma-dom": "2.3.11",
+    "react-magma-icons": "2.0.4",
     "uuid": "^8.3.0"
   },
   "name": "@cengage-patterns/header",

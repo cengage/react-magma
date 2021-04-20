@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.3.11
+
+### Patch Changes
+
+- chore: init changeset
+- Updated dependencies [undefined]
+  - react-magma-icons@2.0.4
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
@@ -7,25 +15,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.10 (2021-04-14)
 
 **Note:** Version bump only for package react-magma-dom
 
-
-
-
-
 ### 2.3.10-alpha.14 (2021-04-14)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.10-alpha.13 (2021-04-13)
 
