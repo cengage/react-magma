@@ -11,6 +11,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+### 2.3.11-alpha.1 (2021-04-20)
+
+**Note:** Version bump only for package react-magma-dom
+
+
+
+
+
 ### 2.3.11-alpha.0 (2021-04-15)
 
 **Note:** Version bump only for package react-magma-dom

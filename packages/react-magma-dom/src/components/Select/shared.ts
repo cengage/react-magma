@@ -9,7 +9,6 @@ export const SelectContainer = styled.div`
 
 export const StyledButton = styled.div`
   ${inputBaseStyles}
-
   align-items: center;
   display: flex;
   text-align: left;
