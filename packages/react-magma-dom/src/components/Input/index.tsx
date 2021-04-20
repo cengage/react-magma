@@ -14,6 +14,10 @@ export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
    */
   errorMessage?: React.ReactNode;
   /**
+   * @internal
+   */
+  hasError?: boolean;
+  /**
    * Content of the helper message.
    */
   helperMessage?: React.ReactNode;
