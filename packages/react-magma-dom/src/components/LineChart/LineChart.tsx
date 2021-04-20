@@ -24,11 +24,11 @@ export const LineChart = React.forwardRef<HTMLDivElement, LineChartProps>(
 
     return (
       <div ref={ref} {...other}>
-        <Heading level={3}>Simple Line</Heading>
-        <Paragraph>
-          Data table description - Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit. Donec ullamcorper quam dolor, at consequat mi pretium
-          in. Duis iaculis ligula nibh, sit amet.
+        <Heading level={3}>Line Chart Proof of Concept</Heading>
+        <Paragraph style={{ maxWidth: '800px' }}>
+          Annual sales figures for 2019 description - Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit. Donec ullamcorper quam dolor, at
+          consequat mi pretium in. Duis iaculis ligula nibh, sit amet.
         </Paragraph>
         <TabsContainer>
           <Tabs aria-label="Line Chart Demo">

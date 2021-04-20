@@ -6,10 +6,10 @@ import {
   VictoryLine,
   VictoryScatter,
   VictoryTooltip,
-  VictoryLegend,
   Point,
 } from 'victory';
 
+import { LegendButton } from './LegendButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import magmaTheme from './magma-charts';
 
@@ -20,6 +20,8 @@ export interface ChartProps {
 export const Chart = props => {
   const { data } = props;
   const theme = React.useContext(ThemeContext);
+
+  const [hiddenData, setHiddenData] = React.useState([]);
 
   const XAxisStyles = {
     tickLabels: {
@@ -63,15 +65,27 @@ export const Chart = props => {
     theme.colors.pop05,
   ];
 
+  function handleLegendClick(dataIndex: number) {
+    if (hiddenData.includes(dataIndex)) {
+      setHiddenData(hiddenData.filter(item => item !== dataIndex));
+    } else {
+      setHiddenData(hiddenData.concat([dataIndex]));
+    }
+  }
+
   return (
     <div style={{ maxHeight: '600px', maxWidth: '800px' }}>
       <VictoryChart
         domainPadding={24}
         theme={magmaTheme}
         height={400}
-        padding={{ top: 8, left: 56, right: 48, bottom: 148 }}
+        padding={{ top: 8, left: 56, right: 48, bottom: 24 }}
         width={580}
       >
+        <title>
+          Annual sales figures for 2019 description - Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit.
+        </title>
         <VictoryAxis
           tickFormat={['Jan', 'Feb', 'March', 'April', 'May']}
           label="2019 Annual Sales Figures"
@@ -86,56 +100,64 @@ export const Chart = props => {
           style={YAxisStyles}
         />
 
-        {data.map((dataset, i) => (
-          <VictoryLine
-            style={{
-              data: { stroke: colors[i] },
-              parent: { border: theme.colors.neutral04 },
-            }}
-            key={`line${i}`}
-            data={dataset}
-            labelComponent={<></>}
-          />
-        ))}
-        {data.map((dataset, i) => (
-          <VictoryScatter
-            style={{
-              data: {
-                fill: theme.colors.neutral08,
-                stroke: colors[i],
-                strokeWidth: 2,
-              },
-            }}
-            size={4}
-            data={dataset}
-            dataComponent={
-              <Point
-                tabIndex={0}
-                ariaLabel={({ datum }) => `x: ${datum.label}`}
+        {data.map(
+          (dataset, i) =>
+            !hiddenData.includes(i) && (
+              <VictoryLine
+                style={{
+                  data: { stroke: colors[i] },
+                  parent: { border: theme.colors.neutral04 },
+                }}
+                key={`line${i}`}
+                data={dataset}
+                labelComponent={<></>}
               />
-            }
-            labelComponent={Tooltip}
-            key={`scatter${i}`}
-          />
-        ))}
-
-        <VictoryLegend
-          x={0}
-          y={320}
-          title="Select one or more of the categories below to filter out the ones you don’t want to see."
-          orientation="horizontal"
-          gutter={20}
-          style={{
-            title: { fontSize: 8 },
-          }}
-          data={[
-            { name: 'Team 1', symbol: { fill: theme.colors.primary } },
-            { name: 'Team 2', symbol: { fill: theme.colors.pop } },
-            { name: 'Team 3', symbol: { fill: theme.colors.success } },
-            { name: 'Team 4', symbol: { fill: theme.colors.pop02 } },
-          ]}
-        />
+            )
+        )}
+        {data.map(
+          (dataset, i) =>
+            !hiddenData.includes(i) && (
+              <VictoryScatter
+                style={{
+                  data: {
+                    fill: theme.colors.neutral08,
+                    stroke: colors[i],
+                    strokeWidth: 2,
+                  },
+                }}
+                size={4}
+                data={dataset}
+                dataComponent={
+                  <Point
+                    role="button"
+                    tabIndex={0}
+                    ariaLabel={({ datum }) => `x: ${datum.label}`}
+                  />
+                }
+                labelComponent={Tooltip}
+                key={`scatter${i}`}
+              />
+            )
+        )}
       </VictoryChart>
+
+      <div style={{ paddingBottom: '24px' }}>
+        <p style={{ color: '#727272' }}>
+          Select one or more of the categories below to filter out the ones you
+          don’t want to see.
+        </p>
+        {data.map((datum, i) => (
+          <LegendButton
+            aria-label={`Toggle data for team ${i + 1}`}
+            color={colors[i]}
+            dataIndex={i}
+            key={i}
+            onClick={handleLegendClick}
+          >
+            Team {i + 1}
+          </LegendButton>
+        ))}
+      </div>
     </div>
   );
 };
