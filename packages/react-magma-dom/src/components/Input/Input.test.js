@@ -43,7 +43,10 @@ describe('Input', () => {
     const input = getByTestId(testId);
 
     expect(input).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(input).toHaveStyleRule('border-color', magma.colors.neutral03);
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
+      'border',
+      '1px solid #707070'
+    );
   });
 
   it('should render custom styles', () => {
@@ -109,7 +112,7 @@ describe('Input', () => {
 
     const errorMessage = getByTestId('inputMessage');
 
-    expect(getByLabelText(labelText)).toHaveStyleRule(
+    expect(getByLabelText(labelText).parentElement).toHaveStyleRule(
       'border-color',
       magma.colors.danger
     );
@@ -124,7 +127,7 @@ describe('Input', () => {
       <Input errorMessage={testMessage} isInverse labelText={labelText} />
     );
 
-    const input = getByLabelText(labelText);
+    const input = getByLabelText(labelText).parentElement;
     const errorMessage = getByTestId('inputMessage');
 
     expect(input).toHaveStyleRule('border-color', magma.colors.danger);
