@@ -37,8 +37,8 @@ const PreviewContainer = styled.div<{
       ? 0
       : `1px solid ${
           props.isInverse
-            ? MAGMA.magma.colors.neutral02
-            : MAGMA.magma.colors.neutral06
+            ? MAGMA.magma.colors.borderInverse
+            : MAGMA.magma.colors.border
         }`};
   border-bottom: 0;
   padding: ${props => (props.noBorder ? 0 : MAGMA.magma.spaceScale.spacing04)};

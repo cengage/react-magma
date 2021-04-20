@@ -49,7 +49,7 @@ const Heading3 = styled.h3`
 
 const HR = styled.hr`
   background: ${props =>
-    props.isInverse ? magma.colors.neutral02 : magma.colors.neutral06};
+    props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border: none;
   margin: ${magma.spaceScale.spacing03} 0;
   height: 1px;
@@ -67,16 +67,40 @@ const ListItem = styled.li`
   padding: 0;
 `;
 
-const StyledLink = styled(Link)`
+const LinkStyles = props => `
   align-items: center;
-  color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+  color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
   display: flex;
   font-size: ${magma.typeScale.size03.fontSize};
   justify-content: space-between;
   line-height: ${magma.typeScale.size03.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
   text-decoration: none;
+`;
+
+const LinkHoverStyles = props => `
+background: ${
+  props.isInverse ? magma.colors.foundation02 : magma.colors.neutral06
+};
+color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+`;
+
+const StyledLink = styled(Link)`
+  ${LinkStyles};
+
+  &:hover,
+  &:focus {
+    ${LinkHoverStyles}
+  }
+`;
+
+const StyledExternalLink = styled.a`
+  ${LinkStyles};
+
+  &:hover,
+  &:focus {
+    ${LinkHoverStyles}
+  }
 `;
 
 const StyledLink2 = styled(Link)`
@@ -212,15 +236,15 @@ export const MainNav = ({ ...props }) => {
               >
                 Contribution Guidelines
               </StyledLink>
-              <StyledLink
+              <StyledExternalLink
                 activeStyle={activeStyle}
                 aria-label="View project on GitHub"
                 isInverse={isInverse}
-                to="https://github.com/cengage/react-magma"
+                href="https://github.com/cengage/react-magma"
               >
                 GitHub
                 <LaunchIcon size={magma.iconSizes.small} />
-              </StyledLink>
+              </StyledExternalLink>
             </ListItem>
           </List>
           <HR isInverse={isInverse} />

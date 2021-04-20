@@ -36,6 +36,8 @@ export interface Colors {
   tint04: string;
   tone: string;
   tone02: string;
+  border: string;
+  borderInverse: string;
 }
 
 export interface Breakpoints {
@@ -304,6 +306,8 @@ const colors = {
   tint04: 'rgba(255,255,255,0.4)',
   tone: 'rgba(63,63,63,0.07)',
   tone02: 'rgba(63,63,63,0.1)',
+  border: '#DFDFDF',
+  borderInverse: 'rgba(255,255,255,0.25)',
 };
 
 const spaceScale = {

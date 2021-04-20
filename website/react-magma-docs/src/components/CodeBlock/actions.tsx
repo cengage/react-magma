@@ -58,10 +58,10 @@ export default function App() {
 const ActionsDiv = styled.div<{ isInverse?: boolean }>`
   align-items: flex-end;
   background: ${props =>
-    props.isInverse ? magma.colors.neutral : magma.colors.neutral07};
+    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07};
   border: 1px solid
     ${props =>
-      props.isInverse ? magma.colors.neutral02 : magma.colors.neutral06};
+      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border-bottom: 0;
   display: flex;
   justify-content: flex-end;

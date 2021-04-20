@@ -72,8 +72,10 @@ const SubMenuLink2 = styled.a`
 
   &:hover,
   &:focus {
-    background: ${magma.colors.neutral06};
-    color: ${magma.colors.neutral};
+    background: ${props =>
+      props.isInverse ? magma.colors.foundation : magma.colors.neutral06};
+    color: ${props =>
+      props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
   }
 `;
 

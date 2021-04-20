@@ -14,10 +14,10 @@ interface EditorProps {
 
 const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
   background: ${props =>
-    props.isInverse ? magma.colors.neutral : magma.colors.neutral07};
+    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07};
   border: 1px solid
     ${props =>
-      props.isInverse ? magma.colors.neutral02 : magma.colors.neutral06};
+      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border-top: 0;
   border-radius: 0;
   margin: 0 0 ${magma.spaceScale.spacing04};
@@ -30,7 +30,7 @@ const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
       180deg,
       transparent 20%,
       ${props =>
-        props.isInverse ? magma.colors.neutral : magma.colors.neutral07}
+        props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07}
     );
 
     bottom: 0;

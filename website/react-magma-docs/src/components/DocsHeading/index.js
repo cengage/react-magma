@@ -80,7 +80,12 @@ export const DocsHeading = ({ children, to, type }) => {
 
       {type === 'design' && to && (
         <ButtonContainer>
-          <Hyperlink color="secondary" styledAs="Button" to={to}>
+          <Hyperlink
+            color="secondary"
+            isInverse={isInverse}
+            styledAs="Button"
+            to={to}
+          >
             {linkProps => (
               <Link {...linkProps}>
                 <CodeIcon size={magma.iconSizes.medium} />

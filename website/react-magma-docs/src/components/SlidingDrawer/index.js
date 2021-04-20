@@ -77,7 +77,7 @@ export class SlidingDrawer extends React.Component {
     const Panel = styled(Container)`
       border-right: 1px solid
         ${props =>
-          props.isInverse ? magma.colors.neutral02 : magma.colors.neutral06};
+          props.isInverse ? magma.colors.borderInverse : magma.colors.border};
       bottom: 0;
       grid-area: nav;
       margin: 0;

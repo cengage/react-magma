@@ -4,7 +4,7 @@ import { magma, useIsInverse } from 'react-magma-dom';
 
 const HR = styled.hr`
   background: ${props =>
-    props.isInverse ? magma.colors.neutral : magma.colors.neutral06};
+    props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border: none;
   height: 1px;
   margin: ${magma.spaceScale.spacing12} 0 ${magma.spaceScale.spacing09};

@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { magma } from 'react-magma-dom';
+import { magma, useIsInverse } from 'react-magma-dom';
 
 const SwatchContainer = styled.div`
-  border: 1px solid ${magma.colors.neutral06};
+  border: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border-radius: ${magma.borderRadius};
   box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 6px 0px;
   margin: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
@@ -23,7 +25,9 @@ const SwatchColor = styled.div`
 `;
 
 const ColorDetails = styled.div`
-  border-top: 1px solid ${magma.colors.neutral06};
+  border-top: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   font-size: ${magma.typeScale.size01.fontSize};
   line-height: ${magma.typeScale.size01.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05};
@@ -39,12 +43,15 @@ const ColorDetails = styled.div`
   }
 `;
 
-export const ColorSwatch = ({ children, color }) => (
-  <SwatchContainer>
-    <SwatchColor color={color}></SwatchColor>
-    <ColorDetails>{children}</ColorDetails>
-  </SwatchContainer>
-);
+export const ColorSwatch = ({ children, color }) => {
+  const isInverse = useIsInverse();
+  return (
+    <SwatchContainer isInverse={isInverse}>
+      <SwatchColor color={color}></SwatchColor>
+      <ColorDetails isInverse={isInverse}>{children}</ColorDetails>
+    </SwatchContainer>
+  );
+};
 
 ColorSwatch.propTypes = {
   children: PropTypes.node.isRequired,
