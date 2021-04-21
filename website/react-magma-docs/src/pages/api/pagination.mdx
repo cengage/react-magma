@@ -13,53 +13,75 @@ The `Pagination` component is an interactive indexed navigation element.
 
 ## Basic Usage
 
-<!-- ```typescript
+For expanded page content, the `Pagination` component may be added. `Pagination` takes props for count, which is the total number of navigable indices within the component. Additional functions include `defaultPage`, `isInverse`, and `size`.
+
+```typescript
 import React from 'react';
-import {
-  Button,
-  Input,
-  NavButton,
-  StyledList,
-  StyledListItem,
-  StyledNav,
-} from 'react-magma-dom';
+import { Pagination } from 'react-magma-dom';
+
+export function Example() {
+  return <Pagination count={4}></Pagination>;
+}
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
+The default value is `false`.
+
+```typescript
+import React from 'react';
+import { Card, CardBody, Pagination } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <StyledNav {...other} theme={theme}>
-      <StyledList>
-        <StyledListItem>
-          <NavButton
-            onClick={handlePreviousClick}
-            color={ButtonColor.secondary}
-            aria-label="Previous"
-            icon={<ArrowBackIcon />}
-            isInverse={isInverse}
-            theme={theme}
-            shape={ButtonShape.leftCap}
-            size={buttonSize}
-            disabled={activePage === 1 ? true : false}
-          />
-        </StyledListItem>
-        {buttons}
-        <StyledListItem>
-          <NavButton
-            onClick={handleNextClick}
-            color={ButtonColor.secondary}
-            aria-label="Next"
-            icon={<ArrowForwardIcon />}
-            isInverse={isInverse}
-            theme={theme}
-            shape={ButtonShape.rightCap}
-            size={buttonSize}
-            disabled={activePage === count ? true : false}
-          />
-        </StyledListItem>
-      </StyledList>
-    </StyledNav>
+    <Card isInverse>
+      <CardBody>
+        <Pagination isInverse count={4}></Pagination>
+      </CardBody>
+    </Card>
   );
 }
-``` -->
+```
+
+## Size
+
+`size` allows for changing the scale of the `Pagination` component. Two props are allowed, `medium` and `large`.
+
+```typescript
+import React from 'react';
+import { Pagination } from 'react-magma-dom';
+
+export function Example() {
+  return <Pagination size="large" count={4}></Pagination>;
+}
+```
+
+## Handle Page Change
+
+`pageChange` passes the active data state of the `Pagination` component.
+
+```typescript
+import React from 'react';
+import { Pagination } from 'react-magma-dom';
+
+export function Example() {
+  const [page, setPage] = React.useState(1);
+
+  function handlePageChange(pageNumber) {
+    setPage(pageNumber);
+  }
+  return (
+    <div>
+      <p>
+        <strong>Page </strong>
+        <span> {page}</span>
+      </p>
+      <Pagination onPageChange={handlePageChange} count={4}></Pagination>
+    </div>
+  );
+}
+```
 
 # Pagination Props
 

@@ -115,6 +115,7 @@ export {
 } from './components/LoadingIndicator';
 export { NavTabs } from './components/NavTabs';
 export { NavTab } from './components/NavTabs/NavTab';
+export { Pagination } from './components/Pagination';
 export { Paragraph, ParagraphProps } from './components/Paragraph';
 export { PasswordInput, PasswordInputProps } from './components/PasswordInput';
 export {

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ButtonColor, ButtonShape, ButtonSize } from '../Button';
 import { darken } from 'polished';
+import { I18nContext } from '../../i18n';
 import { IconButton } from '../IconButton';
 import { PageButton } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
@@ -9,10 +10,24 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
+  /**
+   * Size toggles between default and large variant buttons.
+   */
   size?: PageButtonSize;
+  /**
+   * Count designates the total number of Pagination buttons.
+   */
   count: number;
+  /**
+   * Default Page allows the user to toggle which Pagination button is active by default.
+   */
   defaultPage?: number;
+  /**
+   * isInverse allows for inversing the theme pallette.
+   */
   isInverse?: boolean;
+
+  onPageChange?: (pageNum: number) => void;
 }
 
 export enum PageButtonSize {
@@ -40,19 +55,20 @@ const StyledListItem = styled.li`
 `;
 
 export function BuildBackground(props) {
-  if (props.isInverse) {
-    switch (props.color) {
-      case 'primary':
-        if (props.isInverse) {
-          return `${props.theme.colors.neutral08}`;
-        }
-        return `${props.theme.colors.primary}`;
-      default:
-        if (props.isInverse) {
-          return `${props.theme.colors.foundation02}`;
-        }
-        return `${props.theme.colors.neutral05}`;
-    }
+  switch (props.color) {
+    case 'primary':
+      if (props.isInverse) {
+        return `${props.theme.colors.neutral08}`;
+      }
+      return `${props.theme.colors.primary}`;
+    default:
+      if (props.isInverse) {
+        return `none`;
+      }
+      if (props.disabled) {
+        return `${props.theme.colors.neutral06}`;
+      }
+      return `${props.theme.colors.neutral08}`;
   }
 }
 
@@ -95,6 +111,13 @@ function BuildButtonSize(props) {
   }
 }
 
+function BuildColorState(props) {
+  if (props.disabled) {
+    return `${props.theme.colors.neutral05}`;
+  }
+  return 'inherit';
+}
+
 const NavButton = styled(IconButton)`
   background: ${BuildBackground};
   border: none;
@@ -102,8 +125,7 @@ const NavButton = styled(IconButton)`
   border-right: ${BuildBorder};
   border-bottom: ${BuildBorder};
   border-left: ${BuildBorder};
-  color: ${props =>
-    props.isInverse ? props.theme.colors.neutral08 : 'inherit'};
+  color: ${BuildColorState};
   height: ${BuildButtonSize};
   margin: 0;
   padding: 0;
@@ -134,6 +156,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       isInverse,
       size = PageButtonSize.medium,
       testId,
+      onPageChange,
       ...other
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -142,20 +165,29 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const [activePage, setActivePage] = React.useState(defaultPage);
 
     function handlePreviousClick() {
-      setActivePage(activePage - 1);
+      handlePageChange(activePage - 1);
     }
     function handleNextClick() {
-      setActivePage(activePage + 1);
+      handlePageChange(activePage + 1);
     }
     function handlePageButtonClick(pageNumber) {
-      setActivePage(pageNumber);
+      handlePageChange(pageNumber);
     }
+    function handlePageChange(pageNumber) {
+      setActivePage(pageNumber);
+      if (onPageChange) {
+        onPageChange(pageNumber);
+      }
+    }
+
+    const i18n = React.useContext(I18nContext);
 
     const buttons = [];
     for (let i = 1; i < count + 1; i++) {
       buttons.push(
-        <StyledListItem>
+        <StyledListItem key={i}>
           <PageButton
+            aria-label={`${i18n.pagination.pageButtonLabel} ${i}`}
             onClick={() => {
               handlePageButtonClick(i);
             }}
@@ -170,13 +202,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       );
     }
     return (
-      <StyledNav {...other} theme={theme}>
+      <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
         <StyledList>
           <StyledListItem>
             <NavButton
               onClick={handlePreviousClick}
               color={ButtonColor.secondary}
-              aria-label="Previous"
+              aria-label={i18n.pagination.previousButtonLabel}
               icon={<ArrowBackIcon />}
               isInverse={isInverse}
               theme={theme}
@@ -190,7 +222,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             <NavButton
               onClick={handleNextClick}
               color={ButtonColor.secondary}
-              aria-label="Next"
+              aria-label={i18n.pagination.nextButtonLabel}
               icon={<ArrowForwardIcon />}
               isInverse={isInverse}
               theme={theme}

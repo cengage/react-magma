@@ -10,12 +10,10 @@ export interface PaginationProps extends ButtonProps {
 }
 
 function typeSize(props) {
-  switch (props.size) {
-    case 'large':
-      return `${props => props.theme.typeScale.size03}`;
-    default:
-      return `${props => props.theme.typeScale.size02}`;
+  if (props.size === 'large') {
+    return `${props.theme.typeScale.size05.fontSize}`;
   }
+  return `${props.theme.typeScale.size02.fontSize}`;
 }
 
 function buttonSize(props) {
@@ -31,7 +29,7 @@ function typeColor(props) {
   switch (props.color) {
     case 'primary':
       if (props.isInverse) {
-        return `${props.theme.colors.foundation02}`;
+        return `${props.theme.colors.neutral}`;
       }
       return `${props.theme.colors.neutral08}`;
     default:
@@ -72,7 +70,7 @@ const StyledPageButton = styled(Button)`
   border-radius: 0;
   box-shadow: ${boxShadowColor};
   color: ${typeColor};
-  font-size: ${typeSize};
+  font-size: ${typeSize} !important;
   height: ${buttonSize};
   margin: 0;
   min-width: 0;
@@ -94,7 +92,7 @@ const StyledPageButton = styled(Button)`
           : darken(0.1, props.theme.colors.primary)} !important;
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.foundation02
+        ? props.theme.colors.neutral
         : props.theme.colors.neutral08} !important;
   }
   &:focus {
