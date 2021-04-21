@@ -1,11 +1,17 @@
 import React from 'react';
-import { inputBaseStyles } from '../InputBase';
+import {
+  inputBaseStyles,
+  inputWrapperStyles,
+  InputBaseStylesProps,
+  InputWrapperStylesProps,
+} from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
-const StyledButton = styled.div<{ disabled?: boolean; hasError?: boolean }>`
+const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}
+  ${inputWrapperStyles}
 
   align-items: center;
   display: flex;

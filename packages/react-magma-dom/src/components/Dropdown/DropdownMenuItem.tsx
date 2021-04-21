@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -35,39 +36,44 @@ export interface DropdownMenuItemProps
   value?: string;
 }
 
+export const MenuItemStyles = props => {
+  return css`
+    align-items: center;
+    color: ${props.disabled
+      ? props.theme.colors.disabledText
+      : props.theme.colors.neutral};
+    cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
+    display: flex;
+    font-size: ${props.theme.typeScale.size03.fontSize};
+    line-height: ${props.theme.typeScale.size03.lineHeight};
+    margin: 0;
+    padding: ${props.isInactive
+      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
+      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
+    white-space: ${props.isFixedWidth ? 'normal' : 'nowrap'};
+
+    &:hover,
+    &:focus {
+      background: ${props.disabled ? 'none' : props.theme.colors.neutral07};
+    }
+
+    &:focus {
+      outline-offset: -3px;
+    }
+  `;
+};
+
 const StyledItem = styled.div<{
+  as?: string;
   disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;
   value?: string;
 }>`
-  align-items: center;
-  color: ${props =>
-    props.disabled
-      ? props.theme.colors.disabledText
-      : props.theme.colors.neutral};
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  display: flex;
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
-  margin: 0;
-  padding: ${props =>
-    props.isInactive
-      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
-      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
-  white-space: ${props => (props.isFixedWidth ? 'normal' : 'nowrap')};
-
-  &:hover,
-  &:focus {
-    background: ${props => props.theme.colors.neutral07};
-  }
-
-  &:focus {
-    outline-offset: -3px;
-  }
+  ${MenuItemStyles}
 `;
 
-const IconWrapper = styled.span`
+export const IconWrapper = styled.span`
   color: ${props => props.theme.colors.neutral03};
   display: inline-flex;
   margin-right: ${props => props.theme.spaceScale.spacing05};

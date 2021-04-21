@@ -72,6 +72,10 @@ export {
   DropdownMenuItemProps,
 } from './components/Dropdown/DropdownMenuItem';
 export {
+  DropdownMenuNavItem,
+  DropdownMenuNavItemProps,
+} from './components/Dropdown/DropdownMenuNavItem';
+export {
   DropdownSplitButton,
   DropdownSplitButtonProps,
 } from './components/Dropdown/DropdownSplitButton';
