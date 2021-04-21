@@ -1,0 +1,94 @@
+---
+pageTitle: Datagrid API
+title: Datagrid
+props:
+  - DatagridProps
+---
+
+<DocsHeading type="api">Datagrid</DocsHeading>
+
+Similar to the `Table` component, the `Datagrid` takes in data in a set of props and renders rows and columns accordingly.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Datagrid, Card } from 'react-magma-dom';
+
+export function Example() {
+  const columns = ['Col 1', 'Col 2', 'Col 3', 'Col 4'];
+
+  const rows = [
+    [
+      'Lorem ipsum dolor sit amet consectetur',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      'Lorem ipsum dolor sit amet',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+    [
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum dolor',
+      'Lorem ipsum',
+    ],
+  ];
+  return (
+    <Card>
+      <Datagrid columns={columns} rows={rows} />
+    </Card>
+  );
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { Datagrid, Card } from 'react-magma-dom';
+
+const columns = ['Col 1', 'Col 2', 'Col 3', 'Col 4'];
+
+const rows = [
+  [
+    'Lorem ipsum dolor sit amet consectetur',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    'Lorem ipsum dolor sit amet',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+  [
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum dolor',
+    'Lorem ipsum',
+  ],
+];
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <Datagrid columns={columns} isInverse rows={rows} />
+    </Card>
+  );
+}
+```
+
+# Datagrid Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<DatagridProps />
