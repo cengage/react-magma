@@ -40,8 +40,11 @@
     "publish": "npm run copy:readme && lerna publish",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
     "plop": "ts-node scripts/plopfile.ts",
+    "changeset": "changeset",
     "version:pkgs": "changeset version",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "version:prerelease": "changeset pre enter alpha",
+    "version:exit": "changeset pre exit"
   },
   "husky": {
     "hooks": {
