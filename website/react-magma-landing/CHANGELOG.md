@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.10-alpha.2
+
+### Patch Changes
+
+- f70f8c49: Added changesets for preleases
+
 ## 1.0.10
 
 ### Patch Changes
@@ -12,10 +18,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### 1.0.10-alpha.1 (2021-04-20)
 
 **Note:** Version bump only for package react-magma-landing
-
-
-
-
 
 ### 1.0.10-alpha.0 (2021-04-15)
 
