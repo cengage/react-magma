@@ -4,6 +4,13 @@
 
 ### Patch Changes
 
+- d306c99e: Switch focus from input to input wrapper to account for password managers adding their icons.
+  - react-magma-icons@2.0.4
+
+## 2.3.11
+
+### Patch Changes
+
 - chore: init changeset
 - Updated dependencies [undefined]
   - react-magma-icons@2.0.4
@@ -14,10 +21,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### 2.3.11-alpha.1 (2021-04-20)
 
 **Note:** Version bump only for package react-magma-dom
-
-
-
-
 
 ### 2.3.11-alpha.0 (2021-04-15)
 

@@ -4,6 +4,14 @@
 
 ### Patch Changes
 
+- Updated dependencies [d306c99e]
+  - react-magma-dom@2.3.11
+  - react-magma-icons@2.0.4
+
+## 0.1.1
+
+### Patch Changes
+
 - chore: init changeset
 - Updated dependencies [undefined]
   - react-magma-dom@2.3.11
@@ -15,10 +23,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### 0.1.1-alpha.1 (2021-04-20)
 
 **Note:** Version bump only for package @cengage-patterns/header
-
-
-
-
 
 ### 0.1.1-alpha.0 (2021-04-15)
 

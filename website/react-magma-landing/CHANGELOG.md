@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.10
+
+### Patch Changes
+
+- f70f8c49: Added changesets for preleases
+
 ## 1.0.10-alpha.2
 
 ### Patch Changes
