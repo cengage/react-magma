@@ -41,7 +41,7 @@ jobs:
       - name: Publish
         run: |
           npm run version:pkgs
-          git commit -m "chore: enter prerelease mode"
+          git commit -am "chore: enter prerelease mode"
           npm run release
           git push --follow-tags
       - name: Get Alias

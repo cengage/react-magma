@@ -33,7 +33,7 @@ jobs:
         run: |
           npm run version:exit
           npm run version:pkgs
-          git commit -m "chore: exit prerelease mode"
+          git commit -am "chore: exit prerelease mode"
           npm run release
           git push --follow-tags
       - name: Get Alias
