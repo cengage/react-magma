@@ -31,7 +31,11 @@ jobs:
           echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
       - name: Publish
         run: |
-          npm run publish -- --conventional-graduate --yes
+          npm run version:exit
+          npm run version:pkgs
+          git commit -m "chore: exit prerelease mode"
+          npm run release
+          git push --follow-tags
       - name: Get Alias
         id: info
         run: |
