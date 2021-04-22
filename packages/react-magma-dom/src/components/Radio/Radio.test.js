@@ -304,7 +304,10 @@ describe('Radio', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.dangerInverse);
+    expect(span).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 2px ${magma.colors.dangerInverse}`
+    );
   });
 
   it('blurring a radio button calls the passed in onBlur function', () => {

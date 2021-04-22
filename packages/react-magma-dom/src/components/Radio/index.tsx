@@ -81,9 +81,6 @@ function buildRadioIconColor(props) {
     return props.theme.colors.neutral05;
   }
   if (props.isInverse) {
-    if (props.hasError) {
-      return props.theme.colors.dangerInverse;
-    }
     return props.theme.colors.neutral08;
   }
   if (props.isChecked) {
@@ -93,6 +90,21 @@ function buildRadioIconColor(props) {
     return props.theme.colors.danger;
   }
   return props.theme.colors.neutral02;
+}
+
+function buildErrorBorder(props) {
+  if (props.isInverse) {
+    if (props.hasError) {
+      return `0 0 0 2px ${props.theme.colors.dangerInverse};
+    }`;
+    }
+    return `inherit`;
+  }
+  if (props.hasError) {
+    return `0 0 0 2px ${props.theme.colors.danger};
+    }`;
+  }
+  return `inherit`;
 }
 
 const StyledFakeInput = styled.span<{
@@ -106,14 +118,12 @@ const StyledFakeInput = styled.span<{
 }>`
   ${DisplayInputStyles};
   color: ${props => buildRadioIconColor(props)};
-  border: ${props =>
-    props.hasError && `2px solid ${props.theme.colors.danger}`};
-  border-radius: 100%;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
     props.textPosition === 'left'
       ? `0 0 0 ${props.theme.spaceScale.spacing03}`
       : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+  box-shadow: ${buildErrorBorder};
 
   ${HiddenInput}:checked:not (:disabled) + label & {
     background: ${props => {
