@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "react-magma-dom": "2.3.11-alpha.1",
+    "react-magma-icons": "2.0.4-alpha.1",
+    "@cengage-patterns/header": "0.1.1-alpha.1",
+    "react-magma-docs": "2.1.10-alpha.1",
+    "react-magma-landing": "1.0.10-alpha.1"
+  },
+  "changesets": [
+    "moody-oranges-happen"
+  ]
+}

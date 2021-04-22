@@ -67,17 +67,7 @@ const TimePickerContainer = styled.div<{
   theme: ThemeInterface;
 }>`
   position: relative;
-
-  &:focus-within {
-    input[type='text'] {
-      outline: 2px dotted
-        ${props =>
-          props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
-      outline-offset: 4px;
-    }
-  }
+  width: fit-content;
 `;
 
 const StyledFieldset = styled.fieldset`
@@ -326,13 +316,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             id={id}
             inputStyle={{
               background: `${theme.colors.neutral08}`,
-              borderColor: `${
-                errorMessage
-                  ? theme.colors.danger
-                  : isInverse
-                  ? theme.colors.neutral08
-                  : theme.colors.neutral04
-              }`,
               cursor: 'default',
               width: '144px',
               ...inputStyle,
