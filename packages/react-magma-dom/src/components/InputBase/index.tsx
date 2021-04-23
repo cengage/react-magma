@@ -96,7 +96,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   display: flex;
   flex-shrink: 0;
   position: relative;
-  width: ${props.width || '100%'};
+  width: ${props.width || 'auto'};
   background-color: ${props.theme.colors.neutral08};
   border-radius: ${props.theme.borderRadius};
   border: 1px solid ${

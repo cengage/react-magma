@@ -1,11 +1,10 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 2.3.12-alpha.0
 
-### 2.3.11-alpha.1 (2021-04-20)
+### Patch Changes
 
-**Note:** Version bump only for package react-magma-dom
+- d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
 ### 2.3.10-alpha.11 (2021-04-07)
 
