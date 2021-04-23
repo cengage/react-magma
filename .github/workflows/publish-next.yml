@@ -38,6 +38,7 @@ jobs:
         if: steps.check_files.outputs.files_exists == 'false'
         run: |
           npm run version:prerelease
+          git add .changeset/pre.json
       - name: Publish
         run: |
           npm run version:pkgs
