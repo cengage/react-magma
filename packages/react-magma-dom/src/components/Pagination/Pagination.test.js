@@ -17,14 +17,13 @@ describe('Pagination', () => {
     const button = getByText('2').parentElement;
 
     expect(button).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(button).toHaveStyleRule('color', 'inherit');
+    expect(button).toHaveStyleRule('color', magma.colors.neutral);
   });
 
   it('Should render an unselected inverse button with no background', () => {
     const { getByText } = render(<Pagination count={4} isInverse />);
     const button = getByText('2').parentElement;
 
-    expect(button).toHaveStyleRule('background', 'none');
     expect(button).toHaveStyleRule('color', magma.colors.neutral08);
   });
 
@@ -41,7 +40,7 @@ describe('Pagination', () => {
     const button = getByText('1').parentElement;
 
     expect(button).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(button).toHaveStyleRule('color', magma.colors.neutral);
+    expect(button).toHaveStyleRule('color', magma.colors.primary);
   });
 
   it('Should render a disabled pagination icon or text color', () => {
@@ -49,7 +48,7 @@ describe('Pagination', () => {
     const button = getByLabelText('Previous Page');
 
     expect(button).toHaveStyleRule('background', magma.colors.neutral06);
-    expect(button).toHaveStyleRule('color', magma.colors.neutral05);
+    expect(button).toHaveStyleRule('color', magma.colors.disabledText);
   });
 
   it('Should render a disabled inverse icon color', () => {
@@ -58,8 +57,7 @@ describe('Pagination', () => {
     );
     const button = getByLabelText('Previous Page');
 
-    expect(button).toHaveStyleRule('background', 'none');
-    expect(button).toHaveStyleRule('color', magma.colors.neutral05);
+    expect(button).toHaveStyleRule('color', magma.colors.disabledInverseText);
   });
 
   it('Should render a large variant of the pagination button', () => {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonColor, ButtonShape, ButtonSize } from '../Button';
+import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { darken } from 'polished';
 import { I18nContext } from '../../i18n';
 import { IconButton } from '../IconButton';
@@ -22,11 +22,11 @@ export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
    * Default Page allows the user to toggle which Pagination button is active by default.
    */
   defaultPage?: number;
-  /**
-   * isInverse allows for inversing the theme pallette.
-   */
-  isInverse?: boolean;
 
+  isInverse?: boolean;
+  /**
+   * Event that fires when the active page changes
+   */
   onPageChange?: (pageNum: number) => void;
 }
 
@@ -54,24 +54,6 @@ const StyledListItem = styled.li`
   }
 `;
 
-export function BuildBackground(props) {
-  switch (props.color) {
-    case 'primary':
-      if (props.isInverse) {
-        return `${props.theme.colors.neutral08}`;
-      }
-      return `${props.theme.colors.primary}`;
-    default:
-      if (props.isInverse) {
-        return `none`;
-      }
-      if (props.disabled) {
-        return `${props.theme.colors.neutral06}`;
-      }
-      return `${props.theme.colors.neutral08}`;
-  }
-}
-
 export function BuildBorder(props) {
   switch (props.color) {
     case 'primary':
@@ -81,7 +63,13 @@ export function BuildBorder(props) {
       return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.primary}`;
     default:
       if (props.isInverse) {
+        if (props.disabled) {
+          return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.tint04}`;
+        }
         return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral08}`;
+      }
+      if (props.disabled) {
+        return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral06}`;
       }
       return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral05}`;
   }
@@ -111,21 +99,11 @@ function BuildButtonSize(props) {
   }
 }
 
-function BuildColorState(props) {
-  if (props.disabled) {
-    return `${props.theme.colors.neutral05}`;
-  }
-  return 'inherit';
-}
-
 const NavButton = styled(IconButton)`
-  background: ${BuildBackground};
-  border: none;
   border-top: ${BuildBorder};
   border-right: ${BuildBorder};
   border-bottom: ${BuildBorder};
   border-left: ${BuildBorder};
-  color: ${BuildColorState};
   height: ${BuildButtonSize};
   margin: 0;
   padding: 0;
@@ -138,7 +116,10 @@ const NavButton = styled(IconButton)`
   }
   &:focus:before {
     content: '';
-    border: 2px solid ${props => props.theme.colors.focus};
+    border: ${props =>
+      props.isInverse
+        ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
+        : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
     border-style: dotted;
     height: calc(100% + 14px);
     left: -7px;
@@ -206,6 +187,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
         <StyledList>
           <StyledListItem>
             <NavButton
+              variant={isInverse ? ButtonVariant.outline : ButtonVariant.solid}
               onClick={handlePreviousClick}
               color={ButtonColor.secondary}
               aria-label={i18n.pagination.previousButtonLabel}
@@ -229,6 +211,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               shape={ButtonShape.rightCap}
               size={buttonSize}
               disabled={activePage === count ? true : false}
+              variant={isInverse ? ButtonVariant.outline : ButtonVariant.solid}
             />
           </StyledListItem>
         </StyledList>
