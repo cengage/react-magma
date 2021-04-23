@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.12
+
+### Patch Changes
+
+- d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
+
 ## 2.3.12-alpha.0
 
 ### Patch Changes
