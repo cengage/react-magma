@@ -1,11 +1,17 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { inputBaseStyles } from '../InputBase';
+import {
+  inputBaseStyles,
+  InputBaseStylesProps,
+  InputWrapperStylesProps,
+  inputWrapperStyles,
+} from '../InputBase';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
+import { useIsInverse } from '../../inverse';
 
 export interface TextareaProps
   extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
@@ -58,8 +64,11 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const StyledTextArea = styled.textarea<TextareaProps>`
+const StyledTextArea = styled.textarea<
+  InputWrapperStylesProps & InputBaseStylesProps
+>`
   ${inputBaseStyles};
+  ${inputWrapperStyles};
   height: 4.5em;
   padding: ${props =>
     `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`};
@@ -73,7 +82,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
-      isInverse,
       labelStyle,
       labelText,
       messageStyle,
@@ -103,6 +111,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
       setValue(event.target.value);
     }
+
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <Container style={containerStyle} theme={theme}>

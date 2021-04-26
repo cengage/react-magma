@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MultiSelectProps } from '.';
 import { useSelect, useMultipleSelection } from 'downshift';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
@@ -14,18 +14,22 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
+    errorMessage,
     hasError,
+    helperMessage,
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
     itemToString,
     items,
+    labelPosition,
     labelStyle,
     labelText,
     disabled,
     isInverse,
     itemListMaxHeight,
     menuStyle,
+    messageStyle,
     onBlur,
     onFocus,
     onKeyDown,
@@ -155,11 +159,16 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   return (
     <SelectContainer
+      descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
+      helperMessage={helperMessage}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
       isInverse={isInverse}
+      messageStyle={messageStyle}
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
@@ -191,7 +200,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                 >
                   {multiSelectedItemString}
                   <IconWrapper>
-                    <CrossIcon size={8} />
+                    <CloseIcon size={theme.iconSizes.xSmall} />
                   </IconWrapper>
                 </SelectedItemButton>
               );

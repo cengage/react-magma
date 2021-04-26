@@ -3,13 +3,14 @@ import styled from '@emotion/styled';
 import { Announce } from '../Announce';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
-import { ClockIcon } from 'react-magma-icons';
+import { ScheduleIcon } from 'react-magma-icons';
 import { Input } from '../Input';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
 import { ThemeInterface } from '../../theme/magma';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { useIsInverse } from '../../inverse';
 
 export interface TimePickerProps {
   /**
@@ -66,17 +67,7 @@ const TimePickerContainer = styled.div<{
   theme: ThemeInterface;
 }>`
   position: relative;
-
-  &:focus-within {
-    input[type='text'] {
-      outline: 2px dotted
-        ${props =>
-          props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
-      outline-offset: 4px;
-    }
-  }
+  width: fit-content;
 `;
 
 const StyledFieldset = styled.fieldset`
@@ -105,7 +96,8 @@ const StyledLegend = styled.legend<{
 
 const InputsContainer = styled.div<{ theme: ThemeInterface }>`
   background: ${props => props.theme.colors.neutral08};
-  left: ${props => props.theme.spaceScale.spacing09};
+  left: ${props => props.theme.spaceScale.spacing08};
+  margin-left: ${props => props.theme.spaceScale.spacing02};
   position: absolute;
   top: ${props => props.theme.spaceScale.spacing03};
 `;
@@ -147,7 +139,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       errorMessage,
       helperMessage,
       inputStyle,
-      isInverse,
       labelStyle,
       labelText,
       minutesStep,
@@ -299,6 +290,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       }
     }
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return (
       <TimePickerContainer
         isInverse={isInverse}
@@ -318,18 +311,11 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             disabled
             errorMessage={errorMessage}
             helperMessage={helperMessage}
-            icon={<ClockIcon />}
+            icon={<ScheduleIcon />}
             isInverse={isInverse}
             id={id}
             inputStyle={{
               background: `${theme.colors.neutral08}`,
-              borderColor: `${
-                errorMessage
-                  ? theme.colors.danger
-                  : isInverse
-                  ? theme.colors.neutral08
-                  : theme.colors.neutral04
-              }`,
               cursor: 'default',
               width: '144px',
               ...inputStyle,

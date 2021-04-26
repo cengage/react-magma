@@ -4,12 +4,14 @@ import { css } from '@emotion/core';
 import { transparentize } from 'polished';
 import { TabsOrientation } from './shared';
 import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { I18nContext } from '../../i18n';
 
 import {
-  AngleRightIcon,
-  AngleLeftIcon,
-  AngleUpIcon,
-  AngleDownIcon,
+  ArrowBackIosIcon,
+  ExpandLessIcon,
+  ExpandMoreIcon,
+  ArrowForwardIosIcon,
 } from 'react-magma-icons';
 
 export interface ScrollButtonProps
@@ -32,6 +34,7 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
   cursor: pointer;
   display: ${props => (props.buttonVisible ? 'flex' : 'none')};
   justify-content: center;
+  outline-offset: 0;
   position: absolute;
   -webkit-appearance: none;
   z-index: 2;
@@ -96,8 +99,12 @@ export const ButtonPrev = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
+
   return (
     <StyledButtonPrev
+      aria-label={i18n.tabs.previousButtonLabel}
       backgroundColor={props.backgroundColor}
       buttonVisible={props.buttonVisible}
       data-testid="buttonPrev"
@@ -108,9 +115,9 @@ export const ButtonPrev = React.forwardRef<
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <AngleUpIcon size={16} />
+        <ExpandLessIcon size={theme.iconSizes.small} />
       ) : (
-        <AngleLeftIcon size={16} />
+        <ArrowBackIosIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonPrev>
   );
@@ -120,8 +127,12 @@ export const ButtonNext = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
+
   return (
     <StyledButtonNext
+      aria-label={i18n.tabs.nextButtonLabel}
       backgroundColor={props.backgroundColor}
       buttonVisible={props.buttonVisible}
       data-testid="buttonNext"
@@ -132,9 +143,9 @@ export const ButtonNext = React.forwardRef<
       theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <AngleDownIcon size={16} />
+        <ExpandMoreIcon size={theme.iconSizes.small} />
       ) : (
-        <AngleRightIcon size={16} />
+        <ArrowForwardIosIcon size={theme.iconSizes.small} />
       )}
     </StyledButtonNext>
   );

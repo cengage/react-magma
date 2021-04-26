@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { instanceOfDefaultItemObject } from '../Select';
 import { useCombobox } from 'downshift';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { defaultComponents } from '../Select/components';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
@@ -20,7 +20,9 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     defaultItems,
     defaultSelectedItem,
     disableCreateItem,
+    errorMessage,
     hasError,
+    helperMessage,
     initialSelectedItem,
     inputStyle,
     isClearable,
@@ -32,9 +34,11 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     itemListMaxHeight,
     items,
     itemToString,
+    labelPosition,
     labelStyle,
     labelText,
     menuStyle,
+    messageStyle,
     newItemTransform,
     onInputBlur,
     onInputChange,
@@ -247,12 +251,17 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   return (
     <SelectContainer
+      descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
       hasError={hasError}
+      helperMessage={helperMessage}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       isInverse={isInverse}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      messageStyle={messageStyle}
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
@@ -277,7 +286,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CrossIcon size={10} />}
+            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             variant={ButtonVariant.link}

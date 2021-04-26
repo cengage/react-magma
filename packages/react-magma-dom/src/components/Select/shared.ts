@@ -9,7 +9,6 @@ export const SelectContainer = styled.div`
 
 export const StyledButton = styled.div`
   ${inputBaseStyles}
-
   align-items: center;
   display: flex;
   text-align: left;
@@ -20,13 +19,16 @@ export const SelectText = styled.span`
   padding: 0 8px 0 4px;
 `;
 
-export const StyledCard = styled(Card)<{ isOpen?: boolean }>`
+export const StyledCard = styled(Card)<{
+  isOpen?: boolean;
+}>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: 4px;
   margin-top: 4px;
   padding: 4px 0 0;
   position: absolute;
   right: 4px;
+  top: auto;
   z-index: 2;
 `;
 
@@ -66,11 +68,15 @@ export const SelectedItemButton = styled.button`
   border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;
+  display: flex;
   font-size: 12px;
   line-height: 16px;
   height: 24px;
   margin: 4px 2px 4px 4px;
-  padding: 4px 8px;
+  padding: ${props => props.theme.spaceScale.spacing02}
+    ${props => props.theme.spaceScale.spacing02}
+    ${props => props.theme.spaceScale.spacing02}
+    ${props => props.theme.spaceScale.spacing03};
   position: relative;
   white-space: nowrap;
 `;

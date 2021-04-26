@@ -3,7 +3,7 @@ import { SelectProps } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
 import { defaultComponents } from './components';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
@@ -17,7 +17,9 @@ export function Select<T>(props: SelectProps<T>) {
     ariaDescribedBy,
     components: customComponents,
     defaultSelectedItem,
+    errorMessage,
     hasError,
+    helperMessage,
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
@@ -30,6 +32,7 @@ export function Select<T>(props: SelectProps<T>) {
     isClearable,
     disabled,
     isInverse,
+    labelPosition,
     menuStyle,
     onBlur,
     onFocus,
@@ -37,6 +40,7 @@ export function Select<T>(props: SelectProps<T>) {
     onKeyDown,
     onKeyPress,
     onKeyUp,
+    messageStyle,
     placeholder,
     selectedItem: passedInSelectedItem,
   } = props;
@@ -156,11 +160,16 @@ export function Select<T>(props: SelectProps<T>) {
 
   return (
     <SelectContainer
+      errorMessage={errorMessage}
+      descriptionId={ariaDescribedBy}
       getLabelProps={getLabelProps}
+      helperMessage={helperMessage}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      messageStyle={messageStyle}
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
@@ -175,7 +184,7 @@ export function Select<T>(props: SelectProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CrossIcon size={10} />}
+            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
             onClick={defaultHandleClearIndicatorClick}
             size={ButtonSize.small}
             style={{ marginTop: '0', marginBottom: '0' }}

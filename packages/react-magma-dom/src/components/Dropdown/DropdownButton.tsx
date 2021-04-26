@@ -1,16 +1,20 @@
+import { css } from '@emotion/core';
 import * as React from 'react';
-
 import { IconButton, ButtonIconPosition } from '../IconButton';
 import {
-  CaretDownIcon,
-  CaretLeftIcon,
-  CaretRightIcon,
-  CaretUpIcon,
+  ArrowDropUpIcon,
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
-import { DropdownContext, DropdownDropDirection } from '.';
+import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
-import { ButtonProps } from '../Button';
+import { ButtonProps, ButtonSize } from '../Button';
+import { useIsInverse } from '../../inverse';
+import styled from '../../theme/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
@@ -51,11 +55,38 @@ function instanceOfIconOnlyDropdownButton(
   return 'icon' in object && !('children' in object);
 }
 
+function getButtonPadding(theme: ThemeInterface, size?: ButtonSize) {
+  switch (size) {
+    case 'small':
+      return theme.spaceScale.spacing02;
+    case 'large':
+      return theme.spaceScale.spacing05;
+    default:
+      return theme.spaceScale.spacing03;
+  }
+}
+
+const StyledIconButton = styled(IconButton)`
+  ${props =>
+    props.iconPosition === ButtonIconPosition.right &&
+    props.children &&
+    css`
+      padding-right: ${getButtonPadding(props.theme, props.size)};
+    `}
+  ${props =>
+    props.iconPosition === ButtonIconPosition.left &&
+    props.children &&
+    css`
+      padding-left: ${getButtonPadding(props.theme, props.size)};
+    `}
+`;
+
 export const DropdownButton = React.forwardRef<
   HTMLButtonElement,
   DropdownButtonProps
 >((props, forwardedRef) => {
   const context = React.useContext(DropdownContext);
+  const theme = React.useContext(ThemeContext);
 
   context.dropdownButtonId.current = useGenerateId(props.id);
 
@@ -64,14 +95,14 @@ export const DropdownButton = React.forwardRef<
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
       case DropdownDropDirection.left:
-        return <CaretLeftIcon size={10} testId="caretLeft" />;
+        return <ArrowLeftIcon testId="caretLeft" />;
       case DropdownDropDirection.right:
-        return <CaretRightIcon size={10} testId="caretRight" />;
+        return <ArrowRightIcon testId="caretRight" />;
       case DropdownDropDirection.up:
-        return <CaretUpIcon size={10} testId="caretUp" />;
+        return <ArrowDropUpIcon testId="caretUp" />;
 
       default:
-        return <CaretDownIcon size={10} testId="caretDown" />;
+        return <ArrowDropDownIcon testId="caretDown" />;
     }
   }
 
@@ -79,6 +110,8 @@ export const DropdownButton = React.forwardRef<
 
   let children;
   const { icon = buttonIcon, iconPosition, ...other } = props;
+
+  const isInverse = useIsInverse(props.isInverse);
 
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
@@ -101,18 +134,20 @@ export const DropdownButton = React.forwardRef<
     : ButtonIconPosition.right;
 
   return (
-    <IconButton
+    <StyledIconButton
       {...other}
       aria-expanded={context.isOpen}
       aria-haspopup="true"
       icon={icon}
       iconPosition={iconPositionToUse}
       id={context.dropdownButtonId.current}
+      isInverse={isInverse}
       onClick={handleClick}
-      onKeyDown={context.handleButtonKeyDown}
+      onBlur={context.handleButtonBlur}
       ref={ref}
+      theme={theme}
     >
       {children}
-    </IconButton>
+    </StyledIconButton>
   );
 });

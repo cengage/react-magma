@@ -14,6 +14,7 @@ module.exports = {
         'react',
         'react-dom',
         'date-fns',
+        'date-fns/locale',
         'downshift',
         'react-select',
         '@emotion/core',

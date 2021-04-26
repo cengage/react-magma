@@ -14,7 +14,7 @@ npm install --save react-magma-dom
 
 ### Documentation Site
 
-For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.info/version/latest/)
+For more information on using React Magma, see the [React Magma Documentation](https://react-magma.cengage.com/version/latest/)
 
 This site has general usage information, as well as information on all of the available components, including code examples and demos. It also has design guidelines from the UX team with more details about the why and when to use each component in your project.
 
@@ -22,7 +22,7 @@ This site has general usage information, as well as information on all of the av
 
 ### System Dependencies
 
-Node v12.x or greater with npm 6.1.x or greater
+Node v14.x or greater with npm 7.1.x or greater
 
 ### Steps to Run Documentation locally
 
@@ -85,6 +85,10 @@ The `react-magma-dom` package is the React components for use in a browser. We f
 The `react-magma-docs` package handles the React Magma documentation, and is built on the <a href="https://www.gatsbyjs.org/">Gatsby framework</a>.
 
 The `react-magma-icons` package handles all of the SVG icons in the React Magma library. Being in a separate package allows for changes or additions to the icons to happen without consumers having to update the whole component library.
+
+### Adding new components
+
+React-Magma uses [PlopJS](https://plopjs.com/) to scaffold new components. This simultaneously increases consistency with new components and speeds up the time it takes a developer to get started with a new component. Simply run `npm run plop` and answer the prompts. This will create a skeleton for the component with stories, tests and a page in the documentation.
 
 ### Building
 

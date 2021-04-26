@@ -13,8 +13,9 @@ import {
 } from '../Select';
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
-import { InputMessage } from '../Input/InputMessage';
-import { useGenerateId, XOR } from '../../utils';
+import { useGenerateId, XOR, Omit } from '../../utils';
+import { LabelPosition } from '../Label';
+import { useIsInverse } from '../../inverse';
 
 export interface ComboboxProps<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
@@ -36,6 +37,10 @@ export interface ComboboxProps<T extends SelectOptions>
    * @internal
    */
   hasError?: boolean;
+  /**
+   * Position of text label relative to form field
+   */
+  labelPosition?: LabelPosition;
   /**
    * Reference to the input element in the combobox
    */
@@ -123,8 +128,8 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
     containerStyle,
     errorMessage,
     id: defaultId,
-    isInverse,
     isMulti,
+    labelPosition,
     messageStyle,
     helperMessage,
     testId,
@@ -141,36 +146,37 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
   const hasError = !!errorMessage;
 
   const id = useGenerateId(defaultId);
-
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
+  const isInverse = useIsInverse(props.isInverse);
 
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
           ariaDescribedBy={descriptionId}
-          itemToString={itemToString}
-          {...(props as MultiComboboxProps<T>)}
+          errorMessage={errorMessage}
           hasError={hasError}
+          helperMessage={helperMessage}
+          isInverse={isInverse}
+          itemToString={itemToString}
+          labelPosition={labelPosition || LabelPosition.top}
+          messageStyle={messageStyle}
+          {...(props as MultiComboboxProps<T>)}
         />
       ) : (
         <InternalCombobox
           ariaDescribedBy={descriptionId}
-          itemToString={itemToString}
-          {...(props as ComboboxProps<T>)}
+          errorMessage={errorMessage}
           hasError={hasError}
+          helperMessage={helperMessage}
+          isInverse={isInverse}
+          itemToString={itemToString}
+          labelPosition={labelPosition || LabelPosition.top}
+          messageStyle={messageStyle}
+          {...(props as ComboboxProps<T>)}
         />
       )}
-      <InputMessage
-        id={descriptionId}
-        isInverse={isInverse}
-        hasError={hasError}
-        style={messageStyle}
-      >
-        {(errorMessage || helperMessage) && (
-          <>{errorMessage ? errorMessage : helperMessage}</>
-        )}
-      </InputMessage>
     </div>
   );
 }

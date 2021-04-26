@@ -1,6 +1,7 @@
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
+export { AppBar, AppBarProps, AppBarPosition } from './components/AppBar';
 export {
   Badge,
   BadgeColor,
@@ -8,8 +9,12 @@ export {
   BadgeVariant,
 } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
-export { Breadcrumb, BreadcrumbProps } from './components/Breadcrumb';
-export { BreadcrumbItem } from './components/Breadcrumb/Item';
+export {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbItemProps,
+  BreadcrumbProps,
+} from './components/Breadcrumb';
 export {
   BreakpointsContainer,
   Breakpoint,
@@ -38,6 +43,7 @@ export {
   CheckboxTextPosition,
   CheckboxProps,
 } from './components/Checkbox';
+export { Container, ContainerProps } from './components/Container';
 export { DatePicker, DatePickerProps } from './components/DatePicker';
 export {
   Dropdown,
@@ -66,6 +72,10 @@ export {
   DropdownMenuItemProps,
 } from './components/Dropdown/DropdownMenuItem';
 export {
+  DropdownMenuNavItem,
+  DropdownMenuNavItemProps,
+} from './components/Dropdown/DropdownMenuNavItem';
+export {
   DropdownSplitButton,
   DropdownSplitButtonProps,
 } from './components/Dropdown/DropdownSplitButton';
@@ -73,10 +83,15 @@ export {
   DropdownButton,
   DropdownButtonProps,
 } from './components/Dropdown/DropdownButton';
+export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
 export { Heading, HeadingProps } from './components/Heading';
-export { HideAtBreakpoint } from './components/HideAtBreakpoint';
+export {
+  HideAtBreakpoint,
+  HideAtBreakpointDisplayType,
+  HideAtBreakpointProps,
+} from './components/HideAtBreakpoint';
 export { Hyperlink, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,
@@ -97,7 +112,7 @@ export {
   InputType,
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
-export { Label } from './components/Label';
+export { Label, LabelPosition } from './components/Label';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -129,7 +144,43 @@ export {
   SkipLinkContent,
   SkipLinkContentProps,
 } from './components/SkipLinkContent';
+export { Spacer, SpacerProps, SpacerAxis } from './components/Spacer';
 export { Spinner, SpinnerProps } from './components/Spinner';
+export {
+  Table,
+  TableProps,
+  TableDensity,
+  TableCellAlign,
+  TableContext,
+  TableSortDirection,
+  TableBody,
+  TableBodyProps,
+  TableCell,
+  TableCellProps,
+  TableHead,
+  TableHeadProps,
+  TableHeaderCell,
+  TableHeaderCellProps,
+  TableHeaderCellScope,
+  TablePagination,
+  TablePaginationProps,
+  TableRow,
+  TableRowColor,
+  TableRowProps,
+} from './components/Table';
+
+export { TabsContainer } from './components/Tabs/TabsContainer';
+export {
+  Tabs,
+  TabsAlignment,
+  TabsBorderPosition,
+  TabsIconPosition,
+  TabsOrientation,
+} from './components/Tabs';
+export { Tab } from './components/Tabs/Tab';
+export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
+export { TabPanel } from './components/Tabs/TabPanel';
+
 export {
   ToastsContainer,
   ToastsContainerProps,
@@ -155,42 +206,12 @@ export {
   VisuallyHiddenProps,
 } from './components/VisuallyHidden';
 
-export { magma } from './theme/magma';
+export { magma, ThemeInterface } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
-
-export { TabsContainer } from './components/Tabs/TabsContainer';
-export {
-  Tabs,
-  TabsAlignment,
-  TabsBorderPosition,
-  TabsIconPosition,
-  TabsOrientation,
-} from './components/Tabs';
-export { Tab } from './components/Tabs/Tab';
-export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
-export { TabPanel } from './components/Tabs/TabPanel';
-
-export {
-  Table,
-  TableProps,
-  TableDensity,
-  TableCellAlign,
-  TableContext,
-  TableSortDirection,
-} from './components/Table';
-export { TableBody, TableBodyProps } from './components/Table/TableBody';
-export { TableCell, TableCellProps } from './components/Table/TableCell';
-export { TableHead, TableHeadProps } from './components/Table/TableHead';
-export {
-  TableHeaderCell,
-  TableHeaderCellProps,
-} from './components/Table/TableHeaderCell';
-export { TableRow, TableRowProps } from './components/Table/TableRow';
-
 export { useMediaQuery } from './hooks/useMediaQuery';
-
 export { Wizard, WizardProps, WizardStepProps } from './components/Wizard';
+export { InverseContext, useIsInverse } from './inverse';

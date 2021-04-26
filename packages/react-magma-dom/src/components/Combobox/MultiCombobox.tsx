@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { instanceOfDefaultItemObject } from '../Select';
 import { useCombobox, useMultipleSelection } from 'downshift';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
@@ -17,9 +17,11 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const {
     ariaDescribedBy,
     components: customComponents,
+    errorMessage,
     defaultItems,
     disableCreateItem,
     hasError,
+    helperMessage,
     inputStyle,
     disabled,
     innerRef,
@@ -29,9 +31,11 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     itemListMaxHeight,
     items,
     itemToString,
+    labelPosition,
     labelStyle,
     labelText,
     menuStyle,
+    messageStyle,
     newItemTransform,
     onInputBlur,
     onInputChange,
@@ -273,7 +277,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           >
             {itemToString(multiSelectedItem)}
             <IconWrapper>
-              <CrossIcon size={9} />
+              <CloseIcon size={theme.iconSizes.xSmall} />
             </IconWrapper>
           </SelectedItemButton>
         ))}
@@ -282,11 +286,16 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   return (
     <SelectContainer
+      descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
+      helperMessage={helperMessage}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      messageStyle={messageStyle}
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}

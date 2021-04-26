@@ -8,7 +8,14 @@
     "type": "git",
     "url": "https://github.com/cengage/react-magma.git"
   },
+  "engines": {
+    "npm": "^7.3.0",
+    "node": "^14.15.0"
+  },
   "scripts": {
+    "pkg": "manypkg run",
+    "check:pkgs": "manypkg check",
+    "fix:pkgs": "manypkg fix",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "postinstall": "npm run bootstrap && npm run build:lite",
@@ -17,11 +24,11 @@
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
     "storybook": "start-storybook -p 6006",
     "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
-    "build:lite": "lerna run build --ignore react-magma-docs --ignore react-magma-dom-codesandbox-template --stream --no-progress",
-    "build": "lerna run build --ignore react-magma-dom-codesandbox-template --stream --no-progress",
-    "build:landing": "node packages/react-magma-landing/scripts/build.js",
+    "build:lite": "lerna run build --ignore react-magma-docs --stream --no-progress",
+    "build": "lerna run build --stream --no-progress",
+    "build:landing": "node website/react-magma-landing/scripts/build.js",
     "build:storybook": "build-storybook",
-    "bootstrap": "lerna bootstrap && rimraf packages/react-magma-docs/node_modules/react packages/react-magma-docs/node_modules/react-dom",
+    "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "develop": "npm run docs",
     "docs": "lerna run --stream --scope react-magma-docs develop",
@@ -31,7 +38,13 @@
     "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
     "copy:readme": "copy README.md packages/react-magma-dom",
     "publish": "npm run copy:readme && lerna publish",
-    "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\""
+    "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
+    "plop": "ts-node scripts/plopfile.ts",
+    "changeset": "changeset",
+    "version:pkgs": "changeset version",
+    "release": "changeset publish",
+    "version:prerelease": "changeset pre enter alpha",
+    "version:exit": "changeset pre exit"
   },
   "husky": {
     "hooks": {
@@ -39,7 +52,12 @@
       "pre-commit": "lint-staged"
     }
   },
-  "devDependencies": {
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
@@ -51,22 +69,29 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.1.0",
+    "@changesets/changelog-github": "^0.4.0",
+    "@changesets/cli": "^2.16.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
-    "@storybook/addon-a11y": "^6.1.11",
-    "@storybook/addon-actions": "^6.1.11",
-    "@storybook/addon-controls": "^6.1.11",
-    "@storybook/addon-docs": "^6.1.15",
-    "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-links": "^6.1.11",
-    "@storybook/addon-toolbars": "^6.1.11",
-    "@storybook/addons": "^6.1.11",
-    "@storybook/react": "^6.1.11",
+    "@manypkg/cli": "^0.17.0",
+    "@storybook/addon-a11y": "^6.1.18",
+    "@storybook/addon-actions": "^6.1.18",
+    "@storybook/addon-controls": "^6.1.18",
+    "@storybook/addon-docs": "^6.1.18",
+    "@storybook/addon-links": "^6.1.18",
+    "@storybook/addon-toolbars": "^6.1.18",
+    "@storybook/addons": "^6.1.18",
+    "@storybook/react": "^6.1.18",
     "@testing-library/dom": "^4.1.0",
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
     "@testing-library/react-hooks": "^3.2.1",
     "@testing-library/user-event": "^12.1.5",
+    "@types/jest": "^26.0.9",
+    "@types/lodash": "^4.14.168",
+    "@types/node": "^12.6.8",
+    "@types/react": "^16.9.0",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-core": "7.0.0-bridge.0",
@@ -93,7 +118,7 @@
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-unicorn": "^22.0.0",
-    "husky": "^4.3.0",
+    "husky": "^4.3.8",
     "jest": "^26.4.2",
     "jest-axe": "3.1.0",
     "jest-cli": "^26.6.3",
@@ -101,17 +126,18 @@
     "jest-emotion": "^10.0.32",
     "jest-extended": "^0.11.5",
     "jest-watch-typeahead": "^0.6.1",
-    "lerna": "3.22.1",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.4.0",
-    "prettier": "^1.14.2",
+    "lodash": "^4.17.21",
+    "node-plop": "^0.26.2",
+    "prettier": "^2.2.1",
+    "react-test-renderer": "^15.0.0 || ^16.0.0",
     "regenerator-runtime": "^0.13.7",
-    "storybook-addon-performance": "^0.13.0",
+    "shelljs": "^0.8.4",
+    "storybook-addon-performance": "^0.14.0",
+    "ts-node": "^9.1.1",
+    "tsdx": "^0.14.1",
+    "typedoc": "^0.19.2",
     "typescript": "^3.9.7"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "dependencies": {}
+  }
 }

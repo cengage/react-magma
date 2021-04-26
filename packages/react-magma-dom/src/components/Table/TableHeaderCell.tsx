@@ -7,13 +7,9 @@ import {
   TableContext,
   TableDensity,
   TableSortDirection,
-} from './';
+} from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
-import {
-  ArrowDoubleIcon,
-  ArrowDown2Icon,
-  ArrowUp2Icon,
-} from 'react-magma-icons';
+import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
@@ -78,10 +74,10 @@ const StyledTableHeaderCell = styled.th<{
     `}
 
     ${props =>
-      props.width &&
-      css`
-        width: ${props.width};
-      `}
+    props.width &&
+    css`
+      width: ${props.width};
+    `}
 `;
 
 const SortButton = styled.button<{
@@ -126,6 +122,8 @@ const SortButton = styled.button<{
 
 const IconWrapper = styled.span`
   padding-left: ${props => props.theme.spaceScale.spacing03};
+  position: relative;
+  top: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const TableHeaderCell = React.forwardRef<
@@ -152,17 +150,17 @@ export const TableHeaderCell = React.forwardRef<
 
   const SortIcon =
     sortDirection === TableSortDirection.ascending ? (
-      <ArrowDown2Icon size={14} />
+      <SouthIcon size={theme.iconSizes.small} />
     ) : sortDirection === TableSortDirection.descending ? (
-      <ArrowUp2Icon size={14} />
+      <NorthIcon size={theme.iconSizes.small} />
     ) : (
-      <ArrowDoubleIcon
+      <SortDoubleArrowIcon
         color={
           tableContext.isInverse
             ? theme.colors.neutral06
             : theme.colors.neutral04
         }
-        size={14}
+        size={theme.iconSizes.small}
       />
     );
 

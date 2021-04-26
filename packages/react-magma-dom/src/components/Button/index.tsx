@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyledButton } from '../StyledButton';
+import { useIsInverse } from '../../inverse';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -57,6 +58,11 @@ export interface ButtonStyles {
    */
   shape?: ButtonShape;
   /**
+   *  Set the button to a loading state
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
    * The relative size of the button
    * @default ButtonSize.medium
    */
@@ -96,8 +102,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const { children, ...rest } = props;
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return (
-      <StyledButton {...rest} ref={ref}>
+      <StyledButton {...rest} isInverse={isInverse} ref={ref}>
         {children}
       </StyledButton>
     );

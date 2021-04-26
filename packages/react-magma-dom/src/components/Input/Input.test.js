@@ -43,7 +43,10 @@ describe('Input', () => {
     const input = getByTestId(testId);
 
     expect(input).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(input).toHaveStyleRule('border-color', magma.colors.neutral03);
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
+      'border',
+      '1px solid #707070'
+    );
   });
 
   it('should render custom styles', () => {
@@ -109,12 +112,11 @@ describe('Input', () => {
 
     const errorMessage = getByTestId('inputMessage');
 
-    expect(getByLabelText(labelText)).toHaveStyleRule(
+    expect(getByLabelText(labelText).parentElement).toHaveStyleRule(
       'border-color',
       magma.colors.danger
     );
 
-    expect(errorMessage).toHaveStyleRule('background', 'none');
     expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
   });
 
@@ -125,13 +127,12 @@ describe('Input', () => {
       <Input errorMessage={testMessage} isInverse labelText={labelText} />
     );
 
-    const input = getByLabelText(labelText);
+    const input = getByLabelText(labelText).parentElement;
     const errorMessage = getByTestId('inputMessage');
 
     expect(input).toHaveStyleRule('border-color', magma.colors.danger);
 
-    expect(errorMessage).toHaveStyleRule('background', magma.colors.danger);
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.dangerInverse);
   });
 
   it('should render an input with a right-aligned icon by default', () => {
@@ -140,7 +141,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing04);
+    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing03);
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -151,7 +152,7 @@ describe('Input', () => {
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('left', 'auto');
-    expect(span).toHaveStyleRule('right', magma.spaceScale.spacing04);
+    expect(span).toHaveStyleRule('right', magma.spaceScale.spacing03);
   });
 
   it('should render a large input with a right-aligned icon in the correct position', () => {
@@ -175,7 +176,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing04);
+    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing03);
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -305,7 +306,7 @@ describe('Input', () => {
       expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
       expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing09);
 
-      expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing04);
+      expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing03);
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
 
       expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());

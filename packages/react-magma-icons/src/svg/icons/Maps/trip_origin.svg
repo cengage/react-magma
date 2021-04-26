@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>trip_origin</title>
+    <defs>
+        <path d="M1.99999996,12 C1.99999996,6.47999998 6.47999998,1.99999996 12,1.99999996 C17.52,1.99999996 22,6.47999998 22,12 C22,17.52 17.52,22 12,22 C6.47999998,22 1.99999996,17.52 1.99999996,12 Z M12,18 C15.31,18 18,15.31 18,12 C18,8.68999999 15.31,5.99999998 12,5.99999998 C8.68999999,5.99999998 5.99999997,8.68999999 5.99999997,12 C5.99999997,15.31 8.68999999,18 12,18 Z" id="path-1"></path>
+    </defs>
+    <g id="trip_origin" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

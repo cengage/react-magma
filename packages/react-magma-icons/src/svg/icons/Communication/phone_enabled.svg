@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>phone_enabled</title>
+    <defs>
+        <path d="M4.77999997,15.27 L7.31999998,14.98 C7.92999998,14.91 8.52999999,15.12 8.95999999,15.55 L10.8,17.39 C13.63,15.95 15.95,13.64 17.39,10.8 L15.54,8.94999999 C15.11,8.51999996 14.9,7.91999998 14.97,7.30999998 L15.26,4.78999997 C15.38,3.77999997 16.23,3.01999996 17.25,3.01999996 L18.98,3.01999996 C20.11,3.01999996 21.05,3.95999997 20.98,5.08999997 C20.45,13.63 13.62,20.45 5.08999997,20.98 C3.95999997,21.05 3.01990242,20.11 3.01990242,18.98 L3.01990242,17.25 C3.00999996,16.24 3.76999997,15.39 4.77999997,15.27 Z" id="path-1"></path>
+    </defs>
+    <g id="phone_enabled" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

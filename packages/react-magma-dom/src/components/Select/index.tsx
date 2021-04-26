@@ -8,9 +8,10 @@ import {
 
 import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
-import { InputMessage } from '../Input/InputMessage';
 import { SelectComponents } from './components';
-import { useGenerateId, XOR } from '../../utils';
+import { useGenerateId, XOR, Omit } from '../../utils';
+import { LabelPosition } from '../Label';
+import { useIsInverse } from '../../inverse';
 
 export type SelectOptions =
   | string
@@ -63,6 +64,10 @@ export interface InternalSelectProps<T> {
    * @default false
    */
   isMulti?: boolean;
+  /**
+   * Position of text label relative to form field
+   */
+  labelPosition?: LabelPosition;
   /**
    * Style properties for the label
    */
@@ -185,8 +190,8 @@ export function Select<T>(props: XORSelectProps<T>) {
   const {
     containerStyle,
     id: defaultId,
-    isInverse,
     isMulti,
+    labelPosition,
     errorMessage,
     messageStyle,
     helperMessage,
@@ -207,12 +212,16 @@ export function Select<T>(props: XORSelectProps<T>) {
 
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
+  const isInverse = useIsInverse(props.isInverse);
+
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
           id={id}
+          isInverse={isInverse}
+          labelPosition={labelPosition || LabelPosition.top}
           itemToString={itemToString}
           {...(props as MultiSelectProps<T>)}
           hasError={hasError}
@@ -220,22 +229,17 @@ export function Select<T>(props: XORSelectProps<T>) {
       ) : (
         <InternalSelect
           ariaDescribedBy={descriptionId}
+          errorMessage={errorMessage}
           id={id}
+          isInverse={isInverse}
           itemToString={itemToString}
-          {...(props as SelectProps<T>)}
+          labelPosition={labelPosition || LabelPosition.top}
           hasError={hasError}
+          helperMessage={helperMessage}
+          messageStyle={messageStyle}
+          {...(props as SelectProps<T>)}
         />
       )}
-      <InputMessage
-        id={descriptionId}
-        isInverse={isInverse}
-        hasError={hasError}
-        style={messageStyle}
-      >
-        {(errorMessage || helperMessage) && (
-          <>{errorMessage ? errorMessage : helperMessage}</>
-        )}
-      </InputMessage>
     </div>
   );
 }

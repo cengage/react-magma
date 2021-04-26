@@ -7,6 +7,7 @@ import {
   buildAfterBackground,
   buildButtonBorderRadius,
   buildButtonFontSize,
+  buildButtonLineHeight,
   buildButtonSize,
   buildButtonPadding,
   buildBorderColor,
@@ -16,9 +17,10 @@ import {
   buildFocusColor,
 } from './styles';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonProps } from '../Button';
+import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
+import { Spinner } from '../Spinner';
 
-interface StyledButtonProps extends ButtonProps {
+export interface StyledButtonProps extends ButtonProps {
   href?: string;
   iconOnly?: boolean;
 }
@@ -41,7 +43,7 @@ export const buttonStyles = props => css`
   font-weight: 600;
   height: ${buildButtonSize(props)};
   justify-content: center;
-  line-height: 1;
+  line-height: ${buildButtonLineHeight(props)};
   margin: ${props.isFullWidth
     ? `${props.theme.spaceScale.spacing02} 0`
     : props.theme.spaceScale.spacing02};
@@ -108,13 +110,13 @@ export const buttonStyles = props => css`
   }
 
   ${props.iconOnly &&
-    css`
-      display: inline-flex;
-      justify-content: center;
-      line-height: 1;
-      min-width: 0;
-      padding: 0;
-    `}
+  css`
+    display: inline-flex;
+    justify-content: center;
+    line-height: 1;
+    min-width: 0;
+    padding: 0;
+  `}
 `;
 
 export const BaseStyledButton = styled.button`
@@ -125,12 +127,62 @@ export const StyledButton = React.forwardRef<
   HTMLButtonElement,
   StyledButtonProps
 >((props, ref) => {
-  const { children, testId, ...other } = props;
+  const {
+    size,
+    variant,
+    isInverse,
+    children,
+    type = ButtonType.button,
+    testId,
+    isLoading,
+  } = props;
   const theme = React.useContext(ThemeContext);
 
+  const spinnerColor =
+    isInverse &&
+    (variant === ButtonVariant.outline || variant === ButtonVariant.link)
+      ? theme.colors.neutral08
+      : theme.colors.neutral03;
+
+  const spinnerSize =
+    size === ButtonSize.small
+      ? theme.iconSizes.xSmall
+      : size === ButtonSize.large
+      ? theme.iconSizes.large
+      : theme.iconSizes.medium;
+
+  const SpinnerWrapper = styled.span`
+    position: absolute;
+    display: flex;
+  `;
+
+  const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
+    visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
+    display: inline-flex;
+    align-items: center;
+  `;
+
   return (
-    <BaseStyledButton {...other} data-testid={testId} ref={ref} theme={theme}>
-      {children}
+    <BaseStyledButton
+      {...props}
+      data-testid={testId}
+      ref={ref}
+      type={type}
+      theme={theme}
+      disabled={isLoading || props.disabled}
+    >
+      {isLoading && (
+        <SpinnerWrapper>
+          <Spinner
+            testId={`${testId}-spinner`}
+            color={spinnerColor}
+            size={spinnerSize}
+          />
+        </SpinnerWrapper>
+      )}
+      <ChildrenWrapper isLoading={isLoading} testId={`${testId}-children`}>
+        {children}
+      </ChildrenWrapper>
     </BaseStyledButton>
   );
 });

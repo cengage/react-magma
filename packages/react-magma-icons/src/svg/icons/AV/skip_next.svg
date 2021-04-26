@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>skip_next</title>
+    <defs>
+        <path d="M7.57999998,16.89 L13.35,12.82 C13.91,12.42 13.91,11.58 13.35,11.19 L7.57999998,7.10999998 C6.90999998,6.64999998 5.99999998,7.11999998 5.99999998,7.92999998 L5.99999998,16.07 C5.99999998,16.88 6.90999998,17.35 7.57999998,16.89 Z M16,6.99999998 L16,17 C16,17.55 16.45,18 17,18 C17.55,18 18,17.55 18,17 L18,6.99999998 C18,6.44999998 17.55,5.99999998 17,5.99999998 C16.45,5.99999998 16,6.44999998 16,6.99999998 Z" id="path-1"></path>
+    </defs>
+    <g id="skip_next" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

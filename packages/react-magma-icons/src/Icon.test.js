@@ -2,6 +2,7 @@ import React from 'react';
 import * as IconExports from './index';
 import { render } from '@testing-library/react';
 import { renderIcon as renderIconUtil } from './SvgIcon';
+import { AddToQueueIcon } from './icons/AV/AddToQueueIcon';
 
 const omit = (props, obj) => {
   return Object.fromEntries(
@@ -10,12 +11,12 @@ const omit = (props, obj) => {
 };
 
 // eslint-disable-next-line no-unused-vars
-const ICONS = omit(['IconProps', 'SvgIconProps'], IconExports);
+const ICONS = omit(['IconProps', 'SvgIconProps', 'categories'], IconExports);
 
 describe('Icon', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const Icon = ICONS[Object.keys(ICONS)[0]];
+    const Icon = AddToQueueIcon; //ICONS[Object.keys(ICONS)[0]];
     const { getByTestId } = render(<Icon testId={testId} title="testTitle" />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -28,14 +29,14 @@ describe('Icon', () => {
   });
 
   it('should auto assign an id if none is passed in', () => {
-    const Icon = ICONS[Object.keys(ICONS)[0]];
+    const Icon = AddToQueueIcon; //ICONS[Object.keys(ICONS)[0]];
     const { container } = render(<Icon title="testTitle" />);
 
     expect(container.querySelector('svg').id).not.toBeNull();
   });
 
   it('should persist id between renders', () => {
-    const Icon = ICONS[Object.keys(ICONS)[0]];
+    const Icon = AddToQueueIcon; //ICONS[Object.keys(ICONS)[0]];
     const { container, rerender } = render(<Icon title="testTitle" />);
 
     const title = container.querySelector('title');
@@ -47,7 +48,7 @@ describe('Icon', () => {
   });
 
   it('should update the id on rerender with change to prop id', () => {
-    const Icon = ICONS[Object.keys(ICONS)[0]];
+    const Icon = AddToQueueIcon; //ICONS[Object.keys(ICONS)[0]];
     const { container, rerender } = render(<Icon title="testTitle" />);
 
     const title = container.querySelector('title');

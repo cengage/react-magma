@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>place</title>
+    <defs>
+        <path d="M12,12 C13.1,12 14,11.1 14,9.99999998 C14,8.89999999 13.1,7.99999998 12,7.99999998 C10.9,7.99999998 9.99999999,8.89999999 9.99999999,9.99999998 C9.99999999,11.1 10.9,12 12,12 Z M12,1.99999996 C16.2,1.99999996 20,5.21999997 20,10.2 C20,13.38 17.55,17.12 12.66,21.43 C12.28,21.76 11.71,21.76 11.33,21.43 C6.44999998,17.12 3.99999997,13.38 3.99999997,10.2 C3.99999997,5.21999997 7.79999998,1.99999996 12,1.99999996 Z" id="path-1"></path>
+    </defs>
+    <g id="place" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

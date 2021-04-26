@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>label_important</title>
+    <defs>
+        <path d="M5.93999997,18.99 L15,18.99 C15.65,18.99 16.26,18.68 16.63,18.15 L20.58,12.58 C20.83,12.23 20.83,11.77 20.58,11.42 L16.62,5.83999997 C16.26,5.30999997 15.65,4.99999997 15,4.99999997 L5.93999997,4.99999997 C5.12999997,4.99999997 4.65999997,5.92999997 5.12999997,6.58999998 L8.99999999,12 L5.12999997,17.41 C4.65999997,18.07 5.12999997,18.99 5.93999997,18.99 L5.93999997,18.99 Z" id="path-1"></path>
+    </defs>
+    <g id="label_important" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

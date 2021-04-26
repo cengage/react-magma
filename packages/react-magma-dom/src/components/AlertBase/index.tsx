@@ -4,26 +4,27 @@ import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
-  Info2Icon,
-  CheckIcon,
-  NotificationIcon,
-  BlockedIcon,
-  CrossIcon,
+  InfoIcon,
+  CheckCircleIcon,
+  WarningIcon,
+  ErrorIcon,
   IconProps,
+  CloseIcon,
 } from 'react-magma-icons';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
+import { InverseContext, useIsInverse } from '../../inverse';
 
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
 } = {
-  info: Info2Icon,
-  success: CheckIcon,
-  warning: NotificationIcon,
-  danger: BlockedIcon,
+  info: InfoIcon,
+  success: CheckCircleIcon,
+  warning: WarningIcon,
+  danger: ErrorIcon,
 };
 
 export enum AlertVariant {
@@ -164,12 +165,11 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
   background-color: ${props => buildAlertBackground(props)};
   border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
-    props.variant === 'warning'
-      ? props.theme.colors.neutral
-      : props.theme.colors.neutral08};
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral};
   display: flex;
   position: relative;
-  z-index: 2;
 
   ${props =>
     props.isToast &&
@@ -183,11 +183,10 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
 const AlertContents = styled.div`
   align-self: center;
   flex-grow: 1;
-  padding: ${props => props.theme.spaceScale.spacing05}
-    ${props => props.theme.spaceScale.spacing04};
+  padding: ${props => props.theme.spaceScale.spacing04} 0;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding-left: ${props => props.theme.spaceScale.spacing05};
+    padding-left: ${props => props.theme.spaceScale.spacing04};
   }
 `;
 
@@ -195,12 +194,13 @@ const IconWrapperStyles = css`
   align-items: center;
   display: flex;
   flex-shrink: 0;
+  margin-right: 1px;
 `;
 
 const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
-  props.theme.spaceScale.spacing05};
+    props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     display: none;
@@ -233,7 +233,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     ${props => props.theme.borderRadius} 0;
   color: inherit;
   height: auto;
-  padding: 0 ${props => props.theme.spaceScale.spacing05};
+  padding: 0 ${props => props.theme.spaceScale.spacing04};
   width: auto;
 
   &&:focus:not(:disabled) {
@@ -266,7 +266,7 @@ function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
 
   return (
     <IconWrapper isToast={isToast} theme={theme}>
-      <Icon size={20} />
+      <Icon size={theme.iconSizes.medium} />
     </IconWrapper>
   );
 }
@@ -282,7 +282,6 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
       isDismissed,
       isDismissible,
       isExiting: externalIsExiting,
-      isInverse,
       isPaused,
       isToast,
       onDismiss,
@@ -294,6 +293,8 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
 
     const id = useGenerateId(defaultId);
     const [isExiting, setIsExiting] = React.useState(false);
+
+    const isInverse = useIsInverse(props.isInverse);
 
     React.useEffect(() => {
       if (isExiting) {
@@ -329,37 +330,58 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         ref={ref}
         theme={theme}
       >
-        <StyledAlertInner isToast={isToast} theme={theme} variant={variant}>
-          {renderIcon(variant, isToast, theme)}
-          <AlertContents theme={theme}>{children}</AlertContents>
-          {isDismissible && (
-            <DismissibleIconWrapper variant={variant} theme={theme}>
-              {hasTimerRing && isToast && (
-                <ProgressRingWrapper theme={theme}>
-                  <ProgressRing
-                    color={
-                      variant === AlertVariant.warning
-                        ? theme.colors.neutral
-                        : theme.colors.neutral08
-                    }
-                    isActive={!isPaused}
-                  />
-                </ProgressRingWrapper>
-              )}
-              <DismissButton
-                alertVariant={variant}
-                aria-label={
-                  closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
-                }
-                icon={<CrossIcon size={hasTimerRing ? 10 : 13} />}
-                isInverse
-                onClick={forceDismiss || handleDismiss}
-                theme={theme}
-                variant={ButtonVariant.link}
-              />
-            </DismissibleIconWrapper>
-          )}
-        </StyledAlertInner>
+        <InverseContext.Provider
+          value={{
+            isInverse: variant !== AlertVariant.warning,
+          }}
+        >
+          <StyledAlertInner
+            isInverse={variant !== AlertVariant.warning}
+            isToast={isToast}
+            theme={theme}
+            variant={variant}
+          >
+            {renderIcon(variant, isToast, theme)}
+            <AlertContents theme={theme}>{children}</AlertContents>
+            {isDismissible && (
+              <DismissibleIconWrapper variant={variant} theme={theme}>
+                {hasTimerRing && isToast && (
+                  <ProgressRingWrapper theme={theme}>
+                    <ProgressRing
+                      color={
+                        variant === AlertVariant.warning
+                          ? theme.colors.neutral
+                          : theme.colors.neutral08
+                      }
+                      isActive={!isPaused}
+                    />
+                  </ProgressRingWrapper>
+                )}
+                <DismissButton
+                  alertVariant={variant}
+                  aria-label={
+                    closeAriaLabel
+                      ? closeAriaLabel
+                      : i18n.alert.dismissAriaLabel
+                  }
+                  icon={
+                    <CloseIcon
+                      size={
+                        hasTimerRing
+                          ? theme.iconSizes.xSmall
+                          : theme.iconSizes.small
+                      }
+                    />
+                  }
+                  isInverse
+                  onClick={forceDismiss || handleDismiss}
+                  theme={theme}
+                  variant={ButtonVariant.link}
+                />
+              </DismissibleIconWrapper>
+            )}
+          </StyledAlertInner>
+        </InverseContext.Provider>
       </StyledAlert>
     );
   }

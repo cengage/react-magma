@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
  */
 export interface HideAtBreakpointProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  displayType?: HideAtBreakpointDisplayType;
   /**
    * Maximum width at which to hide the content
    */
@@ -17,8 +18,15 @@ export interface HideAtBreakpointProps
   testId?: string;
 }
 
+export enum HideAtBreakpointDisplayType {
+  block = 'block', // default
+  flex = 'flex',
+  inline = 'inline',
+  inlineFlex = 'inline-flex',
+}
+
 const Container = styled.div<HideAtBreakpointProps>`
-  display: block;
+  display: ${props => props.displayType};
 
   @media (min-width: ${props => props.minWidth}px) {
     display: none;
@@ -33,12 +41,20 @@ export const HideAtBreakpoint = React.forwardRef<
   HTMLDivElement,
   HideAtBreakpointProps
 >((props, ref) => {
-  const { children, minWidth, maxWidth, testId, ...other } = props;
+  const {
+    children,
+    displayType = HideAtBreakpointDisplayType.block,
+    minWidth,
+    maxWidth,
+    testId,
+    ...other
+  } = props;
 
   return (
     <Container
       {...other}
       data-testid={testId}
+      displayType={displayType}
       maxWidth={maxWidth}
       minWidth={minWidth}
       ref={ref}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>card_membership</title>
+    <defs>
+        <path d="M20,1.99999996 L3.99999996,1.99999996 C2.88999996,1.99999996 1.99999996,2.88999996 1.99999996,3.99999996 L1.99999996,15 C1.99999996,16.11 2.88999996,17 3.99999996,17 L7.99999996,17 L7.99999996,22 L12,20 L16,22 L16,17 L20,17 C21.11,17 22,16.11 22,15 L22,3.99999996 C22,2.88999996 21.11,1.99999996 20,1.99999996 Z M20,15 L3.99999997,15 L3.99999997,13 L20,13 L20,15 Z M20,9.99999997 L3.99999997,9.99999997 L3.99999997,4.99999997 C3.99999997,4.44999997 4.44999997,3.99999997 4.99999997,3.99999997 L19,3.99999997 C19.55,3.99999997 20,4.44999997 20,4.99999997 L20,9.99999997 Z" id="path-1"></path>
+    </defs>
+    <g id="card_membership" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>
