@@ -12,6 +12,7 @@ import {
 import { IconProps } from 'react-magma-icons';
 import { omit, Omit, XOR } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useIsInverse } from '../../inverse';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -87,7 +88,15 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
-    const { color, shape, size, textTransform, variant, ...rest } = props;
+    const {
+      color,
+      shape,
+      size,
+      testId,
+      textTransform,
+      variant,
+      ...rest
+    } = props;
 
     const theme = React.useContext(ThemeContext);
 
@@ -101,6 +110,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const other = omit(['iconPosition', 'textPosition'], rest);
 
+    const isInverse = useIsInverse(props.isInverse);
+
     if (icon && !children) {
       return (
         <StyledButton
@@ -108,6 +119,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           ref={ref}
           color={color ? color : ButtonColor.primary}
           iconOnly
+          testId={testId}
+          isInverse={isInverse}
           shape={shape ? shape : ButtonShape.round}
           size={size ? size : ButtonSize.medium}
           variant={variant ? variant : ButtonVariant.solid}
@@ -127,8 +140,10 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {...other}
         ref={ref}
         color={color ? color : ButtonColor.primary}
+        isInverse={isInverse}
         shape={shape ? shape : ButtonShape.fill}
         size={size ? size : ButtonSize.medium}
+        testId={testId}
         textTransform={
           textTransform ? textTransform : ButtonTextTransform.uppercase
         }
@@ -142,6 +157,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         {React.Children.only(
           React.cloneElement(icon, {
             size: icon.props.size ? icon.props.size : getIconSize(size, theme),
+            'data-testid': `${testId}-icon`,
           })
         )}
         {iconPosition !== ButtonIconPosition.right && (

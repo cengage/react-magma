@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>swap_vertical_circle</title>
+    <defs>
+        <path d="M12,1.99999996 C6.47999998,1.99999996 1.99999996,6.47999998 1.99999996,12 C1.99999996,17.52 6.47999998,22 12,22 C17.52,22 22,17.52 22,12 C22,6.47999998 17.52,1.99999996 12,1.99999996 Z M6.49999998,8.99999999 L9.64999999,5.84999997 C9.84999999,5.64999997 10.16,5.64999997 10.36,5.84999997 L13.5,8.99999999 L11,8.99999999 L11,13 L8.99999998,13 L8.99999998,8.99999999 L6.49999998,8.99999999 Z M14.35,18.15 C14.15,18.35 13.84,18.35 13.64,18.15 L10.5,15 L13,15 L13,11 L15,11 L15,15 L17.5,15 L14.35,18.15 Z" id="path-1"></path>
+    </defs>
+    <g id="swap_vertical_circle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

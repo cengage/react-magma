@@ -11,7 +11,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
 import { TypographyVisualStyle } from '../Typography';
 import { ThemeInterface } from '../../theme/magma';
@@ -366,8 +366,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
-    const CloseIcon = (
-      <CrossIcon color={theme.colors.neutral03} size={theme.iconSizes.small} />
+    const CloseIconButton = (
+      <CloseIcon color={theme.colors.neutral03} size={theme.iconSizes.small} />
     );
 
     return isModalOpen
@@ -431,7 +431,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                           : i18n.modal.closeAriaLabel
                       }
                       color={ButtonColor.secondary}
-                      icon={CloseIcon}
+                      icon={CloseIconButton}
                       onClick={handleClose}
                       testId="modal-closebtn"
                       variant={ButtonVariant.link}

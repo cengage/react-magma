@@ -59,8 +59,8 @@ describe('Indeterminate Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
-      'background',
-      magma.colors.neutral08
+      'color',
+      magma.colors.primary
     );
   });
 
@@ -72,8 +72,8 @@ describe('Indeterminate Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
-      'background',
-      'none'
+      'color',
+      magma.colors.neutral08
     );
   });
 
@@ -89,21 +89,18 @@ describe('Indeterminate Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
-      'background',
+      'color',
       magma.colors.neutral08
     );
   });
 
   it('should give the indeterminate icon the passed in color', () => {
-    const color = 'whitesmoke';
-    const { queryByTestId } = render(
+    const color = magma.colors.danger;
+    const { container } = render(
       <IndeterminateCheckbox status="indeterminate" color={color} />
     );
 
-    expect(queryByTestId('indeterminateIcon')).toHaveStyleRule(
-      'background',
-      color
-    );
+    expect(container.querySelector('span')).toHaveStyleRule('color', color);
   });
 
   it('should not change checkbox value if checkbox is clicked while indeterminate is true', () => {
@@ -130,7 +127,7 @@ describe('Indeterminate Checkbox', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('background', magma.colors.neutral06);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral05);
     expect(span).toHaveStyleRule('cursor', 'not-allowed');
   });
 
@@ -147,8 +144,8 @@ describe('Indeterminate Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
-      'background',
-      'none'
+      'color',
+      magma.colors.tint04
     );
   });
 
@@ -159,8 +156,8 @@ describe('Indeterminate Checkbox', () => {
     );
 
     expect(container.querySelector('span')).toHaveStyleRule(
-      'background',
-      'none'
+      'color',
+      magma.colors.tint04
     );
   });
 

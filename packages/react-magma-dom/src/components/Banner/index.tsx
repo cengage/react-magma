@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { AlertProps } from '../Alert';
 import { AlertVariant, buildAlertBackground, VARIANT_ICON } from '../AlertBase';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -53,8 +53,7 @@ const BannerContents = styled.div`
   display: flex;
   flex-grow: 1;
   justify-content: center;
-  padding: ${props => props.theme.spaceScale.spacing05}
-    ${props => props.theme.spaceScale.spacing04};
+  padding: ${props => props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     justify-content: flex-start;
@@ -191,7 +190,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
               aria-label={
                 closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
-              icon={<CrossIcon size={13} />}
+              icon={<CloseIcon size={theme.iconSizes.small} />}
               isInverse
               onClick={onDismiss}
               theme={theme}

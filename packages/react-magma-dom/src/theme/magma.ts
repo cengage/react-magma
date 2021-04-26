@@ -33,6 +33,7 @@ export interface Colors {
   tint: string;
   tint02: string;
   tint03: string;
+  tint04: string;
   tone: string;
   tone02: string;
 }
@@ -46,6 +47,7 @@ export interface Breakpoints {
 }
 
 export interface IconSizes {
+  xSmall: number;
   small: number;
   medium: number;
   large: number;
@@ -121,6 +123,21 @@ export interface TypographyVisualStyles {
   bodyXSmall: VisualStyle;
 }
 
+interface AppBar {
+  backgroundColor: string;
+  height: string;
+  padding: string;
+  textColor: string;
+  compact: {
+    height: string;
+    padding: string;
+  };
+  inverse: {
+    backgroundColor: string;
+    textColor: string;
+  };
+}
+
 export interface Modal {
   width: {
     small: string;
@@ -147,6 +164,13 @@ interface Select {
   };
 }
 
+interface Tabs {
+  approxTabSize: {
+    horizontal: number;
+    vertical: number;
+  };
+}
+
 export interface Tooltip {
   arrowSize: string;
   arrowSizeDoubled: string;
@@ -160,6 +184,7 @@ export interface Tooltip {
 }
 
 export interface ThemeInterface {
+  appBar: AppBar;
   breakpoints: Breakpoints;
   bodyFont: string;
   bodyExpressiveFont: string;
@@ -171,6 +196,7 @@ export interface ThemeInterface {
   dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
+  spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
   headingNarrativeFont: string;
@@ -180,6 +206,7 @@ export interface ThemeInterface {
   typographyExpressiveVisualStyles: TypographyVisualStyles;
   typographyNarrativeVisualStyles: TypographyVisualStyles;
   modal: Modal;
+  tabs: Tabs;
   tooltip: Tooltip;
 }
 
@@ -259,7 +286,7 @@ const colors = {
   dangerInverse: '#F59295',
   neutral: '#3F3F3F', // main dark grey text color
   neutral02: '#575757',
-  neutral03: '#727272',
+  neutral03: '#707070',
   neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
   neutral05: '#BFBFBF',
   neutral06: '#DFDFDF',
@@ -279,6 +306,23 @@ const colors = {
   tone02: 'rgba(63,63,63,0.1)',
 };
 
+const spaceScale = {
+  spacing01: '2px',
+  spacing02: '4px',
+  spacing03: '8px',
+  spacing04: '12px',
+  spacing05: '16px',
+  spacing06: '24px',
+  spacing07: '28px',
+  spacing08: '32px',
+  spacing09: '40px',
+  spacing10: '48px',
+  spacing11: '56px',
+  spacing12: '64px',
+  spacing13: '96px',
+  spacing14: '160px',
+};
+
 export const magma = {
   bodyFont: '"Open Sans",Helvetica,sans-serif',
   bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
@@ -289,6 +333,7 @@ export const magma = {
   headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
+  spacingMultiplier: 8,
 
   // breakpoints
   breakpoints: {
@@ -299,27 +344,13 @@ export const magma = {
     xl: 1200,
   },
 
-  spaceScale: {
-    spacing01: '2px',
-    spacing02: '4px',
-    spacing03: '8px',
-    spacing04: '12px',
-    spacing05: '16px',
-    spacing06: '24px',
-    spacing07: '28px',
-    spacing08: '32px',
-    spacing09: '40px',
-    spacing10: '48px',
-    spacing11: '56px',
-    spacing12: '64px',
-    spacing13: '96px',
-    spacing14: '160px',
-  },
+  spaceScale: spaceScale,
 
   iconSizes: {
-    small: 16,
-    medium: 20,
-    large: 28,
+    xSmall: 16,
+    small: 20,
+    medium: 24,
+    large: 32,
   },
 
   // Typography
@@ -469,19 +500,22 @@ export const magma = {
     },
   },
 
-  dropdown: {
-    content: {
-      maxHeight: '250px',
+  appBar: {
+    backgroundColor: colors.neutral08,
+    height: '88px',
+    padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
+    textColor: colors.neutral,
+    compact: {
+      height: '56px',
+      padding: `${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing06}`,
+    },
+    inverse: {
+      backgroundColor: colors.foundation02,
+      textColor: colors.neutral08,
     },
   },
 
   combobox: {
-    menu: {
-      maxHeight: '250px',
-    },
-  },
-
-  select: {
     menu: {
       maxHeight: '250px',
     },
@@ -492,6 +526,25 @@ export const magma = {
       small: '300px',
       medium: '600px',
       large: '900px',
+    },
+  },
+
+  dropdown: {
+    content: {
+      maxHeight: '250px',
+    },
+  },
+
+  tabs: {
+    approxTabSize: {
+      horizontal: 120,
+      vertical: 80,
+    },
+  },
+
+  select: {
+    menu: {
+      maxHeight: '250px',
     },
   },
 

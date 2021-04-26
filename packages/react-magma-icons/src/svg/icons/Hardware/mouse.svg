@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>mouse</title>
+    <defs>
+        <path d="M13,1.06999995 L13,8.99999999 L20,8.99999999 C20,4.91999997 16.95,1.55999996 13,1.06999995 Z M3.99999997,15 C3.99999997,19.42 7.57999998,23 12,23 C16.42,23 20,19.42 20,15 L20,11 L3.99999997,11 L3.99999997,15 Z M11,1.06999995 C7.04999998,1.55999996 3.99999997,4.91999997 3.99999997,8.99999999 L11,8.99999999 L11,1.06999995 Z" id="path-1"></path>
+    </defs>
+    <g id="mouse" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

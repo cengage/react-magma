@@ -1,11 +1,17 @@
 import React from 'react';
-import { inputBaseStyles } from '../InputBase';
+import {
+  inputBaseStyles,
+  inputWrapperStyles,
+  InputBaseStylesProps,
+  InputWrapperStylesProps,
+} from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
-const StyledButton = styled.div<{ disabled?: boolean; hasError?: boolean }>`
+const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}
+  ${inputWrapperStyles}
 
   align-items: center;
   display: flex;
@@ -42,7 +48,6 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     customComponents,
     hasError,
     disabled,
-    isInverse,
     style: passedInStyle,
     toggleButtonProps,
   } = props;
@@ -61,7 +66,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       data-testid="selectTriggerButton"
       hasError={hasError}
       disabled={disabled}
-      isInverse={isInverse}
+      isInverse={false}
       role="button"
       style={style}
       theme={theme}

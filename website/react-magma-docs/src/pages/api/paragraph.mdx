@@ -1,0 +1,258 @@
+---
+pageTitle: Paragraph API
+title: Paragraph
+props:
+  - ParagraphProps
+---
+
+<DocsHeading type="api">Paragraph</DocsHeading>
+
+The `Paragraph` component is used to present paragraph content in a clear and consistent manner, by limiting the number to sizes and styles with a UI.
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+import { Paragraph } from 'react-magma-dom';
+
+export function Example() {
+  return <Paragraph>Basic paragraph component.</Paragraph>;
+}
+```
+
+## Sizes
+
+There are four visual styles for the paragraph: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`, which determine the paragraph's relative size (including font-size, line-height, margins, font-weight, etc).
+The default `visualStyle` is `bodyMedium`.
+
+In addition to the paragraph visual styles, the `visualStyle` prop can also accept the values for the different heading visual styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`.
+These visual styles are also used with the <Link to="/api/heading">Heading</Link> component. The underlying HTML will still render as a `p` element.
+
+```tsx
+import React from 'react';
+import { Paragraph, TypographyVisualStyle } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph visualStyle={TypographyVisualStyle.headingXLarge}>
+        Heading x-large styles.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.headingLarge}>
+        Heading large styles.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.headingMedium}>
+        Heading medium styles.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+        Heading small styles.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.headingXSmall}>
+        Heading x-small styles.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.heading2XSmall}>
+        Heading 2x-small styles.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.bodyLarge}>
+        Body large styles. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.bodyMedium}>
+        Body medium (default) styles. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.bodySmall}>
+        Body small styles. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph visualStyle={TypographyVisualStyle.bodyXSmall}>
+        Body x-small styles. Lorem ipsum dolar sit amet.
+      </Paragraph>
+    </>
+  );
+}
+```
+
+## Context Variant
+
+The `contextVariant` prop can be used to set additional styles on a component. The default `contextVariant` is `default`.
+
+The `expressive` context variant can be used in marketing contexts, which may require more variety than the default styles.
+
+The `narrative` context variant can be used for content-heavy contexts, such as a blog-post or an e-reader.
+
+```tsx
+import React from 'react';
+import {
+  Paragraph,
+  TypographyContextVariant,
+  TypographyVisualStyle,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph
+        contextVariant={TypographyContextVariant.expressive}
+        visualStyle={TypographyVisualStyle.bodyLarge}
+      >
+        Body large. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph
+        contextVariant={TypographyContextVariant.expressive}
+        visualStyle={TypographyVisualStyle.bodyMedium}
+      >
+        Body medium (default). Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph
+        contextVariant={TypographyContextVariant.expressive}
+        visualStyle={TypographyVisualStyle.bodySmall}
+      >
+        Body small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph
+        contextVariant={TypographyContextVariant.expressive}
+        visualStyle={TypographyVisualStyle.bodyXSmall}
+      >
+        Body x-small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph
+        contextVariant={TypographyContextVariant.narrative}
+        visualStyle={TypographyVisualStyle.bodyLarge}
+      >
+        Body large. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph
+        contextVariant={TypographyContextVariant.narrative}
+        visualStyle={TypographyVisualStyle.bodyMedium}
+      >
+        Body medium (default). Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph
+        contextVariant={TypographyContextVariant.narrative}
+        visualStyle={TypographyVisualStyle.bodySmall}
+      >
+        Body small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph
+        contextVariant={TypographyContextVariant.narrative}
+        visualStyle={TypographyVisualStyle.bodyXSmall}
+      >
+        Body x-small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+    </>
+  );
+}
+```
+
+## Color
+
+The `color` prop can be used to change the color of the paragraph to convey additional meaning. It accepts the values: `success`, `danger` and `subdued`.
+
+```tsx
+import React from 'react';
+import { Paragraph, TypographyColor } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph color={TypographyColor.success}>
+        Success paragraph. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph color={TypographyColor.subdued}>
+        Subdued paragraph. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph color={TypographyColor.danger}>
+        Danger paragraph. Lorem ipsum dolar sit amet.
+      </Paragraph>
+    </>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean that changes the colors so the component can appear on a dark background.
+
+```tsx
+import React from 'react';
+import { Card, CardBody, Paragraph, TypographyColor } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Paragraph isInverse>
+          Inverse paragraph. Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph color={TypographyColor.success} isInverse>
+          Success inverse paragraph. Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph color={TypographyColor.subdued} isInverse>
+          Subdued inverse paragraph. Lorem ipsum dolar sit amet.
+        </Paragraph>
+
+        <Paragraph color={TypographyColor.danger} isInverse>
+          Danger inverse paragraph. Lorem ipsum dolar sit amet.
+        </Paragraph>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## No Margins
+
+By default, the `Paragraph` component includes margins on the top and bottom. When the `noMargins` prop is applied, the element will have a margin value of 0.
+
+```tsx
+import React from 'react';
+import { Paragraph, TypographyVisualStyle } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph noMargins visualStyle={TypographyVisualStyle.bodyLarge}>
+        Body large. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noMargins visualStyle={TypographyVisualStyle.bodyMedium}>
+        Body medium (default). Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noMargins visualStyle={TypographyVisualStyle.bodySmall}>
+        Body small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noMargins visualStyle={TypographyVisualStyle.bodyXSmall}>
+        Body x-small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+    </>
+  );
+}
+```
+
+## Paragraph Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `p` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `p` element that gets rendered.
+
+<ParagraphProps />

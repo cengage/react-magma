@@ -8,6 +8,7 @@ import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuGroup } from './DropdownMenuGroup';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
+import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { magma } from '../../theme/magma';
 
 import { act, render, fireEvent } from '@testing-library/react';
@@ -77,7 +78,7 @@ describe('Dropdown', () => {
   it('should render a dropleft', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="left">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
@@ -88,12 +89,16 @@ describe('Dropdown', () => {
       magma.spaceScale.spacing02
     );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '100%');
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-left',
+      magma.spaceScale.spacing03
+    );
   });
 
   it('should render a dropright', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="right">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
@@ -104,6 +109,42 @@ describe('Dropdown', () => {
       magma.spaceScale.spacing02
     );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('left', '100%');
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-right',
+      magma.spaceScale.spacing03
+    );
+  });
+
+  it('should render a dropdown with a small button', () => {
+    const { getByTestId } = render(
+      <Dropdown>
+        <DropdownButton testId="dropdownButton" size="small">
+          Toggle me
+        </DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-right',
+      magma.spaceScale.spacing02
+    );
+  });
+
+  it('should render a dropdown with a large button', () => {
+    const { getByTestId } = render(
+      <Dropdown>
+        <DropdownButton testId="dropdownButton" size="large">
+          Toggle me
+        </DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownButton')).toHaveStyleRule(
+      'padding-right',
+      magma.spaceScale.spacing05
+    );
   });
 
   it('should render a right aligned menu', () => {
@@ -161,6 +202,34 @@ describe('Dropdown', () => {
     expect(getByLabelText('Custom label')).toBeInTheDocument();
   });
 
+  it('should render a split dropdown with margin left on solid variants', () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton>Toggle me</DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByLabelText('Toggle menu')).toHaveAttribute(
+      'style',
+      'margin-left: 2px;'
+    );
+  });
+
+  it('should render a split dropdown with no margin on outline variants', () => {
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton variant="outline">Toggle me</DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByLabelText('Toggle menu')).toHaveAttribute(
+      'style',
+      'margin-left: 0px;'
+    );
+  });
+
   it('should render a split dropup', () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
@@ -172,14 +241,13 @@ describe('Dropdown', () => {
   });
 
   it('should render a button with custom icon', () => {
-    const { container, queryByTestId } = render(
+    const { queryByTestId, getByText } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />}>Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
-
-    expect(container.querySelector('span')).toHaveStyleRule(
+    expect(getByText('Toggle me')).toHaveStyleRule(
       'padding-left',
       magma.spaceScale.spacing03
     );
@@ -189,7 +257,7 @@ describe('Dropdown', () => {
   });
 
   it('should render a button with custom icon with specified icon position', () => {
-    const { container } = render(
+    const { getByText } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />} iconPosition="right">
           Toggle me
@@ -198,7 +266,7 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(container.querySelector('span')).toHaveStyleRule(
+    expect(getByText('Toggle me')).toHaveStyleRule(
       'padding-right',
       magma.spaceScale.spacing03
     );
@@ -247,7 +315,7 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  it('should close the menu when blurred', () => {
+  it('should close the menu when menu is blurred', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
@@ -268,6 +336,32 @@ describe('Dropdown', () => {
     fireEvent.click(menuItem);
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should close the menu when button is blurred', () => {
+    jest.useFakeTimers();
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    fireEvent.blur(getByText('Toggle me'));
+
+    act(jest.runAllTimers);
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    jest.useRealTimers();
   });
 
   it('should close the menu when escape key is pressed', () => {
@@ -293,61 +387,6 @@ describe('Dropdown', () => {
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
       code: 27,
-    });
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-  });
-
-  it('should close the menu the dropdown button is focused and the tab key is pressed', () => {
-    const { getByText, getByTestId } = render(
-      <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    );
-
-    const toggleButton = getByText('Toggle me').parentElement;
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-
-    fireEvent.click(toggleButton);
-    toggleButton.focus();
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
-
-    expect(toggleButton).toHaveFocus();
-
-    fireEvent.keyDown(toggleButton, {
-      key: 'Tab',
-    });
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-  });
-
-  it('should close the menu the dropdown button is focused and shift + the tab key is pressed', () => {
-    const { getByText, getByTestId } = render(
-      <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    );
-
-    const toggleButton = getByText('Toggle me').parentElement;
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-
-    fireEvent.click(toggleButton);
-    toggleButton.focus();
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
-
-    expect(toggleButton).toHaveFocus();
-
-    fireEvent.keyDown(toggleButton, {
-      key: 'Tab',
-      shiftKey: true,
     });
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
@@ -650,5 +689,41 @@ describe('Dropdown', () => {
     fireEvent.click(getByText('aaa'));
     expect(getByText('aaa')).toHaveStyleRule('padding', activeStylePadding);
     expect(getByText('bbb')).toHaveStyleRule('padding', inActiveStylePadding);
+  });
+
+  it('should render a dropdown with links', () => {
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuNavItem to="http://www.google.com">
+            Google
+          </DropdownMenuNavItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByText('Google')).toHaveAttribute(
+      'href',
+      'http://www.google.com'
+    );
+  });
+
+  it('should render a dropdown with a link with an icon', () => {
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuNavItem
+            icon={<AsteriskIcon />}
+            to="http://www.google.com"
+          >
+            Google
+          </DropdownMenuNavItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByText('Google').querySelector('svg')).toBeInTheDocument();
   });
 });

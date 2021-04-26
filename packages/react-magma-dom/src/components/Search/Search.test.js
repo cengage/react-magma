@@ -8,6 +8,10 @@ import { render, fireEvent } from '@testing-library/react';
 const onSearchSpy = jest.fn();
 
 describe('Search', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should render the search component', () => {
     const { container } = render(<Search onSearch={onSearchSpy} />);
 
@@ -38,6 +42,21 @@ describe('Search', () => {
       'aria-label',
       'Test input label'
     );
+  });
+
+  it('should fire the onSearch event when the icon is clicked', () => {
+    const labelText = 'LABEL TEXT';
+    const targetValue = 'VALUE';
+    const { container, getByLabelText } = render(
+      <Search labelText={labelText} onSearch={onSearchSpy} />
+    );
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: targetValue },
+    });
+
+    fireEvent.click(container.querySelector('button'));
+    expect(onSearchSpy).toBeCalledWith(targetValue);
   });
 
   it('should fire the onSearch event when enter is pressed', () => {

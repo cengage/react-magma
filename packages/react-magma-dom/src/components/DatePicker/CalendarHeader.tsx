@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Announce } from '../Announce';
 import { CalendarContext } from './CalendarContext';
-import { ArrowLeft2Icon, ArrowRight2Icon } from 'react-magma-icons';
+import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import { ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -19,27 +19,28 @@ interface CalendarHeaderProps {
 const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
-  padding: ${props => props.theme.spaceScale.spacing08} 0
+  padding: ${props => props.theme.spaceScale.spacing10} 0
     ${props => props.theme.spaceScale.spacing03};
+  margin-top: -${props => props.theme.spaceScale.spacing01};
 `;
 
 const CalendarIconButton = styled.div<{ next?: boolean }>`
   flex-grow: 0;
-  flex-width: 25%;
-  flex-basis: 25%;
+  flex-width: 10%;
+  flex-basis: 10%;
   order: ${props => (props.next ? 2 : 0)};
 `;
 
 const CalendarHeaderText = styled.div`
   caption-side: initial;
   color: ${props => props.theme.colors.neutral};
-  font-size: ${props => props.theme.typeScale.size04.fontSize};
-  line-height: ${props => props.theme.typeScale.size04.lineHeight};
+  font-size: ${props => props.theme.typeScale.size03.fontSize};
+  line-height: ${props => props.theme.typeScale.size03.lineHeight};
   order: 1;
   text-align: center;
   flex-grow: 0;
-  flex-width: 75%;
-  flex-basis: 75%;
+  flex-width: 90%;
+  flex-basis: 90%;
 `;
 
 export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
@@ -65,6 +66,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
   const currentMonth = format(focusedDate, 'MMMM yyyy', locale);
 
   const capitalizeCurrentMonth =
+    currentMonth &&
     currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
 
   return (
@@ -79,7 +81,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
             'MMMM yyyy',
             locale
           )}`}
-          icon={<ArrowLeft2Icon />}
+          icon={<ArrowBackIcon />}
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onPrevMonthClick}
@@ -92,7 +94,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
             'MMMM yyyy',
             locale
           )}`}
-          icon={<ArrowRight2Icon />}
+          icon={<ArrowForwardIcon />}
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onNextMonthClick}

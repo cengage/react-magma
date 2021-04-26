@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { css } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
-import { TabsIconPosition, TabsBorderPosition, TabsContext } from '.';
+import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';
 import { useForceUpdate, useForkedRef } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
@@ -131,16 +131,16 @@ export const TabStyles = props => css`
   width: ${props.isFullWidth ? '100%' : 'auto'};
 
   ${props.orientation === 'vertical' &&
-    css`
-      align-items: flex-start;
-      justify-content: ${props.iconPosition === 'left'
-        ? 'flex-start'
-        : 'flex-end'};
-      text-align: left;
-      width: 100%;
+  css`
+    align-items: flex-start;
+    justify-content: ${props.iconPosition === 'left'
+      ? 'flex-start'
+      : 'flex-end'};
+    text-align: left;
+    width: 100%;
 
-      align-items: center;
-    `}
+    align-items: center;
+  `}
 
   &:hover,
   &:focus {
@@ -181,7 +181,7 @@ const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
 
 function getIconMargin(props) {
   if (props.isIconOnly) {
-    return '3px 0';
+    return `0`;
   }
 
   switch (props.iconPosition) {
@@ -207,8 +207,8 @@ export const StyledIcon = styled.span<{
   margin: ${props => getIconMargin(props)};
 
   svg {
-    height: 20px;
-    width: 20px;
+    height: ${props => props.theme.iconSizes.small}px;
+    width: ${props => props.theme.iconSizes.small}px;
   }
 `;
 

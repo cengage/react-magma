@@ -1,0 +1,72 @@
+---
+pageTitle: {{capitalize componentName}} API
+title: {{capitalize componentName}}
+props:
+- {{capitalize componentName}}Props
+---
+
+<DocsHeading type="api">
+  {{capitalize componentName}}
+</DocsHeading>
+
+{{description}}
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { {{capitalize componentName}} } from 'react-magma-dom';
+
+export function Example() {
+return <{{capitalize componentName}}>{{capitalize componentName}} content</{{capitalize componentName}}>;
+}
+```
+
+{{#if useInverse}}
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { {{capitalize componentName}} } from 'react-magma-dom';
+
+export function Example() {
+return <{{capitalize componentName}} isInverse>{{capitalize componentName}} content</{{capitalize componentName}}>;
+}
+```
+{{/if}}
+
+{{#if useI18n}}
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value=\{{
+        ...defaultI18n,
+        example: 'example i18n',
+      }}
+    >
+      <{{capitalize componentName}}>override default i18n value: </{{capitalize componentName}}>
+    </I18nContext.Provider>
+  );
+}
+```
+{{/if}}
+
+# {{capitalize componentName}} Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<{{capitalize componentName}}Props />

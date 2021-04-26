@@ -1,0 +1,137 @@
+img {
+  border-style: none;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  margin: 0 0 24px 24px;
+  padding: 0;
+  list-style-position: outside;
+  list-style-image: none;
+}
+dl,
+dd {
+  margin: 0 0 24px;
+  padding: 0;
+}
+p {
+  margin: 0 0 24px;
+  padding: 0;
+}
+figure {
+  margin: 0 0 24px;
+  padding: 0;
+}
+pre {
+  font-size: 14px;
+  line-height: 20px;
+  background: #f7f7f7;
+  border-radius: 3px;
+  overflow: auto;
+  word-wrap: normal;
+  padding: 24px;
+  margin: 0 0 24px;
+}
+li {
+  margin-bottom: 12px;
+}
+ol li {
+  padding-left: 0;
+}
+ul li {
+  padding-left: 0;
+}
+li > ol {
+  margin-left: 24px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+li > ul {
+  margin-left: 24px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+blockquote *:last-child {
+  margin-bottom: 0;
+}
+li *:last-child {
+  margin-bottom: 0;
+}
+li > p {
+  margin-bottom: 12px;
+}
+tt,
+kbd,
+samp,
+code {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: normal !important;
+  padding: 2px 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #003865;
+  margin: 0 2px;
+}
+code.inverse {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+pre {
+  white-space: pre-wrap;
+}
+pre code {
+  background: none;
+  border: 0;
+  word-wrap: break-word;
+}
+
+/* Content area styles */
+
+.horizontal-spacer {
+  height: 24px;
+  display: block;
+}
+
+/* Demo styles for specific components */
+.demo-icon-container {
+  padding: 16px;
+  text-align: center;
+}
+
+.demo-icon-list-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto;
+  column-gap: 16px;
+  row-gap: 16px;
+}
+
+.demo-icon-list-container .demo-icon-container {
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.icon-name {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .demo-icon-list-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto;
+    column-gap: 16px;
+    row-gap: 16px;
+  }
+}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { instanceOfDefaultItemObject } from '../Select';
 import { useCombobox, useMultipleSelection } from 'downshift';
-import { CrossIcon } from 'react-magma-icons';
+import { CloseIcon } from 'react-magma-icons';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
@@ -277,7 +277,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           >
             {itemToString(multiSelectedItem)}
             <IconWrapper>
-              <CrossIcon size={9} />
+              <CloseIcon size={theme.iconSizes.xSmall} />
             </IconWrapper>
           </SelectedItemButton>
         ))}

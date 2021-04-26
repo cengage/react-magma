@@ -4,9 +4,10 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { InputBase, InputSize, InputType } from '../InputBase';
-import { Button, ButtonVariant, ButtonType } from '../Button';
+import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
+import { useIsInverse } from '../../inverse';
 import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -95,13 +96,6 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const PasswordMaskWrapper = styled.span`
-  margin: 0;
-  position: absolute;
-  right: ${props => props.theme.spaceScale.spacing02};
-  top: ${props => props.theme.spaceScale.spacing02};
-`;
-
 export const PasswordInput = React.forwardRef<
   HTMLInputElement,
   PasswordInputProps
@@ -122,7 +116,6 @@ export const PasswordInput = React.forwardRef<
     isPasswordMaskButtonHidden,
     id: defaultId,
     inputSize,
-    isInverse,
     labelStyle,
     labelText,
     isLabelVisuallyHidden,
@@ -160,6 +153,8 @@ export const PasswordInput = React.forwardRef<
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
   const theme = React.useContext(ThemeContext);
 
+  const isInverse = useIsInverse(props.isInverse);
+
   return (
     <Container style={containerStyle} theme={theme}>
       <Label
@@ -174,6 +169,7 @@ export const PasswordInput = React.forwardRef<
           labelText
         )}
       </Label>
+
       <InputBase
         autoCorrect="off"
         autoCapitalize="none"
@@ -182,8 +178,8 @@ export const PasswordInput = React.forwardRef<
           descriptionId ? descriptionId : props['aria-describedby']
         }
         aria-invalid={!!errorMessage}
-        id={id}
         hasError={!!errorMessage}
+        id={id}
         inputSize={inputSize ? inputSize : InputSize.medium}
         isInverse={isInverse}
         ref={ref}
@@ -191,21 +187,23 @@ export const PasswordInput = React.forwardRef<
         type={passwordShown ? InputType.text : InputType.password}
       >
         {!isPasswordMaskButtonHidden && (
-          <PasswordMaskWrapper theme={theme}>
+          <>
             <Button
               aria-label={
                 passwordShown
                   ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
                   : SHOW_PASSWORD_BUTTON_ARIA_LABEL
               }
+              isInverse={false}
               onClick={togglePasswordShown}
+              size={ButtonSize.small}
               style={{
                 borderRadius: theme.borderRadius,
                 height:
                   inputSize == InputSize.large
                     ? theme.spaceScale.spacing10
                     : theme.spaceScale.spacing08,
-                margin: 0,
+                margin: ' 0 3px 0 0 ',
               }}
               type={ButtonType.button}
               variant={ButtonVariant.link}
@@ -221,9 +219,10 @@ export const PasswordInput = React.forwardRef<
                   : HIDDEN_PASSWORD_ANNOUNCE_TEXT}
               </Announce>
             </VisuallyHidden>
-          </PasswordMaskWrapper>
+          </>
         )}
       </InputBase>
+
       <InputMessage
         isInverse={isInverse}
         id={descriptionId}

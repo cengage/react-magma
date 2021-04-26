@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
+import { Label } from '../Label';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -45,20 +47,11 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 export interface FormGroupContextInterface {
   descriptionId?: string;
   hasError?: boolean;
-  isInverse?: boolean;
 }
 
 export const FormGroupContext = React.createContext<FormGroupContextInterface>({
   hasError: false,
-  isInverse: false,
 });
-
-export const FormGroupLabel = styled.label`
-  display: block;
-  font-weight: bold;
-  margin-bottom: ${props => props.theme.spaceScale.spacing02};
-  width: 100%;
-`;
 
 const HiddenLabel = styled.label`
   ${HiddenStyles};
@@ -75,7 +68,6 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
       labelledById,
       labelStyle,
       labelText,
-      isInverse,
       isTextVisuallyHidden,
       testId,
       children,
@@ -85,6 +77,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const theme = React.useContext(ThemeContext);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <div
@@ -99,7 +92,6 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           value={{
             descriptionId,
             hasError: !!errorMessage,
-            isInverse,
           }}
         >
           {labelText && isTextVisuallyHidden && (
@@ -109,9 +101,14 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           )}
 
           {labelText && !isTextVisuallyHidden && (
-            <FormGroupLabel id={id} style={labelStyle} theme={theme}>
+            <Label
+              id={id}
+              isInverse={isInverse}
+              style={labelStyle}
+              theme={theme}
+            >
               {labelText}
-            </FormGroupLabel>
+            </Label>
           )}
           {children}
 

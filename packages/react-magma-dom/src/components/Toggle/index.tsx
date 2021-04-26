@@ -11,6 +11,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
+import { useIsInverse } from '../../inverse';
 
 export enum ToggleTextPosition {
   left = 'left', // default
@@ -181,9 +182,9 @@ const IconContainer = styled.span<{ disabled?: boolean; theme?: any }>`
     props.disabled
       ? props.theme.colors.neutral05
       : props.theme.colors.neutral08};
-  left: 7px;
+  left: ${props => props.theme.spaceScale.spacing02};
   position: absolute;
-  top: 4px;
+  top: ${props => props.theme.spaceScale.spacing01};
 
   svg {
     display: block;
@@ -233,7 +234,6 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       disabled,
       errorMessage,
       id: defaultId,
-      isInverse,
       isTextVisuallyHidden,
       labelStyle,
       labelText,
@@ -264,6 +264,8 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
 
     const hasError = context.hasError || !!errorMessage;
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return (
       <>
         <StyledContainer>
@@ -280,7 +282,11 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
             ref={ref}
             role="switch"
           />
-          <StyledLabel htmlFor={id} style={containerStyle}>
+          <StyledLabel
+            htmlFor={id}
+            isInverse={isInverse}
+            style={containerStyle}
+          >
             {textPosition !== ToggleTextPosition.right &&
               renderLabelText(
                 isTextVisuallyHidden,
@@ -298,7 +304,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               theme={theme}
             >
               <IconContainer disabled={disabled} theme={theme}>
-                <CheckIcon size={11} />
+                <CheckIcon size={theme.iconSizes.xSmall} />
               </IconContainer>
               <Thumb
                 checked={checked}

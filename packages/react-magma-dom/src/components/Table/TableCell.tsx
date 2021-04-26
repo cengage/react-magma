@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
-import { TableCellAlign, TableContext, TableDensity } from './';
+import { TableCellAlign, TableContext, TableDensity } from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableCellProps

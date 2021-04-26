@@ -6,6 +6,7 @@ import { omit, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { BaseStyledButton, buttonStyles } from '../StyledButton';
 import { ThemeInterface } from '../../theme/magma';
+import { useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -57,6 +58,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
 
     const other = omit(['positionTop', 'positionLeft', 'type'], rest);
     const theme = React.useContext(ThemeContext);
+    const isInverse = useIsInverse(props.isInverse);
 
     if (typeof children === 'function') {
       const composedStyle =
@@ -71,6 +73,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
             return (children as (props: object) => React.ReactNode)({
               to,
               className,
+              isInverse,
             });
           }}
         </ClassNames>
@@ -86,6 +89,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
           ref={ref}
           data-testid={testId}
           href={to}
+          isInverse={isInverse}
           theme={theme}
         >
           {children}

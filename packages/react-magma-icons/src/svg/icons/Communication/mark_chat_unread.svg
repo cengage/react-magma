@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>mark_chat_unread</title>
+    <defs>
+        <path d="M22,6.97999998 L22,16 C22,17.1 21.1,18 20,18 L5.99999996,18 L1.99999996,22 L1.99999996,3.99999996 C1.99999996,2.89999996 2.89999996,1.99999996 3.99999996,1.99999996 L14.1,1.99999996 C14.04,2.31999996 14,2.65999996 14,2.99999996 C14,5.75999997 16.24,7.99999996 19,7.99999996 C20.13,7.99999996 21.16,7.60999998 22,6.97999998 Z M16,2.99999995 C16,4.65999997 17.34,5.99999995 19,5.99999995 C20.66,5.99999995 22,4.65999997 22,2.99999995 C22,1.33999996 20.66,-5.00013773e-08 19,-5.00013773e-08 C17.34,-5.00013773e-08 16,1.33999996 16,2.99999995 Z" id="path-1"></path>
+    </defs>
+    <g id="mark_chat_unread" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Combined-Shape" fill="#000000" xlink:href="#path-1"></use>
+    </g>
+</svg>

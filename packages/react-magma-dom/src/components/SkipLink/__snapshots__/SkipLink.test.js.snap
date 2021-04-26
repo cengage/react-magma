@@ -27,7 +27,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;
@@ -131,7 +131,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  line-height: 1;
+  line-height: 24px;
   margin: 4px;
   min-width: 96px;
   overflow: hidden;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
-import { IconProps, CaretDownIcon } from 'react-magma-icons';
+import { IconProps, ArrowDropDownIcon } from 'react-magma-icons';
 import { StyledItem } from './shared';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -28,8 +28,8 @@ export const DefaultClearIndicator = props => {
 
 export const DefaultDropdownIndicator = props => {
   return (
-    <CaretDownIcon
-      size={10}
+    <ArrowDropDownIcon
+      size={24}
       style={{ flexShrink: 0 }}
       testId="caretDown"
       {...props}
