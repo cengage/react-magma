@@ -86,9 +86,6 @@ function buildRadioIconColor(props) {
   if (props.isChecked) {
     return props.color;
   }
-  if (props.hasError) {
-    return props.theme.colors.danger;
-  }
   return props.theme.colors.neutral02;
 }
 

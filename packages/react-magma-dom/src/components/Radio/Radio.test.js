@@ -285,7 +285,10 @@ describe('Radio', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.danger);
+    expect(span).toHaveStyleRule(
+      'box-shadow',
+      `0 0 0 2px ${magma.colors.danger}`
+    );
   });
 
   it('should render an inverse radio button with error styles', () => {

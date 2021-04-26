@@ -48,7 +48,7 @@ export const Default = () => {
         value="selectedOption"
         errorMessage="Error message goes here"
       >
-        <Radio id="radio4" disabled labelText="Error" value="4" />
+        <Radio id="radio4" labelText="Error" value="4" />
         <Radio id="radio5" labelText="Error checked" value="selectedOption" />
       </RadioGroup>
     </>
