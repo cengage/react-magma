@@ -34,6 +34,9 @@ pre {
   padding: 24px;
   margin: 0 0 24px;
 }
+.isInverse pre {
+  background: #003865;
+}
 li {
   margin-bottom: 12px;
 }
@@ -81,7 +84,7 @@ code.inverse,
 .isInverse code {
   background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
+  color: inherit;
 }
 pre {
   white-space: pre-wrap;

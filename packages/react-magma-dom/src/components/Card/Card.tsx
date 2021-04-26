@@ -52,6 +52,19 @@ export enum CardCalloutType {
 export function buildCalloutBackground(
   props: CardProps & { theme: ThemeInterface }
 ) {
+  if (props.isInverse) {
+    switch (props.calloutType) {
+      case 'danger':
+        return props.theme.colors.dangerInverse;
+      case 'success':
+        return props.theme.colors.successInverse;
+      case 'warning':
+        return props.theme.colors.pop04;
+      default:
+        return props.theme.colors.foundation04;
+    }
+  }
+
   switch (props.calloutType) {
     case 'danger':
       return props.theme.colors.danger;

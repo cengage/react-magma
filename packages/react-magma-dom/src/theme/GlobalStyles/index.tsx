@@ -30,15 +30,15 @@ function getStyles(theme, isInverse: boolean) {
 
     html,
     body {
+      background: ${isInverse
+        ? theme.colors.foundation
+        : theme.colors.neutral08};
+      color: ${isInverse ? theme.colors.neutral08 : theme.colors.neutral};
       margin: 0;
       padding: 0;
     }
 
     body {
-      background: ${isInverse
-        ? theme.colors.foundation
-        : theme.colors.neutral07};
-      color: ${isInverse ? theme.colors.neutral07 : theme.colors.neutral};
       font-family: ${theme.bodyFont};
       font-style: normal;
       font-weight: 400;
