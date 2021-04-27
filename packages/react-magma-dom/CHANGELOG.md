@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.13-alpha.0
+
+### Patch Changes
+
+- 57e28ac7: feat(pagination): create new pagination component
+
 ## 2.3.12
 
 ### Patch Changes
