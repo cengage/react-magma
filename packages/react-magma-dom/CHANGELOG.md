@@ -12,48 +12,6 @@
 
 - d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
-## 2.3.11
-
-### Patch Changes
-
-- d306c99e: Switch focus from input to input wrapper to account for password managers adding their icons.
-  - react-magma-icons@2.0.4
-
-## 2.3.11
-
-### Patch Changes
-
-- chore: init changeset
-- Updated dependencies [undefined]
-  - react-magma-icons@2.0.4
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-### 2.3.11-alpha.1 (2021-04-20)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.11-alpha.0 (2021-04-15)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10 (2021-04-14)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.14 (2021-04-14)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.13 (2021-04-13)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.12 (2021-04-07)
-
-**Note:** Version bump only for package react-magma-dom
-
 ### 2.3.10-alpha.11 (2021-04-07)
 
 **Note:** Version bump only for package react-magma-dom
