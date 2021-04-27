@@ -89,17 +89,12 @@ function buildRadioIconColor(props) {
   return props.theme.colors.neutral02;
 }
 
-function buildErrorBorder(props) {
-  if (props.isInverse) {
-    if (props.hasError) {
-      return `0 0 0 2px ${props.theme.colors.dangerInverse};
-    }`;
-    }
-    return `inherit`;
-  }
+export function buildErrorBorder(props) {
   if (props.hasError) {
-    return `0 0 0 2px ${props.theme.colors.danger};
-    }`;
+    if (props.isInverse) {
+      return `0 0 0 2px ${props.theme.colors.dangerInverse}`;
+    }
+    return `0 0 0 2px ${props.theme.colors.danger}`;
   }
   return `inherit`;
 }
