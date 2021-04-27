@@ -1,0 +1,153 @@
+---
+pageTitle: Accordion API
+title: Accordion
+props:
+  - AccordionProps
+  - AccordionItemProps
+  - AccordionButtonProps
+  - AccordionPanelProps
+---
+
+<DocsHeading type="api">Accordion</DocsHeading>
+
+An accordion is a vertically stacked group of collapsible sections. An accordion is composed of grouped buttons and panels. When a user clicks an accordion button, its respective panel will hide or show.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+## Icon Position
+
+By default, a chevron icon appears on the right of each `AccordionItem`. You may change the position to the left, or remove it by using the `iconPosition` prop, which accepts the values `AccordionIconPosition.left`, `AccordionIconPosition.none`, or `AccordionIconPosition.right`.
+
+```typescript
+import React from 'react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIconPosition,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Accordion iconPosition={AccordionIconPosition.left}>
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+## Disabled Item
+
+You can disable a single item by adding the `isDisabled` prop to the `AccordionItem` component.
+
+```typescript
+import React from 'react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Accordion>
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Accordion isInverse>
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+# Accordion Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<AccordionProps />
+
+# AccordionItem Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<AccordionItemProps />
+
+# AccordionButton Props
+
+**Any other props supplied will be provided to the wrapping `button` element.**
+
+<AccordionButtonProps />
+
+# AccordionPanel Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<AccordionPanelProps />
