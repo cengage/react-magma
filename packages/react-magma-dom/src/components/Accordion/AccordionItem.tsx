@@ -1,16 +1,19 @@
 import * as React from 'react';
+import { AccordionContext } from './';
 
 /**
  * @children required
  */
 export interface AccordionItemProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  index?: number;
   isDisabled?: boolean;
   isExpanded?: boolean;
   testId?: string;
 }
 
 interface AccordionItemContextInterface {
+  index?: number;
   isDisabled?: boolean;
   isExpanded?: boolean;
   setIsExpanded?: any;
@@ -30,6 +33,7 @@ export const AccordionItem = React.forwardRef<
 >((props, ref) => {
   const {
     children,
+    index,
     isDisabled,
     isExpanded: isExpandedProp,
     testId,
@@ -37,7 +41,14 @@ export const AccordionItem = React.forwardRef<
   } = props;
 
   const [isExpanded, setIsExpanded] = React.useState(isExpandedProp);
-  const value = { isDisabled, isExpanded, setIsExpanded };
+  const value = { index, isDisabled, isExpanded, setIsExpanded };
+  const { expandedIndex, isMultiple } = React.useContext(AccordionContext);
+
+  React.useEffect(() => {
+    if (!isMultiple) {
+      setIsExpanded(expandedIndex == index);
+    }
+  });
 
   return (
     <AccordionItemContext.Provider value={value}>
