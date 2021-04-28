@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  Schema,
-  SchemaRenderer,
-  SchemaRendererProps,
-  componentTypes,
-  validatorTypes,
-} from './SchemaRenderer';
+import { Schema, SchemaRenderer, SchemaRendererProps } from './SchemaRenderer';
+
+import { componentTypes } from '../ComponentMapper';
+
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { templateTypes } from '../TemplateMapper';
@@ -373,3 +370,41 @@ Array.args = {
     ],
   },
 };
+
+export function Example() {
+  const [values, setValues] = React.useState();
+
+  const schema: Schema = {
+    title: 'File Uploader',
+    description: 'An example file upload component.',
+    type: templateTypes.FORM,
+    fields: [
+      {
+        component: componentTypes.FIELD_ARRAY,
+        name: 'tasks',
+        fieldKey: 'field_array',
+        label: 'Things to do',
+        description: 'What do we need to complete for the day?',
+        fields: [
+          {
+            component: componentTypes.FILE_UPLOAD,
+            name: 'file-uploaded',
+            labelText: 'file-uploaded',
+          },
+        ],
+      },
+    ],
+  };
+
+  return (
+    <div>
+      {values && <pre>{JSON.stringify(values, null, 2)}</pre>}
+      <SchemaRenderer
+        schema={schema}
+        onSubmit={(values: any) => {
+          setValues(values);
+        }}
+      />
+    </div>
+  );
+}

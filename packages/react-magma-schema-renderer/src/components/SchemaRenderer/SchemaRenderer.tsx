@@ -1,42 +1,41 @@
-import React, { FunctionComponent } from 'react';
-import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
-import { default as DataDrivenFormSchema } from '@data-driven-forms/react-form-renderer/dist/cjs/schema';
-import { componentMapper } from '../ComponentMapper';
+import React from 'react';
+// import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
+
+import {
+  FormRenderer,
+  FormRendererProps,
+  Schema as DataDrivenFormSchema,
+} from '@data-driven-forms/react-form-renderer';
+import { componentMapper, ComponentMapper } from '../ComponentMapper';
 import { templateMapper } from '../TemplateMapper';
-import { validatorMapper, ValidatorMapper } from '../ValidatorMapper';
+import { ValidatorMapper } from '../ValidatorMapper';
 
 export interface Schema extends DataDrivenFormSchema {
   type: string;
 }
 
-export interface SchemaRendererProps {
+export interface SchemaRendererProps
+  extends Omit<FormRendererProps, 'FormTemplate' | 'componentMapper'> {
   schema: Schema;
-  initialValues?: any;
-  onSubmit: (values: any) => void;
-  onCancel?: () => void;
-  customComponentMapper?: {
-    [componentType: string]: React.ComponentType;
-  };
+  customComponentMapper?: ComponentMapper;
   customValidatorMapper?: ValidatorMapper;
 }
 
-export const SchemaRenderer: FunctionComponent<SchemaRendererProps> = ({
+export const SchemaRenderer = ({
   schema,
-  onSubmit,
-  onCancel,
-  initialValues,
-  customComponentMapper,
+  customComponentMapper = componentMapper,
   customValidatorMapper,
-}) => {
+  ...rest
+}: SchemaRendererProps) => {
   return (
-    <FormRender
-      componentMapper={{ ...componentMapper, ...customComponentMapper }}
+    <FormRenderer
+      onCancel={() => {}}
+      onSubmit={() => {}}
+      {...rest}
+      componentMapper={customComponentMapper}
       validatorMapper={customValidatorMapper}
       FormTemplate={templateMapper[schema.type]}
       schema={schema}
-      onSubmit={onSubmit}
-      onCancel={onCancel}
-      initialValues={initialValues}
     />
   );
 };

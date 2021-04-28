@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, cleanup, act } from '@testing-library/react';
-import { SchemaRenderer } from './SchemaRenderer';
+import userEvent from '@testing-library/user-event';
+import { SchemaRenderer, Schema } from './SchemaRenderer';
 import { componentTypes } from '../ComponentMapper';
 import { templateTypes } from '../TemplateMapper';
 import { validatorTypes } from '../ValidatorMapper';
@@ -14,10 +15,11 @@ describe('SchemaRenderer', () => {
   const handleCancel = jest.fn();
   const handleSubmit = jest.fn();
 
-  const baseSchema = {
+  const baseSchema: Schema = {
     title: 'title',
     description: 'description',
     type: templateTypes.FORM,
+    fields: [],
   };
 
   describe('Basic Form', () => {
@@ -34,7 +36,7 @@ describe('SchemaRenderer', () => {
     };
 
     it('should render header and description', () => {
-      const { getByText } = render(
+      const { debug, getByText } = render(
         <SchemaRenderer
           schema={schema}
           onSubmit={handleSubmit}
@@ -42,9 +44,11 @@ describe('SchemaRenderer', () => {
         />
       );
 
+      debug();
+
       expect(getByText('title')).toBeVisible();
       expect(getByText('description')).toBeVisible();
-      expect(getByText('Cancel')).toBeDisabled();
+      expect(getByText('Cancel').parentElement).toBeDisabled();
     });
 
     it('should trigger cancel event when user clicks the Cancel button', () => {
@@ -62,10 +66,10 @@ describe('SchemaRenderer', () => {
         });
       });
 
-      expect(getByText('Cancel')).not.toBeDisabled();
+      expect(getByText('Cancel').parentElement).not.toBeDisabled();
 
       act(() => {
-        fireEvent.click(getByText('Cancel'));
+        userEvent.click(getByText('Cancel'));
         expect(handleCancel).toHaveBeenCalled();
       });
     });
@@ -185,7 +189,7 @@ describe('SchemaRenderer', () => {
             component: componentTypes.CUSTOM,
             name: 'custom',
             labelText: 'This is the content of custom component',
-            CustomComponent: CustomComponentSimple,
+            customComponent: CustomComponentSimple,
           },
         ],
       };
@@ -219,7 +223,7 @@ describe('SchemaRenderer', () => {
           {
             component: componentTypes.CUSTOM,
             name: 'text',
-            CustomComponent: CustomComponentComplex,
+            customComponent: CustomComponentComplex,
           },
         ],
       };
@@ -418,7 +422,7 @@ describe('SchemaRenderer', () => {
 
       expect(getByText('Key')).toBeVisible();
       expect(getByText('Value')).toBeVisible();
-      expect(queryByText('There are currently no items')).not.toBeInTheDocument;
+      // expect(queryByText('There are currently no items')).not.toBeInTheDocument;
 
       act(() => {
         fireEvent.change(getByLabelText('Key'), { target: { value: 'key' } });

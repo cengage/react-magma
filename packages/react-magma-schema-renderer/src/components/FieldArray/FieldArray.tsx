@@ -1,9 +1,13 @@
 import * as React from 'react';
-import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
-import FieldArrayBase from '@data-driven-forms/react-form-renderer/dist/cjs/field-array';
-
-// import { v4 as uuidv4 } from 'uuid';
-import { Button, ButtonColor, Heading, Paragraph } from 'react-magma-dom';
+import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
+import { FieldArray as FieldArrayBase } from '@data-driven-forms/react-form-renderer';
+import {
+  Button,
+  ButtonColor,
+  ButtonType,
+  Heading,
+  Paragraph,
+} from 'react-magma-dom';
 
 import { FieldArrayItem } from './FieldArrayItem';
 
@@ -17,7 +21,7 @@ export const FieldArray = ({ ...props }: any) => {
     meta,
     minItems,
     maxItems,
-    noItemsMessage = 'no items.',
+    noItemsMessage = "You haven't added any items yet!",
     FormControlProps,
     ...rest
   } = useFieldApi(props);
@@ -37,6 +41,7 @@ export const FieldArray = ({ ...props }: any) => {
             {label && <Heading level={6}>{label}</Heading>}
             <Button
               color={ButtonColor.primary}
+              type={ButtonType.button}
               onClick={() => push(defaultItem)}
               disabled={value.length >= maxItems}
             >

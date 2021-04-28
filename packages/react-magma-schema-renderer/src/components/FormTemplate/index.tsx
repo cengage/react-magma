@@ -7,8 +7,8 @@ import {
   Form,
 } from 'react-magma-dom';
 
-import componentTypes from '@data-driven-forms/react-form-renderer/dist/cjs/component-types';
-import useFormApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-form-api';
+import { componentTypes } from '../ComponentMapper';
+import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 
 export interface FormTemplateProps {
   formFields: any;
@@ -56,7 +56,7 @@ export const FormTemplate = ({
   return (
     <Form
       onSubmit={handleSubmit}
-      title={schema.title}
+      header={schema.title}
       description={schema.description}
       actions={actionsVisible ? actions : undefined}
     >

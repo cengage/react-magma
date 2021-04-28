@@ -1,6 +1,5 @@
 import * as React from 'react';
-import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
-
+import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 import { v4 as uuidv4 } from 'uuid';
 import { Select as MagmaSelect } from 'react-magma-dom';
 
@@ -23,6 +22,7 @@ const SelectMapping = (props: any) => {
     input,
     validateOnMount,
     showError,
+    options,
     type,
     meta: { error, submitFailed },
     ...rest
@@ -44,7 +44,9 @@ const SelectMapping = (props: any) => {
   return (
     <MagmaSelect
       id={name}
-      items={rest.items}
+      items={options.map(({ labelText, ...rest }: { labelText: string }) => {
+        return { label: labelText, ...rest };
+      })}
       errorMessage={errorMessage}
       labelText={rest.labelText}
       {...rest}

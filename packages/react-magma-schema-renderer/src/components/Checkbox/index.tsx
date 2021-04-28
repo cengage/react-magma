@@ -1,6 +1,6 @@
 import React from 'react';
-import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
+import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 import { v4 as uuidv4 } from 'uuid';
 import {
   Checkbox as MagmaCheckbox,

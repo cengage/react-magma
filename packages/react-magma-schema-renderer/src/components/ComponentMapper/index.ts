@@ -1,16 +1,17 @@
-import ComponentMapper from '@data-driven-forms/react-form-renderer/dist/cjs/component-mapper';
+import { ComponentMapper } from '@data-driven-forms/react-form-renderer';
 
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
 import { Custom } from '../Custom';
 import { DatePicker } from '../DatePicker';
+import { FileUpload } from '../FileUpload';
 import { FieldArray } from '../FieldArray';
 import { FormGroup } from '../FormGroup';
 import { Input } from '../Input';
 import { Modal } from '../Modal';
 import { PasswordInput } from '../PasswordInput';
 import { Radio } from '../Radio';
-import { Review } from '../Review';
+import { Spy } from '../Spy';
 import { Select } from '../Select';
 import { Textarea } from '../Textarea';
 import { TimePicker } from '../TimePicker';
@@ -36,17 +37,19 @@ export enum componentTypes {
   COMBOBOX = 'COMBOBOX',
   DATE_PICKER = 'DATE_PICKER',
   FIELD_ARRAY = 'FIELD_ARRAY',
+  FILE_UPLOAD = 'FILE_UPLOAD',
   FORM_GROUP = 'FORM_GROUP',
   INPUT = 'INPUT',
   MODAL = 'MODAL',
   PARAGRAPH = 'PARAGRAPH',
   PASSWORD_INPUT = 'PASSWORD_INPUT',
   RADIO = 'RADIO',
-  REVIEW = 'REVIEW',
+  SPY = 'SPY',
   SELECT = 'SELECT',
   TEXTAREA = 'TEXTAREA',
   TIME_PICKER = 'TIME_PICKER',
   TOGGLE = 'TOGGLE',
+  WIZARD = 'WIZARD',
 }
 
 export const componentMapper: ComponentMapper = {
@@ -60,15 +63,18 @@ export const componentMapper: ComponentMapper = {
   [componentTypes.COMBOBOX]: Combobox,
   [componentTypes.DATE_PICKER]: DatePicker,
   [componentTypes.FIELD_ARRAY]: FieldArray,
+  [componentTypes.FILE_UPLOAD]: FileUpload,
   [componentTypes.FORM_GROUP]: FormGroup,
   [componentTypes.INPUT]: Input,
   [componentTypes.MODAL]: Modal,
   [componentTypes.PARAGRAPH]: Paragraph,
   [componentTypes.PASSWORD_INPUT]: PasswordInput,
   [componentTypes.RADIO]: Radio,
-  [componentTypes.REVIEW]: Review,
+  [componentTypes.SPY]: Spy,
   [componentTypes.SELECT]: Select,
   [componentTypes.TEXTAREA]: Textarea,
   [componentTypes.TIME_PICKER]: TimePicker,
   [componentTypes.TOGGLE]: Toggle,
 };
+
+export { ComponentMapper };

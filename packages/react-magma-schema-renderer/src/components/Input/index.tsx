@@ -1,6 +1,6 @@
 import React from 'react';
-import useFieldApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-field-api';
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
+import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 import { v4 as uuidv4 } from 'uuid';
 import {
   Input as MagmaInput,
@@ -15,8 +15,8 @@ const InputMapping = (props: InputProps) => {
     input,
     validateOnMount,
     showError,
-    type,
     meta: { error, submitFailed },
+    input: { type = 'text', ...inputRest },
     ...rest
   } = useFieldApi(props);
   const id = input.name || uuidv4();
@@ -25,8 +25,8 @@ const InputMapping = (props: InputProps) => {
 
   return (
     <MagmaInput
-      {...input}
-      type={type || InputType.text}
+      {...inputRest}
+      type={InputType[type as keyof typeof InputType] || InputType.text}
       id={id}
       errorMessage={errorMessage}
       {...rest}

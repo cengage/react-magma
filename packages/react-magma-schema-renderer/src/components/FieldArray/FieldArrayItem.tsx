@@ -1,19 +1,8 @@
 import * as React from 'react';
-import useFormApi from '@data-driven-forms/react-form-renderer/dist/cjs/use-form-api';
+import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import { v4 as uuidv4 } from 'uuid';
-import { Button, ButtonColor } from 'react-magma-dom';
-
-// export interface FieldArrayItemProps {
-//   fields?: any[];
-//   fieldIndex: number;
-//   name?: string;
-//   onRemove: (index: number) => void;
-//   length?: number;
-//   minItems?: number;
-//   removeLabel: string;
-//   showError?: boolean;
-//   isReadOnly: boolean;
-// }
+import { IconButton, ButtonVariant, ThemeContext } from 'react-magma-dom';
+import { DeleteIcon } from 'react-magma-icons';
 
 export const FieldArrayItem = ({
   fields,
@@ -25,6 +14,7 @@ export const FieldArrayItem = ({
   removeLabel,
 }: any) => {
   const { renderForm } = useFormApi();
+  const theme = React.useContext(ThemeContext);
 
   const editedFields = React.useMemo(() => {
     return fields.map((field: any) => {
@@ -34,20 +24,22 @@ export const FieldArrayItem = ({
         name: computedName,
         key: computedName,
         labelText: fieldIndex === 0 ? field.labelText : null,
+        children: (
+          <IconButton
+            aria-label={removeLabel}
+            icon={<DeleteIcon />}
+            variant={ButtonVariant.link}
+            onClick={() => remove(fieldIndex)}
+            disabled={length <= minItems}
+          />
+        ),
       };
     });
   }, [fields, name, fieldIndex]);
 
   return (
-    <>
-      <div>{editedFields.map((field: any) => renderForm([field]))}</div>
-      <Button
-        color={ButtonColor.secondary}
-        onClick={() => remove(fieldIndex)}
-        disabled={length <= minItems}
-      >
-        {removeLabel}
-      </Button>
-    </>
+    <div style={{ marginTop: theme.spaceScale.spacing04 }}>
+      {editedFields.map((field: any) => renderForm([field]))}
+    </div>
   );
 };
