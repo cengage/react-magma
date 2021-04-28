@@ -1,0 +1,68 @@
+---
+pageTitle: Drawer API
+title: Drawer
+props:
+- DrawerProps
+---
+
+<DocsHeading type="api">
+  Drawer
+</DocsHeading>
+
+A container with a transition
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Drawer } from 'react-magma-dom';
+
+export function Example() {
+return <Drawer>Drawer content</Drawer>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { Drawer } from 'react-magma-dom';
+
+export function Example() {
+return <Drawer isInverse>Drawer content</Drawer>;
+}
+```
+
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        example: 'example i18n',
+      }}
+    >
+      <Drawer>override default i18n value: </Drawer>
+    </I18nContext.Provider>
+  );
+}
+```
+
+# Drawer Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<DrawerProps />
