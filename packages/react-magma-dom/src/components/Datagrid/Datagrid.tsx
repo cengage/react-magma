@@ -1,4 +1,5 @@
-import * as React from 'react';
+import * as React from "react";
+import { IndeterminateCheckboxStatus } from "../IndeterminateCheckbox";
 import {
   Table,
   TableBody,
@@ -7,35 +8,136 @@ import {
   TableHead,
   TableHeaderCell,
   TableProps,
-} from '../Table';
+  TableHeaderCellProps,
+  TableRowColor,
+} from "../Table";
+
+export interface DatagridColumn extends TableHeaderCellProps {
+  field: string;
+  header: string;
+}
+
+export interface DatagridRow {
+  id: string | number;
+  color?: TableRowColor;
+  isSelectableDisabled?: boolean;
+  [key: string]: any;
+}
 
 /**
  * @children required
  */
 export interface DatagridProps extends TableProps {
-  columns: string[];
-  rows: string[][];
+  columns: DatagridColumn[];
+  rows: DatagridRow[];
+  onHeaderSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onRowSelect?: (
+    id: string | number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => void;
+  onSelectedRowsChange?: (newSelectedRows: (string | number)[]) => void;
+  selectedRows: (string | number)[];
 }
 
 export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
   (props, ref) => {
-    const { columns, rows, ...other } = props;
+    const {
+      columns,
+      onHeaderSelect,
+      onRowSelect,
+      onSelectedRowsChange,
+      rows,
+      selectedRows: controlledSelectedRows,
+      ...other
+    } = props;
+    const [selectedRows, updatedSelectedRows] = React.useState<
+      (string | number)[]
+    >(controlledSelectedRows || []);
+
+    const isControlled = controlledSelectedRows ? true : false;
+
+    React.useEffect(() => {
+      if (Array.isArray(controlledSelectedRows)) {
+        updatedSelectedRows(controlledSelectedRows);
+      }
+    }, [controlledSelectedRows]);
+
+    const headerRowStatus =
+      selectedRows.length === rows.length
+        ? IndeterminateCheckboxStatus.checked
+        : selectedRows.length > 0
+        ? IndeterminateCheckboxStatus.indeterminate
+        : IndeterminateCheckboxStatus.unchecked;
+
+    function handleRowSelect(
+      id: string | number,
+      event: React.ChangeEvent<HTMLInputElement>
+    ) {
+      const { checked } = event.target;
+      const newSelectedRows = [...selectedRows];
+
+      checked
+        ? newSelectedRows.push(id)
+        : newSelectedRows.splice(newSelectedRows.indexOf(id), 1);
+
+      handleSelectedRowsChange(newSelectedRows);
+
+      onRowSelect &&
+        typeof onRowSelect === "function" &&
+        onRowSelect(id, event);
+    }
+
+    function handleHeaderSelect(event: React.ChangeEvent<HTMLInputElement>) {
+      if (
+        headerRowStatus === IndeterminateCheckboxStatus.indeterminate ||
+        headerRowStatus === IndeterminateCheckboxStatus.checked
+      ) {
+        handleSelectedRowsChange([]);
+      } else {
+        handleSelectedRowsChange(rows.map((row) => row.id));
+      }
+
+      onHeaderSelect &&
+        typeof onHeaderSelect === "function" &&
+        onHeaderSelect(event);
+    }
+
+    function handleSelectedRowsChange(newSelectedRows) {
+      if (isControlled) {
+        onSelectedRowsChange &&
+          typeof onSelectedRowsChange === "function" &&
+          onSelectedRowsChange(newSelectedRows);
+      } else {
+        updatedSelectedRows(newSelectedRows);
+      }
+    }
 
     return (
       <Table {...other} ref={ref}>
         <TableHead>
-          <TableRow>
-            {columns.map((col, i) => (
-              <TableHeaderCell key={`headercell${i}`}>{col}</TableHeaderCell>
+          <TableRow
+            headerRowStatus={headerRowStatus}
+            onHeaderRowSelect={handleHeaderSelect}
+          >
+            {columns.map(({ field, header, ...other }) => (
+              <TableHeaderCell key={`headercell${field}`} {...other}>
+                {header}
+              </TableHeaderCell>
             ))}
           </TableRow>
         </TableHead>
 
         <TableBody>
-          {rows.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+          {rows.map(({ id, color, isSelectableDisabled, ...other }) => (
+            <TableRow
+              key={`row${id}`}
+              color={color}
+              isSelected={selectedRows ? selectedRows.indexOf(id) > -1 : false}
+              isSelectableDisabled={isSelectableDisabled}
+              onTableRowSelect={(event) => handleRowSelect(id, event)}
+            >
+              {Object.keys(other).map((field) => (
+                <TableCell key={`cell${field}`}>{other[field]}</TableCell>
               ))}
             </TableRow>
           ))}

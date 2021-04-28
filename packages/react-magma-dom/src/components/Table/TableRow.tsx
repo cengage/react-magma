@@ -18,6 +18,11 @@ export interface TableRowProps
    * The color scheme of the table row, giving contextual meaning to the content
    */
   color?: TableRowColor;
+  headerRowStatus?: IndeterminateCheckboxStatus;
+  isSelected?: boolean;
+  isSelectableDisabled?: boolean;
+  onHeaderRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onTableRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   rowIndex?: number;
   testId?: string;
 }
@@ -101,7 +106,17 @@ const StyledTableRow = styled.tr<{
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   (props, ref) => {
-    const { children, rowIndex, testId, ...other } = props;
+    const {
+      children,
+      headerRowStatus,
+      isSelected,
+      isSelectableDisabled,
+      onHeaderRowSelect,
+      onTableRowSelect,
+      rowIndex,
+      testId,
+      ...other
+    } = props;
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 
@@ -125,12 +140,6 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       return tableContext.isInverse;
     }
 
-    const status = IndeterminateCheckboxStatus.checked;
-
-    const handleUpdateIndeterminateChecked = () => {};
-
-    const handleUpdateChecked = () => {};
-
     return (
       <StyledTableRow
         {...other}
@@ -144,12 +153,12 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         {tableContext.isSelectable && isHeaderRow && (
           <TableHeaderCell width={theme.spaceScale.spacing05}>
             <IndeterminateCheckbox
-              status={status}
+              status={headerRowStatus}
               isInverse={getIsCheckboxInverse()}
               labelStyle={{ padding: 0 }}
               labelText="Select all rows"
               isTextVisuallyHidden
-              onChange={handleUpdateIndeterminateChecked}
+              onChange={onHeaderRowSelect}
             />
           </TableHeaderCell>
         )}
@@ -159,11 +168,13 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
             style={{ verticalAlign: 'middle' }}
           >
             <Checkbox
+              checked={isSelected}
+              disabled={isSelectableDisabled}
               labelStyle={{ padding: 0 }}
               labelText={`Select row ${rowIndex} of ${tableContext.rowCount}`}
               isTextVisuallyHidden
               isInverse={getIsCheckboxInverse()}
-              onChange={handleUpdateChecked}
+              onChange={onTableRowSelect}
             />
           </TableCell>
         )}
