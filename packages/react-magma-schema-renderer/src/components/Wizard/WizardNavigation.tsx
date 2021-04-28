@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { WizardStepProps } from '.';
-import { Tabs, TabsOrientation, TabsProps, Orientation } from '../Tabs';
-import { Tab } from '../Tabs/Tab';
+import {
+  Tab,
+  Tabs,
+  TabsOrientation,
+  TabsProps,
+  Orientation,
+} from 'react-magma-dom';
 
 export interface NavigationStepClickProps {
   requestedStepIndex: number;

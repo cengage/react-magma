@@ -5,9 +5,7 @@ import {
   WizardInnerProps,
   NavigationStepClickProps,
 } from '.';
-import { TabsOrientation } from '../Tabs/shared';
-import { HeadingProps } from '../Heading';
-import { ParagraphProps } from '../Paragraph';
+import { TabsOrientation, HeadingProps, ParagraphProps } from 'react-magma-dom';
 
 export interface WizardProps {
   /**

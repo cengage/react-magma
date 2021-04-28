@@ -1,7 +1,6 @@
 import React from 'react';
 import { Wizard, WizardProps } from '.';
-import { Input } from '../Input';
-import { TabsOrientation } from '../Tabs/shared';
+import { Input, TabsOrientation } from 'react-magma-dom';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<WizardProps> = args => (

@@ -36,15 +36,13 @@ describe('SchemaRenderer', () => {
     };
 
     it('should render header and description', () => {
-      const { debug, getByText } = render(
+      const { getByText } = render(
         <SchemaRenderer
           schema={schema}
           onSubmit={handleSubmit}
           onCancel={handleCancel}
         />
       );
-
-      debug();
 
       expect(getByText('title')).toBeVisible();
       expect(getByText('description')).toBeVisible();

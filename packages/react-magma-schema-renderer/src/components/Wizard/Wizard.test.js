@@ -1,9 +1,7 @@
 import React from 'react';
 import { act, render, cleanup, fireEvent } from '@testing-library/react';
 import { Wizard } from '.';
-import { Input } from '../Input';
-import { I18nContext } from '../../i18n';
-import { defaultI18n } from '../../i18n/default';
+import { Input, I18nContext, defaultI18n } from 'react-magma-dom';
 import { axe } from 'jest-axe';
 
 const steps = [

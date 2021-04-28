@@ -5,18 +5,35 @@ import {
   WizardNavigation,
   NavigationStepClickProps,
 } from '.';
-import { HeadingProps } from '../Heading';
-import { ParagraphProps } from '../Paragraph';
-import { Button, ButtonColor, ButtonVariant } from '../Button';
-import { Spinner, SpinnerProps } from '../Spinner';
-import { TabsContainer } from '../Tabs/TabsContainer';
+import {
+  I18nContext,
+  TabsContainer,
+  ThemeContext,
+  ThemeInterface,
+  TabsOrientation,
+  Button,
+  ButtonColor,
+  TabsBorderPosition,
+  ButtonVariant,
+  Spinner,
+  SpinnerProps,
+  HeadingProps,
+  ParagraphProps,
+} from 'react-magma-dom';
 import styled from '@emotion/styled';
-import { TabsOrientation, Orientation } from '../Tabs';
-import { I18nContext } from '../../i18n';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 
-const StyledSpinner = styled(Spinner)<SpinnerProps>`
+export interface VerticalTabsProps {
+  orientation?: TabsOrientation.vertical;
+  borderPosition?: TabsBorderPosition.left | TabsBorderPosition.right;
+}
+export interface HorizontalTabsProps {
+  orientation?: TabsOrientation.horizontal;
+  borderPosition?: TabsBorderPosition.bottom | TabsBorderPosition.top;
+}
+
+export declare type Orientation = HorizontalTabsProps | VerticalTabsProps;
+
+const StyledSpinner = styled(Spinner)<SpinnerProps & { theme: ThemeInterface }>`
   margin: ${props => `0 0 0 ${props.theme.spaceScale.spacing03}`};
 `;
 

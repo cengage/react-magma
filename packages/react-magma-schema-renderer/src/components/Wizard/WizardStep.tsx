@@ -1,10 +1,14 @@
 import * as React from 'react';
-import { Heading, HeadingProps } from '../Heading';
-import { Paragraph, ParagraphProps } from '../Paragraph';
-import { TabsOrientation } from '../Tabs';
-import { I18nContext } from '../../i18n';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import {
+  Heading,
+  HeadingProps,
+  Paragraph,
+  ParagraphProps,
+  TabsOrientation,
+  I18nContext,
+  ThemeContext,
+  ThemeInterface,
+} from 'react-magma-dom';
 import styled from '@emotion/styled';
 
 export interface WizardStepProps {
