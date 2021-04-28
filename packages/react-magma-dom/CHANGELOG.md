@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.3.13-alpha.1
+
+### Patch Changes
+
+- efb6f297: feat: updating error styles for radios
+
 ## 2.3.13-alpha.0
 
 ### Patch Changes

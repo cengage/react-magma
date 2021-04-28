@@ -9,6 +9,7 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "six-bears-sing",
     "spicy-seals-speak"
   ]
 }
