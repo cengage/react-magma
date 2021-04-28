@@ -225,4 +225,14 @@ export interface I18nInterface {
     amSelectedAnnounce: string;
     pmSelectedAnnounce: string;
   };
+  wizard: {
+    navigationLabel: string;
+    optional: string;
+    actions: {
+      previous: string;
+      next: string;
+      submit: string;
+      cancel: string;
+    };
+  };
 }

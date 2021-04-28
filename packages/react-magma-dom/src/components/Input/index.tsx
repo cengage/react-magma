@@ -38,6 +38,7 @@ export interface InputProps extends Omit<InputBaseProps, 'hasError'> {
    * Style properties for the helper or error message
    */
   messageStyle?: React.CSSProperties;
+  testId?: string;
 }
 
 const Container = styled.div`

@@ -3,6 +3,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { stringIncludesUnit } from '../../utils';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
@@ -15,6 +16,10 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @default 16
    */
   size?: string | number;
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
   testId?: string;
 }
 
