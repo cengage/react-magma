@@ -14,6 +14,8 @@ An accordion is a vertically stacked group of collapsible sections. An accordion
 
 ## Basic Usage
 
+By default, only one item may be expanded and it can only be collapsed again by expanding another.
+
 ```typescript
 import React from 'react';
 import {
@@ -33,6 +35,43 @@ export function Example() {
       <AccordionItem>
         <AccordionButton>Section 2</AccordionButton>
         <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 3</AccordionButton>
+        <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
+## Multiple Expanded
+
+If you set `isMultiple` to true then the accordion will allow multiple items to be expanded at once.
+
+```typescript
+import React from 'react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Accordion isMultiple>
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 3</AccordionButton>
+        <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
       </AccordionItem>
     </Accordion>
   );

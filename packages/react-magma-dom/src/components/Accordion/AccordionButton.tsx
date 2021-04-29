@@ -58,6 +58,10 @@ const StyledButton = styled.button<AccordionButtonProps>`
   }
 `;
 
+const TextWrapper = styled.span`
+  flex-grow: 1;
+`;
+
 export const AccordionButton = React.forwardRef<
   HTMLButtonElement,
   AccordionButtonProps
@@ -73,9 +77,14 @@ export const AccordionButton = React.forwardRef<
     setExpandedIndex,
   } = React.useContext(AccordionContext);
 
-  const { index, isDisabled, isExpanded, setIsExpanded } = React.useContext(
-    AccordionItemContext
-  );
+  const {
+    buttonId,
+    index,
+    isDisabled,
+    isExpanded,
+    panelId,
+    setIsExpanded,
+  } = React.useContext(AccordionItemContext);
 
   const handleClick = () => {
     if (isMultiple) {
@@ -90,9 +99,11 @@ export const AccordionButton = React.forwardRef<
   return (
     <StyledButton
       {...rest}
+      aria-controls={panelId}
       aria-expanded={isExpanded}
       data-testid={testId}
       disabled={isDisabled}
+      id={buttonId}
       isInverse={isInverse}
       onClick={handleClick}
       ref={ref}
@@ -104,7 +115,7 @@ export const AccordionButton = React.forwardRef<
           <Spacer size={12} />
         </>
       )}
-      <span style={{ flexGrow: 1 }}>{children}</span>
+      <TextWrapper>{children}</TextWrapper>
       {iconPosition === AccordionIconPosition.right && <AngleDownIcon />}
     </StyledButton>
   );

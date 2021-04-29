@@ -10,7 +10,6 @@ import { InverseContext, useIsInverse } from '../../inverse';
 // TODO: Add headings (h2, h3 etc)
 // TODO: Finish styling
 // TODO: Animation
-// TODO: Add aria-controls attributes (includes adding IDs)
 // TODO: Refactor to use custom hooks
 // TODO: Handle edge cases, bad combinations of props
 // TODO: Tests
