@@ -1,3 +1,5 @@
+import { ThemeTransitions, transitions } from './transitions';
+
 export interface Colors {
   primary: string;
   focus: string;
@@ -208,6 +210,7 @@ export interface ThemeInterface {
   modal: Modal;
   tabs: Tabs;
   tooltip: Tooltip;
+  transitions: ThemeTransitions;
 }
 
 const typeScale = {
@@ -334,7 +337,7 @@ export const magma = {
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
   spacingMultiplier: 8,
-
+  transitions,
   // breakpoints
   breakpoints: {
     xs: 0,

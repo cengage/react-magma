@@ -21,6 +21,7 @@
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
     "file-loader": "^3.0.1",
+    "framer-motion": "^4.1.11",
     "gatsby": "^2.19.0",
     "gatsby-background-image": "^0.9.13",
     "gatsby-image": "^2.2.39",

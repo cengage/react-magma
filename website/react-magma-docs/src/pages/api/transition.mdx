@@ -1,0 +1,244 @@
+---
+pageTitle: Transition API
+title: Transition
+props:
+  - TransitionProps
+---
+
+<DocsHeading type="api">Transition</DocsHeading>
+
+Smart wrappers using framer-motion to add transitions to child components.
+
+## Basic Usage
+
+      'fade',
+      'slideTop',
+      'slideBottom',
+      'slideRight',
+      'slideLeft',
+      'scale',
+      'collapse'
+
+### Fade
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} fade style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### SlideTop
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} slideTop style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### SlideLeft
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} slideLeft style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### SlideBottom
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} slideBottom style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### SlideRight
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} slideRight style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### Scale
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} scale style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### Collapse
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} collapse style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+### Composition
+
+Transitions can be combined to create more advanced effects.
+
+```typescript
+import React from 'react';
+import { Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <div>
+      <Transition in={isOpen} scale fade style={{ overflow: 'hidden' }}>
+        <div
+          style={{
+            height: '250px',
+            width: '250px',
+            backgroundColor: '#bada55',
+          }}
+        />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </div>
+  );
+}
+```
+
+# Transition Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<TransitionProps />
