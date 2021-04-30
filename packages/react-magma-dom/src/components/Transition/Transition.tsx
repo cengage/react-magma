@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
-import { MotionVariants } from '../../theme/transitions';
+import { MotionVariants } from '../../theme/components/transition';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -8,7 +8,7 @@ import { ThemeInterface } from '../../theme/magma';
 /**
  * @children required
  */
-export interface TransitionProps extends HTMLMotionProps<'div'> {
+export interface BaseTransitionProps extends HTMLMotionProps<'div'> {
   /**
    * If `true`, the element will unmount when `in={false}` and animation is done
    */
@@ -23,25 +23,9 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
    */
   fade?: boolean;
   /**
-   * If `true` the children will have the `slideTop` transition applied from the theme.
-   * @deafult false
+   * Custom styles to apply to the transition component div.
    */
-  slideTop?: boolean;
-  /**
-   * If `true` the children will have the `slideBottom` transition applied from the theme.
-   * @deafult false
-   */
-  slideBottom?: boolean;
-  /**
-   * If `true` the children will have the `  slideRight` transition applied from the theme.
-   * @deafult false
-   */
-  slideRight?: boolean;
-  /**
-   * If `true` the children will have the `slideLeft` transition applied from the theme.
-   * @deafult false
-   */
-  slideLeft?: boolean;
+  style?: React.CSSProperties;
   /**
    * If `true` the children will have the `scale` transition applied from the theme.
    * @deafult false
@@ -49,24 +33,92 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
   scale?: boolean;
   /**
    * If `true` the children will have the `collapse` transition applied from the theme.
-   * @deafult false
+   * @internal
    */
-  collapse?: boolean;
-  /**
-   * If `true` the children will have the `collapse` transition applied from the theme.
-   */
-  // customTransition?: MotionVariants<"enter" | "exit">;
+  customTransition?: MotionVariants<"enter" | "exit">;
 }
+
+interface SlideTopTransitionProps extends BaseTransitionProps {
+  slideTop: boolean;
+}
+
+interface SlideBottonTransitionProps extends BaseTransitionProps {
+  slideBottom: boolean;
+}
+
+interface SlideRightTransitionProps extends BaseTransitionProps {
+  slideRight: boolean;
+}
+
+interface SlideLeftTransitionProps extends BaseTransitionProps {
+  slideLeft: boolean;
+}
+interface CollapseTransitionProps extends BaseTransitionProps {
+  collapse?: boolean;
+}
+
+interface NudgeTopTransitionProps extends BaseTransitionProps {
+  nudgeTop: boolean;
+}
+
+interface NudgeLeftTransitionProps extends BaseTransitionProps {
+  nudgeLeft: boolean;
+}
+
+interface NudgeRightTransitionProps extends BaseTransitionProps {
+  nudgeRight: boolean;
+}
+
+interface NudgeBottomTransitionProps extends BaseTransitionProps {
+  nudgeBottom: boolean;
+}
+
+interface NudgeTopLeftTransitionProps extends BaseTransitionProps {
+  nudgeTop: boolean;
+  nudgeLeft: boolean;
+}
+
+interface NudgeBottomLeftTransitionProps extends BaseTransitionProps {
+  nudgeBottom: boolean;
+  nudgeLeft: boolean;
+}
+
+interface NudgeTopRightTransitionProps extends BaseTransitionProps {
+  nudgeTop: boolean;
+  nudgeRight: boolean;
+}
+
+interface NudgeBottomRightTransitionProps extends BaseTransitionProps {
+  nudgeBottom: boolean;
+  nudgeRight: boolean;
+}
+
+export type TransitionProps = BaseTransitionProps |
+  SlideTopTransitionProps |
+  SlideBottonTransitionProps |
+  SlideRightTransitionProps |
+  SlideLeftTransitionProps |
+  CollapseTransitionProps |
+  NudgeTopTransitionProps |
+  NudgeLeftTransitionProps |
+  NudgeRightTransitionProps |
+  NudgeBottomTransitionProps |
+  NudgeTopLeftTransitionProps |
+  NudgeBottomLeftTransitionProps |
+  NudgeTopRightTransitionProps |
+  NudgeBottomRightTransitionProps
 
 export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
   (props, ref) => {
     const theme: ThemeInterface = React.useContext(ThemeContext);
 
     const {
+      style,
       unmountOnExit,
       in: isOpen,
       initial = 'exit',
       exit = 'exit',
+      customTransition={ enter: {transition:{}}, exit: {transition:{}} },
       ...rest
     } = props;
 
@@ -74,19 +126,39 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
 
     const variants = Object.keys(rest).reduce(
       (acc, key) => {
-        if (theme.transitions[key]) {
+        if (rest[key] && theme.transitions[key]) {
+          const themeVariant = theme.transitions[key];
+          rest[key] = undefined;
           return {
-            enter: { ...acc.enter, ...theme.transitions[key].enter },
-            exit: { ...acc.exit, ...theme.transitions[key].exit },
+            baseStyle: {
+              ...acc.baseStyle,
+              ...themeVariant.baseStyle
+            },
+            motion: {
+              ...acc,
+              enter: { 
+                ...acc.motion.enter,
+                ...themeVariant.motion.enter,
+                transition: {
+                  ...('transition' in acc.motion.enter ? acc.motion.enter.transition : {}),
+                  ...('transition' in themeVariant.motion.enter ? themeVariant.motion.enter.transition : {}),
+                }
+              },
+              exit: { 
+                ...acc.motion.exit, 
+                ...themeVariant.motion.exit, 
+                transition: {
+                  ...('transition' in acc.motion.exit ? acc.motion.exit.transition : {}),
+                  ...('transition' in themeVariant.motion.exit ? themeVariant.motion.exit.transition : {}),
+                } 
+              },
+            }
           };
-          // delete rest[key];
         }
         return acc;
       },
-      { enter: {}, exit: {} }
+      {motion: customTransition, baseStyle:{}}
     );
-
-    console.log(variants);
 
     return (
       <AnimatePresence>
@@ -96,7 +168,8 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
             initial={initial}
             exit={exit}
             animate={isOpen || unmountOnExit ? 'enter' : 'exit'}
-            variants={variants}
+            variants={variants.motion}
+            style={{...variants.baseStyle, ...style}}
             {...rest}
           />
         )}

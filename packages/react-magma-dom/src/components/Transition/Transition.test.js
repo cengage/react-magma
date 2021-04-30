@@ -12,15 +12,6 @@ describe('Transition', () => {
     expect(getByText(TEXT)).toBeInTheDocument();
   });
 
-  // it('should find element by testId', () => {
-  //   const testId = 'test-id';
-  //   const { getByTestId } = render(
-  //     <Transition testId={testId}>{TEXT}</Transition>
-  //   );
-
-  //   expect(getByTestId(testId)).toBeInTheDocument();
-  // });
-
   it('Does not violate accessibility standards', () => {
     const { container } = render(<Transition>{TEXT}</Transition>);
 

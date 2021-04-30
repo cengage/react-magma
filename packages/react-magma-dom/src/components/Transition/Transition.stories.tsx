@@ -34,3 +34,7 @@ export const Default = args => {
     </div>
   );
 };
+
+export const Testing = ()  => {
+  return <Transition scale nudgeLeft nudgeRight /> 
+}

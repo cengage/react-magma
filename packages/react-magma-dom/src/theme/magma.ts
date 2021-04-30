@@ -1,4 +1,4 @@
-import { ThemeTransitions, transitions } from './transitions';
+import { ThemeTransitions, transitions } from './components/transition';
 
 export interface Colors {
   primary: string;

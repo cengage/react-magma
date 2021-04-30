@@ -129,19 +129,23 @@ const filterJson = () => {
 
   const formatChild = (acc, child) => {
     const tags = formatTags((child.comment && child.comment.tags) || []);
-    return {
-      ...acc,
-      [child.name]: {
-        name: child.name,
-        required: child.flags && !child.flags.isOptional,
-        type: findType(child.type),
-        description:
-          (child.comment && child.comment.shortText) ||
-          defaultDescriptions[child.name],
-        defaultValue: defaultDefaults[child.name] || tags.default,
-        deprecated: !!tags.deprecated,
-      },
-    };
+    if(child && child.type){
+      return {
+        ...acc,
+        [child.name]: {
+          name: child.name,
+          required: child.flags && !child.flags.isOptional,
+          type: findType(child.type),
+          description:
+            (child.comment && child.comment.shortText) ||
+            defaultDescriptions[child.name],
+          defaultValue: defaultDefaults[child.name] || tags.default,
+          deprecated: !!tags.deprecated,
+        },
+      };
+    }
+    console.log(child)
+    return {}
   };
 
   const jsonFinal = jsonOrig.children
