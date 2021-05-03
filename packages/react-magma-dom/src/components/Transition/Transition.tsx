@@ -23,19 +23,15 @@ export interface BaseTransitionProps extends HTMLMotionProps<'div'> {
    */
   fade?: boolean;
   /**
-   * Custom styles to apply to the transition component div.
-   */
-  style?: React.CSSProperties;
-  /**
    * If `true` the children will have the `scale` transition applied from the theme.
    * @deafult false
    */
   scale?: boolean;
   /**
-   * If `true` the children will have the `collapse` transition applied from the theme.
+   * Custom variants to be applied to the enter and exit transitions.
    * @internal
    */
-  customTransition?: MotionVariants<"enter" | "exit">;
+  customTransition?: MotionVariants<'enter' | 'exit'>;
 }
 
 interface SlideTopTransitionProps extends BaseTransitionProps {
@@ -93,20 +89,21 @@ interface NudgeBottomRightTransitionProps extends BaseTransitionProps {
   nudgeRight: boolean;
 }
 
-export type TransitionProps = BaseTransitionProps |
-  SlideTopTransitionProps |
-  SlideBottonTransitionProps |
-  SlideRightTransitionProps |
-  SlideLeftTransitionProps |
-  CollapseTransitionProps |
-  NudgeTopTransitionProps |
-  NudgeLeftTransitionProps |
-  NudgeRightTransitionProps |
-  NudgeBottomTransitionProps |
-  NudgeTopLeftTransitionProps |
-  NudgeBottomLeftTransitionProps |
-  NudgeTopRightTransitionProps |
-  NudgeBottomRightTransitionProps
+export type TransitionProps =
+  | BaseTransitionProps
+  | SlideTopTransitionProps
+  | SlideBottonTransitionProps
+  | SlideRightTransitionProps
+  | SlideLeftTransitionProps
+  | CollapseTransitionProps
+  | NudgeTopTransitionProps
+  | NudgeLeftTransitionProps
+  | NudgeRightTransitionProps
+  | NudgeBottomTransitionProps
+  | NudgeTopLeftTransitionProps
+  | NudgeBottomLeftTransitionProps
+  | NudgeTopRightTransitionProps
+  | NudgeBottomRightTransitionProps;
 
 export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
   (props, ref) => {
@@ -118,7 +115,10 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       in: isOpen,
       initial = 'exit',
       exit = 'exit',
-      customTransition={ enter: {transition:{}}, exit: {transition:{}} },
+      customTransition = {
+        enter: { transition: {} },
+        exit: { transition: {} },
+      },
       ...rest
     } = props;
 
@@ -132,32 +132,40 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
           return {
             baseStyle: {
               ...acc.baseStyle,
-              ...themeVariant.baseStyle
+              ...themeVariant.baseStyle,
             },
             motion: {
               ...acc,
-              enter: { 
+              enter: {
                 ...acc.motion.enter,
                 ...themeVariant.motion.enter,
                 transition: {
-                  ...('transition' in acc.motion.enter ? acc.motion.enter.transition : {}),
-                  ...('transition' in themeVariant.motion.enter ? themeVariant.motion.enter.transition : {}),
-                }
+                  ...('transition' in acc.motion.enter
+                    ? acc.motion.enter.transition
+                    : {}),
+                  ...('transition' in themeVariant.motion.enter
+                    ? themeVariant.motion.enter.transition
+                    : {}),
+                },
               },
-              exit: { 
-                ...acc.motion.exit, 
-                ...themeVariant.motion.exit, 
+              exit: {
+                ...acc.motion.exit,
+                ...themeVariant.motion.exit,
                 transition: {
-                  ...('transition' in acc.motion.exit ? acc.motion.exit.transition : {}),
-                  ...('transition' in themeVariant.motion.exit ? themeVariant.motion.exit.transition : {}),
-                } 
+                  ...('transition' in acc.motion.exit
+                    ? acc.motion.exit.transition
+                    : {}),
+                  ...('transition' in themeVariant.motion.exit
+                    ? themeVariant.motion.exit.transition
+                    : {}),
+                },
               },
-            }
+            },
           };
         }
         return acc;
       },
-      {motion: customTransition, baseStyle:{}}
+      { motion: customTransition, baseStyle: {} }
     );
 
     return (
@@ -169,7 +177,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
             exit={exit}
             animate={isOpen || unmountOnExit ? 'enter' : 'exit'}
             variants={variants.motion}
-            style={{...variants.baseStyle, ...style}}
+            style={{ ...variants.baseStyle, ...style }}
             {...rest}
           />
         )}
