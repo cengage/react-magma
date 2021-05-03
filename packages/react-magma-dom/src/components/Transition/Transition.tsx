@@ -16,7 +16,7 @@ export interface BaseTransitionProps extends HTMLMotionProps<'div'> {
   /**
    * If `true`, the content will animate in
    */
-  in?: boolean;
+  isOpen?: boolean;
   /**
    * If `true` the children will have the `fade` transition applied from the theme.
    * @deafult false
@@ -35,61 +35,188 @@ export interface BaseTransitionProps extends HTMLMotionProps<'div'> {
 }
 
 interface SlideTopTransitionProps extends BaseTransitionProps {
-  slideTop: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop: true;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface SlideBottonTransitionProps extends BaseTransitionProps {
-  slideBottom: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom: true;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface SlideRightTransitionProps extends BaseTransitionProps {
-  slideRight: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight: true;
+  nudgeTop?: never;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface SlideLeftTransitionProps extends BaseTransitionProps {
-  slideLeft: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft: true;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight?: never;
+  collapse?: never;
 }
+
 interface CollapseTransitionProps extends BaseTransitionProps {
-  collapse?: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight?: never;
+  collapse: true;
 }
 
 interface NudgeTopTransitionProps extends BaseTransitionProps {
-  nudgeTop: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop: true;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface NudgeLeftTransitionProps extends BaseTransitionProps {
-  nudgeLeft: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom?: never;
+  nudgeLeft: true;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface NudgeRightTransitionProps extends BaseTransitionProps {
-  nudgeRight: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight: true;
+  collapse?: never;
 }
 
 interface NudgeBottomTransitionProps extends BaseTransitionProps {
-  nudgeBottom: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom: true;
+  nudgeLeft?: never;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface NudgeTopLeftTransitionProps extends BaseTransitionProps {
-  nudgeTop: boolean;
-  nudgeLeft: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop: true;
+  nudgeBottom?: never;
+  nudgeLeft: true;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface NudgeBottomLeftTransitionProps extends BaseTransitionProps {
-  nudgeBottom: boolean;
-  nudgeLeft: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom: true;
+  nudgeLeft: true;
+  nudgeRight?: never;
+  collapse?: never;
 }
 
 interface NudgeTopRightTransitionProps extends BaseTransitionProps {
-  nudgeTop: boolean;
-  nudgeRight: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop: true;
+  nudgeBottom?: never;
+  nudgeLeft?: never;
+  nudgeRight: true;
+  collapse?: never;
 }
 
 interface NudgeBottomRightTransitionProps extends BaseTransitionProps {
-  nudgeBottom: boolean;
-  nudgeRight: boolean;
+  fade?: boolean;
+  scale?: boolean;
+  slideTop?: never;
+  slideBottom?: never;
+  slideLeft?: never;
+  slideRight?: never;
+  nudgeTop?: never;
+  nudgeBottom: true;
+  nudgeLeft?: never;
+  nudgeRight: true;
+  collapse?: never;
 }
 
-export type TransitionProps =
+export type TransitionProps = 
   | BaseTransitionProps
   | SlideTopTransitionProps
   | SlideBottonTransitionProps
@@ -112,7 +239,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     const {
       style,
       unmountOnExit,
-      in: isOpen,
+      isOpen,
       initial = 'exit',
       exit = 'exit',
       customTransition = {
@@ -185,3 +312,5 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     );
   }
 );
+
+const doot = () => <Transition slideLeft  collapse/>

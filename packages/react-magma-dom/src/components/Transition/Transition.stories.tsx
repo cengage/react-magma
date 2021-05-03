@@ -6,12 +6,61 @@ export default {
   component: Transition,
   title: 'Transition',
   argTypes: {
-    direction: {
+    slideTop: {
       control: {
-        type: 'select',
-        options: ['top', 'bottom', 'left', 'right'],
+        type: 'boolean',
       },
     },
+    slideBottom: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    slideRight: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    slideLeft: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    nudgeTop: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    nudgeBottom: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    nudgeRight: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    nudgeLeft: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    fade: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    scale: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    collapse: {
+      control: {
+        type: 'boolean',
+      },
+    },  
   },
 };
 
@@ -19,7 +68,7 @@ export const Default = args => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
-      <Transition in={isOpen} collapse {...args} style={{ overflow: 'hidden' }}>
+      <Transition in={isOpen} {...args} style={{ overflow: 'hidden' }}>
         <div
           style={{
             height: '250px',
@@ -34,7 +83,3 @@ export const Default = args => {
     </div>
   );
 };
-
-export const Testing = ()  => {
-  return <Transition scale nudgeLeft nudgeRight /> 
-}

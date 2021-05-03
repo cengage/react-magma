@@ -8,18 +8,23 @@ props:
 <DocsHeading type="api">Transition</DocsHeading>
 
 Smart wrappers using framer-motion to add transitions to child components.
+The theme defines several preconfigured transitions that will apply the base styles and the exit and enter variants.
+Changing the value of `isOpen` results in the transition animating. Going from `isOpen={true}` to `isOpen={false}` will results
+in the transition animating to the `exit` variant. Going from `isOpen={false}` to `isOpen={true}` will result in animating to the `enter` variant.
 
-### Kitchen Sink
+## Basic Usage
+
+### Collapse
+
+Collapse will transition the child components from 100% height to 0px.
 
 ```typescript
 import React from 'react';
 import { styled } from '@emotion/styled';
-import { Transition, Checkbox } from 'react-magma-dom';
+import { Button, Transition } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [transitions, setTransitions] = React.useState({});
-  const [unmountOnExit, setUnmountOnExit] = React.useState(false);
 
   const Box = styled.div`
     height: 250px;
@@ -27,535 +32,140 @@ export function Example() {
     background: #bada55;
   `;
 
-  const Preview = () => (
-    <pre>
-      {'<'}Transition{' '}
-      {Object.keys(transitions)
-        .filter(key => transitions[key])
-        .join(' ')}
-      {'>\n'}
-      {'  <'}div{'>'}children{'<'}/div{'>\n'}
-      {'<'}/Transition{'>'}
-    </pre>
-  );
-
   return (
-    <div>
-      <Checkbox
-        labelText="unmountOnExit"
-        checked={unmountOnExit}
-        onChange={() => setUnmountOnExit(!unmountOnExit)}
-      />
-      <Checkbox
-        labelText="fade"
-        checked={transitions.fade}
-        onChange={() =>
-          setTransitions({ ...transitions, fade: !transitions.fade })
-        }
-      />
-      <Checkbox
-        labelText="scale"
-        checked={transitions.scale}
-        onChange={() =>
-          setTransitions({ ...transitions, scale: !transitions.scale })
-        }
-      />
-      <Checkbox
-        labelText="collapse"
-        checked={transitions.collapse}
-        disabled={
-          transitions.slideTop |
-          transitions.slideBottom |
-          transitions.slideLeft |
-          transitions.slideRight |
-          transitions.nudgeTop |
-          transitions.nudgeBottom |
-          transitions.nudgeLeft |
-          transitions.nudgeRight
-        }
-        onChange={() =>
-          setTransitions({ ...transitions, collapse: !transitions.collapse })
-        }
-      />
-      <Checkbox
-        labelText="slideTop"
-        checked={transitions.slideTop}
-        disabled={
-          transitions.collapse |
-          transitions.slideBottom |
-          transitions.slideLeft |
-          transitions.slideRight |
-          transitions.nudgeTop |
-          transitions.nudgeBottom |
-          transitions.nudgeLeft |
-          transitions.nudgeRight
-        }
-        onChange={() =>
-          setTransitions({ ...transitions, slideTop: !transitions.slideTop })
-        }
-      />
-      <Checkbox
-        labelText="slideBottom"
-        checked={transitions.slideBottom}
-        disabled={
-          transitions.collapse |
-          transitions.slideTop |
-          transitions.slideLeft |
-          transitions.slideRight |
-          transitions.nudgeTop |
-          transitions.nudgeBottom |
-          transitions.nudgeLeft |
-          transitions.nudgeRight
-        }
-        onChange={() =>
-          setTransitions({
-            ...transitions,
-            slideBottom: !transitions.slideBottom,
-          })
-        }
-      />
-      <Checkbox
-        labelText="slideRight"
-        checked={transitions.slideRight}
-        disabled={
-          transitions.collapse |
-          transitions.slideTop |
-          transitions.slideBottom |
-          transitions.slideLeft |
-          transitions.nudgeTop |
-          transitions.nudgeBottom |
-          transitions.nudgeLeft |
-          transitions.nudgeRight
-        }
-        onChange={() =>
-          setTransitions({
-            ...transitions,
-            slideRight: !transitions.slideRight,
-          })
-        }
-      />
-      <Checkbox
-        labelText="slideLeft"
-        checked={transitions.slideLeft}
-        disabled={
-          transitions.collapse |
-          transitions.slideTop |
-          transitions.slideBottom |
-          transitions.slideRight |
-          transitions.nudgeTop |
-          transitions.nudgeBottom |
-          transitions.nudgeLeft |
-          transitions.nudgeRight
-        }
-        onChange={() =>
-          setTransitions({ ...transitions, slideLeft: !transitions.slideLeft })
-        }
-      />
-      <Checkbox
-        labelText="nudgeTop"
-        checked={transitions.nudgeTop}
-        disabled={
-          transitions.collapse |
-          transitions.slideTop |
-          transitions.slideBottom |
-          transitions.slideLeft |
-          transitions.slideRight |
-          transitions.nudgeBottom
-        }
-        onChange={() =>
-          setTransitions({ ...transitions, nudgeTop: !transitions.nudgeTop })
-        }
-      />
-      <Checkbox
-        labelText="nudgeBottom"
-        checked={transitions.nudgeBottom}
-        disabled={
-          transitions.collapse |
-          transitions.slideTop |
-          transitions.slideBottom |
-          transitions.slideLeft |
-          transitions.slideRight |
-          transitions.nudgeTop
-        }
-        onChange={() =>
-          setTransitions({
-            ...transitions,
-            nudgeBottom: !transitions.nudgeBottom,
-          })
-        }
-      />
-      <Checkbox
-        labelText="nudgeRight"
-        checked={transitions.nudgeRight}
-        disabled={
-          transitions.collapse |
-          transitions.slideTop |
-          transitions.slideBottom |
-          transitions.slideLeft |
-          transitions.slideRight |
-          transitions.nudgeLeft
-        }
-        onChange={() =>
-          setTransitions({
-            ...transitions,
-            nudgeRight: !transitions.nudgeRight,
-          })
-        }
-      />
-      <Checkbox
-        labelText="nudgeLeft"
-        checked={transitions.nudgeLeft}
-        disabled={
-          transitions.collapse |
-          transitions.slideTop |
-          transitions.slideBottom |
-          transitions.slideLeft |
-          transitions.slideRight |
-          transitions.nudgeRight
-        }
-        onChange={() =>
-          setTransitions({ ...transitions, nudgeLeft: !transitions.nudgeLeft })
-        }
-      />
-
-      <Preview />
-
-      <Transition in={isOpen} unmountOnExit={unmountOnExit} {...transitions}>
+    <>
+      <Transition isOpen={isOpen} collapse>
         <Box />
       </Transition>
-
       <Button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'hide' : 'show'}
       </Button>
-    </div>
+    </>
   );
 }
 ```
-
-## Basic Usage
 
 ### Fade
 
+To have the child components fade from completely transparent use the fade transition.
+
 ```typescript
 import React from 'react';
-import { Transition } from 'react-magma-dom';
+import { styled } from '@emotion/styled';
+import { Button, Transition } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const Box = styled.div`
+    height: 250px;
+    width: 250px;
+    background: #bada55;
+  `;
+
   return (
-    <div>
-      <Transition in={isOpen} fade style={{ overflow: 'hidden' }}>
-        <div
-          style={{
-            height: '250px',
-            width: '250px',
-            backgroundColor: '#bada55',
-          }}
-        />
+    <>
+      <Transition isOpen={isOpen} fade>
+        <Box />
       </Transition>
       <Button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'hide' : 'show'}
       </Button>
-    </div>
+    </>
   );
 }
 ```
 
-### NudgeTop
+### Nudge
+
+The Nudge transitions (`nudgeLeft`, `nudgeRight`, `nudgeTop`, `nudgeBottom`) move the children from 50px away from their target. Alone this might look weird, but when used in conjection with fade it gives the apparence of fading into a closer position.
 
 ```typescript
 import React from 'react';
-import { Transition } from 'react-magma-dom';
+import { styled } from '@emotion/styled';
+import { Button, Transition } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const Box = styled.div`
+    height: 250px;
+    width: 250px;
+    background: #bada55;
+  `;
+
   return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} unmountOnExit nudgeTop>
-          <div
-            style={{
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
+    <>
+      <Transition isOpen={isOpen} nudgeLeft>
+        <Box />
+      </Transition>
       <Button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'hide' : 'show'}
       </Button>
-    </div>
-  );
-}
-```
-
-### NudgeLeft
-
-```typescript
-import React from 'react';
-import { Transition } from 'react-magma-dom';
-
-export function Example() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} unmountOnExit nudgeLeft>
-          <div
-            style={{
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
-  );
-}
-```
-
-### NudgeBottom
-
-```typescript
-import React from 'react';
-import { Transition } from 'react-magma-dom';
-
-export function Example() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} nudgeBottom>
-          <div
-            style={{
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
-  );
-}
-```
-
-### NudgeRight
-
-```typescript
-import React from 'react';
-import { Transition } from 'react-magma-dom';
-
-export function Example() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <div>
-        <Transition in={isOpen} nudgeLeft>
-          <div
-            style={{
-              width: '500px',
-              height: '100%',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
-  );
-}
-```
-
-### SlideTop
-
-```typescript
-import React from 'react';
-import { Transition } from 'react-magma-dom';
-
-export function Example() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} unmountOnExit slideTop>
-          <div
-            style={{
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
-  );
-}
-```
-
-### SlideLeft
-
-```typescript
-import React from 'react';
-import { Transition } from 'react-magma-dom';
-
-export function Example() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} unmountOnExit slideLeft>
-          <div
-            style={{
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
-  );
-}
-```
-
-### SlideBottom
-
-```typescript
-import React from 'react';
-import { Transition } from 'react-magma-dom';
-
-export function Example() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} slideBottom>
-          <div
-            style={{
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
-  );
-}
-```
-
-### SlideRight
-
-```typescript
-import React from 'react';
-import { Transition } from 'react-magma-dom';
-
-export function Example() {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <div>
-        <Transition
-          in={isOpen}
-          slideLeft
-          style={{
-            position: 'fixed',
-            minWidth: '250px',
-            top: '0',
-            bottom: '0',
-            left: '0',
-          }}
-        >
-          <div
-            style={{
-              width: '500px',
-              height: '100%',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
+    </>
   );
 }
 ```
 
 ### Scale
 
+The scale transition will scale the child components from 95% to 100%. This alone will not look impressive, but when used with `fade` creates a nice transition.
+
 ```typescript
 import React from 'react';
-import { Transition } from 'react-magma-dom';
+import { styled } from '@emotion/styled';
+import { Button, Transition } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const Box = styled.div`
+    height: 250px;
+    width: 250px;
+    background: #bada55;
+    margin: 0 auto;
+  `;
+
   return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} scale style={{ overflow: 'hidden' }}>
-          <div
-            style={{
-              margin: '0 auto',
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
+    <>
+      <Transition isOpen={isOpen} style={{ width: '250px' }} scale>
+        <Box />
+      </Transition>
       <Button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'shrink' : 'grow'}
       </Button>
-    </div>
+    </>
   );
 }
 ```
 
-### Collapse
+### Slide
+
+The slide transitions (`slideRight`, `slideLeft`, `slideTop`, `slideBottom`) will slide the children to the edge of the screen from outside of view. The slide transitions will always anchor the children to one of the edges of the screen.
 
 ```typescript
 import React from 'react';
-import { Transition } from 'react-magma-dom';
+import { styled } from '@emotion/styled';
+import { Button, Transition } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const Box = styled.div`
+    height: 100%;
+    width: 250px;
+    background: #bada55;
+  `;
+
   return (
-    <div>
-      <Transition in={isOpen} collapse style={{ overflow: 'hidden' }}>
-        <div
-          style={{
-            height: '250px',
-            width: '250px',
-            backgroundColor: '#bada55',
-          }}
-        />
+    <>
+      <Transition isOpen={isOpen} slideLeft>
+        <Box />
       </Transition>
       <Button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'hide' : 'show'}
       </Button>
-    </div>
+    </>
   );
 }
 ```
@@ -566,28 +176,347 @@ Transitions can be combined to create more advanced effects.
 
 ```typescript
 import React from 'react';
-import { Transition } from 'react-magma-dom';
+import { styled } from '@emotion/styled';
+import { Button, Transition } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  const Box = styled.div`
+    height: 250px;
+    width: 250px;
+    background: #bada55;
+  `;
+
   return (
-    <div>
-      <div style={{ height: '250px', width: '250px', overflow: 'hidden' }}>
-        <Transition in={isOpen} scale fade style={{ overflow: 'hidden' }}>
-          <div
-            style={{
-              margin: '0 auto',
-              height: '250px',
-              width: '250px',
-              backgroundColor: '#bada55',
-            }}
-          />
-        </Transition>
-      </div>
+    <>
+      <Transition isOpen={isOpen} nudgeBottom fade>
+        <Box />
+      </Transition>
       <Button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? 'hide' : 'show'}
       </Button>
-    </div>
+    </>
+  );
+}
+```
+
+### unmountOnExit
+
+By default, `Transition` will only transition between the two style variants for `enter` and `exit` but will leave the children in the DOM.
+Using the prop `unmountOnExit` will remove the children from the DOM completely after they have been animated off the visible screen.
+
+```typescript
+import React from 'react';
+import { styled } from '@emotion/styled';
+import { Button, Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const Box = styled.div`
+    height: 250px;
+    width: 250px;
+    background: #bada55;
+  `;
+
+  return (
+    <>
+      <Transition isOpen={isOpen} collapse unmountOnExit>
+        <Box />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </>
+  );
+}
+```
+
+### Custom Transition
+
+The magma theme has several sane defaults to create a consistent experience across all apps. But `Transition` does allow for `customTransition` and `style` to be overwritten.
+
+```typescript
+import React from 'react';
+import { styled } from '@emotion/styled';
+import { Button, Transition } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const Box = styled.div`
+    height: 250px;
+    width: 250px;
+    background: #bada55;
+  `;
+
+  const customTransition = {
+    exit: {
+      rotate: 360,
+      transition: {
+        rotate: {
+          type: 'spring',
+          damping: 10,
+          stiffness: 100,
+        },
+      },
+    },
+    enter: {
+      rotate: 0,
+      transition: {
+        rotate: {
+          type: 'spring',
+          damping: 10,
+          stiffness: 100,
+        },
+      },
+    },
+  };
+
+  const baseStyle = {
+    width: '250px',
+    height: '250px',
+  };
+
+  return (
+    <>
+      <Transition
+        style={baseStyle}
+        isOpen={isOpen}
+        customTransition={customTransition}
+      >
+        <Box />
+      </Transition>
+      <Button onClick={() => setIsOpen(!isOpen)}>Spin it!</Button>
+    </>
+  );
+}
+```
+
+### Kitchen Sink
+
+```typescript
+import React from 'react';
+import { styled } from '@emotion/styled';
+import { Transition, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [properties, setProperties] = React.useState({});
+
+  const Box = styled.div`
+    height: 250px;
+    width: 250px;
+    background: #bada55;
+  `;
+
+  const Preview = () => (
+    <pre>
+      {'<'}Transition{' '}
+      {Object.keys(properties)
+        .filter(key => properties[key])
+        .join(' ')}
+      {'>\n'}
+      {'  <'}div{'>'}children{'<'}/div{'>\n'}
+      {'<'}/Transition{'>'}
+    </pre>
+  );
+
+  return (
+    <>
+      <Checkbox
+        labelText="unmountOnExit"
+        checked={properties.unmountOnExit}
+        onChange={() =>
+          setProperties({
+            ...properties,
+            unmountOnExit: !properties.unmountOnExit,
+          })
+        }
+      />
+      <Checkbox
+        labelText="fade"
+        checked={properties.fade}
+        onChange={() =>
+          setProperties({ ...properties, fade: !properties.fade })
+        }
+      />
+      <Checkbox
+        labelText="scale"
+        checked={properties.scale}
+        onChange={() =>
+          setProperties({ ...properties, scale: !properties.scale })
+        }
+      />
+      <Checkbox
+        labelText="collapse"
+        checked={properties.collapse}
+        disabled={
+          properties.slideTop |
+          properties.slideBottom |
+          properties.slideLeft |
+          properties.slideRight |
+          properties.nudgeTop |
+          properties.nudgeBottom |
+          properties.nudgeLeft |
+          properties.nudgeRight
+        }
+        onChange={() =>
+          setProperties({ ...properties, collapse: !properties.collapse })
+        }
+      />
+      <Checkbox
+        labelText="slideTop"
+        checked={properties.slideTop}
+        disabled={
+          properties.collapse |
+          properties.slideBottom |
+          properties.slideLeft |
+          properties.slideRight |
+          properties.nudgeTop |
+          properties.nudgeBottom |
+          properties.nudgeLeft |
+          properties.nudgeRight
+        }
+        onChange={() =>
+          setProperties({ ...properties, slideTop: !properties.slideTop })
+        }
+      />
+      <Checkbox
+        labelText="slideBottom"
+        checked={properties.slideBottom}
+        disabled={
+          properties.collapse |
+          properties.slideTop |
+          properties.slideLeft |
+          properties.slideRight |
+          properties.nudgeTop |
+          properties.nudgeBottom |
+          properties.nudgeLeft |
+          properties.nudgeRight
+        }
+        onChange={() =>
+          setProperties({
+            ...properties,
+            slideBottom: !properties.slideBottom,
+          })
+        }
+      />
+      <Checkbox
+        labelText="slideRight"
+        checked={properties.slideRight}
+        disabled={
+          properties.collapse |
+          properties.slideTop |
+          properties.slideBottom |
+          properties.slideLeft |
+          properties.nudgeTop |
+          properties.nudgeBottom |
+          properties.nudgeLeft |
+          properties.nudgeRight
+        }
+        onChange={() =>
+          setProperties({
+            ...properties,
+            slideRight: !properties.slideRight,
+          })
+        }
+      />
+      <Checkbox
+        labelText="slideLeft"
+        checked={properties.slideLeft}
+        disabled={
+          properties.collapse |
+          properties.slideTop |
+          properties.slideBottom |
+          properties.slideRight |
+          properties.nudgeTop |
+          properties.nudgeBottom |
+          properties.nudgeLeft |
+          properties.nudgeRight
+        }
+        onChange={() =>
+          setProperties({ ...properties, slideLeft: !properties.slideLeft })
+        }
+      />
+      <Checkbox
+        labelText="nudgeTop"
+        checked={properties.nudgeTop}
+        disabled={
+          properties.collapse |
+          properties.slideTop |
+          properties.slideBottom |
+          properties.slideLeft |
+          properties.slideRight |
+          properties.nudgeBottom
+        }
+        onChange={() =>
+          setProperties({ ...properties, nudgeTop: !properties.nudgeTop })
+        }
+      />
+      <Checkbox
+        labelText="nudgeBottom"
+        checked={properties.nudgeBottom}
+        disabled={
+          properties.collapse |
+          properties.slideTop |
+          properties.slideBottom |
+          properties.slideLeft |
+          properties.slideRight |
+          properties.nudgeTop
+        }
+        onChange={() =>
+          setProperties({
+            ...properties,
+            nudgeBottom: !properties.nudgeBottom,
+          })
+        }
+      />
+      <Checkbox
+        labelText="nudgeRight"
+        checked={properties.nudgeRight}
+        disabled={
+          properties.collapse |
+          properties.slideTop |
+          properties.slideBottom |
+          properties.slideLeft |
+          properties.slideRight |
+          properties.nudgeLeft
+        }
+        onChange={() =>
+          setProperties({
+            ...properties,
+            nudgeRight: !properties.nudgeRight,
+          })
+        }
+      />
+      <Checkbox
+        labelText="nudgeLeft"
+        checked={properties.nudgeLeft}
+        disabled={
+          properties.collapse |
+          properties.slideTop |
+          properties.slideBottom |
+          properties.slideLeft |
+          properties.slideRight |
+          properties.nudgeRight
+        }
+        onChange={() =>
+          setProperties({ ...properties, nudgeLeft: !properties.nudgeLeft })
+        }
+      />
+
+      <Preview />
+
+      <Transition isOpen={isOpen} {...properties}>
+        <Box />
+      </Transition>
+
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        {isOpen ? 'hide' : 'show'}
+      </Button>
+    </>
   );
 }
 ```
