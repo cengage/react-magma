@@ -25,65 +25,65 @@
 - d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
 ### 2.3.9 (2021-03-24)
-chore: update to node 14, npm 7
-fix(checkbox): switch to icon for unchecked state
-fix(dropdown): improve dropdown button styles for icons v2
-feature(flex): add flex component
-feature(spacer): add spacer component
-fix(formgroup): add label
-fix(Button): default to ButtonType.button
-fix(icons): update remaining v1 icons
+- chore: update to node 14, npm 7
+- fix(checkbox): switch to icon for unchecked state
+- fix(dropdown): improve dropdown button styles for icons v2
+- feature(flex): add flex component
+- feature(spacer): add spacer component
+- fix(formgroup): add label
+- fix(Button): default to ButtonType.button
+- fix(icons): update remaining v1 icons
 
 ### 2.3.8 (2021-03-01)
-fix: update dependencies accross packages
-docs(checkbox): improve stories 
+- fix: update dependencies accross packages
+- docs(checkbox): improve stories 
 
 ### 2.3.7 (2021-02-22)
-feat(icons): release v2.0.0
+- feat(icons): release v2.0.0
 
 ### 2.3.6 (2021-02-18)
-Note: Version bump only for package react-magma-dom
-
+- Note: Version bump only for package react-magma-dom
+- 
 ### 2.3.5 (2021-02-18)
-table: duplicate exports (1583413)
-ci(stories): add remaining stories
-refactor(breadcrumb): add generic index
-refactor(card): add generic index
-refactor(dropdown): add generic index
-refactor(navtabs): add generic index
-refactor(table): add generic index
-refactor(tabs): add generic index
-fix(combobox): fix error message and styling
-fix(select): fix error message and styling
-fix(checkbox): use IndeterminateCheckboxStatus in type
-fix(label): add labelPosition enum
-feature(table): add pagination
+- table: duplicate exports (1583413)
+- ci(stories): add remaining stories
+- refactor(breadcrumb): add generic index
+- refactor(card): add generic index
+- refactor(dropdown): add generic index
+- refactor(navtabs): add generic index
+- refactor(table): add generic index
+- refactor(tabs): add generic index
+- fix(combobox): fix error message and styling
+- fix(select): fix error message and styling
+- fix(checkbox): use IndeterminateCheckboxStatus in type
+- fix(label): add labelPosition enum
+- feature(table): add pagination
 
 ### 2.3.4 (2021-01-25)
-ci(storybook): add storybook
-chore: update contributing guide
-fix(tooltip): improve positioning
+- ci(storybook): add storybook
+- chore: update contributing guide
+- fix(tooltip): improve positioning
 
 ### 2.3.3 (2021-01-20)
-docs(theme): use magma theme in more places
-feat(combobox): add isMulti XOR
-feat(select): add isMulti XOR
-fix(dropdown): set border to 0
-feat(form): create form component
-fix(hyperlink): extend Anchor
-fix(theme): remove jsx pragma
+- docs(theme): use magma theme in more places
+- feat(combobox): add isMulti XOR
+- feat(select): add isMulti XOR
+- fix(dropdown): set border to 0
+- feat(form): create form component
+- fix(hyperlink): extend Anchor
+- fix(theme): remove jsx pragma
 
 ### 2.3.2 (2020-12-30)
-ci(actions): new github Actions
-ci(actions): deploy to Netlify
-test: add instructions for wallabyjs
-chore: delete archived packages 
-build(lerna): update
-build(gatsby): add flags for faster docs preview
-docs(gatsby): switch to magic props tables
-feat(tooltip): introduce popperjs
-fix(combobox): support maxHeight 
-fix(combobox): support customComponents 
+- ci(actions): new github Actions
+- ci(actions): deploy to Netlify
+- test: add instructions for wallabyjs
+- chore: delete archived packages 
+- build(lerna): update
+- build(gatsby): add flags for faster docs preview
+- docs(gatsby): switch to magic props tables
+- feat(tooltip): introduce popperjs
+- fix(combobox): support maxHeight 
+- fix(combobox): support customComponents 
 
 ### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0) (2020-12-11)
 
