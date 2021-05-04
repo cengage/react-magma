@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
+import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
 import { MotionVariants } from '../../theme/components/transition';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -22,16 +22,61 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
    * @internal
    */
   customTransition?: MotionVariants<'enter' | 'exit'>;
+  testId?: string;
+  /**
+   * Should children fade in/out
+   * @default false
+   */
   fade?: boolean;
+  /**
+   * Should children scale in/out
+   * @default false
+   */
   scale?: boolean;
-  slideTop: boolean;
+  /**
+   * Should children slide in/out from the top of the screen
+   * @default false
+   */
+  slideTop?: boolean;
+  /**
+   * Should children slide in/out from the bottom of the screen
+   * @default false
+   */
   slideBottom?: boolean;
+  /**
+   * Should children slide in/out from the left of the screen
+   * @default false
+   */
   slideLeft?: boolean;
+  /**
+   * Should children slide in/out from the right of the screen
+   * @default false
+   */
   slideRight?: boolean;
+  /**
+   * Should the children get nudged in 50px from the top
+   * @default false
+   */
   nudgeTop?: boolean;
+  /**
+   * Should the children get nudged in 50px from the bottom
+   * @default false
+   */
   nudgeBottom?: boolean;
+  /**
+   * Should the children get nudged in 50px from the left
+   * @default false
+   */
   nudgeLeft?: boolean;
+  /**
+   * Should the children get nudged in 50px from the right
+   * @default false
+   */
   nudgeRight?: boolean;
+  /**
+   * Should children collapse in/out
+   * @default false
+   */
   collapse?: boolean;
 }
 
@@ -43,6 +88,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       style,
       unmountOnExit,
       isOpen,
+      testId,
       initial = 'exit',
       exit = 'exit',
       customTransition = {
@@ -99,12 +145,13 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     );
 
     return (
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {shouldExpand && (
           <motion.div
             ref={ref}
             initial={initial}
             exit={exit}
+            data-testid={testId}
             animate={isOpen || unmountOnExit ? 'enter' : 'exit'}
             variants={variants.motion}
             style={{ ...variants.baseStyle, ...style }}

@@ -84,6 +84,7 @@ const filterJson = () => {
     return sortObject(
       children
         .filter(filterReactDefinitions)
+        .filter(filterMotionDefinitions)
         .filter(filterEmotion)
         .reduce(formatChild, acc)
     );
@@ -120,6 +121,8 @@ const filterJson = () => {
 
   const filterReactDefinitions = definition =>
     definition.sources[0].fileName !== 'node_modules/@types/react/index.d.ts';
+
+  const filterMotionDefinitions = definition => !definition.sources[0].fileName.startsWith('node_modules/framer-motion/types');
 
   const formatTags = (tags = []) => {
     return tags.reduce((acc, { tag, text }) => {
