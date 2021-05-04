@@ -256,9 +256,8 @@ export function Example() {
       rotate: 360,
       transition: {
         rotate: {
-          type: 'spring',
-          damping: 10,
-          stiffness: 100,
+          type: 'inertia', 
+          velocity: 500
         },
       },
     },
