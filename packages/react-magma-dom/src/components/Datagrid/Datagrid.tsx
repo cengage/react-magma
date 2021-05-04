@@ -1,4 +1,5 @@
 import * as React from "react";
+import { UsePaginationReturn } from "../../hooks/usePagination";
 import { IndeterminateCheckboxStatus } from "../IndeterminateCheckbox";
 import {
   Table,
@@ -7,6 +8,7 @@ import {
   TableCell,
   TableHead,
   TableHeaderCell,
+  TablePagination,
   TableProps,
   TableHeaderCellProps,
   TableRowColor,
@@ -36,6 +38,7 @@ export interface DatagridProps extends TableProps {
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
   onSelectedRowsChange?: (newSelectedRows: (string | number)[]) => void;
+  pagination: { count: number } & UsePaginationReturn;
   selectedRows: (string | number)[];
 }
 
@@ -46,6 +49,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       onHeaderSelect,
       onRowSelect,
       onSelectedRowsChange,
+      pagination,
       rows,
       selectedRows: controlledSelectedRows,
       ...other
@@ -55,6 +59,14 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     >(controlledSelectedRows || []);
 
     const isControlled = controlledSelectedRows ? true : false;
+    const isPaginated = Boolean(pagination);
+
+    const rowsToShow = isPaginated
+      ? rows.slice(
+          pagination.page * pagination.rowsPerPage,
+          pagination.page * pagination.rowsPerPage + pagination.rowsPerPage
+        )
+      : rows;
 
     React.useEffect(() => {
       if (Array.isArray(controlledSelectedRows)) {
@@ -113,36 +125,41 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     }
 
     return (
-      <Table {...other} ref={ref}>
-        <TableHead>
-          <TableRow
-            headerRowStatus={headerRowStatus}
-            onHeaderRowSelect={handleHeaderSelect}
-          >
-            {columns.map(({ field, header, ...other }) => (
-              <TableHeaderCell key={`headercell${field}`} {...other}>
-                {header}
-              </TableHeaderCell>
-            ))}
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {rows.map(({ id, color, isSelectableDisabled, ...other }) => (
+      <>
+        <Table {...other} ref={ref}>
+          <TableHead>
             <TableRow
-              key={`row${id}`}
-              color={color}
-              isSelected={selectedRows ? selectedRows.indexOf(id) > -1 : false}
-              isSelectableDisabled={isSelectableDisabled}
-              onTableRowSelect={(event) => handleRowSelect(id, event)}
+              headerRowStatus={headerRowStatus}
+              onHeaderRowSelect={handleHeaderSelect}
             >
-              {Object.keys(other).map((field) => (
-                <TableCell key={`cell${field}`}>{other[field]}</TableCell>
+              {columns.map(({ field, header, ...other }) => (
+                <TableHeaderCell key={`headercell${field}`} {...other}>
+                  {header}
+                </TableHeaderCell>
               ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+
+          <TableBody>
+            {rowsToShow.map(({ id, color, isSelectableDisabled, ...other }) => (
+              <TableRow
+                key={`row${id}`}
+                color={color}
+                isSelected={
+                  selectedRows ? selectedRows.indexOf(id) > -1 : false
+                }
+                isSelectableDisabled={isSelectableDisabled}
+                onTableRowSelect={(event) => handleRowSelect(id, event)}
+              >
+                {Object.keys(other).map((field) => (
+                  <TableCell key={`cell${field}`}>{other[field]}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        {isPaginated && <TablePagination {...pagination} />}
+      </>
     );
   }
 );
