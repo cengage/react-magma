@@ -4,7 +4,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
-import { AccordionItemContext } from './AccordionItem';
+import { AccordionItemContext } from './useAccordionItem';
 
 /**
  * @children required

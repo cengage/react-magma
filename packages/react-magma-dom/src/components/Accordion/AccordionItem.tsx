@@ -1,35 +1,24 @@
 import * as React from 'react';
-import { AccordionContext } from './';
+import { AccordionContext } from './useAccordion';
+import {
+  AccordionItemContext,
+  UseAccordionItemProps,
+  useAccordionItem,
+} from './useAccordionItem';
+import { ThemeInterface } from '../../theme/magma';
 import styled from '../../theme/styled';
-import { useGenerateId } from '../../utils';
 
 /**
  * @children required
  */
 export interface AccordionItemProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  index?: number;
-  isDisabled?: boolean;
-  isExpanded?: boolean;
-  testId?: string;
+  extends UseAccordionItemProps,
+    React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
 }
-
-interface AccordionItemContextInterface {
-  buttonId?: string;
-  index?: number;
-  isDisabled?: boolean;
-  isExpanded?: boolean;
-  panelId?: string;
-  setIsExpanded?: any;
-}
-
-export const AccordionItemContext = React.createContext<AccordionItemContextInterface>(
-  {
-    isDisabled: false,
-    isExpanded: false,
-    setIsExpanded: () => {},
-  }
-);
 
 const StyledItem = styled.div`
   h1,
@@ -60,22 +49,8 @@ export const AccordionItem = React.forwardRef<
     ...rest
   } = props;
 
-  const [isExpanded, setIsExpanded] = React.useState(isExpandedProp);
   const { expandedIndex, isMultiple } = React.useContext(AccordionContext);
-
-  const idPrefix = useGenerateId();
-
-  const buttonId = `${idPrefix}_btn`;
-  const panelId = `${idPrefix}_panel`;
-
-  const value = {
-    buttonId,
-    index,
-    isDisabled,
-    isExpanded,
-    panelId,
-    setIsExpanded,
-  };
+  const { contextValue, setIsExpanded } = useAccordionItem(props);
 
   React.useEffect(() => {
     if (!isMultiple) {
@@ -84,7 +59,7 @@ export const AccordionItem = React.forwardRef<
   });
 
   return (
-    <AccordionItemContext.Provider value={value}>
+    <AccordionItemContext.Provider value={contextValue}>
       <StyledItem ref={ref} data-testid={props.testId} {...rest}>
         {children}
       </StyledItem>

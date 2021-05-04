@@ -14,7 +14,11 @@ An accordion is a vertically stacked group of collapsible sections. An accordion
 
 ## Basic Usage
 
-By default, only one item may be expanded and it can only be collapsed again by expanding another.
+An accordion is made up of four components: `Accordion`, `AccordionItem`, `AccordionButton` and `AccordionPanel`. The `Accordion` is the wrapper for all of the items. It can contain one or more `AccordionItems`, each of which should contain one `AccordionButton` and one `AccordionPanel`.
+
+By default, one item will be expanded and it can only be collapsed again by expanding another.
+
+The first panel will be open by default, but this can be overridden by using the `expandedIndex` prop, which is a zero-based index of the panel to expand.
 
 ```typescript
 import React from 'react';
@@ -45,9 +49,44 @@ export function Example() {
 }
 ```
 
+## Collapsible
+
+If you use the `isCollapsible` prop, then you will be able to collapse all of the items and no panel will be expanded by default, unless you use the `expandedIndex` prop.
+
+```typescript
+import React from 'react';
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Accordion isCollapsible>
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 3</AccordionButton>
+        <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+}
+```
+
 ## Multiple Expanded
 
 If you set `isMultiple` to true then the accordion will allow multiple items to be expanded at once.
+
+When using the `isMultiple` prop, the `isCollapsible` and `expandedIndex` props do not apply. No items will be expanded by default, and all of the items will be allowed to be collapsed. You can expand individual items by adding `isExpanded` to the `AccordionItem` directly.
 
 ```typescript
 import React from 'react';
@@ -61,7 +100,7 @@ import {
 export function Example() {
   return (
     <Accordion isMultiple>
-      <AccordionItem>
+      <AccordionItem isExpanded>
         <AccordionButton>Section 1</AccordionButton>
         <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
       </AccordionItem>
@@ -128,9 +167,13 @@ export function Example() {
         <AccordionButton>Section 1</AccordionButton>
         <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
       </AccordionItem>
-      <AccordionItem isDisabled>
+      <AccordionItem>
         <AccordionButton>Section 2</AccordionButton>
         <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem isDisabled>
+        <AccordionButton>Section 3</AccordionButton>
+        <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
       </AccordionItem>
     </Accordion>
   );

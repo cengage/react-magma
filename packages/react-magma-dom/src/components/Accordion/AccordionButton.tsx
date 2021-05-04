@@ -4,18 +4,20 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
-import { AccordionIconPosition, AccordionContext } from './Accordion';
-import { AccordionItemContext } from './AccordionItem';
+import { AccordionIconPosition } from './useAccordion';
 import { Spacer } from '../Spacer';
 import { AngleDownIcon } from 'react-magma-icons';
+import {
+  useAccordionButton,
+  UseAccordionButtonProps,
+} from './useAccordionButton';
 
 /**
  * @children required
  */
 export interface AccordionButtonProps
-  extends React.HTMLAttributes<HTMLButtonElement> {
-  testId?: string;
-  isInverse?: boolean;
+  extends UseAccordionButtonProps,
+    React.HTMLAttributes<HTMLButtonElement> {
   /**
    * @internal
    */
@@ -72,29 +74,12 @@ export const AccordionButton = React.forwardRef<
 
   const {
     iconPosition,
-    isCollapsible,
-    isMultiple,
-    setExpandedIndex,
-  } = React.useContext(AccordionContext);
-
-  const {
     buttonId,
-    index,
     isDisabled,
     isExpanded,
     panelId,
-    setIsExpanded,
-  } = React.useContext(AccordionItemContext);
-
-  const handleClick = () => {
-    if (isMultiple) {
-      setIsExpanded(!isExpanded);
-    } else if (isExpanded && isCollapsible) {
-      setExpandedIndex(null);
-    } else {
-      setExpandedIndex(index);
-    }
-  };
+    handleClick,
+  } = useAccordionButton(props);
 
   return (
     <StyledButton
