@@ -6,7 +6,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { AccordionIconPosition } from './useAccordion';
 import { Spacer } from '../Spacer';
-import { AngleDownIcon } from 'react-magma-icons';
+import { ExpandMoreIcon } from 'react-magma-icons';
 import {
   useAccordionButton,
   UseAccordionButtonProps,
@@ -96,12 +96,12 @@ export const AccordionButton = React.forwardRef<
     >
       {iconPosition === AccordionIconPosition.left && (
         <>
-          <AngleDownIcon />
+          <ExpandMoreIcon />
           <Spacer size={12} />
         </>
       )}
       <TextWrapper>{children}</TextWrapper>
-      {iconPosition === AccordionIconPosition.right && <AngleDownIcon />}
+      {iconPosition === AccordionIconPosition.right && <ExpandMoreIcon />}
     </StyledButton>
   );
 });
