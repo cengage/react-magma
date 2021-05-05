@@ -1,0 +1,90 @@
+---
+pageTitle: Pagination API
+title: Pagination
+props:
+  - PaginationProps
+---
+
+<DocsHeading to="/design/Pagination/" type="api">
+  Pagination
+</DocsHeading>
+
+The `Pagination` component is an interactive indexed navigation element.
+
+## Basic Usage
+
+For expanded page content, the `Pagination` component may be added. `Pagination` takes props for count, which is the total number of navigable indices within the component. Additional functions include `defaultPage`, `isInverse`, and `size`.
+
+```typescript
+import React from 'react';
+import { Pagination } from 'react-magma-dom';
+
+export function Example() {
+  return <Pagination count={4}></Pagination>;
+}
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
+The default value is `false`.
+
+```typescript
+import React from 'react';
+import { Card, CardBody, Pagination } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Pagination isInverse count={4}></Pagination>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Size
+
+`size` allows for changing the scale of the `Pagination` component. Two props are allowed, `medium` and `large`.
+
+```typescript
+import React from 'react';
+import { Pagination } from 'react-magma-dom';
+
+export function Example() {
+  return <Pagination size="large" count={4}></Pagination>;
+}
+```
+
+## Handle Page Change
+
+`pageChange` passes the active data state of the `Pagination` component.
+
+```typescript
+import React from 'react';
+import { Pagination } from 'react-magma-dom';
+
+export function Example() {
+  const [page, setPage] = React.useState(1);
+
+  function handlePageChange(pageNumber) {
+    setPage(pageNumber);
+  }
+  return (
+    <div>
+      <p>
+        <strong>Page </strong>
+        <span> {page}</span>
+      </p>
+      <Pagination onPageChange={handlePageChange} count={4}></Pagination>
+    </div>
+  );
+}
+```
+
+# Pagination Props
+
+**Any other props supplied will be provided to the wrapping `Pagination` element.**
+
+<PaginationProps />

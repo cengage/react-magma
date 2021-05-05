@@ -1,47 +1,10 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+## 2.0.4
 
-### 2.0.4-alpha.1 (2021-04-20)
+## 2.0.4
 
-**Note:** Version bump only for package react-magma-icons
-
-
-
-
-
-### 2.0.4-alpha.0 (2021-04-15)
-
-**Note:** Version bump only for package react-magma-icons
-
-
-
-
-
-### 2.0.3 (2021-04-14)
-
-**Note:** Version bump only for package react-magma-icons
-
-
-
-
-
-### 2.0.3-alpha.15 (2021-04-14)
-
-**Note:** Version bump only for package react-magma-icons
-
-
-
-
-
-### 2.0.3-alpha.14 (2021-04-13)
-
-**Note:** Version bump only for package react-magma-icons
-
-### 2.0.3-alpha.13 (2021-04-07)
-
-**Note:** Version bump only for package react-magma-icons
+### Patch Changes
 
 ### 2.0.3-alpha.12 (2021-04-07)
 
