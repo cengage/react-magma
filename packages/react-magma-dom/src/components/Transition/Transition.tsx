@@ -11,10 +11,12 @@ import { ThemeInterface } from '../../theme/magma';
 export interface TransitionProps extends HTMLMotionProps<'div'> {
   /**
    * If `true`, the element will unmount when `in={false}` and animation is done
+   * @default false
    */
   unmountOnExit?: boolean;
   /**
    * If `true`, the content will animate in
+   * @default false
    */
   isOpen?: boolean;
   /**
@@ -78,8 +80,20 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
    * @default false
    */
   collapse?: boolean;
+  /**
+   * Should children rotate 45 degrees
+   * @default false
+   */
   rotate45?: boolean;
+  /**
+   * Should children rotate 90 degrees
+   * @default false
+   */
   rotate90?: boolean;
+  /**
+   * Should children rotate 180 degrees
+   * @default false
+   */
   rotate180?: boolean;
 }
 
