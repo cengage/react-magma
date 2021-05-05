@@ -68,7 +68,7 @@ export const Default = args => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
-      <Transition in={isOpen} {...args} style={{ overflow: 'hidden' }}>
+      <Transition isOpen={isOpen} {...args} style={{ overflow: 'hidden' }}>
         <div
           style={{
             height: '250px',
