@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface UsePaginationBasics {
   /**
@@ -74,7 +74,7 @@ export function usePagination(
     }
 
     onChangePage &&
-      typeof onChangePage === "function" &&
+      typeof onChangePage === 'function' &&
       onChangePage(event, newPage);
   }
 
@@ -85,7 +85,7 @@ export function usePagination(
     }
 
     onChangeRowsPerPage &&
-      typeof onChangeRowsPerPage === "function" &&
+      typeof onChangeRowsPerPage === 'function' &&
       onChangeRowsPerPage(newRowsPerPage);
   }
 

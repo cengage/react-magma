@@ -214,7 +214,7 @@ export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
 export { useMediaQuery } from './hooks/useMediaQuery';
-export * from './hooks/usePagination';
+export { usePagination } from './components/Pagination/usePagination';
 export { InverseContext, useIsInverse } from './inverse';
 
 export * from './components/Datagrid';

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { UsePaginationReturn } from "../../hooks/usePagination";
+import { UsePaginationReturn } from "../Pagination/usePagination";
 import { IndeterminateCheckboxStatus } from "../IndeterminateCheckbox";
 import {
   Table,

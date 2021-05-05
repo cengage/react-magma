@@ -7,7 +7,7 @@ import {
   usePagination,
   UsePaginationControlled,
   UsePaginationProps,
-} from "../../hooks/usePagination";
+} from "../Pagination/usePagination";
 
 const rowsForPagination = [
   {
