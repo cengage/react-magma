@@ -376,13 +376,30 @@ describe("Datagrid", () => {
       expect(headerCheckbox).toHaveProperty("indeterminate");
     });
 
-    it("should change the header checkbox to an checked state when all rows are selected", () => {
+    it("should change the header checkbox to n checked state when all rows are selected", () => {
       const { container } = render(
         <Datagrid
           columns={columns}
           rows={rows}
           isSelectable
           selectedRows={[rows[0].id, rows[1].id, rows[2].id]}
+        />
+      );
+
+      const headerCheckbox = container
+        .querySelector("thead")
+        .firstChild.querySelector("input");
+
+      expect(headerCheckbox).toBeChecked();
+    });
+
+    it("should change the header checkbox to a checked state when all non-disabled rows are selected", () => {
+      const { container } = render(
+        <Datagrid
+          columns={columns}
+          rows={[{ ...rows[0], isSelectableDisabled: true }, rows[1], rows[2]]}
+          isSelectable
+          selectedRows={[rows[1].id, rows[2].id]}
         />
       );
 
@@ -411,6 +428,36 @@ describe("Datagrid", () => {
         .firstChild.querySelector("input");
 
       expect(headerCheckbox).toBeChecked();
+      expect(selectableRowCheckbox).toBeChecked();
+    });
+
+    it("should select all non-disabled rows when clicking on the header checkbox when no rows are selected in the uncontrolled state", () => {
+      const { container } = render(
+        <Datagrid
+          columns={columns}
+          rows={[{ ...rows[0], isSelectableDisabled: true }, rows[1], rows[2]]}
+          isSelectable
+        />
+      );
+
+      const headerCheckbox = container
+        .querySelector("thead")
+        .firstChild.querySelector("input");
+
+      expect(headerCheckbox).not.toBeChecked();
+
+      headerCheckbox.click();
+
+      const disabledRowCheckbox = container
+        .querySelector("tbody")
+        .firstChild.querySelector("input");
+
+      const selectableRowCheckbox = container
+        .querySelector("tbody")
+        .children[1].querySelector("input");
+
+      expect(headerCheckbox).toBeChecked();
+      expect(disabledRowCheckbox).not.toBeChecked();
       expect(selectableRowCheckbox).toBeChecked();
     });
 

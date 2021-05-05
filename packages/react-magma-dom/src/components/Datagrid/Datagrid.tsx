@@ -15,14 +15,32 @@ import {
 } from "../Table";
 
 export interface DatagridColumn extends TableHeaderCellProps {
+  /**
+   * Unique identifier for each column
+   */
   field: string;
+  /**
+   * Header text for each column
+   */
   header: string;
 }
 
 export interface DatagridRow {
+  /**
+   * Unique identifier for each row
+   */
   id: string | number;
+  /**
+   * The color scheme of the table row, giving contextual meaning to the content
+   */
   color?: TableRowColor;
+  /**
+   * If true, the select box will be disabled
+   */
   isSelectableDisabled?: boolean;
+  /**
+   * Used to allow each unique column field as a key with the row content as the value
+   */
   [key: string]: any;
 }
 
@@ -30,16 +48,37 @@ export interface DatagridRow {
  * @children required
  */
 export interface DatagridProps extends TableProps {
+  /**
+   * Column data to be displayed in the table header
+   */
   columns: DatagridColumn[];
+  /**
+   * Row data to be displayed in each row in the table
+   */
   rows: DatagridRow[];
+  /**
+   * Function called when the checkbox in the table header is clicked on
+   */
   onHeaderSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /**
+   * Function called when the checkbox in each table row is clicked on
+   */
   onRowSelect?: (
     id: string | number,
     event: React.ChangeEvent<HTMLInputElement>
   ) => void;
+  /**
+   * Function called when the rows selected in the table changes
+   */
   onSelectedRowsChange?: (newSelectedRows: (string | number)[]) => void;
-  pagination: { count: number } & UsePaginationReturn;
-  selectedRows: (string | number)[];
+  /**
+   * Pagination data used to create the pagination footer. Created using the usePagination hook.
+   */
+  pagination?: { count: number } & UsePaginationReturn;
+  /**
+   * Array of rows that are selected in the table
+   */
+  selectedRows?: (string | number)[];
 }
 
 export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
@@ -68,6 +107,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
         )
       : rows;
 
+    const filteredRows = rowsToShow.filter((row) => !row.isSelectableDisabled);
+
     React.useEffect(() => {
       if (Array.isArray(controlledSelectedRows)) {
         updatedSelectedRows(controlledSelectedRows);
@@ -75,7 +116,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     }, [controlledSelectedRows]);
 
     const headerRowStatus =
-      selectedRows.length === rows.length
+      selectedRows.length === filteredRows.length
         ? IndeterminateCheckboxStatus.checked
         : selectedRows.length > 0
         ? IndeterminateCheckboxStatus.indeterminate
@@ -106,7 +147,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       ) {
         handleSelectedRowsChange([]);
       } else {
-        handleSelectedRowsChange(rows.map((row) => row.id));
+        handleSelectedRowsChange(filteredRows.map((row) => row.id));
       }
 
       onHeaderSelect &&
