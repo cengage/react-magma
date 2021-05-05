@@ -9,6 +9,8 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "lazy-pugs-decide",
+    "rich-mice-learn",
     "six-bears-sing",
     "spicy-seals-speak"
   ]

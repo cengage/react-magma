@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.1.12-alpha.2
+
+### Patch Changes
+
+- Updated dependencies [b7f7e431]
+- Updated dependencies [c49cda0e]
+  - react-magma-dom@2.4.0-alpha.2
+  - @cengage-patterns/header@1.0.0-alpha.2
+
 ## 2.1.12-alpha.1
 
 ### Patch Changes

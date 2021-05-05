@@ -1,5 +1,13 @@
 # Change Log
 
+## 1.0.0-alpha.2
+
+### Patch Changes
+
+- Updated dependencies [b7f7e431]
+- Updated dependencies [c49cda0e]
+  - react-magma-dom@2.4.0-alpha.2
+
 ## 0.1.3-alpha.1
 
 ### Patch Changes
