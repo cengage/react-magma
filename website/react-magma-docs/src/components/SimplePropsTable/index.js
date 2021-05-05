@@ -11,9 +11,12 @@ import {
   TableHeaderCell,
   TableRow,
   Tooltip,
+  useIsInverse,
 } from 'react-magma-dom';
 
 export const SimplePropsTable = ({ propertyValues }) => {
+  const isInverse = useIsInverse();
+
   if (propertyValues === undefined) {
     return null;
   }
@@ -22,10 +25,14 @@ export const SimplePropsTable = ({ propertyValues }) => {
     return Boolean(propertyValues[name].description);
   });
 
+  const asteriskColor = isInverse
+    ? magma.colors.foundation04
+    : magma.colors.primary;
+
   return (
     <div>
       <Paragraph>
-        <AsteriskIcon size={16} color={magma.colors.primary} /> = required prop
+        <AsteriskIcon size={16} color={asteriskColor} /> = required prop
       </Paragraph>
       <Table
         hasZebraStripes
@@ -61,10 +68,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                       {prop.required && (
                         <span aria-label="Required" className="required">
                           {' '}
-                          <AsteriskIcon
-                            size={16}
-                            color={magma.colors.primary}
-                          />
+                          <AsteriskIcon size={16} color={asteriskColor} />
                         </span>
                       )}
                       {prop.deprecated && (

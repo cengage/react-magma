@@ -3,6 +3,7 @@ import {
   ButtonSize,
   ButtonColor,
   ButtonVariant,
+  useIsInverse,
   magma,
 } from 'react-magma-dom';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
@@ -54,10 +55,13 @@ export default function App() {
 }
 `;
 
-const ActionsDiv = styled.div`
+const ActionsDiv = styled.div<{ isInverse?: boolean }>`
   align-items: flex-end;
-  background: ${magma.colors.neutral07};
-  border: 1px solid ${magma.colors.neutral06};
+  background: ${props =>
+    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07};
+  border: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border-bottom: 0;
   display: flex;
   justify-content: flex-end;
@@ -65,7 +69,8 @@ const ActionsDiv = styled.div`
 `;
 
 export const Actions = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
-  return <ActionsDiv {...props} />;
+  const isInverse = useIsInverse();
+  return <ActionsDiv {...props} isInverse={isInverse} />;
 };
 
 const ActionsLeftDiv = styled.div`

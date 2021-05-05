@@ -58,7 +58,12 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   });
 
   return (
-    <StyledCard hasDropShadow isOpen={isOpen} style={menuStyle}>
+    <StyledCard
+      hasDropShadow
+      isInverse={false}
+      isOpen={isOpen}
+      style={menuStyle}
+    >
       <StyledList isOpen={isOpen} {...getMenuProps()} maxHeight={heightString}>
         {isOpen && hasItems ? (
           items.map((item, index) => {
