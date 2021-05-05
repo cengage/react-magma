@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.4.0-alpha.3
+
+### Patch Changes
+
+- aaa4d559: Some minor adjustments to the appearance of inverse (dark) states in some components. Also some updates to docs structure for dark mode.
+
 ## 2.4.0-alpha.2
 
 ### Minor Changes

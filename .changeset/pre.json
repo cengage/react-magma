@@ -9,6 +9,7 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "green-trees-exist",
     "lazy-pugs-decide",
     "rich-mice-learn",
     "six-bears-sing",
