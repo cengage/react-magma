@@ -12,10 +12,9 @@ import { ThemeInterface } from '../../theme/magma';
 
 // TODO: Get feedback on appropriate default props
 // TODO: Keyboard behavior
-// TODO: Add headings (h2, h3 etc)
+// TODO: Add headings to button component?? (h2, h3 etc)
 // TODO: Animation
 // TODO: Handle edge cases, bad combinations of props
-// TODO: Tests
 
 /**
  * @children required
