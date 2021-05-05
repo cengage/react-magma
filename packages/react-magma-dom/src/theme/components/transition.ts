@@ -9,8 +9,6 @@ export interface ThemeTransitions {
   };
 }
 
-// type  doot = keyof typeof transitions;
-
 export const transitions: ThemeTransitions = {
   fade: {
     motion:{
