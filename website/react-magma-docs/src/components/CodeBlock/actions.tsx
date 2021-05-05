@@ -98,6 +98,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         'date-fns': pkg.dependencies['date-fns'],
         downshift: pkg.dependencies['downshift'],
         react: pkg.dependencies['react'],
+        'framer-motion': pkg.dependencies['framer-motion'],
         'react-dom': pkg.dependencies['react-dom'],
         'react-magma-icons': pkg.dependencies['react-magma-icons'],
         'react-magma-dom': pkg.dependencies['react-magma-dom'],
