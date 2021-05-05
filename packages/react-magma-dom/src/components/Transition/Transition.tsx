@@ -78,6 +78,9 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
    * @default false
    */
   collapse?: boolean;
+  rotate45?: boolean;
+  rotate90?: boolean;
+  rotate180?: boolean;
 }
 
 export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(

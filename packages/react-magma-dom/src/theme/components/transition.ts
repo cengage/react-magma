@@ -278,6 +278,81 @@ export const transitions: ThemeTransitions = {
 
     },
   },
+  rotate45: {
+    motion:{
+      exit: {
+        rotate: 0,
+        transition: {
+          rotate: { 
+            type: "spring",
+            stiffness: 50,
+            duration: 0.15
+          },
+        }
+      },
+      enter: {
+        rotate: -45,
+        transition: {
+          rotate: { 
+            type: "spring",
+            stiffness: 50,
+            duration: 0.15
+          },
+        }
+      },
+    },
+    baseStyle: {},
+  },
+  rotate90: {
+    motion:{
+      exit: {
+        rotate: 0,
+        transition: {
+          rotate: { 
+            type: "spring",
+            stiffness: 50,
+            duration: 0.15
+          },
+        }
+      },
+      enter: {
+        rotate: -90,
+        transition: {
+          rotate:{
+            type: "spring",
+            stiffness: 50,
+            duration: 0.15
+          },
+        }
+      },
+    },
+    baseStyle: {},
+  },
+  rotate180: {
+    motion:{
+      exit: {
+        rotate: 0,
+        transition: {
+          rotate: { 
+            type: "spring",
+            stiffness: 50,
+            duration: 0.15
+          },
+        }
+      },
+      enter: {
+        rotate: -180,
+        transition: {
+          rotate:{
+            type: "spring",
+            stiffness: 50,
+            duration: 0.15
+          },
+        }
+      },
+    },
+    baseStyle: {},
+  },
   collapse: {
     motion:{
       exit: {

@@ -60,6 +60,21 @@ export default {
       control: {
         type: 'boolean',
       },
+    }, 
+    rotate45: {
+      control: {
+        type: 'boolean',
+      },
+    }, 
+    rotate90: {
+      control: {
+        type: 'boolean',
+      },
+    }, 
+    rotate180: {
+      control: {
+        type: 'boolean',
+      },
     },  
   },
 };
@@ -68,11 +83,13 @@ export const Default = args => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
-      <Transition isOpen={isOpen} {...args} style={{ overflow: 'hidden' }}>
+      <Transition isOpen={isOpen} {...args} style={{ overflow: 'hidden', height: '250px', width: '250px' }}>
         <div
           style={{
             height: '250px',
-            width: '250px',
+            width: '200px',
+            margin: '0 auto',
+            borderTop: '5px solid #546817',
             backgroundColor: '#bada55',
           }}
         />
