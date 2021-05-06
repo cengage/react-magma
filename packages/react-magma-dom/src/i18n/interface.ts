@@ -174,6 +174,11 @@ export interface I18nInterface {
     placeholder: string;
     selectedItemButtonAriaLabel: string;
   };
+  pagination: {
+    nextButtonLabel: string;
+    previousButtonLabel: string;
+    pageButtonLabel: string;
+  };
   password: {
     shown: {
       ariaLabel: string;

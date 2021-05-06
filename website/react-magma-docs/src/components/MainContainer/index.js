@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { magma } from 'react-magma-dom';
+import { Masthead } from '../Masthead';
+import { SlidingDrawer } from '../SlidingDrawer';
+import { DarkModeContext } from '../DarkMode/DarkModeContext';
+
+import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 
 const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {
@@ -13,6 +17,48 @@ const StyledContainer = styled.div`
   }
 `;
 
-export const MainContainer = ({ children }) => (
-  <StyledContainer>{children}</StyledContainer>
-);
+const StyledSkipLink = styled(SkipLink)`
+  display: none;
+
+  &:not(:disabled):focus {
+    background: transparent;
+  }
+
+  @media (min-width: 1024px) {
+    display: inline-flex;
+  }
+`;
+
+export const MainContainer = ({ children }) => {
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const value = { isDarkMode, setIsDarkMode };
+
+  React.useEffect(() => {
+    if (localStorage.getItem('isRMDarkMode') === 'true') {
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  return (
+    <DarkModeContext.Provider value={value}>
+      <Container
+        gutterWidth={0}
+        isInverse={isDarkMode}
+        className={isDarkMode && 'isInverse'}
+      >
+        <GlobalStyles />
+        <StyledSkipLink
+          isInverse
+          positionLeft={275}
+          positionTop={16}
+          variant="outline"
+        />
+        <StyledContainer>
+          <Masthead />
+          <SlidingDrawer isInverse={isDarkMode} />
+          {children}
+        </StyledContainer>
+      </Container>
+    </DarkModeContext.Provider>
+  );
+};

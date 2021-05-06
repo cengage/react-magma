@@ -41,31 +41,63 @@ export const Default = () => {
           value="selectedOption"
         />
       </RadioGroup>
+      <RadioGroup
+        labelText="Error"
+        id="basicGroup"
+        name="basic"
+        value="selectedOption"
+        errorMessage="Error message goes here"
+      >
+        <Radio id="radio4" labelText="Error" value="4" />
+        <Radio id="radio5" labelText="Error checked" value="selectedOption" />
+      </RadioGroup>
     </>
   );
 };
 
 export const Inverse = () => {
   return (
-    <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
-      <CardBody>
-        <RadioGroup
-          labelText="Inverse Radio Buttons"
-          id="inverseGroup"
-          isInverse
-          name="inverse"
-          value="selectedOption"
-        >
-          <Radio id="inverseRadio" labelText="Inverse" value="default" />
-          <Radio
+    <>
+      <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
+        <CardBody>
+          <RadioGroup
+            labelText="Inverse Radio Buttons"
+            id="inverseGroup"
             isInverse
-            disabled
-            id="disabledInverseRadio"
-            labelText="Disabled inverse"
+            name="inverse"
             value="selectedOption"
-          />
-        </RadioGroup>
-      </CardBody>
-    </Card>
+          >
+            <Radio id="inverseRadio" labelText="Inverse" value="default" />
+            <Radio
+              isInverse
+              disabled
+              id="disabledInverseRadio"
+              labelText="Disabled inverse"
+              value="selectedOption"
+            />
+          </RadioGroup>
+        </CardBody>
+      </Card>
+      <Card isInverse>
+        <CardBody>
+          <RadioGroup
+            errorMessage="Error message goes here"
+            id="inverseErrorGroup"
+            isInverse
+            name="inverse"
+            labelText="Error Inverse Radio Buttons"
+            value="selectedOption"
+          >
+            <Radio id="errorInverseRadio" labelText="Error inverse" value="3" />
+            <Radio
+              id="errorInverseErrorGroup"
+              isInverse
+              labelText="Error inverse checked"
+              value="selectedOption"
+            />
+          </RadioGroup>
+        </CardBody>
+      </Card>
+    </>
   );
 };

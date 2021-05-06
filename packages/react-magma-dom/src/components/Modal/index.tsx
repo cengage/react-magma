@@ -10,6 +10,7 @@ import {
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
+import { Container } from '../Container';
 import { IconButton } from '../IconButton';
 import { CloseIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
@@ -119,7 +120,7 @@ const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
   }
 `;
 
-const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
+const ModalContent = styled(Container)<ModalProps & { isExiting?: boolean }>`
   animation: ${props =>
     props.isExiting ? 'fadeSlideOut 500ms' : 'fadeSlideIn 500ms'};
   background: ${props => props.theme.colors.neutral08};
@@ -129,6 +130,7 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   color: ${props => props.theme.colors.neutral};
   margin: 0 auto;
+  padding: 0;
   position: relative;
   z-index: 1000;
 
@@ -400,6 +402,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 data-testid="modal-content"
                 id={contentId}
                 isExiting={isExiting}
+                isInverse={false}
                 ref={ref}
                 theme={theme}
               >

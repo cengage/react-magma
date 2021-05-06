@@ -34,7 +34,7 @@ export const CardHeading = React.forwardRef<
     <StyledCardHeading
       {...other}
       color={TypographyColor.default}
-      isInverse={context.isInverse || props.isInverse}
+      isInverse={context.isInverse}
       level={headingLevel ? headingLevel : 4}
       ref={ref}
       testId={props.testId}

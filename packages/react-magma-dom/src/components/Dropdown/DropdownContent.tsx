@@ -102,6 +102,7 @@ export const DropdownContent = React.forwardRef<
       alignment={context.alignment}
       dropDirection={context.dropDirection}
       hasDropShadow
+      isInverse={false}
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
       ref={ref}

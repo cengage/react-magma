@@ -1,5 +1,38 @@
 # Change Log
 
+## 2.1.12-alpha.3
+
+### Patch Changes
+
+- Updated dependencies [aaa4d559]
+  - react-magma-dom@2.4.0-alpha.3
+  - @cengage-patterns/header@1.0.0-alpha.3
+
+## 2.1.12-alpha.2
+
+### Patch Changes
+
+- Updated dependencies [b7f7e431]
+- Updated dependencies [c49cda0e]
+  - react-magma-dom@2.4.0-alpha.2
+  - @cengage-patterns/header@1.0.0-alpha.2
+
+## 2.1.12-alpha.1
+
+### Patch Changes
+
+- Updated dependencies [efb6f297]
+  - react-magma-dom@2.3.13-alpha.1
+  - @cengage-patterns/header@0.1.3-alpha.1
+
+## 2.1.12-alpha.0
+
+### Patch Changes
+
+- Updated dependencies [57e28ac7]
+  - react-magma-dom@2.3.13-alpha.0
+  - @cengage-patterns/header@0.1.3-alpha.0
+
 ## 2.1.11
 
 ### Patch Changes
