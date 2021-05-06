@@ -1,8 +1,13 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
-import { TableContext, TableRowColor } from './Table';
+import { TableContext, TableRowColor, TableCell, TableHeaderCell } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { Checkbox } from '../Checkbox';
+import {
+  IndeterminateCheckbox,
+  IndeterminateCheckboxStatus,
+} from '../IndeterminateCheckbox';
 
 /**
  * @children required
@@ -13,6 +18,12 @@ export interface TableRowProps
    * The color scheme of the table row, giving contextual meaning to the content
    */
   color?: TableRowColor;
+  headerRowStatus?: IndeterminateCheckboxStatus;
+  isSelected?: boolean;
+  isSelectableDisabled?: boolean;
+  onHeaderRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onTableRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  rowIndex?: number;
   testId?: string;
 }
 
@@ -95,19 +106,39 @@ const StyledTableRow = styled.tr<{
 
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   (props, ref) => {
-    const { children, testId, ...other } = props;
+    const {
+      children,
+      headerRowStatus,
+      isSelected,
+      isSelectableDisabled,
+      onHeaderRowSelect,
+      onTableRowSelect,
+      rowIndex,
+      testId,
+      ...other
+    } = props;
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 
     let isHeaderRow = false;
 
-    tableContext.hasHoverStyles &&
-      React.Children.forEach(children, (child: any) => {
-        if (child.type.displayName === 'TableHeaderCell') {
-          isHeaderRow = true;
-          return;
-        }
-      });
+    React.Children.forEach(children, (child: any) => {
+      if (child.type.displayName === 'TableHeaderCell') {
+        isHeaderRow = true;
+        return;
+      }
+    });
+
+    function getIsCheckboxInverse() {
+      if (props.color && props.color === TableRowColor.warning) {
+        return false;
+      }
+      if (props.color && props.color !== TableRowColor.warning) {
+        return true;
+      }
+
+      return tableContext.isInverse;
+    }
 
     return (
       <StyledTableRow
@@ -119,6 +150,35 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         ref={ref}
         theme={theme}
       >
+        {tableContext.isSelectable && isHeaderRow && (
+          <TableHeaderCell width={theme.spaceScale.spacing05}>
+            <IndeterminateCheckbox
+              status={headerRowStatus}
+              isInverse={getIsCheckboxInverse()}
+              labelStyle={{ padding: 0 }}
+              labelText="Select all rows"
+              isTextVisuallyHidden
+              onChange={onHeaderRowSelect}
+            />
+          </TableHeaderCell>
+        )}
+        {tableContext.isSelectable && !isHeaderRow && (
+          <TableCell
+            width={theme.spaceScale.spacing05}
+            style={{ verticalAlign: 'middle' }}
+          >
+            <Checkbox
+              checked={isSelected}
+              disabled={isSelectableDisabled}
+              labelStyle={{ padding: 0 }}
+              labelText={`Select row ${rowIndex} of ${tableContext.rowCount}`}
+              isTextVisuallyHidden
+              isInverse={getIsCheckboxInverse()}
+              onChange={onTableRowSelect}
+            />
+          </TableCell>
+        )}
+
         {children}
       </StyledTableRow>
     );

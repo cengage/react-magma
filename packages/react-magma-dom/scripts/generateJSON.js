@@ -12,7 +12,10 @@ const tsconfig = typescript.findConfigFile(
   typescript.sys.fileExists
 );
 const outPath = './dist/properties.json';
-const inPath = ['./src/components'];
+const inPath = [
+  './src/components',
+  './src/hooks'
+];
 
 const defaultDescriptions = {
   children: 'The content of the component',
