@@ -24,13 +24,16 @@ export interface AccordionButtonProps
   theme?: ThemeInterface;
 }
 
-const StyledButton = styled.button<AccordionButtonProps>`
+const StyledButton = styled.button<{
+  isInverse?: boolean;
+  isExpanded?: boolean;
+}>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.foundation
       : props.theme.colors.neutral08};
   border: 0;
-  border-bottom: 1px solid ${props => props.theme.colors.neutral06};
+  border-top: 1px solid ${props => props.theme.colors.neutral06};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
@@ -57,6 +60,10 @@ const StyledButton = styled.button<AccordionButtonProps>`
       props.isInverse
         ? props.theme.colors.disabledInverseText
         : props.theme.colors.disabledText};
+  }
+
+  svg {
+    transform: ${props => (props.isExpanded ? 'rotate(180deg)' : 'rotate(0)')};
   }
 `;
 
@@ -89,6 +96,7 @@ export const AccordionButton = React.forwardRef<
       data-testid={testId}
       disabled={isDisabled}
       id={buttonId}
+      isExpanded={isExpanded}
       isInverse={isInverse}
       onClick={handleClick}
       ref={ref}

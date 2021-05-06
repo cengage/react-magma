@@ -33,6 +33,7 @@ const StyledAccordion = styled.div<AccordionProps>`
     props.isInverse
       ? props.theme.colors.foundation
       : props.theme.colors.neutral08};
+  border-bottom: 1px solid ${props => props.theme.colors.neutral06};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
