@@ -5,8 +5,8 @@ props:
   - DatagridProps
   - DatagridColumn
   - DatagridRow
-  - UsePaginationControlled
-  - UsePaginationUncontrolled
+  - UseDataPaginationControlled
+  - UseDataPaginationUncontrolled
 ---
 
 <DocsHeading type="api">Datagrid</DocsHeading>
@@ -270,7 +270,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, usePagination } from 'react-magma-dom';
+import { Datagrid, Card, useDataPagination } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -458,7 +458,7 @@ export function Example() {
     },
   ];
 
-  const pagination = usePagination(rowsForPagination.length);
+  const pagination = useDataPagination(rowsForPagination.length);
 
   return (
     <Datagrid
@@ -474,7 +474,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, usePagination } from 'react-magma-dom';
+import { Datagrid, Card, useDataPagination } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -662,7 +662,7 @@ export function Example() {
     },
   ];
 
-  const pagination = usePagination(rowsForPagination.length, {
+  const pagination = useDataPagination(rowsForPagination.length, {
     defaultPage: 2,
     defaultRowsPerPage: 5,
     rowsPerPageValues: [5, 10, 20],
@@ -682,7 +682,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, usePagination } from 'react-magma-dom';
+import { Datagrid, Card, useDataPagination } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -887,7 +887,7 @@ export function Example() {
       : alert('Did not update rows per page');
   }
 
-  const pagination = usePagination(rowsForPagination.length, {
+  const pagination = useDataPagination(rowsForPagination.length, {
     page,
     rowsPerPage,
     rowsPerPageValues: [5, 10, 20],
@@ -972,14 +972,14 @@ export function Example() {
 
 <DatagridRow />
 
-# UsePagination props
+# UseDataPagination props
 
-Props to be used in the `usePagination` hook. There is a controlled and uncontrolled interface for the props.
+Props to be used in the `useDataPagination` hook. There is a controlled and uncontrolled interface for the props.
 
-## UsePaginationUncontrolled
+## UseDataPaginationUncontrolled
 
-<UsePaginationUncontrolled />
+<UseDataPaginationUncontrolled />
 
-## UsePaginationControlled
+## UseDataPaginationControlled
 
-<UsePaginationControlled />
+<UseDataPaginationControlled />

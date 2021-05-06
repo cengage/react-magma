@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import { usePagination } from './usePagination';
+import { useDataPagination } from './useDataPagination';
 
 const rowsForPagination = [
   {
@@ -179,10 +179,10 @@ const rowsForPagination = [
   },
 ];
 
-describe('usePagination', () => {
+describe('useDataPagination', () => {
   it('should return default pagination values', () => {
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length)
+      useDataPagination(rowsForPagination.length)
     );
 
     expect(result.current).toEqual({
@@ -196,7 +196,7 @@ describe('usePagination', () => {
 
   it('should return default pagination values with default overrides', () => {
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length, {
+      useDataPagination(rowsForPagination.length, {
         defaultPage: 1,
         defaultRowsPerPage: 20,
       })
@@ -213,7 +213,7 @@ describe('usePagination', () => {
 
   it('should return default pagination values with controlled overrides', () => {
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length, {
+      useDataPagination(rowsForPagination.length, {
         page: 1,
         rowsPerPage: 20,
       })
@@ -231,7 +231,7 @@ describe('usePagination', () => {
   it('should update the page number', () => {
     const newPage = 2;
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length)
+      useDataPagination(rowsForPagination.length)
     );
 
     act(() => {
@@ -250,7 +250,7 @@ describe('usePagination', () => {
   it('should update the rows per page number', () => {
     const newRowsPerPage = 50;
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length)
+      useDataPagination(rowsForPagination.length)
     );
 
     act(() => {
@@ -269,7 +269,7 @@ describe('usePagination', () => {
   it('should update the page number to 0 when updating the rows per page', () => {
     const newRowsPerPage = 50;
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length)
+      useDataPagination(rowsForPagination.length)
     );
 
     act(() => {
@@ -292,7 +292,7 @@ describe('usePagination', () => {
   it('should not update the page number if a page is passed in with the overrides', () => {
     const newPage = 2;
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length, { page: 1 })
+      useDataPagination(rowsForPagination.length, { page: 1 })
     );
 
     act(() => {
@@ -311,7 +311,7 @@ describe('usePagination', () => {
   it('should not update the rows per page number if rows per page is passed in with the overrides', () => {
     const newRowsPerPage = 50;
     const { result } = renderHook(() =>
-      usePagination(rowsForPagination.length, { rowsPerPage: 10 })
+      useDataPagination(rowsForPagination.length, { rowsPerPage: 10 })
     );
 
     act(() => {

@@ -1,6 +1,6 @@
-import * as React from "react";
-import { UsePaginationReturn } from "../Pagination/usePagination";
-import { IndeterminateCheckboxStatus } from "../IndeterminateCheckbox";
+import * as React from 'react';
+import { UseDataPaginationReturn } from '../../hooks/useDataPagination';
+import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import {
   Table,
   TableBody,
@@ -12,7 +12,7 @@ import {
   TableProps,
   TableHeaderCellProps,
   TableRowColor,
-} from "../Table";
+} from '../Table';
 
 export interface DatagridColumn extends TableHeaderCellProps {
   /**
@@ -72,9 +72,9 @@ export interface DatagridProps extends TableProps {
    */
   onSelectedRowsChange?: (newSelectedRows: (string | number)[]) => void;
   /**
-   * Pagination data used to create the pagination footer. Created using the usePagination hook.
+   * Pagination data used to create the pagination footer. Created using the useDataPagination hook.
    */
-  pagination?: { count: number } & UsePaginationReturn;
+  pagination?: { count: number } & UseDataPaginationReturn;
   /**
    * Array of rows that are selected in the table
    */
@@ -107,7 +107,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
         )
       : rows;
 
-    const filteredRows = rowsToShow.filter((row) => !row.isSelectableDisabled);
+    const filteredRows = rowsToShow.filter(row => !row.isSelectableDisabled);
 
     React.useEffect(() => {
       if (Array.isArray(controlledSelectedRows)) {
@@ -136,7 +136,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       handleSelectedRowsChange(newSelectedRows);
 
       onRowSelect &&
-        typeof onRowSelect === "function" &&
+        typeof onRowSelect === 'function' &&
         onRowSelect(id, event);
     }
 
@@ -147,18 +147,18 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       ) {
         handleSelectedRowsChange([]);
       } else {
-        handleSelectedRowsChange(filteredRows.map((row) => row.id));
+        handleSelectedRowsChange(filteredRows.map(row => row.id));
       }
 
       onHeaderSelect &&
-        typeof onHeaderSelect === "function" &&
+        typeof onHeaderSelect === 'function' &&
         onHeaderSelect(event);
     }
 
     function handleSelectedRowsChange(newSelectedRows) {
       if (isControlled) {
         onSelectedRowsChange &&
-          typeof onSelectedRowsChange === "function" &&
+          typeof onSelectedRowsChange === 'function' &&
           onSelectedRowsChange(newSelectedRows);
       } else {
         updatedSelectedRows(newSelectedRows);
@@ -190,9 +190,9 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
                   selectedRows ? selectedRows.indexOf(id) > -1 : false
                 }
                 isSelectableDisabled={isSelectableDisabled}
-                onTableRowSelect={(event) => handleRowSelect(id, event)}
+                onTableRowSelect={event => handleRowSelect(id, event)}
               >
-                {Object.keys(other).map((field) => (
+                {Object.keys(other).map(field => (
                   <TableCell key={`cell${field}`}>{other[field]}</TableCell>
                 ))}
               </TableRow>

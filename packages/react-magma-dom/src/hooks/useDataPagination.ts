@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface UsePaginationBasics {
+interface UseDataPaginationBasics {
   /**
    * Event that fires when the page number changes
    */
@@ -15,7 +15,7 @@ interface UsePaginationBasics {
   rowsPerPageValues?: number[];
 }
 
-export interface UsePaginationControlled extends UsePaginationBasics {
+export interface UseDataPaginationControlled extends UseDataPaginationBasics {
   defaultPage?: never;
   defaultRowsPerPage?: never;
   /**
@@ -30,7 +30,7 @@ export interface UsePaginationControlled extends UsePaginationBasics {
   rowsPerPage?: number;
 }
 
-export interface UsePaginationUncontrolled extends UsePaginationBasics {
+export interface UseDataPaginationUncontrolled extends UseDataPaginationBasics {
   /**
    * Zero-based page number used when initially rendered
    */
@@ -43,13 +43,13 @@ export interface UsePaginationUncontrolled extends UsePaginationBasics {
   rowsPerPage?: never;
 }
 
-export type UsePaginationProps =
-  | UsePaginationControlled
-  | UsePaginationUncontrolled;
+export type UseDataPaginationProps =
+  | UseDataPaginationControlled
+  | UseDataPaginationUncontrolled;
 
-export function usePagination(
+export function useDataPagination(
   count: number,
-  overrides: UsePaginationProps = {}
+  overrides: UseDataPaginationProps = {}
 ) {
   const {
     defaultPage,
@@ -99,4 +99,4 @@ export function usePagination(
   };
 }
 
-export type UsePaginationReturn = ReturnType<typeof usePagination>;
+export type UseDataPaginationReturn = ReturnType<typeof useDataPagination>;
