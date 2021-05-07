@@ -153,13 +153,13 @@ export interface Modal {
 interface Drawer {
   default: {
     maxWidth: string;
+    minHeight: string;
     borderRadius: string;
     margin: string;
     top: string;
     bottom: string;
     left: string;
     right: string;
-    position: string;
   };
   top: {
     bottom: string;
@@ -169,9 +169,11 @@ interface Drawer {
   };
   left: {
     right: string;
+    height: string;
   };
   right: {
     left: string;
+    height: string;
   };
 }
 
@@ -571,19 +573,21 @@ export const magma = {
   drawer: {
     default: {
       maxWidth: '100%',
+      minHeight: '250px',
       margin: '0',
       borderRadius: '0',
       top: '0',
       right: '0',
       bottom: '0',
       left: '0',
-      position: 'absolute',
     },
     right: {
       left: 'auto',
+      height: '100%',
     },
     left: {
       right: 'auto',
+      height: '100%',
     },
     top: {
       bottom: 'auto',

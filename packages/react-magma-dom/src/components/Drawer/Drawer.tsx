@@ -48,6 +48,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           position: 'absolute',
           ...containerStyle,
         }}
+        transitionPreset={DrawerPosition[position]}
         style={{ ...drawerStyle, ...style }}
         {...rest}
       />
