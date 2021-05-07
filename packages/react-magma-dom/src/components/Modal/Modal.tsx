@@ -13,10 +13,9 @@ import { IconButton } from '../IconButton';
 import { CloseIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
 import { TypographyVisualStyle } from '../Typography';
-import { Transition } from '../Transition';
+import { Transition, TransitionProps } from '../Transition';
 import { ThemeInterface } from '../../theme/magma';
 import { omit, useGenerateId, usePrevious } from '../../utils';
-import { DrawerPosition } from '../Drawer';
 
 export enum ModalSize {
   large = 'large',
@@ -64,7 +63,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
-  transitionPreset?: string;
+  containerTransition?: Omit<TransitionProps, 'isOpen'>;
   /**
    * Action that fires when the close button is clicked
    */
@@ -85,7 +84,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: ThemeInterface;
 }
 
-const ModalContainer = styled.div<{
+const ModalContainer = styled(Transition)<{
   theme: ThemeInterface;
 }>`
   bottom: 0;
@@ -97,7 +96,7 @@ const ModalContainer = styled.div<{
   z-index: 998;
 `;
 
-const ModalBackdrop = styled.div<{ isExiting?: boolean }>`
+const ModalBackdrop = styled(Transition)<{ isExiting?: boolean }>`
   backdrop-filter: blur(3px);
   background: rgba(0, 0, 0, 0.6);
   bottom: 0;
@@ -315,19 +314,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       }, 300);
     }
 
-    const transitionPreset: {
-      [key in DrawerPosition]: { [key: string]: boolean };
-    } = {
-      top: { slideTop: true },
-      bottom: { slideBottom: true },
-      left: { slideLeft: true },
-      right: { slideRight: true },
-    };
-
     const {
       children,
       closeAriaLabel,
       containerStyle,
+      containerTransition={slideTop: true},
       isBackgroundClickDisabled,
       isEscKeyDownDisabled,
       header,
@@ -346,14 +337,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     );
 
     return (
-      <Transition
-        fade
-        isOpen={isModalOpen}
-        unmountOnExit
-        onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
-        onClick={isBackgroundClickDisabled ? null : handleModalClick}
-        onMouseDown={isBackgroundClickDisabled ? null : handleModalOnMouseDown}
-      >
+      <>
         <Global
           styles={css`
             html {
@@ -361,16 +345,21 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             }
           `}
         />
-        <Transition isOpen>
           <ModalContainer
             aria-labelledby={headingId}
             aria-modal={true}
             data-testid={testId}
             id={id}
+            onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
+            onClick={isBackgroundClickDisabled ? null : handleModalClick}
+            onMouseDown={isBackgroundClickDisabled ? null : handleModalOnMouseDown}
             ref={focusTrapElement}
             role="dialog"
             style={containerStyle}
             theme={theme}
+            isOpen={isModalOpen}
+            {...containerTransition}
+            unmountOnExit
           >
             <ModalContent
               {...other}
@@ -417,15 +406,17 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               )}
             </ModalContent>
           </ModalContainer>
-        </Transition>
         <ModalBackdrop
           data-testid="modal-backdrop"
           isExiting={isExiting}
           onMouseDown={
             isBackgroundClickDisabled ? event => event.preventDefault() : null
           }
+          fade
+          isOpen={isModalOpen}
+          unmountOnExit
         />
-      </Transition>
+    </>
     );
   }
 );

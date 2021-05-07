@@ -1,13 +1,23 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Modal, ModalProps } from '../Modal';
+import { TransitionProps } from '../Transition';
 
 export enum DrawerPosition {
-  top = 'top',
-  bottom = 'bottom',
-  left = 'left',
-  right = 'right',
+  Top = 'Top',
+  Bottom = 'Bottom',
+  Left = 'Left',
+  Right = 'Right',
 }
+
+const transitionPreset: {
+  [key in DrawerPosition]: Omit<TransitionProps, 'isOpem'>;
+} = {
+  Top: { slideTop: true },
+  Bottom: { slideBottom: true },
+  Left: { slideLeft: true },
+  Right: { slideRight: true },
+};
 
 /**
  * @children required
@@ -33,7 +43,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const {
       style,
       containerStyle,
-      position = DrawerPosition.left,
+      position = DrawerPosition.Left,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -48,7 +58,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           position: 'absolute',
           ...containerStyle,
         }}
-        transitionPreset={DrawerPosition[position]}
+        containerTransition={transitionPreset[DrawerPosition[position]]}
         style={{ ...drawerStyle, ...style }}
         {...rest}
       />
