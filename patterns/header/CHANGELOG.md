@@ -1,5 +1,41 @@
 # Change Log
 
+## 1.0.0-alpha.4
+
+### Patch Changes
+
+- Updated dependencies [88e2daee]
+  - react-magma-dom@2.4.0-alpha.4
+
+## 1.0.0-alpha.3
+
+### Patch Changes
+
+- Updated dependencies [aaa4d559]
+  - react-magma-dom@2.4.0-alpha.3
+
+## 1.0.0-alpha.2
+
+### Patch Changes
+
+- Updated dependencies [b7f7e431]
+- Updated dependencies [c49cda0e]
+  - react-magma-dom@2.4.0-alpha.2
+
+## 0.1.3-alpha.1
+
+### Patch Changes
+
+- Updated dependencies [efb6f297]
+  - react-magma-dom@2.3.13-alpha.1
+
+## 0.1.3-alpha.0
+
+### Patch Changes
+
+- Updated dependencies [57e28ac7]
+  - react-magma-dom@2.3.13-alpha.0
+
 ## 0.1.2
 
 ### Patch Changes

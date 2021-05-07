@@ -3,6 +3,7 @@ import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import { useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -51,6 +52,19 @@ export enum CardCalloutType {
 export function buildCalloutBackground(
   props: CardProps & { theme: ThemeInterface }
 ) {
+  if (props.isInverse) {
+    switch (props.calloutType) {
+      case 'danger':
+        return props.theme.colors.dangerInverse;
+      case 'success':
+        return props.theme.colors.successInverse;
+      case 'warning':
+        return props.theme.colors.pop04;
+      default:
+        return props.theme.colors.foundation04;
+    }
+  }
+
   switch (props.calloutType) {
     case 'danger':
       return props.theme.colors.danger;
@@ -116,7 +130,9 @@ export const CardContext = React.createContext<NavTabsContextInterface>({
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (props, ref) => {
-    const { align, children, isInverse, testId, width, ...other } = props;
+    const { align, children, testId, width, ...other } = props;
+
+    const isInverse = useIsInverse(props.isInverse);
 
     const theme = React.useContext(ThemeContext);
 

@@ -1,3 +1,5 @@
+import { ThemeTransitions, transitions } from './components/transition';
+
 export interface Colors {
   primary: string;
   focus: string;
@@ -36,6 +38,8 @@ export interface Colors {
   tint04: string;
   tone: string;
   tone02: string;
+  border: string;
+  borderInverse: string;
 }
 
 export interface Breakpoints {
@@ -208,6 +212,7 @@ export interface ThemeInterface {
   modal: Modal;
   tabs: Tabs;
   tooltip: Tooltip;
+  transitions: ThemeTransitions;
 }
 
 const typeScale = {
@@ -304,6 +309,8 @@ const colors = {
   tint04: 'rgba(255,255,255,0.4)',
   tone: 'rgba(63,63,63,0.07)',
   tone02: 'rgba(63,63,63,0.1)',
+  border: '#DFDFDF',
+  borderInverse: 'rgba(255,255,255,0.25)',
 };
 
 const spaceScale = {
@@ -334,7 +341,7 @@ export const magma = {
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
   spacingMultiplier: 8,
-
+  transitions,
   // breakpoints
   breakpoints: {
     xs: 0,

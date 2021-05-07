@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Global, css } from '@emotion/core';
 import { ThemeContext } from '../ThemeContext';
+import { useIsInverse } from '../../inverse';
 
-function getStyles(theme) {
+function getStyles(theme, isInverse: boolean) {
   return css`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -14,7 +15,8 @@ function getStyles(theme) {
     }
 
     *:focus {
-      outline: 2px dotted ${theme.colors.focus};
+      outline: 2px dotted
+        ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
       outline-offset: 4px;
     }
 
@@ -28,13 +30,15 @@ function getStyles(theme) {
 
     html,
     body {
+      background: ${isInverse
+        ? theme.colors.foundation
+        : theme.colors.neutral08};
+      color: ${isInverse ? theme.colors.neutral08 : theme.colors.neutral};
       margin: 0;
       padding: 0;
     }
 
     body {
-      background: ${theme.colors.neutral08};
-      color: ${theme.colors.neutral};
       font-family: ${theme.bodyFont};
       font-style: normal;
       font-weight: 400;
@@ -43,13 +47,13 @@ function getStyles(theme) {
     }
 
     a {
-      color: ${theme.colors.primary};
+      color: ${isInverse ? theme.colors.neutral07 : theme.colors.primary};
       cursor: pointer;
       text-decoration: underline;
 
       &:hover,
       &:focus {
-        color: ${theme.colors.foundation02};
+        color: ${isInverse ? theme.colors.neutral06 : theme.colors.focus};
       }
     }
 
@@ -69,9 +73,10 @@ function getStyles(theme) {
 }
 
 export const GlobalStyles: React.FunctionComponent = () => {
+  const isInverse = useIsInverse();
   return (
     <ThemeContext.Consumer>
-      {theme => <Global styles={getStyles(theme)} />}
+      {theme => <Global styles={getStyles(theme, isInverse)} />}
     </ThemeContext.Consumer>
   );
 };

@@ -38,8 +38,8 @@ exports[`SkipLink should render the skip link component 1`] = `
   text-decoration: none;
   text-transform: uppercase;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,color 0.35s;
-  transition: background 0.35s,color 0.35s;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;
@@ -142,8 +142,8 @@ exports[`SkipLink should render the skip link component 1`] = `
   text-decoration: none;
   text-transform: uppercase;
   touch-action: manipulation;
-  -webkit-transition: background 0.35s,color 0.35s;
-  transition: background 0.35s,color 0.35s;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
   width: auto;

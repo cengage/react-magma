@@ -17,7 +17,8 @@ const StyledTabPanel = styled.div<{
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
   flex: 1;
-  padding: ${props => props.theme.spaceScale.spacing05};
+  height: 100%;
+  padding: 20px;
 `;
 
 export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {

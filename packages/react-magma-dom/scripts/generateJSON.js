@@ -12,7 +12,10 @@ const tsconfig = typescript.findConfigFile(
   typescript.sys.fileExists
 );
 const outPath = './dist/properties.json';
-const inPath = ['./src/components'];
+const inPath = [
+  './src/components',
+  './src/hooks'
+];
 
 const defaultDescriptions = {
   children: 'The content of the component',
@@ -84,6 +87,7 @@ const filterJson = () => {
     return sortObject(
       children
         .filter(filterReactDefinitions)
+        .filter(filterMotionDefinitions)
         .filter(filterEmotion)
         .reduce(formatChild, acc)
     );
@@ -121,6 +125,8 @@ const filterJson = () => {
   const filterReactDefinitions = definition =>
     definition.sources[0].fileName !== 'node_modules/@types/react/index.d.ts';
 
+  const filterMotionDefinitions = definition => !definition.sources[0].fileName.startsWith('node_modules/framer-motion/types');
+
   const formatTags = (tags = []) => {
     return tags.reduce((acc, { tag, text }) => {
       return { [tag]: text.trim(), ...acc };
@@ -129,19 +135,23 @@ const filterJson = () => {
 
   const formatChild = (acc, child) => {
     const tags = formatTags((child.comment && child.comment.tags) || []);
-    return {
-      ...acc,
-      [child.name]: {
-        name: child.name,
-        required: child.flags && !child.flags.isOptional,
-        type: findType(child.type),
-        description:
-          (child.comment && child.comment.shortText) ||
-          defaultDescriptions[child.name],
-        defaultValue: defaultDefaults[child.name] || tags.default,
-        deprecated: !!tags.deprecated,
-      },
-    };
+    if(child && child.type){
+      return {
+        ...acc,
+        [child.name]: {
+          name: child.name,
+          required: child.flags && !child.flags.isOptional,
+          type: findType(child.type),
+          description:
+            (child.comment && child.comment.shortText) ||
+            defaultDescriptions[child.name],
+          defaultValue: defaultDefaults[child.name] || tags.default,
+          deprecated: !!tags.deprecated,
+        },
+      };
+    }
+    console.log(child)
+    return {}
   };
 
   const jsonFinal = jsonOrig.children

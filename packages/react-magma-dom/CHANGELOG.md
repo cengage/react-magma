@@ -1,5 +1,49 @@
 # Change Log
 
+## 2.4.0-alpha.4
+
+### Minor Changes
+
+- 88e2daee: Feature/datagrid
+
+  Creating a `Datagrid` component with the options to have selectable rows and pagination.
+
+  As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
+
+## 2.4.0-alpha.3
+
+### Patch Changes
+
+- aaa4d559: Some minor adjustments to the appearance of inverse (dark) states in some components. Also some updates to docs structure for dark mode.
+
+## 2.4.0-alpha.2
+
+### Minor Changes
+
+- b7f7e431: feature/transitions: Add `Transition` component.
+
+  A reusable Transition components that allows teams to use the same standard transitions everywhere.
+
+  ```
+  <Transition fade nudgeTop>
+    <div>child</div>
+  </Transition>
+  ```
+
+- c49cda0e: Add new transition component
+
+## 2.3.13-alpha.1
+
+### Patch Changes
+
+- efb6f297: feat: updating error styles for radios
+
+## 2.3.13-alpha.0
+
+### Patch Changes
+
+- 57e28ac7: feat(pagination): create new pagination component
+
 ## 2.3.12
 
 ### Patch Changes
@@ -12,399 +56,75 @@
 
 - d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
-## 2.3.11
-
-### Patch Changes
-
-- d306c99e: Switch focus from input to input wrapper to account for password managers adding their icons.
-  - react-magma-icons@2.0.4
-
-## 2.3.11
-
-### Patch Changes
-
-- chore: init changeset
-- Updated dependencies [undefined]
-  - react-magma-icons@2.0.4
-
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-### 2.3.11-alpha.1 (2021-04-20)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.11-alpha.0 (2021-04-15)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10 (2021-04-14)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.14 (2021-04-14)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.13 (2021-04-13)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.12 (2021-04-07)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.11 (2021-04-07)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.10 (2021-04-06)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.9 (2021-04-06)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.8 (2021-04-05)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.7 (2021-04-02)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.6 (2021-04-02)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.1 (2021-04-01)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.5 (2021-03-31)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.4 (2021-03-31)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.3 (2021-03-30)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.2 (2021-03-30)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.1 (2021-03-29)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.10-alpha.0 (2021-03-25)
-
-**Note:** Version bump only for package react-magma-dom
-
 ### 2.3.9 (2021-03-24)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.13 (2021-03-23)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.12 (2021-03-23)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.11 (2021-03-18)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.10 (2021-03-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.9 (2021-03-15)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.8 (2021-03-15)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.7 (2021-03-15)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.6 (2021-03-12)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.5 (2021-03-12)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.4 (2021-03-11)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.3 (2021-03-11)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.2 (2021-03-09)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.1 (2021-03-09)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.9-alpha.0 (2021-03-05)
-
-**Note:** Version bump only for package react-magma-dom
+- chore: update to node 14, npm 7
+- fix(checkbox): switch to icon for unchecked state
+- fix(dropdown): improve dropdown button styles for icons v2
+- feature(flex): add flex component
+- feature(spacer): add spacer component
+- fix(formgroup): add label
+- fix(Button): default to ButtonType.button
+- fix(icons): update remaining v1 icons
 
 ### 2.3.8 (2021-03-01)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.8-alpha.4 (2021-02-26)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.8-alpha.3 (2021-02-26)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.8-alpha.2 (2021-02-26)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.8-alpha.1 (2021-02-24)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.8-alpha.0 (2021-02-22)
-
-**Note:** Version bump only for package react-magma-dom
+- fix: update dependencies accross packages
+- docs(checkbox): improve stories
 
 ### 2.3.7 (2021-02-22)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.7-alpha.3 (2021-02-19)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.7-alpha.2 (2021-02-19)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.7-alpha.1 (2021-02-19)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.7-alpha.0 (2021-02-19)
-
-**Note:** Version bump only for package react-magma-dom
+- feat(icons): release v2.0.0
 
 ### 2.3.6 (2021-02-18)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.5 (2021-02-12)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.6-alpha.0 (2021-02-18)
-
-**Note:** Version bump only for package react-magma-dom
+- Note: Version bump only for package react-magma-dom
+-
 
 ### 2.3.5 (2021-02-18)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.13 (2021-02-18)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.12 (2021-02-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.11 (2021-02-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.10 (2021-02-17)
-
-### Bug Fixes
-
-- **table:** duplicate exports ([1583413](https://github.com/cengage/react-magma/commit/15834130d3aa24ecbe5f479632b74081fa0ab5c9))
-
-### 2.3.5-alpha.9 (2021-02-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.8 (2021-02-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.7 (2021-02-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.6 (2021-02-12)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.5 (2021-02-12)
-
-**Note:** Version bump only for package react-magma-dom
-
-> > > > > > > dev
-
-### 2.3.5-alpha.4 (2021-02-12)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.3 (2021-02-05)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.2 (2021-01-29)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.1 (2021-01-26)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.5-alpha.0 (2021-01-26)
-
-**Note:** Version bump only for package react-magma-dom
+- table: duplicate exports (1583413)
+- ci(stories): add remaining stories
+- refactor(breadcrumb): add generic index
+- refactor(card): add generic index
+- refactor(dropdown): add generic index
+- refactor(navtabs): add generic index
+- refactor(table): add generic index
+- refactor(tabs): add generic index
+- fix(combobox): fix error message and styling
+- fix(select): fix error message and styling
+- fix(checkbox): use IndeterminateCheckboxStatus in type
+- fix(label): add labelPosition enum
+- feature(table): add pagination
 
 ### 2.3.4 (2021-01-25)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.4-alpha.5 (2021-01-25)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.4-alpha.4 (2021-01-25)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.4-alpha.3 (2021-01-22)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.4-alpha.2 (2021-01-22)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.4-alpha.1 (2021-01-21)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.4-alpha.0 (2021-01-20)
-
-**Note:** Version bump only for package react-magma-dom
+- ci(storybook): add storybook
+- chore: update contributing guide
+- fix(tooltip): improve positioning
 
 ### 2.3.3 (2021-01-20)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.10 (2021-01-19)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.9 (2021-01-19)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.8 (2021-01-19)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.7 (2021-01-15)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.6 (2021-01-14)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.5 (2021-01-14)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.4 (2021-01-14)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.3 (2021-01-11)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.2 (2021-01-08)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.1 (2021-01-06)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.3-alpha.0 (2021-01-05)
-
-**Note:** Version bump only for package react-magma-dom
+- docs(theme): use magma theme in more places
+- feat(combobox): add isMulti XOR
+- feat(select): add isMulti XOR
+- fix(dropdown): set border to 0
+- feat(form): create form component
+- fix(hyperlink): extend Anchor
+- fix(theme): remove jsx pragma
 
 ### 2.3.2 (2020-12-30)
 
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.8 (2020-12-30)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.7 (2020-12-30)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.6 (2020-12-30)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.5 (2020-12-29)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.4 (2020-12-29)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.3 (2020-12-22)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.2 (2020-12-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.2-alpha.1 (2020-12-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.1-alpha.2 (2020-12-17)
-
-**Note:** Version bump only for package react-magma-dom
-
-### 2.3.1-alpha.1 (2020-12-17)
-
-**Note:** Version bump only for package react-magma-dom
+- ci(actions): new github Actions
+- ci(actions): deploy to Netlify
+- test: add instructions for wallabyjs
+- chore: delete archived packages
+- build(lerna): update
+- build(gatsby): add flags for faster docs preview
+- docs(gatsby): switch to magic props tables
+- feat(tooltip): introduce popperjs
+- fix(combobox): support maxHeight
+- fix(combobox): support customComponents
 
 ### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0) (2020-12-11)
 

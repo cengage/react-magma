@@ -1,0 +1,19 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "react-magma-dom": "2.3.12",
+    "react-magma-icons": "2.0.4",
+    "@cengage-patterns/header": "0.1.2",
+    "react-magma-docs": "2.1.11",
+    "react-magma-landing": "1.0.10"
+  },
+  "changesets": [
+    "green-trees-exist",
+    "lazy-mangos-attend",
+    "lazy-pugs-decide",
+    "rich-mice-learn",
+    "six-bears-sing",
+    "spicy-seals-speak"
+  ]
+}
