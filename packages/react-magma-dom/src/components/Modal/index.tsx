@@ -350,9 +350,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         fade
         isOpen={isModalOpen}
         unmountOnExit
-        // onMouseDown={
-        //   isBackgroundClickDisabled ? event => event.preventDefault() : null
-        // }
         onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
         onClick={isBackgroundClickDisabled ? null : handleModalClick}
         onMouseDown={isBackgroundClickDisabled ? null : handleModalOnMouseDown}
@@ -364,17 +361,17 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             }
           `}
         />
-        <ModalContainer
-          aria-labelledby={headingId}
-          aria-modal={true}
-          data-testid={testId}
-          id={id}
-          ref={focusTrapElement}
-          role="dialog"
-          style={containerStyle}
-          theme={theme}
-        >
-          <Transition {...transitionPreset['top']} fade isOpen>
+        <Transition isOpen>
+          <ModalContainer
+            aria-labelledby={headingId}
+            aria-modal={true}
+            data-testid={testId}
+            id={id}
+            ref={focusTrapElement}
+            role="dialog"
+            style={containerStyle}
+            theme={theme}
+          >
             <ModalContent
               {...other}
               data-testid="modal-content"
@@ -419,10 +416,15 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 </CloseBtn>
               )}
             </ModalContent>
-          </Transition>
-        </ModalContainer>
-
-        <ModalBackdrop data-testid="modal-backdrop" isExiting={isExiting} />
+          </ModalContainer>
+        </Transition>
+        <ModalBackdrop
+          data-testid="modal-backdrop"
+          isExiting={isExiting}
+          onMouseDown={
+            isBackgroundClickDisabled ? event => event.preventDefault() : null
+          }
+        />
       </Transition>
     );
   }
