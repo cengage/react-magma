@@ -61,6 +61,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isOpen?: boolean;
   /**
+   * If true, the modal will removed from the DOM when closed
+   * @default true
+   */
+  unmountOnExit?: boolean;
+  /**
    * @internal
    */
   containerTransition?: Omit<TransitionProps, 'isOpen'>;
@@ -318,12 +323,13 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       children,
       closeAriaLabel,
       containerStyle,
-      containerTransition={slideTop: true},
+      containerTransition = { slideTop: true },
       isBackgroundClickDisabled,
       isEscKeyDownDisabled,
       header,
       isCloseButtonHidden,
       isOpen,
+      unmountOnExit = true,
       testId,
       ...rest
     } = props;
@@ -345,67 +351,67 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             }
           `}
         />
-          <ModalContainer
-            aria-labelledby={headingId}
-            aria-modal={true}
-            data-testid={testId}
-            id={id}
-            onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
-            onClick={isBackgroundClickDisabled ? null : handleModalClick}
-            onMouseDown={isBackgroundClickDisabled ? null : handleModalOnMouseDown}
-            ref={focusTrapElement}
-            role="dialog"
-            style={containerStyle}
+        <ModalContainer
+          aria-labelledby={header ? headingId : null}
+          aria-modal={true}
+          data-testid={testId}
+          id={id}
+          onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
+          onClick={isBackgroundClickDisabled ? null : handleModalClick}
+          onMouseDown={
+            isBackgroundClickDisabled ? null : handleModalOnMouseDown
+          }
+          ref={focusTrapElement}
+          role="dialog"
+          style={containerStyle}
+          theme={theme}
+          isOpen={isModalOpen}
+          {...containerTransition}
+          unmountOnExit={unmountOnExit}
+        >
+          <ModalContent
+            {...other}
+            data-testid="modal-content"
+            id={contentId}
+            isExiting={isExiting}
+            ref={ref}
             theme={theme}
-            isOpen={isModalOpen}
-            {...containerTransition}
-            unmountOnExit
           >
-            <ModalContent
-              {...other}
-              data-testid="modal-content"
-              id={contentId}
-              isExiting={isExiting}
-              ref={ref}
-              theme={theme}
-            >
-              {header && (
-                <ModalHeader theme={theme}>
-                  {header && (
-                    <H1
-                      id={headingId}
-                      level={1}
-                      ref={headingRef}
-                      visualStyle={TypographyVisualStyle.headingSmall}
-                      tabIndex={-1}
-                      theme={theme}
-                    >
-                      {header}
-                    </H1>
-                  )}
-                </ModalHeader>
-              )}
-              <ModalBody ref={bodyRef} theme={theme}>
-                {children}
-              </ModalBody>
-              {!isCloseButtonHidden && (
-                <CloseBtn>
-                  <IconButton
-                    aria-label={
-                      closeAriaLabel
-                        ? closeAriaLabel
-                        : i18n.modal.closeAriaLabel
-                    }
-                    color={ButtonColor.secondary}
-                    icon={CloseIconButton}
-                    onClick={handleClose}
-                    testId="modal-closebtn"
-                    variant={ButtonVariant.link}
-                  />
-                </CloseBtn>
-              )}
-            </ModalContent>
-          </ModalContainer>
+            {header && (
+              <ModalHeader theme={theme}>
+                {header && (
+                  <H1
+                    id={headingId}
+                    level={1}
+                    ref={headingRef}
+                    visualStyle={TypographyVisualStyle.headingSmall}
+                    tabIndex={-1}
+                    theme={theme}
+                  >
+                    {header}
+                  </H1>
+                )}
+              </ModalHeader>
+            )}
+            <ModalBody ref={bodyRef} theme={theme}>
+              {children}
+            </ModalBody>
+            {!isCloseButtonHidden && (
+              <CloseBtn>
+                <IconButton
+                  aria-label={
+                    closeAriaLabel ? closeAriaLabel : i18n.modal.closeAriaLabel
+                  }
+                  color={ButtonColor.secondary}
+                  icon={CloseIconButton}
+                  onClick={handleClose}
+                  testId="modal-closebtn"
+                  variant={ButtonVariant.link}
+                />
+              </CloseBtn>
+            )}
+          </ModalContent>
+        </ModalContainer>
         <ModalBackdrop
           data-testid="modal-backdrop"
           isExiting={isExiting}
@@ -416,7 +422,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           isOpen={isModalOpen}
           unmountOnExit
         />
-    </>
+      </>
     );
   }
 );

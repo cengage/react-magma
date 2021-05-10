@@ -160,19 +160,24 @@ interface Drawer {
     bottom: string;
     left: string;
     right: string;
+    position: string;
   };
-  top: {
-    bottom: string;
-  };
-  bottom: {
-    top: string;
+  right: {
+    left: string;
+    height: string;
+    width: string;
   };
   left: {
     right: string;
     height: string;
+    width: string;
   };
-  right: {
-    left: string;
+  top: {
+    bottom: string;
+    height: string;
+  };
+  bottom: {
+    top: string;
     height: string;
   };
 }
@@ -580,20 +585,25 @@ export const magma = {
       right: '0',
       bottom: '0',
       left: '0',
+      position: 'fixed',
     },
     right: {
       left: 'auto',
       height: '100%',
+      width: '300px',
     },
     left: {
       right: 'auto',
       height: '100%',
+      width: '300px',
     },
     top: {
       bottom: 'auto',
+      height: '300px',
     },
     bottom: {
       top: 'auto',
+      height: '300px',
     },
   },
 

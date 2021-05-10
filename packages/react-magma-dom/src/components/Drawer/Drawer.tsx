@@ -4,19 +4,19 @@ import { Modal, ModalProps } from '../Modal';
 import { TransitionProps } from '../Transition';
 
 export enum DrawerPosition {
-  Top = 'Top',
-  Bottom = 'Bottom',
-  Left = 'Left',
-  Right = 'Right',
+  top = 'top',
+  bottom = 'bottom',
+  left = 'left',
+  right = 'right',
 }
 
 const transitionPreset: {
-  [key in DrawerPosition]: Omit<TransitionProps, 'isOpem'>;
+  [key in DrawerPosition]: Omit<TransitionProps, 'isOpen'>;
 } = {
-  Top: { slideTop: true },
-  Bottom: { slideBottom: true },
-  Left: { slideLeft: true },
-  Right: { slideRight: true },
+  top: { slideTop: true },
+  bottom: { slideBottom: true },
+  left: { slideLeft: true },
+  right: { slideRight: true },
 };
 
 /**
@@ -40,12 +40,7 @@ export interface DrawerProps extends ModalProps {
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   (props, ref) => {
-    const {
-      style,
-      containerStyle,
-      position = DrawerPosition.Left,
-      ...rest
-    } = props;
+    const { style, containerStyle, position, ...rest } = props;
     const theme = React.useContext(ThemeContext);
     const drawerStyle = {
       ...theme.drawer.default,
@@ -55,7 +50,6 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       <Modal
         containerStyle={{
           padding: '0',
-          position: 'absolute',
           ...containerStyle,
         }}
         containerTransition={transitionPreset[DrawerPosition[position]]}
