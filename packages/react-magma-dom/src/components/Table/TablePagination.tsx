@@ -20,11 +20,11 @@ export interface TablePaginationProps
   /**
    * Event that fires when the page number changes
    */
-  onChangePage?: (event: any) => void;
+  onChangePage?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
    * Event that fires when the number of rows per page changes
    */
-  onChangeRowsPerPage?: (event: any) => void;
+  onChangeRowsPerPage?: (newRowsPerPage: number) => void;
   /**
    * Zero-based page number
    *  @default 0
@@ -35,6 +35,10 @@ export interface TablePaginationProps
    * @default 10
    */
   rowsPerPage?: number;
+  /**
+   * Values added to the rows per page select
+   */
+  rowsPerPageValues?: number[];
   testId?: string;
 }
 
@@ -70,6 +74,7 @@ export const TablePagination = React.forwardRef<
     onChangeRowsPerPage,
     page = 0,
     rowsPerPage = 10,
+    rowsPerPageValues,
     ...other
   } = props;
 
@@ -84,24 +89,33 @@ export const TablePagination = React.forwardRef<
   const displayPageStart = page * rowsPerPage + 1;
   const displayPageEnd = isLastPage ? count : (page + 1) * rowsPerPage;
 
+  const rowsPerPageItems = rowsPerPageValues
+    ? rowsPerPageValues.map(value => ({ label: value.toString(), value }))
+    : [
+        { label: '10', value: 10 },
+        { label: '20', value: 20 },
+        { label: '50', value: 50 },
+        { label: '100', value: 100 },
+      ];
+
   function handleChangeRowsPerPage(changes) {
-    if (onChangeRowsPerPage) {
-      onChangeRowsPerPage(changes.selectedItem.label);
-    }
+    onChangeRowsPerPage &&
+      typeof onChangeRowsPerPage === 'function' &&
+      onChangeRowsPerPage(changes.selectedItem.value);
   }
 
-  function handleChangePage(pageNum) {
-    if (onChangePage) {
-      onChangePage(pageNum);
-    }
+  function handleChangePage(event: React.SyntheticEvent, pageNum: number) {
+    onChangePage &&
+      typeof onChangePage === 'function' &&
+      onChangePage(event, pageNum);
   }
 
-  function handlePreviousClick() {
-    handleChangePage(page - 1);
+  function handlePreviousClick(event: React.SyntheticEvent) {
+    handleChangePage(event, page - 1);
   }
 
-  function handleNextClick() {
-    handleChangePage(page + 1);
+  function handleNextClick(event: React.SyntheticEvent) {
+    handleChangePage(event, page + 1);
   }
 
   return (
@@ -116,9 +130,9 @@ export const TablePagination = React.forwardRef<
         containerStyle={selectContainerStyle}
         labelPosition={LabelPosition.left}
         labelText={`${i18n.table.pagination.rowsPerPageLabel}:`}
-        initialSelectedItem={{ label: rowsPerPage }}
+        selectedItem={rowsPerPageItems.find(item => item.value === rowsPerPage)}
         isInverse={isInverse}
-        items={[{ label: 10 }, { label: 20 }, { label: 50 }, { label: 100 }]}
+        items={rowsPerPageItems}
         onSelectedItemChange={handleChangeRowsPerPage}
       />
 

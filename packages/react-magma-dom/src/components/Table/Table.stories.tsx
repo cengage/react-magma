@@ -225,8 +225,8 @@ export const Pagination = () => {
   const [pageIndex, setPageIndex] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
-  function handleRowsPerPageChange(numberOfPages) {
-    setRowsPerPage(numberOfPages);
+  function handleRowsPerPageChange(numberOfRows) {
+    setRowsPerPage(numberOfRows);
     setPageIndex(0);
   }
 

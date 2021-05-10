@@ -1,5 +1,15 @@
 # Change Log
 
+## 2.4.0-alpha.4
+
+### Minor Changes
+
+- 88e2daee: Feature/datagrid
+
+  Creating a `Datagrid` component with the options to have selectable rows and pagination.
+
+  As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
+
 ## 2.4.0-alpha.3
 
 ### Patch Changes
