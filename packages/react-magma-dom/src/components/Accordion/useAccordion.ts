@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDescendants } from '../../utils';
 
 export enum AccordionIconPosition {
   left = 'left',
@@ -8,20 +9,15 @@ export enum AccordionIconPosition {
 
 export interface UseAccordionProps {
   /**
-   * Index of the expanded accordion panel.  Used when the only one tab can be active at once.
-   * @default 0
+   * Index of the accordion panel expanded by default. If multiple panels are allowed, takes an array.
+   * @default null
    */
-  expandedIndex?: number;
+  expandedIndex?: number[] | number;
   /**
    * Position of the chevron icon.  If 'none', the icon will not render at all.
    * @default AccordionIconPosition.right
    */
   iconPosition?: AccordionIconPosition;
-  /**
-   * If true, all accordion items may be collapsed at once
-   * @default false
-   */
-  isCollapsible?: boolean;
   isInverse?: boolean;
   /**
    * If true, multiple accordion items may be expanded at once
@@ -32,42 +28,46 @@ export interface UseAccordionProps {
 }
 
 interface AccordionContextInterface {
-  expandedIndex?: number;
+  buttonRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
+  expandedIndex?: number[] | number;
   iconPosition?: AccordionIconPosition;
-  isCollapsible?: boolean;
   isMultiple?: boolean;
   setExpandedIndex?: any;
+  registerAccordionButton: (
+    itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    itemRef: React.MutableRefObject<Element>
+  ) => void;
 }
 
 export const AccordionContext = React.createContext<AccordionContextInterface>({
   expandedIndex: 0,
   iconPosition: AccordionIconPosition.right,
-  isCollapsible: false,
   isMultiple: false,
+  registerAccordionButton: (elements, element) => {},
 });
 
 export function useAccordion(props: UseAccordionProps) {
   const {
-    isCollapsible,
-    expandedIndex: expandedIndexProp = isCollapsible ? null : 0,
-    iconPosition = AccordionIconPosition.right,
     isMultiple,
+    expandedIndex: expandedIndexProp = isMultiple ? [] : null,
+    iconPosition = AccordionIconPosition.right,
   } = props;
 
   const [expandedIndex, setExpandedIndex] = React.useState(expandedIndexProp);
+  const [buttonRefArray, registerAccordionButton] = useDescendants();
 
   const contextValue = {
+    buttonRefArray,
     iconPosition,
     isMultiple,
-    isCollapsible,
     expandedIndex,
     setExpandedIndex,
+    registerAccordionButton,
   };
 
   return {
     expandedIndex,
     iconPosition,
-    isCollapsible,
     isMultiple,
     setExpandedIndex,
     contextValue,

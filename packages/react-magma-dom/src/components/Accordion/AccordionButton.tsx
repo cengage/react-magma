@@ -11,6 +11,8 @@ import {
   useAccordionButton,
   UseAccordionButtonProps,
 } from './useAccordionButton';
+import { Transition } from '../Transition';
+import { useForceUpdate, useForkedRef } from '../../utils';
 
 /**
  * @children required
@@ -61,10 +63,6 @@ const StyledButton = styled.button<{
         ? props.theme.colors.disabledInverseText
         : props.theme.colors.disabledText};
   }
-
-  svg {
-    transform: ${props => (props.isExpanded ? 'rotate(180deg)' : 'rotate(0)')};
-  }
 `;
 
 const TextWrapper = styled.span`
@@ -74,42 +72,64 @@ const TextWrapper = styled.span`
 export const AccordionButton = React.forwardRef<
   HTMLButtonElement,
   AccordionButtonProps
->((props, ref) => {
+>((props, forwardedRef) => {
   const { children, testId, isInverse: isInverseProp, ...rest } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
+  const ownRef = React.useRef<HTMLDivElement>();
+  const forceUpdate = useForceUpdate();
 
   const {
+    buttonRefArray,
     iconPosition,
     buttonId,
     isDisabled,
     isExpanded,
     panelId,
     handleClick,
+    handleKeyDown,
+    registerAccordionButton,
   } = useAccordionButton(props);
+
+  const caret = (
+    <Transition isOpen={isExpanded} rotate180>
+      <ExpandMoreIcon />
+    </Transition>
+  );
+
+  const ref = useForkedRef(forwardedRef, ownRef);
+
+  React.useEffect(() => {
+    if (!isDisabled) {
+      registerAccordionButton(buttonRefArray, ownRef);
+    }
+
+    forceUpdate();
+  }, []);
 
   return (
     <StyledButton
       {...rest}
       aria-controls={panelId}
-      aria-expanded={isExpanded}
+      aria-expanded={Boolean(isExpanded)}
       data-testid={testId}
       disabled={isDisabled}
       id={buttonId}
       isExpanded={isExpanded}
       isInverse={isInverse}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       ref={ref}
       theme={theme}
     >
       {iconPosition === AccordionIconPosition.left && (
         <>
-          <ExpandMoreIcon />
+          {caret}
           <Spacer size={12} />
         </>
       )}
       <TextWrapper>{children}</TextWrapper>
-      {iconPosition === AccordionIconPosition.right && <ExpandMoreIcon />}
+      {iconPosition === AccordionIconPosition.right && caret}
     </StyledButton>
   );
 });

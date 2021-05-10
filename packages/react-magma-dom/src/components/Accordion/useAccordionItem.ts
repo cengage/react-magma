@@ -4,8 +4,14 @@ import { AccordionContext } from './useAccordion';
 import { useGenerateId } from '../../utils';
 
 export interface UseAccordionItemProps {
+  /**
+   * @internal
+   */
   index?: number;
   isDisabled?: boolean;
+  /**
+   * @internal
+   */
   isExpanded?: boolean;
   testId?: string;
 }

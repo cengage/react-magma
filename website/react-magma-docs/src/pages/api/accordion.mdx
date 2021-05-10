@@ -49,44 +49,11 @@ export function Example() {
 }
 ```
 
-## Collapsible
-
-If you use the `isCollapsible` prop, then you will be able to collapse all of the items and no panel will be expanded by default, unless you use the `expandedIndex` prop.
-
-```typescript
-import React from 'react';
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-} from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Accordion isCollapsible>
-      <AccordionItem>
-        <AccordionButton>Section 1</AccordionButton>
-        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
-      </AccordionItem>
-      <AccordionItem>
-        <AccordionButton>Section 2</AccordionButton>
-        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
-      </AccordionItem>
-      <AccordionItem>
-        <AccordionButton>Section 3</AccordionButton>
-        <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
-      </AccordionItem>
-    </Accordion>
-  );
-}
-```
-
 ## Multiple Expanded
 
 If you set `isMultiple` to true then the accordion will allow multiple items to be expanded at once.
 
-When using the `isMultiple` prop, the `isCollapsible` and `expandedIndex` props do not apply. No items will be expanded by default, and all of the items will be allowed to be collapsed. You can expand individual items by adding `isExpanded` to the `AccordionItem` directly.
+When using the `isMultiple` prop, the `expandedIndex` prop must be an array.
 
 ```typescript
 import React from 'react';
@@ -99,8 +66,8 @@ import {
 
 export function Example() {
   return (
-    <Accordion isMultiple>
-      <AccordionItem isExpanded>
+    <Accordion isMultiple expandedIndex={[0]}>
+      <AccordionItem>
         <AccordionButton>Section 1</AccordionButton>
         <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
       </AccordionItem>

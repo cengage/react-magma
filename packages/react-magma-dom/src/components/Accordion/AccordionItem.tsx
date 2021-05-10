@@ -7,6 +7,7 @@ import {
 } from './useAccordionItem';
 import { ThemeInterface } from '../../theme/magma';
 import styled from '../../theme/styled';
+import { isArray } from 'lodash';
 
 /**
  * @children required
@@ -53,7 +54,9 @@ export const AccordionItem = React.forwardRef<
   const { contextValue, setIsExpanded } = useAccordionItem(props);
 
   React.useEffect(() => {
-    if (!isMultiple) {
+    if (isMultiple) {
+      setIsExpanded(isArray(expandedIndex) && expandedIndex.includes(index));
+    } else {
       setIsExpanded(expandedIndex == index);
     }
   });

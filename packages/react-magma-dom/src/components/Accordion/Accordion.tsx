@@ -10,23 +10,35 @@ import {
 } from './useAccordion';
 import { ThemeInterface } from '../../theme/magma';
 
-// TODO: Get feedback on appropriate default props
-// TODO: Keyboard behavior
-// TODO: Add headings to button component?? (h2, h3 etc)
-// TODO: Animation
-// TODO: Handle edge cases, bad combinations of props
-
 /**
  * @children required
  */
-export interface AccordionProps
+export interface AccordionMultipleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  expandedIndex?: number[];
+  isMultiple?: true;
   /**
    * @internal
    */
   theme?: ThemeInterface;
 }
+
+/**
+ * @children required
+ */
+export interface AccordionSingleProps
+  extends UseAccordionProps,
+    React.HTMLAttributes<HTMLDivElement> {
+  expandedIndex?: number;
+  isMultiple?: false;
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
+}
+
+export type AccordionProps = AccordionMultipleProps | AccordionSingleProps;
 
 const StyledAccordion = styled.div<AccordionProps>`
   background: ${props =>

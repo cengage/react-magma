@@ -7,6 +7,7 @@ import {
   AccordionButton,
   AccordionPanel,
 } from '.';
+import { Button, ButtonVariant } from '../Button';
 
 import { Story } from '@storybook/react/types-6-0';
 
@@ -18,11 +19,6 @@ export default {
       control: {
         type: 'select',
         options: AccordionIconPosition,
-      },
-    },
-    isCollapsible: {
-      control: {
-        type: 'boolean',
       },
     },
     isInverse: {

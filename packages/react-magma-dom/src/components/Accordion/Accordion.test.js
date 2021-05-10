@@ -75,12 +75,43 @@ describe('Accordion', () => {
 
     const btn = getByTestId(testId);
 
-    expect(btn.firstChild.nodeName).toBe('svg');
+    expect(btn.firstChild.firstChild.nodeName).toBe('svg');
   });
 
-  it('should not close the first panel when clicking its button', () => {
+  it('should render the first panel closed by default and open and close it when clicking its button', () => {
     const { getByText } = render(
       <Accordion>
+        <AccordionItem>
+          <AccordionButton>Button 1</AccordionButton>
+          <AccordionPanel>Panel 1</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Button 2</AccordionButton>
+          <AccordionPanel>Panel 2</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    const panel1 = getByText('Panel 1');
+    const btn1 = getByText('Button 1').parentElement;
+
+    expect(btn1).toHaveAttribute('aria-expanded', 'false');
+    expect(panel1).toHaveAttribute('aria-hidden', 'true');
+
+    fireEvent.click(btn1);
+
+    expect(btn1).toHaveAttribute('aria-expanded', 'true');
+    expect(panel1).toHaveAttribute('aria-hidden', 'false');
+
+    fireEvent.click(btn1);
+
+    expect(btn1).toHaveAttribute('aria-expanded', 'false');
+    expect(panel1).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('should close first panel and open the second panel when the second button button', () => {
+    const { getByText } = render(
+      <Accordion expandedIndex={0}>
         <AccordionItem>
           <AccordionButton>Button 1</AccordionButton>
           <AccordionPanel>Panel 1</AccordionPanel>
@@ -95,88 +126,128 @@ describe('Accordion', () => {
     const panel1 = getByText('Panel 1');
     const panel2 = getByText('Panel 2');
     const btn1 = getByText('Button 1').parentElement;
-
-    expect(panel1).not.toHaveAttribute('hidden');
-    expect(panel2).toHaveAttribute('hidden');
-
-    fireEvent.click(btn1);
-
-    expect(panel1).not.toHaveAttribute('hidden');
-    expect(panel2).toHaveAttribute('hidden');
-  });
-
-  it('should open the second panel when clicking its button', () => {
-    const { getByText } = render(
-      <Accordion>
-        <AccordionItem>
-          <AccordionButton>Button 1</AccordionButton>
-          <AccordionPanel>Panel 1</AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>Button 2</AccordionButton>
-          <AccordionPanel>Panel 2</AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-    );
-
-    const panel1 = getByText('Panel 1');
-    const panel2 = getByText('Panel 2');
     const btn2 = getByText('Button 2').parentElement;
 
-    expect(panel1).not.toHaveAttribute('hidden');
-    expect(panel2).toHaveAttribute('hidden');
+    expect(btn1).toHaveAttribute('aria-expanded', 'true');
+    expect(btn2).toHaveAttribute('aria-expanded', 'false');
+
+    expect(panel1).toHaveAttribute('aria-hidden', 'false');
+    expect(panel2).toHaveAttribute('aria-hidden', 'true');
 
     fireEvent.click(btn2);
 
-    expect(panel1).toHaveAttribute('hidden');
-    expect(panel2).not.toHaveAttribute('hidden');
+    expect(btn1).toHaveAttribute('aria-expanded', 'false');
+    expect(btn2).toHaveAttribute('aria-expanded', 'true');
+
+    expect(panel1).toHaveAttribute('aria-hidden', 'true');
+    expect(panel2).toHaveAttribute('aria-hidden', 'false');
   });
 
-  describe('collapsible', () => {
-    it('should have no panels open by default when isCollapsible is true', () => {
-      const { getByText } = render(
-        <Accordion isCollapsible>
+  describe('keyboard behavior', () => {
+    it('should navigate to the next item and back to the first item when pressing the down arrow', () => {
+      const testId1 = 'test-id1';
+      const testId2 = 'test-id2';
+      const { getByTestId } = render(
+        <Accordion>
           <AccordionItem>
-            <AccordionButton>Button 1</AccordionButton>
-            <AccordionPanel>Panel 1</AccordionPanel>
+            <AccordionButton testId={testId1}>Section 1</AccordionButton>
+            <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
           </AccordionItem>
           <AccordionItem>
-            <AccordionButton>Button 2</AccordionButton>
-            <AccordionPanel>Panel 2</AccordionPanel>
+            <AccordionButton testId={testId2}>Section 2</AccordionButton>
+            <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
           </AccordionItem>
         </Accordion>
       );
 
-      expect(getByText('Panel 1')).not.toHaveAttribute('hidden', true);
-      expect(getByText('Panel 2')).not.toHaveAttribute('hidden', true);
+      const btn1 = getByTestId(testId1);
+      const btn2 = getByTestId(testId2);
+
+      fireEvent.focus(btn1);
+      fireEvent.keyDown(btn1, { key: 'ArrowDown' });
+
+      expect(btn2).toHaveFocus();
+
+      fireEvent.keyDown(btn2, { key: 'ArrowDown' });
+      expect(btn1).toHaveFocus();
     });
 
-    it('should open and close the first panel when clicking its button', () => {
-      const { getByText } = render(
-        <Accordion isCollapsible>
+    it('should navigate to the previous item and back to the last item when pressing the down arrow', () => {
+      const testId1 = 'test-id1';
+      const testId2 = 'test-id2';
+      const { getByTestId } = render(
+        <Accordion>
           <AccordionItem>
-            <AccordionButton>Button 1</AccordionButton>
-            <AccordionPanel>Panel 1</AccordionPanel>
+            <AccordionButton testId={testId1}>Section 1</AccordionButton>
+            <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
           </AccordionItem>
           <AccordionItem>
-            <AccordionButton>Button 2</AccordionButton>
-            <AccordionPanel>Panel 2</AccordionPanel>
+            <AccordionButton testId={testId2}>Section 2</AccordionButton>
+            <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
           </AccordionItem>
         </Accordion>
       );
 
-      const panel1 = getByText('Panel 1');
-      const btn1 = getByText('Button 1').parentElement;
+      const btn1 = getByTestId(testId1);
+      const btn2 = getByTestId(testId2);
 
-      expect(panel1).toHaveAttribute('hidden');
+      fireEvent.focus(btn2);
+      fireEvent.keyDown(btn2, { key: 'ArrowUp' });
 
-      fireEvent.click(btn1);
+      expect(btn1).toHaveFocus();
 
-      expect(panel1).not.toHaveAttribute('hidden');
+      fireEvent.keyDown(btn1, { key: 'ArrowUp' });
+      expect(btn2).toHaveFocus();
+    });
 
-      fireEvent.click(btn1);
+    it('should focus to the first item when pressing the home key', () => {
+      const testId1 = 'test-id1';
+      const testId2 = 'test-id2';
+      const { getByTestId } = render(
+        <Accordion>
+          <AccordionItem>
+            <AccordionButton testId={testId1}>Section 1</AccordionButton>
+            <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton testId={testId2}>Section 2</AccordionButton>
+            <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      );
 
-      expect(panel1).toHaveAttribute('hidden');
+      const btn1 = getByTestId(testId1);
+      const btn2 = getByTestId(testId2);
+
+      fireEvent.focus(btn2);
+      fireEvent.keyDown(btn2, { key: 'Home' });
+
+      expect(btn1).toHaveFocus();
+    });
+
+    it('should focus to the last item when pressing the end key', () => {
+      const testId1 = 'test-id1';
+      const testId2 = 'test-id2';
+      const { getByTestId } = render(
+        <Accordion>
+          <AccordionItem>
+            <AccordionButton testId={testId1}>Section 1</AccordionButton>
+            <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton testId={testId2}>Section 2</AccordionButton>
+            <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      );
+
+      const btn1 = getByTestId(testId1);
+      const btn2 = getByTestId(testId2);
+
+      fireEvent.focus(btn1);
+      fireEvent.keyDown(btn1, { key: 'End' });
+
+      expect(btn2).toHaveFocus();
     });
   });
 
@@ -195,14 +266,38 @@ describe('Accordion', () => {
         </Accordion>
       );
 
-      expect(getByText('Panel 1')).not.toHaveAttribute('hidden', true);
-      expect(getByText('Panel 2')).not.toHaveAttribute('hidden', true);
+      const panel1 = getByText('Panel 1');
+      const panel2 = getByText('Panel 2');
+
+      expect(panel1).toHaveAttribute('aria-hidden', 'true');
+      expect(panel2).toHaveAttribute('aria-hidden', 'true');
     });
 
-    it('should leave the first panel open and open the second panel when clicking the second button', () => {
+    it('should expand the panels specified in expandedIndex prop', () => {
       const { getByText } = render(
-        <Accordion isCollapsible>
-          <AccordionItem isExpanded>
+        <Accordion isMultiple expandedIndex={[0, 1]}>
+          <AccordionItem>
+            <AccordionButton>Button 1</AccordionButton>
+            <AccordionPanel>Panel 1</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>Button 2</AccordionButton>
+            <AccordionPanel>Panel 2</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      );
+
+      const panel1 = getByText('Panel 1');
+      const panel2 = getByText('Panel 2');
+
+      expect(panel1).toHaveAttribute('aria-hidden', 'false');
+      expect(panel2).toHaveAttribute('aria-hidden', 'false');
+    });
+
+    it('should leave the first panel open and open and close the second panel when clicking the second button', () => {
+      const { getByText } = render(
+        <Accordion isMultiple expandedIndex={[0]}>
+          <AccordionItem>
             <AccordionButton>Button 1</AccordionButton>
             <AccordionPanel>Panel 1</AccordionPanel>
           </AccordionItem>
@@ -217,13 +312,18 @@ describe('Accordion', () => {
       const panel2 = getByText('Panel 2');
       const btn2 = getByText('Button 2').parentElement;
 
-      expect(panel1).not.toHaveAttribute('hidden', true);
-      expect(panel2).toHaveAttribute('hidden');
+      expect(panel1).toHaveAttribute('aria-hidden', 'false');
+      expect(panel2).toHaveAttribute('aria-hidden', 'true');
 
       fireEvent.click(btn2);
 
-      expect(panel1).not.toHaveAttribute('hidden', true);
-      expect(panel2).not.toHaveAttribute('hidden', true);
+      expect(panel1).toHaveAttribute('aria-hidden', 'false');
+      expect(panel2).toHaveAttribute('aria-hidden', 'false');
+
+      fireEvent.click(btn2);
+
+      expect(panel1).toHaveAttribute('aria-hidden', 'false');
+      expect(panel2).toHaveAttribute('aria-hidden', 'true');
     });
   });
 

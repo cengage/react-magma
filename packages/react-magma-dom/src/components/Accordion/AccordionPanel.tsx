@@ -5,6 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { AccordionItemContext } from './useAccordionItem';
+import { Transition } from '../Transition';
 
 /**
  * @children required
@@ -44,17 +45,19 @@ export const AccordionPanel = React.forwardRef<
   );
 
   return (
-    <StyledPanel
-      {...rest}
-      aria-labelledby={buttonId}
-      data-testid={testId}
-      hidden={!isExpanded}
-      id={panelId}
-      isInverse={isInverse}
-      ref={ref}
-      theme={theme}
-    >
-      {children}
-    </StyledPanel>
+    <Transition isOpen={isExpanded} collapse>
+      <StyledPanel
+        {...rest}
+        aria-labelledby={buttonId}
+        aria-hidden={!isExpanded}
+        data-testid={testId}
+        id={panelId}
+        isInverse={isInverse}
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </StyledPanel>
+    </Transition>
   );
 });
