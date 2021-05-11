@@ -1,0 +1,187 @@
+---
+pageTitle: Native Select API
+title: Native Select
+props:
+  - NativeSelectProps
+---
+
+<DocsHeading type="api">NativeSelect</DocsHeading>
+
+## Basic Usage
+
+`Native Select` uses the magma <Link to="/api/select">`Select`</Link> styling with a browser default option menu for compatibility purposes.
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <NativeSelect labelText="Select this">
+      <option>Red</option>
+      <option>Green</option>
+      <option>Blue</option>
+    </NativeSelect>
+  );
+}
+```
+
+## Disabled
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <NativeSelect labelText="Select this" disabled>
+      <option>Red</option>
+      <option>Green</option>
+      <option>Blue</option>
+    </NativeSelect>
+  );
+}
+```
+
+## Error
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <NativeSelect
+      labelText="Select this"
+      hasError
+      errorMessage="This is an error"
+    >
+      <option>Red</option>
+      <option>Green</option>
+      <option>Blue</option>
+    </NativeSelect>
+  );
+}
+```
+
+## Helper Message
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <NativeSelect
+      labelText="Select this"
+      helperMessage="Helper message appears here"
+    >
+      <option>Red</option>
+      <option>Green</option>
+      <option>Blue</option>
+    </NativeSelect>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
+      <CardBody>
+        <NativeSelect labelText="Select this" isInverse>
+          <option>Red</option>
+          <option>Green</option>
+          <option>Blue</option>
+        </NativeSelect>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Inverse disabled
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
+      <CardBody>
+        <NativeSelect labelText="Select this" isInverse disabled>
+          <option>Red</option>
+          <option>Green</option>
+          <option>Blue</option>
+        </NativeSelect>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Inverse with error
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
+      <CardBody>
+        <NativeSelect
+          labelText="Select this"
+          isInverse
+          hasError
+          errorMessage="This is an error"
+        >
+          <option>Red</option>
+          <option>Green</option>
+          <option>Blue</option>
+        </NativeSelect>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Inverse Helper Message
+
+```typescript
+import React from 'react';
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
+      <CardBody>
+        <NativeSelect
+          labelText="Select this"
+          isInverse
+          helperMessage="Helper message appears here"
+        >
+          <option>Red</option>
+          <option>Green</option>
+          <option>Blue</option>
+        </NativeSelect>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+# NativeSelect Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<NativeSelectProps />
