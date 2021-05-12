@@ -578,19 +578,20 @@ export const magma = {
   drawer: {
     default: {
       maxWidth: '100%',
-      minHeight: '250px',
+      minHeight: '300px',
       margin: '0',
       borderRadius: '0',
       top: '0',
       right: '0',
       bottom: '0',
       left: '0',
-      position: 'fixed',
+      position: 'relative',
     },
     right: {
       left: 'auto',
       height: '100%',
       width: '300px',
+      position: 'fixed',
     },
     left: {
       right: 'auto',
@@ -604,6 +605,7 @@ export const magma = {
     bottom: {
       top: 'auto',
       height: '300px',
+      position: 'fixed',
     },
   },
 

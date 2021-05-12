@@ -1,9 +1,11 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Drawer } from '.';
-import { render } from '@testing-library/react';
+import { Transition } from '../Transition';
+import { render, fireEvent } from '@testing-library/react';
 
 const TEXT = 'Test Text';
+const TEST_ID = 'transition';
 
 describe('Drawer', () => {
   it('should render the visually hidden component', () => {
@@ -25,6 +27,64 @@ describe('Drawer', () => {
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('should render the drawer with the top position', () => {
+    const drawerContent = 'Drawer content';
+    const { getByTestId } = render(
+      <Drawer position="top" header="Hello" isOpen testId={TEST_ID}>
+        {drawerContent}
+      </Drawer>
+    );
+
+    fireEvent.animationEnd(getByTestId(TEST_ID));
+    expect(getByTestId('modal-content')).toHaveStyle('bottom: auto');
+  });
+
+  it('should render the drawer with the right position', () => {
+    const drawerContent = 'Drawer content';
+    const { getByTestId } = render(
+      <Drawer position="right" header="Hello" isOpen testId={TEST_ID}>
+        {drawerContent}
+      </Drawer>
+    );
+
+    fireEvent.animationEnd(getByTestId(TEST_ID));
+    expect(getByTestId('modal-content')).toHaveStyle(
+      'left: auto',
+      'height: 100%',
+      'position: fixed'
+    );
+  });
+
+  it('should render the drawer with the bottom position', () => {
+    const drawerContent = 'Drawer content';
+    const { getByTestId } = render(
+      <Drawer position="bottom" header="Hello" isOpen testId={TEST_ID}>
+        {drawerContent}
+      </Drawer>
+    );
+
+    fireEvent.animationEnd(getByTestId(TEST_ID));
+    expect(getByTestId('modal-content')).toHaveStyle(
+      'top: auto',
+      'position: fixed'
+    );
+  });
+
+  it('should render the drawer with the left position', () => {
+    const drawerContent = 'Drawer content';
+    const { getByTestId } = render(
+      <Drawer position="left" header="Hello" isOpen testId={TEST_ID}>
+        {drawerContent}
+      </Drawer>
+    );
+
+    fireEvent.animationEnd(getByTestId(TEST_ID));
+    expect(getByTestId('modal-content')).toHaveStyle(
+      'right: auto',
+      'height: 100%'
+    );
   });
 
   it('Does not violate accessibility standards', () => {

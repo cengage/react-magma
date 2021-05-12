@@ -27,7 +27,7 @@ export interface DrawerProps extends ModalProps {
   /**
    * Style properties for the drawer
    */
-  style?: React.CSSProperties;
+  drawerStyle?: React.CSSProperties;
   /**
    * Style properties for the drawer container
    */

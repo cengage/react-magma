@@ -347,7 +347,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         <Global
           styles={css`
             html {
-              overflow: hidden;
+              overflow: ${isOpen} ? hidden : auto;
             }
           `}
         />

@@ -11,26 +11,36 @@ A container with a transition
 
 ## Basic Usage
 
-```typescript
-import React from 'react';
-import { Drawer } from 'react-magma-dom';
-
-export function Example() {
-  return <Drawer>Drawer content</Drawer>;
-}
-```
-
-## InverseContext
-
-The `isInverse` prop will render a dark background and light text. The children will
-inherit the `isInverse` prop unless specified otherwise.
+Drawer accepts a position (top, right, bottom, or left.)
 
 ```typescript
 import React from 'react';
-import { Drawer } from 'react-magma-dom';
+import { Drawer, DrawerPosition } from 'react-magma-dom';
+import { Button } from 'react-magma-dom';
+import { VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
-  return <Drawer isInverse>Drawer content</Drawer>;
+  const [showDrawer, setShowDrawer] = React.useState(false);
+
+  return (
+    <>
+      <Drawer
+        header="Drawer Title"
+        onClose={() => setShowDrawer(false)}
+        isOpen={showDrawer}
+        position="bottom"
+      >
+        <p>This is a Drawer, doing Drawer things.</p>
+        <p>
+          <Button>This is a button</Button>
+        </p>
+      </Drawer>
+      <Button onClick={() => setShowDrawer(true)}>
+        Show Drawer
+        <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
 }
 ```
 
@@ -42,10 +52,16 @@ Full example of <Link to="/api/internationalization">internationalization overri
 
 ```tsx
 import React from 'react';
+import React from 'react';
+import { Drawer, DrawerPosition } from 'react-magma-dom';
+import { Button } from 'react-magma-dom';
+import { VisuallyHidden } from 'react-magma-dom';
 import { es } from 'date-fns/locale';
 import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
 
 export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
+
   return (
     <I18nContext.Provider
       value={{
@@ -53,7 +69,21 @@ export function Example() {
         example: 'example i18n',
       }}
     >
-      <Drawer>override default i18n value: </Drawer>
+      <Drawer
+        header="Drawer Title"
+        onClose={() => setShowDrawer(false)}
+        isOpen={showDrawer}
+        position="bottom"
+      >
+        <p>override default i18n value:</p>
+        <p>
+          <Button>This is a button</Button>
+        </p>
+      </Drawer>
+      <Button onClick={() => setShowDrawer(true)}>
+        Show Drawer
+        <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+      </Button>
     </I18nContext.Provider>
   );
 }
