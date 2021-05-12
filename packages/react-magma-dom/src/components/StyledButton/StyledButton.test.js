@@ -61,7 +61,7 @@ describe('Styled Button', () => {
 
     expect(getByTestId('button-test')).toHaveStyleRule(
       'background',
-      'rgba(0,0,0,0)'
+      'transparent'
     );
   });
 

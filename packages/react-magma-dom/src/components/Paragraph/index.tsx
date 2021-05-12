@@ -44,7 +44,7 @@ export interface ParagraphProps
 export const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
   (props, ref) => {
     const { color, testId, visualStyle, children, ...other } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     return (
       <TypographyComponent

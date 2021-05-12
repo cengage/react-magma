@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 
 interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -66,7 +66,7 @@ export const TabsContainer = React.forwardRef<
     Boolean(props.isInverse)
   );
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   return (
     <TabsContainerContext.Provider

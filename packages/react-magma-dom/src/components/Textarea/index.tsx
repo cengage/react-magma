@@ -90,7 +90,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;

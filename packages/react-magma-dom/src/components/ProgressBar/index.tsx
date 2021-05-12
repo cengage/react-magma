@@ -151,7 +151,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const percentageValue = percentage ? percentage : 0;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const heightString = convertStyleValueToString(
       height,

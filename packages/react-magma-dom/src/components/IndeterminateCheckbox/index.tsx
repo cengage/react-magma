@@ -69,7 +69,7 @@ export const IndeterminateCheckbox = React.forwardRef<
     }
   }
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const context = React.useContext(FormGroupContext);
 

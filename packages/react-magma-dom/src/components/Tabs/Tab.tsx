@@ -7,7 +7,7 @@ import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';
 import { useForceUpdate, useForkedRef } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -251,7 +251,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       forceUpdate();
     }, []);
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const isIconOnly = !children;
 
     const tabIconPosition = iconPosition

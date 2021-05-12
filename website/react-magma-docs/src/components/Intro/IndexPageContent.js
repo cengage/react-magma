@@ -111,186 +111,181 @@ export class IndexPageContent extends React.Component {
   }
 
   render() {
+    const { theme } = React.useContext(ThemeContext);
     return (
-      <ThemeContext.Consumer>
-        {theme => (
-          <>
-            <nav aria-label="Introduction to React Magma navigation">
-              <List theme={theme}>
-                <NavItem
-                  activeSection={this.state.activeSection}
-                  number="00"
-                  onClick={this.handleNavClick}
-                  section="sectionIntro"
-                  text="Intro"
-                />
-                <NavItem
-                  activeSection={this.state.activeSection}
-                  number="01"
-                  onClick={this.handleNavClick}
-                  section="sectionComponents"
-                  text="Component-based"
-                />
-                <NavItem
-                  activeSection={this.state.activeSection}
-                  number="02"
-                  onClick={this.handleNavClick}
-                  section="sectionQuality"
-                  text="Quality"
-                />
-                <NavItem
-                  activeSection={this.state.activeSection}
-                  number="03"
-                  onClick={this.handleNavClick}
-                  section="sectionAccessible"
-                  text="Accessible"
-                />
-                <NavItem
-                  activeSection={this.state.activeSection}
-                  number="04"
-                  onClick={this.handleNavClick}
-                  section="sectionDevice"
-                  text="Device-agnostic"
-                />
-                <NavItem
-                  activeSection={this.state.activeSection}
-                  number="05"
-                  onClick={this.handleNavClick}
-                  section="sectionEvolving"
-                  text="Always evolving"
-                />
-              </List>
-            </nav>
-            <HexBackground>
-              <IntroSection
-                section="sectionIntro"
-                image={<ColorLogo style={{ width: '100%' }} />}
-                afterAnimatedIn={this.handleAnimateIn}
-                style={{ marginTop: '70px' }}
+      <>
+        <nav aria-label="Introduction to React Magma navigation">
+          <List theme={theme}>
+            <NavItem
+              activeSection={this.state.activeSection}
+              number="00"
+              onClick={this.handleNavClick}
+              section="sectionIntro"
+              text="Intro"
+            />
+            <NavItem
+              activeSection={this.state.activeSection}
+              number="01"
+              onClick={this.handleNavClick}
+              section="sectionComponents"
+              text="Component-based"
+            />
+            <NavItem
+              activeSection={this.state.activeSection}
+              number="02"
+              onClick={this.handleNavClick}
+              section="sectionQuality"
+              text="Quality"
+            />
+            <NavItem
+              activeSection={this.state.activeSection}
+              number="03"
+              onClick={this.handleNavClick}
+              section="sectionAccessible"
+              text="Accessible"
+            />
+            <NavItem
+              activeSection={this.state.activeSection}
+              number="04"
+              onClick={this.handleNavClick}
+              section="sectionDevice"
+              text="Device-agnostic"
+            />
+            <NavItem
+              activeSection={this.state.activeSection}
+              number="05"
+              onClick={this.handleNavClick}
+              section="sectionEvolving"
+              text="Always evolving"
+            />
+          </List>
+        </nav>
+        <HexBackground>
+          <IntroSection
+            section="sectionIntro"
+            image={<ColorLogo style={{ width: '100%' }} />}
+            afterAnimatedIn={this.handleAnimateIn}
+            style={{ marginTop: '70px' }}
+          >
+            <Heading id="sectionIntroH" tabIndex={-1} theme={theme}>
+              React Magma
+            </Heading>
+            <p style={{ marginBottom: '20px' }}>
+              React Magma is a suite of React components based on the Magma
+              design system that make it easy to create powerful and consistent
+              experiences for students and instructors using Cengage products.
+            </p>
+            <ButtonContainer theme={theme}>
+              <Hyperlink
+                styledAs="Button"
+                isInverse
+                style={{ marginBottom: '20px' }}
+                to="/api-intro/introduction"
               >
-                <Heading id="sectionIntroH" tabIndex={-1} theme={theme}>
-                  React Magma
-                </Heading>
-                <p style={{ marginBottom: '20px' }}>
-                  React Magma is a suite of React components based on the Magma
-                  design system that make it easy to create powerful and
-                  consistent experiences for students and instructors using
-                  Cengage products.
-                </p>
-                <ButtonContainer theme={theme}>
-                  <Hyperlink
-                    styledAs="Button"
-                    isInverse
-                    style={{ marginBottom: '20px' }}
-                    to="/api-intro/introduction"
-                  >
-                    {linkProps => (
-                      <Link {...linkProps}>
-                        <CodeIcon size={magma.iconSizes.medium} />
-                        <span>Develop with React Magma</span>
-                      </Link>
-                    )}
-                  </Hyperlink>
-                  <br />
-                  <Hyperlink
-                    styledAs="Button"
-                    isInverse
-                    to="/design-intro/introduction"
-                  >
-                    {linkProps => (
-                      <Link {...linkProps}>
-                        <PaletteIcon size={magma.iconSizes.medium} />
-                        <span>Design with React Magma</span>
-                      </Link>
-                    )}
-                  </Hyperlink>
-                </ButtonContainer>
-              </IntroSection>
-              <IntroSection
-                section="sectionComponents"
-                image={<ImageComponents style={{ width: '100%' }} />}
-                afterAnimatedIn={this.handleAnimateIn}
+                {linkProps => (
+                  <Link {...linkProps}>
+                    <CodeIcon size={magma.iconSizes.medium} />
+                    <span>Develop with React Magma</span>
+                  </Link>
+                )}
+              </Hyperlink>
+              <br />
+              <Hyperlink
+                styledAs="Button"
+                isInverse
+                to="/design-intro/introduction"
               >
-                <IntroHeading
-                  id="sectionComponentsH"
-                  number="01"
-                  name="Component-based"
-                />
-                <p>
-                  Components are the building blocks of React applications. With
-                  React Magma, we've built on this fundamental concept to
-                  provide ready-to-go user interface elements. These elements
-                  have quality, accessibility and branding baked in. This means
-                  you can focus your energy on solving problems for students and
-                  instructors without having to worry about the atomic building
-                  blocks for the UI.
-                </p>
-              </IntroSection>
-              <IntroSection
-                section="sectionQuality"
-                image={<ImageQuality style={{ width: '100%' }} />}
-                afterAnimatedIn={this.handleAnimateIn}
-              >
-                <IntroHeading id="sectionQualityH" name="Quality" number="02" />
-                <p>
-                  Every component goes through a rigorous process to ensure it
-                  meets our standards for quality. This includes design,
-                  branding, performance, and WCAG 2.0 compliance.
-                </p>
-              </IntroSection>
-              <IntroSection
-                section="sectionAccessible"
-                image={<ImageAccessible style={{ width: '100%' }} />}
-                afterAnimatedIn={this.handleAnimateIn}
-              >
-                <IntroHeading
-                  id="sectionAccessibleH"
-                  name="Accessible"
-                  number="03"
-                />
-                <p>
-                  React Magma components come with accessibility already baked
-                  in, including keyboard behavior and the management of ARIA
-                  roles and properties.
-                </p>
-              </IntroSection>
-              <IntroSection
-                section="sectionDevice"
-                image={<ImageDevice style={{ width: '100%' }} />}
-                afterAnimatedIn={this.handleAnimateIn}
-              >
-                <IntroHeading
-                  id="sectionDeviceH"
-                  name="Device-agnostic"
-                  number="04"
-                />
-                <p>
-                  React Magma is designed and developed to provide a single
-                  system that unifies the user experience across platforms,
-                  devices, and input methods.
-                </p>
-                <p>React Native components coming soon!</p>
-              </IntroSection>
-              <IntroSection
-                section="sectionEvolving"
-                image={<ImageEvolving style={{ width: '100%' }} />}
-                afterAnimatedIn={this.handleAnimateIn}
-              >
-                <IntroHeading
-                  id="sectionEvolvingH"
-                  name="Always Evolving"
-                  number="05"
-                />
-                <p>
-                  The React Magma team actively designs, develops, tests, and
-                  maintains the design system. If you have any requests for new
-                  components or if you find any bugs, please contact the team.
-                </p>
-              </IntroSection>
-            </HexBackground>
-          </>
-        )}
-      </ThemeContext.Consumer>
+                {linkProps => (
+                  <Link {...linkProps}>
+                    <PaletteIcon size={magma.iconSizes.medium} />
+                    <span>Design with React Magma</span>
+                  </Link>
+                )}
+              </Hyperlink>
+            </ButtonContainer>
+          </IntroSection>
+          <IntroSection
+            section="sectionComponents"
+            image={<ImageComponents style={{ width: '100%' }} />}
+            afterAnimatedIn={this.handleAnimateIn}
+          >
+            <IntroHeading
+              id="sectionComponentsH"
+              number="01"
+              name="Component-based"
+            />
+            <p>
+              Components are the building blocks of React applications. With
+              React Magma, we've built on this fundamental concept to provide
+              ready-to-go user interface elements. These elements have quality,
+              accessibility and branding baked in. This means you can focus your
+              energy on solving problems for students and instructors without
+              having to worry about the atomic building blocks for the UI.
+            </p>
+          </IntroSection>
+          <IntroSection
+            section="sectionQuality"
+            image={<ImageQuality style={{ width: '100%' }} />}
+            afterAnimatedIn={this.handleAnimateIn}
+          >
+            <IntroHeading id="sectionQualityH" name="Quality" number="02" />
+            <p>
+              Every component goes through a rigorous process to ensure it meets
+              our standards for quality. This includes design, branding,
+              performance, and WCAG 2.0 compliance.
+            </p>
+          </IntroSection>
+          <IntroSection
+            section="sectionAccessible"
+            image={<ImageAccessible style={{ width: '100%' }} />}
+            afterAnimatedIn={this.handleAnimateIn}
+          >
+            <IntroHeading
+              id="sectionAccessibleH"
+              name="Accessible"
+              number="03"
+            />
+            <p>
+              React Magma components come with accessibility already baked in,
+              including keyboard behavior and the management of ARIA roles and
+              properties.
+            </p>
+          </IntroSection>
+          <IntroSection
+            section="sectionDevice"
+            image={<ImageDevice style={{ width: '100%' }} />}
+            afterAnimatedIn={this.handleAnimateIn}
+          >
+            <IntroHeading
+              id="sectionDeviceH"
+              name="Device-agnostic"
+              number="04"
+            />
+            <p>
+              React Magma is designed and developed to provide a single system
+              that unifies the user experience across platforms, devices, and
+              input methods.
+            </p>
+            <p>React Native components coming soon!</p>
+          </IntroSection>
+          <IntroSection
+            section="sectionEvolving"
+            image={<ImageEvolving style={{ width: '100%' }} />}
+            afterAnimatedIn={this.handleAnimateIn}
+          >
+            <IntroHeading
+              id="sectionEvolvingH"
+              name="Always Evolving"
+              number="05"
+            />
+            <p>
+              The React Magma team actively designs, develops, tests, and
+              maintains the design system. If you have any requests for new
+              components or if you find any bugs, please contact the team.
+            </p>
+          </IntroSection>
+        </HexBackground>
+      </>
     );
   }
 }

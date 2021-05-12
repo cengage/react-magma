@@ -6,7 +6,7 @@ import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
 import { IconProps } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 
 export enum InputSize {
   large = 'large',
@@ -297,7 +297,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const iconPosition =
       icon && onIconClick
         ? InputIconPosition.right

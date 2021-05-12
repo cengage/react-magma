@@ -114,7 +114,7 @@ const theme = {
 
 export function Example() {
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext.Provider value={{ theme: theme }}>
       <Heading level={1}>Custom Theme</Heading>
       <Paragraph>
         Custom themes are fun for all! But you must use them carefully... or

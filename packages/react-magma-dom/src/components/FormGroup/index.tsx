@@ -76,7 +76,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
     const other = omit(['id'], rest);
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const isInverse = useIsInverse(props.isInverse);
 
     return (

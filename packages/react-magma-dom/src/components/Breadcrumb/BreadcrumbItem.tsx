@@ -40,7 +40,7 @@ export const BreadcrumbItem = React.forwardRef<
   BreadcrumbItemProps
 >((props, ref) => {
   const { children, to, testId, ...other } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const isInverse = useIsInverse();
 
   return (

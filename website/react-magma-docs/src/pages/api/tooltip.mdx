@@ -252,7 +252,7 @@ export function Example() {
 
   return (
     <>
-      <ThemeContext.Provider value={customTheme}>
+      <ThemeContext.Provider value={{ theme: customTheme }}>
         <Tooltip content={content} position={EnumTooltipPosition.right}>
           <IconButton
             aria-label={ariaLabel}

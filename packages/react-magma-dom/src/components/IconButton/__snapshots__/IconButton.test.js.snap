@@ -1088,6 +1088,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
+  border-color: #006298;
   border-radius: 100%;
   color: #006298;
   cursor: pointer;
@@ -1205,6 +1206,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
+  border-color: #006298;
   border-radius: 100%;
   color: #006298;
   cursor: pointer;
@@ -2905,6 +2907,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
+  border-color: #006298;
   border-radius: 4px;
   color: #006298;
   cursor: pointer;
@@ -3015,6 +3018,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
+  border-color: #006298;
   border-radius: 4px;
   color: #006298;
   cursor: pointer;

@@ -140,7 +140,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       onPageChange,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const buttonSize =
       size === PageButtonSize.large ? ButtonSize.large : ButtonSize.medium;
     const [activePage, setActivePage] = React.useState(defaultPage);

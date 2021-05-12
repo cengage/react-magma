@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { convertStyleValueToString } from '../../utils';
@@ -43,7 +43,7 @@ const StyledContainer = styled.div<{
 
 export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   (props, ref) => {
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const {
       children,
       gutterWidth = theme.spaceScale.spacing06,

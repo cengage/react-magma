@@ -122,7 +122,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
 

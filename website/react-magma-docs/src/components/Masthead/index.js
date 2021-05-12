@@ -3,13 +3,19 @@ import { Link } from 'gatsby';
 import { Logo } from '../Logo';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
+import {
+  magma,
+  useMediaQuery,
+  AppBarPosition,
+  Spacer,
+  ThemeContext,
+} from 'react-magma-dom';
 
 const LogoLink = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral08};
+  color: ${props => props.theme.appBar.inverse.textColor};
   display: inline-flex;
-  font-size: ${magma.typeScale.size05.fontSize};
+  font-size: ${props => props.theme.typeScale.size05.fontSize};
   font-weight: 600;
   text-decoration: none;
   text-transform: uppercase;
@@ -21,25 +27,28 @@ const LogoLink = styled(Link)`
   &:hover,
   &:focus,
   &:active {
-    color: ${magma.colors.neutral08};
+    color: ${props => props.theme.appBar.inverse.textColor};
   }
 
   &:focus {
-    outline: 2px dotted ${magma.colors.focusInverse};
+    outline: 2px dotted ${props => props.theme.colors.focusInverse};
   }
 `;
 
-const HeaderLogo = (
-  <LogoLink to="/">
-    <Logo />
-    <Spacer size={magma.spaceScale.spacing05} />
-    React Magma
-  </LogoLink>
-);
-
+const HeaderLogo = theme => {
+  return (
+    <LogoLink theme={theme} to="/">
+      <Logo theme={theme} />
+      <Spacer size={theme.spaceScale.spacing05} />
+      React Magma
+    </LogoLink>
+  );
+};
 export const Masthead = props => {
+  const { theme } = React.useContext(ThemeContext);
+
   const isSmallerScreen = useMediaQuery(
-    `(max-width:${magma.breakpoints.medium}px)`
+    `(max-width:${theme.breakpoints.medium}px)`
   );
 
   return (
@@ -47,9 +56,10 @@ export const Masthead = props => {
       breakpoint={magma.breakpoints.medium}
       isCompact={isSmallerScreen}
       isInverse
-      logo={HeaderLogo}
+      logo={HeaderLogo(theme)}
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
+      theme={theme}
     >
       {props.children}
     </Header>

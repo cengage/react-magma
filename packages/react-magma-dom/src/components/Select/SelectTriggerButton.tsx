@@ -52,7 +52,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     style: passedInStyle,
     toggleButtonProps,
   } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   const { DropdownIndicator } = defaultComponents<T>({
     ...customComponents,

@@ -67,7 +67,7 @@ export const BreakpointsContainer: React.FunctionComponent<BreakpointsContainerP
     definedBreakpoints.push(child.props.screenSize);
   });
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   const defaultBreakpoints = theme.breakpoints;
 

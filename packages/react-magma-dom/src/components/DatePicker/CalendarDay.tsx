@@ -139,7 +139,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     (maxDate ? isAfter(props.day, maxDate) : false) ||
     (minDate ? isBefore(props.day, minDate) : false);
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   if (day) {

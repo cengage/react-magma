@@ -315,7 +315,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
       setIsExiting(true);
     }
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     return (

@@ -4,7 +4,7 @@ import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
 import { Omit, getNormalizedScrollLeft, useDescendants } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
 import { useTabsMeta } from './utils';
 import { I18nContext } from '../../i18n';
@@ -178,7 +178,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       ...rest
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const {
       activeTabIndex,

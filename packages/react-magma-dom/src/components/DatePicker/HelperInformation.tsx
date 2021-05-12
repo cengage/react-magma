@@ -37,7 +37,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
   onClose,
 }) => {
   const i18n = React.useContext(I18nContext);
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   return (
     <Modal

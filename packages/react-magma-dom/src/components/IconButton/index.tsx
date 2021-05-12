@@ -98,7 +98,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       ...rest
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     if (instanceOfIconOnly(props)) {
       icon = props.icon;

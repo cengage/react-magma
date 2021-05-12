@@ -86,3 +86,195 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const Everything = () => {
+  return (
+    <>
+      <Card>
+        <CardBody>
+          <p>
+            <Button color={ButtonColor.primary} variant={ButtonVariant.solid}>
+              Solid (default)
+            </Button>
+            <Button color={ButtonColor.primary} variant={ButtonVariant.outline}>
+              Outline
+            </Button>
+            <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button color={ButtonColor.secondary} variant={ButtonVariant.solid}>
+              Solid (default)
+            </Button>
+            <Button
+              color={ButtonColor.secondary}
+              variant={ButtonVariant.outline}
+            >
+              Outline
+            </Button>
+            <Button color={ButtonColor.secondary} variant={ButtonVariant.link}>
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button color={ButtonColor.success} variant={ButtonVariant.solid}>
+              Solid (default)
+            </Button>
+            <Button color={ButtonColor.success} variant={ButtonVariant.outline}>
+              Outline
+            </Button>
+            <Button color={ButtonColor.success} variant={ButtonVariant.link}>
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button color={ButtonColor.danger} variant={ButtonVariant.solid}>
+              Solid (default)
+            </Button>
+            <Button color={ButtonColor.danger} variant={ButtonVariant.outline}>
+              Outline
+            </Button>
+            <Button color={ButtonColor.danger} variant={ButtonVariant.link}>
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button color={ButtonColor.marketing} variant={ButtonVariant.solid}>
+              Solid (default)
+            </Button>
+            <Button
+              color={ButtonColor.marketing}
+              variant={ButtonVariant.outline}
+            >
+              Outline
+            </Button>
+            <Button color={ButtonColor.marketing} variant={ButtonVariant.link}>
+              Link
+            </Button>
+          </p>
+        </CardBody>
+      </Card>
+      <br />
+      <Card isInverse>
+        <CardBody>
+          <p>
+            <Button
+              isInverse
+              color={ButtonColor.primary}
+              variant={ButtonVariant.solid}
+            >
+              Solid (default)
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.primary}
+              variant={ButtonVariant.outline}
+            >
+              Outline
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.primary}
+              variant={ButtonVariant.link}
+            >
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button
+              isInverse
+              color={ButtonColor.secondary}
+              variant={ButtonVariant.solid}
+            >
+              Solid (default)
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.secondary}
+              variant={ButtonVariant.outline}
+            >
+              Outline
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.secondary}
+              variant={ButtonVariant.link}
+            >
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button
+              isInverse
+              color={ButtonColor.success}
+              variant={ButtonVariant.solid}
+            >
+              Solid (default)
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.success}
+              variant={ButtonVariant.outline}
+            >
+              Outline
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.success}
+              variant={ButtonVariant.link}
+            >
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button
+              isInverse
+              color={ButtonColor.danger}
+              variant={ButtonVariant.solid}
+            >
+              Solid (default)
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.danger}
+              variant={ButtonVariant.outline}
+            >
+              Outline
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.danger}
+              variant={ButtonVariant.link}
+            >
+              Link
+            </Button>
+          </p>
+          <p>
+            <Button
+              isInverse
+              color={ButtonColor.marketing}
+              variant={ButtonVariant.solid}
+            >
+              Solid (default)
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.marketing}
+              variant={ButtonVariant.outline}
+            >
+              Outline
+            </Button>
+            <Button
+              isInverse
+              color={ButtonColor.marketing}
+              variant={ButtonVariant.link}
+            >
+              Link
+            </Button>
+          </p>
+        </CardBody>
+      </Card>
+    </>
+  );
+};

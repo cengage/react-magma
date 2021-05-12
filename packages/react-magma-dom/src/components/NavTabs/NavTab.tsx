@@ -133,7 +133,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
   let children;
   let component;
   const { isActive, icon, testId, to, ...other } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   if (instanceOfNavComponentTab(props)) {
     component = props.component;

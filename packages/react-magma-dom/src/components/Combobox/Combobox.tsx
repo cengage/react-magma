@@ -54,7 +54,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     toggleButtonRef,
   } = props;
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   function isCreatedItem(item) {

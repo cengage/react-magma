@@ -57,7 +57,7 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     return (
       <div {...other} ref={ref} data-testid={testId}>

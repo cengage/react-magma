@@ -8,7 +8,7 @@ import { Input } from '../Input';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { enUS } from 'date-fns/locale';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { useIsInverse } from '../../inverse';
 
@@ -132,7 +132,7 @@ const StyledNumInput = styled.input<{ theme: ThemeInterface }>`
 
 export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
   (props, ref) => {
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
     const {
       containerStyle,

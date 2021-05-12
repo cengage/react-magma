@@ -46,7 +46,7 @@ export function Select<T>(props: SelectProps<T>) {
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const ref = useForkedRef(innerRef || null, toggleButtonRef);

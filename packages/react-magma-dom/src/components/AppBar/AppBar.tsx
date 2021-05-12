@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
@@ -78,7 +78,7 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
       testId,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const isInverse = useIsInverse(props.isInverse);
 
     return (

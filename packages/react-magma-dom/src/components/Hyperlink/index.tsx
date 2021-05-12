@@ -5,7 +5,7 @@ import { css, ClassNames } from '@emotion/core';
 import { omit, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { BaseStyledButton, buttonStyles } from '../StyledButton';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { useIsInverse } from '../../inverse';
 
 /**
@@ -28,15 +28,15 @@ export interface HyperlinkProps
 
 const linkStyles = props => css`
   color: ${props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.primary};
+    ? props.theme.hyperlink.inverse.textColor
+    : props.theme.hyperlink.textColor};
   text-decoration: underline;
   &:not([disabled]) {
     &:hover,
     &:focus {
       color: ${props.isInverse
-        ? props.theme.colors.neutral07
-        : props.theme.colors.foundation02};
+        ? props.theme.hyperlink.inverse.textHoverColor
+        : props.theme.hyperlink.textHoverColor};
     }
     &:focus {
       outline: 2px dotted
@@ -57,7 +57,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
     const { children, to, styledAs, testId, ...rest } = props;
 
     const other = omit(['positionTop', 'positionLeft', 'type'], rest);
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const isInverse = useIsInverse(props.isInverse);
 
     if (typeof children === 'function') {

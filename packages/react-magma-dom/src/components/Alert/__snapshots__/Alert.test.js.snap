@@ -18,7 +18,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: transparent;
   border: 0;
   border-color: #FFFFFF;
   border-radius: 100%;
@@ -160,7 +160,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: transparent;
   border: 0;
   border-color: #FFFFFF;
   border-radius: 100%;

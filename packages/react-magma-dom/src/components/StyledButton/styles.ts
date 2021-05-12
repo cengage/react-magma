@@ -77,98 +77,209 @@ export function buildButtonPadding(props) {
 export function buildButtonBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.variant !== 'solid' && props.color !== 'marketing') {
-    return 'rgba(0,0,0,0)';
+  const { button } = props.theme;
+
+  if (props.variant !== 'solid') {
+    return 'transparent';
   }
+
   if (props.disabled) {
-    return props.theme.colors.neutral06;
+    if (props.isInverse) {
+      return button.disabled.inverse.backgroundColor;
+    }
+    return button.disabled.backgroundColor;
   }
-  if (props.color === 'marketing') {
-    return props.theme.colors.pop04;
-  }
+
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    switch (props.color) {
+      case 'secondary':
+        return button.secondary.inverse.backgroundColor;
+      case 'success':
+        return button.success.inverse.backgroundColor;
+      case 'danger':
+        return button.danger.inverse.backgroundColor;
+      case 'marketing':
+        return button.marketing.inverse.backgroundColor;
+      default:
+        return button.primary.inverse.backgroundColor;
+    }
   }
+
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.neutral08;
+      return button.secondary.backgroundColor;
     case 'success':
-      return props.theme.colors.success;
+      return button.success.backgroundColor;
     case 'danger':
-      return props.theme.colors.danger;
+      return button.danger.backgroundColor;
+    case 'marketing':
+      return button.marketing.backgroundColor;
     default:
-      return props.theme.colors.primary;
+      return button.primary.backgroundColor;
   }
 }
 
 export function buildBorderColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.disabled && props.isInverse && props.variant === 'outline') {
-    return props.theme.colors.disabledInverseText;
-  }
+  const { button } = props.theme;
+
   if (props.disabled) {
-    return props.theme.colors.neutral06;
-  }
-  if (props.color === 'marketing') {
-    return props.theme.colors.pop04;
-  }
-  if (props.isInverse) {
-    return props.theme.colors.neutral08;
-  }
-  if (props.color === 'secondary') {
-    return props.theme.colors.neutral05;
-  }
-  if (props.variant === 'solid') {
-    switch (props.color) {
-      case 'success':
-        return props.theme.colors.success;
-      case 'danger':
-        return props.theme.colors.danger;
-      default:
-        return props.theme.colors.primary;
+    if (props.isInverse && props.variant !== 'solid') {
+      return button.disabled.outline.inverse.borderColor;
     }
+    if (props.isInverse) {
+      return button.disabled.inverse.borderColor;
+    }
+    if (props.variant !== 'solid') {
+      return button.disabled.outline.borderColor;
+    }
+    return button.disabled.borderColor;
+  }
+
+  if (props.variant === 'outline' && props.isInverse) {
+    switch (props.color) {
+      case 'secondary':
+        return button.secondary.outline.inverse.borderColor;
+      case 'success':
+        return button.success.outline.inverse.borderColor;
+      case 'danger':
+        return button.danger.outline.inverse.borderColor;
+      case 'marketing':
+        return button.marketing.inverse.borderColor;
+      default:
+        return button.primary.outline.inverse.borderColor;
+    }
+  }
+
+  if (props.variant === 'outline') {
+    switch (props.color) {
+      case 'secondary':
+        return button.secondary.outline.borderColor;
+      case 'success':
+        return button.success.outline.borderColor;
+      case 'danger':
+        return button.danger.outline.borderColor;
+      case 'marketing':
+        return button.marketing.borderColor;
+      default:
+        return button.primary.outline.borderColor;
+    }
+  }
+
+  if (props.isInverse) {
+    switch (props.color) {
+      case 'secondary':
+        return button.secondary.inverse.borderColor;
+      case 'success':
+        return button.success.inverse.borderColor;
+      case 'danger':
+        return button.danger.inverse.borderColor;
+      case 'marketing':
+        return button.marketing.inverse.borderColor;
+      default:
+        return button.primary.inverse.borderColor;
+    }
+  }
+
+  switch (props.color) {
+    case 'secondary':
+      return button.secondary.borderColor;
+    case 'success':
+      return button.success.borderColor;
+    case 'danger':
+      return button.danger.borderColor;
+    case 'marketing':
+      return button.marketing.borderColor;
+    default:
+      return button.primary.borderColor;
   }
 }
 
 export function buildColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.disabled && props.isInverse && props.variant !== 'solid') {
-    return props.theme.colors.disabledInverseText;
-  }
+  const { button } = props.theme;
+
   if (props.disabled) {
-    return props.theme.colors.disabledText;
-  }
-  if (props.color === 'marketing') {
-    return props.theme.colors.foundation02;
-  }
-  if (
-    (!props.isInverse && props.variant === 'solid') ||
-    (props.isInverse && props.variant !== 'solid')
-  ) {
-    if (props.color === 'secondary' && !props.isInverse) {
-      return props.theme.colors.neutral;
+    if (props.isInverse && props.variant !== 'solid') {
+      return button.disabled.outline.inverse.textColor;
     }
-    return props.theme.colors.neutral08;
+    if (props.isInverse) {
+      return button.disabled.inverse.textColor;
+    }
+    if (props.variant !== 'solid') {
+      return button.disabled.outline.textColor;
+    }
+    return button.disabled.textColor;
   }
+
+  if (props.variant !== 'solid' && props.isInverse) {
+    switch (props.color) {
+      case 'secondary':
+        return button.secondary.outline.inverse.textColor;
+      case 'success':
+        return button.success.outline.inverse.textColor;
+      case 'danger':
+        return button.danger.outline.inverse.textColor;
+      case 'marketing':
+        return button.marketing.inverse.textColor;
+      default:
+        return button.primary.outline.inverse.textColor;
+    }
+  }
+
+  if (props.variant !== 'solid') {
+    switch (props.color) {
+      case 'secondary':
+        return button.secondary.outline.textColor;
+      case 'success':
+        return button.success.outline.textColor;
+      case 'danger':
+        return button.danger.outline.textColor;
+      case 'marketing':
+        return button.marketing.textColor;
+      default:
+        return button.primary.outline.textColor;
+    }
+  }
+
+  if (props.isInverse) {
+    switch (props.color) {
+      case 'secondary':
+        return button.secondary.inverse.textColor;
+      case 'success':
+        return button.success.inverse.textColor;
+      case 'danger':
+        return button.danger.inverse.textColor;
+      case 'marketing':
+        return button.marketing.inverse.textColor;
+      default:
+        return button.primary.inverse.textColor;
+    }
+  }
+
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.neutral;
+      return button.secondary.textColor;
     case 'success':
-      return props.theme.colors.success;
+      return button.success.textColor;
     case 'danger':
-      return props.theme.colors.danger;
+      return button.danger.textColor;
+    case 'marketing':
+      return button.marketing.textColor;
     default:
-      return props.theme.colors.primary;
+      return button.primary.textColor;
   }
 }
 
 export function buildFocusBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
+  const { button } = props.theme;
+
   if (props.color === 'marketing') {
-    return lighten(0.1, props.theme.colors.pop04);
+    return lighten(0.1, button.marketing.backgroundColor);
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -176,13 +287,13 @@ export function buildFocusBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.9, props.theme.colors.neutral);
+        return darken(0.1, button.secondary.backgroundColor);
       case 'success':
-        return tint(0.9, props.theme.colors.success);
+        return tint(0.9, button.success.backgroundColor);
       case 'danger':
-        return tint(0.9, props.theme.colors.danger);
+        return tint(0.9, button.danger.backgroundColor);
       default:
-        return tint(0.9, props.theme.colors.primary);
+        return tint(0.9, button.primary.backgroundColor);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
@@ -190,43 +301,77 @@ export function buildFocusBackground(props) {
   }
   switch (props.color) {
     case 'secondary':
-      return darken(0.1, props.theme.colors.neutral08);
+      return darken(0.1, button.secondary.backgroundColor);
     case 'success':
-      return darken(0.1, props.theme.colors.success);
+      return darken(0.1, button.success.backgroundColor);
     case 'danger':
-      return darken(0.1, props.theme.colors.danger);
+      return darken(0.1, button.danger.backgroundColor);
     default:
-      return darken(0.1, props.theme.colors.primary);
+      return darken(0.1, button.primary.backgroundColor);
   }
 }
 
 export function buildFocusColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
-  if (props.color === 'marketing') {
-    return props.theme.colors.foundation02;
-  }
-  if (
-    (props.variant !== 'solid' && !props.isInverse) ||
-    (props.variant === 'solid' && props.isInverse)
-  ) {
+  const { button } = props.theme;
+
+  if (props.variant !== 'solid' && props.isInverse) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral;
+        return button.secondary.outline.inverse.textColor;
       case 'success':
-        return darken(0.1, props.theme.colors.success);
+        return button.success.outline.inverse.textColor;
       case 'danger':
-        return darken(0.1, props.theme.colors.danger);
+        return button.danger.outline.inverse.textColor;
+      case 'marketing':
+        return button.marketing.inverse.textColor;
       default:
-        return darken(0.1, props.theme.colors.primary);
+        return button.primary.outline.inverse.textColor;
     }
   }
-  if (props.variant !== 'solid' && props.isInverse) {
-    return props.theme.colors.neutral08;
+
+  if (props.variant !== 'solid') {
+    switch (props.color) {
+      case 'secondary':
+        return darken(0.1, button.secondary.outline.textColor);
+      case 'success':
+        return darken(button.success.outline.textColor);
+      case 'danger':
+        return darken(button.danger.outline.textColor);
+      case 'marketing':
+        return darken(button.marketing.textColor);
+      default:
+        return darken(button.primary.outline.textColor);
+    }
   }
-  if (props.color === 'secondary' && !props.isInverse) {
-    return props.theme.colors.neutral;
+
+  if (props.isInverse) {
+    switch (props.color) {
+      case 'secondary':
+        return darken(0.1, button.secondary.inverse.textColor);
+      case 'success':
+        return darken(0.1, button.success.inverse.textColor);
+      case 'danger':
+        return darken(0.1, button.danger.inverse.textColor);
+      case 'marketing':
+        return darken(0.1, button.marketing.inverse.textColor);
+      default:
+        return darken(0.1, button.primary.inverse.textColor);
+    }
   }
-  return props.theme.colors.neutral08;
+
+  switch (props.color) {
+    case 'secondary':
+      return button.secondary.textColor;
+    case 'success':
+      return button.success.textColor;
+    case 'danger':
+      return button.danger.textColor;
+    case 'marketing':
+      return button.marketing.textColor;
+    default:
+      return button.primary.textColor;
+  }
 }
 
 export function buildAfterBackground(props) {
@@ -259,6 +404,7 @@ export function buildAfterBackground(props) {
 
 export function buildActiveBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
+  const { button } = props.theme;
 
   if (props.color === 'marketing') {
     return lighten(0.2, props.theme.colors.pop04);
@@ -269,13 +415,13 @@ export function buildActiveBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.7, props.theme.colors.neutral);
+        return tint(0.7, button.secondary.textColor);
       case 'success':
-        return tint(0.7, props.theme.colors.success);
+        return tint(0.7, button.success.backgroundColor);
       case 'danger':
-        return tint(0.7, props.theme.colors.danger);
+        return tint(0.7, button.danger.backgroundColor);
       default:
-        return tint(0.7, props.theme.colors.primary);
+        return tint(0.7, button.primary.backgroundColor);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
@@ -283,21 +429,22 @@ export function buildActiveBackground(props) {
   }
   switch (props.color) {
     case 'secondary':
-      return darken(0.2, props.theme.colors.neutral08);
+      return darken(0.2, button.secondary.backgroundColor);
     case 'success':
-      return darken(0.2, props.theme.colors.success);
+      return darken(0.2, button.success.backgroundColor);
     case 'danger':
-      return darken(0.2, props.theme.colors.danger);
+      return darken(0.2, button.danger.backgroundColor);
     default:
-      return darken(0.2, props.theme.colors.primary);
+      return darken(0.2, button.primary.backgroundColor);
   }
 }
 
 export function buildActiveColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
+  const { button } = props.theme;
 
   if (props.color === 'marketing') {
-    return props.theme.colors.foundation02;
+    return button.marketing.textColor;
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -305,13 +452,13 @@ export function buildActiveColor(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral;
+        return button.success.outline.textColor;
       case 'success':
-        return darken(0.2, props.theme.colors.success);
+        return darken(0.2, button.success.outline.textColor);
       case 'danger':
-        return darken(0.2, props.theme.colors.danger);
+        return darken(0.2, button.danger.outline.textColor);
       default:
-        return darken(0.2, props.theme.colors.primary);
+        return darken(0.2, button.primary.outline.textColor);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {

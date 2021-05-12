@@ -91,7 +91,7 @@ export const DropdownMenuItem = React.forwardRef<
   const { children, disabled, icon, onClick, value, ...other } = props;
 
   const ownRef = React.useRef<HTMLDivElement>();
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
 
   const ref = useForkedRef(forwardedRef, ownRef);

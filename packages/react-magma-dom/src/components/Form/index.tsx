@@ -4,7 +4,7 @@ import { AlertVariant } from '../AlertBase';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { InverseContext, useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 
@@ -63,7 +63,7 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
 

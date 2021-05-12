@@ -151,7 +151,7 @@ export const PasswordInput = React.forwardRef<
     : i18n.password.shown.buttonText;
 
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   const isInverse = useIsInverse(props.isInverse);
 

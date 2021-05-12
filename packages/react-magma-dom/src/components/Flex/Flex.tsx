@@ -194,7 +194,7 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     return (
       <StyledFlex

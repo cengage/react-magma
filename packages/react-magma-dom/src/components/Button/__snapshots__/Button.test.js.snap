@@ -1172,6 +1172,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
+  border-color: #006298;
   border-radius: 4px;
   color: #006298;
   cursor: pointer;
@@ -1278,6 +1279,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
+  border-color: #006298;
   border-radius: 4px;
   color: #006298;
   cursor: pointer;

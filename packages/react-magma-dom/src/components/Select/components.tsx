@@ -3,7 +3,7 @@ import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { IconProps, ArrowDropDownIcon } from 'react-magma-icons';
 import { StyledItem } from './shared';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 
 export type ItemRenderOptions<T> = {
   key: string;

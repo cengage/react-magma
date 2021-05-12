@@ -178,7 +178,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       }
     }
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const context = React.useContext(FormGroupContext);
 
     const {

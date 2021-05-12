@@ -47,13 +47,17 @@ function getStyles(theme, isInverse: boolean) {
     }
 
     a {
-      color: ${isInverse ? theme.colors.neutral07 : theme.colors.primary};
+      color: ${isInverse
+        ? theme.hyperlink.inverse.textColor
+        : theme.hyperlink.textColor};
       cursor: pointer;
       text-decoration: underline;
 
       &:hover,
       &:focus {
-        color: ${isInverse ? theme.colors.neutral06 : theme.colors.focus};
+        color: ${isInverse
+          ? theme.hyperlink.inverse.textHoverColor
+          : theme.hyperlink.textHoverColor};
       }
     }
 
@@ -74,9 +78,7 @@ function getStyles(theme, isInverse: boolean) {
 
 export const GlobalStyles: React.FunctionComponent = () => {
   const isInverse = useIsInverse();
-  return (
-    <ThemeContext.Consumer>
-      {theme => <Global styles={getStyles(theme, isInverse)} />}
-    </ThemeContext.Consumer>
-  );
+  const { theme } = React.useContext(ThemeContext);
+
+  return <Global styles={getStyles(theme, isInverse)} />;
 };
