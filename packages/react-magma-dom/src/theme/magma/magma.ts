@@ -1,5 +1,6 @@
 import { button } from './components/button';
 import { transitions } from './components/transition';
+import { colors } from './colors';
 
 const typeScale = {
   size01: {
@@ -55,50 +56,6 @@ const typeScale = {
     lineHeight: '72px',
   },
 };
-
-export const colors = {
-  primary: '#006298', // link color blue
-  focus: '#027EE1',
-  focusInverse: 'rgba(255,255,255,0.7)',
-  foundation: '#00263E',
-  foundation02: '#003865',
-  foundation03: '#00A9E0',
-  foundation04: '#71C5E8',
-  pop: '#E0004D',
-  pop02: '#FC4C02',
-  pop03: '#F2A900',
-  pop04: '#FFC72C',
-  pop05: '#92278F',
-  pop06: '#007A6D',
-  success: '#3A8200',
-  success02: '#48A200',
-  successInverse: '#91CF60',
-  danger: '#C61D23',
-  dangerInverse: '#F59295',
-  neutral: '#3F3F3F', // main dark grey text color
-  neutral02: '#575757',
-  neutral03: '#707070',
-  neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
-  neutral05: '#BFBFBF',
-  neutral06: '#DFDFDF',
-  neutral07: '#F7F7F7',
-  neutral08: '#FFFFFF', // white
-  disabledText: 'rgba(114,114,114,0.6)',
-  disabledInverseText: 'rgba(255,255,255,0.25)',
-  toggleBoxShadow:
-    '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)',
-  shade: 'rgba(0,0,0,0.05)',
-  shade02: 'rgba(0,0,0,0.3)',
-  tint: 'rgba(255,255,255,0.05)',
-  tint02: 'rgba(255,255,255,0.1)',
-  tint03: 'rgba(255,255,255,0.1)',
-  tint04: 'rgba(255,255,255,0.4)',
-  tone: 'rgba(63,63,63,0.07)',
-  tone02: 'rgba(63,63,63,0.1)',
-  border: '#DFDFDF',
-  borderInverse: 'rgba(255,255,255,0.25)',
-};
-
 const spaceScale = {
   spacing01: '2px',
   spacing02: '4px',
@@ -115,7 +72,6 @@ const spaceScale = {
   spacing13: '96px',
   spacing14: '160px',
 };
-
 export const magma = {
   bodyFont: '"Open Sans",Helvetica,sans-serif',
   bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
@@ -128,8 +84,8 @@ export const magma = {
   direction: 'ltr',
   spacingMultiplier: 8,
   transitions,
-  button: button(colors),
-  // breakpoints
+  button,
+
   breakpoints: {
     xs: 0,
     small: 600,

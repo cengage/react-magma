@@ -1,5 +1,6 @@
 import { magma } from '../magma';
 import { button } from '../magma/components/button';
+import { lighten } from 'polished';
 
 const colors = {
   ...magma.colors,
@@ -10,6 +11,7 @@ const colors = {
   foundation02: '#FFCC01',
   foundation03: '#EC1D24',
   foundation04: '#71C5E8',
+  pop04: '#FFCC01',
 };
 
 export const ngl = {
@@ -32,7 +34,7 @@ export const ngl = {
     },
   },
   button: {
-    ...button(colors),
+    ...button,
     primary: {
       backgroundColor: colors.primary,
       borderColor: colors.primary,
@@ -49,6 +51,12 @@ export const ngl = {
           borderColor: colors.primary,
           textColor: colors.primary,
         },
+      },
+      hover: {
+        backgroundColor: lighten(0.1, colors.primary),
+      },
+      active: {
+        backgroundColor: lighten(0.2, colors.primary),
       },
     },
     marketing: {

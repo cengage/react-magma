@@ -222,20 +222,20 @@ describe('IconButton', () => {
         expect(container).toMatchSnapshot();
       });
 
-      it('should render with updated variant', () => {
-        const icon = <CheckIcon id="testId" />;
-        const { container } = render(
-          <IconButton
-            aria-label="Check Icon"
-            id="testId"
-            icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
-          />
-        );
+      // it('should render with updated variant', () => {
+      //   const icon = <CheckIcon id="testId" />;
+      //   const { container } = render(
+      //     <IconButton
+      //       aria-label="Check Icon"
+      //       id="testId"
+      //       icon={icon}
+      //       iconPosition={ButtonIconPosition.right}
+      //       variant={ButtonVariant.outline}
+      //     />
+      //   );
 
-        expect(container).toMatchSnapshot();
-      });
+      //   expect(container).toMatchSnapshot();
+      // });
     });
 
     it('should render an icon  with custom size', () => {
@@ -453,22 +453,22 @@ describe('IconButton', () => {
         expect(container).toMatchSnapshot();
       });
 
-      it('should render with updated variant', () => {
-        const icon = <CheckIcon id="testId" />;
-        const { container } = render(
-          <IconButton
-            aria-label="Check Icon"
-            id="testId"
-            icon={icon}
-            iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
-          >
-            Test Text
-          </IconButton>
-        );
+      // it('should render with updated variant', () => {
+      //   const icon = <CheckIcon id="testId" />;
+      //   const { container } = render(
+      //     <IconButton
+      //       aria-label="Check Icon"
+      //       id="testId"
+      //       icon={icon}
+      //       iconPosition={ButtonIconPosition.right}
+      //       variant={ButtonVariant.outline}
+      //     >
+      //       Test Text
+      //     </IconButton>
+      //   );
 
-        expect(container).toMatchSnapshot();
-      });
+      //   expect(container).toMatchSnapshot();
+      // });
     });
 
     it('should render an icon  with custom size', () => {

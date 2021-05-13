@@ -80,7 +80,7 @@ export function buildButtonBackground(props) {
   const { button } = props.theme;
 
   if (props.variant !== 'solid') {
-    return 'transparent';
+    return 'rgba(0,0,0,0)';
   }
 
   if (props.disabled) {
@@ -307,7 +307,7 @@ export function buildFocusBackground(props) {
     case 'danger':
       return darken(0.1, button.danger.backgroundColor);
     default:
-      return darken(0.1, button.primary.backgroundColor);
+      return button.primary.hover.backgroundColor;
   }
 }
 
@@ -435,7 +435,7 @@ export function buildActiveBackground(props) {
     case 'danger':
       return darken(0.2, button.danger.backgroundColor);
     default:
-      return darken(0.2, button.primary.backgroundColor);
+      return button.primary.active.backgroundColor;
   }
 }
 
@@ -466,6 +466,9 @@ export function buildActiveColor(props) {
   }
   if (props.color === 'secondary' && !props.isInverse) {
     return props.theme.colors.neutral;
+  }
+  if (props.color === 'primary') {
+    return button.primary.textColor;
   }
   return props.theme.colors.neutral08;
 }
