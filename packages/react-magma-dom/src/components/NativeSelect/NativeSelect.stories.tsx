@@ -45,7 +45,6 @@ Disabled.args = {
 export const HasError = Template.bind({});
 HasError.args = {
   ...Default.args,
-  hasError: true,
   errorMessage: 'This is an error.',
 };
 
@@ -71,7 +70,6 @@ InverseDisabled.args = {
 export const HasErrorInverse = Template.bind({});
 HasErrorInverse.args = {
   ...Default.args,
-  hasError: true,
   isInverse: true,
   errorMessage: 'This is an error.',
 };

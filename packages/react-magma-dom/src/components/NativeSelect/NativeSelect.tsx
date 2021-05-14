@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 
 import { inputBaseStyles } from '../InputBase';
-import { InputProps } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { SelectTriggerButton } from '../Select/SelectTriggerButton';
@@ -16,10 +15,39 @@ import { useGenerateId } from '../../utils';
 /**
  * @children required
  */
-export interface NativeSelectProps extends InputProps {
-  disabled?: boolean;
+export interface NativeSelectProps
+  extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  containerStyle?: React.CSSProperties;
+  /**
+   * Content of the error message. If a value is provided, the input will be styled as an error state and the error message will display.
+   */
+  errorMessage?: React.ReactNode;
+  /**
+   * @internal
+   */
   hasError?: boolean;
+  /**
+   * Content of the helper message.
+   */
   helperMessage?: React.ReactNode;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
+  isLabelVisuallyHidden?: boolean;
+  /**
+   * Style properties for the label element
+   */
+  labelStyle?: React.CSSProperties;
+  /**
+   * Content for label; can be a node or a string
+   */
+  labelText?: React.ReactNode;
+  /**
+   * Style properties for the helper or error message
+   */
+  messageStyle?: React.CSSProperties;
+
   testId?: string;
   isInverse?: boolean;
   optionLabel?: string;
@@ -49,6 +77,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       isInverse: isInverseProp,
       labelText,
       messageStyle,
+      ...other
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
@@ -67,8 +96,14 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           {labelText}
         </Label>
 
-        <SelectTriggerButton toggleButtonProps={''} disabled={disabled}>
+        <SelectTriggerButton
+          disabled={disabled}
+          hasError={!!errorMessage}
+          isInverse={isInverse}
+          toggleButtonProps={''}
+        >
           <StyledNativeInput
+            {...other}
             aria-label={i18n.select.placeholder}
             disabled={disabled}
             isInverse={isInverse}
