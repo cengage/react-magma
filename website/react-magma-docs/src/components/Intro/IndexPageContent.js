@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
-import { Hyperlink, ThemeContext, magma } from 'react-magma-dom';
+import { Hyperlink, magma } from 'react-magma-dom';
 import { HexBackground } from './HexBackground';
 import { IntroHeading } from './IntroHeading';
 import { IntroSection } from './IntroSection';
@@ -111,7 +111,8 @@ export class IndexPageContent extends React.Component {
   }
 
   render() {
-    const { theme } = React.useContext(ThemeContext);
+    const { theme } = this.props;
+
     return (
       <>
         <nav aria-label="Introduction to React Magma navigation">

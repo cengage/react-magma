@@ -1,4 +1,3 @@
-import { colors } from '../colors';
 import { darken } from 'polished';
 
 interface ThemeButton {
@@ -29,123 +28,125 @@ export interface ThemeButtons {
   disabled: ThemeButton;
 }
 
-export const button = {
-  primary: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary,
-    textColor: colors.neutral08,
-    inverse: {
-      backgroundColor: colors.neutral08,
-      borderColor: colors.neutral08,
-      textColor: colors.primary,
-    },
-    outline: {
+export const button = colors => {
+  return {
+    primary: {
+      backgroundColor: colors.primary,
       borderColor: colors.primary,
-      textColor: colors.primary,
+      textColor: colors.neutral08,
       inverse: {
+        backgroundColor: colors.neutral08,
         borderColor: colors.neutral08,
-        textColor: colors.neutral08,
+        textColor: colors.primary,
+      },
+      outline: {
+        borderColor: colors.primary,
+        textColor: colors.primary,
+        inverse: {
+          borderColor: colors.neutral08,
+          textColor: colors.neutral08,
+        },
+      },
+      hover: {
+        backgroundColor: darken(0.1, colors.primary),
+        borderColor: colors.primary,
+        textColor: colors.foundation,
+      },
+      active: {
+        backgroundColor: darken(0.2, colors.primary),
+        borderColor: colors.primary,
+        textColor: colors.foundation,
       },
     },
-    hover: {
-      backgroundColor: darken(0.1, colors.primary),
-      borderColor: colors.primary,
-      textColor: colors.foundation,
-    },
-    active: {
-      backgroundColor: darken(0.2, colors.primary),
-      borderColor: colors.primary,
-      textColor: colors.foundation,
-    },
-  },
-  secondary: {
-    backgroundColor: colors.neutral08,
-    borderColor: colors.neutral05,
-    textColor: colors.neutral,
-    inverse: {
+    secondary: {
       backgroundColor: colors.neutral08,
-      borderColor: colors.neutral08,
-      textColor: colors.neutral,
-    },
-    outline: {
       borderColor: colors.neutral05,
       textColor: colors.neutral,
       inverse: {
+        backgroundColor: colors.neutral08,
         borderColor: colors.neutral08,
-        textColor: colors.neutral08,
+        textColor: colors.neutral,
+      },
+      outline: {
+        borderColor: colors.neutral05,
+        textColor: colors.neutral,
+        inverse: {
+          borderColor: colors.neutral08,
+          textColor: colors.neutral08,
+        },
       },
     },
-  },
-  success: {
-    backgroundColor: colors.success,
-    borderColor: colors.success,
-    textColor: colors.neutral08,
-    inverse: {
-      backgroundColor: colors.neutral08,
-      borderColor: colors.neutral08,
-      textColor: colors.success,
-    },
-    outline: {
+    success: {
+      backgroundColor: colors.success,
       borderColor: colors.success,
-      textColor: colors.success,
+      textColor: colors.neutral08,
       inverse: {
+        backgroundColor: colors.neutral08,
         borderColor: colors.neutral08,
-        textColor: colors.neutral08,
+        textColor: colors.success,
+      },
+      outline: {
+        borderColor: colors.success,
+        textColor: colors.success,
+        inverse: {
+          borderColor: colors.neutral08,
+          textColor: colors.neutral08,
+        },
       },
     },
-  },
-  danger: {
-    backgroundColor: colors.danger,
-    borderColor: colors.danger,
-    textColor: colors.neutral08,
-    inverse: {
-      backgroundColor: colors.neutral08,
-      borderColor: colors.neutral08,
-      textColor: colors.danger,
-    },
-    outline: {
+    danger: {
+      backgroundColor: colors.danger,
       borderColor: colors.danger,
-      textColor: colors.danger,
+      textColor: colors.neutral08,
       inverse: {
+        backgroundColor: colors.neutral08,
         borderColor: colors.neutral08,
-        textColor: colors.neutral08,
+        textColor: colors.danger,
+      },
+      outline: {
+        borderColor: colors.danger,
+        textColor: colors.danger,
+        inverse: {
+          borderColor: colors.neutral08,
+          textColor: colors.neutral08,
+        },
       },
     },
-  },
-  marketing: {
-    backgroundColor: colors.pop04,
-    borderColor: colors.pop04,
-    textColor: colors.foundation02,
-    inverse: {
+    marketing: {
       backgroundColor: colors.pop04,
       borderColor: colors.pop04,
       textColor: colors.foundation02,
-    },
-    outline: {
-      borderColor: colors.pop04,
-      textColor: colors.foundation02,
       inverse: {
+        backgroundColor: colors.pop04,
         borderColor: colors.pop04,
         textColor: colors.foundation02,
       },
+      outline: {
+        borderColor: colors.pop04,
+        textColor: colors.foundation02,
+        inverse: {
+          borderColor: colors.pop04,
+          textColor: colors.foundation02,
+        },
+      },
     },
-  },
-  disabled: {
-    backgroundColor: colors.neutral06,
-    borderColor: colors.neutral06,
-    textColor: colors.disabledText,
-    inverse: {
+    disabled: {
       backgroundColor: colors.neutral06,
       borderColor: colors.neutral06,
       textColor: colors.disabledText,
-    },
-    outline: {
-      borderColor: colors.disabledText,
-      textColor: colors.disabledText,
       inverse: {
-        borderColor: colors.disabledInverseText,
-        textColor: colors.disabledInverseText,
+        backgroundColor: colors.neutral06,
+        borderColor: colors.neutral06,
+        textColor: colors.disabledText,
+      },
+      outline: {
+        borderColor: colors.disabledText,
+        textColor: colors.disabledText,
+        inverse: {
+          borderColor: colors.disabledInverseText,
+          textColor: colors.disabledInverseText,
+        },
       },
     },
-  },
+  };
 };

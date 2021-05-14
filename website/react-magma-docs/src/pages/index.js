@@ -34,7 +34,7 @@ const IndexPage = () => {
           }
         `}
       />
-      <IndexPageContent />
+      <IndexPageContent theme={theme} />
     </>
   );
 };

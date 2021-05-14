@@ -1,6 +1,8 @@
 import { button } from './components/button';
-import { transitions } from './components/transition';
+import { checkbox } from './components/checkbox';
 import { colors } from './colors';
+import { transitions } from './components/transition';
+import { typographyColors } from './components/typography';
 
 const typeScale = {
   size01: {
@@ -84,7 +86,9 @@ export const magma = {
   direction: 'ltr',
   spacingMultiplier: 8,
   transitions,
-  button,
+  button: button(colors),
+  checkbox: checkbox(colors),
+  typographyColors: typographyColors(colors),
 
   breakpoints: {
     xs: 0,

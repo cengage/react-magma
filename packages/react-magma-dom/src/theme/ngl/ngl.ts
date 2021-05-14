@@ -1,5 +1,7 @@
 import { magma } from '../magma';
 import { button } from '../magma/components/button';
+import { checkbox } from '../magma/components/checkbox';
+import { typographyColors } from '../magma/components/typography';
 import { lighten } from 'polished';
 
 const colors = {
@@ -34,7 +36,7 @@ export const ngl = {
     },
   },
   button: {
-    ...button,
+    ...button(colors),
     primary: {
       backgroundColor: colors.primary,
       borderColor: colors.primary,
@@ -75,6 +77,23 @@ export const ngl = {
           borderColor: colors.primary,
           textColor: colors.primary,
         },
+      },
+    },
+  },
+  checkbox: {
+    ...checkbox(colors),
+    checkedColor: colors.foundation,
+    inverse: {
+      uncheckedColor: colors.neutral08,
+      checkedColor: colors.primary,
+    },
+  },
+  typographyColors: {
+    ...typographyColors(colors),
+    expressive: {
+      color: colors.foundation,
+      inverse: {
+        color: colors.primary,
       },
     },
   },

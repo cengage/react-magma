@@ -1,5 +1,7 @@
 import { ThemeButtons } from './magma/components/button';
+import { ThemeCheckbox } from './magma/components/checkbox';
 import { ThemeTransitions } from './magma/components/transition';
+import { TypographyColors } from './magma/components/typography';
 
 export interface Colors {
   primary: string;
@@ -206,6 +208,7 @@ export interface ThemeInterface {
   breakpoints: Breakpoints;
   button?: ThemeButtons;
   colors: Colors;
+  checkbox: ThemeCheckbox;
   combobox: Combobox;
   direction: string;
   dropdown: Dropdown;
@@ -221,6 +224,7 @@ export interface ThemeInterface {
   typographyVisualStyles: TypographyVisualStyles;
   typographyExpressiveVisualStyles: TypographyVisualStyles;
   typographyNarrativeVisualStyles: TypographyVisualStyles;
+  typographyColors: TypographyColors;
   modal: Modal;
   tabs: Tabs;
   tooltip: Tooltip;

@@ -90,19 +90,21 @@ export const HiddenInput = styled.input`
 `;
 
 function buildCheckIconColor(props) {
+  const { checkbox } = props.theme;
+
   if (props.disabled) {
     if (props.isInverse) {
-      return props.theme.colors.tint04;
+      return checkbox.disabled.inverse.uncheckedColor;
     }
-    return props.theme.colors.neutral05;
+    return checkbox.disabled.uncheckedColor;
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    return checkbox.inverse.uncheckedColor;
   }
   if (props.isChecked || props.isIndeterminate) {
     return props.color;
   }
-  return props.theme.colors.neutral02;
+  return checkbox.uncheckedColor;
 }
 
 export const StyledFakeInput = styled.span<{
@@ -182,7 +184,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const context = React.useContext(FormGroupContext);
 
     const {
-      color = theme.colors.primary,
+      color = theme.checkbox.checkedColor,
       containerStyle,
       disabled,
       errorMessage,
