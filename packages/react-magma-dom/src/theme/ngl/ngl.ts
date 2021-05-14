@@ -88,6 +88,12 @@ export const ngl = {
       checkedColor: colors.primary,
     },
   },
+  docs: {
+    backgroundColor: colors.neutral07,
+    isInverse: false,
+    tabsBackground: colors.neutral,
+    textColor: colors.foundation,
+  },
   typographyColors: {
     ...typographyColors(colors),
     expressive: {

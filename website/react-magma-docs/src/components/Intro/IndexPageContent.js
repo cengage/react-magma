@@ -17,6 +17,7 @@ import ImageQuality from './images/img-quality.svg';
 
 const Heading = styled.h1`
   && {
+    border-bottom: 2px solid transparent;
     color: inherit;
     font-family: ${props => props.theme.bodyFont};
     font-size: ${props => props.theme.typeScale.size12.fontSize};
@@ -29,7 +30,7 @@ const Heading = styled.h1`
     text-transform: uppercase;
 
     &:focus {
-      border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+      border-bottom: 2px dotted ${props => props.theme.colors.inverseFocus};
       outline: 0;
     }
 
@@ -48,7 +49,7 @@ const List = styled.ol`
   display: none;
 
   @media (min-width: ${props => props.theme.breakpoints.medium}px) {
-    background-color: ${props => props.theme.colors.foundation};
+    background-color: ${props => props.theme.docs.tabsBackground};
     display: flex;
     left: 0;
     list-style: none;
@@ -179,7 +180,7 @@ export class IndexPageContent extends React.Component {
             <ButtonContainer theme={theme}>
               <Hyperlink
                 styledAs="Button"
-                isInverse
+                isInverse={theme.docs.isInverse}
                 style={{ marginBottom: '20px' }}
                 to="/api-intro/introduction"
               >
@@ -193,7 +194,7 @@ export class IndexPageContent extends React.Component {
               <br />
               <Hyperlink
                 styledAs="Button"
-                isInverse
+                isInverse={theme.docs.isInverse}
                 to="/design-intro/introduction"
               >
                 {linkProps => (

@@ -1,6 +1,7 @@
 import { button } from './components/button';
 import { checkbox } from './components/checkbox';
 import { colors } from './colors';
+import { docs } from './components/docs';
 import { transitions } from './components/transition';
 import { typographyColors } from './components/typography';
 
@@ -88,6 +89,7 @@ export const magma = {
   transitions,
   button: button(colors),
   checkbox: checkbox(colors),
+  docs: docs(colors),
   typographyColors: typographyColors(colors),
 
   breakpoints: {

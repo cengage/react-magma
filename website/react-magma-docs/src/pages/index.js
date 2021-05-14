@@ -21,11 +21,8 @@ const IndexPage = () => {
           }
           .content-article {
             && {
-              background: linear-gradient(
-                to bottom,
-                ${theme.colors.foundation02} 0%,
-                ${theme.colors.pop} 100%
-              );
+              background: ${theme.docs.backgroundColor};
+              color: ${theme.docs.textColor};
               margin: 0;
               max-width: none;
               padding: 0;
