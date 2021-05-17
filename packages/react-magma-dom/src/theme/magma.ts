@@ -150,8 +150,46 @@ export interface Modal {
   };
 }
 
+interface Drawer {
+  default: {
+    maxWidth: string;
+    minHeight: string;
+    borderRadius: string;
+    margin: string;
+    top: string;
+    bottom: string;
+    left: string;
+    right: string;
+    position: string;
+  };
+  right: {
+    left: string;
+    height: string;
+    width: string;
+  };
+  left: {
+    right: string;
+    height: string;
+    width: string;
+  };
+  top: {
+    bottom: string;
+    height: string;
+  };
+  bottom: {
+    top: string;
+    height: string;
+  };
+}
+
 interface Combobox {
   menu: {
+    maxHeight: string;
+  };
+}
+
+interface Dropdown {
+  content: {
     maxHeight: string;
   };
 }
@@ -197,6 +235,7 @@ export interface ThemeInterface {
   colors: Colors;
   combobox: Combobox;
   direction: string;
+  drawer: Drawer;
   dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
@@ -533,6 +572,40 @@ export const magma = {
       small: '300px',
       medium: '600px',
       large: '900px',
+    },
+  },
+
+  drawer: {
+    default: {
+      maxWidth: '100%',
+      minHeight: '300px',
+      margin: '0',
+      borderRadius: '0',
+      top: '0',
+      right: '0',
+      bottom: '0',
+      left: '0',
+      position: 'relative',
+    },
+    right: {
+      left: 'auto',
+      height: '100%',
+      width: '300px',
+      position: 'fixed',
+    },
+    left: {
+      right: 'auto',
+      height: '100%',
+      width: '300px',
+    },
+    top: {
+      bottom: 'auto',
+      height: '300px',
+    },
+    bottom: {
+      top: 'auto',
+      height: '300px',
+      position: 'fixed',
     },
   },
 

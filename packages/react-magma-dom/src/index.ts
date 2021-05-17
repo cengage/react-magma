@@ -219,3 +219,4 @@ export { InverseContext, useIsInverse } from './inverse';
 
 export * from './components/Datagrid';
 export * from './components/Transition';
+export * from './components/Drawer';
