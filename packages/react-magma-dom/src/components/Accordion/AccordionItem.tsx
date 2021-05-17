@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { AccordionContext } from './useAccordion';
 import {
   AccordionItemContext,
   UseAccordionItemProps,
@@ -7,7 +6,6 @@ import {
 } from './useAccordionItem';
 import { ThemeInterface } from '../../theme/magma';
 import styled from '../../theme/styled';
-import { isArray } from 'lodash';
 
 /**
  * @children required
@@ -41,29 +39,13 @@ export const AccordionItem = React.forwardRef<
   HTMLDivElement,
   AccordionItemProps
 >((props, ref) => {
-  const {
-    children,
-    index,
-    isDisabled,
-    isExpanded: isExpandedProp,
-    testId,
-    ...rest
-  } = props;
+  const { children, testId, ...rest } = props;
 
-  const { expandedIndex, isMultiple } = React.useContext(AccordionContext);
-  const { contextValue, setIsExpanded } = useAccordionItem(props);
-
-  React.useEffect(() => {
-    if (isMultiple) {
-      setIsExpanded(isArray(expandedIndex) && expandedIndex.includes(index));
-    } else {
-      setIsExpanded(expandedIndex == index);
-    }
-  });
+  const { contextValue } = useAccordionItem(props);
 
   return (
     <AccordionItemContext.Provider value={contextValue}>
-      <StyledItem ref={ref} data-testid={props.testId} {...rest}>
+      <StyledItem ref={ref} data-testid={testId} {...rest}>
         {children}
       </StyledItem>
     </AccordionItemContext.Provider>

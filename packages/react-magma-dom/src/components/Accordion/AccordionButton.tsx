@@ -12,7 +12,6 @@ import {
   UseAccordionButtonProps,
 } from './useAccordionButton';
 import { Transition } from '../Transition';
-import { useForceUpdate, useForkedRef } from '../../utils';
 
 /**
  * @children required
@@ -76,11 +75,8 @@ export const AccordionButton = React.forwardRef<
   const { children, testId, isInverse: isInverseProp, ...rest } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
-  const ownRef = React.useRef<HTMLDivElement>();
-  const forceUpdate = useForceUpdate();
 
   const {
-    buttonRefArray,
     iconPosition,
     buttonId,
     isDisabled,
@@ -88,24 +84,14 @@ export const AccordionButton = React.forwardRef<
     panelId,
     handleClick,
     handleKeyDown,
-    registerAccordionButton,
-  } = useAccordionButton(props);
+    ref,
+  } = useAccordionButton(props, forwardedRef);
 
   const caret = (
     <Transition isOpen={isExpanded} rotate180>
       <ExpandMoreIcon />
     </Transition>
   );
-
-  const ref = useForkedRef(forwardedRef, ownRef);
-
-  React.useEffect(() => {
-    if (!isDisabled) {
-      registerAccordionButton(buttonRefArray, ownRef);
-    }
-
-    forceUpdate();
-  }, []);
 
   return (
     <StyledButton

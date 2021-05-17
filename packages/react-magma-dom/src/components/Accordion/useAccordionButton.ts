@@ -3,13 +3,17 @@ import * as React from 'react';
 
 import { AccordionContext } from './useAccordion';
 import { AccordionItemContext } from './useAccordionItem';
+import { useForceUpdate, useForkedRef } from '../../utils';
 
 export interface UseAccordionButtonProps {
   testId?: string;
   isInverse?: boolean;
 }
 
-export function useAccordionButton(props: UseAccordionButtonProps) {
+export function useAccordionButton(
+  props: UseAccordionButtonProps,
+  forwardedRef
+) {
   const {
     buttonRefArray,
     expandedIndex,
@@ -19,14 +23,9 @@ export function useAccordionButton(props: UseAccordionButtonProps) {
     setExpandedIndex,
   } = React.useContext(AccordionContext);
 
-  const {
-    buttonId,
-    index,
-    isDisabled,
-    isExpanded,
-    panelId,
-    setIsExpanded,
-  } = React.useContext(AccordionItemContext);
+  const { buttonId, index, isDisabled, isExpanded, panelId } = React.useContext(
+    AccordionItemContext
+  );
 
   const handleClick = () => {
     if (isMultiple && isArray(expandedIndex)) {
@@ -93,20 +92,29 @@ export function useAccordionButton(props: UseAccordionButtonProps) {
     }
   };
 
+  const ownRef = React.useRef<HTMLDivElement>();
+  const forceUpdate = useForceUpdate();
+
+  const ref = useForkedRef(forwardedRef, ownRef);
+
+  React.useEffect(() => {
+    if (!isDisabled) {
+      registerAccordionButton(buttonRefArray, ownRef);
+    }
+
+    forceUpdate();
+  }, []);
+
   return {
     buttonId,
-    buttonRefArray,
+    handleClick,
+    handleKeyDown,
     iconPosition,
     index,
     isDisabled,
     isExpanded,
-    isMultiple,
     panelId,
-    registerAccordionButton,
-    setExpandedIndex,
-    setIsExpanded,
-    handleClick,
-    handleKeyDown,
+    ref,
   };
 }
 

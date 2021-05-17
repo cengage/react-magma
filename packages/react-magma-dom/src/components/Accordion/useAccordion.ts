@@ -40,7 +40,6 @@ interface AccordionContextInterface {
 }
 
 export const AccordionContext = React.createContext<AccordionContextInterface>({
-  expandedIndex: 0,
   iconPosition: AccordionIconPosition.right,
   isMultiple: false,
   registerAccordionButton: (elements, element) => {},
@@ -66,10 +65,6 @@ export function useAccordion(props: UseAccordionProps) {
   };
 
   return {
-    expandedIndex,
-    iconPosition,
-    isMultiple,
-    setExpandedIndex,
     contextValue,
   };
 }

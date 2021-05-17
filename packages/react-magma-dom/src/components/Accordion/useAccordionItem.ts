@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { AccordionContext } from './useAccordion';
 import { useGenerateId } from '../../utils';
+import { isArray } from 'lodash';
 
 export interface UseAccordionItemProps {
   /**
@@ -9,10 +10,6 @@ export interface UseAccordionItemProps {
    */
   index?: number;
   isDisabled?: boolean;
-  /**
-   * @internal
-   */
-  isExpanded?: boolean;
   testId?: string;
 }
 
@@ -34,15 +31,23 @@ export const AccordionItemContext = React.createContext<AccordionItemContextInte
 );
 
 export function useAccordionItem(props: UseAccordionItemProps) {
-  const { index, isDisabled, isExpanded: isExpandedProp } = props;
+  const { index, isDisabled } = props;
 
-  const [isExpanded, setIsExpanded] = React.useState(isExpandedProp);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const { expandedIndex, isMultiple } = React.useContext(AccordionContext);
 
   const idPrefix = useGenerateId();
 
   const buttonId = `${idPrefix}_btn`;
   const panelId = `${idPrefix}_panel`;
+
+  React.useEffect(() => {
+    if (isMultiple) {
+      setIsExpanded(isArray(expandedIndex) && expandedIndex.includes(index));
+    } else {
+      setIsExpanded(expandedIndex == index);
+    }
+  });
 
   const contextValue = {
     buttonId,
@@ -54,13 +59,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   };
 
   return {
-    buttonId,
-    panelId,
-    expandedIndex,
-    isMultiple,
     contextValue,
-    isExpanded,
-    setIsExpanded,
   };
 }
 
