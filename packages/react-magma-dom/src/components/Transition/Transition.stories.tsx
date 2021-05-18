@@ -2,7 +2,7 @@ import React from 'react';
 import { Transition } from '.';
 import { Button } from '../Button';
 
-export default {
+const info = {
   component: Transition,
   title: 'Transition',
   argTypes: {
@@ -60,30 +60,36 @@ export default {
       control: {
         type: 'boolean',
       },
-    }, 
+    },
     rotate45: {
       control: {
         type: 'boolean',
       },
-    }, 
+    },
     rotate90: {
       control: {
         type: 'boolean',
       },
-    }, 
+    },
     rotate180: {
       control: {
         type: 'boolean',
       },
-    },  
+    },
   },
 };
+
+export default info;
 
 export const Default = args => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
-      <Transition isOpen={isOpen} {...args} style={{ overflow: 'hidden', height: '250px', width: '250px' }}>
+      <Transition
+        isOpen={isOpen}
+        {...args}
+        style={{ overflow: 'hidden', height: '250px', width: '250px' }}
+      >
         <div
           style={{
             height: '250px',
