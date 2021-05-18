@@ -9,7 +9,6 @@ export const BasicTemplate = ({
 }: FormTemplateRenderProps) => {
   return (
     <div>
-      {schema.title && <Heading level={1}>{schema.title}</Heading>}
       {formFields}
     </div>
   );

@@ -215,7 +215,7 @@ export function Example() {
 
 ## Sub Forms
 
-Some components support sub fields
+Instead of passing `children` some components support sub fields. This allows for an array of `fields` to be passed in and render as the children.
 
 ```tsx
 import React from 'react';
@@ -571,20 +571,6 @@ export function Example() {
     description: 'Tossing some validation on an input.',
     type: templateTypes.FORM,
     fields: [
-      {
-        component: componentTypes.SPY,
-        name: 'validator-spy',
-        subscription: { errors: true },
-        template: ({ errors }) => (
-          <>
-            {Object.keys(errors).map(error => (
-              <Alert variant={AlertVariant.danger}>
-                [{error}] - {errors[error]}
-              </Alert>
-            ))}
-          </>
-        ),
-      },
       {
         component: componentTypes.INPUT,
         name: 'validator-input',
