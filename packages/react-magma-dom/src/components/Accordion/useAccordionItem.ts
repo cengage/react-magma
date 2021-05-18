@@ -34,7 +34,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const { index, isDisabled } = props;
 
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const { expandedIndex, isMultiple } = React.useContext(AccordionContext);
+  const { expandedIndex, isMulti } = React.useContext(AccordionContext);
 
   const idPrefix = useGenerateId();
 
@@ -42,7 +42,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const panelId = `${idPrefix}_panel`;
 
   React.useEffect(() => {
-    if (isMultiple) {
+    if (isMulti) {
       setIsExpanded(isArray(expandedIndex) && expandedIndex.includes(index));
     } else {
       setIsExpanded(expandedIndex == index);

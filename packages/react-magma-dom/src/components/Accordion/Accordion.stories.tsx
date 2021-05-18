@@ -7,7 +7,7 @@ import {
   AccordionButton,
   AccordionPanel,
 } from '.';
-import { Button } from '../Button';
+import { Button, ButtonSize, ButtonVariant } from '../Button';
 
 import { Story } from '@storybook/react/types-6-0';
 
@@ -26,14 +26,9 @@ export default {
         type: 'boolean',
       },
     },
-    isMultiple: {
+    isMulti: {
       control: {
         type: 'boolean',
-      },
-    },
-    expandedIndex: {
-      control: {
-        type: 'number',
       },
     },
   },
@@ -62,34 +57,83 @@ const Template: Story<AccordionProps> = args => (
 
 export const Default = Template.bind({});
 Default.args = {
-  expandedIndex: 0,
+  defaultIndex: [0],
 };
 
-export const Multiple = Template.bind({});
-Multiple.args = {
-  isMultiple: true,
-  expandedIndex: [0],
+export const NoMulti = Template.bind({});
+NoMulti.args = {
+  defaultIndex: 0,
+  isMulti: false,
+};
+
+export const Controlled = Template.bind({});
+Controlled.args = {
+  index: [0],
+};
+
+export const ControlledNoMulti = Template.bind({});
+ControlledNoMulti.args = {
+  index: 0,
 };
 
 export const ExpandCollapseAll = () => {
-  const [expandedIndex, setExpandedIndex] = React.useState([0, 1]);
+  const [expandedIndex, setExpandedIndex] = React.useState([]);
+  const [disableExpandAll, setDisableExpandAll] = React.useState(false);
+  const [disableCollapseAll, setDisableCollapseAll] = React.useState(true);
 
-  const handleExpand = () => {
+  const handleExpandAll = () => {
     setExpandedIndex([0, 1, 2]);
-    console.log('handleExpand expandedIndex', expandedIndex);
   };
 
-  const handleCollapse = () => {
+  const handleCollapseAll = () => {
     setExpandedIndex([]);
-    console.log('handleCollapse expandedIndex', expandedIndex);
   };
+
+  const handleExpandedChange = index => {
+    if (expandedIndex.includes(index)) {
+      setExpandedIndex(expandedIndex.filter(item => item !== index));
+    } else {
+      setExpandedIndex(expandedIndex.concat([index]));
+    }
+  };
+
+  React.useEffect(() => {
+    if (expandedIndex.length === 0) {
+      setDisableCollapseAll(true);
+      setDisableExpandAll(false);
+    } else if (expandedIndex.length === 3) {
+      setDisableCollapseAll(false);
+      setDisableExpandAll(true);
+    } else {
+      setDisableCollapseAll(false);
+      setDisableExpandAll(false);
+    }
+  }, [expandedIndex]);
 
   return (
     <>
-      <Button onClick={handleExpand}>Expand All</Button>
-      <Button onClick={handleCollapse}>Collapse All</Button>
+      <Button
+        disabled={disableExpandAll}
+        onClick={handleExpandAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.outline}
+      >
+        Expand All
+      </Button>
+      <Button
+        disabled={disableCollapseAll}
+        onClick={handleCollapseAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.outline}
+      >
+        Collapse All
+      </Button>
 
-      <Accordion isMultiple expandedIndex={expandedIndex}>
+      <Accordion
+        isMulti
+        index={expandedIndex}
+        onExpandedChange={handleExpandedChange}
+      >
         <AccordionItem>
           <AccordionButton>Section 1</AccordionButton>
           <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>

@@ -18,8 +18,10 @@ export function useAccordionButton(
     buttonRefArray,
     expandedIndex,
     iconPosition,
-    isMultiple,
+    isControlled,
+    isMulti,
     registerAccordionButton,
+    onExpandedChange,
     setExpandedIndex,
   } = React.useContext(AccordionContext);
 
@@ -28,16 +30,24 @@ export function useAccordionButton(
   );
 
   const handleClick = () => {
-    if (isMultiple && isArray(expandedIndex)) {
-      if (isExpanded) {
-        setExpandedIndex(expandedIndex.filter(item => item !== index));
+    if (typeof onExpandedChange === 'function') {
+      onExpandedChange(index);
+    }
+
+    if (!isControlled) {
+      if (isMulti && isArray(expandedIndex)) {
+        if (isExpanded) {
+          setExpandedIndex(expandedIndex.filter(item => item !== index));
+        } else {
+          setExpandedIndex(expandedIndex.concat([index]));
+        }
       } else {
-        setExpandedIndex(expandedIndex.concat([index]));
+        if (isExpanded) {
+          setExpandedIndex(null);
+        } else {
+          setExpandedIndex(index);
+        }
       }
-    } else if (isExpanded) {
-      setExpandedIndex(null);
-    } else {
-      setExpandedIndex(index);
     }
   };
 

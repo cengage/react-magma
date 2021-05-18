@@ -12,18 +12,20 @@ export interface UseAccordionProps {
    * Index of the accordion panel expanded by default. If multiple panels are allowed, takes an array.
    * @default null
    */
-  expandedIndex?: number[] | number;
+  defaultIndex?: number[] | number;
   /**
    * Position of the chevron icon.  If 'none', the icon will not render at all.
    * @default AccordionIconPosition.right
    */
   iconPosition?: AccordionIconPosition;
+  index?: number[] | number;
   isInverse?: boolean;
   /**
    * If true, multiple accordion items may be expanded at once
    * @default false
    */
-  isMultiple?: boolean;
+  isMulti?: boolean;
+  onExpandedChange?: (event: any) => void;
   testId?: string;
 }
 
@@ -31,7 +33,9 @@ interface AccordionContextInterface {
   buttonRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   expandedIndex?: number[] | number;
   iconPosition?: AccordionIconPosition;
-  isMultiple?: boolean;
+  isControlled?: boolean;
+  isMulti?: boolean;
+  onExpandedChange?: any;
   setExpandedIndex?: any;
   registerAccordionButton: (
     itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
@@ -40,28 +44,44 @@ interface AccordionContextInterface {
 }
 
 export const AccordionContext = React.createContext<AccordionContextInterface>({
+  isControlled: false,
   iconPosition: AccordionIconPosition.right,
-  isMultiple: false,
+  isMulti: false,
   registerAccordionButton: (elements, element) => {},
 });
 
 export function useAccordion(props: UseAccordionProps) {
   const {
-    isMultiple,
-    expandedIndex: expandedIndexProp = isMultiple ? [] : null,
+    isMulti = true,
+    defaultIndex = isMulti ? [] : null,
+    index,
     iconPosition = AccordionIconPosition.right,
+    onExpandedChange,
   } = props;
 
-  const [expandedIndex, setExpandedIndex] = React.useState(expandedIndexProp);
+  const isControlled = typeof index !== 'undefined';
+
+  const indexProp = isControlled ? index : defaultIndex;
+
+  const [expandedIndex, setExpandedIndex] = React.useState(indexProp);
+
+  React.useEffect(() => {
+    if (isControlled) {
+      setExpandedIndex(index);
+    }
+  }, [index]);
+
   const [buttonRefArray, registerAccordionButton] = useDescendants();
 
   const contextValue = {
     buttonRefArray,
-    iconPosition,
-    isMultiple,
     expandedIndex,
-    setExpandedIndex,
+    iconPosition,
+    isControlled,
+    isMulti,
+    onExpandedChange,
     registerAccordionButton,
+    setExpandedIndex,
   };
 
   return {

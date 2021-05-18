@@ -16,8 +16,9 @@ import { ThemeInterface } from '../../theme/magma';
 export interface AccordionMultipleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
-  expandedIndex?: number[];
-  isMultiple?: true;
+  defaultIndex?: number[];
+  index?: never;
+  isMulti?: true;
   /**
    * @internal
    */
@@ -30,15 +31,50 @@ export interface AccordionMultipleProps
 export interface AccordionSingleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
-  expandedIndex?: number;
-  isMultiple?: false;
+  defaultIndex?: number;
+  index?: never;
+  isMulti?: false;
   /**
    * @internal
    */
   theme?: ThemeInterface;
 }
 
-export type AccordionProps = AccordionMultipleProps | AccordionSingleProps;
+/**
+ * @children required
+ */
+export interface AccordionMultipleControlledProps
+  extends UseAccordionProps,
+    React.HTMLAttributes<HTMLDivElement> {
+  index?: number[];
+  defaultIndex?: never;
+  isMulti?: true;
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
+}
+
+/**
+ * @children required
+ */
+export interface AccordionSingleControlledProps
+  extends UseAccordionProps,
+    React.HTMLAttributes<HTMLDivElement> {
+  index?: number;
+  defaultIndex?: never;
+  isMulti?: true;
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
+}
+
+export type AccordionProps =
+  | AccordionMultipleProps
+  | AccordionSingleProps
+  | AccordionMultipleControlledProps
+  | AccordionSingleControlledProps;
 
 const StyledAccordion = styled.div<AccordionProps>`
   background: ${props =>
@@ -54,7 +90,13 @@ const StyledAccordion = styled.div<AccordionProps>`
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   (props, ref) => {
-    const { children, isInverse: isInverseProp, testId, ...rest } = props;
+    const {
+      children,
+      isInverse: isInverseProp,
+      onExpandedChange,
+      testId,
+      ...rest
+    } = props;
 
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);

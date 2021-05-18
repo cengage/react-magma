@@ -78,71 +78,6 @@ describe('Accordion', () => {
     expect(btn.firstChild.firstChild.nodeName).toBe('svg');
   });
 
-  it('should render the first panel closed by default and open and close it when clicking its button', () => {
-    const { getByText } = render(
-      <Accordion>
-        <AccordionItem>
-          <AccordionButton>Button 1</AccordionButton>
-          <AccordionPanel>Panel 1</AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>Button 2</AccordionButton>
-          <AccordionPanel>Panel 2</AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-    );
-
-    const panel1 = getByText('Panel 1');
-    const btn1 = getByText('Button 1').parentElement;
-
-    expect(btn1).toHaveAttribute('aria-expanded', 'false');
-    expect(panel1).toHaveAttribute('aria-hidden', 'true');
-
-    fireEvent.click(btn1);
-
-    expect(btn1).toHaveAttribute('aria-expanded', 'true');
-    expect(panel1).toHaveAttribute('aria-hidden', 'false');
-
-    fireEvent.click(btn1);
-
-    expect(btn1).toHaveAttribute('aria-expanded', 'false');
-    expect(panel1).toHaveAttribute('aria-hidden', 'true');
-  });
-
-  it('should close first panel and open the second panel when the second button button', () => {
-    const { getByText } = render(
-      <Accordion expandedIndex={0}>
-        <AccordionItem>
-          <AccordionButton>Button 1</AccordionButton>
-          <AccordionPanel>Panel 1</AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>Button 2</AccordionButton>
-          <AccordionPanel>Panel 2</AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-    );
-
-    const panel1 = getByText('Panel 1');
-    const panel2 = getByText('Panel 2');
-    const btn1 = getByText('Button 1').parentElement;
-    const btn2 = getByText('Button 2').parentElement;
-
-    expect(btn1).toHaveAttribute('aria-expanded', 'true');
-    expect(btn2).toHaveAttribute('aria-expanded', 'false');
-
-    expect(panel1).toHaveAttribute('aria-hidden', 'false');
-    expect(panel2).toHaveAttribute('aria-hidden', 'true');
-
-    fireEvent.click(btn2);
-
-    expect(btn1).toHaveAttribute('aria-expanded', 'false');
-    expect(btn2).toHaveAttribute('aria-expanded', 'true');
-
-    expect(panel1).toHaveAttribute('aria-hidden', 'true');
-    expect(panel2).toHaveAttribute('aria-hidden', 'false');
-  });
-
   describe('keyboard behavior', () => {
     it('should navigate to the next item and back to the first item when pressing the down arrow', () => {
       const testId1 = 'test-id1';
@@ -251,10 +186,99 @@ describe('Accordion', () => {
     });
   });
 
-  describe('multiple', () => {
-    it('should have no panels open by default when isMultiple is true', () => {
+  it('should fire the onExpandedChange event', () => {
+    const testId = 'test-id';
+    const handleExpandedChange = jest.fn();
+
+    const { getByTestId } = render(
+      <Accordion onExpandedChange={handleExpandedChange}>
+        <AccordionItem>
+          <AccordionButton testId={testId}>Button 1</AccordionButton>
+          <AccordionPanel>Panel 1</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+
+    const btn = getByTestId(testId);
+
+    expect(handleExpandedChange).not.toHaveBeenCalled();
+
+    fireEvent.click(btn);
+
+    expect(handleExpandedChange).toHaveBeenCalled();
+  });
+
+  describe('no multiple', () => {
+    it('should render the first panel closed by default and open and close it when clicking its button', () => {
       const { getByText } = render(
-        <Accordion isMultiple>
+        <Accordion isMulti={false}>
+          <AccordionItem>
+            <AccordionButton>Button 1</AccordionButton>
+            <AccordionPanel>Panel 1</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>Button 2</AccordionButton>
+            <AccordionPanel>Panel 2</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      );
+
+      const panel1 = getByText('Panel 1');
+      const btn1 = getByText('Button 1').parentElement;
+
+      expect(btn1).toHaveAttribute('aria-expanded', 'false');
+      expect(panel1).toHaveAttribute('aria-hidden', 'true');
+
+      fireEvent.click(btn1);
+
+      expect(btn1).toHaveAttribute('aria-expanded', 'true');
+      expect(panel1).toHaveAttribute('aria-hidden', 'false');
+
+      fireEvent.click(btn1);
+
+      expect(btn1).toHaveAttribute('aria-expanded', 'false');
+      expect(panel1).toHaveAttribute('aria-hidden', 'true');
+    });
+
+    it('should close first panel and open the second panel when the second button button', () => {
+      const { getByText } = render(
+        <Accordion defaultIndex={0} isMulti={false}>
+          <AccordionItem>
+            <AccordionButton>Button 1</AccordionButton>
+            <AccordionPanel>Panel 1</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>Button 2</AccordionButton>
+            <AccordionPanel>Panel 2</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      );
+
+      const panel1 = getByText('Panel 1');
+      const panel2 = getByText('Panel 2');
+      const btn1 = getByText('Button 1').parentElement;
+      const btn2 = getByText('Button 2').parentElement;
+
+      expect(btn1).toHaveAttribute('aria-expanded', 'true');
+      expect(btn2).toHaveAttribute('aria-expanded', 'false');
+
+      expect(panel1).toHaveAttribute('aria-hidden', 'false');
+      expect(panel2).toHaveAttribute('aria-hidden', 'true');
+
+      fireEvent.click(btn2);
+
+      expect(btn1).toHaveAttribute('aria-expanded', 'false');
+      expect(btn2).toHaveAttribute('aria-expanded', 'true');
+
+      expect(panel1).toHaveAttribute('aria-hidden', 'true');
+      expect(panel2).toHaveAttribute('aria-hidden', 'false');
+    });
+  });
+
+  describe('multiple', () => {
+    it('should have no panels open by default when isMulti is true', () => {
+      const { getByText } = render(
+        <Accordion isMulti>
           <AccordionItem>
             <AccordionButton>Button 1</AccordionButton>
             <AccordionPanel>Panel 1</AccordionPanel>
@@ -273,9 +297,9 @@ describe('Accordion', () => {
       expect(panel2).toHaveAttribute('aria-hidden', 'true');
     });
 
-    it('should expand the panels specified in expandedIndex prop', () => {
+    it('should expand the panels specified in defaultIndex prop', () => {
       const { getByText } = render(
-        <Accordion isMultiple expandedIndex={[0, 1]}>
+        <Accordion isMulti defaultIndex={[0, 1]}>
           <AccordionItem>
             <AccordionButton>Button 1</AccordionButton>
             <AccordionPanel>Panel 1</AccordionPanel>
@@ -296,7 +320,7 @@ describe('Accordion', () => {
 
     it('should leave the first panel open and open and close the second panel when clicking the second button', () => {
       const { getByText } = render(
-        <Accordion isMultiple expandedIndex={[0]}>
+        <Accordion isMulti defaultIndex={[0]}>
           <AccordionItem>
             <AccordionButton>Button 1</AccordionButton>
             <AccordionPanel>Panel 1</AccordionPanel>
