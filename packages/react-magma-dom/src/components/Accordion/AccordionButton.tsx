@@ -34,7 +34,8 @@ const StyledButton = styled.button<{
       ? props.theme.colors.foundation
       : props.theme.colors.neutral08};
   border: 0;
-  border-top: 1px solid ${props => props.theme.colors.neutral06};
+  border-top: 1px solid ${props =>
+    props.isInverse ? props.theme.colors.tint04 : props.theme.colors.neutral06};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
@@ -61,6 +62,7 @@ const StyledButton = styled.button<{
       props.isInverse
         ? props.theme.colors.disabledInverseText
         : props.theme.colors.disabledText};
+     cursor: not-allowed;
   }
 `;
 
@@ -88,7 +90,11 @@ export const AccordionButton = React.forwardRef<
   } = useAccordionButton(props, forwardedRef);
 
   const caret = (
-    <Transition isOpen={isExpanded} rotate180>
+    <Transition
+      isOpen={isExpanded}
+      rotate180
+      style={{ height: theme.spaceScale.spacing06 }}
+    >
       <ExpandMoreIcon />
     </Transition>
   );
