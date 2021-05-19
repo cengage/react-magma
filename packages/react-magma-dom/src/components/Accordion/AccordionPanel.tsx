@@ -29,7 +29,8 @@ const StyledPanel = styled.div<AccordionPanelProps>`
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
-  padding: 8px 16px;
+  padding: ${props =>
+    `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing04}`};
 `;
 
 export const AccordionPanel = React.forwardRef<

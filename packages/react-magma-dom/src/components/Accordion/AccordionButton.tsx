@@ -40,10 +40,11 @@ const StyledButton = styled.button<{
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
+  cursor: pointer;
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
-  font-weight: normal;
+  font-weight: 600;
   padding: 12px 16px;
   text-align: left;
   width: 100%;
@@ -121,7 +122,12 @@ export const AccordionButton = React.forwardRef<
         </>
       )}
       <TextWrapper>{children}</TextWrapper>
-      {iconPosition === AccordionIconPosition.right && caret}
+      {iconPosition === AccordionIconPosition.right && (
+        <>
+          <Spacer size={12} />
+          {caret}
+        </>
+      )}
     </StyledButton>
   );
 });
