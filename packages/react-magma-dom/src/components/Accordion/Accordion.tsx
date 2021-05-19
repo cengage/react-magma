@@ -16,8 +16,18 @@ import { ThemeInterface } from '../../theme/magma';
 export interface AccordionMultipleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Zero-based indices of item to expanded initialy.  When isMulti is true this is an array of numbers.
+   * @default []
+   */
   defaultIndex?: number[];
+  /**
+   * Not used in uncontrolled accordion
+   */
   index?: never;
+  /**
+   * If true, multiple accordion items may be expanded at once
+   */
   isMulti?: true;
   /**
    * @internal
@@ -31,8 +41,18 @@ export interface AccordionMultipleProps
 export interface AccordionSingleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Zero-based index of item to expanded initialy.  When isMulti is a false this is a number.
+   * @default null
+   */
   defaultIndex?: number;
+  /**
+   * Not used in uncontrolled accordion
+   */
   index?: never;
+  /**
+   * If true, multiple accordion items may be expanded at once
+   */
   isMulti?: false;
   /**
    * @internal
@@ -46,7 +66,14 @@ export interface AccordionSingleProps
 export interface AccordionMultipleControlledProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Zero-based indices of expanded items.  When isMulti is true this is an array of numbers.
+   * @default []
+   */
   index?: number[];
+  /**
+   * Not used in controlled accordion
+   */
   defaultIndex?: never;
   isMulti?: true;
   /**
@@ -61,7 +88,14 @@ export interface AccordionMultipleControlledProps
 export interface AccordionSingleControlledProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Zero-based index of expanded item.  When isMulti is a false this is a number.
+   * @default null
+   */
   index?: number;
+  /**
+   * Not used in controlled accordion
+   */
   defaultIndex?: never;
   isMulti?: true;
   /**

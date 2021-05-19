@@ -22,9 +22,12 @@ export interface UseAccordionProps {
   isInverse?: boolean;
   /**
    * If true, multiple accordion items may be expanded at once
-   * @default false
+   * @default true
    */
   isMulti?: boolean;
+  /**
+   * Event that fires when an accordion button is clicked
+   */
   onExpandedChange?: (event: any) => void;
   testId?: string;
 }
