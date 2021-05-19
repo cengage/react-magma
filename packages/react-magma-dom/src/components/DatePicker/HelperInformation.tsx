@@ -46,6 +46,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
       onClose={onClose}
       isOpen={isOpen}
       size={ModalSize.small}
+      unmountOnExit
     >
       <List id="DayPickerKeyboardShortcuts_description">
         <Item>
