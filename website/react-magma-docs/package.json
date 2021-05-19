@@ -47,7 +47,7 @@
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
     "react-magma-dom": "2.4.0-alpha.4",
-    "react-magma-icons": "0.0.0-2fee88db",
+    "react-magma-icons": "0.0.0-02c65ac",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",
     "url-loader": "^1.1.2",
