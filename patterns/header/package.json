@@ -27,7 +27,7 @@
     "react": "^15.0.0 || ^16.0.0",
     "react-dom": "^15.0.0 || ^16.0.0",
     "react-magma-dom": "2.4.0-alpha.4",
-    "react-magma-icons": "0.0.0-02c65ac",
+    "react-magma-icons": "2.1.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
@@ -39,7 +39,7 @@
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-magma-dom": "2.4.0-alpha.4",
-    "react-magma-icons": "0.0.0-02c65ac",
+    "react-magma-icons": "2.1.0",
     "uuid": "^8.3.0"
   },
   "name": "@cengage-patterns/header",
