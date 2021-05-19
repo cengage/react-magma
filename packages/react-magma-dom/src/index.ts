@@ -117,6 +117,7 @@ export {
   LoadingIndicator,
   LoadingIndicatorProps,
 } from './components/LoadingIndicator';
+export { NativeSelect, NativeSelectProps } from './components/NativeSelect';
 export { NavTabs } from './components/NavTabs';
 export { NavTab } from './components/NavTabs/NavTab';
 export { Pagination } from './components/Pagination';
