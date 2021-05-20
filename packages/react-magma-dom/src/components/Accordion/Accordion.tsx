@@ -36,7 +36,7 @@ export interface AccordionMultipleProps extends BaseAccordionProps {
   /**
    * If true, multiple accordion items may be expanded at once
    */
-  isMulti?: true;
+  isMulti: true;
 }
 
 export interface AccordionSingleProps
@@ -84,7 +84,7 @@ export interface AccordionSingleControlledProps
    * Not used in controlled accordion
    */
   defaultIndex?: never;
-  isMulti?: true;
+  isMulti: false;
 }
 
 export type AccordionProps =

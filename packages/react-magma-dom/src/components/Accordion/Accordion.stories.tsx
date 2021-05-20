@@ -129,11 +129,7 @@ export const ExpandCollapseAll = () => {
         Collapse All
       </Button>
 
-      <Accordion
-        isMulti
-        index={expandedIndex}
-        onExpandedChange={handleExpandedChange}
-      >
+      <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
         <AccordionItem>
           <AccordionButton>Section 1</AccordionButton>
           <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
