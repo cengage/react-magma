@@ -13,9 +13,17 @@ import { ThemeInterface } from '../../theme/magma';
 /**
  * @children required
  */
-export interface AccordionMultipleProps
+interface BaseAccordionProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  testId?: string;
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
+}
+
+export interface AccordionMultipleProps extends BaseAccordionProps {
   /**
    * Zero-based indices of item to expanded initialy.  When isMulti is true this is an array of numbers.
    * @default []
@@ -29,15 +37,8 @@ export interface AccordionMultipleProps
    * If true, multiple accordion items may be expanded at once
    */
   isMulti?: true;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
 }
 
-/**
- * @children required
- */
 export interface AccordionSingleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
@@ -53,16 +54,9 @@ export interface AccordionSingleProps
   /**
    * If true, multiple accordion items may be expanded at once
    */
-  isMulti?: false;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
+  isMulti: false;
 }
 
-/**
- * @children required
- */
 export interface AccordionMultipleControlledProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
@@ -76,15 +70,8 @@ export interface AccordionMultipleControlledProps
    */
   defaultIndex?: never;
   isMulti?: true;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
 }
 
-/**
- * @children required
- */
 export interface AccordionSingleControlledProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
@@ -98,10 +85,6 @@ export interface AccordionSingleControlledProps
    */
   defaultIndex?: never;
   isMulti?: true;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
 }
 
 export type AccordionProps =

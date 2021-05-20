@@ -30,20 +30,18 @@ export function useAccordionButton(
   );
 
   const handleClick = () => {
-    if (typeof onExpandedChange === 'function') {
-      onExpandedChange(index);
-    }
+    typeof onExpandedChange === 'function' && onExpandedChange(index);
 
     if (!isControlled) {
-  const expandedIndex =
-    isMulti && isArray(expandedIndex)
-      ? isExpanded
-        ? expandedIndex.filter((item) => item !== index)
-        : expandedIndex.concat([index])
-      : isExpanded
-      ? null
-      : index;
-}
+      isMulti && isArray(expandedIndex)
+        ? isExpanded
+          ? setExpandedIndex(expandedIndex.filter(item => item !== index))
+          : setExpandedIndex(expandedIndex.concat([index]))
+        : isExpanded
+        ? setExpandedIndex(null)
+        : setExpandedIndex(index);
+    }
+  };
 
   const focusFirst = () => {
     (buttonRefArray.current[0].current as HTMLButtonElement).focus();
