@@ -19,7 +19,7 @@ interface AccordionItemContextInterface {
   isDisabled?: boolean;
   isExpanded?: boolean;
   panelId?: string;
-  setIsExpanded?: any;
+  setIsExpanded?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const AccordionItemContext = React.createContext<AccordionItemContextInterface>(
@@ -33,7 +33,7 @@ export const AccordionItemContext = React.createContext<AccordionItemContextInte
 export function useAccordionItem(props: UseAccordionItemProps) {
   const { index, isDisabled } = props;
 
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
   const { expandedIndex, isMulti } = React.useContext(AccordionContext);
 
   const idPrefix = useGenerateId();
@@ -42,11 +42,11 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const panelId = `${idPrefix}_panel`;
 
   React.useEffect(() => {
-    if (isMulti) {
-      setIsExpanded(isArray(expandedIndex) && expandedIndex.includes(index));
-    } else {
-      setIsExpanded(expandedIndex == index);
-    }
+    const newIsExpanded = isMulti
+      ? isArray(expandedIndex) && expandedIndex.includes(index) 
+      : expandedIndex == index;
+    
+    setIsExpanded(newIsExpanded);
   });
 
   const contextValue = {

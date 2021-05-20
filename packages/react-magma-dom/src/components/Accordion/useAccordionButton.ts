@@ -35,21 +35,15 @@ export function useAccordionButton(
     }
 
     if (!isControlled) {
-      if (isMulti && isArray(expandedIndex)) {
-        if (isExpanded) {
-          setExpandedIndex(expandedIndex.filter(item => item !== index));
-        } else {
-          setExpandedIndex(expandedIndex.concat([index]));
-        }
-      } else {
-        if (isExpanded) {
-          setExpandedIndex(null);
-        } else {
-          setExpandedIndex(index);
-        }
-      }
-    }
-  };
+  const expandedIndex =
+    isMulti && isArray(expandedIndex)
+      ? isExpanded
+        ? expandedIndex.filter((item) => item !== index)
+        : expandedIndex.concat([index])
+      : isExpanded
+      ? null
+      : index;
+}
 
   const focusFirst = () => {
     (buttonRefArray.current[0].current as HTMLButtonElement).focus();
@@ -74,19 +68,11 @@ export function useAccordionButton(
 
     switch (event.key) {
       case 'ArrowDown': {
-        if (index === arrLength - 1) {
-          focusFirst();
-        } else {
-          focusNext();
-        }
+        index === arrLength - 1 ? focusFirst() : focusNext();
         break;
       }
       case 'ArrowUp': {
-        if (index === 0) {
-          focusLast();
-        } else {
-          focusPrev();
-        }
+        index === 0 ? focusLast() : focusPrev();
         break;
       }
       case 'Home': {
