@@ -44,7 +44,7 @@
     "changeset": "changeset add",
     "version:pkgs": "changeset version",
     "release": "changeset publish",
-    "version:prerelease": "changeset pre enter alpha",
+    "version:prerelease": "changeset pre enter next",
     "version:exit": "changeset pre exit"
   },
   "config": {

@@ -1,6 +1,6 @@
 {
   "mode": "pre",
-  "tag": "alpha",
+  "tag": "next",
   "initialVersions": {
     "react-magma-dom": "2.3.12",
     "react-magma-icons": "2.0.4",

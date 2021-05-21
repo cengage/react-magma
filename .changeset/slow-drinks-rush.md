@@ -1,6 +1,6 @@
 ---
 "react-magma-dom": patch
-"react-magma-website": patch
+"react-magma-docs": patch
 "@cengage-patterns/header": patch
 ---
 
