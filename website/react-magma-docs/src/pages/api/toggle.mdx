@@ -16,16 +16,31 @@ See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/radio">Radi
 
 The label/toggle association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
+Toggles can either be controlled or uncontrolled. If you pass in a checked prop, it is a controlled input. That means that to change the toggle's state, you must updated the checked prop's value. If you do not want to have your toggle be in a controlled state, but need the initial checked value to be set, pass in the defaultChecked prop with the value you would like on initial render.
+
 ```tsx
 import React from 'react';
-import { Toggle } from 'react-magma-dom';
+import { Toggle, FormGroup } from 'react-magma-dom';
 
 export function Example() {
+  const [checked, updateChecked] = React.useState<boolean>(false);
+
+  function handleUpdateChecked() {
+    updateChecked(!checked);
+  }
+
   return (
-    <>
-      <Toggle id="Toggle0" labelText="Toggle label off" />
-      <Toggle checked labelText="Toggle label on" />
-    </>
+    <FormGroup labelText="Toggle one or more">
+      <Toggle 
+        defaultChecked={true}
+        labelText="Uncontrolled Toggle"
+      />
+      <Toggle
+        checked={checked}
+        labelText="Controlled toggle"
+        onChange={handleUpdateChecked}
+      />
+    </FormGroup>
   );
 }
 ```
