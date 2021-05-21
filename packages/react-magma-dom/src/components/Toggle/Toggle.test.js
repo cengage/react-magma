@@ -17,6 +17,54 @@ describe('Toggle', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should allow for a controlled checked value', () => {
+    const checked = true;
+    const label = 'test label';
+    const { rerender, getByLabelText } = render(
+      <Toggle labelText={label} checked={checked} />
+    );
+
+    const toggle = getByLabelText(label);
+
+    expect(toggle).toHaveProperty('checked', checked);
+
+    rerender(<Toggle labelText={label} checked={!checked} />);
+
+    expect(toggle).toHaveProperty('checked', !checked);
+  });
+
+  it('should change the checked value if toggle is in controlled state and the checked prop is updated', () => {
+    const checked = true;
+    const testId = 'abc123';
+    const { rerender, getByTestId } = render(
+      <Toggle testId={testId} checked={checked} />
+    );
+
+    const toggle = getByTestId(testId);
+
+    expect(toggle).toHaveProperty('checked', checked);
+
+    rerender(<Toggle testId={testId} checked={!checked} />);
+
+    expect(toggle).toHaveProperty('checked', !checked);
+  });
+
+  it('should use the defaultChecked prop for initial render and then handle internally if not controlled', () => {
+    const defaultChecked = true;
+    const testId = 'abc123';
+    const { getByTestId } = render(
+      <Toggle testId={testId} defaultChecked={defaultChecked} />
+    );
+
+    const toggle = getByTestId(testId);
+
+    expect(toggle).toHaveProperty('checked', defaultChecked);
+
+    fireEvent.click(toggle);
+
+    expect(toggle).toHaveProperty('checked', !defaultChecked);
+  });
+
   it('should render a toggle with the passed in text', () => {
     expect(true).toBeTruthy();
   });

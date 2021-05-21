@@ -41,7 +41,7 @@
     "publish": "npm run copy:readme && lerna publish",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
     "plop": "ts-node scripts/plopfile.ts",
-    "changeset": "changeset",
+    "changeset": "changeset add",
     "version:pkgs": "changeset version",
     "release": "changeset publish",
     "version:prerelease": "changeset pre enter alpha",
