@@ -9,12 +9,14 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "frank-puppies-sleep",
     "green-trees-exist",
     "lazy-mangos-attend",
     "lazy-pugs-decide",
     "neat-starfishes-nail",
     "rich-mice-learn",
     "six-bears-sing",
+    "slow-drinks-rush",
     "spicy-seals-speak"
   ]
 }
