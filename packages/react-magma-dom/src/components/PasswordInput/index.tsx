@@ -1,36 +1,22 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
-import { HiddenLabelText } from '../Input';
-import { InputMessage } from '../Input/InputMessage';
+import { FormField, FormFieldBaseProps } from '../FormField';
 import { useIsInverse } from '../../inverse';
-import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 import { useGenerateId } from '../../utils';
 
 export interface PasswordInputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+  extends FormFieldBaseProps,
+    React.InputHTMLAttributes<HTMLInputElement> {
   /**
-   * Style properties for the component container element
+   * Style properties for the container element
    */
   containerStyle?: React.CSSProperties;
-  /**
-   * Content of the error message. If a value is provided, the input will be styled as an error state and the error message will display
-   */
-  errorMessage?: React.ReactNode;
-  /**
-   * Content of the helper message
-   */
-  helperMessage?: React.ReactNode;
-  /**
-   * Text read by screen reader when the password is hidden
-   * @default "Password is now hidden"
-   */
   hiddenPasswordAnnounceText?: string;
   /**
    * Aria-label for the "Hide Password" button
@@ -42,42 +28,12 @@ export interface PasswordInputProps
    * @default "Hide"
    */
   hidePasswordButtonText?: string;
-  /**
-   * Relative size of the component
-   * @default InputSize.medium
-   */
-  inputSize?: InputSize;
-  /**
-   * Style properties for the input element
-   */
-  inputStyle?: React.CSSProperties;
   isInverse?: boolean;
   /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
    * @default false
    */
-  isLabelVisuallyHidden?: boolean;
-  /**
-   * If true, label text will be hidden visually, but will still be read by assistive technology
-   * @default false
-   */
   isPasswordMaskButtonHidden?: boolean;
-  /**
-   * Style properties for the label element
-   */
-  labelStyle?: React.CSSProperties;
-  /**
-   * Content of label; can be a node or a string
-   */
-  labelText: React.ReactNode;
-  /**
-   * Style properties for the helper or error message
-   */
-  messageStyle?: React.CSSProperties;
-  /**
-   * Text read by screen reader when the password is hidden
-   * @default "Password is now hidden"
-   */
   shownPasswordAnnounceText?: string;
   /**
    * Aria-label for the "Show Password" button
@@ -91,10 +47,6 @@ export interface PasswordInputProps
   showPasswordButtonText?: string;
   testId?: string;
 }
-
-const Container = styled.div`
-  margin-bottom: ${props => props.theme.spaceScale.spacing03};
-`;
 
 export const PasswordInput = React.forwardRef<
   HTMLInputElement,
@@ -115,7 +67,7 @@ export const PasswordInput = React.forwardRef<
     hidePasswordButtonText,
     isPasswordMaskButtonHidden,
     id: defaultId,
-    inputSize,
+    inputSize = InputSize.medium,
     labelStyle,
     labelText,
     isLabelVisuallyHidden,
@@ -156,20 +108,17 @@ export const PasswordInput = React.forwardRef<
   const isInverse = useIsInverse(props.isInverse);
 
   return (
-    <Container style={containerStyle} theme={theme}>
-      <Label
-        isInverse={isInverse}
-        htmlFor={id}
-        size={inputSize ? inputSize : InputSize.medium}
-        style={labelStyle}
-      >
-        {isLabelVisuallyHidden ? (
-          <HiddenLabelText>{labelText}</HiddenLabelText>
-        ) : (
-          labelText
-        )}
-      </Label>
-
+    <FormField
+      errorMessage={errorMessage}
+      fieldId={id}
+      helperMessage={helperMessage}
+      inputSize={inputSize}
+      isLabelVisuallyHidden={isLabelVisuallyHidden}
+      isInverse={isInverse}
+      labelStyle={labelStyle}
+      labelText={labelText}
+      style={containerStyle}
+    >
       <InputBase
         autoCorrect="off"
         autoCapitalize="none"
@@ -180,7 +129,7 @@ export const PasswordInput = React.forwardRef<
         aria-invalid={!!errorMessage}
         hasError={!!errorMessage}
         id={id}
-        inputSize={inputSize ? inputSize : InputSize.medium}
+        inputSize={inputSize}
         isInverse={isInverse}
         ref={ref}
         theme={theme}
@@ -222,17 +171,6 @@ export const PasswordInput = React.forwardRef<
           </>
         )}
       </InputBase>
-
-      <InputMessage
-        isInverse={isInverse}
-        id={descriptionId}
-        hasError={!!errorMessage}
-        style={messageStyle}
-      >
-        {(errorMessage || helperMessage) && (
-          <>{errorMessage ? errorMessage : helperMessage}</>
-        )}
-      </InputMessage>
-    </Container>
+    </FormField>
   );
 });

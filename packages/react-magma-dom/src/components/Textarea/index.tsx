@@ -6,49 +6,19 @@ import {
   InputWrapperStylesProps,
   inputWrapperStyles,
 } from '../InputBase';
-import { HiddenLabelText } from '../Input';
-import { InputMessage } from '../Input/InputMessage';
-import { Label } from '../Label';
+import { FormField, FormFieldBaseProps } from '../FormField';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 
 export interface TextareaProps
-  extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
+  extends FormFieldBaseProps,
+    React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   /**
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
-  /**
-   * Content of the error message. If a value is provided, the input will be styled as an error state, and the error message will display.
-   */
-  errorMessage?: React.ReactNode;
-  /**
-   * @internal
-   */
-  hasError?: boolean;
-  /**
-   * Content of the helper message
-   */
-  helperMessage?: React.ReactNode;
   isInverse?: boolean;
-  /**
-   * If true, label text will be hidden visually, but will still be read by assistive technology
-   * @default false
-   */
-  isLabelVisuallyHidden?: boolean;
-  /**
-   * Style properties for the label element
-   */
-  labelStyle?: React.CSSProperties;
-  /**
-   * Content for label; can be a node or a string
-   */
-  labelText?: React.ReactNode;
-  /**
-   * Style properties for the helper or error message
-   */
-  messageStyle?: React.CSSProperties;
   testId?: string;
   /**
    * Style properties for the textarea element
@@ -59,10 +29,6 @@ export interface TextareaProps
    */
   value?: string | ReadonlyArray<string> | number;
 }
-
-const Container = styled.div`
-  margin-bottom: ${props => props.theme.spaceScale.spacing03};
-`;
 
 const StyledTextArea = styled.textarea<
   InputWrapperStylesProps & InputBaseStylesProps
@@ -115,14 +81,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <Container style={containerStyle} theme={theme}>
-        <Label isInverse={isInverse} htmlFor={id} style={labelStyle}>
-          {isLabelVisuallyHidden ? (
-            <HiddenLabelText>{labelText}</HiddenLabelText>
-          ) : (
-            labelText
-          )}
-        </Label>
+      <FormField
+        errorMessage={errorMessage}
+        fieldId={id}
+        helperMessage={helperMessage}
+        isLabelVisuallyHidden={isLabelVisuallyHidden}
+        isInverse={isInverse}
+        labelStyle={labelStyle}
+        labelText={labelText}
+        style={containerStyle}
+      >
         <StyledTextArea
           {...other}
           aria-describedby={
@@ -139,18 +107,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           theme={theme}
           value={value}
         />
-
-        <InputMessage
-          isInverse={isInverse}
-          id={descriptionId}
-          hasError={!!errorMessage}
-          style={messageStyle}
-        >
-          {(errorMessage || helperMessage) && (
-            <>{errorMessage ? errorMessage : helperMessage}</>
-          )}
-        </InputMessage>
-      </Container>
+      </FormField>
     );
   }
 );
