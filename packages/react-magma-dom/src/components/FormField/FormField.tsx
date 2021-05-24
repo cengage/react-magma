@@ -50,10 +50,6 @@ export interface FormFieldBaseProps {
 }
 
 const StyledFormField = styled.div<{ isInverse?: boolean }>`
-  background: ${props =>
-    props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
