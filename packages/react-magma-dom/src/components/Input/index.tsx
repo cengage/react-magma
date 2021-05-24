@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { FormField, FormFieldBaseProps } from '../FormField';
+import {
+  FormFieldContainer,
+  FormFieldContainerBaseProps,
+} from '../FormFieldContainer';
 import { InputBase, InputBaseProps, InputSize } from '../InputBase';
 import { useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 
-export interface InputProps extends FormFieldBaseProps, InputBaseProps {}
+export interface InputProps
+  extends FormFieldContainerBaseProps,
+    InputBaseProps {}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, ref) => {
@@ -29,7 +34,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <FormField
+      <FormFieldContainer
+        containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
         helperMessage={helperMessage}
@@ -38,7 +44,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         inputSize={inputSize}
         labelStyle={labelStyle}
         labelText={labelText}
-        style={containerStyle}
       >
         <InputBase
           {...other}
@@ -54,7 +59,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         >
           {children}
         </InputBase>
-      </FormField>
+      </FormFieldContainer>
     );
   }
 );

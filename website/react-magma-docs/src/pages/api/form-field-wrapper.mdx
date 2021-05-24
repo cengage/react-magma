@@ -1,11 +1,11 @@
 ---
-pageTitle: FormField API
-title: FormField
+pageTitle: FormFieldContainer API
+title: FormFieldContainer
 props:
-  - FormFieldProps
+  - FormFieldContainerProps
 ---
 
-<DocsHeading type="api">FormField</DocsHeading>
+<DocsHeading type="api">FormFieldContainer</DocsHeading>
 
 Standard container for form field, containing a label and helper or error message
 
@@ -13,10 +13,10 @@ Standard container for form field, containing a label and helper or error messag
 
 ```typescript
 import React from 'react';
-import { FormField } from 'react-magma-dom';
+import { FormFieldContainer } from 'react-magma-dom';
 
 export function Example() {
-  return <FormField>FormField content</FormField>;
+  return <FormFieldContainer>FormFieldContainer content</FormFieldContainer>;
 }
 ```
 
@@ -27,10 +27,14 @@ inherit the `isInverse` prop unless specified otherwise.
 
 ```typescript
 import React from 'react';
-import { FormField } from 'react-magma-dom';
+import { FormFieldContainer } from 'react-magma-dom';
 
 export function Example() {
-  return <FormField isInverse>FormField content</FormField>;
+  return (
+    <FormFieldContainer isInverse>
+      FormFieldContainer content
+    </FormFieldContainer>
+  );
 }
 ```
 
@@ -53,14 +57,14 @@ export function Example() {
         example: 'example i18n',
       }}
     >
-      <FormField>override default i18n value: </FormField>
+      <FormFieldContainer>override default i18n value: </FormFieldContainer>
     </I18nContext.Provider>
   );
 }
 ```
 
-# FormField Props
+# FormFieldContainer Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<FormFieldProps />
+<FormFieldContainerProps />

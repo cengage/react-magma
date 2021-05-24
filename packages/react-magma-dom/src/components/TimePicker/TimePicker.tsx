@@ -9,19 +9,10 @@ import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { useIsInverse } from '../../inverse';
-import { FormField } from '../FormField';
+import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 
 export interface TimePickerProps extends UseTimePickerProps {
-  /**
-   * Style properties for the outer container
-   */
-  containerStyle?: React.CSSProperties;
-  /**
-   * This is internal to stay consistent with our props tables and our messaging around spreading default props to elements.
-   * @internal
-   */
-  id?: string;
   /**
    * Style properties for the outer input
    */
@@ -115,14 +106,14 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     }`;
 
     return (
-      <FormField
+      <FormFieldContainer
         {...other}
+        containerStyle={containerStyle}
         errorMessage={errorMessage}
+        fieldId={id}
         helperMessage={helperMessage}
         isInverse={isInverse}
         labelText={labelText}
-        fieldId={id}
-        style={containerStyle}
       >
         <InputsContainer
           isInverse={isInverse}
@@ -180,7 +171,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           </VisuallyHidden>
         </InputsContainer>
         <input id={id} ref={ref} type="hidden" value={time} />
-      </FormField>
+      </FormFieldContainer>
     );
   }
 );

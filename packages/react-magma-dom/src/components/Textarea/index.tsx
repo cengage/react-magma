@@ -6,13 +6,16 @@ import {
   InputWrapperStylesProps,
   inputWrapperStyles,
 } from '../InputBase';
-import { FormField, FormFieldBaseProps } from '../FormField';
+import {
+  FormFieldContainer,
+  FormFieldContainerBaseProps,
+} from '../FormFieldContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
+import { useGenerateId, Omit } from '../../utils';
 import { useIsInverse } from '../../inverse';
 
 export interface TextareaProps
-  extends FormFieldBaseProps,
+  extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   /**
    * Style properties for the component container element
@@ -81,7 +84,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <FormField
+      <FormFieldContainer
+        containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
         helperMessage={helperMessage}
@@ -89,7 +93,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         isInverse={isInverse}
         labelStyle={labelStyle}
         labelText={labelText}
-        style={containerStyle}
       >
         <StyledTextArea
           {...other}
@@ -107,7 +110,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           theme={theme}
           value={value}
         />
-      </FormField>
+      </FormFieldContainer>
     );
   }
 );

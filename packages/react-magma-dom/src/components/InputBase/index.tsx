@@ -73,10 +73,6 @@ export interface InputBaseProps
   onIconKeyDown?: (event) => void;
   testId?: string;
   /**
-   * @internal
-   */
-  theme?: any;
-  /**
    * The type attribute of the form field
    * @default InputType.text
    */

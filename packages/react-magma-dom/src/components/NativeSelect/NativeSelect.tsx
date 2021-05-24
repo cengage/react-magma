@@ -2,7 +2,10 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 
 import { inputBaseStyles } from '../InputBase';
-import { FormField, FormFieldBaseProps } from '../FormField';
+import {
+  FormFieldContainer,
+  FormFieldContainerBaseProps,
+} from '../FormFieldContainer';
 import { SelectTriggerButton } from '../Select/SelectTriggerButton';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -13,10 +16,8 @@ import { useGenerateId } from '../../utils';
  * @children required
  */
 export interface NativeSelectProps
-  extends FormFieldBaseProps,
+  extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.SelectHTMLAttributes<HTMLSelectElement> {
-  containerStyle?: React.CSSProperties;
-
   testId?: string;
   optionLabel?: string;
 }
@@ -46,8 +47,8 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
     const id = useGenerateId(defaultId);
 
     return (
-      <FormField
-        data-testid={testId}
+      <FormFieldContainer
+        containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
         labelStyle={labelStyle}
@@ -56,7 +57,6 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         helperMessage={helperMessage}
         messageStyle={messageStyle}
         ref={ref}
-        style={containerStyle}
       >
         <SelectTriggerButton
           disabled={disabled}
@@ -66,6 +66,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         >
           <StyledNativeSelect
             {...other}
+            data-testid={testId}
             disabled={disabled}
             id={id}
             isInverse={isInverse}
@@ -74,7 +75,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             {children}
           </StyledNativeSelect>
         </SelectTriggerButton>
-      </FormField>
+      </FormFieldContainer>
     );
   }
 );

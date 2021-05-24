@@ -4,19 +4,18 @@ import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
-import { FormField, FormFieldBaseProps } from '../FormField';
+import {
+  FormFieldContainer,
+  FormFieldContainerBaseProps,
+} from '../FormFieldContainer';
 import { useIsInverse } from '../../inverse';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 import { useGenerateId } from '../../utils';
 
 export interface PasswordInputProps
-  extends FormFieldBaseProps,
+  extends FormFieldContainerBaseProps,
     React.InputHTMLAttributes<HTMLInputElement> {
-  /**
-   * Style properties for the container element
-   */
-  containerStyle?: React.CSSProperties;
   hiddenPasswordAnnounceText?: string;
   /**
    * Aria-label for the "Hide Password" button
@@ -108,7 +107,8 @@ export const PasswordInput = React.forwardRef<
   const isInverse = useIsInverse(props.isInverse);
 
   return (
-    <FormField
+    <FormFieldContainer
+      containerStyle={containerStyle}
       errorMessage={errorMessage}
       fieldId={id}
       helperMessage={helperMessage}
@@ -117,7 +117,6 @@ export const PasswordInput = React.forwardRef<
       isInverse={isInverse}
       labelStyle={labelStyle}
       labelText={labelText}
-      style={containerStyle}
     >
       <InputBase
         autoCorrect="off"
@@ -171,6 +170,6 @@ export const PasswordInput = React.forwardRef<
           </>
         )}
       </InputBase>
-    </FormField>
+    </FormFieldContainer>
   );
 });

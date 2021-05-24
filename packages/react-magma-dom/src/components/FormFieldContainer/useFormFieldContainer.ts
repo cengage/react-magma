@@ -10,7 +10,7 @@
 
 import * as React from 'react';
 
-export interface UseFormFieldProps {
+export interface UseFormFieldContainerProps {
   /**
    * Content of the error message. If a value is provided, the field will be styled as an error state and the error message will display.
    */
@@ -38,8 +38,10 @@ export interface UseFormFieldProps {
   messageStyle?: React.CSSProperties;
 }
 
-export function useFormField(props: UseFormFieldProps) {
+export function useFormFieldContainer(props: UseFormFieldContainerProps) {
   return {};
 }
 
-export type UseFormFieldReturn = ReturnType<typeof useFormField>;
+export type UseFormFieldContainerReturn = ReturnType<
+  typeof useFormFieldContainer
+>;

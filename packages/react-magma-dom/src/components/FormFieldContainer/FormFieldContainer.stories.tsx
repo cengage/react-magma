@@ -1,10 +1,10 @@
 import React from 'react';
-import { FormField } from '.';
+import { FormFieldContainer } from '.';
 import { InputBase } from '../InputBase';
 
 export default {
-  component: FormField,
-  title: 'FormField',
+  component: FormFieldContainer,
+  title: 'FormFieldContainer',
   argTypes: {
     isInverse: {
       control: {
@@ -31,9 +31,9 @@ export default {
 
 export const Default = args => {
   return (
-    <FormField {...args}>
+    <FormFieldContainer {...args}>
       <InputBase />
-    </FormField>
+    </FormFieldContainer>
   );
 };
 
