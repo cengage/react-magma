@@ -1,15 +1,12 @@
 import * as React from 'react';
-import { useGenerateId } from '../../utils';
+import { useGenerateId, Omit } from '../../utils';
 import { FormFieldContainerBaseProps } from '../FormFieldContainer';
 
 import { enUS } from 'date-fns/locale';
 import { I18nContext } from '../../i18n';
 
-export interface UseTimePickerProps extends FormFieldContainerBaseProps {
-  /**
-   * Style properties for the outer container
-   */
-  containerStyle?: React.CSSProperties;
+export interface UseTimePickerProps
+  extends Omit<FormFieldContainerBaseProps, 'inputSize'> {
   /**
    * ID of the hidden input that stores the time value.  Also the prefix for other fields.
    */

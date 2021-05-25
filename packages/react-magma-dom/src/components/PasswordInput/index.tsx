@@ -131,7 +131,6 @@ export const PasswordInput = React.forwardRef<
         inputSize={inputSize}
         isInverse={isInverse}
         ref={ref}
-        theme={theme}
         type={passwordShown ? InputType.text : InputType.password}
       >
         {!isPasswordMaskButtonHidden && (

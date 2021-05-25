@@ -120,7 +120,10 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           hasError={!!errorMessage}
           theme={theme}
         >
-          <ScheduleIcon color={theme.colors.neutral} />
+          <ScheduleIcon
+            color={theme.colors.neutral}
+            style={{ marginRight: theme.spaceScale.spacing02 }}
+          />
           <StyledNumInput
             aria-label={hoursLabel}
             aria-describedby={descriptionId}
