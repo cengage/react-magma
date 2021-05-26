@@ -46,6 +46,10 @@ export interface DatePickerProps
    * Style properties for the input element
    */
   inputStyle?: React.CSSProperties;
+  /**
+   * Clear contents of input by clicking a clear button
+   */
+  isClearable?: boolean;
   isInverse?: boolean;
   /**
    * Style properties for the label element
@@ -415,6 +419,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             onIconKeyDown={handleInputKeyDown}
             id={id}
             isInverse={isInverse}
+            isClearable={props.isClearable}
             ref={ref}
             onChange={handleInputChange}
             onBlur={handleInputBlur}
