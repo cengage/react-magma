@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.4.0-next.6
+
+### Minor Changes
+
+- 1ceb9951: Feature/accordion
+
+  Adding a new accordion component
+
 ## 2.4.0-next.5
 
 ### Minor Changes
