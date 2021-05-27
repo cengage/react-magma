@@ -12,6 +12,7 @@ import {
   TableRow,
   Tooltip,
   useIsInverse,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export const SimplePropsTable = ({ propertyValues }) => {
@@ -66,8 +67,8 @@ export const SimplePropsTable = ({ propertyValues }) => {
                     <span style={{ whiteSpace: 'nowrap' }}>
                       {name}
                       {prop.required && (
-                        <span aria-label="Required" className="required">
-                          {' '}
+                        <span className="required">
+                          <VisuallyHidden>Required</VisuallyHidden>
                           <AsteriskIcon size={16} color={asteriskColor} />
                         </span>
                       )}
