@@ -84,6 +84,7 @@ export const Default = args => {
             { label: 'Green', value: 'green' },
           ]}
           errorMessage="danger will robinson."
+          isClearable
         />
         <Combobox
           labelText="Combobox (multi)"

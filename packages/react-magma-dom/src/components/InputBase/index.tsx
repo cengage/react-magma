@@ -241,7 +241,7 @@ const IconWrapper = styled.span<{
     props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
     props.iconPosition === 'right' ? props.theme.spaceScale.spacing03 : 'auto'};
-  position: ${props => (props.isClearable ? 'relative' : 'absolute')};
+  position: absolute;
   top: ${props => props.theme.spaceScale.spacing03};
 
   ${props =>
@@ -264,7 +264,7 @@ const IconButtonContainer = styled.span<{
 }>`
   height: auto;
   margin: 0;
-  position: ${props => (props.isClearable ? 'relative' : 'absolute')};
+  position: absolute;
   top: ${props =>
     props.size === InputSize.large
       ? props.theme.spaceScale.spacing02
