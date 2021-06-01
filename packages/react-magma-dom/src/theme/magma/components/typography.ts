@@ -29,7 +29,7 @@ export interface TypographyColors {
   };
 }
 
-export const typographyColors = colors => {
+export const buildTypographyColors = colors => {
   return {
     color: colors.neutral,
     inverse: {

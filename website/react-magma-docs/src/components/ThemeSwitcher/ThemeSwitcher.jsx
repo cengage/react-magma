@@ -1,5 +1,6 @@
 import React from 'react';
-import { Select, ThemeContext, magma, ngl } from 'react-magma-dom';
+import { Select, ThemeContext, magma } from 'react-magma-dom';
+import { ngl } from '../../themes/ngl';
 
 export const ThemeSwitcher = () => {
   const { theme, setTheme } = React.useContext(ThemeContext);

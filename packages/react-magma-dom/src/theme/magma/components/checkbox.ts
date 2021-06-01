@@ -15,7 +15,7 @@ export interface ThemeCheckbox {
   };
 }
 
-export const checkbox = colors => {
+export const buildThemeCheckbox = colors => {
   return {
     uncheckedColor: colors.neutral02,
     checkedColor: colors.primary,

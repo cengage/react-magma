@@ -28,7 +28,7 @@ export interface ThemeButtons {
   disabled: ThemeButton;
 }
 
-export const button = colors => {
+export const buildThemeButton = colors => {
   return {
     primary: {
       backgroundColor: colors.primary,

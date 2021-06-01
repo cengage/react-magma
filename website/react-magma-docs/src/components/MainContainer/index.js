@@ -4,9 +4,10 @@ import { Masthead } from '../Masthead';
 import { SlidingDrawer } from '../SlidingDrawer';
 import { DarkModeContext } from '../DarkMode/DarkModeContext';
 
+import { ngl } from '../../themes/ngl';
+
 import {
   SkipLink,
-  ngl,
   magma,
   Container,
   GlobalStyles,

@@ -1,7 +1,9 @@
-import { magma } from '../magma';
-import { button } from '../magma/components/button';
-import { checkbox } from '../magma/components/checkbox';
-import { typographyColors } from '../magma/components/typography';
+import {
+  magma,
+  buildThemeButton,
+  buildThemeCheckbox,
+  buildTypographyColors,
+} from 'react-magma-dom';
 import { lighten } from 'polished';
 
 const colors = {
@@ -36,7 +38,7 @@ export const ngl = {
     },
   },
   button: {
-    ...button(colors),
+    ...buildThemeButton(colors),
     primary: {
       backgroundColor: colors.primary,
       borderColor: colors.primary,
@@ -81,7 +83,7 @@ export const ngl = {
     },
   },
   checkbox: {
-    ...checkbox(colors),
+    ...buildThemeCheckbox(colors),
     checkedColor: colors.foundation,
     inverse: {
       uncheckedColor: colors.neutral08,
@@ -95,7 +97,7 @@ export const ngl = {
     textColor: colors.foundation,
   },
   typographyColors: {
-    ...typographyColors(colors),
+    ...buildTypographyColors(colors),
     expressive: {
       color: colors.foundation,
       inverse: {
