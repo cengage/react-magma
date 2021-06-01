@@ -1,5 +1,25 @@
 # Change Log
 
+## 2.4.0-next.6
+
+### Minor Changes
+
+- 1ceb9951: Feature/accordion
+
+  Adding a new accordion component
+
+## 2.4.0-next.5
+
+### Minor Changes
+
+- f0a1882f: fix/controlled-toggle
+
+  Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
+
+### Patch Changes
+
+- 6d2a2be6: chore: update icons
+
 ## 2.4.0-alpha.4
 
 ### Minor Changes

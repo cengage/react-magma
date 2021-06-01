@@ -16,6 +16,7 @@
     "pkg": "manypkg run",
     "check:pkgs": "manypkg check",
     "fix:pkgs": "manypkg fix",
+    "upgrade:pkgs": "manypkg upgrade",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "postinstall": "npm run bootstrap && npm run build:lite",
@@ -40,10 +41,10 @@
     "publish": "npm run copy:readme && lerna publish",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
     "plop": "ts-node scripts/plopfile.ts",
-    "changeset": "changeset",
+    "changeset": "changeset add",
     "version:pkgs": "changeset version",
     "release": "changeset publish",
-    "version:prerelease": "changeset pre enter alpha",
+    "version:prerelease": "changeset pre enter next",
     "version:exit": "changeset pre exit"
   },
   "config": {

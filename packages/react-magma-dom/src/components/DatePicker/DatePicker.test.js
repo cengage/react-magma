@@ -376,24 +376,6 @@ describe('Date Picker', () => {
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
   });
 
-  it('should open the helper information on ? press', () => {
-    const defaultDate = new Date('January 17, 2019');
-    const labelText = 'Date Picker Label';
-    const { getByLabelText, queryByText, getByText } = render(
-      <DatePicker defaultDate={defaultDate} labelText={labelText} />
-    );
-
-    expect(getByLabelText(labelText)).toBeInTheDocument();
-    expect(queryByText(/select the date/i)).not.toBeInTheDocument();
-
-    fireEvent.keyDown(getByLabelText(labelText), {
-      key: '?',
-      code: 63,
-    });
-
-    expect(getByText(/select the date/i)).toBeInTheDocument();
-  });
-
   it('should default to the min date when it is later than today', () => {
     const now = new Date();
     const minDate = format(addMonths(now, 2), 'MM/dd/yyyy');
@@ -430,23 +412,6 @@ describe('Date Picker', () => {
   });
 
   describe('on key down press', () => {
-    it('handles the question mark key when typing in the input', () => {
-      const defaultDate = new Date();
-      const labelText = 'Date picker label';
-      const { getByLabelText, getByRole } = render(
-        <DatePicker defaultDate={defaultDate} labelText={labelText} />
-      );
-
-      const datePickerInput = getByLabelText(labelText);
-      fireEvent.focus(datePickerInput);
-
-      fireEvent.keyDown(datePickerInput, {
-        key: '?',
-      });
-
-      expect(getByRole('dialog')).toBeVisible();
-    });
-
     it('types in the input if you type anything other than the question mark key', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
@@ -685,7 +650,7 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    it('?', () => {
+    it('?', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
       const { getByText, container } = render(
@@ -700,7 +665,7 @@ describe('Date Picker', () => {
         key: '?',
       });
 
-      expect(getByText(/keyboard shortcuts/i)).toBeVisible();
+      expect(getByText(/keyboard shortcuts/i)).not.toBeVisible();
     });
 
     it('Escape without focus', () => {
@@ -717,22 +682,6 @@ describe('Date Picker', () => {
       });
 
       expect(container.querySelector('table')).not.toBeVisible();
-    });
-
-    it('? without focus', () => {
-      const defaultDate = new Date();
-      const labelText = 'Date picker label';
-      const { container, getByText } = render(
-        <DatePicker defaultDate={defaultDate} labelText={labelText} />
-      );
-
-      fireEvent.focus(container.querySelector('input'));
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: '?',
-      });
-
-      expect(getByText(/keyboard shortcuts/i)).toBeVisible();
     });
 
     it('Enter', () => {

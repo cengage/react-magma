@@ -75,6 +75,7 @@ const spaceScale = {
   spacing13: '96px',
   spacing14: '160px',
 };
+
 export const magma = {
   bodyFont: '"Open Sans",Helvetica,sans-serif',
   bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
@@ -274,6 +275,40 @@ export const magma = {
   combobox: {
     menu: {
       maxHeight: '250px',
+    },
+  },
+
+  drawer: {
+    default: {
+      maxWidth: '100%',
+      minHeight: '300px',
+      margin: '0',
+      borderRadius: '0',
+      top: '0',
+      right: '0',
+      bottom: '0',
+      left: '0',
+      position: 'relative',
+    },
+    right: {
+      left: 'auto',
+      height: '100%',
+      width: '300px',
+      position: 'fixed',
+    },
+    left: {
+      right: 'auto',
+      height: '100%',
+      width: '300px',
+    },
+    top: {
+      bottom: 'auto',
+      height: '300px',
+    },
+    bottom: {
+      top: 'auto',
+      height: '300px',
+      position: 'fixed',
     },
   },
 
