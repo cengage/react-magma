@@ -79,7 +79,6 @@ export function Example() {
       <Tabs
         aria-label="Sample Vertical Tabs"
         orientation={TabsOrientation.vertical}
-        backgroundColor={magma.colors.neutral07}
       >
         <Tab>Main page with a longer text label</Tab>
         <Tab>FAQ</Tab>
@@ -139,7 +138,6 @@ export function Example() {
       </TabPanelsContainer>
       <Tabs
         aria-label="Sample Border Top Tabs"
-        backgroundColor={magma.colors.neutral07}
         borderPosition={TabsBorderPosition.top}
       >
         <Tab>Main page</Tab>
@@ -188,7 +186,6 @@ export function Example() {
       </TabPanelsContainer>
       <Tabs
         aria-label="Sample Border Right Vertical Tabs"
-        backgroundColor={magma.colors.neutral07}
         borderPosition={TabsBorderPosition.right}
         orientation={TabsOrientation.vertical}
       >
@@ -273,11 +270,7 @@ export function Example() {
 
   return (
     <TabsContainer activeIndex={activeIndex}>
-      <Tabs
-        aria-label="Sample Custom Logic Tabs"
-        backgroundColor={magma.colors.neutral07}
-        onChange={handleChange}
-      >
+      <Tabs aria-label="Sample Custom Logic Tabs" onChange={handleChange}>
         <Tab>First item</Tab>
         <Tab>Second item</Tab>
         <Tab>Third item</Tab>
@@ -360,10 +353,7 @@ import {
 export function Example() {
   return (
     <TabsContainer>
-      <Tabs
-        aria-label="Sample With Disabled Tabs"
-        backgroundColor={magma.colors.neutral07}
-      >
+      <Tabs aria-label="Sample With Disabled Tabs">
         <Tab>Main page</Tab>
         <Tab disabled>FAQ</Tab>
         <Tab>About us</Tab>
@@ -490,10 +480,7 @@ export function Example() {
   return (
     <div>
       <TabsContainer>
-        <Tabs
-          aria-label="Sample Scrollable Tabs"
-          backgroundColor={magma.colors.neutral07}
-        >
+        <Tabs aria-label="Sample Scrollable Tabs">
           <Tab>First item with a longer text label</Tab>
           <Tab>Second item</Tab>
           <Tab>Third item</Tab>
@@ -555,7 +542,6 @@ export function Example() {
     <TabsContainer style={{ height: '200px', overflow: 'hidden' }}>
       <Tabs
         aria-label="Sample Scrollable Vertical Tabs"
-        backgroundColor={magma.colors.neutral07}
         orientation={TabsOrientation.vertical}
       >
         <Tab>First item</Tab>
@@ -711,7 +697,6 @@ export function Example() {
     <TabsContainer>
       <Tabs
         aria-label="Sample Vertical Icon Tabs"
-        backgroundColor={magma.colors.neutral07}
         orientation={TabsOrientation.vertical}
       >
         <Tab icon={emailIcon}>First item with a longer text label</Tab>
@@ -766,7 +751,6 @@ export function Example() {
       <TabsContainer>
         <Tabs
           aria-label="Sample Icon Position Left Tabs"
-          backgroundColor={magma.colors.neutral07}
           iconPosition={TabsIconPosition.left}
         >
           <Tab icon={emailIcon}>First item with a longer text label</Tab>
@@ -781,7 +765,6 @@ export function Example() {
       <TabsContainer>
         <Tabs
           aria-label="Sample Icon Position Bottom Tabs"
-          backgroundColor={magma.colors.neutral07}
           iconPosition={TabsIconPosition.bottom}
         >
           <Tab icon={emailIcon}>First item with a longer text label</Tab>
@@ -797,7 +780,6 @@ export function Example() {
       <TabsContainer>
         <Tabs
           aria-label="Sample Icon Position Right Tabs"
-          backgroundColor={magma.colors.neutral07}
           iconPosition={TabsIconPosition.right}
         >
           <Tab icon={emailIcon}>First item with a longer text label</Tab>
@@ -839,7 +821,6 @@ export function Example() {
     <TabsContainer>
       <Tabs
         aria-label="Sample Icon Position Right Vertical Tabs"
-        backgroundColor={magma.colors.neutral07}
         iconPosition={TabsIconPosition.right}
         orientation={TabsOrientation.vertical}
       >

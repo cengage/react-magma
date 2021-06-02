@@ -22,7 +22,7 @@ This can be done by supplementing the button label or link text with "(opens mod
 
 ```tsx
 import React from 'react';
-import { Button, Modal, VisuallyHidden } from 'react-magma-dom';
+import { Button, Hyperlink, Modal, VisuallyHidden } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
 
@@ -35,13 +35,14 @@ export function Example() {
       >
         <p>This is a modal, doing modal things.</p>
         <p>
-          This is <a href="#">linked text</a> in the modal
+          This is <Hyperlink to="#">linked text</Hyperlink> in the modal
         </p>
         <p>
           <Button>This is a button</Button>
         </p>
         <p>
-          This is <a href="#"> some more linked text</a> in the modal
+          This is <Hyperlink to="#">some more linked text</Hyperlink> in the
+          modal
         </p>
       </Modal>
       <Button onClick={() => setShowModal(true)}>

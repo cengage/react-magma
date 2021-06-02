@@ -37,7 +37,7 @@ const HeaderLogo = (
   </LogoLink>
 );
 
-export const Masthead = () => {
+export const Masthead = props => {
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.medium}px)`
   );
@@ -50,6 +50,8 @@ export const Masthead = () => {
       logo={HeaderLogo}
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
-    />
+    >
+      {props.children}
+    </Header>
   );
 };

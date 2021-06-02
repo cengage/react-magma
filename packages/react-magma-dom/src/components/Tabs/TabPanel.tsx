@@ -17,6 +17,7 @@ const StyledTabPanel = styled.div<{
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
   flex: 1;
+  height: 100%;
   padding: 20px;
 `;
 

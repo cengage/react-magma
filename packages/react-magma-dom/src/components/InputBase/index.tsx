@@ -83,20 +83,70 @@ export interface InputBaseProps
   type?: InputType;
 }
 
-const InputWrapper = styled.div`
+export interface InputWrapperStylesProps {
+  width?: string;
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+  hasError?: boolean;
+  disabled?: boolean;
+}
+
+export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   align-items: center;
   display: flex;
   flex-shrink: 0;
   position: relative;
+  width: ${props.width || 'auto'};
+  background-color: ${props.theme.colors.neutral08};
+  border-radius: ${props.theme.borderRadius};
+  border: 1px solid ${
+    props.isInverse
+      ? props.theme.colors.neutral08
+      : props.theme.colors.neutral03
+  };
+
+  &:focus-within {
+    outline: 2px dotted
+      ${
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus
+      };
+    outline-offset: 4px;
+  }
+
+  ${
+    props.hasError &&
+    css`
+      border-color: ${props.theme.colors.danger};
+      box-shadow: 0 0 0 1px
+        ${props.isInverse
+          ? props.theme.colors.neutral08
+          : props.theme.colors.danger};
+    `
+  }
+  }
+
+  ${
+    props.disabled &&
+    css`
+      border-color: ${props.theme.colors.neutral05};
+    `
+  }
 `;
 
-export const inputBaseStyles = props => css`
-  background: ${props.theme.colors.neutral08};
-  border: 1px solid;
-  border-color: ${props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.neutral03};
+export interface InputBaseStylesProps {
+  isInverse?: boolean;
+  iconPosition?: InputIconPosition;
+  inputSize?: InputSize;
+  theme?: ThemeInterface;
+  disabled?: boolean;
+}
+
+export const inputBaseStyles = (props: InputBaseStylesProps) => css`
+  border: 0;
   border-radius: ${props.theme.borderRadius};
+  background: ${props.theme.colors.neutral08};
   color: ${props.theme.colors.neutral};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
@@ -115,15 +165,6 @@ export const inputBaseStyles = props => css`
   ${props.iconPosition === 'right' &&
   css`
     padding-right: ${props.theme.spaceScale.spacing09};
-  `}
-  
-  ${props.hasError &&
-  css`
-    border-color: ${props.theme.colors.danger};
-    box-shadow: 0 0 0 1px
-      ${props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.danger};
   `}
 
   ${props.inputSize === 'large' &&
@@ -152,17 +193,12 @@ export const inputBaseStyles = props => css`
   }
 
   &:focus {
-    outline: 2px dotted
-      ${props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
-    outline-offset: 4px;
+    outline: 0;
   }
 
   ${props.disabled &&
   css`
     background: ${props.theme.colors.neutral07};
-    border-color: ${props.theme.colors.neutral05};
     color: ${props.theme.colors.disabledText};
     cursor: not-allowed;
 
@@ -172,7 +208,11 @@ export const inputBaseStyles = props => css`
   `}
 `;
 
-const StyledInput = styled.input<InputBaseProps>`
+const InputWrapper = styled.div<InputWrapperStylesProps>`
+  ${inputWrapperStyles}
+`;
+
+const StyledInput = styled.input<InputBaseStylesProps>`
   ${inputBaseStyles}
 `;
 
@@ -229,7 +269,7 @@ const IconButtonContainer = styled.span<{
   }
 `;
 
-function getIconSize(size, theme) {
+function getIconSize(size: string, theme: ThemeInterface) {
   switch (size) {
     case 'large':
       return theme.iconSizes.large;
@@ -258,7 +298,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     } = props;
 
     const theme = React.useContext(ThemeContext);
-
     const iconPosition =
       icon && onIconClick
         ? InputIconPosition.right
@@ -285,12 +324,16 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     }
 
     return (
-      <InputWrapper style={containerStyle}>
+      <InputWrapper
+        isInverse={props.isInverse}
+        theme={theme}
+        style={containerStyle}
+        hasError={hasError}
+      >
         <StyledInput
           {...other}
           aria-invalid={hasError}
           data-testid={testId}
-          hasError={hasError}
           iconPosition={iconPosition}
           inputSize={inputSize ? inputSize : InputSize.medium}
           isInverse={useIsInverse(props.isInverse)}

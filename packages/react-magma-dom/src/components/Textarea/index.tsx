@@ -1,6 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { inputBaseStyles } from '../InputBase';
+import {
+  inputBaseStyles,
+  InputBaseStylesProps,
+  InputWrapperStylesProps,
+  inputWrapperStyles,
+} from '../InputBase';
 import { HiddenLabelText } from '../Input';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
@@ -59,8 +64,11 @@ const Container = styled.div`
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const StyledTextArea = styled.textarea<TextareaProps>`
+const StyledTextArea = styled.textarea<
+  InputWrapperStylesProps & InputBaseStylesProps
+>`
   ${inputBaseStyles};
+  ${inputWrapperStyles};
   height: 4.5em;
   padding: ${props =>
     `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`};

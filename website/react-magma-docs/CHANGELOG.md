@@ -1,359 +1,287 @@
 # Change Log
 
+## 2.2.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [1ceb9951]
+  - react-magma-dom@2.4.0-next.6
+  - @cengage-patterns/header@1.0.0-next.6
+
+## 2.2.0-next.5
+
+### Minor Changes
+
+- f0a1882f: fix/controlled-toggle
+
+  Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
+
+### Patch Changes
+
+- 6d2a2be6: chore: update icons
+- Updated dependencies [f0a1882f]
+- Updated dependencies [6d2a2be6]
+  - react-magma-dom@2.4.0-next.5
+  - @cengage-patterns/header@1.0.0-next.5
+
+## 2.1.12-alpha.4
+
+### Patch Changes
+
+- Updated dependencies [88e2daee]
+  - react-magma-dom@2.4.0-alpha.4
+  - @cengage-patterns/header@1.0.0-alpha.4
+
+## 2.1.12-alpha.3
+
+### Patch Changes
+
+- Updated dependencies [aaa4d559]
+  - react-magma-dom@2.4.0-alpha.3
+  - @cengage-patterns/header@1.0.0-alpha.3
+
+## 2.1.12-alpha.2
+
+### Patch Changes
+
+- Updated dependencies [b7f7e431]
+- Updated dependencies [c49cda0e]
+  - react-magma-dom@2.4.0-alpha.2
+  - @cengage-patterns/header@1.0.0-alpha.2
+
+## 2.1.12-alpha.1
+
+### Patch Changes
+
+- Updated dependencies [efb6f297]
+  - react-magma-dom@2.3.13-alpha.1
+  - @cengage-patterns/header@0.1.3-alpha.1
+
+## 2.1.12-alpha.0
+
+### Patch Changes
+
+- Updated dependencies [57e28ac7]
+  - react-magma-dom@2.3.13-alpha.0
+  - @cengage-patterns/header@0.1.3-alpha.0
+
+## 2.1.11
+
+### Patch Changes
+
+- Updated dependencies [d0a7687d]
+  - react-magma-dom@2.3.12
+  - @cengage-patterns/header@0.1.2
+
+## 2.1.11-alpha.0
+
+### Patch Changes
+
+- Updated dependencies [d0a7687d]
+  - react-magma-dom@2.3.12-alpha.0
+  - @cengage-patterns/header@0.1.2-alpha.0
+
+## 2.1.10
+
+### Patch Changes
+
+- Updated dependencies [d306c99e]
+  - react-magma-dom@2.3.11
+  - @cengage-patterns/header@0.1.1
+  - react-magma-icons@2.0.4
+
+## 2.1.10
+
+### Patch Changes
+
+- chore: init changeset
+- Updated dependencies [undefined]
+  - @cengage-patterns/header@0.1.1
+  - react-magma-dom@2.3.11
+  - react-magma-icons@2.0.4
+
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+### 2.1.10-alpha.1 (2021-04-20)
+
+**Note:** Version bump only for package react-magma-docs
 
 ### 2.1.10-alpha.0 (2021-04-15)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9 (2021-04-14)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.15 (2021-04-14)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.14 (2021-04-13)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.13 (2021-04-07)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.12 (2021-04-07)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.11 (2021-04-06)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.10 (2021-04-06)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.9 (2021-04-05)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.8 (2021-04-02)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.7 (2021-04-02)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.6 (2021-04-01)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.5 (2021-03-31)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.4 (2021-03-31)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.3 (2021-03-30)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.2 (2021-03-30)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.9-alpha.1 (2021-03-29)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.9-alpha.0 (2021-03-25)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8 (2021-03-24)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.8-alpha.13 (2021-03-23)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8-alpha.12 (2021-03-23)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.8-alpha.11 (2021-03-18)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8-alpha.10 (2021-03-17)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.8-alpha.9 (2021-03-15)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8-alpha.8 (2021-03-15)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.8-alpha.7 (2021-03-15)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8-alpha.6 (2021-03-12)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.8-alpha.5 (2021-03-12)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8-alpha.4 (2021-03-11)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.8-alpha.3 (2021-03-11)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8-alpha.2 (2021-03-09)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.8-alpha.1 (2021-03-09)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.8-alpha.0 (2021-03-05)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.7 (2021-03-01)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.7-alpha.4 (2021-02-26)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.7-alpha.3 (2021-02-26)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.7-alpha.2 (2021-02-26)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.7-alpha.1 (2021-02-24)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.7-alpha.0 (2021-02-22)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.6 (2021-02-22)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.6-alpha.3 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.6-alpha.2 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.6-alpha.1 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.6-alpha.0 (2021-02-19)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.5 (2021-02-18)
 
@@ -369,61 +297,35 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.4 (2021-02-18)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.4-alpha.13 (2021-02-18)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.4-alpha.12 (2021-02-17)
 
 **Note:** Version bump only for package react-magma-docs
-
-
-
-
 
 ### 2.1.4-alpha.11 (2021-02-17)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
 ### 2.1.4-alpha.10 (2021-02-17)
-
 
 ### Bug Fixes
 
-* **table:** duplicate exports ([1583413](https://github.com/cengage/react-magma/commit/15834130d3aa24ecbe5f479632b74081fa0ab5c9))
-
-
+- **table:** duplicate exports ([1583413](https://github.com/cengage/react-magma/commit/15834130d3aa24ecbe5f479632b74081fa0ab5c9))
 
 ### 2.1.4-alpha.9 (2021-02-17)
 
 **Note:** Version bump only for package react-magma-docs
 
-
-
-
-
 ### 2.1.4-alpha.8 (2021-02-17)
 
 **Note:** Version bump only for package react-magma-docs
-
 
 ### 2.1.4-alpha.7 (2021-02-17)
 

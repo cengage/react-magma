@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled from '@emotion/styled';
-import { magma } from 'react-magma-dom';
+import { magma, Container } from 'react-magma-dom';
 
 const ContentSection = styled.section`
   grid-area: content;
@@ -20,7 +20,9 @@ export const LayoutComponent = props => (
       <html lang="en" />
     </Helmet>
     <main>
-      <ContentSection className="content">{props.children}</ContentSection>
+      <Container gutterWidth={0}>
+        <ContentSection className="content">{props.children}</ContentSection>
+      </Container>
     </main>
   </>
 );
