@@ -1,5 +1,21 @@
 # Change Log
 
+## 1.0.0
+
+### Patch Changes
+
+- 6d2a2be6: chore: update icons
+- Updated dependencies [f0a1882f]
+- Updated dependencies [aaa4d559]
+- Updated dependencies [88e2daee]
+- Updated dependencies [b7f7e431]
+- Updated dependencies [c49cda0e]
+- Updated dependencies [1ceb9951]
+- Updated dependencies [efb6f297]
+- Updated dependencies [6d2a2be6]
+- Updated dependencies [57e28ac7]
+  - react-magma-dom@2.4.0
+
 ## 1.0.0-next.6
 
 ### Patch Changes

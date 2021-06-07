@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.4.0
+
+### Minor Changes
+
+- f0a1882f: fix/controlled-toggle
+
+  Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
+
+- 88e2daee: Feature/datagrid
+
+  Creating a `Datagrid` component with the options to have selectable rows and pagination.
+
+  As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
+
+- b7f7e431: feature/transitions: Add `Transition` component.
+
+  A reusable Transition components that allows teams to use the same standard transitions everywhere.
+
+  ```
+  <Transition fade nudgeTop>
+    <div>child</div>
+  </Transition>
+  ```
+
+- c49cda0e: Add new transition component
+- 1ceb9951: Feature/accordion
+
+  Adding a new accordion component
+
+### Patch Changes
+
+- aaa4d559: Some minor adjustments to the appearance of inverse (dark) states in some components. Also some updates to docs structure for dark mode.
+- efb6f297: feat: updating error styles for radios
+- 6d2a2be6: chore: update icons
+- 57e28ac7: feat(pagination): create new pagination component
+
 ## 2.4.0-next.6
 
 ### Minor Changes
