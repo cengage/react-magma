@@ -214,9 +214,11 @@ export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
+export { useDataPagination } from './hooks/useDataPagination';
 export { useMediaQuery } from './hooks/useMediaQuery';
 export { InverseContext, useIsInverse } from './inverse';
 
 export * from './components/Accordion';
 export * from './components/Transition';
 export * from './components/Drawer';
+export * from './components/Datagrid';
