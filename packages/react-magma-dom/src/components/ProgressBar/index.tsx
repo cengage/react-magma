@@ -2,8 +2,9 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { convertStyleValueToString } from '../../utils';
+import { convertStyleValueToString, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -141,6 +142,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     const {
       color,
       height,
+      id: defaultId,
       isAnimated,
       isLabelVisible,
       isLoadingIndicator,
@@ -148,6 +150,9 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       testId,
       ...other
     } = props;
+
+    const id = useGenerateId(defaultId);
+    const labelId = `${id}__label`;
 
     const percentageValue = percentage ? percentage : 0;
 
@@ -161,7 +166,11 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <Container {...other} isLoadingIndicator={isLoadingIndicator}>
+      <Container
+        {...other}
+        id={defaultId}
+        isLoadingIndicator={isLoadingIndicator}
+      >
         {isLoadingIndicator && (
           <TopPercentage theme={theme}>{percentageValue}%</TopPercentage>
         )}
@@ -173,6 +182,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           theme={theme}
         >
           <Bar
+            aria-labelledby={labelId}
             aria-valuenow={percentageValue}
             aria-valuemin={0}
             aria-valuemax={100}
@@ -184,8 +194,12 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             theme={theme}
           />
         </Track>
-        {isLabelVisible && (
-          <Percentage theme={theme}>{percentageValue}%</Percentage>
+        {isLabelVisible ? (
+          <Percentage id={labelId} theme={theme}>
+            {percentageValue}%
+          </Percentage>
+        ) : (
+          <VisuallyHidden id={labelId}>{percentageValue}%</VisuallyHidden>
         )}
       </Container>
     );
