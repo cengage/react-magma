@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "react-magma-dom": "2.4.0",
+    "@cengage-patterns/header": "1.0.0",
+    "react-magma-docs": "2.2.0",
+    "react-magma-landing": "1.0.10"
+  },
+  "changesets": []
+}
