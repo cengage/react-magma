@@ -2,13 +2,13 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { FormFieldContainer } from '.';
 import { render } from '@testing-library/react';
-import { I18nContext, defaultI18n } from '../../i18n';
+import { magma } from '../../theme/magma';
 
 const TEXT = 'Test Text';
 
 describe('FormFieldContainer', () => {
-  it('should render the visually hidden component', () => {
-    const { container, getByText } = render(
+  it('should render the form field container component', () => {
+    const { getByText } = render(
       <FormFieldContainer>{TEXT}</FormFieldContainer>
     );
 
@@ -22,6 +22,62 @@ describe('FormFieldContainer', () => {
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('should render an error message', () => {
+    const errorMsg = 'Test error message';
+    const { getByText } = render(
+      <FormFieldContainer errorMessage={errorMsg}>{TEXT}</FormFieldContainer>
+    );
+
+    expect(getByText(errorMsg)).toBeInTheDocument();
+  });
+
+  it('should render a helper message', () => {
+    const helperMsg = 'Test helper message';
+    const { getByText } = render(
+      <FormFieldContainer helperMessage={helperMsg}>{TEXT}</FormFieldContainer>
+    );
+
+    expect(getByText(helperMsg)).toBeInTheDocument();
+  });
+
+  it('should a large label when input size is large', () => {
+    const labelText = 'test label';
+    const { getByText } = render(
+      <FormFieldContainer labelText={labelText} inputSize="large">
+        {TEXT}
+      </FormFieldContainer>
+    );
+
+    expect(getByText(labelText)).toBeInTheDocument();
+    expect(getByText(labelText)).toHaveStyleRule(
+      'font-size',
+      magma.typeScale.size03.fontSize
+    );
+  });
+
+  it('should custom styles', () => {
+    const helperMsg = 'Test helper message';
+    const labelText = 'test label';
+    const testId = 'test-id';
+
+    const { getByText, getByTestId } = render(
+      <FormFieldContainer
+        containerStyle={{ border: '1px solid red' }}
+        labelStyle={{ color: 'green' }}
+        messageStyle={{ color: 'purple' }}
+        labelText={labelText}
+        helperMessage={helperMsg}
+        testId={testId}
+      >
+        {TEXT}
+      </FormFieldContainer>
+    );
+
+    expect(getByTestId(testId)).toHaveStyle('border: 1px solid red');
+    expect(getByText(labelText)).toHaveStyle('color: green');
+    expect(getByText(helperMsg).parentElement).toHaveStyle('color: purple');
   });
 
   it('Does not violate accessibility standards', () => {
