@@ -16,6 +16,7 @@
     "pkg": "manypkg run",
     "check:pkgs": "manypkg check",
     "fix:pkgs": "manypkg fix",
+    "upgrade:pkgs": "manypkg upgrade",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "postinstall": "npm run bootstrap && npm run build:lite",
@@ -40,17 +41,11 @@
     "publish": "npm run copy:readme && lerna publish",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
     "plop": "ts-node scripts/plopfile.ts",
-    "changeset": "changeset",
+    "changeset": "changeset add",
     "version:pkgs": "changeset version",
     "release": "changeset publish",
-    "version:prerelease": "changeset pre enter alpha",
+    "version:prerelease": "changeset pre enter next",
     "version:exit": "changeset pre exit"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged"
-    }
   },
   "config": {
     "commitizen": {
@@ -71,8 +66,13 @@
     "@babel/preset-typescript": "^7.1.0",
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
-    "@commitlint/cli": "11.0.0",
-    "@commitlint/config-conventional": "11.0.0",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@commitlint/is-ignored": "^12.1.1",
+    "@commitlint/load": "^12.1.1",
+    "@commitlint/parse": "^12.1.1",
+    "@commitlint/rules": "^12.1.1",
+    "@commitlint/top-level": "^12.1.1",
     "@manypkg/cli": "^0.17.0",
     "@storybook/addon-a11y": "^6.1.18",
     "@storybook/addon-actions": "^6.1.18",
@@ -118,7 +118,7 @@
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-unicorn": "^22.0.0",
-    "husky": "^4.3.8",
+    "husky": "^6.0.0",
     "jest": "^26.4.2",
     "jest-axe": "3.1.0",
     "jest-cli": "^26.6.3",
@@ -127,7 +127,7 @@
     "jest-extended": "^0.11.5",
     "jest-watch-typeahead": "^0.6.1",
     "lerna": "^4.0.0",
-    "lint-staged": "^10.4.0",
+    "lint-staged": "^10.5.4",
     "lodash": "^4.17.21",
     "node-plop": "^0.26.2",
     "prettier": "^2.2.1",

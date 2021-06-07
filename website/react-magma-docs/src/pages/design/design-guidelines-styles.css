@@ -13,8 +13,14 @@
 .two-col .col {
   display: flex;
   flex-direction: column;
-  width: 47%;
-  max-width: 400px;
+  width: 50%;
+  margin-right: 24px;
+}
+
+.image-grid {
+  display: grid;
+  column-gap: 24px;
+  grid-template-columns: auto auto;
 }
 
 .three-col .col {
@@ -65,6 +71,10 @@ figcaption {
   display: flex;
   flex-direction: column;
   margin: 5px 0 0 0;
+}
+
+.isInverse figcaption {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 figcaption p {
@@ -326,7 +336,7 @@ td .space-example {
   height: 160px;
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 768px) {
   figure .image-container {
     padding-top: 10px;
   }
@@ -338,6 +348,13 @@ td .space-example {
   .two-col .col {
     width: 100%;
     max-width: 100%;
+    column-gap: 0px;
+  }
+
+  .image-grid {
+    display: grid;
+    column-gap: 0;
+    grid-template-columns: auto;
   }
 }
 

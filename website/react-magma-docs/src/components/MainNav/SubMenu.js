@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { convertTextToId } from '../../utils';
 import styled from '@emotion/styled';
-import { magma } from 'react-magma-dom';
+import { magma, useIsInverse } from 'react-magma-dom';
 
 const handleAnchorLinkClick = (id, handleClick, e) => {
   const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
@@ -30,7 +30,8 @@ const handleAnchorLinkClick = (id, handleClick, e) => {
 };
 
 const SubMenuList = styled.ul`
-  background: ${magma.colors.neutral07};
+  background: ${props =>
+    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07};
   list-style-type: none;
   margin: 0;
   padding: 0 0 ${magma.spaceScale.spacing03} 0;
@@ -43,7 +44,8 @@ const SubMenuItem = styled.li`
 `;
 
 const SubMenuLink = styled.a`
-  color: ${magma.colors.neutral};
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   line-height: ${magma.typeScale.size02.lineHeight};
@@ -59,7 +61,8 @@ const SubMenuLink = styled.a`
 `;
 
 const SubMenuLink2 = styled.a`
-  color: ${magma.colors.neutral};
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   line-height: ${magma.typeScale.size02.lineHeight};
@@ -69,14 +72,17 @@ const SubMenuLink2 = styled.a`
 
   &:hover,
   &:focus {
-    background: ${magma.colors.neutral06};
-    color: ${magma.colors.neutral};
+    background: ${props =>
+      props.isInverse ? magma.colors.foundation : magma.colors.neutral06};
+    color: ${props =>
+      props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
   }
 `;
 
 export const SubMenu = ({ headings, handleClick }) => {
+  const isInverse = useIsInverse();
   return (
-    <SubMenuList>
+    <SubMenuList isInverse={isInverse}>
       {headings.map((heading, index) => {
         const id = convertTextToId(heading.value);
 
@@ -84,6 +90,7 @@ export const SubMenu = ({ headings, handleClick }) => {
           <SubMenuItem key={index}>
             <SubMenuLink
               href={`#${id}`}
+              isInverse={isInverse}
               onClick={e => {
                 handleAnchorLinkClick(id, handleClick, e);
               }}
@@ -98,8 +105,9 @@ export const SubMenu = ({ headings, handleClick }) => {
 };
 
 export const SubMenu2 = ({ headings, handleClick }) => {
+  const isInverse = useIsInverse();
   return (
-    <SubMenuList>
+    <SubMenuList isInverse={isInverse}>
       {headings.map((heading, index) => {
         const id = convertTextToId(heading.value);
 
@@ -107,6 +115,7 @@ export const SubMenu2 = ({ headings, handleClick }) => {
           <SubMenuItem key={index}>
             <SubMenuLink2
               href={`#${id}`}
+              isInverse={isInverse}
               onClick={e => {
                 handleAnchorLinkClick(id, handleClick, e);
               }}

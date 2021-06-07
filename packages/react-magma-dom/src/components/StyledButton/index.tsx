@@ -55,7 +55,8 @@ export const buttonStyles = props => css`
   text-decoration: none;
   text-transform: ${props.textTransform || 'uppercase'};
   touch-action: manipulation;
-  transition: background 0.35s, color 0.35s;
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s,
+    color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
   width: ${props.iconOnly

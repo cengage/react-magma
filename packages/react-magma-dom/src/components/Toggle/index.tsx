@@ -21,9 +21,18 @@ export enum ToggleTextPosition {
 export interface ToggleProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
+   * If true, element is checked (i.e. selected)
+   * @default false
+   */
+  checked?: boolean;
+  /**
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
+  /**
+   * If true, checkbox is checked on first render
+   */
+  defaultChecked?: boolean;
   /**
    * Content of the error message for toggle. If a value is provided, the component will be styled as an error state and the error message will display.
    */
@@ -75,7 +84,7 @@ const HiddenInput = styled.input`
 `;
 
 const Track = styled.span<{
-  checked?: boolean;
+  isChecked?: boolean;
   disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
@@ -96,7 +105,7 @@ const Track = styled.span<{
   width: 48px;
 
   ${props =>
-    props.checked &&
+    props.isChecked &&
     css`
       background: ${props.theme.colors.success02};
       border-color: ${props.hasError
@@ -139,7 +148,7 @@ const Track = styled.span<{
     width: 40px;
 
     ${props =>
-      props.checked &&
+      props.isChecked &&
       css`
         background: ${props.theme.colors.success02};
         left: 12px;
@@ -156,7 +165,7 @@ const Track = styled.span<{
 `;
 
 const Thumb = styled.span<{
-  checked?: boolean;
+  isChecked?: boolean;
   disabled?: boolean;
   theme?: any;
 }>`
@@ -171,7 +180,7 @@ const Thumb = styled.span<{
   width: 20px;
 
   ${props =>
-    props.checked &&
+    props.isChecked &&
     css`
       left: 24px;
     `}
@@ -218,36 +227,47 @@ const renderLabelText = (
 
 export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
   (props, ref) => {
-    const [checked, setChecked] = React.useState<boolean>(
-      Boolean(props.checked)
-    );
-
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-      props.onChange &&
-        typeof props.onChange === 'function' &&
-        props.onChange(event);
-      setChecked(event.target.checked);
-    }
-
     const {
       containerStyle,
+      checked,
+      defaultChecked,
       disabled,
       errorMessage,
       id: defaultId,
       isTextVisuallyHidden,
       labelStyle,
       labelText,
+      onChange,
       textPosition,
       testId,
       trackStyle,
       thumbStyle,
       ...other
     } = props;
+    const [isChecked, updateIsChecked] = React.useState(
+      Boolean(defaultChecked) || Boolean(checked)
+    );
 
     const id = useGenerateId(defaultId);
+    const isControlled = typeof checked === 'boolean' ? true : false;
+
+    React.useEffect(() => {
+      if (typeof checked === 'boolean') {
+        updateIsChecked(checked);
+      }
+    }, [checked]);
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      const { checked: targetChecked } = event.target;
+
+      onChange && typeof onChange === 'function' && onChange(event);
+
+      if (!isControlled) {
+        updateIsChecked(targetChecked);
+      }
+    }
 
     const theme = React.useContext(ThemeContext);
-
     const context = React.useContext(FormGroupContext);
 
     const descriptionId = errorMessage ? `${id}__desc` : null;
@@ -271,12 +291,12 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
         <StyledContainer>
           <HiddenInput
             {...other}
-            aria-checked={!!checked}
+            aria-checked={isChecked}
             aria-describedby={describedBy}
             id={id}
             data-testid={testId}
             disabled={disabled}
-            checked={checked}
+            checked={isChecked}
             type="checkbox"
             onChange={handleChange}
             ref={ref}
@@ -295,7 +315,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
                 labelStyle
               )}
             <Track
-              checked={checked}
+              isChecked={isChecked}
               data-testid="toggle-track"
               disabled={disabled}
               hasError={hasError}
@@ -307,7 +327,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
                 <CheckIcon size={theme.iconSizes.xSmall} />
               </IconContainer>
               <Thumb
-                checked={checked}
+                isChecked={isChecked}
                 disabled={disabled}
                 style={thumbStyle}
                 theme={theme}

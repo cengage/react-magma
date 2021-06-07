@@ -170,6 +170,11 @@ export const defaultI18n: I18nInterface = {
   multiCombobox: {
     selectedItemButtonAriaLabel: 'reset item {selectedItem}',
   },
+  pagination: {
+    nextButtonLabel: 'Next Page',
+    previousButtonLabel: 'Previous Page',
+    pageButtonLabel: 'Go to Page',
+  },
   password: {
     shown: {
       ariaLabel:

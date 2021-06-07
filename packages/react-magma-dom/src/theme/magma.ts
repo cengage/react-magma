@@ -1,3 +1,5 @@
+import { ThemeTransitions, transitions } from './components/transition';
+
 export interface Colors {
   primary: string;
   focus: string;
@@ -36,6 +38,8 @@ export interface Colors {
   tint04: string;
   tone: string;
   tone02: string;
+  border: string;
+  borderInverse: string;
 }
 
 export interface Breakpoints {
@@ -146,8 +150,46 @@ export interface Modal {
   };
 }
 
+interface Drawer {
+  default: {
+    maxWidth: string;
+    minHeight: string;
+    borderRadius: string;
+    margin: string;
+    top: string;
+    bottom: string;
+    left: string;
+    right: string;
+    position: string;
+  };
+  right: {
+    left: string;
+    height: string;
+    width: string;
+  };
+  left: {
+    right: string;
+    height: string;
+    width: string;
+  };
+  top: {
+    bottom: string;
+    height: string;
+  };
+  bottom: {
+    top: string;
+    height: string;
+  };
+}
+
 interface Combobox {
   menu: {
+    maxHeight: string;
+  };
+}
+
+interface Dropdown {
+  content: {
     maxHeight: string;
   };
 }
@@ -193,6 +235,7 @@ export interface ThemeInterface {
   colors: Colors;
   combobox: Combobox;
   direction: string;
+  drawer: Drawer;
   dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
@@ -208,6 +251,7 @@ export interface ThemeInterface {
   modal: Modal;
   tabs: Tabs;
   tooltip: Tooltip;
+  transitions: ThemeTransitions;
 }
 
 const typeScale = {
@@ -304,6 +348,8 @@ const colors = {
   tint04: 'rgba(255,255,255,0.4)',
   tone: 'rgba(63,63,63,0.07)',
   tone02: 'rgba(63,63,63,0.1)',
+  border: '#DFDFDF',
+  borderInverse: 'rgba(255,255,255,0.25)',
 };
 
 const spaceScale = {
@@ -334,7 +380,7 @@ export const magma = {
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
   spacingMultiplier: 8,
-
+  transitions,
   // breakpoints
   breakpoints: {
     xs: 0,
@@ -526,6 +572,40 @@ export const magma = {
       small: '300px',
       medium: '600px',
       large: '900px',
+    },
+  },
+
+  drawer: {
+    default: {
+      maxWidth: '100%',
+      minHeight: '300px',
+      margin: '0',
+      borderRadius: '0',
+      top: '0',
+      right: '0',
+      bottom: '0',
+      left: '0',
+      position: 'relative',
+    },
+    right: {
+      left: 'auto',
+      height: '100%',
+      width: '300px',
+      position: 'fixed',
+    },
+    left: {
+      right: 'auto',
+      height: '100%',
+      width: '300px',
+    },
+    top: {
+      bottom: 'auto',
+      height: '300px',
+    },
+    bottom: {
+      top: 'auto',
+      height: '300px',
+      position: 'fixed',
     },
   },
 

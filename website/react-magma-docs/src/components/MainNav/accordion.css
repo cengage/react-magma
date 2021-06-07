@@ -18,6 +18,10 @@
   background: #f7f7f7;
 }
 
+.isInverse .accordion__title:hover {
+  background: #003865;
+}
+
 .accordion__title svg {
   transition: transform 0.35s;
 }
