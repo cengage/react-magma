@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.2.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [1ceb9951]
+  - react-magma-dom@2.4.0-next.6
+  - @cengage-patterns/header@1.0.0-next.6
+
+## 2.2.0-next.5
+
+### Minor Changes
+
+- f0a1882f: fix/controlled-toggle
+
+  Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
+
+### Patch Changes
+
+- 6d2a2be6: chore: update icons
+- Updated dependencies [f0a1882f]
+- Updated dependencies [6d2a2be6]
+  - react-magma-dom@2.4.0-next.5
+  - @cengage-patterns/header@1.0.0-next.5
+
 ## 2.1.12-alpha.4
 
 ### Patch Changes

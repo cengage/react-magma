@@ -215,10 +215,9 @@ export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
 export { useMediaQuery } from './hooks/useMediaQuery';
-export { useDataPagination } from './hooks/useDataPagination';
 export { InverseContext, useIsInverse } from './inverse';
 
-export * from './components/Datagrid';
+export * from './components/Accordion';
 export * from './components/Transition';
 export * from './components/Drawer';
 

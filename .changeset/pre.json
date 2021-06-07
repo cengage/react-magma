@@ -1,6 +1,6 @@
 {
   "mode": "pre",
-  "tag": "alpha",
+  "tag": "next",
   "initialVersions": {
     "react-magma-dom": "2.3.12",
     "react-magma-icons": "2.0.4",
@@ -9,12 +9,15 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "frank-puppies-sleep",
     "green-trees-exist",
     "lazy-mangos-attend",
     "lazy-pugs-decide",
     "neat-starfishes-nail",
     "rich-mice-learn",
+    "shy-tips-invent",
     "six-bears-sing",
+    "slow-drinks-rush",
     "spicy-seals-speak"
   ]
 }
