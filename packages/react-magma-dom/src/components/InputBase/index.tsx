@@ -7,6 +7,7 @@ import { IconButton } from '../IconButton';
 import { ClearIcon, IconProps } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
+import { I18nContext } from '../../i18n';
 
 export enum InputSize {
   large = 'large',
@@ -264,11 +265,7 @@ const IconButtonContainer = styled.span<{
 }>`
   height: auto;
   margin: 0;
-  position: absolute;
-  top: ${props =>
-    props.size === InputSize.large
-      ? props.theme.spaceScale.spacing02
-      : props.theme.spaceScale.spacing01};
+  position: relative;
   right: ${props =>
     props.size === InputSize.large
       ? props.theme.spaceScale.spacing02
@@ -296,13 +293,6 @@ const IsClearableContainer = styled.span<{
     props.size === InputSize.large
       ? props.theme.spaceScale.spacing02
       : props.theme.spaceScale.spacing01};
-
-  &:nth-of-type(2) {
-    right: ${props =>
-      props.size === InputSize.large
-        ? props.theme.spaceScale.spacing10
-        : props.theme.spaceScale.spacing08};
-  }
 `;
 
 function getIconSize(size: string, theme: ThemeInterface) {
@@ -333,6 +323,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       type,
       ...other
     } = props;
+
+    const i18n = React.useContext(I18nContext);
 
     const theme = React.useContext(ThemeContext);
     const iconPosition =
@@ -435,7 +427,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         {isClearable && value && (
           <IsClearableContainer theme={theme}>
             <IconButton
-              aria-label={'Clear Input'}
+              aria-label={i18n.input.isClearableAriaLabel}
               icon={<ClearIcon />}
               isInverse={false}
               onClick={handleClearInput}
