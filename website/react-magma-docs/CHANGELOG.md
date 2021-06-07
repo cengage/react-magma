@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [1ceb9951]
+  - react-magma-dom@2.4.0-next.6
+  - @cengage-patterns/header@1.0.0-next.6
+
 ## 2.2.0-next.5
 
 ### Minor Changes
