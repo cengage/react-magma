@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/core';
 import { transparentize } from 'polished';
 import { TabsOrientation } from './shared';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
@@ -99,7 +99,7 @@ export const ButtonPrev = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   return (
@@ -127,7 +127,7 @@ export const ButtonNext = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   return (

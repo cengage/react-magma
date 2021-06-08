@@ -94,7 +94,7 @@ export const DropdownContent = React.forwardRef<
 >((props, ref) => {
   const { children, testId, ...other } = props;
   const context = React.useContext(DropdownContext);
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   return (
     <StyledCard

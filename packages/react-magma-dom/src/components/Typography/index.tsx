@@ -53,49 +53,52 @@ export function getBodyFontFamily(props) {
   }
 }
 
-export const colorStyles = props => css`
-  color: ${props.isInverse
-    ? props.theme.colors.neutral08
-    : props.contextVariant === 'expressive'
-    ? props.theme.colors.foundation02
-    : props.theme.colors.neutral};
+export const colorStyles = props => {
+  const { typographyColors } = props.theme;
+  return css`
+    color: ${props.isInverse
+      ? typographyColors.inverse.color
+      : props.contextVariant === 'expressive'
+      ? typographyColors.expressive.color
+      : typographyColors.color};
 
-  ${props.color === TypographyColor.danger &&
-  !props.isInverse &&
-  css`
-    color: ${props.theme.colors.danger};
-  `}
+    ${props.color === TypographyColor.danger &&
+    !props.isInverse &&
+    css`
+      color: ${typographyColors.danger.color};
+    `}
 
-  ${props.color === TypographyColor.success &&
-  !props.isInverse &&
-  css`
-    color: ${props.theme.colors.success};
-  `}
-
-${props.color === TypographyColor.subdued &&
-  !props.isInverse &&
-  css`
-    color: ${props.theme.colors.neutral03};
-  `}
-
-  ${props.color === TypographyColor.danger &&
-  props.isInverse &&
-  css`
-    color: ${props.theme.colors.dangerInverse};
-  `}
-
-  ${props.color === TypographyColor.success &&
-  props.isInverse &&
-  css`
-    color: ${props.theme.colors.successInverse};
-  `}
+    ${props.color === TypographyColor.success &&
+    !props.isInverse &&
+    css`
+      color: ${typographyColors.success.color};
+    `}
 
 ${props.color === TypographyColor.subdued &&
-  props.isInverse &&
-  css`
-    color: ${props.theme.colors.focusInverse};
-  `}
-`;
+    !props.isInverse &&
+    css`
+      color: ${typographyColors.subdued.color};
+    `}
+
+  ${props.color === TypographyColor.danger &&
+    props.isInverse &&
+    css`
+      color: ${typographyColors.danger.inverse.color};
+    `}
+
+  ${props.color === TypographyColor.success &&
+    props.isInverse &&
+    css`
+      color: ${typographyColors.success.inverse.color};
+    `}
+
+${props.color === TypographyColor.subdued &&
+    props.isInverse &&
+    css`
+      color: ${typographyColors.subdued.inverse.color};
+    `}
+  `;
+};
 
 const baseParagraphStyles = props => css`
   ${colorStyles(props)}

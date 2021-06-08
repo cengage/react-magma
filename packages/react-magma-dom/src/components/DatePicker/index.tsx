@@ -126,7 +126,7 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
 
 export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
   (props, forwardedRef) => {
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
     const iconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();

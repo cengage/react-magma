@@ -7,7 +7,7 @@ import { Label } from '../Label';
 import { SelectTriggerButton } from '../Select/SelectTriggerButton';
 
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { useIsInverse } from '../../inverse';
 import { I18nContext } from '../../i18n';
 import { useGenerateId } from '../../utils';
@@ -79,7 +79,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       messageStyle,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
     const i18n = React.useContext(I18nContext);
     const id = useGenerateId(defaultId);

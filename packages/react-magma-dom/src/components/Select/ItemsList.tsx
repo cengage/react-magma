@@ -47,7 +47,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     menuStyle,
   } = props;
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const hasItems = items && items.length > 0;

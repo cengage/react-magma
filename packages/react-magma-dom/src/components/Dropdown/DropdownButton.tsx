@@ -14,7 +14,7 @@ import { ButtonProps, ButtonSize } from '../Button';
 import { useIsInverse } from '../../inverse';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
@@ -86,7 +86,7 @@ export const DropdownButton = React.forwardRef<
   DropdownButtonProps
 >((props, forwardedRef) => {
   const context = React.useContext(DropdownContext);
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   context.dropdownButtonId.current = useGenerateId(props.id);
 

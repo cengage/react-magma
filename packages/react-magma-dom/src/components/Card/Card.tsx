@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { useIsInverse } from '../../inverse';
 
 /**
@@ -134,7 +134,7 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const widthString = width
       ? typeof width === 'number'

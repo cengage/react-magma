@@ -19,6 +19,6 @@ export const DropdownDivider: React.FunctionComponent<DropdownDividerProps> = (
 ) => {
   const { testId, ...other } = props;
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   return <StyledHr {...other} data-testid={testId} theme={theme} />;
 };

@@ -34,16 +34,16 @@ const HeadingNum = styled.span`
   margin-bottom: 15px;
 `;
 
-export const IntroHeading = ({ id, isCta, name, number }) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <StyledHeading id={id} isCta={isCta} tabIndex={-1} theme={theme}>
-        {number && <HeadingNum>{number}</HeadingNum>}
-        {name}
-      </StyledHeading>
-    )}
-  </ThemeContext.Consumer>
-);
+export const IntroHeading = ({ id, isCta, name, number }) => {
+  const { theme } = React.useContext(ThemeContext);
+
+  return (
+    <StyledHeading id={id} isCta={isCta} tabIndex={-1} theme={theme}>
+      {number && <HeadingNum>{number}</HeadingNum>}
+      {name}
+    </StyledHeading>
+  );
+};
 
 IntroHeading.propTypes = {
   isCta: PropTypes.bool,

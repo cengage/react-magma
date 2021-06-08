@@ -68,7 +68,7 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
   (props, ref) => {
     const { align, children, testId, width, ...other } = props;
     const tableContext = React.useContext(TableContext);
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const widthString = typeof width === 'number' ? `${width}px` : width;
 

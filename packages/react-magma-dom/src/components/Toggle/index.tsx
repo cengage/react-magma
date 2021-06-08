@@ -267,7 +267,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       }
     }
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const context = React.useContext(FormGroupContext);
 
     const descriptionId = errorMessage ? `${id}__desc` : null;

@@ -117,7 +117,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       testId,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
 
     let isHeaderRow = false;

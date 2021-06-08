@@ -14,7 +14,7 @@ import { CloseIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
 import { TypographyVisualStyle } from '../Typography';
 import { Transition, TransitionProps } from '../Transition';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { omit, useGenerateId, usePrevious } from '../../utils';
 
 export enum ModalSize {
@@ -335,7 +335,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     } = props;
 
     const other = omit(['onEscKeyDown'], rest);
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     const CloseIconButton = (

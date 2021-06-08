@@ -45,7 +45,7 @@ const StyledLabel = styled.label<LabelProps>`
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
     const { children, labelPosition, size, testId, ...other } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     return (
       <StyledLabel

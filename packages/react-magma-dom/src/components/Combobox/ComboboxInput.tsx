@@ -139,7 +139,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     selectedItems,
     toggleButtonRef,
   } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
 

@@ -4,7 +4,7 @@ import {
   UseAccordionItemProps,
   useAccordionItem,
 } from './useAccordionItem';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import styled from '../../theme/styled';
 
 /**

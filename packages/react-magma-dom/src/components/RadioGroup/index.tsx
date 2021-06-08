@@ -128,7 +128,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
 

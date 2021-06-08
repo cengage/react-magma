@@ -154,7 +154,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
     const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     return (
       <BadgeComponent

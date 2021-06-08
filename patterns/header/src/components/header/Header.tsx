@@ -56,7 +56,7 @@ const ChildrenWrapper = styled.span`
 `;
 
 export const Header = (props: HeaderProps) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const {

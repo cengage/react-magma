@@ -8,7 +8,7 @@ import {
   AccordionContext,
   useAccordion,
 } from './useAccordion';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 
 /**
  * @children required
@@ -115,7 +115,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       ...rest
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
     const { contextValue } = useAccordion(props);

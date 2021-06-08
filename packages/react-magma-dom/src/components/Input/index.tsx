@@ -68,7 +68,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
 

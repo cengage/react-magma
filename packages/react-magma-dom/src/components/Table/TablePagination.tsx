@@ -6,7 +6,7 @@ import { EastIcon, WestIcon } from 'react-magma-icons';
 import { Label, LabelPosition } from '../Label';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 
@@ -78,7 +78,7 @@ export const TablePagination = React.forwardRef<
     ...other
   } = props;
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const isInverse = useIsInverse(props.isInverse);

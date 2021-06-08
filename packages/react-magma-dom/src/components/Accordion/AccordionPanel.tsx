@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { useIsInverse } from '../../inverse';
 import { AccordionItemContext } from './useAccordionItem';
 import { Transition } from '../Transition';
@@ -38,7 +38,7 @@ export const AccordionPanel = React.forwardRef<
   AccordionPanelProps
 >((props, ref) => {
   const { children, testId, isInverse: isInverseProp, ...rest } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
   const { buttonId, isExpanded, panelId } = React.useContext(

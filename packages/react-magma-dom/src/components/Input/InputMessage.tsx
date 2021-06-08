@@ -49,7 +49,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   hasError,
   ...other
 }: InputMessageProps) => {
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   return (
     <Announce>

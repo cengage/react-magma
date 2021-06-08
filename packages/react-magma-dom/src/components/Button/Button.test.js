@@ -137,19 +137,19 @@ describe('Button', () => {
         expect(container).toMatchSnapshot();
       });
 
-      it('should render with updated variant', () => {
-        const { container } = render(
-          <Button
-            id="testId"
-            onClick={jest.fn()}
-            variant={ButtonVariant.outline}
-          >
-            Test Text
-          </Button>
-        );
+      //   it('should render with updated variant', () => {
+      //     const { container } = render(
+      //       <Button
+      //         id="testId"
+      //         onClick={jest.fn()}
+      //         variant={ButtonVariant.outline}
+      //       >
+      //         Test Text
+      //       </Button>
+      //     );
 
-        expect(container).toMatchSnapshot();
-      });
+      //     expect(container).toMatchSnapshot();
+      //   });
     });
   });
 });

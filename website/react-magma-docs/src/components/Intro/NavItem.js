@@ -48,27 +48,27 @@ function handleNavClick(id, onClick) {
   onClick(id);
 }
 
-export const NavItem = ({ activeSection, section, number, onClick, text }) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <Item>
-        <StyledLink
-          active={activeSection === section}
-          onClick={() => {
-            handleNavClick(section, onClick);
-          }}
-          theme={theme}
-        >
-          <Num>{number}</Num>
-          {text}
-          {activeSection === number && (
-            <VisuallyHidden>(selected)</VisuallyHidden>
-          )}
-        </StyledLink>
-      </Item>
-    )}
-  </ThemeContext.Consumer>
-);
+export const NavItem = ({ activeSection, section, number, onClick, text }) => {
+  const { theme } = React.useContext(ThemeContext);
+
+  return (
+    <Item>
+      <StyledLink
+        active={activeSection === section}
+        onClick={() => {
+          handleNavClick(section, onClick);
+        }}
+        theme={theme}
+      >
+        <Num>{number}</Num>
+        {text}
+        {activeSection === number && (
+          <VisuallyHidden>(selected)</VisuallyHidden>
+        )}
+      </StyledLink>
+    </Item>
+  );
+};
 
 NavItem.propTypes = {
   activeSection: PropTypes.string.isRequired,

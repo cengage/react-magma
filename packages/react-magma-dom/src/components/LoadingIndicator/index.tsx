@@ -3,7 +3,7 @@ import { ProgressBar, ProgressBarColor } from '../ProgressBar';
 import { Spinner } from '../Spinner';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 import { I18nContext } from '../../i18n';
 
 export interface LoadingIndicatorProps
@@ -75,7 +75,7 @@ export const LoadingIndicator = React.forwardRef<
 >((props, ref) => {
   const [messageLevel, setMessageLevel] = React.useState<1 | 2 | 3>(1);
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   React.useEffect(() => {

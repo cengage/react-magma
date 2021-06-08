@@ -179,7 +179,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   } = props;
 
   const id = useGenerateId(defaultId);
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   if (Array.isArray(children)) {
     throw new Error('Tooltip children can only be one element.');

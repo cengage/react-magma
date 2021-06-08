@@ -141,7 +141,7 @@ export const TableHeaderCell = React.forwardRef<
     width,
     ...other
   } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const tableContext = React.useContext(TableContext);
 
   function handleSort() {

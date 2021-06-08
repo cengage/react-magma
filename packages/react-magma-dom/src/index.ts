@@ -208,7 +208,14 @@ export {
   VisuallyHiddenProps,
 } from './components/VisuallyHidden';
 
-export { magma, ThemeInterface } from './theme/magma';
+export {
+  magma,
+  buildThemeButton,
+  buildThemeCheckbox,
+  buildTypographyColors,
+} from './theme/magma';
+export { ThemeInterface } from './theme/ThemeInterface';
+
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';

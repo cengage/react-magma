@@ -38,7 +38,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
   (props, ref) => {
     const { 'aria-label': ariaLabel, color, size, testId, ...other } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     const sizeString = size

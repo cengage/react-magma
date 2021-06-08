@@ -49,7 +49,7 @@ export const NavTabs = React.forwardRef<
     testId,
     ...rest
   } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   const isInverse = useIsInverse(props.isInverse);
 

@@ -1,258 +1,9 @@
-import { ThemeTransitions, transitions } from './components/transition';
-
-export interface Colors {
-  primary: string;
-  focus: string;
-  focusInverse: string;
-  foundation: string;
-  foundation02: string;
-  foundation03: string;
-  foundation04: string;
-  pop: string;
-  pop02: string;
-  pop03: string;
-  pop04: string;
-  pop05: string;
-  pop06: string;
-  success: string;
-  success02: string;
-  successInverse: string;
-  danger: string;
-  dangerInverse: string;
-  neutral: string;
-  neutral02: string;
-  neutral03: string;
-  neutral04: string;
-  neutral05: string;
-  neutral06: string;
-  neutral07: string;
-  neutral08: string;
-  disabledText: string;
-  disabledInverseText: string;
-  toggleBoxShadow: string;
-  shade: string;
-  shade02: string;
-  tint: string;
-  tint02: string;
-  tint03: string;
-  tint04: string;
-  tone: string;
-  tone02: string;
-  border: string;
-  borderInverse: string;
-}
-
-export interface Breakpoints {
-  xs: number;
-  small: number;
-  medium: number;
-  large: number;
-  xl: number;
-}
-
-export interface IconSizes {
-  xSmall: number;
-  small: number;
-  medium: number;
-  large: number;
-}
-
-export interface SpacingScale {
-  spacing01: string;
-  spacing02: string;
-  spacing03: string;
-  spacing04: string;
-  spacing05: string;
-  spacing06: string;
-  spacing07: string;
-  spacing08: string;
-  spacing09: string;
-  spacing10: string;
-  spacing11: string;
-  spacing12: string;
-  spacing13: string;
-  spacing14: string;
-}
-
-export interface TypographyExpressiveSizes {
-  headingXLarge: any;
-  headingLarge: any;
-  headingMedium: any;
-  headingSmall: any;
-  headingXSmall: any;
-  headingXXSmall: any;
-  bodyLarge: any;
-  bodyMedium: any;
-  bodySmall: any;
-  bodyXSmall: any;
-}
-
-export interface TypeScaleSize {
-  fontSize: string;
-  lineHeight: string;
-}
-
-export interface TypeScale {
-  size01: TypeScaleSize;
-  size02: TypeScaleSize;
-  size03: TypeScaleSize;
-  size04: TypeScaleSize;
-  size05: TypeScaleSize;
-  size06: TypeScaleSize;
-  size07: TypeScaleSize;
-  size08: TypeScaleSize;
-  size09: TypeScaleSize;
-  size10: TypeScaleSize;
-  size11: TypeScaleSize;
-  size12: TypeScaleSize;
-  size13: TypeScaleSize;
-}
-
-export interface VisualStyle {
-  mobile: TypeScaleSize;
-  desktop: TypeScaleSize;
-  fontWeight?: number;
-}
-
-export interface TypographyVisualStyles {
-  headingXLarge: VisualStyle;
-  headingLarge: VisualStyle;
-  headingMedium: VisualStyle;
-  headingSmall: VisualStyle;
-  headingXSmall: VisualStyle;
-  heading2XSmall: VisualStyle;
-  bodyLarge: VisualStyle;
-  bodyMedium: VisualStyle;
-  bodySmall: VisualStyle;
-  bodyXSmall: VisualStyle;
-}
-
-interface AppBar {
-  backgroundColor: string;
-  height: string;
-  padding: string;
-  textColor: string;
-  compact: {
-    height: string;
-    padding: string;
-  };
-  inverse: {
-    backgroundColor: string;
-    textColor: string;
-  };
-}
-
-export interface Modal {
-  width: {
-    small: string;
-    medium: string;
-    large: string;
-  };
-}
-
-interface Drawer {
-  default: {
-    maxWidth: string;
-    minHeight: string;
-    borderRadius: string;
-    margin: string;
-    top: string;
-    bottom: string;
-    left: string;
-    right: string;
-    position: string;
-  };
-  right: {
-    left: string;
-    height: string;
-    width: string;
-  };
-  left: {
-    right: string;
-    height: string;
-    width: string;
-  };
-  top: {
-    bottom: string;
-    height: string;
-  };
-  bottom: {
-    top: string;
-    height: string;
-  };
-}
-
-interface Combobox {
-  menu: {
-    maxHeight: string;
-  };
-}
-
-interface Dropdown {
-  content: {
-    maxHeight: string;
-  };
-}
-
-interface Dropdown {
-  content: {
-    maxHeight: string;
-  };
-}
-
-interface Select {
-  menu: {
-    maxHeight: string;
-  };
-}
-
-interface Tabs {
-  approxTabSize: {
-    horizontal: number;
-    vertical: number;
-  };
-}
-
-export interface Tooltip {
-  arrowSize: string;
-  arrowSizeDoubled: string;
-  backgroundColor: string;
-  fontWeight: number | string;
-  maxWidth: string;
-  textColor: string;
-  typeScale: TypeScaleSize;
-  zIndex: number;
-  inverse: any;
-}
-
-export interface ThemeInterface {
-  appBar: AppBar;
-  breakpoints: Breakpoints;
-  bodyFont: string;
-  bodyExpressiveFont: string;
-  bodyNarrativeFont: string;
-  borderRadius: string;
-  colors: Colors;
-  combobox: Combobox;
-  direction: string;
-  drawer: Drawer;
-  dropdown: Dropdown;
-  headingFont: string;
-  iconSizes: IconSizes;
-  spacingMultiplier: number;
-  spaceScale: SpacingScale;
-  headingExpressiveFont: string;
-  headingNarrativeFont: string;
-  select: Select;
-  typeScale: TypeScale;
-  typographyVisualStyles: TypographyVisualStyles;
-  typographyExpressiveVisualStyles: TypographyVisualStyles;
-  typographyNarrativeVisualStyles: TypographyVisualStyles;
-  modal: Modal;
-  tabs: Tabs;
-  tooltip: Tooltip;
-  transitions: ThemeTransitions;
-}
+import { buildThemeButton } from './components/button';
+import { buildThemeCheckbox } from './components/checkbox';
+import { colors } from './colors';
+import { docs } from './components/docs';
+import { transitions } from './components/transition';
+import { buildTypographyColors } from './components/typography';
 
 const typeScale = {
   size01: {
@@ -308,50 +59,6 @@ const typeScale = {
     lineHeight: '72px',
   },
 };
-
-const colors = {
-  primary: '#006298', // link color blue
-  focus: '#027EE1',
-  focusInverse: 'rgba(255,255,255,0.7)',
-  foundation: '#00263E',
-  foundation02: '#003865',
-  foundation03: '#00A9E0',
-  foundation04: '#71C5E8',
-  pop: '#E0004D',
-  pop02: '#FC4C02',
-  pop03: '#F2A900',
-  pop04: '#FFC72C',
-  pop05: '#92278F',
-  pop06: '#007A6D',
-  success: '#3A8200',
-  success02: '#48A200',
-  successInverse: '#91CF60',
-  danger: '#C61D23',
-  dangerInverse: '#F59295',
-  neutral: '#3F3F3F', // main dark grey text color
-  neutral02: '#575757',
-  neutral03: '#707070',
-  neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
-  neutral05: '#BFBFBF',
-  neutral06: '#DFDFDF',
-  neutral07: '#F7F7F7',
-  neutral08: '#FFFFFF', // white
-  disabledText: 'rgba(114,114,114,0.6)',
-  disabledInverseText: 'rgba(255,255,255,0.25)',
-  toggleBoxShadow:
-    '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)',
-  shade: 'rgba(0,0,0,0.05)',
-  shade02: 'rgba(0,0,0,0.3)',
-  tint: 'rgba(255,255,255,0.05)',
-  tint02: 'rgba(255,255,255,0.1)',
-  tint03: 'rgba(255,255,255,0.1)',
-  tint04: 'rgba(255,255,255,0.4)',
-  tone: 'rgba(63,63,63,0.07)',
-  tone02: 'rgba(63,63,63,0.1)',
-  border: '#DFDFDF',
-  borderInverse: 'rgba(255,255,255,0.25)',
-};
-
 const spaceScale = {
   spacing01: '2px',
   spacing02: '4px',
@@ -381,7 +88,11 @@ export const magma = {
   direction: 'ltr',
   spacingMultiplier: 8,
   transitions,
-  // breakpoints
+  button: buildThemeButton(colors),
+  checkbox: buildThemeCheckbox(colors),
+  docs: docs(colors),
+  typographyColors: buildTypographyColors(colors),
+
   breakpoints: {
     xs: 0,
     small: 600,
@@ -567,14 +278,6 @@ export const magma = {
     },
   },
 
-  modal: {
-    width: {
-      small: '300px',
-      medium: '600px',
-      large: '900px',
-    },
-  },
-
   drawer: {
     default: {
       maxWidth: '100%',
@@ -606,6 +309,23 @@ export const magma = {
       top: 'auto',
       height: '300px',
       position: 'fixed',
+    },
+  },
+
+  hyperlink: {
+    textColor: colors.primary,
+    textHoverColor: colors.foundation02,
+    inverse: {
+      textColor: colors.neutral08,
+      textHoverColor: colors.neutral07,
+    },
+  },
+
+  modal: {
+    width: {
+      small: '300px',
+      medium: '600px',
+      large: '900px',
     },
   },
 

@@ -58,7 +58,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
     }
   }, [props.focusHeader]);
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const locale = i18n.locale || enUS;

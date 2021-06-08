@@ -23,7 +23,7 @@ const StyledCardBody = styled.div<CardProps>`
 export const CardBody = React.forwardRef<HTMLDivElement, CardBodyProps>(
   (props, ref) => {
     const { children, testId, ...other } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     return (
       <StyledCardBody {...other} data-testid={testId} ref={ref} theme={theme}>

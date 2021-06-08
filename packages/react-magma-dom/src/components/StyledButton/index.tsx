@@ -137,7 +137,7 @@ export const StyledButton = React.forwardRef<
     testId,
     isLoading,
   } = props;
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   const spinnerColor =
     isInverse &&

@@ -2,7 +2,7 @@ import React from 'react';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import { ThemeInterface } from '../../theme/ThemeInterface';
 
 const StyledTabPanel = styled.div<{
   isInverse?: boolean;
@@ -34,7 +34,7 @@ export const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
   (props, ref) => {
     const { index, isInverse, testId, children, ...other } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const { activeTabIndex } = React.useContext(TabsContainerContext);
     const activeTab = activeTabIndex === index;

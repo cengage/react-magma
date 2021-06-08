@@ -85,7 +85,7 @@ const StyledPageButton = styled(Button)`
 export const PageButton = React.forwardRef<HTMLButtonElement, PaginationProps>(
   (props, ref) => {
     const { children, isInverse, isSelected, ...other } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     return (
       <StyledPageButton

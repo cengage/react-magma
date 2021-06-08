@@ -41,7 +41,7 @@ export interface DrawerProps extends Omit<ModalProps, 'size'> {
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   (props, ref) => {
     const { style, containerStyle, position, ...rest } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const drawerStyle = {
       ...theme.drawer.default,
       ...theme.drawer[DrawerPosition[position]],

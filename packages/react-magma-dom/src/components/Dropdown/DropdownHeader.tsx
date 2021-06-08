@@ -27,7 +27,7 @@ export const DropdownHeader = React.forwardRef<
 >((props, ref) => {
   const { children, testId, ...other } = props;
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   return (
     <StyledDiv {...other} data-testid={testId} theme={theme}>

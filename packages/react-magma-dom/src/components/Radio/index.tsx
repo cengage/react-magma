@@ -148,7 +148,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (props, ref) => {
     const id = useGenerateId(props.id);
     const context = React.useContext(RadioContext);
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const {
       color = theme.colors.primary,
       containerStyle,

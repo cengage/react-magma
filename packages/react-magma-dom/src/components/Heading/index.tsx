@@ -37,7 +37,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
     const { level, testId, visualStyle, children, ...other } = props;
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
 
     const stylesFromLevel = {
       1: TypographyVisualStyle.headingXLarge,

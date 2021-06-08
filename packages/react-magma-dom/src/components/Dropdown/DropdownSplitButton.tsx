@@ -46,7 +46,7 @@ export const DropdownSplitButton = React.forwardRef<
 
   const context = React.useContext(DropdownContext);
 
-  const theme = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
   const ref = useForkedRef(forwardedRef, context.toggleRef);
 

@@ -156,7 +156,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
+    const { theme } = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     return (

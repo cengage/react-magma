@@ -30,27 +30,27 @@ const ImgContainer = styled(ScrollAnimation)`
   }
 `;
 
-export const IntroSection = ({ afterAnimatedIn, children, image, section }) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <StyledSection section={section} theme={theme}>
-        {image && (
-          <ImgContainer
-            afterAnimatedIn={v => {
-              afterAnimatedIn(section, v);
-            }}
-            animateIn="fadeInLeft"
-            duration={1.2}
-            theme={theme}
-          >
-            {image}
-          </ImgContainer>
-        )}
-        <div>{children}</div>
-      </StyledSection>
-    )}
-  </ThemeContext.Consumer>
-);
+export const IntroSection = ({ afterAnimatedIn, children, image, section }) => {
+  const { theme } = React.useContext(ThemeContext);
+
+  return (
+    <StyledSection section={section} theme={theme}>
+      {image && (
+        <ImgContainer
+          afterAnimatedIn={v => {
+            afterAnimatedIn(section, v);
+          }}
+          animateIn="fadeInLeft"
+          duration={1.2}
+          theme={theme}
+        >
+          {image}
+        </ImgContainer>
+      )}
+      <div>{children}</div>
+    </StyledSection>
+  );
+};
 
 IntroSection.propTypes = {
   children: PropTypes.node.isRequired,

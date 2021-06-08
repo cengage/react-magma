@@ -82,8 +82,8 @@ describe('SkipLink', () => {
     );
     const link = container.querySelector('a');
 
-    expect(link).toHaveStyleRule('background', 'rgba(0,0,0,0)');
-    expect(link).toHaveStyleRule('color', '#3A8200');
+    expect(link).toHaveStyle('background: rgba(0,0,0,0)');
+    expect(link).toHaveStyle('color: #3A8200');
   });
 
   it('should render the skip link button the correct colors for an inverse button', () => {
