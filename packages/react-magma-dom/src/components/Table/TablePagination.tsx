@@ -9,38 +9,66 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { usePagination } from '../../hooks/usePagination';
+import { XOR } from '../../utils';
+import { useControlled } from '../../hooks/useControlled';
 
-export interface TablePaginationProps
+export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Total number of rows
    */
-  count: number;
+  itemCount: number;
   isInverse?: boolean;
   /**
    * Event that fires when the page number changes
    */
-  onChangePage?: (event: React.SyntheticEvent, newPage: number) => void;
+  onPageChange?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
    * Event that fires when the number of rows per page changes
    */
-  onChangeRowsPerPage?: (newRowsPerPage: number) => void;
-  /**
-   * Zero-based page number
-   *  @default 0
-   */
-  page?: number;
-  /**
-   * Number of rows per page
-   * @default 10
-   */
-  rowsPerPage?: number;
+  onRowsPerPageChange?: (newRowsPerPage: number) => void;
   /**
    * Values added to the rows per page select
    */
   rowsPerPageValues?: number[];
   testId?: string;
 }
+
+export type PagePaginationProps = XOR<
+  {
+    /**
+     * Current page number
+     *  @default 1
+     */
+    page?: number;
+  },
+  {
+    /**
+     * Page selected by default when the component is uncontrolled
+     */
+    defaultPage?: number;
+  }
+>;
+
+export type RowsPaginationProps = XOR<
+  {
+    /**
+     * Number of rows per page when initially rendered
+     */
+    rowsPerPage?: number;
+  },
+  {
+    /**
+     * Number of rows per page by default when component is uncontrolled
+     */
+    defaultRowsPerPage?: number;
+  }
+>;
+
+export type TablePaginationProps = BaseTablePaginationProps &
+  PagePaginationProps &
+  RowsPaginationProps;
 
 const StyledContainer = styled.div<{
   isInverse?: boolean;
@@ -69,12 +97,14 @@ export const TablePagination = React.forwardRef<
 >((props, ref) => {
   const {
     testId,
-    count,
-    onChangePage,
-    onChangeRowsPerPage,
-    page = 0,
-    rowsPerPage = 10,
-    rowsPerPageValues,
+    defaultPage,
+    defaultRowsPerPage = 10,
+    itemCount,
+    onPageChange,
+    onRowsPerPageChange,
+    page: pageProp,
+    rowsPerPage: rowsPerPageProp,
+    rowsPerPageValues = [10, 20, 50, 100],
     ...other
   } = props;
 
@@ -83,40 +113,53 @@ export const TablePagination = React.forwardRef<
 
   const isInverse = useIsInverse(props.isInverse);
 
+  const [rowsPerPage, setRowsPerPageState] = useControlled({
+    controlled: rowsPerPageProp,
+    default: defaultRowsPerPage,
+  });
+
+  const { page, pageButtons, setPageState } = usePagination({
+    count: itemCount / rowsPerPage,
+    defaultPage,
+    numberOfEdgePages: 0,
+    numberOfAdjacentPages: 0,
+    onPageChange,
+    page: pageProp,
+  });
+
   const selectContainerStyle = { display: 'flex', alignItems: 'center' };
-  const isLastPage = (page + 1) * rowsPerPage >= count;
+  const isLastPage = page * rowsPerPage >= itemCount;
 
-  const displayPageStart = page * rowsPerPage + 1;
-  const displayPageEnd = isLastPage ? count : (page + 1) * rowsPerPage;
+  const displayPageStart = (page - 1) * rowsPerPage + 1;
+  const displayPageEnd = isLastPage ? itemCount : page * rowsPerPage;
 
-  const rowsPerPageItems = rowsPerPageValues
-    ? rowsPerPageValues.map(value => ({ label: value.toString(), value }))
-    : [
-        { label: '10', value: 10 },
-        { label: '20', value: 20 },
-        { label: '50', value: 50 },
-        { label: '100', value: 100 },
-      ];
+  const rowsPerPageItems = rowsPerPageValues.map(value => ({
+    label: value.toString(),
+    value,
+  }));
 
-  function handleChangeRowsPerPage(changes) {
-    onChangeRowsPerPage &&
-      typeof onChangeRowsPerPage === 'function' &&
-      onChangeRowsPerPage(changes.selectedItem.value);
+  function handleRowsPerPageChange(changes) {
+    const { value } = changes.selectedItem;
+
+    if (!pageProp) {
+      setPageState(1);
+
+      onPageChange &&
+        typeof onPageChange === 'function' &&
+        onPageChange({} as React.SyntheticEvent, 1);
+    }
+
+    if (!rowsPerPageProp) {
+      setRowsPerPageState(value);
+    }
+
+    onRowsPerPageChange &&
+      typeof onRowsPerPageChange === 'function' &&
+      onRowsPerPageChange(value);
   }
 
-  function handleChangePage(event: React.SyntheticEvent, pageNum: number) {
-    onChangePage &&
-      typeof onChangePage === 'function' &&
-      onChangePage(event, pageNum);
-  }
-
-  function handlePreviousClick(event: React.SyntheticEvent) {
-    handleChangePage(event, page - 1);
-  }
-
-  function handleNextClick(event: React.SyntheticEvent) {
-    handleChangePage(event, page + 1);
-  }
+  const previousButton = pageButtons[0];
+  const nextButton = pageButtons[pageButtons.length - 1];
 
   return (
     <StyledContainer
@@ -133,30 +176,30 @@ export const TablePagination = React.forwardRef<
         selectedItem={rowsPerPageItems.find(item => item.value === rowsPerPage)}
         isInverse={isInverse}
         items={rowsPerPageItems}
-        onSelectedItemChange={handleChangeRowsPerPage}
+        onSelectedItemChange={handleRowsPerPageChange}
       />
 
       <PageCount isInverse={isInverse} theme={theme}>
-        {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${count}`}
+        {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
 
       <IconButton
         aria-label={i18n.table.pagination.previousAriaLabel}
         color={ButtonColor.secondary}
-        disabled={page <= 0}
+        disabled={previousButton.disabled}
         icon={<WestIcon />}
         isInverse={isInverse}
-        onClick={handlePreviousClick}
+        onClick={previousButton.onClick}
         testId="previousBtn"
         variant={ButtonVariant.link}
       />
       <IconButton
         aria-label={i18n.table.pagination.nextAriaLabel}
         color={ButtonColor.secondary}
-        disabled={isLastPage}
+        disabled={nextButton.disabled}
         icon={<EastIcon />}
         isInverse={isInverse}
-        onClick={handleNextClick}
+        onClick={nextButton.onClick}
         testId="nextBtn"
         variant={ButtonVariant.link}
       />

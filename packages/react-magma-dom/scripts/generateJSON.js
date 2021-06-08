@@ -12,10 +12,7 @@ const tsconfig = typescript.findConfigFile(
   typescript.sys.fileExists
 );
 const outPath = './dist/properties.json';
-const inPath = [
-  './src/components',
-  './src/hooks'
-];
+const inPath = ['./src/components', './src/hooks'];
 
 const defaultDescriptions = {
   children: 'The content of the component',
@@ -86,6 +83,7 @@ const filterJson = () => {
 
     return sortObject(
       children
+        .filter(a => a)
         .filter(filterReactDefinitions)
         .filter(filterMotionDefinitions)
         .filter(filterEmotion)
@@ -125,7 +123,10 @@ const filterJson = () => {
   const filterReactDefinitions = definition =>
     definition.sources[0].fileName !== 'node_modules/@types/react/index.d.ts';
 
-  const filterMotionDefinitions = definition => !definition.sources[0].fileName.startsWith('node_modules/framer-motion/types');
+  const filterMotionDefinitions = definition =>
+    !definition.sources[0].fileName.startsWith(
+      'node_modules/framer-motion/types'
+    );
 
   const formatTags = (tags = []) => {
     return tags.reduce((acc, { tag, text }) => {
@@ -135,7 +136,7 @@ const filterJson = () => {
 
   const formatChild = (acc, child) => {
     const tags = formatTags((child.comment && child.comment.tags) || []);
-    if(child && child.type){
+    if (child && child.type) {
       return {
         ...acc,
         [child.name]: {
@@ -150,8 +151,8 @@ const filterJson = () => {
         },
       };
     }
-    console.log(child)
-    return {}
+    console.log(child);
+    return {};
   };
 
   const jsonFinal = jsonOrig.children

@@ -7,28 +7,80 @@ import { PageButton } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { usePagination } from '../../hooks/usePagination';
 
-export interface PaginationProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BasePaginationProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
+  isInverse?: boolean;
+  page?: number;
+  /**
+   * The total number of Pagination buttons
+   * @default 1
+   */
+  count?: number;
+  /**
+   * If true, disables all of the Pagination buttons
+   * @default false
+   */
+  disabled?: boolean;
+  /**
+   * If true, hides the next page button
+   * @default false
+   */
+  hideNextButton?: boolean;
+  /**
+   * If true, hides the previous page button
+   * @default false
+   */
+  hidePreviousButton?: boolean;
+  /**
+   * Number of page buttons before and after the current page
+   * @default 1
+   */
+  numberOfAdjacentPages?: number;
+  /**
+   * Number of page buttons at the beginning and end of the page number buttons list
+   * @default 1
+   */
+  numberOfEdgePages?: number;
+  /**
+   * Event that fires when the page number changes
+   */
+  onPageChange?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
    * Size toggles between default and large variant buttons.
    */
   size?: PageButtonSize;
   /**
-   * Count designates the total number of Pagination buttons.
+   * If true, shows the first page button
+   * @default false
    */
-  count: number;
+  showFirstButton?: boolean;
   /**
-   * Default Page allows the user to toggle which Pagination button is active by default.
+   * If true, shows the last page button
+   * @default false
+   */
+  showLastButton?: boolean;
+}
+
+export interface ControlledPaginationProps extends BasePaginationProps {
+  defaultPage: never;
+  /**
+   * Current page number
+   */
+  page?: number;
+}
+export interface UncontrolledPaginationProps extends BasePaginationProps {
+  /**
+   * Page selected by default when the component is uncontrolled
    */
   defaultPage?: number;
-
-  isInverse?: boolean;
-  /**
-   * Event that fires when the active page changes
-   */
-  onPageChange?: (pageNum: number) => void;
+  page: number;
 }
+export type PaginationProps =
+  | ControlledPaginationProps
+  | UncontrolledPaginationProps;
 
 export enum PageButtonSize {
   medium = 'medium',
@@ -133,9 +185,17 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
     const {
       count,
-      defaultPage = 1,
+      defaultPage,
+      disabled,
+      hideNextButton,
+      hidePreviousButton,
       isInverse,
+      numberOfAdjacentPages,
+      numberOfEdgePages,
+      page,
       size = PageButtonSize.medium,
+      showFirstButton,
+      showLastButton,
       testId,
       onPageChange,
       ...other
@@ -143,77 +203,77 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const theme = React.useContext(ThemeContext);
     const buttonSize =
       size === PageButtonSize.large ? ButtonSize.large : ButtonSize.medium;
-    const [activePage, setActivePage] = React.useState(defaultPage);
 
-    function handlePreviousClick() {
-      handlePageChange(activePage - 1);
-    }
-    function handleNextClick() {
-      handlePageChange(activePage + 1);
-    }
-    function handlePageButtonClick(pageNumber) {
-      handlePageChange(pageNumber);
-    }
-    function handlePageChange(pageNumber) {
-      setActivePage(pageNumber);
-      if (onPageChange) {
-        onPageChange(pageNumber);
-      }
-    }
+    const { pageButtons } = usePagination({
+      count,
+      defaultPage,
+      disabled,
+      hideNextButton,
+      hidePreviousButton,
+      numberOfAdjacentPages,
+      numberOfEdgePages,
+      onPageChange,
+      page,
+      showFirstButton,
+      showLastButton,
+    });
 
     const i18n = React.useContext(I18nContext);
 
-    const buttons = [];
-    for (let i = 1; i < count + 1; i++) {
-      buttons.push(
-        <StyledListItem key={i}>
-          <PageButton
-            aria-label={`${i18n.pagination.pageButtonLabel} ${i}`}
-            onClick={() => {
-              handlePageButtonClick(i);
-            }}
-            isInverse={isInverse}
-            isSelected={activePage === i ? true : false}
-            size={buttonSize}
-            key={i}
-          >
-            {i}
-          </PageButton>
-        </StyledListItem>
-      );
-    }
     return (
       <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
         <StyledList>
-          <StyledListItem>
-            <NavButton
-              variant={isInverse ? ButtonVariant.outline : ButtonVariant.solid}
-              onClick={handlePreviousClick}
-              color={ButtonColor.secondary}
-              aria-label={i18n.pagination.previousButtonLabel}
-              icon={<ArrowBackIcon />}
-              isInverse={isInverse}
-              theme={theme}
-              shape={ButtonShape.leftCap}
-              size={buttonSize}
-              disabled={activePage === 1 ? true : false}
-            />
-          </StyledListItem>
-          {buttons}
-          <StyledListItem>
-            <NavButton
-              onClick={handleNextClick}
-              color={ButtonColor.secondary}
-              aria-label={i18n.pagination.nextButtonLabel}
-              icon={<ArrowForwardIcon />}
-              isInverse={isInverse}
-              theme={theme}
-              shape={ButtonShape.rightCap}
-              size={buttonSize}
-              disabled={activePage === count ? true : false}
-              variant={isInverse ? ButtonVariant.outline : ButtonVariant.solid}
-            />
-          </StyledListItem>
+          {pageButtons.map(
+            ({ 'aria-current': ariaCurrent, page, type, ...other }, index) => {
+              if (type === 'start-ellipsis' || type === 'end-ellipsis') {
+                return '...';
+              } else if (type === 'page') {
+                return (
+                  <StyledListItem
+                    aria-current={Boolean(ariaCurrent)}
+                    key={index}
+                  >
+                    <PageButton
+                      isInverse={isInverse}
+                      size={buttonSize}
+                      key={index}
+                      {...other}
+                    >
+                      {page}
+                    </PageButton>
+                  </StyledListItem>
+                );
+              } else if (type === 'previous' || type === 'next') {
+                return (
+                  <StyledListItem>
+                    <NavButton
+                      variant={
+                        isInverse ? ButtonVariant.outline : ButtonVariant.solid
+                      }
+                      color={ButtonColor.secondary}
+                      aria-label={i18n.pagination[`${type}ButtonLabel`]}
+                      icon={
+                        type === 'previous' ? (
+                          <ArrowBackIcon />
+                        ) : (
+                          <ArrowForwardIcon />
+                        )
+                      }
+                      isInverse={isInverse}
+                      theme={theme}
+                      shape={
+                        type === 'previous'
+                          ? ButtonShape.leftCap
+                          : ButtonShape.rightCap
+                      }
+                      size={buttonSize}
+                      {...other}
+                    />
+                  </StyledListItem>
+                );
+              }
+            }
+          )}
         </StyledList>
       </StyledNav>
     );

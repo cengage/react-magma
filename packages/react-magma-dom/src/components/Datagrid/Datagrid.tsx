@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { UseDataPaginationReturn } from '../../hooks/useDataPagination';
+import { useControlled } from '../../hooks/useControlled';
+import { useDataPagination } from '../../hooks/useDataPagination';
+import { XOR } from '../../utils';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import {
   Table,
@@ -12,6 +14,7 @@ import {
   TableProps,
   TableHeaderCellProps,
   TableRowColor,
+  TablePaginationProps,
 } from '../Table';
 
 export interface DatagridColumn extends TableHeaderCellProps {
@@ -47,7 +50,7 @@ export interface DatagridRow {
 /**
  * @children required
  */
-export interface DatagridProps extends TableProps {
+export interface BaseDatagridProps extends TableProps {
   /**
    * Column data to be displayed in the table header
    */
@@ -72,48 +75,89 @@ export interface DatagridProps extends TableProps {
    */
   onSelectedRowsChange?: (newSelectedRows: (string | number)[]) => void;
   /**
-   * Pagination data used to create the pagination footer. Created using the useDataPagination hook.
+   * Pagination data used to create the pagination footer. Created using the usePagination hook.
    */
-  pagination?: { count: number } & UseDataPaginationReturn;
-  /**
-   * Array of rows that are selected in the table
-   */
-  selectedRows?: (string | number)[];
+  paginationProps?: Partial<TablePaginationProps>;
 }
+
+export type DatagridSelectedRowsProps = XOR<
+  {
+    /**
+     * Array of rows that are selected in the table when component is controlled
+     */
+    selectedRows?: (string | number)[];
+  },
+  {
+    /**
+     * Array of rows that are selected in the table on render when component is uncontrolled
+     */
+    defaultSelectedRows?: (string | number)[];
+  }
+>;
+
+export type DatagridProps = BaseDatagridProps & DatagridSelectedRowsProps;
 
 export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
   (props, ref) => {
     const {
       columns,
+      defaultSelectedRows = [],
       onHeaderSelect,
       onRowSelect,
       onSelectedRowsChange,
-      pagination,
+      paginationProps = {},
       rows,
-      selectedRows: controlledSelectedRows,
+      selectedRows: selectedRowsProp,
       ...other
     } = props;
-    const [selectedRows, updatedSelectedRows] = React.useState<
-      (string | number)[]
-    >(controlledSelectedRows || []);
+    const [rowsToShow, setRowsToShow] = React.useState<DatagridRow[]>([]);
+    const [selectedRows, updatedSelectedRows] = useControlled({
+      controlled: selectedRowsProp,
+      default: defaultSelectedRows,
+    });
 
-    const isControlled = controlledSelectedRows ? true : false;
-    const isPaginated = Boolean(pagination);
+    const isControlled = selectedRowsProp ? true : false;
 
-    const rowsToShow = isPaginated
-      ? rows.slice(
-          pagination.page * pagination.rowsPerPage,
-          pagination.page * pagination.rowsPerPage + pagination.rowsPerPage
-        )
-      : rows;
+    const {
+      getPageItems,
+      itemsPerPage: rowsPerPage,
+      onItemsPerPageChange,
+    } = useDataPagination({
+      defaultItemsPerPage: paginationProps.defaultRowsPerPage,
+      items: rows,
+      itemsPerPage: paginationProps.rowsPerPage,
+      onItemsPerPageChange: paginationProps.onRowsPerPageChange,
+    });
 
-    const filteredRows = rowsToShow.filter(row => !row.isSelectableDisabled);
+    const [currentPage, setCurrentPage] = useControlled({
+      controlled: paginationProps.page,
+      default: paginationProps.defaultPage || 1,
+    });
 
     React.useEffect(() => {
-      if (Array.isArray(controlledSelectedRows)) {
-        updatedSelectedRows(controlledSelectedRows);
-      }
-    }, [controlledSelectedRows]);
+      setRowsToShow(getPageItems(currentPage));
+    }, [currentPage, rowsPerPage]);
+
+    const { defaultPage: _, ...passedOnPaginationProps } = paginationProps;
+
+    passedOnPaginationProps.page = currentPage;
+    passedOnPaginationProps.itemCount = rows.length;
+    passedOnPaginationProps.rowsPerPage = rowsPerPage;
+    passedOnPaginationProps.onRowsPerPageChange = onItemsPerPageChange;
+    passedOnPaginationProps.onPageChange = React.useCallback(
+      (event, newPage: number) => {
+        if (!paginationProps.page) {
+          setCurrentPage(newPage);
+        }
+
+        paginationProps.onPageChange &&
+          typeof paginationProps.onPageChange === 'function' &&
+          paginationProps.onPageChange(event, newPage);
+      },
+      [paginationProps.onPageChange]
+    );
+
+    const filteredRows = rowsToShow.filter(row => !row.isSelectableDisabled);
 
     const headerRowStatus =
       selectedRows.length === filteredRows.length
@@ -199,7 +243,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             ))}
           </TableBody>
         </Table>
-        {isPaginated && <TablePagination {...pagination} />}
+        <TablePagination itemCount={rows.length} {...passedOnPaginationProps} />
       </>
     );
   }
