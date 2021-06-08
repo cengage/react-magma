@@ -9,6 +9,7 @@ const Template: Story<SearchProps> = args => (
     onSearch={term => {
       alert(term);
     }}
+    isClearable
   />
 );
 

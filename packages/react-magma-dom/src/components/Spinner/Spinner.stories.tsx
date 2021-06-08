@@ -1,11 +1,25 @@
 import React from 'react';
-import { Spinner } from '.';
+import { Spinner, SpinnerProps } from '.';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+const Template: Story<SpinnerProps> = args => <Spinner {...args} />;
 
 export default {
-  component: Spinner,
   title: 'Spinner',
-};
+  component: Spinner,
+  argTypes: {
+    color: {
+      control: {
+        type: 'text',
+      },
+    },
+    size: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
+} as Meta;
 
-export const Default = () => {
-  return <Spinner />;
-};
+export const Default = Template.bind({});
+Default.args = {};
