@@ -18,6 +18,11 @@ export default {
         options: InputSize,
       },
     },
+    isClearable: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   errorMessage: '',
 } as Meta;
