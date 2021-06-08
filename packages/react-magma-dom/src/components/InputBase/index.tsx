@@ -8,6 +8,7 @@ import { ClearIcon, IconProps } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
+import { useForkedRef } from '../../utils';
 
 export enum InputSize {
   large = 'large',
@@ -305,7 +306,7 @@ function getIconSize(size: string, theme: ThemeInterface) {
 }
 
 export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
-  (props, ref) => {
+  (props, forwardedRef) => {
     const {
       children,
       containerStyle,
@@ -344,11 +345,15 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       }
     }, [props.value]);
 
-    const handleClearInput = () => {
+    const inputRef = React.useRef<HTMLInputElement>();
+    const ref = useForkedRef(forwardedRef, inputRef);
+
+    function handleClearInput() {
       {
         setValue('');
+        inputRef.current.focus();
       }
-    };
+    }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       props.onChange &&
