@@ -90,6 +90,31 @@ export function Example() {
 }
 ```
 
+## OnChange Event
+
+```tsx
+import React from 'react';
+import { Card, CardBody, Paragraph, TimePicker } from 'react-magma-dom';
+
+export function Example() {
+  const [timeValue, setTimeValue] = React.useState('');
+
+  return (
+    <Card>
+      <CardBody>
+        <Paragraph>
+          <strong>Time Value:</strong> {timeValue}
+        </Paragraph>
+        <TimePicker
+          labelText="Time Due"
+          onChange={value => setTimeValue(value)}
+        />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Custom Styles
 
 The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be used for custom styling.
@@ -139,8 +164,8 @@ export function Example() {
 
 ## TimePicker Props
 
-**This component uses `forwardRef`. The ref is applied to the `input` element that is displayed visually and stores the value for full time value (hours, minutes, am/pm).**
+**This component uses `forwardRef`. The ref is applied to the hidden `input` element that stores the value for full time value (hours, minutes, am/pm).**
 
-All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the outer `input` element that gets rendered.
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the hidden `input` element that gets rendered.
 
 <TimePickerProps />

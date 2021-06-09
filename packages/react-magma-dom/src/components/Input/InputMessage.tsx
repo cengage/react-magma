@@ -62,8 +62,8 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
         theme={theme}
       >
         {hasError && (
-          <IconWrapper theme={theme}>
-            <ErrorIcon aria-label="Error" size={theme.iconSizes.small} />
+          <IconWrapper aria-label="Error" role="img" theme={theme}>
+            <ErrorIcon size={theme.iconSizes.small} />
           </IconWrapper>
         )}
         <div>{children}</div>
