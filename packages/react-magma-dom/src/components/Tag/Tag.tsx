@@ -13,32 +13,6 @@ import { Omit, XOR } from '../../utils';
  * @children required
  */
 
-/*
-
-  TO DO
-
-  * Internationalization
-
-  * If it's clickable, wrap in <button>, if not wrap in <span>
-
-  * Move CSS to Magma.ts
-
-Clickable determination:
-
-line 83 
-
-line 98
-
-Import XOR (line 4) (edited) 
-
-Set up BaseTagProps (line 53) (edited) 
-
-Set up TagClickEventProps (which is an xor line 83)
-
-Return as your type TagProps = BaseTagProps & TagClickEventProps (line 98)
-
-*/
-
 export enum TagColor {
   default = 'default',
   primary = 'primary',
@@ -51,7 +25,7 @@ export enum TagSize {
   small = 'small',
 }
 
-export interface BaseTagProps
+export interface deletable
   extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   color?: TagColor;
   disabled?: boolean;
@@ -66,16 +40,30 @@ export interface BaseTagProps
   theme?: ThemeInterface;
 }
 
-export interface DeletableTagProps extends BaseTagProps {
+export interface nonDeletable
+  extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
+  color?: TagColor;
+  disabled?: boolean;
+  testId?: string;
+  icon?: React.ReactElement<IconProps>;
+  isClickable?: boolean;
+  isInverse?: boolean;
+  size?: TagSize;
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
+}
+
+export interface DeletableTagProps extends deletable {
   onDelete: () => void;
 }
 
-export interface ClickableTagProps extends BaseTagProps {
+export interface ClickableTagProps extends nonDeletable {
   onClick?: () => void;
 }
 
 export type TagProps = XOR<DeletableTagProps, ClickableTagProps>;
-//////
 
 function buildButtonBackground(props) {
   if (props.isInverse) {
