@@ -32,12 +32,12 @@ describe('Tag', () => {
     });
   });
 
-  it('Supports i18n', () => {
-    const example = 'example i18n';
-    const { getByText } = render(<I18nContext.Provider value={{ ...defaultI18n, example}}>
-      <Tag>override default i18n value: </Tag>
-    </I18nContext.Provider>);
+  // it('Supports i18n', () => {
+  //   const example = 'example i18n';
+  //   const { getByText } = render(<I18nContext.Provider value={{ ...defaultI18n, example}}>
+  //     <Tag>override default i18n value: </Tag>
+  //   </I18nContext.Provider>);
 
-    expect(getByText(example)).toBeInTheDocument();
-  })
+  //   expect(getByText(example)).toBeInTheDocument();
+  // })
 });
