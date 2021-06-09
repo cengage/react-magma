@@ -25,7 +25,7 @@ export enum TagSize {
   small = 'small',
 }
 
-export interface deletable
+export interface BaseTagProps
   extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   color?: TagColor;
   disabled?: boolean;
@@ -39,30 +39,12 @@ export interface deletable
    */
   theme?: ThemeInterface;
 }
-
-export interface nonDeletable
-  extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
-  color?: TagColor;
-  disabled?: boolean;
-  testId?: string;
-  icon?: React.ReactElement<IconProps>;
-  isClickable?: boolean;
-  isInverse?: boolean;
-  size?: TagSize;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
-}
-
-export interface DeletableTagProps extends deletable {
+export interface DeletableTagProps extends BaseTagProps {
   onDelete: () => void;
 }
-
-export interface ClickableTagProps extends nonDeletable {
+export interface ClickableTagProps extends BaseTagProps {
   onClick?: () => void;
 }
-
 export type TagProps = XOR<DeletableTagProps, ClickableTagProps>;
 
 function buildButtonBackground(props) {
