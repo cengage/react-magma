@@ -46,6 +46,11 @@ export interface DatePickerProps
    * Style properties for the input element
    */
   inputStyle?: React.CSSProperties;
+  /**
+   * Clear contents of input by clicking a clear button
+   * @default false
+   */
+  isClearable?: boolean;
   isInverse?: boolean;
   /**
    * Style properties for the label element
@@ -118,7 +123,7 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
   margin-top: -${props => props.theme.spaceScale.spacing07};
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
-  position: absolute;
+  position: fixed;
   transition: opacity 0.2s ease-in-out 0s;
   width: 320px;
   z-index: ${props => (props.opened ? '998' : '-1')};
@@ -292,11 +297,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         event.preventDefault();
         setCalendarOpened(false);
         inputRef.current.focus();
-      }
-
-      if (event.key === '?') {
-        event.preventDefault();
-        setShowHelperInformation(true);
       }
     }
 

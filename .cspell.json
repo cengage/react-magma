@@ -1,80 +1,85 @@
 {
-  "version": "0.1",
-  "language": "en",
-  "import": [
-    "./node_modules/cspell-dict-lorem-ipsum/cspell-ext.json",
-    "./node_modules/cspell-dict-es-es/cspell-ext.json"
-  ],
-  "allowCompoundWords": true,
-  "ignorePaths": [
-    "**/coverage/**",
-    "**/node_modules/**",
-    "**/dist/**",
-    "**/fixtures/**",
-    "**/public/**",
-    "CHANGELOG.md",
-    "**/changelog.mdx"
-  ],
-  "ignoreRegExpList": [],
-  "dictionaries": [
-    "typescript",
-    "softwareTerms",
-    "node",
-    "en_US",
-    "npm",
-    "html",
-    "companies",
-    "misc",
-    "filetypes",
-    "lorem-ipsum",
-    "es-es"
-  ],
-  "words": [
-    "amgam",
-    "bolds",
-    "buzzy",
-    "Cengage",
-    "closebtn",
-    "CNOW",
-    "dropup",
-    "Entypo",
-    "fadein",
-    "Horiz",
-    "invision",
-    "labeledby",
-    "ldquo",
-    "Linkedin",
-    "ndash",
-    "npmrc",
-    "PGAB",
-    "PGAR",
-    "popperjs",
-    "prettierrc",
-    "rdquo",
-    "React's",
-    "slidein",
-    "Spotify",
-    "testid",
-    "UI's",
-    "uuidv",
-    "WCAG",
-    "xsmall",
-    "Iphone",
-    "Dehaze",
-    "Hvac",
-    "Ondemand",
-    "Bento",
-    "Kabaddi",
-    "unmount"
-  ],
-  "overrides": [
-    {
-      "filename": "**/*.{ts,js}",
-      "ignoreRegExpList": ["/@[a-z]+/", "/#(end)?region/"],
-      "includeRegExpList": [
-        "/\\/\\*[\\s\\S]*?\\*\\/|([^\\\\:]|^)\\/\\/.*$/",
-        "/(\\/\\/[^\\n\\r]*[\\n\\r]+)/"
-      ]
-    }
-  ]
+    "version": "0.1",
+    "language": "en",
+    "import": [
+        "./node_modules/cspell-dict-lorem-ipsum/cspell-ext.json",
+        "./node_modules/cspell-dict-es-es/cspell-ext.json"
+    ],
+    "allowCompoundWords": true,
+    "ignorePaths": [
+        "**/coverage/**",
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/fixtures/**",
+        "**/public/**",
+        "CHANGELOG.md",
+        "**/changelog.mdx"
+    ],
+    "ignoreRegExpList": [],
+    "dictionaries": [
+        "typescript",
+        "softwareTerms",
+        "node",
+        "en_US",
+        "npm",
+        "html",
+        "companies",
+        "misc",
+        "filetypes",
+        "lorem-ipsum",
+        "es-es"
+    ],
+    "words": [
+        "amgam",
+        "Bento",
+        "bolds",
+        "buzzy",
+        "Cengage",
+        "closebtn",
+        "CNOW",
+        "Dehaze",
+        "dropup",
+        "Entypo",
+        "fadein",
+        "Horiz",
+        "Hvac",
+        "invision",
+        "Iphone",
+        "Kabaddi",
+        "labeledby",
+        "ldquo",
+        "Linkedin",
+        "ndash",
+        "npmrc",
+        "Ondemand",
+        "PGAB",
+        "PGAR",
+        "pkgs",
+        "popperjs",
+        "prettierrc",
+        "rdquo",
+        "React's",
+        "slidein",
+        "Spotify",
+        "testid",
+        "tsdx",
+        "UI's",
+        "unmount",
+        "uuidv",
+        "WCAG",
+        "xsmall"
+    ],
+    "overrides": [
+        {
+            "filename": "**/*.{ts,js}",
+            "ignoreRegExpList": [
+                "/@[a-z]+/",
+                "/#(end)?region/"
+            ],
+            "includeRegExpList": [
+                "/\\/\\*[\\s\\S]*?\\*\\/|([^\\\\:]|^)\\/\\/.*$/",
+                "/(\\/\\/[^\\n\\r]*[\\n\\r]+)/"
+            ]
+        }
+    ]
 }

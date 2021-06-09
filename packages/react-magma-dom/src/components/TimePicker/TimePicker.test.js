@@ -381,13 +381,13 @@ describe('TimePicker', () => {
     });
 
     it('should use the i18n context defaults', () => {
-      const { getByLabelText } = render(<TimePicker label="label" />);
+      const { getByLabelText } = render(<TimePicker labelText="label" />);
 
       expect(
-        getByLabelText(defaultI18n.timePicker.hoursAriaLabel)
+        getByLabelText(`label, ${defaultI18n.timePicker.hoursAriaLabel}`)
       ).toBeInTheDocument();
       expect(
-        getByLabelText(defaultI18n.timePicker.minutesAriaLabel)
+        getByLabelText(`label, ${defaultI18n.timePicker.minutesAriaLabel}`)
       ).toBeInTheDocument();
     });
   });

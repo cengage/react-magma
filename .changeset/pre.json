@@ -1,20 +1,11 @@
 {
   "mode": "pre",
-  "tag": "alpha",
+  "tag": "next",
   "initialVersions": {
-    "react-magma-dom": "2.3.12",
-    "react-magma-icons": "2.0.4",
-    "@cengage-patterns/header": "0.1.2",
-    "react-magma-docs": "2.1.11",
+    "react-magma-dom": "2.4.0",
+    "@cengage-patterns/header": "1.0.0",
+    "react-magma-docs": "2.2.0",
     "react-magma-landing": "1.0.10"
   },
-  "changesets": [
-    "green-trees-exist",
-    "lazy-mangos-attend",
-    "lazy-pugs-decide",
-    "neat-starfishes-nail",
-    "rich-mice-learn",
-    "six-bears-sing",
-    "spicy-seals-speak"
-  ]
+  "changesets": []
 }

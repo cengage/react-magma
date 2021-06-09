@@ -3,6 +3,8 @@ import { Input, InputProps } from '.';
 import { InputIconPosition, InputSize } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { NotificationsIcon } from 'react-magma-icons';
+import { Card, CardBody } from '../Card';
+import { magma } from '../../theme/magma';
 
 const Template: Story<InputProps> = args => (
   <Input {...args} labelText="Example" />
@@ -16,6 +18,11 @@ export default {
       control: {
         type: 'select',
         options: InputSize,
+      },
+    },
+    isClearable: {
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -72,3 +79,18 @@ ClickableIconLarge.args = {
   ...ClickableIcon.args,
   inputSize: InputSize.large,
 };
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
+Inverse.decorators = [
+  Story => (
+    <Card background={magma.colors.foundation} isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];

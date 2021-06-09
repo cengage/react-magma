@@ -81,6 +81,19 @@ export function Example() {
 }
 ```
 
+## Clear Value
+
+Setting `isClearable` on an input will add a button that clears the value of an input when clicked.
+The button will appear when the input has a value.
+
+```tsx
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return <Input labelText="Value" isClearable />;
+}
+```
+
 ## Placeholder
 
 The `placeholder` text of an input can be set using the `placeholder` prop.

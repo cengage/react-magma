@@ -117,6 +117,7 @@ export {
   LoadingIndicator,
   LoadingIndicatorProps,
 } from './components/LoadingIndicator';
+export { NativeSelect, NativeSelectProps } from './components/NativeSelect';
 export { NavTabs } from './components/NavTabs';
 export { NavTab } from './components/NavTabs/NavTab';
 export { Pagination } from './components/Pagination';
@@ -217,5 +218,8 @@ export { useMediaQuery } from './hooks/useMediaQuery';
 export { usePagination } from './hooks/usePagination';
 export { InverseContext, useIsInverse } from './inverse';
 
-export * from './components/Datagrid';
+export * from './components/Accordion';
 export * from './components/Transition';
+export * from './components/Drawer';
+
+export * from './components/FormFieldContainer';
