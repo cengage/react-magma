@@ -11,6 +11,7 @@ import {
 
 import { LegendButton } from './LegendButton';
 import { ThemeContext } from '../../theme/ThemeContext';
+
 import magmaTheme from './magma-charts';
 
 export interface ChartProps {
@@ -25,22 +26,22 @@ export const Chart = props => {
 
   const XAxisStyles = {
     tickLabels: {
-      fontSize: 8,
+      fontSize: 14,
     },
     axisLabel: {
-      padding: 28,
-      fontSize: 10,
+      padding: 32,
+      fontSize: 16,
       fontWeight: 'bold',
     },
   };
 
   const YAxisStyles = {
     tickLabels: {
-      fontSize: 8,
+      fontSize: 14,
     },
     axisLabel: {
-      padding: 40,
-      fontSize: 10,
+      padding: 56,
+      fontSize: 16,
       fontWeight: 'bold',
     },
   };
@@ -73,14 +74,31 @@ export const Chart = props => {
     }
   }
 
+  const containerRef = React.useRef<HTMLDivElement>();
+
+  const [width, setWidth] = React.useState(800);
+
+  const updateWidth = () => {
+    setWidth(containerRef.current.clientWidth);
+  };
+
+  React.useEffect(() => {
+    updateWidth();
+    window.addEventListener('resize', updateWidth);
+
+    return () => {
+      window.removeEventListener('resize', updateWidth);
+    };
+  }, []);
+
   return (
-    <div style={{ maxHeight: '600px', maxWidth: '800px' }}>
+    <div ref={containerRef} style={{ maxHeight: '600px', maxWidth: '800px' }}>
       <VictoryChart
-        domainPadding={24}
-        theme={magmaTheme}
+        domainPadding={32}
         height={400}
-        padding={{ top: 8, left: 56, right: 48, bottom: 24 }}
-        width={580}
+        padding={{ top: 8, left: 80, right: 0, bottom: 88 }}
+        theme={magmaTheme}
+        width={width}
       >
         <title>
           Annual sales figures for 2019 description - Lorem ipsum dolor sit
