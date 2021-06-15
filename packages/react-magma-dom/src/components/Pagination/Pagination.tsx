@@ -240,7 +240,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               if (type === 'start-ellipsis' || type === 'end-ellipsis') {
                 return (
                   <StyledEllipsis
-                    aria-label={i18n.pagination.ellipsis}
                     isInverse={isInverse}
                     size={size}
                     theme={theme}

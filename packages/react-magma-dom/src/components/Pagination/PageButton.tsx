@@ -71,8 +71,8 @@ const StyledPageButton = styled(Button)`
     content: '';
     border: ${props =>
       props.isInverse
-        ? `2px solid ${props.theme.colors.focusInverse}`
-        : `2px solid ${props.theme.colors.focus}`};
+        ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
+        : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
     border-style: dotted;
     height: calc(100% + 14px);
     left: -7px;
