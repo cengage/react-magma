@@ -2,7 +2,9 @@
 pageTitle: Pagination API
 title: Pagination
 props:
-  - PaginationProps
+  - BasePaginationProps
+  - ControlledPaginationProps
+  - UncontrolledPaginationProps
 ---
 
 <DocsHeading to="/design/Pagination/" type="api">
@@ -83,8 +85,18 @@ export function Example() {
 }
 ```
 
-# Pagination Props
+## Pagination Props
 
 **Any other props supplied will be provided to the wrapping `Pagination` element.**
 
-<PaginationProps />
+### Common Props
+
+<BasePaginationProps />
+
+### Controlled Props
+
+<ControlledPaginationProps />
+
+### Uncontrolled Props
+
+<UncontrolledPaginationProps />
