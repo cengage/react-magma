@@ -2,46 +2,103 @@ import React from 'react';
 import { Card, CardBody } from '../Card';
 import { AccountCircleIcon } from 'react-magma-icons';
 import { magma } from '../../theme/magma';
+import { Story, Meta } from '@storybook/react/types-6-0';
 import { Tag, TagColor, TagProps, TagSize } from '.';
 
+const Template: Story<TagProps> = args => <Tag {...args}>Text Label</Tag>;
+
+const TemplateIcon: Story<TagProps> = args => (
+  <Tag {...args} icon={<AccountCircleIcon />}>
+    Text Label
+  </Tag>
+);
+
 export default {
-  component: Tag,
   title: 'Tag',
+  component: Tag,
   argTypes: {
-    isInverse: {
+    size: {
+      control: {
+        type: 'select',
+        options: TagSize,
+      },
+    },
+    TagColor: {
       control: {
         type: 'boolean',
       },
     },
   },
+} as Meta;
+
+export const Default = Template.bind({});
+Default.args = {};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
 };
 
-export const Default = args => {
+export const WithIcon = TemplateIcon.bind({});
+WithIcon.args = {};
+
+export const Size = Template.bind({});
+Size.args = {
+  ...Default.args,
+  size: TagSize.small,
+};
+
+export const SizeWithIcon = TemplateIcon.bind({});
+SizeWithIcon.args = {
+  ...Default.args,
+  size: TagSize.small,
+};
+
+export const SizeWithDelete = args => {
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  function deleteMe() {
+    setIsVisible(false);
+  }
   return (
     <>
-      <Tag icon={<AccountCircleIcon />} color={TagColor.primary} {...args}>
-        Text Label
-      </Tag>
-      <br />
-      <br />
-      <Tag icon={<AccountCircleIcon />} color={TagColor.lowContrast} {...args}>
-        Text Label
-      </Tag>
-      <br />
-      <br />
-      <Tag color={TagColor.highContrast} {...args}>
-        Text Label
-      </Tag>
-      <br />
-      <br />
-      <Tag {...args}>Text Label</Tag>
+      {isVisible && (
+        <Tag {...args} onDelete={deleteMe}>
+          Text Label
+        </Tag>
+      )}
     </>
   );
+};
+SizeWithDelete.args = {
+  ...Default.args,
+  size: TagSize.small,
+};
+
+export const SizeWithIconDelete = args => {
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  function deleteMe() {
+    setIsVisible(false);
+  }
+  return (
+    <>
+      {isVisible && (
+        <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
+          Text Label
+        </Tag>
+      )}
+    </>
+  );
+};
+SizeWithIconDelete.args = {
+  ...Default.args,
+  size: TagSize.small,
 };
 
 export const OnClick = args => {
   const [counter, setCounter] = React.useState<number>(0);
-
   function updateCounter() {
     setCounter(count => count + 1);
   }
@@ -50,17 +107,13 @@ export const OnClick = args => {
       <p>
         <strong>Counter: </strong> <span>{counter}</span>
       </p>
-      <Tag
-        icon={<AccountCircleIcon />}
-        color={TagColor.primary}
-        onClick={updateCounter}
-        {...args}
-      >
+      <Tag {...args} onClick={updateCounter}>
         Text Label
       </Tag>
     </>
   );
 };
+OnClick.args = {};
 
 export const OnDelete = args => {
   const [isVisible, setIsVisible] = React.useState(true);
@@ -71,109 +124,61 @@ export const OnDelete = args => {
   return (
     <>
       {isVisible && (
-        <Tag
-          icon={<AccountCircleIcon />}
-          color={TagColor.primary}
-          onDelete={deleteMe}
-          onClick={deleteMe}
-          hi={'bye'}
-          {...args}
-        >
+        <Tag {...args} onDelete={deleteMe}>
           Text Label
         </Tag>
       )}
     </>
   );
 };
+OnDelete.args = {};
 
-export const Disabled = args => {
+export const OnDeleteWithIcon = args => {
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  function deleteMe() {
+    setIsVisible(false);
+  }
   return (
     <>
-      <Tag disabled color={TagColor.primary} {...args}>
-        Text Label
-      </Tag>
-      <br />
-      <br />
-      <Tag disabled color={TagColor.lowContrast} {...args}>
-        Text Label
-      </Tag>
-      <br />
-      <br />
-      <Tag disabled color={TagColor.highContrast} {...args}>
-        Text Label
-      </Tag>
-      <br />
-      <br />
-      <Tag disabled {...args}>
-        Text Label
-      </Tag>
+      {isVisible && (
+        <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
+          Text Label
+        </Tag>
+      )}
     </>
   );
 };
+OnDeleteWithIcon.args = {};
 
-export const Size = args => {
-  return (
-    <>
-      <Tag icon={<AccountCircleIcon />} size={TagSize.small} {...args}>
-        Text Label
-      </Tag>
-      <br />
-      <br />
-      <Tag size={TagSize.default}>Text Label</Tag>
-    </>
-  );
+export const Primary = Template.bind({});
+Primary.args = {
+  ...Default.args,
+  color: TagColor.primary,
 };
 
-export const Inverse = args => {
-  return (
-    <Card background={magma.colors.neutral} isInverse>
+export const LowContrast = Template.bind({});
+LowContrast.args = {
+  ...Default.args,
+  color: TagColor.lowContrast,
+};
+
+export const HighContrast = Template.bind({});
+HighContrast.args = {
+  ...Default.args,
+  color: TagColor.highContrast,
+};
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  isInverse: true,
+};
+Inverse.decorators = [
+  Story => (
+    <Card background={magma.colors.foundation} isInverse>
       <CardBody>
-        <Tag color={TagColor.primary} isInverse {...args}>
-          Text Label
-        </Tag>
-        <br />
-        <br />
-        <Tag color={TagColor.lowContrast} isInverse {...args}>
-          Text Label
-        </Tag>
-        <br />
-        <br />
-        <Tag color={TagColor.highContrast} isInverse {...args}>
-          Text Label
-        </Tag>
-        <br />
-        <br />
-        <Tag isInverse {...args}>
-          Text Label
-        </Tag>
+        <Story />
       </CardBody>
     </Card>
-  );
-};
-
-export const InverseDisabled = args => {
-  return (
-    <Card background={magma.colors.neutral} isInverse>
-      <CardBody>
-        <Tag disabled color={TagColor.primary} isInverse {...args}>
-          Text Label
-        </Tag>
-        <br />
-        <br />
-        <Tag disabled color={TagColor.lowContrast} isInverse {...args}>
-          Text Label
-        </Tag>
-        <br />
-        <br />
-        <Tag disabled color={TagColor.highContrast} isInverse {...args}>
-          Text Label
-        </Tag>
-        <br />
-        <br />
-        <Tag disabled isInverse {...args}>
-          Text Label
-        </Tag>
-      </CardBody>
-    </Card>
-  );
-};
+  ),
+];

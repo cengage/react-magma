@@ -225,6 +225,9 @@ export const defaultI18n: I18nInterface = {
     nextButtonLabel: 'Scroll tabs forward',
     previousButtonLabel: 'Scroll tabs back',
   },
+  tag: {
+    deleteAriaLabel: 'Delete tag',
+  },
   timePicker: {
     hoursAriaLabel: 'Hour',
     minutesAriaLabel: 'Minute',

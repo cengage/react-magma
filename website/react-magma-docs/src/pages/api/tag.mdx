@@ -13,24 +13,179 @@ Styled displays of a category via search filters, metadata and other results
 
 ```typescript
 import React from 'react';
-import { tag } from 'react-magma-dom';
+import { Tag } from 'react-magma-dom';
 
 export function Example() {
-  return <Tag>Tag content</Tag>;
+  return (
+    <>
+      <Tag>Text Label</Tag>
+    </>
+  );
 }
 ```
 
-## InverseContext
-
-The `isInverse` prop will render a dark background and light text. The children will
-inherit the `isInverse` prop unless specified otherwise.
+## Icon Tag
 
 ```typescript
 import React from 'react';
-import { tag } from 'react-magma-dom';
+import { Tag } from 'react-magma-dom';
+import { AccountCircleIcon } from 'react-magma-icons';
 
 export function Example() {
-  return <Tag isInverse>Tag content</Tag>;
+  return (
+    <>
+      <Tag icon={<AccountCircleIcon />}>Icon Tag</Tag>
+    </>
+  );
+}
+```
+
+## Clickable Tag
+
+```typescript
+import React from 'react';
+import { Tag, onClick } from 'react-magma-dom';
+
+export function Example() {
+  const [counter, setCounter] = React.useState<number>(0);
+  function updateCounter() {
+    setCounter(count => count + 1);
+  }
+  return (
+    <>
+      <p>
+        <strong>Counter: </strong> <span>{counter}</span>
+      </p>
+      <Tag onClick={updateCounter}>Clickable Tag</Tag>
+    </>
+  );
+}
+```
+
+## Deletable Tag
+
+```typescript
+import React from 'react';
+import { Tag, onDelete, onClick } from 'react-magma-dom';
+
+export function Example() {
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  function deleteMe() {
+    setIsVisible(false);
+  }
+  return <>{isVisible && <Tag onDelete={deleteMe}>Deletable Tag</Tag>}</>;
+}
+```
+
+## Icon With Deletable Tag
+
+```typescript
+import React from 'react';
+import { Tag, onDelete, onClick } from 'react-magma-dom';
+import { AccountCircleIcon } from 'react-magma-icons';
+
+export function Example() {
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  function deleteMe() {
+    setIsVisible(false);
+  }
+  return (
+    <>
+      {isVisible && (
+        <Tag icon={<AccountCircleIcon />} onDelete={deleteMe}>
+          Deletable Tag
+        </Tag>
+      )}
+    </>
+  );
+}
+```
+
+## Colors
+
+```tsx
+import React from 'react';
+import { Tag, TagColor, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Tag>Text Label</Tag>
+      <Tag color={TagColor.primary}>Text Label Primary</Tag>
+      <Tag color={TagColor.lowContrast}>Text Label Low Contrast</Tag>
+      <Tag color={TagColor.highContrast}>Text Label High Contrast</Tag>
+    </>
+  );
+}
+```
+
+## Disabled
+
+```tsx
+import React from 'react';
+import { Tag, TagColor, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Tag disabled>Disabled Label</Tag>
+      <Tag disabled color={TagColor.lowContrast}>
+        Disabled Label Low Contrast
+      </Tag>
+    </>
+  );
+}
+```
+
+## Inverse
+
+`isInverse` is an optional boolean prop, that may be passed in when the component is to be displayed on a dark background.
+
+```tsx
+import React from 'react';
+import { Card, CardBody, Tag, TagColor, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Tag isInverse>Text Label Inverse</Tag>
+        <Tag isInverse color={TagColor.primary}>
+          Text Label Inverse Primary
+        </Tag>
+        <Tag isInverse color={TagColor.lowContrast}>
+          Text Label Inverse Low Contrast
+        </Tag>
+        <Tag isInverse color={TagColor.highContrast}>
+          Text Label Inverse High Contrast
+        </Tag>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Inverse Disabled
+
+```tsx
+import React from 'react';
+import { Card, CardBody, Tag, TagColor, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Tag isInverse disabled>
+          Disabled Label Inverse
+        </Tag>
+        <Tag isInverse disabled color={TagColor.lowContrast}>
+          Disabled Label Inverse Low Contrast
+        </Tag>
+      </CardBody>
+    </Card>
+  );
 }
 ```
 
