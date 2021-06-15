@@ -9,7 +9,7 @@ export interface PaginationProps extends ButtonProps {
   isSelected?: boolean;
 }
 
-function typeSize(props) {
+export function typeSize(props) {
   if (props.size === 'large') {
     return `${props.theme.typeScale.size05.fontSize}`;
   }

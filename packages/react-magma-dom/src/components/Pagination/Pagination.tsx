@@ -3,7 +3,7 @@ import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { darken } from 'polished';
 import { I18nContext } from '../../i18n';
 import { IconButton } from '../IconButton';
-import { PageButton } from './PageButton';
+import { PageButton, typeSize } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -181,6 +181,18 @@ const NavButton = styled(IconButton)`
   }
 `;
 
+const StyledEllipsis = styled.div`
+  align-items: center;
+  border-top: ${BuildBorder};
+  border-right: ${BuildBorder};
+  border-bottom: ${BuildBorder};
+  display: flex;
+  font-size: ${typeSize};
+  height: ${BuildButtonSize};
+  justify-content: center;
+  width: ${BuildButtonSize};
+`;
+
 export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
   (props, ref) => {
     const {
@@ -226,7 +238,16 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           {pageButtons.map(
             ({ 'aria-current': ariaCurrent, page, type, ...other }, index) => {
               if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-                return '...';
+                return (
+                  <StyledEllipsis
+                    aria-label={i18n.pagination.ellipsis}
+                    isInverse={isInverse}
+                    size={size}
+                    theme={theme}
+                  >
+                    ...
+                  </StyledEllipsis>
+                );
               } else if (type === 'page') {
                 return (
                   <StyledListItem
