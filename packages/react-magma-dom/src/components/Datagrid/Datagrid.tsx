@@ -80,19 +80,23 @@ export interface BaseDatagridProps extends TableProps {
   paginationProps?: Partial<TablePaginationProps>;
 }
 
+export interface ControlledSelectedRowsProps {
+  /**
+   * Array of rows that are selected in the table when component is controlled
+   */
+  selectedRows?: (string | number)[];
+}
+
+export interface UncontrolledSelectedRowsProps {
+  /**
+   * Array of rows that are selected in the table on render when component is uncontrolled
+   */
+  defaultSelectedRows?: (string | number)[];
+}
+
 export type DatagridSelectedRowsProps = XOR<
-  {
-    /**
-     * Array of rows that are selected in the table when component is controlled
-     */
-    selectedRows?: (string | number)[];
-  },
-  {
-    /**
-     * Array of rows that are selected in the table on render when component is uncontrolled
-     */
-    defaultSelectedRows?: (string | number)[];
-  }
+  ControlledSelectedRowsProps,
+  UncontrolledSelectedRowsProps
 >;
 
 export type DatagridProps = BaseDatagridProps & DatagridSelectedRowsProps;

@@ -2,7 +2,9 @@
 pageTitle: Datagrid API
 title: Datagrid
 props:
-  - DatagridProps
+  - BaseDatagridProps
+  - ControlledSelectedRowsProps
+  - UncontrolledSelectedRowsProps
   - DatagridColumn
   - DatagridRow
   - UseDataPaginationControlled
@@ -1357,32 +1359,30 @@ export function Example() {
 }
 ```
 
-# Datagrid Props
+## Datagrid Props
 
 **Any other props supplied will be provided to the wrapping `table` element.**
 
-<DatagridProps />
+### Common Props
 
-# DatagridColumn Props
+<BaseDatagridProps />
+
+### Controlled props
+
+<ControlledSelectedRowsProps />
+
+### Uncontrolled props
+
+<UncontrolledSelectedRowsProps />
+
+### DatagridColumn Props
 
 **Any other props supplied will be provided to the wrapping `th` element.**
 
 <DatagridColumn />
 
-# DatagridRow Props
+### DatagridRow Props
 
 **Any other props supplied will be provided to the wrapping `tr` element.**
 
 <DatagridRow />
-
-# UseDataPagination props
-
-Props to be used in the `useDataPagination` hook. There is a controlled and uncontrolled interface for the props.
-
-## UseDataPaginationUncontrolled
-
-<UseDataPaginationUncontrolled />
-
-## UseDataPaginationControlled
-
-<UseDataPaginationControlled />

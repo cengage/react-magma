@@ -35,35 +35,44 @@ export interface BaseTablePaginationProps
   testId?: string;
 }
 
+export interface ControlledPageProps {
+  /**
+   * Current page number
+   */
+  page?: number;
+}
+
+export interface UncontrolledPageProps {
+  /**
+   * Page selected by default when the component is uncontrolled
+   * @default 1
+   */
+  defaultPage?: number;
+}
+
 export type PagePaginationProps = XOR<
-  {
-    /**
-     * Current page number
-     *  @default 1
-     */
-    page?: number;
-  },
-  {
-    /**
-     * Page selected by default when the component is uncontrolled
-     */
-    defaultPage?: number;
-  }
+  ControlledPageProps,
+  UncontrolledPageProps
 >;
 
+export interface ControlledRowsPerPageProps {
+  /**
+   * Number of rows per page
+   */
+  rowsPerPage?: number;
+}
+
+export interface UncontrolledRowsPerPageProps {
+  /**
+   * Number of rows per page by default when component is uncontrolled
+   * @default 10
+   */
+  defaultRowsPerPage?: number;
+}
+
 export type RowsPaginationProps = XOR<
-  {
-    /**
-     * Number of rows per page when initially rendered
-     */
-    rowsPerPage?: number;
-  },
-  {
-    /**
-     * Number of rows per page by default when component is uncontrolled
-     */
-    defaultRowsPerPage?: number;
-  }
+  ControlledRowsPerPageProps,
+  UncontrolledRowsPerPageProps
 >;
 
 export type TablePaginationProps = BaseTablePaginationProps &

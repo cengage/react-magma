@@ -1,9 +1,22 @@
 import { useControlled } from './useControlled';
 
 export interface UseDataPaginationProps<PaginatedItem> {
+  /**
+   * Number of items per page by default when uncontrolled
+   * @default 10
+   */
   defaultItemsPerPage?: number;
+  /**
+   * Array of items to be displayed
+   */
   items?: PaginatedItem[];
+  /**
+   * Number of items per page
+   */
   itemsPerPage?: number;
+  /**
+   * Event that fires when the number of items per page is changed
+   */
   onItemsPerPageChange?: (newRowsPerPage: number) => void;
 }
 export interface UseDataPaginationReturn<PaginatedItem> {
