@@ -34,10 +34,54 @@ export default {
 export const Default = Template.bind({});
 Default.args = {};
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  ...Default.args,
-  disabled: true,
+export const Disabled = () => {
+  return (
+    <>
+      <Tag disabled>Disabled</Tag>
+      <br />
+      <br />
+      <Tag disabled color={TagColor.primary}>
+        Disabled Primary
+      </Tag>
+      <br />
+      <br />
+      <Tag disabled color={TagColor.highContrast}>
+        Disabled High Contrast
+      </Tag>
+      <br />
+      <br />
+      <Tag disabled color={TagColor.lowContrast}>
+        Disabled Low Contrast
+      </Tag>
+    </>
+  );
+};
+
+export const DisabledInverse = () => {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Tag isInverse disabled>
+          Disabled Inverse
+        </Tag>
+        <br />
+        <br />
+        <Tag isInverse disabled color={TagColor.primary}>
+          Disabled Inverse Primary
+        </Tag>
+        <br />
+        <br />
+        <Tag isInverse disabled color={TagColor.highContrast}>
+          Disabled Inverse High Contrast
+        </Tag>
+        <br />
+        <br />
+        <Tag isInverse disabled color={TagColor.lowContrast}>
+          Disabled Inverse Low Contrast
+        </Tag>
+      </CardBody>
+    </Card>
+  );
 };
 
 export const WithIcon = TemplateIcon.bind({});
