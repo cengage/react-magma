@@ -28,7 +28,6 @@ const InputMapping = (props: InputProps) => {
       {...inputRest}
       type={InputType[type as keyof typeof InputType] || InputType.text}
       id={id}
-      fieldId={id}
       errorMessage={errorMessage}
       {...rest}
     />
