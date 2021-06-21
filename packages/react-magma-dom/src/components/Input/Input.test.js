@@ -220,6 +220,33 @@ describe('Input', () => {
     expect(getByLabelText(labelText)).toHaveAttribute('value', value);
   });
 
+  it('should watch for input change and add the clear input button', () => {
+    const onChange = jest.fn();
+    const labelText = 'Input Label';
+    const { getByLabelText, getByTestId } = render(
+      <Input labelText={labelText} onChange={onChange} isClearable />
+    );
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: 'new value' },
+    });
+
+    expect(onChange).toHaveBeenCalled();
+    expect(getByTestId('clear-button')).toHaveStyleRule('position', 'relative');
+  });
+
+  it('should clear the input when the clear input button is clicked', () => {
+    const labelText = 'Input Label';
+    const value = 'Test Value';
+    const { getByTestId, getByLabelText } = render(
+      <Input labelText={labelText} value={value} isClearable />
+    );
+
+    fireEvent.click(getByTestId('clear-button'));
+
+    expect(getByLabelText(labelText)).toHaveAttribute('value', '');
+  });
+
   it('should default to type of text for the input', () => {
     const labelText = 'test label';
     const { getByLabelText } = render(<Input labelText={labelText} />);

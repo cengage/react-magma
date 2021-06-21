@@ -11,9 +11,18 @@ const Template: Story<TimePickerProps> = args => (
 export default {
   component: TimePicker,
   title: 'TimePicker',
-  isInverse: false,
-  disabled: false,
-  isError: false,
+  argTypes: {
+    errorMessage: {
+      control: {
+        type: 'text',
+      },
+    },
+    helperMessage: {
+      control: {
+        type: 'text',
+      },
+    },
+  },
 } as Meta;
 
 export const Default = Template.bind({});

@@ -26,6 +26,7 @@ const TextareaMapping = (props: TextareaProps) => {
     <MagmaTextarea
       {...input}
       id={id}
+      fieldId={id}
       errorMessage={errorMessage}
       labelText={rest.labelText}
       {...rest}

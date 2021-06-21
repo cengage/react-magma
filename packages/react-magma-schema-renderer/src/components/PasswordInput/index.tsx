@@ -26,6 +26,7 @@ const PasswordInputMapping = (props: PasswordInputProps) => {
       {...input}
       labelText={rest.labelText}
       id={id}
+      fieldId={id}
       errorMessage={errorMessage}
       {...rest}
     />

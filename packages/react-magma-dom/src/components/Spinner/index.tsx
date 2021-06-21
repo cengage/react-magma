@@ -60,6 +60,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         color={color ? color : theme.colors.primary}
         data-testid={testId}
         ref={ref}
+        role="img"
         size={sizeString}
       />
     );

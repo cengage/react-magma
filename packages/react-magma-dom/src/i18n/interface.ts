@@ -148,6 +148,9 @@ export interface I18nInterface {
     isIndeterminateAnnounce: string;
     isUncheckedAnnounce: string;
   };
+  input: {
+    isClearableAriaLabel: string;
+  };
   loadingIndicator: {
     progressBar: {
       messages: {

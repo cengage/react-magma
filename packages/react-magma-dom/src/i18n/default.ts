@@ -144,6 +144,9 @@ export const defaultI18n: I18nInterface = {
       'Some, but not all, subitems are checked for {labelText} checkbox',
     isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox',
   },
+  input: {
+    isClearableAriaLabel: 'Clear Input',
+  },
   loadingIndicator: {
     progressBar: {
       messages: {

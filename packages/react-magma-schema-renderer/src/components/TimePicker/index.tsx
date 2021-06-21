@@ -26,6 +26,7 @@ const TimePickerMapping = (props: TimePickerProps) => {
     <MagmaTimePicker
       {...input}
       id={id}
+      fieldId={id}
       errorMessage={errorMessage}
       labelText={rest.labelText}
       {...rest}
