@@ -4,7 +4,6 @@ import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
 import { Custom } from '../Custom';
 import { DatePicker } from '../DatePicker';
-import { FileUpload } from '../FileUpload';
 import { FieldArray } from '../FieldArray';
 import { FormGroup } from '../FormGroup';
 import { Input } from '../Input';
@@ -37,7 +36,6 @@ export enum componentTypes {
   COMBOBOX = 'COMBOBOX',
   DATE_PICKER = 'DATE_PICKER',
   FIELD_ARRAY = 'FIELD_ARRAY',
-  FILE_UPLOAD = 'FILE_UPLOAD',
   FORM_GROUP = 'FORM_GROUP',
   INPUT = 'INPUT',
   MODAL = 'MODAL',
@@ -63,7 +61,6 @@ export const componentMapper: ComponentMapper = {
   [componentTypes.COMBOBOX]: Combobox,
   [componentTypes.DATE_PICKER]: DatePicker,
   [componentTypes.FIELD_ARRAY]: FieldArray,
-  [componentTypes.FILE_UPLOAD]: FileUpload,
   [componentTypes.FORM_GROUP]: FormGroup,
   [componentTypes.INPUT]: Input,
   [componentTypes.MODAL]: Modal,
