@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.4.1-next.0
+
+### Patch Changes
+
+- 9a89c7af: feat(input): added isClearable prop to input base
+
 ## 2.4.0
 
 ### Minor Changes

@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs - take 2",
-  "version": "2.2.0",
+  "version": "2.2.1-next.0",
   "private": true,
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "homepage": "https://react-magma.cengage.com",
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
-    "@cengage-patterns/header": "1.0.0",
+    "@cengage-patterns/header": "1.0.1-next.0",
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.5.5",
@@ -46,7 +46,7 @@
     "react-focus-lock": "1.18.3",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "2.4.0",
+    "react-magma-dom": "2.4.1-next.0",
     "react-magma-icons": "2.1.0",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",
