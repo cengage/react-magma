@@ -28,6 +28,7 @@ describe('Tag', () => {
 
 
   // Default background tests
+
   it('Should render a default Tag with a gray background', () => {
     const { getByText } = render(<Tag>{TEXT}</Tag>);
     const tag = getByText('Text Label').parentElement;
@@ -58,6 +59,7 @@ describe('Tag', () => {
 
 
   // Disabled background tests
+
   it('Should render a Tag with a disabled background', () => {
     const { getByText } = render(<Tag disabled>{TEXT}</Tag>);
     const tag = getByText('Text Label').parentElement;
@@ -77,7 +79,7 @@ describe('Tag', () => {
     const tag = getByText('Text Label').parentElement;
 
     expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
-    expect(tag).toHaveStyleRule('color', magma.colors.neutral03);
+    expect(tag).toHaveStyleRule('color', `${magma.colors.neutral03}99`);
   });
 
   it('Should render a Tag with a low contrast disabled background', () => {
@@ -86,11 +88,11 @@ describe('Tag', () => {
     
     expect(tag).toHaveStyleRule('background', magma.colors.neutral08);
     expect(tag).toHaveStyleRule('box-shadow', `0 0 0 1px ${magma.colors.neutral06}`);
-    expect(tag).toHaveStyleRule('opacity', `60%`);
   });
 
   
   // Disabled Inverse background tests
+
   it('Should render a inverse Tag with a disabled background', () => {
     const { getByText } = render(<Tag disabled isInverse>{TEXT}</Tag>);
     const tag = getByText('Text Label').parentElement;
@@ -117,11 +119,12 @@ describe('Tag', () => {
     const tag = getByText('Text Label').parentElement;
     
     expect(tag).toHaveStyleRule('background', 'none');
-    expect(tag).toHaveStyleRule('box-shadow', `0 0 0 1px ${magma.colors.neutral08}`);
+    expect(tag).toHaveStyleRule('box-shadow', `0 0 0 1px ${magma.colors.neutral08}40`);
   });
 
     
   // Inverse background tests
+
   it('Should render a default inverse Tag with a gray background', () => {
     const { getByText } = render(<Tag isInverse>{TEXT}</Tag>);
     const tag = getByText('Text Label').parentElement;
@@ -152,6 +155,7 @@ describe('Tag', () => {
 
 
   // Size tests
+
   it('Should render a small Tag size', () => {
     const { getByText } = render(<Tag size={TagSize.small} isInverse>{TEXT}</Tag>);
     const tag = getByText('Text Label').parentElement;
@@ -176,7 +180,6 @@ describe('Tag', () => {
 
   // Click tests
 
-  
   it('Should render a clickable tag', () => {
     const isClickable = jest.fn();
     const { getByText } = render(
@@ -199,7 +202,9 @@ describe('Tag', () => {
       expect(isClickable).toHaveBeenCalled();
     });
 
+
   // Accessibility tests
+  
   it('Does not violate accessibility standards', () => {
     const { container } = render(<Tag>{TEXT}</Tag>);
 

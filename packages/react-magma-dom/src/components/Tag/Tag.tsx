@@ -229,7 +229,7 @@ const TagStyling = props => css`
   }
   &:hover {
     svg {
-      ${props.disabled ? '60%' : '1'};
+      opacity: ${props.disabled ? '60%' : '1'};
     }
   }
 `;
