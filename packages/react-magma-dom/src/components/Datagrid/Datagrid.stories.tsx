@@ -344,4 +344,9 @@ ControlledPagination.args = {
     rowsPerPageValues: [5, 10, 20],
   },
 };
-	
+
+export const WithoutPagination = Template.bind({});
+WithoutPagination.args = {
+  ...defaultArgs,
+  withoutPagination: true,
+};

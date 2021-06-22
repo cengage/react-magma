@@ -78,6 +78,11 @@ export interface BaseDatagridProps extends TableProps {
    * Pagination data used to create the pagination footer. Created using the usePagination hook.
    */
   paginationProps?: Partial<TablePaginationProps>;
+  /**
+   * Turns off pagination when true
+   * @default false
+   */
+  withoutPagination?: boolean;
 }
 
 export interface ControlledSelectedRowsProps {
@@ -112,6 +117,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       paginationProps = {},
       rows,
       selectedRows: selectedRowsProp,
+      withoutPagination,
       ...other
     } = props;
     const [rowsToShow, setRowsToShow] = React.useState<DatagridRow[]>([]);
@@ -139,7 +145,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     });
 
     React.useEffect(() => {
-      setRowsToShow(getPageItems(currentPage));
+      setRowsToShow(withoutPagination ? rows : getPageItems(currentPage));
     }, [currentPage, rowsPerPage]);
 
     const { defaultPage: _, ...passedOnPaginationProps } = paginationProps;
@@ -247,7 +253,12 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             ))}
           </TableBody>
         </Table>
-        <TablePagination itemCount={rows.length} {...passedOnPaginationProps} />
+        {!withoutPagination && (
+          <TablePagination
+            itemCount={rows.length}
+            {...passedOnPaginationProps}
+          />
+        )}
       </>
     );
   }

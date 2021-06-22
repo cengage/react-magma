@@ -607,6 +607,18 @@ describe('Datagrid', () => {
       expect(getByTestId('nextBtn')).toBeInTheDocument();
     });
 
+    it('should not render pagination controls when pagination is turned off', () => {
+      const { queryByTestId } = render(
+        <Datagrid
+          columns={columns}
+          rows={rowsForPagination}
+          withoutPagination
+        />
+      );
+      expect(queryByTestId('previousBtn')).not.toBeInTheDocument();
+      expect(queryByTestId('nextBtn')).not.toBeInTheDocument();
+    });
+
     it('should call the on change the rows per page function', () => {
       const onRowsPerPageChange = jest.fn();
       const pagination = {
