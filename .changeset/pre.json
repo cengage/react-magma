@@ -7,5 +7,7 @@
     "react-magma-docs": "2.2.0",
     "react-magma-landing": "1.0.10"
   },
-  "changesets": []
+  "changesets": [
+    "selfish-crews-sing"
+  ]
 }
