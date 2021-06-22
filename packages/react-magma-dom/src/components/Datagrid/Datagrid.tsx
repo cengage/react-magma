@@ -10,12 +10,12 @@ import {
   TableCell,
   TableHead,
   TableHeaderCell,
-  TablePagination,
   TableProps,
   TableHeaderCellProps,
   TableRowColor,
   TablePaginationProps,
 } from '../Table';
+import { defaultComponents } from './components';
 
 export interface DatagridColumn extends TableHeaderCellProps {
   /**
@@ -47,6 +47,10 @@ export interface DatagridRow {
   [key: string]: any;
 }
 
+export interface DatagridComponents {
+  Pagination: React.FunctionComponent<TablePaginationProps>;
+}
+
 /**
  * @children required
  */
@@ -55,6 +59,15 @@ export interface BaseDatagridProps extends TableProps {
    * Column data to be displayed in the table header
    */
   columns: DatagridColumn[];
+  /**
+   *
+   */
+  components: DatagridComponents;
+  /**
+   * Pass in false to turn off pagination
+   * @default true
+   */
+  hasPagination?: boolean;
   /**
    * Row data to be displayed in each row in the table
    */
@@ -78,11 +91,6 @@ export interface BaseDatagridProps extends TableProps {
    * Pagination data used to create the pagination footer. Created using the usePagination hook.
    */
   paginationProps?: Partial<TablePaginationProps>;
-  /**
-   * Turns off pagination when true
-   * @default false
-   */
-  withoutPagination?: boolean;
 }
 
 export interface ControlledSelectedRowsProps {
@@ -110,6 +118,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
   (props, ref) => {
     const {
       columns,
+      components: customComponents,
       defaultSelectedRows = [],
       onHeaderSelect,
       onRowSelect,
@@ -117,7 +126,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       paginationProps = {},
       rows,
       selectedRows: selectedRowsProp,
-      withoutPagination,
+      hasPagination = true,
       ...other
     } = props;
     const [rowsToShow, setRowsToShow] = React.useState<DatagridRow[]>([]);
@@ -145,8 +154,12 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     });
 
     React.useEffect(() => {
-      setRowsToShow(withoutPagination ? rows : getPageItems(currentPage));
+      setRowsToShow(hasPagination ? getPageItems(currentPage) : rows);
     }, [currentPage, rowsPerPage]);
+
+    const { Pagination } = defaultComponents({
+      ...customComponents,
+    });
 
     const { defaultPage: _, ...passedOnPaginationProps } = paginationProps;
 
@@ -253,11 +266,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             ))}
           </TableBody>
         </Table>
-        {!withoutPagination && (
-          <TablePagination
-            itemCount={rows.length}
-            {...passedOnPaginationProps}
-          />
+        {hasPagination && (
+          <Pagination itemCount={rows.length} {...passedOnPaginationProps} />
         )}
       </>
     );

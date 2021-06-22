@@ -2,7 +2,9 @@ import React from 'react';
 import { Datagrid } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DatagridProps } from './Datagrid';
-import { TableRowColor } from '../Table';
+import { TablePaginationProps, TableRowColor } from '../Table';
+import { usePagination } from '../../hooks/usePagination';
+import { Button } from '../Button';
 
 const rowsForPagination = [
   {
@@ -348,5 +350,47 @@ ControlledPagination.args = {
 export const WithoutPagination = Template.bind({});
 WithoutPagination.args = {
   ...defaultArgs,
-  withoutPagination: true,
+  hasPagination: false,
+};
+
+const CustomPaginationComponent: React.FunctionComponent<TablePaginationProps> = props => {
+  const { itemCount, rowsPerPage, onPageChange } = props;
+  const { page, pageButtons } = usePagination({
+    count: itemCount / rowsPerPage,
+    numberOfAdjacentPages: 0,
+    numberOfEdgePages: 0,
+    onPageChange,
+  });
+
+  const previousButton = pageButtons[0];
+  const nextButton = pageButtons[pageButtons.length - 1];
+
+  return (
+    <div
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'flex-end',
+      }}
+    >
+      You are on page {page}
+      <Button
+        disabled={previousButton.disabled}
+        onClick={previousButton.onClick}
+      >
+        Previous Page
+      </Button>
+      <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
+        Next Page
+      </Button>
+    </div>
+  );
+};
+
+export const PaginationWithCustomComponent = Template.bind({});
+PaginationWithCustomComponent.args = {
+  ...defaultArgs,
+  components: {
+    Pagination: CustomPaginationComponent,
+  },
 };
