@@ -52,7 +52,7 @@ export type TagProps = XOR<DeletableTagProps, ClickableTagProps>;
 function buildBoxShadow(props) {
   if (props.color === 'lowContrast') {
     if (props.isInverse) {
-      return `0 0 0 1px ${props.theme.colors.neutral08}`;
+      return `0 0 0 1px ${props.theme.colors.neutral08}40`;
     }
     if (props.disabled) {
       return `0 0 0 1px ${props.theme.colors.neutral06}`;
@@ -113,19 +113,19 @@ function buildButtonBackground(props) {
   }
 }
 
-function buildButtonColor(props) {
+function buildButtonTextColor(props) {
   if (props.isInverse) {
     if (props.disabled) {
       // Disabled inverse state text colors
       switch (props.color) {
         case 'primary':
-          return `${props.theme.colors.neutral03}`;
+          return `${props.theme.colors.neutral03}99`;
         case 'highContrast':
-          return `${props.theme.colors.neutral03}`;
+          return `${props.theme.colors.neutral03}99`;
         case 'lowContrast':
-          return `${props.theme.colors.neutral08}`;
+          return `${props.theme.colors.neutral08}40`;
         default:
-          return `${props.theme.colors.neutral03}`;
+          return `${props.theme.colors.neutral03}99`;
       }
     }
     // Inverse text colors
@@ -143,13 +143,13 @@ function buildButtonColor(props) {
     // Disabled state text colors
     switch (props.color) {
       case 'primary':
-        return `${props.theme.colors.neutral03}`;
+        return `${props.theme.colors.neutral03}99`;
       case 'highContrast':
-        return `${props.theme.colors.neutral03}`;
+        return `${props.theme.colors.neutral03}99`;
       case 'lowContrast':
-        return `${props.theme.colors.neutral03}`;
+        return `${props.theme.colors.neutral03}99`;
       default:
-        return `${props.theme.colors.neutral03}`;
+        return `${props.theme.colors.neutral03}99`;
     }
   }
   // Default state text colors
@@ -163,13 +163,19 @@ function buildButtonColor(props) {
   }
 }
 
-function buildTagOpacity(props) {
-  if (props.disabled) {
-    if (props.isInverse && props.color === 'lowContrast') {
-      return `25%`;
+function buildSvgOpacity(props) {
+  if (props.onClick || props.onDelete) {
+    if (props.disabled) {
+      return '60%';
     }
-    return `60%`;
+    return '75%';
   }
+  if (props.color === 'lowContrast' && props.disabled) {
+    return '25%';
+  } else if (props.disabled) {
+    return '60%';
+  }
+  return '1';
 }
 
 function buildTagPadding(props) {
@@ -193,7 +199,7 @@ const TagStyling = props => css`
   border: ${props.theme.tag.border};
   border-radius: ${props.theme.spaceScale.spacing05};
   background: ${buildButtonBackground(props)};
-  color: ${buildButtonColor(props)};
+  color: ${buildButtonTextColor(props)};
   box-shadow: ${buildBoxShadow(props)};
   display: ${props.theme.tag.display};
   align-items: ${props.theme.tag.alignItems};
@@ -202,12 +208,12 @@ const TagStyling = props => css`
     ? `${props.theme.typeScale.size01.fontSize}`
     : `${props.theme.typeScale.size02.fontSize}`};
   font-weight: ${props.size === 'small' ? `600` : `inherit`};
-  opacity: ${buildTagOpacity(props)};
   padding: ${buildTagPadding(props)};
   svg:first-of-type {
     height: ${props.size === 'small'
       ? `${props.theme.iconSizes.small}px`
       : 'inherit'};
+    opacity: ${props.disabled ? '60%' : 'inherit'};
     width: ${props.size === 'small'
       ? `${props.theme.iconSizes.small}px`
       : 'inherit'};
@@ -216,14 +222,14 @@ const TagStyling = props => css`
     margin: ${props.size === 'small'
       ? `0 ${props.theme.spaceScale.spacing02} 0 -${props.theme.spaceScale.spacing02}`
       : 'inherit'};
-    opacity: ${props.onClick || props.onDelete ? '75%' : 'inherit'};
+    opacity: ${buildSvgOpacity(props)};
     width: ${props.size === 'small'
       ? `${props.theme.spaceScale.spacing05}`
       : 'inherit'};
   }
   &:hover {
     svg {
-      opacity: 1;
+      ${props.disabled ? '60%' : '1'};
     }
   }
 `;
