@@ -6,7 +6,7 @@ import { enUS } from 'date-fns/locale';
 import { I18nContext } from '../../i18n';
 
 export interface UseTimePickerProps
-  extends Omit<FormFieldContainerBaseProps, 'inputSize'> {
+  extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
   /**
    * ID of the hidden input that stores the time value.  Also the prefix for other fields.
    */
