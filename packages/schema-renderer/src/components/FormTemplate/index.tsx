@@ -42,12 +42,6 @@ export const FormTemplate = ({
   );
 
   const actionsVisible = React.useMemo(() => {
-    if (
-      schema.fields &&
-      schema.fields.length > 0
-    ) {
-      return false;
-    }
     return true;
   }, []);
 
