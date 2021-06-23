@@ -240,6 +240,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               if (type === 'start-ellipsis' || type === 'end-ellipsis') {
                 return (
                   <StyledEllipsis
+                    key={index}
                     isInverse={isInverse}
                     size={size}
                     theme={theme}
@@ -256,7 +257,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                     <PageButton
                       isInverse={isInverse}
                       size={buttonSize}
-                      key={index}
                       {...other}
                     >
                       {page}
@@ -265,7 +265,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                 );
               } else if (type === 'previous' || type === 'next') {
                 return (
-                  <StyledListItem>
+                  <StyledListItem key={index}>
                     <NavButton
                       variant={
                         isInverse ? ButtonVariant.outline : ButtonVariant.solid
