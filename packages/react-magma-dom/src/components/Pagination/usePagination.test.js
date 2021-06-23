@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import { usePagination } from './usePagination';
-import { defaultI18n } from '../i18n/default';
+import { defaultI18n } from '../../i18n/default';
 
 const itemsForPagination = [
   {

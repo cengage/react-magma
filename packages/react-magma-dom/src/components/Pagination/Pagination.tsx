@@ -3,11 +3,11 @@ import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { darken } from 'polished';
 import { I18nContext } from '../../i18n';
 import { IconButton } from '../IconButton';
-import { PageButton, typeSize } from './PageButton';
+import { PageButton, pageButtonTypeSize } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { usePagination } from '../../hooks/usePagination';
+import { usePagination } from './usePagination';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -187,7 +187,7 @@ const StyledEllipsis = styled.div`
   border-right: ${BuildBorder};
   border-bottom: ${BuildBorder};
   display: flex;
-  font-size: ${typeSize};
+  font-size: ${pageButtonTypeSize};
   height: ${BuildButtonSize};
   justify-content: center;
   width: ${BuildButtonSize};

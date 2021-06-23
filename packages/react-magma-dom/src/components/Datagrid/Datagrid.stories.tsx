@@ -3,7 +3,7 @@ import { Datagrid } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DatagridProps } from './Datagrid';
 import { TablePaginationProps, TableRowColor } from '../Table';
-import { usePagination } from '../../hooks/usePagination';
+import { usePagination } from '../Pagination/usePagination';
 import { Button } from '../Button';
 
 const rowsForPagination = [

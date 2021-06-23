@@ -9,7 +9,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
-import { usePagination } from '../../hooks/usePagination';
+import { usePagination } from '../Pagination/usePagination';
 import { XOR } from '../../utils';
 import { useControlled } from '../../hooks/useControlled';
 

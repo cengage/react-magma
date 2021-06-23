@@ -1,6 +1,6 @@
 import React from 'react';
-import { I18nContext } from '../i18n';
-import { useControlled } from './useControlled';
+import { I18nContext } from '../../i18n';
+import { useControlled } from '../../hooks/useControlled';
 
 export interface UsePaginationProps {
   /**

@@ -3,7 +3,7 @@ import { axe } from 'jest-axe';
 import { Datagrid } from '.';
 import { TableRowColor } from '../Table';
 import { Button } from '../Button';
-import { usePagination } from '../../hooks/usePagination';
+import { usePagination } from '../Pagination/usePagination';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 

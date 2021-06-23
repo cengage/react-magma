@@ -217,7 +217,7 @@ export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
 export { useMediaQuery } from './hooks/useMediaQuery';
 export { useDataPagination } from './hooks/useDataPagination';
-export { usePagination } from './hooks/usePagination';
+export { usePagination } from './components/Pagination/usePagination';
 export { InverseContext, useIsInverse } from './inverse';
 
 export * from './components/Accordion';
