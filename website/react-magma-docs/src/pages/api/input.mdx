@@ -104,7 +104,7 @@ relied upon to take the place of the label text.
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
-  return <Input labelText="Email Address" placeholder="yourname@example.com" />;
+  return <Input labelText="Email address" placeholder="yourname@example.com" />;
 }
 ```
 
@@ -122,7 +122,7 @@ export function Example() {
     </>
   );
 
-  return <Input helperMessage={helperMessage} labelText="Helper Message" />;
+  return <Input helperMessage={helperMessage} labelText="Helper message" />;
 }
 ```
 
@@ -190,20 +190,20 @@ export function Example() {
   return (
     <>
       <Input
-        labelText="Input with Icon on Left"
+        labelText="Input with icon on left"
         icon={<MailOutlineIcon />}
         type="email"
       />
 
       <Input
         iconPosition="right"
-        labelText="Input with Icon on Right"
+        labelText="Input with icon on right"
         icon={<Spinner />}
         iconAriaLabel="Loading..."
       />
 
       <Input
-        labelText="Input with Clickable Icon on Right"
+        labelText="Input with clickable icon on right"
         iconAriaLabel="Calendar"
         onIconClick={() => {
           alert('Icon clicked');
@@ -227,14 +227,14 @@ export function Example() {
   return (
     <>
       <Input
-        labelText="Input large with Icon on Left"
+        labelText="Large input with icon on left"
         inputSize="large"
         icon={<MailOutlineIcon />}
         type="email"
       />
 
       <Input
-        labelText="Input large with Clickable Icon on Right"
+        labelText="Large input with clickable icon on right"
         iconAriaLabel="Calendar"
         inputSize="large"
         onIconClick={() => {
@@ -246,7 +246,7 @@ export function Example() {
       <Input
         errorMessage="Error"
         inputSize="large"
-        labelText="Large Input With Error"
+        labelText="Large input with error"
       />
     </>
   );
@@ -267,20 +267,20 @@ export function Example() {
         <Input
           id="inputInverse"
           isInverse
-          labelText="Inverse Input"
+          labelText="Inverse input"
           placeholder="Type in here"
         />
 
         <Input
           helperMessage="Helper text"
           isInverse
-          labelText="Inverse Input with Helper Text"
+          labelText="Inverse input with helper text"
         />
 
         <Input
           errorMessage="Please fill out this field"
           isInverse
-          labelText="Inverse Input with Error Message"
+          labelText="Inverse input with error message"
           required
         />
       </CardBody>
@@ -328,7 +328,7 @@ export function Example() {
   };
 
   return (
-    <Input labelText="Help Link">
+    <Input labelText="Help link">
       <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}
@@ -358,7 +358,7 @@ export function Example() {
         <span id="changedValue">{message}</span>
       </p>
       <Input
-        labelText="Test Value"
+        labelText="Test value"
         value=""
         onChange={event => setMessage(event.target.value)}
       />

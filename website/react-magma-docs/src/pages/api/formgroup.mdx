@@ -24,7 +24,7 @@ import { FormGroup, Checkbox, Toggle } from 'react-magma-dom';
 export function Example() {
   return (
     <>
-      <FormGroup labelText="Choose One or More Colors">
+      <FormGroup labelText="Choose one or more colors">
         <Checkbox labelText="Red" />
         <Checkbox labelText="Blue" />
         <Checkbox labelText="Purple" />
@@ -32,7 +32,7 @@ export function Example() {
       <br />
       <FormGroup
         id="myCustomId"
-        labelText="Turn on Notifications for the Following"
+        labelText="Turn on notifications for the following"
       >
         <Toggle labelText="Product updates" />
         <Toggle labelText="Promotions and sales" />
@@ -61,7 +61,7 @@ export function Example() {
       <FormGroup
         labelText={
           <>
-            Labelled by <i>Label</i>
+            Labelled by <i>label</i>
           </>
         }
         name="labelledByGroup"
@@ -94,7 +94,7 @@ export function Example() {
     <FormGroup
       containerStyle={{ border: '1px solid gray', padding: '10px' }}
       labelStyle={{ fontWeight: '500', color: 'red' }}
-      labelText="Group Label"
+      labelText="Group label"
       name="labelledByGroup"
     >
       <Checkbox labelText="Checkbox label" />
