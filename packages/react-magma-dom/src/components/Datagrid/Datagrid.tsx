@@ -267,7 +267,11 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
           </TableBody>
         </Table>
         {hasPagination && (
-          <Pagination itemCount={rows.length} {...passedOnPaginationProps} />
+          <Pagination
+            isInverse={props.isInverse}
+            itemCount={rows.length}
+            {...passedOnPaginationProps}
+          />
         )}
       </>
     );
