@@ -47,7 +47,6 @@ export enum componentTypes {
   TEXTAREA = 'TEXTAREA',
   TIME_PICKER = 'TIME_PICKER',
   TOGGLE = 'TOGGLE',
-  WIZARD = 'WIZARD',
 }
 
 export const componentMapper: ComponentMapper = {
