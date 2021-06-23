@@ -7,7 +7,6 @@ import {
   Form,
 } from 'react-magma-dom';
 
-import { componentTypes } from '../ComponentMapper';
 import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 
 export interface FormTemplateProps {
@@ -45,8 +44,7 @@ export const FormTemplate = ({
   const actionsVisible = React.useMemo(() => {
     if (
       schema.fields &&
-      schema.fields.length > 0 &&
-      schema.fields[0].component === componentTypes.WIZARD
+      schema.fields.length > 0
     ) {
       return false;
     }
