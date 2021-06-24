@@ -1,102 +1,71 @@
-import * as React from 'react';
+import { useControlled } from './useControlled';
 
-interface UseDataPaginationBasics {
+export interface UseDataPaginationProps<PaginatedItem> {
   /**
-   * Event that fires when the page number changes
-   */
-  onChangePage?: (event: React.SyntheticEvent, newPage: number) => void;
-  /**
-   * Event that fires when the number of rows per page changes
-   */
-  onChangeRowsPerPage?: (event: any) => void;
-  /**
-   * Values added to the rows per page select
-   */
-  rowsPerPageValues?: number[];
-}
-
-export interface UseDataPaginationControlled extends UseDataPaginationBasics {
-  defaultPage?: never;
-  defaultRowsPerPage?: never;
-  /**
-   * Zero-based page number
-   *  @default 0
-   */
-  page?: number;
-  /**
-   * Number of rows per page
+   * Number of items per page by default when uncontrolled
    * @default 10
    */
-  rowsPerPage?: number;
+  defaultItemsPerPage?: number;
+  /**
+   * Array of items to be displayed
+   */
+  items?: PaginatedItem[];
+  /**
+   * Number of items per page
+   */
+  itemsPerPage?: number;
+  /**
+   * Event that fires when the number of items per page is changed
+   */
+  onItemsPerPageChange?: (newRowsPerPage: number) => void;
+}
+export interface UseDataPaginationReturn<PaginatedItem> {
+  getPageItems: (page: number) => PaginatedItem[];
+  itemsPerPage: number;
+  length: number;
+  onItemsPerPageChange: (newItemsPerPage: number) => void;
 }
 
-export interface UseDataPaginationUncontrolled extends UseDataPaginationBasics {
-  /**
-   * Zero-based page number used when initially rendered
-   */
-  defaultPage?: number;
-  /**
-   * Number of rows per page when initially rendered
-   */
-  defaultRowsPerPage?: number;
-  page?: never;
-  rowsPerPage?: never;
-}
-
-export type UseDataPaginationProps =
-  | UseDataPaginationControlled
-  | UseDataPaginationUncontrolled;
-
-export function useDataPagination(
-  count: number,
-  overrides: UseDataPaginationProps = {}
-) {
+export function useDataPagination<T>(
+  props: UseDataPaginationProps<T> = {}
+): UseDataPaginationReturn<T> {
   const {
-    defaultPage,
-    defaultRowsPerPage,
-    page: pageProp,
-    rowsPerPage: rowsPerPageProp,
-    rowsPerPageValues,
-    onChangePage,
-    onChangeRowsPerPage,
-  } = overrides;
+    defaultItemsPerPage = 10,
+    items = [],
+    itemsPerPage: itemsPerPageProp,
+    onItemsPerPageChange,
+  } = props;
 
-  const [page, updatePage] = React.useState<number>(
-    defaultPage || pageProp || 0
-  );
-  const [rowsPerPage, updateRowsPerPage] = React.useState<number>(
-    defaultRowsPerPage || rowsPerPageProp || 10
-  );
+  const [itemsPerPage, setItemsPerPageState] = useControlled({
+    controlled: itemsPerPageProp,
+    default: defaultItemsPerPage,
+  });
 
-  function handleChangePage(event: React.SyntheticEvent, newPage: number) {
-    if (!pageProp) {
-      updatePage(newPage);
+  function handleItemsPerPageChange(newItemsPerPage: number) {
+    if (!itemsPerPageProp) {
+      setItemsPerPageState(newItemsPerPage);
     }
 
-    onChangePage &&
-      typeof onChangePage === 'function' &&
-      onChangePage(event, newPage);
+    onItemsPerPageChange &&
+      typeof onItemsPerPageChange === 'function' &&
+      onItemsPerPageChange(newItemsPerPage);
   }
 
-  function handleChangeRowsPerPage(newRowsPerPage: number) {
-    if (!rowsPerPageProp) {
-      updateRowsPerPage(newRowsPerPage);
-      handleChangePage({} as React.SyntheticEvent, 0);
-    }
+  const getPageItems = (page: number) => {
+    const isLastPage = page * itemsPerPage >= items.length;
 
-    onChangeRowsPerPage &&
-      typeof onChangeRowsPerPage === 'function' &&
-      onChangeRowsPerPage(newRowsPerPage);
-  }
+    const start = (page - 1) * itemsPerPage;
+    const end = isLastPage ? items.length : page * itemsPerPage;
+
+    return items.slice(start, end);
+  };
+
+  const length = Math.ceil(items.length / itemsPerPage);
 
   return {
-    count,
-    page,
-    rowsPerPage,
-    rowsPerPageValues,
-    onChangePage: handleChangePage,
-    onChangeRowsPerPage: handleChangeRowsPerPage,
+    getPageItems,
+    itemsPerPage,
+    length,
+    onItemsPerPageChange: handleItemsPerPageChange,
   };
 }
-
-export type UseDataPaginationReturn = ReturnType<typeof useDataPagination>;
