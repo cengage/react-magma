@@ -5,11 +5,11 @@ import { darken } from 'polished';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-export interface PageButtonProps extends ButtonProps {
+export interface PaginationProps extends ButtonProps {
   isSelected?: boolean;
 }
 
-export function pageButtonTypeSize(props) {
+function typeSize(props) {
   if (props.size === 'large') {
     return `${props.theme.typeScale.size05.fontSize}`;
   }
@@ -53,7 +53,7 @@ const StyledPageButton = styled(Button)`
   border-bottom: ${BuildBorder};
   border-radius: 0;
   box-shadow: ${boxShadowColor};
-  font-size: ${pageButtonTypeSize} !important;
+  font-size: ${typeSize} !important;
   height: ${buttonSize};
   margin: 0;
   min-width: 0;
@@ -71,8 +71,8 @@ const StyledPageButton = styled(Button)`
     content: '';
     border: ${props =>
       props.isInverse
-        ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
-        : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
+        ? `2px solid ${props.theme.colors.focusInverse}`
+        : `2px solid ${props.theme.colors.focus}`};
     border-style: dotted;
     height: calc(100% + 14px);
     left: -7px;
@@ -82,7 +82,7 @@ const StyledPageButton = styled(Button)`
   }
 `;
 
-export const PageButton = React.forwardRef<HTMLButtonElement, PageButtonProps>(
+export const PageButton = React.forwardRef<HTMLButtonElement, PaginationProps>(
   (props, ref) => {
     const { children, isInverse, isSelected, ...other } = props;
     const theme = React.useContext(ThemeContext);
