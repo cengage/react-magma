@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
     "@cengage-patterns/header": "1.0.1-next.0",
+    "@cengage-patterns/header": "2.0.0-next.1",
     "@data-driven-forms/react-form-renderer": "^3.6.0",
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
@@ -48,7 +49,7 @@
     "react-focus-lock": "1.18.3",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "2.4.1-next.0",
+    "react-magma-dom": "2.5.0-next.1",
     "react-magma-icons": "^2.3.0",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",
