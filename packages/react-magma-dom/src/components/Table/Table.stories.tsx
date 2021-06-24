@@ -226,22 +226,22 @@ const rowsLong = [
   ],
 ];
 
-export const ControlledPagination = () => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
+export const Pagination = () => {
+  const [pageIndex, setPageIndex] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
   function handleRowsPerPageChange(numberOfRows) {
     setRowsPerPage(numberOfRows);
-    setPageIndex(1);
+    setPageIndex(0);
   }
 
-  function handlePageChange(_, page) {
+  function handlePageChange(page) {
     setPageIndex(page);
   }
 
   const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
+    pageIndex * rowsPerPage,
+    pageIndex * rowsPerPage + rowsPerPage
   );
 
   return (
@@ -266,9 +266,9 @@ export const ControlledPagination = () => {
         </TableBody>
       </Table>
       <TablePagination
-        itemCount={rowsLong.length}
-        onRowsPerPageChange={handleRowsPerPageChange}
-        onPageChange={handlePageChange}
+        count={rowsLong.length}
+        onChangeRowsPerPage={handleRowsPerPageChange}
+        onChangePage={handlePageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
@@ -276,64 +276,22 @@ export const ControlledPagination = () => {
   );
 };
 
-export const UncontrolledPagination = () => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
-
-  function handlePageChange(_, page) {
-    setPageIndex(page);
-  }
-
-  function handleRowsPerPageChange(newNumberOfRows) {
-    setRowsPerPage(newNumberOfRows);
-  }
-
-  const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
-  );
-
-  return (
-    <Card>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rowsToShow.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-              ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-        itemCount={rowsLong.length}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleRowsPerPageChange}
-      />
-    </Card>
-  );
-};
-
 export const PaginationInverse = () => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
+  const [pageIndex, setPageIndex] = React.useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
-  function handlePageChange(_, page) {
+  function handleRowsPerPageChange(numberOfPages) {
+    setRowsPerPage(numberOfPages);
+    setPageIndex(0);
+  }
+
+  function handlePageChange(page) {
     setPageIndex(page);
   }
 
   const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
+    pageIndex * rowsPerPage,
+    pageIndex * rowsPerPage + rowsPerPage
   );
 
   return (
@@ -358,9 +316,12 @@ export const PaginationInverse = () => {
         </TableBody>
       </Table>
       <TablePagination
-        itemCount={rowsLong.length}
+        count={rowsLong.length}
         isInverse
-        onPageChange={handlePageChange}
+        onChangeRowsPerPage={handleRowsPerPageChange}
+        onChangePage={handlePageChange}
+        page={pageIndex}
+        rowsPerPage={rowsPerPage}
       />
     </Card>
   );

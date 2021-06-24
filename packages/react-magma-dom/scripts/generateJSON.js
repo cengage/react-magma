@@ -83,11 +83,9 @@ const filterJson = () => {
 
     return sortObject(
       children
-        .filter(a => a)
         .filter(filterReactDefinitions)
         .filter(filterMotionDefinitions)
         .filter(filterEmotion)
-        .filter(filterExtendedDefinitions(['BasePaginationProps']))
         .reduce(formatChild, acc)
     );
   };
@@ -128,12 +126,6 @@ const filterJson = () => {
     !definition.sources[0].fileName.startsWith(
       'node_modules/framer-motion/types'
     );
-
-  const filterExtendedDefinitions = omitted => definition => {
-    return !omitted.includes(
-      definition.inheritedFrom && definition.inheritedFrom.name.split('.')[0]
-    );
-  };
 
   const formatTags = (tags = []) => {
     return tags.reduce((acc, { tag, text }) => {
