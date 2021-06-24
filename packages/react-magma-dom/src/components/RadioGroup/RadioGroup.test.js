@@ -2,7 +2,7 @@ import * as React from 'react';
 import { axe } from 'jest-axe';
 import { RadioGroup } from '.';
 import { Radio } from '../Radio';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 describe('Radio Group', () => {
@@ -149,7 +149,7 @@ describe('Radio Group', () => {
 
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
 
-    wait(() => {
+    waitFor(() => {
       expect(getByLabelText('Default Color')).not.toHaveAttribute('checked');
       expect(getByLabelText('Success Color')).toHaveAttribute('checked');
     }, 1000);

@@ -15,7 +15,7 @@ import { useGenerateId, Omit } from '../../utils';
 import { useIsInverse } from '../../inverse';
 
 export interface TextareaProps
-  extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
+  extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'>,
     React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   /**
    * Style properties for the component container element
