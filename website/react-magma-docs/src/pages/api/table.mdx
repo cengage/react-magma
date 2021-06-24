@@ -8,7 +8,11 @@ props:
   - TableHeadProps
   - TableHeaderCellProps
   - TableRowProps
-  - TablePaginationProps
+  - BaseTablePaginationProps
+  - ControlledPageProps
+  - UncontrolledPageProps
+  - ControlledRowsPerPageProps
+  - UncontrolledRowsPerPageProps
 ---
 
 <DocsHeading to="/design/tables/" type="api">
@@ -1141,4 +1145,16 @@ All of the [standard td attributes](https://developer.mozilla.org/en-US/docs/Web
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<TablePagination />
+### Common Props
+
+<BaseTablePaginationProps />
+
+### Controlled Props
+
+<ControlledPageProps />
+<ControlledRowsPerPageProps />
+
+### Uncontrolled Props
+
+<UncontrolledPageProps />
+<UncontrolledRowsPerPageProps />
