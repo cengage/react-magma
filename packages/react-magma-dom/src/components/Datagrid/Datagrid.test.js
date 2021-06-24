@@ -2,8 +2,6 @@ import React from 'react';
 import { axe } from 'jest-axe';
 import { Datagrid } from '.';
 import { TableRowColor } from '../Table';
-import { Button } from '../Button';
-import { usePagination } from '../Pagination/usePagination';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
@@ -586,8 +584,8 @@ describe('Datagrid', () => {
   describe('pagination', () => {
     it('should render pagination controls', () => {
       const pagination = {
-        itemCount: rowsForPagination.length,
-        page: 1,
+        count: rowsForPagination.length,
+        page: 0,
         rowsPerPage: 10,
         rowsPerPageValues: [10, 20, 50, 100],
       };
@@ -595,46 +593,34 @@ describe('Datagrid', () => {
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
-          paginationProps={pagination}
+          pagination={pagination}
         />
       );
 
       expect(getByText(pagination.rowsPerPage.toString())).toBeInTheDocument();
       expect(
         getByText(
-          `1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
+          `1-${pagination.rowsPerPage.toString()} of ${pagination.count}`
         )
       ).toBeInTheDocument();
       expect(getByTestId('previousBtn')).toBeInTheDocument();
       expect(getByTestId('nextBtn')).toBeInTheDocument();
     });
 
-    it('should not render pagination controls when pagination is turned off', () => {
-      const { queryByTestId } = render(
-        <Datagrid
-          columns={columns}
-          rows={rowsForPagination}
-          hasPagination={false}
-        />
-      );
-      expect(queryByTestId('previousBtn')).not.toBeInTheDocument();
-      expect(queryByTestId('nextBtn')).not.toBeInTheDocument();
-    });
-
     it('should call the on change the rows per page function', () => {
-      const onRowsPerPageChange = jest.fn();
+      const onChangeRowsPerPage = jest.fn();
       const pagination = {
-        itemCount: rowsForPagination.length,
-        page: 1,
+        count: rowsForPagination.length,
+        page: 0,
         rowsPerPage: 10,
         rowsPerPageValues: [10, 20, 50, 100],
-        onRowsPerPageChange,
+        onChangeRowsPerPage,
       };
       const { getByText, getByLabelText } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
-          paginationProps={pagination}
+          pagination={pagination}
         />
       );
 
@@ -642,107 +628,59 @@ describe('Datagrid', () => {
 
       fireEvent.click(getByText(pagination.rowsPerPageValues[1].toString()));
 
-      expect(onRowsPerPageChange).toBeCalledWith(
+      expect(onChangeRowsPerPage).toBeCalledWith(
         pagination.rowsPerPageValues[1]
       );
     });
 
     it('should call the on change page function when clicking the next page button', () => {
-      const onPageChange = jest.fn();
+      const onChangePage = jest.fn();
       const pagination = {
-        itemCount: rowsForPagination.length,
-        page: 1,
+        count: rowsForPagination.length,
+        page: 0,
         rowsPerPage: 10,
         rowsPerPageValues: [10, 20, 50, 100],
-        onPageChange,
+        onChangePage,
       };
       const { getByText, getByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
-          paginationProps={pagination}
+          pagination={pagination}
         />
       );
 
       fireEvent.click(getByTestId('nextBtn'));
 
-      expect(onPageChange).toBeCalledWith(
+      expect(onChangePage).toBeCalledWith(
         expect.any(Object),
         pagination.page + 1
       );
     });
 
     it('should call the on change page function when clicking the previous page button', () => {
-      const onPageChange = jest.fn();
+      const onChangePage = jest.fn();
       const pagination = {
-        itemCount: rowsForPagination.length,
-        page: 2,
+        count: rowsForPagination.length,
+        page: 1,
         rowsPerPage: 10,
         rowsPerPageValues: [10, 20, 50, 100],
-        onPageChange,
+        onChangePage,
       };
-      const { getByTestId } = render(
+      const { getByText, getByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
-          paginationProps={pagination}
+          pagination={pagination}
         />
       );
 
       fireEvent.click(getByTestId('previousBtn'));
 
-      expect(onPageChange).toBeCalledWith(
+      expect(onChangePage).toBeCalledWith(
         expect.any(Object),
         pagination.page - 1
       );
-    });
-
-    it('should render a custom pagination component', () => {
-      const CustomPaginationComponent = props => {
-        const { itemCount, rowsPerPage, onPageChange } = props;
-        const { page, pageButtons } = usePagination({
-          count: itemCount / rowsPerPage,
-          numberOfAdjacentPages: 0,
-          numberOfEdgePages: 0,
-          onPageChange,
-        });
-
-        const previousButton = pageButtons[0];
-        const nextButton = pageButtons[pageButtons.length - 1];
-
-        return (
-          <div
-            style={{
-              alignItems: 'center',
-              display: 'flex',
-              justifyContent: 'flex-end',
-            }}
-          >
-            You are on page {page}
-            <Button
-              disabled={previousButton.disabled}
-              onClick={previousButton.onClick}
-            >
-              Previous Page
-            </Button>
-            <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
-              Next Page
-            </Button>
-          </div>
-        );
-      };
-
-      const { getByText } = render(
-        <Datagrid
-          columns={columns}
-          rows={rowsForPagination}
-          components={{ Pagination: CustomPaginationComponent }}
-        />
-      );
-
-      expect(getByText(/you are on page 1/i)).toBeInTheDocument();
-      expect(getByText(/previous page/i)).toBeInTheDocument();
-      expect(getByText(/next page/i)).toBeInTheDocument();
     });
   });
 
