@@ -1,5 +1,5 @@
 ---
-"react-magma": minor
+"react-magma-dom": minor
 ---
 
 Refactor pagination component to use the new `usePagination` hook.
