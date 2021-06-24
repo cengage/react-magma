@@ -320,46 +320,6 @@ export function Example() {
 }
 ```
 
-## File Uploads
-
-The `SchemaRenderer` supports file uploads.
-
-```tsx
-import React from 'react';
-import {
-  SchemaRenderer,
-  Schema,
-  templateTypes,
-  componentTypes,
-  componentMapper,
-  ComponentMapper,
-} from 'react-magma-schema-renderer';
-
-export function Example() {
-  const schema: Schema = {
-    title: 'File Uploader',
-    description: 'An example file upload component.',
-    type: templateTypes.FORM,
-    fields: [
-      {
-        component: componentTypes.FILE_UPLOAD,
-        name: 'file-uploaded',
-        labelText: 'file-uploaded',
-      },
-    ],
-  };
-
-  return (
-    <div>
-      <SchemaRenderer
-        schema={schema}
-        onSubmit={values => alert(JSON.stringify(values, null, 2))}
-      />
-    </div>
-  );
-}
-```
-
 ## Custom Component
 
 The `SchemaRenderer`
