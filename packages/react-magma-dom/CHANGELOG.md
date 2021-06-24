@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.0-next.1
+
+### Minor Changes
+
+- 8e3559c3: Refactor pagination component to use the new `usePagination` hook.
+  Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
+
 ## 2.4.1-next.0
 
 ### Patch Changes

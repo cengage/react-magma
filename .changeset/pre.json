@@ -8,6 +8,7 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "angry-books-pull",
     "selfish-crews-sing"
   ]
 }
