@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.0-next.2
+
+### Patch Changes
+
+- acc9219d: refactor(text alignment): changing the banner alignment to left aligned
+
 ## 2.5.0-next.1
 
 ### Minor Changes
