@@ -9,10 +9,6 @@ import { useIsInverse } from '../../inverse';
 import { Omit, XOR } from '../../utils';
 import { I18nContext } from '../../i18n';
 
-/**
- * @children required
- */
-
 export enum TagColor {
   primary = 'primary',
   lowContrast = 'lowContrast',
@@ -24,15 +20,49 @@ export enum TagSize {
   small = 'small',
 }
 
+/**
+ * @children required
+ */
+
 export interface BaseTagProps
   extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
+  /**
+   * Color changes between 'primary', 'low contrast', and 'high contrast' style variants between each Tag.
+   */
   color?: TagColor;
+
+  /**
+   * Size toggles between a default, and a small size Tag.
+   */
   size?: TagSize;
+
+  /**
+   * Gets the active Tag label for use with the aria-label attribute inline for accessibility.
+   */
+  labelText?: React.ReactNode;
+
+  /**
+   * Disabled Tag state.
+   */
   disabled?: boolean;
+
   testId?: string;
+
+  /**
+   * Allows passing a Magma icon to the Tag.
+   */
   icon?: React.ReactElement<IconProps>;
+
+  /**
+   * Passes a clickable state to the Tag.
+   */
   isClickable?: boolean;
+
+  /**
+   * Allows for Inverse styling of each Tag.
+   */
   isInverse?: boolean;
+
   /**
    * @internal
    */
@@ -52,7 +82,10 @@ export type TagProps = XOR<DeletableTagProps, ClickableTagProps>;
 function buildBoxShadow(props) {
   if (props.color === 'lowContrast') {
     if (props.isInverse) {
-      return `0 0 0 1px ${props.theme.colors.neutral08}40`;
+      if (props.disabled) {
+        return `0 0 0 1px ${props.theme.colors.neutral08}40`;
+      }
+      return `0 0 0 1px ${props.theme.colors.neutral08}80`;
     }
     if (props.disabled) {
       return `0 0 0 1px ${props.theme.colors.neutral06}`;
@@ -270,6 +303,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
     const {
       children,
       color,
+      labelText = children,
       onClick,
       onDelete,
       isInverse: isInverseProp,
@@ -284,7 +318,12 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     const i18n = React.useContext(I18nContext);
 
-    const leftIcon = props.icon;
+    const deleteAriaLabel = i18n.tag.deleteAriaLabel.replace(
+      /\{labelText\}/g,
+      labelText as string
+    );
+
+    const { icon } = props;
 
     const StyledTag = getStyledTag(Boolean(onClick || onDelete));
 
@@ -299,7 +338,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
     return (
       <StyledTag
         color={color}
-        icon={leftIcon}
+        icon={icon}
         onClick={handleClick}
         isInverse={isInverse}
         ref={ref}
@@ -308,13 +347,13 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         theme={theme}
         {...rest}
       >
-        {leftIcon}
+        {icon}
         <LabelWrap size={size} {...rest}>
           {children}
         </LabelWrap>
         {onDelete && (
           <CancelIcon
-            aria-label={i18n.tag.deleteAriaLabel}
+            aria-label={deleteAriaLabel}
             size={theme.iconSizes.small}
           />
         )}
