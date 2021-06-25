@@ -238,4 +238,14 @@ export const defaultI18n: I18nInterface = {
     amSelectedAnnounce: 'AM is now selected',
     pmSelectedAnnounce: 'PM is now selected',
   },
+  wizard: {
+    actions: {
+      next: 'next',
+      previous: 'previous',
+      cancel: 'cancel',
+      submit: 'submit',
+    },
+    optional: 'optional',
+    navigationLabel: 'Navigation for the wizard',
+  },
 };

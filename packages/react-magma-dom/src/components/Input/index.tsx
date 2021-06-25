@@ -8,7 +8,7 @@ import { useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 
 export interface InputProps
-  extends FormFieldContainerBaseProps,
+  extends Omit<FormFieldContainerBaseProps, 'fieldId'>,
     InputBaseProps {}
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(

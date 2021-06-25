@@ -14,7 +14,7 @@ import { VisuallyHidden } from '../VisuallyHidden';
 import { useGenerateId } from '../../utils';
 
 export interface PasswordInputProps
-  extends FormFieldContainerBaseProps,
+  extends Omit<FormFieldContainerBaseProps, 'fieldId'>,
     React.InputHTMLAttributes<HTMLInputElement> {
   hiddenPasswordAnnounceText?: string;
   /**
