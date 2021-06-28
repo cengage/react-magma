@@ -98,7 +98,7 @@ Our blues are just like us: confident, cool and collected. They also, just like 
 
 ### Feedback
 
-Feedback colors should be used to reinforce positive or negative feedback to users. The `successInverse` and `dangerInverse` are designed to be used against dark backgrounds.
+Feedback colors should be used to reinforce positive or negative feedback to users.
 
 <div class="swatch-rows">
   <ColorSwatch color={magma.colors.success}>
@@ -117,14 +117,6 @@ Feedback colors should be used to reinforce positive or negative feedback to use
     <span>rgb(72,162,0)</span>
     <span>contrast ratio: 3.25:1</span>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.successInverse}>
-    <span>
-      <strong>successInverse</strong>
-    </span>
-    <span class="color-hex">{magma.colors.successInverse}</span>
-    <span>rgb(145,207,96)</span>
-    <span>contrast ratio: 4.50:1 (against dark colors)</span>
-  </ColorSwatch>
   <ColorSwatch color={magma.colors.danger}>
     <span>
       <strong>danger</strong>
@@ -132,14 +124,6 @@ Feedback colors should be used to reinforce positive or negative feedback to use
     <span class="color-hex">{magma.colors.danger}</span>
     <span>rgb(198,29,35)</span>
     <span>contrast ratio: 5.83:1</span>
-  </ColorSwatch>
-  <ColorSwatch color={magma.colors.dangerInverse}>
-    <span>
-      <strong>dangerInverse</strong>
-    </span>
-    <span class="color-hex">{magma.colors.dangerInverse}</span>
-    <span>rgb(245,146,149)</span>
-    <span>contrast ratio: 4.50:1 (against dark colors)</span>
   </ColorSwatch>
 </div>
 
@@ -266,6 +250,37 @@ Sometimes, going subtle makes a statement, too. Use our neutrals for the ultimat
     <span class="color-hex">{magma.colors.neutral08}</span>
     <span>rgb(255,255,255)</span>
     <span>contrast ratio: 1.0:1</span>
+  </ColorSwatch>
+</div>
+
+### Inverse Colors
+
+The inverse colors are designed to be used against dark backgrounds.
+
+<div class="swatch-rows">
+  <ColorSwatch color={magma.colors.primaryInverse}>
+    <span>
+      <strong>primaryInverse</strong>
+    </span>
+    <span class="color-hex">{magma.colors.primaryInverse}</span>
+    <span>rgb(112 205 255)</span>
+    <span>contrast ratio: 5.95:1 (against #3F3F3F)</span>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.successInverse}>
+    <span>
+      <strong>successInverse</strong>
+    </span>
+    <span class="color-hex">{magma.colors.successInverse}</span>
+    <span>rgb(145,207,96)</span>
+    <span>contrast ratio: 5.66:1 (against #3F3F3F)</span>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.dangerInverse}>
+    <span>
+      <strong>dangerInverse</strong>
+    </span>
+    <span class="color-hex">{magma.colors.dangerInverse}</span>
+    <span>rgb(245,146,149)</span>
+    <span>contrast ratio: 4.72:1 (against #3F3F3F)</span>
   </ColorSwatch>
 </div>
 

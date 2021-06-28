@@ -184,6 +184,8 @@ export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
 
+export { Tag, TagProps } from './components/Tag';
+
 export {
   ToastsContainer,
   ToastsContainerProps,
@@ -225,3 +227,4 @@ export * from './components/Transition';
 export * from './components/Drawer';
 
 export * from './components/FormFieldContainer';
+export * from './components/Tag'

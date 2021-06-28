@@ -225,6 +225,9 @@ export interface I18nInterface {
     previousButtonLabel: string;
     nextButtonLabel: string;
   };
+  tag: {
+    deleteAriaLabel: string;
+  }
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;
