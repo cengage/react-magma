@@ -225,7 +225,14 @@ describe('Tag', () => {
       });
     });
 
+    it('Should have an aria-label on the tag', () => {
+      const { getByText } = render(
+        <Tag aria-label={TEXT}></Tag>
+      );
 
+      expect(getByText(TEXT)).toBeInTheDocument();
+    });
+  
   });
-
+  
 });

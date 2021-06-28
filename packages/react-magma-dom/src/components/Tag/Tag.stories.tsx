@@ -109,7 +109,7 @@ export const SizeWithDelete = args => {
     <>
       {isVisible && (
         <Tag {...args} onDelete={deleteMe}>
-          Text Label
+          <span>Who the what the</span>Text Label
         </Tag>
       )}
     </>

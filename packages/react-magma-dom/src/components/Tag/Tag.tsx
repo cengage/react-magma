@@ -6,7 +6,7 @@ import { CancelIcon, IconProps } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
-import { Omit, XOR } from '../../utils';
+import { Omit, XOR, getNodeText } from '../../utils';
 import { I18nContext } from '../../i18n';
 
 export enum TagColor {
@@ -320,7 +320,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     const deleteAriaLabel = i18n.tag.deleteAriaLabel.replace(
       /\{labelText\}/g,
-      labelText as string
+      getNodeText(labelText)
     );
 
     const { icon } = props;
