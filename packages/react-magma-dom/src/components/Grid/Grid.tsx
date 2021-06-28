@@ -128,6 +128,9 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * Aligns the grid item within the cell along the block (column) axis. Applies to a grid item inside a single cell.
    */
   gridItemAlignSelf?: GridItemAlignSelf;
+  /**
+   * Set the default div element to any other type of element.
+   */
   as?: string;
   testId?: string;
   /**
@@ -136,7 +139,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: ThemeInterface;
 }
 
-export const StyledGrid = styled.div<GridProps>`
+const StyledGrid = styled.div<GridProps>`
   display: ${props => props.gridDisplay};
   grid-template-rows: ${props => props.gridRows};
   grid-template-columns: ${props => props.gridColumns};
@@ -153,8 +156,8 @@ export const GridItem = styled.div<GridProps>`
 export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   (props, ref) => {
     const {
-      as,
       children,
+      as,
       testId,
       gridDisplay = GridDisplay.grid,
       gridRows,
