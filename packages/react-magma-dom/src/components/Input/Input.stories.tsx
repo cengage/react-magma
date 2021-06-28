@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, InputProps } from '.';
-import { InputIconPosition, InputSize } from '../InputBase';
+import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
@@ -40,6 +40,11 @@ Error.args = {
 export const Large = Template.bind({});
 Large.args = {
   inputSize: InputSize.large,
+};
+
+export const File = Template.bind({});
+File.args = {
+  type: InputType.file,
 };
 
 export const IconLeft = Template.bind({});

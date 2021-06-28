@@ -225,6 +225,9 @@ export interface I18nInterface {
     previousButtonLabel: string;
     nextButtonLabel: string;
   };
+  tag: {
+    deleteAriaLabel: string;
+  }
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;
@@ -232,5 +235,15 @@ export interface I18nInterface {
     pmButtonAriaLabel: string;
     amSelectedAnnounce: string;
     pmSelectedAnnounce: string;
+  };
+  wizard: {
+    navigationLabel: string;
+    optional: string;
+    actions: {
+      previous: string;
+      next: string;
+      submit: string;
+      cancel: string;
+    };
   };
 }
