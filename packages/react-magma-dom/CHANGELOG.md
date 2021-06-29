@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.0-next.3
+
+### Patch Changes
+
+- 68b265d0: fix: place ref for dropdown on the card
+
 ## 2.5.0-next.2
 
 ### Patch Changes
