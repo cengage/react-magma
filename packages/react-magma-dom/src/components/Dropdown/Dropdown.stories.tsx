@@ -12,6 +12,7 @@ import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import { Input } from '../Input';
+import { Checkbox } from '../Checkbox';
 import { PasswordInput } from '../PasswordInput';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
@@ -209,6 +210,7 @@ const FormTemplate: Story<DropdownProps> = args => (
       <form style={{ margin: 0, padding: '16px' }}>
         <Input labelText="Email Address" />
         <PasswordInput labelText="Password" />
+        <Checkbox labelText="Remember me" />
         <div style={{ textAlign: 'center' }}>
           <p>
             By signing in, you agree to our <a href="#terms">Terms of use</a>.
