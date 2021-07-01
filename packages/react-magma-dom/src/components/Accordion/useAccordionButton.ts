@@ -1,4 +1,3 @@
-import { isArray } from 'lodash';
 import * as React from 'react';
 
 import { AccordionContext } from './useAccordion';
@@ -33,7 +32,7 @@ export function useAccordionButton(
     typeof onExpandedChange === 'function' && onExpandedChange(index);
 
     if (!isControlled) {
-      isMulti && isArray(expandedIndex)
+      isMulti && Array.isArray(expandedIndex)
         ? isExpanded
           ? setExpandedIndex(expandedIndex.filter(item => item !== index))
           : setExpandedIndex(expandedIndex.concat([index]))

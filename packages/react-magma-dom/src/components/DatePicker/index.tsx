@@ -46,6 +46,11 @@ export interface DatePickerProps
    * Style properties for the input element
    */
   inputStyle?: React.CSSProperties;
+  /**
+   * Clear contents of input by clicking a clear button
+   * @default false
+   */
+  isClearable?: boolean;
   isInverse?: boolean;
   /**
    * Style properties for the label element

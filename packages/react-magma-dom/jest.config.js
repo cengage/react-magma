@@ -10,5 +10,5 @@ module.exports = {
   },
   projects: ['.'],
   rootDir: '../..',
-  testMatch: [`**/${name}/**/?(*.)+(spec|test).{js,ts,mjs}`],
+  testMatch: [`**/${name}/**/?(*.)+(spec|test).{js,ts,mjs,tsx}`],
 };

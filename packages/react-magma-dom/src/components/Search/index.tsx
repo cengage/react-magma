@@ -30,6 +30,10 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
    */
   inputStyle?: React.CSSProperties;
   /**
+   * Clear contents of input by clicking a clear button
+   */
+  isClearable?: boolean;
+  /**
    * If true, the component will show a loading animation instead of a search button
    * @default false
    */
@@ -55,6 +59,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
   (props, ref) => {
     const {
       iconAriaLabel,
+      isClearable,
       isLoading,
       labelText,
       placeholder,
@@ -101,6 +106,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
         }
         iconPosition={InputIconPosition.right}
         isInverse={useIsInverse(props.isInverse)}
+        isClearable={isClearable}
         onChange={handleChange}
         onIconClick={isLoading ? null : handleSearch}
         onKeyDown={handleKeyPress}

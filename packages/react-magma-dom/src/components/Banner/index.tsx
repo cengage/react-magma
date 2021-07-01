@@ -39,7 +39,7 @@ const StyledBanner = styled.div<AlertProps>`
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   position: relative;
-  text-align: center;
+  text-align: left;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
@@ -52,7 +52,7 @@ const BannerContents = styled.div`
   align-items: center;
   display: flex;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: flex-start;
   padding: ${props => props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {

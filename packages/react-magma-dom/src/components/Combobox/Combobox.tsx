@@ -6,7 +6,7 @@ import { defaultComponents } from '../Select/components';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
-import { ButtonSize, ButtonVariant } from '../Button';
+import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
 import { ComboboxProps } from '.';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -286,8 +286,9 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+            icon={<CloseIcon />}
             onClick={defaultHandleClearIndicatorClick}
+            shape={ButtonShape.fill}
             size={ButtonSize.small}
             variant={ButtonVariant.link}
           />

@@ -19,7 +19,7 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Action that fires when the radio group loses focus
    */
-  onBlur?: (event: React.FocusEvent) => void;
+  onBlur?: (event?: React.FocusEvent) => void;
   /**
    * Action that fires when selected value of the radio group changes
    */

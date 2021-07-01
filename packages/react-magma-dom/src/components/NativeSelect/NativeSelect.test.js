@@ -25,7 +25,7 @@ describe('NativeSelect', () => {
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <NativeSelect>
+      <NativeSelect labelText="Test">
         <option></option>
       </NativeSelect>
     );
