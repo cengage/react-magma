@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- 8e3559c3: Refactor pagination component to use the new `usePagination` hook.
+  Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
+
+### Patch Changes
+
+- 68b265d0: fix: place ref for dropdown on the card
+- acc9219d: refactor(text alignment): changing the banner alignment to left aligned
+- 9a89c7af: feat(input): added isClearable prop to input base
+
 ## 2.5.0-next.3
 
 ### Patch Changes
