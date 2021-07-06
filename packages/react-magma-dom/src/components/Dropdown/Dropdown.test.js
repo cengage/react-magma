@@ -316,8 +316,10 @@ describe('Dropdown', () => {
   });
 
   it('should close the menu when menu is blurred', () => {
+    const onClose = jest.fn();
+
     const { getByText, getByTestId } = render(
-      <Dropdown testId="dropdown">
+      <Dropdown testId="dropdown" onClose={onClose}>
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
@@ -335,13 +337,17 @@ describe('Dropdown', () => {
 
     fireEvent.click(menuItem);
 
+    expect(onClose).toHaveBeenCalled();
+
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
   it('should close the menu when button is blurred', () => {
     jest.useFakeTimers();
+
+    const onClose = jest.fn();
     const { getByText, getByTestId } = render(
-      <Dropdown testId="dropdown">
+      <Dropdown testId="dropdown" onClose={onClose}>
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
@@ -359,6 +365,7 @@ describe('Dropdown', () => {
 
     act(jest.runAllTimers);
 
+    expect(onClose).toHaveBeenCalled();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
     jest.useRealTimers();
