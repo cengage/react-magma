@@ -399,24 +399,6 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  // it('should close the menu when the clicks outside of the menu', () => {
-  //   const onClose = jest.fn();
-  //   const { getByText } = render(
-  //     <Dropdown testId="dropdown" onClose={onClose}>
-  //       <DropdownButton>Toggle me</DropdownButton>
-  //       <DropdownContent>
-  //         <DropdownMenuItem>Menu item</DropdownMenuItem>
-  //       </DropdownContent>
-  //     </Dropdown>
-  //   );
-
-  //   fireEvent.click(getByText('Toggle me'));
-
-  //   fireEvent.click(document);
-
-  //   expect(onClose).toHaveBeenCalled();
-  // });
-
   it('should call the onBeforeShiftFocus prop when closing the dropdown', () => {
     jest.useFakeTimers();
     const onBeforeShiftFocus = jest.fn();
