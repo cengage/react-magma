@@ -125,22 +125,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }, [activeIndex]);
 
-    React.useEffect(() => {
-      if (isOpen) {
-        document.addEventListener('click', globalClickListener, true);
-      }
-
-      return () => {
-        document.removeEventListener('click', globalClickListener);
-      };
-    }, [isOpen]);
-
-    function globalClickListener(event) {
-      if (isOpen && ownRef.current && !ownRef.current.contains(event.target)) {
-        closeDropdown(event);
-      }
-    }
-
     function openDropdown() {
       setIsOpen(true);
       toggleRef.current.focus();
@@ -209,12 +193,13 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }
 
-    function handleButtonBlur() {
+    function handleButtonBlur(event: React.SyntheticEvent) {
       setTimeout(() => {
         const isInMenu = menuRef.current.contains(document.activeElement);
 
         if (!isInMenu && isOpen) {
           setIsOpen(false);
+          closeDropdown(event);
         }
       }, 0);
     }
@@ -227,6 +212,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
         if (!isInMenu && isOpen) {
           setIsOpen(false);
+          closeDropdown(event);
         }
       }, 0);
     }
