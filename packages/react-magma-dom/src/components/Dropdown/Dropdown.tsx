@@ -127,7 +127,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     React.useEffect(() => {
       if (isOpen) {
-        document.addEventListener('click', globalClickListener);
+        document.addEventListener('click', globalClickListener, true);
       }
 
       return () => {
