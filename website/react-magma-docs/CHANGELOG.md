@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.2.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [3260fafb]
+  - react-magma-dom@2.5.1-next.0
+  - @react-magma/schema-renderer@0.0.2-next.0
+  - @cengage-patterns/header@2.0.1-next.0
+
 ## 2.2.1
 
 ### Patch Changes

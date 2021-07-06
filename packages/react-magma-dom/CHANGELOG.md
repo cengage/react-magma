@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.1-next.0
+
+### Patch Changes
+
+- 3260fafb: Call onClose function when clicking outside of the dropdown menu
+
 ## 2.5.0
 
 ### Minor Changes
