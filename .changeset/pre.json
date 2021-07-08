@@ -9,6 +9,7 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "fair-insects-join",
     "popular-knives-confess"
   ]
 }

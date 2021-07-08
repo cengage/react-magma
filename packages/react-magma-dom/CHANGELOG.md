@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.1-next.1
+
+### Patch Changes
+
+- 1fbd86f3: fix(timepicker): update am/pm to use type=button
+
 ## 2.5.1-next.0
 
 ### Patch Changes
