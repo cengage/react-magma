@@ -1,0 +1,58 @@
+{
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.1-next.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "tsdx build",
+    "test": "jest",
+    "lint": "eslint ./src"
+  },
+  "peerDependencies": {
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
+    "@types/react": "^16.10.0",
+    "@types/uuid": "^8.3.0",
+    "date-fns": "^2.12.0",
+    "downshift": "^5.4.5",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0",
+    "react-magma-dom": "^2.5.0-next.1",
+    "react-magma-icons": "^2.3.0",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
+    "@types/react": "^16.10.0",
+    "@types/uuid": "^8.3.0",
+    "date-fns": "^2.16.1",
+    "downshift": "^5.4.5",
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0",
+    "react-magma-dom": "^2.5.0-next.1",
+    "react-magma-icons": "^2.3.0",
+    "uuid": "^8.3.0"
+  },
+  "name": "@react-magma/file-uploader",
+  "module": "dist/file-uploader.esm.js",
+  "homepage": "https://react-magma.cengage.com/version/next/api/file-uploader/",
+  "repository": {
+    "type": "git",
+    "directory": "packages/file-uploader",
+    "url": "https://github.com/cengage/react-magma.git"
+  },
+  "dependencies": {
+    "react-dropzone": "11.3.2"
+  }
+}
