@@ -111,7 +111,6 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         '@cengage-patterns/header':
           pkg.dependencies['@cengage-patterns/header'],
         '@react-magma/schema-renderer': pkg.dependencies['@react-magma/schema-renderer'],
-        'react-dropzone': pkg.dependencies['react-dropzone'],
         uuid: pkg.dependencies['uuid'],
       }}
       providedFiles={{

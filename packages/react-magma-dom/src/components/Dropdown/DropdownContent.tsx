@@ -8,6 +8,7 @@ import {
   DropdownDropDirection,
 } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef } from '../../utils';
 
 /**
  * @children required
@@ -91,10 +92,11 @@ const StyledDiv = styled.div`
 export const DropdownContent = React.forwardRef<
   HTMLDivElement,
   DropdownContentProps
->((props, ref) => {
+>((props, forwardedRef) => {
   const { children, testId, ...other } = props;
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
+  const ref = useForkedRef(forwardedRef, context.menuRef);
 
   return (
     <StyledCard
@@ -114,7 +116,6 @@ export const DropdownContent = React.forwardRef<
     >
       <StyledDiv
         aria-labelledby={context.dropdownButtonId.current}
-        ref={context.menuRef}
         role="menu"
         theme={theme}
       >
