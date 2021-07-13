@@ -1,22 +1,22 @@
 import * as React from 'react';
-import { Card } from 'react-magma-dom';
-import { ErrorIcon, DeleteIcon, CrossIcon } from 'react-magma-icons';
+import { Card, Spinner } from 'react-magma-dom';
+import { ErrorIcon, DeleteIcon, CloseIcon, CheckCircleIcon} from 'react-magma-icons';
 
 import { FilePreview } from './FilePreview';
-import styled from '@emotion/styled';
 
 import { 
   Flex,
   FlexBehavior,
-  FlexDirection,
-  FlexAlignContent,
   FlexAlignItems,
   FlexProps,
   IconButton,
   ButtonColor,
   ButtonVariant ,
   InverseContext,
-  Paragraph,
+  styled,
+  ThemeContext,
+  ThemeInterface,
+  Transition,
   useIsInverse,
   // I18nContext
 } from 'react-magma-dom';
@@ -27,7 +27,7 @@ import { FileIcon } from './FileIcon';
 export interface PreviewProps extends Omit<FlexProps, 'behavior'>{
   testId?: string;
   isInverse?: boolean;
-  files: FilePreview[];
+  file: FilePreview;
   thumbnails: boolean;
   onRemoveFile?: (file: FilePreview) => void;
   onPreviewClick?: (file: FilePreview) => void;
@@ -44,13 +44,17 @@ const Thumb = styled.div<{file: FilePreview}>`
 
 const Errors = styled.div`
   border-top: 1px solid grey;
+  padding: 10px;
+`;
+
+const StyledFlex = styled(Flex)`
+  padding: 10px;
 `;
 
 const StyledCard = styled(Card)<{file: FilePreview}>`
   margin: 10px 0;
-  padding: 10px;
   border-width: ${({file}) => file.errors ? '2px' : '1px'};
-  border-color: ${({file}) => file.errors ? 'red' : 'grey'};
+  border-color: ${({file, theme}) => file.errors ? theme.colors.danger : theme.colors.neutral06};
 `;
 
 const ErrorCode = styled.span`
@@ -61,6 +65,7 @@ const ErrorMessage = styled.span`
   display: block;
 `;
 
+
 export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
   (props, ref) => {
     const {
@@ -68,12 +73,13 @@ export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
       testId,
       isInverse: isInverseProp,
       thumbnails,
-      onPreviewClick,
-      files,
+      file,
       ...rest
     } = props;
     
+    const theme:ThemeInterface = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
+    const [actions, setActions] = React.useState(<CloseIcon />);
     // const i18n = React.useContext(I18nContext);
 
     const handleRemoveFile = (file: FilePreview ) => {
@@ -82,58 +88,101 @@ export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
       }
     }
 
-    // const handlePreviewClick = (event: React.MouseEvent<HTMLElement>, file: FilePreview) => {
-    //   event.stopPropagation();
-    //   if(onPreviewClick && typeof onPreviewClick === 'function') {
-    //     onPreviewClick(file)
-    //   }
+    const FinishedActions = ({status}:{status:string}) => {
+      const [done, setDone] = React.useState(false);
+
+      React.useEffect(() => {
+        setTimeout(() => {
+          setDone(true);
+        }, 2000)
+      }, [status])
+
+      if(status ===  'error' || status ===  'ready') {
+        return <IconButton
+          onClick={() => {handleRemoveFile(file)}}
+          variant={ButtonVariant.link}
+          color={ButtonColor.secondary}
+          aria-label="Remove File"
+          icon={<CloseIcon />}
+        />
+      }
+
+      if(status === 'pending') {
+        return <Spinner/>
+      }
+
+      return <div>
+        <Transition style={{float: 'right'}} isOpen={!done} unmountOnExit nudgeBottom fade>
+          <CheckCircleIcon/>
+        </Transition>
+        <Transition style={{float: 'right'}} isOpen={done} unmountOnExit nudgeTop fade>
+          <IconButton
+            onClick={() => {handleRemoveFile(file)}}
+            variant={ButtonVariant.link}
+            color={ButtonColor.secondary}
+            aria-label="Delete File"
+            icon={<DeleteIcon />}
+          />
+        </Transition>
+      </div>
+    }
+
+    // const actionMapper:any = {
+    //   pending: <Spinner/>,
+    //   complete: <DeleteIcon/>,
+    //   ready: <CloseIcon/>,
+    //   finished: <FinishedActions/>
     // }
+
+    React.useEffect(() => {
+      setActions(<FinishedActions status={file?.processor?.status || 'ready'}/>);
+      // setActions(actionMapper[file?.processor?.status || 'ready'])
+      //  === 'pending' ? <Spinner/> : 
+      //   file?.processor?.status === 'pending' ? <Spinner/> : <CloseIcon />)
+      // file.processor && file.processor.status !== 'complete' ? <Spinner/> : <IconButton
+      //   onClick={() => {handleRemoveFile(file)}}
+      //   variant={ButtonVariant.link}
+      //   color={ButtonColor.secondary}
+      //   aria-label="Remove File"
+      //   icon={file.errors ? <CloseIcon /> : <DeleteIcon />}
+      // />
+    }, [file?.processor?.status])
 
     return (
       <InverseContext.Provider value={{ isInverse }}>
-        {files.map((file: FilePreview ) => {
-          return (
-          <StyledCard file={file} data-testid={props.testId}>
-            <Flex
+          <StyledCard theme={theme} file={file} data-testid={props.testId}>
+            <StyledFlex
+              theme={theme}
               behavior={FlexBehavior.container}
-              // alignContent={FlexAlignContent.spaceAround}
               alignItems={FlexAlignItems.center}
               {...rest}
             >
               <Flex behavior={FlexBehavior.item}>
-                { file.errors? <ErrorIcon size={24} /> :
-                  file.preview ? 
+                { 
+                  file.errors? <ErrorIcon color={theme.colors.danger} size={24} /> :
+                  file.preview &&  file.type && file.type.startsWith('image')? 
                   <Thumb file={file}/> : 
                   <FileIcon file={file}/>
                 }
               </Flex>
               <Flex behavior={FlexBehavior.item}>
-                {file.name}
+                {file.name} {JSON.stringify(file.processor)}
               </Flex>
               <Flex style={{marginLeft: 'auto'}} behavior={FlexBehavior.item}>
-                100%
+                {file.processor && file.processor.percent}
               </Flex>
               <Flex behavior={FlexBehavior.item}>
-                <IconButton
-                  onClick={() => {handleRemoveFile(file)}}
-                  variant={ButtonVariant.link}
-                  color={ButtonColor.secondary}
-                  aria-label="Remove File"
-                  icon={file.errors ? <CrossIcon /> : <DeleteIcon />}
-                />
+                {actions}
               </Flex>
-            </Flex>
-            {file.errors && <Errors>
+            </StyledFlex>
+            {file.errors && <Errors theme={theme}>
               {file.errors.map(error => <>
                 <ErrorCode>{error.code}</ErrorCode>
                 <ErrorMessage>{error.message}</ErrorMessage>
               </>)}
             </Errors>}
           </StyledCard>
-        )}
-        )}
       </InverseContext.Provider>
     );
   }
 )
-// {file.file.<- {file.errors[0].code} - {file.errors[0].message}</div>
