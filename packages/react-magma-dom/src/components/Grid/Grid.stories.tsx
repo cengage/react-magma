@@ -16,7 +16,7 @@ const Template: Story<GridProps> = args => (
     {...args}
   >
     <GridItem gridColSpan={'1 / 4'} as="section">
-      Test
+      Test Section
     </GridItem>
     <GridItem>Test</GridItem>
     <GridItem>Test</GridItem>

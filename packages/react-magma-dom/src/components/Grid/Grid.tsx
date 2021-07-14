@@ -120,7 +120,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Define which grid area a grid item belongs to.
    */
-  gridArea?: CSS.Property.GridAreas;
+  gridArea?: CSS.Property.GridArea;
   /**
    * Aligns the grid item within the cell along the inline (row) axis. Applies to a grid item inside a single cell.
    */
@@ -129,10 +129,6 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * Aligns the grid item within the cell along the block (column) axis. Applies to a grid item inside a single cell.
    */
   gridItemAlignSelf?: GridItemAlignSelf;
-  /**
-   * Set the default div element to any other type of element.
-   */
-  as?: string;
   testId?: string;
   /**
    * @internal
@@ -158,7 +154,6 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
   (props, ref) => {
     const {
       children,
-      as,
       testId,
       gridDisplay = GridDisplay.grid,
       gridRows,
@@ -177,7 +172,6 @@ export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
     return (
       <StyledGrid
         theme={theme}
-        as="div"
         ref={ref}
         data-testid={testId}
         gridDisplay={gridDisplay}
