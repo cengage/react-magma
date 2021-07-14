@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import * as CSS from 'csstype';
 
 export enum GridDisplay {
   grid = 'grid', // default
@@ -75,19 +76,19 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Set the columns in the grid.
    */
-  gridColumns?: string;
+  gridColumns?: CSS.Property.GridTemplateColumns;
   /**
    * Set the rows in the grid.
    */
-  gridRows?: string;
+  gridRows?: CSS.Property.GridTemplateRows;
   /**
    * Set the areas in the grid.
    */
-  gridAreas?: string;
+  gridAreas?: CSS.Property.GridTemplateAreas;
   /**
    * Set the space between columns and / or rows in the grid.
    */
-  gridGap?: string;
+  gridGap?: CSS.Property.GridGap;
   /**
    * Align grid items along the inline (row) axis. Applies to all items in the grid.
    */
@@ -111,15 +112,15 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Defines the span of a column on a grid item.
    */
-  gridColSpan?: string;
+  gridColSpan?: CSS.Property.GridColumn;
   /**
    * Defines the span of a row on a grid item.
    */
-  gridRowSpan?: string;
+  gridRowSpan?: CSS.Property.GridRow;
   /**
    * Define which grid area a grid item belongs to.
    */
-  gridArea?: string;
+  gridArea?: CSS.Property.GridAreas;
   /**
    * Aligns the grid item within the cell along the inline (row) axis. Applies to a grid item inside a single cell.
    */
