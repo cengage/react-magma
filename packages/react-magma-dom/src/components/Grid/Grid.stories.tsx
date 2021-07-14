@@ -10,12 +10,12 @@ export default {
 
 const Template: Story<GridProps> = args => (
   <Grid
-    gridColumns={'repeat(4, 1fr)'}
-    gridRows={'auto'}
+    gridTemplateColumns={'repeat(4, 1fr)'}
+    gridTemplateRows={'auto'}
     gridGap={'1em'}
     {...args}
   >
-    <GridItem gridColSpan={'1 / 4'} as="section">
+    <GridItem gridColumn={'1 / 4'} as="section">
       Test Section
     </GridItem>
     <GridItem>Test</GridItem>

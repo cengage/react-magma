@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { css } from '@emotion/core';
 import * as CSS from 'csstype';
 
 export enum GridDisplay {
@@ -76,15 +75,15 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Set the columns in the grid.
    */
-  gridColumns?: CSS.Property.GridTemplateColumns;
+  gridTemplateColumns?: CSS.Property.GridTemplateColumns;
   /**
    * Set the rows in the grid.
    */
-  gridRows?: CSS.Property.GridTemplateRows;
+  gridTemplateRows?: CSS.Property.GridTemplateRows;
   /**
    * Set the areas in the grid.
    */
-  gridAreas?: CSS.Property.GridTemplateAreas;
+  gridTemplateAreas?: CSS.Property.GridTemplateAreas;
   /**
    * Set the space between columns and / or rows in the grid.
    */
@@ -112,11 +111,11 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Defines the span of a column on a grid item.
    */
-  gridColSpan?: CSS.Property.GridColumn;
+  gridColumn?: CSS.Property.GridColumn;
   /**
    * Defines the span of a row on a grid item.
    */
-  gridRowSpan?: CSS.Property.GridRow;
+  gridTemplateRowspan?: CSS.Property.GridRow;
   /**
    * Define which grid area a grid item belongs to.
    */
@@ -130,63 +129,29 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   gridItemAlignSelf?: GridItemAlignSelf;
   testId?: string;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
 }
 
-const StyledGrid = styled.div<GridProps>`
-  display: ${props => props.gridDisplay};
-  grid-template-rows: ${props => props.gridRows};
-  grid-template-columns: ${props => props.gridColumns};
-  grid-areas: ${props => props.gridAreas};
-  grid-gap: ${props => props.gridGap};
+export const Grid = styled.div<GridProps>`
+  ${props => css({
+    display: props.gridDisplay || GridDisplay.grid,
+    'grid-template-rows': props.gridTemplateRows,
+    'grid-template-columns': props.gridTemplateColumns,
+    'grid-areas': props.gridTemplateAreas,
+    'grid-gap': props.gridGap,
+    'grid-justify-items': props.gridJustifyItems,
+    'grid-justify-content': props.gridJustifyContent,
+    'grid-align-items': props.gridAlignItems,
+    'grid-align-content': props.gridAlignContent,
+    'grid-item-justify-self': props.gridItemJustifySelf,
+    'grid-item-align-self': props.gridItemAlignSelf,
+    'grid-auto-flow': props.gridAutoFlow,
+  })}
 `;
 
 export const GridItem = styled.div<GridProps>`
-  grid-column: ${props => props.gridColSpan};
-  grid-row: ${props => props.gridRowSpan};
-  grid-area: ${props => props.gridArea};
+  ${props => css({
+    'grid-column': props.gridColumn,
+    'grid-row': props.gridTemplateRowspan,
+    'grid-area': props.gridArea,
+  })}
 `;
-
-export const Grid = React.forwardRef<HTMLDivElement, GridProps>(
-  (props, ref) => {
-    const {
-      children,
-      testId,
-      gridDisplay = GridDisplay.grid,
-      gridRows,
-      gridColumns,
-      gridGap,
-      gridAreas,
-      gridAutoFlow,
-      gridColSpan,
-      gridRowSpan,
-      gridArea,
-      style,
-      ...rest
-    } = props;
-    const theme = React.useContext(ThemeContext);
-
-    return (
-      <StyledGrid
-        theme={theme}
-        ref={ref}
-        data-testid={testId}
-        gridDisplay={gridDisplay}
-        gridRows={gridRows}
-        gridColumns={gridColumns}
-        gridGap={gridGap}
-        gridAreas={gridAreas}
-        gridAutoFlow={gridAutoFlow}
-        gridColSpan={gridColSpan}
-        gridRowSpan={gridRowSpan}
-        gridArea={gridArea}
-        {...rest}
-      >
-        {children}
-      </StyledGrid>
-    );
-  }
-);
