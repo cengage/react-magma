@@ -55,6 +55,7 @@ export interface IconSizes {
   small: number;
   medium: number;
   large: number;
+  xLarge: number;
 }
 
 export interface SpacingScale {
