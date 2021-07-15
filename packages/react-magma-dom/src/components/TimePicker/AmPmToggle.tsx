@@ -33,6 +33,7 @@ export const AmPmToggle = React.forwardRef<HTMLButtonElement, AmPmToggleProps>(
         data-testid="amPmTimeButton"
         ref={ref}
         theme={theme}
+        type="button"
       >
         {children}
       </StyledAmPmToggle>
