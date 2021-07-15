@@ -55,6 +55,7 @@ export interface IconSizes {
   small: number;
   medium: number;
   large: number;
+  xLarge: number;
 }
 
 export interface SpacingScale {
@@ -398,6 +399,7 @@ export const magma = {
     small: 20,
     medium: 24,
     large: 32,
+    xLarge: 54,
   },
 
   // Typography
