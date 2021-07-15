@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.1-next.2
+
+### Patch Changes
+
+- c3b90d1d: feat: add xLarge for iconSizes
+  fix: export styled and useGeneratedId for external components
+
 ## 2.5.1-next.1
 
 ### Patch Changes
