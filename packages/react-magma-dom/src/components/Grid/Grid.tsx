@@ -108,6 +108,12 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * If you have grid items that you don’t explicitly place on the grid, the auto-placement algorithm kicks in to automatically place the items.
    */
   gridAutoFlow?: GridAutoFlow;
+}
+
+/**
+ * @children required
+ */
+export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Defines the span of a column on a grid item.
    */
@@ -115,7 +121,7 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Defines the span of a row on a grid item.
    */
-  gridTemplateRowspan?: CSS.Property.GridRow;
+  gridRow?: CSS.Property.GridRow;
   /**
    * Define which grid area a grid item belongs to.
    */
@@ -128,30 +134,31 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * Aligns the grid item within the cell along the block (column) axis. Applies to a grid item inside a single cell.
    */
   gridItemAlignSelf?: GridItemAlignSelf;
-  testId?: string;
 }
 
 export const Grid = styled.div<GridProps>`
-  ${props => css({
-    display: props.gridDisplay || GridDisplay.grid,
-    'grid-template-rows': props.gridTemplateRows,
-    'grid-template-columns': props.gridTemplateColumns,
-    'grid-areas': props.gridTemplateAreas,
-    'grid-gap': props.gridGap,
-    'grid-justify-items': props.gridJustifyItems,
-    'grid-justify-content': props.gridJustifyContent,
-    'grid-align-items': props.gridAlignItems,
-    'grid-align-content': props.gridAlignContent,
-    'grid-item-justify-self': props.gridItemJustifySelf,
-    'grid-item-align-self': props.gridItemAlignSelf,
-    'grid-auto-flow': props.gridAutoFlow,
-  })}
+  ${props =>
+    css({
+      display: props.gridDisplay || GridDisplay.grid,
+      'grid-template-rows': props.gridTemplateRows,
+      'grid-template-columns': props.gridTemplateColumns,
+      'grid-areas': props.gridTemplateAreas,
+      'grid-gap': props.gridGap,
+      'justify-items': props.gridJustifyItems,
+      'justify-content': props.gridJustifyContent,
+      'align-items': props.gridAlignItems,
+      'align-content': props.gridAlignContent,
+      'grid-auto-flow': props.gridAutoFlow,
+    })}
 `;
 
-export const GridItem = styled.div<GridProps>`
-  ${props => css({
-    'grid-column': props.gridColumn,
-    'grid-row': props.gridTemplateRowspan,
-    'grid-area': props.gridArea,
-  })}
+export const GridItem = styled.div<GridItemProps>`
+  ${props =>
+    css({
+      'grid-column': props.gridColumn,
+      'grid-row': props.gridRow,
+      'grid-area': props.gridArea,
+      'justify-self': props.gridItemJustifySelf,
+      'align-self': props.gridItemAlignSelf,
+    })}
 `;
