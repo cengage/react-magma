@@ -4,7 +4,6 @@ import {
   ImageIcon,
   AudiotrackIcon,
   VideoCameraBackIcon,
-  AttachFileIcon,
   FileExcelIcon,
   FilePdfIcon,
   FilePowerpointIcon,

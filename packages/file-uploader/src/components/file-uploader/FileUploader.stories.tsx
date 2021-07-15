@@ -1,6 +1,8 @@
 import React from 'react';
 import { FileUploader } from './FileUploader';
-import { fakeFileProcessor } from './fakeFileProcessor';
+// import { fakeFileProcessor } from '../../processors/fakeFileProcessor';
+import { csvFileProcessor } from '../../processors/csvFileProcessor';
+// import { base64FileProcessor } from '../../processors/base64FileProcessor';
 
 export default {
   component: FileUploader,
@@ -21,7 +23,7 @@ export const Default = () => {
       maxFiles={5}
       maxSize={1024*1024}
       sendFiles={true}
-      onSendFile={fakeFileProcessor}
+      onSendFile={csvFileProcessor}
       labelText="Upload files"
       helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
     />

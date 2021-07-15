@@ -16,8 +16,6 @@ import {
 
 import { CloudUploadIcon } from 'react-magma-icons';
 
-import { useTimeout } from './use-timeout';
-
 // import { InverseContext, useIsInverse } from '../../inverse';
 // import { I18nContext } from '../../i18n';
 
@@ -137,7 +135,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     // maxFiles,
     maxSize,
     minSize,
-    accept: "image/*",
+    // accept,
     onDrop,
   });
   

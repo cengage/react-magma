@@ -1,4 +1,4 @@
-import { FileProcessorProps } from './FileProcessor';
+import { FileProcessorProps } from '../components/file-uploader/FileProcessor';
 
 export const fakeFileProcessor = (props: FileProcessorProps) => {
   const {onProgress, onError, onFinish, file} = props;
