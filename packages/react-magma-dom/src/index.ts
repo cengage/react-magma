@@ -206,7 +206,7 @@ export {
   TypographyContextVariant,
   TypographyVisualStyle,
 } from './components/Typography';
-export { useGenerateId } from './utils';
+
 export {
   VisuallyHidden,
   VisuallyHiddenProps,
