@@ -398,6 +398,7 @@ export const magma = {
     small: 20,
     medium: 24,
     large: 32,
+    xLarge: 54,
   },
 
   // Typography
