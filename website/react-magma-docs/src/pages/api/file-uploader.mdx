@@ -1,0 +1,69 @@
+---
+pageTitle: Fileuploader API
+title: Fileuploader
+props:
+- FileuploaderProps
+---
+
+<DocsHeading type="api">
+  Fileuploader
+</DocsHeading>
+
+Upload files
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Fileuploader } from '@react-magma/file-uploader';
+
+export function Example() {
+return <Fileuploader>Fileuploader content</Fileuploader>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { Fileuploader } from '@react-magma/file-uploader';
+
+export function Example() {
+return <Fileuploader isInverse>Fileuploader content</Fileuploader>;
+}
+```
+
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+import { Fileuploader } from '@react-magma/file-uploader';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        example: 'example i18n',
+      }}
+    >
+      <Fileuploader>override default i18n value: </Fileuploader>
+    </I18nContext.Provider>
+  );
+}
+```
+
+# Fileuploader Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<FileuploaderProps />
