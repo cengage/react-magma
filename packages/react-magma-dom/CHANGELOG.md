@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.1-next.3
+
+### Patch Changes
+
+- 93ecc6c8: Feature/grid
+
+  CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
+
 ## 2.5.1-next.2
 
 ### Patch Changes
