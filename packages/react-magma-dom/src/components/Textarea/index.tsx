@@ -34,7 +34,7 @@ export interface TextareaProps
 }
 
 const StyledTextArea = styled.textarea<
-  InputWrapperStylesProps & InputBaseStylesProps
+  InputWrapperStylesProps & InputBaseStylesProps & Pick<React.HtmlHTMLAttributes<HTMLTextAreaElement>, 'width'>
 >`
   ${inputBaseStyles};
   ${inputWrapperStyles};
