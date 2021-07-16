@@ -230,4 +230,8 @@ export * from './components/Transition';
 export * from './components/Drawer';
 
 export * from './components/FormFieldContainer';
+
+export * from './components/Grid'
+
 export * from './components/Tag'
+
