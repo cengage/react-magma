@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.1-next.4
+
+### Patch Changes
+
+- e12e00c: fix(textarea): default width to 100%
+
 ## 2.5.1-next.3
 
 ### Patch Changes
