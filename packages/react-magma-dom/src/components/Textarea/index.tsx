@@ -34,7 +34,7 @@ export interface TextareaProps
 }
 
 const StyledTextArea = styled.textarea<
-  InputWrapperStylesProps & InputBaseStylesProps & Pick<React.HtmlHTMLAttributes<HTMLTextAreaElement>, 'width'>
+  InputWrapperStylesProps & InputBaseStylesProps
 >`
   ${inputBaseStyles};
   ${inputWrapperStyles};
@@ -56,7 +56,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       messageStyle,
       testId,
       textareaStyle,
-      width='100%',
       ...other
     } = props;
 
@@ -110,7 +109,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           style={textareaStyle}
           theme={theme}
           value={value}
-          width={width}
+          width='100%'
         />
       </FormFieldContainer>
     );
