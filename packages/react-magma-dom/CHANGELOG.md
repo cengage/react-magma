@@ -1,5 +1,26 @@
 # Change Log
 
+## 2.5.1-next.4
+
+### Patch Changes
+
+- e12e00c: fix(textarea): default width to 100%
+
+## 2.5.1-next.3
+
+### Patch Changes
+
+- 93ecc6c8: Feature/grid
+
+  CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
+
+## 2.5.1-next.2
+
+### Patch Changes
+
+- c3b90d1d: feat: add xLarge for iconSizes
+  fix: export styled and useGeneratedId for external components
+
 ## 2.5.1-next.1
 
 ### Patch Changes

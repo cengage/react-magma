@@ -109,6 +109,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           style={textareaStyle}
           theme={theme}
           value={value}
+          width='100%'
         />
       </FormFieldContainer>
     );
