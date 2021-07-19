@@ -38,6 +38,7 @@ export interface FileUploaderProps extends Omit<FormFieldContainerBaseProps, 'fi
   minSize?: number;
   accept?: string | string[];
   id?: string;
+  testId?: string;
 }
 
 const Container = styled(Flex)<DropzoneRootProps & FlexProps & {dragState?: DragState}>`
@@ -87,6 +88,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     maxSize,
     minSize,
     accept,
+    testId,
     ...rest
   } = props;
 
@@ -205,7 +207,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
         behavior={FlexBehavior.container}
         theme={theme}
       >
-        <input ref={ref} {...getInputProps()}/>
+        <input ref={ref} data-testid={testId} {...getInputProps()}/>
         <Flex behavior={FlexBehavior.item}>
           <CloudUploadIcon color={theme.colors.neutral02} size={theme.iconSizes.xLarge} />
           <Wrapper theme={theme}>
