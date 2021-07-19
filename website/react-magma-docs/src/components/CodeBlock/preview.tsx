@@ -9,6 +9,7 @@ import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
 import { es, zhCN } from 'date-fns/locale';
 import * as HEADER from '@cengage-patterns/header';
+import * as FILEUPLOADER from '@react-magma/file-uploader';
 
 import { CodeBlockContext } from './context';
 
@@ -59,7 +60,7 @@ export const Preview = ({ ...props }: PreviewProps) => {
     <PreviewContainer isInverse={isInverse} noBorder={props.noBorder}>
       <LiveProvider
         code={preview.code}
-        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS, ...HEADER, ...SCHEMA }}
+        scope={{ es, zhCN, ...MAGMA, ...ICONS, ICONS, ...HEADER, ...SCHEMA, ...FILEUPLOADER }}
         noInline
         transformCode={transformCode}
       >
