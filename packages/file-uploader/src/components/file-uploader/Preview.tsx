@@ -150,7 +150,7 @@ export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
 
     return (
       <InverseContext.Provider value={{ isInverse }}>
-          <StyledCard theme={theme} file={file} data-testid={props.testId}>
+          <StyledCard theme={theme} file={file} data-testid={props.testId} ref={ref}>
             <StyledFlex
               theme={theme}
               behavior={FlexBehavior.container}
