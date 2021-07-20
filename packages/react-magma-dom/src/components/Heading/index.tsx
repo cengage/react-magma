@@ -28,6 +28,7 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
    */
   level: 1 | 2 | 3 | 4 | 5 | 6;
   testId?: string;
+  noMargins?: boolean;
   /**
    * Applies visual styles including font-size, font-weight, line-height and margins
    */
