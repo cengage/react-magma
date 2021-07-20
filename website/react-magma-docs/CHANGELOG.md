@@ -1,5 +1,62 @@
 # Change Log
 
+## 2.2.2-next.4
+
+### Patch Changes
+
+- Updated dependencies [e12e00c]
+  - react-magma-dom@2.5.1-next.4
+
+## 2.2.2-next.3
+
+### Patch Changes
+
+- Updated dependencies [93ecc6c8]
+  - react-magma-dom@2.5.1-next.3
+
+## 2.2.2-next.2
+
+### Patch Changes
+
+- Updated dependencies [c3b90d1d]
+  - react-magma-dom@2.5.1-next.2
+
+## 2.2.2-next.1
+
+### Patch Changes
+
+- Updated dependencies [1fbd86f3]
+  - react-magma-dom@2.5.1-next.1
+
+## 2.2.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [3260fafb]
+  - react-magma-dom@2.5.1-next.0
+  - @react-magma/schema-renderer@0.0.2-next.0
+  - @cengage-patterns/header@2.0.1-next.0
+
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies [8e3559c3]
+- Updated dependencies [68b265d0]
+- Updated dependencies [acc9219d]
+- Updated dependencies [e5d29a5b]
+- Updated dependencies [9a89c7af]
+  - react-magma-dom@2.5.0
+  - @react-magma/schema-renderer@0.0.1
+  - @cengage-patterns/header@2.0.0
+
+## 2.2.1-next.2
+
+### Patch Changes
+
+- Updated dependencies [68b265d0]
+  - react-magma-dom@2.5.0-next.3
+
 ## 2.2.1-next.1
 
 ### Patch Changes
