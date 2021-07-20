@@ -22,6 +22,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
+            showHelperInformation: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -36,6 +37,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
+            showHelperInformation: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -75,6 +77,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
+            showHelperInformation: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -98,6 +101,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
+            showHelperInformation: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -112,6 +116,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
+            showHelperInformation: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -147,6 +152,7 @@ describe('Calendar Month', () => {
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
+          showHelperInformation: false,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -170,6 +176,7 @@ describe('Calendar Month', () => {
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
+          showHelperInformation: false,
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -191,6 +198,7 @@ describe('Calendar Month', () => {
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
+          showHelperInformation: false,
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
@@ -256,6 +264,7 @@ describe('Calendar Month', () => {
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
+          showHelperInformation: false,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),

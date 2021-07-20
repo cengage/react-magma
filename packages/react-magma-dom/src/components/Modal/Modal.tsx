@@ -1,11 +1,11 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
-import {
-  getTrapElements,
-  getTrapElementsAndFocus,
-  getFocusedElementIndex,
-} from './utils';
+// import {
+//   getTrapElements,
+//   getTrapElementsAndFocus,
+//   getFocusedElementIndex,
+// } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
@@ -16,6 +16,7 @@ import { TypographyVisualStyle } from '../Typography';
 import { Transition, TransitionProps } from '../Transition';
 import { ThemeInterface } from '../../theme/magma';
 import { omit, useGenerateId, usePrevious } from '../../utils';
+import { useFocusLock } from '../../hooks/useFocusLock';
 
 export enum ModalSize {
   large = 'large',
@@ -177,18 +178,20 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const lastFocus = React.useRef<any>();
     const headingRef = React.useRef<any>();
     const bodyRef = React.useRef<any>();
-    const focusTrapElement = React.useRef<any>();
 
     const id = useGenerateId(props.id);
     const headingId = `${id}_heading`;
     const contentId = `${id}_content`;
 
-    const [focusableElements, setFocusableElements] = React.useState<
-      HTMLElement[]
-    >([]);
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
     const [isExiting, setIsExiting] = React.useState<boolean>(false);
     const [currentTarget, setCurrentTarget] = React.useState(null);
+
+    const focusTrapElement = useFocusLock(
+      isModalOpen,
+      props.header ? headingRef : null,
+      bodyRef
+    );
 
     const prevOpen = usePrevious(props.isOpen);
 
@@ -204,14 +207,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       if (isModalOpen) {
         lastFocus.current = document.activeElement;
 
-        setFocusableElements(
-          getTrapElementsAndFocus(
-            focusTrapElement,
-            bodyRef,
-            props.header ? headingRef : null
-          )
-        );
-
         if (!props.isEscKeyDownDisabled) {
           document.body.addEventListener('keydown', handleEscapeKeyDown, false);
         }
@@ -225,17 +220,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         );
       };
     }, [isModalOpen]);
-
-    React.useEffect(() => {
-      if (isModalOpen) {
-        const newFocusableElements: Array<HTMLElement> =
-          document.activeElement.nodeName === 'BODY'
-            ? getTrapElementsAndFocus(focusTrapElement, bodyRef)
-            : getTrapElements(focusTrapElement);
-
-        setFocusableElements(newFocusableElements);
-      }
-    }, [props.children]);
 
     function handleModalClick(event: React.SyntheticEvent) {
       if (
@@ -263,43 +247,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       }
     }
 
-    function isElementHeader(el: any) {
-      return headingRef.current ? headingRef.current.id === el.id : false;
-    }
-
-    function handleKeyDown(event) {
-      const { keyCode, shiftKey } = event;
-
-      if (shiftKey && keyCode === 9) {
-        const index = getFocusedElementIndex(focusableElements, event.target);
-
-        if (focusableElements.length === 0) {
-          event.preventDefault();
-        }
-
-        if (
-          index === 0 ||
-          isElementHeader(event.target) ||
-          (event.target.getAttribute('type') === 'radio' &&
-            event.target.hasAttribute('name') &&
-            event.target.getAttribute('name') ===
-              focusableElements[0].getAttribute('name'))
-        ) {
-          event.preventDefault();
-          focusableElements[focusableElements.length - 1].focus();
-        }
-      } else if (keyCode === 9) {
-        const index = getFocusedElementIndex(focusableElements, event.target);
-
-        if (index === focusableElements.length - 1) {
-          event.preventDefault();
-          if (focusableElements.length > 0) {
-            focusableElements[0].focus();
-          }
-        }
-      }
-    }
-
     function handleClose(event?) {
       if (event) {
         event.stopPropagation();
@@ -308,7 +255,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
       setTimeout(() => {
         setIsExiting(false);
-        setFocusableElements([]);
         setIsModalOpen(false);
 
         if (lastFocus.current) {
@@ -343,7 +289,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     );
 
     return (
-      <>
+      <div ref={focusTrapElement}>
         <Global
           styles={css`
             html {
@@ -356,12 +302,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           aria-modal={true}
           data-testid={testId}
           id={id}
-          onKeyDown={isEscKeyDownDisabled ? null : handleKeyDown}
           onClick={isBackgroundClickDisabled ? null : handleModalClick}
           onMouseDown={
             isBackgroundClickDisabled ? null : handleModalOnMouseDown
           }
-          ref={focusTrapElement}
           role="dialog"
           style={containerStyle}
           theme={theme}
@@ -422,7 +366,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           isOpen={isModalOpen}
           unmountOnExit
         />
-      </>
+      </div>
     );
   }
 );
