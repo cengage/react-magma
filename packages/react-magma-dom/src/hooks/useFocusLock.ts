@@ -13,9 +13,9 @@ export function useFocusLock(
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
 
   const updateFocusableItems = () => {
-    focusableItems.current = (rootNode.current?.querySelectorAll(
+    focusableItems.current = rootNode.current?.querySelectorAll(
       'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
-    ) as unknown) as Array<HTMLElement>;
+    ) as unknown as Array<HTMLElement>;
   };
 
   React.useEffect(() => {
@@ -28,7 +28,7 @@ export function useFocusLock(
         const { 0: firstItem } = focusableItems.current;
 
         firstItem.focus();
-      } else {
+      } else if (body && body.current) {
         (body.current.firstChild as HTMLElement).setAttribute('tabIndex', '-1');
         (body.current.firstChild as HTMLElement).focus();
       }

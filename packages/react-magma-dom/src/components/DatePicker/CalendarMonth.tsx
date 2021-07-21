@@ -8,7 +8,6 @@ import { CalendarDay } from './CalendarDay';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 import { HelperInformation } from './HelperInformation';
-// import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
 import { usePrevious } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { useFocusLock } from '../../hooks/useFocusLock';
