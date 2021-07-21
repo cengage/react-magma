@@ -8,9 +8,10 @@ import { CalendarDay } from './CalendarDay';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 import { HelperInformation } from './HelperInformation';
-import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
+// import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
 import { usePrevious } from '../../utils';
 import { I18nContext } from '../../i18n';
+import { useFocusLock } from '../../hooks/useFocusLock';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
@@ -66,28 +67,31 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   props: CalendarMonthProps
 ) => {
   const lastFocus = React.useRef<any>();
-  const focusTrapElement = React.useRef<any>();
+  // const focusTrapElement = React.useRef<any>();
   const context = React.useContext(CalendarContext);
   const [dayFocusable, setDayFocusable] = React.useState<boolean>(false);
-  const [focusableElements, setFocusableElements] = React.useState<
-    HTMLElement[]
-  >([]);
+  // const [focusableElements, setFocusableElements] = React.useState<
+  //   HTMLElement[]
+  // >([]);
   const [focusHeader, setFocusHeader] = React.useState<boolean>(false);
   const prevCalendarOpened = usePrevious(props.calendarOpened);
+
+  const focusTrapElement = useFocusLock(props.calendarOpened);
 
   React.useEffect(() => {
     if (!prevCalendarOpened && props.calendarOpened) {
       lastFocus.current = document.activeElement;
 
-      const newFocusableElements = getTrapElements(focusTrapElement);
+      // const newFocusableElements = getTrapElements(focusTrapElement);
 
       if (props.focusOnOpen) {
         setDayFocusable(true);
-        setFocusableElements(newFocusableElements);
+        // setFocusableElements(newFocusableElements);
         context.setDateFocused(true);
-      } else {
-        setFocusableElements(newFocusableElements);
       }
+      // } else {
+      //   setFocusableElements(newFocusableElements);
+      // }
     }
 
     if (props.calendarOpened && !props.focusOnOpen && !focusHeader) {
@@ -96,7 +100,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
     if (prevCalendarOpened && !props.calendarOpened) {
       setFocusHeader(false);
-      setFocusableElements([]);
+      // setFocusableElements([]);
     }
   }, [props.calendarOpened, props.focusOnOpen]);
 
@@ -109,27 +113,27 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     context.setDateFocused(false);
   }
 
-  function handleKeyDown(event: React.KeyboardEvent) {
-    const { key, shiftKey } = event;
+  // function handleKeyDown(event: React.KeyboardEvent) {
+  //   const { key, shiftKey } = event;
 
-    if (shiftKey && key === 'Tab') {
-      const index = getFocusedElementIndex(focusableElements, event.target);
+  //   if (shiftKey && key === 'Tab') {
+  //     const index = getFocusedElementIndex(focusableElements, event.target);
 
-      if (index === 0) {
-        event.preventDefault();
-        focusableElements[focusableElements.length - 1].focus();
-      }
-    } else if (key === 'Tab') {
-      const index = getFocusedElementIndex(focusableElements, event.target);
+  //     if (index === 0) {
+  //       event.preventDefault();
+  //       focusableElements[focusableElements.length - 1].focus();
+  //     }
+  //   } else if (key === 'Tab') {
+  //     const index = getFocusedElementIndex(focusableElements, event.target);
 
-      if (index === focusableElements.length - 1) {
-        event.preventDefault();
-        if (focusableElements.length > 0) {
-          focusableElements[0].focus();
-        }
-      }
-    }
-  }
+  //     if (index === focusableElements.length - 1) {
+  //       event.preventDefault();
+  //       if (focusableElements.length > 0) {
+  //         focusableElements[0].focus();
+  //       }
+  //     }
+  //   }
+  // }
 
   function turnOffDateFocused() {
     context.setDateFocused(false);
@@ -169,14 +173,14 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       tabIndex={-1}
       theme={theme}
       onKeyDown={context.onKeyDown}
-      ref={focusTrapElement}
+      // ref={focusTrapElement}
     >
       <MonthContainer
         data-testid="monthContainer"
         data-visible="true"
         theme={theme}
         ref={focusTrapElement}
-        onKeyDown={handleKeyDown}
+        // onKeyDown={handleKeyDown}
       >
         <CalendarHeader focusHeader={focusHeader} />
         <Table

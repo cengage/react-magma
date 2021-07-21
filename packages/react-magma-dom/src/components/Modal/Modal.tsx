@@ -1,11 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
-// import {
-//   getTrapElements,
-//   getTrapElementsAndFocus,
-//   getFocusedElementIndex,
-// } from './utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
