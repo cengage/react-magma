@@ -1,7 +1,8 @@
 import React from 'react';
+import { render, fireEvent, act } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
-import { render, fireEvent, act } from '@testing-library/react';
 import { getCalendarMonthWeeks } from './utils';
 
 describe('Calendar Month', () => {
@@ -47,26 +48,18 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      fireEvent.keyDown(getByLabelText(/previous month/i), {
-        keyCode: 9,
-      });
-
-      fireEvent.keyDown(getByLabelText(/next month/i), {
-        keyCode: 9,
-      });
-
-      fireEvent.keyDown(getByText(new Date().getDate().toString()), {
-        keyCode: 9,
-      });
-
-      fireEvent.keyDown(getByLabelText(/help/i), {
-        keyCode: 9,
-      });
-
-      fireEvent.keyDown(getByLabelText(/close calendar/i), {
-        keyCode: 9,
-      });
-
+      expect(getByText(/january 2019/i).parentElement).toHaveFocus();
+      userEvent.tab();
+      expect(getByLabelText(/previous month/i)).toHaveFocus();
+      userEvent.tab();
+      expect(getByLabelText(/next month/i)).toHaveFocus();
+      userEvent.tab();
+      expect(getByText(/18/i)).toHaveFocus();
+      userEvent.tab();
+      expect(getByLabelText(/help/i)).toHaveFocus();
+      userEvent.tab();
+      expect(getByLabelText(/close calendar/i)).toHaveFocus();
+      userEvent.tab();
       expect(getByLabelText(/previous month/i)).toHaveFocus();
     });
 
@@ -96,7 +89,7 @@ describe('Calendar Month', () => {
 
     it('should handle shift + tab and loop it through the modal', () => {
       const focusedDate = new Date('January 18, 2019');
-      const { getByLabelText, rerender } = render(
+      const { getByLabelText, getByText, rerender } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
@@ -126,21 +119,39 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      fireEvent.keyDown(getByLabelText(/previous month/i), {
-        keyCode: 9,
-      });
+      expect(getByText(/january 2019/i).parentElement).toHaveFocus();
 
-      fireEvent.keyDown(getByLabelText(/next month/i), {
-        keyCode: 9,
-        shiftKey: true,
-      });
-
-      fireEvent.keyDown(getByLabelText(/previous month/i), {
-        keyCode: 9,
-        shiftKey: true,
-      });
-
+      userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      expect(getByLabelText(/help/i)).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      expect(getByText(/18/i)).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      expect(getByLabelText(/next month/i)).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      expect(getByLabelText(/previous month/i)).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      expect(getByLabelText(/close calendar/i)).toHaveFocus();
+
+      // expect(getByText(/january 2019/i).parentElement).toHaveFocus();
+      // userEvent.tab();
+      // expect(getByLabelText(/previous month/i)).toHaveFocus();
+      // userEvent.tab();
+      // expect(getByLabelText(/next month/i)).toHaveFocus();
+      // userEvent.tab();
+      // expect(getByText(/18/i)).toHaveFocus();
+      // userEvent.tab();
+      // expect(getByLabelText(/help/i)).toHaveFocus();
+      // userEvent.tab();
+      // expect(getByLabelText(/close calendar/i)).toHaveFocus();
+      // userEvent.tab();
+      // expect(getByLabelText(/previous month/i)).toHaveFocus();
     });
   });
 

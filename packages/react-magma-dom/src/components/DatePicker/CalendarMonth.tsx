@@ -67,31 +67,22 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   props: CalendarMonthProps
 ) => {
   const lastFocus = React.useRef<any>();
-  // const focusTrapElement = React.useRef<any>();
+  const headingRef = React.useRef<any>();
   const context = React.useContext(CalendarContext);
   const [dayFocusable, setDayFocusable] = React.useState<boolean>(false);
-  // const [focusableElements, setFocusableElements] = React.useState<
-  //   HTMLElement[]
-  // >([]);
   const [focusHeader, setFocusHeader] = React.useState<boolean>(false);
   const prevCalendarOpened = usePrevious(props.calendarOpened);
 
-  const focusTrapElement = useFocusLock(props.calendarOpened);
+  const focusTrapElement = useFocusLock(props.calendarOpened, headingRef);
 
   React.useEffect(() => {
     if (!prevCalendarOpened && props.calendarOpened) {
       lastFocus.current = document.activeElement;
 
-      // const newFocusableElements = getTrapElements(focusTrapElement);
-
       if (props.focusOnOpen) {
         setDayFocusable(true);
-        // setFocusableElements(newFocusableElements);
         context.setDateFocused(true);
       }
-      // } else {
-      //   setFocusableElements(newFocusableElements);
-      // }
     }
 
     if (props.calendarOpened && !props.focusOnOpen && !focusHeader) {
@@ -100,7 +91,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
     if (prevCalendarOpened && !props.calendarOpened) {
       setFocusHeader(false);
-      // setFocusableElements([]);
     }
   }, [props.calendarOpened, props.focusOnOpen]);
 
@@ -112,28 +102,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     setDayFocusable(false);
     context.setDateFocused(false);
   }
-
-  // function handleKeyDown(event: React.KeyboardEvent) {
-  //   const { key, shiftKey } = event;
-
-  //   if (shiftKey && key === 'Tab') {
-  //     const index = getFocusedElementIndex(focusableElements, event.target);
-
-  //     if (index === 0) {
-  //       event.preventDefault();
-  //       focusableElements[focusableElements.length - 1].focus();
-  //     }
-  //   } else if (key === 'Tab') {
-  //     const index = getFocusedElementIndex(focusableElements, event.target);
-
-  //     if (index === focusableElements.length - 1) {
-  //       event.preventDefault();
-  //       if (focusableElements.length > 0) {
-  //         focusableElements[0].focus();
-  //       }
-  //     }
-  //   }
-  // }
 
   function turnOffDateFocused() {
     context.setDateFocused(false);
@@ -173,16 +141,14 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       tabIndex={-1}
       theme={theme}
       onKeyDown={context.onKeyDown}
-      // ref={focusTrapElement}
     >
       <MonthContainer
         data-testid="monthContainer"
         data-visible="true"
         theme={theme}
         ref={focusTrapElement}
-        // onKeyDown={handleKeyDown}
       >
-        <CalendarHeader focusHeader={focusHeader} />
+        <CalendarHeader ref={headingRef} focusHeader={focusHeader} />
         <Table
           role="presentation"
           onBlur={onCalendarTableBlur}
