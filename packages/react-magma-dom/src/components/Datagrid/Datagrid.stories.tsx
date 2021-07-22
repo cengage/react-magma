@@ -2,12 +2,9 @@ import React from 'react';
 import { Datagrid } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DatagridProps } from './Datagrid';
-import { TableRowColor } from '../Table';
-import {
-  useDataPagination,
-  UseDataPaginationControlled,
-  UseDataPaginationProps,
-} from '../../hooks/useDataPagination';
+import { TablePaginationProps, TableRowColor } from '../Table';
+import { usePagination } from '../Pagination/usePagination';
+import { Button } from '../Button';
 
 const rowsForPagination = [
   {
@@ -187,11 +184,13 @@ const rowsForPagination = [
   },
 ];
 
-const Template: Story<DatagridProps> = args => (
+const Template: Story<Omit<DatagridProps, 'selectedRows'>> = args => (
   <Datagrid {...args}>Sample Text</Datagrid>
 );
 
-const ControlledTemplate: Story<DatagridProps> = args => {
+const ControlledTemplate: Story<
+  Omit<DatagridProps, 'defaultSelectedRows'>
+> = args => {
   const [selectedRows, updatedSelectedRows] = React.useState<
     (string | number)[]
   >([1]);
@@ -207,32 +206,20 @@ const ControlledTemplate: Story<DatagridProps> = args => {
   );
 };
 
-const PaginatedTemplate: Story<
-  DatagridProps & { paginationProps: UseDataPaginationProps }
-> = ({ paginationProps, ...args }) => {
-  const pagination = useDataPagination(
-    rowsForPagination.length,
-    paginationProps
-  );
-
-  return (
-    <Datagrid {...args} rows={rowsForPagination} pagination={pagination} />
-  );
-};
-
-const ControlledPaginatedTemplate: Story<
-  DatagridProps & { paginationProps: UseDataPaginationControlled }
-> = ({ paginationProps, ...args }) => {
-  const [page, updatePage] = React.useState<number>(0);
+const ControlledPaginatedTemplate: Story<DatagridProps> = ({
+  paginationProps,
+  ...args
+}) => {
+  const [page, updatePage] = React.useState<number>(1);
   const [rowsPerPage, updateRowsPerPage] = React.useState<number>(5);
 
-  function handleChangePage(_, newPage: number) {
+  function handlePageChange(_: React.SyntheticEvent, newPage: number) {
     window.confirm('Do you really want to update the page?')
       ? updatePage(newPage)
       : alert('Did not update page');
   }
 
-  function handleChangeRowsPerPage(newRowsPerPage: number) {
+  function handleRowsPerPageChange(newRowsPerPage: number) {
     window.confirm(
       `Do you really want to update the rows per page to ${newRowsPerPage}?`
     )
@@ -240,21 +227,15 @@ const ControlledPaginatedTemplate: Story<
       : alert('Did not update rows per page');
   }
 
-  const pagination = useDataPagination(rowsForPagination.length, {
-    ...paginationProps,
+  const passedInPaginationProps = {
     page,
     rowsPerPage,
-    onChangePage: handleChangePage,
-    onChangeRowsPerPage: handleChangeRowsPerPage,
-  });
+    rowsPerPageValues: paginationProps.rowsPerPageValues,
+    onPageChange: handlePageChange,
+    onRowsPerPageChange: handleRowsPerPageChange,
+  };
 
-  return (
-    <Datagrid
-      {...args}
-      rows={rowsForPagination}
-      pagination={{ ...pagination, page, rowsPerPage }}
-    />
-  );
+  return <Datagrid {...args} paginationProps={passedInPaginationProps} />;
 };
 
 export default {
@@ -274,30 +255,6 @@ const columns = [
   { field: 'col2', header: 'Col 2' },
   { field: 'col3', header: 'Col 3' },
   { field: 'col4', header: 'Col 4' },
-];
-
-const rows = [
-  {
-    id: 1,
-    col1: 'Lorem ipsum dolor sit amet consectetur',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-  },
-  {
-    id: 2,
-    col1: 'Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-  },
-  {
-    id: 3,
-    col1: 'Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-  },
 ];
 
 const coloredRows = [
@@ -329,11 +286,12 @@ const coloredRows = [
 
 const defaultArgs = {
   columns: columns,
-  rows: rows,
+  rows: rowsForPagination,
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
   isSelectable: false,
+  paginationProps: {},
 };
 
 export const Default = Template.bind({});
@@ -371,13 +329,9 @@ DisabledSelectableRow.args = {
   ],
 };
 
-export const Pagination = PaginatedTemplate.bind({});
-Pagination.args = { ...defaultArgs, rows: rowsForPagination };
-
-export const PaginationChangedDefaults = PaginatedTemplate.bind({});
+export const PaginationChangedDefaults = Template.bind({});
 PaginationChangedDefaults.args = {
   ...defaultArgs,
-  rows: rowsForPagination,
   paginationProps: {
     defaultPage: 2,
     defaultRowsPerPage: 5,
@@ -388,8 +342,55 @@ PaginationChangedDefaults.args = {
 export const ControlledPagination = ControlledPaginatedTemplate.bind({});
 ControlledPagination.args = {
   ...defaultArgs,
-  rows: rowsForPagination,
   paginationProps: {
     rowsPerPageValues: [5, 10, 20],
+  },
+};
+
+export const WithoutPagination = Template.bind({});
+WithoutPagination.args = {
+  ...defaultArgs,
+  hasPagination: false,
+};
+
+const CustomPaginationComponent: React.FunctionComponent<TablePaginationProps> = props => {
+  const { itemCount, rowsPerPage, onPageChange } = props;
+  const { page, pageButtons } = usePagination({
+    count: itemCount / rowsPerPage,
+    numberOfAdjacentPages: 0,
+    numberOfEdgePages: 0,
+    onPageChange,
+  });
+
+  const previousButton = pageButtons[0];
+  const nextButton = pageButtons[pageButtons.length - 1];
+
+  return (
+    <div
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'flex-end',
+      }}
+    >
+      You are on page {page}
+      <Button
+        disabled={previousButton.disabled}
+        onClick={previousButton.onClick}
+      >
+        Previous Page
+      </Button>
+      <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
+        Next Page
+      </Button>
+    </div>
+  );
+};
+
+export const PaginationWithCustomComponent = Template.bind({});
+PaginationWithCustomComponent.args = {
+  ...defaultArgs,
+  components: {
+    Pagination: CustomPaginationComponent,
   },
 };

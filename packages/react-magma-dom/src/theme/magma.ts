@@ -55,6 +55,7 @@ export interface IconSizes {
   small: number;
   medium: number;
   large: number;
+  xLarge: number;
 }
 
 export interface SpacingScale {
@@ -311,6 +312,7 @@ const typeScale = {
 
 const colors = {
   primary: '#006298', // link color blue
+  primaryInverse: '#70CDFF', // link color inverse blue
   focus: '#027EE1',
   focusInverse: 'rgba(255,255,255,0.7)',
   foundation: '#00263E',
@@ -397,6 +399,7 @@ export const magma = {
     small: 20,
     medium: 24,
     large: 32,
+    xLarge: 54,
   },
 
   // Typography
@@ -626,6 +629,14 @@ export const magma = {
     menu: {
       maxHeight: '250px',
     },
+  },
+
+  tag: {
+    border: '0',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+
   },
 
   tooltip: {

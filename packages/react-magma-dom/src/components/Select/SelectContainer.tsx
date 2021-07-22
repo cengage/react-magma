@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Label, LabelPosition } from '../Label';
-import { HiddenLabelText } from '../Input/index';
+import { VisuallyHidden } from '../VisuallyHidden';
 import { UseSelectGetLabelPropsOptions } from 'downshift';
 import { InputMessage } from '../Input/InputMessage';
 
@@ -63,7 +63,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
         style={labelStyle}
       >
         {isLabelVisuallyHidden ? (
-          <HiddenLabelText>{labelText}</HiddenLabelText>
+          <VisuallyHidden>{labelText}</VisuallyHidden>
         ) : (
           labelText
         )}

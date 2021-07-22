@@ -23,7 +23,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-  count: 4,
+  count: 10,
   isInverse: false,
 };
 
@@ -31,6 +31,22 @@ export const DefaultSelected = Template.bind({});
 DefaultSelected.args = {
   ...Default.args,
   defaultPage: 2,
+};
+
+export const AdjacentPages = Template.bind({});
+AdjacentPages.args = {
+  ...Default.args,
+  count: 11,
+  defaultPage: 6,
+  numberOfAdjacentPages: 2,
+};
+
+export const EdgePages = Template.bind({});
+EdgePages.args = {
+  ...Default.args,
+  count: 11,
+  defaultPage: 6,
+  numberOfEdgePages: 2,
 };
 
 export const Size = Template.bind({});

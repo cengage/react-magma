@@ -1,8 +1,10 @@
 import React from 'react';
 import { Input, InputProps } from '.';
-import { InputIconPosition, InputSize } from '../InputBase';
+import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { NotificationsIcon } from 'react-magma-icons';
+import { Card, CardBody } from '../Card';
+import { magma } from '../../theme/magma';
 
 const Template: Story<InputProps> = args => (
   <Input {...args} labelText="Example" />
@@ -16,6 +18,11 @@ export default {
       control: {
         type: 'select',
         options: InputSize,
+      },
+    },
+    isClearable: {
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -33,6 +40,11 @@ Error.args = {
 export const Large = Template.bind({});
 Large.args = {
   inputSize: InputSize.large,
+};
+
+export const File = Template.bind({});
+File.args = {
+  type: InputType.file,
 };
 
 export const IconLeft = Template.bind({});
@@ -72,3 +84,18 @@ ClickableIconLarge.args = {
   ...ClickableIcon.args,
   inputSize: InputSize.large,
 };
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
+Inverse.decorators = [
+  Story => (
+    <Card background={magma.colors.foundation} isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];

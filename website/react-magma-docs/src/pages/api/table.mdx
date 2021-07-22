@@ -8,7 +8,11 @@ props:
   - TableHeadProps
   - TableHeaderCellProps
   - TableRowProps
-  - TablePaginationProps
+  - BaseTablePaginationProps
+  - ControlledPageProps
+  - UncontrolledPageProps
+  - ControlledRowsPerPageProps
+  - UncontrolledRowsPerPageProps
 ---
 
 <DocsHeading to="/design/tables/" type="api">
@@ -350,22 +354,24 @@ import {
   TableCell,
   TableCellAlign,
   TableSortDirection,
+  Announce,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
   const products = [
     { id: 1, name: 'Cheese', price: 5, stock: 20 },
     { id: 2, name: 'Milk', price: 5, stock: 32 },
-    { id: 3, name: 'Yoghurt', price: 3, stock: 12 },
+    { id: 3, name: 'Yogurt', price: 3, stock: 12 },
     { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
     { id: 5, name: 'Butter', price: 2, stock: 99 },
     { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
-    { id: 7, name: 'Fancy French Cheese 🇫🇷', price: 15, stock: 12 },
   ];
 
   const [sortConfig, setSortConfig] = React.useState({
     key: 'name',
     direction: TableSortDirection.ascending,
+    message: '',
   });
 
   const sortedItems = React.useMemo(() => {
@@ -393,7 +399,8 @@ export function Example() {
     ) {
       direction = TableSortDirection.descending;
     }
-    setSortConfig({ key, direction });
+    const message = `Table is sorted by ${key}, ${direction}`;
+    setSortConfig({ key, direction, message });
   };
 
   return (
@@ -458,6 +465,9 @@ export function Example() {
           </TableBody>
         </Table>
       </Card>
+      <Announce>
+        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
@@ -1135,4 +1145,16 @@ All of the [standard td attributes](https://developer.mozilla.org/en-US/docs/Web
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<TablePagination />
+### Common Props
+
+<BaseTablePaginationProps />
+
+### Controlled Props
+
+<ControlledPageProps />
+<ControlledRowsPerPageProps />
+
+### Uncontrolled Props
+
+<UncontrolledPageProps />
+<UncontrolledRowsPerPageProps />

@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { AccordionContext } from './useAccordion';
 import { useGenerateId } from '../../utils';
-import { isArray } from 'lodash';
 
 export interface UseAccordionItemProps {
   /**
@@ -43,7 +42,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
   React.useEffect(() => {
     const newIsExpanded = isMulti
-      ? isArray(expandedIndex) && expandedIndex.includes(index) 
+      ? Array.isArray(expandedIndex) && expandedIndex.includes(index) 
       : expandedIndex == index;
     
     setIsExpanded(newIsExpanded);

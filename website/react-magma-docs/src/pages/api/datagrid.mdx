@@ -2,7 +2,9 @@
 pageTitle: Datagrid API
 title: Datagrid
 props:
-  - DatagridProps
+  - BaseDatagridProps
+  - ControlledSelectedRowsProps
+  - UncontrolledSelectedRowsProps
   - DatagridColumn
   - DatagridRow
   - UseDataPaginationControlled
@@ -30,21 +32,175 @@ export function Example() {
   const rows = [
     {
       id: 1,
-      col1: 'Lorem ipsum dolor sit amet consectetur',
+      col1: '1 Lorem ipsum dolor sit amet consectetur',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 2,
-      col1: 'Lorem ipsum dolor sit amet',
+      col1: '2 Lorem ipsum dolor sit amet',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 3,
-      col1: 'Lorem ipsum dolor',
+      col1: '3 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 4,
+      col1: '4 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 5,
+      col1: '5 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 6,
+      col1: '6 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 7,
+      col1: '7  Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 8,
+      col1: '8 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 9,
+      col1: '9 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 10,
+      col1: '10 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 11,
+      col1: '11 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 12,
+      col1: '12 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 13,
+      col1: '13 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 14,
+      col1: '14 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 15,
+      col1: '15 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 16,
+      col1: '16 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 17,
+      col1: '17 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 18,
+      col1: '18 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 19,
+      col1: '19 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 20,
+      col1: '20 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 21,
+      col1: '21 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 22,
+      col1: '22 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 23,
+      col1: '23 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 24,
+      col1: '24 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 25,
+      col1: '25 Lorem ipsum dolor',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
@@ -125,21 +281,175 @@ export function Example() {
   const rows = [
     {
       id: 1,
-      col1: 'Lorem ipsum dolor sit amet consectetur',
+      col1: '1 Lorem ipsum dolor sit amet consectetur',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 2,
-      col1: 'Lorem ipsum dolor sit amet',
+      col1: '2 Lorem ipsum dolor sit amet',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 3,
-      col1: 'Lorem ipsum dolor',
+      col1: '3 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 4,
+      col1: '4 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 5,
+      col1: '5 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 6,
+      col1: '6 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 7,
+      col1: '7  Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 8,
+      col1: '8 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 9,
+      col1: '9 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 10,
+      col1: '10 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 11,
+      col1: '11 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 12,
+      col1: '12 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 13,
+      col1: '13 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 14,
+      col1: '14 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 15,
+      col1: '15 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 16,
+      col1: '16 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 17,
+      col1: '17 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 18,
+      col1: '18 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 19,
+      col1: '19 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 20,
+      col1: '20 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 21,
+      col1: '21 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 22,
+      col1: '22 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 23,
+      col1: '23 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 24,
+      col1: '24 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 25,
+      col1: '25 Lorem ipsum dolor',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
@@ -171,22 +481,176 @@ export function Example() {
   const rows = [
     {
       id: 1,
-      isSelectableDisabled: true,
-      col1: 'Lorem ipsum dolor sit amet consectetur',
+      col1: '1 Lorem ipsum dolor sit amet consectetur',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 2,
-      col1: 'Lorem ipsum dolor sit amet',
+      col1: '2 Lorem ipsum dolor sit amet',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 3,
-      col1: 'Lorem ipsum dolor',
+      col1: '3 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 4,
+      col1: '4 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+      isSelectableDisabled: true,
+    },
+    {
+      id: 5,
+      col1: '5 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 6,
+      col1: '6 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 7,
+      col1: '7  Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 8,
+      col1: '8 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 9,
+      col1: '9 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 10,
+      col1: '10 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 11,
+      col1: '11 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 12,
+      col1: '12 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 13,
+      col1: '13 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 14,
+      col1: '14 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 15,
+      col1: '15 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 16,
+      col1: '16 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 17,
+      col1: '17 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 18,
+      col1: '18 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 19,
+      col1: '19 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 20,
+      col1: '20 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 21,
+      col1: '21 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 22,
+      col1: '22 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 23,
+      col1: '23 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 24,
+      col1: '24 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 25,
+      col1: '25 Lorem ipsum dolor',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
@@ -222,21 +686,175 @@ export function Example() {
   const rows = [
     {
       id: 1,
-      col1: 'Lorem ipsum dolor sit amet consectetur',
+      col1: '1 Lorem ipsum dolor sit amet consectetur',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 2,
-      col1: 'Lorem ipsum dolor sit amet',
+      col1: '2 Lorem ipsum dolor sit amet',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
     },
     {
       id: 3,
-      col1: 'Lorem ipsum dolor',
+      col1: '3 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 4,
+      col1: '4 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 5,
+      col1: '5 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 6,
+      col1: '6 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 7,
+      col1: '7  Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 8,
+      col1: '8 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 9,
+      col1: '9 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 10,
+      col1: '10 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 11,
+      col1: '11 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 12,
+      col1: '12 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 13,
+      col1: '13 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 14,
+      col1: '14 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 15,
+      col1: '15 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 16,
+      col1: '16 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 17,
+      col1: '17 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 18,
+      col1: '18 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 19,
+      col1: '19 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 20,
+      col1: '20 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 21,
+      col1: '21 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 22,
+      col1: '22 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 23,
+      col1: '23 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 24,
+      col1: '24 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 25,
+      col1: '25 Lorem ipsum dolor',
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
@@ -266,11 +884,11 @@ export function Example() {
 }
 ```
 
-## Pagination
+## Pagination Defaults
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, useDataPagination } from 'react-magma-dom';
+import { Datagrid, Card } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -280,7 +898,7 @@ export function Example() {
     { field: 'col4', header: 'Col 4' },
   ];
 
-  const rowsForPagination = [
+  const rows = [
     {
       id: 1,
       col1: '1 Lorem ipsum dolor sit amet consectetur',
@@ -458,231 +1076,23 @@ export function Example() {
     },
   ];
 
-  const pagination = useDataPagination(rowsForPagination.length);
-
-  return (
-    <Datagrid
-      columns={columns}
-      rows={rowsForPagination}
-      pagination={pagination}
-    />
-  );
-}
-```
-
-## Pagination With Defaults
-
-```typescript
-import React from 'react';
-import { Datagrid, Card, useDataPagination } from 'react-magma-dom';
-
-export function Example() {
-  const columns = [
-    { field: 'col1', header: 'Col 1' },
-    { field: 'col2', header: 'Col 2' },
-    { field: 'col3', header: 'Col 3' },
-    { field: 'col4', header: 'Col 4' },
-  ];
-
-  const rowsForPagination = [
-    {
-      id: 1,
-      col1: '1 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 2,
-      col1: '2 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 3,
-      col1: '3 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 4,
-      col1: '4 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 5,
-      col1: '5 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 6,
-      col1: '6 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 7,
-      col1: '7  Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 8,
-      col1: '8 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 9,
-      col1: '9 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 10,
-      col1: '10 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 11,
-      col1: '11 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 12,
-      col1: '12 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 13,
-      col1: '13 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 14,
-      col1: '14 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 15,
-      col1: '15 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 16,
-      col1: '16 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 17,
-      col1: '17 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 18,
-      col1: '18 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 19,
-      col1: '19 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 20,
-      col1: '20 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 21,
-      col1: '21 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 22,
-      col1: '22 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 23,
-      col1: '23 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 24,
-      col1: '24 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 25,
-      col1: '25 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-  ];
-
-  const pagination = useDataPagination(rowsForPagination.length, {
+  const paginationProps = {
     defaultPage: 2,
     defaultRowsPerPage: 5,
     rowsPerPageValues: [5, 10, 20],
-  });
+  };
 
   return (
-    <Datagrid
-      columns={columns}
-      rows={rowsForPagination}
-      pagination={pagination}
-    />
+    <Datagrid columns={columns} rows={rows} paginationProps={paginationProps} />
   );
 }
 ```
 
-## Controlled Pagination
+## Pagination Controlled
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, useDataPagination } from 'react-magma-dom';
+import { Datagrid, Card } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -692,7 +1102,7 @@ export function Example() {
     { field: 'col4', header: 'Col 4' },
   ];
 
-  const rowsForPagination = [
+  const rows = [
     {
       id: 1,
       col1: '1 Lorem ipsum dolor sit amet consectetur',
@@ -870,16 +1280,16 @@ export function Example() {
     },
   ];
 
-  const [page, updatePage] = React.useState<number>(0);
+  const [page, updatePage] = React.useState<number>(1);
   const [rowsPerPage, updateRowsPerPage] = React.useState<number>(5);
 
-  function handleChangePage(_, newPage: number) {
+  function handlePageChange(_, newPage: number) {
     window.confirm('Do you really want to update the page?')
       ? updatePage(newPage)
       : alert('Did not update page');
   }
 
-  function handleChangeRowsPerPage(newRowsPerPage: number) {
+  function handleRowsPerPageChange(newRowsPerPage: number) {
     window.confirm(
       `Do you really want to update the rows per page to ${newRowsPerPage}?`
     )
@@ -887,21 +1297,451 @@ export function Example() {
       : alert('Did not update rows per page');
   }
 
-  const pagination = useDataPagination(rowsForPagination.length, {
+  const paginationProps = {
     page,
     rowsPerPage,
     rowsPerPageValues: [5, 10, 20],
-    onChangePage: handleChangePage,
-    onChangeRowsPerPage: handleChangeRowsPerPage,
-  });
+    onPageChange: handlePageChange,
+    onRowsPerPageChange: handleRowsPerPageChange,
+  };
+
+  return (
+    <Datagrid columns={columns} rows={rows} paginationProps={paginationProps} />
+  );
+}
+```
+
+## Custom Pagination Components
+
+```typescript
+import React from 'react';
+import { Datagrid, Card, usePagination } from 'react-magma-dom';
+
+export function Example() {
+  const columns = [
+    { field: 'col1', header: 'Col 1' },
+    { field: 'col2', header: 'Col 2' },
+    { field: 'col3', header: 'Col 3' },
+    { field: 'col4', header: 'Col 4' },
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      col1: '1 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 2,
+      col1: '2 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 3,
+      col1: '3 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 4,
+      col1: '4 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 5,
+      col1: '5 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 6,
+      col1: '6 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 7,
+      col1: '7  Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 8,
+      col1: '8 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 9,
+      col1: '9 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 10,
+      col1: '10 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 11,
+      col1: '11 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 12,
+      col1: '12 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 13,
+      col1: '13 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 14,
+      col1: '14 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 15,
+      col1: '15 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 16,
+      col1: '16 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 17,
+      col1: '17 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 18,
+      col1: '18 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 19,
+      col1: '19 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 20,
+      col1: '20 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 21,
+      col1: '21 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 22,
+      col1: '22 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 23,
+      col1: '23 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 24,
+      col1: '24 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 25,
+      col1: '25 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+  ];
+
+  const CustomPaginationComponent = props => {
+    const { itemCount, rowsPerPage, onPageChange } = props;
+    const { page, pageButtons } = usePagination({
+      count: itemCount / rowsPerPage,
+      numberOfAdjacentPages: 0,
+      numberOfEdgePages: 0,
+      onPageChange,
+    });
+
+    const previousButton = pageButtons[0];
+    const nextButton = pageButtons[pageButtons.length - 1];
+
+    return (
+      <div
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
+      >
+        You are on page {page}
+        <Button
+          disabled={previousButton.disabled}
+          onClick={previousButton.onClick}
+        >
+          Previous Page
+        </Button>
+        <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
+          Next Page
+        </Button>
+      </div>
+    );
+  };
 
   return (
     <Datagrid
       columns={columns}
-      rows={rowsForPagination}
-      pagination={{ ...pagination, page, rowsPerPage }}
+      rows={rows}
+      components={{ Pagination: CustomPaginationComponent }}
     />
   );
+}
+```
+
+## Without Pagination
+
+Pagination controls are put on the `Datagrid` component by default. You can turn off pagination by passing the `hasPagination` prop as `false`.
+
+```typescript
+import React from 'react';
+import { Datagrid, Card } from 'react-magma-dom';
+
+export function Example() {
+  const columns = [
+    { field: 'col1', header: 'Col 1' },
+    { field: 'col2', header: 'Col 2' },
+    { field: 'col3', header: 'Col 3' },
+    { field: 'col4', header: 'Col 4' },
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      col1: '1 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 2,
+      col1: '2 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 3,
+      col1: '3 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 4,
+      col1: '4 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 5,
+      col1: '5 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 6,
+      col1: '6 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 7,
+      col1: '7  Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 8,
+      col1: '8 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 9,
+      col1: '9 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 10,
+      col1: '10 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 11,
+      col1: '11 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 12,
+      col1: '12 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 13,
+      col1: '13 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 14,
+      col1: '14 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 15,
+      col1: '15 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 16,
+      col1: '16 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 17,
+      col1: '17 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 18,
+      col1: '18 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 19,
+      col1: '19 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 20,
+      col1: '20 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 21,
+      col1: '21 Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 22,
+      col1: '22 Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 23,
+      col1: '23 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 24,
+      col1: '24 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+    {
+      id: 25,
+      col1: '25 Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+    },
+  ];
+
+  return <Datagrid columns={columns} rows={rows} hasPagination={false} />;
 }
 ```
 
@@ -954,32 +1794,30 @@ export function Example() {
 }
 ```
 
-# Datagrid Props
+## Datagrid Props
 
 **Any other props supplied will be provided to the wrapping `table` element.**
 
-<DatagridProps />
+### Common Props
 
-# DatagridColumn Props
+<BaseDatagridProps />
+
+### Controlled props
+
+<ControlledSelectedRowsProps />
+
+### Uncontrolled props
+
+<UncontrolledSelectedRowsProps />
+
+### DatagridColumn Props
 
 **Any other props supplied will be provided to the wrapping `th` element.**
 
 <DatagridColumn />
 
-# DatagridRow Props
+### DatagridRow Props
 
 **Any other props supplied will be provided to the wrapping `tr` element.**
 
 <DatagridRow />
-
-# UseDataPagination props
-
-Props to be used in the `useDataPagination` hook. There is a controlled and uncontrolled interface for the props.
-
-## UseDataPaginationUncontrolled
-
-<UseDataPaginationUncontrolled />
-
-## UseDataPaginationControlled
-
-<UseDataPaginationControlled />

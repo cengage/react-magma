@@ -40,7 +40,11 @@ export const Default = args => {
   return (
     <Container>
       <One>
-        <Input errorMessage="danger will robinson." labelText="Input" />
+        <Input
+          errorMessage="danger will robinson."
+          labelText="Input"
+          isClearable
+        />
         <PasswordInput
           errorMessage="danger will robinson."
           labelText="PasswordInput"
@@ -48,6 +52,7 @@ export const Default = args => {
         <DatePicker
           errorMessage="danger will robinson."
           labelText="DatePicker"
+          isClearable
         />
         <TimePicker
           errorMessage="danger will robinson."
@@ -79,6 +84,7 @@ export const Default = args => {
             { label: 'Green', value: 'green' },
           ]}
           errorMessage="danger will robinson."
+          isClearable
         />
         <Combobox
           labelText="Combobox (multi)"

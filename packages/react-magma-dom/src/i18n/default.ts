@@ -144,6 +144,9 @@ export const defaultI18n: I18nInterface = {
       'Some, but not all, subitems are checked for {labelText} checkbox',
     isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox',
   },
+  input: {
+    isClearableAriaLabel: 'Clear Input',
+  },
   loadingIndicator: {
     progressBar: {
       messages: {
@@ -222,6 +225,9 @@ export const defaultI18n: I18nInterface = {
     nextButtonLabel: 'Scroll tabs forward',
     previousButtonLabel: 'Scroll tabs back',
   },
+  tag: {
+    deleteAriaLabel: 'Delete {labelText} tag',
+  },
   timePicker: {
     hoursAriaLabel: 'Hour',
     minutesAriaLabel: 'Minute',
@@ -231,5 +237,15 @@ export const defaultI18n: I18nInterface = {
       'PM selected.  To change to AM press the a or enter button.',
     amSelectedAnnounce: 'AM is now selected',
     pmSelectedAnnounce: 'PM is now selected',
+  },
+  wizard: {
+    actions: {
+      next: 'next',
+      previous: 'previous',
+      cancel: 'cancel',
+      submit: 'submit',
+    },
+    optional: 'optional',
+    navigationLabel: 'Navigation for the wizard',
   },
 };

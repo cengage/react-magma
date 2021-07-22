@@ -1,5 +1,112 @@
 # Change Log
 
+## 2.5.1-next.4
+
+### Patch Changes
+
+- e12e00c: fix(textarea): default width to 100%
+
+## 2.5.1-next.3
+
+### Patch Changes
+
+- 93ecc6c8: Feature/grid
+
+  CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
+
+## 2.5.1-next.2
+
+### Patch Changes
+
+- c3b90d1d: feat: add xLarge for iconSizes
+  fix: export styled and useGeneratedId for external components
+
+## 2.5.1-next.1
+
+### Patch Changes
+
+- 1fbd86f3: fix(timepicker): update am/pm to use type=button
+
+## 2.5.1-next.0
+
+### Patch Changes
+
+- 3260fafb: Call onClose function when clicking outside of the dropdown menu
+
+## 2.5.0
+
+### Minor Changes
+
+- 8e3559c3: Refactor pagination component to use the new `usePagination` hook.
+  Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
+
+### Patch Changes
+
+- 68b265d0: fix: place ref for dropdown on the card
+- acc9219d: refactor(text alignment): changing the banner alignment to left aligned
+- 9a89c7af: feat(input): added isClearable prop to input base
+
+## 2.5.0-next.3
+
+### Patch Changes
+
+- 68b265d0: fix: place ref for dropdown on the card
+
+## 2.5.0-next.2
+
+### Patch Changes
+
+- acc9219d: refactor(text alignment): changing the banner alignment to left aligned
+
+## 2.5.0-next.1
+
+### Minor Changes
+
+- 8e3559c3: Refactor pagination component to use the new `usePagination` hook.
+  Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
+
+## 2.4.1-next.0
+
+### Patch Changes
+
+- 9a89c7af: feat(input): added isClearable prop to input base
+
+## 2.4.0
+
+### Minor Changes
+
+- f0a1882f: fix/controlled-toggle
+
+  Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
+
+- 88e2daee: Feature/datagrid
+
+  Creating a `Datagrid` component with the options to have selectable rows and pagination.
+
+  As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
+
+- b7f7e431: feature/transitions: Add `Transition` component.
+
+  A reusable Transition components that allows teams to use the same standard transitions everywhere.
+
+  ```
+  <Transition fade nudgeTop>
+    <div>child</div>
+  </Transition>
+  ```
+
+- c49cda0e: Add new transition component
+- 1ceb9951: Feature/accordion
+
+  Adding a new accordion component
+
+### Patch Changes
+
+- aaa4d559: Some minor adjustments to the appearance of inverse (dark) states in some components. Also some updates to docs structure for dark mode.
+- efb6f297: feat: updating error styles for radios
+- 6d2a2be6: chore: update icons
+- 57e28ac7: feat(pagination): create new pagination component
+
 ## 2.4.0-next.6
 
 ### Minor Changes

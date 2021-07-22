@@ -11,8 +11,13 @@ import {
   TableProps,
   TableDensity,
   TableRowColor,
+  TableSortDirection,
+  TableCellAlign,
 } from './';
 import { magma } from '../../theme/magma';
+import { Announce } from '../Announce';
+import { VisuallyHidden } from '../VisuallyHidden';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const rows = [
@@ -221,22 +226,22 @@ const rowsLong = [
   ],
 ];
 
-export const Pagination = () => {
-  const [pageIndex, setPageIndex] = React.useState<number>(0);
+export const ControlledPagination = () => {
+  const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
   function handleRowsPerPageChange(numberOfRows) {
     setRowsPerPage(numberOfRows);
-    setPageIndex(0);
+    setPageIndex(1);
   }
 
-  function handlePageChange(page) {
+  function handlePageChange(_, page) {
     setPageIndex(page);
   }
 
   const rowsToShow = rowsLong.slice(
-    pageIndex * rowsPerPage,
-    pageIndex * rowsPerPage + rowsPerPage
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
   );
 
   return (
@@ -261,9 +266,9 @@ export const Pagination = () => {
         </TableBody>
       </Table>
       <TablePagination
-        count={rowsLong.length}
-        onChangeRowsPerPage={handleRowsPerPageChange}
-        onChangePage={handlePageChange}
+        itemCount={rowsLong.length}
+        onRowsPerPageChange={handleRowsPerPageChange}
+        onPageChange={handlePageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
@@ -271,22 +276,64 @@ export const Pagination = () => {
   );
 };
 
-export const PaginationInverse = () => {
-  const [pageIndex, setPageIndex] = React.useState<number>(0);
+export const UncontrolledPagination = () => {
+  const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
-  function handleRowsPerPageChange(numberOfPages) {
-    setRowsPerPage(numberOfPages);
-    setPageIndex(0);
+  function handlePageChange(_, page) {
+    setPageIndex(page);
   }
 
-  function handlePageChange(page) {
+  function handleRowsPerPageChange(newNumberOfRows) {
+    setRowsPerPage(newNumberOfRows);
+  }
+
+  const rowsToShow = rowsLong.slice(
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
+  );
+
+  return (
+    <Card>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowsToShow.map((row, i) => (
+            <TableRow key={`row${i}`}>
+              {row.map((cell, j) => (
+                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <TablePagination
+        itemCount={rowsLong.length}
+        onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
+      />
+    </Card>
+  );
+};
+
+export const PaginationInverse = () => {
+  const [pageIndex, setPageIndex] = React.useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+
+  function handlePageChange(_, page) {
     setPageIndex(page);
   }
 
   const rowsToShow = rowsLong.slice(
-    pageIndex * rowsPerPage,
-    pageIndex * rowsPerPage + rowsPerPage
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
   );
 
   return (
@@ -311,12 +358,9 @@ export const PaginationInverse = () => {
         </TableBody>
       </Table>
       <TablePagination
-        count={rowsLong.length}
+        itemCount={rowsLong.length}
         isInverse
-        onChangeRowsPerPage={handleRowsPerPageChange}
-        onChangePage={handlePageChange}
-        page={pageIndex}
-        rowsPerPage={rowsPerPage}
+        onPageChange={handlePageChange}
       />
     </Card>
   );
@@ -420,5 +464,119 @@ export const RowColorsInverse = () => {
         </TableBody>
       </Table>
     </Card>
+  );
+};
+
+export const Sortable = () => {
+  const products = [
+    { id: 1, name: 'Cheese', price: 5, stock: 20 },
+    { id: 2, name: 'Milk', price: 5, stock: 32 },
+    { id: 3, name: 'Yogurt', price: 3, stock: 12 },
+    { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
+    { id: 5, name: 'Butter', price: 2, stock: 99 },
+    { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
+  ];
+
+  const [sortConfig, setSortConfig] = React.useState({
+    key: 'name',
+    direction: TableSortDirection.ascending,
+    message: '',
+  });
+
+  const sortedItems = React.useMemo(() => {
+    let sortableItems = [...products];
+    if (sortConfig !== null) {
+      sortableItems.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortableItems;
+  }, [products, sortConfig]);
+
+  const requestSort = key => {
+    let direction = TableSortDirection.ascending;
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === TableSortDirection.ascending
+    ) {
+      direction = TableSortDirection.descending;
+    }
+    const message = `Table is sorted by ${key}, ${direction}`;
+    setSortConfig({ key, direction, message });
+  };
+
+  return (
+    <>
+      <Card>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell
+                onSort={() => {
+                  requestSort('name');
+                }}
+                isSortable
+                sortDirection={
+                  sortConfig.key === 'name'
+                    ? sortConfig.direction
+                    : TableSortDirection.none
+                }
+              >
+                Name
+              </TableHeaderCell>
+              <TableHeaderCell
+                onSort={() => {
+                  requestSort('price');
+                }}
+                isSortable
+                align={TableCellAlign.right}
+                sortDirection={
+                  sortConfig.key === 'price'
+                    ? sortConfig.direction
+                    : TableSortDirection.none
+                }
+              >
+                Price
+              </TableHeaderCell>
+              <TableHeaderCell
+                onSort={() => {
+                  requestSort('stock');
+                }}
+                isSortable
+                align={TableCellAlign.right}
+                sortDirection={
+                  sortConfig.key === 'stock'
+                    ? sortConfig.direction
+                    : TableSortDirection.none
+                }
+              >
+                In Stock
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {sortedItems.map(item => (
+              <TableRow key={item.id}>
+                <TableCell>{item.name}</TableCell>
+                <TableCell align={TableCellAlign.right}>
+                  ${item.price}
+                </TableCell>
+                <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
+      <Announce>
+        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+      </Announce>
+    </>
   );
 };
