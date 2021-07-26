@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.1-next.5
+
+### Patch Changes
+
+- c5cec3f6: Add useFocusLock hook to fix focus jumping around inside of a modal that has components re-rendered.
+
 ## 2.5.1-next.4
 
 ### Patch Changes
