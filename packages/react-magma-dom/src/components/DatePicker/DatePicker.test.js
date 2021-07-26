@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import {
   format,
   subWeeks,
@@ -891,11 +891,5 @@ describe('Date Picker', () => {
       expect(dayRow.children[0].textContent).toEqual('W');
       expect(firstDayOfMonthElement.textContent).toEqual('1');
     });
-  });
-
-  it('Does not violate accessibility standards', async () => {
-    const { container } = render(<DatePicker labelText="Date Picker Label" />);
-    const result = await axe(container.innerHTML);
-    return expect(result).toHaveNoViolations();
   });
 });

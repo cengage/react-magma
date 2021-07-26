@@ -260,6 +260,21 @@ export function convertStyleValueToString(
 export function getNodeText(node) {
   if (['string', 'number'].includes(typeof node)) return node;
   if (node instanceof Array) return node.map(getNodeText).join('');
-  if (typeof node === 'object' && node)
-    return getNodeText(node.props.children);
-};
+  if (typeof node === 'object' && node) return getNodeText(node.props.children);
+}
+
+const candidateSelectors = [
+  'input',
+  'select',
+  'textarea',
+  'a[href]',
+  'button',
+  '[tabindex]:not([tabindex="-1"])',
+  'audio[controls]',
+  'video[controls]',
+  '[contenteditable]:not([contenteditable="false"])',
+].join(',');
+
+export function getTrapElements(container): Array<HTMLElement> {
+  return Array.from(container.current.querySelectorAll(candidateSelectors));
+}
