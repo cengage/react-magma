@@ -6,7 +6,7 @@ import { Input } from '../Input';
 import { InputType } from '../InputBase';
 import { isAfter, isBefore, isValid, isSameDay } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { EventIcon } from 'react-magma-icons';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {

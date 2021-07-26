@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import * as React from 'react';
 import { IconButton, ButtonIconPosition } from '../IconButton';
 import {
@@ -12,7 +12,7 @@ import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
 import { useIsInverse } from '../../inverse';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 

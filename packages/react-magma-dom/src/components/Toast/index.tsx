@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { AlertBase, AlertBaseProps, transitionDuration } from '../AlertBase';
 import { getTrapElements } from '../Modal/utils';
 import { useGenerateId } from '../../utils';

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
-import styled from '../../theme/styled';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {

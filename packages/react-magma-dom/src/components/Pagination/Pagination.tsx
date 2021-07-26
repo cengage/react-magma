@@ -5,7 +5,7 @@ import { I18nContext } from '../../i18n';
 import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { usePagination } from './usePagination';
 
@@ -241,8 +241,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                 return (
                   <StyledEllipsis
                     key={index}
-                    isInverse={isInverse}
-                    size={size}
                     theme={theme}
                   >
                     ...

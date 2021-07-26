@@ -5,7 +5,7 @@ import {
   useAccordionItem,
 } from './useAccordionItem';
 import { ThemeInterface } from '../../theme/magma';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 
 /**
  * @children required

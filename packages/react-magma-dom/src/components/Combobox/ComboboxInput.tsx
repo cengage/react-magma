@@ -3,7 +3,7 @@ import { inputBaseStyles } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   UseComboboxGetToggleButtonPropsOptions,
   UseComboboxGetComboboxPropsOptions,

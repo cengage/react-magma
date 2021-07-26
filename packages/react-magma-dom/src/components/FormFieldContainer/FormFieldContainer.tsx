@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { InputSize } from '../InputBase';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';

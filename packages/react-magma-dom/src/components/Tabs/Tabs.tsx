@@ -107,7 +107,7 @@ export const TabsContext = React.createContext<TabsContextInterface>({
 export const StyledContainer = styled('div', {
   shouldForwardProp: isPropValid,
 })<{
-  as?: string;
+  as?: React.ElementType;
   orientation: TabsOrientation;
   isInverse: boolean;
   backgroundColor: string;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';

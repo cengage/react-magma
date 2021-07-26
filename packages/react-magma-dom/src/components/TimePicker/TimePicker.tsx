@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { Announce } from '../Announce';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';

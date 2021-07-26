@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
 import { useIsInverse } from '../../inverse';

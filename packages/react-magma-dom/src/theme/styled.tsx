@@ -1,4 +1,5 @@
-import styled, { CreateStyled } from '@emotion/styled';
 import { ThemeInterface } from './magma';
-
-export default styled as CreateStyled<ThemeInterface>;
+import '@emotion/react'
+declare module '@emotion/react' {
+  export interface Theme extends ThemeInterface{}
+}

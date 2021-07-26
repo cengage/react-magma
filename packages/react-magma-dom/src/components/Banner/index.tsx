@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { AlertProps } from '../Alert';
 import { AlertVariant, buildAlertBackground, VARIANT_ICON } from '../AlertBase';

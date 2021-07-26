@@ -12,7 +12,7 @@ import { RadioGroup } from '../RadioGroup';
 import { Toggle } from '../Toggle';
 import { Combobox } from '../Combobox';
 import { Select } from '../Select';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { Meta } from '@storybook/react/types-6-0';
 
 const Container = styled.div`

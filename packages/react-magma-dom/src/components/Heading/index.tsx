@@ -53,7 +53,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     return (
       <TypographyComponent
         {...other}
-        as={headingElement}
+        as={headingElement as React.ElementType}
         data-testid={testId}
         isInverse={useIsInverse(props.isInverse)}
         ref={ref}

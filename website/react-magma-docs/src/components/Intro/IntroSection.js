@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import ScrollAnimation from 'react-animate-on-scroll';
 import { ThemeContext } from 'react-magma-dom';
 
 export const StyledSection = styled.section`
@@ -20,7 +19,7 @@ export const StyledSection = styled.section`
   }
 `;
 
-const ImgContainer = styled(ScrollAnimation)`
+const ImgContainer = styled.div`
   flex-shrink: 0;
   width: 100%;
 

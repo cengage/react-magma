@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ButtonStyles } from '../Button';
 import styled from '@emotion/styled';
-import { css, ClassNames } from '@emotion/core';
+import { css, ClassNames } from '@emotion/react';
 import { omit, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { BaseStyledButton, buttonStyles } from '../StyledButton';

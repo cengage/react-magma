@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
-import { css } from '@emotion/core';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
-  as?: string;
+  as?: React.ElementType;
   children?: any;
   color?: TypographyColor;
   contextVariant?: TypographyContextVariant;

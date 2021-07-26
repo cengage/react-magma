@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { Hyperlink, HyperlinkProps } from '../Hyperlink';
 import { I18nContext } from '../../i18n';

@@ -12,7 +12,7 @@ import {
   SelectComponents,
   ItemRenderOptions,
 } from './components';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { convertStyleValueToString } from '../../utils';
 
 interface ItemsListProps<T> {

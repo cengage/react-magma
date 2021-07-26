@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import {
   getTrapElements,
   getTrapElementsAndFocus,

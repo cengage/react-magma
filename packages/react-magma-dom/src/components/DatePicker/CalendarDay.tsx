@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { isAfter, isBefore, isSameDay } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { CalendarContext } from './CalendarContext';

@@ -6,7 +6,7 @@ import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
 import { getTrapElements, getFocusedElementIndex } from '../Modal/utils';
 import { usePrevious } from '../../utils';

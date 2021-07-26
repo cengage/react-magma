@@ -7,7 +7,7 @@ import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { addMonths, subMonths } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { usePrevious } from '../../utils';
 import { i18nFormat as format } from './utils';
 import { I18nContext } from '../../i18n';

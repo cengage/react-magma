@@ -1,13 +1,7 @@
-const path = require('path');
-
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
     title: 'React Magma Docs',
-  },
-  flags: {
-    FAST_DEV: true,
-    FAST_REFRESH: false, //recommended for react >= 17.0.0
   },
   plugins: [
     {
@@ -18,7 +12,25 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-image',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1035,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
+    },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -69,22 +81,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-mdx',
-      options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1035,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
-      },
-    },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'gatsby-starter-default',
@@ -96,6 +92,5 @@ module.exports = {
         icon: 'src/images/react-magma-icon.png', // This path is relative to the root of the site.
       },
     },
-    'gatsby-plugin-offline',
   ],
 };

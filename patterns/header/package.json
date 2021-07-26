@@ -11,7 +11,8 @@
     "src"
   ],
   "engines": {
-    "node": ">=10"
+    "npm": "^7.3.0",
+    "node": "^14.15.0"
   },
   "scripts": {
     "build": "tsdx build",
@@ -19,28 +20,26 @@
     "lint": "eslint ./src"
   },
   "peerDependencies": {
-    "@emotion/core": "^10.1.1",
-    "@emotion/styled": "^10.0.27",
-    "@types/uuid": "^8.3.0",
-    "date-fns": "^2.12.0",
-    "downshift": "^5.4.5",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0",
-    "react-magma-dom": "^2.5.1-next.0",
-    "react-magma-icons": "^2.3.0",
-    "uuid": "^8.3.0"
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "@emotion/core": "^10.1.1",
-    "@emotion/styled": "^10.0.27",
-    "@types/uuid": "^8.3.0",
-    "date-fns": "^2.16.1",
-    "downshift": "^5.4.5",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "dependencies": {
     "react-magma-dom": "^2.5.1-next.0",
-    "react-magma-icons": "^2.3.0",
-    "uuid": "^8.3.0"
+    "react-magma-icons": "2.3.0-beta.1"
   },
   "name": "@cengage-patterns/header",
   "module": "dist/header.esm.js",

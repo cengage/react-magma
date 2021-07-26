@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
 import { MenuIcon, CloseIcon } from 'react-magma-icons';
 import { Container, IconButton, magma } from 'react-magma-dom';
-import { MainNav } from '../MainNav';
 
 export class SlidingDrawer extends React.Component {
   constructor(props) {
@@ -187,7 +186,6 @@ export class SlidingDrawer extends React.Component {
                     variant="link"
                   />
                 </CloseButton>
-                <MainNav handleClick={this.handleCloseMenuFromNav} />
               </PanelInner>
             </Panel>
             {isOpen && <Overlay onClick={this.handleCloseMenu} />}

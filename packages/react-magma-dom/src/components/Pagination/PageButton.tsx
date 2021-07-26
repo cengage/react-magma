@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, ButtonColor, ButtonProps, ButtonVariant } from '../Button';
 import { BuildBorder, hoverBorder } from './Pagination';
 import { darken } from 'polished';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface PageButtonProps extends ButtonProps {

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
-import styled from '../../theme/styled';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { DropdownContext } from './Dropdown';
@@ -64,7 +64,7 @@ export const MenuItemStyles = props => {
 };
 
 const StyledItem = styled.div<{
-  as?: string;
+  as?: React.ElementType;
   disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;

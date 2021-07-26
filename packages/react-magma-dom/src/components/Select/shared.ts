@@ -1,4 +1,4 @@
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 
 import { inputBaseStyles } from '../InputBase';
 import { Card } from '../Card';

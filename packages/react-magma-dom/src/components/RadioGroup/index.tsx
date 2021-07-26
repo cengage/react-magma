@@ -5,7 +5,7 @@ import { InputMessage } from '../Input/InputMessage';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { omit, useGenerateId } from '../../utils';
 
 const HiddenLabel = styled.label`

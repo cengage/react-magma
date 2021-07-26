@@ -6,14 +6,8 @@ import { HexBackground } from './HexBackground';
 import { IntroHeading } from './IntroHeading';
 import { IntroSection } from './IntroSection';
 import { NavItem } from './NavItem';
+import { StaticImage } from "gatsby-plugin-image"
 import styled from '@emotion/styled';
-
-import ColorLogo from './images/React_Magma_Logo_Color.svg';
-import ImageAccessible from './images/img-accessible.svg';
-import ImageComponents from './images/img-component-based.svg';
-import ImageDevice from './images/img-device-agnostic.svg';
-import ImageEvolving from './images/img-evolving.svg';
-import ImageQuality from './images/img-quality.svg';
 
 const Heading = styled.h1`
   && {
@@ -109,8 +103,15 @@ export class IndexPageContent extends React.Component {
     focused.focus({ preventScroll: true });
     window.scrollTo({ top: focused.offsetTop, behavior: 'smooth' });
   }
+  
 
   render() {
+    const ColorLogo = <StaticImage src='./images/React_Magma_Logo_Color.svg' alt="" />
+    const ImageAccessible = <StaticImage src='./images/img-accessible.svg' alt="" />
+    const ImageComponents = <StaticImage src='./images/img-component-based.svg' alt="" />
+    const ImageDevice = <StaticImage src='./images/img-device-agnostic.svg' alt="" />
+    const ImageEvolving = <StaticImage src='./images/img-evolving.svg' alt="" />
+    const ImageQuality = <StaticImage src='./images/img-quality.svg' alt="" />
     return (
       <ThemeContext.Consumer>
         {theme => (
@@ -164,7 +165,7 @@ export class IndexPageContent extends React.Component {
             <HexBackground>
               <IntroSection
                 section="sectionIntro"
-                image={<ColorLogo style={{ width: '100%' }} />}
+                image={ColorLogo}
                 afterAnimatedIn={this.handleAnimateIn}
                 style={{ marginTop: '70px' }}
               >
@@ -208,7 +209,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
               <IntroSection
                 section="sectionComponents"
-                image={<ImageComponents style={{ width: '100%' }} />}
+                image={ImageComponents}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading
@@ -228,7 +229,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
               <IntroSection
                 section="sectionQuality"
-                image={<ImageQuality style={{ width: '100%' }} />}
+                image={ImageQuality}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading id="sectionQualityH" name="Quality" number="02" />
@@ -240,7 +241,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
               <IntroSection
                 section="sectionAccessible"
-                image={<ImageAccessible style={{ width: '100%' }} />}
+                image={ImageAccessible}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading
@@ -256,7 +257,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
               <IntroSection
                 section="sectionDevice"
-                image={<ImageDevice style={{ width: '100%' }} />}
+                image={ImageDevice}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading
@@ -273,7 +274,7 @@ export class IndexPageContent extends React.Component {
               </IntroSection>
               <IntroSection
                 section="sectionEvolving"
-                image={<ImageEvolving style={{ width: '100%' }} />}
+                image={ImageEvolving}
                 afterAnimatedIn={this.handleAnimateIn}
               >
                 <IntroHeading
