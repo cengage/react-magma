@@ -285,13 +285,15 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     return (
       <div ref={focusTrapElement}>
-        <Global
-          styles={css`
-            html {
-              overflow: ${isOpen} ? hidden : auto;
-            }
-          `}
-        />
+        {isOpen && (
+          <Global
+            styles={css`
+              html {
+                overflow: hidden;
+              }
+            `}
+          />
+        )}
         <ModalContainer
           aria-labelledby={header ? headingId : null}
           aria-modal={true}
