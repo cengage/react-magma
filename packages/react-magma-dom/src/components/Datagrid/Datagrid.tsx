@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useControlled } from '../../hooks/useControlled';
-import { useDataPagination } from '../../hooks/useDataPagination';
+import { useDataPagination as defaultUseDataPagination, UseDataPaginationProps, UseDataPaginationReturn } from '../../hooks/useDataPagination';
 import { XOR } from '../../utils';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import {
@@ -51,9 +51,6 @@ export interface DatagridComponents {
   Pagination: React.FunctionComponent<TablePaginationProps>;
 }
 
-/**
- * @children required
- */
 export interface BaseDatagridProps extends TableProps {
   /**
    * Column data to be displayed in the table header
@@ -71,7 +68,7 @@ export interface BaseDatagridProps extends TableProps {
   /**
    * Row data to be displayed in each row in the table
    */
-  rows: DatagridRow[];
+  rows?: DatagridRow[];
   /**
    * Function called when the checkbox in the table header is clicked on
    */
@@ -91,6 +88,7 @@ export interface BaseDatagridProps extends TableProps {
    * Pagination data used to create the pagination footer. Created using the usePagination hook.
    */
   paginationProps?: Partial<TablePaginationProps>;
+  paginationHook?: <T>(props?: UseDataPaginationProps<T>) => UseDataPaginationReturn<T>;
 }
 
 export interface ControlledSelectedRowsProps {
@@ -124,9 +122,10 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       onRowSelect,
       onSelectedRowsChange,
       paginationProps = {},
-      rows,
+      rows = [],
       selectedRows: selectedRowsProp,
       hasPagination = true,
+      paginationHook: useDataPagination = defaultUseDataPagination,
       ...other
     } = props;
     const [rowsToShow, setRowsToShow] = React.useState<DatagridRow[]>([]);
@@ -154,7 +153,10 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     });
 
     React.useEffect(() => {
-      setRowsToShow(hasPagination ? getPageItems(currentPage) : rows);
+      async function updateItems() {
+        setRowsToShow(hasPagination ? await getPageItems(currentPage) : rows);
+      }
+      updateItems();
     }, [currentPage, rowsPerPage]);
 
     const { Pagination } = defaultComponents({
@@ -259,7 +261,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
                 isSelectableDisabled={isSelectableDisabled}
                 onTableRowSelect={event => handleRowSelect(id, event)}
               >
-                {Object.keys(other).map(field => (
+                {columns.map(({field}: Column) => (
                   <TableCell key={`cell${field}`}>{other[field]}</TableCell>
                 ))}
               </TableRow>

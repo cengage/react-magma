@@ -5,6 +5,7 @@ import { DatagridProps } from './Datagrid';
 import { TablePaginationProps, TableRowColor } from '../Table';
 import { usePagination } from '../Pagination/usePagination';
 import { Button } from '../Button';
+import { PersonOutlineIcon } from 'react-magma-icons';
 
 const rowsForPagination = [
   {
@@ -393,4 +394,39 @@ PaginationWithCustomComponent.args = {
   components: {
     Pagination: CustomPaginationComponent,
   },
+};
+
+function useStarWarsPagination<T>(
+  props: UseDataPaginationProps<T> = {}
+): UseDataPaginationReturn<T> {
+
+  const getPageItems = async (page: number) => {
+    const response = await fetch(`https://swapi.dev/api/people/?page=${page}`);
+    const responseObject = await response.json();
+    
+    return responseObject.results.map((person:any) => {
+      return {
+        ...person,
+        id: person.url.split('/').pop()
+      }
+    });
+  };
+
+    
+  return {
+    getPageItems,
+    itemsPerPage: 10, // this is a constant from swapi
+    length: 82,
+  };
+}
+
+export const StarWarsData = Template.bind({});
+StarWarsData.args = {
+  ...defaultArgs,
+  columns: [
+    { field: 'name', header: 'Name' },
+    { field: 'gender', header: 'Gender' },
+    { field: 'eye_color', header: 'Eye Color' },
+  ],
+  paginationHook: useStarWarsPagination,
 };
