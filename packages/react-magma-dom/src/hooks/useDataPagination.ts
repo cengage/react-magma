@@ -20,7 +20,7 @@ export interface UseDataPaginationProps<PaginatedItem> {
   onItemsPerPageChange?: (newRowsPerPage: number) => void;
 }
 export interface UseDataPaginationReturn<PaginatedItem> {
-  getPageItems: Promise<(page: number) => PaginatedItem[]>;
+  getPageItems: (page: number) => Promise<PaginatedItem[]> | PaginatedItem[];
   itemsPerPage: number;
   length: number;
   onItemsPerPageChange?: (newItemsPerPage: number) => void;
@@ -56,7 +56,7 @@ export function useDataPagination<T>(
 
     const start = (page - 1) * itemsPerPage;
     const end = isLastPage ? items.length : page * itemsPerPage;
-
+    
     return items.slice(start, end);
   };
 

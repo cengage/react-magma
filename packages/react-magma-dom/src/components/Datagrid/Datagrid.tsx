@@ -261,7 +261,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
                 isSelectableDisabled={isSelectableDisabled}
                 onTableRowSelect={event => handleRowSelect(id, event)}
               >
-                {columns.map(({field}: Column) => (
+                {columns.map(({field}: DatagridColumn) => (
                   <TableCell key={`cell${field}`}>{other[field]}</TableCell>
                 ))}
               </TableRow>
