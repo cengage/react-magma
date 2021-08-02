@@ -4,7 +4,7 @@ import { Datagrid } from '.';
 import { TableRowColor } from '../Table';
 import { Button } from '../Button';
 import { usePagination } from '../Pagination/usePagination';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor, act } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 const columns = [
@@ -217,16 +217,18 @@ const rowsForPagination = [
 ];
 
 describe('Datagrid', () => {
-  it('should find element by testId', () => {
+  it('should find element by testId', async () => {
     const testId = 'test-id';
-    const { getByTestId } = render(
+    const { findByTestId } = render(
       <Datagrid columns={columns} rows={rows} testId={testId} />
     );
 
-    expect(getByTestId(testId)).toBeInTheDocument();
+    const element = await findByTestId(testId);
+
+    expect(element).toBeInTheDocument();
   });
 
-  it('should allow for colors to be passed to rows', () => {
+  it('should allow for colors to be passed to rows', async () => {
     const coloredRows = [
       {
         ...rows[0],
@@ -239,25 +241,26 @@ describe('Datagrid', () => {
       <Datagrid columns={columns} rows={coloredRows} />
     );
 
-    const coloredRow = getByText(rows[0].col1).parentElement;
-
+    const coloredRow = await waitFor(() => getByText(rows[0].col1).parentElement);
     expect(coloredRow).toHaveStyleRule('background', magma.colors.danger);
+
   });
 
   describe('selectable', () => {
-    it('should allow for selectable rows', () => {
+    it('should allow for selectable rows', async () => {
       const { container } = render(
         <Datagrid columns={columns} rows={rows} isSelectable />
       );
 
-      const selectableRowCheckbox = container
+      const selectableRowCheckbox = await waitFor(() => container
         .querySelector('tbody')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(selectableRowCheckbox).toBeInTheDocument();
     });
 
-    it('should allow the disabling of selecting a row', () => {
+    it('should allow the disabling of selecting a row', async () => {
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -276,14 +279,15 @@ describe('Datagrid', () => {
         />
       );
 
-      const selectableRowCheckbox = container
+      const selectableRowCheckbox = await waitFor(() => container
         .querySelector('tbody')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(selectableRowCheckbox).toBeDisabled();
     });
 
-    it('should call passed in onHeaderSelect function when header checkbox is clicked', () => {
+    it('should call passed in onHeaderSelect function when header checkbox is clicked', async () => {
       const onHeaderSelect = jest.fn();
       const { container } = render(
         <Datagrid
@@ -294,16 +298,17 @@ describe('Datagrid', () => {
         />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       headerCheckbox.click();
 
       expect(onHeaderSelect).toHaveBeenCalled();
     });
 
-    it('should call passed in onRowSelect function with the row id when a row checkbox is clicked', () => {
+    it('should call passed in onRowSelect function with the row id when a row checkbox is clicked', async () => {
       const onRowSelect = jest.fn();
       const { container } = render(
         <Datagrid
@@ -314,30 +319,32 @@ describe('Datagrid', () => {
         />
       );
 
-      const selectableRowCheckbox = container
+      const selectableRowCheckbox = await waitFor(() => container
         .querySelector('tbody')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       selectableRowCheckbox.click();
 
       expect(onRowSelect).toHaveBeenCalledWith(rows[0].id, expect.any(Object));
     });
 
-    it('should allow for the uncontrolled selection of a selectable row', () => {
+    it('should allow for the uncontrolled selection of a selectable row', async () => {
       const { container } = render(
         <Datagrid columns={columns} rows={rows} isSelectable />
       );
 
-      const selectableRowCheckbox = container
+      const selectableRowCheckbox = await waitFor(() => container
         .querySelector('tbody')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       selectableRowCheckbox.click();
 
       expect(selectableRowCheckbox).toBeChecked();
     });
 
-    it('should allow for the controlled selection of a selectable row', () => {
+    it('should allow for the controlled selection of a selectable row', async () => {
       const onSelectedRowsChange = jest.fn();
       const { container } = render(
         <Datagrid
@@ -349,9 +356,10 @@ describe('Datagrid', () => {
         />
       );
 
-      const selectableRowCheckbox = container
+      const selectableRowCheckbox = await waitFor(() => container
         .querySelector('tbody')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(selectableRowCheckbox).toBeChecked();
 
@@ -360,14 +368,15 @@ describe('Datagrid', () => {
       expect(onSelectedRowsChange).toHaveBeenCalledWith([]);
     });
 
-    it('should change the header checkbox to an indeterminate state when some rows are selected', () => {
+    it('should change the header checkbox to an indeterminate state when some rows are selected', async () => {
       const { container } = render(
         <Datagrid columns={columns} rows={rows} isSelectable />
       );
 
-      const selectableRowCheckbox = container
+      const selectableRowCheckbox = await waitFor(() => container
         .querySelector('tbody')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       selectableRowCheckbox.click();
 
@@ -378,7 +387,7 @@ describe('Datagrid', () => {
       expect(headerCheckbox).toHaveProperty('indeterminate');
     });
 
-    it('should change the header checkbox to n checked state when all rows are selected', () => {
+    it('should change the header checkbox to n checked state when all rows are selected', async () => {
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -388,14 +397,15 @@ describe('Datagrid', () => {
         />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor(() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(headerCheckbox).toBeChecked();
     });
 
-    it('should change the header checkbox to a checked state when all non-disabled rows are selected', () => {
+    it('should change the header checkbox to a checked state when all non-disabled rows are selected', async () => {
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -405,21 +415,23 @@ describe('Datagrid', () => {
         />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor(() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(headerCheckbox).toBeChecked();
     });
 
-    it('should select all rows when clicking on the header checkbox when no rows are selected in the uncontrolled state', () => {
+    it('should select all rows when clicking on the header checkbox when no rows are selected in the uncontrolled state', async () => {
       const { container } = render(
         <Datagrid columns={columns} rows={rows} isSelectable />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(headerCheckbox).not.toBeChecked();
 
@@ -433,7 +445,7 @@ describe('Datagrid', () => {
       expect(selectableRowCheckbox).toBeChecked();
     });
 
-    it('should select all non-disabled rows when clicking on the header checkbox when no rows are selected in the uncontrolled state', () => {
+    it('should select all non-disabled rows when clicking on the header checkbox when no rows are selected in the uncontrolled state', async () => {
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -442,9 +454,10 @@ describe('Datagrid', () => {
         />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(headerCheckbox).not.toBeChecked();
 
@@ -463,7 +476,7 @@ describe('Datagrid', () => {
       expect(selectableRowCheckbox).toBeChecked();
     });
 
-    it('should call the update selected rows function with all rows selected when clicking on the header checkbox when no rows are selected in the controlled state', () => {
+    it('should call the update selected rows function with all rows selected when clicking on the header checkbox when no rows are selected in the controlled state', async () => {
       const onSelectedRowsChange = jest.fn();
       const { container } = render(
         <Datagrid
@@ -475,9 +488,10 @@ describe('Datagrid', () => {
         />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(headerCheckbox).not.toBeChecked();
 
@@ -490,14 +504,15 @@ describe('Datagrid', () => {
       ]);
     });
 
-    it('should deselect all rows when clicking on the header checkbox when one or more rows are selected in the uncontrolled state', () => {
+    it('should deselect all rows when clicking on the header checkbox when one or more rows are selected in the uncontrolled state', async () => {
       const { container } = render(
         <Datagrid columns={columns} rows={rows} isSelectable />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       const selectableRowCheckbox = container
         .querySelector('tbody')
@@ -513,7 +528,7 @@ describe('Datagrid', () => {
       expect(selectableRowCheckbox).not.toBeChecked();
     });
 
-    it('should call the update selected rows function with an empty array when clicking on the header checkbox when one or more rows are selected in the controlled state', () => {
+    it('should call the update selected rows function with an empty array when clicking on the header checkbox when one or more rows are selected in the controlled state', async () => {
       const onSelectedRowsChange = jest.fn();
       const { container } = render(
         <Datagrid
@@ -525,9 +540,10 @@ describe('Datagrid', () => {
         />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(headerCheckbox).toHaveProperty('indeterminate');
 
@@ -536,14 +552,15 @@ describe('Datagrid', () => {
       expect(onSelectedRowsChange).toHaveBeenCalledWith([]);
     });
 
-    it('should deselect all rows when clicking on the header checkbox when all rows are selected in the uncontrolled state', () => {
+    it('should deselect all rows when clicking on the header checkbox when all rows are selected in the uncontrolled state', async () => {
       const { container } = render(
         <Datagrid columns={columns} rows={[rows[0]]} isSelectable />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       const selectableRowCheckbox = container
         .querySelector('tbody')
@@ -559,7 +576,7 @@ describe('Datagrid', () => {
       expect(selectableRowCheckbox).not.toBeChecked();
     });
 
-    it('should call the update selected rows function with an empty array when clicking on the header checkbox when all rows are selected in the controlled state', () => {
+    it('should call the update selected rows function with an empty array when clicking on the header checkbox when all rows are selected in the controlled state', async () => {
       const onSelectedRowsChange = jest.fn();
       const { container } = render(
         <Datagrid
@@ -571,9 +588,10 @@ describe('Datagrid', () => {
         />
       );
 
-      const headerCheckbox = container
+      const headerCheckbox = await waitFor (() => container
         .querySelector('thead')
-        .firstChild.querySelector('input');
+        .firstChild.querySelector('input')
+      );
 
       expect(headerCheckbox).toBeChecked();
 
@@ -584,7 +602,7 @@ describe('Datagrid', () => {
   });
 
   describe('pagination', () => {
-    it('should render pagination controls', () => {
+    it('should render pagination controls', async () => {
       const pagination = {
         itemCount: rowsForPagination.length,
         page: 1,
@@ -599,7 +617,7 @@ describe('Datagrid', () => {
         />
       );
 
-      expect(getByText(pagination.rowsPerPage.toString())).toBeInTheDocument();
+      expect(await waitFor(() => getByText(pagination.rowsPerPage.toString()))).toBeInTheDocument();
       expect(
         getByText(
           `1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
@@ -621,7 +639,7 @@ describe('Datagrid', () => {
       expect(queryByTestId('nextBtn')).not.toBeInTheDocument();
     });
 
-    it('should call the on change the rows per page function', () => {
+    it('should call the on change the rows per page function', async () => {
       const onRowsPerPageChange = jest.fn();
       const pagination = {
         itemCount: rowsForPagination.length,
@@ -630,7 +648,7 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onRowsPerPageChange,
       };
-      const { getByText, getByLabelText } = render(
+      const { getByText, findByLabelText } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -638,7 +656,7 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByLabelText('Rows per page:', { selector: 'div' }));
+      fireEvent.click(await findByLabelText('Rows per page:', { selector: 'div' }));
 
       fireEvent.click(getByText(pagination.rowsPerPageValues[1].toString()));
 
@@ -647,7 +665,7 @@ describe('Datagrid', () => {
       );
     });
 
-    it('should call the on change page function when clicking the next page button', () => {
+    it('should call the on change page function when clicking the next page button', async () => {
       const onPageChange = jest.fn();
       const pagination = {
         itemCount: rowsForPagination.length,
@@ -656,7 +674,7 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onPageChange,
       };
-      const { getByText, getByTestId } = render(
+      const { getByText, findByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -664,7 +682,7 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByTestId('nextBtn'));
+      fireEvent.click(await findByTestId('nextBtn'));
 
       expect(onPageChange).toBeCalledWith(
         expect.any(Object),
@@ -672,7 +690,7 @@ describe('Datagrid', () => {
       );
     });
 
-    it('should call the on change page function when clicking the previous page button', () => {
+    it('should call the on change page function when clicking the previous page button', async () => {
       const onPageChange = jest.fn();
       const pagination = {
         itemCount: rowsForPagination.length,
@@ -681,7 +699,7 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onPageChange,
       };
-      const { getByTestId } = render(
+      const { findByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -689,7 +707,7 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByTestId('previousBtn'));
+      fireEvent.click(await findByTestId('previousBtn'));
 
       expect(onPageChange).toBeCalledWith(
         expect.any(Object),
@@ -697,7 +715,7 @@ describe('Datagrid', () => {
       );
     });
 
-    it('should render a custom pagination component', () => {
+    it('should render a custom pagination component', async () => {
       const CustomPaginationComponent = props => {
         const { itemCount, rowsPerPage, onPageChange } = props;
         const { page, pageButtons } = usePagination({
@@ -732,7 +750,7 @@ describe('Datagrid', () => {
         );
       };
 
-      const { getByText } = render(
+      const { findByText } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -740,16 +758,16 @@ describe('Datagrid', () => {
         />
       );
 
-      expect(getByText(/you are on page 1/i)).toBeInTheDocument();
-      expect(getByText(/previous page/i)).toBeInTheDocument();
-      expect(getByText(/next page/i)).toBeInTheDocument();
+      expect(await findByText(/you are on page 1/i)).toBeInTheDocument();
+      expect(await findByText(/previous page/i)).toBeInTheDocument();
+      expect(await findByText(/next page/i)).toBeInTheDocument();
     });
   });
 
-  it('Does not violate accessibility standards', () => {
+  it('Does not violate accessibility standards', async () => {
     const { container } = render(<Datagrid columns={columns} rows={rows} />);
 
-    return axe(container.innerHTML).then(result => {
+    return axe(await waitFor(() => container.innerHTML)).then(result => {
       return expect(result).toHaveNoViolations();
     });
   });

@@ -5,7 +5,7 @@ import { DatagridProps } from './Datagrid';
 import { TablePaginationProps, TableRowColor } from '../Table';
 import { usePagination } from '../Pagination/usePagination';
 import { Button } from '../Button';
-import { PersonOutlineIcon } from 'react-magma-icons';
+import {UseDataPaginationProps, UseDataPaginationReturn} from '../../hooks/useDataPagination';
 
 const rowsForPagination = [
   {
@@ -411,7 +411,6 @@ function useStarWarsPagination<T>(
       }
     });
   };
-
     
   return {
     getPageItems,
