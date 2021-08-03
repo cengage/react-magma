@@ -2,7 +2,7 @@ import React from 'react';
 import { IndeterminateCheckbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 
 describe('Indeterminate Checkbox', () => {
   it('should find element by testId', () => {
@@ -169,7 +169,7 @@ describe('Indeterminate Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveStyleRule(
       'clip',
-      'rect(1px,1px,1px,1px)'
+      'rect(1px, 1px, 1px, 1px)'
     );
   });
 

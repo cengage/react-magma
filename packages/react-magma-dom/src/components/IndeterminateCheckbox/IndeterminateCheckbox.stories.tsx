@@ -7,11 +7,14 @@ import {
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
 import { magma } from '../../theme/magma';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: IndeterminateCheckbox,
   title: 'Indeterminate Checkbox',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

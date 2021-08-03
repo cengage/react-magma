@@ -19,7 +19,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 36px;
     line-height: 48px;
@@ -44,7 +44,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 36px;
     line-height: 48px;
@@ -53,7 +53,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 
 <div>
   <h1
-    class="emotion-0"
+    class="emotion-0 emotion-1"
     id="testId"
   >
     Heading 1
@@ -80,7 +80,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 28px;
     line-height: 40px;
@@ -105,7 +105,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 28px;
     line-height: 40px;
@@ -114,7 +114,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 
 <div>
   <h2
-    class="emotion-0"
+    class="emotion-0 emotion-1"
   >
     Heading 2
   </h2>
@@ -140,7 +140,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 24px;
     line-height: 32px;
@@ -165,7 +165,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 24px;
     line-height: 32px;
@@ -174,7 +174,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 
 <div>
   <h3
-    class="emotion-0"
+    class="emotion-0 emotion-1"
   >
     Heading 3
   </h3>
@@ -200,7 +200,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 20px;
     line-height: 32px;
@@ -225,7 +225,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 20px;
     line-height: 32px;
@@ -234,7 +234,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 
 <div>
   <h4
-    class="emotion-0"
+    class="emotion-0 emotion-1"
   >
     Heading 4
   </h4>
@@ -260,7 +260,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 18px;
     line-height: 24px;
@@ -285,7 +285,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 18px;
     line-height: 24px;
@@ -294,7 +294,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 
 <div>
   <h5
-    class="emotion-0"
+    class="emotion-0 emotion-1"
   >
     Heading 5
   </h5>
@@ -321,7 +321,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 12px;
     line-height: 16px;
@@ -347,7 +347,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 12px;
     line-height: 16px;
@@ -356,7 +356,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 
 <div>
   <h6
-    class="emotion-0"
+    class="emotion-0 emotion-1"
   >
     Heading 6
   </h6>

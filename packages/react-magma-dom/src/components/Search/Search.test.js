@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Search } from '.';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
@@ -8,6 +8,13 @@ import { render, fireEvent } from '@testing-library/react';
 const onSearchSpy = jest.fn();
 
 describe('Search', () => {
+  beforeAll(() => {
+    // JSDom does not implement this and an error was being
+    // thrown from jest-axe because of it.
+    const { getComputedStyle } = window;
+    window.getComputedStyle = elt => getComputedStyle(elt);
+  });
+
   beforeEach(() => {
     jest.clearAllMocks();
   });

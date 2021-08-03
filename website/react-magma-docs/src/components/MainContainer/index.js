@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Masthead } from '../Masthead';
-import { SlidingDrawer } from '../SlidingDrawer';
 import { DarkModeContext } from '../DarkMode/DarkModeContext';
 
 import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
@@ -15,6 +14,10 @@ const StyledContainer = styled.div`
       'masthead masthead'
       'nav content';
   }
+`;
+
+const SideBar = styled.div`
+
 `;
 
 const StyledSkipLink = styled(SkipLink)`
@@ -55,7 +58,7 @@ export const MainContainer = ({ children }) => {
         />
         <StyledContainer>
           <Masthead />
-          <SlidingDrawer isInverse={isDarkMode} />
+          <SideBar />
           {children}
         </StyledContainer>
       </Container>

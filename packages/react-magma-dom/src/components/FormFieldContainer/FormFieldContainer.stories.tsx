@@ -1,8 +1,9 @@
 import React from 'react';
 import { FormFieldContainer } from '.';
 import { InputBase } from '../InputBase';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: FormFieldContainer,
   title: 'FormFieldContainer',
   argTypes: {
@@ -28,6 +29,8 @@ export default {
     },
   },
 };
+
+export default meta;
 
 export const Default = args => {
   return (

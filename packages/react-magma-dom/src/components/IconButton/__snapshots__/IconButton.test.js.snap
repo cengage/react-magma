@@ -2,18 +2,6 @@
 
 exports[`IconButton Icon Only Button Snapshot should render with large size 1`] = `
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -36,8 +24,8 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   font-weight: 600;
   height: 56px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -60,26 +48,26 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -89,49 +77,49 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -154,8 +142,8 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   font-weight: 600;
   height: 56px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -178,26 +166,26 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -207,47 +195,59 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-2 emotion-3"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="round"
     type="button"
   >
     <span
-      class="emotion-0 emotion-1"
+      class="emotion-2 emotion-3"
     >
       <svg
         class="icon"
@@ -269,18 +269,6 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 
 exports[`IconButton Icon Only Button Snapshot should render with small size 1`] = `
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -303,8 +291,8 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   font-weight: 600;
   height: 28px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 16px;
   margin: 4px;
@@ -327,26 +315,26 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -356,49 +344,49 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -421,8 +409,8 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   font-weight: 600;
   height: 28px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 16px;
   margin: 4px;
@@ -445,26 +433,26 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -474,47 +462,59 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-2 emotion-3"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="round"
     type="button"
   >
     <span
-      class="emotion-0 emotion-1"
+      class="emotion-2 emotion-3"
     >
       <svg
         class="icon"
@@ -536,18 +536,6 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 
 exports[`IconButton Icon Only Button Snapshot should render with updated color 1`] = `
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -570,8 +558,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -594,26 +582,26 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -623,49 +611,49 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -688,8 +676,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -712,26 +700,26 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -741,47 +729,59 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-2 emotion-3"
+    class="emotion-0 emotion-1"
     color="secondary"
     id="testId"
     shape="round"
     type="button"
   >
     <span
-      class="emotion-0 emotion-1"
+      class="emotion-2 emotion-3"
     >
       <svg
         class="icon"
@@ -803,18 +803,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 
 exports[`IconButton Icon Only Button Snapshot should render with updated shape 1`] = `
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -837,8 +825,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -861,26 +849,26 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -890,49 +878,49 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -955,8 +943,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -979,26 +967,26 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1008,47 +996,59 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-2 emotion-3"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-0 emotion-1"
+      class="emotion-2 emotion-3"
     >
       <svg
         class="icon"
@@ -1070,18 +1070,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 
 exports[`IconButton Icon Only Button Snapshot should render with updated variant 1`] = `
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1103,8 +1091,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -1127,26 +1115,26 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -1156,49 +1144,49 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1220,8 +1208,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -1244,26 +1232,26 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
   padding: 0;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -1273,47 +1261,59 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-2 emotion-3"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="round"
     type="button"
   >
     <span
-      class="emotion-0 emotion-1"
+      class="emotion-2 emotion-3"
     >
       <svg
         class="icon"
@@ -1334,19 +1334,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with large size 1`] = `
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1369,8 +1357,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   font-weight: 600;
   height: 56px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -1390,18 +1378,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1411,53 +1399,53 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 16px;
 }
 
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1480,8 +1468,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   font-weight: 600;
   height: 56px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -1501,18 +1489,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1522,54 +1510,66 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 16px;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-3 emotion-4"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-1 emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         Test Text
       </span>
@@ -1592,19 +1592,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with medium size 1`] = `
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1627,8 +1615,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -1648,18 +1636,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1669,53 +1657,53 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 8px;
 }
 
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1738,8 +1726,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -1759,18 +1747,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1780,54 +1768,66 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 8px;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-3 emotion-4"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-1 emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         Test Text
       </span>
@@ -1850,19 +1850,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with small size 1`] = `
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1885,8 +1873,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   font-weight: 600;
   height: 28px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 16px;
   margin: 4px;
@@ -1906,18 +1894,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1927,53 +1915,53 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 4px;
 }
 
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1996,8 +1984,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   font-weight: 600;
   height: 28px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 16px;
   margin: 4px;
@@ -2017,18 +2005,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2038,54 +2026,66 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 4px;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-3 emotion-4"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-1 emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         Test Text
       </span>
@@ -2108,19 +2108,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated color 1`] = `
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2143,8 +2131,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -2164,18 +2152,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -2185,53 +2173,53 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 8px;
 }
 
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2254,8 +2242,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -2275,18 +2263,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e6e6e6;
   color: #3F3F3F;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #3F3F3F;
   border-radius: 50%;
   content: '';
@@ -2296,54 +2284,66 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #ccc;
   color: #3F3F3F;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 8px;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-3 emotion-4"
+    class="emotion-0 emotion-1"
     color="secondary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-1 emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         Test Text
       </span>
@@ -2366,19 +2366,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated shape 1`] = `
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2401,8 +2389,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -2422,18 +2410,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2443,53 +2431,53 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 8px;
 }
 
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2512,8 +2500,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -2533,18 +2521,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2554,54 +2542,66 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   padding-right: 8px;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-3 emotion-4"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-1 emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         Test Text
       </span>
@@ -2624,23 +2624,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated text transform 1`] = `
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .emotion-0 {
-  padding-right: 8px;
-}
-
-.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2663,8 +2647,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -2684,18 +2668,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2705,37 +2689,37 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-1 {
+.emotion-2 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2747,11 +2731,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   align-items: center;
 }
 
-.emotion-0 {
+.emotion-4 {
   padding-right: 8px;
 }
 
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2774,8 +2758,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -2795,18 +2779,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2816,50 +2800,66 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-right: 8px;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-3 emotion-4"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-1 emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         Test Text
       </span>
@@ -2882,23 +2882,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated variant 1`] = `
-.emotion-1 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .emotion-0 {
-  padding-right: 8px;
-}
-
-.emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2920,8 +2904,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -2941,18 +2925,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -2962,37 +2946,37 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-1 {
+.emotion-2 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3004,11 +2988,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
 }
 
-.emotion-0 {
+.emotion-4 {
   padding-right: 8px;
 }
 
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3030,8 +3014,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -3051,18 +3035,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: auto;
 }
 
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-3:not(:disabled):hover,
-.emotion-3:not(:disabled):focus {
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
   background: #e5eff4;
   color: #004165;
 }
 
-.emotion-3:not(:disabled):after {
+.emotion-0:not(:disabled):after {
   background: #006298;
   border-radius: 50%;
   content: '';
@@ -3072,50 +3056,66 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-3:not(:disabled):active {
+.emotion-0:not(:disabled):active {
   background: #b2cfe0;
   color: #002032;
 }
 
-.emotion-3:not(:disabled):active:after {
+.emotion-0:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-3 svg {
+.emotion-0 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-right: 8px;
 }
 
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-3 emotion-4"
+    class="emotion-0 emotion-1"
     color="primary"
     id="testId"
     shape="fill"
     type="button"
   >
     <span
-      class="emotion-1 emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         Test Text
       </span>

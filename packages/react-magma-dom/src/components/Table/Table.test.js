@@ -10,7 +10,8 @@ import {
 
 import { magma } from '../../theme/magma';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('Table', () => {
   it('should find element by testId', () => {
@@ -297,13 +298,13 @@ describe('Table', () => {
 
     expect(onSortSpy).not.toHaveBeenCalled();
 
-    fireEvent.click(getByText('heading 1'));
+    userEvent.click(getByText('heading 1'));
 
     expect(onSortSpy).toHaveBeenCalled();
   });
 
   it('should render sortable table header cells with inverse styles', () => {
-    const { getByTestId } = render(
+    const { getByRole, debug } = render(
       <Table isInverse>
         <TableHead>
           <TableRow>
@@ -319,8 +320,7 @@ describe('Table', () => {
       </Table>
     );
 
-    const button = getByTestId('header1').querySelector('button');
-
+    const button = getByRole('button');
     expect(button).toBeInTheDocument();
 
     expect(button).toHaveStyleRule(

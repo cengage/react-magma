@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Radio } from '.';
 import { RadioContext } from '../RadioGroup';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { magma } from '../../theme/magma';
 
 describe('Radio', () => {
@@ -250,7 +251,7 @@ describe('Radio', () => {
     );
     const span = getByLabelText('blue');
 
-    expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+    expect(span).toHaveStyleRule('clip', 'rect(1px, 1px, 1px, 1px)');
   });
 
   it("should be checked if selected value equals it's value", () => {
@@ -328,13 +329,8 @@ describe('Radio', () => {
       </RadioContext.Provider>
     );
 
-    fireEvent(
-      getByLabelText('blue'),
-      new MouseEvent('blur', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    userEvent.click(getByLabelText('blue'));
+    userEvent.click(document.body);
 
     expect(onBlur).toHaveBeenCalledTimes(1);
   });
@@ -354,13 +350,7 @@ describe('Radio', () => {
       </RadioContext.Provider>
     );
 
-    fireEvent(
-      getByLabelText('blue'),
-      new MouseEvent('focus', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    userEvent.click(getByLabelText('blue'));
 
     expect(onFocus).toHaveBeenCalledTimes(1);
   });

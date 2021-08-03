@@ -5,13 +5,13 @@ import {
   AccordionIconPosition,
   AccordionItem,
   AccordionButton,
-  AccordionPanel,
+  AccordionPanel,f
 } from '.';
 import { Button, ButtonSize, ButtonVariant } from '../Button';
 
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Accordion,
   title: 'Accordion',
   argTypes: {
@@ -33,6 +33,8 @@ export default {
     },
   },
 };
+
+export default meta;
 
 const Template: Story<AccordionProps> = args => (
   <Accordion {...args}>

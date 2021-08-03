@@ -91,7 +91,10 @@ describe('Hyperlink', () => {
   it('should send back values when passed children as a function', () => {
     render(
       <Hyperlink to="https://www.google.com">
-        {({ to }) => expect(to).toEqual('https://www.google.com')}
+        {({ to }) => {
+          expect(to).toEqual('https://www.google.com');
+          return 'test';
+        }}
       </Hyperlink>
     );
   });
@@ -102,6 +105,7 @@ describe('Hyperlink', () => {
         {({ className, to }) => {
           expect(to).toEqual('https://www.google.com');
           expect(className).not.toBeNull();
+          return 'test';
         }}
       </Hyperlink>
     );

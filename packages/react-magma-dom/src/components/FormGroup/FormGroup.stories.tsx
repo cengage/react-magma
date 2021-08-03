@@ -2,11 +2,14 @@ import React from 'react';
 import { FormGroup } from '.';
 import { Checkbox } from '../Checkbox';
 import { Toggle } from '../Toggle';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: FormGroup,
   title: 'FormGroup',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SkipLink should render the skip link component 1`] = `
-.emotion-0 {
+.emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -24,8 +24,8 @@ exports[`SkipLink should render the skip link component 1`] = `
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -48,18 +48,18 @@ exports[`SkipLink should render the skip link component 1`] = `
   top: -9999px;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-1:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -69,43 +69,43 @@ exports[`SkipLink should render the skip link component 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-1:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-1 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0:focus {
+.emotion-1:focus {
   left: 10px;
   top: 10px;
   z-index: 99999;
 }
 
-.emotion-0 {
+.emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -128,8 +128,8 @@ exports[`SkipLink should render the skip link component 1`] = `
   font-weight: 600;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 24px;
   margin: 4px;
@@ -152,18 +152,18 @@ exports[`SkipLink should render the skip link component 1`] = `
   top: -9999px;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):focus {
   outline: 2px dotted #027EE1;
   outline-offset: 3px;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
   background: #004165;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-1:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -173,44 +173,44 @@ exports[`SkipLink should render the skip link component 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: #002032;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-1:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-1 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0:focus {
+.emotion-1:focus {
   left: 10px;
   top: 10px;
   z-index: 99999;
 }
 
 <a
-  class="emotion-0 emotion-1"
+  class="emotion-0 emotion-1 emotion-2"
   color="primary"
   href="#reactMagmaMainContent"
 >

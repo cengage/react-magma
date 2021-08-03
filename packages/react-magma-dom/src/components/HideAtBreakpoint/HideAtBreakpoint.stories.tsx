@@ -3,11 +3,14 @@ import { HideAtBreakpoint } from '.';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { magma } from '../../theme/magma';
+import {  Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: HideAtBreakpoint,
   title: 'HideAtBreakpoint',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

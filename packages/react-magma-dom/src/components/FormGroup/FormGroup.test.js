@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { FormGroup } from '.';
 import { Checkbox } from '../Checkbox';
 import { render } from '@testing-library/react';
@@ -75,7 +75,7 @@ describe('Form Group', () => {
     );
     const label = getByText(labelText);
 
-    expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+    expect(label).toHaveStyleRule('clip', 'rect(1px, 1px, 1px, 1px)');
   });
 
   it('should render a form group with the aria-labelledby attribute', () => {

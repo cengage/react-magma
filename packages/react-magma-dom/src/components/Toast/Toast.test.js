@@ -10,7 +10,7 @@ describe('Toast', () => {
 
   afterEach(async () => {
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
     jest.useRealTimers();
   });
@@ -61,7 +61,7 @@ describe('Toast', () => {
     );
   });
 
-  it('should call passed in onDismiss when timer runs out', async () => {
+  it.only('should call passed in onDismiss when timer runs out', async () => {
     const onDismiss = jest.fn();
     render(<Toast onDismiss={onDismiss}>Toast Content</Toast>);
 

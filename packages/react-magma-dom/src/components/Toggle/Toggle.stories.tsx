@@ -1,10 +1,13 @@
 import React from 'react';
 import { Toggle } from '.';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Toggle,
   title: 'Toggle',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

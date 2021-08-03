@@ -24,12 +24,14 @@ import { TimePicker } from '../TimePicker';
 import { Toggle } from '../Toggle';
 import { Tooltip } from '../Tooltip';
 import { SettingsIcon } from 'react-magma-icons';
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Form,
-  title: 'Form',
+  title: 'Form',s
 };
+
+export default meta;
 
 const Template: Story<FormProps> = args => (
   <Form {...args}>{args.children}</Form>

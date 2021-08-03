@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Tooltip } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';

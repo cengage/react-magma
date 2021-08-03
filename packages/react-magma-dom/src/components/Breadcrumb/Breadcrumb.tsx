@@ -24,11 +24,11 @@ const StyledList = styled.ol<BreadcrumbProps>`
 
 export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
   (props, ref) => {
-    const { 'aria-label': ariaLabel, children, testId, ...other } = props;
+    const { 'aria-label': ariaLabel, children, isInverse: isInverseProp, testId, ...other } = props;
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(isInverseProp);
 
     return (
       <InverseContext.Provider value={{ isInverse }}>

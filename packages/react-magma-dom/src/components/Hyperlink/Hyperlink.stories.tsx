@@ -2,11 +2,14 @@ import React from 'react';
 import { Card, CardBody } from '../Card';
 import { Hyperlink } from '.';
 import { ButtonColor, ButtonTextTransform } from '../Button';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Hyperlink,
   title: 'Hyperlink',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

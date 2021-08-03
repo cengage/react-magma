@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Alert } from '.';
 import { AlertVariant } from '../AlertBase';
 import { act, render, fireEvent } from '@testing-library/react';
@@ -7,6 +7,8 @@ import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { v4 as uuid } from 'uuid';
+import userEvent from '@testing-library/user-event';
+
 
 jest.mock('uuid');
 
@@ -33,8 +35,22 @@ describe('Alert', () => {
     expect(container).toMatchSnapshot();
   });
 
+  it('should render an alert with focus style', () => {
+    const { container } = render(
+      <Alert inverse>Test Alert Text</Alert>
+    );
+
+    expect(container.firstChild).toHaveStyleRule(
+      'outline',
+      `2px dotted ${magma.colors.focus}`,
+      {
+        target: ':focus',
+      }
+    );
+  });
+
   it('should render an alert with inverse focus style', () => {
-    const { container } = render(<Alert inverse>Test Alert Text</Alert>);
+    const { container } = render(<Alert isInverse>Test Alert Text</Alert>);
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',

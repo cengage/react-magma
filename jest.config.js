@@ -25,7 +25,8 @@ module.exports = {
     'jest-axe/extend-expect',
     '<rootDir>/jest.setup.js',
   ],
-  snapshotSerializers: ['jest-emotion'],
+  snapshotSerializers: ['@emotion/jest/serializer'],
+  testEnvironment: "jsdom",
   testPathIgnorePatterns: [
     '/.cache/',
     '/coverage/',

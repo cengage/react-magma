@@ -15,8 +15,10 @@
     "node": "^14.15.0"
   },
   "scripts": {
-    "build": "tsdx build",
+    "build": "microbundle build",
+    "build-watch": "microbundle watch",
     "test": "jest",
+    "test-watch": "jest --watch",
     "lint": "eslint ./src"
   },
   "peerDependencies": {

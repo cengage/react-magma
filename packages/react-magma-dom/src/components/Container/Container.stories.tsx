@@ -14,12 +14,14 @@ import {
   TabPanel,
 } from '../Tabs';
 
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Container,
   title: 'Container',
 };
+
+export default meta;
 
 const Template: Story<ContainerProps> = args => (
   <Container {...args}>{args.children}</Container>

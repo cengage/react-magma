@@ -93,13 +93,12 @@ const SortButton = styled.button<{
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
   margin: 0;
-  padding: ${props => buildCellPaddingStyle(props.density, props.theme)}};
+  padding: ${props => buildCellPaddingStyle(props.density, props.theme)};
   text-align: left;
   width: 100%;
 
   &:focus {
-    outline: 2px dotted
-      ${props =>
+    outline: 2px dotted ${props =>
         props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};

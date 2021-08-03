@@ -1,11 +1,14 @@
 import React from 'react';
 import { SkipLink } from '.';
 import { ButtonColor, ButtonVariant } from '../Button';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: SkipLink,
   title: 'SkipLink',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

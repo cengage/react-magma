@@ -140,25 +140,25 @@ export const Grid = styled.div<GridProps>`
   ${props =>
     css({
       display: props.gridDisplay || GridDisplay.grid,
-      'grid-template-rows': props.gridTemplateRows,
-      'grid-template-columns': props.gridTemplateColumns,
-      'grid-areas': props.gridTemplateAreas,
-      'grid-gap': props.gridGap,
-      'justify-items': props.gridJustifyItems,
-      'justify-content': props.gridJustifyContent,
-      'align-items': props.gridAlignItems,
-      'align-content': props.gridAlignContent,
-      'grid-auto-flow': props.gridAutoFlow,
+      gridTemplateRows: props.gridTemplateRows,
+      gridTemplateColumns: props.gridTemplateColumns,
+      gridAreas: props.gridTemplateAreas,
+      gridGap: props.gridGap,
+      justifyItems: props.gridJustifyItems,
+      justifyContent: props.gridJustifyContent,
+      alignItems: props.gridAlignItems,
+      alignContent: props.gridAlignContent,
+      gridAutoFlow: props.gridAutoFlow,
     })}
 `;
 
 export const GridItem = styled.div<GridItemProps>`
   ${props =>
     css({
-      'grid-column': props.gridColumn,
-      'grid-row': props.gridRow,
-      'grid-area': props.gridArea,
-      'justify-self': props.gridItemJustifySelf,
-      'align-self': props.gridItemAlignSelf,
+      gridColumn: props.gridColumn,
+      gridRow: props.gridRow,
+      gridArea: props.gridArea,
+      justifySelf: props.gridItemJustifySelf,
+      alignSelf: props.gridItemAlignSelf,
     })}
 `;

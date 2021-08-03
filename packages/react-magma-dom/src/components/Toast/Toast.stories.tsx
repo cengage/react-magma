@@ -1,11 +1,14 @@
 import React from 'react';
 import { Toast } from '.';
 import { Button, ButtonSize } from '../Button';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Toast,
   title: 'Toast',
 };
+
+export default meta;
 
 export const Default = () => {
   const [showToast, setShowToast] = React.useState(false);

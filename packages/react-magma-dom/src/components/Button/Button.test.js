@@ -1,6 +1,6 @@
 // <reference types="jest-dom/extend-expect"/>
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import {
   Button,
   ButtonColor,

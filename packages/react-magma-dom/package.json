@@ -23,9 +23,9 @@
   "homepage": "https://react-magma.cengage.com",
   "scripts": {
     "test": "jest",
-    "test-watch": "tsdx test --watch",
-    "build": "tsdx build",
-    "build-watch": "tsdx watch",
+    "test-watch": "jest --watch",
+    "build": "microbundle --globals @emotion/styled/base=emotionStyledBase,@emotion/react=emotionReact,date-fns/locale=locale",
+    "build-watch": "microbundle watch --globals @emotion/styled/base=emotionStyledBase,@emotion/react=emotionReact,date-fns/locale=locale",
     "generate-properties": "node scripts/generateJSON.js",
     "copy-changelog": "node scripts/copy-changelog.js",
     "lint": "eslint ./src",
@@ -57,6 +57,6 @@
     "@emotion/styled": "^11.3.0",
     "mkdirp": "^1.0.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

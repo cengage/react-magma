@@ -4,10 +4,14 @@ import { Card } from '../Card/index';
 import { CardBody } from '../Card/CardBody';
 import { magma } from '../../theme/magma';
 
-export default {
+import { Story, Meta } from '@storybook/react';
+
+const meta: Meta = {
   component: BreakpointsContainer,
   title: 'BreakpointsContainer',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

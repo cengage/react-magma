@@ -1,9 +1,10 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Input } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from 'react-magma-icons';
+import userEvent from '@testing-library/user-event';
 
 describe('Input', () => {
   it('should find element by testId', () => {
@@ -227,9 +228,7 @@ describe('Input', () => {
       <Input labelText={labelText} onChange={onChange} isClearable />
     );
 
-    fireEvent.change(getByLabelText(labelText), {
-      target: { value: 'new value' },
-    });
+    userEvent.type(getByLabelText(labelText), 'new value');
 
     expect(onChange).toHaveBeenCalled();
     expect(getByTestId('clear-button')).toHaveStyleRule('position', 'relative');
@@ -242,7 +241,7 @@ describe('Input', () => {
       <Input labelText={labelText} value={value} isClearable />
     );
 
-    fireEvent.click(getByTestId('clear-button'));
+    userEvent.click(getByTestId('clear-button'));
 
     expect(getByLabelText(labelText)).toHaveAttribute('value', '');
   });
@@ -372,13 +371,8 @@ describe('Input', () => {
           <Input labelText={labelText} onBlur={onBlurSpy} />
         );
 
-        fireEvent(
-          getByLabelText(labelText),
-          new MouseEvent('blur', {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        userEvent.click(getByLabelText(labelText));
+        userEvent.click(document.body);
 
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
@@ -391,11 +385,9 @@ describe('Input', () => {
           <Input labelText={labelText} onChange={onChangeSpy} value="" />
         );
 
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: targetValue },
-        });
+        userEvent.type(getByLabelText(labelText), 'Change');
 
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+        expect(onChangeSpy).toHaveBeenCalledTimes(targetValue.length);
       });
 
       it('should trigger the passed in onFocus when focused', () => {
@@ -405,13 +397,7 @@ describe('Input', () => {
           <Input labelText={labelText} onFocus={onFocusSpy} />
         );
 
-        fireEvent(
-          getByLabelText(labelText),
-          new MouseEvent('focus', {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        userEvent.click(getByLabelText(labelText));
 
         expect(onFocusSpy).toHaveBeenCalledTimes(1);
       });

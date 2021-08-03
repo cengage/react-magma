@@ -1,8 +1,9 @@
 import React from 'react';
 import { Checkbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { magma } from '../../theme/magma';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 
 describe('Checkbox', () => {
   it('should find element by testId', () => {
@@ -199,7 +200,7 @@ describe('Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveStyleRule(
       'clip',
-      'rect(1px,1px,1px,1px)'
+      'rect(1px, 1px, 1px, 1px)'
     );
   });
 
@@ -244,13 +245,8 @@ describe('Checkbox', () => {
         <Checkbox testId={testId} onBlur={onBlurSpy} />
       );
 
-      fireEvent(
-        getByTestId(testId),
-        new MouseEvent('blur', {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      userEvent.click(getByTestId(testId));
+      userEvent.click(document.body);
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
@@ -274,13 +270,7 @@ describe('Checkbox', () => {
         <Checkbox testId={testId} onFocus={onFocusSpy} />
       );
 
-      fireEvent(
-        getByTestId(testId),
-        new MouseEvent('focus', {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      userEvent.click(getByTestId(testId));
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });

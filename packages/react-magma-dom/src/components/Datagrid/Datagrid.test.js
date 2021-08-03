@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Datagrid } from '.';
 import { TableRowColor } from '../Table';
 import { Button } from '../Button';

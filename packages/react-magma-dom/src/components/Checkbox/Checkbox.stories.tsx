@@ -4,10 +4,14 @@ import { Checkbox } from '.';
 import { FormGroup } from '../FormGroup';
 import { magma } from '../../theme/magma';
 
-export default {
+import { Story, Meta } from '@storybook/react';
+
+const meta: Meta = {
   component: Checkbox,
   title: 'Checkbox',
 };
+
+export default meta;
 
 export const Default = () => {
   const [checked, updateChecked] = React.useState(false);

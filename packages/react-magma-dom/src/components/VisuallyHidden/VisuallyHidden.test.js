@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { VisuallyHidden } from '.';
 import { render } from '@testing-library/react';
 
@@ -12,7 +12,7 @@ describe('VisuallyHidden', () => {
     );
 
     expect(container).toBeInTheDocument();
-    expect(getByText(TEXT)).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+    expect(getByText(TEXT)).toHaveStyleRule('clip', 'rect(1px, 1px, 1px, 1px)');
     expect(getByText(TEXT)).toHaveStyleRule('height', '1px');
     expect(getByText(TEXT)).toHaveStyleRule('overflow', 'hidden');
   });

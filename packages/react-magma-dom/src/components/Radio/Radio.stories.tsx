@@ -3,11 +3,14 @@ import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 import { Radio } from '.';
 import { RadioGroup } from '../RadioGroup';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Radio,
   title: 'Radio',
 };
+
+export default meta;
 
 export const Default = () => {
   return (

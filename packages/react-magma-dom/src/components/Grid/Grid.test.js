@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Grid, GridItem } from '.';
 import { render } from '@testing-library/react';
 
@@ -26,7 +26,7 @@ describe('Grid', () => {
     );
 
     expect(getByText(TEXT).parentElement).toHaveStyleRule('display', 'grid');
-    expect(getByText(TEXT)).toHaveStyleRule('grid-column', '1 / 6');
+    expect(getByText(TEXT)).toHaveStyleRule('grid-column', '1/6');
   });
 
   it('Does not violate accessibility standards', () => {

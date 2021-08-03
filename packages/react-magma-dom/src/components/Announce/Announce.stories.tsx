@@ -2,10 +2,14 @@ import React from 'react';
 import { Announce } from '.';
 import { Button } from '../Button';
 
-export default {
+import { Story, Meta } from '@storybook/react';
+
+const meta: Meta = {
   component: Announce,
   title: 'Announce',
 };
+
+export default meta;
 
 export const Default = () => {
   const [announceContent, setAnnounceContent] = React.useState(

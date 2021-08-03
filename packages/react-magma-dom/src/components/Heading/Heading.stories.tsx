@@ -1,10 +1,13 @@
 import React from 'react';
 import { Heading } from '.';
+import { Meta } from '@storybook/react';
 
-export default {
+const meta: Meta = {
   component: Heading,
   title: 'Heading',
 };
+
+export default meta;
 
 export const Default = () => {
   return (
