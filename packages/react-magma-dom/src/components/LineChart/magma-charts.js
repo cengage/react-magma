@@ -71,6 +71,7 @@ const strokeDasharray = '10, 5';
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   area: assign(
     {

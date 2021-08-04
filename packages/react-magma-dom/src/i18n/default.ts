@@ -72,6 +72,13 @@ export const defaultI18n: I18nInterface = {
   breadcrumb: {
     navAriaLabel: 'Breadcrumb',
   },
+  charts: {
+    line: {
+      dataLegendsLabel:
+        'Select one or more of the categories below to filter out the ones you don’t want to see.',
+      legendButtonAriaLabel: 'Toggle data for {name}',
+    },
+  },
   combobox: {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',

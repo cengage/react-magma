@@ -52,7 +52,10 @@ const ToolTipContainer = styled.div`
   display: inline;
 `;
 
-const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
+export const ToolTipArrow = styled.span<{
+  position?: any;
+  isInverse?: boolean;
+}>`
   &&,
   &&:before {
     display: block;
@@ -72,7 +75,7 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
   }
 `;
 
-const StyledTooltip = styled.div<{
+export const StyledTooltip = styled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
   position: TooltipPosition;
@@ -116,12 +119,10 @@ const StyledTooltip = styled.div<{
 // Using any for the ref because it is put ont he passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
-  const [referenceElement, setReferenceElement] = React.useState<HTMLElement>(
-    null
-  );
-  const [popperElement, setPopperElement] = React.useState<HTMLDivElement>(
-    null
-  );
+  const [referenceElement, setReferenceElement] =
+    React.useState<HTMLElement>(null);
+  const [popperElement, setPopperElement] =
+    React.useState<HTMLDivElement>(null);
   const [arrowElement, setArrowElement] = React.useState<HTMLSpanElement>(null);
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {

@@ -71,6 +71,12 @@ export interface I18nInterface {
   breadcrumb: {
     navAriaLabel: string;
   };
+  charts: {
+    line: {
+      dataLegendsLabel: string;
+      legendButtonAriaLabel: string;
+    };
+  };
   combobox: {
     clearIndicatorAriaLabel: string;
     createLabel: string;
@@ -227,7 +233,7 @@ export interface I18nInterface {
   };
   tag: {
     deleteAriaLabel: string;
-  }
+  };
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;

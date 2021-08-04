@@ -564,6 +564,25 @@ export const magma = {
     },
   },
 
+  charts: {
+    line: {
+      colors: [
+        '#0085CC',
+        '#E0004D',
+        '#FA6600',
+        '#48A200',
+        '#B12FAD',
+        '#00A393',
+        '#00507A',
+        '#8F0033',
+        '#B84900',
+        '#255200',
+        '#711E6E',
+        '#005249',
+      ],
+    },
+  },
+
   combobox: {
     menu: {
       maxHeight: '250px',
@@ -636,7 +655,6 @@ export const magma = {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-
   },
 
   tooltip: {
