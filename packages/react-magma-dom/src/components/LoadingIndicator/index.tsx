@@ -127,7 +127,7 @@ export const LoadingIndicator = React.forwardRef<
         <ProgressBar
           {...other}
           color={color as ProgressBarColor}
-          height={theme.spaceScale.spacing04}
+          height={theme.spaceScale.spacing03}
           isAnimated
           isLoadingIndicator
         />
