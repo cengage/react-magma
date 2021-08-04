@@ -1,6 +1,7 @@
 import React from 'react';
 import { IconButton, IconButtonProps } from '.';
-import { SettingsIcon, NotificationsIcon } from 'react-magma-icons';
+import { Global, css } from '@emotion/core';
+import { SettingsIcon, NotificationsIcon, ExpandMoreIcon } from 'react-magma-icons';
 import {
   ButtonColor,
   ButtonShape,
@@ -102,4 +103,36 @@ IconOnly.args = {
   isFullWidth: false,
   disabled: false,
   onClick: () => {},
+};
+
+const AnimatedIconTemplate: Story<IconButtonProps> = (props) => {
+  const [expanded, setExpanded] = React.useState(false);
+
+  return (
+    <>
+      <Global styles={css`
+        .animated-icon-button svg {
+          transition: transform 200ms;
+        }
+        
+        .animated-icon-button.expanded svg {
+          transform: rotate(180deg);
+        }
+      `} />
+      <IconButton
+        icon={<ExpandMoreIcon />}
+        aria-label="Button"
+        className={expanded ? 'animated-icon-button expanded' : 'animated-icon-button'}
+        onClick={() => setExpanded(state => !state)}
+        {...props}
+      />
+    </>
+  );
+};
+
+export const AnimatedIcon = AnimatedIconTemplate.bind({});
+AnimatedIcon.args = {
+  isInverse: false,
+  isFullWidth: false,
+  disabled: false,
 };
