@@ -20,7 +20,7 @@ export const GraphTooltip = props => {
 
   return (
     <g style={{ pointerEvents: 'none' }}>
-      <foreignObject x={x} y={y} width="150" height="100">
+      <foreignObject x={x} y={y} width="200" height="100">
         <StyledTooltip
           position={TooltipPosition.top}
           role="tooltip"
@@ -28,6 +28,33 @@ export const GraphTooltip = props => {
         >
           <TooltipColorSwatch color={theme.charts.line.colors[index]} />
           <span>{datum.label}</span>
+          <ToolTipArrow theme={theme} />
+        </StyledTooltip>
+      </foreignObject>
+    </g>
+  );
+};
+
+export const AxisTooltip = props => {
+  const { x, y, activePoints } = props;
+  console.log('active', activePoints);
+
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <g style={{ pointerEvents: 'none' }}>
+      <foreignObject x={x} y={y} width="200" height="100">
+        <StyledTooltip
+          position={TooltipPosition.top}
+          role="tooltip"
+          theme={theme}
+        >
+          {activePoints.map((point, i) => (
+            <div key={i} style={{ display: 'inline-block' }}>
+              <TooltipColorSwatch color={theme.charts.line.colors[i]} />
+              <span>{point.label}</span>
+            </div>
+          ))}
           <ToolTipArrow theme={theme} />
         </StyledTooltip>
       </foreignObject>

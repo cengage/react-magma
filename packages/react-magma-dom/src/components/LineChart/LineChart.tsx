@@ -11,6 +11,7 @@ import {
   VictoryScatterProps,
   VictoryTooltip,
   Point,
+  VictoryVoronoiContainer,
 } from 'victory';
 
 import { LegendButton } from './LegendButton';
@@ -18,7 +19,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
 import magmaTheme from './magma-charts';
-import { GraphTooltip } from './GraphTooltip';
+import { AxisTooltip, GraphTooltip } from './GraphTooltip';
 
 export type LineChartAxisStyle = VictoryAxisProps['style'];
 export type DataGetterPropType = VictoryLineProps['x'];
@@ -57,6 +58,9 @@ export interface LineChartProps<T extends ChartDataOptions> {
 const VictoryChartContainer = styled.div`
   max-height: 600px;
   max-width: 800px;
+  svg {
+    overflow: visible;
+  }
 `;
 
 const DataLegendsContainer = styled.div`
@@ -66,6 +70,10 @@ const DataLegendsContainer = styled.div`
 const DataLegendsDescription = styled.p`
   color: ${props => props.theme.colors.neutral03};
 `;
+
+const ContainerLabelComponent = (
+  <VictoryTooltip flyoutComponent={<AxisTooltip />} />
+);
 
 export function LineChart<T>(props: LineChartProps<T>) {
   const {
@@ -101,6 +109,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
   const [hiddenData, setHiddenData] = React.useState<number[]>([]);
   const [width, setWidth] = React.useState<number>(800);
   const [focusedLine, setFocusedLine] = React.useState<number>(null);
+  const [showXAxisLabel, setShowXAxisLabel] = React.useState<boolean>(true);
 
   const containerRef = React.useRef<HTMLDivElement>();
 
@@ -112,6 +121,41 @@ export function LineChart<T>(props: LineChartProps<T>) {
       window.removeEventListener('resize', updateWidth);
     };
   }, []);
+
+  const scatterNames: string[] = data.map((_, i) => `scatter-${i}`);
+
+  const chartEvents = [
+    {
+      target: 'data',
+      childName: scatterNames,
+      eventHandlers: {
+        onMouseEnter: () => {
+          return [
+            {
+              childName: 'xAxisGroupLabel',
+              target: 'labels',
+              mutation: props => {
+                setShowXAxisLabel(false);
+                return props;
+              },
+            },
+          ];
+        },
+        onMouseLeave: () => {
+          return [
+            {
+              childName: 'xAxisGroupLabel',
+              target: 'labels',
+              mutation: props => {
+                setShowXAxisLabel(true);
+                return props;
+              },
+            },
+          ];
+        },
+      },
+    },
+  ];
 
   const xAxisStyles = {
     tickLabels: {
@@ -169,10 +213,22 @@ export function LineChart<T>(props: LineChartProps<T>) {
     <VictoryChartContainer ref={containerRef}>
       <VictoryChart
         domainPadding={32}
+        events={chartEvents}
         height={400}
         padding={{ top: 8, left: 80, right: 0, bottom: 88 }}
         theme={magmaTheme}
         width={width}
+        containerComponent={
+          <VictoryVoronoiContainer
+            name="xAxisGroupLabel"
+            voronoiBlacklist={scatterNames}
+            voronoiDimension="x"
+            labels={showXAxisLabel ? () => ` ` : undefined}
+            labelComponent={
+              showXAxisLabel ? ContainerLabelComponent : undefined
+            }
+          />
+        }
         {...chart}
       >
         <VictoryAxis {...xAxisOther} style={xAxisStyles} />
@@ -203,6 +259,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
           ({ data: dataset }, i) =>
             !hiddenData.includes(i) && (
               <VictoryScatter
+                name={`scatter-${i}`}
                 style={{
                   data: {
                     fill: theme.colors.neutral08,
