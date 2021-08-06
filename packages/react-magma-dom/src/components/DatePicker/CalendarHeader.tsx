@@ -8,7 +8,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { addMonths, subMonths } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import styled from '../../theme/styled';
-import { usePrevious } from '../../utils';
+import { useForkedRef, usePrevious } from '../../utils';
 import { i18nFormat as format } from './utils';
 import { I18nContext } from '../../i18n';
 
@@ -43,14 +43,15 @@ const CalendarHeaderText = styled.div`
   flex-basis: 90%;
 `;
 
-export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
-  props: CalendarHeaderProps
-) => {
+export const CalendarHeader = React.forwardRef<
+  HTMLDivElement,
+  CalendarHeaderProps
+>((props, forwardedRef) => {
   const calendarHeader = React.useRef<HTMLDivElement>();
-  const { focusedDate, onPrevMonthClick, onNextMonthClick } = React.useContext(
-    CalendarContext
-  );
+  const { focusedDate, onPrevMonthClick, onNextMonthClick } =
+    React.useContext(CalendarContext);
   const prevFocusHeader = usePrevious(props.focusHeader);
+  const ref = useForkedRef(forwardedRef, calendarHeader);
 
   React.useEffect(() => {
     if (!prevFocusHeader && props.focusHeader) {
@@ -71,7 +72,7 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
 
   return (
     <CalendarHeaderContainer theme={theme}>
-      <CalendarHeaderText tabIndex={-1} theme={theme} ref={calendarHeader}>
+      <CalendarHeaderText tabIndex={-1} theme={theme} ref={ref}>
         <Announce>{capitalizeCurrentMonth}</Announce>
       </CalendarHeaderText>
       <CalendarIconButton>
@@ -102,4 +103,4 @@ export const CalendarHeader: React.FunctionComponent<CalendarHeaderProps> = (
       </CalendarIconButton>
     </CalendarHeaderContainer>
   );
-};
+});

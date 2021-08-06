@@ -14,7 +14,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   color?: ProgressBarColor;
   /**
    * The height of the progress bar. Can be a string or number; if number is provided height is in px
-   * @default 16
+   * @default 8
    */
   height?: number | string;
   /**
@@ -49,6 +49,16 @@ export enum ProgressBarColor {
 }
 
 function buildProgressBarBackground(props) {
+  if (props.isInverse) {
+    switch (props.color) {
+      case 'danger':
+        return props.theme.colors.dangerInverse;
+      case 'success':
+        return props.theme.colors.successInverse;
+      default:
+        return props.theme.colors.primaryInverse;
+    }
+  }
   switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
@@ -58,11 +68,8 @@ function buildProgressBarBackground(props) {
       return props.theme.colors.pop02;
     case 'success':
       return props.theme.colors.success;
-
     default:
-      return props.isInverse
-        ? props.theme.colors.foundation03
-        : props.theme.colors.primary;
+      return props.theme.colors.primary;
   }
 }
 
@@ -74,19 +81,22 @@ const Container = styled.div<{ isLoadingIndicator?: boolean }>`
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
     props.isInverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
-  border: 1px solid
+  box-shadow: inset 0 0 0 1px
     ${props =>
       props.isInverse
-        ? props.theme.colors.neutral08
+        ? `${props.theme.colors.neutral08}80`
         : props.theme.colors.neutral04};
+  border-radius: 50em;
+  overflow: hidden;
   display: flex;
   height: ${props => props.height};
-  padding: 1px;
+  /* padding: 1px; */
   width: 100%;
 `;
 
 const Bar = styled.div<ProgressBarProps>`
   background: ${props => buildProgressBarBackground(props)};
+  border-radius: 50em;
   display: flex;
   transition: width 0.3s;
   width: ${props => props.percentage}%;
@@ -160,7 +170,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const heightString = convertStyleValueToString(
       height,
-      theme.spaceScale.spacing05
+      theme.spaceScale.spacing03
     );
 
     const isInverse = useIsInverse(props.isInverse);
