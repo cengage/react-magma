@@ -37,7 +37,6 @@ export const GraphTooltip = props => {
 
 export const AxisTooltip = props => {
   const { x, y, activePoints } = props;
-  console.log('active', activePoints);
 
   const theme = React.useContext(ThemeContext);
 

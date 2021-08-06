@@ -27,47 +27,50 @@ const ColorSwatch = styled.span`
   background: ${props => props.color};
 `;
 
-export const LegendButton = props => {
-  const {
-    children,
-    color,
-    dataIndex,
-    isHidden,
-    onClick,
-    focusCurrentLine,
-    resetLineFocus,
-    ...other
-  } = props;
+export const LegendButton = React.forwardRef<HTMLButtonElement, any>(
+  (props, ref) => {
+    const {
+      children,
+      color,
+      dataIndex,
+      isHidden,
+      onClick,
+      focusCurrentLine,
+      resetLineFocus,
+      ...other
+    } = props;
 
-  function handleClick() {
-    onClick && typeof onClick === 'function' && onClick(dataIndex);
+    function handleClick() {
+      onClick && typeof onClick === 'function' && onClick(dataIndex);
 
-    if (!isHidden) {
-      resetLineFocus &&
-        typeof resetLineFocus === 'function' &&
-        resetLineFocus();
+      if (!isHidden) {
+        resetLineFocus &&
+          typeof resetLineFocus === 'function' &&
+          resetLineFocus();
+      }
     }
-  }
 
-  function handleOnMouseEnterOrFocus() {
-    if (!isHidden) {
-      focusCurrentLine &&
-        typeof focusCurrentLine === 'function' &&
-        focusCurrentLine(dataIndex);
+    function handleOnMouseEnterOrFocus() {
+      if (!isHidden) {
+        focusCurrentLine &&
+          typeof focusCurrentLine === 'function' &&
+          focusCurrentLine(dataIndex);
+      }
     }
-  }
 
-  return (
-    <StyledButton
-      onBlur={resetLineFocus}
-      onClick={handleClick}
-      onFocus={handleOnMouseEnterOrFocus}
-      onMouseEnter={handleOnMouseEnterOrFocus}
-      onMouseLeave={resetLineFocus}
-      {...other}
-    >
-      <ColorSwatch color={!isHidden ? color : null} />
-      {children}
-    </StyledButton>
-  );
-};
+    return (
+      <StyledButton
+        onBlur={resetLineFocus}
+        onClick={handleClick}
+        onFocus={handleOnMouseEnterOrFocus}
+        onMouseEnter={handleOnMouseEnterOrFocus}
+        onMouseLeave={resetLineFocus}
+        ref={ref}
+        {...other}
+      >
+        <ColorSwatch color={!isHidden ? color : null} />
+        {children}
+      </StyledButton>
+    );
+  }
+);

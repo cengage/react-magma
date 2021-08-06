@@ -28,6 +28,7 @@ function BaseChart<T>(
   ref: React.MutableRefObject<HTMLDivElement>
 ) {
   const { title, testId, type, ...other } = props;
+  const firstTabRef = React.useRef<HTMLButtonElement>();
 
   return (
     <div ref={ref} {...other}>
@@ -35,11 +36,15 @@ function BaseChart<T>(
       <Paragraph style={{ maxWidth: '800px' }}>{title}</Paragraph>
       <TabsContainer>
         <Tabs aria-label="Line Chart Demo">
-          <Tab>Chart</Tab>
+          <Tab ref={firstTabRef}>Chart</Tab>
           <Tab>Data</Tab>
         </Tabs>
         <TabPanelsContainer>
-          <TabPanel>{type === 'line' && <LineChart<T> {...other} />}</TabPanel>
+          <TabPanel>
+            {type === 'line' && (
+              <LineChart<T> {...other} tabRef={firstTabRef} />
+            )}
+          </TabPanel>
           <TabPanel>
             <Heading level={4}>2019 Annual Sales Figures</Heading>
             <Paragraph>Conversion rate by month</Paragraph>
