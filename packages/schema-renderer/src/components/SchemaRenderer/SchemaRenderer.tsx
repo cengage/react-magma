@@ -1,6 +1,3 @@
-import React from 'react';
-// import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
-
 import {
   FormRenderer,
   FormRendererProps,

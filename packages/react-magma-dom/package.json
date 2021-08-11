@@ -1,5 +1,5 @@
 {
-  "name": "react-magma-dom",
+  "name": "@react-magma/dom",
   "version": "2.5.1-next.4",
   "description": "",
   "main": "dist/index.js",

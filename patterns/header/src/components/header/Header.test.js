@@ -5,7 +5,7 @@ import { magma } from 'react-magma-dom';
 import { render } from '@testing-library/react';
 
 describe('Header', () => {
-  it('should find element by testId', () => {
+  it.only('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(<Header testId={testId} />);
 

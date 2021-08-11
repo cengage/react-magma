@@ -1,4 +1,3 @@
-import React from 'react';
 import { FormSpy } from '@data-driven-forms/react-form-renderer';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 

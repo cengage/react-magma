@@ -5,7 +5,7 @@ import { act, render, fireEvent } from '@testing-library/react';
 
 describe('Toast', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    jest.useFakeTimers('legacy');
   });
 
   afterEach(async () => {
@@ -61,7 +61,7 @@ describe('Toast', () => {
     );
   });
 
-  it.only('should call passed in onDismiss when timer runs out', async () => {
+  it('should call passed in onDismiss when timer runs out', async () => {
     const onDismiss = jest.fn();
     render(<Toast onDismiss={onDismiss}>Toast Content</Toast>);
 
