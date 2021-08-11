@@ -4,7 +4,7 @@ import {
   Tooltip,
   ButtonVariant,
   TooltipPosition,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 import { BrightnessHighIcon, BrightnessMediumIcon } from 'react-magma-icons';
 import { DarkModeContext } from './DarkModeContext';
 

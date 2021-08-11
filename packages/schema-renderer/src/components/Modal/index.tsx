@@ -4,7 +4,7 @@ import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import {
   Modal as MagmaModal,
   ModalProps as MagmaModalProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export interface ModalProps extends MagmaModalProps {
   fields: any;

@@ -18,7 +18,7 @@ For simple Select functionality, please see the <Link to="/api/select">Select co
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -53,7 +53,7 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -94,7 +94,7 @@ includes the changes made to state from each action as well as a `type` that des
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [
@@ -166,7 +166,7 @@ to change the state. You can see the full list of the types in the [`stateChange
 
 ```tsx
 import React from 'react';
-import { Combobox, ComboboxStateChangeTypes } from 'react-magma-dom';
+import { Combobox, ComboboxStateChangeTypes } from '@react-magma/dom';
 
 export function Example() {
   const [changes, updateChanges] = React.useState({});
@@ -242,7 +242,7 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const defaultItems = [
@@ -288,7 +288,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -315,7 +315,7 @@ using the `defaultSelectedItem` prop.
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -355,7 +355,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -379,7 +379,7 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -405,7 +405,7 @@ relied upon to take the place of the label text.
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -424,7 +424,7 @@ The isInverse prop is an optional boolean, that used when the component is to be
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Combobox } from 'react-magma-dom';
+import { Card, CardBody, Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
@@ -493,7 +493,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -527,7 +527,7 @@ This is commonly used to provide a typeahead dropdown without allowing custom op
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -549,7 +549,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItems, updateSelectedItems] = React.useState([]);
@@ -648,7 +648,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [currentComboboxEvent, updateCurrentComboboxEvent] = React.useState<
@@ -694,7 +694,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [isLoading, updateIsLoading] = React.useState<boolean>(false);
@@ -748,7 +748,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Combobox } from 'react-magma-dom';
+import { Card, CardBody, Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
@@ -810,7 +810,7 @@ The items list menu has a default max height that can be changed in the theme or
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -834,7 +834,7 @@ Left-aligned lables are not recommended for use in standard forms; instead they 
 
 ```tsx
 import React from 'react';
-import { Combobox, LabelPosition } from 'react-magma-dom';
+import { Combobox, LabelPosition } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -859,7 +859,7 @@ Please use discretion when adding custom styles.
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
@@ -915,7 +915,7 @@ custom `type`](/api/combobox#custom_items_typescript).
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [controlledSelectedItem, updateControlledSelectedItem] = React.useState(
@@ -995,7 +995,7 @@ element with the shape of the `items` you are passing in.
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 interface CustomComboboxItem {
   id: number;
@@ -1077,7 +1077,7 @@ we use internally.
 ```tsx
 import React from 'react';
 import styled from '@emotion/styled';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const CustomStyledItem = styled.li(props => ({
@@ -1163,7 +1163,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Combobox } from 'react-magma-dom';
+import { Combobox } from '@react-magma/dom';
 
 export function Example() {
   const [isLoading, updateIsLoading] = React.useState<boolean>(false);
@@ -1236,7 +1236,7 @@ Full example of <Link to="/api/internationalization">internationalization overri
 
 ```tsx
 import React from 'react';
-import { Combobox, I18nContext, defaultI18n } from 'react-magma-dom';
+import { Combobox, I18nContext, defaultI18n } from '@react-magma/dom';
 
 export function Example() {
   return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { ThemeContext, VisuallyHidden } from 'react-magma-dom';
+import { ThemeContext, VisuallyHidden } from '@react-magma/dom';
 
 const Item = styled.li`
   list-style: none;

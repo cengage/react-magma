@@ -123,7 +123,7 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
   margin-top: -${props => props.theme.spaceScale.spacing07};
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
-  position: fixed;
+  position: absolute;
   transition: opacity 0.2s ease-in-out 0s;
   width: 320px;
   z-index: ${props => (props.opened ? '998' : '-1')};
@@ -136,10 +136,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const iconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
     const id: string = useGenerateId(props.id);
-    const [
-      showHelperInformation,
-      setShowHelperInformation,
-    ] = React.useState<boolean>(false);
+    const [showHelperInformation, setShowHelperInformation] =
+      React.useState<boolean>(false);
     const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
     const [dateFocused, setDateFocused] = React.useState<boolean>(false);
 

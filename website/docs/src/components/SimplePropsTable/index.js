@@ -13,7 +13,7 @@ import {
   Tooltip,
   useIsInverse,
   VisuallyHidden,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export const SimplePropsTable = ({ propertyValues }) => {
   const isInverse = useIsInverse();

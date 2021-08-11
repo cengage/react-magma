@@ -29,7 +29,7 @@ Links are used as navigational elements and can be used on their own or inline w
 
 ```tsx
 import React from 'react';
-import { Hyperlink } from 'react-magma-dom';
+import { Hyperlink } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -46,7 +46,7 @@ Sometimes links can be styled as buttons in order to give them more weight on th
 
 ```tsx
 import React from 'react';
-import { ButtonColor, ButtonTextTransform, Hyperlink } from 'react-magma-dom';
+import { ButtonColor, ButtonTextTransform, Hyperlink } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -102,7 +102,7 @@ Use this when you want to render something that is from another library. For exa
 
 ```tsx
 import React from 'react';
-import { Hyperlink } from 'react-magma-dom';
+import { Hyperlink } from '@react-magma/dom';
 
 // We support Link components from libraries such as react-router/reach-router/gatsby that use the `to` prop in place of `href`
 const Link = ({ to, ...rest }) => <a href={to} {...rest} />;
@@ -122,7 +122,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Hyperlink, Paragraph } from 'react-magma-dom';
+import { Card, CardBody, Hyperlink, Paragraph } from '@react-magma/dom';
 
 export function Example() {
   return (

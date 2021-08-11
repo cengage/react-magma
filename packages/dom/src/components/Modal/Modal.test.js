@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
@@ -59,7 +60,9 @@ describe('Modal', () => {
   it('should render the modal with the default medium size', () => {
     const modalContent = 'Modal content';
     const { getByTestId, rerender } = render(
-      <Modal header="Hello">{modalContent}</Modal>
+      <Modal header="Hello" isOpen={false}>
+        {modalContent}
+      </Modal>
     );
 
     rerender(
@@ -77,7 +80,7 @@ describe('Modal', () => {
   it('should render the modal with the small size', () => {
     const modalContent = 'Modal content';
     const { getByTestId, rerender } = render(
-      <Modal header="Hello" size="small">
+      <Modal header="Hello" isOpen={false} size="small">
         {modalContent}
       </Modal>
     );
@@ -97,7 +100,7 @@ describe('Modal', () => {
   it('should render the modal with the large size', () => {
     const modalContent = 'Modal content';
     const { getByTestId, rerender } = render(
-      <Modal header="Hello" size="large">
+      <Modal header="Hello" isOpen={false} size="large">
         {modalContent}
       </Modal>
     );
@@ -117,7 +120,9 @@ describe('Modal', () => {
   it('should render a header if one is passed in', () => {
     const headerText = 'Hello';
     const { getByText, rerender } = render(
-      <Modal header={headerText}>Modal Content</Modal>
+      <Modal header={headerText} isOpen={false}>
+        Modal Content
+      </Modal>
     );
 
     rerender(
@@ -642,8 +647,8 @@ describe('Modal', () => {
       expect(getByText('Modal Content')).toHaveFocus();
     });
 
-    it('should handle tab and loop it through the modal', () => {
-      const { getByTestId, getByText, rerender } = render(
+    it('should handle tab and loop it through the modal', async () => {
+      const { getByTestId, getByText, rerender, debug } = render(
         <>
           <button>Open</button>
           <Modal
@@ -681,17 +686,14 @@ describe('Modal', () => {
         </>
       );
 
-      fireEvent.keyDown(getByTestId('closeButton'), {
-        keyCode: 9,
-      });
+      userEvent.tab();
+      expect(getByTestId('closeButton')).toHaveFocus();
 
-      fireEvent.keyDown(getByTestId('emailInput'), {
-        keyCode: 9,
-      });
+      userEvent.tab();
 
-      fireEvent.keyDown(getByTestId('passwordInput'), {
-        keyCode: 9,
-      });
+      userEvent.tab();
+
+      userEvent.tab();
 
       expect(getByTestId('closeButton')).toHaveFocus();
     });
@@ -717,9 +719,7 @@ describe('Modal', () => {
         </>
       );
 
-      fireEvent.keyDown(getByText('Modal Content'), {
-        keyCode: 9,
-      });
+      userEvent.tab();
 
       expect(getByText('Modal Content')).toHaveFocus();
     });
@@ -763,15 +763,19 @@ describe('Modal', () => {
         </>
       );
 
-      fireEvent.keyDown(getByTestId('emailInput'), {
-        keyCode: 9,
-        shiftKey: true,
-      });
+      userEvent.tab({ shift: true });
 
-      fireEvent.keyDown(getByTestId('closeButton'), {
-        keyCode: 9,
-        shiftKey: true,
-      });
+      expect(getByTestId('passwordInput')).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+
+      expect(getByTestId('emailInput')).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+
+      expect(getByTestId('closeButton')).toHaveFocus();
+
+      userEvent.tab({ shift: true });
 
       expect(getByTestId('passwordInput')).toHaveFocus();
     });
@@ -815,41 +819,9 @@ describe('Modal', () => {
         </>
       );
 
-      fireEvent.keyDown(getByTestId('noInput'), {
-        keyCode: 9,
-        shiftKey: true,
-      });
+      userEvent.tab({ shift: true });
 
       expect(getByTestId('closeButton')).toHaveFocus();
-    });
-
-    it('should focus the first focusable element when the active element is the body on rerender of modal', () => {
-      const { getByTestId, rerender } = render(
-        <>
-          <button>Open</button>
-          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
-            <>
-              <button data-testid="closeButton">Close</button>
-              <input data-testid="emailInput" type="text" name="email" />
-              <input data-testid="passwordInput" type="text" name="password" />
-            </>
-          </Modal>
-        </>
-      );
-
-      rerender(
-        <>
-          <button>Open</button>
-          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
-            <>
-              <input data-testid="addressInput" type="text" name="address" />
-              <input data-testid="stateInput" type="text" name="state" />
-            </>
-          </Modal>
-        </>
-      );
-
-      expect(getByTestId('addressInput')).toHaveFocus();
     });
 
     it('should update the focusable elements to tab through when the modal content is changed', () => {
@@ -883,17 +855,11 @@ describe('Modal', () => {
 
       expect(getByTestId('closeButton')).toHaveFocus();
 
-      fireEvent.keyDown(getByTestId('closeButton'), {
-        keyCode: 9,
-      });
+      userEvent.tab();
 
-      fireEvent.keyDown(getByTestId('addressInput'), {
-        keyCode: 9,
-      });
+      userEvent.tab();
 
-      fireEvent.keyDown(getByTestId('stateInput'), {
-        keyCode: 9,
-      });
+      userEvent.tab();
 
       expect(getByTestId('closeButton')).toHaveFocus();
     });

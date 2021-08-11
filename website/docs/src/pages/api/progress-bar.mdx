@@ -15,7 +15,7 @@ A progress bar can be used to show a user how far along they are in a process. P
 
 ```tsx
 import React from 'react';
-import { ProgressBar } from 'react-magma-dom';
+import { ProgressBar } from '@react-magma/dom';
 
 export function Example() {
   return <ProgressBar percentage={25} />;
@@ -28,7 +28,7 @@ The `percentage` prop is used to display how much of the bar should be filled in
 
 ```tsx
 import React from 'react';
-import { ProgressBar, Button, Paragraph } from 'react-magma-dom';
+import { ProgressBar, Button, Paragraph } from '@react-magma/dom';
 
 export function Example() {
   const [percentage, setPercentage] = React.useState(0);
@@ -61,32 +61,28 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { ProgressBar } from 'react-magma-dom';
+import { ProgressBar } from '@react-magma/dom';
 
 export function Example() {
-  return <ProgressBar isAnimated percentage={25} />;
+  return <ProgressBar isAnimated percentage={50} />;
 }
 ```
 
 ## Background Color
 
-The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop`, `pop02`, `success`.
+The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `primary` and `danger`, and `success`.
 The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
 
 ```tsx
 import React from 'react';
-import { ProgressBar, ProgressBarColor } from 'react-magma-dom';
+import { ProgressBar, ProgressBarColor } from '@react-magma/dom';
 
 export function Example() {
   return (
     <>
-      <ProgressBar color={ProgressBarColor.danger} percentage={25} />
-      <br />
-      <ProgressBar color={ProgressBarColor.pop} percentage={25} />
-      <br />
-      <ProgressBar color={ProgressBarColor.pop02} percentage={25} />
-      <br />
       <ProgressBar color={ProgressBarColor.primary} percentage={25} />
+      <br />
+      <ProgressBar color={ProgressBarColor.danger} percentage={25} />
       <br />
       <ProgressBar color={ProgressBarColor.success} percentage={25} />
       <br />
@@ -99,11 +95,11 @@ export function Example() {
 
 The `height` prop can be used to set the height of the progress bar. Can be a string or a number; if a number is provided the height will be in pixels.
 
-The default value is '16px'.
+The default value is '8px'.
 
 ```tsx
 import React from 'react';
-import { ProgressBar } from 'react-magma-dom';
+import { ProgressBar } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -123,7 +119,7 @@ the default background color of the progress bar is `#00A9E0` or `magma.colors.f
 
 ```tsx
 import React from 'react';
-import { ProgressBar, Card, CardBody } from 'react-magma-dom';
+import { ProgressBar, Card, CardBody } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -142,7 +138,7 @@ If the `isLabelVisible` prop is true, the percentage value will display to the r
 
 ```tsx
 import React from 'react';
-import { ProgressBar } from 'react-magma-dom';
+import { ProgressBar } from '@react-magma/dom';
 
 export function Example() {
   return <ProgressBar isLabelVisible percentage={25} />;

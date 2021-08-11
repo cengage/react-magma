@@ -1,4 +1,4 @@
-import { magma } from 'react-magma-dom';
+import { magma } from '@react-magma/dom';
 
 export const editorTheme = {
   plain: {

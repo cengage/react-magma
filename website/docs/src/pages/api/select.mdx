@@ -24,7 +24,7 @@ If you are using a custom items format see the [Custom Items example](/api/selec
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
@@ -81,7 +81,7 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -122,7 +122,7 @@ includes the changes made to the corresponding state from each action.
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   const [
@@ -193,7 +193,7 @@ to change the state. You can see the full list of the types in the [`stateChange
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   const [changes, updateChanges] = React.useState({});
@@ -260,7 +260,7 @@ you will have to use the handlers mentioned above in the <Link to="/api/select/#
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
@@ -317,7 +317,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -345,7 +345,7 @@ using the `defaultSelectedItem` prop.
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -387,7 +387,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -414,7 +414,7 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -443,7 +443,7 @@ relied upon to take the place of the label text.
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -474,7 +474,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -504,7 +504,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItems, updateSelectedItems] = React.useState([]);
@@ -579,7 +579,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(
@@ -626,7 +626,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Select, Card, CardBody } from 'react-magma-dom';
+import { Select, Card, CardBody } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
@@ -686,7 +686,7 @@ The items list menu has a default max height that can be changed in the theme or
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -710,7 +710,7 @@ Left-aligned lables are not recommended for use in standard forms; instead they 
 
 ```tsx
 import React from 'react';
-import { Select, LabelPosition } from 'react-magma-dom';
+import { Select, LabelPosition } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -735,7 +735,7 @@ Please use discretion when adding custom styles.
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   const [selectedItem, updateSelectedItem] = React.useState('');
@@ -787,7 +787,7 @@ Full example of <Link to="/api/internationalization">internationalization overri
 
 ```tsx
 import React from 'react';
-import { Select, I18nContext, defaultI18n } from 'react-magma-dom';
+import { Select, I18nContext, defaultI18n } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -847,7 +847,7 @@ custom `type`](/api/select#custom_items_typescript).
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   function itemToString(item) {
@@ -894,7 +894,7 @@ element with the shape of the `items` you are passing in.
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   interface CustomSelectItem {
@@ -961,7 +961,7 @@ we use internally.
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 import styled from '@emotion/styled';
 
 export function Example() {
@@ -1047,7 +1047,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+import { Select } from '@react-magma/dom';
 
 export function Example() {
   return (

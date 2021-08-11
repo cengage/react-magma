@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paragraph } from 'react-magma-dom';
+import { Paragraph } from '@react-magma/dom';
 import styled from '@emotion/styled';
 
 const StyledParagraph = styled(Paragraph)`

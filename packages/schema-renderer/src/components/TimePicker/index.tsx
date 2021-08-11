@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   TimePicker as MagmaTimePicker,
   TimePickerProps as MagmaTimePickerProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export type TimePickerProps = MagmaTimePickerProps & UseFieldApiConfig;
 

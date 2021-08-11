@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import { v4 as uuidv4 } from 'uuid';
-import { IconButton, ButtonVariant, ThemeContext } from 'react-magma-dom';
+import { IconButton, ButtonVariant, ThemeContext } from '@react-magma/dom';
 import { DeleteIcon } from 'react-magma-icons';
 
 export const FieldArrayItem = ({

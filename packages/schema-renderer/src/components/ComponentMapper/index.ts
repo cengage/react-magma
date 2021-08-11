@@ -23,7 +23,7 @@ import {
   Hyperlink,
   Toast,
   Paragraph,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export enum componentTypes {
   ALERT = 'ALERT',

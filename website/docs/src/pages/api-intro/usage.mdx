@@ -14,7 +14,7 @@ Here is a most basic example:
 
 ```typescript
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button } from '@react-magma/dom';
 
 function Example() {
   return <Button>Hello World</Button>;
@@ -27,7 +27,7 @@ When using a prop that takes an enum, you must import that type from React Magma
 
 ```typescript
 import React from 'react';
-import { Button, ButtonVariant } from 'react-magma-dom';
+import { Button, ButtonVariant } from '@react-magma/dom';
 
 function Example() {
   return <Button variant={ButtonVariant.outline}>Hello World</Button>;
@@ -40,13 +40,13 @@ Most of the styles for React Magma are bundled within their components. However,
 very basic CSS reset plus the required fonts, body styles, and some generic styles for links. It is recommended that you use this `GlobalStyles` component in any app that uses React Magma
 to insure consistency across products.
 
-To use the `GlobalStyles` object, simply import it from `react-magma-dom` and include it in your App.
+To use the `GlobalStyles` object, simply import it from `@react-magma/dom` and include it in your App.
 
 The `GlobalStyles` component can be nested inside the <Link to="/api/theme">ThemeContext.Provider</Link> to inherit styles from the theme.
 
 ```js noRender startExpanded
 import React from 'react';
-import { GlobalStyles } from 'react-magma-dom';
+import { GlobalStyles } from '@react-magma/dom';
 
 function Example() {
   return (
@@ -62,12 +62,12 @@ function Example() {
 React Magma uses the Magma theme for styles, which includes fonts, colors and screen sizes for media queries. To remain consistent,
 you can import `magma` and reference these values in your application's styles.
 
-The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/acc469c1499da986248c312009951a9d74ed8f16/packages/react-magma-dom/src/theme/magma.ts).
+The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/acc469c1499da986248c312009951a9d74ed8f16/packages/@react-magma/dom/src/theme/magma.ts).
 For more information about colors, see the <Link to="/design/colors">Design Documentation</Link>.
 
 ```tsx
 import React from 'react';
-import { magma } from 'react-magma-dom';
+import { magma } from '@react-magma/dom';
 import styled from '@emotion/styled';
 
 function Example() {

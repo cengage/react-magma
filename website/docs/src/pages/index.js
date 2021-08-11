@@ -1,7 +1,7 @@
 import React from 'react';
 import { IndexPageContent } from '../components/Intro/IndexPageContent';
 import { Global, css } from '@emotion/react';
-import { ThemeContext } from 'react-magma-dom';
+import { ThemeContext } from '@react-magma/dom';
 
 import './animate.css';
 

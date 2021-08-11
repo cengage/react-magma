@@ -6,7 +6,7 @@ import {
   ButtonType,
   Heading,
   Paragraph,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 import { FieldArrayItem } from './FieldArrayItem';
 

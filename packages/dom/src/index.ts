@@ -221,6 +221,7 @@ export { useMediaQuery } from './hooks/useMediaQuery';
 export { useDataPagination } from './hooks/useDataPagination';
 export { useGenerateId } from './utils';
 export { usePagination } from './components/Pagination/usePagination';
+export { useFocusLock } from './hooks/useFocusLock';
 
 export { InverseContext, useIsInverse } from './inverse';
 
@@ -230,7 +231,6 @@ export * from './components/Drawer';
 
 export * from './components/FormFieldContainer';
 
-export * from './components/Grid'
+export * from './components/Grid';
 
-export * from './components/Tag'
-
+export * from './components/Tag';

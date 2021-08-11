@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { magma } from 'react-magma-dom';
+import { magma } from '@react-magma/dom';
 
 const StyledFooter = styled.footer`
   padding: ${magma.spaceScale.spacing07} 0;

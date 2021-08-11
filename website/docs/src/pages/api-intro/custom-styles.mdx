@@ -17,7 +17,7 @@ Magma variables can also be used in the style prop to apply themed styles on the
 
 ```typescript
 import React from 'react';
-import { Button, Paragraph } from 'react-magma-dom';
+import { Button, Paragraph } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -45,7 +45,7 @@ and `labelStyle`. In these cases, the `style` prop would have no effect because 
 
 ```typescript
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -70,7 +70,7 @@ To ensure your styles are applied, you can use use the ampersand (&) character, 
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button } from '@react-magma/dom';
 import styled from '@emotion/styled';
 
 const StyledButton = styled(Button)`
@@ -92,13 +92,13 @@ export function Example() {
 ## Creating Custom Themes
 
 Custom themes can be created by extending the Magma theme with your own values.
-The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/acc469c1499da986248c312009951a9d74ed8f16/packages/react-magma-dom/src/theme/magma.ts).
+The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/acc469c1499da986248c312009951a9d74ed8f16/packages/@react-magma/dom/src/theme/magma.ts).
 
 To apply the custom theme, use the <Link to="/api/theme/">ThemeContext.Provider</Link>, passing in your custom theme as the value property.
 Any descendants of the context provider will receive the theme that is passed in.
 
 ```typescript
-import { Heading, Paragraph, ThemeContext, magma } from 'react-magma-dom';
+import { Heading, Paragraph, ThemeContext, magma } from '@react-magma/dom';
 
 const theme = {
   ...magma,

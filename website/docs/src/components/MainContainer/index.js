@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Masthead } from '../Masthead';
 import { DarkModeContext } from '../DarkMode/DarkModeContext';
 
-import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
+import { SkipLink, magma, Container, GlobalStyles } from '@react-magma/dom';
 
 const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {

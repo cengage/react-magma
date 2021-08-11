@@ -10,7 +10,7 @@ import {
   magma,
   TypographyColor,
   useIsInverse,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
 
 const Container = styled.div`

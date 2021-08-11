@@ -1,5 +1,4 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
 import { render, fireEvent } from '@testing-library/react';
 import {
   format,
@@ -891,11 +890,5 @@ describe('Date Picker', () => {
       expect(dayRow.children[0].textContent).toEqual('W');
       expect(firstDayOfMonthElement.textContent).toEqual('1');
     });
-  });
-
-  it('Does not violate accessibility standards', async () => {
-    const { container } = render(<DatePicker labelText="Date Picker Label" />);
-    const result = await axe(container.innerHTML);
-    return expect(result).toHaveNoViolations();
   });
 });

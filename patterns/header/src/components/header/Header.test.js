@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Header } from '.';
-import { magma } from 'react-magma-dom';
+import { magma } from '@react-magma/dom';
 import { render } from '@testing-library/react';
 
 describe('Header', () => {

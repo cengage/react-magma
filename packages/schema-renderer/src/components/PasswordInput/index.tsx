@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   PasswordInput as MagmaPasswordInput,
   PasswordInputProps as MagmaPasswordInputProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export type PasswordInputProps = MagmaPasswordInputProps & UseFieldApiConfig;
 

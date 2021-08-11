@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { templateTypes } from '../TemplateMapper';
 
-import { Hyperlink } from 'react-magma-dom';
+import { Hyperlink } from '@react-magma/dom';
 
 const baseSchema: Schema = {
   title: 'Form Header',

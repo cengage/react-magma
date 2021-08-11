@@ -1,5 +1,5 @@
 import { PrismTheme } from 'prism-react-renderer';
-import { magma } from 'react-magma-dom';
+import { magma } from '@react-magma/dom';
 
 export const magmaCodeDark: PrismTheme = {
   plain: {

@@ -3,7 +3,7 @@ import { Language } from 'prism-react-renderer';
 import React, { HTMLAttributes, useContext } from 'react';
 import { LiveError, LiveProvider, LivePreview } from 'react-live';
 
-import * as MAGMA from 'react-magma-dom';
+import * as MAGMA from '@react-magma/dom';
 import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
 import { es, zhCN } from 'date-fns/locale';

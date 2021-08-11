@@ -16,7 +16,7 @@ If you have a need for a header with more customization or different features in
 ## Setup Requirements
 
 1. Your project needs to be running **React v16.8** or greater
-2. `react-magma-icons` and `react-magma-dom` must be installed as peer dependencies
+2. `react-magma-icons` and `@react-magma/dom` must be installed as peer dependencies
 
 ## Basic Usage
 
@@ -110,7 +110,7 @@ The `children` are displayed at the end of the Header, after the logo, call to a
 import React from 'react';
 import { Header } from '@cengage-patterns/header';
 import { NotificationsIcon, PersonIcon, SettingsIcon } from 'react-magma-icons';
-import { IconButton, ButtonVariant } from 'react-magma-dom';
+import { IconButton, ButtonVariant } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -153,7 +153,7 @@ If the `position` is set to `sticky` or `fixed`, the app bar will have a small d
 
 ```tsx
 import React from 'react';
-import { AppBarPosition, Heading, Paragraph } from 'react-magma-dom';
+import { AppBarPosition, Heading, Paragraph } from '@react-magma/dom';
 import { Header } from '@cengage-patterns/header';
 
 export function Example() {
@@ -209,7 +209,7 @@ The `Header` does not provide a way to display the items that are hidden at smal
 ```typescript
 import React from 'react';
 import { Header } from '@cengage-patterns/header';
-import { useMediaQuery, magma } from 'react-magma-dom';
+import { useMediaQuery, magma } from '@react-magma/dom';
 
 export function Example() {
   const isSmallerScreen = useMediaQuery(

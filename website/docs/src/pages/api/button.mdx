@@ -21,7 +21,7 @@ Sizes for buttons include `small`, `medium`, and `large`, with `medium` being th
 
 ```tsx
 import React from 'react';
-import { Button, ButtonSize } from 'react-magma-dom';
+import { Button, ButtonSize } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -40,7 +40,7 @@ Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `mar
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor } from 'react-magma-dom';
+import { Button, ButtonColor } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -63,7 +63,7 @@ The `marketing` buttons do not have `outline` and `link` variants, and will rend
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor, ButtonVariant } from 'react-magma-dom';
+import { Button, ButtonColor, ButtonVariant } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -123,7 +123,7 @@ Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being 
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor, ButtonShape } from 'react-magma-dom';
+import { Button, ButtonColor, ButtonShape } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -146,7 +146,7 @@ When a button is in a loading state, the label can be replaced with a loading sp
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -176,7 +176,7 @@ import {
   ButtonVariant,
   Card,
   CardBody,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -229,7 +229,7 @@ This sets the CSS `text-transform` property.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonTextTransform } from 'react-magma-dom';
+import { Button, ButtonTextTransform } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -252,7 +252,7 @@ Passing the `isFullWidth` property will set the button to display full-width.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor } from 'react-magma-dom';
+import { Button, ButtonColor } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -270,7 +270,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Button, ButtonVariant } from 'react-magma-dom';
+import { Button, ButtonVariant } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -294,7 +294,7 @@ By default, buttons will have a type of `button`.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonType, Input } from 'react-magma-dom';
+import { Button, ButtonType, Input } from '@react-magma/dom';
 
 export function Example() {
   const inputRef = React.useRef<HTMLInputElement>();
@@ -326,7 +326,7 @@ Events do not fire on disabled buttons.
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button } from '@react-magma/dom';
 
 export function Example() {
   const [counter, setCounter] = React.useState<number>(0);
@@ -356,7 +356,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button } from '@react-magma/dom';
 
 export function Example() {
   const buttonRef = React.useRef<HTMLButtonElement>();

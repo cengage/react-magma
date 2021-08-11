@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { CodeIcon, PaletteIcon } from 'react-magma-icons';
-import { Hyperlink, ThemeContext, magma } from 'react-magma-dom';
+import { Hyperlink, ThemeContext, magma } from '@react-magma/dom';
 import { HexBackground } from './HexBackground';
 import { IntroHeading } from './IntroHeading';
 import { IntroSection } from './IntroSection';

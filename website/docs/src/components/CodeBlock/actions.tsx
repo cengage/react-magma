@@ -5,7 +5,7 @@ import {
   ButtonVariant,
   useIsInverse,
   magma,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 import CodeSandboxer from 'react-codesandboxer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -42,7 +42,7 @@ render(<App />, rootElement);
 const CODESANDBOX_APP_FILE = `
 import * as React from 'react';
 import './styles.css';
-import { GlobalStyles } from 'react-magma-dom';
+import { GlobalStyles } from '@react-magma/dom';
 import { Example } from './example';
 
 export default function App() {
@@ -106,7 +106,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         'framer-motion': pkg.dependencies['framer-motion'],
         'react-dom': pkg.dependencies['react-dom'],
         'react-magma-icons': pkg.dependencies['react-magma-icons'],
-        'react-magma-dom': pkg.dependencies['react-magma-dom'],
+        '@react-magma/dom': pkg.dependencies['@react-magma/dom'],
         '@cengage-patterns/header':
           pkg.dependencies['@cengage-patterns/header'],
         uuid: '8.3.0',

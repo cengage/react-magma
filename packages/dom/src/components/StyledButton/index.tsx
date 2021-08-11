@@ -124,6 +124,17 @@ export const BaseStyledButton = styled.button`
   ${buttonStyles}
 `;
 
+const SpinnerWrapper = styled.span`
+    position: absolute;
+    display: flex;
+  `;
+
+const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
+    visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
+    display: inline-flex;
+    align-items: center;
+  `;
+
 export const StyledButton = React.forwardRef<
   HTMLButtonElement,
   StyledButtonProps
@@ -151,17 +162,6 @@ export const StyledButton = React.forwardRef<
       : size === ButtonSize.large
       ? theme.iconSizes.large
       : theme.iconSizes.medium;
-
-  const SpinnerWrapper = styled.span`
-    position: absolute;
-    display: flex;
-  `;
-
-  const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
-    visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
-    display: inline-flex;
-    align-items: center;
-  `;
 
   return (
     <BaseStyledButton

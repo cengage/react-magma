@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { magma, useIsInverse } from 'react-magma-dom';
+import { magma, useIsInverse } from '@react-magma/dom';
 
 const HorizontalRule = styled.hr`
   background: ${props =>

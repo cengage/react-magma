@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { magma, useIsInverse } from 'react-magma-dom';
+import { magma, useIsInverse } from '@react-magma/dom';
 
 const SwatchContainer = styled.div`
   border: 1px solid

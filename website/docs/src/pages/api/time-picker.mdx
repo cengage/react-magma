@@ -13,7 +13,7 @@ props:
 
 ```tsx
 import React from 'react';
-import { TimePicker } from 'react-magma-dom';
+import { TimePicker } from '@react-magma/dom';
 
 export function Example() {
   return <TimePicker labelText="Time Due" />;
@@ -26,7 +26,7 @@ There are multiple formats you can send in through the `value` prop. You can do 
 
 ```tsx
 import React from 'react';
-import { TimePicker } from 'react-magma-dom';
+import { TimePicker } from '@react-magma/dom';
 
 export function Example() {
   return <TimePicker value="01:15 PM" labelText="Time Due" />;
@@ -39,7 +39,7 @@ The `minutesStep` prop can be used to set the stepping interval when using the a
 
 ```tsx
 import React from 'react';
-import { TimePicker } from 'react-magma-dom';
+import { TimePicker } from '@react-magma/dom';
 
 export function Example() {
   return <TimePicker labelText="Time Due" minutesStep="15" />;
@@ -53,7 +53,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```tsx
 import React from 'react';
-import { TimePicker } from 'react-magma-dom';
+import { TimePicker } from '@react-magma/dom';
 
 export function Example() {
   return <TimePicker errorMessage="Invalid time" labelText="Time Due" />;
@@ -66,7 +66,7 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 
 ```tsx
 import React from 'react';
-import { TimePicker } from 'react-magma-dom';
+import { TimePicker } from '@react-magma/dom';
 
 export function Example() {
   return <TimePicker helperMessage="Helper text" labelText="Time Due" />;
@@ -77,7 +77,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, TimePicker } from 'react-magma-dom';
+import { Card, CardBody, TimePicker } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -94,7 +94,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Paragraph, TimePicker } from 'react-magma-dom';
+import { Card, CardBody, Paragraph, TimePicker } from '@react-magma/dom';
 
 export function Example() {
   const [timeValue, setTimeValue] = React.useState('');
@@ -121,7 +121,7 @@ The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be
 
 ```tsx
 import React from 'react';
-import { TimePicker } from 'react-magma-dom';
+import { TimePicker } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -141,7 +141,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { I18nContext, defaultI18n, TimePicker } from 'react-magma-dom';
+import { I18nContext, defaultI18n, TimePicker } from '@react-magma/dom';
 import { zhCN } from 'date-fns/locale';
 
 export function Example() {

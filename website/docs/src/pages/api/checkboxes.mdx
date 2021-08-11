@@ -30,7 +30,7 @@ See also: <Link to="/api/radio">Radio Buttons</Link>, <Link to="/api/toggle">Tog
 
 ```tsx
 import React from 'react';
-import { Checkbox, FormGroup } from 'react-magma-dom';
+import { Checkbox, FormGroup } from '@react-magma/dom';
 
 export function Example() {
   const [checked, updateChecked] = React.useState<boolean>(false);
@@ -65,7 +65,7 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 
 ```tsx
 import React from 'react';
-import { Checkbox, FormGroup, magma } from 'react-magma-dom';
+import { Checkbox, FormGroup, magma } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -94,7 +94,7 @@ import {
   FormGroup,
   IndeterminateCheckbox,
   magma,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -135,7 +135,7 @@ import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
   magma,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -181,7 +181,7 @@ The `textPosition` property takes the values `left` and `right`. The default val
 
 ```tsx
 import React from 'react';
-import { Checkbox, CheckboxTextPosition, FormGroup } from 'react-magma-dom';
+import { Checkbox, CheckboxTextPosition, FormGroup } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -202,7 +202,7 @@ The `errorMessage` prop can be used on the `FormGroup` component to display an e
 
 ```tsx
 import React from 'react';
-import { Checkbox, FormGroup } from 'react-magma-dom';
+import { Checkbox, FormGroup } from '@react-magma/dom';
 
 interface CheckboxState {
   yellow: boolean;
@@ -269,7 +269,7 @@ An example of when to use this would be for a terms and conditions checkbox.
 
 ```tsx
 import React from 'react';
-import { Checkbox } from 'react-magma-dom';
+import { Checkbox } from '@react-magma/dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState<boolean>(true);
@@ -306,7 +306,7 @@ Adding the `isTextVisuallyHidden` prop will make the label text available to scr
 
 ```tsx
 import React from 'react';
-import { Checkbox } from 'react-magma-dom';
+import { Checkbox } from '@react-magma/dom';
 
 export function Example() {
   return <Checkbox labelText="Hidden checkbox" isTextVisuallyHidden />;
@@ -320,7 +320,7 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 
 ```tsx
 import React from 'react';
-import { Checkbox } from 'react-magma-dom';
+import { Checkbox } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -345,7 +345,7 @@ The `labelText` prop can either be a string, or it can be a React Node.
 
 ```tsx
 import React from 'react';
-import { Checkbox } from 'react-magma-dom';
+import { Checkbox } from '@react-magma/dom';
 
 export function Example() {
   const myLabel = (
@@ -374,7 +374,7 @@ import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
   magma,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export function Example() {
   const [checkedItems, setCheckedItems] = React.useState<Array<boolean>>([

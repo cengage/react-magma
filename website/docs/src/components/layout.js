@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MDXProvider } from '@mdx-js/react';
-import { SkipLinkContent, Heading } from 'react-magma-dom';
+import { SkipLinkContent, Heading } from '@react-magma/dom';
 import { convertTextToId } from '../utils';
 import './layout.css';
 import { LayoutComponent } from './LayoutComponent';
@@ -9,7 +9,7 @@ import { SimplePropsTable } from './SimplePropsTable';
 import { Divider } from './Divider';
 import { NetlifyFooter } from './NetlifyFooter';
 import styled from '@emotion/styled';
-import { magma, Alert } from 'react-magma-dom';
+import { magma, Alert } from '@react-magma/dom';
 import { DocsHeading } from './DocsHeading';
 import { CodeBlock } from './CodeBlock';
 import { Link } from 'gatsby';

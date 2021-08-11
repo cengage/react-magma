@@ -13,7 +13,7 @@ props:
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return <DatePicker labelText="Date" />;
@@ -26,7 +26,7 @@ By default, no date value is selected. You can add a default date, by using the 
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return <DatePicker defaultDate="07/23/2019" labelText="Date" />;
@@ -39,7 +39,7 @@ The `value` prop can also be used so set the date value externally. It will over
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -54,7 +54,7 @@ Minimum and Maximum dates can be passed in as `props` to disallow the selection 
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -74,7 +74,7 @@ Note: the expected date format should appear somewhere in either the labelText o
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -90,7 +90,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return <DatePicker labelText="Help me" helperMessage="This is your help" />;
@@ -101,7 +101,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -118,7 +118,7 @@ The `onInputChange` is passed to the input's `onChange` method that is in the `D
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   const [inputValue, setInputValue] = React.useState<string>('');
@@ -145,7 +145,7 @@ The `onDateChange` function is called when the user changes a date using the cal
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
@@ -178,7 +178,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   const [isFocused, updateIsFocused] = React.useState<boolean>(false);
@@ -216,7 +216,7 @@ The `onChange` event is called in multiple instances when internal values are ch
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   const [changedValue, setChangedValue] = React.useState<string | Date>('');
@@ -243,7 +243,7 @@ The `DatePicker` is keyboard navigable for allowing the user to navigate between
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return <DatePicker labelText="Date" />;
@@ -258,7 +258,7 @@ Please use discretion when adding custom styles.
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker } from '@react-magma/dom';
 
 export function Example() {
   return (
@@ -288,7 +288,7 @@ Full example of <Link to="/api/internationalization">internationalization overri
 ```tsx
 import React from 'react';
 import { es } from 'date-fns/locale';
-import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+import { DatePicker, I18nContext, defaultI18n } from '@react-magma/dom';
 
 export function Example() {
   return (

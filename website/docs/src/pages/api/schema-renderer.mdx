@@ -14,7 +14,7 @@ The `SchemaRenderer` is an advanced component which maps other React Magma compo
 
 ## Basic Template
 
-Several Basic Components from `react-magma-dom` are mapped in `react-magma-schema-renderer` by default. Refer to each component api page to find the props that each component supports.
+Several Basic Components from `@react-magma/dom` are mapped in `react-magma-schema-renderer` by default. Refer to each component api page to find the props that each component supports.
 
 ```tsx
 import React from 'react';
@@ -84,7 +84,7 @@ import {
   templateTypes,
   componentTypes,
 } from 'react-magma-schema-renderer';
-import { InputType } from 'react-magma-dom';
+import { InputType } from '@react-magma/dom';
 
 const schema: Schema = {
   title: 'Basic Form',
@@ -326,7 +326,7 @@ The `SchemaRenderer`
 
 ```tsx
 import React from 'react';
-import { Button, ButtonType, Toast } from 'react-magma-dom';
+import { Button, ButtonType, Toast } from '@react-magma/dom';
 import {
   SchemaRenderer,
   Schema,
@@ -523,7 +523,7 @@ import {
   ComponentMapper,
   validatorTypes,
 } from 'react-magma-schema-renderer';
-import { Alert, AlertVariant } from 'react-magma-dom';
+import { Alert, AlertVariant } from '@react-magma/dom';
 
 export function Example() {
   const schema: Schema = {
@@ -684,7 +684,7 @@ import {
   ComponentMapper,
   validatorTypes,
 } from 'react-magma-schema-renderer';
-import { Alert, AlertVariant } from 'react-magma-dom';
+import { Alert, AlertVariant } from '@react-magma/dom';
 
 export function Example() {
   const schema: Schema = {

@@ -19,7 +19,7 @@ Label text can be a string or a react node.
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return (
     <>
@@ -41,7 +41,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return <Input labelText="Number" type="number" />;
 }
@@ -51,7 +51,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return <Input labelText="Disabled" disabled />;
 }
@@ -63,7 +63,7 @@ The `defaultValue` of an input can be set using the `defaultValue` prop.
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return <Input labelText="Default value" defaultValue="default" />;
 }
@@ -75,7 +75,7 @@ The `value` of an input can be set using the `value` prop.
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return <Input labelText="Value" value="abc123" />;
 }
@@ -88,7 +88,7 @@ The button will appear when the input has a value.
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return <Input labelText="Value" isClearable />;
 }
@@ -102,7 +102,7 @@ relied upon to take the place of the label text.
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return <Input labelText="Email address" placeholder="yourname@example.com" />;
 }
@@ -114,7 +114,7 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   const helperMessage = (
     <>
@@ -137,7 +137,7 @@ While React Magma provides the error styling, it is up to the consumer app to ha
 
 ```tsx
 import React from 'react';
-import { Input, Button } from 'react-magma-dom';
+import { Input, Button } from '@react-magma/dom';
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [nameValue, setNameValue] = React.useState('');
@@ -184,7 +184,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
 
 ```tsx
 import React from 'react';
-import { Input, Spinner } from 'react-magma-dom';
+import { Input, Spinner } from '@react-magma/dom';
 import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 export function Example() {
   return (
@@ -221,7 +221,7 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 export function Example() {
   return (
@@ -259,7 +259,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Input } from 'react-magma-dom';
+import { Card, CardBody, Input } from '@react-magma/dom';
 export function Example() {
   return (
     <Card isInverse>
@@ -297,7 +297,7 @@ This option should only be used in rare instances, such as a search field. Provi
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
@@ -319,7 +319,7 @@ will appear to the right of the field.
 
 ```tsx
 import React from 'react';
-import { IconButton, Input, Tooltip } from 'react-magma-dom';
+import { IconButton, Input, Tooltip } from '@react-magma/dom';
 import { HelpOutlineIcon } from 'react-magma-icons';
 export function Example() {
   const helpLinkLabel = 'Learn more';
@@ -347,7 +347,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   const [message, setMessage] = React.useState('');
 
@@ -371,7 +371,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   const [focused, setFocused] = React.useState(false);
   const [message, setMessage] = React.useState('');
@@ -405,7 +405,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 ```tsx
 import React from 'react';
-import { Button, Input } from 'react-magma-dom';
+import { Button, Input } from '@react-magma/dom';
 export function Example() {
   const inputRef = React.useRef();
 
@@ -432,7 +432,7 @@ Additional `labelStyle`, `inputStyle` and `messageStyle` properties are availabl
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input } from '@react-magma/dom';
 export function Example() {
   return (
     <Input

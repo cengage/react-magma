@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { Logo } from '../Logo';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
+import { magma, useMediaQuery, AppBarPosition, Spacer } from '@react-magma/dom';
 
 const LogoLink = styled(Link)`
   align-items: center;
