@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.1-next.6
+
+### Patch Changes
+
+- 95f30ed: fix(modal): stopped background from scrolling when a modal is open
+- 92579ad: chore: updating styling
+- 12d6d78: fix StyledButton: move creation of wrappers outside of StyledButton render function
+
 ## 2.5.1-next.5
 
 ### Patch Changes
