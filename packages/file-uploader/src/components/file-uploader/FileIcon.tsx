@@ -16,63 +16,53 @@ import { FilePreview } from './FilePreview';
 
 export interface FileIconProps extends IconProps { 
   file: FilePreview;
-  xs?: boolean | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
+  isInverse?: boolean;
 }
 
 const icons = {
   default: {
     Icon: FilePresentIcon,
-    style: {
-      color: 'red'
-    }
+    style: {}
   },
   word: {
     Icon: FileWordIcon,
     style: {
-      color: 'orange'
+      color: '#006298'
     }
   },
   excel: {
     Icon: FileExcelIcon,
     style: {
-      color: 'yellow'
+      color: '#3A8200'
     }
   },
   powerpoint: {
     Icon: FilePowerpointIcon,
     style: {
-      color: 'green'
+      color: '#FC4C02'
     }
   },
   pdf: {
     Icon: FilePdfIcon,
     style: {
-      color: 'blue'
+      color: '#C61D23'
     }
   },
   image: {
     Icon: ImageIcon,
-    style: {
-      color: 'indigo'
-    }
+    style: {}
   },
   video: {
     Icon: VideoCameraBackIcon,
-    style: {
-      color: 'violet'
-    }
+    style: {}
   },
   audio: {
     Icon: AudiotrackIcon,
-    style: {
-      color: 'grey'
-    }
+    style: {}
   },
   archive: {
     Icon: FileZipIcon,
-    style: {
-      color: 'black'
-    }
+    style: {}
   },
 }
 
@@ -102,12 +92,11 @@ const iconMapping:{[key:string]: {Icon: any, style: React.CSSProperties}}  = {
   zip: icons.archive,
 }
 
-export const FileIcon = (props: FileIconProps) => {
-  const { path='', type='',} = props.file;
+export const FileIcon = ({file, isInverse}: FileIconProps) => {
+  const { path='', type='',} = file;
   const category = type.split('/')[0];
   const extension = path.split('.').pop() || 'default';
-  console.log(props);
   const {Icon, style } = iconMapping[extension] || iconMapping[category] || iconMapping.default;
 
-  return <Icon size={24} style={style}/>
+  return <Icon size={32} style={isInverse ? {} : style}/>
 }

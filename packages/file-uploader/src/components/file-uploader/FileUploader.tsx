@@ -3,6 +3,7 @@ import { useDropzone, DropzoneOptions, DropzoneRootProps, FileRejection } from '
 import {
   Button,
   ButtonColor,
+  ButtonVariant,
   Flex,
   FlexProps,
   FlexBehavior, 
@@ -12,23 +13,26 @@ import {
   ThemeContext,
   ThemeInterface,
   useGenerateId,
+  useIsInverse,
+  InverseContext,
 } from 'react-magma-dom';
 
 import { CloudUploadIcon } from 'react-magma-icons';
-
-// import { InverseContext, useIsInverse } from '../../inverse';
-// import { I18nContext } from '../../i18n';
-
-import { FileProcessorProps} from './FileProcessor';
 import { Preview } from './Preview';
-// import { formatFileSize } from './utils'
 import { FilePreview, FileError } from './FilePreview';
+
+export interface OnSendFileProps {
+  onProgress?: ({}:{percent: number, file: FilePreview}) => void;
+  onError?: ({}:{errors: FileError[], file: FilePreview}) => void;
+  onFinish?: ({}:{file: FilePreview}) => void;
+  file: FilePreview,
+}
 
 type DragState = 'error' | 'dragAccept' | 'dragReject' | 'dragActive' | 'default';
 export interface FileUploaderProps extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
   dropzoneOptions?: Partial<Omit<DropzoneOptions, 'onDrop'>>;
   sendFiles?: boolean;
-  onSendFile?: (props: FileProcessorProps) => void;
+  onSendFile?: (props: OnSendFileProps) => void;
   helperMessage?: string;
   thumbnails?: boolean;
   showAcceptHelper?: boolean;
@@ -36,34 +40,34 @@ export interface FileUploaderProps extends Omit<FormFieldContainerBaseProps, 'fi
   multiple?: boolean;
   maxSize?: number;
   minSize?: number;
+  noDrag?: boolean;
   accept?: string | string[];
   id?: string;
   testId?: string;
 }
 
-const Container = styled(Flex)<DropzoneRootProps & FlexProps & {dragState?: DragState}>`
+const Container = styled(Flex)<DropzoneRootProps & FlexProps & {dragState?: DragState; noDrag?: boolean; isInverse?: boolean;}>`
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  border-width: 2px;
-  border-radius: 4px;
-  border-color: ${({dragState='default', theme}) => 
-    dragState === 'dragReject' || dragState === 'error' ? theme.colors.danger : 
+  align-items: ${({noDrag}) => noDrag ? 'left' : 'center'};
+  justify-content: ${({noDrag}) => noDrag ? 'left' : 'center'};
+  text-align: ${({noDrag}) => noDrag ? 'left' : 'center'};
+  padding: ${({noDrag}) => noDrag ? '0px' : '40px'};
+  border-width: ${({noDrag}) => noDrag ? '0px' : '2px'};
+  border-radius: ${({noDrag}) => noDrag ? '0px' : '4px'};
+  border-color: ${({dragState='default', theme, isInverse}) => 
+    dragState === 'dragReject' || dragState === 'error' ? isInverse ? theme.colors.dangerInverse : theme.colors.danger : 
     dragState === 'dragActive' ? theme.colors.primary : 
     dragState === 'dragAccept' ? theme.colors.success : 
     theme.colors.neutral06};
   border-style: ${({dragState='default'}) => dragState === 'error' ? 'solid' : 'dashed'};
-  background-color: ${({theme}) => theme.colors.neutral07};
-  color: #bdbdbd;
+  background-color: ${({theme, noDrag, isInverse}) => noDrag ? 'transparent' : isInverse ? theme.colors.foundation : theme.colors.neutral07};
   outline: none;
-  transition: border .24s ease-in-out;
+  transition: ${({noDrag}) => `border ${noDrag ? 0 :'.24s'} ease-in-out`};
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{isInverse?: boolean}>`
   margin: 0px;
-  color: ${({theme}) => theme.colors.neutral03};
+  color: ${({theme, isInverse}) => isInverse ? theme.colors.neutral07 : theme.colors.neutral02};
   padding: ${({theme}) => theme.spaceScale.spacing01};
 `
 export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps>((props, ref) => {
@@ -78,7 +82,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     containerStyle,
     id: defaultId,
     isLabelVisuallyHidden,
-    isInverse,
+    isInverse: isInverseProp,
     inputSize,
     labelStyle,
     labelText,
@@ -89,12 +93,14 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     minSize,
     accept,
     testId,
+    noDrag=false,
     ...rest
   } = props;
 
   const [files, setFiles] = React.useState<FilePreview[]>([])
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null)
 
+  const isInverse = useIsInverse(isInverseProp);
   const theme:ThemeInterface = React.useContext(ThemeContext);
   const id = useGenerateId(defaultId);
   
@@ -139,6 +145,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     minSize,
     // accept,
     onDrop,
+    noDrag,
   });
   
   const dragState: DragState = errorMessage ? 'error' : isDragAccept ? 'dragAccept' : isDragReject ? 'dragReject' : isDragActive? 'dragActive': 'default';
@@ -188,7 +195,8 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     }
   }, [sendFiles, files.length, onSendFile])
 
-  return (<>
+  return (
+    <InverseContext.Provider value={{ isInverse }}>
       <FormFieldContainer
         containerStyle={containerStyle}
         fieldId={id}
@@ -202,24 +210,31 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
       />
       <Container 
         dragState={dragState}
+        noDrag={noDrag}
+        isInverse={isInverse}
         {...getRootProps()}
         {...rest}
         behavior={FlexBehavior.container}
         theme={theme}
       >
         <input ref={ref} data-testid={testId} {...getInputProps()}/>
-        <Flex behavior={FlexBehavior.item}>
-          <CloudUploadIcon color={theme.colors.neutral02} size={theme.iconSizes.xLarge} />
-          <Wrapper theme={theme}>
-            Drag and Drop your files
-          </Wrapper>
-          <Wrapper theme={theme}>
-            or
-          </Wrapper>
-          <Button color={ButtonColor.secondary} onClick={open}>browse files</Button>
-        </Flex>
+        {noDrag ? 
+          <Flex xs behavior={FlexBehavior.item}>
+            <Button color={ButtonColor.primary} isInverse={isInverse} style={{margin: 0}} onClick={open}>browse files</Button>
+          </Flex> : 
+          <Flex behavior={FlexBehavior.item}>
+            <CloudUploadIcon color={isInverse ? theme.colors.neutral07 : theme.colors.neutral02} size={theme.iconSizes.xLarge} />
+            <Wrapper isInverse={isInverse} theme={theme}>
+              Drag and Drop your files
+            </Wrapper>
+            <Wrapper isInverse={isInverse} theme={theme}>
+              or
+            </Wrapper>
+            <Button color={ButtonColor.secondary} variant={ButtonVariant.outline} isInverse={isInverse} onClick={open}>browse files</Button>
+          </Flex>
+        }
       </Container>
-      {files.map((file: FilePreview) => <Preview thumbnails={thumbnails} file={file} onRemoveFile={handleRemoveFile}/>)}
-    </>)
+      {files.map((file: FilePreview) => <Preview isInverse={isInverse} thumbnails={thumbnails} file={file} onRemoveFile={handleRemoveFile}/>)}
+    </InverseContext.Provider>)
   }
 )
