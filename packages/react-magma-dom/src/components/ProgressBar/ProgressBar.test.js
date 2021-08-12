@@ -82,6 +82,28 @@ describe('ProgressBar', () => {
     );
   });
 
+  it('should render the progress bar component with an inverse danger color', () => {
+    const { container } = render(
+      <ProgressBar isInverse percentage={50} color="danger" />
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      magma.colors.dangerInverse
+    );
+  });
+
+  it('should render the progress bar component with an inverse success color', () => {
+    const { container } = render(
+      <ProgressBar isInverse percentage={50} color="success" />
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      magma.colors.successInverse
+    );
+  });
+
   it('should render the progress bar component shimmer animation', () => {
     const { container } = render(<ProgressBar percentage={50} isAnimated />);
 

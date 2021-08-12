@@ -28,14 +28,14 @@ export interface HyperlinkProps
 
 const linkStyles = props => css`
   color: ${props.isInverse
-    ? props.theme.colors.neutral08
+    ? props.theme.colors.primaryInverse
     : props.theme.colors.primary};
   text-decoration: underline;
   &:not([disabled]) {
     &:hover,
     &:focus {
       color: ${props.isInverse
-        ? props.theme.colors.neutral07
+        ? props.theme.colors.primaryInverse
         : props.theme.colors.foundation02};
     }
     &:focus {

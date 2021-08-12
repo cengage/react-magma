@@ -12,7 +12,9 @@ describe('Calendar Month', () => {
   });
 
   it('helper information should be visible when open', async () => {
-    const { getByText, rerender } = render(<HelperInformation />);
+    const { getByText, rerender } = render(
+      <HelperInformation isOpen={false} />
+    );
 
     rerender(<HelperInformation isOpen={true} />);
 

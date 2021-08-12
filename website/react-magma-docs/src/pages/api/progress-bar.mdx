@@ -64,13 +64,13 @@ import React from 'react';
 import { ProgressBar } from 'react-magma-dom';
 
 export function Example() {
-  return <ProgressBar isAnimated percentage={25} />;
+  return <ProgressBar isAnimated percentage={50} />;
 }
 ```
 
 ## Background Color
 
-The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `danger`, `primary`, `pop`, `pop02`, `success`.
+The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `primary` and `danger`, and `success`.
 The default value is `primary` which renders as `#006298`, or `magma.colors.primary`.
 
 ```tsx
@@ -80,13 +80,9 @@ import { ProgressBar, ProgressBarColor } from 'react-magma-dom';
 export function Example() {
   return (
     <>
-      <ProgressBar color={ProgressBarColor.danger} percentage={25} />
-      <br />
-      <ProgressBar color={ProgressBarColor.pop} percentage={25} />
-      <br />
-      <ProgressBar color={ProgressBarColor.pop02} percentage={25} />
-      <br />
       <ProgressBar color={ProgressBarColor.primary} percentage={25} />
+      <br />
+      <ProgressBar color={ProgressBarColor.danger} percentage={25} />
       <br />
       <ProgressBar color={ProgressBarColor.success} percentage={25} />
       <br />
@@ -99,7 +95,7 @@ export function Example() {
 
 The `height` prop can be used to set the height of the progress bar. Can be a string or a number; if a number is provided the height will be in pixels.
 
-The default value is '16px'.
+The default value is '8px'.
 
 ```tsx
 import React from 'react';
