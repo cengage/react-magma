@@ -214,12 +214,16 @@ export {
 export { magma, ThemeInterface } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
+export { default as styled } from './theme/styled';
 export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
 export { useMediaQuery } from './hooks/useMediaQuery';
 export { useDataPagination } from './hooks/useDataPagination';
+export { useGenerateId } from './utils';
 export { usePagination } from './components/Pagination/usePagination';
+export { useFocusLock } from './hooks/useFocusLock';
+
 export { InverseContext, useIsInverse } from './inverse';
 
 export * from './components/Accordion';
@@ -227,4 +231,7 @@ export * from './components/Transition';
 export * from './components/Drawer';
 
 export * from './components/FormFieldContainer';
-export * from './components/Tag'
+
+export * from './components/Grid';
+
+export * from './components/Tag';

@@ -1,5 +1,52 @@
 # Change Log
 
+## 2.5.1-next.6
+
+### Patch Changes
+
+- 95f30ed: fix(modal): stopped background from scrolling when a modal is open
+- 92579ad: chore: updating styling
+- 12d6d78: fix StyledButton: move creation of wrappers outside of StyledButton render function
+
+## 2.5.1-next.5
+
+### Patch Changes
+
+- c5cec3f6: Add useFocusLock hook to fix focus jumping around inside of a modal that has components re-rendered.
+
+## 2.5.1-next.4
+
+### Patch Changes
+
+- e12e00c: fix(textarea): default width to 100%
+
+## 2.5.1-next.3
+
+### Patch Changes
+
+- 93ecc6c8: Feature/grid
+
+  CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
+
+## 2.5.1-next.2
+
+### Patch Changes
+
+- c3b90d1d: feat: add xLarge for iconSizes
+  fix: export styled and useGeneratedId for external components
+
+## 2.5.1-next.1
+
+### Patch Changes
+
+- 1fbd86f3: fix(timepicker): update am/pm to use type=button
+
+## 2.5.1-next.0
+
+### Patch Changes
+
+- 3260fafb: Call onClose function when clicking outside of the dropdown menu
+
 ## 2.5.0
 
 ### Minor Changes
