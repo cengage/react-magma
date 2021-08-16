@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.2-next.0
+
+### Patch Changes
+
+- 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
+- 12380623: fix(input): add onClear function to be called when the input is cleared by clicking the clear button
+
 ## 2.5.1
 
 ### Patch Changes
