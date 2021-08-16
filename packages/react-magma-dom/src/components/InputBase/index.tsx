@@ -70,6 +70,10 @@ export interface InputBaseProps
    * @default false
    */
   isClearable?: boolean;
+  /**
+   * Function to be called when the contents of input are cleared by clicking a clear button
+   */
+  onClear?: () => void;
   isInverse?: boolean;
   /**
    * Action that will fire when icon is clicked
@@ -189,7 +193,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   css`
     padding-left: ${props.theme.spaceScale.spacing10};
   `}
-  
+
       ${props.iconPosition === 'right' &&
   props.inputSize === 'large' &&
   css`
@@ -350,10 +354,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const ref = useForkedRef(forwardedRef, inputRef);
 
     function handleClearInput() {
-      {
-        setValue('');
-        inputRef.current.focus();
-      }
+      props.onClear &&
+        typeof props.onClear === 'function' &&
+        props.onClear();
+      setValue('');
+      inputRef.current.focus();
     }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
