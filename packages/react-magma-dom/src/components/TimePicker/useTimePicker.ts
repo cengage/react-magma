@@ -72,7 +72,7 @@ export function useTimePicker(props: UseTimePickerProps) {
   }
 
   function convertPassedInTime(passedInTime: string) {
-    let [timeHour, timeMinuteAndAmPm] = passedInTime.split(':');
+    const [timeHour, timeMinuteAndAmPm] = passedInTime.split(':');
     const timeMinute = timeMinuteAndAmPm.substring(0, 2);
 
     const timeAmPm =
