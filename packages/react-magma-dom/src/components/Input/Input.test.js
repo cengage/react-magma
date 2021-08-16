@@ -247,6 +247,19 @@ describe('Input', () => {
     expect(getByLabelText(labelText)).toHaveAttribute('value', '');
   });
 
+  it('should clear the input when the clear input button is clicked', () => {
+    const onClear = jest.fn();
+    const labelText = 'Input Label';
+    const value = 'Test Value';
+    const { getByTestId, getByLabelText } = render(
+      <Input labelText={labelText} value={value} onClear={onClear} isClearable />
+    );
+
+    fireEvent.click(getByTestId('clear-button'));
+
+    expect(onClear).toBeCalled();
+  });
+
   it('should default to type of text for the input', () => {
     const labelText = 'test label';
     const { getByLabelText } = render(<Input labelText={labelText} />);
