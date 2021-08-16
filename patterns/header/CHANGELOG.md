@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [21c2ac2e]
+  - react-magma-dom@2.5.2-next.0
+
 ## 2.0.1
 
 ## 2.0.1-next.0

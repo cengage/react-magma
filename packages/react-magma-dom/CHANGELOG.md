@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.2-next.0
+
+### Patch Changes
+
+- 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
+
 ## 2.5.1
 
 ### Patch Changes
