@@ -35,17 +35,6 @@ describe('TimePicker', () => {
       expect(hoursInput.value).toEqual('12');
     });
 
-    it('should allow for a an hour above 12 but under 24 to be entered and calculated to AM/PM time', () => {
-      const { getByTestId } = render(<TimePicker label="label" />);
-
-      const hoursInput = getByTestId('hoursTimeInput');
-
-      fireEvent.change(hoursInput, { target: { value: '19' } });
-
-      expect(hoursInput.value).toEqual('07');
-      expect(getByTestId('amPmTimeButton').textContent).toEqual('PM');
-    });
-
     it('should set the hour to the first number if the number inputted is 24 or above', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
