@@ -9,6 +9,7 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "fifty-mangos-smoke",
     "real-singers-grin",
     "tricky-rings-wash"
   ]

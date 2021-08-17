@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.2-next.1
+
+### Patch Changes
+
+- 4980c87a: - disable the clear and action buttons when the input is disabled
+
 ## 2.5.2-next.0
 
 ### Patch Changes
