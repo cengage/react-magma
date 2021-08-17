@@ -138,7 +138,6 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
           : props.theme.colors.danger};
     `
   }
-  }
 
   ${
     props.disabled &&
@@ -378,6 +377,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
     return (
       <InputWrapper
+        disabled={disabled}
         isInverse={props.isInverse}
         theme={theme}
         style={containerStyle}
