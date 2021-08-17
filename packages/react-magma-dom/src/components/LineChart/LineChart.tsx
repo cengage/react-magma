@@ -123,7 +123,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
   const containerRef = React.useRef<HTMLDivElement>();
   const firstLegendButtonRef = React.useRef<HTMLButtonElement>();
 
-  const [pointRefArray, registerPoint] = useDescendants();
+  const [pointRefArray, registerPoint, unregisterPoint] = useDescendants();
 
   React.useEffect(() => {
     updateWidth();
@@ -444,6 +444,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                           lineIndex={i}
                           pointRefArray={pointRefArray}
                           registerPoint={registerPoint}
+                          unregisterPoint={unregisterPoint}
                         />
                       }
                       role="button"

@@ -221,8 +221,23 @@ export function registerDescendant(
   }
 }
 
+export function unregisterDescendant(
+  itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+  itemRef: React.MutableRefObject<Element>
+) {
+  if (!itemRef.current) return;
+
+  itemRefArray.current = itemRefArray.current.filter(
+    item => itemRef.current !== item.current
+  );
+}
+
 export function useDescendants(): [
   React.MutableRefObject<React.MutableRefObject<Element>[]>,
+  (
+    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    ref: React.MutableRefObject<Element>
+  ) => void,
   (
     refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
     ref: React.MutableRefObject<Element>
@@ -230,7 +245,7 @@ export function useDescendants(): [
 ] {
   const itemRefArray = React.useRef<React.MutableRefObject<Element>[]>([]);
 
-  return [itemRefArray, registerDescendant];
+  return [itemRefArray, registerDescendant, unregisterDescendant];
 }
 
 export function useForceUpdate() {

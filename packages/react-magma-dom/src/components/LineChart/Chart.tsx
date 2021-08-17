@@ -31,7 +31,7 @@ function BaseChart<T>(
   const firstTabRef = React.useRef<HTMLButtonElement>();
 
   return (
-    <div ref={ref} {...other}>
+    <div ref={ref}>
       <Heading level={3}>Line Chart Proof of Concept</Heading>
       <Paragraph style={{ maxWidth: '800px' }}>{title}</Paragraph>
       <TabsContainer>

@@ -44,6 +44,7 @@ export const AxisTooltip = props => {
     <g style={{ pointerEvents: 'none' }}>
       <foreignObject x={x} y={y} width="200" height="100">
         <StyledTooltip
+          data-testid="axis-tooltip"
           position={TooltipPosition.top}
           role="tooltip"
           theme={theme}
