@@ -423,6 +423,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               onClick={onIconClick}
               onKeyDown={onIconKeyDown}
               ref={iconRef}
+              disabled={props.disabled}
               shape={ButtonShape.fill}
               size={
                 inputSize === InputSize.large
@@ -439,6 +440,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           <IsClearableContainer theme={theme}>
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
+              disabled={props.disabled}
               icon={<ClearIcon />}
               isInverse={false}
               onClick={handleClearInput}
