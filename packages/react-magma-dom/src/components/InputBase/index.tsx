@@ -143,6 +143,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     props.disabled &&
     css`
       border-color: ${props.theme.colors.neutral05};
+      background-color: ${props.disabled ? props.theme.colors.neutral07 : props.theme.colors.neutral08};
     `
   }
 `;
