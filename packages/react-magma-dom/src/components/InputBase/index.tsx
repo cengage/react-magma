@@ -141,7 +141,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   }
 
   ${
-    props.disabled &&
+    disabled &&
     css`
       border-color: ${props.theme.colors.neutral05};
     `
@@ -218,7 +218,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
     }
   }
 
-  ${props.disabled &&
+  ${disabled &&
   css`
     background: ${props.theme.colors.neutral07};
     color: ${props.theme.colors.disabledText};
@@ -316,6 +316,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       children,
       containerStyle,
       defaultValue,
+      disabled,
       hasError,
       icon,
       iconAriaLabel,
@@ -381,6 +382,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         <StyledInput
           {...other}
           aria-invalid={hasError}
+          disabled={disabled}
           data-testid={testId}
           iconPosition={iconPosition}
           inputSize={inputSize ? inputSize : InputSize.medium}
@@ -424,7 +426,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               onClick={onIconClick}
               onKeyDown={onIconKeyDown}
               ref={iconRef}
-              disabled={props.disabled}
+              disabled={disabled}
               shape={ButtonShape.fill}
               size={
                 inputSize === InputSize.large
@@ -441,7 +443,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           <IsClearableContainer theme={theme}>
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
-              disabled={props.disabled}
+              disabled={disabled}
               icon={<ClearIcon />}
               isInverse={false}
               onClick={handleClearInput}
