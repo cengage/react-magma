@@ -321,6 +321,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       iconAriaLabel,
       iconRef,
       isClearable,
+      onClear,
       onIconClick,
       onIconKeyDown,
       inputSize,
@@ -354,9 +355,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const ref = useForkedRef(forwardedRef, inputRef);
 
     function handleClearInput() {
-      props.onClear &&
-        typeof props.onClear === 'function' &&
-        props.onClear();
+      onClear &&
+        typeof onClear === 'function' &&
+        onClear();
       setValue('');
       inputRef.current.focus();
     }

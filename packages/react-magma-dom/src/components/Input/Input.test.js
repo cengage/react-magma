@@ -210,6 +210,22 @@ describe('Input', () => {
     expect(getByLabelText(iconAriaLabel)).toBeInTheDocument();
   });
 
+  it('should disable the clickable icon when the input is disabled', () => {
+    const icon = <CheckIcon />;
+    const iconAriaLabel = 'clickable icon label';
+    const { getByLabelText } = render(
+      <Input
+        icon={icon}
+        onIconClick={jest.fn()}
+        inputSize="large"
+        iconAriaLabel={iconAriaLabel}
+        disabled
+      />
+    );
+
+    expect(getByLabelText(iconAriaLabel)).toBeDisabled();
+  });
+
   it('should render an input with a value passed through', () => {
     const labelText = 'test label';
     const value = 'Test Value';
@@ -258,6 +274,16 @@ describe('Input', () => {
     fireEvent.click(getByTestId('clear-button'));
 
     expect(onClear).toBeCalled();
+  });
+
+  it('should disable the clear button when the input is disabled', () => {
+    const labelText = 'Input Label';
+    const value = 'Test Value';
+    const { getByTestId, getByLabelText } = render(
+      <Input labelText={labelText} value={value} isClearable disabled/>
+    );
+
+    expect(getByTestId('clear-button')).toBeDisabled();
   });
 
   it('should default to type of text for the input', () => {
