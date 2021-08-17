@@ -206,7 +206,7 @@ describe('Line Chart', () => {
     expect(container.querySelectorAll('svg')[2].childNodes.length).toEqual(8);
   });
 
-  describe('keybaord behavior', () => {
+  describe('keyboard behavior', () => {
     it('should only tab in to the graph and out, not between lines or scatter points', () => {
       const { getByText, getByLabelText } = render(
         <Chart
@@ -400,6 +400,88 @@ describe('Line Chart', () => {
       userEvent.keyboard('{arrowright}');
 
       expect(getByLabelText(data[0].data[0].label)).toHaveFocus();
+    });
+
+    it('should go to the next line when clicking the down arrow key', () => {
+      const { getByText, getByLabelText } = render(
+        <Chart
+          componentProps={componentProps}
+          type="line"
+          data={basicData}
+          title="Basic"
+        />
+      );
+
+      userEvent.click(getByText(/chart/i, { selector: 'button' }));
+      userEvent.tab();
+
+      expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
+
+      userEvent.keyboard('{arrowdown}');
+
+      expect(getByLabelText(basicData[1].data[0].label)).toHaveFocus();
+    });
+
+    it('should go to the previous line when clicking the up arrow key', () => {
+      const { getByText, getByLabelText } = render(
+        <Chart
+          componentProps={componentProps}
+          type="line"
+          data={basicData}
+          title="Basic"
+        />
+      );
+
+      userEvent.click(getByText(/team 1/i));
+      userEvent.click(getByText(/team 1/i));
+      userEvent.tab({ shift: true });
+
+      expect(getByLabelText(basicData[3].data[4].label)).toHaveFocus();
+
+      userEvent.keyboard('{arrowup}');
+
+      expect(getByLabelText(basicData[2].data[0].label)).toHaveFocus();
+    });
+
+    it('should wrap to the last line when clicking the up arrow key while focused on the first line', () => {
+      const { getByText, getByLabelText } = render(
+        <Chart
+          componentProps={componentProps}
+          type="line"
+          data={basicData}
+          title="Basic"
+        />
+      );
+
+      userEvent.click(getByText(/chart/i, { selector: 'button' }));
+      userEvent.tab();
+
+      expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
+
+      userEvent.keyboard('{arrowup}');
+
+      expect(getByLabelText(basicData[3].data[0].label)).toHaveFocus();
+    });
+
+    it('should wrap to the first line when clicking the down arrow key while focused on the last line', () => {
+      const { getByText, getByLabelText } = render(
+        <Chart
+          componentProps={componentProps}
+          type="line"
+          data={basicData}
+          title="Basic"
+        />
+      );
+
+      userEvent.click(getByText(/team 1/i));
+      userEvent.click(getByText(/team 1/i));
+      userEvent.tab({ shift: true });
+
+      expect(getByLabelText(basicData[3].data[4].label)).toHaveFocus();
+
+      userEvent.keyboard('{arrowdown}');
+
+      expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
     });
   });
 });
