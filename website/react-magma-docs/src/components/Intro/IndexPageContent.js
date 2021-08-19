@@ -105,8 +105,8 @@ const CardIcon = styled(Flex)`
     align-self: center;
     justify-self: center;
     margin: auto;
-    height: ${magma.iconSizes.xLarge}px;
-    width: ${magma.iconSizes.xLarge}px;
+    height: ${magma.spaceScale.spacing10};
+    width: ${magma.spaceScale.spacing10};
   }
 `;
 
