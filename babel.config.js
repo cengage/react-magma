@@ -1,7 +1,7 @@
 module.exports = function (api) {
   api.cache(true)
   return {
-    plugins: [['emotion', { autoLabel: true }]],
+    plugins: ['@emotion'],
     env: {
       test: {
         plugins: ['dynamic-import-node'],
@@ -12,11 +12,11 @@ module.exports = function (api) {
             '@babel/preset-env',
             {
               useBuiltIns: 'entry',
-              corejs: '3.*.*'
-            }
-          ]
-        ]
-      }
-    }
-  }
+              corejs: '3.*.*',
+            },
+          ],
+        ],
+      },
+    },
+  };
 };

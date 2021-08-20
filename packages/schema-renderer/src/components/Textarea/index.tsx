@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   Textarea as MagmaTextarea,
   TextareaProps as MagmaTextareaProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export type TextareaProps = MagmaTextareaProps & UseFieldApiConfig;
 

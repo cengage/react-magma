@@ -16,7 +16,7 @@ import {
   ThemeContext,
   ThemeInterface,
   useIsInverse,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 import { MenuIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
 

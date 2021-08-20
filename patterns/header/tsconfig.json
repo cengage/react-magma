@@ -1,4 +1,16 @@
 {
   "extends": "../../tsconfig",
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ],
+  "compilerOptions": {
+    "rootDir": "./src",
+    "removeComments": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false
+  }
 }

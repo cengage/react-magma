@@ -8,7 +8,7 @@ import {
   ButtonVariant,
   IconButton,
   magma,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 const meta: Meta = {
   title: 'Patterns/Header',

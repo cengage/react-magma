@@ -1,0 +1,46 @@
+{
+  "name": "@react-magma/docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React Magma",
+  "keywords": [
+    "gatsby",
+    "react-magma"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@cengage-patterns/header": "2.0.1-next.0",
+    "@emotion/react": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "assert": "^2.0.0",
+    "gatsby": "^3.6.2",
+    "gatsby-background-image": "^1.5.3",
+    "gatsby-plugin-image": "^1.7.1",
+    "gatsby-plugin-manifest": "^3.7.1",
+    "gatsby-plugin-mdx": "^2.7.1",
+    "gatsby-plugin-react-helmet": "^4.7.1",
+    "gatsby-plugin-react-svg": "^3.0.1",
+    "gatsby-plugin-sharp": "^3.7.1",
+    "gatsby-plugin-sitemap": "^4.3.1",
+    "gatsby-remark-images": "^5.4.1",
+    "gatsby-source-filesystem": "^3.7.1",
+    "gatsby-transformer-sharp": "^3.7.1",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "react-codesandboxer": "^3.1.5",
+    "react-copy-to-clipboard": "^5.0.3",
+    "react-focus-lock": "^2.5.1",
+    "react-helmet": "^6.1.0",
+    "react-live": "^2.2.3",
+    "@react-magma/dom": "^2.5.1-next.4",
+    "react-magma-icons": "2.3.0-beta.1"
+  }
+}

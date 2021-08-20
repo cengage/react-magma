@@ -1,0 +1,234 @@
+---
+pageTitle: Modal API
+title: Modal
+props:
+  - ModalProps
+---
+
+<DocsHeading to="/design/modals/" type="api">
+  Modal
+</DocsHeading>
+
+## Basic Usage
+
+The `Modal` component renders its `children` node in front of a backdrop component. It also disables scrolling of the page content while open,
+properly manages focus; moving to the modal content, and keeping it there until the modal is closed, and adds the appropriate ARIA roles automatically.
+
+The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
+simply use `<Modal isOpen={flag} />`
+
+Although not required, it is helpful to inform users (especially screen reader users) when a button or link will trigger a modal dialog.
+This can be done by supplementing the button label or link text with "(opens modal dialog)" using the <Link to="/api/visually-hidden/">VisuallyHidden</Link> component.
+
+```tsx
+import React from 'react';
+import { Button, Hyperlink, Modal, VisuallyHidden } from '@react-magma/dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+      >
+        <p>This is a modal, doing modal things.</p>
+        <p>
+          This is <Hyperlink to="#">linked text</Hyperlink> in the modal
+        </p>
+        <p>
+          <Button>This is a button</Button>
+        </p>
+        <p>
+          This is <Hyperlink to="#">some more linked text</Hyperlink> in the
+          modal
+        </p>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>
+        Show Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
+}
+```
+
+## Sizes
+
+Sizes for modals include `small`, `medium`, and `large`, with `medium` being the default value.
+
+```tsx
+import React from 'react';
+import {
+  Button,
+  ButtonSize,
+  Modal,
+  ModalSize,
+  VisuallyHidden,
+} from '@react-magma/dom';
+export function Example() {
+  const [showSmallModal, setShowSmallModal] = React.useState(false);
+  const [showLargeModal, setShowLargeModal] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        size={ModalSize.small}
+        header="Modal Small"
+        onClose={() => setShowSmallModal(false)}
+        isOpen={showSmallModal}
+      >
+        <p>This is a small modal, doing small modal things.</p>
+      </Modal>
+
+      <Modal
+        size={ModalSize.large}
+        header="Modal Large"
+        onClose={() => setShowLargeModal(false)}
+        isOpen={showLargeModal}
+      >
+        <p>This is a large modal, doing large modal things.</p>
+      </Modal>
+
+      <Button size={ButtonSize.small} onClick={() => setShowSmallModal(true)}>
+        Show Small Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+      <Button size={ButtonSize.large} onClick={() => setShowLargeModal(true)}>
+        Show Large Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
+}
+```
+
+## Modal Header
+
+The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
+If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
+the first actionable element.
+
+```tsx
+import React from 'react';
+import { Button, Modal, ModalSize, VisuallyHidden } from '@react-magma/dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+  const [showModalHeader, setShowModalHeader] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        size={ModalSize.small}
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+      >
+        <p>This modal has no header.</p>
+        <div style={{ textAlign: 'center' }}>
+          <Button onClick={() => setShowModal(false)}>OK</Button>
+        </div>
+      </Modal>
+      <Modal
+        header="This modal has a header"
+        size={ModalSize.small}
+        onClose={() => setShowModalHeader(false)}
+        isOpen={showModalHeader}
+      >
+        <p>This modal has no header.</p>
+        <div style={{ textAlign: 'center' }}>
+          <Button onClick={() => setShowModalHeader(false)}>OK</Button>
+        </div>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>
+        Show Modal with no header
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+      <Button onClick={() => setShowModalHeader(true)}>
+        Show Modal with header
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
+}
+```
+
+## Hide Close Button
+
+The close button can be hidden by using the `isCloseButtonHidden` prop. If this prop is used, it is mandatory to provide another way to close the modal.
+
+```tsx
+import React from 'react';
+import { Button, Modal } from '@react-magma/dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        isCloseButtonHidden
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+      >
+        <p>The standard modal close button is hidden.</p>
+        <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    </>
+  );
+}
+```
+
+## Custom Close Button
+
+If you would like to add a custom close button to the `Modal` be sure not to use the same `onClose` function as it will mean that the function will be called twice (once internally and once by `react-magma`).
+
+```tsx
+import React from 'react';
+import { Button, Modal, VisuallyHidden } from '@react-magma/dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+  const [magmaCloseCalledTimes, setMagmaCloseCalledTimes] = React.useState(0);
+  const [
+    internalCloseCalledTimes,
+    setInternalCloseCalledTimes,
+  ] = React.useState(0);
+
+  function closeModal() {
+    setMagmaCloseCalledTimes(magmaCloseCalledTimes + 1);
+    setShowModal(false);
+  }
+
+  function customCloseModal() {
+    setInternalCloseCalledTimes(internalCloseCalledTimes + 1);
+    setShowModal(false);
+  }
+
+  return (
+    <>
+      <Modal header="Modal Title" onClose={closeModal} isOpen={showModal}>
+        Lorem ipsum dolar sit amet
+        <Button onClick={customCloseModal}>Close Modal</Button>
+      </Modal>
+      <p>
+        <strong>Magma Close Called Times:</strong> {magmaCloseCalledTimes}
+      </p>
+      <p>
+        <strong>Internal Close Called Times:</strong> {internalCloseCalledTimes}
+      </p>
+      <Button onClick={() => setShowModal(true)}>
+        Show Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
+}
+```
+
+## Modal Props
+
+**This component uses `forwardRef`. The ref is applied to the `div` element that wraps the Modal content.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that wraps the modal content.
+
+<ModalProps />

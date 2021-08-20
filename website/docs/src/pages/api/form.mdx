@@ -1,0 +1,43 @@
+---
+pageTitle: Form API
+title: Form
+props:
+  - FormProps
+---
+
+<DocsHeading to="/design/form/" type="api">
+  Form
+</DocsHeading>
+
+The `Form` component is a relatively simple container. It is used to contain interactive controls and sublit information to a web server.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Button, Input } from '@react-magma/dom';
+
+export function Example() {
+  return (
+    <Form
+      onSubmit={() => alert('form submitted')}
+      header="Form Heading"
+      description="Some Form Description"
+      errorMessage="Some Form Error"
+      actions={
+        <div>
+          <Button type={ButtonType.submit}>Submit</Button>
+        </div>
+      }
+    >
+      <Input labelText="some input" />
+    </Form>
+  );
+}
+```
+
+# Form Props
+
+**Any other props supplied will be provided to the wrapping `form` element.**
+
+<FormProps />

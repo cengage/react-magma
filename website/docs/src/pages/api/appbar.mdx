@@ -1,0 +1,157 @@
+---
+pageTitle: AppBar API
+title: AppBar
+props:
+  - AppBarProps
+---
+
+<DocsHeading to="/design/header/" type="api">
+  AppBar
+</DocsHeading>
+
+The `AppBar` component is a relatively simple container, rendering a `header` element, used to display information and actions relating to the current screen.
+
+It is the foundation for the <Link to="/patterns/header">Header Pattern</Link>, a more robust, more opinionated component that also handles the rendering of several components inside of it.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { AppBar } from '@react-magma/dom';
+
+export function Example() {
+  return <AppBar>AppBar content</AppBar>;
+}
+```
+
+## Compact
+
+The `isCompact` prop will render a shorter appbar with less padding.
+
+```typescript
+import React from 'react';
+import { AppBar } from '@react-magma/dom';
+
+export function Example() {
+  return <AppBar isCompact>AppBar content</AppBar>;
+}
+```
+
+## Inverse
+
+The `isInverse` prop will render an appbar with a dark background and light text. The components inside the app bar will inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { AppBar } from '@react-magma/dom';
+
+export function Example() {
+  return <AppBar isInverse>AppBar content</AppBar>;
+}
+```
+
+## Position
+
+The `position` prop will set the positioning type with CSS. It accepts values `absolute`, `fixed`, `relative`, `static` and `sticky`, with `static` being the default.
+
+If the `position` is set to `sticky` or `fixed`, the app bar will have a small drop-shadow.
+
+```typescript
+import React from 'react';
+import { AppBar, AppBarPostition, Heading, Paragraph } from '@react-magma/dom';
+
+export function Example() {
+  return (
+    <div style={{ height: '300px', overflow: 'auto', position: 'relative' }}>
+      <AppBar isInverse position={AppBarPosition.sticky}>
+        AppBar content
+      </AppBar>
+      <Heading level={2}>Lorem Ipsum</Heading>
+      <Paragraph>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis,
+        libero eu posuere hendrerit, turpis massa placerat ex, sit amet luctus
+        enim nunc a arcu. Mauris at lobortis urna. Nam suscipit purus convallis
+        mauris iaculis, vitae fermentum ipsum faucibus. Lorem ipsum dolor sit
+        amet, consectetur adipiscing elit. Donec congue eu felis a blandit.
+      </Paragraph>
+      <Paragraph>
+        Phasellus sodales ut lorem at semper. Curabitur id hendrerit est, ac
+        vestibulum neque. Curabitur ac elementum elit. Quisque eleifend tortor
+        vitae ultrices tristique. Integer a elementum magna. Cras eget erat
+        feugiat, dignissim ante in, blandit lectus. Donec sodales justo ligula,
+        ornare congue felis facilisis mattis.
+      </Paragraph>
+      <Paragraph>
+        Fusce faucibus venenatis arcu, ac sollicitudin nibh iaculis vitae. Nam
+        risus nunc, mattis et maximus ac, dignissim at lectus. Sed eleifend
+        euismod diam, at ornare lectus vestibulum et. Maecenas at sodales magna.
+        Proin mollis elit nec lorem rhoncus, a suscipit metus imperdiet.
+        Vestibulum ut magna imperdiet, bibendum felis semper, volutpat est. Duis
+        congue porta justo, et interdum ligula vulputate et.
+      </Paragraph>
+      <Paragraph>
+        Fusce vitae convallis ante. Pellentesque et enim ac dolor cursus
+        ultricies at eget quam. Vestibulum euismod volutpat nulla eget
+        porttitor. Morbi tempor fermentum viverra. Suspendisse potenti.
+      </Paragraph>
+    </div>
+  );
+}
+```
+
+## Nav Tabs
+
+This is a more complex example of putting mutliple elements inside an `AppBar`.
+
+```typescript
+import React from 'react';
+import {
+  AppBar,
+  NavTabs,
+  NavTab,
+  Search,
+  Spacer,
+  TabsIconPosition,
+  magma,
+} from '@react-magma/dom';
+import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <AppBar isInverse>
+      <strong
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        <ImageIcon size={24} />
+        <Spacer size={magma.spaceScale.spacing03} />
+        LOGO
+      </strong>
+      <Spacer size={magma.spaceScale.spacing12} />
+      <Search onSearch={() => {}} placeholder="Search for content..." />
+      <Spacer size={magma.spaceScale.spacing06} />
+      <NavTabs
+        aria-label="Navigation"
+        backgroundColor="transparent"
+        iconPosition={TabsIconPosition.left}
+      >
+        <NavTab icon={<FavoriteIcon />} isActive to="#">
+          Favorites
+        </NavTab>
+        <NavTab icon={<WorkIcon />} to="#">
+          Workspace
+        </NavTab>
+      </NavTabs>
+    </AppBar>
+  );
+}
+```
+
+# AppBar Props
+
+**Any other props supplied will be provided to the wrapping `header` element.**
+
+<AppBarProps />

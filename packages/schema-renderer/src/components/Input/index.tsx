@@ -6,7 +6,7 @@ import {
   Input as MagmaInput,
   InputType,
   InputProps as MagmaInputProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export type InputProps = MagmaInputProps & UseFieldApiConfig;
 

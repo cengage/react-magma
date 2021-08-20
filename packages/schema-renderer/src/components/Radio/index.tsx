@@ -7,7 +7,7 @@ import {
   RadioProps,
   RadioGroup,
   RadioGroupProps as MagmaRadioGroupProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 type RadioGroupProps = MagmaRadioGroupProps & UseFieldApiConfig;
 

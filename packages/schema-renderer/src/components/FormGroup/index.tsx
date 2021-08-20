@@ -3,7 +3,7 @@ import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import {
   FormGroup as MagmaFormGroup,
   FormGroupProps as MagmaFormGroupProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export interface FormGroupProps extends MagmaFormGroupProps {
   fields: any;

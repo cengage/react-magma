@@ -1,11 +1,11 @@
 import React from 'react';
 import { axe } from 'jest-axe';
 import { Header } from '.';
-import { magma } from 'react-magma-dom';
+import { magma } from '@react-magma/dom';
 import { render } from '@testing-library/react';
 
 describe('Header', () => {
-  it('should find element by testId', () => {
+  it.only('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(<Header testId={testId} />);
 
@@ -21,7 +21,7 @@ describe('Header', () => {
   });
 
   it('should render a header with compact styles', () => {
-    const { getByTestId } = render(<Header isCompact logo={<img />} />);
+    const { getByTestId } = render(<Header isCompact logo={<img alt="empty test"/>} />);
 
     expect(getByTestId('logoWrapper')).toHaveStyleRule(
       'height',

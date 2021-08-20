@@ -1,4 +1,3 @@
-import * as React from 'react';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 import { FieldArray as FieldArrayBase } from '@data-driven-forms/react-form-renderer';
 import {
@@ -7,7 +6,7 @@ import {
   ButtonType,
   Heading,
   Paragraph,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 import { FieldArrayItem } from './FieldArrayItem';
 

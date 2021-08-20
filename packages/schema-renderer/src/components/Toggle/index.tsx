@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   Toggle as MagmaToggle,
   ToggleProps as MagmaToggleProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export type ToggleProps = MagmaToggleProps & UseFieldApiConfig;
 

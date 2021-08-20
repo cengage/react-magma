@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   DatePicker as MagmaDatePicker,
   DatePickerProps as MagmaDatePickerProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 export type DatePickerProps = MagmaDatePickerProps & UseFieldApiConfig;
 

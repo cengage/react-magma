@@ -1,0 +1,199 @@
+---
+pageTitle: Toggle API
+title: Toggle
+props:
+  - ToggleProps
+---
+
+<DocsHeading to="/design/selection-controls" type="api">
+  Toggle
+</DocsHeading>
+
+## Basic Usage
+
+Toggles (also called Switches) are form elements used to set a single item either an on or off value.
+See also: <Link to="/api/checkbox">Checkboxes</Link>, <Link to="/api/radio">Radio Buttons</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
+
+The label/toggle association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
+
+Toggles can either be controlled or uncontrolled. If you pass in a checked prop, it is a controlled input. That means that to change the toggle's state, you must updated the checked prop's value. If you do not want to have your toggle be in a controlled state, but need the initial checked value to be set, pass in the defaultChecked prop with the value you would like on initial render.
+
+```tsx
+import React from 'react';
+import { Toggle, FormGroup } from '@react-magma/dom';
+
+export function Example() {
+  const [checked, updateChecked] = React.useState<boolean>(false);
+
+  function handleUpdateChecked() {
+    updateChecked(!checked);
+  }
+
+  return (
+    <FormGroup labelText="Toggle one or more">
+      <Toggle 
+        defaultChecked={true}
+        labelText="Uncontrolled Toggle"
+      />
+      <Toggle
+        checked={checked}
+        labelText="Controlled toggle"
+        onChange={handleUpdateChecked}
+      />
+    </FormGroup>
+  );
+}
+```
+
+## Disabled
+
+```tsx
+import React from 'react';
+import { Toggle } from '@react-magma/dom';
+
+export function Example() {
+  return (
+    <>
+      <Toggle disabled labelText="Disabled toggle" />
+      <Toggle disabled checked labelText="Disabled toggle on" />
+    </>
+  );
+}
+```
+
+## Error Message
+
+An `errorMessage` can also be supplied to an toggle to indicate the selection is invalid.
+
+The `required` attribute can be used on a toggle if that field is required.
+
+```tsx
+import React from 'react';
+import { Toggle } from '@react-magma/dom';
+
+export function Example() {
+  const [hasError, setHasError] = React.useState(true);
+
+  const message = hasError ? 'You must turn permissions on' : null;
+
+  function handleChange(e) {
+    setHasError(!e.target.checked);
+  }
+
+  return (
+    <Toggle
+      errorMessage={message}
+      labelText="Enable Permissions"
+      onChange={handleChange}
+      required
+    />
+  );
+}
+```
+
+## Text Position
+
+Use the optional prop `textPosition` to position the label text on either side of the toggle switch.
+The `textPosition` property takes the values `left` and `right`. The default value is `left`.
+
+```tsx
+import React from 'react';
+import { Toggle } from '@react-magma/dom';
+
+export function Example() {
+  return (
+    <>
+      <Toggle labelText="Text left" />
+      <Toggle labelText="Text right" textPosition="right" />
+    </>
+  );
+}
+```
+
+## Visually Hidden Label
+
+Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
+
+<Alert variant="warning">
+  Use caution when using the <inlineCode>isTextVisuallyHidden</inlineCode> prop;
+  it should only be used in rare circumstances when the purpose of the toggle is
+  conveyed in another way. While screen readers will announce the label when the
+  toggle gains focus, it is still best to have a visual label. This is
+  especially helpful for individuals with cognitive disabilities and users who
+  have fine motor control limitations.
+</Alert>
+
+```tsx
+import React from 'react';
+import { Toggle } from '@react-magma/dom';
+
+export function Example() {
+  return <Toggle labelText="Label is hidden" isTextVisuallyHidden />;
+}
+```
+
+## Custom Styles
+
+Custom styles can be passed into both the Toggle component. The `containerStyle` property will apply to the container.
+Additional `labelStyle`, `trackStyle` and `thumbStyle` properties are available to style the respective elements.
+Please use discretion when adding custom styles.
+
+```tsx
+import React from 'react';
+import { Toggle } from '@react-magma/dom';
+
+export function Example() {
+  return (
+    <Toggle
+      containerStyle={{ border: '1px dotted purple', width: '100%' }}
+      labelStyle={{ fontStyle: 'italic', flexGrow: '1' }}
+      labelText="Custom styles"
+      thumbStyle={{
+        background: 'yellow',
+        border: '1px solid orange',
+        boxShadow: '0 0 0',
+      }}
+      trackStyle={{ borderRadius: '5px', height: '18px' }}
+    />
+  );
+}
+```
+
+## Testing
+
+Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
+
+```html
+<div>
+  <input id="Toggle0" data-testid="test-id" name="" type="checkbox" value="" />
+  <label for="Toggle0">
+    <span>Toggle Label</span>
+    <span>
+      <span>
+        <svg
+          aria-hidden="true"
+          class="icon"
+          height="11"
+          width="11"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 29.37 21.88"
+        >
+          <path
+            d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
+            transform="translate(-0.87 -3.06)"
+          ></path>
+        </svg>
+      </span>
+    </span>
+  </label>
+</div>
+```
+
+## Toggle Props
+
+**This component uses `forwardRef`. The ref is applied to the `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
+
+<ToggleProps />

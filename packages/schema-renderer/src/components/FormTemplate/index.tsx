@@ -5,7 +5,7 @@ import {
   ButtonVariant,
   ButtonType,
   Form,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 

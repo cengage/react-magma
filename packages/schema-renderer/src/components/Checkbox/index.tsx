@@ -7,7 +7,7 @@ import {
   CheckboxProps as MagmaCheckboxProps,
   FormGroup,
   FormGroupProps as MagmaFormGroupProps,
-} from 'react-magma-dom';
+} from '@react-magma/dom';
 
 interface MagmaMultiCheckboxProps extends MagmaFormGroupProps {
   options: MagmaCheckboxProps[];
