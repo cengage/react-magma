@@ -2,7 +2,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "2.0.1-next.0",
+  "version": "2.0.2-next.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -24,16 +24,10 @@
   "peerDependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0"
+    "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0"
   },
   "devDependencies": {
-    "@emotion/react": "^11.4.0",
-    "@emotion/styled": "^11.3.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
-  },
-  "peerDependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "react": "^17.0.2",

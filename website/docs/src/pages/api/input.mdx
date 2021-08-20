@@ -86,11 +86,14 @@ export function Example() {
 Setting `isClearable` on an input will add a button that clears the value of an input when clicked.
 The button will appear when the input has a value.
 
+Additionally a prop `onClear` can be passed in which will be called when the input is cleared.
+
 ```tsx
 import React from 'react';
 import { Input } from '@react-magma/dom';
+
 export function Example() {
-  return <Input labelText="Value" isClearable />;
+  return <Input labelText="Value" onClear={() => console.log('input cleared...')} isClearable />;
 }
 ```
 
