@@ -135,8 +135,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const i18n = React.useContext(I18nContext);
     const iconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
+    const lastFocus = React.useRef<any>();
     const id: string = useGenerateId(props.id);
-    const [showHelperInformation, setShowHelperInformation] =
+    const [helperInformationShown, setHelperInformationShown] =
       React.useState<boolean>(false);
     const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
     const [dateFocused, setDateFocused] = React.useState<boolean>(false);
@@ -165,6 +166,16 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         );
       }
     }, [props.value]);
+
+    function showHelperInformation() {
+      lastFocus.current = document.activeElement;
+      setHelperInformationShown(true);
+    }
+
+    function hideHelperInformation() {
+      setHelperInformationShown(false);
+      lastFocus.current.focus();
+    }
 
     function setDateFromConsumer(date: Date): Date {
       const convertedDate = getDateFromString(date);
@@ -298,13 +309,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       }
     }
 
+
     function handleKeyDown(event: React.KeyboardEvent) {
       if (dateFocused && document.activeElement.closest('table')) {
         const newChosenDate = handleKeyPress(
           event,
           focusedDate,
           setCalendarOpened,
-          setShowHelperInformation,
+          showHelperInformation,
           onDateChange,
           iconRef
         );
@@ -318,7 +330,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         }
 
         if (event.key === '?') {
-          setShowHelperInformation(true);
+          showHelperInformation();
         }
       }
     }
@@ -341,7 +353,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function handleDaySelection(day: Date, event: React.SyntheticEvent) {
       handleDateChange(day, event);
-
       inputRef.current.focus();
     }
 
@@ -353,7 +364,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setTimeout(() => {
         const isInCalendar = currentTarget.contains(document.activeElement);
 
-        if (!isInCalendar && !showHelperInformation) {
+        if (!isInCalendar && !helperInformationShown) {
           setCalendarOpened(false);
         }
       }, 0);
@@ -391,9 +402,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           dateFocused,
           maxDate,
           minDate,
-          showHelperInformation,
+          helperInformationShown,
           buildCalendarMonth,
-          setShowHelperInformation,
+          showHelperInformation,
+          hideHelperInformation,
           onKeyDown: handleKeyDown,
           onPrevMonthClick,
           onNextMonthClick,
