@@ -5,7 +5,7 @@ export const defaultI18n: I18nInterface = {
   dateFormat: 'MM/dd/yyyy',
   timeFormat: '12',
   example:
-    'i18n defaults must be set in packages/react-magma-dom/src/i18n/default.ts',
+    'i18n defaults must be set in packages/dom/src/i18n/default.ts',
   months: {
     long: {
       january: 'January',

@@ -4,6 +4,7 @@
     "src/**/*"
   ],
   "compilerOptions": {
+    "rootDir": "./src",
     "removeComments": false,
     "noUnusedParameters": false,
     "noImplicitAny": false,

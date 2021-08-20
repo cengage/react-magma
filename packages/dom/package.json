@@ -1,15 +1,16 @@
 {
   "name": "@react-magma/dom",
-  "version": "2.5.1-next.5",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "typings": "dist/index.d.ts",
+  "version": "2.5.1-next.5",
+  "source": "src/index.ts",
+  "main": "dist/dom.js",
+  "module": "dist/dom.modern.module.js",
+  "umd:main": "dist/dom.umd.js",
+  "types": "dist/index.d.ts",
   "sideEffects": false,
   "files": [
-    "dist",
-    "!dist/reports",
-    "lib"
+    "dist/**.js*",
+    "dist/**/*.ts"
   ],
   "engines": {
     "npm": "^7.3.0",
@@ -18,14 +19,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/cengage/react-magma.git",
-    "directory": "packages/react-magma-dom"
+    "directory": "packages/dom"
   },
   "homepage": "https://react-magma.cengage.com",
   "scripts": {
     "test": "jest",
     "test-watch": "jest --watch",
-    "build": "microbundle --globals @emotion/styled/base=emotionStyledBase,@emotion/react=emotionReact,date-fns/locale=locale",
-    "build-watch": "microbundle watch --globals @emotion/styled/base=emotionStyledBase,@emotion/react=emotionReact,date-fns/locale=locale",
+    "build": "microbundle --tsconfig tsconfig.json --globals @emotion/styled/base=emotionStyledBase,@emotion/react=emotionReact,date-fns/locale=locale",
+    "build-watch": "microbundle watch --tsconfig tsconfig.json --globals @emotion/styled/base=emotionStyledBase,@emotion/react=emotionReact,date-fns/locale=locale",
     "generate-properties": "node scripts/generateJSON.js",
     "copy-changelog": "node scripts/copy-changelog.js",
     "lint": "eslint ./src",
