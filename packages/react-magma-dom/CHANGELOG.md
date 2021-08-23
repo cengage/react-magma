@@ -1,5 +1,14 @@
 # Change Log
 
+## 2.5.2-next.2
+
+### Patch Changes
+
+- 8ee194d4: - extend TypographyProps for HeadingProps
+  - use Generic for TypographyProps
+- aea1e089: - fix(datepicker): keep close button below the helper information
+  - fix(datepicker): return focus to the previous element after closing helper information
+
 ## 2.5.2-next.1
 
 ### Patch Changes
