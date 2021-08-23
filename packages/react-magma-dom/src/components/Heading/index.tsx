@@ -6,12 +6,13 @@ import {
   TypographyContextVariant,
   TypographyVisualStyle,
   TypographyComponent,
+  TypographyProps,
 } from '../Typography';
 
 /**
  * @children required
  */
-export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
+export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
   /**
    * The color of the component, that helps to convey meaning or relative emphasis
    * @default TypographyColor.default
