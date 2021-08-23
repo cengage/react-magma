@@ -12,7 +12,7 @@ import {
 /**
  * @children required
  */
-export interface HeadingProps extends TypograhyProps<HTMLHeadingElement> {
+export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
   /**
    * The color of the component, that helps to convey meaning or relative emphasis
    * @default TypographyColor.default
