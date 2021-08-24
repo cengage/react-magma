@@ -293,3 +293,13 @@ const candidateSelectors = [
 export function getTrapElements(container): Array<HTMLElement> {
   return Array.from(container.current.querySelectorAll(candidateSelectors));
 }
+
+export function toCamelCase(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z 0-9]/gi, '')
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (ltr, index) =>
+      index === 0 ? ltr.toLowerCase() : ltr.toUpperCase()
+    )
+    .replace(/\s+/g, '');
+}

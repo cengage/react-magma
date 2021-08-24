@@ -62,7 +62,7 @@ export interface BaseDatagridProps extends TableProps {
   /**
    *
    */
-  components: DatagridComponents;
+  components?: DatagridComponents;
   /**
    * Pass in false to turn off pagination
    * @default true

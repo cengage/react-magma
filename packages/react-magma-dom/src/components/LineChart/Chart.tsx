@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { LineChart, LineChartProps } from './LineChart';
-import { DataTable } from './DataTable';
+import { ChartDataTable } from './ChartDataTable';
 import {
   TabsContainer,
   Tabs,
@@ -14,6 +14,7 @@ import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 
 interface BaseChartProps {
+  description?: string;
   testId?: string;
   title: string;
   type: string;
@@ -27,13 +28,15 @@ function BaseChart<T>(
   props: ChartProps<T>,
   ref: React.MutableRefObject<HTMLDivElement>
 ) {
-  const { title, testId, type, ...other } = props;
+  const { description, title, testId, type, ...other } = props;
   const firstTabRef = React.useRef<HTMLButtonElement>();
 
   return (
     <div ref={ref}>
-      <Heading level={3}>Line Chart Proof of Concept</Heading>
-      <Paragraph style={{ maxWidth: '800px' }}>{title}</Paragraph>
+      <Heading level={3}>{title}</Heading>
+      {description && (
+        <Paragraph style={{ maxWidth: '800px' }}>{description}</Paragraph>
+      )}
       <TabsContainer>
         <Tabs aria-label="Line Chart Demo">
           <Tab ref={firstTabRef}>Chart</Tab>
@@ -46,9 +49,20 @@ function BaseChart<T>(
             )}
           </TabPanel>
           <TabPanel>
-            <Heading level={4}>2019 Annual Sales Figures</Heading>
-            <Paragraph>Conversion rate by month</Paragraph>
-            <DataTable data={other.data} />
+            <Heading level={4}>{title}</Heading>
+            {description && <Paragraph>{description}</Paragraph>}
+            <ChartDataTable
+              data={other.data}
+              xData={{
+                keyValue: other.x,
+                label: other.componentProps?.xAxis?.label,
+                tickFormat: other.componentProps?.xAxis?.tickFormat,
+              }}
+              yData={{
+                keyValue: other.y,
+                tickFormat: other.componentProps?.yAxis?.tickFormat,
+              }}
+            />
           </TabPanel>
         </TabPanelsContainer>
       </TabsContainer>

@@ -393,6 +393,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
               labelComponent={
                 showXAxisLabel ? ContainerLabelComponent : undefined
               }
+              voronoiPadding={32}
             />
           }
           {...chart}
