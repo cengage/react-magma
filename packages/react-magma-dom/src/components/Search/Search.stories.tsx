@@ -17,6 +17,12 @@ export default {
   title: 'Search',
   component: Search,
   argTypes: {
+    disabled: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
     inputSize: {
       control: {
         type: 'select',

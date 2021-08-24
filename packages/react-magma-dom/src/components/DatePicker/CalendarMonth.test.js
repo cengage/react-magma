@@ -23,7 +23,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
-            showHelperInformation: false,
+            helperInformationShown: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -38,7 +38,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
-            showHelperInformation: false,
+            helperInformationShown: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -70,7 +70,7 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
-            showHelperInformation: false,
+            helperInformationShown: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
@@ -94,10 +94,12 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
-            showHelperInformation: false,
+            helperInformationShown: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
+            showHelperInformation: jest.fn(),
+            hideHelperInformation: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={false} />
@@ -109,10 +111,12 @@ describe('Calendar Month', () => {
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
             focusedDate,
-            showHelperInformation: false,
+            helperInformationShown: false,
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
+            showHelperInformation: jest.fn(),
+            hideHelperInformation: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={true} />
@@ -138,36 +142,23 @@ describe('Calendar Month', () => {
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
-
-      // expect(getByText(/january 2019/i).parentElement).toHaveFocus();
-      // userEvent.tab();
-      // expect(getByLabelText(/previous month/i)).toHaveFocus();
-      // userEvent.tab();
-      // expect(getByLabelText(/next month/i)).toHaveFocus();
-      // userEvent.tab();
-      // expect(getByText(/18/i)).toHaveFocus();
-      // userEvent.tab();
-      // expect(getByLabelText(/help/i)).toHaveFocus();
-      // userEvent.tab();
-      // expect(getByLabelText(/close calendar/i)).toHaveFocus();
-      // userEvent.tab();
-      // expect(getByLabelText(/previous month/i)).toHaveFocus();
     });
   });
 
   it('should open helper information when clicking the helper information button', () => {
-    const setShowHelperInformation = jest.fn();
+    const showHelperInformation = jest.fn();
     const focusedDate = new Date('January 18, 2019');
     const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
-          showHelperInformation: false,
+          helperInformationShown: false,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation,
+          hideHelperInformation: jest.fn(),
+          showHelperInformation,
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -176,7 +167,7 @@ describe('Calendar Month', () => {
 
     fireEvent.click(getByLabelText('Calendar Widget Help'));
 
-    expect(setShowHelperInformation).toHaveBeenCalledWith(true);
+    expect(showHelperInformation).toHaveBeenCalled();
   });
 
   it('should focus a date on open', () => {
@@ -187,11 +178,12 @@ describe('Calendar Month', () => {
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
-          showHelperInformation: false,
+          helperInformationShown: false,
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation: jest.fn(),
+          hideHelperInformation: jest.fn(),
+          showHelperInformation: jest.fn(),
         }}
       >
         <CalendarMonth calendarOpened={true} focusOnOpen={true} />
@@ -209,11 +201,12 @@ describe('Calendar Month', () => {
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
-          showHelperInformation: false,
+          helperInformationShown: false,
           setDateFocused,
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation: jest.fn(),
+          hideHelperInformation: jest.fn(),
+          showHelperInformation: jest.fn(),
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -226,7 +219,7 @@ describe('Calendar Month', () => {
   });
 
   it('should call the close helper information', async () => {
-    const setShowHelperInformation = jest.fn();
+    const hideHelperInformation = jest.fn();
     const focusedDate = new Date('January 18, 2019');
     const { rerender } = render(
       <CalendarContext.Provider
@@ -236,8 +229,9 @@ describe('Calendar Month', () => {
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation,
-          showHelperInformation: true,
+          showHelperInformation: jest.fn(),
+          hideHelperInformation,
+          helperInformationShown: true,
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -252,8 +246,9 @@ describe('Calendar Month', () => {
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),
-          setShowHelperInformation,
-          showHelperInformation: false,
+          showHelperInformation: jest.fn(),
+          hideHelperInformation,
+          helperInformationShown: false,
         }}
       >
         <CalendarMonth calendarOpened={true} />
@@ -264,7 +259,7 @@ describe('Calendar Month', () => {
       jest.runAllTimers();
     });
 
-    expect(setShowHelperInformation).toHaveBeenCalledWith(false);
+    expect(hideHelperInformation).toHaveBeenCalled();
   });
 
   it('should call to close the calendar when the close button is clicked', () => {
@@ -275,7 +270,7 @@ describe('Calendar Month', () => {
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
           focusedDate,
-          showHelperInformation: false,
+          helperInformationShown: false,
           setDateFocused: jest.fn(),
           onPrevMonthClick: jest.fn(),
           onNextMonthClick: jest.fn(),

@@ -70,6 +70,10 @@ export interface InputBaseProps
    * @default false
    */
   isClearable?: boolean;
+  /**
+   * Function to be called when the contents of input are cleared by clicking a clear button
+   */
+  onClear?: () => void;
   isInverse?: boolean;
   /**
    * Action that will fire when icon is clicked
@@ -134,12 +138,12 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
           : props.theme.colors.danger};
     `
   }
-  }
 
   ${
     props.disabled &&
     css`
       border-color: ${props.theme.colors.neutral05};
+      background-color: ${props.disabled ? props.theme.colors.neutral07 : props.theme.colors.neutral08};
     `
   }
 `;
@@ -189,7 +193,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   css`
     padding-left: ${props.theme.spaceScale.spacing10};
   `}
-  
+
       ${props.iconPosition === 'right' &&
   props.inputSize === 'large' &&
   css`
@@ -238,35 +242,38 @@ const IconWrapper = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   isClearable?: boolean;
+  disabled?: boolean;
 }>`
-  color: ${props => props.theme.colors.neutral};
-  left: ${props =>
-    props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
+color: ${props => props.theme.colors.neutral};
+left: ${props =>
+  props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
     props.iconPosition === 'right' ? props.theme.spaceScale.spacing03 : 'auto'};
-  position: absolute;
-  top: ${props => props.theme.spaceScale.spacing03};
+    position: absolute;
+    top: ${props => props.theme.spaceScale.spacing03};
 
-  ${props =>
-    props.inputSize === 'large' &&
-    css`
+    ${props =>
+      props.inputSize === 'large' &&
+      css`
       left: ${props.iconPosition === 'left'
-        ? props.theme.spaceScale.spacing04
-        : 'auto'};
+      ? props.theme.spaceScale.spacing04
+      : 'auto'};
       right: ${props.iconPosition === 'right'
-        ? props.theme.spaceScale.spacing04
-        : 'auto'};
+      ? props.theme.spaceScale.spacing04
+      : 'auto'};
       top: ${props.theme.spaceScale.spacing04};
-    `}
-`;
+      `}
+      `;
 
-const IconButtonContainer = styled.span<{
-  size?: InputSize;
-  theme: ThemeInterface;
-  isClearable?: boolean;
-}>`
-  height: auto;
-  margin: 0;
+      const IconButtonContainer = styled.span<{
+        size?: InputSize;
+        theme: ThemeInterface;
+        isClearable?: boolean;
+        disabled?: boolean;
+      }>`
+      background-color: ${({disabled,  theme}) => disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+      height: auto;
+      margin: 0;
   position: relative;
   right: ${props =>
     props.size === InputSize.large
@@ -289,7 +296,9 @@ const IsClearableContainer = styled.span<{
   size?: InputSize;
   theme: ThemeInterface;
   isClearable?: boolean;
+  disabled?: boolean;
 }>`
+  background-color: ${({disabled,  theme}) => disabled ? theme.colors.neutral07 : theme.colors.neutral08};
   position: relative;
   right: ${props =>
     props.size === InputSize.large
@@ -312,11 +321,13 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       children,
       containerStyle,
       defaultValue,
+      disabled,
       hasError,
       icon,
       iconAriaLabel,
       iconRef,
       isClearable,
+      onClear,
       onIconClick,
       onIconKeyDown,
       inputSize,
@@ -350,10 +361,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const ref = useForkedRef(forwardedRef, inputRef);
 
     function handleClearInput() {
-      {
-        setValue('');
-        inputRef.current.focus();
-      }
+      onClear &&
+        typeof onClear === 'function' &&
+        onClear();
+      setValue('');
+      inputRef.current.focus();
     }
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -366,6 +378,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
     return (
       <InputWrapper
+        disabled={disabled}
         isInverse={props.isInverse}
         theme={theme}
         style={containerStyle}
@@ -375,6 +388,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         <StyledInput
           {...other}
           aria-invalid={hasError}
+          disabled={disabled}
           data-testid={testId}
           iconPosition={iconPosition}
           inputSize={inputSize ? inputSize : InputSize.medium}
@@ -386,12 +400,39 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           type={type ? type : InputType.text}
           value={value}
         />
+        {isClearable && value && (
+          <IsClearableContainer
+            theme={theme}
+            disabled={disabled}
+          >
+            <IconButton
+              aria-label={i18n.input.isClearableAriaLabel}
+              disabled={disabled}
+              icon={<ClearIcon />}
+              isInverse={false}
+              onClick={handleClearInput}
+              onKeyDown={onIconKeyDown}
+              ref={iconRef}
+              shape={ButtonShape.fill}
+              size={
+                inputSize === InputSize.large
+                  ? ButtonSize.medium
+                  : ButtonSize.small
+              }
+              testId="clear-button"
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+            />
+          </IsClearableContainer>
+        )}
+
         {icon && !onIconClick && (
           <IconWrapper
             aria-label={iconAriaLabel}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
             theme={theme}
+            disabled={disabled}
           >
             {React.Children.only(
               React.cloneElement(icon, {
@@ -410,6 +451,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
+            disabled={disabled}
           >
             <IconButton
               aria-label={iconAriaLabel}
@@ -418,6 +460,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               onClick={onIconClick}
               onKeyDown={onIconKeyDown}
               ref={iconRef}
+              disabled={disabled}
               shape={ButtonShape.fill}
               size={
                 inputSize === InputSize.large
@@ -430,27 +473,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           </IconButtonContainer>
         )}
 
-        {isClearable && value && (
-          <IsClearableContainer theme={theme}>
-            <IconButton
-              aria-label={i18n.input.isClearableAriaLabel}
-              icon={<ClearIcon />}
-              isInverse={false}
-              onClick={handleClearInput}
-              onKeyDown={onIconKeyDown}
-              ref={iconRef}
-              shape={ButtonShape.fill}
-              size={
-                inputSize === InputSize.large
-                  ? ButtonSize.medium
-                  : ButtonSize.small
-              }
-              testId="clear-button"
-              type={ButtonType.button}
-              variant={ButtonVariant.link}
-            />
-          </IsClearableContainer>
-        )}
         {children}
       </InputWrapper>
     );
