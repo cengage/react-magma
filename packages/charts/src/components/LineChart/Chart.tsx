@@ -3,15 +3,14 @@ import * as React from 'react';
 import { LineChart, LineChartProps } from './LineChart';
 import { ChartDataTable } from './ChartDataTable';
 import {
+  Heading,
+  Paragraph,
   TabsContainer,
   Tabs,
   Tab,
   TabPanelsContainer,
   TabPanel,
-} from '../Tabs';
-
-import { Heading } from '../Heading';
-import { Paragraph } from '../Paragraph';
+} from 'react-magma-dom';
 
 interface BaseChartProps {
   description?: string;

@@ -1,6 +1,10 @@
 import React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { StyledTooltip, ToolTipArrow, TooltipPosition } from '../Tooltip';
+import {
+  StyledTooltip,
+  ThemeContext,
+  TooltipArrow,
+  TooltipPosition,
+} from 'react-magma-dom';
 import styled from '@emotion/styled';
 
 const TooltipColorSwatch = styled.span`
@@ -28,7 +32,7 @@ export const GraphTooltip = props => {
         >
           <TooltipColorSwatch color={theme.charts.line.colors[index]} />
           <span>{datum.label}</span>
-          <ToolTipArrow theme={theme} />
+          <TooltipArrow theme={theme} />
         </StyledTooltip>
       </foreignObject>
     </g>
@@ -55,7 +59,7 @@ export const AxisTooltip = props => {
               <span>{point.label}</span>
             </div>
           ))}
-          <ToolTipArrow theme={theme} />
+          <TooltipArrow theme={theme} />
         </StyledTooltip>
       </foreignObject>
     </g>

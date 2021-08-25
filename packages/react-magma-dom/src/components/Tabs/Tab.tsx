@@ -5,7 +5,8 @@ import { css } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';
-import { useForceUpdate, useForkedRef } from '../../utils';
+import { useForkedRef } from '../../utils';
+import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeInterface } from '../../theme/magma';
 

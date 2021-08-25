@@ -1,10 +1,22 @@
 import * as React from 'react';
 import { VictoryAxisProps } from 'victory';
-import { toCamelCase } from '../../utils';
 
-import { Card } from '../Card';
-import { Datagrid } from '../Datagrid';
-import { Spinner } from '../Spinner';
+import {
+  Card,
+  Datagrid,
+  Spinner,
+} from 'react-magma-dom';
+
+export function toCamelCase(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z 0-9]/gi, '')
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (ltr, index) =>
+      index === 0 ? ltr.toLowerCase() : ltr.toUpperCase()
+    )
+    .replace(/\s+/g, '');
+}
+
 export interface DataTableProps {
   data?: any[];
   xData: {

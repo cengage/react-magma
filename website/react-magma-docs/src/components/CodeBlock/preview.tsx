@@ -9,6 +9,7 @@ import * as ICONS from 'react-magma-icons';
 import styled from '@emotion/styled';
 import { es, zhCN } from 'date-fns/locale';
 import * as HEADER from '@cengage-patterns/header';
+import * as CHARTS from '@react-magma/charts';
 
 import { CodeBlockContext } from './context';
 

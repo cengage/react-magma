@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForceUpdate } from '../../utils';
+import { useForceUpdate } from 'react-magma-dom';
 
 export const CustomPointComponent = props => {
   const { lineIndex, pointRefArray, registerPoint, unregisterPoint, ...other } =

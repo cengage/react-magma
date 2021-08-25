@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import {
   VictoryAxis,
   VictoryAxisProps,
@@ -14,14 +13,17 @@ import {
   VictoryVoronoiContainer,
 } from 'victory';
 
-import { LegendButton } from './LegendButton';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
+import {
+  I18nContext,
+  ThemeContext,
+  useDescendants,
+  styled,
+} from 'react-magma-dom';
 
 import magmaTheme from './magma-charts';
 import { AxisTooltip, GraphTooltip } from './GraphTooltip';
 import { CustomPointComponent } from './CustomPointComponent';
-import { useDescendants } from '../../utils';
+import { LegendButton } from './LegendButton';
 
 export type LineChartAxisStyle = VictoryAxisProps['style'];
 export type DataGetterPropType = VictoryLineProps['x'];
