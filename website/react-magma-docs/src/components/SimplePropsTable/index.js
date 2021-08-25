@@ -1,23 +1,17 @@
 import React from 'react';
-import { AsteriskIcon, NotificationIcon } from 'react-magma-icons';
+import { NotificationIcon } from 'react-magma-icons';
 import {
   magma,
   IconButton,
-  Paragraph,
   Table,
-  TableBody,
-  TableHead,
   TableCell,
   TableHeaderCell,
   TableRow,
   Tooltip,
-  useIsInverse,
   VisuallyHidden,
 } from 'react-magma-dom';
 
 export const SimplePropsTable = ({ propertyValues }) => {
-  const isInverse = useIsInverse();
-
   if (propertyValues === undefined) {
     return null;
   }
@@ -26,66 +20,39 @@ export const SimplePropsTable = ({ propertyValues }) => {
     return Boolean(propertyValues[name].description);
   });
 
-  const asteriskColor = isInverse
-    ? magma.colors.foundation04
-    : magma.colors.primary;
-
   return (
-    <div>
-      <Paragraph>
-        <AsteriskIcon size={16} color={asteriskColor} /> = required prop
-      </Paragraph>
+    <>
       <Table
-        hasZebraStripes
         style={{
           fontSize: magma.typeScale.size02.fontSize,
           lineHeight: magma.typeScale.size02.lineHeight,
         }}
       >
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell width="10%">Property</TableHeaderCell>
-            <TableHeaderCell width="25%">Type</TableHeaderCell>
-            <TableHeaderCell width="15%">Default</TableHeaderCell>
-            {hasDescription && (
-              <TableHeaderCell width="45%">Description</TableHeaderCell>
-            )}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {propertyValues &&
-            Object.keys(propertyValues).map(name => {
-              const prop = propertyValues[name];
+        {propertyValues &&
+          Object.keys(propertyValues).map(name => {
+            const prop = propertyValues[name];
 
-              if (!prop.type.name) {
-                return null;
-              }
+            if (!prop.type.name) {
+              return null;
+            }
 
-              return (
+            return (
+              <>
                 <TableRow key={name}>
-                  <TableCell>
-                    <span style={{ whiteSpace: 'nowrap' }}>
-                      {name}
-                      {prop.required && (
-                        <span className="required">
-                          <VisuallyHidden>Required</VisuallyHidden>
-                          <AsteriskIcon size={16} color={asteriskColor} />
-                        </span>
-                      )}
-                      {prop.deprecated && (
-                        <Tooltip content="Deprecated">
-                          <IconButton
-                            aria-label="deprecated"
-                            icon={
-                              <NotificationIcon color={magma.colors.danger} />
-                            }
-                            size="small"
-                            variant="link"
-                          />
-                        </Tooltip>
-                      )}
-                    </span>
+                  <TableCell width="100%" colspan="2">
+                    Property
                   </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeaderCell>Description</TableHeaderCell>
+                  {hasDescription && (
+                    <TableCell>
+                      {prop.description && prop.description}
+                    </TableCell>
+                  )}
+                </TableRow>
+                <TableRow>
+                  <TableHeaderCell>Type</TableHeaderCell>
                   <TableCell>
                     {prop.type.name === 'enum'
                       ? 'enum, one of:'
@@ -101,6 +68,9 @@ export const SimplePropsTable = ({ propertyValues }) => {
                         );
                       })}
                   </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableHeaderCell>Default</TableHeaderCell>
                   {!prop.defaultValue ? (
                     <TableCell>
                       <em>-</em>
@@ -114,16 +84,11 @@ export const SimplePropsTable = ({ propertyValues }) => {
                       )}
                     </TableCell>
                   )}
-                  {hasDescription && (
-                    <TableCell>
-                      {prop.description && prop.description}
-                    </TableCell>
-                  )}
                 </TableRow>
-              );
-            })}
-        </TableBody>
+              </>
+            );
+          })}
       </Table>
-    </div>
+    </>
   );
 };

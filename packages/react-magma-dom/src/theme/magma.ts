@@ -376,6 +376,7 @@ export const magma = {
   bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
   borderRadius: '4px',
   colors: colors,
+  docsPropsFont: '"Courier Prime", monospace',
   headingFont: '"Open Sans",Helvetica,sans-serif',
   headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
