@@ -3,7 +3,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 import { ProgressBar } from '../ProgressBar';
-import { motion } from 'framer-motion';
+import { motion, useDragControls, useMotionValue } from 'framer-motion';
 
 export enum SliderType {
   range = 'range',
@@ -11,6 +11,8 @@ export enum SliderType {
 }
 
 export interface SliderProps {
+  disabled?: boolean;
+
   isInverse?: boolean;
 
   width?: number;
@@ -96,83 +98,179 @@ const SliderToolTip = styled.div`
   }
 `;
 
+/**
+ * This handles the case when num is very small (0.00000001), js will turn
+ * this into 1e-8. When num is bigger than 1 or less than -1 it won't get
+ * converted to this notation so it's fine.
+ *
+ * @param num
+ * @see https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Slider/Slider.js#L69
+ */
+const getDecimalPrecision = (num: number) => {
+  if (Math.abs(num) < 1) {
+    const parts = num.toExponential().split("e-");
+    const matissaDecimalPart = parts[0].split(".")[1];
+    return (
+      (matissaDecimalPart ? matissaDecimalPart.length : 0) +
+      parseInt(parts[1], 10)
+    );
+  }
+
+  const decimalPart = num.toString().split(".")[1];
+  return decimalPart ? decimalPart.length : 0;
+}
+
+const roundValueToStep = (value: number, step: number, min: number) => {
+  let nearest = Math.round((value - min) / step) * step + min;
+  return Number(nearest.toFixed(getDecimalPrecision(step)));
+}
+
+const valueToPercent = (value: number, min: number, max: number) => {
+  return ((value - min) * 100) / (max - min);
+}
+
+const clamp = (val: number, min: number, max: number) => {
+  return val > max ? max : val < min ? min : val;
+}
+
+const Handle = (props: any) => {
+  let handleKeyDown = (event: React.KeyboardEvent) => {
+    if (props.disabled) {
+      return;
+    }
+
+    let newValue: number;
+    let tenSteps = (props.max - props.min) / 10;
+    let keyStep = props.step || (props.max - props.min) / 100;
+
+    switch (event.key) {
+      // Decrease the value of the slider by one step.
+      case "ArrowLeft":
+      case "ArrowDown":
+        newValue = props.value - keyStep;
+        break;
+      // Increase the value of the slider by one step
+      case "ArrowRight":
+      case "ArrowUp":
+        newValue = props.value + keyStep;
+        break;
+      // Decrement the slider by an amount larger than the step change made by
+      // `ArrowDown`.
+      case "PageDown":
+        newValue = props.value - tenSteps;
+        break;
+      // Increment the slider by an amount larger than the step change made by
+      // `ArrowUp`.
+      case "PageUp":
+        newValue = props.value + tenSteps;
+        break;
+      // Set the slider to the first allowed value in its range.
+      case "Home":
+        newValue = props.min;
+        break;
+      // Set the slider to the last allowed value in its range.
+      case "End":
+        newValue = props.max;
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+    newValue = clamp(
+      props.step ? roundValueToStep(newValue, props.step, props.min) : newValue,
+      props.min,
+      props.max
+    );
+    props.onChange(newValue);
+  };
+
+  const position = useMotionValue(props.value);
+
+  React.useEffect(() => {
+    position.set(props.value)
+  }, [props.value])
+
+  return (<AnimatedKnob
+    style={{x: position}}
+    drag="x"
+    dragElastic={0}
+    dragControls={props.dragControls}
+    dragConstraints={props.dragConstraints}
+    dragMomentum={false}
+    onDragEnd={() => {}}
+    onKeyDown={handleKeyDown}
+    // dragControls={minDragControls}
+    onDrag={(event, info) => {
+      props.onChange(clamp(
+        props.step ? roundValueToStep(info.point.x, props.step, props.min) : info.point.x,
+        props.min,
+        props.max
+      ));
+    }}
+    tabIndex={props.disabled ? -1 : 0}
+    theme={props.theme}
+    whileDrag={{ scale: 1.2 }}
+  >
+    <SliderToolTip theme={props.theme}>{props.value}</SliderToolTip>
+  </AnimatedKnob>)
+}
+
 export const Slider = (props: SliderProps) => {
   const {
+    disabled,
     min: rangeMin = 0,
     max: rangeMax = 100,
     width = 500,
-    type = SliderType.slider,
     steps = 1,
+    type = SliderType.slider,
   } = props;
 
   const trackRef = React.useRef<any>();
   const [min, setMin] = React.useState(rangeMin);
   const [max, setMax] = React.useState(rangeMax);
 
-  const numbers = rangeMax - rangeMin;
-
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
 
-  const handleMouseDown = event => {
-    // Get the target
-    const { target } = event;
+  const maxDragControls = useDragControls()
 
-    // Get the bounding rectangle of target
-    const { left } = target.getBoundingClientRect();
+  const valueToPercent = (value: number, min: number, max: number) => {
+    return ((value - min) * 100) / (max - min);
+  }
 
-    // Mouse position
-    const x = event.clientX - left;
-    console.log(Math.ceil((x / width) * 100));
-    setMax(Math.ceil((x / width) * 100));
-  };
+  const startDrag = (event) => {
+    maxDragControls.start(event, { snapToCursor: true })
+  }
 
   return (
     <Container
       data-testid={props.testId}
       theme={theme}
-      onMouseDown={handleMouseDown}
+      onPointerDown={startDrag}
     >
-      <Track theme={theme} ref={trackRef} percentage={max} />
-      {type === SliderType.range && (
-        <AnimatedKnob
-          drag="x"
-          dragConstraints={{
-            left: 0,
-            right: width - 16,
-          }}
-          dragMomentum={false}
-          onDragEnd={() => {}}
-          onDrag={(event, info) => {
-            setMin(Math.ceil((info.point.x / width) * 100));
-          }}
-          theme={theme}
-        >
-          <SliderToolTip theme={theme}>{}</SliderToolTip>
-        </AnimatedKnob>
-      )}
-      <AnimatedKnob
-        drag="x"
-        dragConstraints={{
-          left: 0,
-          right: width - 16,
-        }}
-        dragMomentum={false}
-        onDragEnd={() => {
-          if (max > rangeMax) {
-            setMax(rangeMax);
-          } else if (min < rangeMin) {
-            setMin(rangeMin);
-          }
-          props.onChange([rangeMin, max]);
-        }}
-        onDrag={(event, info) => {
-          setMax(Math.ceil((info.point.x / width) * 100));
-        }}
+      <Track
         theme={theme}
-      >
-        <SliderToolTip theme={theme}>{}</SliderToolTip>
-      </AnimatedKnob>
+        ref={trackRef}
+        percentage={valueToPercent(max, rangeMin, rangeMax)}
+      />
+      {type === SliderType.range && <Handle
+        dragConstraints={trackRef}
+        onChange={setMin}
+        step={10}
+        theme={theme}
+        value={min}
+        {...props}
+        />}
+      <Handle
+        dragConstraints={trackRef}
+        dragControls={maxDragControls}
+        onChange={setMax}
+        step={10}
+        theme={theme}
+        value={max}
+        {...props}
+      />
     </Container>
   );
 };
