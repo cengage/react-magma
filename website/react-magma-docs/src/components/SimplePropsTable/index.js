@@ -2,8 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import {
   magma,
-  Badge,
-  BadgeColor,
+  Tag,
   Tooltip,
   IconButton,
   NotificationIcon,
@@ -32,17 +31,18 @@ export const SimplePropsTable = ({ propertyValues }) => {
     font-weight: 600;
     padding: ${magma.spaceScale.spacing05} 0;
     font-size: 18px;
-
-    > * {
-      font-family: ${magma.bodyFont};
-      text-transform: uppercase;
-      font-weight: 400;
-      margin: 0 ${magma.spaceScale.spacing04};
-    }
+    display: grid;
+    grid-template-columns: min-content min-content;
+    grid-column-gap: 10px;
   `;
 
   const StyledTitle = styled.span`
     font-weight: 600;
+  `;
+
+  const StyledTag = styled(Tag)`
+    font-family: ${magma.bodyFont};
+    text-transform: uppercase;
   `;
 
   const hasDescription = Object.keys(propertyValues).some(name => {
@@ -64,9 +64,9 @@ export const SimplePropsTable = ({ propertyValues }) => {
               <StyledPropName>
                 {name}
                 {prop.required && (
-                  <Badge className="required" color={BadgeColor.light}>
+                  <StyledTag className="required" size="small">
                     Required
-                  </Badge>
+                  </StyledTag>
                 )}
                 {prop.deprecated && (
                   <Tooltip content="Deprecated">
