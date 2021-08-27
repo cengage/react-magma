@@ -1,3 +1,9 @@
+/**
+ * HELPFUL NOTE!
+ * SINCE THIS PACKAGE USES `FILE` WE MUST USE `Object.assign` IN LIEU OF SPREADING
+ * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
+ */
+
 import * as React from 'react';
 import { useDropzone, DropzoneOptions, DropzoneRootProps, FileRejection } from 'react-dropzone';
 import {
@@ -5,16 +11,16 @@ import {
   ButtonColor,
   ButtonVariant,
   Flex,
+  FlexBehavior,
   FlexProps,
-  FlexBehavior, 
   FormFieldContainer,
   FormFieldContainerBaseProps,
-  styled,
+  InverseContext,
   ThemeContext,
   ThemeInterface,
+  styled,
   useGenerateId,
   useIsInverse,
-  InverseContext,
 } from 'react-magma-dom';
 
 import { CloudUploadIcon } from 'react-magma-icons';
@@ -22,28 +28,30 @@ import { Preview } from './Preview';
 import { FilePreview, FileError } from './FilePreview';
 
 export interface OnSendFileProps {
-  onProgress?: ({}:{percent: number, file: FilePreview}) => void;
+  file: FilePreview;
   onError?: ({}:{errors: FileError[], file: FilePreview}) => void;
   onFinish?: ({}:{file: FilePreview}) => void;
-  file: FilePreview,
+  onProgress?: ({}:{percent: number, file: FilePreview}) => void;
 }
 
 type DragState = 'error' | 'dragAccept' | 'dragReject' | 'dragActive' | 'default';
 export interface FileUploaderProps extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
+  accept?: string | string[];
   dropzoneOptions?: Partial<Omit<DropzoneOptions, 'onDrop'>>;
-  sendFiles?: boolean;
-  onSendFile?: (props: OnSendFileProps) => void;
   helperMessage?: string;
-  thumbnails?: boolean;
-  showAcceptHelper?: boolean;
+  id?: string;
   maxFiles?: number;
-  multiple?: boolean;
   maxSize?: number;
   minSize?: number;
+  multiple?: boolean;
   noDrag?: boolean;
-  accept?: string | string[];
-  id?: string;
+  onDeleteFile?: (file: FilePreview) => void;
+  onRemoveFile?: (file: FilePreview) => void;
+  onSendFile?: (props: OnSendFileProps) => void;
+  sendFiles?: boolean;
+  showAcceptHelper?: boolean;
   testId?: string;
+  thumbnails?: boolean;
 }
 
 const Container = styled(Flex)<DropzoneRootProps & FlexProps & {dragState?: DragState; noDrag?: boolean; isInverse?: boolean;}>`
@@ -54,10 +62,10 @@ const Container = styled(Flex)<DropzoneRootProps & FlexProps & {dragState?: Drag
   padding: ${({noDrag}) => noDrag ? '0px' : '40px'};
   border-width: ${({noDrag}) => noDrag ? '0px' : '2px'};
   border-radius: ${({noDrag}) => noDrag ? '0px' : '4px'};
-  border-color: ${({dragState='default', theme, isInverse}) => 
-    dragState === 'dragReject' || dragState === 'error' ? isInverse ? theme.colors.dangerInverse : theme.colors.danger : 
-    dragState === 'dragActive' ? theme.colors.primary : 
-    dragState === 'dragAccept' ? theme.colors.success : 
+  border-color: ${({dragState='default', theme, isInverse}) =>
+    dragState === 'dragReject' || dragState === 'error' ? isInverse ? theme.colors.dangerInverse : theme.colors.danger :
+    dragState === 'dragActive' ? theme.colors.primary :
+    dragState === 'dragAccept' ? theme.colors.success :
     theme.colors.neutral06};
   border-style: ${({dragState='default'}) => dragState === 'error' ? 'solid' : 'dashed'};
   background-color: ${({theme, noDrag, isInverse}) => noDrag ? 'transparent' : isInverse ? theme.colors.foundation : theme.colors.neutral07};
@@ -66,34 +74,36 @@ const Container = styled(Flex)<DropzoneRootProps & FlexProps & {dragState?: Drag
 `;
 
 const Wrapper = styled.div<{isInverse?: boolean}>`
-  margin: 0px;
   color: ${({theme, isInverse}) => isInverse ? theme.colors.neutral07 : theme.colors.neutral02};
+  margin: 0px;
   padding: ${({theme}) => theme.spaceScale.spacing01};
 `
 export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps>((props, ref) => {
   const {
+    accept,
+    containerStyle,
     dropzoneOptions={
       multiple: true,
     },
-    sendFiles = false,
-    thumbnails = true,
-    showAcceptHelper = true,
     helperMessage,
-    containerStyle,
     id: defaultId,
-    isLabelVisuallyHidden,
-    isInverse: isInverseProp,
     inputSize,
+    isInverse: isInverseProp,
+    isLabelVisuallyHidden,
     labelStyle,
     labelText,
-    onSendFile,
     maxFiles,
-    multiple=true,
     maxSize,
     minSize,
-    accept,
-    testId,
+    multiple=true,
     noDrag=false,
+    onSendFile,
+    onDeleteFile,
+    onRemoveFile,
+    sendFiles = false,
+    showAcceptHelper = true,
+    testId,
+    thumbnails = true,
     ...rest
   } = props;
 
@@ -103,7 +113,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
   const isInverse = useIsInverse(isInverseProp);
   const theme:ThemeInterface = React.useContext(ThemeContext);
   const id = useGenerateId(defaultId);
-  
+
   const onDrop = React.useCallback((acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
     setFiles((files: FilePreview[]) => [
         ...files,
@@ -122,10 +132,10 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
   }, [])
 
   const {
-    getRootProps,
     getInputProps,
-    isDragActive,
+    getRootProps,
     isDragAccept,
+    isDragActive,
     isDragReject,
     open,
   } = useDropzone({
@@ -143,15 +153,24 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     // maxFiles,
     maxSize,
     minSize,
-    // accept,
+    accept,
     onDrop,
     noDrag,
   });
-  
+
   const dragState: DragState = errorMessage ? 'error' : isDragAccept ? 'dragAccept' : isDragReject ? 'dragReject' : isDragActive? 'dragActive': 'default';
 
-  const handleRemoveFile = (removedFile: FilePreview) => {
+  const handleRemoveFile = (removedFile: FilePreview ) => {
     setFiles(files => files.filter(file => file !== removedFile))
+    if(onRemoveFile && typeof onRemoveFile === 'function'){
+      onRemoveFile(removedFile)
+    }
+  }
+
+  const handleDeleteFile = (removedFile: FilePreview ) => {
+    if(onDeleteFile && typeof onDeleteFile === 'function'){
+      onDeleteFile(removedFile)
+    }
   }
 
   const setProgress = (props: {percent: number, file: File}) => {
@@ -178,7 +197,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     const anyErrors = files.filter(file => file.errors).length !== 0
 
     setErrorMessage(
-      anyErrors ? `Files must not have any errors.` : 
+      anyErrors ? `Files must not have any errors.` :
       maxFileError ? `Number of files must be less than or equal to ${maxFiles}` : null)
 
     if (sendFiles && files.length > 0 && !maxFileError && !anyErrors) {
@@ -187,10 +206,10 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
       })
 
       files.filter(file => !file.errors && !file.processor).forEach(file => onSendFile && onSendFile({
-        onProgress: setProgress,
-        onFinish: setFinished,
-        onError: setError,
         file,
+        onError: setError,
+        onFinish: setFinished,
+        onProgress: setProgress,
       }))
     }
   }, [sendFiles, files.length, onSendFile])
@@ -199,31 +218,31 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     <InverseContext.Provider value={{ isInverse }}>
       <FormFieldContainer
         containerStyle={containerStyle}
+        errorMessage={errorMessage}
         fieldId={id}
         helperMessage={helperMessage}
-        errorMessage={errorMessage}
-        isLabelVisuallyHidden={isLabelVisuallyHidden}
-        isInverse={isInverse}
         inputSize={inputSize}
+        isInverse={isInverse}
+        isLabelVisuallyHidden={isLabelVisuallyHidden}
         labelStyle={labelStyle}
         labelText={labelText}
       />
-      <Container 
+      <Container
+        behavior={FlexBehavior.container}
         dragState={dragState}
-        noDrag={noDrag}
         isInverse={isInverse}
+        noDrag={noDrag}
+        theme={theme}
         {...getRootProps()}
         {...rest}
-        behavior={FlexBehavior.container}
-        theme={theme}
       >
         <input ref={ref} data-testid={testId} {...getInputProps()}/>
-        {noDrag ? 
+        {noDrag ?
           <Flex xs behavior={FlexBehavior.item}>
             <Button color={ButtonColor.primary} isInverse={isInverse} style={{margin: 0}} onClick={open}>browse files</Button>
-          </Flex> : 
+          </Flex> :
           <Flex behavior={FlexBehavior.item}>
-            <CloudUploadIcon color={isInverse ? theme.colors.neutral07 : theme.colors.neutral02} size={theme.iconSizes.xLarge} />
+            <CloudUploadIcon aria-hidden="true" color={isInverse ? theme.colors.neutral07 : theme.colors.neutral02} size={theme.iconSizes.xLarge} />
             <Wrapper isInverse={isInverse} theme={theme}>
               Drag and Drop your files
             </Wrapper>
@@ -234,7 +253,14 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
           </Flex>
         }
       </Container>
-      {files.map((file: FilePreview) => <Preview isInverse={isInverse} thumbnails={thumbnails} file={file} onRemoveFile={handleRemoveFile}/>)}
+      {files.map((file: FilePreview) => <Preview
+        file={file}
+        isInverse={isInverse}
+        key={file.name}
+        onDeleteFile={handleDeleteFile}
+        onRemoveFile={handleRemoveFile}
+        thumbnails={thumbnails}
+      />)}
     </InverseContext.Provider>)
   }
 )

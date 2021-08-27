@@ -1,47 +1,61 @@
-import * as React from 'react';
-import { Card, Spinner } from 'react-magma-dom';
-import { ErrorIcon, DeleteIcon, CloseIcon, CheckCircleIcon} from 'react-magma-icons';
-import { FilePreview } from './FilePreview';
-import { 
+import {
+  forwardRef,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+
+import {
+  CheckCircleIcon,
+  CloseIcon,
+  DeleteIcon,
+  ErrorIcon,
+} from 'react-magma-icons';
+import {
+  ButtonColor,
+  ButtonVariant,
+  Card,
   Flex,
-  FlexBehavior,
   FlexAlignItems,
+  FlexBehavior,
   FlexProps,
   IconButton,
-  ButtonColor,
-  ButtonVariant ,
   InverseContext,
-  styled,
   ThemeContext,
   ThemeInterface,
   Transition,
+  Spinner,
+  styled,
   useIsInverse,
 } from 'react-magma-dom';
+
 import { FileIcon } from './FileIcon';
+import { FilePreview } from './FilePreview';
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'>{
-  testId?: string;
-  isInverse?: boolean;
   file: FilePreview;
-  thumbnails: boolean;
+  isInverse?: boolean;
+  onDeleteFile?: (file: FilePreview) => void;
   onRemoveFile?: (file: FilePreview) => void;
+  testId?: string;
+  thumbnails: boolean;
 }
 
 const Thumb = styled.div<{file: FilePreview}>`
   background-image: ${({file}) => `url('${'preview' in file && file.preview}')`};
-  background-size: contain;
   background-repeat: no-repeat;
+  background-size: contain;
   display: inline-block;
-  width: 24px;
   height: 24px;
+  width: 24px;
 `;
 
 const StatusIcons = styled.div`
   display: grid;
-  place-items: center;
   grid-template-areas: 'inner-div';
-  width: 42px;
   height: 42px;
+  place-items: center;
+  width: 42px;
   & > div {
     display: inline-block;
     right: 0;
@@ -59,15 +73,15 @@ const StyledFlex = styled(Flex)`
 `;
 
 const FileName = styled(Flex)`
-  white-space: nowrap;
   overflow: hidden;
+  white-space: nowrap;
 `;
 
 const StyledCard = styled(Card)<{file: FilePreview, isInverse: boolean}>`
-  margin: 10px 0;
-  border-width: ${({file}) => file.errors ? '2px' : '1px'};
-  border-color: ${({file, theme, isInverse}) => file.errors ? isInverse ? theme.colors.dangerInverse : theme.colors.danger : theme.colors.neutral06};
   background-color: ${({isInverse, theme}) => isInverse ? theme.colors.foundation02 : theme.colors.neutral08};
+  border-color: ${({file, theme, isInverse}) => file.errors ? isInverse ? theme.colors.dangerInverse : theme.colors.danger : theme.colors.neutral06};
+  border-width: ${({file}) => file.errors ? '2px' : '1px'};
+  margin: 10px 0;
 `;
 
 const ErrorCode = styled.span`
@@ -78,20 +92,21 @@ const ErrorMessage = styled.span`
   display: block;
 `;
 
-export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
+export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
   (props, ref) => {
     const {
+      file,
+      isInverse: isInverseProp,
+      onDeleteFile,
       onRemoveFile,
       testId,
-      isInverse: isInverseProp,
       thumbnails,
-      file,
       ...rest
     } = props;
-    
-    const theme:ThemeInterface = React.useContext(ThemeContext);
+
+    const theme:ThemeInterface = useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
-    const [actions, setActions] = React.useState(<CloseIcon />);
+    const [actions, setActions] = useState(<CloseIcon />);
 
     const handleRemoveFile = (file: FilePreview ) => {
       if(onRemoveFile && typeof onRemoveFile === 'function'){
@@ -99,10 +114,16 @@ export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
       }
     }
 
-    const FinishedActions = ({status='ready'}:{status?:string}) => {
-      const [done, setDone] = React.useState(false);
+    const handleDeleteFile = (file: FilePreview ) => {
+      if(onDeleteFile && typeof onDeleteFile === 'function'){
+        onDeleteFile(file)
+      }
+    }
 
-      React.useEffect(() => {
+    const FinishedActions = ({status='ready'}:{status?:string}) => {
+      const [done, setDone] = useState(false);
+
+      useEffect(() => {
         setTimeout(() => {
           setDone(true);
         }, 500)
@@ -132,7 +153,7 @@ export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
         </Transition>
         <Transition isOpen={done} unmountOnExit nudgeTop fade>
           <IconButton
-            onClick={() => {handleRemoveFile(file)}}
+            onClick={() => {handleDeleteFile(file)}}
             variant={ButtonVariant.link}
             color={ButtonColor.secondary}
             aria-label="Delete File"
@@ -142,7 +163,7 @@ export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
       </StatusIcons>
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
       setActions(<FinishedActions status={file?.processor?.status}/>);
     }, [file?.processor?.status])
 
@@ -156,10 +177,10 @@ export const Preview = React.forwardRef<HTMLDivElement, PreviewProps>(
             {...rest}
           >
             <Flex behavior={FlexBehavior.item} >
-              { 
+              {
                 file.errors? <ErrorIcon color={isInverse ? theme.colors.dangerInverse : theme.colors.danger} size={24} /> :
-                file.preview && thumbnails && file.type && file.type.startsWith('image')? 
-                  <Thumb file={file}/> : 
+                file.preview && thumbnails && file.type && file.type.startsWith('image')?
+                  <Thumb file={file}/> :
                   <FileIcon isInverse={isInverse} file={file}/>
               }
             </Flex>

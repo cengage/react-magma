@@ -1,1 +1,1 @@
-export * from './components/file-uploader';
+export * from './components/fileuploader';
