@@ -18,18 +18,26 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: ${magma.spaceScale.spacing03}; 
 
   & + p {
     line-height: ${magma.typeScale.size04.lineHeight};
     font-size: ${magma.typeScale.size04.fontSize};
   }
 
+  a {
+    margin: 0 0 0 -8px;
+  }
+
   @media (min-width: ${magma.breakpoints.small}px) {
-    align-items: center;
+    align-items: top;
     flex-direction: row;
     & + p {
       line-height: ${magma.typeScale.size05.lineHeight};
       font-size: ${magma.typeScale.size05.fontSize};
+    }
+    a {
+      margin: 0 0 0 0;
     }
   }
 `;
@@ -63,9 +71,11 @@ export const DocsHeading = ({ children, to, type }) => {
       {type === 'api' && to && (
         <ButtonContainer>
           <Hyperlink
-            color="secondary"
+            color="primary"
             isInverse={isInverse}
             styledAs="Button"
+            size="small"
+            variant="link"
             to={to}
           >
             {linkProps => (
@@ -81,9 +91,11 @@ export const DocsHeading = ({ children, to, type }) => {
       {type === 'design' && to && (
         <ButtonContainer>
           <Hyperlink
-            color="secondary"
+            color="primary"
             isInverse={isInverse}
             styledAs="Button"
+            size="small"
+            variant="link"
             to={to}
           >
             {linkProps => (
