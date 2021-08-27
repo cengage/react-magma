@@ -1,0 +1,66 @@
+---
+pageTitle: Slider API
+title: Slider
+props:
+  - SliderProps
+---
+
+<DocsHeading type="api">Slider</DocsHeading>
+
+An input which allows the user to drag a handle to specify a certain value
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Slider } from 'react-magma-dom';
+
+export function Example() {
+  return <Slider>Slider content</Slider>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { Slider } from 'react-magma-dom';
+
+export function Example() {
+  return <Slider isInverse>Slider content</Slider>;
+}
+```
+
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        example: 'example i18n',
+      }}
+    >
+      <Slider>override default i18n value: </Slider>
+    </I18nContext.Provider>
+  );
+}
+```
+
+# Slider Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<SliderProps />
