@@ -247,12 +247,12 @@ export const Slider = (props: SliderProps) => {
     <Container
       data-testid={props.testId}
       theme={theme}
-      onPointerDown={startDrag}
-    >
+      >
       <Track
-        theme={theme}
-        ref={trackRef}
+        onPointerDown={startDrag}
         percentage={valueToPercent(max, rangeMin, rangeMax)}
+        ref={trackRef}
+        theme={theme}
       />
       {type === SliderType.range && <Handle
         dragConstraints={trackRef}
