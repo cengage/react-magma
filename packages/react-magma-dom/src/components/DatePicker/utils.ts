@@ -20,7 +20,7 @@ export function handleKeyPress(
   e: React.KeyboardEvent,
   prevDate: Date,
   toggleCalendar?: (calendarOpened: boolean) => void,
-  setShowHelperInformation?: (value: boolean) => void,
+  showHelperInformation?: () => void,
   onDateChange?: (day: Date) => void,
   iconRef?: React.RefObject<any>
 ) {
@@ -73,8 +73,9 @@ export function handleKeyPress(
 
     case '?':
       e.preventDefault();
-      setShowHelperInformation(true);
+      showHelperInformation();
       break;
+;
 
     default:
       break;

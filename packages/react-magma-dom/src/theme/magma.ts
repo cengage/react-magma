@@ -142,7 +142,6 @@ interface AppBar {
     textColor: string;
   };
 }
-
 export interface Modal {
   width: {
     small: string;
@@ -636,7 +635,6 @@ export const magma = {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'space-around',
-
   },
 
   tooltip: {
