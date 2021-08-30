@@ -24,10 +24,9 @@ function csvJSON(csv){
       }
 
       result.push({id: i, ...obj});
-
   }
 
-  return result; //JavaScript object
+  return [headers.map((header:string) => {return {field: header, header}}), result]; //JavaScript object
   // return JSON.stringify(result); //JSON
 }
 
@@ -153,19 +152,13 @@ export const Csv = () => {
     const {file, onFinish} = props;
     const reader = new FileReader();
     reader.onload = function(evt) {
-      const fileJson = evt && evt.target && evt.target.result && csvJSON(evt.target.result.toString()) || ''
-      setColumns(fileJson[0].map(header => {return {field: header, header}}));
-      setFile(fileJson.slice(1));
+      const [columns, rows] = evt && evt.target && evt.target.result && csvJSON(evt.target.result.toString()) || []
+      setColumns(columns);
+      setFile(rows);
       onFinish && onFinish({file})
     };
     reader.readAsText(file);
   };
-
-  const columns = [
-    { field: 'name', header: 'Name' },
-    { field: 'age', header: 'Age' },
-    { field: 'gender', header: 'Gender' },
-  ];
 
   return <div>
     <FileUploader
