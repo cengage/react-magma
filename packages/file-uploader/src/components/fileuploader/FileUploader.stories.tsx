@@ -147,12 +147,15 @@ export const Text = () => {
 
 export const Csv = () => {
   const [file, setFile] = React.useState<any>();
+  const [columns, setColumns] = React.useState<any>();
 
-    const onSendFile = (props: OnSendFileProps) => {
+  const onSendFile = (props: OnSendFileProps) => {
     const {file, onFinish} = props;
     const reader = new FileReader();
     reader.onload = function(evt) {
-      setFile(evt && evt.target && evt.target.result && csvJSON(evt.target.result.toString()) || '');
+      const fileJson = evt && evt.target && evt.target.result && csvJSON(evt.target.result.toString()) || ''
+      setColumns(fileJson[0].map(header => {return {field: header, header}}));
+      setFile(fileJson.slice(1));
       onFinish && onFinish({file})
     };
     reader.readAsText(file);
