@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.3
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
 ## 2.5.3-next.0
 
 ### Patch Changes
