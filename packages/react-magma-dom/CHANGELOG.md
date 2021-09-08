@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.4-next.0
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+
 ## 2.5.3
 
 ### Patch Changes
