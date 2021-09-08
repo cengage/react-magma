@@ -1,4 +1,6 @@
 import * as React from 'react';
+import styled from '../../theme/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 import { LineChart, LineChartProps } from './LineChart';
 import { DataTable } from './DataTable';
@@ -18,16 +20,24 @@ interface BaseChartProps {
   title: string;
   type: string;
 }
+
 export interface ChartProps<T extends any>
   extends BaseChartProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     LineChartProps<T> {}
+
+const StyledHeading = styled(Heading)`
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  margin-top: 12px;
+`;
 
 function BaseChart<T>(
   props: ChartProps<T>,
   ref: React.MutableRefObject<HTMLDivElement>
 ) {
   const { title, testId, type, ...other } = props;
+
+  const theme = React.useContext(ThemeContext);
 
   return (
     <div ref={ref} {...other}>
@@ -41,7 +51,9 @@ function BaseChart<T>(
         <TabPanelsContainer>
           <TabPanel>{type === 'line' && <LineChart<T> {...other} />}</TabPanel>
           <TabPanel>
-            <Heading level={4}>2019 Annual Sales Figures</Heading>
+            <StyledHeading level={4} theme={theme}>
+              2019 Annual Sales Figures
+            </StyledHeading>
             <Paragraph>Conversion rate by month</Paragraph>
             <DataTable data={other.data} />
           </TabPanel>

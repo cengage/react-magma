@@ -69,6 +69,7 @@ const DataLegendsContainer = styled.div`
 
 const DataLegendsDescription = styled.p`
   color: ${props => props.theme.colors.neutral03};
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
 `;
 
 const ContainerLabelComponent = (

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+// import styled from '@emotion/styled';
+import styled from '../../theme/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface DataTableProps {
   children?: any;
@@ -11,19 +13,21 @@ const StyledButton = styled.button`
   background: none;
   border: 0;
   box-shadow: 0 0 0;
+  color: ${props => props.theme.colors.neutral};
   cursor: pointer;
   display: inline-flex;
-  margin-right: 24px;
+  margin: 0 36px 20px 0;
   padding: 0;
 `;
 
 const ColorSwatch = styled.span`
-  border: ${props => (props.color ? 'none' : '3px solid black')};
+  border: ${props =>
+    props.color ? `none` : `2px solid ${props.theme.colors.neutral02}`};
   border-radius: 4px;
   display: inline-block;
-  height: 28px;
-  margin-right: 8px;
-  width: 28px;
+  height: 20px;
+  margin-right: 10px;
+  width: 20px;
   background: ${props => props.color};
 `;
 
@@ -57,6 +61,8 @@ export const LegendButton = props => {
     }
   }
 
+  const theme = React.useContext(ThemeContext);
+
   return (
     <StyledButton
       onBlur={resetLineFocus}
@@ -64,9 +70,10 @@ export const LegendButton = props => {
       onFocus={handleOnMouseEnterOrFocus}
       onMouseEnter={handleOnMouseEnterOrFocus}
       onMouseLeave={resetLineFocus}
+      theme={theme}
       {...other}
     >
-      <ColorSwatch color={!isHidden ? color : null} />
+      <ColorSwatch color={!isHidden ? color : null} theme={theme} />
       {children}
     </StyledButton>
   );
