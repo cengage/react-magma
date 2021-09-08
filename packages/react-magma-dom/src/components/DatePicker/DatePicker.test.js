@@ -232,6 +232,30 @@ describe('Date Picker', () => {
     ).not.toHaveStyleRule('border-color', 'transparent');
   });
 
+  it('should handle a date lower than the year 1000', () => {
+    const onChange = jest.fn();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText } = render(
+      <DatePicker labelText={labelText} onChange={onChange} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: '1/1/0123' },
+    });
+
+    getByLabelText('Toggle Calendar Widget').focus();
+
+    expect(onChange).toHaveBeenCalled();
+
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(
+      getByText(new Date('1/1/0123').getDate().toString())
+    ).not.toHaveStyleRule('border-color', 'transparent');
+  });
+
   it('should open the calendar month when the icon button is clicked', () => {
     const defaultDate = new Date('January 17, 2019');
     const { getByLabelText, getByTestId } = render(
