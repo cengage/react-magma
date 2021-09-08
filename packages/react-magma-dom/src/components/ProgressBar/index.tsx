@@ -16,7 +16,13 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    * The height of the progress bar. Can be a string or number; if number is provided height is in px
    * @default 8
    */
+
   height?: number | string;
+  /**
+   * The axis direction of the progress bar.
+   * @default horizontal
+   */
+  direction?: ProgressBarDirection;
   /**
    * If true, the progress bar with have a shimmer animation
    * @default false
@@ -33,11 +39,24 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isLabelVisible?: boolean;
   /**
+   * The offset percentage before which the bar is filled
+   * @default 0
+   */
+  offset?: number;
+  /**
    * The percentage of which the bar is filled
    * @default 0
    */
   percentage?: number;
   testId?: string;
+  theme?: any;
+  transitionDuration?: number;
+  /**
+   * The width of the progress bar. Can be a string or number; if number is provided width is in px
+   * @default 100%
+   */
+
+  width?: number | string;
 }
 
 export enum ProgressBarColor {
@@ -46,6 +65,11 @@ export enum ProgressBarColor {
   pop = 'pop',
   pop02 = 'pop02',
   success = 'success',
+}
+
+export enum ProgressBarDirection {
+  horizontal = 'horizontal',
+  vertical = 'vertical',
 }
 
 function buildProgressBarBackground(props) {
@@ -90,17 +114,30 @@ const Track = styled.div<ProgressBarProps>`
   overflow: hidden;
   display: flex;
   height: ${props => props.height};
+  min-height: ${props =>
+    props.direction === ProgressBarDirection.vertical ? '50px' : 'inherit'};
   /* padding: 1px; */
-  width: 100%;
+  width: ${props =>
+    props.direction === ProgressBarDirection.vertical ? '8px' : props.width};
 `;
 
 const Bar = styled.div<ProgressBarProps>`
   background: ${props => buildProgressBarBackground(props)};
   border-radius: 50em;
   display: flex;
-  transition: width 0.3s;
-  width: ${props => props.percentage}%;
+  left: ${props =>
+    props.direction === ProgressBarDirection.vertical ? '0' : props.offset}%;
+  position: relative;
 
+  transition: width ${props => props.transitionDuration}s;
+  width: ${props =>
+    props.direction === ProgressBarDirection.vertical
+      ? '100'
+      : props.percentage}%;
+  top: ${props =>
+    props.direction === ProgressBarDirection.vertical
+      ? props => props.percentage
+      : 'inherit'}%;
   ${props =>
     props.isAnimated &&
     css`
@@ -147,17 +184,46 @@ const TopPercentage = styled.div`
   text-align: center;
 `;
 
+export const ProgressBarMarker = styled.div<{
+  percentage: number;
+}>`
+  position: absolute;
+  left: ${props => props.percentage}%;
+  font-size: 14px;
+  color: #3f3f3f;
+  top: 10px;
+  &:before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 4px;
+    background: gray;
+    border-radius: 4px;
+    top: -8px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  &:last-child {
+    left: calc(${props => props.percentage}% - 10px);
+  }
+`;
+
 export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
   (props, ref) => {
     const {
+      children,
       color,
+      direction,
       height,
       id: defaultId,
       isAnimated,
       isLabelVisible,
       isLoadingIndicator,
+      offset = 0,
       percentage,
       testId,
+      transitionDuration = 0.3,
+      width,
       ...other
     } = props;
 
@@ -173,6 +239,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
       theme.spaceScale.spacing03
     );
 
+    const widthString = convertStyleValueToString(width, `100%`);
+
     const isInverse = useIsInverse(props.isInverse);
 
     return (
@@ -186,10 +254,12 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         )}
         <Track
           data-testid={testId}
+          direction={direction}
           height={heightString}
           isInverse={isInverse}
           ref={ref}
           theme={theme}
+          width={widthString}
         >
           <Bar
             aria-labelledby={labelId}
@@ -197,12 +267,20 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             aria-valuemin={0}
             aria-valuemax={100}
             color={color}
+            direction={direction}
             isAnimated={isAnimated}
             isInverse={isInverse}
+            offset={offset}
             percentage={percentageValue}
             role="progressbar"
             theme={theme}
+            transitionDuration={transitionDuration}
           />
+          {children && (
+            <ProgressBarMarker percentage={percentage} theme={theme}>
+              {children}
+            </ProgressBarMarker>
+          )}
         </Track>
         {isLabelVisible ? (
           <Percentage id={labelId} theme={theme}>

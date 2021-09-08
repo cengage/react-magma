@@ -2,7 +2,12 @@ import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
-import { ProgressBar } from '../ProgressBar';
+import { Knob } from './Knob';
+import {
+  ProgressBar,
+  ProgressBarDirection,
+  ProgressBarProps,
+} from '../ProgressBar';
 import { motion, useDragControls, useMotionValue } from 'framer-motion';
 
 export enum SliderType {
@@ -11,11 +16,13 @@ export enum SliderType {
 }
 
 export interface SliderProps {
+  direction?: ProgressBarDirection;
+
   disabled?: boolean;
 
-  isInverse?: boolean;
+  hasToolTip?: boolean;
 
-  width?: number;
+  isInverse?: boolean;
 
   min?: number;
 
@@ -27,37 +34,27 @@ export interface SliderProps {
 
   testId?: string;
 
+  theme?: any;
+
   type?: SliderType;
 }
-
-const Knob = styled.div`
-  border-radius: 50%;
-  border: none;
-  width: 16px;
-  height: 16px;
-  box-shadow: inset 0 0 0 1px ${props => props.theme.colors.neutral04},
-    0 0 4px ${props => props.theme.colors.shade02};
-  background: ${props => props.theme.colors.neutral08};
-  cursor: pointer;
-  position: absolute;
-  bottom: -4px;
-`;
 
 const AnimatedKnob = Knob.withComponent(motion.div);
 
 const Track = styled(ProgressBar)`
   position: relative;
-  width: 500px;
   cursor: pointer;
+  transition: none;
 `;
 
-const Container = styled.div`
+const Container = styled.div<ProgressBarProps>`
   display: flex;
   flex-flow: column wrap;
   position: relative;
+  width: ${props => props.width}px;
 `;
 
-const SliderToolTip = styled.div`
+const SliderToolTip = styled.div<ProgressBarProps>`
   background: ${props =>
     props.isInverse
       ? props.theme.tooltip.inverse.backgroundColor
@@ -70,7 +67,6 @@ const SliderToolTip = styled.div`
       : props.theme.tooltip.textColor};
   font-size: ${props => props.theme.tooltip.typeScale.fontSize};
   font-weight: ${props => props.theme.tooltip.fontWeight};
-  left: calc(-50% / 2);
   line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
   max-width: ${props => props.theme.tooltip.maxWidth};
   min-height: 2.5em;
@@ -108,30 +104,30 @@ const SliderToolTip = styled.div`
  */
 const getDecimalPrecision = (num: number) => {
   if (Math.abs(num) < 1) {
-    const parts = num.toExponential().split("e-");
-    const matissaDecimalPart = parts[0].split(".")[1];
+    const parts = num.toExponential().split('e-');
+    const matissaDecimalPart = parts[0].split('.')[1];
     return (
       (matissaDecimalPart ? matissaDecimalPart.length : 0) +
       parseInt(parts[1], 10)
     );
   }
 
-  const decimalPart = num.toString().split(".")[1];
+  const decimalPart = num.toString().split('.')[1];
   return decimalPart ? decimalPart.length : 0;
-}
+};
 
 const roundValueToStep = (value: number, step: number, min: number) => {
   let nearest = Math.round((value - min) / step) * step + min;
   return Number(nearest.toFixed(getDecimalPrecision(step)));
-}
+};
 
 const valueToPercent = (value: number, min: number, max: number) => {
   return ((value - min) * 100) / (max - min);
-}
+};
 
 const clamp = (val: number, min: number, max: number) => {
   return val > max ? max : val < min ? min : val;
-}
+};
 
 const Handle = (props: any) => {
   let handleKeyDown = (event: React.KeyboardEvent) => {
@@ -141,35 +137,35 @@ const Handle = (props: any) => {
 
     let newValue: number;
     let tenSteps = (props.max - props.min) / 10;
-    let keyStep = props.step || (props.max - props.min) / 100;
+    let keyStep = props.steps || (props.max - props.min) / 100;
 
     switch (event.key) {
       // Decrease the value of the slider by one step.
-      case "ArrowLeft":
-      case "ArrowDown":
+      case 'ArrowLeft':
+      case 'ArrowDown':
         newValue = props.value - keyStep;
         break;
       // Increase the value of the slider by one step
-      case "ArrowRight":
-      case "ArrowUp":
+      case 'ArrowRight':
+      case 'ArrowUp':
         newValue = props.value + keyStep;
         break;
       // Decrement the slider by an amount larger than the step change made by
       // `ArrowDown`.
-      case "PageDown":
+      case 'PageDown':
         newValue = props.value - tenSteps;
         break;
       // Increment the slider by an amount larger than the step change made by
       // `ArrowUp`.
-      case "PageUp":
+      case 'PageUp':
         newValue = props.value + tenSteps;
         break;
       // Set the slider to the first allowed value in its range.
-      case "Home":
+      case 'Home':
         newValue = props.min;
         break;
       // Set the slider to the last allowed value in its range.
-      case "End":
+      case 'End':
         newValue = props.max;
         break;
       default:
@@ -178,7 +174,9 @@ const Handle = (props: any) => {
 
     event.preventDefault();
     newValue = clamp(
-      props.step ? roundValueToStep(newValue, props.step, props.min) : newValue,
+      props.steps
+        ? roundValueToStep(newValue, props.steps, props.min)
+        : newValue,
       props.min,
       props.max
     );
@@ -188,42 +186,61 @@ const Handle = (props: any) => {
   const position = useMotionValue(props.value);
 
   React.useEffect(() => {
-    position.set(props.value)
-  }, [props.value])
+    position.set(props.value);
+  }, [props.value]);
 
-  return (<AnimatedKnob
-    style={{x: position}}
-    drag="x"
-    dragElastic={0}
-    dragControls={props.dragControls}
-    dragConstraints={props.dragConstraints}
-    dragMomentum={false}
-    onDragEnd={() => {}}
-    onKeyDown={handleKeyDown}
-    // dragControls={minDragControls}
-    onDrag={(event, info) => {
-      props.onChange(clamp(
-        props.step ? roundValueToStep(info.point.x, props.step, props.min) : info.point.x,
-        props.min,
-        props.max
-      ));
-    }}
-    tabIndex={props.disabled ? -1 : 0}
-    theme={props.theme}
-    whileDrag={{ scale: 1.2 }}
-  >
-    <SliderToolTip theme={props.theme}>{props.value}</SliderToolTip>
-  </AnimatedKnob>)
-}
+  return (
+    <AnimatedKnob
+      style={
+        props.direction === ProgressBarDirection.vertical
+          ? { y: position }
+          : { x: position }
+      }
+      drag={props.direction === ProgressBarDirection.vertical ? 'y' : 'x'}
+      dragElastic={0}
+      dragControls={props.dragControls}
+      dragConstraints={props.dragConstraints}
+      dragMomentum={false}
+      onDragEnd={() => {}}
+      onKeyDown={handleKeyDown}
+      // dragControls={minDragControls}
+      onDrag={(event, info) => {
+        const point =
+          props.direction === ProgressBarDirection.vertical
+            ? info.point.y
+            : info.point.x;
+
+        props.onChange(
+          clamp(
+            props.step ? roundValueToStep(point, props.step, props.min) : point,
+            props.min,
+            props.max
+          )
+        );
+      }}
+      tabIndex={props.disabled ? -1 : 0}
+      theme={props.theme}
+      whileDrag={{ scale: 1 }}
+    >
+      {props.hasToolTip && (
+        <SliderToolTip theme={props.theme}>{props.value}</SliderToolTip>
+      )}
+    </AnimatedKnob>
+  );
+};
 
 export const Slider = (props: SliderProps) => {
   const {
+    children,
+    direction,
     disabled,
-    min: rangeMin = 0,
+    hasToolTip,
+    height,
     max: rangeMax = 100,
-    width = 500,
+    min: rangeMin = 0,
     steps = 1,
     type = SliderType.slider,
+    width,
   } = props;
 
   const trackRef = React.useRef<any>();
@@ -233,44 +250,72 @@ export const Slider = (props: SliderProps) => {
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
 
-  const maxDragControls = useDragControls()
+  const maxDragControls = useDragControls();
 
-  const valueToPercent = (value: number, min: number, max: number) => {
-    return ((value - min) * 100) / (max - min);
-  }
+  const startDrag = event => {
+    maxDragControls.start(event, { snapToCursor: true });
+  };
 
-  const startDrag = (event) => {
-    maxDragControls.start(event, { snapToCursor: true })
-  }
+  const position = useMotionValue(props.value);
+
+  React.useEffect(() => {
+    position.set(props.value);
+  }, [props.value]);
+
+  const minPercent = valueToPercent(min, rangeMin, rangeMax);
+  const maxPercent = valueToPercent(max, rangeMin, rangeMax);
+
+  const constraintsMin =
+    props.direction === ProgressBarDirection.vertical
+      ? { top: max, bottom: rangeMin }
+      : { left: rangeMin, right: max };
+
+  const constraintsMax =
+    props.direction === ProgressBarDirection.vertical
+      ? { top: rangeMax, bottom: min }
+      : { left: min, right: rangeMax };
 
   return (
-    <Container
-      data-testid={props.testId}
-      theme={theme}
-      >
+    <Container data-testid={props.testId} width={width}>
       <Track
+        direction={direction}
+        height={height}
+        isInverse={isInverse}
+        offset={minPercent}
         onPointerDown={startDrag}
-        percentage={valueToPercent(max, rangeMin, rangeMax)}
+        percentage={maxPercent - minPercent}
         ref={trackRef}
         theme={theme}
+        transitionDuration={0}
       />
-      {type === SliderType.range && <Handle
-        dragConstraints={trackRef}
-        onChange={setMin}
-        step={10}
-        theme={theme}
-        value={min}
-        {...props}
-        />}
+      {type === SliderType.range && (
+        <Handle
+          direction={direction}
+          dragConstraints={constraintsMin}
+          hasToolTip={hasToolTip}
+          isInverse={isInverse}
+          onChange={setMin}
+          min={rangeMin}
+          max={max}
+          steps={steps}
+          theme={theme}
+          value={min}
+        />
+      )}
       <Handle
-        dragConstraints={trackRef}
-        dragControls={maxDragControls}
+        direction={direction}
+        dragConstraints={constraintsMax}
+        hasToolTip={hasToolTip}
+        // dragControls={maxDragControls}
+        isInverse={isInverse}
         onChange={setMax}
-        step={10}
+        min={min}
+        max={rangeMax}
+        steps={steps}
         theme={theme}
         value={max}
-        {...props}
       />
+      {children}
     </Container>
   );
 };

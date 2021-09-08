@@ -147,6 +147,7 @@ export {
   SkipLinkContent,
   SkipLinkContentProps,
 } from './components/SkipLinkContent';
+export { Slider, SliderProps } from './components/Slider';
 export { Spacer, SpacerProps, SpacerAxis } from './components/Spacer';
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
@@ -233,5 +234,7 @@ export * from './components/Drawer';
 export * from './components/FormFieldContainer';
 
 export * from './components/Grid';
+
+export * from './components/Slider';
 
 export * from './components/Tag';
