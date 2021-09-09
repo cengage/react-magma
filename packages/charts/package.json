@@ -32,7 +32,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "react-magma-dom": "^2.5.1-next.0",
+    "react-magma-dom": "^2.5.4-next.0",
     "react-magma-icons": "^2.3.0",
     "victory": "^35.4.12"
   },

@@ -1,7 +1,5 @@
 import * as React from 'react';
-// import styled from '@emotion/styled';
-import styled from '../../../../react-magma-dom/src/theme/styled';
-import { ThemeContext } from '../../../../react-magma-dom/src/theme/ThemeContext';
+import { ThemeContext, styled } from 'react-magma-dom';
 
 export interface DataTableProps {
   children?: any;
