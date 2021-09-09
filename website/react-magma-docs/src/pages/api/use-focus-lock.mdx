@@ -1,0 +1,97 @@
+---
+pageTitle: useFocusLock Hook API
+title: useFocusLock Hook
+---
+
+<DocsHeading type="api">useFocusLock Hook</DocsHeading>
+
+The `useFocusLock` custom hook can be used to lock the browsers focus in a given container by putting the returned `ref` on to the container element.
+
+## Basic Usage
+
+```tsx codesandbox=magma
+import React from 'react';
+import { useFocusLock, Toggle, Input, Button } from 'react-magma-dom';
+
+export function Example() {
+  const [isLocked, setIsLocked] = React.useState<boolean>(false);
+  const focusTrapElement = useFocusLock(isLocked);
+
+  function handleLock() {
+    setIsLocked(!isLocked);
+  }
+
+  return (
+    <>
+      <Toggle labelText="Lock Focus" onClick={handleLock} />
+      <div ref={focusTrapElement}>
+        <Input labelText="Example Input" />
+        <Button>Example Button</Button>
+      </div>
+    </>
+  );
+}
+```
+
+## Optional Header
+
+If your container has a header that describes the section you are locking the focus in, you can pass a ref that is on the header element to put focus on the header so that it is the first thing read by screen readers.
+
+```tsx codesandbox=magma
+import React from 'react';
+import { useFocusLock, Toggle, Input, Button, Heading } from 'react-magma-dom';
+
+export function Example() {
+  const headingRef = React.useRef<HTMLHeadingElement>();
+  const [isLocked, setIsLocked] = React.useState<boolean>(false);
+  const focusTrapElement = useFocusLock(isLocked, headingRef);
+
+  function handleLock() {
+    setIsLocked(!isLocked);
+  }
+
+  return (
+    <>
+      <Toggle labelText="Lock Focus" onClick={handleLock} />
+      <div ref={focusTrapElement}>
+        <Heading ref={headingRef} level={1} tabIndex={-1}>
+          Description Heading
+        </Heading>
+        <Input labelText="Example Input" />
+        <Button>Example Button</Button>
+      </div>
+    </>
+  );
+}
+```
+
+## Optional Header
+
+If your container has no focusable elements you can pass a ref that is on an element inside of your container that encompasses your content. This ref will be used to look at the first child of the element and set focus to that child.
+
+```tsx codesandbox=magma
+import React from 'react';
+import { useFocusLock, Toggle, Input, Button, Heading } from 'react-magma-dom';
+
+export function Example() {
+  const bodyRef = React.useRef<HTMLDivElement>();
+  const [isLocked, setIsLocked] = React.useState<boolean>(false);
+  const focusTrapElement = useFocusLock(isLocked, undefined, bodyRef);
+
+  function handleLock() {
+    setIsLocked(!isLocked);
+  }
+
+  return (
+    <>
+      <Toggle labelText="Lock Focus" onClick={handleLock} />
+      <div ref={focusTrapElement}>
+        <div ref={bodyRef}>
+          <p>Content inside of container to be focused</p>
+          <p>Other content that will not be focused</p>
+        </div>
+      </div>
+    </>
+  );
+}
+```

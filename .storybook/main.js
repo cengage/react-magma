@@ -6,6 +6,7 @@ const babelConfig = require('../babel.config');
 module.exports = {
   stories: [
     '../packages/react-magma-dom/src/components/**/*.stories.tsx',
+    '../packages/charts/src/components/**/*.stories.tsx',
     '../patterns/header/src/components/**/*.stories.tsx',
   ],
   addons: [

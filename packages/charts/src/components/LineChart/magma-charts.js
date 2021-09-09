@@ -90,7 +90,7 @@ export default {
         axis: {
           fill: 'transparent',
           stroke: blueGrey300,
-          strokeWidth: 2,
+          strokeWidth: 1,
           strokeLinecap,
           strokeLinejoin,
         },
@@ -100,7 +100,7 @@ export default {
         }),
         grid: {
           fill: 'none',
-          stroke: blueGrey50,
+          stroke: '#dfdfdf',
           //strokeDasharray,
           strokeLinecap,
           strokeLinejoin,
@@ -108,9 +108,9 @@ export default {
         },
         ticks: {
           fill: 'transparent',
-          size: 5,
+          size: 0,
           stroke: blueGrey300,
-          strokeWidth: 1,
+          strokeWidth: 0,
           strokeLinecap,
           strokeLinejoin,
         },

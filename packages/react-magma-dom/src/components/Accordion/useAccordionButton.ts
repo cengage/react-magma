@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { AccordionContext } from './useAccordion';
 import { AccordionItemContext } from './useAccordionItem';
-import { useForceUpdate, useForkedRef } from '../../utils';
+import { useForceUpdate } from '../../hooks/useForceUpdate';
+import { useForkedRef } from '../../utils';
 
 export interface UseAccordionButtonProps {
   testId?: string;

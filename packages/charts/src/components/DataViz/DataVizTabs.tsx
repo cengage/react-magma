@@ -1,16 +1,14 @@
 import * as React from 'react';
 
 import {
+  Heading,
+  Paragraph,
   TabsContainer,
   Tabs,
   Tab,
   TabPanelsContainer,
   TabPanel,
-} from '../Tabs';
-
-import { Heading } from '../Heading';
-import { Paragraph } from '../Paragraph';
-
+} from 'react-magma-dom';
 export interface DataVizTabsProps extends React.HTMLAttributes<HTMLDivElement> {
   heading?: String;
   introContent?: React.Component;

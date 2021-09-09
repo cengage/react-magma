@@ -190,57 +190,6 @@ export function useForkedRef(...refs) {
   }, [...refs]);
 }
 
-export function registerDescendant(
-  itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
-  itemRef: React.MutableRefObject<Element>
-) {
-  if (
-    itemRefArray.current.find(
-      ({ current: item }) => item === itemRef.current
-    ) == null
-  ) {
-    const index = itemRefArray.current.findIndex(({ current: item }) => {
-      if (!item || !itemRef.current) return false;
-
-      return Boolean(
-        item.compareDocumentPosition(itemRef.current) &
-          Node.DOCUMENT_POSITION_PRECEDING
-      );
-    });
-
-    const newItem = itemRef;
-
-    itemRefArray.current =
-      index === -1
-        ? [...itemRefArray.current, newItem]
-        : [
-            ...itemRefArray.current.slice(0, index),
-            newItem,
-            ...itemRefArray.current.slice(index),
-          ];
-  }
-}
-
-export function useDescendants(): [
-  React.MutableRefObject<React.MutableRefObject<Element>[]>,
-  (
-    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
-    ref: React.MutableRefObject<Element>
-  ) => void
-] {
-  const itemRefArray = React.useRef<React.MutableRefObject<Element>[]>([]);
-
-  return [itemRefArray, registerDescendant];
-}
-
-export function useForceUpdate() {
-  const [, setTick] = React.useState(0);
-  const update = React.useCallback(() => {
-    setTick(tick => tick + 1);
-  }, []);
-  return update;
-}
-
 export function stringIncludesUnit(x) {
   return x.includes('px') || x.includes('em') || x.includes('%');
 }
@@ -261,4 +210,30 @@ export function getNodeText(node) {
   if (['string', 'number'].includes(typeof node)) return node;
   if (node instanceof Array) return node.map(getNodeText).join('');
   if (typeof node === 'object' && node) return getNodeText(node.props.children);
+}
+
+const candidateSelectors = [
+  'input',
+  'select',
+  'textarea',
+  'a[href]',
+  'button',
+  '[tabindex]:not([tabindex="-1"])',
+  'audio[controls]',
+  'video[controls]',
+  '[contenteditable]:not([contenteditable="false"])',
+].join(',');
+
+export function getTrapElements(container): Array<HTMLElement> {
+  return Array.from(container.current.querySelectorAll(candidateSelectors));
+}
+
+export function toCamelCase(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z 0-9]/gi, '')
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, (ltr, index) =>
+      index === 0 ? ltr.toLowerCase() : ltr.toUpperCase()
+    )
+    .replace(/\s+/g, '');
 }

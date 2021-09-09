@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { AlertBase, AlertBaseProps, transitionDuration } from '../AlertBase';
-import { getTrapElements } from '../Modal/utils';
+import { getTrapElements } from '../../utils';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
 
@@ -71,10 +71,8 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     const timerAutoHide = React.useRef<any>();
     const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
     const [isPaused, setIsPaused] = React.useState<boolean>(false);
-    const [
-      timerTimeRemaining,
-      setTimerTimeRemaining,
-    ] = React.useState<number>();
+    const [timerTimeRemaining, setTimerTimeRemaining] =
+      React.useState<number>();
 
     const {
       alertStyle,
@@ -176,9 +174,8 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       );
     }
 
-    const [bottomOffsetForToast, updateBottomOffsetForToast] = React.useState(
-      0
-    );
+    const [bottomOffsetForToast, updateBottomOffsetForToast] =
+      React.useState(0);
 
     React.useEffect(() => {
       lastFocus.current = document.activeElement;

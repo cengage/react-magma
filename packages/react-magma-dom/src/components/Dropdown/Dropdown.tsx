@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { useDescendants, useForkedRef } from '../../utils';
+import { useDescendants } from '../../hooks/useDescendants';
+import { useForkedRef } from '../../utils';
 
 export enum DropdownDropDirection {
   down = 'down', //default

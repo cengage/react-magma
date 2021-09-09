@@ -33,18 +33,6 @@ To see how progress bars are used as loading indicators, view the [loading indic
 
 ---
 
-## Principles
-
-### Clear
-
-Progress bars are simple to understand.
-
-### Helpful
-
-Progress bars help bring clarity and understanding to the elements around them.
-
----
-
 ## Anatomy
 
 <figure>
@@ -59,7 +47,7 @@ Progress bars help bring clarity and understanding to the elements around them.
 
 ### Size
 
-The default height of the progress bar is 15px, but can be customized for where it's being used. This means you can make it taller or shorter if you need to, but the height should be set in increments of 5px. The smallest recommended height is 10px to maintain maximum legibility.
+The default height of the progress bar is 8px.  Technically the height of the progress bar can be changed to any value, but officially we only want to use the default height. If absolutely necessary, heights of 4px or 16px will also be considered.
 
 The width of the progress bar is controlled by the container it is within. For maximum responsive behavior, you should avoid setting a specific width on the progress bar, and you should instead manipulate the container.
 
@@ -121,7 +109,7 @@ How we use color within the progress bar component is extremely important for me
 
 The default track has a white background and the border is #8F8F8F. This gray was specifically added to the palette as the lightest gray possible to meet the 3:1 contrast ratio required for accessibility (WCAG 2.1). It is especially useful for borders like this.
 
-The track on the dark/inverse progress bar has a black background at 25% opacity, and a white border. This ensures the necessary contrast between the track and the background color it is put on, as well as the contrast between the track and the indicator inside it.
+The track on the dark/inverse progress bar has a black background at 25% opacity, and a white border at 50% opacity. This ensures the necessary contrast between the track and the background color it is put on, as well as the contrast between the track and the indicator inside it.
 
 **Note:** _The colors of the track should not be customized unless you are designing a new theme, and then it's your responsibility to make sure the new design meets accessibility requirements._
 
@@ -133,7 +121,7 @@ The track on the dark/inverse progress bar has a black background at 25% opacity
 
 ### Indicator
 
-The indicator's color by default is **primary** and the inverse default color is **foundation03**. It's important to make sure the contrast ratio between the indicator and the background of the track is at least 3:1. For that reason, we are currently limiting the colors you may use to danger, success, pop, and pop02.
+The indicator's color by default is **primary** and the inverse default color is **primaryInverse**. It's important to make sure the contrast ratio between the indicator and the background of the track is at least 3:1. In addition to the default color, we are only officially supporting **danger** and **success**, both of which also have inverse colors in the palette.
 
 <figure>
   <img
