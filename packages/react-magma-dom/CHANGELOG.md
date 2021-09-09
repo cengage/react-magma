@@ -1,5 +1,85 @@
 # Change Log
 
+## 2.5.4-next.0
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+
+## 2.5.3
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
+## 2.5.3-next.0
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
+## 2.5.2
+
+### Patch Changes
+
+- 4980c87a: - disable the clear and action buttons when the input is disabled
+- ebdacccc: refactor(Dropdown): renamed handleMenuBlur to handleDropdownBlur
+- 8ee194d4: - extend TypographyProps for HeadingProps
+  - use Generic for TypographyProps
+- aea1e089: - fix(datepicker): keep close button below the helper information
+  - fix(datepicker): return focus to the previous element after closing helper information
+- 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
+- 12380623: fix(input): add onClear function to be called when the input is cleared by clicking the clear button
+
+## 2.5.2-next.2
+
+### Patch Changes
+
+- ebdacccc: refactor(Dropdown): renamed handleMenuBlur to handleDropdownBlur
+- 8ee194d4: - extend TypographyProps for HeadingProps
+  - use Generic for TypographyProps
+- aea1e089: - fix(datepicker): keep close button below the helper information
+  - fix(datepicker): return focus to the previous element after closing helper information
+
+## 2.5.2-next.1
+
+### Patch Changes
+
+- 4980c87a: - disable the clear and action buttons when the input is disabled
+
+## 2.5.2-next.0
+
+### Patch Changes
+
+- 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
+- 12380623: fix(input): add onClear function to be called when the input is cleared by clicking the clear button
+
+## 2.5.1
+
+### Patch Changes
+
+- 95f30ed9: fix(modal): stopped background from scrolling when a modal is open
+- 1fbd86f3: fix(timepicker): update am/pm to use type=button
+- 92579adb: chore: updating styling
+- c3b90d1d: feat: add xLarge for iconSizes
+  fix: export styled and useGeneratedId for external components
+- 3260fafb: Call onClose function when clicking outside of the dropdown menu
+- e12e00cf: fix(textarea): default width to 100%
+- 12d6d789: fix StyledButton: move creation of wrappers outside of StyledButton render function
+- 93ecc6c8: Feature/grid
+
+  CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
+
+- c5cec3f6: Add useFocusLock hook to fix focus jumping around inside of a modal that has components re-rendered.
+
+## 2.5.1-next.6
+
+### Patch Changes
+
+- 95f30ed: fix(modal): stopped background from scrolling when a modal is open
+- 92579ad: chore: updating styling
+- 12d6d78: fix StyledButton: move creation of wrappers outside of StyledButton render function
+
 ## 2.5.1-next.5
 
 ### Patch Changes

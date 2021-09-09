@@ -89,16 +89,9 @@ export function useTimePicker(props: UseTimePickerProps) {
   }
 
   function calculateHour(newHour: number): string {
-    if (newHour >= 13 && newHour <= 23) {
-      newHour = newHour - 12;
-      setAmPm(pm);
-    } else {
-      setAmPm(am);
-    }
-
     if (newHour < 10) {
       return `0${newHour}`;
-    } else if (newHour >= 24) {
+    } else if (newHour > 12) {
       return `0${newHour.toString().substring(0, 1)}`;
     }
 

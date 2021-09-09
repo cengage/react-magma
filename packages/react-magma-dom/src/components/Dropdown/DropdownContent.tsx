@@ -112,7 +112,6 @@ export const DropdownContent = React.forwardRef<
       testId={testId || 'dropdownContent'}
       theme={theme}
       width={context.width}
-      onBlur={context.handleMenuBlur}
     >
       <StyledDiv
         aria-labelledby={context.dropdownButtonId.current}

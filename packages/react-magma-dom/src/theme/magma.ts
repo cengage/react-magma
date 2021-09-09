@@ -142,7 +142,6 @@ interface AppBar {
     textColor: string;
   };
 }
-
 export interface Modal {
   width: {
     small: string;

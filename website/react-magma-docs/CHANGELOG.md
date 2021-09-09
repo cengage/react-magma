@@ -1,5 +1,98 @@
 # Change Log
 
+## 2.2.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [ae57efe9]
+  - react-magma-dom@2.5.4-next.0
+  - @react-magma/schema-renderer@0.0.5-next.0
+  - @cengage-patterns/header@2.0.4-next.0
+
+## 2.2.4
+
+### Patch Changes
+
+- Updated dependencies [52062bae]
+  - react-magma-dom@2.5.3
+  - @react-magma/schema-renderer@0.0.4
+  - @cengage-patterns/header@2.0.3
+
+## 2.2.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [52062bae]
+  - react-magma-dom@2.5.3-next.0
+  - @react-magma/schema-renderer@0.0.4-next.0
+  - @cengage-patterns/header@2.0.3-next.0
+
+## 2.2.3
+
+### Patch Changes
+
+- Updated dependencies [4980c87a]
+- Updated dependencies [ebdacccc]
+- Updated dependencies [8ee194d4]
+- Updated dependencies [aea1e089]
+- Updated dependencies [21c2ac2e]
+- Updated dependencies [12380623]
+  - react-magma-dom@2.5.2
+  - @react-magma/schema-renderer@0.0.3
+  - @cengage-patterns/header@2.0.2
+
+## 2.2.3-next.2
+
+### Patch Changes
+
+- Updated dependencies [ebdacccc]
+- Updated dependencies [8ee194d4]
+- Updated dependencies [aea1e089]
+  - react-magma-dom@2.5.2-next.2
+
+## 2.2.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [4980c87a]
+  - react-magma-dom@2.5.2-next.1
+
+## 2.2.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [21c2ac2e]
+- Updated dependencies [12380623]
+  - react-magma-dom@2.5.2-next.0
+  - @react-magma/schema-renderer@0.0.3-next.0
+  - @cengage-patterns/header@2.0.2-next.0
+
+## 2.2.2
+
+### Patch Changes
+
+- Updated dependencies [95f30ed9]
+- Updated dependencies [1fbd86f3]
+- Updated dependencies [92579adb]
+- Updated dependencies [c3b90d1d]
+- Updated dependencies [3260fafb]
+- Updated dependencies [e12e00cf]
+- Updated dependencies [12d6d789]
+- Updated dependencies [93ecc6c8]
+- Updated dependencies [c5cec3f6]
+  - react-magma-dom@2.5.1
+  - @react-magma/schema-renderer@0.0.2
+  - @cengage-patterns/header@2.0.1
+
+## 2.2.2-next.6
+
+### Patch Changes
+
+- Updated dependencies [95f30ed]
+- Updated dependencies [92579ad]
+- Updated dependencies [12d6d78]
+  - react-magma-dom@2.5.1-next.6
+
 ## 2.2.2-next.5
 
 ### Patch Changes

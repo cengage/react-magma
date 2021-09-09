@@ -43,6 +43,7 @@
         "dropup",
         "Entypo",
         "fadein",
+        "Fira",
         "Horiz",
         "Hvac",
         "invision",
@@ -51,6 +52,7 @@
         "labeledby",
         "ldquo",
         "Linkedin",
+        "Menlo",
         "ndash",
         "npmrc",
         "Ondemand",
@@ -84,5 +86,8 @@
                 "/(\\/\\/[^\\n\\r]*[\\n\\r]+)/"
             ]
         }
+    ],
+    "ignoreWords": [
+        "we've"
     ]
 }
