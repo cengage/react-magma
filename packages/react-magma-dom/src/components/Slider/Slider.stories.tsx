@@ -1,7 +1,6 @@
 import React from 'react';
-import { Slider } from '.';
 import { ProgressBarDirection, ProgressBarMarker } from '../ProgressBar';
-import { SliderType } from './Slider';
+import { Slider, SliderProps, SliderType } from './Slider';
 
 export default {
   component: Slider,
@@ -15,26 +14,32 @@ export default {
   },
 };
 
-export const Default = args => {
+export const Default = (args: SliderProps) => {
   return (
-    <>
-      <br />
-      <br />
+    <div style={{margin:'20px'}}>
       <Slider defaultValue={2} width={130} min={0} max={130} {...args} />
-      <br />
-      <br />
-      <br />
-      <Slider
-        hasToolTip
-        type={SliderType.range}
-        min={0}
-        max={500}
-        width={500}
-        {...args}
-      />
-      <br />
-      <br />
-      <br />
+    </div>
+    );
+};
+    
+export const Two = (args: SliderProps) => {
+  return (
+    <div style={{margin:'50px'}}>
+    <Slider
+      hasToolTip
+      type={SliderType.range}
+      min={0}
+      max={500}
+      width={500}
+      {...args}
+    />
+  </div>
+  );
+};
+
+export const Three = (args: SliderProps) => {
+  return (
+    <div style={{margin:'20px'}}>
       <Slider hasToolTip min={-2} max={2} width={500} steps={1} {...args}>
         <ProgressBarMarker percentage={0}>-2</ProgressBarMarker>
         <ProgressBarMarker percentage={25}>-1</ProgressBarMarker>
@@ -42,6 +47,6 @@ export const Default = args => {
         <ProgressBarMarker percentage={75}>1</ProgressBarMarker>
         <ProgressBarMarker percentage={100}>2</ProgressBarMarker>
       </Slider>
-    </>
+    </div>
   );
 };

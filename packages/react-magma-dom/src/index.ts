@@ -238,3 +238,5 @@ export * from './components/Grid';
 export * from './components/Slider';
 
 export * from './components/Tag';
+
+export { useDimensions } from './hooks/useDimensions';

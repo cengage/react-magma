@@ -1,3 +1,3 @@
 // export * from "./useSlider"
-export * from "./Knob"
+export * from "./Handle"
 export * from "./Slider"
