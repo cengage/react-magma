@@ -42,7 +42,7 @@ export const GraphTooltip = props => {
 
   return (
     <g style={{ pointerEvents: 'none' }}>
-      <foreignObject x={x} y={y} width="200" height="100">
+      <foreignObject x={x} y={y} width="200" height="100%">
         <StyledGraphTooltip
           position={TooltipPosition.top}
           role="tooltip"
@@ -64,7 +64,7 @@ export const AxisTooltip = props => {
 
   return (
     <g style={{ pointerEvents: 'none' }}>
-      <foreignObject x={x} y={y} width="200" height="100">
+      <foreignObject x={x} y={y} width="200" height="100%">
         <StyledGraphTooltip
           data-testid="axis-tooltip"
           position={TooltipPosition.top}
