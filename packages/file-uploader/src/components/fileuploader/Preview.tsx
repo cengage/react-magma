@@ -42,6 +42,7 @@ const Thumb = styled.div<{ file: FilePreview }>`
   background-repeat: no-repeat;
   background-size: contain;
   display: inline-block;
+  vertical-align: middle;
   height: 24px;
   width: 24px;
 `;
@@ -67,15 +68,14 @@ const Errors = styled.div`
 const StyledFlex = styled(Flex)`
   height: 48px;
   padding: 0 10px;
-
-  > div {
-    display: flex;
-  }
 `;
 
 const FileName = styled(Flex)`
   overflow: hidden;
   white-space: nowrap;
+  align-items: center;
+  text-overflow: ellipsis;
+  display: block;
 `;
 
 const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
