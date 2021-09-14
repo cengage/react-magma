@@ -25,7 +25,11 @@ export interface ChartProps<T extends any>
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     LineChartProps<T> {}
 
-const StyledHeading = styled(Heading)`
+const StyledHeading = styled.p`
+  color: ${props => props.theme.colors.neutral};
+  font-size: ${props => props.theme.typeScale.size04.fontSize};
+  font-weight: 600;
+  line-height: ${props => props.theme.typeScale.size04.lineHeight};
   margin: 0 0 12px 0;
 `;
 
@@ -55,9 +59,7 @@ function BaseChart<T>(
 
   return (
     <div ref={ref}>
-      <StyledHeading level={5} theme={theme}>
-        {title}
-      </StyledHeading>
+      <StyledHeading theme={theme}>{title}</StyledHeading>
       {description && (
         <StyledParagraph
           theme={theme}

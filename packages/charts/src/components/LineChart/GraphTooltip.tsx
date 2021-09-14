@@ -14,6 +14,7 @@ const StyledGraphTooltip = styled(StyledTooltip)`
   box-sizing: border-box;
   color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  font-weight: normal;
   margin: 0;
   padding: 8px;
   div {
@@ -42,14 +43,16 @@ export const GraphTooltip = props => {
 
   return (
     <g style={{ pointerEvents: 'none' }}>
-      <foreignObject x={x} y={y} width="200" height="100%">
+      <foreignObject x={x} y={y} width="275" height="100%">
         <StyledGraphTooltip
           position={TooltipPosition.top}
           role="tooltip"
           theme={theme}
         >
-          <TooltipColorSwatch color={theme.charts.line.colors[index]} />
-          <span>{datum.label}</span>
+          <div>
+            <TooltipColorSwatch color={theme.charts.line.colors[index]} />
+            <span>{datum.label}</span>
+          </div>
           <TooltipArrow theme={theme} />
         </StyledGraphTooltip>
       </foreignObject>
@@ -64,7 +67,7 @@ export const AxisTooltip = props => {
 
   return (
     <g style={{ pointerEvents: 'none' }}>
-      <foreignObject x={x} y={y} width="200" height="100%">
+      <foreignObject x={x} y={y} width="275" height="100%">
         <StyledGraphTooltip
           data-testid="axis-tooltip"
           position={TooltipPosition.top}
