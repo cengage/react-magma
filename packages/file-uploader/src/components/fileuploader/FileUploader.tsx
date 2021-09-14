@@ -15,6 +15,8 @@ import {
   FlexProps,
   FormFieldContainer,
   FormFieldContainerBaseProps,
+  I18nContext,
+  I18nInterface,
   InverseContext,
   ThemeContext,
   ThemeInterface,
@@ -41,6 +43,7 @@ export interface FileUploaderProps extends Omit<FormFieldContainerBaseProps, 'fi
   helperMessage?: string;
   id?: string;
   maxFiles?: number;
+  minFiles?: number;
   maxSize?: number;
   minSize?: number;
   multiple?: boolean;
@@ -93,6 +96,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     labelStyle,
     labelText,
     maxFiles,
+    minFiles,
     maxSize,
     minSize,
     multiple=true,
@@ -112,6 +116,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
 
   const isInverse = useIsInverse(isInverseProp);
   const theme:ThemeInterface = React.useContext(ThemeContext);
+  const i18n:I18nInterface = React.useContext(I18nContext);
   const id = useGenerateId(defaultId);
 
   const onDrop = React.useCallback((acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
@@ -185,6 +190,21 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     setFiles(files => files.map(file => file === props.file ? Object.assign(file, {errors: props.errors, processor:{...file.processor, status: 'error'}}) : file))
   }
 
+  const formatError = (code: string | null, constraints:{maxFiles?: number, minFiles?: number}) => {
+    if(code === null) return;
+    const error = i18n.fileUploader.errors[code]
+    switch (code) {
+      case 'too-many-files':
+        return `${error.message} ${constraints.maxFiles} ${i18n.fileUploader.files}.`
+        break;
+      case 'too-few-files':
+        return `${error.message} ${constraints.minFiles} ${i18n.fileUploader.files}.`
+        break;
+      default:
+        return error.message;
+    }
+  }
+
   React.useEffect(
     () => () => {
       files.forEach((file) => file.preview && URL.revokeObjectURL(file.preview))
@@ -193,12 +213,21 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
   )
 
   React.useEffect(() => {
+    const minFileError = minFiles && files.length < minFiles;
     const maxFileError = maxFiles && files.length > maxFiles;
     const anyErrors = files.filter(file => file.errors).length !== 0
 
+
+
     setErrorMessage(
-      anyErrors ? `Files must not have any errors.` :
-      maxFileError ? `Number of files must be less than or equal to ${maxFiles}` : null)
+      formatError(
+        anyErrors ? 'too-many-errors' :
+        maxFileError ? 'too-many-files' :
+        minFileError ? 'too-few-files' : 
+        null, 
+        {minFiles, maxFiles}
+      )
+    )
 
     if (sendFiles && files.length > 0 && !maxFileError && !anyErrors) {
       setFiles(files => {
@@ -239,24 +268,24 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
         <input ref={ref} data-testid={testId} {...getInputProps()}/>
         {noDrag ?
           <Flex xs behavior={FlexBehavior.item}>
-            <Button color={ButtonColor.primary} isInverse={isInverse} style={{margin: 0}} onClick={open}>browse files</Button>
+            <Button color={ButtonColor.primary} isInverse={isInverse} style={{margin: 0}} onClick={open}>{i18n.fileUploader.browseFiles}</Button>
           </Flex> :
           <Flex behavior={FlexBehavior.item}>
             <CloudUploadIcon aria-hidden="true" color={isInverse ? theme.colors.neutral07 : theme.colors.neutral02} size={theme.iconSizes.xLarge} />
             <Wrapper isInverse={isInverse} theme={theme}>
-              Drag and Drop your files
+            {i18n.fileUploader.dragMessage}
             </Wrapper>
-            <Wrapper isInverse={isInverse} theme={theme}>
-              or
-            </Wrapper>
-            <Button color={ButtonColor.secondary} variant={ButtonVariant.outline} isInverse={isInverse} onClick={open}>browse files</Button>
+            <Button color={ButtonColor.secondary} variant={ButtonVariant.outline} isInverse={isInverse} onClick={open}>{i18n.fileUploader.browseFiles}</Button>
           </Flex>
         }
       </Container>
       {files.map((file: FilePreview) => <Preview
+        accept={accept}
         file={file}
         isInverse={isInverse}
         key={file.name}
+        maxSize={maxSize}
+        minSize={minSize}
         onDeleteFile={handleDeleteFile}
         onRemoveFile={handleRemoveFile}
         thumbnails={thumbnails}

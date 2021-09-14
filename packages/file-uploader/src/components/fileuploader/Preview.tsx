@@ -14,6 +14,8 @@ import {
   FlexAlignItems,
   FlexBehavior,
   FlexProps,
+  I18nContext,
+  I18nInterface,
   IconButton,
   InverseContext,
   ThemeContext,
@@ -26,6 +28,8 @@ import {
 
 import { FileIcon } from './FileIcon';
 import { FilePreview } from './FilePreview';
+import { formatFileSize } from './utils';
+import React from 'react';
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   file: FilePreview;
@@ -91,7 +95,7 @@ const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
   margin: 10px 0;
 `;
 
-const ErrorCode = styled.span`
+const ErrorHeader = styled.span`
   display: block;
 `;
 
@@ -99,11 +103,32 @@ const ErrorMessage = styled.span`
   display: block;
 `;
 
+const formatError = (error:{header?: string, message: string, code: string}, constraints:{maxSize?: number, minSize?: number, accept?: string| string[]}) => {
+  switch (error.code) {
+    case 'file-too-large':
+      return {...error, message: `${error.message} ${formatFileSize(constraints.maxSize)}.`}
+      break;
+    case 'file-too-small':
+      return {...error, messsge: `${error.message} ${formatFileSize(constraints.minSize)}.`}
+      break;
+    case 'file-invalid-type':
+      const accept = Array.isArray(constraints.accept) && constraints.accept.length === 1 ? constraints.accept[0] : constraints.accept
+      const messageSuffix = Array.isArray(accept) ? `one of ${accept.join(', ')}` : accept
+      return {...error, message: `${error.message}: ${messageSuffix}`}
+      break;
+    default:
+      return error;
+  }
+}
+
 export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
   (props, ref) => {
     const {
+      accept,
       file,
       isInverse: isInverseProp,
+      maxSize,
+      minSize,
       onDeleteFile,
       onRemoveFile,
       testId,
@@ -112,6 +137,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
     } = props;
 
     const theme: ThemeInterface = useContext(ThemeContext);
+    const i18n:I18nInterface = React.useContext(I18nContext);
     const isInverse = useIsInverse(isInverseProp);
     const [actions, setActions] = useState(<CloseIcon />);
 
@@ -229,12 +255,13 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
           </StyledFlex>
           {file.errors && (
             <Errors theme={theme}>
-              {file.errors.map(error => (
-                <>
-                  <ErrorCode>{error.code}</ErrorCode>
-                  <ErrorMessage>{error.message}</ErrorMessage>
-                </>
-              ))}
+              {file.errors.slice(0,1).map(({code}) => {
+                const {header="", message} = formatError({code, ...i18n.fileUploader.errors[code]}, {accept, minSize, maxSize});
+                return (<>
+                  <ErrorHeader>{header}</ErrorHeader>
+                  <ErrorMessage>{message}</ErrorMessage>
+                </>)}
+              )}
             </Errors>
           )}
         </StyledCard>
