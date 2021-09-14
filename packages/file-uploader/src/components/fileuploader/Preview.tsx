@@ -64,6 +64,11 @@ const StatusIcons = styled.div`
   }
 `;
 
+const IconStyles = {
+  marginRight: '12px',
+  display: 'flex',
+};
+
 const Errors = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.neutral04};
   padding: 10px;
@@ -97,29 +102,53 @@ const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
 
 const ErrorHeader = styled.span`
   display: block;
+
+  > div {
+    display: flex;
+    align-self: center;
+    margin-right: 12px;
+  }
 `;
 
 const ErrorMessage = styled.span`
   display: block;
 `;
 
-const formatError = (error:{header?: string, message: string, code: string}, constraints:{maxSize?: number, minSize?: number, accept?: string| string[]}) => {
+const formatError = (
+  error: { header?: string; message: string; code: string },
+  constraints: {
+    maxSize?: number;
+    minSize?: number;
+    accept?: string | string[];
+  }
+) => {
   switch (error.code) {
     case 'file-too-large':
-      return {...error, message: `${error.message} ${formatFileSize(constraints.maxSize)}.`}
+      return {
+        ...error,
+        message: `${error.message} ${formatFileSize(constraints.maxSize)}.`,
+      };
       break;
     case 'file-too-small':
-      return {...error, messsge: `${error.message} ${formatFileSize(constraints.minSize)}.`}
+      return {
+        ...error,
+        messsge: `${error.message} ${formatFileSize(constraints.minSize)}.`,
+      };
       break;
     case 'file-invalid-type':
-      const accept = Array.isArray(constraints.accept) && constraints.accept.length === 1 ? constraints.accept[0] : constraints.accept
-      const messageSuffix = Array.isArray(accept) ? `one of ${accept.join(', ')}` : accept
-      return {...error, message: `${error.message}: ${messageSuffix}`}
+      const accept =
+        Array.isArray(constraints.accept) && constraints.accept.length === 1
+          ? constraints.accept[0]
+          : constraints.accept;
+      const messageSuffix = Array.isArray(accept)
+        ? `one of ${accept.join(', ')}`
+        : accept;
+      return { ...error, message: `${error.message}: ${messageSuffix}` };
       break;
     default:
       return error;
   }
-}
+};
 
 export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
   (props, ref) => {
@@ -137,7 +166,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
     } = props;
 
     const theme: ThemeInterface = useContext(ThemeContext);
-    const i18n:I18nInterface = React.useContext(I18nContext);
+    const i18n: I18nInterface = React.useContext(I18nContext);
     const isInverse = useIsInverse(isInverseProp);
     const [actions, setActions] = useState(<CloseIcon />);
 
@@ -228,6 +257,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
             <Flex
               behavior={FlexBehavior.item}
               alignItems={FlexAlignItems.center}
+              style={IconStyles}
             >
               {file.errors ? (
                 <ErrorIcon
@@ -255,13 +285,26 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
           </StyledFlex>
           {file.errors && (
             <Errors theme={theme}>
-              {file.errors.slice(0,1).map(({code}) => {
-                const {header="", message} = formatError({code, ...i18n.fileUploader.errors[code]}, {accept, minSize, maxSize});
-                return (<>
-                  <ErrorHeader>{header}</ErrorHeader>
-                  <ErrorMessage>{message}</ErrorMessage>
-                </>)}
-              )}
+              {file.errors.slice(0, 1).map(({ code }) => {
+                const { header = '', message } = formatError(
+                  { code, ...i18n.fileUploader.errors[code] },
+                  { accept, minSize, maxSize }
+                );
+                return (
+                  <>
+                    <ErrorHeader
+                      style={{
+                        color: isInverse
+                          ? theme.colors.dangerInverse
+                          : theme.colors.danger,
+                      }}
+                    >
+                      {header}
+                    </ErrorHeader>
+                    <ErrorMessage>{message}</ErrorMessage>
+                  </>
+                );
+              })}
             </Errors>
           )}
         </StyledCard>
