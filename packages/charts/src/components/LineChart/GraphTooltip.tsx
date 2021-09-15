@@ -15,13 +15,14 @@ const StyledGraphTooltip = styled(StyledTooltip)`
   color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   font-weight: normal;
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin: 0;
   padding: 8px;
   div {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     display: flex;
-    align-items: center;
-    &:last-child {
+    align-items: flex-start;
+    &:last-of-type {
       margin-bottom: 0;
     }
   }
