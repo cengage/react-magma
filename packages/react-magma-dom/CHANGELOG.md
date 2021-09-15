@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.4
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
 ## 2.5.4-next.1
 
 ### Patch Changes
