@@ -207,7 +207,6 @@ export const TablePagination = React.forwardRef<
           color={ButtonColor.secondary}
           style={{ minWidth: 0 }}
           testId="rowPerPageDropdownButton"
-          variant={ButtonVariant.outline}
         >
           {rowsPerPageItems.find(item => item.value === rowsPerPage).label}
         </DropdownButton>
