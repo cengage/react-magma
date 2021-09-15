@@ -382,6 +382,7 @@ export const magma = {
   direction: 'ltr',
   spacingMultiplier: 8,
   transitions,
+  
   // breakpoints
   breakpoints: {
     xs: 0,

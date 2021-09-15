@@ -60,6 +60,7 @@
   "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
+    "@babel/eslint-parser": "^7.14.7",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-proposal-export-default-from": "^7.0.0",
     "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
@@ -81,12 +82,6 @@
     "@emotion/babel-plugin": "^11.3.0",
     "@emotion/jest": "^11.3.0",
     "@manypkg/cli": "^0.18.0",
-    "@storybook/addon-actions": "^6.3.4",
-    "@storybook/addon-controls": "^6.3.4",
-    "@storybook/addon-docs": "^6.3.4f",
-    "@storybook/addon-toolbars": "^6.3.4",
-    "@storybook/addons": "^6.3.4",
-    "@storybook/react": "^6.3.4",
     "@testing-library/dom": "^8.1.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
@@ -112,6 +107,8 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.9.0",
     "eslint-config-cengage": "^3.0.0-beta.1",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-unicorn": "^34.0.1",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
     "jest-axe": "^5.0.1",
@@ -132,9 +129,12 @@
     "typedoc": "^0.21.4",
     "typescript": "^4.3.5"
   },
-  "devDependencies": {
-    "@babel/eslint-parser": "^7.14.7",
-    "eslint-plugin-jest": "^24.4.0",
-    "eslint-plugin-unicorn": "^34.0.1"
+  "storybook": {
+    "@storybook/addon-actions": "^6.3.4",
+    "@storybook/addon-controls": "^6.3.4",
+    "@storybook/addon-docs": "^6.3.4f",
+    "@storybook/addon-toolbars": "^6.3.4",
+    "@storybook/addons": "^6.3.4",
+    "@storybook/react": "^6.3.4"
   }
 }
