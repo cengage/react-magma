@@ -5,7 +5,6 @@ import { DatagridProps } from './Datagrid';
 import { TablePaginationProps, TableRowColor } from '../Table';
 import { usePagination } from '../Pagination/usePagination';
 import { Button } from '../Button';
-import { DropdownDropDirection } from '../Dropdown';
 
 const rowsForPagination = [
   {
