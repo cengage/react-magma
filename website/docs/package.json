@@ -15,11 +15,12 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@cengage-patterns/header": "2.0.1-next.0",
+    "@cengage-patterns/header": "2.0.2-next.0",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@react-magma/dom": "^2.5.1-next.4",
     "assert": "^2.0.0",
     "gatsby": "^3.6.2",
     "gatsby-background-image": "^1.5.3",
@@ -40,7 +41,6 @@
     "react-focus-lock": "^2.5.1",
     "react-helmet": "^6.1.0",
     "react-live": "^2.2.3",
-    "@react-magma/dom": "^2.5.1-next.4",
     "react-magma-icons": "2.3.0-beta.1"
   }
 }
