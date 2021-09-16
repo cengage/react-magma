@@ -18,6 +18,7 @@ const StyledGraphTooltip = styled(StyledTooltip)`
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin: 0;
   padding: 8px;
+  width: fit-content;
   div {
     margin-bottom: 8px;
     display: flex;
