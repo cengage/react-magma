@@ -63,7 +63,12 @@ export const GraphTooltip = props => {
 };
 
 export const AxisTooltip = props => {
-  const { x, y, activePoints } = props;
+  const { x, y, activePoints, hiddenData, dataLength } = props;
+
+  const pointsIndexes = Array.from(
+    Array(dataLength - 0),
+    (_, i) => i + 0
+  ).filter(i => !hiddenData.includes(i));
 
   const theme = React.useContext(ThemeContext);
 
@@ -78,7 +83,9 @@ export const AxisTooltip = props => {
         >
           {activePoints.map((point, i) => (
             <div key={i}>
-              <TooltipColorSwatch color={theme.charts.line.colors[i]} />
+              <TooltipColorSwatch
+                color={theme.charts.line.colors[pointsIndexes[i]]}
+              />
               <span>{point.label}</span>
             </div>
           ))}

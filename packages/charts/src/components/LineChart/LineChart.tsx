@@ -82,10 +82,6 @@ const DataLegendsDescription = styled.p`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
 `;
 
-const ContainerLabelComponent = (
-  <VictoryTooltip flyoutComponent={<AxisTooltip />} />
-);
-
 export function LineChart<T>(props: LineChartProps<T>) {
   const {
     componentProps: {
@@ -397,7 +393,16 @@ export function LineChart<T>(props: LineChartProps<T>) {
               voronoiDimension="x"
               labels={showXAxisLabel ? () => ` ` : undefined}
               labelComponent={
-                showXAxisLabel ? ContainerLabelComponent : undefined
+                showXAxisLabel ? (
+                  <VictoryTooltip
+                    flyoutComponent={
+                      <AxisTooltip
+                        hiddenData={hiddenData}
+                        dataLength={data.length}
+                      />
+                    }
+                  />
+                ) : undefined
               }
               voronoiPadding={32}
             />
