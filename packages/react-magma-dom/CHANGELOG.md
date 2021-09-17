@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.5-next.0
+
+### Patch Changes
+
+- 8771bbfe: chore: update icons to 2.3.1
+
 ## 2.5.4
 
 ### Patch Changes
