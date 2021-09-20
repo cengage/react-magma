@@ -1,22 +1,28 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { Button } from '@react-magma/dom';
-import { Card, CardBody, CardHeading } from '@react-magma/dom';
-import { Flex } from '@react-magma/dom';
-import { Grid, GridItem } from '@react-magma/dom';
-import { Heading, TypographyVisualStyle } from '@react-magma/dom';
+import { 
+  Button,
+  Card,
+  CardBody,
+  CardHeading,
+  Flex,
+  Grid,
+  GridItem,
+  Heading,
+  magma,
+  TypographyVisualStyle,
+} from '@react-magma/dom';
 import {
+  AccessibilityIcon,
   ArchitectureIcon,
   CodeIcon,
-  AccessibilityIcon,
-  PaletteIcon,
   DevicesIcon,
   ExtensionIcon,
-  TimelineIcon,
   GroupsIcon,
+  PaletteIcon,
+  TimelineIcon,
 } from 'react-magma-icons';
 import { Logo } from '../Logo';
-import { magma } from '@react-magma/dom';
 import styled from '@emotion/styled';
 
 const StyledGrid = styled(Grid)`
