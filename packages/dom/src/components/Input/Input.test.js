@@ -270,7 +270,7 @@ describe('Input', () => {
       <Input labelText={labelText} value={value} onClear={onClear} isClearable />
     );
 
-    fireEvent.click(getByTestId('clear-button'));
+    userEvent.click(getByTestId('clear-button'));
 
     expect(onClear).toBeCalled();
   });

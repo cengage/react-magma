@@ -59,7 +59,7 @@ const CloseButton = styled.span<{ theme?: any }>`
   position: absolute;
   right: ${props => props.theme.spaceScale.spacing01};
   top: ${props => props.theme.spaceScale.spacing01};
-  z-index: 2;
+  z-index: 1;
 `;
 
 export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
@@ -104,14 +104,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
   function turnOffDateFocused() {
     context.setDateFocused(false);
-  }
-
-  function openHelperInformation() {
-    context.setShowHelperInformation(true);
-  }
-
-  function closeHelperInformation() {
-    context.setShowHelperInformation(false);
   }
 
   const theme = React.useContext(ThemeContext);
@@ -174,15 +166,15 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           <IconButton
             aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
             icon={<HelpOutlineIcon />}
-            onClick={openHelperInformation}
+            onClick={context.showHelperInformation}
             size={ButtonSize.small}
             onFocus={turnOffDateFocused}
             type={ButtonType.button}
             variant={ButtonVariant.link}
           />
           <HelperInformation
-            isOpen={context.showHelperInformation}
-            onClose={closeHelperInformation}
+            isOpen={context.helperInformationShown}
+            onClose={context.hideHelperInformation}
           />
         </HelperButton>
         <CloseButton theme={theme}>

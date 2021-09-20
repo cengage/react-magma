@@ -1,5 +1,59 @@
 # Change Log
 
+## 2.5.4
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
+## 2.5.4-next.1
+
+### Patch Changes
+
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
+## 2.5.4-next.0
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+
+## 2.5.3
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
+## 2.5.3-next.0
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
+## 2.5.2
+
+### Patch Changes
+
+- 4980c87a: - disable the clear and action buttons when the input is disabled
+- ebdacccc: refactor(Dropdown): renamed handleMenuBlur to handleDropdownBlur
+- 8ee194d4: - extend TypographyProps for HeadingProps
+  - use Generic for TypographyProps
+- aea1e089: - fix(datepicker): keep close button below the helper information
+  - fix(datepicker): return focus to the previous element after closing helper information
+- 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
+- 12380623: fix(input): add onClear function to be called when the input is cleared by clicking the clear button
+
+## 2.5.2-next.2
+
+### Patch Changes
+
+- ebdacccc: refactor(Dropdown): renamed handleMenuBlur to handleDropdownBlur
+- 8ee194d4: - extend TypographyProps for HeadingProps
+  - use Generic for TypographyProps
+- aea1e089: - fix(datepicker): keep close button below the helper information
+  - fix(datepicker): return focus to the previous element after closing helper information
+
 ## 2.5.2-next.1
 
 ### Patch Changes

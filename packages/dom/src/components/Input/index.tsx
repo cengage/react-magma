@@ -44,6 +44,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         inputSize={inputSize}
         labelStyle={labelStyle}
         labelText={labelText}
+        messageStyle={messageStyle}
       >
         <InputBase
           {...other}

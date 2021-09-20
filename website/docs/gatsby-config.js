@@ -38,48 +38,48 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `api`,
-        path: `${__dirname}/src/pages/api`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `api-intro`,
-        path: `${__dirname}/src/pages/api-intro`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `design`,
-        path: `${__dirname}/src/pages/design`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `design-intro`,
-        path: `${__dirname}/src/pages/design-intro`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `patterns`,
-        path: `${__dirname}/src/pages/patterns`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `patterns-intro`,
-        path: `${__dirname}/src/pages/patterns-intro`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `api`,
+    //     path: `${__dirname}/src/pages/api`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `api-intro`,
+    //     path: `${__dirname}/src/pages/api-intro`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `design`,
+    //     path: `${__dirname}/src/pages/design`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `design-intro`,
+    //     path: `${__dirname}/src/pages/design-intro`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `patterns`,
+    //     path: `${__dirname}/src/pages/patterns`,
+    //   },
+    // },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `patterns-intro`,
+    //     path: `${__dirname}/src/pages/patterns-intro`,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

@@ -12,6 +12,7 @@ import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { magma } from '../../theme/magma';
 
 import { act, render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('Dropdown', () => {
   it('should find element by testId', () => {
@@ -357,11 +358,11 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText('Toggle me'));
+    userEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    fireEvent.blur(getByText('Toggle me'));
+    userEvent.click(document.body);
 
     act(jest.runAllTimers);
 

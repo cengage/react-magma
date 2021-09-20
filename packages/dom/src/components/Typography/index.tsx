@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
-  as?: React.ElementType;
+export interface TypographyProps<T=HTMLParagraphElement> extends React.HTMLAttributes<T> {
+  as?: string;
   children?: any;
   color?: TypographyColor;
   contextVariant?: TypographyContextVariant;
