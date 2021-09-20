@@ -32,8 +32,11 @@ import { formatFileSize } from './utils';
 import React from 'react';
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
+  accept?: string | string[];
   file: FilePreview;
   isInverse?: boolean;
+  maxSize?: number;
+  minSize?: number;
   onDeleteFile?: (file: FilePreview) => void;
   onRemoveFile?: (file: FilePreview) => void;
   testId?: string;

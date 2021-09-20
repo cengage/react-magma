@@ -1,5 +1,48 @@
 # Change Log
 
+## 2.5.5-next.1
+
+### Patch Changes
+
+- ab506800: change to dropdown for table pagination, change drop direction to 'up', and allow dropdown drop direction to be changed through props.
+
+## 2.5.5-next.0
+
+### Patch Changes
+
+- 8771bbfe: chore: update icons to 2.3.1
+
+## 2.5.4
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
+## 2.5.4-next.1
+
+### Patch Changes
+
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
+## 2.5.4-next.0
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+
+## 2.5.3
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
+## 2.5.3-next.0
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
 ## 2.5.2
 
 ### Patch Changes

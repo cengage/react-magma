@@ -191,7 +191,7 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
   }
 
   const formatError = (code: string | null, constraints:{maxFiles?: number, minFiles?: number}) => {
-    if(code === null) return;
+    if(code === null) return null;
     const error = i18n.fileUploader.errors[code]
     switch (code) {
       case 'too-many-files':
