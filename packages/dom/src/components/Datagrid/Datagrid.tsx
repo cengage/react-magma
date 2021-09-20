@@ -48,7 +48,16 @@ export interface DatagridRow {
 }
 
 export interface DatagridComponents {
-  Pagination: React.FunctionComponent<TablePaginationProps>;
+  Pagination?: React.FunctionComponent<TablePaginationProps>;
+}
+
+export interface DatagridComponentsProps {
+  pagination?: Partial<
+    Omit<
+      TablePaginationProps,
+      'page' | 'defaultPage' | 'rowsPerPage' | 'defaultRowsPerPage'
+    >
+  >;
 }
 
 /**
@@ -60,9 +69,14 @@ export interface BaseDatagridProps extends TableProps {
    */
   columns: DatagridColumn[];
   /**
-   *
+   * Custom components to replace internally used components with
+   * @default { Pagination }
    */
-  components: DatagridComponents;
+  components?: DatagridComponents;
+  /**
+   * Props to be passed to the default components used internally to build the datagrid
+   */
+  componentsProps?: DatagridComponentsProps;
   /**
    * Pass in false to turn off pagination
    * @default true
@@ -119,6 +133,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     const {
       columns,
       components: customComponents,
+      componentsProps = {},
       defaultSelectedRows = [],
       onHeaderSelect,
       onRowSelect,
@@ -271,6 +286,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             isInverse={props.isInverse}
             itemCount={rows.length}
             {...passedOnPaginationProps}
+            {...componentsProps.pagination}
           />
         )}
       </>

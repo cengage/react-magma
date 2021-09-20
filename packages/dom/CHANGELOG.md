@@ -1,5 +1,17 @@
 # Change Log
 
+## 2.5.5-next.1
+
+### Patch Changes
+
+- ab506800: change to dropdown for table pagination, change drop direction to 'up', and allow dropdown drop direction to be changed through props.
+
+## 2.5.5-next.0
+
+### Patch Changes
+
+- 8771bbfe: chore: update icons to 2.3.1
+
 ## 2.5.4
 
 ### Patch Changes

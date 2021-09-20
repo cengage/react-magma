@@ -15,7 +15,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@cengage-patterns/header": "2.0.2-next.0",
+    "@cengage-patterns/header": "^2.0.5-next.0",
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@mdx-js/mdx": "^1.6.22",

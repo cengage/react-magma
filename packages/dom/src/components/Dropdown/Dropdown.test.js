@@ -403,15 +403,16 @@ describe('Dropdown', () => {
   it('should call the onBeforeShiftFocus prop when closing the dropdown', () => {
     jest.useFakeTimers();
     const onBeforeShiftFocus = jest.fn();
-    const { getByTestId } = render(
-      <Dropdown onBeforeShiftFocus={onBeforeShiftFocus} testId="dropdown">
-        <DropdownButton testId="toggleButton">Toggle me</DropdownButton>
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown" onBeforeShiftFocus={onBeforeShiftFocus}>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
       </Dropdown>
     );
 
-    const toggleButton = getByTestId('toggleButton');
-
-    fireEvent.click(toggleButton);
+    fireEvent.click(getByText('Toggle me'));
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
@@ -421,8 +422,6 @@ describe('Dropdown', () => {
     expect(onBeforeShiftFocus).toHaveBeenCalled();
 
     act(jest.runAllTimers);
-
-    expect(document.activeElement).toEqual(toggleButton);
 
     jest.useRealTimers();
   });

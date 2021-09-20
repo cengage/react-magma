@@ -188,23 +188,22 @@ const Template: Story<Omit<DatagridProps, 'selectedRows'>> = args => (
   <Datagrid {...args}>Sample Text</Datagrid>
 );
 
-const ControlledTemplate: Story<
-  Omit<DatagridProps, 'defaultSelectedRows'>
-> = args => {
-  const [selectedRows, updatedSelectedRows] = React.useState<
-    (string | number)[]
-  >([1]);
+const ControlledTemplate: Story<Omit<DatagridProps, 'defaultSelectedRows'>> =
+  args => {
+    const [selectedRows, updatedSelectedRows] = React.useState<
+      (string | number)[]
+    >([1]);
 
-  return (
-    <Datagrid
-      {...args}
-      selectedRows={selectedRows}
-      onSelectedRowsChange={updatedSelectedRows}
-    >
-      Sample Text
-    </Datagrid>
-  );
-};
+    return (
+      <Datagrid
+        {...args}
+        selectedRows={selectedRows}
+        onSelectedRowsChange={updatedSelectedRows}
+      >
+        Sample Text
+      </Datagrid>
+    );
+  };
 
 const ControlledPaginatedTemplate: Story<DatagridProps> = ({
   paginationProps,
@@ -353,39 +352,40 @@ WithoutPagination.args = {
   hasPagination: false,
 };
 
-const CustomPaginationComponent: React.FunctionComponent<TablePaginationProps> = props => {
-  const { itemCount, rowsPerPage, onPageChange } = props;
-  const { page, pageButtons } = usePagination({
-    count: itemCount / rowsPerPage,
-    numberOfAdjacentPages: 0,
-    numberOfEdgePages: 0,
-    onPageChange,
-  });
+const CustomPaginationComponent: React.FunctionComponent<TablePaginationProps> =
+  props => {
+    const { itemCount, rowsPerPage, onPageChange } = props;
+    const { page, pageButtons } = usePagination({
+      count: itemCount / rowsPerPage,
+      numberOfAdjacentPages: 0,
+      numberOfEdgePages: 0,
+      onPageChange,
+    });
 
-  const previousButton = pageButtons[0];
-  const nextButton = pageButtons[pageButtons.length - 1];
+    const previousButton = pageButtons[0];
+    const nextButton = pageButtons[pageButtons.length - 1];
 
-  return (
-    <div
-      style={{
-        alignItems: 'center',
-        display: 'flex',
-        justifyContent: 'flex-end',
-      }}
-    >
-      You are on page {page}
-      <Button
-        disabled={previousButton.disabled}
-        onClick={previousButton.onClick}
+    return (
+      <div
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'flex-end',
+        }}
       >
-        Previous Page
-      </Button>
-      <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
-        Next Page
-      </Button>
-    </div>
-  );
-};
+        You are on page {page}
+        <Button
+          disabled={previousButton.disabled}
+          onClick={previousButton.onClick}
+        >
+          Previous Page
+        </Button>
+        <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
+          Next Page
+        </Button>
+      </div>
+    );
+  };
 
 export const PaginationWithCustomComponent = Template.bind({});
 PaginationWithCustomComponent.args = {
