@@ -52,7 +52,7 @@ export const GraphTooltip = props => {
           theme={theme}
         >
           <div>
-            <TooltipColorSwatch color={theme.charts.line.colors[index]} />
+            <TooltipColorSwatch color={theme.iterableColors[index]} />
             <span>{datum.label}</span>
           </div>
           <TooltipArrow theme={theme} />
@@ -84,7 +84,7 @@ export const AxisTooltip = props => {
           {activePoints.map((point, i) => (
             <div key={i}>
               <TooltipColorSwatch
-                color={theme.charts.line.colors[pointsIndexes[i]]}
+                color={theme.iterableColors[pointsIndexes[i]]}
               />
               <span>{point.label}</span>
             </div>

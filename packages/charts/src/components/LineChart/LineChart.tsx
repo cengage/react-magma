@@ -419,7 +419,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                   style={{
                     data: {
                       opacity: setLineOpacity(i),
-                      stroke: theme.charts.line.colors[i],
+                      stroke: theme.iterableColors[i],
                       strokeWidth: '3',
                     },
                     parent: { border: theme.colors.neutral04 },
@@ -442,7 +442,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                     data: {
                       fill: theme.colors.neutral08,
                       opacity: setLineOpacity(i),
-                      stroke: theme.charts.line.colors[i],
+                      stroke: theme.iterableColors[i],
                       strokeWidth: 2,
                     },
                   }}
@@ -491,7 +491,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
           return (
             <LegendButton
               aria-label={legendButtonAriaLabel}
-              color={theme.charts.line.colors[i]}
+              color={theme.iterableColors[i]}
               dataIndex={i}
               isHidden={hiddenData.includes(i)}
               key={i}

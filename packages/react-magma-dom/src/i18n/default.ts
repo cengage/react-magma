@@ -74,8 +74,10 @@ export const defaultI18n: I18nInterface = {
   },
   charts: {
     line: {
+      chartTabLabel: 'Chart',
       dataLegendsLabel:
         'Select one or more of the categories below to filter out the ones you don’t want to see.',
+      dataTabLabel: 'Data',
       legendButtonAriaLabel: 'Toggle data for {name}',
     },
   },

@@ -73,7 +73,9 @@ export interface I18nInterface {
   };
   charts: {
     line: {
+      chartTabLabel: string;
       dataLegendsLabel: string;
+      dataTabLabel: string;
       legendButtonAriaLabel: string;
     };
   };

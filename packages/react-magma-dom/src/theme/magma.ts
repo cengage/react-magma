@@ -239,6 +239,7 @@ export interface ThemeInterface {
   dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
+  iterableColors: string[];
   spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
@@ -563,25 +564,6 @@ export const magma = {
     },
   },
 
-  charts: {
-    line: {
-      colors: [
-        '#0085CC',
-        '#E0004D',
-        '#FA6600',
-        '#48A200',
-        '#B12FAD',
-        '#00A393',
-        '#00507A',
-        '#8F0033',
-        '#B84900',
-        '#255200',
-        '#711E6E',
-        '#005249',
-      ],
-    },
-  },
-
   combobox: {
     menu: {
       maxHeight: '250px',
@@ -635,6 +617,21 @@ export const magma = {
       maxHeight: '250px',
     },
   },
+
+  iterableColors: [
+    '#0085CC',
+    '#E0004D',
+    '#FA6600',
+    '#48A200',
+    '#B12FAD',
+    '#00A393',
+    '#00507A',
+    '#8F0033',
+    '#B84900',
+    '#255200',
+    '#711E6E',
+    '#005249',
+  ],
 
   tabs: {
     approxTabSize: {

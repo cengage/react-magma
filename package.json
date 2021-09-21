@@ -139,7 +139,6 @@
     "ts-node": "^9.1.1",
     "tsdx": "^0.14.1",
     "typedoc": "^0.19.2",
-    "typescript": "^3.9.7",
-    "victory": "^35.4.12"
+    "typescript": "^3.9.7"
   }
 }

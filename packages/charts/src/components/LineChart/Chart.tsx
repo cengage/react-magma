@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { styled, ThemeContext } from 'react-magma-dom';
+import { I18nContext, styled, ThemeContext } from 'react-magma-dom';
 
 import { LineChart, LineChartProps } from './LineChart';
 import { ChartDataTable } from './ChartDataTable';
 import {
-  Heading,
   Paragraph,
   TabsContainer,
   Tabs,
@@ -24,10 +23,6 @@ export interface ChartProps<T extends any>
   extends BaseChartProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     LineChartProps<T> {}
-
-const StyledHeading = styled(Heading)`
-  margin: 0 0 12px 0;
-`;
 
 const StyledTitle = styled.p`
   color: ${props => props.theme.colors.neutral};
@@ -60,6 +55,7 @@ function BaseChart<T>(
   const { description, title, testId, type, ...other } = props;
   const firstTabRef = React.useRef<HTMLButtonElement>();
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   return (
     <div ref={ref}>
@@ -74,8 +70,8 @@ function BaseChart<T>(
       )}
       <StyledTabsContainer theme={theme}>
         <Tabs aria-label="Line Chart Demo">
-          <Tab ref={firstTabRef}>Chart</Tab>
-          <Tab>Data</Tab>
+          <Tab ref={firstTabRef}>{i18n.charts.line.chartTabLabel}</Tab>
+          <Tab>{i18n.charts.line.dataTabLabel}</Tab>
         </Tabs>
         <TabPanelsContainer>
           <StyledTabPanel theme={theme}>
@@ -84,17 +80,6 @@ function BaseChart<T>(
             )}
           </StyledTabPanel>
           <StyledTabPanel theme={theme}>
-            <StyledHeading level={5} theme={theme}>
-              {title}
-            </StyledHeading>
-            {description && (
-              <StyledParagraph
-                theme={theme}
-                visualStyle={TypographyVisualStyle.bodySmall}
-              >
-                {description}
-              </StyledParagraph>
-            )}
             <ChartDataTable
               data={other.data}
               xData={{
