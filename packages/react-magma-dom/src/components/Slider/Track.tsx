@@ -4,7 +4,7 @@ import * as React from 'react';
 
 
 export const Track = styled(ProgressBar)`
-  position: relative;
-  cursor: pointer;
+  position: absolute;
   width: 100%;
+  
 `;

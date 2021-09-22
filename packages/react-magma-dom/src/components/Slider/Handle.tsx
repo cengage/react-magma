@@ -1,35 +1,58 @@
 import styled from '@emotion/styled';
-import { ProgressBarProps, ProgressBarDirection } from '../ProgressBar';
-import { motion } from 'framer-motion';
-import { Tooltip } from './Tooltip';
+import { ProgressBarDirection } from '../ProgressBar';
+import { useDimensions } from '../../hooks/useDimensions';
+
+import { motion, useMotionValue,  MotionValue } from 'framer-motion';
+// import { Tooltip } from './Tooltip';
 import * as React from 'react';
 
+const clamp = (val: number, min: number, max: number) => {
+  return val > max ? max : val < min ? min : val;
+};
+
 const StyledHandle = styled.div<ProgressBarProps>`
-  // border-radius: 50%;
-  // border: none;
-  width: 16px;
-  height: 16px;
   box-shadow: inset 0 0 0 1px ${props => props.theme.colors.neutral04},
     0 0 4px ${props => props.theme.colors.shade02};
   background: ${props => props.theme.colors.neutral08};
-  // cursor: pointer;
   position: absolute;
-  // bottom: ${props => props.direction === ProgressBarDirection.vertical ? 'inherit' : '4px'};
-  // left: ${props => props.direction === ProgressBarDirection.vertical ? '-4px' : '-8px'};
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // z-index: 9999;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  cursor: -webkit-grab;
+  margin-top: -5px;
+  cursor: grab;
+  border-radius: 50%;
+  touch-action: pan-x;
 `;
+
+export interface HandleProps {
+  direction?: ProgressBarDirection;
+  disabled?: boolean;
+  max: number;
+  min: number;
+  onChange: (value: MotionValue<number>) => void;
+  steps: number;
+  tabIndex?: number;
+  value: number;
+}
 
 const AnimatedHandle = StyledHandle.withComponent(motion.div);
 
 export const Handle = (props: any) => {
   const {
+    direction,
     disabled,
-    tabIndex=0,
+    max,
+    min,
+    onChange,
+    steps=1,
+    tabIndex=1,
+    value,
   } = props;
 
+  const [handleRef, handleDimensions] = useDimensions<HTMLDivElement>();
+  const x = useMotionValue(value);
+  
   let handleKeyDown = (event: React.KeyboardEvent) => {
     if (props.disabled) {
       return;
@@ -76,42 +99,47 @@ export const Handle = (props: any) => {
     props.onChange(newValue);
   };
 
-  // const position = useMotionValue(props.value);
-
-  // React.useEffect(() => {
-  //   position.set(props.value);
-  // }, [props.value]);
-
   return (
     <AnimatedHandle
-      // style={
-      //   props.direction === ProgressBarDirection.vertical
-      //     ? { y: position }
-      //     : { x: position }
-      // }
-      drag={props.direction === ProgressBarDirection.vertical ? 'y' : 'x'}
+      drag={direction === ProgressBarDirection.vertical ? 'y' : 'x'}
+      dragConstraints={{ left: x.get() - handleDimensions.width/2, right: x.get() - handleDimensions.width/2 }}
       dragElastic={0}
-      dragConstraints={props.dragConstraints}
       dragMomentum={false}
-      onDragEnd={() => {}}
-      onKeyDown={handleKeyDown}
-      // dragControls={minDragControls}
       onDrag={(event, info) => {
-        console.log(info.point)
-        const point =
-          props.direction === ProgressBarDirection.vertical
-            ? info.point.y
-            : info.point.x;
-
-          props.onChange(point);
+        const newPoint = clamp(Math.round(info.point.x / steps) * steps, min, max);
+        x.set(newPoint);
+        onChange(newPoint);
       }}
+      // onKeyDown={handleKeyDown}
+      ref={handleRef}
+      style={{x}}
       tabIndex={disabled ? -1 : tabIndex}
       theme={props.theme}
-      whileDrag={{ scale: 1 }}
-    >
-      {props.hasToolTip && (
-        <Tooltip theme={props.theme}>{props.value}</Tooltip>
-      )}
-    </AnimatedHandle>
+      whileTap={{ cursor: "grabbing" }}
+    />
+    // <AnimatedHandle
+    //   // onDrag={(event, info) => {
+    //     // console.log(info.point.x)
+    //     // const point =
+    //     //   props.direction === ProgressBarDirection.vertical
+    //     //     ? info.point.y - handleDimensions.height / 2
+    //     //     : info.point.x - handleDimensions.width / 2;
+
+    //     //   props.value.set(point);
+    //   // }}
+    //   
+    //   style={{x}}
+    //   theme={props.theme}
+    //   onDrag={(event, info) => {
+    //     console.log(info.point)
+    //   }}
+    //   whileTap={{ cursor: "grabbing" }}
+    //   // whileDrag={{ opacity: 1 }}
+    //   // transition={{ duration: 0 }}
+    // >
+    //   {props.hasToolTip && (
+    //     <Tooltip theme={props.theme}>{props.value}</Tooltip>
+    //   )}
+    // </AnimatedHandle>
   );
 };

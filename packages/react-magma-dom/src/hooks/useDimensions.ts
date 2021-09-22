@@ -1,7 +1,8 @@
 import {
   useCallback,
   useState,
-  useLayoutEffect
+  useLayoutEffect,
+  useRef,
 } from 'react';
 
 interface UseDimensionsProps {
@@ -23,24 +24,20 @@ const defaultDimensions: DOMRect = {
 }
 
 
-export function useDimensions({
+export function useDimensions<T=HTMLElement>({
   dependencies=[],
   initialDimensions={},
   observe=true,
-}: UseDimensionsProps = {}): [React.Ref<HTMLElement>, DOMRect, HTMLElement] {
+}: UseDimensionsProps = {}): [React.RefObject<T>, DOMRect] {
 
   const [dimensions, setDimensions] = useState({...defaultDimensions, ...initialDimensions});
-  const [node, setNode] = useState(null);
-
-  const ref = useCallback((newNode) => {
-    setNode(newNode);
-  }, []);
+  const ref = useRef<HTMLElement>();
 
   useLayoutEffect(() => {
-    if(!node) return;
+    if(!ref) return;
 
     const measure = () => {
-      setDimensions(node.getBoundingClientRect());
+      setDimensions(ref.current.getBoundingClientRect());
     }
     
     measure();
@@ -56,7 +53,7 @@ export function useDimensions({
         window.removeEventListener('scroll', measure);
       } 
     }
-  }, [node, observe, ...dependencies]);
+  }, [observe, ...dependencies]);
 
-  return [ref, dimensions, node];
+  return [ref, dimensions];
 }

@@ -4,7 +4,7 @@ import { useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 import { Handle } from './Handle';
 import { Track } from './Track';
-import { useDragControls } from 'framer-motion';
+import { MotionValue } from 'framer-motion';
 import { useDimensions } from '../../hooks/useDimensions';
 
 import {
@@ -37,11 +37,12 @@ export interface SliderProps extends Omit<ProgressBarProps, 'onChange'> {
 }
 
 const Container = styled.div<ProgressBarProps>`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  width: 500px;
+  position: relative;
+  height: 14px;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: @border-radius-base;
+  touch-action: none;
 `;
 
 /**
@@ -66,7 +67,7 @@ const getDecimalPrecision = (num: number) => {
   return decimalPart ? decimalPart.length : 0;
 };
 
-const roundValueToStep = (value: number, step: number, min: number, ratio: number = 1.836) => {
+const roundValueToStep = (value: number, step: number, min: number) => {
   let nearest = Math.round((value - min) / step) * step + min;
   return Number(nearest.toFixed(getDecimalPrecision(step)));
 };
@@ -81,40 +82,58 @@ const clamp = (val: number, min: number, max: number) => {
 };
 
 
+interface GetChangeValue {
+  value: number;
+  containerWidth: number;
+  min: number;
+  max: number;
+  steps: number;
+}
+
+export function getChangeValue({ value, containerWidth, min, max, steps }: GetChangeValue) {
+  const left = Math.min(Math.max(value, 0), containerWidth);
+  const dx = (left / containerWidth) * (max - min);
+  return (dx !== 0 ? Math.round(dx / steps) * steps : 0) + min;
+}
+
 export const Slider = (props: SliderProps) => {
   const {
     children,
     direction,
-    disabled,
-    hasToolTip,
+    // disabled,
+    hasTooltip,
     height,
     max: rangeMax = 100,
     min: rangeMin = 0,
     steps = 1,
-    tabIndex = 0,
-    type = SliderType.slider,
-    width,
+    // tabIndex = 0,
+    // type = SliderType.slider,
+    // width,
   } = props;
 
-  const [trackRef, trackDimensions] = useDimensions();
+  const [trackRef, trackDimensions] = useDimensions<HTMLDivElement>();
 
-  React.useEffect(() => {
-    console.log(trackDimensions)
-  }, [trackDimensions])
+  // React.useEffect(() => {
+  //   console.log(trackDimensions)
+  // }, [trackDimensions])
   
-  // const [min, setMin] = React.useState(rangeMin );
-  const [max, setMax] = React.useState(rangeMax );
+  const [min, setMin] = React.useState(rangeMin);
+  const [max, setMax] = React.useState(rangeMax);
+
+  // React.useEffect(() => {
+  //   console.log(max)
+  // }, [max])
 
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
 
-  const maxDragControls = useDragControls();
+  // const maxDragControls = useDragControls();
 
-  const startDrag = event => {
-    maxDragControls.start(event, { snapToCursor: true });
-  };
+  // const startDrag = event => {
+  //   maxDragControls.start(event, { snapToCursor: true });
+  // };
 
-  const minPercent = valueToPercent(0, rangeMin, rangeMax );
+  const minPercent = valueToPercent(min, rangeMin, rangeMax );
   const maxPercent = valueToPercent(max, rangeMin, rangeMax );
 
   // const constraintsMin =
@@ -124,8 +143,8 @@ export const Slider = (props: SliderProps) => {
 
   // const constraintsMax =
   //   props.direction === ProgressBarDirection.vertical
-  //     ? { top: rangeMax , bottom: min }
-  //     : {   };
+  //     ? { top: rangeMax, bottom: min }
+  //     : { left: min, right: rangeMax };
 
   return ( 
     <Container data-testid={props.testId}>
@@ -134,34 +153,33 @@ export const Slider = (props: SliderProps) => {
         height={height}
         isInverse={isInverse}
         offset={minPercent}
-        onPointerDown={startDrag}
+        // onPointerDown={startDrag}
         percentage={maxPercent - minPercent}
-        // ref={trackRef}
+        ref={trackRef}
         theme={theme}
         transitionDuration={0}
       />
       
-      <Handle
-        direction={direction}
-        dragConstraints={{left: min, right: rangeMax}}
-        // dragControls={maxDragControls}
-        hasToolTip={hasToolTip}
-        isInverse={isInverse}
-        onChange={point => setMax(
-          // clamp(
-            // false ? roundValueToStep(point, props.steps, props.min) : point  ,
-            // props.min,
-            // props.max
-          // ) 
-          point
-        )}
-        // min={min}
-        // max={rangeMax}
-        // steps={steps}
-        theme={theme}
-        initial={{x: `${max}px`}}
-      />
       {children}
+
+      <Handle
+        // direction={direction}
+        // dragConstraints={{left: trackDimensions.x, right: trackDimensions.width + trackDimensions.x}}
+        // dragControls={maxDragControls}
+        // hasTooltip={hasTooltip}
+        // isInverse={isInverse}
+        onChange={(point: MotionValue<number>) => {
+          console.log(point)
+          // setMax(
+          //   getChangeValue({value: point - trackDimensions.x, containerWidth: trackDimensions.width, min: rangeMin, max:rangeMax, steps})
+          // )
+        }}
+        min={0}
+        max={trackDimensions.width}
+        steps={250}
+        theme={theme}
+        // value={max}
+      />
     </Container>
   );
 };
