@@ -58,7 +58,15 @@ export const Preview = ({ ...props }: PreviewProps) => {
     <PreviewContainer isInverse={isInverse} noBorder={props.noBorder}>
       <LiveProvider
         code={preview.code}
-        scope={{ es, zhCN, styled, ...MAGMA, ...ICONS, ICONS, ...HEADER }}
+        scope={{
+          // ...HEADER,
+          ...ICONS,
+          ...MAGMA,
+          es,
+          ICONS,
+          styled,
+          zhCN,
+        }}
         noInline
         transformCode={transformCode}
       >
