@@ -95,6 +95,17 @@ export const Default = (args: FileUploaderProps) => {
   </div>
 };
 
+export const NoLimits = (args: FileUploaderProps) => {
+  return <div style={{background: args.isInverse ? '#003865' : '#fff', padding: '50px'}} >
+    <FileUploader
+      {...args}
+      onSendFile={onSendFile}
+      labelText="Upload files"
+      helperMessage="It's a free for all, upload anything."
+    />
+  </div>
+};
+
 
 export const Image = () => {
   const [file, setFile] = React.useState<string>();
