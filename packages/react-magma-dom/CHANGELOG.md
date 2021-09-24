@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.5-next.2
+
+### Patch Changes
+
+- 84507cc: feat: add fileuploader to i18n
+
 ## 2.5.5-next.1
 
 ### Patch Changes
