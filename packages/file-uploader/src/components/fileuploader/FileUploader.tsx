@@ -5,7 +5,12 @@
  */
 
 import * as React from 'react';
-import { useDropzone, DropzoneOptions, DropzoneRootProps, FileRejection } from 'react-dropzone';
+import {
+  useDropzone,
+  DropzoneOptions,
+  DropzoneRootProps,
+  FileRejection,
+} from 'react-dropzone';
 import {
   Button,
   ButtonColor,
@@ -31,13 +36,19 @@ import { FilePreview, FileError } from './FilePreview';
 
 export interface OnSendFileProps {
   file: FilePreview;
-  onError?: ({}:{errors: FileError[], file: FilePreview}) => void;
-  onFinish?: ({}:{file: FilePreview}) => void;
-  onProgress?: ({}:{percent: number, file: FilePreview}) => void;
+  onError?: ({}: { errors: FileError[]; file: FilePreview }) => void;
+  onFinish?: ({}: { file: FilePreview }) => void;
+  onProgress?: ({}: { percent: number; file: FilePreview }) => void;
 }
 
-type DragState = 'error' | 'dragAccept' | 'dragReject' | 'dragActive' | 'default';
-export interface FileUploaderProps extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
+type DragState =
+  | 'error'
+  | 'dragAccept'
+  | 'dragReject'
+  | 'dragActive'
+  | 'default';
+export interface FileUploaderProps
+  extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
   accept?: string | string[];
   dropzoneOptions?: Partial<Omit<DropzoneOptions, 'onDrop'>>;
   helperMessage?: string;
@@ -57,35 +68,53 @@ export interface FileUploaderProps extends Omit<FormFieldContainerBaseProps, 'fi
   thumbnails?: boolean;
 }
 
-const Container = styled(Flex)<DropzoneRootProps & FlexProps & {dragState?: DragState; noDrag?: boolean; isInverse?: boolean;}>`
+const Container = styled(Flex)<
+  DropzoneRootProps &
+    FlexProps & { dragState?: DragState; noDrag?: boolean; isInverse?: boolean }
+>`
   flex-direction: column;
-  align-items: ${({noDrag}) => noDrag ? 'left' : 'center'};
-  justify-content: ${({noDrag}) => noDrag ? 'left' : 'center'};
-  text-align: ${({noDrag}) => noDrag ? 'left' : 'center'};
-  padding: ${({noDrag}) => noDrag ? '0px' : '40px'};
-  border-width: ${({noDrag}) => noDrag ? '0px' : '2px'};
-  border-radius: ${({noDrag}) => noDrag ? '0px' : '4px'};
-  border-color: ${({dragState='default', theme, isInverse}) =>
-    dragState === 'dragReject' || dragState === 'error' ? isInverse ? theme.colors.dangerInverse : theme.colors.danger :
-    dragState === 'dragActive' ? theme.colors.primary :
-    dragState === 'dragAccept' ? theme.colors.success :
-    theme.colors.neutral06};
-  border-style: ${({dragState='default'}) => dragState === 'error' ? 'solid' : 'dashed'};
-  background-color: ${({theme, noDrag, isInverse}) => noDrag ? 'transparent' : isInverse ? theme.colors.foundation : theme.colors.neutral07};
+  align-items: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
+  justify-content: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
+  text-align: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
+  padding: ${({ noDrag }) => (noDrag ? '0px' : '40px')};
+  border-width: ${({ noDrag }) => (noDrag ? '0px' : '2px')};
+  border-radius: ${({ noDrag }) => (noDrag ? '0px' : '4px')};
+  border-color: ${({ dragState = 'default', theme, isInverse }) =>
+    dragState === 'dragReject' || dragState === 'error'
+      ? isInverse
+        ? theme.colors.dangerInverse
+        : theme.colors.danger
+      : dragState === 'dragActive'
+      ? theme.colors.primary
+      : dragState === 'dragAccept'
+      ? theme.colors.success
+      : theme.colors.neutral06};
+  border-style: ${({ dragState = 'default' }) =>
+    dragState === 'error' ? 'solid' : 'dashed'};
+  background-color: ${({ theme, noDrag, isInverse }) =>
+    noDrag
+      ? 'transparent'
+      : isInverse
+      ? theme.colors.foundation
+      : theme.colors.neutral07};
   outline: none;
-  transition: ${({noDrag}) => `border ${noDrag ? 0 :'.24s'} ease-in-out`};
+  transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
 
-const Wrapper = styled.div<{isInverse?: boolean}>`
-  color: ${({theme, isInverse}) => isInverse ? theme.colors.neutral07 : theme.colors.neutral02};
-  margin: 0px;
-  padding: ${({theme}) => theme.spaceScale.spacing01};
-`
-export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps>((props, ref) => {
+const Wrapper = styled.div<{ isInverse?: boolean }>`
+  color: ${({ theme, isInverse }) =>
+    isInverse ? theme.colors.neutral07 : theme.colors.neutral02};
+  margin: 0 0 24px 0;
+  padding: ${({ theme }) => theme.spaceScale.spacing01};
+`;
+export const FileUploader = React.forwardRef<
+  HTMLInputElement,
+  FileUploaderProps
+>((props, ref) => {
   const {
     accept,
     containerStyle,
-    dropzoneOptions={
+    dropzoneOptions = {
       multiple: true,
     },
     helperMessage,
@@ -99,8 +128,8 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     minFiles,
     maxSize,
     minSize,
-    multiple=true,
-    noDrag=false,
+    multiple = true,
+    noDrag = false,
     onSendFile,
     onDeleteFile,
     onRemoveFile,
@@ -111,30 +140,33 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     ...rest
   } = props;
 
-  const [files, setFiles] = React.useState<FilePreview[]>([])
-  const [errorMessage, setErrorMessage] = React.useState<string | null>(null)
+  const [files, setFiles] = React.useState<FilePreview[]>([]);
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   const isInverse = useIsInverse(isInverseProp);
-  const theme:ThemeInterface = React.useContext(ThemeContext);
-  const i18n:I18nInterface = React.useContext(I18nContext);
+  const theme: ThemeInterface = React.useContext(ThemeContext);
+  const i18n: I18nInterface = React.useContext(I18nContext);
   const id = useGenerateId(defaultId);
 
-  const onDrop = React.useCallback((acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
-    setFiles((files: FilePreview[]) => [
+  const onDrop = React.useCallback(
+    (acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
+      setFiles((files: FilePreview[]) => [
         ...files,
         ...acceptedFiles.map((file: File) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
-          }),
+          })
         ),
-        ...rejectedFiles.map(({file, errors}:{file: File, errors: FileError[]}) =>
-          Object.assign(file, {
-            errors,
-          }),
+        ...rejectedFiles.map(
+          ({ file, errors }: { file: File; errors: FileError[] }) =>
+            Object.assign(file, {
+              errors,
+            })
         ),
-      ]
-    )
-  }, [])
+      ]);
+    },
+    []
+  );
 
   const {
     getInputProps,
@@ -146,13 +178,13 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
   } = useDropzone({
     noClick: true,
     onDragOver: (event: React.DragEvent<HTMLDivElement>) => {
-      dropzoneOptions.onDragOver && dropzoneOptions.onDragOver(event)
+      dropzoneOptions.onDragOver && dropzoneOptions.onDragOver(event);
     },
     onDragEnter: (event: React.DragEvent<HTMLDivElement>) => {
-      dropzoneOptions.onDragEnter && dropzoneOptions.onDragEnter(event)
+      dropzoneOptions.onDragEnter && dropzoneOptions.onDragEnter(event);
     },
     onDragLeave: (event: React.DragEvent<HTMLDivElement>) => {
-      dropzoneOptions.onDragLeave && dropzoneOptions.onDragLeave(event)
+      dropzoneOptions.onDragLeave && dropzoneOptions.onDragLeave(event);
     },
     multiple,
     // maxFiles,
@@ -163,85 +195,132 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
     noDrag,
   });
 
-  const dragState: DragState = errorMessage ? 'error' : isDragAccept ? 'dragAccept' : isDragReject ? 'dragReject' : isDragActive? 'dragActive': 'default';
+  const dragState: DragState = errorMessage
+    ? 'error'
+    : isDragAccept
+    ? 'dragAccept'
+    : isDragReject
+    ? 'dragReject'
+    : isDragActive
+    ? 'dragActive'
+    : 'default';
 
-  const handleRemoveFile = (removedFile: FilePreview ) => {
-    setFiles(files => files.filter(file => file !== removedFile))
-    if(onRemoveFile && typeof onRemoveFile === 'function'){
-      onRemoveFile(removedFile)
+  const handleRemoveFile = (removedFile: FilePreview) => {
+    setFiles(files => files.filter(file => file !== removedFile));
+    if (onRemoveFile && typeof onRemoveFile === 'function') {
+      onRemoveFile(removedFile);
     }
-  }
+  };
 
-  const handleDeleteFile = (removedFile: FilePreview ) => {
-    if(onDeleteFile && typeof onDeleteFile === 'function'){
-      onDeleteFile(removedFile)
+  const handleDeleteFile = (removedFile: FilePreview) => {
+    if (onDeleteFile && typeof onDeleteFile === 'function') {
+      onDeleteFile(removedFile);
     }
-  }
+  };
 
-  const setProgress = (props: {percent: number, file: File}) => {
-    setFiles(files => files.map(file => file === props.file ? Object.assign(file, {processor:{...file.processor, percent: props.percent}}) : file))
-  }
+  const setProgress = (props: { percent: number; file: File }) => {
+    setFiles(files =>
+      files.map(file =>
+        file === props.file
+          ? Object.assign(file, {
+              processor: { ...file.processor, percent: props.percent },
+            })
+          : file
+      )
+    );
+  };
 
-  const setFinished = (props: {file: File}) => {
-    setFiles(files => files.map(file => file === props.file ? Object.assign(file, {processor:{...file.processor, status: 'finished' }}) : file))
-  }
+  const setFinished = (props: { file: File }) => {
+    setFiles(files =>
+      files.map(file =>
+        file === props.file
+          ? Object.assign(file, {
+              processor: { ...file.processor, status: 'finished' },
+            })
+          : file
+      )
+    );
+  };
 
-  const setError = (props: {errors: FileError[], file: File}) => {
-    setFiles(files => files.map(file => file === props.file ? Object.assign(file, {errors: props.errors, processor:{...file.processor, status: 'error'}}) : file))
-  }
+  const setError = (props: { errors: FileError[]; file: File }) => {
+    setFiles(files =>
+      files.map(file =>
+        file === props.file
+          ? Object.assign(file, {
+              errors: props.errors,
+              processor: { ...file.processor, status: 'error' },
+            })
+          : file
+      )
+    );
+  };
 
-  const formatError = (code: string | null, constraints:{maxFiles?: number, minFiles?: number}) => {
-    if(code === null) return null;
-    const error = i18n.fileUploader.errors[code]
+  const formatError = (
+    code: string | null,
+    constraints: { maxFiles?: number; minFiles?: number }
+  ) => {
+    if (code === null) return null;
+    const error = i18n.fileUploader.errors[code];
     switch (code) {
       case 'too-many-files':
-        return `${error.message} ${constraints.maxFiles} ${i18n.fileUploader.files}.`
+        return `${error.message} ${constraints.maxFiles} ${i18n.fileUploader.files}.`;
         break;
       case 'too-few-files':
-        return `${error.message} ${constraints.minFiles} ${i18n.fileUploader.files}.`
+        return `${error.message} ${constraints.minFiles} ${i18n.fileUploader.files}.`;
         break;
       default:
         return error.message;
     }
-  }
+  };
 
   React.useEffect(
     () => () => {
-      files.forEach((file) => file.preview && URL.revokeObjectURL(file.preview))
+      files.forEach(file => file.preview && URL.revokeObjectURL(file.preview));
     },
-    [files],
-  )
+    [files]
+  );
 
   React.useEffect(() => {
     const minFileError = minFiles && files.length < minFiles;
     const maxFileError = maxFiles && files.length > maxFiles;
-    const anyErrors = files.filter(file => file.errors).length !== 0
-
-
+    const anyErrors = files.filter(file => file.errors).length !== 0;
 
     setErrorMessage(
       formatError(
-        anyErrors ? 'too-many-errors' :
-        maxFileError ? 'too-many-files' :
-        minFileError ? 'too-few-files' : 
-        null, 
-        {minFiles, maxFiles}
+        anyErrors
+          ? 'too-many-errors'
+          : maxFileError
+          ? 'too-many-files'
+          : minFileError
+          ? 'too-few-files'
+          : null,
+        { minFiles, maxFiles }
       )
-    )
+    );
 
     if (sendFiles && files.length > 0 && !maxFileError && !anyErrors) {
       setFiles(files => {
-        return files.map(file => !file.errors && !file?.processor?.status ? Object.assign(file, {processor: {status:'pending'}}): file)
-      })
+        return files.map(file =>
+          !file.errors && !file?.processor?.status
+            ? Object.assign(file, { processor: { status: 'pending' } })
+            : file
+        );
+      });
 
-      files.filter(file => !file.errors && !file.processor).forEach(file => onSendFile && onSendFile({
-        file,
-        onError: setError,
-        onFinish: setFinished,
-        onProgress: setProgress,
-      }))
+      files
+        .filter(file => !file.errors && !file.processor)
+        .forEach(
+          file =>
+            onSendFile &&
+            onSendFile({
+              file,
+              onError: setError,
+              onFinish: setFinished,
+              onProgress: setProgress,
+            })
+        );
     }
-  }, [sendFiles, files.length, onSendFile])
+  }, [sendFiles, files.length, onSendFile]);
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -265,31 +344,54 @@ export const FileUploader = React.forwardRef<HTMLInputElement, FileUploaderProps
         {...getRootProps()}
         {...rest}
       >
-        <input ref={ref} data-testid={testId} {...getInputProps()}/>
-        {noDrag ?
+        <input ref={ref} data-testid={testId} {...getInputProps()} />
+        {noDrag ? (
           <Flex xs behavior={FlexBehavior.item}>
-            <Button color={ButtonColor.primary} isInverse={isInverse} style={{margin: 0}} onClick={open}>{i18n.fileUploader.browseFiles}</Button>
-          </Flex> :
-          <Flex behavior={FlexBehavior.item}>
-            <CloudUploadIcon aria-hidden="true" color={isInverse ? theme.colors.neutral07 : theme.colors.neutral02} size={theme.iconSizes.xLarge} />
-            <Wrapper isInverse={isInverse} theme={theme}>
-            {i18n.fileUploader.dragMessage}
-            </Wrapper>
-            <Button color={ButtonColor.secondary} variant={ButtonVariant.outline} isInverse={isInverse} onClick={open}>{i18n.fileUploader.browseFiles}</Button>
+            <Button
+              color={ButtonColor.secondary}
+              isInverse={isInverse}
+              style={{ margin: 0 }}
+              onClick={open}
+            >
+              {i18n.fileUploader.browseFiles}
+            </Button>
           </Flex>
-        }
+        ) : (
+          <Flex behavior={FlexBehavior.item}>
+            <CloudUploadIcon
+              aria-hidden="true"
+              color={
+                isInverse ? theme.colors.neutral07 : theme.colors.neutral02
+              }
+              size={theme.iconSizes.xLarge}
+            />
+            <Wrapper isInverse={isInverse} theme={theme}>
+              {i18n.fileUploader.dragMessage}
+            </Wrapper>
+            <Button
+              color={ButtonColor.secondary}
+              variant={ButtonVariant.solid}
+              isInverse={isInverse}
+              onClick={open}
+            >
+              {i18n.fileUploader.browseFiles}
+            </Button>
+          </Flex>
+        )}
       </Container>
-      {files.map((file: FilePreview) => <Preview
-        accept={accept}
-        file={file}
-        isInverse={isInverse}
-        key={file.name}
-        maxSize={maxSize}
-        minSize={minSize}
-        onDeleteFile={handleDeleteFile}
-        onRemoveFile={handleRemoveFile}
-        thumbnails={thumbnails}
-      />)}
-    </InverseContext.Provider>)
-  }
-)
+      {files.map((file: FilePreview) => (
+        <Preview
+          accept={accept}
+          file={file}
+          isInverse={isInverse}
+          key={file.name}
+          maxSize={maxSize}
+          minSize={minSize}
+          onDeleteFile={handleDeleteFile}
+          onRemoveFile={handleRemoveFile}
+          thumbnails={thumbnails}
+        />
+      ))}
+    </InverseContext.Provider>
+  );
+});

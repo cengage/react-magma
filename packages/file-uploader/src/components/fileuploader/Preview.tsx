@@ -47,11 +47,11 @@ const Thumb = styled.div<{ file: FilePreview }>`
   background-image: ${({ file }) =>
     `url('${'preview' in file && file.preview}')`};
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   display: inline-block;
   vertical-align: middle;
-  height: 24px;
-  width: 24px;
+  height: 40px;
+  width: 40px;
 `;
 
 const StatusIcons = styled.div`
@@ -59,7 +59,7 @@ const StatusIcons = styled.div`
   grid-template-areas: 'inner-div';
   height: auto;
   place-items: center;
-  width: 42px;
+  width: 56px;
   & > div {
     display: inline-block;
     right: 0;
@@ -221,7 +221,11 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
       return (
         <StatusIcons>
           <Transition isOpen={!done} unmountOnExit nudgeBottom fade>
-            <CheckCircleIcon />
+            <CheckCircleIcon
+              color={
+                isInverse ? theme.colors.successInverse : theme.colors.success
+              }
+            />
           </Transition>
           <Transition isOpen={done} unmountOnExit nudgeTop fade>
             <IconButton
@@ -250,6 +254,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
           file={file}
           data-testid={props.testId}
           ref={ref}
+          role={file.errors ? 'alert' : ''}
         >
           <StyledFlex
             theme={theme}
