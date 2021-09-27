@@ -32,7 +32,7 @@
     "@data-driven-forms/react-form-renderer": "^3.6.0",
     "@react-magma/dom": "^2.5.1-next.0",
     "react-dropzone": "^11.3.1",
-    "react-magma-icons": "2.3.0-beta.1"
+    "react-magma-icons": "^2.3.0"
   },
   "module": "dist/react-magma-schema-renderer.esm.js",
   "devDependencies": {
