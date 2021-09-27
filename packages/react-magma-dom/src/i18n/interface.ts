@@ -143,7 +143,7 @@ export interface I18nInterface {
       };
     }
     files: string;
-  }
+  };
   header: {
     navigationButtonLabel: string;
     search: {
