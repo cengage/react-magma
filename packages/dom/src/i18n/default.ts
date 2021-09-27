@@ -128,6 +128,37 @@ export const defaultI18n: I18nInterface = {
     menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
+  fileUploader: {
+    browseFiles: 'Browse Files',
+    dragMessage: 'Drag and drop or browse files to upload.',
+    errors: {
+      'too-many-errors': {
+        message: 'Files must not have any errors.'
+      },
+      'too-many-files': {
+        message: 'You must upload a maximum of'
+      },
+      'too-few-files': {
+        message: 'You must upload a minimum of'
+      },
+      'file-invalid-type': {
+        header: 'Invalid File Type',
+        message: 'Upload only the allowed file types'
+      },
+      'file-too-large': {
+        header: 'File exceeds size limit',
+        message: 'Upload only files with a maximum size of'
+      },
+      'file-too-small': {
+        header: 'File size is below the limit',
+        message: 'Upload only files with a minimum size of'
+      },
+      'required': {
+        message: 'You must upload at least one file.'
+      }
+    },
+    files: 'files'
+  },
   header: {
     navigationButtonLabel: 'Open navigation menu',
     search: {
