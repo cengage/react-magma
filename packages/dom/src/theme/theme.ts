@@ -1,12 +1,14 @@
+import { NONAME } from 'dns';
+
 const theme = {
   defaults: {
     borderRadius: '4px',
     breakpoints: {
       xs: 0,
-      small: 600,
-      medium: 768,
-      large: 1024,
-      xl: 1200,
+      small: '600px',
+      medium: '768px',
+      large: '1024px',
+      xl: '1200px',
     },
     colors: {
       primary: '#006298', // link color blue
@@ -118,7 +120,7 @@ const theme = {
           props: {
             '@media': {
               maxWidth: {
-                [`${breakpoints.small}px`]: {
+                [`${breakpoints.small}`]: {
                   paddingLeft: 'var(--spacing-04)',
                 },
               },
@@ -143,7 +145,7 @@ const theme = {
             },
             '@media': {
               maxWidth: {
-                [`${breakpoints.small}px`]: {
+                [`${breakpoints.small}`]: {
                   minWidth: 0,
                   width: '100%',
                 },
@@ -151,11 +153,67 @@ const theme = {
             },
           },
         },
-        IconStyles: {
+        DismissButton: {
+          alignSelf: 'stretch',
+          borderRadius: '0 var(--borderRadius) var(--borderRadius) 0',
+          color: 'inherit',
+          height: 'auto',
+          padding: '0 var(--spacing04)',
+          width: 'auto',
+
+          '&&:focus:not(:disabled)': {
+            outlineOffset: '0 !important',
+            outline: '2px dotted var(--colors-focus)',
+          },
+          '&:hover': {
+            ':not(:disabled):before':{
+              opacity: '0.15',
+              background: 'var(--colors-focus)',
+            },
+          },
+          '&:focus': {
+            ':not(:disabled):before':{
+              opacity: '0.15',
+              background: 'var(--colors-focus)',
+            },
+          },
+          '&:after': {
+            display: 'none',
+          },
+          props:{
+            warning: {
+              background: 'var(--colors-focusInverse)',
+              '&&:focus:not(:disabled)': {
+                outline: '2px dotted var(--colors-focusInverse)',
+              },
+            }
+          },
+        },
+        IconWrapper: {
+          padding: '0 var(--spacing03) 0 var(--spacing04)',
+
+          props: {
+            '@media': {
+              maxWidth: {
+                [`${breakpoints.small}`]: {
+                  display: 'none',
+                },
+              },
+            },
+          },
+        },
+        IconWrapperStyles: {
           alignItems: 'center',
           display: 'flex',
           flexShrink: 0,
           marginRight: '1px',
+        },
+        ProgressRingWrapper: {
+          opacity: '0.7',
+          marginTop: 'var(--spacing01)',
+          position: 'absolute',
+          top: 'var(--spacing01)',
+          right: 'var(--spacing02)',
         },
       },
       default: {
@@ -192,7 +250,7 @@ const theme = {
         },
         '@media': {
           maxWidth: {
-            [`${breakpoints.small}px`]: {
+            [`${breakpoints.small}`]: {
               fontSize: 'var(--fontSize-02)',
               lineHeight: 'var(--lineHeight-02)',
             },
@@ -226,9 +284,9 @@ const theme = {
 
           '@media': {
             maxWidth: {
-              [`${breakpoints.small}px`]: {
+              [`${breakpoints.small}`]: {
                 minWidth: 0,
-                width: '100%',
+                width: '100%',8
               },
             },
           },
