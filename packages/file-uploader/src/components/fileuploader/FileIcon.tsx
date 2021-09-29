@@ -3,7 +3,7 @@ import {
   InsertDriveFileIcon,
   ImageIcon,
   AudiotrackIcon,
-  VideoCameraIcon,
+  VideocamIcon,
   FileExcelIcon,
   FilePdfIcon,
   FilePowerpointIcon,
@@ -57,7 +57,7 @@ const icons = {
     },
   },
   video: {
-    Icon: VideoCameraIcon,
+    Icon: VideocamIcon,
     style: {
       color: '#707070',
     },
