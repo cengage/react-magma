@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { 
-  FilePresentIcon,
+import {
+  InsertDriveFileIcon,
   ImageIcon,
   AudiotrackIcon,
-  VideoCameraBackIcon,
+  VideoCameraIcon,
   FileExcelIcon,
   FilePdfIcon,
   FilePowerpointIcon,
@@ -11,62 +11,74 @@ import {
   FileZipIcon,
   IconProps,
 } from 'react-magma-icons';
-  
+
 import { FilePreview } from './FilePreview';
 
-export interface FileIconProps extends IconProps { 
+export interface FileIconProps extends IconProps {
   file: FilePreview;
   isInverse?: boolean;
 }
 
 const icons = {
   default: {
-    Icon: FilePresentIcon,
-    style: {}
+    Icon: InsertDriveFileIcon,
+    style: {
+      color: '#707070',
+    },
   },
   word: {
     Icon: FileWordIcon,
     style: {
-      color: '#006298'
-    }
+      color: '#006298',
+    },
   },
   excel: {
     Icon: FileExcelIcon,
     style: {
-      color: '#3A8200'
-    }
+      color: '#3A8200',
+    },
   },
   powerpoint: {
     Icon: FilePowerpointIcon,
     style: {
-      color: '#FC4C02'
-    }
+      color: '#FC4C02',
+    },
   },
   pdf: {
     Icon: FilePdfIcon,
     style: {
-      color: '#C61D23'
-    }
+      color: '#C61D23',
+    },
   },
   image: {
     Icon: ImageIcon,
-    style: {}
+    style: {
+      color: '#707070',
+    },
   },
   video: {
-    Icon: VideoCameraBackIcon,
-    style: {}
+    Icon: VideoCameraIcon,
+    style: {
+      color: '#707070',
+    },
   },
   audio: {
     Icon: AudiotrackIcon,
-    style: {}
+    style: {
+      color: '#707070',
+    },
   },
   archive: {
     Icon: FileZipIcon,
-    style: {}
+    style: {
+      color: '#707070',
+    },
   },
-}
+};
 
-const iconMapping:{[key:string]: {Icon: any, style: React.CSSProperties}}  = {
+const iconMapping: {
+  [key: string]: { Icon: any; style: React.CSSProperties };
+} = {
   default: icons.default,
   xlsx: icons.excel,
   xlsm: icons.excel,
@@ -90,13 +102,14 @@ const iconMapping:{[key:string]: {Icon: any, style: React.CSSProperties}}  = {
   audio: icons.audio,
   video: icons.video,
   zip: icons.archive,
-}
+};
 
-export const FileIcon = ({file, isInverse}: FileIconProps) => {
-  const { path='', type='',} = file;
+export const FileIcon = ({ file, isInverse }: FileIconProps) => {
+  const { path = '', type = '' } = file;
   const category = type.split('/')[0];
   const extension = path.split('.').pop() || 'default';
-  const {Icon, style } = iconMapping[extension] || iconMapping[category] || iconMapping.default;
+  const { Icon, style } =
+    iconMapping[extension] || iconMapping[category] || iconMapping.default;
 
-  return <Icon size={32} style={isInverse ? {} : style}/>
-}
+  return <Icon size={24} style={isInverse ? {} : style} />;
+};

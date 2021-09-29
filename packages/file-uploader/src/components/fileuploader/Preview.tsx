@@ -73,13 +73,13 @@ const IconStyles = {
 };
 
 const Errors = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral04};
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral06};
   padding: 10px;
 `;
 
 const StyledFlex = styled(Flex)`
   height: 48px;
-  padding: 0 10px;
+  padding: 0 8px 0 16px;
 `;
 
 const FileName = styled(Flex)`
@@ -88,6 +88,7 @@ const FileName = styled(Flex)`
   align-items: center;
   text-overflow: ellipsis;
   display: block;
+  margin-right: 24px;
 `;
 
 const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
@@ -220,14 +221,15 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
 
       return (
         <StatusIcons>
-          <Transition isOpen={!done} unmountOnExit nudgeBottom fade>
+          <Transition isOpen={!done} unmountOnExit fade>
             <CheckCircleIcon
               color={
                 isInverse ? theme.colors.successInverse : theme.colors.success
               }
+              style={{ marginTop: '4px' }}
             />
           </Transition>
-          <Transition isOpen={done} unmountOnExit nudgeTop fade>
+          <Transition isOpen={done} unmountOnExit fade>
             <IconButton
               onClick={() => {
                 handleDeleteFile(file);

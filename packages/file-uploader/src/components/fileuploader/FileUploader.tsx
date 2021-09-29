@@ -76,19 +76,18 @@ const Container = styled(Flex)<
   align-items: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
   justify-content: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
   text-align: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
-  padding: ${({ noDrag }) => (noDrag ? '0px' : '40px')};
-  border-width: ${({ noDrag }) => (noDrag ? '0px' : '2px')};
+  padding: ${({ noDrag }) => (noDrag ? '0px' : '24px')};
   border-radius: ${({ noDrag }) => (noDrag ? '0px' : '4px')};
-  border-color: ${({ dragState = 'default', theme, isInverse }) =>
+  border: ${({ dragState = 'default', theme, isInverse }) =>
     dragState === 'dragReject' || dragState === 'error'
       ? isInverse
-        ? theme.colors.dangerInverse
-        : theme.colors.danger
+        ? `2px dashed ${theme.colors.dangerInverse}`
+        : `2px dashed ${theme.colors.danger}`
       : dragState === 'dragActive'
-      ? theme.colors.primary
+      ? `2px dashed ${theme.colors.primary}`
       : dragState === 'dragAccept'
-      ? theme.colors.success
-      : theme.colors.neutral06};
+      ? `2px dashed ${theme.colors.success}`
+      : `1px dashed ${theme.colors.neutral05}`};
   border-style: ${({ dragState = 'default' }) =>
     dragState === 'error' ? 'solid' : 'dashed'};
   background-color: ${({ theme, noDrag, isInverse }) =>
@@ -100,11 +99,20 @@ const Container = styled(Flex)<
   outline: none;
   transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
+const HelperMessage = styled.span<{ isInverse?: boolean }>`
+  color: ${({ theme, isInverse }) =>
+    isInverse ? theme.colors.neutral08 : theme.colors.neutral03};
+  display: block;
+  font-size: 14px;
+  margin: -8px 0 16px 0;
+`;
 
 const Wrapper = styled.div<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
     isInverse ? theme.colors.neutral07 : theme.colors.neutral02};
   margin: 0 0 24px 0;
+  font-size: 14px;
+  font-weight: 600;
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
 export const FileUploader = React.forwardRef<
@@ -223,7 +231,10 @@ export const FileUploader = React.forwardRef<
       files.map(file =>
         file === props.file
           ? Object.assign(file, {
-              processor: { ...file.processor, percent: props.percent },
+              processor: {
+                ...file.processor,
+                percent: `${props.percent}%`,
+              },
             })
           : file
       )
@@ -235,7 +246,7 @@ export const FileUploader = React.forwardRef<
       files.map(file =>
         file === props.file
           ? Object.assign(file, {
-              processor: { ...file.processor, status: 'finished' },
+              processor: { ...file.processor, percent: '', status: 'finished' },
             })
           : file
       )
@@ -283,7 +294,7 @@ export const FileUploader = React.forwardRef<
   React.useEffect(() => {
     const minFileError = minFiles && files.length < minFiles;
     const maxFileError = maxFiles && files.length > maxFiles;
-    const anyErrors = files.filter(file => file.errors).length !== 0;
+    const anyErrors = false; //files.filter(file => file.errors).length !== 0;
 
     setErrorMessage(
       formatError(
@@ -328,57 +339,62 @@ export const FileUploader = React.forwardRef<
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
-        helperMessage={helperMessage}
         inputSize={inputSize}
         isInverse={isInverse}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         labelStyle={labelStyle}
         labelText={labelText}
-      />
-      <Container
-        behavior={FlexBehavior.container}
-        dragState={dragState}
-        isInverse={isInverse}
-        noDrag={noDrag}
-        theme={theme}
-        {...getRootProps()}
-        {...rest}
+        messageStyle={{ minHeight: 0 }}
       >
-        <input ref={ref} data-testid={testId} {...getInputProps()} />
-        {noDrag ? (
-          <Flex xs behavior={FlexBehavior.item}>
-            <Button
-              color={ButtonColor.secondary}
-              isInverse={isInverse}
-              style={{ margin: 0 }}
-              onClick={open}
-            >
-              {i18n.fileUploader.browseFiles}
-            </Button>
-          </Flex>
-        ) : (
-          <Flex behavior={FlexBehavior.item}>
-            <CloudUploadIcon
-              aria-hidden="true"
-              color={
-                isInverse ? theme.colors.neutral07 : theme.colors.neutral02
-              }
-              size={theme.iconSizes.xLarge}
-            />
-            <Wrapper isInverse={isInverse} theme={theme}>
-              {i18n.fileUploader.dragMessage}
-            </Wrapper>
-            <Button
-              color={ButtonColor.secondary}
-              variant={ButtonVariant.solid}
-              isInverse={isInverse}
-              onClick={open}
-            >
-              {i18n.fileUploader.browseFiles}
-            </Button>
-          </Flex>
-        )}
-      </Container>
+        <HelperMessage theme={theme} isInverse={isInverse}>
+          {helperMessage}
+        </HelperMessage>
+        <Container
+          behavior={FlexBehavior.container}
+          dragState={dragState}
+          isInverse={isInverse}
+          noDrag={noDrag}
+          theme={theme}
+          {...getRootProps()}
+          {...rest}
+        >
+          <input ref={ref} data-testid={testId} {...getInputProps()} />
+          {noDrag ? (
+            <Flex xs behavior={FlexBehavior.item}>
+              <Button
+                color={ButtonColor.secondary}
+                isInverse={isInverse}
+                style={{ margin: 0 }}
+                onClick={open}
+              >
+                {i18n.fileUploader.browseFiles}
+              </Button>
+            </Flex>
+          ) : (
+            <Flex behavior={FlexBehavior.item}>
+              <CloudUploadIcon
+                aria-hidden="true"
+                color={
+                  isInverse ? theme.colors.neutral07 : theme.colors.neutral02
+                }
+                size={48}
+              />
+              <Wrapper isInverse={isInverse} theme={theme}>
+                {i18n.fileUploader.dragMessage}
+              </Wrapper>
+              <Button
+                color={ButtonColor.secondary}
+                variant={ButtonVariant.solid}
+                isInverse={isInverse}
+                onClick={open}
+                style={{ margin: 0 }}
+              >
+                {i18n.fileUploader.browseFiles}
+              </Button>
+            </Flex>
+          )}
+        </Container>
+      </FormFieldContainer>
       {files.map((file: FilePreview) => (
         <Preview
           accept={accept}
