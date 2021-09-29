@@ -29,11 +29,11 @@ export interface DropdownMenuItemProps
   /**
    * Action that fires when the menu item is clicked. If the menuitem also has a value prop, the value will be passed to the onClick handler
    */
-  onClick?: (value?: string) => void;
+  onClick?: (value?: string | number) => void;
   /**
    * Value of the component, gets passed to the onClick event
    */
-  value?: string;
+  value?: string | number;
 }
 
 export const MenuItemStyles = props => {
@@ -68,7 +68,7 @@ const StyledItem = styled.div<{
   disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;
-  value?: string;
+  value?: string | number;
 }>`
   ${MenuItemStyles}
 `;
