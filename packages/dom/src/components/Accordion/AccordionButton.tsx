@@ -1,9 +1,9 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import {
+  useIsInverse
+} from '@react-magma/themes';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
 import { AccordionIconPosition } from './useAccordion';
 import { Spacer } from '../Spacer';
 import { ExpandMoreIcon } from 'react-magma-icons';
@@ -22,7 +22,6 @@ export interface AccordionButtonProps
   /**
    * @internal
    */
-  theme?: ThemeInterface;
 }
 
 const StyledButton = styled.button<{
@@ -31,19 +30,19 @@ const StyledButton = styled.button<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+      ? 'var(--colors-foundation)'
+      : 'var(--colors-neutral08)'};
   border: 0;
   border-top: 1px solid ${props =>
-    props.isInverse ? props.theme.colors.tint04 : props.theme.colors.neutral06};
+    props.isInverse ? 'var(--colors-tint04)' : 'var(--colors-neutral06)'};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? 'var(--colors-neutral08)'
+      : 'var(--colors-neutral)'};
   cursor: pointer;
   display: flex;
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
+  font-size: ${props => 'var(--typeScale-size03-fontSize)'};
+  line-height: ${props => 'var(--typeScale-size03-lineHeight)'};
   font-weight: 600;
   padding: 12px 16px;
   text-align: left;
@@ -52,8 +51,8 @@ const StyledButton = styled.button<{
   &:focus {
     outline: 2px dotted ${props =>
       props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
+        ? 'var(--colors-focusInverse)'
+        : 'var(--colors-focus)'};
     }
     outline-offset: -3px;
   }
@@ -61,8 +60,8 @@ const StyledButton = styled.button<{
   &&[disabled] {
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.disabledInverseText
-        : props.theme.colors.disabledText};
+        ? 'var(--colors-disabledInverseText)'
+        : 'var(--colors-disabledText)'};
      cursor: not-allowed;
   }
 `;
@@ -76,7 +75,6 @@ export const AccordionButton = React.forwardRef<
   AccordionButtonProps
 >((props, forwardedRef) => {
   const { children, testId, isInverse: isInverseProp, ...rest } = props;
-  const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
   const {
@@ -94,7 +92,7 @@ export const AccordionButton = React.forwardRef<
     <Transition
       isOpen={isExpanded}
       rotate180
-      style={{ height: theme.spaceScale.spacing06 }}
+      style={{ height: 'var(--spaceScale-spacing06)' }}
     >
       <ExpandMoreIcon />
     </Transition>
@@ -113,7 +111,6 @@ export const AccordionButton = React.forwardRef<
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       ref={ref}
-      theme={theme}
     >
       {iconPosition === AccordionIconPosition.left && (
         <>

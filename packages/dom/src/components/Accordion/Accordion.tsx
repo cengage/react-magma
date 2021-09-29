@@ -1,14 +1,15 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import {
+  InverseContext,
+  useIsInverse
+} from '@react-magma/themes';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, useIsInverse } from '../../inverse';
 import {
   UseAccordionProps,
   AccordionContext,
   useAccordion,
 } from './useAccordion';
-import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -17,10 +18,6 @@ interface BaseAccordionProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
 }
 
 export interface AccordionMultipleProps extends BaseAccordionProps {
@@ -96,13 +93,13 @@ export type AccordionProps =
 const StyledAccordion = styled.div<AccordionProps>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
-  border-bottom: 1px solid ${props => props.theme.colors.neutral06};
+      ? 'var(--colors-foundation)'
+      : 'var(--colors-neutral08)'};
+  border-bottom: 1px solid ${props => 'var(--colors-neutral06)'};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? 'var(--colors-neutral08)'
+      : 'var(--colors-neutral)'};
 `;
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
@@ -115,7 +112,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       ...rest
     } = props;
 
-    const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
     const { contextValue } = useAccordion(props);
@@ -128,7 +124,6 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
             data-testid={testId}
             isInverse={isInverse}
             ref={ref}
-            theme={theme}
           >
             {React.Children.map(
               children,

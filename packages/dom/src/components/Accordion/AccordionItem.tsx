@@ -4,7 +4,6 @@ import {
   UseAccordionItemProps,
   useAccordionItem,
 } from './useAccordionItem';
-import { ThemeInterface } from '../../theme/magma';
 import styled from '@emotion/styled';
 
 /**
@@ -13,10 +12,6 @@ import styled from '@emotion/styled';
 export interface AccordionItemProps
   extends UseAccordionItemProps,
     React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
 }
 
 const StyledItem = styled.div`

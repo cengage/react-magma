@@ -43,12 +43,20 @@ export interface Colors {
 }
 
 export interface Breakpoints {
-  xs: number;
-  small: number;
-  medium: number;
-  large: number;
-  xl: number;
+  xs: string;
+  small: string;
+  medium: string;
+  large: string;
+  xl: string;
 }
+
+const breakpoints =  {
+  xs: '0',
+  small: '600px',
+  medium: '768px',
+  large: '1024px',
+  xl: '1200px',
+};
 
 export interface IconSizes {
   xSmall: number;
@@ -384,13 +392,7 @@ export const magma = {
   transitions,
 
   // breakpoints
-  breakpoints: {
-    xs: 0,
-    small: 600,
-    medium: 768,
-    large: 1024,
-    xl: 1200,
-  },
+  breakpoints,
 
   spaceScale: spaceScale,
 
@@ -653,3 +655,10 @@ export const magma = {
     },
   },
 };
+
+export const v3 = {
+  colors,
+  breakpoints,
+  spaceScale,
+  typeScale
+}

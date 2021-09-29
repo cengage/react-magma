@@ -1,9 +1,10 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
+import {
+  useIsInverse
+} from '@react-magma/themes';
+
 import { AccordionItemContext } from './useAccordionItem';
 import { Transition } from '../Transition';
 
@@ -14,23 +15,18 @@ export interface AccordionPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
   isInverse?: boolean;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
 }
 
 const StyledPanel = styled.div<AccordionPanelProps>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+      ? 'var(--colors-foundation)'
+      : 'var(--colors-neutral08)'};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
-  padding: ${props =>
-    `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing04}`};
+      ? 'var(--colors-neutral08)'
+      : 'var(--colors-neutral)'};
+  padding: var(--spaceScale-spacing03) var(--spaceScale-spacing05) var(--spaceScale-spacing04);
 `;
 
 export const AccordionPanel = React.forwardRef<
@@ -38,7 +34,6 @@ export const AccordionPanel = React.forwardRef<
   AccordionPanelProps
 >((props, ref) => {
   const { children, testId, isInverse: isInverseProp, ...rest } = props;
-  const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
   const { buttonId, isExpanded, panelId } =
@@ -54,7 +49,6 @@ export const AccordionPanel = React.forwardRef<
         id={panelId}
         isInverse={isInverse}
         ref={ref}
-        theme={theme}
       >
         {children}
       </StyledPanel>
