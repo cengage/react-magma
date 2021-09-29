@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.5
+
+### Patch Changes
+
+- 84507cc4: feat: add fileuploader to i18n
+- 8771bbfe: chore: update icons to 2.3.1
+- ab506800: change to dropdown for table pagination, change drop direction to 'up', and allow dropdown drop direction to be changed through props.
+
 ## 2.5.5-next.2
 
 ### Patch Changes
