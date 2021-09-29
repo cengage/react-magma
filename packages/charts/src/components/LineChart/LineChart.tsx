@@ -404,6 +404,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                   />
                 ) : undefined
               }
+              role="presentation"
               voronoiPadding={32}
             />
           }
