@@ -1,5 +1,5 @@
 interface ThemeInterface {
-  [key: string]: string | ThemeInterface;
+  [key: string]: string | number | ThemeInterface;
 }
 
 export const convertThemeToCssVariables = (theme: ThemeInterface, path:string ='-') =>

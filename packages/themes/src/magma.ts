@@ -657,8 +657,12 @@ export const magma = {
 };
 
 export const v3 = {
-  colors,
+  bodyExpressiveFont: magma.bodyExpressiveFont,
+  bodyFont: magma.bodyFont,
+  bodyNarrativeFont: magma.bodyNarrativeFont,
   breakpoints,
+  colors,
   spaceScale,
-  typeScale
+  typeScale,
+  typographyVisualStyles: magma.typographyVisualStyles,
 }
