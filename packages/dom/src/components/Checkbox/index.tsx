@@ -92,17 +92,17 @@ export const HiddenInput = styled.input`
 function buildCheckIconColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return props.theme.colors.tint04;
+      return 'var(--colors-tint04';
     }
-    return props.theme.colors.neutral05;
+    return 'var(--colors-neutral05';
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    return 'var(--colors-neutral08)';
   }
   if (props.isChecked || props.isIndeterminate) {
     return props.color;
   }
-  return props.theme.colors.neutral02;
+  return 'var(--colors-neutral02)';
 }
 
 export const StyledFakeInput = styled.span<{
@@ -122,8 +122,8 @@ export const StyledFakeInput = styled.span<{
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
     props.textPosition === 'left'
-      ? `${props.theme.spaceScale.spacing01} 0 0 ${props.theme.spaceScale.spacing03}`
-      : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+      ? 'var(--spaceScale-spacing01) 0 0 var(--spaceScale-spacing03)'
+      : '0 var(--spaceScale-spacing03) 0 0'};
 
   svg {
     flex-shrink: 0;

@@ -14,15 +14,15 @@ interface CalendarDayProps {
 }
 
 const CalendarDayCell = styled.td`
-  border: 1px solid ${props => props.theme.colors.neutral06};
-  color: ${props => props.theme.colors.neutral};
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
-  height: ${props => props.theme.spaceScale.spacing09};
+  border: 1px solid var(--colors-neutral06);
+  color: var(--colors-neutral);
+  font-size: var(--typeScale-size03-fontsize);
+  line-height: var(--typeScale-size03-lineHeight);
+  height: var(--spaceScale-spacing09);
   padding: 0;
   position: relative;
   text-align: center;
-  width: ${props => props.theme.spaceScale.spacing09};
+  width: var(--spaceScale-spacing09);
 `;
 
 const CalendarDayInner = styled.button<{
@@ -32,34 +32,32 @@ const CalendarDayInner = styled.button<{
 }>`
   align-items: center;
   background: ${props =>
-    props.isChosen
-      ? props.theme.colors.foundation02
-      : props.theme.colors.neutral08};
+    props.isChosen ? 'var(--colors-foundation02)' : 'var(--colors-neutral08)'};
   border: 2px solid transparent;
   border-radius: 100%;
   color: ${props =>
     props.isChosen
-      ? props.theme.colors.neutral08
+      ? 'var(--colors-neutral08)'
       : props.disabled
-      ? props.theme.colors.disabledText
-      : props.theme.colors.neutral};
+      ? 'var(--colors-disabledText)'
+      : 'var(--colors-neutral)'};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  height: calc(${props => props.theme.spaceScale.spacing09} - 4px);
+  height: calc(var(--spaceScale-spacing09) - 4px);
   justify-content: center;
-  margin: ${props => props.theme.spaceScale.spacing01};
+  margin: var(--spaceScale-spacing01);
   overflow: hidden;
   outline-offset: 0;
   position: relative;
   transition: background 0.5s ease-in-out 0s;
-  width: calc(${props => props.theme.spaceScale.spacing09} - 4px);
+  width: calc(var(--spaceScale-spacing09) - 4px);
 
   &:focus {
-    outline: 2px dotted ${props => props.theme.colors.focus};
+    outline: 2px dotted var(--colors-focus);
   }
 
   &:before {
-    background: ${props => props.theme.colors.neutral};
+    background: var(--colors-neutral);
     content: '';
     height: 200%;
     left: 0;
@@ -83,7 +81,7 @@ const EmptyCell = styled.td`
 `;
 
 const TodayIndicator = styled.span`
-  border-left: 8px solid ${props => props.theme.colors.pop};
+  border-left: 8px solid var(--colors-pop);
   border-top: 8px solid transparent;
   border-bottom: 8px solid transparent;
   bottom: -6px;

@@ -116,11 +116,11 @@ const DatePickerContainer = styled.div`
 `;
 
 const DatePickerCalendar = styled.div<{ opened: boolean }>`
-  border: 1px solid ${props => props.theme.colors.neutral06};
-  border-radius: ${props => props.theme.borderRadius};
+  border: 1px solid var(--colors-neutral06);
+  border-radius: var(--borderRadius);
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
   display: ${props => (props.opened ? 'block' : 'none')};
-  margin-top: -${props => props.theme.spaceScale.spacing07};
+  margin-top: calc(var(--spaceScale-spacing07) * -1));
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
   position: absolute;

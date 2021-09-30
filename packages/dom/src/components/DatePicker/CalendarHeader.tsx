@@ -19,9 +19,8 @@ interface CalendarHeaderProps {
 const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
-  padding: ${props => props.theme.spaceScale.spacing10} 0
-    ${props => props.theme.spaceScale.spacing03};
-  margin-top: -${props => props.theme.spaceScale.spacing01};
+  padding: var(--spaceScale-spacing10) 0 var(--spaceScale-spacing03);
+  margin-top: calc(var(--spaceScale-spacing01) * -1));
 `;
 
 const CalendarIconButton = styled.div<{ next?: boolean }>`
@@ -33,9 +32,9 @@ const CalendarIconButton = styled.div<{ next?: boolean }>`
 
 const CalendarHeaderText = styled.div`
   caption-side: initial;
-  color: ${props => props.theme.colors.neutral};
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
+  color: var(--colors-neutral);
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
   order: 1;
   text-align: center;
   flex-grow: 0;

@@ -12,11 +12,11 @@ export interface CardBodyProps
 }
 
 const StyledCardBody = styled.div<CardProps>`
-  padding: ${props => props.theme.spaceScale.spacing05};
+  padding: var(--spaceScale-spacing05);
   text-align: ${props => props.align};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing06};
+    padding: var(--spaceScale-spacing06);
   }
 `;
 

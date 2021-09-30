@@ -20,13 +20,12 @@ interface CalendarMonthProps {
 }
 
 const CalendarContainer = styled.div`
-  background: ${props => props.theme.colors.neutral08};
-  padding: 0 ${props => props.theme.spaceScale.spacing05}
-    ${props => props.theme.spaceScale.spacing03};
+  background: var(--colors-neutral08);
+  padding: 0 var(--spaceScale-spacing05) var(--spaceScale-spacing03);
 `;
 
 const MonthContainer = styled.div`
-  background: ${props => props.theme.colors.neutral08};
+  background: var(--colors-neutral08);
   text-align: center;
   user-select: none;
   vertical-align: top;
@@ -35,30 +34,30 @@ const MonthContainer = styled.div`
 const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: ${props => props.theme.spaceScale.spacing09};
+  margin-bottom: var(--spaceScale-spacing09);
 `;
 
 const Th = styled.th`
   border: 0;
-  color: ${props => props.theme.colors.neutral};
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
-  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  color: var(--colors-neutral);
+  font-size: var(--typeScale-size02-fontSize);
+  line-height: var(--typeScale-size02-lineHeight);
   font-weight: normal;
   padding: 0;
   text-align: center;
 `;
 
 const HelperButton = styled.span<{ theme?: any }>`
-  bottom: ${props => props.theme.spaceScale.spacing01};
+  bottom: var(--spaceScale-spacing01);
   position: absolute;
-  right: ${props => props.theme.spaceScale.spacing01};
+  right: var(--spaceScale-spacing01);
   z-index: 2;
 `;
 
 const CloseButton = styled.span<{ theme?: any }>`
   position: absolute;
-  right: ${props => props.theme.spaceScale.spacing01};
-  top: ${props => props.theme.spaceScale.spacing01};
+  right: var(--spaceScale-spacing01);
+  top: var(--spaceScale-spacing01);
   z-index: 1;
 `;
 

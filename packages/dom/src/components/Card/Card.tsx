@@ -55,25 +55,25 @@ export function buildCalloutBackground(
   if (props.isInverse) {
     switch (props.calloutType) {
       case 'danger':
-        return props.theme.colors.dangerInverse;
+        return 'var(--colors-dangerInverse)';
       case 'success':
-        return props.theme.colors.successInverse;
+        return 'var(--colors-successInverse)';
       case 'warning':
-        return props.theme.colors.pop04;
+        return 'var(--colors-pop4)';
       default:
-        return props.theme.colors.foundation04;
+        return 'var(--colors-foundation04)';
     }
   }
 
   switch (props.calloutType) {
     case 'danger':
-      return props.theme.colors.danger;
+      return 'var(--colors-danger)';
     case 'success':
-      return props.theme.colors.success;
+      return 'var(--colors-success)';
     case 'warning':
-      return props.theme.colors.pop04;
+      return 'var(--colors-pop04)';
     default:
-      return props.theme.colors.primary;
+      return 'var(--colors-primary)';
   }
 }
 
@@ -82,23 +82,21 @@ const StyledCard = styled.div<CardProps>`
     props.background
       ? props.background
       : props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+      ? 'var(--colors-foundation)'
+      : 'var(--colors-neutral08)'};
   border: 1px solid
     ${props =>
-      props.background ? props.background : props.theme.colors.neutral06};
-  border-radius: ${props => props.theme.borderRadius};
+      props.background ? props.background : 'var(--colors-neutral06)'};
+  border-radius: var(--borderRadius);
   box-shadow: ${props =>
     props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+    props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral)'};
   display: flex;
   flex-direction: column;
   overflow: visible;
   padding-left: ${props =>
-    props.calloutType ? props.theme.spaceScale.spacing02 : '0'};
+    props.calloutType ? 'var(--spaceScale-spacing02)' : '0'};
   position: relative;
   text-align: ${props => props.align};
   width: ${props => props.width};
@@ -108,14 +106,13 @@ const StyledCard = styled.div<CardProps>`
     css`
       &:before {
         background: ${buildCalloutBackground(props)};
-        border-radius: ${props.theme.borderRadius} 0 0
-          ${props.theme.borderRadius};
+        border-radius: var(--borderRadius) 0 0 var(--borderRadius);
         content: '';
         display: block;
         height: 100%;
         position: absolute;
         left: 0;
-        width: ${props.theme.spaceScale.spacing02};
+        width: var(--spaceScale-spacing02);
       }
     `}
 `;
