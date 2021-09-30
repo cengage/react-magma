@@ -1,14 +1,11 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { css } from '@emotion/react';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';
 import { useForceUpdate, useForkedRef } from '../../utils';
 import { TabsContainerContext } from './TabsContainer';
-import { ThemeInterface } from '../../theme/magma';
-
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
@@ -22,10 +19,6 @@ export interface TabProps
   isActive?: boolean;
   isInverse?: boolean;
   testId?: string;
-  /**
-   * @internal
-   */
-  theme?: any;
 }
 
 export const StyledTabsChild = styled('li', {
@@ -36,7 +29,6 @@ export const StyledTabsChild = styled('li', {
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientation;
-  theme: ThemeInterface;
 }>`
   flex-grow: 0;
   flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
@@ -52,7 +44,7 @@ export const StyledTabsChild = styled('li', {
 
   &:after {
     background: ${props =>
-      props.isInverse ? props.theme.colors.pop02 : props.theme.colors.primary};
+      props.isInverse ? 'var(--colors-pop02)' : 'var(--colors-primary)'};
     border-radius: 2px;
     content: '';
     display: block;
@@ -102,18 +94,18 @@ export const TabStyles = props => css`
   background: transparent;
   border: 0;
   color: ${props.isActive && !props.isInverse
-    ? props.theme.colors.primary
+    ? 'var(--colors-primary)'
     : props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.neutral03};
+    ? 'var(--colors-neutral08)'
+    : 'var(--colors-neutral03)'};
   cursor: ${props.disabled ? 'auto' : 'pointer'};
   display: flex;
   flex-direction: ${getFlexDirection(props.iconPosition)};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
   font-weight: 600;
-  font-size: ${props.theme.typeScale.size02.fontSize};
-  line-height: ${props.theme.typeScale.size02.lineHeight};
+  font-size: var(--typeScale-size02-fontSize);
+  line-height: var(--typeScale-size02-lineHeight);
   height: 100%;
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
   opacity: ${props.disabled
@@ -121,8 +113,7 @@ export const TabStyles = props => css`
     : props.isInverse && !props.isActive
     ? 0.7
     : 1};
-  padding: ${props.theme.spaceScale.spacing04}
-    ${props.theme.spaceScale.spacing05};
+  padding: var(--spaceScale-spacing04) var(--spaceScale-spacing05);
   position: relative;
   pointer-events: ${props.disabled ? 'none' : ''};
   text-align: center;
@@ -147,22 +138,22 @@ export const TabStyles = props => css`
     background-color: ${props.isActive
       ? ''
       : props.isInverse
-      ? props.theme.colors.shade02
-      : props.theme.colors.shade};
+      ? 'var(--colors-shade02)'
+      : 'var(--colors-shade)'};
     color: ${props.isActive
       ? props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.primary
+        ? 'var(--colors-neutral08)'
+        : 'var(--colors-primary)'
       : props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      ? 'var(--colors-neutral08)'
+      : 'var(--colors-neutral02)'};
   }
 
   &:focus {
     outline-offset: -2px;
     outline: ${props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus}
+        ? 'var(--colors-focusInverse)'
+        : 'var(--colors-focus)'}
       dotted 2px;
   }
 `;
@@ -174,7 +165,6 @@ const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientation;
-  theme: ThemeInterface;
 }>`
   ${TabStyles}
 `;
@@ -186,29 +176,28 @@ function getIconMargin(props) {
 
   switch (props.iconPosition) {
     case TabsIconPosition.left:
-      return `0 ${props.theme.spaceScale.spacing03} 0 0`;
+      return '0 var(--spaceScale-spacing03) 0 0';
     case TabsIconPosition.right:
-      return `0 0 0 ${props.theme.spaceScale.spacing03}`;
+      return '0 0 0 var(--spaceScale-spacing03)';
     case TabsIconPosition.top:
-      return `0 0 ${props.theme.spaceScale.spacing02}`;
+      return '0 0 var(--spaceScale-spacing02)';
     case TabsIconPosition.bottom:
-      return `${props.theme.spaceScale.spacing02} 0 0`;
+      return 'var(--spaceScale-spacing02) 0 0';
     default:
-      return `0 0 ${props.theme.spaceScale.spacing02}`;
+      return '0 0 var(--spaceScale-spacing02)';
   }
 }
 
 export const StyledIcon = styled.span<{
   iconPosition: TabsIconPosition;
   isIconOnly?: boolean;
-  theme: ThemeInterface;
 }>`
   display: flex;
   margin: ${props => getIconMargin(props)};
 
   svg {
-    height: ${props => props.theme.iconSizes.small}px;
-    width: ${props => props.theme.iconSizes.small}px;
+    height: 20px;
+    width: 20px;
   }
 `;
 
@@ -251,7 +240,6 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       forceUpdate();
     }, []);
 
-    const theme = React.useContext(ThemeContext);
     const isIconOnly = !children;
 
     const tabIconPosition = iconPosition
@@ -269,7 +257,6 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
         isInverse={isInverse}
         orientation={orientation}
         role="presentation"
-        theme={theme}
       >
         <StyledTab
           {...rest}
@@ -285,11 +272,9 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           ref={ref}
           role="tab"
           tabIndex={isActive ? 0 : -1}
-          theme={theme}
         >
           {icon && (
             <StyledIcon
-              theme={theme}
               iconPosition={tabIconPosition}
               isIconOnly={isIconOnly}
             >

@@ -3,8 +3,6 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { transparentize } from 'polished';
 import { TabsOrientation } from './shared';
-import { ThemeInterface } from '../../theme/magma';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
 import {
@@ -20,7 +18,6 @@ export interface ScrollButtonProps
   buttonVisible?: boolean;
   isInverse?: boolean;
   orientation?: TabsOrientation;
-  theme?: ThemeInterface;
 }
 
 const StyledScrollButton = styled.button<ScrollButtonProps>`
@@ -29,8 +26,8 @@ const StyledScrollButton = styled.button<ScrollButtonProps>`
   border: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? 'var(--colors-neutral08)'
+      : 'var(--colors-neutral)'};
   cursor: pointer;
   display: ${props => (props.buttonVisible ? 'flex' : 'none')};
   justify-content: center;
@@ -99,25 +96,24 @@ export const ButtonPrev = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const backgroundColorValue = '#bada5550'; //getComputedStyle(document.body).getPropertyValue(props.backgroundColor);
 
   return (
     <StyledButtonPrev
       aria-label={i18n.tabs.previousButtonLabel}
-      backgroundColor={props.backgroundColor}
+      backgroundColor={backgroundColorValue}
       buttonVisible={props.buttonVisible}
       data-testid="buttonPrev"
       isInverse={props.isInverse}
       onClick={props.onClick}
       orientation={props.orientation}
       ref={ref}
-      theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <ExpandLessIcon size={theme.iconSizes.small} />
+        <ExpandLessIcon size={20} />
       ) : (
-        <ArrowBackIosIcon size={theme.iconSizes.small} />
+        <ArrowBackIosIcon size={20} />
       )}
     </StyledButtonPrev>
   );
@@ -127,25 +123,24 @@ export const ButtonNext = React.forwardRef<
   HTMLButtonElement,
   ScrollButtonProps
 >((props, ref) => {
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const backgroundColorValue = '#bada5550'; //getComputedStyle(document.body).getPropertyValue(props.backgroundColor);
 
   return (
     <StyledButtonNext
       aria-label={i18n.tabs.nextButtonLabel}
-      backgroundColor={props.backgroundColor}
+      backgroundColor={backgroundColorValue}
       buttonVisible={props.buttonVisible}
       data-testid="buttonNext"
       isInverse={props.isInverse}
       onClick={props.onClick}
       orientation={props.orientation}
       ref={ref}
-      theme={props.theme}
     >
       {props.orientation === TabsOrientation.vertical ? (
-        <ExpandMoreIcon size={theme.iconSizes.small} />
+        <ExpandMoreIcon size={20} />
       ) : (
-        <ArrowForwardIosIcon size={theme.iconSizes.small} />
+        <ArrowForwardIosIcon size={20} />
       )}
     </StyledButtonNext>
   );

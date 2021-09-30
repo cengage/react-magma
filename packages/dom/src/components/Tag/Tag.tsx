@@ -6,13 +6,7 @@ import { CancelIcon, IconProps } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
 import { Omit, XOR, getNodeText } from '../../utils';
 import { I18nContext } from '../../i18n';
-
-const tagStyles = {
-  border: '0',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'space-around',
-}
+import { styles } from './styles';
 
 export enum TagColor {
   primary = 'primary',
@@ -204,7 +198,7 @@ function buildTagPadding(props) {
 }
 
 const TagStyling = props => css`
-  ${tagStyles}
+  ${styles}
   border-radius: var(--spaceScale-spacing05);
   background: ${buildButtonBackground(props)};
   color: ${buildButtonTextColor(props)};

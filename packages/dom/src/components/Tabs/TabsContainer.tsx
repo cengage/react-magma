@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useIsInverse } from '../../inverse';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-
 interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The index of the current active tab. You can use this for managing state of the tabs component by your custom logic.
@@ -29,14 +26,13 @@ export const TabsContainerContext = React.createContext<TabsContainerContextInte
 
 const StyledTabsContainer = styled.div<{
   isInverse?: boolean;
-  theme: ThemeInterface;
 }>`
   background: ${props =>
-    props.isInverse ? props.theme.colors.foundation02 : 'none'};
+    props.isInverse ? 'var(--colors-foundation02)' : 'none'};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? 'var(--colors-neutral08)'
+      : 'var(--colors-neutral)'};
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -66,8 +62,6 @@ export const TabsContainer = React.forwardRef<
     Boolean(props.isInverse)
   );
 
-  const theme = React.useContext(ThemeContext);
-
   return (
     <TabsContainerContext.Provider
       value={{
@@ -79,7 +73,6 @@ export const TabsContainer = React.forwardRef<
       <StyledTabsContainer
         ref={ref}
         data-testid={testId}
-        theme={theme}
         {...props}
       >
         {children}

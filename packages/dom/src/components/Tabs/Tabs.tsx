@@ -3,11 +3,10 @@ import styled from '@emotion/styled';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
 import { Omit, getNormalizedScrollLeft, useDescendants } from '../../utils';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
 import { useTabsMeta } from './utils';
 import { I18nContext } from '../../i18n';
+import { styles } from './styles';
 
 export enum TabsAlignment {
   center = 'center',
@@ -111,13 +110,12 @@ export const StyledContainer = styled('div', {
   orientation: TabsOrientation;
   isInverse: boolean;
   backgroundColor: string;
-  theme: ThemeInterface;
 }>`
   background-color: ${props =>
     props.backgroundColor
       ? props.backgroundColor
       : props.isInverse
-      ? props.theme.colors.foundation
+      ? 'var(--colors-foundation)'
       : 'transparent'};
   background: backgroundColor;
   display: flex;
@@ -178,8 +176,6 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       ...rest
     } = props;
 
-    const theme = React.useContext(ThemeContext);
-
     const {
       activeTabIndex,
       setActiveTabIndex,
@@ -192,7 +188,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         : isInverseContainer;
 
     const [tabsMeta, tabsHandleMethods, tabsRefs] = useTabsMeta(
-      theme,
+      styles,
       orientation,
       backgroundColor,
       isInverse
@@ -225,7 +221,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           scrollTop: tabsNode.scrollTop,
           scrollLeftNormalized: getNormalizedScrollLeft(
             tabsNode,
-            theme.direction
+            'ltr'
           ),
           scrollWidth: tabsNode.scrollWidth,
           top: rect.top,
@@ -400,7 +396,6 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         isInverse={isInverse}
         orientation={orientation || TabsOrientation.horizontal}
         ref={ref}
-        theme={theme}
         {...rest}
       >
         <ButtonPrev
@@ -410,7 +405,6 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           onClick={handleStartScrollClick}
           orientation={orientation || TabsOrientation.horizontal}
           ref={prevButtonRef}
-          theme={theme}
         />
         <StyledTabsWrapper
           data-testid="tabsWrapper"
@@ -450,7 +444,6 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           onClick={handleEndScrollClick}
           orientation={orientation || TabsOrientation.horizontal}
           ref={nextButtonRef}
-          theme={theme}
         />
       </StyledContainer>
     );

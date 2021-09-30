@@ -10,7 +10,6 @@ import {
   TabsIconPosition,
 } from '../Tabs';
 import { TabsOrientation } from '../Tabs/shared';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, XOR } from '../../utils';
 
 /**
@@ -38,10 +37,6 @@ export interface BaseNavTabProps
   orientation?: TabsOrientation;
   testId?: string;
   to?: string;
-  /**
-   * @internal
-   */
-  theme?: any;
 }
 
 export interface NavTabChildrenProps extends BaseNavTabProps {
@@ -87,7 +82,6 @@ const StyledTab = styled.a<{
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientation;
-  theme: any;
 }>`
   ${TabStyles}
 `;
@@ -133,7 +127,6 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
   let children;
   let component;
   const { isActive, icon, testId, to, ...other } = props;
-  const theme = React.useContext(ThemeContext);
 
   if (instanceOfNavComponentTab(props)) {
     component = props.component;
@@ -165,7 +158,6 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
       isFullWidth={isFullWidth}
       isInverse={isInverse}
       orientation={orientation}
-      theme={theme}
     >
       {component ? (
         <StyledCustomTab
@@ -175,7 +167,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           iconPosition={tabIconPosition}
           icon={
             icon && (
-              <StyledIcon theme={theme} iconPosition={tabIconPosition}>
+              <StyledIcon iconPosition={tabIconPosition}>
                 {icon}
               </StyledIcon>
             )
@@ -184,7 +176,6 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           isInverse={isInverse}
           isFullWidth={isFullWidth}
           orientation={orientation}
-          theme={theme}
         />
       ) : (
         <StyledTab
@@ -197,11 +188,9 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           iconPosition={tabIconPosition}
           isInverse={isInverse}
           orientation={orientation}
-          theme={theme}
         >
           {icon && (
             <StyledIcon
-              theme={theme}
               iconPosition={tabIconPosition}
               isIconOnly={isIconOnly}
             >

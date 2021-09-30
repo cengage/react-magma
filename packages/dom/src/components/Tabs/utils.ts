@@ -14,14 +14,14 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
 
   const approxTabSize = vertical
-    ? theme.tabs.approxTabSize.vertical
-    : theme.tabs.approxTabSize.horizontal;
+    ? theme.approxTabSize.vertical
+    : theme.approxTabSize.horizontal;
 
   const background = backgroundColor
     ? backgroundColor
     : isInverse
-    ? theme.colors.foundation
-    : theme.colors.neutral08;
+    ? 'var(--colors-foundation)'
+    : 'var(--colors-neutral08)';
 
   const [displayScroll, setDisplayScroll] = React.useState({
     start: false,

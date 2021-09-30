@@ -11,10 +11,10 @@ import {
 } from '../Tabs';
 import { TabsOrientation } from '../Tabs/shared';
 import { Omit } from '../../utils';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
 import { useIsInverse } from '../../inverse';
+import { styles } from '../Tabs/styles';
 
 export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
 
@@ -49,18 +49,17 @@ export const NavTabs = React.forwardRef<
     testId,
     ...rest
   } = props;
-  const theme = React.useContext(ThemeContext);
 
   const isInverse = useIsInverse(props.isInverse);
 
   const background = backgroundColor
     ? backgroundColor
     : isInverse
-    ? theme.colors.foundation
-    : theme.colors.neutral08;
+    ? 'var(--colors-foundation)'
+    : 'var(--colors-neutral08)';
 
   const [tabsMeta, tabsHandleMethods, tabsRefs] = useTabsMeta(
-    theme,
+    styles,
     orientation,
     backgroundColor,
     isInverse
@@ -83,7 +82,6 @@ export const NavTabs = React.forwardRef<
       isInverse={isInverse}
       orientation={orientation || TabsOrientation.horizontal}
       ref={ref}
-      theme={theme}
       {...rest}
     >
       <ButtonPrev
@@ -93,7 +91,6 @@ export const NavTabs = React.forwardRef<
         onClick={handleStartScrollClick}
         orientation={orientation || TabsOrientation.horizontal}
         ref={prevButtonRef}
-        theme={theme}
       />
 
       <StyledTabsWrapper
@@ -126,7 +123,6 @@ export const NavTabs = React.forwardRef<
         onClick={handleEndScrollClick}
         orientation={orientation || TabsOrientation.horizontal}
         ref={nextButtonRef}
-        theme={theme}
       />
     </StyledContainer>
   );
