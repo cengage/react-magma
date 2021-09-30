@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { ErrorIcon } from 'react-magma-icons';
 import { Announce } from '../Announce';
 import { InputSize } from '../InputBase';
@@ -14,32 +13,32 @@ export interface InputMessageProps
 }
 
 function BuildMessageColor(props) {
-  const { isInverse, hasError, theme } = props;
+  const { isInverse, hasError } = props;
   if (isInverse) {
-    return hasError ? theme.colors.dangerInverse : theme.colors.neutral08;
+    return hasError ? 'var(--colors-dangerInverse)' : 'var(--colors-neutral08)';
   }
-  return hasError ? theme.colors.danger : theme.colors.neutral03;
+  return hasError ? 'var(--colors-danger)' : 'var(--colors-neutral03)';
 }
 
 const Message = styled.div<InputMessageProps>`
   align-items: center;
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: var(--borderRadius);
   color: ${props => BuildMessageColor(props)};
   display: flex;
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
-  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  font-size: var(typeScale-size02-fontSize);
+  line-height: var(typeScale-size02-lineHeight);
   margin-top: ${props =>
     props.inputSize === InputSize.large
-      ? props.theme.spaceScale.spacing03
-      : props.theme.spaceScale.spacing02};
-  min-height: ${props => props.theme.spaceScale.spacing06};
+      ? 'var(--spaceScale-spacing03)'
+      : 'var(--spaceScale-spacing02)'};
+  min-height: var(--spaceScale-spacing06);
   text-align: left;
 `;
 
 const IconWrapper = styled.span`
   display: inline-flex;
   flex-shrink: 0;
-  padding-right: ${props => props.theme.spaceScale.spacing02};
+  padding-right: var(--spaceScale-spacing02);
 `;
 
 export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
@@ -49,7 +48,6 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   hasError,
   ...other
 }: InputMessageProps) => {
-  const theme = React.useContext(ThemeContext);
 
   return (
     <Announce>
@@ -59,11 +57,10 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
         id={id}
         isInverse={isInverse}
         hasError={hasError}
-        theme={theme}
       >
         {hasError && (
-          <IconWrapper aria-label="Error" role="img" theme={theme}>
-            <ErrorIcon size={theme.iconSizes.small} />
+          <IconWrapper aria-label="Error" role="img">
+            <ErrorIcon size={20} />
           </IconWrapper>
         )}
         <div>{children}</div>

@@ -1,23 +1,19 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 
-export interface StyledLabelProps {
-  children?: any;
-  htmlFor: string;
+export interface StyledLabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   isInverse?: boolean;
-  style?: React.CSSProperties;
 }
 
 const StyledLabelComponent = styled.label<StyledLabelProps>`
   align-items: flex-start;
   color: ${props =>
-    props.isInverse ? props.theme.colors.neutral08 : 'inherit'};
+    props.isInverse ? 'var(--colors-neutral08)' : 'inherit'};
   display: flex;
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
   margin: 0;
-  padding: ${props => props.theme.spaceScale.spacing03} 0;
+  padding: var(--spaceScale-spacing03) 0;
 `;
 
 export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
@@ -26,16 +22,11 @@ export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
   isInverse,
   style,
 }: StyledLabelProps) => (
-  <ThemeContext.Consumer>
-    {theme => (
-      <StyledLabelComponent
-        htmlFor={htmlFor}
-        isInverse={isInverse}
-        style={style}
-        theme={theme}
-      >
-        {children}
-      </StyledLabelComponent>
-    )}
-  </ThemeContext.Consumer>
+  <StyledLabelComponent
+    htmlFor={htmlFor}
+    isInverse={isInverse}
+    style={style}
+  >
+    {children}
+  </StyledLabelComponent>
 );

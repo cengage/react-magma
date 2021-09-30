@@ -660,6 +660,7 @@ export const v3 = {
   bodyExpressiveFont: magma.bodyExpressiveFont,
   bodyFont: magma.bodyFont,
   bodyNarrativeFont: magma.bodyNarrativeFont,
+  borderRadius: magma.borderRadius,
   breakpoints,
   colors,
   spaceScale,

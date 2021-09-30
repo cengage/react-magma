@@ -9,7 +9,6 @@ import { css } from '@emotion/react';
 // Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
 // import styled from '@emotion/styled';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 
@@ -64,10 +63,6 @@ export interface ToggleProps
   /**
    * @internal
    */
-  theme?: any;
-  /**
-   * Style properties for the part of the component that slides back and forth on the track
-   */
   thumbStyle?: React.CSSProperties;
   /**
    * Style properties for track on which the toggle thumb slides
@@ -88,16 +83,15 @@ const Track = styled.span<{
   disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
-  theme?: any;
 }>`
-  background: ${props => props.theme.colors.neutral04};
+  background: var(--colors-neutral04);
   border: 2px solid;
   border-color: ${props =>
-    props.hasError ? props.theme.colors.danger : props.theme.colors.neutral04};
+    props.hasError ? 'var(--colors-danger)' : 'var(--colors-neutral04)'};
   border-radius: 12px;
   box-shadow: ${props =>
     props.isInverse && props.hasError
-      ? `0 0 0 1px ${props.theme.colors.neutral08}`
+      ? '0 0 0 1px var(--colors-neutral08)'
       : '0 0 0'};
   cursor: pointer;
   height: 24px;
@@ -107,17 +101,17 @@ const Track = styled.span<{
   ${props =>
     props.isChecked &&
     css`
-      background: ${props.theme.colors.success02};
+      background: var(--colors-success02);
       border-color: ${props.hasError
-        ? props.theme.colors.danger
-        : props.theme.colors.success02};
+        ? 'var(--colors-danger)'
+        : 'var(--colors-success02)'};
     `}
 
   ${props =>
     props.disabled &&
     css`
-      background: ${props.theme.colors.neutral06};
-      border-color: ${props.theme.colors.neutral06};
+      background: var(--colors-neutral06);
+      border-color: var(--colors-neutral06);
       cursor: not-allowed;
     `}
 
@@ -125,14 +119,14 @@ const Track = styled.span<{
     outline: 2px dotted
       ${props =>
         props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? 'var(--colors-focusInverse)'
+          : 'var(--colors-focus)'};
     outline-offset: 3px;
   }
 
   &:before {
     // active state
-    background: ${props => props.theme.colors.neutral};
+    background: var(--colors-neutral);
     border-radius: 50%;
     content: '';
     display: block;
@@ -150,7 +144,7 @@ const Track = styled.span<{
     ${props =>
       props.isChecked &&
       css`
-        background: ${props.theme.colors.success02};
+        background: var(--colors-success02);
         left: 12px;
       `}
   }
@@ -167,9 +161,8 @@ const Track = styled.span<{
 const Thumb = styled.span<{
   isChecked?: boolean;
   disabled?: boolean;
-  theme?: any;
 }>`
-  background: ${props => props.theme.colors.neutral08};
+  background: var(--colors-neutral08);
   border-radius: 100%;
   height: 20px;
   left: 0;
@@ -186,14 +179,14 @@ const Thumb = styled.span<{
     `}
 `;
 
-const IconContainer = styled.span<{ disabled?: boolean; theme?: any }>`
+const IconContainer = styled.span<{ disabled?: boolean;}>`
   color: ${props =>
     props.disabled
-      ? props.theme.colors.neutral05
-      : props.theme.colors.neutral08};
-  left: ${props => props.theme.spaceScale.spacing02};
+      ? 'var(--colors-neutral05)'
+      : 'var(--colors-neutral08)'};
+  left: var(--spaceScale-spacing02);
   position: absolute;
-  top: ${props => props.theme.spaceScale.spacing01};
+  top: var(--spaceScale-spacing01);
 
   svg {
     display: block;
@@ -267,7 +260,6 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       }
     }
 
-    const theme = React.useContext(ThemeContext);
     const context = React.useContext(FormGroupContext);
 
     const descriptionId = errorMessage ? `${id}__desc` : null;
@@ -321,16 +313,14 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               hasError={hasError}
               isInverse={isInverse}
               style={trackStyle}
-              theme={theme}
             >
-              <IconContainer disabled={disabled} theme={theme}>
-                <CheckIcon size={theme.iconSizes.xSmall} />
+              <IconContainer disabled={disabled}>
+                <CheckIcon size={20} />
               </IconContainer>
               <Thumb
                 isChecked={isChecked}
                 disabled={disabled}
                 style={thumbStyle}
-                theme={theme}
               />
             </Track>
             {textPosition === ToggleTextPosition.right &&

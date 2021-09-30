@@ -1,21 +1,11 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 
-export interface ContainerProps {
-  children?: any;
-  style?: React.CSSProperties;
-}
+export interface ContainerProps extends React.HtmlHTMLAttributes<HTMLDivElement> {}
 
-const StyledContainerComponent = styled.div<ContainerProps>`
+export const StyledContainer = styled.div<ContainerProps>`
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;
   position: relative;
 `;
-
-export const StyledContainer: React.FunctionComponent<ContainerProps> = ({
-  children,
-  style,
-}: ContainerProps) => (
-  <StyledContainerComponent style={style}>{children}</StyledContainerComponent>
-);
