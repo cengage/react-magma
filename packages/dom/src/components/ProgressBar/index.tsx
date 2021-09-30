@@ -52,24 +52,24 @@ function buildProgressBarBackground(props) {
   if (props.isInverse) {
     switch (props.color) {
       case 'danger':
-        return props.theme.colors.dangerInverse;
+        return 'var(--colors-dangerInverse)';
       case 'success':
-        return props.theme.colors.successInverse;
+        return 'var(--colors-successInverse)';
       default:
-        return props.theme.colors.primaryInverse;
+        return 'var(--colors-primaryInverse)';
     }
   }
   switch (props.color) {
     case 'danger':
-      return props.theme.colors.danger;
+      return 'var(--colors-danger)';
     case 'pop':
-      return props.theme.colors.pop;
+      return 'var(--colors-pop)';
     case 'pop02':
-      return props.theme.colors.pop02;
+      return 'var(--colors-pop02)';
     case 'success':
-      return props.theme.colors.success;
+      return 'var(--colors-success)';
     default:
-      return props.theme.colors.primary;
+      return 'var(--colors-primary)';
   }
 }
 
@@ -80,17 +80,14 @@ const Container = styled.div<{ isLoadingIndicator?: boolean }>`
 
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
-    props.isInverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
+    props.isInverse ? 'rgba(0,0,0,0.25)' : 'var(--colors-neutral08)'};
   box-shadow: inset 0 0 0 1px
     ${props =>
-      props.isInverse
-        ? `${props.theme.colors.neutral08}80`
-        : props.theme.colors.neutral04};
+      props.isInverse ? 'var(--colors-tint)' : 'var(--colors-neutral04)'};
   border-radius: 50em;
   overflow: hidden;
   display: flex;
   height: ${props => props.height};
-  /* padding: 1px; */
   width: 100%;
 `;
 
@@ -135,15 +132,15 @@ const Bar = styled.div<ProgressBarProps>`
 `;
 
 const Percentage = styled.span`
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
-  line-height: ${props => props.theme.typeScale.size02.lineHeight};
-  margin-left: ${props => props.theme.spaceScale.spacing03};
+  font-size: var(--typeScale-size02-fontSize);
+  line-height: var(--typeScale-size02-lineHeight);
+  margin-left: var(--spaceScale-spacing03);
 `;
 
 const TopPercentage = styled.div`
-  font-size: ${props => props.theme.typeScale.size05.fontSize};
-  line-height: ${props => props.theme.typeScale.size05.lineHeight};
-  margin-bottom: ${props => props.theme.spaceScale.spacing03};
+  font-size: var(--typeScale-size05-fontSize);
+  line-height: var(--typeScale-size05-lineHeight);
+  margin-bottom: var(--spaceScale-spacing03);
   text-align: center;
 `;
 
@@ -170,7 +167,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const heightString = convertStyleValueToString(
       height,
-      theme.spaceScale.spacing03
+      'var(--spaceScale-spacing03)'
     );
 
     const isInverse = useIsInverse(props.isInverse);

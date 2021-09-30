@@ -60,22 +60,22 @@ const SpanTextRight = styled.span<SpanProps>`
 function getIconPadding(props) {
   switch (props.size) {
     case 'large':
-      return props.theme.spaceScale.spacing05;
+      return 'var(--spaceScale-spacing05)';
     case 'small':
-      return props.theme.spaceScale.spacing02;
+      return 'var(--spaceScale-spacing02)';
     default:
-      return props.theme.spaceScale.spacing03;
+      return 'var(--spaceScale-spacing03)';
   }
 }
 
 function getIconSize(size, theme) {
   switch (size) {
     case 'large':
-      return theme.iconSizes.large;
+      return 'var(--iconSizes-large)';
     case 'small':
-      return theme.iconSizes.small;
+      return 'var(--iconSizes-small)';
     default:
-      return theme.iconSizes.medium;
+      return 'var(--iconSizes-medium)';
   }
 }
 
@@ -88,15 +88,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
-    const {
-      color,
-      shape,
-      size,
-      testId,
-      textTransform,
-      variant,
-      ...rest
-    } = props;
+    const { color, shape, size, testId, textTransform, variant, ...rest } =
+      props;
 
     const theme = React.useContext(ThemeContext);
 

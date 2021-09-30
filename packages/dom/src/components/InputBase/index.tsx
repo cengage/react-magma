@@ -110,42 +110,31 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex-shrink: 0;
   position: relative;
   width: ${props.width || 'auto'};
-  background-color: ${props.theme.colors.neutral08};
-  border-radius: ${props.theme.borderRadius};
-  border: 1px solid ${
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03
-  };
+  background-color: 'var(--colors-neutral08)';
+  border-radius: 'var(--borderRadius)';
+  border: 1px solid
+    ${props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral03)'};
 
   &:focus-within {
     outline: 2px dotted
-      ${
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus
-      };
+      ${props.isInverse ? 'var(--colors-focusInverse)' : 'var(--colors-focus)'};
     outline-offset: 4px;
   }
 
-  ${
-    props.hasError &&
-    css`
-      border-color: ${props.theme.colors.danger};
-      box-shadow: 0 0 0 1px
-        ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.danger};
-    `
-  }
+  ${props.hasError &&
+  css`
+    border-color: var(--colors-danger);
+    box-shadow: 0 0 0 1px
+      ${props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-danger)'};
+  `}
 
-  ${
-    props.disabled &&
-    css`
-      border-color: ${props.theme.colors.neutral05};
-      background-color: ${props.disabled ? props.theme.colors.neutral07 : props.theme.colors.neutral08};
-    `
-  }
+  ${props.disabled &&
+  css`
+    border-color: var(--colors-neutral05);
+    background-color: ${props.disabled
+      ? 'var(--colors-neutral07)'
+      : 'var(--colors-neutral08)'};
+  `}
 `;
 
 export interface InputBaseStylesProps {
@@ -158,50 +147,50 @@ export interface InputBaseStylesProps {
 
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
-  border-radius: ${props.theme.borderRadius};
-  background: ${props.theme.colors.neutral08};
-  color: ${props.theme.colors.neutral};
+  border-radius: var(--borderRadius);
+  background: var(--colors-neutral08);
+  color: var(--colors-neutral);
   display: block;
-  font-size: ${props.theme.typeScale.size03.fontSize};
-  line-height: ${props.theme.typeScale.size03.lineHeight};
-  font-family: ${props.theme.bodyFont};
-  height: ${props.theme.spaceScale.spacing09};
-  padding: ${props.theme.spaceScale.spacing03};
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  font-family: var(--bodyFont);
+  height: var(--spaceScale-spacing09);
+  padding: var(--spaceScale-spacing03);
   -webkit-appearance: none;
   width: 100%;
 
   ${props.iconPosition === 'left' &&
   css`
-    padding-left: ${props.theme.spaceScale.spacing09};
+    padding-left: var(--spaceScale-spacing09);
   `}
 
   ${props.iconPosition === 'right' &&
   css`
-    padding-right: ${props.theme.spaceScale.spacing09};
+    padding-right: var(--spaceScale-spacing09);
   `}
 
   ${props.inputSize === 'large' &&
   css`
-    font-size: ${props.theme.typeScale.size04.fontSize};
-    line-height: ${props.theme.typeScale.size04.lineHeight};
-    height: ${props.theme.spaceScale.spacing11};
-    padding: 0 ${props.theme.spaceScale.spacing04};
+    font-size: var(--typeScale-size04-fontSize);
+    line-height: var(--typeScale-size04-lineHeight);
+    height: var(--spaceScale-spacing11);
+    padding: 0 var(--spaceScale-spacing04);
   `}
 
     ${props.iconPosition === 'left' &&
   props.inputSize === 'large' &&
   css`
-    padding-left: ${props.theme.spaceScale.spacing10};
+    padding-left: var(--spaceScale-spacing10);
   `}
 
       ${props.iconPosition === 'right' &&
   props.inputSize === 'large' &&
   css`
-    padding-right: ${props.theme.spaceScale.spacing10};
+    padding-right: var(--spaceScale-spacing10);
   `}
 
   &::placeholder {
-    color: ${props.theme.colors.neutral03};
+    color: var(--colors-neutral03);
     opacity: 1;
   }
 
@@ -220,12 +209,12 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
 
   ${props.disabled &&
   css`
-    background: ${props.theme.colors.neutral07};
-    color: ${props.theme.colors.disabledText};
+    background: var(--colors-neutral07);
+    color: var(--colors-disabledText);
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${props.theme.colors.disabledText};
+      color: var(--colors-disabledText);
     }
   `}
 `;
@@ -244,74 +233,74 @@ const IconWrapper = styled.span<{
   isClearable?: boolean;
   disabled?: boolean;
 }>`
-color: ${props => props.theme.colors.neutral};
-left: ${props =>
-  props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
+  color: var(--colors-neutral);
+  left: ${props =>
+    props.iconPosition === 'left' ? 'var(--spaceScale-spacing03)' : 'auto'};
   right: ${props =>
-    props.iconPosition === 'right' ? props.theme.spaceScale.spacing03 : 'auto'};
-    position: absolute;
-    top: ${props => props.theme.spaceScale.spacing03};
+    props.iconPosition === 'right' ? 'var(--spaceScale-spacing03)' : 'auto'};
+  position: absolute;
+  top: var(--spaceScale-spacing03);
 
-    ${props =>
-      props.inputSize === 'large' &&
-      css`
+  ${props =>
+    props.inputSize === 'large' &&
+    css`
       left: ${props.iconPosition === 'left'
-      ? props.theme.spaceScale.spacing04
-      : 'auto'};
+        ? 'var(--spaceScale-spacing04)'
+        : 'auto'};
       right: ${props.iconPosition === 'right'
-      ? props.theme.spaceScale.spacing04
-      : 'auto'};
-      top: ${props.theme.spaceScale.spacing04};
-      `}
-      `;
+        ? 'var(--spaceScale-spacing04)'
+        : 'auto'};
+      top: var(--spaceScale-spacing04);
+    `}
+`;
 
-      const IconButtonContainer = styled.span<{
-        size?: InputSize;
-        theme: ThemeInterface;
-        isClearable?: boolean;
-        disabled?: boolean;
-      }>`
-      background-color: ${({disabled,  theme}) => disabled ? theme.colors.neutral07 : theme.colors.neutral08};
-      height: auto;
-      margin: 0;
+const IconButtonContainer = styled.span<{
+  size?: InputSize;
+  isClearable?: boolean;
+  disabled?: boolean;
+}>`
+  background-color: ${({ disabled }) =>
+    disabled ? 'var(--colors-neutral07)' : 'var(--colors-neutral08)'};
+  height: auto;
+  margin: 0;
   position: relative;
   right: ${props =>
     props.size === InputSize.large
-      ? props.theme.spaceScale.spacing02
-      : props.theme.spaceScale.spacing01};
+      ? 'var(--spaceScale-spacing02)'
+      : 'var(--spaceScale-spacing01)'};
 
   svg {
     height: ${props =>
       props.size === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
+        ? 'var(--iconSizes-large)px'
+        : 'var(--iconSizes-medium)px'};
     width: ${props =>
       props.size === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
+        ? 'var(--iconSizes-large)px'
+        : 'var(--iconSizes-medium)px'};
   }
 `;
 
 const IsClearableContainer = styled.span<{
   size?: InputSize;
-  theme: ThemeInterface;
   isClearable?: boolean;
   disabled?: boolean;
 }>`
-  background-color: ${({disabled,  theme}) => disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+  background-color: ${({ disabled }) =>
+    disabled ? 'var(--colors-neutral07)' : 'var(--colors-neutral08)'};
   position: relative;
   right: ${props =>
     props.size === InputSize.large
-      ? props.theme.spaceScale.spacing02
-      : props.theme.spaceScale.spacing01};
+      ? 'var(--spaceScale-spacing02)'
+      : 'var(--spaceScale-spacing01)'};
 `;
 
-function getIconSize(size: string, theme: ThemeInterface) {
+function getIconSize(size: string) {
   switch (size) {
     case 'large':
-      return theme.iconSizes.large;
+      return 'var(--iconSizes-large)';
     default:
-      return theme.iconSizes.medium;
+      return 'var(--iconSizes-medium)';
   }
 }
 
@@ -361,9 +350,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const ref = useForkedRef(forwardedRef, inputRef);
 
     function handleClearInput() {
-      onClear &&
-        typeof onClear === 'function' &&
-        onClear();
+      onClear && typeof onClear === 'function' && onClear();
       setValue('');
       inputRef.current.focus();
     }
@@ -401,10 +388,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           value={value}
         />
         {isClearable && value && (
-          <IsClearableContainer
-            theme={theme}
-            disabled={disabled}
-          >
+          <IsClearableContainer theme={theme} disabled={disabled}>
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}
