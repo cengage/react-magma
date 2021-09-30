@@ -6,6 +6,8 @@ import { magma, Container } from '@react-magma/dom';
 const ContentSection = styled.section`
   grid-area: content;
   padding: ${magma.spaceScale.spacing07} 0 0;
+  overflow-y: auto;
+  height: calc(100vh - 56px);
 `;
 
 export const LayoutComponent = props => (

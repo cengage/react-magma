@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
-import { 
+import {
   Button,
   Card,
   CardBody,
@@ -22,7 +22,7 @@ import {
   PaletteIcon,
   TimelineIcon,
 } from 'react-magma-icons';
-import { Logo } from '../Logo';
+import { SmallLogo } from '../Logo';
 import styled from '@emotion/styled';
 
 const StyledGrid = styled(Grid)`
@@ -127,7 +127,7 @@ export function IndexPageContent() {
             digital experiences with React.
           </Heading>
         </div>
-        <Logo />
+        <SmallLogo />
       </HeaderBlock>
       <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <StyledGridItem>
