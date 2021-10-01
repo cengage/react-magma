@@ -71,11 +71,11 @@ function getIconPadding(props) {
 function getIconSize(size, theme) {
   switch (size) {
     case 'large':
-      return 'var(--iconSizes-large)';
+      return 32;
     case 'small':
-      return 'var(--iconSizes-small)';
+      return 20;
     default:
-      return 'var(--iconSizes-medium)';
+      return 24;
   }
 }
 

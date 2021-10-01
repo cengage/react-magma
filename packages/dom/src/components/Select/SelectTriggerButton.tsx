@@ -6,7 +6,6 @@ import {
   InputWrapperStylesProps,
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
-import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 
 const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
@@ -16,9 +15,9 @@ const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   align-items: center;
   display: flex;
   height: auto;
-  min-height: ${props => props.theme.spaceScale.spacing09};
-  padding: 0 ${props => props.theme.spaceScale.spacing03} 0
-    ${props => props.theme.spaceScale.spacing02};
+  min-height: var(--spaceScale-spacing09);
+  padding: 0 var(--spaceScale-spacing03) 0
+    var(--spaceScale-spacing02);
   text-align: left;
 `;
 
@@ -52,7 +51,6 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     style: passedInStyle,
     toggleButtonProps,
   } = props;
-  const theme = React.useContext(ThemeContext);
 
   const { DropdownIndicator } = defaultComponents<T>({
     ...customComponents,
@@ -70,7 +68,6 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       isInverse={isInverse}
       role="button"
       style={style}
-      theme={theme}
       tabIndex={disabled ? undefined : 0}
     >
       <ChildrenContainer>{children}</ChildrenContainer>

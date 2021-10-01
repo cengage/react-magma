@@ -298,9 +298,9 @@ const IsClearableContainer = styled.span<{
 function getIconSize(size: string) {
   switch (size) {
     case 'large':
-      return 'var(--iconSizes-large)';
+      return 32;
     default:
-      return 'var(--iconSizes-medium)';
+      return 24;
   }
 }
 
@@ -421,8 +421,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             {React.Children.only(
               React.cloneElement(icon, {
                 size: getIconSize(
-                  inputSize ? inputSize : InputSize.medium,
-                  theme
+                  inputSize ? inputSize : InputSize.medium
                 ),
               })
             )}

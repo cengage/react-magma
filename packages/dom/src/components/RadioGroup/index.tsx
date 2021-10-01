@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Label } from '../Label';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 
 import styled from '@emotion/styled';
@@ -128,8 +127,6 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
-    const theme = React.useContext(ThemeContext);
-
     const isInverse = useIsInverse(props.isInverse);
 
     return (
@@ -165,7 +162,6 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
               id={id}
               style={labelStyle}
               isInverse={isInverse}
-              theme={theme}
             >
               {labelText}
             </Label>

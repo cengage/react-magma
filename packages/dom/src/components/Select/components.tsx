@@ -3,7 +3,6 @@ import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
 import { IconProps, ArrowDropDownIcon } from 'react-magma-icons';
 import { StyledItem } from './shared';
-import { ThemeInterface } from '../../theme/magma';
 
 export type ItemRenderOptions<T> = {
   key: string;
@@ -11,7 +10,6 @@ export type ItemRenderOptions<T> = {
   item: T;
   itemRef: React.Ref<HTMLLIElement>;
   itemString: string;
-  theme: ThemeInterface;
   [key: string]: any;
 };
 

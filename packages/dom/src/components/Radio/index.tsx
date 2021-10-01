@@ -16,7 +16,6 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 // Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
 // import styled from '@emotion/styled';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 
 export enum RadioTextPosition {
@@ -76,25 +75,25 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 function buildRadioIconColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return props.theme.colors.tint04;
+      return 'var(--colors-tint04)';
     }
-    return props.theme.colors.neutral05;
+    return 'var(--colors-neutral05)';
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    return 'var(--colors-neutral08)';
   }
   if (props.isChecked) {
     return props.color;
   }
-  return props.theme.colors.neutral02;
+  return 'var(--colors-neutral02)';
 }
 
 export function buildErrorBorder(props) {
   if (props.hasError) {
     if (props.isInverse) {
-      return `0 0 0 2px ${props.theme.colors.dangerInverse}`;
+      return '0 0 0 2px var(--colors-dangerInverse)';
     }
-    return `0 0 0 2px ${props.theme.colors.danger}`;
+    return '0 0 0 2px var(--colors-danger)';
   }
   return `inherit`;
 }
@@ -106,21 +105,20 @@ const StyledFakeInput = styled.span<{
   disabled: boolean;
   color: string;
   textPosition?: RadioTextPosition;
-  theme?: any;
 }>`
   ${DisplayInputStyles};
   color: ${props => buildRadioIconColor(props)};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   margin: ${props =>
     props.textPosition === 'left'
-      ? `0 0 0 ${props.theme.spaceScale.spacing03}`
-      : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+      ? '0 0 0 var(--spaceScale-spacing03)'
+      : '0 var(--spaceScale-spacing03) 0 0'};
   box-shadow: ${buildErrorBorder};
 
   ${HiddenInput}:checked:not (:disabled) + label & {
     background: ${props => {
       if (props.isInverse) {
-        return props.theme.colors.neutral08;
+        return 'var(--colors-neutral08)';
       }
     }};
   }
@@ -148,9 +146,8 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
   (props, ref) => {
     const id = useGenerateId(props.id);
     const context = React.useContext(RadioContext);
-    const theme = React.useContext(ThemeContext);
     const {
-      color = theme.colors.primary,
+      color = 'var(--colors-primary)',
       containerStyle,
       disabled,
       inputStyle,
@@ -200,7 +197,6 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             hasError={context.hasError}
             style={inputStyle}
             textPosition={textPosition}
-            theme={theme}
           >
             {context.selectedValue === value ? (
               <RadioButtonCheckedIcon />

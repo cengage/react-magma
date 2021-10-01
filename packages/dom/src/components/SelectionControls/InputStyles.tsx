@@ -3,12 +3,12 @@ import { css } from '@emotion/react';
 export const DisplayInputStyles = props => css`
   align-items: center;
   display: flex;
-  height: ${props.theme.spaceScale.spacing06};
+  height: var(--spaceScale-spacing06);
   flex-shrink: 0;
   justify-content: center;
   position: relative;
   transition: all 0.2s ease-out;
-  width: ${props.theme.spaceScale.spacing06};
+  width: var(--spaceScale-spacing06);
 
   &:before,
   &:after {
@@ -20,14 +20,14 @@ export const DisplayInputStyles = props => css`
   &:after {
     // active state
     border-radius: 50%;
-    height: ${props.theme.spaceScale.spacing09};
-    left: -${props.theme.spaceScale.spacing03};
+    height: var(--spaceScale-spacing09);
+    left: calc(var(--spaceScale-spacing03) * -1);
     opacity: 0;
     padding: 50%;
-    top: -${props.theme.spaceScale.spacing03};
+    top: calc(var(--spaceScale-spacing03) * -1);
     transform: scale(1);
     transition: opacity 1s, transform 0.5s;
-    width: ${props.theme.spaceScale.spacing09};
+    width: var(--spaceScale-spacing09);
   }
 `;
 
@@ -39,18 +39,18 @@ export const DisplayInputActiveStyles = css`
 
 export function buildDisplayInputActiveBackground(props) {
   return props.isInverse
-    ? props.theme.colors.neutral08
+    ? 'var(--colors-neutral08)'
     : props.color
     ? props.color
-    : props.theme.colors.primary;
+    : 'var(--colors-primary)';
 }
 
 export function buildDisplayInputBorderColor(props) {
   if (props.hasError) {
     if (props.isInverse) {
-      return props.theme.colors.dangerInverse;
+      return 'var(--colors-dangerInverse)';
     }
-    return props.theme.colors.danger;
+    return 'var(--colors-danger)';
   }
   return 'transparent';
 }
@@ -62,7 +62,7 @@ export function buildDisplayInputFocusStyles(props) {
     width: 30px;
     outline: 2px dotted
       ${props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
+        ? 'var(--colors-focusInverse)'
+        : 'var(--colors-focus)'};
   `;
 }

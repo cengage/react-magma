@@ -1,9 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { stringIncludesUnit } from '../../utils';
-import { ThemeInterface } from '../../theme/magma';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
@@ -16,10 +14,6 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @default 16
    */
   size?: string | number;
-  /**
-   * @internal
-   */
-  theme?: ThemeInterface;
   testId?: string;
 }
 
@@ -43,7 +37,6 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
   (props, ref) => {
     const { 'aria-label': ariaLabel, color, size, testId, ...other } = props;
 
-    const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     const sizeString = size
@@ -51,13 +44,13 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         (typeof size === 'string' && !stringIncludesUnit(size))
         ? `${size}px`
         : size
-      : theme.spaceScale.spacing05;
+      : 'var(--spaceScale-spacing05)';
 
     return (
       <StyledSpinner
         {...other}
         aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
-        color={color ? color : theme.colors.primary}
+        color={color ? color : 'var(--colors-primary)'}
         data-testid={testId}
         ref={ref}
         role="img"

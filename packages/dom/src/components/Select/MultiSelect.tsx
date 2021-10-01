@@ -6,8 +6,8 @@ import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectedItemButton, IconWrapper } from './shared';
+import { styles } from './styles';
 
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
@@ -125,7 +125,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       : removeSelectedItem(selectedItem);
   }
 
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const toggleButtonProps = getToggleButtonProps({
@@ -196,11 +195,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                     handleRemoveSelectedItem(event, multiSelectedItem)
                   }
                   onFocus={() => setActiveIndex(index)}
-                  theme={theme}
                 >
                   {multiSelectedItemString}
                   <IconWrapper>
-                    <CloseIcon size={theme.iconSizes.xSmall} />
+                    <CloseIcon size={16} />
                   </IconWrapper>
                 </SelectedItemButton>
               );
@@ -217,7 +215,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         isOpen={isOpen}
         items={getFilteredItems(items)}
         itemToString={itemToString}
-        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        maxHeight={itemListMaxHeight || styles.menu.maxHeight}
         menuStyle={menuStyle}
       />
     </SelectContainer>

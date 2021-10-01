@@ -1,5 +1,4 @@
 import React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { StyledCard, StyledList, StyledItem } from './shared';
 import {
@@ -28,9 +27,9 @@ interface ItemsListProps<T> {
 }
 
 const NoItemsMessage = styled.span`
-  color: ${props => props.theme.colors.neutral04};
+  color: var(--colors-neutral04);
   display: block;
-  padding-top: ${props => props.theme.spaceScale.spacing03};
+  padding-top: var(--spaceScale-spacing03);
   text-align: center;
 `;
 
@@ -47,7 +46,6 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     menuStyle,
   } = props;
 
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const hasItems = items && items.length > 0;
@@ -84,7 +82,6 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               item,
               itemString,
               key,
-              theme,
               ...otherDownshiftItemProps,
             };
 
@@ -92,7 +89,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
           })
         ) : (
           <StyledItem tabIndex={-1}>
-            <NoItemsMessage theme={theme}>
+            <NoItemsMessage>
               {i18n.emptyItemsListText}
             </NoItemsMessage>
           </StyledItem>

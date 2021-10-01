@@ -16,7 +16,6 @@ import {
   buildFocusBackground,
   buildFocusColor,
 } from './styles';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
 import { Spinner } from '../Spinner';
 
@@ -38,16 +37,16 @@ export const buttonStyles = props => css`
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
   display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;
-  font-family: ${props.theme.bodyFont};
+  font-family: var(--bodyFont);
   font-size: ${buildButtonFontSize(props)};
   font-weight: 600;
   height: ${buildButtonSize(props)};
   justify-content: center;
   line-height: ${buildButtonLineHeight(props)};
   margin: ${props.isFullWidth
-    ? `${props.theme.spaceScale.spacing02} 0`
-    : props.theme.spaceScale.spacing02};
-  min-width: ${props.size === 'small' ? '0' : props.theme.spaceScale.spacing13};
+    ? 'var(--spaceScale-spacing02) 0'
+    : 'var(--spaceScale-spacing02)'};
+  min-width: ${props.size === 'small' ? '0' : 'var(--spaceScale-spacing13)'};
   overflow: hidden;
   padding: ${buildButtonPadding(props)};
   position: relative;
@@ -69,8 +68,8 @@ export const buttonStyles = props => css`
     &:focus {
       outline: 2px dotted
         ${props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? 'var(--colors-focusInverse)'
+          : 'var(--colors-focus)'};
       outline-offset: 3px;
     }
 
@@ -84,7 +83,7 @@ export const buttonStyles = props => css`
       background: ${buildAfterBackground(props)};
       border-radius: 50%;
       content: '';
-      height: ${props.theme.spaceScale.spacing07};
+      height: var(--spaceScale-spacing07);
       left: 50%;
       opacity: 0;
       padding: 50%;
@@ -92,7 +91,7 @@ export const buttonStyles = props => css`
       top: 50%;
       transform: translate(-50%, -50%) scale(1);
       transition: opacity 1s, transform 0.5s;
-      width: ${props.theme.spaceScale.spacing07};
+      width: var(--spaceScale-spacing07);
     }
 
     &:active {
@@ -148,20 +147,19 @@ export const StyledButton = React.forwardRef<
     testId,
     isLoading,
   } = props;
-  const theme = React.useContext(ThemeContext);
 
   const spinnerColor =
     isInverse &&
     (variant === ButtonVariant.outline || variant === ButtonVariant.link)
-      ? theme.colors.neutral08
-      : theme.colors.neutral03;
+      ? 'var(--colors-neutral08)'
+      : 'var(--colors-neutral03)';
 
   const spinnerSize =
     size === ButtonSize.small
-      ? theme.iconSizes.xSmall
+      ? 16
       : size === ButtonSize.large
-      ? theme.iconSizes.large
-      : theme.iconSizes.medium;
+      ? 24
+      : 32;
 
   return (
     <BaseStyledButton
@@ -169,7 +167,6 @@ export const StyledButton = React.forwardRef<
       data-testid={testId}
       ref={ref}
       type={type}
-      theme={theme}
       disabled={isLoading || props.disabled}
     >
       {isLoading && (

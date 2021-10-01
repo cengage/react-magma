@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-
 export interface ProgressRingProps
   extends React.HTMLAttributes<HTMLDivElement> {
   color?: string;
@@ -57,8 +55,6 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
     const circumference = normalizedRadius * 2 * Math.PI;
     const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
-    const theme = React.useContext(ThemeContext);
-
     return (
       <div {...other} ref={ref} data-testid={testId}>
         <svg height={radius * 2} width={radius * 2}>
@@ -67,7 +63,7 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
             cy={radius}
             fill="transparent"
             r={normalizedRadius}
-            stroke={color ? color : theme.colors.neutral}
+            stroke={color ? color : 'var(--colors-neutral)'}
             strokeWidth={strokeWidth}
             strokeDasharray={`${circumference} ${circumference}`}
             style={{ strokeDashoffset }}
