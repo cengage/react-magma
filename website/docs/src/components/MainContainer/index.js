@@ -9,7 +9,7 @@ import { GlobalStyles } from '@react-magma/themes';
 const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {
     display: grid;
-    grid-template-columns: 280px auto;
+    grid-template-columns: 0 auto;
     grid-template-rows: 88px auto;
     grid-template-areas:
       'masthead masthead'

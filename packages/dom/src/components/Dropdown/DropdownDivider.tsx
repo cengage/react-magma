@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface DropdownDividerProps
   extends React.HTMLAttributes<HTMLHRElement> {
@@ -8,10 +7,10 @@ export interface DropdownDividerProps
 }
 
 const StyledHr = styled.hr`
-  background: ${props => props.theme.colors.neutral06};
+  background: var(--colors-neutral06);
   border: 0;
   height: 1px;
-  margin: ${props => props.theme.spaceScale.spacing02} 0;
+  margin: var(--spaceScale-spacing02) 0;
 `;
 
 export const DropdownDivider: React.FunctionComponent<DropdownDividerProps> = (
@@ -19,6 +18,5 @@ export const DropdownDivider: React.FunctionComponent<DropdownDividerProps> = (
 ) => {
   const { testId, ...other } = props;
 
-  const theme = React.useContext(ThemeContext);
-  return <StyledHr {...other} data-testid={testId} theme={theme} />;
+  return <StyledHr {...other} data-testid={testId}/>;
 };

@@ -45,10 +45,10 @@ export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
 export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   align-self: center;
   background: ${props =>
-    props.isFocused ? props.theme.colors.neutral06 : 'transparent'};
+    props.isFocused ? 'var(--colors-neutral06)' : 'transparent'};
   border: 2px dotted;
   border-color: ${props =>
-    props.isFocused ? props.theme.colors.focus : 'transparent'};
+    props.isFocused ? 'var(--colors-focus)' : 'transparent'};
   cursor: default;
   line-height: 24px;
   margin: 0;
@@ -64,7 +64,7 @@ export const SelectedItemsWrapper = styled.span`
 
 export const SelectedItemButton = styled.button`
   align-self: center;
-  background: ${props => props.theme.colors.neutral06};
+  background: var(--colors.neutral06);
   border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;
@@ -73,10 +73,10 @@ export const SelectedItemButton = styled.button`
   line-height: 16px;
   height: 24px;
   margin: 4px 2px 4px 4px;
-  padding: ${props => props.theme.spaceScale.spacing02}
-    ${props => props.theme.spaceScale.spacing02}
-    ${props => props.theme.spaceScale.spacing02}
-    ${props => props.theme.spaceScale.spacing03};
+  padding: var(--spaceScale.spacing02)
+    var(--spaceScale.spacing02)
+    var(--spaceScale.spacing02)
+    var(--spaceScale.spacing03);
   position: relative;
   white-space: nowrap;
 `;

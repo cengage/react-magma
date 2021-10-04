@@ -18,7 +18,7 @@ import { ButtonProps } from '../components/ButtonProps';
 
 const ContentArticle = styled.article`
   margin: 0 auto ${magma.spaceScale.spacing10};
-  max-width: 900px;
+  max-width: 1900px;
   width: 80%;
 
   @media (max-width: 600px) {
