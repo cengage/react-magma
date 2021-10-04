@@ -111,11 +111,13 @@ export const Slider = (props: SliderProps) => {
     // width,
   } = props;
 
+  const [ratio, setRatio] = React.useState<number>(1);
   const [trackRef, trackDimensions] = useDimensions<HTMLDivElement>();
 
-  // React.useEffect(() => {
-  //   console.log(trackDimensions)
-  // }, [trackDimensions])
+  React.useEffect(() => {
+    console.log(min, max, max - min, trackDimensions.width)
+    setRatio(trackDimensions.width/(max-min))
+  }, [trackDimensions])
   
   const [min, setMin] = React.useState(rangeMin);
   const [max, setMax] = React.useState(rangeMax);
@@ -168,15 +170,16 @@ export const Slider = (props: SliderProps) => {
         // dragControls={maxDragControls}
         // hasTooltip={hasTooltip}
         // isInverse={isInverse}
-        onChange={(point: MotionValue<number>) => {
+        onChange={(point: number) => {
           console.log(point)
           // setMax(
           //   getChangeValue({value: point - trackDimensions.x, containerWidth: trackDimensions.width, min: rangeMin, max:rangeMax, steps})
           // )
         }}
-        min={0}
-        max={trackDimensions.width}
-        steps={250}
+        min={rangeMin}
+        max={rangeMax}
+        ratio={ratio}
+        steps={steps}
         theme={theme}
         // value={max}
       />

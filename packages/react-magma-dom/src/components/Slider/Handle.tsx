@@ -45,6 +45,7 @@ export const Handle = (props: any) => {
     max,
     min,
     onChange,
+    ratio=1,
     steps=1,
     tabIndex=1,
     value,
@@ -102,44 +103,27 @@ export const Handle = (props: any) => {
   return (
     <AnimatedHandle
       drag={direction === ProgressBarDirection.vertical ? 'y' : 'x'}
-      dragConstraints={{ left: x.get() - handleDimensions.width/2, right: x.get() - handleDimensions.width/2 }}
+      dragConstraints={{ 
+        left: x.get(),
+        right: x.get(),
+      }}
       dragElastic={0}
       dragMomentum={false}
       onDrag={(event, info) => {
-        const newPoint = clamp(Math.round(info.point.x / steps) * steps, min, max);
+        const newPoint = clamp(Math.round(info.point.x / (steps * ratio)) * (steps * ratio), (min-min) * ratio, (max-min) * ratio);
         x.set(newPoint);
-        onChange(newPoint);
+        console.log(Math.round(info.point.x / (steps * ratio)), (steps * ratio), (min-min), (max-min))
+        onChange(newPoint/ratio+min);
       }}
       // onKeyDown={handleKeyDown}
       ref={handleRef}
-      style={{x}}
+      style={{
+        marginLeft: -handleDimensions.width/2,
+        x
+      }}
       tabIndex={disabled ? -1 : tabIndex}
       theme={props.theme}
       whileTap={{ cursor: "grabbing" }}
     />
-    // <AnimatedHandle
-    //   // onDrag={(event, info) => {
-    //     // console.log(info.point.x)
-    //     // const point =
-    //     //   props.direction === ProgressBarDirection.vertical
-    //     //     ? info.point.y - handleDimensions.height / 2
-    //     //     : info.point.x - handleDimensions.width / 2;
-
-    //     //   props.value.set(point);
-    //   // }}
-    //   
-    //   style={{x}}
-    //   theme={props.theme}
-    //   onDrag={(event, info) => {
-    //     console.log(info.point)
-    //   }}
-    //   whileTap={{ cursor: "grabbing" }}
-    //   // whileDrag={{ opacity: 1 }}
-    //   // transition={{ duration: 0 }}
-    // >
-    //   {props.hasToolTip && (
-    //     <Tooltip theme={props.theme}>{props.value}</Tooltip>
-    //   )}
-    // </AnimatedHandle>
   );
 };
