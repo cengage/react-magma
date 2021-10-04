@@ -1,4 +1,4 @@
-// import { darken, lighten, tint } from 'polished';
+import { cssVar, darken, lighten, tint } from 'polished';
 
 const DEFAULT_STYLE_PROPS = {
   color: 'primary',
@@ -168,8 +168,7 @@ export function buildFocusBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
   if (props.color === 'marketing') {
-    // return lighten(0.1, props.theme.colors.pop04);
-    return '#bada55';
+    return lighten(0.1, cssVar('--colors-pop04') as string);
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -177,17 +176,13 @@ export function buildFocusBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        // return tint(0.9, props.theme.colors.neutral);
-        return '#bada55';
+        return tint(0.9, cssVar('--colors-neutral') as string);
       case 'success':
-        // return tint(0.9, props.theme.colors.success);
-        return '#bada55';
+        return tint(0.9, cssVar('--colors-success') as string);
       case 'danger':
-        // return tint(0.9, props.theme.colors.danger);
-        return '#bada55';
+        return tint(0.9, cssVar('--colors-danger') as string);
       default:
-        // return tint(0.9, props.theme.colors.primary);
-        return '#bada55';
+        return tint(0.9, cssVar('--colors-primary') as string);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
@@ -195,17 +190,13 @@ export function buildFocusBackground(props) {
   }
   switch (props.color) {
     case 'secondary':
-      // return darken(0.1, props.theme.colors.neutral08);
-      return '#bada55';
+      return darken(0.1, cssVar('--colors-neutral08') as string);
     case 'success':
-      // return darken(0.1, props.theme.colors.success);
-      return '#bada55';
+      return darken(0.1, cssVar('--colors-success') as string);
     case 'danger':
-      // return darken(0.1, props.theme.colors.danger);
-      return '#bada55';
+      return darken(0.1, cssVar('--colors-danger') as string);
     default:
-      // return darken(0.1, props.theme.colors.primary);
-      return '#bada55';
+      return darken(0.1, cssVar('--colors-primary') as string);
   }
 }
 
@@ -222,14 +213,11 @@ export function buildFocusColor(props) {
       case 'secondary':
         return 'var(--colors-neutral)';
       case 'success':
-        // return darken(0.1, 'var(--colors-success)');
-        return '#bada55';
+        return darken(0.1, cssVar('--colors-success') as string);
       case 'danger':
-        // return darken(0.1, 'var(--colors-danger)');
-        return '#bada55';
+        return darken(0.1, cssVar('--colors-danger') as string);
       default:
-        // return darken(0.1, 'var(--colors-primary)');
-        return '#bada55';
+        return darken(0.1, cssVar('--colors-primary') as string);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
@@ -273,8 +261,7 @@ export function buildActiveBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
   if (props.color === 'marketing') {
-    // return lighten(0.2, props.theme.colors.pop04);
-    return '#bada55';
+    return lighten(0.2, cssVar('--colors-pop04') as string);
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -282,17 +269,13 @@ export function buildActiveBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        // return tint(0.7, props.theme.colors.neutral);
-        return '#bada55';
+        return tint(0.7, cssVar('--colors-neutral') as string);
       case 'success':
-        // return tint(0.7, props.theme.colors.success);
-        return '#bada55';
+        return tint(0.7, cssVar('--colors-success') as string);
       case 'danger':
-        // return tint(0.7, props.theme.colors.danger);
-        return '#bada55';
+        return tint(0.7, cssVar('--colors-danger') as string);
       default:
-        // return tint(0.7, props.theme.colors.primary);
-        return '#bada55';
+        return tint(0.7, cssVar('--colors-primary') as string);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
@@ -300,17 +283,13 @@ export function buildActiveBackground(props) {
   }
   switch (props.color) {
     case 'secondary':
-      // return darken(0.2, props.theme.colors.neutral08);
-      return '#bada55';
+      return darken(0.2, cssVar('--colors-neutral08') as string);
     case 'success':
-      // return darken(0.2, props.theme.colors.success);
-      return '#bada55';
+      return darken(0.2, cssVar('--colors-success') as string);
     case 'danger':
-      // return darken(0.2, props.theme.colors.danger);
-      return '#bada55';
+      return darken(0.2, cssVar('--colors-danger') as string);
     default:
-      // return darken(0.2, props.theme.colors.primary);
-      return '#bada55';
+      return darken(0.2, cssVar('--colors-primary') as string);
   }
 }
 
@@ -328,14 +307,11 @@ export function buildActiveColor(props) {
       case 'secondary':
         return 'var(--colors-neutral)';
       case 'success':
-        // return darken(0.2, props.theme.colors.success);
-        return '#bada55';
+        return darken(0.2, cssVar('--colors-success') as string);
       case 'danger':
-        // return darken(0.2, props.theme.colors.danger);
-        return '#bada55';
+        return darken(0.2, cssVar('--colors-danger') as string);
       default:
-        // return darken(0.2, props.theme.colors.primary);
-        return '#bada55';
+        return darken(0.2, cssVar('--colors-primary') as string);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
