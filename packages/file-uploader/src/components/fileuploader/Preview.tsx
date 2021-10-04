@@ -59,7 +59,7 @@ const StatusIcons = styled.div`
   grid-template-areas: 'inner-div';
   height: auto;
   place-items: center;
-  width: 56px;
+  width: 46px;
   & > div {
     display: inline-block;
     right: 0;
@@ -74,12 +74,16 @@ const IconStyles = {
 
 const Errors = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.neutral06};
-  padding: 10px;
+  padding: 16px;
+  font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
+  line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
 const StyledFlex = styled(Flex)`
-  height: 48px;
+  height: 56px;
   padding: 0 8px 0 16px;
+  font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
+  line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
 const FileName = styled(Flex)`
@@ -89,6 +93,8 @@ const FileName = styled(Flex)`
   text-overflow: ellipsis;
   display: block;
   margin-right: 24px;
+  font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
+  line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
 const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
@@ -192,7 +198,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
       useEffect(() => {
         setTimeout(() => {
           setDone(true);
-        }, 500);
+        }, 1000);
       }, [status]);
 
       if (status === 'error' || status === 'ready') {
@@ -268,6 +274,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               behavior={FlexBehavior.item}
               alignItems={FlexAlignItems.center}
               style={IconStyles}
+              theme={theme}
             >
               {file.errors ? (
                 <ErrorIcon
@@ -285,7 +292,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                 <FileIcon isInverse={isInverse} file={file} />
               )}
             </Flex>
-            <FileName xs behavior={FlexBehavior.item}>
+            <FileName xs behavior={FlexBehavior.item} theme={theme}>
               {file.name}
             </FileName>
             <Flex style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>

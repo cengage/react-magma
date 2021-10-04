@@ -87,7 +87,7 @@ const Container = styled(Flex)<
       ? `2px dashed ${theme.colors.primary}`
       : dragState === 'dragAccept'
       ? `2px dashed ${theme.colors.success}`
-      : `1px dashed ${theme.colors.neutral05}`};
+      : `2px dashed ${theme.colors.neutral05}`};
   border-style: ${({ dragState = 'default' }) =>
     dragState === 'error' ? 'solid' : 'dashed'};
   background-color: ${({ theme, noDrag, isInverse }) =>
