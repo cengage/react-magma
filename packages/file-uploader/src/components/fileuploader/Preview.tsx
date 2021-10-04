@@ -274,7 +274,6 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               behavior={FlexBehavior.item}
               alignItems={FlexAlignItems.center}
               style={IconStyles}
-              theme={theme}
             >
               {file.errors ? (
                 <ErrorIcon
