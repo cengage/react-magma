@@ -244,21 +244,21 @@ const TagStyling = props => css`
   padding: ${buildTagPadding(props)};
   svg:first-of-type {
     height: ${props.size === 'small'
-      ? `${props.theme.iconSizes.small}px`
-      : 'inherit'};
+      ? `${props.theme.iconSizes.xSmall}px`
+      : `${props.theme.iconSizes.small}px`};
     opacity: ${props.disabled ? '60%' : 'inherit'};
     width: ${props.size === 'small'
-      ? `${props.theme.iconSizes.small}px`
-      : 'inherit'};
+      ? `${props.theme.iconSizes.xSmall}px`
+      : `${props.theme.iconSizes.small}px`};
   }
   svg:last-child {
     margin: ${props.size === 'small'
-      ? `0 ${props.theme.spaceScale.spacing02} 0 -${props.theme.spaceScale.spacing02}`
+      ? `0 ${props.theme.spaceScale.spacing02} 0 -6px`
       : 'inherit'};
     opacity: ${buildSvgOpacity(props)};
     width: ${props.size === 'small'
-      ? `${props.theme.spaceScale.spacing05}`
-      : 'inherit'};
+      ? `${props.theme.iconSizes.xSmall}px`
+      : `${props.theme.iconSizes.small}px`};
   }
   &:hover {
     svg {
