@@ -215,16 +215,33 @@ function buildTagPadding(props) {
   if (props.icon) {
     switch (props.size) {
       case 'small':
-        return `0 ${props.theme.spaceScale.spacing01}`;
+        return `0 4px`;
       default:
-        return `${props.theme.spaceScale.spacing02}`;
+        return `${props.theme.spaceScale.spacing02} 6px`;
     }
   }
   switch (props.size) {
     case 'small':
-      return `0`;
+      return `0 4px`;
     default:
-      return `${props.theme.spaceScale.spacing02}`;
+      return `${props.theme.spaceScale.spacing02} 6px`;
+  }
+}
+
+function buildLabelPadding(props) {
+  if (props.icon) {
+    switch (props.size) {
+      case 'small':
+        return `0 4px`;
+      default:
+        return `0 8px`;
+    }
+  }
+  switch (props.size) {
+    case 'small':
+      return `0 4px`;
+    default:
+      return `0 8px`;
   }
 }
 
@@ -252,9 +269,6 @@ const TagStyling = props => css`
       : `${props.theme.iconSizes.small}px`};
   }
   svg:last-child {
-    margin: ${props.size === 'small'
-      ? `0 ${props.theme.spaceScale.spacing02} 0 -6px`
-      : 'inherit'};
     opacity: ${buildSvgOpacity(props)};
     width: ${props.size === 'small'
       ? `${props.theme.iconSizes.xSmall}px`
@@ -290,8 +304,7 @@ const LabelWrap = styled.span<{
   size: string;
   icon?: any;
 }>`
-  padding: ${props =>
-    props.size === 'small' && props.icon ? '0 8px 0 4px' : '0 8px'};
+  padding: ${buildLabelPadding};
 `;
 
 function getStyledTag(isClickable: boolean) {
