@@ -78,8 +78,10 @@ const Container = styled(Flex)<
   text-align: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
   padding: ${({ noDrag }) => (noDrag ? '0px' : '24px')};
   border-radius: ${({ noDrag }) => (noDrag ? '0px' : '4px')};
-  border: ${({ dragState = 'default', theme, isInverse }) =>
-    dragState === 'dragReject' || dragState === 'error'
+  border: ${({ dragState = 'default', noDrag, theme, isInverse }) =>
+    noDrag
+      ? `0px`
+      : dragState === 'dragReject' || dragState === 'error'
       ? isInverse
         ? `2px dashed ${theme.colors.dangerInverse}`
         : `2px dashed ${theme.colors.danger}`
@@ -88,6 +90,7 @@ const Container = styled(Flex)<
       : dragState === 'dragAccept'
       ? `2px dashed ${theme.colors.success}`
       : `2px dashed ${theme.colors.neutral05}`};
+
   border-style: ${({ dragState = 'default' }) =>
     dragState === 'error' ? 'solid' : 'dashed'};
   background-color: ${({ theme, noDrag, isInverse }) =>
@@ -111,7 +114,8 @@ const Wrapper = styled.div<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
     isInverse ? theme.colors.neutral07 : theme.colors.neutral02};
   margin: 0 0 24px 0;
-  font-size: 14px;
+  font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
+  line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
   font-weight: 600;
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
@@ -362,7 +366,7 @@ export const FileUploader = React.forwardRef<
           {noDrag ? (
             <Flex xs behavior={FlexBehavior.item}>
               <Button
-                color={ButtonColor.secondary}
+                color={ButtonColor.primary}
                 isInverse={isInverse}
                 style={{ margin: 0 }}
                 onClick={open}
