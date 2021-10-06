@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.6-next.0
+
+### Patch Changes
+
+- 2cdc9c2a: Allow for mouse to hover in to tooltip message
+
 ## 2.5.5
 
 ### Patch Changes
