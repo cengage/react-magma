@@ -109,6 +109,9 @@ export const baseBadgeStyles = props => css`
   font-size: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.fontSize
     : props.theme.typeScale.size01.fontSize};
+  letter-spacing: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.letterSpacing
+    : props.theme.typeScale.size01.letterSpacing};
   line-height: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.lineHeight
     : props.theme.typeScale.size01.lineHeight};

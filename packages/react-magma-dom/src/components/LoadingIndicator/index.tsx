@@ -55,6 +55,7 @@ const StyledLoadingIndicator = styled.div`
 
 const MessageContainer = styled.div<{ theme: ThemeInterface }>`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-top: ${props => props.theme.spaceScale.spacing05};
   min-height: 5em;

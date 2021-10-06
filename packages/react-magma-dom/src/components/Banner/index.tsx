@@ -44,6 +44,7 @@ const StyledBanner = styled.div<AlertProps>`
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
     font-size: ${props => props.theme.typeScale.size02.fontSize};
+    letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
     line-height: ${props => props.theme.typeScale.size02.lineHeight};
   }
 `;

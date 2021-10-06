@@ -90,6 +90,7 @@ export interface TypographyExpressiveSizes {
 
 export interface TypeScaleSize {
   fontSize: string;
+  letterSpacing?: string;
   lineHeight: string;
 }
 
@@ -257,10 +258,12 @@ export interface ThemeInterface {
 const typeScale = {
   size01: {
     fontSize: '12px',
+    letterSpacing: '.32px',
     lineHeight: '16px',
   },
   size02: {
     fontSize: '14px',
+    letterSpacing: '.16px',
     lineHeight: '20px',
   },
   size03: {
