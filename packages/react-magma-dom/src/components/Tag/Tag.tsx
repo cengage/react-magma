@@ -215,14 +215,14 @@ function buildTagPadding(props) {
   if (props.icon) {
     switch (props.size) {
       case 'small':
-        return `0 4px`;
+        return `0 ${props.theme.spaceScale.spacing02}`;
       default:
         return `${props.theme.spaceScale.spacing02} 6px`;
     }
   }
   switch (props.size) {
     case 'small':
-      return `0 4px`;
+      return `0 ${props.theme.spaceScale.spacing02}`;
     default:
       return `${props.theme.spaceScale.spacing02} 6px`;
   }
@@ -232,16 +232,16 @@ function buildLabelPadding(props) {
   if (props.icon) {
     switch (props.size) {
       case 'small':
-        return `0 4px`;
+        return `0 ${props.theme.spaceScale.spacing02}`;
       default:
-        return `0 8px`;
+        return `0 ${props.theme.spaceScale.spacing03}`;
     }
   }
   switch (props.size) {
     case 'small':
-      return `0 4px`;
+      return `0 ${props.theme.spaceScale.spacing02}`;
     default:
-      return `0 8px`;
+      return `0 ${props.theme.spaceScale.spacing03}`;
   }
 }
 
@@ -361,7 +361,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         {...rest}
       >
         {icon}
-        <LabelWrap size={size} {...rest}>
+        <LabelWrap size={size} {...rest} theme={theme}>
           {children}
         </LabelWrap>
         {onDelete && (
