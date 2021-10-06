@@ -1,15 +1,14 @@
-import * as React from 'react';
 import { Global, css } from '@emotion/react';
+
 import { ThemeContext } from '../ThemeContext';
-import { ThemeInterface } from '../magma';
+import { ThemeInterface } from '../ThemeInterface';
 import { useIsInverse } from '../inverse';
-import {magma, v3 as theme} from '../magma';
+import {v3} from '../magma';
+import { mergeThemes } from '../utils';
 
 import { convertThemeToCssVariables } from '../utils';
 
-const vars = convertThemeToCssVariables(theme);
-
-function getStyles(theme: ThemeInterface, isInverse: boolean) {
+function getStyles(theme: any, isInverse: boolean, vars: Record<string, string>) {
   return css`
     @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -82,12 +81,12 @@ function getStyles(theme: ThemeInterface, isInverse: boolean) {
   `;
 }
 
-export const GlobalStyles: React.FunctionComponent = () => {
+export const GlobalStyles= ({theme}:{theme:ThemeInterface}) => {
   const isInverse = useIsInverse() ||  false;
-  console.log(getStyles(magma, false))
+  const vars = convertThemeToCssVariables(mergeThemes(theme, v3));
   return (
     <ThemeContext.Consumer>
-      {theme => <Global styles={getStyles(theme, isInverse)} />}
+      {(theme: any) => <Global styles={getStyles(theme, isInverse, vars)} />}
     </ThemeContext.Consumer>
   );
 };

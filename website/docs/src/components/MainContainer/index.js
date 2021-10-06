@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { Masthead } from '../Masthead';
 import { DarkModeContext } from '../DarkMode/DarkModeContext';
 
-import { SkipLink, magma, Container } from '@react-magma/dom';
-import { GlobalStyles } from '@react-magma/themes';
+import { SkipLink, magma, Container, useLocalStorage } from '@react-magma/dom';
+import { GlobalStyles, v3, mergeThemes } from '@react-magma/themes';
 
 const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {
@@ -36,7 +36,9 @@ const StyledSkipLink = styled(SkipLink)`
 export const MainContainer = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
   const value = { isDarkMode, setIsDarkMode };
+  const [theme] = useLocalStorage({key:'theme', defaultValue:JSON.stringify(v3)});
 
+  console.dir(mergeThemes(JSON.parse(theme)))
   React.useEffect(() => {
     if (localStorage.getItem('isRMDarkMode') === 'true') {
       setIsDarkMode(true);
@@ -50,7 +52,7 @@ export const MainContainer = ({ children }) => {
         isInverse={isDarkMode}
         className={isDarkMode && 'isInverse'}
       >
-        <GlobalStyles />
+        <GlobalStyles theme={JSON.parse(theme)}/>
         <StyledSkipLink
           isInverse
           positionLeft={275}

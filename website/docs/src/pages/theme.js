@@ -46,6 +46,7 @@ import {
   Toggle,
   TypographyColor,
   TypographyVisualStyle,
+  useLocalStorage,
 } from '@react-magma/dom';
 
 import {
@@ -63,7 +64,6 @@ import {
 } from '@react-magma/themes';
 
 const Wrapper = styled.div`
-  ${props => convertThemeToCssVariables(props.theme)}
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto;
@@ -75,7 +75,6 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
-  ${props => convertThemeToCssVariables(props.theme)}
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: auto auto auto;
@@ -212,7 +211,7 @@ const thema = (theme, path = '') =>
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const [theme, setTheme] = React.useState(v3);
+  const [theme, setTheme] = useLocalStorage({key: 'theme', defaultValue: JSON.stringify(v3)});
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   function handleChange(index) {
@@ -222,7 +221,7 @@ export function Example() {
   return (
     <>
       <TabsContainer activeIndex={activeIndex}>
-        <Wrapper theme={theme}>
+        <Wrapper>
           <Zero>
             <Tabs aria-label="Sample Icon Only Tabs" onChange={handleChange}>
               <Tab aria-label="Preview" icon={<PreviewIcon />} />
@@ -233,7 +232,7 @@ export function Example() {
         </Wrapper>
         <TabPanelsContainer>
           <TabPanel>
-            <Container theme={theme}>
+            <Container>
               <One>
                 <Paragraph style={{ fontWeight: 400, fontSize: '4em' }}>
                   Aa
@@ -593,7 +592,7 @@ export function Example() {
             </Container>
           </TabPanel>
           <TabPanel>
-            <pre>{JSON.stringify(v3, null, 2)}</pre>
+            <pre>{JSON.stringify(JSON.parse(theme), null, 2)}</pre>
           </TabPanel>
           <TabPanel>
             <SchemaRenderer
@@ -601,12 +600,11 @@ export function Example() {
                 title: 'Theme',
                 description: 'theme theme theme theme theme',
                 type: templateTypes.FORM,
-                fields: thema(theme),
+                fields: thema(JSON.parse(theme || '{}')),
               }}
               containerStyle={{ height: '100vh', width: '400px' }}
-              initialValues={theme}
               onSubmit={values => {
-                setTheme(values)
+                setTheme(JSON.stringify(values))
                 setActiveIndex(0)
               }}
             />

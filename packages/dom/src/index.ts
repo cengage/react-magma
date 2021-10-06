@@ -1,3 +1,5 @@
+export * from './hooks';
+
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
@@ -217,11 +219,8 @@ export { ThemeContext } from './theme/ThemeContext';
 export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
-export { useMediaQuery } from './hooks/useMediaQuery';
-export { useDataPagination } from './hooks/useDataPagination';
 export { useGenerateId } from './utils';
 export { usePagination } from './components/Pagination/usePagination';
-export { useFocusLock } from './hooks/useFocusLock';
 
 export { InverseContext, useIsInverse } from './inverse';
 

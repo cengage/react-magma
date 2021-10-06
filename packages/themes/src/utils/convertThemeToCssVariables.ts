@@ -1,6 +1,4 @@
-interface ThemeInterface {
-  [key: string]: string | number | ThemeInterface;
-}
+import { ThemeInterface } from '../ThemeInterface';
 
 export const convertThemeToCssVariables = (theme: ThemeInterface, path:string ='-') =>
   Object.keys(theme).reduce((acc: Record<string, string>, key) => {
