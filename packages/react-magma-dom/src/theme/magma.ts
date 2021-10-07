@@ -2,6 +2,7 @@ import { ThemeTransitions, transitions } from './components/transition';
 
 export interface Colors {
   primary: string;
+  primaryInverse: string;
   focus: string;
   focusInverse: string;
   foundation: string;
