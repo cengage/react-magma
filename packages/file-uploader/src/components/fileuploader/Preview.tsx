@@ -220,7 +220,11 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
       if (status === 'pending') {
         return (
           <StatusIcons>
-            <Spinner />
+            <Spinner
+              color={
+                isInverse ? theme.colors.primaryInverse : theme.colors.primary
+              }
+            />
           </StatusIcons>
         );
       }
