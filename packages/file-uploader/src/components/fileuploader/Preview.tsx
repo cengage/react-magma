@@ -222,7 +222,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
           <StatusIcons>
             <Spinner
               color={
-                isInverse ? theme.colors.primaryInverse : theme.colors.primary
+                isInverse ? theme.colors.foundation04 : theme.colors.primary
               }
             />
           </StatusIcons>
