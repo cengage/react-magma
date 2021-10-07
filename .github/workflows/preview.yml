@@ -4,6 +4,7 @@ on:
     branches:
       - dev
       - main
+      - v3
     types: [opened, edited, synchronize, reopened]
 jobs:
   build:
