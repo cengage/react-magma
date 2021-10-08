@@ -30,7 +30,7 @@ export interface SliderProps extends Omit<ProgressBarProps, 'onChange' | 'defaul
 
   max: number;
 
-  onChange: (values: number | number[]) => {};
+  onChange: (values: number[]) => {};
 
   steps?: number | number[];
 
@@ -61,6 +61,7 @@ export const Slider = (props: SliderProps) => {
     height,
     max: rangeMax = 100,
     min: rangeMin = 0,
+    onChange,
     steps = 1,
     tabIndex = 0,
     // type = SliderType.slider,
@@ -90,7 +91,7 @@ export const Slider = (props: SliderProps) => {
   const isInverse = useIsInverse(props.isInverse);
 
   React.useEffect(() => {
-    console.log(values)
+    onChange(values);
   }, [values])
 
   // const maxDragControls = useDragControls();
