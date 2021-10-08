@@ -17,7 +17,7 @@ export default {
 export const Default = (args: SliderProps) => {
   return (
     <div style={{margin:'20px'}}>
-      <Slider defaultValue={0} steps={250} min={-500} max={500} {...args} />
+      <Slider count={4} steps={250} min={-500} max={500} {...args} />
     </div>
     );
 };

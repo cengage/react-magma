@@ -4,11 +4,9 @@ import { useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 import { Handle } from './Handle';
 import { Track } from './Track';
-import { MotionValue } from 'framer-motion';
 import { useDimensions } from '../../hooks/useDimensions';
 
 import {
-  ProgressBarDirection,
   ProgressBarProps,
 } from '../ProgressBar';
 
@@ -18,6 +16,9 @@ export enum SliderType {
 }
 
 export interface SliderProps extends Omit<ProgressBarProps, 'onChange'> {
+  count ?: number;
+
+  defaultValue?: number[];
 
   disabled?: boolean;
 
@@ -34,6 +35,8 @@ export interface SliderProps extends Omit<ProgressBarProps, 'onChange'> {
   tabIndex?: number;
 
   type?: SliderType;
+
+  value?: number[];
 }
 
 const Container = styled.div<ProgressBarProps>`
@@ -45,40 +48,9 @@ const Container = styled.div<ProgressBarProps>`
   touch-action: none;
 `;
 
-/**
- * This handles the case when num is very small (0.00000001), js will turn
- * this into 1e-8. When num is bigger than 1 or less than -1 it won't get
- * converted to this notation so it's fine.
- *
- * @param num
- * @see https://github.com/mui-org/material-ui/blob/master/packages/material-ui/src/Slider/Slider.js#L69
- */
-const getDecimalPrecision = (num: number) => {
-  if (Math.abs(num) < 1) {
-    const parts = num.toExponential().split('e-');
-    const matissaDecimalPart = parts[0].split('.')[1];
-    return (
-      (matissaDecimalPart ? matissaDecimalPart.length : 0) +
-      parseInt(parts[1], 10)
-    );
-  }
-
-  const decimalPart = num.toString().split('.')[1];
-  return decimalPart ? decimalPart.length : 0;
-};
-
-const roundValueToStep = (value: number, step: number, min: number) => {
-  let nearest = Math.round((value - min) / step) * step + min;
-  return Number(nearest.toFixed(getDecimalPrecision(step)));
-};
-
 const valueToPercent = (value: number, min: number, max: number) => {
   // const ratio = Math.abs(Math.max(value) / trackDimensions.width);
   return ((value - min) * 100) / (max - min);
-};
-
-const clamp = (val: number, min: number, max: number) => {
-  return val > max ? max : val < min ? min : val;
 };
 
 
@@ -99,14 +71,15 @@ export function getChangeValue({ value, containerWidth, min, max, steps }: GetCh
 export const Slider = (props: SliderProps) => {
   const {
     children,
+    count=1,
     direction,
-    // disabled,
-    hasTooltip,
+    disabled,
+    // hasTooltip,
     height,
     max: rangeMax = 100,
     min: rangeMin = 0,
     steps = 1,
-    // tabIndex = 0,
+    tabIndex = 0,
     // type = SliderType.slider,
     // width,
   } = props;
@@ -115,19 +88,23 @@ export const Slider = (props: SliderProps) => {
   const [trackRef, trackDimensions] = useDimensions<HTMLDivElement>();
 
   React.useEffect(() => {
-    console.log(min, max, max - min, trackDimensions.width)
+    // console.log(min, max, max - min, trackDimensions.width)
     setRatio(trackDimensions.width/(max-min))
   }, [trackDimensions])
+  const initialValue: number[] = Array(...Array(count + 1)).map(() => rangeMin);
+  const defaultValue: number[] = 'defaultValue' in props ? props.defaultValue : initialValue;
   
-  const [min, setMin] = React.useState(rangeMin);
-  const [max, setMax] = React.useState(rangeMax);
-
-  // React.useEffect(() => {
-  //   console.log(max)
-  // }, [max])
+  const [min, setMin] = React.useState<number>(rangeMin);
+  const [max, setMax] = React.useState<number>(rangeMax);
+  const [values, setValues] = React.useState<number[]>(defaultValue)
 
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
+
+  // React.useEffect(() => {
+  //   console.log(values)
+  // }, [values])
+
 
   // const maxDragControls = useDragControls();
 
@@ -138,20 +115,11 @@ export const Slider = (props: SliderProps) => {
   const minPercent = valueToPercent(min, rangeMin, rangeMax );
   const maxPercent = valueToPercent(max, rangeMin, rangeMax );
 
-  // const constraintsMin =
-  //   props.direction === ProgressBarDirection.vertical
-  //     ? { top: max, bottom: rangeMin }
-  //     : { left: rangeMin, right: max };
-
-  // const constraintsMax =
-  //   props.direction === ProgressBarDirection.vertical
-  //     ? { top: rangeMax, bottom: min }
-  //     : { left: min, right: rangeMax };
-
   return ( 
     <Container data-testid={props.testId}>
       <Track
         direction={direction}
+        // disabled={disabled}
         height={height}
         isInverse={isInverse}
         offset={minPercent}
@@ -164,25 +132,29 @@ export const Slider = (props: SliderProps) => {
       
       {children}
 
-      <Handle
-        // direction={direction}
-        // dragConstraints={{left: trackDimensions.x, right: trackDimensions.width + trackDimensions.x}}
-        // dragControls={maxDragControls}
-        // hasTooltip={hasTooltip}
-        // isInverse={isInverse}
-        onChange={(point: number) => {
-          console.log(point)
-          // setMax(
-          //   getChangeValue({value: point - trackDimensions.x, containerWidth: trackDimensions.width, min: rangeMin, max:rangeMax, steps})
-          // )
-        }}
-        min={rangeMin}
-        max={rangeMax}
-        ratio={ratio}
-        steps={steps}
-        theme={theme}
-        // value={max}
-      />
+      { 
+        [0,0,0,0].map((_, index) => {
+          return <Handle
+            disabled={disabled}
+            // direction={direction}
+            // dragControls={maxDragControls}
+            // hasTooltip={hasTooltip}
+            // isInverse={isInverse}
+            key={index}
+            min={rangeMin}
+            max={rangeMax}
+            onChange={(point: number) => {
+              console.log(point)
+              // setValues(values => [...values.slice(0,index),value,...values.slice(index)])
+            }}
+            ratio={ratio}
+            steps={steps}
+            tabIndex={tabIndex}
+            theme={theme}
+            defaultValue={defaultValue[index]}
+          />
+        })
+      }
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { ProgressBarDirection } from '../ProgressBar';
 import { useDimensions } from '../../hooks/useDimensions';
+import { ThemeInterface} from '../../theme/magma';
 
 import { motion, useMotionValue,  MotionValue } from 'framer-motion';
 // import { Tooltip } from './Tooltip';
@@ -10,7 +11,19 @@ const clamp = (val: number, min: number, max: number) => {
   return val > max ? max : val < min ? min : val;
 };
 
-const StyledHandle = styled.div<ProgressBarProps>`
+export interface HandleProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>{
+  direction?: ProgressBarDirection;
+  disabled?: boolean;
+  max: number;
+  min: number;
+  onChange: (value:number) => void;
+  steps: number;
+  tabIndex?: number;
+  theme?: ThemeInterface;
+  value: number;
+}
+
+const StyledHandle = styled.div<HandleProps>`
   box-shadow: inset 0 0 0 1px ${props => props.theme.colors.neutral04},
     0 0 4px ${props => props.theme.colors.shade02};
   background: ${props => props.theme.colors.neutral08};
@@ -25,17 +38,6 @@ const StyledHandle = styled.div<ProgressBarProps>`
   touch-action: pan-x;
 `;
 
-export interface HandleProps {
-  direction?: ProgressBarDirection;
-  disabled?: boolean;
-  max: number;
-  min: number;
-  onChange: (value: MotionValue<number>) => void;
-  steps: number;
-  tabIndex?: number;
-  value: number;
-}
-
 const AnimatedHandle = StyledHandle.withComponent(motion.div);
 
 export const Handle = (props: any) => {
@@ -47,12 +49,13 @@ export const Handle = (props: any) => {
     onChange,
     ratio=1,
     steps=1,
-    tabIndex=1,
-    value,
+    tabIndex=0,
+    theme,
+    // value,
   } = props;
 
   const [handleRef, handleDimensions] = useDimensions<HTMLDivElement>();
-  const x = useMotionValue(value);
+  const x = useMotionValue<number>(0);
   
   let handleKeyDown = (event: React.KeyboardEvent) => {
     if (props.disabled) {
@@ -112,7 +115,7 @@ export const Handle = (props: any) => {
       onDrag={(event, info) => {
         const newPoint = clamp(Math.round(info.point.x / (steps * ratio)) * (steps * ratio), (min-min) * ratio, (max-min) * ratio);
         x.set(newPoint);
-        console.log(Math.round(info.point.x / (steps * ratio)), (steps * ratio), (min-min), (max-min))
+        // console.log(Math.round(info.point.x / (steps * ratio)), (steps * ratio), (min-min), (max-min))
         onChange(newPoint/ratio+min);
       }}
       // onKeyDown={handleKeyDown}
@@ -122,8 +125,11 @@ export const Handle = (props: any) => {
         x
       }}
       tabIndex={disabled ? -1 : tabIndex}
-      theme={props.theme}
+      theme={theme}
       whileTap={{ cursor: "grabbing" }}
     />
   );
 };
+
+
+[0, 100, 244, 245, 650]
