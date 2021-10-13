@@ -50,6 +50,7 @@ type DragState =
 export interface FileUploaderProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
   accept?: string | string[];
+  disabled?: boolean;
   dropzoneOptions?: Partial<Omit<DropzoneOptions, 'onDrop'>>;
   helperMessage?: string;
   id?: string;
@@ -70,7 +71,11 @@ export interface FileUploaderProps
 
 const Container = styled(Flex)<
   DropzoneRootProps &
-    FlexProps & { dragState?: DragState; noDrag?: boolean; isInverse?: boolean }
+    FlexProps & {
+      dragState?: DragState;
+      noDrag?: boolean;
+      isInverse?: boolean;
+    }
 >`
   flex-direction: column;
   align-items: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
@@ -126,6 +131,7 @@ export const FileUploader = React.forwardRef<
   const {
     accept,
     containerStyle,
+    disabled,
     dropzoneOptions = {
       multiple: true,
     },
@@ -164,13 +170,13 @@ export const FileUploader = React.forwardRef<
     (acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
       setFiles((files: FilePreview[]) => [
         ...files,
-        ...acceptedFiles.map((file: File) =>
+        ...acceptedFiles.map((file: FilePreview) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           })
         ),
         ...rejectedFiles.map(
-          ({ file, errors }: { file: File; errors: FileError[] }) =>
+          ({ file, errors }: { file: FilePreview; errors: FileError[] }) =>
             Object.assign(file, {
               errors,
             })
@@ -198,8 +204,8 @@ export const FileUploader = React.forwardRef<
     onDragLeave: (event: React.DragEvent<HTMLDivElement>) => {
       dropzoneOptions.onDragLeave && dropzoneOptions.onDragLeave(event);
     },
+    disabled,
     multiple,
-    // maxFiles,
     maxSize,
     minSize,
     accept,
@@ -225,12 +231,13 @@ export const FileUploader = React.forwardRef<
   };
 
   const handleDeleteFile = (removedFile: FilePreview) => {
+    setFiles(files => files.filter(file => file !== removedFile));
     if (onDeleteFile && typeof onDeleteFile === 'function') {
       onDeleteFile(removedFile);
     }
   };
 
-  const setProgress = (props: { percent: number; file: File }) => {
+  const setProgress = (props: { percent: number; file: FilePreview }) => {
     setFiles(files =>
       files.map(file =>
         file === props.file
@@ -245,7 +252,7 @@ export const FileUploader = React.forwardRef<
     );
   };
 
-  const setFinished = (props: { file: File }) => {
+  const setFinished = (props: { file: FilePreview }) => {
     setFiles(files =>
       files.map(file =>
         file === props.file
@@ -257,7 +264,7 @@ export const FileUploader = React.forwardRef<
     );
   };
 
-  const setError = (props: { errors: FileError[]; file: File }) => {
+  const setError = (props: { errors: FileError[]; file: FilePreview }) => {
     setFiles(files =>
       files.map(file =>
         file === props.file
@@ -298,13 +305,10 @@ export const FileUploader = React.forwardRef<
   React.useEffect(() => {
     const minFileError = minFiles && files.length < minFiles;
     const maxFileError = maxFiles && files.length > maxFiles;
-    const anyErrors = false; //files.filter(file => file.errors).length !== 0;
 
     setErrorMessage(
       formatError(
-        anyErrors
-          ? 'too-many-errors'
-          : maxFileError
+        maxFileError
           ? 'too-many-files'
           : minFileError
           ? 'too-few-files'
@@ -313,27 +317,18 @@ export const FileUploader = React.forwardRef<
       )
     );
 
-    if (sendFiles && files.length > 0 && !maxFileError && !anyErrors) {
-      setFiles(files => {
-        return files.map(file =>
-          !file.errors && !file?.processor?.status
-            ? Object.assign(file, { processor: { status: 'pending' } })
-            : file
-        );
+    if (sendFiles && files.length > 0 && !maxFileError && !minFileError) {
+      setFiles((files: FilePreview[]) => {
+        return files.map((file: FilePreview) => {
+          !file.errors && ! file.processor && onSendFile && onSendFile({
+            file,
+            onError: setError,
+            onFinish: setFinished,
+            onProgress: setProgress,
+          })
+          return file;
+        });
       });
-
-      files
-        .filter(file => !file.errors && !file.processor)
-        .forEach(
-          file =>
-            onSendFile &&
-            onSendFile({
-              file,
-              onError: setError,
-              onFinish: setFinished,
-              onProgress: setProgress,
-            })
-        );
     }
   }, [sendFiles, files.length, onSendFile]);
 
@@ -367,6 +362,7 @@ export const FileUploader = React.forwardRef<
             <Flex xs behavior={FlexBehavior.item}>
               <Button
                 color={ButtonColor.primary}
+                disabled={disabled}
                 isInverse={isInverse}
                 style={{ margin: 0 }}
                 onClick={open}
@@ -387,6 +383,7 @@ export const FileUploader = React.forwardRef<
                 {i18n.fileUploader.dragMessage}
               </Wrapper>
               <Button
+                disabled={disabled}
                 color={ButtonColor.secondary}
                 variant={ButtonVariant.solid}
                 isInverse={isInverse}

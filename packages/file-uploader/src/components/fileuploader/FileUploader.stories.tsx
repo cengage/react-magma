@@ -2,21 +2,13 @@ import React from 'react';
 import { FileUploader, FileUploaderProps, OnSendFileProps } from './FileUploader';
 import { Textarea, Datagrid } from 'react-magma-dom';
 
-function csvJSON(csv){
-
+function csvJSON(csv: string){
   var lines=csv.split("\n");
-
   var result = [];
-
-  // NOTE: If your columns contain commas in their values, you'll need
-  // to deal with those before doing the next step
-  // (you might convert them to &&& or something, then covert them back later)
-  // jsfiddle showing the issue https://jsfiddle.net/
-  var headers=lines[0].split(",");
+  var headers: Array<string> =lines[0].split(",");
 
   for(var i=1;i<lines.length;i++){
-
-      var obj = {};
+      var obj: Record<string, string> = {};
       var currentline=lines[i].split(",");
 
       for(var j=0;j<headers.length;j++){

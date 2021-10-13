@@ -298,7 +298,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
             <FileName xs behavior={FlexBehavior.item} theme={theme}>
               {file.name}
             </FileName>
-            <Flex style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>
+            <Flex role="progressbar" style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>
               {file.processor && file.processor.percent}
             </Flex>
             <Flex behavior={FlexBehavior.item}>{actions}</Flex>
