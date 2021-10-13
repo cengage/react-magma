@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.6-next.1
+
+### Patch Changes
+
+- cec68d47: fix(magma.ts): added type for primaryInverse color
+
 ## 2.5.6-next.0
 
 ### Patch Changes
