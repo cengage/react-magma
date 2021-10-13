@@ -91,7 +91,7 @@ const ModalContainer = styled(Transition)<{
   bottom: 0;
   left: 0;
   overflow-y: auto;
-  padding: ${props => props.theme.spaceScale.spacing03};
+  padding: var(--spaceScale-spacing03);
   right: 0;
   top: 0;
   z-index: 998;
@@ -109,12 +109,12 @@ const ModalBackdrop = styled(Transition)<{ isExiting?: boolean }>`
 `;
 
 const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
-  background: ${props => props.theme.colors.neutral08};
+  background: var(--colors-neutral08);
   border: 1px solid;
-  border-color: ${props => props.theme.colors.neutral06};
-  border-radius: ${props => props.theme.borderRadius};
+  border-color: var(--colors-neutral06);
+  border-radius: var(--borderRadius);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  color: ${props => props.theme.colors.neutral};
+  color: var(--colors-neutral);
   margin: 0 auto;
   position: relative;
   z-index: 1000;
@@ -122,37 +122,33 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   max-width: ${props => {
     switch (props.size) {
       case 'large':
-        return props.theme.modal.width.large;
+        return 'var(--modal-width-large)';
       case 'small':
-        return props.theme.modal.width.small;
+        return 'var(--modal-width-small)';
       default:
-        return props.theme.modal.width.medium;
+        return 'var(--modal-width-medium)';
     }
   }};
 
-  @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    margin: ${props => props.theme.spaceScale.spacing08} auto;
+  @media (min-width: 600px) {
+    margin: var(--spaceScale-spacing08) auto;
   }
 `;
 
 const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing03}
-    ${props => props.theme.spaceScale.spacing05} 0
-    ${props => props.theme.spaceScale.spacing05};
-  @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing05}
-      ${props => props.theme.spaceScale.spacing06} 0
-      ${props => props.theme.spaceScale.spacing06};
+  padding: var(--spaceScale-spacing03) var(--spaceScale-spacing05) 0
+    var(--spaceScale-spacing05);
+  @media (min-width: 600px) {
+    padding: var(--spaceScale-spacing05) var(--spaceScale-spacing06) 0
+      var(--spaceScale-spacing06);
   }
 `;
 
 const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
-  font-size: ${props =>
-    props.theme.typographyVisualStyles.headingSmall.desktop.fontSize};
-  line-height: ${props =>
-    props.theme.typographyVisualStyles.headingSmall.desktop.lineHeight};
+  font-size: var(--typographyVisualStyles-headingSmall-desktop-fontSize);
+  line-height: var(--typographyVisualStyles-headingSmall-desktop-lineHeight);
   margin: 0;
-  padding-right: ${props => props.theme.spaceScale.spacing10};
+  padding-right: var(--spaceScale-spacing10);
 `;
 
 const CloseBtn = styled.span`
@@ -161,10 +157,10 @@ const CloseBtn = styled.span`
   right: 0;
 `;
 const ModalBody = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing05};
+  padding: var(--spaceScale-spacing05);
 
-  @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing06};
+  @media (min-width: 600px) {
+    padding: var(--spaceScale-spacing06);
   }
 `;
 

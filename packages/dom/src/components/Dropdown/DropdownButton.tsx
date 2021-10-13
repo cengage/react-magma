@@ -14,7 +14,6 @@ import { ButtonProps, ButtonSize } from '../Button';
 import { useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
@@ -55,14 +54,14 @@ function instanceOfIconOnlyDropdownButton(
   return 'icon' in object && !('children' in object);
 }
 
-function getButtonPadding(theme: ThemeInterface, size?: ButtonSize) {
+function getButtonPadding(size?: ButtonSize) {
   switch (size) {
     case 'small':
-      return theme.spaceScale.spacing02;
+      return 'var(--spaceScale-spacing02)';
     case 'large':
-      return theme.spaceScale.spacing05;
+      return 'var(--spaceScale-spacing05)';
     default:
-      return theme.spaceScale.spacing03;
+      return 'var(--spaceScale-spacing03)';
   }
 }
 
@@ -71,13 +70,13 @@ const StyledIconButton = styled(IconButton)`
     props.iconPosition === ButtonIconPosition.right &&
     props.children &&
     css`
-      padding-right: ${getButtonPadding(props.theme, props.size)};
+      padding-right: ${getButtonPadding(props.size)};
     `}
   ${props =>
     props.iconPosition === ButtonIconPosition.left &&
     props.children &&
     css`
-      padding-left: ${getButtonPadding(props.theme, props.size)};
+      padding-left: ${getButtonPadding(props.size)};
     `}
 `;
 

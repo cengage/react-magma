@@ -11,13 +11,13 @@ export interface DropdownHeaderProps
 }
 
 const StyledDiv = styled.div`
-  color: ${props => props.theme.colors.neutral03};
-  font-size: ${props => props.theme.typeScale.size01.fontSize};
-  line-height: ${props => props.theme.typeScale.size01.lineHeight};
+  color: var(--colors-neutral03);
+  font-size: var(--typeScale-size01-fontSize);
+  line-height: var(--typeScale-size01-lineHeight);
   font-weight: bold;
   margin: 0;
-  padding: ${props =>
-    `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing02}`};
+  padding: var(--spaceScale.spacing03) var(--spaceScale.spacing05)
+    var(--spaceScale.spacing02);
   text-transform: uppercase;
 `;
 

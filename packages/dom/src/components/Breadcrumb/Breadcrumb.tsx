@@ -15,8 +15,8 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
 const StyledList = styled.ol<BreadcrumbProps>`
   display: flex;
   flex-wrap: wrap;
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
-  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  font-size: var(--typeScale-size02-fontSize);
+  line-height: var(--typeScale-size02-lineHeight);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -24,7 +24,13 @@ const StyledList = styled.ol<BreadcrumbProps>`
 
 export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
   (props, ref) => {
-    const { 'aria-label': ariaLabel, children, isInverse: isInverseProp, testId, ...other } = props;
+    const {
+      'aria-label': ariaLabel,
+      children,
+      isInverse: isInverseProp,
+      testId,
+      ...other
+    } = props;
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);

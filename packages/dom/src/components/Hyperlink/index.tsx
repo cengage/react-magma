@@ -28,21 +28,21 @@ export interface HyperlinkProps
 
 const linkStyles = props => css`
   color: ${props.isInverse
-    ? props.theme.colors.primaryInverse
-    : props.theme.colors.primary};
+    ? 'var(--colors-primaryInverse)'
+    : 'var(--colors-primary)'};
   text-decoration: underline;
   &:not([disabled]) {
     &:hover,
     &:focus {
       color: ${props.isInverse
-        ? props.theme.colors.primaryInverse
-        : props.theme.colors.foundation02};
+        ? 'var(--colors-primaryInverse)'
+        : 'var(--colors-foundation02)'};
     }
     &:focus {
       outline: 2px dotted
         ${props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? 'var(--colors-focusInverse)'
+          : 'var(--colors-focus)'};
       outline-offset: 3px;
     }
   }

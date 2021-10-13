@@ -20,23 +20,21 @@ export interface LabelProps
 
 const StyledLabel = styled.label<LabelProps>`
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+    props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral)'};
   display: inline-block;
   font-size: ${props =>
     props.size === InputSize.large
-      ? props.theme.typeScale.size03.fontSize
-      : props.theme.typeScale.size02.fontSize};
+      ? 'var(--typeScale-size03-fontSize)'
+      : 'var(--typeScale-size02-fontSize)'};
   font-weight: 600;
   line-height: ${props =>
     props.size === InputSize.large
-      ? props.theme.typeScale.size03.lineHeight
-      : props.theme.typeScale.size02.lineHeight};
+      ? 'var(--typeScale-size03-lineHeight)'
+      : 'var(--typeScale-size02-lineHeight)'};
   margin: ${props =>
     props.labelPosition === LabelPosition.left
-      ? `0 ${props.theme.spaceScale.spacing05} 0 0`
-      : `0 0 ${props.theme.spaceScale.spacing03}`};
+      ? '0 var(--spaceScale-spacing05) 0 0'
+      : '0 0 var(--spaceScale-spacing03)'};
   max-width: 100%;
   text-align: left;
   white-space: nowrap;

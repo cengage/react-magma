@@ -56,9 +56,9 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
   &&,
   &&:before {
     display: block;
-    height: ${props => props.theme.tooltip.arrowSizeDoubled};
+    height: var(--tooltip-arrowSizeDoubled);
     position: absolute;
-    width: ${props => props.theme.tooltip.arrowSizeDoubled};
+    width: var(--tooltip-arrowSizeDoubled);
     z-index: -1;
   }
 
@@ -67,8 +67,8 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
     transform: rotate(45deg);
     background: ${props =>
       props.isInverse
-        ? props.theme.tooltip.inverse.backgroundColor
-        : props.theme.tooltip.backgroundColor};
+        ? 'var(--tooltip-inverse-backgroundColor)'
+        : 'var(--tooltip-backgroundColor)'};
   }
 `;
 
@@ -80,48 +80,45 @@ const StyledTooltip = styled.div<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.tooltip.inverse.backgroundColor
-      : props.theme.tooltip.backgroundColor};
-  border-radius: ${props => props.theme.borderRadius};
+      ? 'var(--tooltip-inverse-backgroundColor)'
+      : 'var(--tooltip-backgroundColor)'};
+  border-radius: var(--borderRadius);
   color: ${props =>
     props.isInverse
-      ? props.theme.tooltip.inverse.textColor
-      : props.theme.tooltip.textColor};
-  font-size: ${props => props.theme.tooltip.typeScale.fontSize};
-  line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
-  font-weight: ${props => props.theme.tooltip.fontWeight};
-  max-width: ${props => props.theme.tooltip.maxWidth};
+      ? 'var(--tooltip-inverse-textColor)'
+      : 'var(--tooltip-textColor)'};
+  font-size: var(--tooltip-typeScale-fontSize);
+  line-height: var(--tooltip-typeScale-lineHeight);
+  font-weight: var(--tooltip-fontWeight);
+  max-width: var(--tooltip-maxWidth);
   min-height: 2.5em;
-  padding: ${props => props.theme.spaceScale.spacing03}
-    ${props => props.theme.spaceScale.spacing04};
-  z-index: ${props => props.theme.tooltip.zIndex};
+  padding: var(--spaceScale-spacing03) var(--spaceScale-spacing04);
+  z-index: var(--tooltip-zIndex);
 
   &[data-popper-placement='top'] > span:last-child {
-    bottom: -${props => props.theme.tooltip.arrowSize};
+    bottom: calc(var(--tooltip-arrowSize) * -1);
   }
 
   &[data-popper-placement='bottom'] > span:last-child {
-    top: -${props => props.theme.tooltip.arrowSize};
+    top: calc(var(--tooltip-arrowSize) * -1);
   }
 
   &[data-popper-placement='left'] > span:last-child {
-    right: -${props => props.theme.tooltip.arrowSize};
+    right: calc(var(--tooltip-arrowSize) * -1);
   }
 
   &[data-popper-placement='right'] > span:last-child {
-    left: -${props => props.theme.tooltip.arrowSize};
+    left: calc(var(--tooltip-arrowSize) * -1);
   }
 `;
 
 // Using any for the ref because it is put ont he passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
-  const [referenceElement, setReferenceElement] = React.useState<HTMLElement>(
-    null
-  );
-  const [popperElement, setPopperElement] = React.useState<HTMLDivElement>(
-    null
-  );
+  const [referenceElement, setReferenceElement] =
+    React.useState<HTMLElement>(null);
+  const [popperElement, setPopperElement] =
+    React.useState<HTMLDivElement>(null);
   const [arrowElement, setArrowElement] = React.useState<HTMLSpanElement>(null);
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {

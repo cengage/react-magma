@@ -26,12 +26,10 @@ const StyledItem = styled.li`
 
 const StyledSpan = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+    props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral03)'};
 
   svg {
-    margin: 0 ${props => props.theme.spaceScale.spacing02};
+    margin: 0 var(--spaceScale-spacing02);
   }
 `;
 

@@ -41,54 +41,54 @@ export enum BadgeVariant {
 export function buildBadgeBackground(props) {
   switch (props.color) {
     case 'danger':
-      return props.theme.colors.danger;
+      return 'var(--colors-danger)';
     case 'light':
-      return props.theme.colors.neutral07;
+      return 'var(--colors-neutral07)';
     case 'primary':
-      return props.theme.colors.primary;
+      return 'var(--colors-primary)';
     case 'secondary':
-      return props.theme.colors.neutral02;
+      return 'var(--colors-neutral02)';
     case 'success':
-      return props.theme.colors.success;
+      return 'var(--colors-success)';
 
     default:
-      return props.theme.colors.neutral02;
+      return 'var(--colors-neutral02)';
   }
 }
 
 export function buildBadgeFocusBackground(props) {
   switch (props.color) {
     case 'danger':
-      return darken(0.1, props.theme.colors.danger);
+      return darken(0.1, 'var(--colors-danger)');
     case 'light':
-      return lighten(0.05, props.theme.colors.neutral07);
+      return lighten(0.05, 'var(--colors-neutral07)');
     case 'primary':
-      return darken(0.1, props.theme.colors.primary);
+      return darken(0.1, 'var(--colors-primary)');
     case 'secondary':
-      return darken(0.1, props.theme.colors.neutral02);
+      return darken(0.1, 'var(--colors-neutral02)');
     case 'success':
-      return darken(0.1, props.theme.colors.success);
+      return darken(0.1, 'var(--colors-success)');
 
     default:
-      return darken(0.1, props.theme.colors.neutral02);
+      return darken(0.1, 'var(--colors-neutral02)');
   }
 }
 
 export function buildBadgeActiveBackground(props) {
   switch (props.color) {
     case 'danger':
-      return darken(0.2, props.theme.colors.danger);
+      return darken(0.2, 'var(--colors-danger)');
     case 'light':
-      return lighten(0.1, props.theme.colors.neutral07);
+      return lighten(0.1, 'var(--colors-neutral07)');
     case 'primary':
-      return darken(0.2, props.theme.colors.primary);
+      return darken(0.2, 'var(--colors-primary)');
     case 'secondary':
-      return darken(0.2, props.theme.colors.neutral02);
+      return darken(0.2, 'var(--colors-neutral02)');
     case 'success':
-      return darken(0.2, props.theme.colors.success);
+      return darken(0.2, 'var(--colors-success)');
 
     default:
-      return darken(0.2, props.theme.colors.neutral02);
+      return darken(0.2, 'var(--colors-neutral02)');
   }
 }
 
@@ -96,32 +96,32 @@ export const baseBadgeStyles = props => css`
   background: ${buildBadgeBackground(props)};
   border: 1px solid;
   border-color: ${props.color === BadgeColor.light
-    ? props.theme.colors.neutral06
+    ? 'var(--colors-neutral06)'
     : 'transparent'};
   border-radius: ${props.variant === BadgeVariant.counter
-    ? props.theme.spaceScale.spacing06
-    : props.theme.borderRadius};
+    ? 'var(--spaceScale-spacing06)'
+    : 'var(--borderRadius)'};
   color: ${props.color === 'light'
-    ? props.theme.colors.neutral
-    : props.theme.colors.neutral08};
+    ? 'var(--colors-neutral)'
+    : 'var(--colors-neutral08)'};
   display: inline-block;
   font-weight: bold;
   font-size: ${props.variant === BadgeVariant.counter
-    ? props.theme.typeScale.size02.fontSize
-    : props.theme.typeScale.size01.fontSize};
+    ? 'var(--typeScale-size02-fontSize)'
+    : 'var(--typeScale-size01-fontSize)'};
   line-height: ${props.variant === BadgeVariant.counter
-    ? props.theme.typeScale.size02.lineHeight
-    : props.theme.typeScale.size01.lineHeight};
+    ? 'var(--typeScale-size02-lineHeight)'
+    : 'var(--typeScale-size01-lineHeight)'};
   margin: ${props.variant === BadgeVariant.counter
-    ? `0 0 0 ${props.theme.spaceScale.spacing03}`
-    : `0 ${props.theme.spaceScale.spacing03} 0 0`};
+    ? '0 0 0 var(--spaceScale-spacing03)'
+    : '0 var(--spaceScale-spacing03) 0 0'};
   max-height: ${props.variant === BadgeVariant.counter
-    ? props.theme.spaceScale.spacing06
+    ? 'var(--spaceScale-spacing06)'
     : 'auto'};
-  min-width: ${props.theme.spaceScale.spacing06};
+  min-width: var(--spaceScale-spacing06);
   padding: ${props.variant === BadgeVariant.counter
-    ? `1px ${props.theme.spaceScale.spacing02}`
-    : `${props.theme.spaceScale.spacing01} ${props.theme.spaceScale.spacing02}`};
+    ? '1px var(--spaceScale-spacing02)'
+    : 'var(--spaceScale-spacing01) var(--spaceScale-spacing02)'};
   text-align: ${props.variant == BadgeVariant.counter ? 'center' : 'inherit'};
 `;
 

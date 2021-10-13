@@ -28,13 +28,9 @@ const StyledContainer = styled.div<{
   theme: ThemeInterface;
 }>`
   background: ${props =>
-    props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+    props.isInverse ? 'var(--colors-foundation)' : 'var(--colors-neutral08)'};
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+    props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral)'};
   display: flow-root;
   margin: 0 auto;
   max-width: ${props => props.maxWidth};

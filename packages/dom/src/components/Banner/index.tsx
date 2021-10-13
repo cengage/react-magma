@@ -33,18 +33,18 @@ const StyledBanner = styled.div<AlertProps>`
   background: ${props => buildAlertBackground(props)};
   color: ${props =>
     props.variant === 'warning'
-      ? props.theme.colors.neutral
-      : props.theme.colors.neutral08};
+      ? 'var(--colors-neutral)'
+      : 'var(--colors-neutral08)'};
   display: flex;
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
   position: relative;
   text-align: left;
 
-  @media (max-width: ${props => props.theme.breakpoints.small}px) {
+  @media (max-width: 600px) {
     text-align: left;
-    font-size: ${props => props.theme.typeScale.size02.fontSize};
-    line-height: ${props => props.theme.typeScale.size02.lineHeight};
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 `;
 
@@ -53,9 +53,9 @@ const BannerContents = styled.div`
   display: flex;
   flex-grow: 1;
   justify-content: flex-start;
-  padding: ${props => props.theme.spaceScale.spacing04};
+  padding: var(--spaceScale-spacing04);
 
-  @media (max-width: ${props => props.theme.breakpoints.small}px) {
+  @media (max-width: 600px) {
     justify-content: flex-start;
   }
 `;
@@ -77,18 +77,20 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
 }>`
   align-self: stretch;
   border-radius: 0;
-  color: ${({ alertVariant, theme }) =>
-    alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral08};
+  color: ${({ alertVariant }) =>
+    alertVariant === 'warning'
+      ? 'var(--colors-neutral)'
+      : 'var(--colors-neutral08)'};
   height: auto;
-  padding: 0 ${props => props.theme.spaceScale.spacing05};
+  padding: 0 var(--spaceScale-spacing05);
   width: auto;
 
   &&:focus:not(:disabled) {
     outline: 2px dotted
-      ${({ alertVariant, theme }) =>
+      ${({ alertVariant }) =>
         alertVariant === 'warning'
-          ? theme.colors.neutral
-          : theme.colors.neutral08};
+          ? 'var(--colors-neutral)'
+          : 'var(--colors-neutral08)'};
     outline-offset: 0 !important;
   }
 
@@ -96,10 +98,10 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   &:focus {
     :not(:disabled) {
       &:before {
-        background: ${({ alertVariant, theme }) =>
+        background: ${({ alertVariant }) =>
           alertVariant === 'warning'
-            ? theme.colors.neutral
-            : theme.colors.neutral08};
+            ? 'var(--colors-neutral)'
+            : 'var(--colors-neutral08)'};
         opacity: 0.15;
       }
 
@@ -112,9 +114,9 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
 
 const IconWrapper = styled.span`
   display: inline-flex;
-  padding-right: ${props => props.theme.spaceScale.spacing03};
+  padding-right: var(--spaceScale-spacing03);
 
-  @media (max-width: ${props => props.theme.breakpoints.small}px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `;

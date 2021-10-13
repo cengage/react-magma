@@ -11,37 +11,37 @@ export interface PageButtonProps extends ButtonProps {
 
 export function pageButtonTypeSize(props) {
   if (props.size === 'large') {
-    return `${props.theme.typeScale.size05.fontSize}`;
+    return 'var(--typeScale-size05-fontSize)';
   }
-  return `${props.theme.typeScale.size03.fontSize}`;
+  return 'var(--typeScale-size03-fontSize)';
 }
 
 function buttonSize(props) {
   switch (props.size) {
     case 'large':
-      return `${props.theme.spaceScale.spacing11}`;
+      return 'var(--spaceScale-spacing11)';
     default:
-      return `${props.theme.spaceScale.spacing09}`;
+      return 'var(--spaceScale-spacing09)';
   }
 }
 
 function boxShadowColor(props) {
   if (props.color === 'primary') {
     if (props.isInverse) {
-      return `-${props.theme.spaceScale.spacing01} 0 0 ${props.theme.colors.neutral08}`;
+      return 'calc(var(--spaceScale-spacing01) * -1) 0 0 var(--colors-neutral08)';
     }
-    return `-${props.theme.spaceScale.spacing01} 0 0 ${props.theme.colors.primary}`;
+    return 'calc(var(--spaceScale-spacing01) * -1) 0 0 var(--colors-primary)';
   }
 }
 
 function hoverBoxShadowColor(props) {
   if (props.color === 'primary') {
     if (props.isInverse) {
-      return `-${props.theme.spaceScale.spacing01} 0 0 ${props.theme.colors.neutral08}`;
+      return 'calc(var(--spaceScale-spacing01) * -1) 0 0 var(--colors-neutral08)';
     }
-    return `-${props.theme.spaceScale.spacing01} 0 0 ${darken(
+    return `'calc(var(--spaceScale-spacing01) * -1) 0 0' ${darken(
       0.1,
-      props.theme.colors.primary
+      'var(--colors-primary)'
     )}`;
   }
 }
@@ -71,8 +71,8 @@ const StyledPageButton = styled(Button)`
     content: '';
     border: ${props =>
       props.isInverse
-        ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
-        : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
+        ? 'var(--spaceScale-spacing01) solid var(--colors-focusInverse)'
+        : 'var(--spaceScale-spacing01) solid var(--colors-focus)'};
     border-style: dotted;
     height: calc(100% + 14px);
     left: -7px;

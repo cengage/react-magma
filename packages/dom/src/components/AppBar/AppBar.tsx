@@ -38,13 +38,11 @@ const StyledHeader = styled.header<{
   align-items: center;
   background: ${props =>
     props.isInverse
-      ? props.theme.appBar.inverse.backgroundColor
-      : props.theme.appBar.backgroundColor};
+      ? 'var(--appBar-inverse-backgroundColor)'
+      : 'var(--appBar-backgroundColor)'};
   border-bottom: 1px solid
     ${props =>
-      props.isInverse
-        ? props.theme.colors.foundation
-        : props.theme.colors.neutral06};
+      props.isInverse ? 'var(--colors-foundation)' : 'var(--colors-neutral06)'};
   box-shadow: ${props =>
     props.position === AppBarPosition.sticky ||
     props.position === AppBarPosition.fixed
@@ -52,18 +50,16 @@ const StyledHeader = styled.header<{
       : '0 0 0'};
   color: ${props =>
     props.isInverse
-      ? props.theme.appBar.inverse.textColor
-      : props.theme.appBar.textColor};
+      ? 'var(--appBar-inverse-textColor)'
+      : 'var(--appBar-textColor)'};
   display: flex;
   height: ${props =>
-    props.isCompact
-      ? props.theme.appBar.compact.height
-      : props.theme.appBar.height};
+    props.isCompact ? 'var(--appBar-compact-height)' : 'var(--appBar-height)'};
   left: 0;
   padding: ${props =>
     props.isCompact
-      ? props.theme.appBar.compact.padding
-      : props.theme.appBar.padding};
+      ? 'var(--appBar-compact-padding)'
+      : 'var(--appBar-padding)'};
   position: ${props => props.position};
   right: 0;
   top: 0;

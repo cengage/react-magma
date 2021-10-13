@@ -28,17 +28,15 @@ const InputContainer = styled.div<{
   theme?: any;
 }>`
   align-items: center;
-  background: ${props => props.theme.colors.neutral08};
+  background: var(--colors-neutral08);
   border: 1px solid;
   border-color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
-  border-radius: ${props => props.theme.borderRadius};
+    props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral03)'};
+  border-radius: var(--borderRadius};
   display: flex;
-  min-height: ${props => props.theme.spaceScale.spacing09};
-  min-width: ${props => props.theme.spaceScale.spacing13};
-  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
+  min-height: var(--spaceScale-spacing09);
+  min-width: var(--spaceScale-spacing13);
+  padding: 0 var(--spaceScale-spacing03) 0 0;
   width: 100%;
 
   ${props =>
@@ -46,34 +44,32 @@ const InputContainer = styled.div<{
     css`
       outline: 2px dotted
         ${props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? 'var(--colors-focusInverse)'
+          : 'var(--colors-focus)'};
       outline-offset: 4px;
     `}
 
   ${props =>
     props.hasError &&
     css`
-      border-color: ${props.theme.colors.danger};
+      border-color: var(--colors-danger);
       box-shadow: 0 0 0 1px
-        ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.danger};
+        ${props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-danger)'};
     `}
 
     ${props =>
-    props.disabled &&
-    css`
-      background: ${props.theme.colors.neutral07};
-      border-color: ${props.theme.colors.neutral05};
-      color: ${props.theme.colors.disabledText};
-      cursor: not-allowed;
-      outline: 0;
+      props.disabled &&
+      css`
+        background: var(--colors-neutral07);
+        border-color: var(--colors-neutral05);
+        color: var(--colors-disabledText);
+        cursor: not-allowed;
+        outline: 0;
 
-      &::placeholder {
-        color: ${props.theme.colors.disabledText};
-      }
-    `}
+        &::placeholder {
+          color: var(--colors-disabledText);
+        }
+      `}
 `;
 
 const StyledInput = styled.input`
@@ -81,9 +77,9 @@ const StyledInput = styled.input`
   border: 0;
   display: flex;
   flex-grow: 1;
-  height: ${props => props.theme.spaceScale.spacing08};
-  min-width: ${props => props.theme.spaceScale.spacing07};
-  padding-left: ${props => props.theme.spaceScale.spacing02};
+  height: var(--spaceScale-spacing08);
+  min-width: var(--spaceScale-spacing07);
+  padding-left: var(--spaceScale-spacing02);
   width: 0;
 
   &:focus {

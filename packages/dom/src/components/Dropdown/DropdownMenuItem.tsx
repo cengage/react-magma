@@ -40,21 +40,21 @@ export const MenuItemStyles = props => {
   return css`
     align-items: center;
     color: ${props.disabled
-      ? props.theme.colors.disabledText
-      : props.theme.colors.neutral};
+      ? 'var(--colors-disabledText)'
+      : 'var(--colors-neutral)'};
     cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
     display: flex;
-    font-size: ${props.theme.typeScale.size03.fontSize};
-    line-height: ${props.theme.typeScale.size03.lineHeight};
+    font-size: var(--typeScale-size03-fontSize);
+    line-height: var(--typeScale-size03-lineHeight);
     margin: 0;
     padding: ${props.isInactive
-      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
-      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
+      ? 'var(--spaceScale-spacing03) var(--spaceScale-spacing05) var(--spaceScale-spacing03) var(--spaceScale-spacing11)'
+      : 'var(--spaceScale-spacing03) var(--spaceScale-spacing05)'};
     white-space: ${props.isFixedWidth ? 'normal' : 'nowrap'};
 
     &:hover,
     &:focus {
-      background: ${props.disabled ? 'none' : props.theme.colors.neutral07};
+      background: ${props.disabled ? 'none' : 'var(--colors-neutral07)'};
     }
 
     &:focus {
@@ -74,13 +74,13 @@ const StyledItem = styled.div<{
 `;
 
 export const IconWrapper = styled.span`
-  color: ${props => props.theme.colors.neutral03};
+  color: var(--colors-neutral03);
   display: inline-flex;
-  margin-right: ${props => props.theme.spaceScale.spacing05};
+  margin-right: var(--spaceScale-spacing05);
 
   svg {
-    height: ${props => props.theme.iconSizes.medium}px;
-    width: ${props => props.theme.iconSizes.medium}px;
+    height: var(--iconSizes-medium) px;
+    width: var(--iconSizes-medium) px;
   }
 `;
 

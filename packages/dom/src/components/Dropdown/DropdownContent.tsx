@@ -26,13 +26,13 @@ const StyledCard = styled(Card)<{
   width?: string;
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  left: ${props => props.theme.spaceScale.spacing02};
+  left: var(--spaceScale-spacing02);
   max-height: ${props =>
-    props.maxHeight ? props.maxHeight : props.theme.dropdown.content.maxHeight};
+    props.maxHeight ? props.maxHeight : 'var(--dropdown-content-maxHeight)'};
   opacity: ${props => (props.isOpen ? '1' : '0')};
   outline: 0;
   overflow-y: auto;
-  padding: ${props => props.theme.spaceScale.spacing03} 0;
+  padding: var(--spaceScale-spacing03) 0;
   position: absolute;
   transition: opacity 0.3s;
   white-space: nowrap;
@@ -57,14 +57,14 @@ const StyledCard = styled(Card)<{
     css`
       left: auto;
       right: 100%;
-      top: ${props.theme.spaceScale.spacing02};
+      top: var(--spaceScale-spacing02);
     `}
 
   ${props =>
     props.dropDirection === 'right' &&
     css`
       left: 100%;
-      top: ${props.theme.spaceScale.spacing02};
+      top: var(--spaceScale-spacing02);
     `}
 
   ${props =>
@@ -73,20 +73,20 @@ const StyledCard = styled(Card)<{
     props.dropDirection !== 'right' &&
     css`
       left: auto;
-      right: ${props.theme.spaceScale.spacing02};
+      right: var(--spaceScale-spacing02);
     `}
 
  ${props =>
     props.alignment === 'end' &&
     (props.dropDirection === 'left' || props.dropDirection === 'right') &&
     css`
-      bottom: ${props.theme.spaceScale.spacing02};
+      bottom: var(--spaceScale-spacing02);
       top: auto;
     `}
 `;
 
 const StyledDiv = styled.div`
-  padding: ${props => props.theme.spaceScale.spacing02} 0;
+  padding: var(--spaceScale-spacing02) 0;
 `;
 
 export const DropdownContent = React.forwardRef<
