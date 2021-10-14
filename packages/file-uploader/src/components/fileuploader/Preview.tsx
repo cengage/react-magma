@@ -138,13 +138,11 @@ const formatError = (
         ...error,
         message: `${error.message} ${formatFileSize(constraints.maxSize)}.`,
       };
-      break;
     case 'file-too-small':
       return {
         ...error,
-        messsge: `${error.message} ${formatFileSize(constraints.minSize)}.`,
+        message: `${error.message} ${formatFileSize(constraints.minSize)}.`,
       };
-      break;
     case 'file-invalid-type':
       const accept =
         Array.isArray(constraints.accept) && constraints.accept.length === 1
@@ -154,7 +152,6 @@ const formatError = (
         ? `one of ${accept.join(', ')}`
         : accept;
       return { ...error, message: `${error.message}: ${messageSuffix}` };
-      break;
     default:
       return error;
   }
@@ -196,9 +193,15 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
       const [done, setDone] = useState(false);
 
       useEffect(() => {
+        let mounted = true;
         setTimeout(() => {
-          setDone(true);
+          if(mounted) {
+            setDone(true);
+          }
         }, 1000);
+        return () => {
+          mounted = false;
+        };
       }, [status]);
 
       if (status === 'error' || status === 'ready') {
@@ -290,7 +293,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                 thumbnails &&
                 file.type &&
                 file.type.startsWith('image') ? (
-                <Thumb file={file} />
+                <Thumb role="img" id="THISISTHETHUMBNAIL" file={file} />
               ) : (
                 <FileIcon isInverse={isInverse} file={file} />
               )}
@@ -305,13 +308,13 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
           </StyledFlex>
           {file.errors && (
             <Errors theme={theme}>
-              {file.errors.slice(0, 1).map(({ code }) => {
+              {file.errors.slice(0, 1).map(({ code, ...rest }) => {
                 const { header = '', message } = formatError(
-                  { code, ...i18n.fileUploader.errors[code] },
+                  { code, ...rest, ...i18n.fileUploader.errors[code] },
                   { accept, minSize, maxSize }
                 );
                 return (
-                  <>
+                  <React.Fragment key={code}>
                     <ErrorHeader
                       style={{
                         color: isInverse
@@ -322,7 +325,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                       {header}
                     </ErrorHeader>
                     <ErrorMessage>{message}</ErrorMessage>
-                  </>
+                  </React.Fragment>
                 );
               })}
             </Errors>

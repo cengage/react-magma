@@ -71,11 +71,11 @@ export interface FileUploaderProps
 
 const Container = styled(Flex)<
   DropzoneRootProps &
-    FlexProps & {
-      dragState?: DragState;
-      noDrag?: boolean;
-      isInverse?: boolean;
-    }
+  FlexProps & {
+    dragState?: DragState;
+    noDrag?: boolean;
+    isInverse?: boolean;
+  }
 >`
   flex-direction: column;
   align-items: ${({ noDrag }) => (noDrag ? 'left' : 'center')};
@@ -107,6 +107,7 @@ const Container = styled(Flex)<
   outline: none;
   transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
+
 const HelperMessage = styled.span<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
     isInverse ? theme.colors.neutral08 : theme.colors.neutral03};
@@ -195,15 +196,6 @@ export const FileUploader = React.forwardRef<
     open,
   } = useDropzone({
     noClick: true,
-    onDragOver: (event: React.DragEvent<HTMLDivElement>) => {
-      dropzoneOptions.onDragOver && dropzoneOptions.onDragOver(event);
-    },
-    onDragEnter: (event: React.DragEvent<HTMLDivElement>) => {
-      dropzoneOptions.onDragEnter && dropzoneOptions.onDragEnter(event);
-    },
-    onDragLeave: (event: React.DragEvent<HTMLDivElement>) => {
-      dropzoneOptions.onDragLeave && dropzoneOptions.onDragLeave(event);
-    },
     disabled,
     multiple,
     maxSize,
@@ -245,6 +237,7 @@ export const FileUploader = React.forwardRef<
               processor: {
                 ...file.processor,
                 percent: `${props.percent}%`,
+                status: 'pending'
               },
             })
           : file
@@ -286,10 +279,8 @@ export const FileUploader = React.forwardRef<
     switch (code) {
       case 'too-many-files':
         return `${error.message} ${constraints.maxFiles} ${i18n.fileUploader.files}.`;
-        break;
       case 'too-few-files':
         return `${error.message} ${constraints.minFiles} ${i18n.fileUploader.files}.`;
-        break;
       default:
         return error.message;
     }
@@ -344,6 +335,7 @@ export const FileUploader = React.forwardRef<
         labelStyle={labelStyle}
         labelText={labelText}
         messageStyle={{ minHeight: 0 }}
+        data-testid={testId}
       >
         <HelperMessage theme={theme} isInverse={isInverse}>
           {helperMessage}
@@ -356,16 +348,17 @@ export const FileUploader = React.forwardRef<
           theme={theme}
           {...getRootProps()}
           {...rest}
+          testId={testId}
         >
-          <input ref={ref} data-testid={testId} {...getInputProps()} />
+          <input ref={ref} {...getInputProps({id})} />
           {noDrag ? (
             <Flex xs behavior={FlexBehavior.item}>
               <Button
                 color={ButtonColor.primary}
                 disabled={disabled}
                 isInverse={isInverse}
-                style={{ margin: 0 }}
                 onClick={open}
+                style={{ margin: 0 }}
               >
                 {i18n.fileUploader.browseFiles}
               </Button>
@@ -383,12 +376,12 @@ export const FileUploader = React.forwardRef<
                 {i18n.fileUploader.dragMessage}
               </Wrapper>
               <Button
-                disabled={disabled}
                 color={ButtonColor.secondary}
-                variant={ButtonVariant.solid}
+                disabled={disabled}
                 isInverse={isInverse}
                 onClick={open}
                 style={{ margin: 0 }}
+                variant={ButtonVariant.solid}
               >
                 {i18n.fileUploader.browseFiles}
               </Button>

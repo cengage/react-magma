@@ -1,6 +1,7 @@
 import { FileWithPath } from 'react-dropzone';
 
 export interface FileError {
+  header?: string;
   message: string;
   code:
     | 'file-too-large'
