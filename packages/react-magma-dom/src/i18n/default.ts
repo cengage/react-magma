@@ -157,7 +157,10 @@ export const defaultI18n: I18nInterface = {
         message: 'You must upload at least one file.'
       }
     },
-    files: 'files'
+    files: 'files',
+    bytes: 'bytes',
+    deleteFile: 'Delete file',
+    removeFile: 'Remove file'
   },
   header: {
     navigationButtonLabel: 'Open navigation menu',

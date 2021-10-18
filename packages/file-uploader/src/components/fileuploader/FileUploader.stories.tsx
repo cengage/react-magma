@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { FileUploader, FileUploaderProps, OnSendFileProps } from './FileUploader';
 import { Textarea, Datagrid } from 'react-magma-dom';
 
@@ -100,7 +100,7 @@ export const NoLimits = (args: FileUploaderProps) => {
 
 
 export const Image = () => {
-  const [file, setFile] = React.useState<string>();
+  const [file, setFile] = useState<string>();
 
     const onSendFile = (props: OnSendFileProps) => {
     const {file, onFinish} = props;
@@ -124,7 +124,7 @@ export const Image = () => {
 }
 
 export const Text = () => {
-  const [file, setFile] = React.useState<string>();
+  const [file, setFile] = useState<string>();
 
     const onSendFile = (props: OnSendFileProps) => {
     const {file, onFinish} = props;
@@ -148,8 +148,8 @@ export const Text = () => {
 }
 
 export const Csv = () => {
-  const [file, setFile] = React.useState<any>();
-  const [columns, setColumns] = React.useState<any>();
+  const [file, setFile] = useState<any>();
+  const [columns, setColumns] = useState<any>();
 
   const onSendFile = (props: OnSendFileProps) => {
     const {file, onFinish} = props;

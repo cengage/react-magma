@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { CSSProperties } from 'react';
 import {
   InsertDriveFileIcon,
   ImageIcon,
@@ -78,7 +78,7 @@ const icons = {
 };
 
 const iconMapping: {
-  [key: string]: { Icon: any; style: React.CSSProperties };
+  [key: string]: { Icon: any; style: CSSProperties };
 } = {
   default: icons.default,
   xlsx: icons.excel,

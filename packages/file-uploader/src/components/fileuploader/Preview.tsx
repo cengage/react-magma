@@ -1,4 +1,9 @@
-import { forwardRef, useContext, useEffect, useState } from 'react';
+import {
+  forwardRef,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   CheckCircleIcon,
@@ -6,6 +11,7 @@ import {
   DeleteIcon,
   ErrorIcon,
 } from 'react-magma-icons';
+
 import {
   ButtonColor,
   ButtonVariant,
@@ -136,12 +142,12 @@ const formatError = (
     case 'file-too-large':
       return {
         ...error,
-        message: `${error.message} ${formatFileSize(constraints.maxSize)}.`,
+        message: `${error.message} ${formatFileSize(constraints.maxSize, 2, i18n.fileUploader.bytes)}.`,
       };
     case 'file-too-small':
       return {
         ...error,
-        message: `${error.message} ${formatFileSize(constraints.minSize)}.`,
+        message: `${error.message} ${formatFileSize(constraints.minSize, 2, i18n.fileUploader.bytes)}.`,
       };
     case 'file-invalid-type':
       const accept =
@@ -177,20 +183,16 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
     const isInverse = useIsInverse(isInverseProp);
     const [actions, setActions] = useState(<CloseIcon />);
 
-    const handleRemoveFile = (file: FilePreview) => {
-      if (onRemoveFile && typeof onRemoveFile === 'function') {
-        onRemoveFile(file);
-      }
+    const handleRemoveFile = () => {
+      onRemoveFile && typeof onRemoveFile === 'function' && onRemoveFile(file);
     };
 
-    const handleDeleteFile = (file: FilePreview) => {
-      if (onDeleteFile && typeof onDeleteFile === 'function') {
-        onDeleteFile(file);
-      }
+    const handleDeleteFile = () => {
+      onDeleteFile && typeof onDeleteFile === 'function' && onDeleteFile(file);
     };
 
     const FinishedActions = ({ status = 'ready' }: { status?: string }) => {
-      const [done, setDone] = useState(false);
+      const [done, setDone] = useState<boolean>(false);
 
       useEffect(() => {
         let mounted = true;
@@ -208,12 +210,10 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
         return (
           <StatusIcons>
             <IconButton
-              onClick={() => {
-                handleRemoveFile(file);
-              }}
+              onClick={handleRemoveFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label="Remove File"
+              aria-label={i18n.fileUploader.removeFile}
               icon={<CloseIcon />}
             />
           </StatusIcons>
@@ -244,12 +244,10 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
           </Transition>
           <Transition isOpen={done} unmountOnExit fade>
             <IconButton
-              onClick={() => {
-                handleDeleteFile(file);
-              }}
+              onClick={handleDeleteFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label="Delete File"
+              aria-label={i18n.fileUploader.deleteFile}
               icon={<DeleteIcon />}
             />
           </Transition>
