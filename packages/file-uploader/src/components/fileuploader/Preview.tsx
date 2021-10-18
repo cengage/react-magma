@@ -293,7 +293,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                 thumbnails &&
                 file.type &&
                 file.type.startsWith('image') ? (
-                <Thumb role="img" id="THISISTHETHUMBNAIL" file={file} />
+                <Thumb role="img" file={file} />
               ) : (
                 <FileIcon isInverse={isInverse} file={file} />
               )}
