@@ -49,23 +49,77 @@ type DragState =
   | 'default';
 export interface FileUploaderProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
+  /**
+   * Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276
+   */ 
   accept?: string | string[];
+  /**
+   * Enable/Disable the input
+   */
   disabled?: boolean;
+  /**
+   * Additional props to pass to the dropzone, see https://react-dropzone.js.org/#src
+   */
   dropzoneOptions?: Partial<Omit<DropzoneOptions, 'onDrop'>>;
+  /**
+   * Content of the helper message.
+   */
   helperMessage?: string;
+  /**
+   * @internal
+   */
   id?: string;
+  /**
+   * Maximum accepted number of files The default value is 0 which means there is no limitation to how many files are accepted.
+   * @default 0
+   */
   maxFiles?: number;
+  /**
+   * Minimum accepted number of files.
+   */
   minFiles?: number;
+  /**
+   * Maximum file size (in bytes)
+   * @default Infinity
+   */
   maxSize?: number;
+  /**
+   * Minimum file size (in bytes)
+   * @default 0
+   */
   minSize?: number;
+  /**
+   * Allow drag 'n' drop (or selection from the file dialog) of multiple files.
+   * @default true
+   */
   multiple?: boolean;
+  /**
+   * If true, disables drag 'n' drop
+   * @default false
+   */
   noDrag?: boolean;
+  /**
+   * Callback for when a file is deleted 
+   */
   onDeleteFile?: (file: FilePreview) => void;
+  /**
+   * Callback for when a file is deleted 
+   */
   onRemoveFile?: (file: FilePreview) => void;
+  /**
+   * Callback for when a file is added to the preview list via dropping or selecting. Will be ran on new files when `sendFiles` is true.
+   */
   onSendFile?: (props: OnSendFileProps) => void;
+  /**
+   * Run `onSendFile` on any new files. Delay processing by setting to `false` until processing is desired.
+   * @default false 
+   */
   sendFiles?: boolean;
-  showAcceptHelper?: boolean;
   testId?: string;
+  /**
+   * Show thumbnails for images in lieu of the file icon.
+   * @default true
+   */
   thumbnails?: boolean;
 }
 
@@ -153,7 +207,6 @@ export const FileUploader = React.forwardRef<
     onDeleteFile,
     onRemoveFile,
     sendFiles = false,
-    showAcceptHelper = true,
     testId,
     thumbnails = true,
     ...rest

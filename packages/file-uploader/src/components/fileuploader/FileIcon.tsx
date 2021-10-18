@@ -13,6 +13,7 @@ import {
 } from 'react-magma-icons';
 
 import { FilePreview } from './FilePreview';
+import { magma } from 'react-magma-dom';
 
 export interface FileIconProps extends IconProps {
   file: FilePreview;
@@ -111,5 +112,5 @@ export const FileIcon = ({ file, isInverse }: FileIconProps) => {
   const { Icon, style } =
     iconMapping[extension] || iconMapping[category] || iconMapping.default;
 
-  return <Icon size={24} style={isInverse ? {} : style} />;
+  return <Icon size={magma.iconSizes.medium} style={isInverse ? {} : style} />;
 };
