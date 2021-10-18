@@ -29,6 +29,8 @@ export function Example() {
 }
 ```
 
+
+
 ### No Dragging
 
 ```typescript
@@ -42,6 +44,30 @@ export function Example() {
     labelText="Upload files (Button only)"
     helperMessage="No limits on file types, size, or quantity."
   />
+}
+```
+
+### Basic Usage
+
+```typescript
+import React from 'react';
+import { Card, CardBody } from 'react-magma-dom';
+import { Fileuploader } from '@react-magma/file-uploader';
+
+export function Example() {
+  return <Card isInverse>
+      <CardBody>
+        <FileUploader
+          isInverse
+          thumbnails={false}
+          accept={['.png', '.jpg', '.svg']}
+          maxFiles={5}
+          maxSize={1024*1024}
+          labelText="Upload files (Drag and Drop)"
+          helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
+        />
+      </CardBody>
+    </Card>
 }
 ```
 
