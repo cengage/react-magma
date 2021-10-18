@@ -1,0 +1,38 @@
+---
+pageTitle: Breadcrumb Design Guidelines
+title: Breadcrumb
+order: 1
+---
+
+import { Link } from 'gatsby';
+import '../../../../pages/design/design-guidelines-styles.css';
+import { DocsHeading } from '../../../../components/DocsHeading';
+
+<DocsHeading to="/api/breadcrumb/" type="design">
+  Breadcrumb
+</DocsHeading>
+
+## Usage
+
+Indicate the current page’s location within a navigational hierarchy that automatically adds separators. The default breadcrumb component is styled for use on backgrounds **neutral08** or **neutral07**. For dark backgrounds you can use the inverse version.
+
+<figure>
+  <img src="../../images/breadcrumbs/example-breadcrumbs.png" alt=" " />
+</figure>
+
+---
+
+## Responsive Behavior
+
+As the viewport gets smaller, the breadcrumb component will simply wrap to as many lines as necessary. Mobile apps do not typically use breadcrumbs, and the same goes for when our Responsive applications are rendered on smaller screens. Therefore it is appropriate to suppress the breadcrumbs at a specified breakpoint, and provide an alternative way of navigating if necessary. A common breakpoint for hiding breadcrumbs is 600px, which covers the majority of small tablets and phones.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/breadcrumbs/breadcrumbs-wrap.png" alt=" " />
+      </figure>
+    </div>
+    <div class="col col-2"></div>
+  </div>
+</div>
