@@ -8,5 +8,8 @@
     "react-magma-docs": "2.2.6",
     "react-magma-landing": "1.0.10"
   },
-  "changesets": []
+  "changesets": [
+    "fuzzy-moles-smoke",
+    "light-chairs-march"
+  ]
 }
