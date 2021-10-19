@@ -50,6 +50,7 @@ export interface ITooltipState {
 
 const TooltipContainer = styled.div`
   display: inline;
+  pointer-events: auto;
 `;
 
 export const TooltipArrow = styled.span<{
@@ -99,20 +100,32 @@ export const StyledTooltip = styled.div<{
     ${props => props.theme.spaceScale.spacing04};
   z-index: ${props => props.theme.tooltip.zIndex};
 
-  &[data-popper-placement='top'] > span:last-child {
-    bottom: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='top'] {
+    margin-bottom: 14px;
+    & > span:last-child {
+      bottom: 10px;
+    }
   }
 
-  &[data-popper-placement='bottom'] > span:last-child {
-    top: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='bottom'] {
+    margin-top: 14px;
+    & > span:last-child {
+      top: 10px;
+    }
   }
 
-  &[data-popper-placement='left'] > span:last-child {
-    right: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='left'] {
+    margin-right: 14px;
+    & > span:last-child {
+      right: 10px;
+    }
   }
 
-  &[data-popper-placement='right'] > span:last-child {
-    left: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='right'] {
+    margin-left: 14px;
+    & > span:last-child {
+      left: 10px;
+    }
   }
 `;
 
@@ -131,7 +144,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
       {
         name: 'offset',
         options: {
-          offset: [0, 12],
+          offset: [0, 0],
         },
       },
     ],
@@ -197,6 +210,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     ...styles.popper,
     ...tooltipStyle,
   };
+
   const combinedArrowStyle = { ...styles.arrow, ...arrowStyle };
 
   const isInverse = useIsInverse(props.isInverse);
@@ -212,24 +226,28 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     >
       {tooltipTrigger}
       {isVisible && (
-        <StyledTooltip
-          id={id}
-          isInverse={isInverse}
-          position={position ? position : TooltipPosition.top}
+        <div
           ref={setPopperElement}
-          role="tooltip"
           style={combinedTooltipStyles}
-          theme={theme}
           {...attributes.popper}
         >
-          {content}
-          <TooltipArrow
+          <StyledTooltip
+            id={id}
             isInverse={isInverse}
-            ref={setArrowElement}
-            style={combinedArrowStyle}
+            position={position ? position : TooltipPosition.top}
             theme={theme}
-          />
-        </StyledTooltip>
+            role="tooltip"
+            {...attributes.popper}
+          >
+            {content}
+            <TooltipArrow
+              isInverse={isInverse}
+              ref={setArrowElement}
+              style={combinedArrowStyle}
+              theme={theme}
+            />
+          </StyledTooltip>
+        </div>
       )}
     </TooltipContainer>
   );

@@ -2,15 +2,11 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "react-magma-dom": "2.5.4",
-    "@react-magma/schema-renderer": "0.0.5",
-    "@cengage-patterns/header": "2.0.4",
-    "react-magma-docs": "2.2.5",
+    "react-magma-dom": "2.5.5",
+    "@react-magma/schema-renderer": "0.0.6",
+    "@cengage-patterns/header": "2.0.5",
+    "react-magma-docs": "2.2.6",
     "react-magma-landing": "1.0.10"
   },
-  "changesets": [
-    "nine-happy-wolves",
-    "one-lonely-kitten",
-    "slow-turtles-clean"
-  ]
+  "changesets": []
 }
