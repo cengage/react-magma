@@ -126,8 +126,15 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     }, [activeIndex]);
 
     function openDropdown() {
+      const [filteredItems] = getFilteredItem();
+
       setIsOpen(true);
-      toggleRef.current.focus();
+
+      setTimeout(() => {
+        filteredItems.length > 0 &&
+          filteredItems[0].current &&
+          filteredItems[0].current.focus();
+      }, 0);
     }
 
     function closeDropdown(event) {
@@ -193,17 +200,15 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }
 
-    function handleDropdownBlur(event: React.SyntheticEvent) {
-      const { currentTarget } = event;
+    function handleDropdownBlur(event: React.FocusEvent) {
+      const { currentTarget, relatedTarget } = event;
 
-      setTimeout(() => {
-        const isInMenu = currentTarget.contains(document.activeElement);
+      const isInMenu =
+        relatedTarget && currentTarget.contains(relatedTarget as Node);
 
-        if (!isInMenu && isOpen) {
-          setIsOpen(false);
-          closeDropdown(event);
-        }
-      }, 0);
+      if (!isInMenu && isOpen) {
+        closeDropdown(event);
+      }
     }
 
     function handlePreventMagmaFocus() {}

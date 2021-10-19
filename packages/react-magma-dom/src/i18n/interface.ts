@@ -141,6 +141,17 @@ export interface I18nInterface {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
   };
+  fileUploader: {
+    browseFiles: string;
+    dragMessage: string;
+    errors: {
+      [key: string]: {
+        header?: string;
+        message: string;
+      };
+    }
+    files: string;
+  };
   header: {
     navigationButtonLabel: string;
     search: {

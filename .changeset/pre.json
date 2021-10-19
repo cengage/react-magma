@@ -9,6 +9,8 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
-    "one-lonely-kitten"
+    "nine-happy-wolves",
+    "one-lonely-kitten",
+    "slow-turtles-clean"
   ]
 }
