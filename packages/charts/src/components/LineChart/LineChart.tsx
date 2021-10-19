@@ -117,6 +117,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
   const [hiddenData, setHiddenData] = React.useState<number[]>([]);
   const [width, setWidth] = React.useState<number>(800);
   const [focusedLine, setFocusedLine] = React.useState<number>(null);
+  const [showTooltip, setShowTooltip] = React.useState<string>(undefined);
   const [showXAxisLabel, setShowXAxisLabel] = React.useState<boolean>(true);
 
   const containerRef = React.useRef<HTMLDivElement>();
@@ -126,47 +127,19 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
   React.useEffect(() => {
     updateWidth();
+
     window.addEventListener('resize', updateWidth);
+    window.addEventListener('keydown', handleEsc);
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('resize', updateWidth);
+      window.removeEventListener('keydown', handleEsc);
+      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [showTooltip]);
 
   const scatterNames: string[] = data.map((_, i) => `scatter-${i}`);
-
-  const chartEvents = [
-    {
-      target: 'data',
-      childName: scatterNames,
-      eventHandlers: {
-        onMouseEnter: () => {
-          return [
-            {
-              childName: 'xAxisGroupLabel',
-              target: 'labels',
-              mutation: props => {
-                setShowXAxisLabel(false);
-                return props;
-              },
-            },
-          ];
-        },
-        onMouseLeave: () => {
-          return [
-            {
-              childName: 'xAxisGroupLabel',
-              target: 'labels',
-              mutation: props => {
-                setShowXAxisLabel(true);
-                return props;
-              },
-            },
-          ];
-        },
-      },
-    },
-  ];
 
   const xAxisStyles = {
     tickLabels: {
@@ -201,6 +174,17 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
   function updateWidth() {
     setWidth(containerRef.current.clientWidth);
+  }
+
+  function handleEsc(event: KeyboardEvent): any {
+    if (event.key === 'Escape') {
+      setShowTooltip(undefined);
+      setShowXAxisLabel(false);
+    }
+  }
+
+  function handleMouseMove() {
+    !showTooltip && setShowXAxisLabel(true);
   }
 
   function setLineOpacity(index: number) {
@@ -257,6 +241,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
     point.current &&
     parseInt(point.current.getAttribute('data-line-index'), 10) === index;
 
+  // eslint-disable-next-line complexity
   function handleChartContainerKeyDown(event: React.KeyboardEvent) {
     const { key, shiftKey } = event;
     switch (key) {
@@ -375,13 +360,9 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
   return (
     <LineChartContainer ref={containerRef}>
-      <VictoryChartContainer
-        ref={containerRef}
-        onKeyDown={handleChartContainerKeyDown}
-      >
+      <VictoryChartContainer onKeyDown={handleChartContainerKeyDown}>
         <VictoryChart
           domainPadding={32}
-          events={chartEvents}
           height={400}
           padding={{ top: 0, left: 80, right: 0, bottom: 62 }}
           theme={magmaTheme}
@@ -397,8 +378,8 @@ export function LineChart<T>(props: LineChartProps<T>) {
                   <VictoryTooltip
                     flyoutComponent={
                       <AxisTooltip
-                        hiddenData={hiddenData}
                         dataLength={data.length}
+                        hiddenData={hiddenData}
                       />
                     }
                   />
@@ -439,6 +420,68 @@ export function LineChart<T>(props: LineChartProps<T>) {
               !hiddenData.includes(i) && (
                 <VictoryScatter
                   name={`scatter-${i}`}
+                  events={[
+                    {
+                      target: 'data',
+                      eventHandlers: {
+                        onBlur: () => {
+                          setShowXAxisLabel(true);
+                          setShowTooltip(undefined);
+                          return [
+                            {
+                              target: 'labels',
+                              mutation: () => ({ active: undefined }),
+                            },
+                          ];
+                        },
+                        onClick: () => {
+                          return [
+                            {
+                              target: 'labels',
+                              mutation: props => {
+                                setShowTooltip(
+                                  `${props.datum.lineIndex}-${props.datum.index}`
+                                );
+                                return { active: true };
+                              },
+                            },
+                          ];
+                        },
+                        onFocus: props => {
+                          setShowXAxisLabel(false);
+                          return [
+                            {
+                              target: 'labels',
+                              mutation: props => {
+                                setShowTooltip(
+                                  `${props.datum.lineIndex}-${props.datum.index}`
+                                );
+                                return { active: true };
+                              },
+                            },
+                          ];
+                        },
+                        onMouseEnter: () => {
+                          setShowXAxisLabel(false);
+                          return [
+                            {
+                              target: 'labels',
+                              mutation: props => {
+                                setShowTooltip(
+                                  `${props.datum.lineIndex}-${props.datum.index}`
+                                );
+                                return { active: true };
+                              },
+                            },
+                          ];
+                        },
+                        onMouseLeave: () => {
+                          setShowTooltip(undefined);
+                          setShowXAxisLabel(true);
+                        },
+                      },
+                    },
+                  ]}
                   style={{
                     data: {
                       fill: theme.colors.neutral08,
@@ -448,7 +491,13 @@ export function LineChart<T>(props: LineChartProps<T>) {
                     },
                   }}
                   size={5}
-                  data={dataset as unknown as any[]}
+                  data={
+                    dataset.map((datum, index) => ({
+                      index,
+                      lineIndex: i,
+                      ...datum,
+                    })) as unknown as any[]
+                  }
                   dataComponent={
                     <Point
                       ariaLabel={({ datum }) => `${datum.label}`}
@@ -468,7 +517,9 @@ export function LineChart<T>(props: LineChartProps<T>) {
                   labelComponent={
                     <VictoryTooltip
                       text=""
-                      flyoutComponent={<GraphTooltip index={i} />}
+                      flyoutComponent={
+                        <GraphTooltip index={i} showTooltip={showTooltip} />
+                      }
                     />
                   }
                   key={`scatter${i}`}

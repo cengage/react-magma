@@ -39,26 +39,29 @@ const TooltipColorSwatch = styled.span`
 `;
 
 export const GraphTooltip = props => {
-  const { datum, index, x, y } = props;
+  const { datum, index, showTooltip, x, y } = props;
 
   const theme = React.useContext(ThemeContext);
+  const linePointIndex = `${index}-${datum.index}`;
 
   return (
-    <g style={{ pointerEvents: 'none' }}>
-      <foreignObject x={x} y={y} width="275" height="100%">
-        <StyledGraphTooltip
-          position={TooltipPosition.top}
-          role="tooltip"
-          theme={theme}
-        >
-          <div>
-            <TooltipColorSwatch color={theme.iterableColors[index]} />
-            <span>{datum.label}</span>
-          </div>
-          <TooltipArrow theme={theme} />
-        </StyledGraphTooltip>
-      </foreignObject>
-    </g>
+    showTooltip === linePointIndex && (
+      <g style={{ pointerEvents: 'none' }}>
+        <foreignObject x={x} y={y} width="275" height="100%">
+          <StyledGraphTooltip
+            position={TooltipPosition.top}
+            role="tooltip"
+            theme={theme}
+          >
+            <div>
+              <TooltipColorSwatch color={theme.iterableColors[index]} />
+              <span>{datum.label}</span>
+            </div>
+            <TooltipArrow theme={theme} />
+          </StyledGraphTooltip>
+        </foreignObject>
+      </g>
+    )
   );
 };
 
