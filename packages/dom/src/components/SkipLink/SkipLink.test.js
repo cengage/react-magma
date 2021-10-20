@@ -21,8 +21,8 @@ describe('SkipLink', () => {
 
     expect(link).toBeInTheDocument();
     expect(link.innerHTML).toEqual('Skip Navigation');
-    expect(link).toHaveStyleRule('background', '#006298');
-    expect(link).toHaveStyleRule('color', '#FFFFFF');
+    expect(link).toHaveStyleRule('background', 'var(--colors-primary)');
+    expect(link).toHaveStyleRule('color', 'var(--colors-neutral08)');
     expect(link).toMatchSnapshot();
   });
 
@@ -83,15 +83,15 @@ describe('SkipLink', () => {
     const link = container.querySelector('a');
 
     expect(link).toHaveStyleRule('background', 'rgba(0,0,0,0)');
-    expect(link).toHaveStyleRule('color', '#3A8200');
+    expect(link).toHaveStyleRule('color', 'var(--colors-success');
   });
 
   it('should render the skip link button the correct colors for an inverse button', () => {
     const { container } = render(<SkipLink isInverse />);
     const link = container.querySelector('a');
 
-    expect(link).toHaveStyleRule('background', '#FFFFFF');
-    expect(link).toHaveStyleRule('color', '#006298');
+    expect(link).toHaveStyleRule('background', 'var(--colors-neutral08)');
+    expect(link).toHaveStyleRule('color', 'var(--colors-primary)');
   });
 
   it('should render the skip link specified position top and left attributes', () => {

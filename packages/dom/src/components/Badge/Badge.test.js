@@ -2,8 +2,7 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Badge } from '.';
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
-import { darken, lighten } from 'polished';
+import { cssVar, darken, lighten } from 'polished';
 
 const TEXT = 'Test Text';
 
@@ -26,15 +25,15 @@ describe('Badge', () => {
 
     expect(getByText(TEXT)).toHaveStyleRule(
       'border-radius',
-      magma.spaceScale.spacing06
+      'var(--spaceScale-spacing06)'
     );
     expect(getByText(TEXT)).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size02.fontSize
+      'var(--typeScale-size02-fontSize)'
     );
     expect(getByText(TEXT)).toHaveStyleRule(
       'line-height',
-      magma.typeScale.size02.lineHeight
+      'var(--typeScale-size02-lineHeight)'
     );
   });
 
@@ -48,18 +47,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.primary
+        'var(--colors-primary)'
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.primary),
+        darken(0.1, `${cssVar('--colors-primary')}`),
         {
           target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.primary),
+        darken(0.2, cssVar('--colors-primary')),
         {
           target: ':active',
         }
@@ -75,18 +74,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral02
+        'var(--colors-neutral02)'
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.neutral02),
+        darken(0.1, cssVar('--colors-neutral02')),
         {
           target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.neutral02),
+        darken(0.2, cssVar('--colors-neutral02')),
         {
           target: ':active',
         }
@@ -102,18 +101,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.success
+        'var(--colors-success)'
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.success),
+        darken(0.1, cssVar('--colors-success')),
         {
           target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.success),
+        darken(0.2, cssVar('--colors-success')),
         {
           target: ':active',
         }
@@ -129,18 +128,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.danger
+        'var(--colors-danger)'
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.danger),
+        darken(0.1, 'var(--colors-danger)'),
         {
           target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.danger),
+        darken(0.2, 'var(--colors-danger)'),
         {
           target: ':active',
         }
@@ -156,18 +155,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral07
+        'var(--colors-neutral07)'
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        lighten(0.05, magma.colors.neutral07),
+        lighten(0.05, cssVar('--colors-neutral07')),
         {
           target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        lighten(0.1, magma.colors.neutral07),
+        lighten(0.1, cssVar('--colors-neutral07')),
         {
           target: ':active',
         }
@@ -179,18 +178,18 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral02
+        'var(--colors-neutral02)'
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.1, magma.colors.neutral02),
+        darken(0.1, cssVar('--colors-neutral02')),
         {
           target: ':focus',
         }
       );
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        darken(0.2, magma.colors.neutral02),
+        darken(0.2, cssVar('--colors-neutral02')),
         {
           target: ':active',
         }

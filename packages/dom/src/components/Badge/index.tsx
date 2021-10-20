@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { darken, lighten } from 'polished';
 
 /**
@@ -59,36 +58,36 @@ export function buildBadgeBackground(props) {
 export function buildBadgeFocusBackground(props) {
   switch (props.color) {
     case 'danger':
-      return darken(0.1, 'var(--colors-danger)');
+      return darken(0.1, '#C61D23');
     case 'light':
-      return lighten(0.05, 'var(--colors-neutral07)');
+      return lighten(0.05, '#F7F7F7');
     case 'primary':
-      return darken(0.1, 'var(--colors-primary)');
+      return darken(0.1, '#006298');
     case 'secondary':
-      return darken(0.1, 'var(--colors-neutral02)');
+      return darken(0.1, '#575757');
     case 'success':
-      return darken(0.1, 'var(--colors-success)');
+      return darken(0.1, '#3A8200');
 
     default:
-      return darken(0.1, 'var(--colors-neutral02)');
+      return darken(0.1, '#575757');
   }
 }
 
 export function buildBadgeActiveBackground(props) {
   switch (props.color) {
     case 'danger':
-      return darken(0.2, 'var(--colors-danger)');
+      return darken(0.2, '#C61D23');
     case 'light':
-      return lighten(0.1, 'var(--colors-neutral07)');
+      return lighten(0.1, '#F7F7F7');
     case 'primary':
-      return darken(0.2, 'var(--colors-primary)');
+      return darken(0.2, '#006298');
     case 'secondary':
-      return darken(0.2, 'var(--colors-neutral02)');
+      return darken(0.2, '#575757');
     case 'success':
-      return darken(0.2, 'var(--colors-success)');
+      return darken(0.2, '#3A8200');
 
     default:
-      return darken(0.2, 'var(--colors-neutral02)');
+      return darken(0.2, '#575757');
   }
 }
 
@@ -154,8 +153,6 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
     const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
 
-    const theme = React.useContext(ThemeContext);
-
     return (
       <BadgeComponent
         {...other}
@@ -163,7 +160,6 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
         variant={variant ? variant : BadgeVariant.label}
         onClick={onClick}
         ref={ref}
-        theme={theme}
       >
         {children}
       </BadgeComponent>

@@ -6,7 +6,6 @@ import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { usePagination } from './usePagination';
 
 export interface BasePaginationProps
@@ -110,20 +109,20 @@ export function BuildBorder(props) {
   switch (props.color) {
     case 'primary':
       if (props.isInverse) {
-        return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral08}`;
+        return 'var(--spaceScale-spacing01) solid var(--colors-neutral08)';
       }
-      return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.primary}`;
+      return 'var(--spaceScale-spacing01} solid var(--colors-primary)';
     default:
       if (props.isInverse) {
         if (props.disabled) {
-          return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.tint04}`;
+          return 'var(--spaceScale-spacing01) solid var(--colors-tint04)';
         }
-        return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral08}`;
+        return 'var(--spaceScale-spacing01) solid var(--colors-neutral08)';
       }
       if (props.disabled) {
-        return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral06}`;
+        return 'var(--spaceScale-spacing01) solid var(--colors-neutral06)';
       }
-      return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral05}`;
+      return 'var(--spaceScale-spacing01) solid var(--colors-neutral05)';
   }
 }
 
@@ -131,23 +130,23 @@ export function hoverBorder(props) {
   switch (props.color) {
     case 'primary':
       if (props.isInverse) {
-        return `${props.theme.colors.neutral08}`;
+        return 'var(--colors-neutral08)';
       }
-      return `${darken(0.1, props.theme.colors.primary)}`;
+      return `${darken(0.1, 'var(--colors-primary)')}`;
     default:
       if (props.isInverse) {
-        return `${props.theme.colors.neutral08}`;
+        return 'var(--colors-neutral08)';
       }
-      return `${props.theme.colors.neutral05}`;
+      return 'var(--colors-neutral05)';
   }
 }
 
 function BuildButtonSize(props) {
   switch (props.size) {
     case 'large':
-      return `${props.theme.spaceScale.spacing11}`;
+      return 'var(--spaceScale-spacing11)';
     default:
-      return `${props.theme.spaceScale.spacing09}`;
+      return 'var(--spaceScale-spacing09)';
   }
 }
 
@@ -170,8 +169,8 @@ const NavButton = styled(IconButton)`
     content: '';
     border: ${props =>
       props.isInverse
-        ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
-        : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
+        ? 'var(--spaceScale-spacing01) solid var(--colors-focusInverse)'
+        : 'var(--spaceScale-spacing01) solid var(--colors-focus)'};
     border-style: dotted;
     height: calc(100% + 14px);
     left: -7px;
@@ -212,7 +211,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       onPageChange,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
     const buttonSize =
       size === PageButtonSize.large ? ButtonSize.large : ButtonSize.medium;
 
@@ -233,19 +231,12 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const i18n = React.useContext(I18nContext);
 
     return (
-      <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
+      <StyledNav {...other} data-testid={testId} ref={ref}>
         <StyledList>
           {pageButtons.map(
             ({ 'aria-current': ariaCurrent, page, type, ...other }, index) => {
               if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-                return (
-                  <StyledEllipsis
-                    key={index}
-                    theme={theme}
-                  >
-                    ...
-                  </StyledEllipsis>
-                );
+                return <StyledEllipsis key={index}>...</StyledEllipsis>;
               } else if (type === 'page') {
                 return (
                   <StyledListItem
@@ -278,7 +269,6 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                         )
                       }
                       isInverse={isInverse}
-                      theme={theme}
                       shape={
                         type === 'previous'
                           ? ButtonShape.leftCap

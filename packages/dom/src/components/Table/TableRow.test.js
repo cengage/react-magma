@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableRow, TableRowColor } from '.';
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 describe('Table Row', () => {
   it('should find element by testId', () => {
@@ -34,11 +33,11 @@ describe('Table Row', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.success
+        'var(--colors-success)'
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        'var(--colors-neutral08)'
       );
     });
 
@@ -56,11 +55,11 @@ describe('Table Row', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.danger
+        'var(--colors-danger)'
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        'var(--colors-neutral08)'
       );
     });
 
@@ -78,11 +77,11 @@ describe('Table Row', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.pop04
+        'var(--colors-pop04)'
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral
+        'var(--colors-neutral)'
       );
     });
 
@@ -100,11 +99,11 @@ describe('Table Row', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.primary
+        'var(--colors-primary)'
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        'var(--colors-neutral08)'
       );
     });
   });

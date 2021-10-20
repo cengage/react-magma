@@ -36,6 +36,7 @@ export interface Colors {
   tint02: string;
   tint03: string;
   tint04: string;
+  tint05: string;
   tone: string;
   tone02: string;
   border: string;
@@ -43,11 +44,11 @@ export interface Colors {
 }
 
 export interface Breakpoints {
-  xs: number;
-  small: number;
-  medium: number;
-  large: number;
-  xl: number;
+  xs: string;
+  small: string;
+  medium: string;
+  large: string;
+  xl: string;
 }
 
 export interface IconSizes {
@@ -347,6 +348,7 @@ const colors = {
   tint02: 'rgba(255,255,255,0.1)',
   tint03: 'rgba(255,255,255,0.1)',
   tint04: 'rgba(255,255,255,0.4)',
+  tint05: 'rgba(255,255,255,0.8)',
   tone: 'rgba(63,63,63,0.07)',
   tone02: 'rgba(63,63,63,0.1)',
   border: '#DFDFDF',
@@ -386,10 +388,10 @@ export const magma = {
   // breakpoints
   breakpoints: {
     xs: 0,
-    small: 600,
-    medium: 768,
-    large: 1024,
-    xl: 1200,
+    small: '600px',
+    medium: '768px',
+    large: '1024px',
+    xl: '1200px',
   },
 
   spaceScale: spaceScale,

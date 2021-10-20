@@ -9,7 +9,6 @@ import { DropdownMenuGroup } from './DropdownMenuGroup';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
-import { magma } from '../../theme/magma';
 
 import { act, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -87,12 +86,12 @@ describe('Dropdown', () => {
     expect(getByTestId('caretLeft')).toBeInTheDocument();
     expect(getByTestId('dropdownContent')).toHaveStyleRule(
       'top',
-      magma.spaceScale.spacing02
+      'var(--spaceScale-spacing02)'
     );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '100%');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-left',
-      magma.spaceScale.spacing03
+      'var(--spaceScale-spacing03)'
     );
   });
 
@@ -107,12 +106,12 @@ describe('Dropdown', () => {
     expect(getByTestId('caretRight')).toBeInTheDocument();
     expect(getByTestId('dropdownContent')).toHaveStyleRule(
       'top',
-      magma.spaceScale.spacing02
+      'var(--spaceScale-spacing02)'
     );
     expect(getByTestId('dropdownContent')).toHaveStyleRule('left', '100%');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-right',
-      magma.spaceScale.spacing03
+      'var(--spaceScale-spacing03)'
     );
   });
 
@@ -128,7 +127,7 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-right',
-      magma.spaceScale.spacing02
+      'var(--spaceScale-spacing02)'
     );
   });
 
@@ -144,7 +143,7 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-right',
-      magma.spaceScale.spacing05
+      'var(--spaceScale-spacing05)'
     );
   });
 
@@ -159,7 +158,7 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('left', 'auto');
     expect(getByTestId('dropdownContent')).toHaveStyleRule(
       'right',
-      magma.spaceScale.spacing02
+      'var(--spaceScale-spacing02)'
     );
   });
 
@@ -174,7 +173,7 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
     expect(getByTestId('dropdownContent')).toHaveStyleRule(
       'bottom',
-      magma.spaceScale.spacing02
+      'var(--spaceScale-spacing02)'
     );
   });
 
@@ -250,7 +249,7 @@ describe('Dropdown', () => {
     );
     expect(getByText('Toggle me')).toHaveStyleRule(
       'padding-left',
-      magma.spaceScale.spacing03
+      'var(--spaceScale-spacing03)'
     );
 
     expect(queryByTestId('caretUp')).not.toBeInTheDocument();
@@ -269,7 +268,7 @@ describe('Dropdown', () => {
 
     expect(getByText('Toggle me')).toHaveStyleRule(
       'padding-right',
-      magma.spaceScale.spacing03
+      'var(--spaceScale-spacing03)'
     );
   });
 
@@ -573,7 +572,10 @@ describe('Dropdown', () => {
     fireEvent.click(getByText(text));
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule('color', magma.colors.disabledText);
+    expect(getByText(text)).toHaveStyleRule(
+      'color',
+      'var(--colors-disabledText)'
+    );
   });
 
   it('should render a dropdown header', () => {
@@ -684,8 +686,10 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    const activeStylePadding = `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`;
-    const inActiveStylePadding = `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11}`;
+    const activeStylePadding =
+      'var(--spaceScale.spacing03) var(--spaceScale.spacing05)';
+    const inActiveStylePadding =
+      'var(--spaceScale.spacing03) var(--spaceScale.spacing05) var(--spaceScale.spacing03) var(--spaceScale.spacing11)';
 
     fireEvent.click(getByText('Toggle'));
 

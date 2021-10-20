@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Heading } from '.';
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 describe('Heading', () => {
   it('should find element by testId', () => {
@@ -25,11 +24,11 @@ describe('Heading', () => {
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size07.fontSize
+      'var(--typeScale-size07-fontSize)'
     );
     expect(heading).toHaveStyleRule(
       'margin',
-      `0 0 ${magma.spaceScale.spacing05}`
+      '0 0 var(--spaceScale-spacing05)'
     );
   });
 
@@ -42,11 +41,11 @@ describe('Heading', () => {
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size06.fontSize
+      'var(--typeScale-size06-fontSize)'
     );
     expect(heading).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing10} 0 ${magma.spaceScale.spacing05}`
+      'var(--spaceScale-spacing10) 0 var(--spaceScale-spacing05)'
     );
   });
 
@@ -59,11 +58,11 @@ describe('Heading', () => {
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size05.fontSize
+      'var(--typeScale-size05-fontSize)'
     );
     expect(heading).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing09} 0 ${magma.spaceScale.spacing05}`
+      'var(--spaceScale-spacing09} 0 var(--spaceScale-spacing05)'
     );
   });
 
@@ -76,11 +75,11 @@ describe('Heading', () => {
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size04.fontSize
+      'var(--typeScale-size04-fontSize)'
     );
     expect(heading).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing08} 0 ${magma.spaceScale.spacing05}`
+      'var(--spaceScale-spacing08) 0 var(--spaceScale-spacing05)'
     );
   });
 
@@ -93,11 +92,11 @@ describe('Heading', () => {
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size04.fontSize
+      'var(--typeScale-size04-fontSize)'
     );
     expect(heading).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing06} 0 ${magma.spaceScale.spacing05}`
+      'var(--spaceScale-spacing06) 0 var(--spaceScale-spacing05)'
     );
   });
 
@@ -110,11 +109,11 @@ describe('Heading', () => {
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size01.fontSize
+      'var(--typeScale-size01-fontSize)'
     );
     expect(heading).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing06} 0 ${magma.spaceScale.spacing03}`
+      'var(--spaceScale-spacing06) 0 var(--spaceScale-spacing03)'
     );
   });
 
@@ -131,7 +130,7 @@ describe('Heading', () => {
     expect(heading).toHaveTextContent(headingText);
     expect(heading).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size07.fontSize
+      'var(--typeScale-size07-fontSize)'
     );
   });
 
@@ -183,11 +182,11 @@ describe('Heading', () => {
     );
     const heading = getByText(headingText);
 
-    expect(heading).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(heading).toHaveStyleRule('color', 'var(--colors-neutral08)');
 
     expect(heading).toHaveStyleRule(
       'border-bottom',
-      `2px dotted ${magma.colors.focusInverse}`,
+      '2px dotted var(--colors-focusInverse)',
       {
         target: ':focus',
       }
@@ -259,14 +258,14 @@ describe('Heading', () => {
       );
       const heading = getByText(headingText);
 
-      expect(heading).toHaveStyleRule('color', magma.colors.foundation02);
+      expect(heading).toHaveStyleRule('color', 'var(--colors-foundation02)');
       expect(heading).toHaveStyleRule(
         'font-family',
-        magma.headingExpressiveFont
+        'var(--headingExpressiveFont)'
       );
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVisualStyles.headingXLarge.mobile.fontSize
+        'var(--typographyExpressiveVisualStyles-headingXLarge-mobile-fontSize)'
       );
     });
 
@@ -281,7 +280,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVisualStyles.headingLarge.mobile.fontSize
+        'var(--typographyExpressiveVisualStyles-headingLarge-mobile-fontSize)'
       );
     });
 
@@ -296,7 +295,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVisualStyles.headingMedium.mobile.fontSize
+        'var(--typographyExpressiveVisualStyles-headingMedium-mobile-fontSize)'
       );
     });
 
@@ -311,7 +310,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVisualStyles.headingSmall.mobile.fontSize
+        'var(--typographyExpressiveVisualStyles-headingSmall-mobile-fontSize)'
       );
     });
 
@@ -326,7 +325,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVisualStyles.headingXSmall.mobile.fontSize
+        'var(--typographyExpressiveVisualStyles-headingXSmall-mobile-fontSize)'
       );
     });
 
@@ -341,7 +340,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyExpressiveVisualStyles.heading2XSmall.mobile.fontSize
+        'var(--typographyExpressiveVisualStyles-heading2XSmall-mobile-fontSize)'
       );
     });
   });
@@ -356,14 +355,14 @@ describe('Heading', () => {
       );
       const heading = getByText(headingText);
 
-      expect(heading).toHaveStyleRule('color', magma.colors.neutral);
+      expect(heading).toHaveStyleRule('color', 'var(--colors-neutral)');
       expect(heading).toHaveStyleRule(
         'font-family',
-        magma.headingNarrativeFont
+        'var(--headingNarrativeFont)'
       );
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeVisualStyles.headingXLarge.mobile.fontSize
+        'var(--typographyNarrativeVisualStyles-headingXLarge-mobile-fontSize)'
       );
     });
 
@@ -378,7 +377,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeVisualStyles.headingLarge.mobile.fontSize
+        'var(--typographyNarrativeVisualStyles-headingLarge-mobile-fontSize)'
       );
     });
 
@@ -393,7 +392,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeVisualStyles.headingMedium.mobile.fontSize
+        'var(--typographyNarrativeVisualStyles-headingMedium-mobile-fontSize)'
       );
     });
 
@@ -408,7 +407,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeVisualStyles.headingSmall.mobile.fontSize
+        'var(--typographyNarrativeVisualStyles-headingSmall-mobile-fontSize)'
       );
     });
 
@@ -423,7 +422,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeVisualStyles.headingXSmall.mobile.fontSize
+        'var(--typographyNarrativeVisualStyles-headingXSmall-mobile-fontSize)'
       );
     });
 
@@ -438,7 +437,7 @@ describe('Heading', () => {
 
       expect(heading).toHaveStyleRule(
         'font-size',
-        magma.typographyNarrativeVisualStyles.heading2XSmall.mobile.fontSize
+        'var(--typographyNarrativeVisualStyles-heading2XSmall-mobile-fontSize)'
       );
     });
   });

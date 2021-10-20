@@ -4,6 +4,15 @@ import { BreakpointsContainer, Breakpoint } from '.';
 import { magma } from '../../theme/magma';
 import { render } from '@testing-library/react';
 
+beforeAll(() => {
+  // CssVariable testing workaround
+  document.documentElement.style.setProperty('--breakpoints-xs', '0px'); // eslint-disable-line no-undef
+  document.documentElement.style.setProperty('--breakpoints-small', '600px'); // eslint-disable-line no-undef
+  document.documentElement.style.setProperty('--breakpoints-medium', '768px'); // eslint-disable-line no-undef
+  document.documentElement.style.setProperty('--breakpoints-large', '1024px'); // eslint-disable-line no-undef
+  document.documentElement.style.setProperty('--breakpoints-xl', '1200px'); // eslint-disable-line no-undef
+});
+
 const XS_TEXT = 'xsmall text';
 const SMALL_TEXT = 'small text';
 const MEDIUM_TEXT = 'medium text';
@@ -46,49 +55,49 @@ describe('Breakpoints Container', () => {
 
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.xs - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-xs) - 1px)',
     });
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.small}px`,
+      media: 'min-width: var(--breakpoints-small)',
     });
 
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.small - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-small) - 1px)',
     });
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.medium}px`,
+      media: 'min-width: var(--breakpoints-medium)',
     });
 
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.medium - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-medium) - 1px)',
     });
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.large}px`,
+      media: 'min-width: var(--breakpoints-large)',
     });
 
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.large - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-large) - 1px)',
     });
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.xl}px`,
+      media: 'min-width: var(--breakpoints-xl)px',
     });
 
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.xl - 1}px`,
+      media: 'max-width: var(--breakpoints-xl) - 1px',
     });
   });
 
   it('should render the BreakpointsContainer with custom breakpoints', () => {
     const customBreakpoints = {
       xs: 0,
-      small: 10,
-      medium: 20,
-      large: 30,
-      xl: 40,
+      small: '10px',
+      medium: '20px',
+      large: '30px',
+      xl: '40px',
     };
 
     const { getByTestId } = render(
@@ -168,20 +177,20 @@ describe('Breakpoints Container', () => {
 
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.large}px`,
+      media: 'min-width: var(--breakpoints-large)',
     });
 
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.large - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-large) - 1px)',
     });
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.xl}px`,
+      media: 'min-width: var(--breakpoints-xl)',
     });
 
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.xl - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-xl) - 1px)',
     });
   });
 
@@ -204,15 +213,15 @@ describe('Breakpoints Container', () => {
 
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.medium - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-medium) - 1px)',
     });
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.xl}px`,
+      media: 'min-width: var(--breakpoints-xl)',
     });
 
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.xl - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-xl) - 1px)',
     });
   });
 
@@ -235,20 +244,20 @@ describe('Breakpoints Container', () => {
 
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.medium}px`,
+      media: 'min-width: var(--breakpoints-medium)',
     });
 
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.medium - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-medium) - 1px)',
     });
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.large}px`,
+      media: 'min-width: var(--breakpoints-large)',
     });
 
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.large - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-large) - 1px)',
     });
   });
 
@@ -269,20 +278,20 @@ describe('Breakpoints Container', () => {
 
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.small}px`,
+      media: 'min-width: var(--breakpoints-small)',
     });
 
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.small - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-small) - 1px)',
     });
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.xl}px`,
+      media: 'min-width: var(--breakpoints-xl)',
     });
 
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.xl - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-xl) - 1px)',
     });
   });
 
@@ -302,15 +311,15 @@ describe('Breakpoints Container', () => {
     );
 
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.small - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-small) - 1px)',
     });
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.large}px`,
+      media: 'min-width: var(--breakpoints-large)',
     });
 
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(LARGE_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.large - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-large) - 1px)',
     });
   });
 
@@ -331,20 +340,20 @@ describe('Breakpoints Container', () => {
 
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.small}px`,
+      media: 'min-width: var(--breakpoints-small)',
     });
 
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.small - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-small) - 1px)',
     });
     expect(getByTestId(SMALL_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.medium}px`,
+      media: 'min-width: var(--breakpoints-medium)',
     });
 
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(MEDIUM_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.medium - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-medium) - 1px)',
     });
   });
 
@@ -364,12 +373,12 @@ describe('Breakpoints Container', () => {
 
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XS_ID)).toHaveStyleRule('display', 'none', {
-      media: `min-width: ${magma.breakpoints.xl}px`,
+      media: 'min-width: var(--breakpoints-xl)',
     });
 
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'block');
     expect(getByTestId(XL_ID)).toHaveStyleRule('display', 'none', {
-      media: `max-width: ${magma.breakpoints.xl - 1}px`,
+      media: 'max-width: calc(var(--breakpoints-xl) - 1px)',
     });
   });
   it('Does not violate accessibility standards', () => {

@@ -3,7 +3,6 @@ import { Tab } from './Tab';
 import { CheckIcon } from 'react-magma-icons';
 import { render, fireEvent } from '@testing-library/react';
 import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
 import { Tabs } from '.';
 import { TabsContainer } from './TabsContainer';
 
@@ -127,7 +126,7 @@ describe('Tab', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
   });
 
@@ -171,7 +170,7 @@ describe('Tab', () => {
     expect(container.querySelector('svg')).toBeInTheDocument();
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      `0 0 ${magma.spaceScale.spacing02}`
+      '0 0 var(--spaceScale-spacing02)'
     );
     expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'column');
     expect(getByTestId(testId)).toHaveStyleRule('align-items', 'center');
@@ -186,7 +185,7 @@ describe('Tab', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      `0 ${magma.spaceScale.spacing03} 0 0`
+      '0 var(--spaceScale-spacing03) 0 0'
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
@@ -205,7 +204,7 @@ describe('Tab', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'margin',
-      `0 ${magma.spaceScale.spacing03} 0 0`
+      '0 var(--spaceScale-spacing03) 0 0'
     );
     expect(getByTestId(testId)).not.toHaveStyleRule('flex-direction', 'column');
   });
@@ -224,7 +223,7 @@ it('should show icon in bottom position', () => {
   );
   expect(container.querySelector('span')).toHaveStyleRule(
     'margin',
-    `${magma.spaceScale.spacing02} 0 0`
+    'var(--spaceScale-spacing02) 0 0'
   );
   expect(getByTestId(testId)).toHaveStyleRule(
     'flex-direction',
@@ -246,7 +245,7 @@ it('should show icon in right position', () => {
 
   expect(container.querySelector('span')).toHaveStyleRule(
     'margin',
-    `0 0 0 ${magma.spaceScale.spacing03}`
+    '0 0 0 var(--spaceScale-spacing03)'
   );
   expect(getByTestId(testId)).toHaveStyleRule('flex-direction', 'row-reverse');
 });

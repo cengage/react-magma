@@ -8,8 +8,6 @@ import {
   TableRow,
 } from '.';
 
-import { magma } from '../../theme/magma';
-
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -86,7 +84,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.tone02,
+      'var(--colors-tone02)',
       {
         target: ':hover',
       }
@@ -113,11 +111,11 @@ describe('Table', () => {
 
     expect(getByText('cell 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+      'var(--spaceScale-spacing02) var(--spaceScale-spacing03)'
     );
     expect(getByText('heading 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+      'var(--spaceScale-spacing02) var(--spaceScale-spacing03)'
     );
   });
 
@@ -141,11 +139,11 @@ describe('Table', () => {
 
     expect(getByText('cell 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing06} ${magma.spaceScale.spacing08}`
+      'var(--spaceScale-spacing06) var(--spaceScale-spacing08)'
     );
     expect(getByText('heading 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing06} ${magma.spaceScale.spacing08}`
+      'var(--spaceScale-spacing06) var(--spaceScale-spacing08)'
     );
   });
 
@@ -173,12 +171,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      magma.colors.tint03
+      'var(--colors-tint03)'
     );
 
     expect(getByTestId('row1')).toHaveStyleRule(
       'background',
-      magma.colors.tint02,
+      'var(--colors-tint02)',
       {
         target: ':hover',
       }
@@ -186,7 +184,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.tint,
+      'var(--colors-tint)',
       {
         target: ':nth-of-type(even)',
       }
@@ -290,7 +288,7 @@ describe('Table', () => {
 
     expect(getByTestId('header3')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+      'var(--spaceScale-spacing04) var(--spaceScale-spacing05)'
     );
     expect(
       getByTestId('header3').querySelector('button')
@@ -325,13 +323,13 @@ describe('Table', () => {
 
     expect(button).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.focusInverse}`,
+      '2px dotted var(--colors-focusInverse)',
       {
         target: ':focus',
       }
     );
 
-    expect(button).toHaveStyleRule('background', magma.colors.tint, {
+    expect(button).toHaveStyleRule('background', 'var(--colors-tint)', {
       target: ':hover',
     });
   });

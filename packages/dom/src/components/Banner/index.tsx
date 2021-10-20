@@ -6,7 +6,6 @@ import { AlertVariant, buildAlertBackground, VARIANT_ICON } from '../AlertBase';
 import { CloseIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 
 /**
@@ -125,8 +124,8 @@ function renderIcon(variant = 'info', theme: any) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper theme={theme}>
-      <Icon size={theme.iconSizes.medium} />
+    <IconWrapper>
+      <Icon size={24} />
     </IconWrapper>
   );
 }
@@ -158,26 +157,19 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     return (
-      <StyledBanner
-        {...other}
-        data-testid={testId}
-        ref={ref}
-        theme={theme}
-        variant={variant}
-      >
-        <BannerContents theme={theme}>
-          {renderIcon(variant, theme)}
+      <StyledBanner {...other} data-testid={testId} ref={ref} variant={variant}>
+        <BannerContents>
+          {renderIcon(variant)}
           {children}
           {actionButtonText && actionButtonOnClick && (
             <Button
               color={getButtonColor(variant)}
               isInverse
               onClick={actionButtonOnClick}
-              style={{ margin: `0 0 0 ${theme.spaceScale.spacing08}` }}
+              style={{ margin: `0 0 0 32px` }}
               size={ButtonSize.small}
             >
               {actionButtonText}
@@ -192,10 +184,9 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
               aria-label={
                 closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
-              icon={<CloseIcon size={theme.iconSizes.small} />}
+              icon={<CloseIcon size={20} />}
               isInverse
               onClick={onDismiss}
-              theme={theme}
               variant={ButtonVariant.link}
             />
           </ButtonWrapper>

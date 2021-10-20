@@ -77,9 +77,9 @@ function buildBoxShadow(props) {
   if (props.color === 'lowContrast') {
     if (props.isInverse) {
       if (props.disabled) {
-        return '0 0 0 1px #FFFFFF40';
+        return '0 0 0 1px var(--colors-tint04)';
       }
-      return '0 0 0 1px #FFFFFF80';
+      return '0 0 0 1px var(--colors-tint05)';
     }
     if (props.disabled) {
       return '0 0 0 1px var(--colors-neutral06)';
@@ -138,9 +138,9 @@ function buildButtonTextColor(props) {
       // Disabled inverse state text colors
       switch (props.color) {
         case 'lowContrast':
-          return '#FFFFFF40';
+          return 'var(--colors-tint04)';
         default:
-          return '#70707099';
+          return 'var(--colors-disabledText)';
       }
     }
     // Inverse text colors
@@ -153,7 +153,7 @@ function buildButtonTextColor(props) {
     }
   } else if (props.disabled && !props.isInverse) {
     // Disabled state text colors
-    return '#70707099';
+    return 'var(--colors-disabledText)';
   }
   // Default state text colors
   switch (props.color) {
@@ -209,13 +209,9 @@ const TagStyling = props => css`
   font-weight: ${props.size === 'small' ? `600` : `inherit`};
   padding: ${buildTagPadding(props)};
   svg:first-of-type {
-    height: ${props.size === 'small'
-      ? '20px'
-      : 'inherit'};
+    height: ${props.size === 'small' ? '20px' : 'inherit'};
     opacity: ${props.disabled ? '60%' : 'inherit'};
-    width: ${props.size === 'small'
-      ? '20px'
-      : 'inherit'};
+    width: ${props.size === 'small' ? '20px' : 'inherit'};
   }
   svg:last-child {
     margin: ${props.size === 'small'
@@ -314,12 +310,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         <LabelWrap size={size} {...rest}>
           {children}
         </LabelWrap>
-        {onDelete && (
-          <CancelIcon
-            aria-label={deleteAriaLabel}
-            size={20}
-          />
-        )}
+        {onDelete && <CancelIcon aria-label={deleteAriaLabel} size={20} />}
       </StyledTag>
     );
   }

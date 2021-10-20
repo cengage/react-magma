@@ -3,7 +3,6 @@ import { Radio } from '.';
 import { RadioContext } from '../RadioGroup';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { magma } from '../../theme/magma';
 
 describe('Radio', () => {
   it('should find element by testId', () => {
@@ -171,7 +170,7 @@ describe('Radio', () => {
     const span = container.querySelector('span');
 
     expect(radio).toBeDisabled();
-    expect(span).toHaveStyleRule('color', magma.colors.neutral05);
+    expect(span).toHaveStyleRule('color', 'var(--colors-neutral05)');
   });
 
   it('should render a passed in color', () => {
@@ -212,7 +211,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(span).toHaveStyleRule('color', 'var(--colors-neutral08)');
   });
 
   it('should render an inverse, disabled radio with the correct styles', () => {
@@ -229,7 +228,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.tint04);
+    expect(span).toHaveStyleRule('color', 'var(--colors-tint04)');
   });
 
   it('should render a radio with hidden label text with the correct styles', () => {
@@ -288,7 +287,7 @@ describe('Radio', () => {
 
     expect(span).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 2px ${magma.colors.danger}`
+      '0 0 0 2px var(--colors-danger)'
     );
   });
 
@@ -310,7 +309,7 @@ describe('Radio', () => {
 
     expect(span).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 2px ${magma.colors.dangerInverse}`
+      '0 0 0 2px var(--colors-dangerInverse)'
     );
   });
 

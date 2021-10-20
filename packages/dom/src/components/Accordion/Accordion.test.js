@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '.';
 import { Button } from '../Button';
-import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -37,9 +36,9 @@ describe('Accordion', () => {
     const panel = getByText('Panel 1');
     const accordion = getByTestId(testId);
 
-    expect(btn).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(panel).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(accordion).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(btn).toHaveStyleRule('background', 'var(--colors-neutral08)');
+    expect(panel).toHaveStyleRule('background', 'var(--colors-neutral08)');
+    expect(accordion).toHaveStyleRule('background', 'var(--colors-neutral08)');
   });
 
   it('should render the component with the correct inverse styles', () => {
@@ -58,9 +57,9 @@ describe('Accordion', () => {
     const panel = getByText('Panel 1');
     const accordion = getByTestId(testId);
 
-    expect(btn).toHaveStyleRule('background', magma.colors.foundation);
-    expect(panel).toHaveStyleRule('background', magma.colors.foundation);
-    expect(accordion).toHaveStyleRule('background', magma.colors.foundation);
+    expect(btn).toHaveStyleRule('background', 'var(--colors-foundation)');
+    expect(panel).toHaveStyleRule('background', 'var(--colors-foundation)');
+    expect(accordion).toHaveStyleRule('background', 'var(--colors-foundation)');
   });
 
   it('should render the component a left-aligned icon', () => {

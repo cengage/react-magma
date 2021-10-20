@@ -5,7 +5,6 @@ import { TableRowColor } from '../Table';
 import { Button } from '../Button';
 import { usePagination } from '../Pagination/usePagination';
 import { render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 const columns = [
   { field: 'col1', header: 'Col 1' },
@@ -241,7 +240,7 @@ describe('Datagrid', () => {
 
     const coloredRow = getByText(rows[0].col1).parentElement;
 
-    expect(coloredRow).toHaveStyleRule('background', magma.colors.danger);
+    expect(coloredRow).toHaveStyleRule('background', 'var(--colors-danger)');
   });
 
   describe('selectable', () => {

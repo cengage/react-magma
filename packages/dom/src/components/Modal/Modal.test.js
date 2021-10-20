@@ -4,7 +4,6 @@ import { act, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
-import { magma } from '../../theme/magma';
 
 describe('Modal', () => {
   it('should find element by testId', () => {
@@ -73,7 +72,7 @@ describe('Modal', () => {
 
     expect(getByTestId('modal-content')).toHaveStyleRule(
       'max-width',
-      magma.modal.width.medium
+      'var(--modal-width-medium)'
     );
   });
 
@@ -93,7 +92,7 @@ describe('Modal', () => {
 
     expect(getByTestId('modal-content')).toHaveStyleRule(
       'max-width',
-      magma.modal.width.small
+      'var(--modal-width-small)'
     );
   });
 
@@ -113,7 +112,7 @@ describe('Modal', () => {
 
     expect(getByTestId('modal-content')).toHaveStyleRule(
       'max-width',
-      magma.modal.width.large
+      'var(--modal-width-large)'
     );
   });
 

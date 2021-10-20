@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { FormFieldContainer } from '.';
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 const TEXT = 'Test Text';
 
@@ -53,7 +52,7 @@ describe('FormFieldContainer', () => {
     expect(getByText(labelText)).toBeInTheDocument();
     expect(getByText(labelText)).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size03.fontSize
+      'var(--typeScale-size03-fontSize)'
     );
   });
 

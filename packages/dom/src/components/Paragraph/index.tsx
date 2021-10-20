@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useIsInverse } from '../../inverse';
-import { ThemeContext } from '../../theme/ThemeContext';
 import {
   TypographyVisualStyle,
   TypographyColor,
@@ -44,7 +43,6 @@ export interface ParagraphProps
 export const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
   (props, ref) => {
     const { color, testId, visualStyle, children, ...other } = props;
-    const theme = React.useContext(ThemeContext);
 
     return (
       <TypographyComponent
@@ -53,7 +51,6 @@ export const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
         data-testid={testId}
         isInverse={useIsInverse(props.isInverse)}
         ref={ref}
-        theme={theme}
         visualStyle={visualStyle || TypographyVisualStyle.bodyMedium}
       >
         {children}

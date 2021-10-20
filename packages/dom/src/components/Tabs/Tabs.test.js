@@ -4,7 +4,6 @@ import { Tabs } from '.';
 import { TabsContainer, TabsContainerContext } from './TabsContainer';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabPanel } from './TabPanel';
-import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
 import { axe } from '../../../axe-helper';
 
@@ -257,18 +256,18 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.pop02,
+      'var(--colors-pop02)',
       {
         target: ':after',
       }
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
     expect(getByTestId('buttonNext')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
   });
 

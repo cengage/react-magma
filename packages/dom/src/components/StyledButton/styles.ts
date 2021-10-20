@@ -133,7 +133,6 @@ export function buildBorderColor(props) {
 
 export function buildColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
-  console.log('primary', cssVar('--colors-primary'))
 
   if (props.disabled && props.isInverse && props.variant !== 'solid') {
     return 'var(--colors-disabledInverseText)';
@@ -174,8 +173,8 @@ export function buildFocusBackground(props) {
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
     (props.variant === 'solid' && props.isInverse)
-    ) {
-      switch (props.color) {
+  ) {
+    switch (props.color) {
       case 'secondary':
         return tint(0.9, cssVar('--colors-neutral', '#bada55') as string);
       case 'success':

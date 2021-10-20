@@ -97,19 +97,17 @@ const StyledContainer = styled.div<{
 }>`
   align-items: center;
   background: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
+    props.isInverse ? 'var(--colors-tint03)' : 'var(--colors-neutral07)'};
   border-top: 1px solid
     ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.neutral06};
+      props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral06)'};
   display: flex;
   justify-content: flex-end;
-  padding: ${props => props.theme.spaceScale.spacing02};
+  padding: var(--spaceScale-spacing02);
 `;
 
 const PageCount = styled(Label)<{ theme: ThemeInterface }>`
-  margin: 0 ${props => props.theme.spaceScale.spacing08};
+  margin: 0 var(--spaceScale-spacing08);
 `;
 
 const RowsPerPageLabel = styled.span`
@@ -193,7 +191,6 @@ export const TablePagination = React.forwardRef<
       data-testid={testId}
       isInverse={isInverse}
       ref={ref}
-      theme={theme}
     >
       <RowsPerPageLabel>
         {i18n.table.pagination.rowsPerPageLabel}:
@@ -223,7 +220,7 @@ export const TablePagination = React.forwardRef<
         </DropdownContent>
       </Dropdown>
 
-      <PageCount isInverse={isInverse} theme={theme}>
+      <PageCount isInverse={isInverse}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
 

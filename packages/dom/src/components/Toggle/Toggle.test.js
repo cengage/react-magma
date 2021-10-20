@@ -1,7 +1,6 @@
 import React from 'react';
 import { Toggle } from '.';
 import { FormGroup } from '../FormGroup';
-import { magma } from '../../theme/magma';
 import { axe } from '../../../axe-helper';
 import { render, fireEvent } from '@testing-library/react';
 
@@ -101,7 +100,7 @@ describe('Toggle', () => {
     const track = getByTestId('toggle-track');
 
     expect(toggle).toHaveAttribute('checked');
-    expect(track).toHaveStyleRule('border-color', magma.colors.success02);
+    expect(track).toHaveStyleRule('border-color', 'var(--colors-success02)');
   });
 
   it('should render a toggle with an error message', () => {
@@ -116,7 +115,7 @@ describe('Toggle', () => {
     const error = getByText(errorMessage);
 
     expect(toggle).toHaveAttribute('aria-describedby', 'testId__desc');
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border-color', 'var(--colors-danger)');
 
     expect(error).toBeInTheDocument();
     expect(error.parentElement).toHaveAttribute('id', 'testId__desc');
@@ -135,7 +134,7 @@ describe('Toggle', () => {
       />
     );
     const track = getByTestId('toggle-track');
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border-color', 'var(--colors-danger)');
   });
 
   it('should render an inverse toggle with error styling', () => {
@@ -147,10 +146,10 @@ describe('Toggle', () => {
     );
     const track = getByTestId('toggle-track');
 
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border-color', 'var(--colors-danger)');
     expect(track).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 1px ${magma.colors.neutral08}`
+      '0 0 0 1px var(--colors-neutral08)'
     );
   });
 
@@ -168,7 +167,7 @@ describe('Toggle', () => {
     const error = getByText(errorMessage);
 
     expect(toggle).toHaveAttribute('aria-describedby', 'testId__desc');
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border-color', 'var(--colors-danger)');
   });
 
   it('should render a toggle with a value passed through', () => {

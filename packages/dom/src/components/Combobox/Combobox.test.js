@@ -94,7 +94,7 @@ describe('Combobox', () => {
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
-      magma.select.menu.maxHeight
+      'var(--select-menu-maxHeight)'
     );
   });
 

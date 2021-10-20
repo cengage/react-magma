@@ -4,7 +4,6 @@ import { Tab } from './Tab';
 import { Tabs } from '.';
 import { TabsContainer } from './TabsContainer';
 import { TabPanel } from './TabPanel';
-import { magma } from '../../theme/magma';
 import { TabPanelsContainer } from './TabPanelsContainer';
 
 describe('Tab Panels Container', () => {
@@ -63,7 +62,7 @@ describe('Tab Panels Container', () => {
 
     expect(getByText('Tab 1 Info')).toHaveStyleRule(
       'background',
-      magma.colors.foundation02
+      'var(--colors-foundation02)'
     );
   });
 
@@ -86,7 +85,7 @@ describe('Tab Panels Container', () => {
 
     expect(getByText('Tab 1 Info')).toHaveStyleRule(
       'background',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
 
     fireEvent.click(getByText('This is tab 2'), {
@@ -95,7 +94,7 @@ describe('Tab Panels Container', () => {
 
     expect(getByText('Tab 2 Info')).toHaveStyleRule(
       'background',
-      magma.colors.foundation02
+      'var(--colors-foundation02)'
     );
   });
 });

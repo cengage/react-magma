@@ -1,6 +1,5 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
 import { ProgressBar } from '.';
 import { render } from '@testing-library/react';
 
@@ -49,7 +48,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.danger
+      'var(--colors-danger)'
     );
   });
 
@@ -58,7 +57,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.pop
+      'var(--colors-pop)'
     );
   });
 
@@ -67,7 +66,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.pop02
+      'var(--colors-pop02)'
     );
   });
 
@@ -78,7 +77,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.success
+      'var(--colors-success)'
     );
   });
 
@@ -89,7 +88,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.dangerInverse
+      'var(--colors-dangerInverse)'
     );
   });
 
@@ -100,7 +99,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.successInverse
+      'var(--colors-successInverse)'
     );
   });
 

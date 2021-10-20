@@ -3,7 +3,6 @@ import { axe } from '../../../axe-helper';
 import { FormGroup } from '.';
 import { Checkbox } from '../Checkbox';
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 describe('Form Group', () => {
   afterEach(() => {
@@ -84,7 +83,7 @@ describe('Form Group', () => {
         <h3 id="myID">Heading</h3>
         <Checkbox labelText="Default Color" value="default" />
         <Checkbox
-          color={magma.colors.success}
+          color={'var(--colors-success)'}
           labelText="Success Color"
           value="success"
         />
@@ -108,7 +107,7 @@ describe('Form Group', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(span).toHaveStyleRule('border-color', 'var(--colors-danger)');
     expect(getByLabelText('Default Color')).toHaveAttribute(
       'aria-describedby',
       `${groupId}__desc`
@@ -137,7 +136,7 @@ describe('Form Group', () => {
       <FormGroup labelText="Choose a Color" value="default">
         <Checkbox labelText="Default Color" value="default" />
         <Checkbox
-          color={magma.colors.success}
+          color={'var(--colors-success)'}
           labelText="Success Color"
           value="success"
         />

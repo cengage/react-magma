@@ -3,12 +3,10 @@ import { axe } from '../../../axe-helper';
 import { Alert } from '.';
 import { AlertVariant } from '../AlertBase';
 import { act, render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { v4 as uuid } from 'uuid';
 import userEvent from '@testing-library/user-event';
-
 
 jest.mock('uuid');
 
@@ -36,13 +34,11 @@ describe('Alert', () => {
   });
 
   it('should render an alert with focus style', () => {
-    const { container } = render(
-      <Alert inverse>Test Alert Text</Alert>
-    );
+    const { container } = render(<Alert inverse>Test Alert Text</Alert>);
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.focus}`,
+      '2px dotted var(--colors-focus)',
       {
         target: ':focus',
       }
@@ -54,7 +50,7 @@ describe('Alert', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.focusInverse}`,
+      '2px dotted var(--colors-focusInverse)',
       {
         target: ':focus',
       }
@@ -71,7 +67,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
   });
 
@@ -85,7 +81,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.neutral
+      'var(--colors-neutral)'
     );
   });
 

@@ -30,13 +30,13 @@ export interface TableRowProps
 function buildTableRowBackground(props) {
   switch (props.color) {
     case 'success':
-      return props.theme.colors.success;
+      return 'var(--colors-success)';
     case 'warning':
-      return props.theme.colors.pop04;
+      return 'var(--colors-pop04)';
     case 'danger':
-      return props.theme.colors.danger;
+      return 'var(--colors-danger)';
     case 'info':
-      return props.theme.colors.primary;
+      return 'var(--colors-primary)';
     default:
       return 'inherit';
   }
@@ -44,11 +44,11 @@ function buildTableRowBackground(props) {
 
 function buildTableRowColor(props) {
   if (props.color === 'warning') {
-    return props.theme.colors.neutral;
+    return 'var(--colors-neutral)';
   }
 
   if (props.color) {
-    return props.theme.colors.neutral08;
+    return 'var(--colors-neutral08)';
   }
 
   return 'inherit';
@@ -62,9 +62,7 @@ const StyledTableRow = styled.tr<{
 }>`
   border-bottom: 1px solid
     ${props =>
-      props.isInverse
-        ? props.theme.colors.tint04
-        : props.theme.colors.neutral06};
+      props.isInverse ? 'var(--colors-tint04)' : 'var(--colors-neutral06)'};
   color: inherit;
   display: table-row;
   outline: 0;
@@ -80,8 +78,8 @@ const StyledTableRow = styled.tr<{
       &:nth-of-type(even) {
         background: ${props.hasZebraStripes
           ? props.isInverse
-            ? props.theme.colors.tint
-            : props.theme.colors.tone
+            ? 'var(--colors-tint)'
+            : 'var(--colors-tone)'
           : 'none'};
       }
     `};
@@ -92,7 +90,7 @@ const StyledTableRow = styled.tr<{
     css`
     &:hover {
       background: ${
-        props.isInverse ? props.theme.colors.tint02 : props.theme.colors.tone02
+        props.isInverse ? 'var(--colors-tint02)' : 'var(--colors-tone02)'
       };
     `}
 
@@ -148,7 +146,6 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         hasZebraStripes={tableContext.hasZebraStripes}
         isInverse={tableContext.isInverse}
         ref={ref}
-        theme={theme}
       >
         {tableContext.isSelectable && isHeaderRow && (
           <TableHeaderCell width={theme.spaceScale.spacing05}>

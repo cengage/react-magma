@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Input } from '.';
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { CheckIcon } from 'react-magma-icons';
 import userEvent from '@testing-library/user-event';
 
@@ -43,7 +42,7 @@ describe('Input', () => {
     const { getByTestId } = render(<Input testId={testId} />);
     const input = getByTestId(testId);
 
-    expect(input).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(input).toHaveStyleRule('background', 'var(--colors-neutral08)');
     expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
       '1px solid #707070'
@@ -80,7 +79,7 @@ describe('Input', () => {
 
     expect(getByText(labelText)).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
   });
 
@@ -90,7 +89,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+    expect(helperMessage).toHaveStyleRule('color', 'var(--colors-neutral03)');
   });
 
   it('should render an inverse input with a correctly styled helper message', () => {
@@ -101,7 +100,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(helperMessage).toHaveStyleRule('color', 'var(--colors-neutral08)');
   });
 
   it('should render an input with a correctly styled error message', () => {
@@ -115,10 +114,10 @@ describe('Input', () => {
 
     expect(getByLabelText(labelText).parentElement).toHaveStyleRule(
       'border-color',
-      magma.colors.danger
+      'var(--colors-danger)'
     );
 
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+    expect(errorMessage).toHaveStyleRule('color', 'var(--colors-danger)');
   });
 
   it('should render an inverse input with a correctly styled error message', () => {
@@ -131,9 +130,12 @@ describe('Input', () => {
     const input = getByLabelText(labelText).parentElement;
     const errorMessage = getByTestId('inputMessage');
 
-    expect(input).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(input).toHaveStyleRule('border-color', 'var(--colors-danger)');
 
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.dangerInverse);
+    expect(errorMessage).toHaveStyleRule(
+      'color',
+      'var(--colors-dangerInverse)'
+    );
   });
 
   it('should render an input with a right-aligned icon by default', () => {
@@ -142,7 +144,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing03);
+    expect(span).toHaveStyleRule('left', 'var(--spaceScale-spacing03)');
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -153,7 +155,7 @@ describe('Input', () => {
     const span = container.querySelector('span');
 
     expect(span).toHaveStyleRule('left', 'auto');
-    expect(span).toHaveStyleRule('right', magma.spaceScale.spacing03);
+    expect(span).toHaveStyleRule('right', 'var(--spaceScale-spacing03)');
   });
 
   it('should render a large input with a right-aligned icon in the correct position', () => {
@@ -166,9 +168,12 @@ describe('Input', () => {
     const input = container.querySelector('input');
 
     expect(span).toHaveStyleRule('left', 'auto');
-    expect(span).toHaveStyleRule('right', magma.spaceScale.spacing04);
+    expect(span).toHaveStyleRule('right', 'var(--spaceScale-spacing04)');
 
-    expect(input).toHaveStyleRule('padding-right', magma.spaceScale.spacing10);
+    expect(input).toHaveStyleRule(
+      'padding-right',
+      'var(--spaceScale-spacing10)'
+    );
   });
 
   it('should render an input with a left-aligned icon in the correct position', () => {
@@ -177,7 +182,7 @@ describe('Input', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing03);
+    expect(span).toHaveStyleRule('left', 'var(--spaceScale-spacing03)');
     expect(span).toHaveStyleRule('right', 'auto');
   });
 
@@ -190,10 +195,13 @@ describe('Input', () => {
     const span = container.querySelector('span');
     const input = container.querySelector('input');
 
-    expect(span).toHaveStyleRule('left', magma.spaceScale.spacing04);
+    expect(span).toHaveStyleRule('left', 'var(--spaceScale-spacing04)');
     expect(span).toHaveStyleRule('right', 'auto');
 
-    expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing10);
+    expect(input).toHaveStyleRule(
+      'padding-left',
+      'var(--spaceScale-spacing10)'
+    );
   });
 
   it('should render a clickable icon', () => {
@@ -262,12 +270,17 @@ describe('Input', () => {
     expect(getByLabelText(labelText)).toHaveAttribute('value', '');
   });
 
-  it('should clear the input when the clear input button is clicked', () => {
+  it('should clear the input when the "clear-button" is clicked', () => {
     const onClear = jest.fn();
     const labelText = 'Input Label';
     const value = 'Test Value';
-    const { getByTestId, getByLabelText } = render(
-      <Input labelText={labelText} value={value} onClear={onClear} isClearable />
+    const { getByTestId } = render(
+      <Input
+        labelText={labelText}
+        value={value}
+        onClear={onClear}
+        isClearable
+      />
     );
 
     userEvent.click(getByTestId('clear-button'));
@@ -279,7 +292,7 @@ describe('Input', () => {
     const labelText = 'Input Label';
     const value = 'Test Value';
     const { getByTestId, getByLabelText } = render(
-      <Input labelText={labelText} value={value} isClearable disabled/>
+      <Input labelText={labelText} value={value} isClearable disabled />
     );
 
     expect(getByTestId('clear-button')).toBeDisabled();
@@ -361,20 +374,26 @@ describe('Input', () => {
 
       expect(label).toHaveStyleRule(
         'font-size',
-        magma.typeScale.size02.fontSize
+        'var(--typeScale-size02-fontSize)'
       );
 
       expect(input).toHaveStyleRule(
         'font-size',
-        magma.typeScale.size03.fontSize
+        'var(--typeScale-size03-fontSize)'
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
-      expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing09);
+      expect(input).toHaveStyleRule('height', 'var(--spaceScale-spacing09)');
+      expect(input).toHaveStyleRule(
+        'padding-left',
+        'var(--spaceScale-spacing09)'
+      );
 
-      expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing03);
+      expect(iconWrapper).toHaveStyleRule(
+        'left',
+        'var(--spaceScale-spacing03)'
+      );
       expect(iconWrapper).toHaveStyleRule('right', 'auto');
 
-      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('height', 'var(--iconSizes-medium)');
     });
 
     it('should render a large input with correct styles', () => {
@@ -388,18 +407,15 @@ describe('Input', () => {
 
       expect(label).toHaveStyleRule(
         'font-size',
-        magma.typeScale.size03.fontSize
+        'var(--typeScale-size03-fontSize)'
       );
 
       expect(input).toHaveStyleRule(
         'font-size',
-        magma.typeScale.size04.fontSize
+        'var(--typeScale-size04-fontSize)'
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
-      expect(input).toHaveStyleRule(
-        'padding',
-        `0 ${magma.spaceScale.spacing04}`
-      );
+      expect(input).toHaveStyleRule('height', 'var(--spaceScale-spacing11)');
+      expect(input).toHaveStyleRule('padding', '0 var(--spaceScale-spacing04)');
     });
 
     describe('events', () => {

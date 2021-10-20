@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { TablePagination } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 describe('Table Pagination', () => {
   it('should find element by testId', () => {
@@ -22,7 +21,7 @@ describe('Table Pagination', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-top',
-      `1px solid ${magma.colors.neutral08}`
+      '1px solid var(--colors-neutral08)'
     );
   });
 

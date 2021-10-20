@@ -10,7 +10,6 @@ import {
 } from '../Button';
 import { IconButton, ButtonIconPosition } from '.';
 import { CheckIcon } from 'react-magma-icons';
-import { magma } from '../../theme/magma';
 
 describe('IconButton', () => {
   it('An icon-only button does not violate detectible accessibility standards', () => {
@@ -110,11 +109,11 @@ describe('IconButton', () => {
         );
         expect(container.querySelector('svg')).toHaveAttribute(
           'height',
-          magma.iconSizes.large.toString()
+          'var(--iconSizes-large)'
         );
         expect(container.querySelector('svg')).toHaveAttribute(
           'width',
-          magma.iconSizes.large.toString()
+          'var(--iconSizes-large)'
         );
       });
 
@@ -131,11 +130,11 @@ describe('IconButton', () => {
         );
         expect(container.querySelector('svg')).toHaveAttribute(
           'height',
-          magma.iconSizes.medium.toString()
+          'var(--iconSizes-medium)'
         );
         expect(container.querySelector('svg')).toHaveAttribute(
           'width',
-          magma.iconSizes.medium.toString()
+          'var(--iconSizes-medium)'
         );
       });
 
@@ -152,11 +151,11 @@ describe('IconButton', () => {
         );
         expect(container.querySelector('svg')).toHaveAttribute(
           'height',
-          magma.iconSizes.small.toString()
+          'var(--iconSizes-small)'
         );
         expect(container.querySelector('svg')).toHaveAttribute(
           'width',
-          magma.iconSizes.small.toString()
+          'var(--iconSizes-small)'
         );
       });
     });
@@ -304,7 +303,7 @@ describe('IconButton', () => {
 
       expect(getByText('Click me')).toHaveStyleRule(
         'padding-left',
-        magma.spaceScale.spacing05
+        'var(--spaceScale-spacing05)'
       );
     });
 

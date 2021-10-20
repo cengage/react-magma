@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Textarea } from '.';
 import { render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 describe('Textarea', () => {
   it('should find element by testId', () => {
@@ -55,7 +54,7 @@ describe('Textarea', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+    expect(helperMessage).toHaveStyleRule('color', 'var(--colors-neutral03)');
   });
 
   it('should render a textarea with a correctly styled error message', () => {
@@ -76,10 +75,10 @@ describe('Textarea', () => {
 
     expect(getByLabelText(labelText)).toHaveStyleRule(
       'border-color',
-      magma.colors.danger
+      'var(--colors-danger)'
     );
 
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+    expect(errorMessage).toHaveStyleRule('color', 'var(--colors-danger)');
 
     const helperMessage = queryByText(testHelperMessage);
 

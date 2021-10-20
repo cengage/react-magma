@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { PasswordInput } from '.';
 import { render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 
@@ -127,7 +126,7 @@ it('should render an input with a correctly styled helper message', () => {
 
   const helperMessage = getByTestId('inputMessage');
 
-  expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+  expect(helperMessage).toHaveStyleRule('color', 'var(--colors-neutral03)');
 });
 
 it('should render an input with a correctly styled error message', () => {
@@ -148,10 +147,10 @@ it('should render an input with a correctly styled error message', () => {
 
   expect(getByLabelText(labelText)).toHaveStyleRule(
     'color',
-    magma.colors.neutral
+    'var(--colors-neutral)'
   );
 
-  expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+  expect(errorMessage).toHaveStyleRule('color', 'var(--colors-danger)');
 
   const helperMessage = queryByText(testHelperMessage);
 
@@ -176,9 +175,15 @@ describe('sizes', () => {
     const label = container.querySelector('label');
     const input = getByLabelText(labelText);
 
-    expect(label).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
-    expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
+    expect(label).toHaveStyleRule(
+      'font-size',
+      'var(--typeScale-size02-fontSize)'
+    );
+    expect(input).toHaveStyleRule(
+      'font-size',
+      'var(--typeScale-size03-fontSize)'
+    );
+    expect(input).toHaveStyleRule('height', 'var(--spaceScale-spacing09)');
   });
 
   it('should render a large input with correct styles', () => {
@@ -190,11 +195,17 @@ describe('sizes', () => {
     const label = container.querySelector('label');
     const input = getByLabelText(labelText);
 
-    expect(label).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
+    expect(label).toHaveStyleRule(
+      'font-size',
+      'var(--typeScale-size03-fontSize)'
+    );
 
-    expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
-    expect(input).toHaveStyleRule('padding', `0 ${magma.spaceScale.spacing04}`);
+    expect(input).toHaveStyleRule(
+      'font-size',
+      'var(--typeScale-size04-fontSize)'
+    );
+    expect(input).toHaveStyleRule('height', 'var(--spaceScale-spacing11)');
+    expect(input).toHaveStyleRule('padding', '0 var(--spaceScale-spacing04)');
   });
 
   it('should default to no autocomplete', () => {

@@ -6,11 +6,11 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
-  color: #FFFFFF;
+  border-color: var(--colors-primary);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -19,19 +19,19 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 18px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size04-fontSize);
   font-weight: 600;
-  height: 56px;
+  height: var(--spaceScale-spacing11);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size04-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 24px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing06);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -46,21 +46,21 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -72,12 +72,12 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -113,11 +113,11 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
-  color: #FFFFFF;
+  border-color: var(--colors-primary);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -126,19 +126,19 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 18px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size04-fontSize);
   font-weight: 600;
-  height: 56px;
+  height: var(--spaceScale-spacing11);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size04-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 24px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing06);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -153,21 +153,21 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -179,12 +179,12 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -236,11 +236,11 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
-  color: #FFFFFF;
+  border-color: var(--colors-primary);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -249,19 +249,19 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size01-fontSize);
   font-weight: 600;
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 16px;
-  margin: 4px;
+  line-height: var(--typeScale-size01-lineHeight);
+  margin: var(--spaceScale-spacing02);
   min-width: 0;
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--spaceScale.-spacing02) var(--spaceScale.-spacing03);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -276,21 +276,21 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -302,12 +302,12 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -343,11 +343,11 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
-  color: #FFFFFF;
+  border-color: var(--colors-primary);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -356,19 +356,19 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size01-fontSize);
   font-weight: 600;
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 16px;
-  margin: 4px;
+  line-height: var(--typeScale-size01-lineHeight);
+  margin: var(--spaceScale-spacing02);
   min-width: 0;
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--spaceScale.-spacing02) var(--spaceScale.-spacing03);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -383,21 +383,21 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -409,12 +409,12 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -466,11 +466,11 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border: 2px solid;
-  border-color: #BFBFBF;
-  border-radius: 4px;
-  color: #3F3F3F;
+  border-color: var(--colors-neutral05);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -479,19 +479,19 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -506,21 +506,21 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #3F3F3F;
+  background: #a8cf2d;
+  color: var(--colors-neutral);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #3F3F3F;
+  background: var(--colors-neutral);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -532,12 +532,12 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #ccc;
-  color: #3F3F3F;
+  background: #86a524;
+  color: var(--colors-neutral);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -573,11 +573,11 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border: 2px solid;
-  border-color: #BFBFBF;
-  border-radius: 4px;
-  color: #3F3F3F;
+  border-color: var(--colors-neutral05);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -586,19 +586,19 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -613,21 +613,21 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #3F3F3F;
+  background: #a8cf2d;
+  color: var(--colors-neutral);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #3F3F3F;
+  background: var(--colors-neutral);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -639,12 +639,12 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #ccc;
-  color: #3F3F3F;
+  background: #86a524;
+  color: var(--colors-neutral);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -697,11 +697,11 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
+  border-color: var(--colors-primary);
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -710,19 +710,19 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -737,21 +737,21 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -763,12 +763,12 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -804,11 +804,11 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
+  border-color: var(--colors-primary);
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -817,19 +817,19 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -844,21 +844,21 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -870,12 +870,12 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -928,11 +928,11 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
-  color: #FFFFFF;
+  border-color: var(--colors-primary);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -941,19 +941,19 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -968,21 +968,21 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -994,12 +994,12 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1035,11 +1035,11 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: var(--colors-primary);
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
-  color: #FFFFFF;
+  border-color: var(--colors-primary);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1048,19 +1048,19 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1075,21 +1075,21 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
-  color: #FFFFFF;
+  background: #a8cf2d;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1101,12 +1101,12 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
-  color: #FFFFFF;
+  background: #86a524;
+  color: var(--colors-neutral08);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1160,8 +1160,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
-  border-radius: 4px;
-  color: #006298;
+  border-radius: var(--borderRadius);
+  color: var(--colors-primary);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1170,19 +1170,19 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1197,21 +1197,21 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #e5eff4;
-  color: #004165;
+  background: #f8fbee;
+  color: #a8cf2d;
 }
 
 .emotion-0:not(:disabled):after {
-  background: #006298;
+  background: var(--colors-primary);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1223,12 +1223,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #b2cfe0;
-  color: #002032;
+  background: #eaf3cc;
+  color: #86a524;
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1266,8 +1266,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
-  border-radius: 4px;
-  color: #006298;
+  border-radius: var(--borderRadius);
+  color: var(--colors-primary);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1276,19 +1276,19 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1303,21 +1303,21 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
   outline-offset: 3px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #e5eff4;
-  color: #004165;
+  background: #f8fbee;
+  color: #a8cf2d;
 }
 
 .emotion-0:not(:disabled):after {
-  background: #006298;
+  background: var(--colors-primary);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -1329,12 +1329,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #b2cfe0;
-  color: #002032;
+  background: #eaf3cc;
+  color: #86a524;
 }
 
 .emotion-0:not(:disabled):active:after {

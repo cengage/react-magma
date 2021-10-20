@@ -8,9 +8,9 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   align-items: center;
   background: rgba(0,0,0,0);
   border: 0;
-  border-color: #FFFFFF;
+  border-color: var(--colors-neutral08);
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -19,19 +19,19 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -42,7 +42,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--spaceScale-spacing09);
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -57,29 +57,25 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-align-self: stretch;
   -ms-flex-item-align: stretch;
   align-self: stretch;
-  border-radius: 0 4px 4px 0;
-  color: inherit;
-  height: auto;
-  padding: 0 12px;
-  width: auto;
+  border-radius: 0 var(--borderRadius);
 }
 
 .emotion-1:not(:disabled):focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px dotted var(--colors-focusInverse);
   outline-offset: 3px;
 }
 
 .emotion-1:not(:disabled):hover,
 .emotion-1:not(:disabled):focus {
   background: rgba(0, 0, 0, 0.3);
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
 }
 
 .emotion-1:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -91,12 +87,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-1:not(:disabled):active {
   background: rgba(0, 0, 0, 0.5);
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
 }
 
 .emotion-1:not(:disabled):active:after {
@@ -113,22 +109,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-}
-
-.emotion-1.emotion-1:focus:not(:disabled) {
-  outline: 2px dotted #027EE1;
-  outline-offset: 0!important;
-}
-
-.emotion-1:hover:not(:disabled):before,
-.emotion-1:focus:not(:disabled):before {
-  background: #027EE1;
-  opacity: 0.15;
-}
-
-.emotion-1:hover:after,
-.emotion-1:focus:after {
-  display: none;
 }
 
 .emotion-3 {
@@ -150,9 +130,9 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   align-items: center;
   background: rgba(0,0,0,0);
   border: 0;
-  border-color: #FFFFFF;
+  border-color: var(--colors-neutral08);
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -161,19 +141,19 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--bodyFont);
+  font-size: var(--typeScale-size03-fontSize);
   font-weight: 600;
-  height: 40px;
+  height: var(--spaceScale-spacing09);
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  line-height: 24px;
-  margin: 4px;
-  min-width: 96px;
+  line-height: var(--typeScale-size03-lineHeight);
+  margin: var(--spaceScale-spacing02);
+  min-width: var(--spaceScale-spacing13);
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--spaceScale.-spacing04) var(--spaceScale.-spacing05);
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -184,7 +164,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--spaceScale-spacing09);
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -199,29 +179,25 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-align-self: stretch;
   -ms-flex-item-align: stretch;
   align-self: stretch;
-  border-radius: 0 4px 4px 0;
-  color: inherit;
-  height: auto;
-  padding: 0 12px;
-  width: auto;
+  border-radius: 0 var(--borderRadius);
 }
 
 .emotion-1:not(:disabled):focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px dotted var(--colors-focusInverse);
   outline-offset: 3px;
 }
 
 .emotion-1:not(:disabled):hover,
 .emotion-1:not(:disabled):focus {
   background: rgba(0, 0, 0, 0.3);
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
 }
 
 .emotion-1:not(:disabled):after {
-  background: #FFFFFF;
+  background: var(--colors-neutral08);
   border-radius: 50%;
   content: '';
-  height: 28px;
+  height: var(--spaceScale-spacing07);
   left: 50%;
   opacity: 0;
   padding: 50%;
@@ -233,12 +209,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
   transition: opacity 1s,transform 0.5s;
-  width: 28px;
+  width: var(--spaceScale-spacing07);
 }
 
 .emotion-1:not(:disabled):active {
   background: rgba(0, 0, 0, 0.5);
-  color: #FFFFFF;
+  color: var(--colors-neutral08);
 }
 
 .emotion-1:not(:disabled):active:after {
@@ -255,22 +231,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-}
-
-.emotion-1.emotion-1:focus:not(:disabled) {
-  outline: 2px dotted #027EE1;
-  outline-offset: 0!important;
-}
-
-.emotion-1:hover:not(:disabled):before,
-.emotion-1:focus:not(:disabled):before {
-  background: #027EE1;
-  opacity: 0.15;
-}
-
-.emotion-1:hover:after,
-.emotion-1:focus:after {
-  display: none;
 }
 
 .emotion-3 {
@@ -331,29 +291,29 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #C61D23;
-  border-radius: 4px;
-  color: #FFFFFF;
+  background-color: var(--colors-danger);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -374,10 +334,10 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -391,12 +351,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 
@@ -414,29 +374,29 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #C61D23;
-  border-radius: 4px;
-  color: #FFFFFF;
+  background-color: var(--colors-danger);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -457,10 +417,10 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -474,12 +434,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 
@@ -534,29 +494,29 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
-  border-radius: 4px;
-  color: #FFFFFF;
+  background-color: var(--colors-neutral);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -577,10 +537,10 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -594,12 +554,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 
@@ -617,29 +577,29 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
-  border-radius: 4px;
-  color: #FFFFFF;
+  background-color: var(--colors-neutral);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -660,10 +620,10 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -677,12 +637,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 
@@ -737,29 +697,29 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #FFC72C;
-  border-radius: 4px;
-  color: #3F3F3F;
+  background-color: var(--colors-pop04);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -780,10 +740,10 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -797,12 +757,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 
@@ -820,29 +780,29 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #FFC72C;
-  border-radius: 4px;
-  color: #3F3F3F;
+  background-color: var(--colors-pop04);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -863,10 +823,10 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -880,12 +840,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 
@@ -940,29 +900,29 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
-  border-radius: 4px;
-  color: #FFFFFF;
+  background-color: var(--colors-neutral);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -983,10 +943,10 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -1000,12 +960,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 
@@ -1023,29 +983,29 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
+  margin-bottom: var(--spaceScale-spacing06);
   max-width: 100%;
   padding: 0;
   position: relative;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-0 {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: var(--typeScale-size02-fontSize);
+    line-height: var(--typeScale-size02-lineHeight);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px dotted var(--colors-focus);
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
-  border-radius: 4px;
-  color: #FFFFFF;
+  background-color: var(--colors-neutral);
+  border-radius: var(--borderRadius);
+  color: var(--colors-neutral08);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1066,10 +1026,10 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing04);
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-4 {
     display: none;
   }
@@ -1083,12 +1043,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: var(--spaceScale-spacing04) 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: var(--breakpoints-small)) {
   .emotion-6 {
-    padding-left: 12px;
+    padding-left: var(--spaceScale-spacing04);
   }
 }
 

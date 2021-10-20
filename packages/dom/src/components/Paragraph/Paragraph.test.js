@@ -2,7 +2,6 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Paragraph } from '.';
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 describe('Paragraph', () => {
   it('should find element by testId', () => {
@@ -22,12 +21,12 @@ describe('Paragraph', () => {
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographyVisualStyles.bodyLarge.mobile.fontSize
+      'var(--typographyVisualStyles-bodyLarge-mobile-fontSize)'
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing06} 0`
+      'var(--spaceScale-spacing06) 0'
     );
   });
 
@@ -39,12 +38,12 @@ describe('Paragraph', () => {
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographyVisualStyles.bodyMedium.mobile.fontSize
+      'var(--typographyVisualStyles-bodyMedium-mobile-fontSize)'
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing06} 0`
+      'var(--spaceScale-spacing06) 0'
     );
   });
 
@@ -56,12 +55,12 @@ describe('Paragraph', () => {
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographyVisualStyles.bodySmall.mobile.fontSize
+      'var(--typographyVisualStyles-bodySmall-mobile-fontSize)'
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing05} 0`
+      'var(--spaceScale-spacing05) 0'
     );
   });
 
@@ -73,12 +72,12 @@ describe('Paragraph', () => {
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographyVisualStyles.bodyXSmall.mobile.fontSize
+      'var(--typographyVisualStyles-bodyXSmall-mobile-fontSize)'
     );
 
     expect(getByText(text)).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing03} 0`
+      'var(--spaceScale-spacing03) 0'
     );
   });
 
@@ -92,11 +91,11 @@ describe('Paragraph', () => {
 
     expect(getByText(text)).toHaveStyleRule(
       'font-size',
-      magma.typographyExpressiveVisualStyles.bodyLarge.mobile.fontSize
+      'var(--typographyExpressiveVisualStyles-bodyLarge-mobile-fontSize)'
     );
     expect(getByText(text)).toHaveStyleRule(
       'font-family',
-      magma.bodyExpressiveFont
+      'var(--bodyExpressiveFont)'
     );
   });
 
@@ -108,7 +107,7 @@ describe('Paragraph', () => {
 
     expect(getByText(text)).toHaveStyleRule(
       'font-family',
-      magma.bodyNarrativeFont
+      'var(--bodyNarrativeFont)'
     );
   });
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import { Select as MultiSelect } from '.';
 import { defaultI18n } from '../../i18n/default';
-import { magma } from '../../theme/magma';
 
 describe('Select', () => {
   it('should render a multi-select with items', () => {
@@ -122,7 +121,7 @@ describe('Select', () => {
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
-      magma.select.menu.maxHeight
+      'var(--select-menu-maxHeight)'
     );
   });
 

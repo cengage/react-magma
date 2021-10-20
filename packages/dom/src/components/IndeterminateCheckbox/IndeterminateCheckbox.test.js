@@ -1,7 +1,6 @@
 import React from 'react';
 import { IndeterminateCheckbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { axe } from '../../../axe-helper';
 
 describe('Indeterminate Checkbox', () => {
@@ -60,7 +59,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.primary
+      'var(--colors-primary)'
     );
   });
 
@@ -73,7 +72,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
   });
 
@@ -90,12 +89,12 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      'var(--colors-neutral08)'
     );
   });
 
   it('should give the indeterminate icon the passed in color', () => {
-    const color = magma.colors.danger;
+    const color = 'var(--colors-danger)';
     const { container } = render(
       <IndeterminateCheckbox status="indeterminate" color={color} />
     );
@@ -127,7 +126,7 @@ describe('Indeterminate Checkbox', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.neutral05);
+    expect(span).toHaveStyleRule('color', 'var(--colors-neutral05)');
     expect(span).toHaveStyleRule('cursor', 'not-allowed');
   });
 
@@ -145,7 +144,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.tint04
+      'var(--colors-tint04)'
     );
   });
 
@@ -157,7 +156,7 @@ describe('Indeterminate Checkbox', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.tint04
+      'var(--colors-tint04)'
     );
   });
 
