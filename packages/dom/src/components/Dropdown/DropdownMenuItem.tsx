@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
@@ -91,7 +90,6 @@ export const DropdownMenuItem = React.forwardRef<
   const { children, disabled, icon, onClick, value, ...other } = props;
 
   const ownRef = React.useRef<HTMLDivElement>();
-  const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
 
   const ref = useForkedRef(forwardedRef, ownRef);
@@ -147,13 +145,12 @@ export const DropdownMenuItem = React.forwardRef<
       onKeyDown={handleKeyDown}
       ref={disabled ? null : ref}
       role="menuitem"
-      theme={theme}
       tabIndex={disabled ? null : -1}
       value={value}
     >
-      {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
+      {icon && <IconWrapper>{icon}</IconWrapper>}
       {isActive && (
-        <IconWrapper theme={theme}>
+        <IconWrapper>
           <CheckIcon aria-label={i18n.dropdown.menuItemSelectedAriaLabel} />
         </IconWrapper>
       )}

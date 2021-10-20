@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Announce } from '../Announce';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { AmPmToggle } from './AmPmToggle';
 import { ScheduleIcon } from 'react-magma-icons';
 import { useTimePicker, UseTimePickerProps } from './useTimePicker';
@@ -24,8 +23,8 @@ const InputsContainer = styled.div<{
   isInverse?: boolean;
 }>`
   ${inputWrapperStyles};
-  height: ${props => props.theme.spaceScale.spacing09};
-  padding: ${props => props.theme.spaceScale.spacing03};
+  height: var(--spaceScale-spacing09);
+  padding: var(--spaceScale-spacing03);
   width: 144px;
 `;
 
@@ -38,11 +37,11 @@ const Divider = styled.span`
 
 const StyledNumInput = styled.input`
   border: 0;
-  border-radius: ${props => props.theme.borderRadius};
-  margin-right: ${props => props.theme.spaceScale.spacing01};
-  padding: 0 ${props => props.theme.spaceScale.spacing01};
+  border-radius: var(--borderRadius);
+  margin-right: var(--spaceScale-spacing01);
+  padding: 0 var(--spaceScale-spacing01);
   text-align: right;
-  width: ${props => props.theme.spaceScale.spacing06};
+  width: var(--spaceScale-spacing06);
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -52,14 +51,13 @@ const StyledNumInput = styled.input`
 
   &:focus {
     outline: 0;
-    background: ${props => props.theme.colors.foundation02};
-    color: ${props => props.theme.colors.neutral08};
+    background: var(--colors-foundation02);
+    color: var(--colors-neutral08);
   }
 `;
 
 export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
   (props, ref) => {
-    const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     const {
@@ -115,14 +113,10 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         isInverse={isInverse}
         labelText={labelText}
       >
-        <InputsContainer
-          isInverse={isInverse}
-          hasError={!!errorMessage}
-          theme={theme}
-        >
+        <InputsContainer isInverse={isInverse} hasError={!!errorMessage}>
           <ScheduleIcon
-            color={theme.colors.neutral}
-            style={{ marginRight: theme.spaceScale.spacing02 }}
+            color={'var(--colors-neutral)'}
+            style={{ marginRight: 'var(--spaceScale-spacing02)' }}
           />
           <StyledNumInput
             aria-label={hoursLabel}
@@ -136,7 +130,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             onKeyDown={handleHourKeyDown}
             placeholder="--"
             ref={hourRef}
-            theme={theme}
             type="number"
             value={hour}
           />
@@ -153,7 +146,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             placeholder="--"
             ref={minuteRef}
             step={minutesStep || 1}
-            theme={theme}
             type="number"
             value={minute}
           />

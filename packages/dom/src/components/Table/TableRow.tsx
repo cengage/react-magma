@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { TableContext, TableRowColor, TableCell, TableHeaderCell } from './';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { Checkbox } from '../Checkbox';
 import {
   IndeterminateCheckbox,
@@ -115,7 +114,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       testId,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
+
     const tableContext = React.useContext(TableContext);
 
     let isHeaderRow = false;
@@ -148,7 +147,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         ref={ref}
       >
         {tableContext.isSelectable && isHeaderRow && (
-          <TableHeaderCell width={theme.spaceScale.spacing05}>
+          <TableHeaderCell width={'var(--spaceScale-spacing05)'}>
             <IndeterminateCheckbox
               status={headerRowStatus}
               isInverse={getIsCheckboxInverse()}
@@ -161,7 +160,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         )}
         {tableContext.isSelectable && !isHeaderRow && (
           <TableCell
-            width={theme.spaceScale.spacing05}
+            width={'var(--spaceScale-spacing05)'}
             style={{ verticalAlign: 'middle' }}
           >
             <Checkbox

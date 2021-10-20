@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 
@@ -32,7 +31,6 @@ export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
     const isInverse = useIsInverse(isInverseProp);
 
@@ -43,7 +41,7 @@ export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
           aria-label={ariaLabel ? ariaLabel : i18n.breadcrumb.navAriaLabel}
           data-testid={testId}
         >
-          <StyledList isInverse={isInverse} ref={ref} theme={theme}>
+          <StyledList isInverse={isInverse} ref={ref}>
             {children}
           </StyledList>
         </nav>

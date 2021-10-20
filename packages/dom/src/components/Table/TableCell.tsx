@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { TableCellAlign, TableContext, TableDensity } from './Table';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {
@@ -22,12 +21,12 @@ export interface TableCellProps
 export const baseTableCellStyle = props => css`
   border-right: ${props.hasVerticalBorders ? '1px solid' : 0};
   border-color: ${props.isInverse
-    ? props.theme.colors.tint04
-    : props.theme.colors.neutral06};
+    ? 'var(--colors-tint04)'
+    : 'var(--colors-neutral06)'};
   display: table-cell;
   font-size: inherit;
   line-height: inherit;
-  padding: ${buildCellPaddingStyle(props.density, props.theme)};
+  padding: ${buildCellPaddingStyle(props.density)};
   text-align: ${props.textAlign};
 
   &:last-of-type {
@@ -35,15 +34,15 @@ export const baseTableCellStyle = props => css`
   }
 `;
 
-export function buildCellPaddingStyle(density, theme: any) {
+export function buildCellPaddingStyle(density) {
   switch (density) {
     case 'compact':
-      return `${theme.spaceScale.spacing02} ${theme.spaceScale.spacing03}`;
+      return 'var(--spaceScale-spacing02)} var(--spaceScale-spacing03)}';
     case 'loose':
-      return `${theme.spaceScale.spacing06} ${theme.spaceScale.spacing08}`;
+      return 'var(--spaceScale-spacing06)} var(--spaceScale-spacing08)}';
 
     default:
-      return `${theme.spaceScale.spacing04} ${theme.spaceScale.spacing05}`;
+      return 'var(--spaceScale-spacing04)} var(--spaceScale-spacing05)}';
   }
 }
 
@@ -52,7 +51,6 @@ const StyledCell = styled.td<{
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
-  theme?: any;
   width?: string;
 }>`
   ${baseTableCellStyle}
@@ -68,7 +66,6 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
   (props, ref) => {
     const { align, children, testId, width, ...other } = props;
     const tableContext = React.useContext(TableContext);
-    const theme = React.useContext(ThemeContext);
 
     const widthString = typeof width === 'number' ? `${width}px` : width;
 
@@ -81,7 +78,6 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
         isInverse={tableContext.isInverse}
         ref={ref}
         textAlign={align || TableCellAlign.left}
-        theme={theme}
         width={widthString}
       >
         {children}

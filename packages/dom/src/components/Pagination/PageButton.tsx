@@ -3,7 +3,6 @@ import { Button, ButtonColor, ButtonProps, ButtonVariant } from '../Button';
 import { BuildBorder, hoverBorder } from './Pagination';
 import { darken } from 'polished';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface PageButtonProps extends ButtonProps {
   isSelected?: boolean;
@@ -85,14 +84,12 @@ const StyledPageButton = styled(Button)`
 export const PageButton = React.forwardRef<HTMLButtonElement, PageButtonProps>(
   (props, ref) => {
     const { children, isInverse, isSelected, ...other } = props;
-    const theme = React.useContext(ThemeContext);
 
     return (
       <StyledPageButton
         ref={ref}
         {...other}
         color={isSelected ? ButtonColor.primary : ButtonColor.secondary}
-        theme={theme}
         isInverse={isInverse}
         variant={
           isInverse && !isSelected ? ButtonVariant.outline : ButtonVariant.solid

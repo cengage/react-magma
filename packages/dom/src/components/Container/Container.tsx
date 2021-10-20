@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { ThemeInterface } from '../../theme/magma';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { convertStyleValueToString } from '../../utils';
 import styled from '@emotion/styled';
@@ -25,7 +23,6 @@ const StyledContainer = styled.div<{
   gutterWidth: string;
   isInverse?: boolean;
   maxWidth: string;
-  theme: ThemeInterface;
 }>`
   background: ${props =>
     props.isInverse ? 'var(--colors-foundation)' : 'var(--colors-neutral08)'};
@@ -39,10 +36,9 @@ const StyledContainer = styled.div<{
 
 export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   (props, ref) => {
-    const theme = React.useContext(ThemeContext);
     const {
       children,
-      gutterWidth = theme.spaceScale.spacing06,
+      gutterWidth = 'var(--spaceScale-spacing06)',
       maxWidth,
       testId,
       ...other
@@ -65,7 +61,6 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
           gutterWidth={gutterWidthString}
           isInverse={isInverse}
           maxWidth={maxWidthString}
-          theme={theme}
           {...other}
         >
           {children}

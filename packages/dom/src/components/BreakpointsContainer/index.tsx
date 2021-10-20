@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { HideAtBreakpoint } from '../HideAtBreakpoint';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export enum BreakpointScreenSize {
   xs = 'xs', //default
@@ -56,43 +55,38 @@ function getMinWidth(
   return breakpointValues[nextSize];
 }
 
-export const BreakpointsContainer: React.FunctionComponent<BreakpointsContainerProps> = ({
-  children,
-  breakpoints,
-  ...other
-}: BreakpointsContainerProps) => {
-  const definedBreakpoints = [];
+export const BreakpointsContainer: React.FunctionComponent<BreakpointsContainerProps> =
+  ({ children, breakpoints, ...other }: BreakpointsContainerProps) => {
+    const definedBreakpoints = [];
 
-  React.Children.forEach(children, (child: React.ReactElement) => {
-    definedBreakpoints.push(child.props.screenSize);
-  });
+    React.Children.forEach(children, (child: React.ReactElement) => {
+      definedBreakpoints.push(child.props.screenSize);
+    });
 
-  const theme = React.useContext(ThemeContext);
+    const defaultBreakpoints = theme.breakpoints;
 
-  const defaultBreakpoints = theme.breakpoints;
+    const breakpointValues = breakpoints ? breakpoints : defaultBreakpoints;
 
-  const breakpointValues = breakpoints ? breakpoints : defaultBreakpoints;
-
-  return (
-    <>
-      {React.Children.map(children, (child: React.ReactElement) => {
-        return child.props.screenSize ? (
-          <HideAtBreakpoint
-            {...other}
-            maxWidth={breakpointValues[child.props.screenSize] - 1}
-            minWidth={getMinWidth(
-              child.props.screenSize,
-              breakpointValues,
-              definedBreakpoints
-            )}
-            testId={child.props.testId}
-          >
-            {child}
-          </HideAtBreakpoint>
-        ) : (
-          child
-        );
-      })}
-    </>
-  );
-};
+    return (
+      <>
+        {React.Children.map(children, (child: React.ReactElement) => {
+          return child.props.screenSize ? (
+            <HideAtBreakpoint
+              {...other}
+              maxWidth={breakpointValues[child.props.screenSize] - 1}
+              minWidth={getMinWidth(
+                child.props.screenSize,
+                breakpointValues,
+                definedBreakpoints
+              )}
+              testId={child.props.testId}
+            >
+              {child}
+            </HideAtBreakpoint>
+          ) : (
+            child
+          );
+        })}
+      </>
+    );
+  };

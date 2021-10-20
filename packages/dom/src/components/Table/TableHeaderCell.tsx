@@ -8,7 +8,6 @@ import {
   TableDensity,
   TableSortDirection,
 } from './Table';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
 
 export interface TableHeaderCellProps
@@ -60,7 +59,7 @@ const StyledTableHeaderCell = styled.th<{
   width?: string;
 }>`
   background: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
+    props.isInverse ? 'var(--colors-tint03)' : 'var(--colors-neutral07)'};
   border-bottom: 2px solid;
   font-weight: bold;
   vertical-align: bottom;
@@ -93,36 +92,33 @@ const SortButton = styled.button<{
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
   margin: 0;
-  padding: ${props => buildCellPaddingStyle(props.density, props.theme)};
+  padding: ${props => buildCellPaddingStyle(props.density)};
   text-align: left;
   width: 100%;
 
   &:focus {
-    outline: 2px dotted ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+    outline: 2px dotted
+      ${props =>
+        props.isInverse ? 'var(--colors-focusInverse)' : 'var(--colors-focus)'};
     outline-offset: -2px;
   }
 
   &:hover,
   &:focus {
     background: ${props =>
-      props.isInverse ? props.theme.colors.tint : props.theme.colors.neutral06};
+      props.isInverse ? 'var(--colors-tint)' : 'var(--colors-neutral06)'};
 
     svg {
       fill: ${props =>
-        props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral};
+        props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral)'};
     }
   }
 `;
 
 const IconWrapper = styled.span`
-  padding-left: ${props => props.theme.spaceScale.spacing03};
+  padding-left: var(--spaceScale-spacing03);
   position: relative;
-  top: ${props => props.theme.spaceScale.spacing02};
+  top: var(--spaceScale-spacing02);
 `;
 
 export const TableHeaderCell = React.forwardRef<
@@ -140,7 +136,7 @@ export const TableHeaderCell = React.forwardRef<
     width,
     ...other
   } = props;
-  const theme = React.useContext(ThemeContext);
+
   const tableContext = React.useContext(TableContext);
 
   function handleSort() {
@@ -149,17 +145,17 @@ export const TableHeaderCell = React.forwardRef<
 
   const SortIcon =
     sortDirection === TableSortDirection.ascending ? (
-      <SouthIcon size={theme.iconSizes.small} />
+      <SouthIcon size={20} />
     ) : sortDirection === TableSortDirection.descending ? (
-      <NorthIcon size={theme.iconSizes.small} />
+      <NorthIcon size={20} />
     ) : (
       <SortDoubleArrowIcon
         color={
           tableContext.isInverse
-            ? theme.colors.neutral06
-            : theme.colors.neutral04
+            ? 'var(--colors-neutral06)'
+            : 'var(--colors-neutral04)'
         }
-        size={theme.iconSizes.small}
+        size={20}
       />
     );
 
@@ -176,7 +172,6 @@ export const TableHeaderCell = React.forwardRef<
       isSortable={isSortable}
       scope={scope || TableHeaderCellScope.col}
       textAlign={align || TableCellAlign.left}
-      theme={theme}
       width={widthString}
     >
       {isSortable ? (
@@ -185,10 +180,9 @@ export const TableHeaderCell = React.forwardRef<
           isInverse={tableContext.isInverse}
           onClick={handleSort}
           textAlign={align || TableCellAlign.left}
-          theme={theme}
         >
           <span>{children}</span>
-          <IconWrapper theme={theme}>{SortIcon}</IconWrapper>
+          <IconWrapper>{SortIcon}</IconWrapper>
         </SortButton>
       ) : (
         <>{children}</>

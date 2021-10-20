@@ -3,8 +3,6 @@ import { Alert } from '../Alert';
 import { AlertVariant } from '../AlertBase';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { InverseContext, useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 
@@ -35,7 +33,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   testId?: string;
 }
 
-const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
+const StyledForm = styled.form<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse ? 'var(--colors-foundation)' : 'var(--colors-neutral08)'};
   color: ${props =>
@@ -59,8 +57,6 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
-
     const isInverse = useIsInverse(props.isInverse);
 
     return (
@@ -73,7 +69,6 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
           ref={ref}
           data-testid={testId}
           isInverse={isInverse}
-          theme={theme}
           {...other}
         >
           <Heading level={3}>{header}</Heading>

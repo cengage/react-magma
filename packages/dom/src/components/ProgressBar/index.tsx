@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -163,8 +162,6 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
 
     const percentageValue = percentage ? percentage : 0;
 
-    const theme = React.useContext(ThemeContext);
-
     const heightString = convertStyleValueToString(
       height,
       'var(--spaceScale-spacing03)'
@@ -179,14 +176,13 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
         isLoadingIndicator={isLoadingIndicator}
       >
         {isLoadingIndicator && (
-          <TopPercentage theme={theme}>{percentageValue}%</TopPercentage>
+          <TopPercentage>{percentageValue}%</TopPercentage>
         )}
         <Track
           data-testid={testId}
           height={heightString}
           isInverse={isInverse}
           ref={ref}
-          theme={theme}
         >
           <Bar
             aria-labelledby={labelId}
@@ -198,13 +194,10 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             isInverse={isInverse}
             percentage={percentageValue}
             role="progressbar"
-            theme={theme}
           />
         </Track>
         {isLabelVisible ? (
-          <Percentage id={labelId} theme={theme}>
-            {percentageValue}%
-          </Percentage>
+          <Percentage id={labelId}>{percentageValue}%</Percentage>
         ) : (
           <VisuallyHidden id={labelId}>{percentageValue}%</VisuallyHidden>
         )}

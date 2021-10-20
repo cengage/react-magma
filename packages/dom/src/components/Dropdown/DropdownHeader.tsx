@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required
@@ -27,10 +26,8 @@ export const DropdownHeader = React.forwardRef<
 >((props, ref) => {
   const { children, testId, ...other } = props;
 
-  const theme = React.useContext(ThemeContext);
-
   return (
-    <StyledDiv {...other} data-testid={testId} theme={theme}>
+    <StyledDiv {...other} data-testid={testId}>
       {children}
     </StyledDiv>
   );

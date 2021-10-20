@@ -10,7 +10,6 @@ import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
 } from '../FormFieldContainer';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId, Omit } from '../../utils';
 import { useIsInverse } from '../../inverse';
 
@@ -39,8 +38,7 @@ const StyledTextArea = styled.textarea<
   ${inputBaseStyles};
   ${inputWrapperStyles};
   height: 4.5em;
-  padding: ${props =>
-    `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`};
+  padding: var(--spaceScale-spacing02) var(--spaceScale-spacing03);
 `;
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -58,8 +56,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       textareaStyle,
       ...other
     } = props;
-
-    const theme = React.useContext(ThemeContext);
 
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
@@ -107,9 +103,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           onChange={handleChange}
           ref={ref}
           style={textareaStyle}
-          theme={theme}
           value={value}
-          width='100%'
+          width="100%"
         />
       </FormFieldContainer>
     );

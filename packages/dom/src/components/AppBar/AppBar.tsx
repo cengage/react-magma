@@ -1,7 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
@@ -19,7 +17,6 @@ export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
-  theme?: ThemeInterface;
 }
 
 export enum AppBarPosition {
@@ -74,7 +71,6 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
       testId,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(props.isInverse);
 
     return (
@@ -88,7 +84,6 @@ export const AppBar = React.forwardRef<HTMLDivElement, AppBarProps>(
           data-testid={testId}
           position={position}
           ref={ref}
-          theme={theme}
         >
           {children}
         </StyledHeader>

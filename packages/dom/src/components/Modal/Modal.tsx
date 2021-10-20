@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -9,7 +8,6 @@ import { CloseIcon } from 'react-magma-icons';
 import { Heading } from '../Heading';
 import { TypographyVisualStyle } from '../Typography';
 import { Transition, TransitionProps } from '../Transition';
-import { ThemeInterface } from '../../theme/magma';
 import { omit, useGenerateId, usePrevious } from '../../utils';
 import { useFocusLock } from '../../hooks/useFocusLock';
 
@@ -82,12 +80,9 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
-  theme?: ThemeInterface;
 }
 
-const ModalContainer = styled(Transition)<{
-  theme: ThemeInterface;
-}>`
+const ModalContainer = styled(Transition)`
   bottom: 0;
   left: 0;
   overflow-y: auto;
@@ -135,7 +130,7 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
-const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
+const ModalHeader = styled.div`
   padding: var(--spaceScale-spacing03) var(--spaceScale-spacing05) 0
     var(--spaceScale-spacing05);
   @media (min-width: 600px) {
@@ -144,7 +139,7 @@ const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
   }
 `;
 
-const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
+const H1 = styled(Heading)`
   font-size: var(--typographyVisualStyles-headingSmall-desktop-fontSize);
   line-height: var(--typographyVisualStyles-headingSmall-desktop-lineHeight);
   margin: 0;
@@ -156,7 +151,7 @@ const CloseBtn = styled.span`
   top: 0;
   right: 0;
 `;
-const ModalBody = styled.div<{ theme?: ThemeInterface }>`
+const ModalBody = styled.div`
   padding: var(--spaceScale-spacing05);
 
   @media (min-width: 600px) {
@@ -272,11 +267,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     } = props;
 
     const other = omit(['onEscKeyDown'], rest);
-    const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     const CloseIconButton = (
-      <CloseIcon color={theme.colors.neutral03} size={theme.iconSizes.small} />
+      <CloseIcon color={'var(--colors-neutral03)'} size={20} />
     );
 
     return (
@@ -301,7 +295,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           }
           role="dialog"
           style={containerStyle}
-          theme={theme}
           isOpen={isModalOpen}
           {...containerTransition}
           unmountOnExit={unmountOnExit}
@@ -312,10 +305,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             id={contentId}
             isExiting={isExiting}
             ref={ref}
-            theme={theme}
           >
             {header && (
-              <ModalHeader theme={theme}>
+              <ModalHeader>
                 {header && (
                   <H1
                     id={headingId}
@@ -323,16 +315,13 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     ref={headingRef}
                     visualStyle={TypographyVisualStyle.headingSmall}
                     tabIndex={-1}
-                    theme={theme}
                   >
                     {header}
                   </H1>
                 )}
               </ModalHeader>
             )}
-            <ModalBody ref={bodyRef} theme={theme}>
-              {children}
-            </ModalBody>
+            <ModalBody ref={bodyRef}>{children}</ModalBody>
             {!isCloseButtonHidden && (
               <CloseBtn>
                 <IconButton

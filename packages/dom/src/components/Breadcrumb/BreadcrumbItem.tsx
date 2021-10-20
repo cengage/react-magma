@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
 import { useIsInverse } from '../../inverse';
 import { ChevronRightIcon } from 'react-magma-icons';
@@ -38,7 +37,6 @@ export const BreadcrumbItem = React.forwardRef<
   BreadcrumbItemProps
 >((props, ref) => {
   const { children, to, testId, ...other } = props;
-  const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse();
 
   return (
@@ -48,12 +46,12 @@ export const BreadcrumbItem = React.forwardRef<
           <Hyperlink to={to} isInverse={isInverse}>
             {children}
           </Hyperlink>
-          <StyledSpan isInverse={isInverse} theme={theme}>
-            <ChevronRightIcon size={theme.iconSizes.small} />
+          <StyledSpan isInverse={isInverse}>
+            <ChevronRightIcon size={20} />
           </StyledSpan>
         </>
       ) : (
-        <StyledSpan aria-current="page" isInverse={isInverse} theme={theme}>
+        <StyledSpan aria-current="page" isInverse={isInverse}>
           {children}
         </StyledSpan>
       )}

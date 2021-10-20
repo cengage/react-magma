@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { MenuItemStyles, IconWrapper } from './DropdownMenuItem';
 import { DropdownContext } from './Dropdown';
 import { IconProps } from 'react-magma-icons';
@@ -34,7 +33,6 @@ export const DropdownMenuNavItem = React.forwardRef<
   const { children, icon, to, ...other } = props;
 
   const ownRef = React.useRef<HTMLDivElement>();
-  const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
 
   const ref = useForkedRef(forwardedRef, ownRef);
@@ -51,9 +49,8 @@ export const DropdownMenuNavItem = React.forwardRef<
       ref={ref}
       role="menuitem"
       tabIndex={-1}
-      theme={theme}
     >
-      {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
+      {icon && <IconWrapper>{icon}</IconWrapper>}
       {children}
     </StyledItem>
   );

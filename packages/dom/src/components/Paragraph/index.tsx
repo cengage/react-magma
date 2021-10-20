@@ -32,7 +32,6 @@ export interface ParagraphProps
   /**
    * @internal
    */
-  theme?: any;
   /**
    * Applies visual styles including font-size, font-weight, line-height and margins
    * @default TypographyVisualStyle.bodyMedium

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
 import {
   CheckboxProps,
   HiddenLabelText,
@@ -69,12 +68,11 @@ export const IndeterminateCheckbox = React.forwardRef<
     }
   }
 
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const context = React.useContext(FormGroupContext);
 
   const {
-    color = theme.colors.primary,
+    color = 'var(--colors-primary)',
     containerStyle,
     disabled,
     errorMessage,
@@ -159,17 +157,13 @@ export const IndeterminateCheckbox = React.forwardRef<
             isIndeterminate={isIndeterminate}
             isInverse={isInverse}
             style={inputStyle}
-            theme={theme}
           >
             {isIndeterminate ? (
-              <IndeterminateCheckBoxIcon
-                testId="indeterminateIcon"
-                size={theme.iconSizes.medium}
-              />
+              <IndeterminateCheckBoxIcon testId="indeterminateIcon" size={24} />
             ) : isChecked ? (
-              <CheckBoxIcon size={theme.iconSizes.medium} />
+              <CheckBoxIcon size={24} />
             ) : (
-              <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
+              <CheckBoxOutlineBlankIcon size={24} />
             )}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (
@@ -187,7 +181,7 @@ export const IndeterminateCheckbox = React.forwardRef<
           id={descriptionId}
           hasError
           isInverse={isInverse}
-          style={{ paddingLeft: theme.spaceScale.spacing08 }}
+          style={{ paddingLeft: 'var(--spaceScale-spacing08)' }}
         >
           {errorMessage}
         </InputMessage>

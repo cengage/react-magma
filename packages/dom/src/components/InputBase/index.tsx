@@ -1,12 +1,10 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
 import { ClearIcon, IconProps } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
-import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
@@ -87,7 +85,6 @@ export interface InputBaseProps
   /**
    * @internal
    */
-  theme?: any;
   /**
    * The type attribute of the form field
    * @default InputType.text
@@ -99,7 +96,6 @@ export interface InputWrapperStylesProps {
   width?: string;
   isInverse?: boolean;
   isClearable?: boolean;
-  theme?: ThemeInterface;
   hasError?: boolean;
   disabled?: boolean;
 }
@@ -141,7 +137,6 @@ export interface InputBaseStylesProps {
   isInverse?: boolean;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
-  theme?: ThemeInterface;
   disabled?: boolean;
 }
 
@@ -328,7 +323,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
     const i18n = React.useContext(I18nContext);
 
-    const theme = React.useContext(ThemeContext);
     const iconPosition =
       icon && onIconClick
         ? InputIconPosition.right
@@ -367,7 +361,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       <InputWrapper
         disabled={disabled}
         isInverse={props.isInverse}
-        theme={theme}
         style={containerStyle}
         hasError={hasError}
         isClearable={isClearable}
@@ -383,12 +376,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           ref={ref}
           onChange={handleChange}
           style={inputStyle}
-          theme={theme}
           type={type ? type : InputType.text}
           value={value}
         />
         {isClearable && value && (
-          <IsClearableContainer theme={theme} disabled={disabled}>
+          <IsClearableContainer disabled={disabled}>
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}
@@ -415,14 +407,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             aria-label={iconAriaLabel}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
-            theme={theme}
             disabled={disabled}
           >
             {React.Children.only(
               React.cloneElement(icon, {
-                size: getIconSize(
-                  inputSize ? inputSize : InputSize.medium
-                ),
+                size: getIconSize(inputSize ? inputSize : InputSize.medium),
               })
             )}
           </IconWrapper>
@@ -433,7 +422,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             size={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
-            theme={theme}
             disabled={disabled}
           >
             <IconButton

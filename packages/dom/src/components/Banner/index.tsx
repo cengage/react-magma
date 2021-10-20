@@ -65,7 +65,7 @@ const ButtonWrapper = styled.span`
   flex-shrink: 0;
 `;
 
-const allowedProps = ['icon', 'isInverse', 'theme', 'variant'];
+const allowedProps = ['icon', 'isInverse', 'variant'];
 
 const shouldForwardProp = prop => {
   return isPropValid(prop) || allowedProps.includes(prop);
@@ -120,7 +120,7 @@ const IconWrapper = styled.span`
   }
 `;
 
-function renderIcon(variant = 'info', theme: any) {
+function renderIcon(variant = 'info') {
   const Icon = VARIANT_ICON[variant];
 
   return (

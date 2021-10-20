@@ -4,7 +4,6 @@ import { InputSize } from '../InputBase';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
@@ -82,7 +81,6 @@ export const FormFieldContainer = React.forwardRef<
     testId,
     ...rest
   } = props;
-  const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
   const descriptionId =
@@ -96,7 +94,6 @@ export const FormFieldContainer = React.forwardRef<
         isInverse={isInverse}
         ref={ref}
         style={containerStyle}
-        theme={theme}
       >
         {labelText && (
           <Label htmlFor={fieldId} size={inputSize} style={labelStyle}>

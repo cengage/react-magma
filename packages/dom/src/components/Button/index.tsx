@@ -88,7 +88,6 @@ interface BaseButtonProps
   /**
    * @internal
    */
-  theme?: any;
   /**
    * The type attribute of the button
    * ButtonType.button

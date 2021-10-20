@@ -2,8 +2,6 @@ import * as React from 'react';
 import { ProgressBar, ProgressBarColor } from '../ProgressBar';
 import { Spinner } from '../Spinner';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 
 export interface LoadingIndicatorProps
@@ -53,7 +51,7 @@ const StyledLoadingIndicator = styled.div`
   text-align: center;
 `;
 
-const MessageContainer = styled.div<{ theme: ThemeInterface }>`
+const MessageContainer = styled.div`
   font-size: var(--typeScale-size02-fontSize);
   line-height: var(--typeScale-size02-lineHeight);
   margin-top: var(--spaceScale-spacing05);
@@ -75,7 +73,6 @@ export const LoadingIndicator = React.forwardRef<
 >((props, ref) => {
   const [messageLevel, setMessageLevel] = React.useState<1 | 2 | 3>(1);
 
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   React.useEffect(() => {
@@ -127,15 +124,15 @@ export const LoadingIndicator = React.forwardRef<
         <ProgressBar
           {...other}
           color={color as ProgressBarColor}
-          height={theme.spaceScale.spacing03}
+          height={'var(--spaceScale-spacing03)'}
           isAnimated
           isLoadingIndicator
         />
       ) : (
-        <Spinner {...other} size={theme.spaceScale.spacing10} />
+        <Spinner {...other} size={'var(--spaceScale-spacing10)'} />
       )}
 
-      <MessageContainer theme={theme}>
+      <MessageContainer>
         <Message aria-hidden={messageLevel !== 1} hide={messageLevel !== 1}>
           {message1}
         </Message>

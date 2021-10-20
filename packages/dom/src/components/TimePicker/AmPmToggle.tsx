@@ -1,14 +1,12 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 
 interface AmPmToggleProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string;
 }
 
-const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
+const StyledAmPmToggle = styled.button`
   background: none;
   border: 0;
   border-radius: 3px;
@@ -17,22 +15,19 @@ const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
 
   &:focus {
     outline: 0;
-    background: ${props => props.theme.colors.foundation};
-    color: ${props => props.theme.colors.neutral08};
+    background: var(--colors-foundation);
+    color: var(--colors-neutral08);
   }
 `;
 
 export const AmPmToggle = React.forwardRef<HTMLButtonElement, AmPmToggleProps>(
   (props, ref) => {
     const { children, ...other } = props;
-    const theme = React.useContext(ThemeContext);
-
     return (
       <StyledAmPmToggle
         {...other}
         data-testid="amPmTimeButton"
         ref={ref}
-        theme={theme}
         type="button"
       >
         {children}

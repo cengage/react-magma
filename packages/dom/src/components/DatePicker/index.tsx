@@ -5,7 +5,6 @@ import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { InputType } from '../InputBase';
 import { isAfter, isBefore, isValid, isSameDay } from 'date-fns';
-import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { EventIcon } from 'react-magma-icons';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -131,7 +130,6 @@ const DatePickerCalendar = styled.div<{ opened: boolean }>`
 
 export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
   (props, forwardedRef) => {
-    const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
     const iconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
@@ -442,7 +440,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             <DatePickerCalendar
               data-testid="calendarContainer"
               opened={calendarOpened}
-              theme={theme}
             >
               <CalendarMonth
                 focusOnOpen={

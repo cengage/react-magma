@@ -4,8 +4,6 @@ import { ButtonColor, ButtonVariant } from '../Button';
 import { EastIcon, WestIcon } from 'react-magma-icons';
 import { Label } from '../Label';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { usePagination } from '../Pagination/usePagination';
@@ -93,7 +91,6 @@ export type TablePaginationProps = BaseTablePaginationProps &
 
 const StyledContainer = styled.div<{
   isInverse?: boolean;
-  theme: ThemeInterface;
 }>`
   align-items: center;
   background: ${props =>
@@ -106,7 +103,7 @@ const StyledContainer = styled.div<{
   padding: var(--spaceScale-spacing02);
 `;
 
-const PageCount = styled(Label)<{ theme: ThemeInterface }>`
+const PageCount = styled(Label)`
   margin: 0 var(--spaceScale-spacing08);
 `;
 
@@ -135,7 +132,6 @@ export const TablePagination = React.forwardRef<
     ...other
   } = props;
 
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const isInverse = useIsInverse(props.isInverse);

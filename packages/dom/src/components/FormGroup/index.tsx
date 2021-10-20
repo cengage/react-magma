@@ -4,7 +4,6 @@ import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import styled from '@emotion/styled';
 import { omit, useGenerateId } from '../../utils';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 
 /**
@@ -76,7 +75,6 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
     const other = omit(['id'], rest);
 
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
-    const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(props.isInverse);
 
     return (
@@ -101,12 +99,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           )}
 
           {labelText && !isTextVisuallyHidden && (
-            <Label
-              id={id}
-              isInverse={isInverse}
-              style={labelStyle}
-              theme={theme}
-            >
+            <Label id={id} isInverse={isInverse} style={labelStyle}>
               {labelText}
             </Label>
           )}

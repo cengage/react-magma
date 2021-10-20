@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { InputBase, InputSize, InputType } from '../InputBase';
@@ -102,7 +101,6 @@ export const PasswordInput = React.forwardRef<
     : i18n.password.shown.buttonText;
 
   const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
-  const theme = React.useContext(ThemeContext);
 
   const isInverse = useIsInverse(props.isInverse);
 
@@ -145,11 +143,11 @@ export const PasswordInput = React.forwardRef<
               onClick={togglePasswordShown}
               size={ButtonSize.small}
               style={{
-                borderRadius: theme.borderRadius,
+                borderRadius: 'var(--borderRadius)',
                 height:
                   inputSize == InputSize.large
-                    ? theme.spaceScale.spacing10
-                    : theme.spaceScale.spacing08,
+                    ? 'var(--spaceScale-spacing10)'
+                    : 'var(--spaceScale-spacing08)',
                 margin: ' 0 3px 0 0 ',
               }}
               type={ButtonType.button}

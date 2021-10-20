@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 
 /**
@@ -49,9 +47,7 @@ export enum CardCalloutType {
   warning = 'warning',
 }
 
-export function buildCalloutBackground(
-  props: CardProps & { theme: ThemeInterface }
-) {
+export function buildCalloutBackground(props: CardProps) {
   if (props.isInverse) {
     switch (props.calloutType) {
       case 'danger':
@@ -131,8 +127,6 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const theme = React.useContext(ThemeContext);
-
     const widthString = width
       ? typeof width === 'number'
         ? `${width}px`
@@ -146,7 +140,6 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
         data-testid={testId}
         isInverse={isInverse}
         ref={ref}
-        theme={theme}
         width={widthString}
       >
         <CardContext.Provider

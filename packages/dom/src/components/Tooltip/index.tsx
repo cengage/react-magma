@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';
 import { useIsInverse } from '../../inverse';
@@ -176,7 +175,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   } = props;
 
   const id = useGenerateId(defaultId);
-  const theme = React.useContext(ThemeContext);
 
   if (Array.isArray(children)) {
     throw new Error('Tooltip children can only be one element.');
@@ -215,7 +213,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
           ref={setPopperElement}
           role="tooltip"
           style={combinedTooltipStyles}
-          theme={theme}
           {...attributes.popper}
         >
           {content}
@@ -223,7 +220,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             isInverse={isInverse}
             ref={setArrowElement}
             style={combinedArrowStyle}
-            theme={theme}
           />
         </StyledTooltip>
       )}

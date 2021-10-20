@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
 import { AccountCircleIcon } from 'react-magma-icons';
-import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Tag, TagColor, TagProps, TagSize } from '.';
 

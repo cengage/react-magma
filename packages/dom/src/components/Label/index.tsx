@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { InputSize } from '../InputBase';
 import { useIsInverse } from '../../inverse';
 
@@ -14,7 +13,6 @@ export interface LabelProps
   isInverse?: boolean;
   labelPosition?: LabelPosition;
   size?: InputSize;
-  theme?: any;
   testId?: string;
 }
 
@@ -43,7 +41,6 @@ const StyledLabel = styled.label<LabelProps>`
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
     const { children, labelPosition, size, testId, ...other } = props;
-    const theme = React.useContext(ThemeContext);
 
     return (
       <StyledLabel
@@ -53,7 +50,6 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
         size={size ? size : InputSize.medium}
-        theme={theme}
       >
         {children}
       </StyledLabel>

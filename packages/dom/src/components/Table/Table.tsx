@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { useIsInverse } from '../../inverse';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required
@@ -96,12 +95,10 @@ const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
   border-collapse: collapse;
   border-spacing: 0;
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+    props.isInverse ? 'var(--colors-neutral08)' : 'var(--colors-neutral)'};
   display: table;
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
+  font-size: var(--typeScale-size03-fontSize);
+  line-height: var(--typeScale-size03-lineHeight);
   min-width: ${props => props.minWidth}px;
   width: 100%;
 `;
@@ -122,8 +119,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
-
     const isInverse = useIsInverse(props.isInverse);
 
     return (
@@ -142,9 +137,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             {...other}
             data-testid={testId}
             isInverse={isInverse}
-            minWidth={minWidth || theme.breakpoints.small}
+            minWidth={minWidth || 'var(--breakpoints-small)'}
             ref={ref}
-            theme={theme}
           >
             {children}
           </StyledTable>

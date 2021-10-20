@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export enum FlexAlignContent {
   center = 'center',
@@ -128,7 +127,7 @@ const StyledFlex = styled.div<FlexProps>`
       flex-wrap: ${props.wrap};
       justify-content: ${props.justify};
       margin: ${0 - props.spacing * 4}px;
-      width: calc(100% + ${props.spacing * props.theme.spacingMultiplier}px);
+      width: calc(100% + ${props.spacing * 8}px);
 
       > div {
         padding: ${props.spacing * 4}px;
@@ -144,7 +143,7 @@ const StyledFlex = styled.div<FlexProps>`
 
       ${props.sm &&
       css`
-        @media (min-width: ${props.theme.breakpoints.small}px) {
+        @media (min-width: 600px) {
           flex-grow: ${props.sm === true ? '1' : '0'};
           flex-basis: ${props.sm === true ? '0' : getWidth(props.sm)};
           max-width: ${props.sm === true ? '100%' : getWidth(props.sm)};
@@ -153,7 +152,7 @@ const StyledFlex = styled.div<FlexProps>`
 
       ${props.md &&
       css`
-        @media (min-width: ${props.theme.breakpoints.medium}px) {
+        @media (min-width: 768px) {
           flex-grow: ${props.md === true ? '1' : '0'};
           flex-basis: ${props.md === true ? '0' : getWidth(props.md)};
           max-width: ${props.md === true ? '100%' : getWidth(props.md)};
@@ -162,7 +161,7 @@ const StyledFlex = styled.div<FlexProps>`
 
       ${props.lg &&
       css`
-        @media (min-width: ${props.theme.breakpoints.large}px) {
+        @media (min-width: 1024px) {
           flex-grow: ${props.lg === true ? '1' : '0'};
           flex-basis: ${props.lg === true ? '0' : getWidth(props.lg)};
           max-width: ${props.lg === true ? '100%' : getWidth(props.lg)};
@@ -171,7 +170,7 @@ const StyledFlex = styled.div<FlexProps>`
 
       ${props.xl &&
       css`
-        @media (min-width: ${props.theme.breakpoints.xl}px) {
+        @media (min-width: 1200px) {
           flex-grow: ${props.xl === true ? '1' : '0'};
           flex-basis: ${props.xl === true ? '0' : getWidth(props.xl)};
           max-width: ${props.xl === true ? '100%' : getWidth(props.xl)};
@@ -194,8 +193,6 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
-
     return (
       <StyledFlex
         {...other}
@@ -206,7 +203,6 @@ export const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
         justify={justify}
         ref={ref}
         spacing={spacing}
-        theme={theme}
         wrap={wrap}
       >
         {children}

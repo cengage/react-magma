@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
@@ -113,7 +112,6 @@ export const StyledFakeInput = styled.span<{
   isInverse?: boolean;
   hasError?: boolean;
   textPosition?: CheckboxTextPosition;
-  theme?: any;
 }>`
   ${DisplayInputStyles};
   border: 2px solid;
@@ -178,11 +176,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       }
     }
 
-    const theme = React.useContext(ThemeContext);
     const context = React.useContext(FormGroupContext);
 
     const {
-      color = theme.colors.primary,
+      color = 'var(--colors-primary)',
       containerStyle,
       disabled,
       errorMessage,
@@ -239,12 +236,11 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               isInverse={isInverse}
               style={inputStyle}
               textPosition={textPosition}
-              theme={theme}
             >
               {isChecked ? (
-                <CheckBoxIcon size={theme.iconSizes.medium} />
+                <CheckBoxIcon size={24} />
               ) : (
-                <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
+                <CheckBoxOutlineBlankIcon size={24} />
               )}
             </StyledFakeInput>
 

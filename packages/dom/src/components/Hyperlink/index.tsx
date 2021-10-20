@@ -3,9 +3,7 @@ import { ButtonStyles } from '../Button';
 import styled from '@emotion/styled';
 import { css, ClassNames } from '@emotion/react';
 import { omit, Omit } from '../../utils';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { BaseStyledButton, buttonStyles } from '../StyledButton';
-import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 
 /**
@@ -48,7 +46,7 @@ const linkStyles = props => css`
   }
 `;
 
-const StyledLink = styled.a<{ isInverse?: boolean; theme: ThemeInterface }>`
+const StyledLink = styled.a<{ isInverse?: boolean }>`
   ${linkStyles}
 `;
 
@@ -57,14 +55,14 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
     const { children, to, styledAs, testId, ...rest } = props;
 
     const other = omit(['positionTop', 'positionLeft', 'type'], rest);
-    const theme = React.useContext(ThemeContext);
+
     const isInverse = useIsInverse(props.isInverse);
 
     if (typeof children === 'function') {
       const composedStyle =
         styledAs === 'Button'
-          ? buttonStyles({ ...props, theme })
-          : linkStyles({ ...props, theme });
+          ? buttonStyles({ ...props })
+          : linkStyles({ ...props });
 
       return (
         <ClassNames>
@@ -90,7 +88,6 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
           data-testid={testId}
           href={to}
           isInverse={isInverse}
-          theme={theme}
         >
           {children}
         </HyperlinkComponent>

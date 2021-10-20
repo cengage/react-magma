@@ -9,7 +9,6 @@ import { ComboboxInput } from './ComboboxInput';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
 import { ComboboxProps } from '.';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 
@@ -54,7 +53,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     toggleButtonRef,
   } = props;
 
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   function isCreatedItem(item) {
@@ -71,10 +69,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   function defaultOnSelectedItemChange(changes) {
     if (isCreatedItem(changes.selectedItem)) {
-      const {
-        react_magma__created_item,
-        ...createdItem
-      } = changes.selectedItem;
+      const { react_magma__created_item, ...createdItem } =
+        changes.selectedItem;
 
       const newItem =
         react_magma__created_item &&
@@ -147,12 +143,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
   }
 
-  const [
-    allItems,
-    displayItems,
-    setDisplayItems,
-    updateItemsRef,
-  ] = useComboboxItems(defaultItems, items);
+  const [allItems, displayItems, setDisplayItems, updateItemsRef] =
+    useComboboxItems(defaultItems, items);
 
   function getValidItem(itemToCheck: T, key: string): object {
     return allItems.current.findIndex(
@@ -163,10 +155,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   }
 
   function handleOnIsOpenChange(changes) {
-    const {
-      isOpen: changedIsOpen,
-      selectedItem: changedSelectedItem,
-    } = changes;
+    const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
+      changes;
 
     if (!changedIsOpen) {
       setDisplayItems(allItems.current);
@@ -302,7 +292,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isOpen={isOpen}
         items={displayItems}
         itemToString={itemToString}
-        maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
+        maxHeight={itemListMaxHeight || `${'var(--combobox-menu-maxHeight)'}`}
         menuStyle={menuStyle}
       />
     </SelectContainer>

@@ -8,7 +8,6 @@ import {
 } from '../FormFieldContainer';
 import { SelectTriggerButton } from '../Select/SelectTriggerButton';
 
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import { useGenerateId } from '../../utils';
 
@@ -42,7 +41,6 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       testId,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
     const id = useGenerateId(defaultId);
 
@@ -70,7 +68,6 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             disabled={disabled}
             id={id}
             isInverse={isInverse}
-            theme={theme}
           >
             {children}
           </StyledNativeSelect>

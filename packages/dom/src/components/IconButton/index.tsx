@@ -11,7 +11,6 @@ import {
 } from '../Button';
 import { IconProps } from 'react-magma-icons';
 import { omit, Omit, XOR } from '../../utils';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 
 export enum ButtonIconPosition {
@@ -68,7 +67,7 @@ function getIconPadding(props) {
   }
 }
 
-function getIconSize(size, theme) {
+function getIconSize(size) {
   switch (size) {
     case 'large':
       return 32;
@@ -90,8 +89,6 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let children;
     const { color, shape, size, testId, textTransform, variant, ...rest } =
       props;
-
-    const theme = React.useContext(ThemeContext);
 
     if (instanceOfIconOnly(props)) {
       icon = props.icon;
@@ -120,9 +117,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         >
           {React.Children.only(
             React.cloneElement(icon, {
-              size: icon.props.size
-                ? icon.props.size
-                : getIconSize(size, theme),
+              size: icon.props.size ? icon.props.size : getIconSize(size),
             })
           )}
         </StyledButton>
@@ -143,20 +138,16 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         variant={variant ? variant : ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (
-          <SpanTextLeft size={size} theme={theme}>
-            {children}
-          </SpanTextLeft>
+          <SpanTextLeft size={size}>{children}</SpanTextLeft>
         )}
         {React.Children.only(
           React.cloneElement(icon, {
-            size: icon.props.size ? icon.props.size : getIconSize(size, theme),
+            size: icon.props.size ? icon.props.size : getIconSize(size),
             'data-testid': `${testId}-icon`,
           })
         )}
         {iconPosition !== ButtonIconPosition.right && (
-          <SpanTextRight size={size} theme={theme}>
-            {children}
-          </SpanTextRight>
+          <SpanTextRight size={size}>{children}</SpanTextRight>
         )}
       </StyledButton>
     );

@@ -2,9 +2,6 @@ import * as React from 'react';
 import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
 import { MotionVariants } from '../../theme/components/transition';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-
 /**
  * @children required
  */
@@ -99,8 +96,6 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
 
 export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
   (props, ref) => {
-    const theme: ThemeInterface = React.useContext(ThemeContext);
-
     const {
       style,
       unmountOnExit,

@@ -13,7 +13,6 @@ import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
 import { useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
@@ -85,7 +84,6 @@ export const DropdownButton = React.forwardRef<
   DropdownButtonProps
 >((props, forwardedRef) => {
   const context = React.useContext(DropdownContext);
-  const theme = React.useContext(ThemeContext);
 
   context.dropdownButtonId.current = useGenerateId(props.id);
 
@@ -143,7 +141,6 @@ export const DropdownButton = React.forwardRef<
       isInverse={isInverse}
       onClick={handleClick}
       ref={ref}
-      theme={theme}
     >
       {children}
     </StyledIconButton>
