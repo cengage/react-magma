@@ -4,7 +4,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import {
+import React, {
   forwardRef,
   useCallback,
   useContext,
@@ -57,7 +57,7 @@ export interface FileUploaderProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
   /**
    * Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276
-   */ 
+   */
   accept?: string | string[];
   /**
    * Enable/Disable the input
@@ -105,11 +105,11 @@ export interface FileUploaderProps
    */
   noDrag?: boolean;
   /**
-   * Callback for when a file is deleted 
+   * Callback for when a file is deleted
    */
   onDeleteFile?: (file: FilePreview) => void;
   /**
-   * Callback for when a file is deleted 
+   * Callback for when a file is deleted
    */
   onRemoveFile?: (file: FilePreview) => void;
   /**
@@ -118,7 +118,7 @@ export interface FileUploaderProps
   onSendFile?: (props: OnSendFileProps) => void;
   /**
    * Run `onSendFile` on any new files. Delay processing by setting to `false` until processing is desired.
-   * @default false 
+   * @default false
    */
   sendFiles?: boolean;
   testId?: string;

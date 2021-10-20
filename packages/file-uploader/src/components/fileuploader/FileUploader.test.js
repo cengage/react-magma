@@ -477,10 +477,10 @@ describe('File Uploader', () => {
     act(() => fireDrop(dropzone, data));
 
     await flushPromises(rerender, ui);
-    await act(() => waitFor(() => getByLabelText('Delete File')));
+    await act(() => waitFor(() => getByLabelText('Delete file')));
 
     expect(getByText(files[0].name)).toBeInTheDocument();
-    expect(getByLabelText('Delete File')).toBeInTheDocument();
+    expect(getByLabelText('Delete file')).toBeInTheDocument();
   });
 
   it('deletes the file when the Delete File icon is clicked', async () => {
@@ -501,10 +501,10 @@ describe('File Uploader', () => {
     act(() => fireDrop(dropzone, data));
 
     await flushPromises(rerender, ui);
-    await act(() => waitFor(() => getByLabelText('Delete File')));
+    await act(() => waitFor(() => getByLabelText('Delete file')));
 
     expect(getByText(files[0].name)).toBeInTheDocument();
-    const deleteIcon = getByLabelText('Delete File');
+    const deleteIcon = getByLabelText('Delete file');
 
     userEvent.click(deleteIcon);
 
@@ -531,10 +531,10 @@ describe('File Uploader', () => {
     act(() => fireDrop(dropzone, data));
 
     await flushPromises(rerender, ui);
-    await act(() => waitFor(() => getByLabelText('Delete File')));
+    await act(() => waitFor(() => getByLabelText('Delete file')));
 
     expect(getByText(files[0].name)).toBeInTheDocument();
-    const deleteIcon = getByLabelText('Delete File');
+    const deleteIcon = getByLabelText('Delete file');
 
     userEvent.click(deleteIcon);
 
@@ -555,7 +555,7 @@ describe('File Uploader', () => {
 
     await flushPromises(rerender, ui);
     expect(queryByText(files[0].name)).toBeInTheDocument();
-    const removeIcon = getByLabelText('Remove File');
+    const removeIcon = getByLabelText('Remove file');
 
     userEvent.click(removeIcon);
 
@@ -578,7 +578,7 @@ describe('File Uploader', () => {
     fireDrop(dropzone, data);
 
     await flushPromises(rerender, ui);
-    const removeIcon = getByLabelText('Remove File');
+    const removeIcon = getByLabelText('Remove file');
 
     userEvent.click(removeIcon);
 

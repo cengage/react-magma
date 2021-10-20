@@ -158,7 +158,7 @@ export const defaultI18n: I18nInterface = {
       }
     },
     files: 'files',
-    bytes: 'bytes',
+    bytes: 'Bytes',
     deleteFile: 'Delete file',
     removeFile: 'Remove file'
   },

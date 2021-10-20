@@ -1,4 +1,4 @@
-import {
+import React, {
   forwardRef,
   useContext,
   useEffect,
@@ -35,7 +35,6 @@ import {
 import { FileIcon } from './FileIcon';
 import { FilePreview } from './FilePreview';
 import { formatFileSize } from './utils';
-import React from 'react';
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   accept?: string | string[];

@@ -1,4 +1,4 @@
-export const formatFileSize = (bytes: number | undefined, decimalPoint?:number = 2, bytesLabel?: string = 'Bytes') => {
+export const formatFileSize = (bytes: number | undefined, decimalPoint:number = 2, bytesLabel: string = 'Bytes') => {
   if(bytes === undefined) return;
   if(bytes == 0) return `0 ${bytesLabel}`;
   const k = 1024,
