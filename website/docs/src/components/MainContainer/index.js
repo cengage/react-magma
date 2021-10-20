@@ -1,23 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Masthead } from '../Masthead';
+import { SideBar } from '../SideBar';
 import { DarkModeContext } from '../DarkMode/DarkModeContext';
 
 import { SkipLink, magma, Container, GlobalStyles } from '@react-magma/dom';
 
 const StyledContainer = styled.div`
-  @media (min-width: ${magma.breakpoints.large}px) {
+  @media (min-width: ${magma.breakpoints.large + 1}px) {
     display: grid;
-    grid-template-columns: 280px auto;
-    grid-template-rows: 88px auto;
+    grid-template-columns: 240px auto;
+    grid-template-rows: 56px auto;
     grid-template-areas:
       'masthead masthead'
       'nav content';
   }
-`;
-
-const SideBar = styled.div`
-
 `;
 
 const StyledSkipLink = styled(SkipLink)`
