@@ -136,18 +136,19 @@ const formatError = (
     maxSize?: number;
     minSize?: number;
     accept?: string | string[];
-  }
+  },
+  byteLabel: string
 ) => {
   switch (error.code) {
     case 'file-too-large':
       return {
         ...error,
-        message: `${error.message} ${formatFileSize(constraints.maxSize, 2, i18n.fileUploader.bytes)}.`,
+        message: `${error.message} ${formatFileSize(constraints.maxSize, 2, byteLabel)}.`,
       };
     case 'file-too-small':
       return {
         ...error,
-        message: `${error.message} ${formatFileSize(constraints.minSize, 2, i18n.fileUploader.bytes)}.`,
+        message: `${error.message} ${formatFileSize(constraints.minSize, 2, byteLabel)}.`,
       };
     case 'file-invalid-type':
       const accept =
@@ -309,7 +310,8 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               {file.errors.slice(0, 1).map(({ code, ...rest }) => {
                 const { header = '', message } = formatError(
                   { code, ...rest, ...i18n.fileUploader.errors[code] },
-                  { accept, minSize, maxSize }
+                  { accept, minSize, maxSize },
+                  i18n.fileUploader.bytes
                 );
                 return (
                   <React.Fragment key={code}>
