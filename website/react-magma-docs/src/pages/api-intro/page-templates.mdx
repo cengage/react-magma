@@ -23,11 +23,12 @@ import { magma, useMediaQuery } from 'react-magma-dom';
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'header header'
     'content content';
+  gap: 2px;
 `;
 
 const StyledHeader = styled(Header)`
@@ -37,9 +38,16 @@ const StyledHeader = styled(Header)`
 const Content = styled.div`
   grid-area: content;
   max-width: 1600px;
-  justify-self: center;
   width: calc(100% - 48px);
+  justify-self:center;
+  background:${magma.colors.neutral06};
+  padding:${magma.spaceScale.spacing05};
+  height:calc(100vh - 122px);
 `;
+
+const Sidebar = () => (
+  <StyledSidebar>Sidebar</StyledSidebar>
+);
 
 export function Example() {
 
@@ -48,10 +56,15 @@ export function Example() {
   );
 
   return (
-    <Container>
-      <StyledHeader isCompact={isSmallerScreen}></StyledHeader>
-      <Content></Content>
-    </Container>
+
+      <Container>
+
+        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} />
+
+        <Content>Content</Content>
+
+      </Container>
+
   );
 }
 ```
@@ -70,15 +83,16 @@ This template is great for pages that focus more on reading content like marketi
 import React from 'react';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, useMediaQuery } from 'react-magma-dom';
+import { Drawer, DrawerPosition, magma, useMediaQuery } from 'react-magma-dom';
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'header header'
     'content content';
+  gap: 2px;
 `;
 
 const StyledHeader = styled(Header)`
@@ -88,9 +102,16 @@ const StyledHeader = styled(Header)`
 const Content = styled.div`
   grid-area: content;
   max-width: 1152px;
-  justify-self: center;
   width: calc(100% - 48px);
+  justify-self:center;
+  background:${magma.colors.neutral06};
+  padding:${magma.spaceScale.spacing05};
+  height:calc(100vh - 122px);
 `;
+
+const Sidebar = () => (
+  <StyledSidebar>Sidebar</StyledSidebar>
+);
 
 export function Example() {
 
@@ -99,10 +120,15 @@ export function Example() {
   );
 
   return (
-    <Container>
-      <StyledHeader isCompact={isSmallerScreen}></StyledHeader>
-      <Content></Content>
-    </Container>
+
+      <Container>
+
+        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} />
+
+        <Content>Content</Content>
+
+      </Container>
+
   );
 }
 ```
@@ -121,23 +147,28 @@ This template includes a screen region for a left sidebar and includes all of th
 import React from 'react';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, useMediaQuery } from 'react-magma-dom';
+import { Drawer, DrawerPosition, magma, useMediaQuery } from 'react-magma-dom';
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'sidebar header'
     'sidebar content';
+  gap: 2px;
 `;
 
 const StyledHeader = styled(Header)`
   grid-area: header;
 `;
 
-const Sidebar = styled.div`
+const StyledSidebar = styled.div`
+  width:240px;
   grid-area: sidebar;
+  background:${magma.colors.neutral06};
+  padding:${magma.spaceScale.spacing05};
+  height:calc(100vh - 32px);
 `;
 
 const Content = styled.div`
@@ -145,20 +176,39 @@ const Content = styled.div`
   max-width: 1600px;
   width:100%;
   justify-self:center;
+  background:${magma.colors.neutral06};
+  padding:${magma.spaceScale.spacing05};
+  height:calc(100vh - 122px);
 `;
 
+const Sidebar = () => (
+  <StyledSidebar>Sidebar</StyledSidebar>
+);
+
 export function Example() {
+
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+
+  const isLargeScreen = useMediaQuery(
+    `(max-width:${magma.breakpoints.large}px)`
+  );
 
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
   );
 
   return (
-    <Container>
-      <StyledHeader isCompact={isSmallerScreen}></StyledHeader>
-      <Sidebar></Sidebar>
-      <Content></Content>
-    </Container>
+
+      <Container>
+
+        { isLargeScreen ? <Drawer position={DrawerPosition.left} isOpen={openDrawer}><Sidebar/></Drawer> : <Sidebar/> }
+
+        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} onMenuButtonClick={() => {setOpenDrawer(!openDrawer)}}/>
+
+        <Content>Content</Content>
+
+      </Container>
+
   );
 }
 ```
@@ -177,24 +227,28 @@ This template also includes the sidebar screen region, but the header extends al
 import React from 'react';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, useMediaQuery } from 'react-magma-dom';
-
+import { Drawer, DrawerPosition, magma, useMediaQuery } from 'react-magma-dom';
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas:
     'header header'
     'sidebar content';
+  gap: 2px;
 `;
 
 const StyledHeader = styled(Header)`
   grid-area: header;
 `;
 
-const Sidebar = styled.div`
+const StyledSidebar = styled.div`
+  width:240px;
   grid-area: sidebar;
+  background:${magma.colors.neutral06};
+  padding:${magma.spaceScale.spacing05};
+  height:calc(100vh - 32px);
 `;
 
 const Content = styled.div`
@@ -202,20 +256,39 @@ const Content = styled.div`
   max-width: 1600px;
   width:100%;
   justify-self:center;
+  background:${magma.colors.neutral06};
+  padding:${magma.spaceScale.spacing05};
+  height:calc(100vh - 122px);
 `;
 
+const Sidebar = () => (
+  <StyledSidebar>Sidebar</StyledSidebar>
+);
+
 export function Example() {
+
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+
+  const isLargeScreen = useMediaQuery(
+    `(max-width:${magma.breakpoints.large}px)`
+  );
 
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
   );
 
   return (
-    <Container>
-      <StyledHeader isCompact={isSmallerScreen}></StyledHeader>
-      <Sidebar></Sidebar>
-      <Content></Content>
-    </Container>
+
+      <Container>
+
+        { isLargeScreen ? <Drawer position={DrawerPosition.left} isOpen={openDrawer}><Sidebar/></Drawer> : <Sidebar/> }
+
+        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} onMenuButtonClick={() => {setOpenDrawer(!openDrawer)}}/>
+
+        <Content>Content</Content>
+
+      </Container>
+
   );
 }
 ```
