@@ -4,13 +4,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import {
-  forwardRef,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React from 'react';
 import {
   useDropzone,
   DropzoneOptions,
@@ -185,7 +179,7 @@ const Wrapper = styled.div<{ isInverse?: boolean }>`
   font-weight: 600;
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
-export const FileUploader = forwardRef<
+export const FileUploader = React.forwardRef<
   HTMLInputElement,
   FileUploaderProps
 >((props, ref) => {
@@ -218,15 +212,15 @@ export const FileUploader = forwardRef<
     ...rest
   } = props;
 
-  const [files, setFiles] = useState<FilePreview[]>([]);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [files, setFiles] = React.useState<FilePreview[]>([]);
+  const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   const isInverse = useIsInverse(isInverseProp);
-  const theme: ThemeInterface = useContext(ThemeContext);
-  const i18n: I18nInterface = useContext(I18nContext);
+  const theme: ThemeInterface = React.useContext(ThemeContext);
+  const i18n: I18nInterface = React.useContext(I18nContext);
   const id = useGenerateId(defaultId);
 
-  const onDrop = useCallback(
+  const onDrop = React.useCallback(
     (acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
       setFiles((files: FilePreview[]) => [
         ...files,
@@ -341,14 +335,14 @@ export const FileUploader = forwardRef<
     }
   };
 
-  useEffect(
+  React.useEffect(
     () => () => {
       files.forEach(file => file.preview && URL.revokeObjectURL(file.preview));
     },
     [files]
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     const minFileError = minFiles && files.length < minFiles;
     const maxFileError = maxFiles && files.length > maxFiles;
 
