@@ -5,7 +5,6 @@ import { CloseIcon, HelpOutlineIcon } from 'react-magma-icons';
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
-import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { HelperInformation } from './HelperInformation';
 import { usePrevious } from '../../utils';
@@ -47,14 +46,14 @@ const Th = styled.th`
   text-align: center;
 `;
 
-const HelperButton = styled.span<{ theme?: any }>`
+const HelperButton = styled.span`
   bottom: var(--spaceScale-spacing01);
   position: absolute;
   right: var(--spaceScale-spacing01);
   z-index: 2;
 `;
 
-const CloseButton = styled.span<{ theme?: any }>`
+const CloseButton = styled.span`
   position: absolute;
   right: var(--spaceScale-spacing01);
   top: var(--spaceScale-spacing01);
@@ -105,7 +104,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     context.setDateFocused(false);
   }
 
-  const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
   const days = [
@@ -120,22 +118,18 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const startOfWeek = days.indexOf(i18n.datePicker.startOfWeek);
   const sortedDays = days.slice(startOfWeek).concat(days.slice(0, startOfWeek));
   const tableDaysHeaders = sortedDays.map((day, index) => (
-    <Th key={index} theme={theme}>
-      {i18n.days.min[day]}
-    </Th>
+    <Th key={index}>{i18n.days.min[day]}</Th>
   ));
 
   return (
     <CalendarContainer
       data-testid="calendarMonthContainer"
       tabIndex={-1}
-      theme={theme}
       onKeyDown={context.onKeyDown}
     >
       <MonthContainer
         data-testid="monthContainer"
         data-visible="true"
-        theme={theme}
         ref={focusTrapElement}
       >
         <CalendarHeader ref={headingRef} focusHeader={focusHeader} />
@@ -143,7 +137,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           role="presentation"
           onBlur={onCalendarTableBlur}
           onFocus={onCalendarTableFocus}
-          theme={theme}
         >
           <tbody>
             <tr>{tableDaysHeaders}</tr>
@@ -161,7 +154,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             ))}
           </tbody>
         </Table>
-        <HelperButton theme={theme}>
+        <HelperButton>
           <IconButton
             aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
             icon={<HelpOutlineIcon />}
@@ -176,7 +169,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             onClose={context.hideHelperInformation}
           />
         </HelperButton>
-        <CloseButton theme={theme}>
+        <CloseButton>
           <IconButton
             aria-label={i18n.datePicker.calendarCloseAriaLabel}
             color={ButtonColor.secondary}

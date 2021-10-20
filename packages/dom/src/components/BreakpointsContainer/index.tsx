@@ -63,7 +63,13 @@ export const BreakpointsContainer: React.FunctionComponent<BreakpointsContainerP
       definedBreakpoints.push(child.props.screenSize);
     });
 
-    const defaultBreakpoints = theme.breakpoints;
+    const defaultBreakpoints = {
+      xs: 0,
+      small: '600px',
+      medium: '768px',
+      large: '1024px',
+      xl: '1200px',
+    };
 
     const breakpointValues = breakpoints ? breakpoints : defaultBreakpoints;
 
