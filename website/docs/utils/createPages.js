@@ -25,7 +25,9 @@ module.exports = async ({ actions, graphql, reporter }) => {
     actions.createPage({
       path: pagePath,
       component: require.resolve("../src/templates/doc.template.js"),
-      context: { pagePath },
+      context: { 
+        pagePath,
+      },
     })
   })
 }

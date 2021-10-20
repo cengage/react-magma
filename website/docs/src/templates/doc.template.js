@@ -10,14 +10,8 @@ export const query = graphql`
           sectionName
         }
         childMdx {
-          frontmatter {
-            title
-          }
+          tableOfContents(maxDepth:3)
           body
-          headings(depth: h2) {
-            value
-            depth
-          }
         }
       }
     }

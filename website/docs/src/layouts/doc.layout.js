@@ -24,8 +24,8 @@ const DocLayout = (({tabs}) => {
           <TabPanel>
             <MDXRenderer>{tabs[tab].body}</MDXRenderer>
             <ul>
-            {tabs[tab].headings.map(heading => (
-              <li><a href={`#${heading.value}`}>{heading.value}</a></li>
+            {tabs[tab].tableOfContents.items.map(section => (
+              <li><a href={section.url}>{section.title}</a></li>
             ))}
             </ul>
           </TabPanel>
