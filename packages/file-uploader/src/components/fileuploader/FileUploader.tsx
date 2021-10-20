@@ -4,7 +4,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import React, {
+import {
   forwardRef,
   useCallback,
   useContext,
