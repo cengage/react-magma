@@ -130,11 +130,17 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
     window.addEventListener('resize', updateWidth);
     window.addEventListener('keydown', handleEsc);
-    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       window.removeEventListener('resize', updateWidth);
       window.removeEventListener('keydown', handleEsc);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, [showTooltip]);
