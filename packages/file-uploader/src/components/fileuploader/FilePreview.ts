@@ -1,4 +1,3 @@
-import React from 'react';
 import { FileWithPath } from 'react-dropzone';
 
 export interface FileError {
