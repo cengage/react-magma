@@ -1,4 +1,8 @@
-import { ThemeTransitions, transitions } from './components/transition';
+import {
+  ThemeTransition,
+  TransitionProps,
+  style,
+} from '../components/Transition';
 
 export interface Colors {
   primary: string;
@@ -44,11 +48,11 @@ export interface Colors {
 }
 
 export interface Breakpoints {
-  xs: string;
-  small: string;
-  medium: string;
-  large: string;
-  xl: string;
+  xs: number;
+  small: number;
+  medium: number;
+  large: number;
+  xl: number;
 }
 
 export interface IconSizes {

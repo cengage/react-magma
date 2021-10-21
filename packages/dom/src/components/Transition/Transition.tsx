@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
-import { MotionVariants } from '../../theme/components/transition';
+import { MotionVariants, style } from './styles';
 
 /**
  * @children required
@@ -114,8 +114,8 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
 
     const variants = Object.keys(rest).reduce(
       (acc, key) => {
-        if (rest[key] && theme.transitions[key]) {
-          const themeVariant = theme.transitions[key];
+        if (rest[key] && style.transitions[key]) {
+          const themeVariant = style.transitions[key];
           rest[key] = undefined;
           return {
             baseStyle: {
