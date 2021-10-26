@@ -9,6 +9,7 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "few-dolls-itch",
     "fuzzy-moles-smoke",
     "light-chairs-march"
   ]

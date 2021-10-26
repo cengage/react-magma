@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.6-next.2
+
+### Patch Changes
+
+- 19ac34d7: chore: update storybook to 6.4.0-beta.20 fixes react 17
+
 ## 2.5.6-next.1
 
 ### Patch Changes
