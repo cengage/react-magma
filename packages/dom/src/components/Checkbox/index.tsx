@@ -130,6 +130,7 @@ export const StyledFakeInput = styled.span<{
   }
 
   ${HiddenInput}:focus + label & {
+    // not put in theme file
     &:before {
       ${props => buildDisplayInputFocusStyles(props)};
     }
@@ -144,6 +145,7 @@ export const StyledFakeInput = styled.span<{
 
   /* prettier-ignore */
   ${HiddenInput}:not(:disabled):active + label & {
+    // not put in theme file
     &:after {
       ${DisplayInputActiveStyles}
     }

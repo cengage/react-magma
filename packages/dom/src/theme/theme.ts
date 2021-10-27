@@ -508,5 +508,208 @@ const theme = {
         },
       },
     },
+    Breadcrumb: {
+      components: {
+        BreadcrumbItem: {
+          listStyle: 'none',
+          margin: 0,
+          padding: 0,
+          display: 'flex',
+
+          StyledSpan: {
+            color: 'var(--colors-neutral03)',
+
+            'svg': {
+              margin: '0 var(--spaceScale-spacing02)',
+            },
+          },
+
+          props: {
+            isInverse: {
+              StyledSpan: {
+                color: 'var(--colors-neutral08)',
+              },
+            },
+          },
+        },
+      },
+      default: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        fontSize: 'var(--typeScale-size02-fontSize)',
+        lineHeight: 'var(--typeScale-size02-lineHeight)',
+        listStyle: 'none',
+        margin: 0,
+        padding: 0,
+      },
+    },
+    Card: {
+      components: {
+        CardBody: {
+          padding: 'var(--spaceScale-spacing05)',
+          textAlign: `${props.align}`,
+
+          '@media': {
+            maxWidth: {
+              [`${breakpoints.small}`]: {
+                padding: 'var(--spaceScale-spacing06)',
+              },
+            },
+          },
+        },
+        CardHeading: {
+          marginTop: 0,
+        },
+      },
+      default: {
+        borderRadius: 'var(--borderRadius)',
+        boxShadow: '0 0 0',
+        color: 'var(--colors-neutral)',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'visible',
+        paddingLeft: '0',
+        position: 'relative',
+        textAlign: `${props.align}`,
+        width: `${props.width}`,
+      },
+      props: {
+        background: {
+          background: 'var(--colors-neutral08)',
+          border: '1px solid var(--colors-neutral06)',
+
+          isInverse: {
+            background: 'var(--colors-foundation)',
+          },
+        },
+        calloutType: {
+          paddingLeft: 'var(--spaceScale-spacing02)',
+
+          '&:before' {
+            background: `${buildCalloutBackground(props)}`,
+            borderRadius: 'var(--borderRadius) 0 0 var(--borderRadius)',
+            content: '',
+            display: 'block',
+            height: '100%',
+            position: 'absolute',
+            left: 0,
+            width: 'var(--spaceScale-spacing02)',
+          },
+        },
+        hasDropShadow: {
+          boxShadow: '0 2px 6px 0 rgba(0,0,0,0.18)',
+        },
+        isInverse: {
+          color: 'var(--colors-neutral08)',
+        },
+      },
+    },
+    Checkbox: {
+      components: {},
+      default: {
+        border: '2px solid',
+        borderColor: `${buildDisplayInputBorderColor(props)}`,
+        color: `${buildCheckIconColor(props)}`,
+        cursor: 'pointer',
+        margin: '0 var(--spaceScale-spacing03) 0 0',
+
+        'svg': {
+          flexShrink: 0,
+          pointerEvents: 'none',
+          transition: 'all 0.2s ease-out',
+        },
+
+        '&:after': {
+          background: `${buildDisplayInputActiveBackground(props)}`,
+          top: '-10px',
+          left: '-10px',
+        },
+      },
+      props: {
+        disabled: {
+          cursor: 'not-allowed',
+        },
+        textPosition: {
+          left: {
+            margin: 'var(--spaceScale-spacing01) 0 0 var(--spaceScale-spacing03)',
+          },
+        },
+      },
+    },
+    ComboboxInput: {
+      components: {
+        StyledInput: {
+          border: 0,
+          display: 'flex',
+          flexGrow: 1,
+          height: 'var(--spaceScale-spacing08)',
+          minWidth: 'var(--spaceScale-spacing07)',
+          paddingLeft: 'var(--spaceScale-spacing02)',
+          width: 0,
+
+          '&:focus': {
+            outline: 0,
+          },
+        },
+      },
+      default: {
+        alignItems: 'center',
+        background: 'var(--colors-neutral08)',
+        border: '1px solid',
+        borderColor: 'var(--colors-neutral03)',
+        borderRadius: 'var(--borderRadius)',
+        display: 'flex',
+        minHeight: 'var(--spaceScale-spacing09)',
+        minWidth: 'var(--spaceScale-spacing13)',
+        padding: '0 var(--spaceScale-spacing03) 0 0',
+        width: '100%',
+      },
+      props: {
+        disabled: {
+          background: 'var(--colors-neutral07)',
+          borderColor: 'var(--colors-neutral05)',
+          color: 'var(--colors-disabledText)',
+          cursor: 'not-allowed',
+          outline: 0,
+
+          '&::placeholder': {
+            color: 'var(--colors-disabledText)',
+          },
+        },
+        hasError: {
+          borderColor: 'var(--colors-danger)',
+          boxShadow: '0 0 0 1px var(--colors-danger)',
+          isInverse: {
+            boxShadow: '0 0 0 1px var(--colors-neutral08)',
+          },
+        },
+        isFocused: {
+          outline: '2px dotted var(--colors-focus)',
+          outlineOffset: '4px',
+          isInverse: {
+            outline: '2px dotted var(--colors-focusInverse)',
+          },
+        },
+        isInverse: {
+          borderColor: 'var(--colors-neutral08)',
+        }
+      },
+    },
+    Container: {
+      default: {
+        background: 'var(--colors-neutral08)',
+        color: 'var(--colors-neutral)',
+        display: 'flow-root',
+        margin: '0 auto',
+        maxWidth: `${props.maxWidth}`,
+        padding: `${`0 ${props.gutterWidth}`}`,
+      },
+      props: {
+        isInverse: {
+          background: 'var(--colors-foundation)',
+          color: 'var(--colors-neutral08)',
+        },
+      },
+    },
   },
 };
