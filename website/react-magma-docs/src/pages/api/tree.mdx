@@ -1,0 +1,55 @@
+---
+pageTitle: Tree API
+title: Tree
+props:
+- TreeProps
+---
+
+<DocsHeading type="api">
+  Tree
+</DocsHeading>
+
+tree that allows arbitrary nesting and custom components
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Tree } from 'react-magma-dom';
+
+export function Example() {
+return <Tree>Tree content</Tree>;
+}
+```
+
+
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        example: 'example i18n',
+      }}
+    >
+      <Tree>override default i18n value: </Tree>
+    </I18nContext.Provider>
+  );
+}
+```
+
+# Tree Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<TreeProps />
