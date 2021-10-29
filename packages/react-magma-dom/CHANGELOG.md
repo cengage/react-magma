@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.6-next.3
+
+### Patch Changes
+
+- 3435eede: fix(textarea): use specific TextareaHTMLAttributes
+
 ## 2.5.6-next.2
 
 ### Patch Changes
