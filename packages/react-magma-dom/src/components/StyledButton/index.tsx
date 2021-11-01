@@ -43,6 +43,9 @@ export const buttonStyles = props => css`
   font-weight: 600;
   height: ${buildButtonSize(props)};
   justify-content: center;
+  letter-spacing: ${props.size === 'small'
+    ? props.theme.typeScale.size01.letterSpacing
+    : 'inherit'};
   line-height: ${buildButtonLineHeight(props)};
   margin: ${props.isFullWidth
     ? `${props.theme.spaceScale.spacing02} 0`
@@ -125,15 +128,15 @@ export const BaseStyledButton = styled.button`
 `;
 
 const SpinnerWrapper = styled.span`
-    position: absolute;
-    display: flex;
-  `;
+  position: absolute;
+  display: flex;
+`;
 
 const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
-    visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
-    display: inline-flex;
-    align-items: center;
-  `;
+  visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
+  display: inline-flex;
+  align-items: center;
+`;
 
 export const StyledButton = React.forwardRef<
   HTMLButtonElement,

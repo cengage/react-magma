@@ -48,6 +48,7 @@ const SubMenuLink = styled.a`
     props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
+  letter-spacing: ${magma.typeScale.size02.letterSpacing};
   line-height: ${magma.typeScale.size02.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
     ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
@@ -65,6 +66,7 @@ const SubMenuLink2 = styled.a`
     props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
+  letter-spacing: ${magma.typeScale.size02.letterSpacing};
   line-height: ${magma.typeScale.size02.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
     ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11};

@@ -6,6 +6,10 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   border-radius: 4px;
   color: #FFFFFF;
   font-size: 12px;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   font-weight: 600;
   max-width: 300px;
@@ -14,20 +18,36 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   z-index: 999;
 }
 
+.emotion-1[data-popper-placement='top'] {
+  margin-bottom: 14px;
+}
+
 .emotion-1[data-popper-placement='top'] > span:last-child {
-  bottom: -4px;
+  bottom: 10px;
+}
+
+.emotion-1[data-popper-placement='bottom'] {
+  margin-top: 14px;
 }
 
 .emotion-1[data-popper-placement='bottom'] > span:last-child {
-  top: -4px;
+  top: 10px;
+}
+
+.emotion-1[data-popper-placement='left'] {
+  margin-right: 14px;
 }
 
 .emotion-1[data-popper-placement='left'] > span:last-child {
-  right: -4px;
+  right: 10px;
+}
+
+.emotion-1[data-popper-placement='right'] {
+  margin-left: 14px;
 }
 
 .emotion-1[data-popper-placement='right'] > span:last-child {
-  left: -4px;
+  left: 10px;
 }
 
 .emotion-0.emotion-0,
@@ -52,6 +72,10 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   border-radius: 4px;
   color: #FFFFFF;
   font-size: 12px;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   font-weight: 600;
   max-width: 300px;
@@ -60,20 +84,36 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   z-index: 999;
 }
 
+.emotion-1[data-popper-placement='top'] {
+  margin-bottom: 14px;
+}
+
 .emotion-1[data-popper-placement='top'] > span:last-child {
-  bottom: -4px;
+  bottom: 10px;
+}
+
+.emotion-1[data-popper-placement='bottom'] {
+  margin-top: 14px;
 }
 
 .emotion-1[data-popper-placement='bottom'] > span:last-child {
-  top: -4px;
+  top: 10px;
+}
+
+.emotion-1[data-popper-placement='left'] {
+  margin-right: 14px;
 }
 
 .emotion-1[data-popper-placement='left'] > span:last-child {
-  right: -4px;
+  right: 10px;
+}
+
+.emotion-1[data-popper-placement='right'] {
+  margin-left: 14px;
 }
 
 .emotion-1[data-popper-placement='right'] > span:last-child {
-  left: -4px;
+  left: 10px;
 }
 
 .emotion-0.emotion-0,
@@ -100,7 +140,6 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   data-popper-reference-hidden="true"
   id="tooltipID"
   role="tooltip"
-  style="position: absolute; left: 0px; top: 0px; bottom: 0px; transform: translate(0px, -12px);"
 >
   Test Content
   <span
