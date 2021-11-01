@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.6-next.4
+
+### Patch Changes
+
+- 5ac10dfb: chore: letter-spacing additions for smaller font sizes
+
 ## 2.5.6-next.3
 
 ### Patch Changes
