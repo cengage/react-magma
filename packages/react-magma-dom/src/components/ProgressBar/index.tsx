@@ -136,6 +136,7 @@ const Bar = styled.div<ProgressBarProps>`
 
 const Percentage = styled.span`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: ${props => props.theme.spaceScale.spacing03};
 `;
