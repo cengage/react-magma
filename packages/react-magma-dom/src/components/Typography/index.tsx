@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 
-export interface TypographyProps<T=HTMLParagraphElement> extends React.HTMLAttributes<T> {
+export interface TypographyProps<T = HTMLParagraphElement>
+  extends React.HTMLAttributes<T> {
   as?: string;
   children?: any;
   color?: TypographyColor;
@@ -154,12 +155,16 @@ export const paragraphSmallStyles = props => css`
   ${baseParagraphStyles(props)}
 
   font-size: ${props.theme.typographyVisualStyles.bodySmall.mobile.fontSize};
+  letter-spacing: ${props.theme.typographyVisualStyles.bodySmall.mobile
+    .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.bodySmall.mobile
     .lineHeight};
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing05} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
+    letter-spacing: ${props.theme.typographyVisualStyles.bodySmall.desktop
+      .letterSpacing};
     line-height: ${props.theme.typographyVisualStyles.bodySmall.desktop
       .lineHeight};
   }
@@ -169,6 +174,8 @@ export const paragraphXSmallStyles = props => css`
   ${baseParagraphStyles(props)}
 
   font-size: ${props.theme.typographyVisualStyles.bodyXSmall.mobile.fontSize};
+  letter-spacing: ${props.theme.typographyVisualStyles.bodyXSmall.mobile
+    .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.bodyXSmall.mobile
     .lineHeight};
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing03} 0`};
@@ -176,6 +183,8 @@ export const paragraphXSmallStyles = props => css`
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
       .fontSize};
+    letter-spacing: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
+      .letterSpacing};
     line-height: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
       .lineHeight};
   }
@@ -475,6 +484,8 @@ export const heading2XSmallStyles = props => css`
   font-size: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
     .fontSize};
   font-weight: ${props.theme.typographyVisualStyles.heading2XSmall.fontWeight};
+  letter-spacing: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
+    .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
     .lineHeight};
   text-transform: uppercase;
@@ -485,6 +496,8 @@ export const heading2XSmallStyles = props => css`
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
       .fontSize};
+    letter-spacing: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
+      .letterSpacing};
     line-height: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
       .lineHeight};
   }
@@ -495,6 +508,8 @@ export const heading2XSmallStyles = props => css`
       .mobile.fontSize};
     font-weight: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
       .fontWeight};
+    letter-spacing: ${props.theme.typographyExpressiveVisualStyles
+      .heading2XSmall.mobile.letterSpacing};
     line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
       .mobile.lineHeight};
     text-transform: none;
@@ -502,6 +517,8 @@ export const heading2XSmallStyles = props => css`
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
         .desktop.fontSize};
+      letter-spacing: ${props.theme.typographyExpressiveVisualStyles
+        .heading2XSmall.desktop.letterSpacing};
       line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
         .desktop.lineHeight};
     }
@@ -513,11 +530,15 @@ export const heading2XSmallStyles = props => css`
       .mobile.fontSize};
     font-weight: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
       .fontWeight};
+    letter-spacing: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
+      .mobile.letterSpacing};
     line-height: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
       .mobile.lineHeight};
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
         .desktop.fontSize};
+      letter-spacing: ${props.theme.typographyNarrativeVisualStyles
+        .heading2XSmall.desktop.letterSpacing};
       line-height: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
         .desktop.lineHeight};
     }

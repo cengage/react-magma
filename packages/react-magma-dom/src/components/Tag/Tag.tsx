@@ -258,6 +258,9 @@ const TagStyling = props => css`
     ? `${props.theme.typeScale.size01.fontSize}`
     : `${props.theme.typeScale.size02.fontSize}`};
   font-weight: ${props.size === 'small' ? `600` : `inherit`};
+  letter-spacing: ${props.size === 'small'
+    ? `${props.theme.typeScale.size01.letterSpacing}`
+    : `${props.theme.typeScale.size02.letterSpacing}`};
   padding: ${buildTagPadding(props)};
   svg:first-of-type {
     height: ${props.size === 'small'

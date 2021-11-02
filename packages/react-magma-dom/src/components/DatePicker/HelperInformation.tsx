@@ -25,6 +25,7 @@ const KeyboardShortcutButtonWrapper = styled.span`
   background: rgb(242, 242, 242);
   font-family: monospace;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-right: ${props => props.theme.spaceScale.spacing03};
   padding: ${props => props.theme.spaceScale.spacing02}
@@ -32,102 +33,104 @@ const KeyboardShortcutButtonWrapper = styled.span`
   text-transform: uppercase;
 `;
 
-export const HelperInformation: React.FunctionComponent<HelperInformationProps> = ({
-  isOpen,
-  onClose,
-}) => {
-  const i18n = React.useContext(I18nContext);
-  const theme = React.useContext(ThemeContext);
+export const HelperInformation: React.FunctionComponent<HelperInformationProps> =
+  ({ isOpen, onClose }) => {
+    const i18n = React.useContext(I18nContext);
+    const theme = React.useContext(ThemeContext);
 
-  return (
-    <Modal
-      isBackgroundClickDisabled
-      header={i18n.datePicker.helpModal.header}
-      onClose={onClose}
-      isOpen={isOpen}
-      size={ModalSize.small}
-      unmountOnExit
-    >
-      <List id="DayPickerKeyboardShortcuts_description">
-        <Item>
-          <KeyboardShortcutButtonWrapper
-            aria-label={i18n.datePicker.helpModal.enter.ariaLabel}
-            role="img"
-            theme={theme}
-          >
-            ↵
-          </KeyboardShortcutButtonWrapper>
-          <div>{i18n.datePicker.helpModal.enter.explanation}</div>
-        </Item>
-        <Item>
-          <KeyboardShortcutButtonWrapper
-            role="img"
-            theme={theme}
-            aria-label={
-              i18n.datePicker.helpModal.rightAndLeftArrowKeys.ariaLabel
-            }
-          >
-            ←/→
-          </KeyboardShortcutButtonWrapper>
-          <div>
-            {i18n.datePicker.helpModal.rightAndLeftArrowKeys.explanation}
-          </div>
-        </Item>
-        <Item>
-          <KeyboardShortcutButtonWrapper
-            role="img"
-            theme={theme}
-            aria-label={i18n.datePicker.helpModal.upAndDownArrowKeys.ariaLabel}
-          >
-            ↑/↓
-          </KeyboardShortcutButtonWrapper>
-          <div>{i18n.datePicker.helpModal.upAndDownArrowKeys.explanation}</div>
-        </Item>
-        <Item>
-          <KeyboardShortcutButtonWrapper
-            role="img"
-            theme={theme}
-            aria-label={
-              i18n.datePicker.helpModal.pageUpAndPageDownKeys.ariaLabel
-            }
-          >
-            {i18n.datePicker.helpModal.pageUpAndPageDownKeys.displayValue}
-          </KeyboardShortcutButtonWrapper>
-          <div>
-            {i18n.datePicker.helpModal.pageUpAndPageDownKeys.explanation}
-          </div>
-        </Item>
-        <Item>
-          <KeyboardShortcutButtonWrapper
-            role="img"
-            theme={theme}
-            aria-label={i18n.datePicker.helpModal.homeAndEndKeys.ariaLabel}
-          >
-            {i18n.datePicker.helpModal.homeAndEndKeys.displayValue}
-          </KeyboardShortcutButtonWrapper>
-          <div>{i18n.datePicker.helpModal.homeAndEndKeys.explanation}</div>
-        </Item>
-        <Item>
-          <KeyboardShortcutButtonWrapper
-            role="img"
-            theme={theme}
-            aria-label={i18n.datePicker.helpModal.escape.ariaLabel}
-          >
-            {i18n.datePicker.helpModal.escape.displayValue}
-          </KeyboardShortcutButtonWrapper>
-          <div>{i18n.datePicker.helpModal.escape.explanation}</div>
-        </Item>
-        <Item>
-          <KeyboardShortcutButtonWrapper
-            role="img"
-            theme={theme}
-            aria-label={i18n.datePicker.helpModal.questionMark.ariaLabel}
-          >
-            ?
-          </KeyboardShortcutButtonWrapper>
-          <div>{i18n.datePicker.helpModal.questionMark.explanation}</div>
-        </Item>
-      </List>
-    </Modal>
-  );
-};
+    return (
+      <Modal
+        isBackgroundClickDisabled
+        header={i18n.datePicker.helpModal.header}
+        onClose={onClose}
+        isOpen={isOpen}
+        size={ModalSize.small}
+        unmountOnExit
+      >
+        <List id="DayPickerKeyboardShortcuts_description">
+          <Item>
+            <KeyboardShortcutButtonWrapper
+              aria-label={i18n.datePicker.helpModal.enter.ariaLabel}
+              role="img"
+              theme={theme}
+            >
+              ↵
+            </KeyboardShortcutButtonWrapper>
+            <div>{i18n.datePicker.helpModal.enter.explanation}</div>
+          </Item>
+          <Item>
+            <KeyboardShortcutButtonWrapper
+              role="img"
+              theme={theme}
+              aria-label={
+                i18n.datePicker.helpModal.rightAndLeftArrowKeys.ariaLabel
+              }
+            >
+              ←/→
+            </KeyboardShortcutButtonWrapper>
+            <div>
+              {i18n.datePicker.helpModal.rightAndLeftArrowKeys.explanation}
+            </div>
+          </Item>
+          <Item>
+            <KeyboardShortcutButtonWrapper
+              role="img"
+              theme={theme}
+              aria-label={
+                i18n.datePicker.helpModal.upAndDownArrowKeys.ariaLabel
+              }
+            >
+              ↑/↓
+            </KeyboardShortcutButtonWrapper>
+            <div>
+              {i18n.datePicker.helpModal.upAndDownArrowKeys.explanation}
+            </div>
+          </Item>
+          <Item>
+            <KeyboardShortcutButtonWrapper
+              role="img"
+              theme={theme}
+              aria-label={
+                i18n.datePicker.helpModal.pageUpAndPageDownKeys.ariaLabel
+              }
+            >
+              {i18n.datePicker.helpModal.pageUpAndPageDownKeys.displayValue}
+            </KeyboardShortcutButtonWrapper>
+            <div>
+              {i18n.datePicker.helpModal.pageUpAndPageDownKeys.explanation}
+            </div>
+          </Item>
+          <Item>
+            <KeyboardShortcutButtonWrapper
+              role="img"
+              theme={theme}
+              aria-label={i18n.datePicker.helpModal.homeAndEndKeys.ariaLabel}
+            >
+              {i18n.datePicker.helpModal.homeAndEndKeys.displayValue}
+            </KeyboardShortcutButtonWrapper>
+            <div>{i18n.datePicker.helpModal.homeAndEndKeys.explanation}</div>
+          </Item>
+          <Item>
+            <KeyboardShortcutButtonWrapper
+              role="img"
+              theme={theme}
+              aria-label={i18n.datePicker.helpModal.escape.ariaLabel}
+            >
+              {i18n.datePicker.helpModal.escape.displayValue}
+            </KeyboardShortcutButtonWrapper>
+            <div>{i18n.datePicker.helpModal.escape.explanation}</div>
+          </Item>
+          <Item>
+            <KeyboardShortcutButtonWrapper
+              role="img"
+              theme={theme}
+              aria-label={i18n.datePicker.helpModal.questionMark.ariaLabel}
+            >
+              ?
+            </KeyboardShortcutButtonWrapper>
+            <div>{i18n.datePicker.helpModal.questionMark.explanation}</div>
+          </Item>
+        </List>
+      </Modal>
+    );
+  };

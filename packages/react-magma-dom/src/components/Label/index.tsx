@@ -54,6 +54,10 @@ const StyledSpan = styled.span<{isInverse: boolean; theme: any; size: InputSize;
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
   font-weight: 600;
+  letter-spacing: ${props =>
+    props.size === InputSize.large
+      ? 'inherit'
+      : props.theme.typeScale.size02.letterSpacing};
   line-height: ${props =>
     props.size === InputSize.large
       ? props.theme.typeScale.size03.lineHeight

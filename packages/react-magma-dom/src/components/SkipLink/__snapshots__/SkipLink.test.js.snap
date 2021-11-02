@@ -27,6 +27,10 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -131,6 +135,10 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;

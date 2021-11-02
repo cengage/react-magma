@@ -309,6 +309,10 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   color: #3F3F3F;
   font-size: 12px;
   font-weight: 700;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   text-transform: uppercase;
   margin: 24px 0 8px;
@@ -324,6 +328,10 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 @media (min-width:600px) {
   .emotion-0 {
     font-size: 12px;
+    -webkit-letter-spacing: .32px;
+    -moz-letter-spacing: .32px;
+    -ms-letter-spacing: .32px;
+    letter-spacing: .32px;
     line-height: 16px;
   }
 }
@@ -335,6 +343,10 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   color: #3F3F3F;
   font-size: 12px;
   font-weight: 700;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   text-transform: uppercase;
   margin: 24px 0 8px;
@@ -350,6 +362,10 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 @media (min-width:600px) {
   .emotion-0 {
     font-size: 12px;
+    -webkit-letter-spacing: .32px;
+    -moz-letter-spacing: .32px;
+    -ms-letter-spacing: .32px;
+    letter-spacing: .32px;
     line-height: 16px;
   }
 }

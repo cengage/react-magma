@@ -1,5 +1,33 @@
 # Change Log
 
+## 2.5.6
+
+### Patch Changes
+
+- 19ac34d7: chore: update storybook to 6.4.0-beta.20 fixes react 17
+- 2cdc9c2a: Allow for mouse to hover in to tooltip message
+- 3435eede: fix(textarea): use specific TextareaHTMLAttributes
+- 5ac10dfb: chore: letter-spacing additions for smaller font sizes
+- cec68d47: fix(magma.ts): added type for primaryInverse color
+
+## 2.5.6-next.4
+
+### Patch Changes
+
+- 5ac10dfb: chore: letter-spacing additions for smaller font sizes
+
+## 2.5.6-next.3
+
+### Patch Changes
+
+- 3435eede: fix(textarea): use specific TextareaHTMLAttributes
+
+## 2.5.6-next.2
+
+### Patch Changes
+
+- 19ac34d7: chore: update storybook to 6.4.0-beta.20 fixes react 17
+
 ## 2.5.6-next.1
 
 ### Patch Changes

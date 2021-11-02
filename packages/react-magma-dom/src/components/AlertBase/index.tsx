@@ -83,6 +83,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props => props.theme.typeScale.size02.fontSize};
+    letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
     line-height: ${props => props.theme.typeScale.size02.lineHeight};
   }
 

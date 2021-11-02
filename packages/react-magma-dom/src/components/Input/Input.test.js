@@ -268,7 +268,12 @@ describe('Input', () => {
     const labelText = 'Input Label';
     const value = 'Test Value';
     const { getByTestId, getByLabelText } = render(
-      <Input labelText={labelText} value={value} onClear={onClear} isClearable />
+      <Input
+        labelText={labelText}
+        value={value}
+        onClear={onClear}
+        isClearable
+      />
     );
 
     fireEvent.click(getByTestId('clear-button'));
@@ -280,7 +285,7 @@ describe('Input', () => {
     const labelText = 'Input Label';
     const value = 'Test Value';
     const { getByTestId, getByLabelText } = render(
-      <Input labelText={labelText} value={value} isClearable disabled/>
+      <Input labelText={labelText} value={value} isClearable disabled />
     );
 
     expect(getByTestId('clear-button')).toBeDisabled();
@@ -363,6 +368,11 @@ describe('Input', () => {
       expect(label).toHaveStyleRule(
         'font-size',
         magma.typeScale.size02.fontSize
+      );
+
+      expect(label).toHaveStyleRule(
+        'letter-spacing',
+        magma.typeScale.size02.letterSpacing
       );
 
       expect(input).toHaveStyleRule(
