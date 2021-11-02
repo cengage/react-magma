@@ -35,10 +35,10 @@ const onSendFile = (props: OnSendFileProps) => {
       onFinish && onFinish({file})
     }
 
-    if(Math.random() * 100 > 90) {
-      clearInterval(interval)
-      onError && onError({errors:[{code: 'upload-err', header: 'story error', message: "The destination server has returned an error."}], file})
-    }
+    // if(Math.random() * 100 > 90) {
+    //   clearInterval(interval)
+    //   onError && onError({errors:[{code: 'upload-err', header: 'story error', message: "The destination server has returned an error."}], file})
+    // }
   }, 100 * Math.random())
 };
 

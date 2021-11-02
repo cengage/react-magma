@@ -299,9 +299,9 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
             <FileName xs behavior={FlexBehavior.item} theme={theme}>
               {file.name}
             </FileName>
-            <Flex role="progressbar" style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>
-              {file.processor && file.processor.percent}
-            </Flex>
+            {file.processor && file.processor.status === 'pending' && <Flex role="progressbar" style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>
+              {file.processor.percent}
+            </Flex>}
             <Flex behavior={FlexBehavior.item}>{actions}</Flex>
           </StyledFlex>
           {file.errors && (

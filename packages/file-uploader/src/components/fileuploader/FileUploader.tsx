@@ -375,6 +375,7 @@ export const FileUploader = React.forwardRef<
   return (
     <InverseContext.Provider value={{ isInverse }}>
       <FormFieldContainer
+        actionable={false}
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
@@ -398,6 +399,7 @@ export const FileUploader = React.forwardRef<
           {...getRootProps()}
           {...rest}
           testId={testId}
+          tabIndex={-1}
         >
           <input ref={ref} {...getInputProps({id})} />
           {noDrag ? (
