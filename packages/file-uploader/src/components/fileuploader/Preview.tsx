@@ -1,4 +1,9 @@
-import { forwardRef, useContext, useEffect, useState } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import {
   CheckCircleIcon,
@@ -6,6 +11,7 @@ import {
   DeleteIcon,
   ErrorIcon,
 } from 'react-magma-icons';
+
 import {
   ButtonColor,
   ButtonVariant,
@@ -29,7 +35,6 @@ import {
 import { FileIcon } from './FileIcon';
 import { FilePreview } from './FilePreview';
 import { formatFileSize } from './utils';
-import React from 'react';
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   accept?: string | string[];
@@ -47,11 +52,11 @@ const Thumb = styled.div<{ file: FilePreview }>`
   background-image: ${({ file }) =>
     `url('${'preview' in file && file.preview}')`};
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   display: inline-block;
   vertical-align: middle;
-  height: 24px;
-  width: 24px;
+  height: 40px;
+  width: 40px;
 `;
 
 const StatusIcons = styled.div`
@@ -59,7 +64,7 @@ const StatusIcons = styled.div`
   grid-template-areas: 'inner-div';
   height: auto;
   place-items: center;
-  width: 42px;
+  width: 46px;
   & > div {
     display: inline-block;
     right: 0;
@@ -73,13 +78,17 @@ const IconStyles = {
 };
 
 const Errors = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral04};
-  padding: 10px;
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral06};
+  padding: 16px;
+  font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
+  line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
 const StyledFlex = styled(Flex)`
-  height: 48px;
-  padding: 0 10px;
+  height: 56px;
+  padding: 0 8px 0 16px;
+  font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
+  line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
 const FileName = styled(Flex)`
@@ -88,6 +97,9 @@ const FileName = styled(Flex)`
   align-items: center;
   text-overflow: ellipsis;
   display: block;
+  margin-right: 24px;
+  font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
+  line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
 const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
@@ -123,21 +135,20 @@ const formatError = (
     maxSize?: number;
     minSize?: number;
     accept?: string | string[];
-  }
+  },
+  byteLabel: string
 ) => {
   switch (error.code) {
     case 'file-too-large':
       return {
         ...error,
-        message: `${error.message} ${formatFileSize(constraints.maxSize)}.`,
+        message: `${error.message} ${formatFileSize(constraints.maxSize, 2, byteLabel)}.`,
       };
-      break;
     case 'file-too-small':
       return {
         ...error,
-        messsge: `${error.message} ${formatFileSize(constraints.minSize)}.`,
+        message: `${error.message} ${formatFileSize(constraints.minSize, 2, byteLabel)}.`,
       };
-      break;
     case 'file-invalid-type':
       const accept =
         Array.isArray(constraints.accept) && constraints.accept.length === 1
@@ -147,7 +158,6 @@ const formatError = (
         ? `one of ${accept.join(', ')}`
         : accept;
       return { ...error, message: `${error.message}: ${messageSuffix}` };
-      break;
     default:
       return error;
   }
@@ -173,37 +183,37 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
     const isInverse = useIsInverse(isInverseProp);
     const [actions, setActions] = useState(<CloseIcon />);
 
-    const handleRemoveFile = (file: FilePreview) => {
-      if (onRemoveFile && typeof onRemoveFile === 'function') {
-        onRemoveFile(file);
-      }
+    const handleRemoveFile = () => {
+      onRemoveFile && typeof onRemoveFile === 'function' && onRemoveFile(file);
     };
 
-    const handleDeleteFile = (file: FilePreview) => {
-      if (onDeleteFile && typeof onDeleteFile === 'function') {
-        onDeleteFile(file);
-      }
+    const handleDeleteFile = () => {
+      onDeleteFile && typeof onDeleteFile === 'function' && onDeleteFile(file);
     };
 
     const FinishedActions = ({ status = 'ready' }: { status?: string }) => {
-      const [done, setDone] = useState(false);
+      const [done, setDone] = useState<boolean>(false);
 
       useEffect(() => {
+        let mounted = true;
         setTimeout(() => {
-          setDone(true);
-        }, 500);
+          if(mounted) {
+            setDone(true);
+          }
+        }, 1000);
+        return () => {
+          mounted = false;
+        };
       }, [status]);
 
       if (status === 'error' || status === 'ready') {
         return (
           <StatusIcons>
             <IconButton
-              onClick={() => {
-                handleRemoveFile(file);
-              }}
+              onClick={handleRemoveFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label="Remove File"
+              aria-label={i18n.fileUploader.removeFile}
               icon={<CloseIcon />}
             />
           </StatusIcons>
@@ -213,24 +223,31 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
       if (status === 'pending') {
         return (
           <StatusIcons>
-            <Spinner />
+            <Spinner
+              color={
+                isInverse ? theme.colors.foundation04 : theme.colors.primary
+              }
+            />
           </StatusIcons>
         );
       }
 
       return (
         <StatusIcons>
-          <Transition isOpen={!done} unmountOnExit nudgeBottom fade>
-            <CheckCircleIcon />
+          <Transition isOpen={!done} unmountOnExit fade>
+            <CheckCircleIcon
+              color={
+                isInverse ? theme.colors.successInverse : theme.colors.success
+              }
+              style={{ marginTop: '4px' }}
+            />
           </Transition>
-          <Transition isOpen={done} unmountOnExit nudgeTop fade>
+          <Transition isOpen={done} unmountOnExit fade>
             <IconButton
-              onClick={() => {
-                handleDeleteFile(file);
-              }}
+              onClick={handleDeleteFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label="Delete File"
+              aria-label={i18n.fileUploader.deleteFile}
               icon={<DeleteIcon />}
             />
           </Transition>
@@ -250,6 +267,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
           file={file}
           data-testid={props.testId}
           ref={ref}
+          role={file.errors ? 'alert' : ''}
         >
           <StyledFlex
             theme={theme}
@@ -273,28 +291,29 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                 thumbnails &&
                 file.type &&
                 file.type.startsWith('image') ? (
-                <Thumb file={file} />
+                <Thumb role="img" file={file} />
               ) : (
                 <FileIcon isInverse={isInverse} file={file} />
               )}
             </Flex>
-            <FileName xs behavior={FlexBehavior.item}>
+            <FileName xs behavior={FlexBehavior.item} theme={theme}>
               {file.name}
             </FileName>
-            <Flex style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>
+            <Flex role="progressbar" style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>
               {file.processor && file.processor.percent}
             </Flex>
             <Flex behavior={FlexBehavior.item}>{actions}</Flex>
           </StyledFlex>
           {file.errors && (
             <Errors theme={theme}>
-              {file.errors.slice(0, 1).map(({ code }) => {
+              {file.errors.slice(0, 1).map(({ code, ...rest }) => {
                 const { header = '', message } = formatError(
-                  { code, ...i18n.fileUploader.errors[code] },
-                  { accept, minSize, maxSize }
+                  { code, ...rest, ...i18n.fileUploader.errors[code] },
+                  { accept, minSize, maxSize },
+                  i18n.fileUploader.bytes
                 );
                 return (
-                  <>
+                  <React.Fragment key={code}>
                     <ErrorHeader
                       style={{
                         color: isInverse
@@ -305,7 +324,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                       {header}
                     </ErrorHeader>
                     <ErrorMessage>{message}</ErrorMessage>
-                  </>
+                  </React.Fragment>
                 );
               })}
             </Errors>

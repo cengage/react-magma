@@ -1,22 +1,14 @@
-import React from 'react';
+import { useState } from 'react';
 import { FileUploader, FileUploaderProps, OnSendFileProps } from './FileUploader';
 import { Textarea, Datagrid } from 'react-magma-dom';
 
-function csvJSON(csv){
-
+function csvJSON(csv: string){
   var lines=csv.split("\n");
-
   var result = [];
-
-  // NOTE: If your columns contain commas in their values, you'll need
-  // to deal with those before doing the next step
-  // (you might convert them to &&& or something, then covert them back later)
-  // jsfiddle showing the issue https://jsfiddle.net/
-  var headers=lines[0].split(",");
+  var headers: Array<string> =lines[0].split(",");
 
   for(var i=1;i<lines.length;i++){
-
-      var obj = {};
+      var obj: Record<string, string> = {};
       var currentline=lines[i].split(",");
 
       for(var j=0;j<headers.length;j++){
@@ -43,9 +35,9 @@ const onSendFile = (props: OnSendFileProps) => {
       onFinish && onFinish({file})
     }
 
-    if(Math.random() * 100 > 1000) {
+    if(Math.random() * 100 > 90) {
       clearInterval(interval)
-      onError && onError({errors:[{code: 'upload-err', message: "The destination server has returned an error."}], file})
+      onError && onError({errors:[{code: 'upload-err', header: 'story error', message: "The destination server has returned an error."}], file})
     }
   }, 100 * Math.random())
 };
@@ -76,7 +68,7 @@ export default {
       control: {
         type: 'boolean',
       },
-      defaultValue: false,
+      defaultValue: true,
     },
   },
 };
@@ -95,9 +87,20 @@ export const Default = (args: FileUploaderProps) => {
   </div>
 };
 
+export const NoLimits = (args: FileUploaderProps) => {
+  return <div style={{background: args.isInverse ? '#003865' : '#fff', padding: '50px'}} >
+    <FileUploader
+      {...args}
+      onSendFile={onSendFile}
+      labelText="Upload files"
+      helperMessage="It's a free for all, upload anything."
+    />
+  </div>
+};
+
 
 export const Image = () => {
-  const [file, setFile] = React.useState<string>();
+  const [file, setFile] = useState<string>();
 
     const onSendFile = (props: OnSendFileProps) => {
     const {file, onFinish} = props;
@@ -121,7 +124,7 @@ export const Image = () => {
 }
 
 export const Text = () => {
-  const [file, setFile] = React.useState<string>();
+  const [file, setFile] = useState<string>();
 
     const onSendFile = (props: OnSendFileProps) => {
     const {file, onFinish} = props;
@@ -145,8 +148,8 @@ export const Text = () => {
 }
 
 export const Csv = () => {
-  const [file, setFile] = React.useState<any>();
-  const [columns, setColumns] = React.useState<any>();
+  const [file, setFile] = useState<any>();
+  const [columns, setColumns] = useState<any>();
 
   const onSendFile = (props: OnSendFileProps) => {
     const {file, onFinish} = props;

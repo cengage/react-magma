@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.5.6-next.1
+
+### Patch Changes
+
+- cec68d47: fix(magma.ts): added type for primaryInverse color
+
+## 2.5.6-next.0
+
+### Patch Changes
+
+- 2cdc9c2a: Allow for mouse to hover in to tooltip message
+
+## 2.5.5
+
+### Patch Changes
+
+- 84507cc4: feat: add fileuploader to i18n
+- 8771bbfe: chore: update icons to 2.3.1
+- ab506800: change to dropdown for table pagination, change drop direction to 'up', and allow dropdown drop direction to be changed through props.
+
+## 2.5.5-next.2
+
+### Patch Changes
+
+- 84507cc: feat: add fileuploader to i18n
+
 ## 2.5.5-next.1
 
 ### Patch Changes
