@@ -15,8 +15,8 @@ const StyledDiv = styled.div`
   line-height: var(--typeScale-size01-lineHeight);
   font-weight: bold;
   margin: 0;
-  padding: var(--spaceScale.spacing03) var(--spaceScale.spacing05)
-    var(--spaceScale.spacing02);
+  padding: var(--spaceScale-spacing03) var(--spaceScale-spacing05)
+    var(--spaceScale-spacing02);
   text-transform: uppercase;
 `;
 

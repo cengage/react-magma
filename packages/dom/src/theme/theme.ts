@@ -711,5 +711,365 @@ const theme = {
         },
       },
     },
+    DatePicker: {
+      components: {
+        CalendarDay: {
+          components: {
+            CalendarDayCell: {
+              border: '1px solid var(--colors-neutral06)',
+              color: 'var(--colors-neutral)',
+              fontSize: 'var(--typeScale-size03-fontsize)',
+              lineHeight: 'var(--typeScale-size03-lineHeight)',
+              height: 'var(--spaceScale-spacing09)',
+              padding: '0',
+              position: 'relative',
+              textAlign: 'center',
+              width: 'var(--spaceScale-spacing09)',
+            },
+            CalendarDayInner: {
+              alignItems: 'center',
+              background: 'var(--colors-neutral08)',
+              border: '2px solid transparent',
+              borderRadius: '100%',
+              color: 'var(--colors-neutral)',
+              cursor: 'pointer',
+              display: 'flex',
+              height: 'calc(var(--spaceScale-spacing09) - 4px)',
+              justifyContent: 'center',
+              margin: 'var(--spaceScale-spacing01)',
+              overflow: 'hidden',
+              outlineOffset: '0',
+              position: 'relative',
+              transition: 'background 0.5s ease-in-out 0s',
+              width: 'calc(var(--spaceScale-spacing09) - 4px)',
+
+              '&:focus': {
+                outline: '2px dotted var(--colors-focus)',
+              },
+
+              '&:before': {
+                background: 'var(--colors-neutral)',
+                content: '',
+                height: '200%',
+                left: '0',
+                opacity: '0',
+                position: 'absolute',
+                top: '-50%',
+                transition: '0.2s',
+                width: '200%',
+              },
+
+              '&:hover': {
+                '&:before': {
+                  opacity: '0.1',
+                },
+              },
+
+              props: {
+                disabled: {
+                  color: 'var(--colors-disabledText)',
+                  cursor: 'not-allowed',
+
+                  '&:hover': {
+                    '&:before': {
+                      opacity: '0',
+                    },
+                  },
+                },
+                isChosen: {
+                  background: 'var(--colors-foundation02)',
+                  color: 'var(--colors-neutral08)',
+                },
+              },
+            },
+            EmptyCell: {
+              border: '0',
+              padding: '0',
+            },
+            TodayIndicator: {
+              borderLeft: '8px solid var(--colors-pop)',
+              borderTop: '8px solid transparent',
+              borderBottom: '8px solid transparent',
+              bottom: '-6px',
+              display: 'block',
+              height: '0',
+              position: 'absolute',
+              transform: 'rotate(45deg)',
+              right: '-2px',
+              width: '0',
+            },
+          },
+        },
+        CalendarHeader: {
+          components: {
+            CalendarHeaderContainer: {
+              alignItems: 'center',
+              display: 'flex',
+              padding: 'var(--spaceScale-spacing10) 0 var(--spaceScale-spacing03)',
+              marginTop: 'calc(var(--spaceScale-spacing01) * -1))',
+            },
+            CalendarHeaderText: {
+              captionSide: 'initial',
+              color: 'var(--colors-neutral)',
+              fontSize: 'var(--typeScale-size03-fontSize)',
+              lineHeight: 'var(--typeScale-size03-lineHeight)',
+              order: '1',
+              textAlign: 'center',
+              flexGrow: '0',
+              flexWidth: '90%',
+              flexBasis: '90%',
+            },
+            CalendarIconButton: {
+              flexGrow: '0',
+              flexWidth: '10%',
+              flexBasis: '10%',
+              order: '0',
+
+              props: {
+                next: {
+                  order: '2',
+                },
+              },
+            },
+          },
+        },
+        CalendarMonth: {
+          components: {
+            CalendarContainer: {
+              background: 'var(--colors-neutral08)',
+              padding: '0 var(--spaceScale-spacing05) var(--spaceScale-spacing03)',
+            },
+            CloseButton: {
+              position: 'absolute',
+              right: 'var(--spaceScale-spacing01)',
+              top: 'var(--spaceScale-spacing01)',
+              zIndex: '1',
+            },
+            HelperButton: {
+              bottom: 'var(--spaceScale-spacing01)',
+              position: 'absolute',
+              right: 'var(--spaceScale-spacing01)',
+              zIndex: '2',
+            },
+            MonthContainer: {
+              background: 'var(--colors-neutral08)',
+              textAlign: 'center',
+              userSelect: 'none',
+              verticalAlign: 'top',
+            },
+            Table: {
+              borderCollapse: 'collapse',
+              borderSpacing: '0',
+              marginBottom: 'var(--spaceScale-spacing09)',
+            },
+            Th: {
+              border: '0',
+              color: 'var(--colors-neutral)',
+              fontSize: 'var(--typeScale-size02-fontSize)',
+              lineHeight: 'var(--typeScale-size02-lineHeight)',
+              fontWeight: 'normal',
+              padding: '0',
+              textAlign: 'center',
+            },
+          },
+        },
+        HelperInformation: {
+          components: {
+            KeyboardShortcutButtonWrapper: {
+              background: 'rgb(242, 242, 242)',
+              fontFamily: 'monospace',
+              fontSize: 'var(--typeScale-size02-fontSize)',
+              lineHeight: 'var(--typeScale-size02-lineHeight)',
+              marginRight: 'var(--spaceScale-spacing03)',
+              padding: 'var(--spaceScale-spacing02) var(--spaceScale-spacing04)',
+              textTransform: 'uppercase',
+            },
+            List: {
+              listStyle: 'none',
+              margin: '0',
+              padding: '0',
+              textAlign: 'left',
+            },
+            Item: {
+              display: 'flex',
+              listStyle: 'none',
+            },
+          },
+        },
+      },
+      default: {
+        border: '1px solid var(--colors-neutral06)',
+        borderRadius: 'var(--borderRadius)',
+        boxShadow: '0 2px 6px 0 rgba(0, 0, 0, 0.15)',
+        display: 'none',
+        marginTop: 'calc(var(--spaceScale-spacing07) * -1))',
+        opacity: '0',
+        overflow: 'hidden',
+        position: 'absolute',
+        transition: 'opacity 0.2s ease-in-out 0s',
+        width: '320px',
+        zIndex: '-1',
+      },
+      props: {
+        opened: {
+          display: 'block',
+          opacity: 1,
+          zIndex: '998',
+        },
+      },
+    },
+    Dropdown: {
+      components: {
+        DropdownContent: {
+          components: {
+            StyledCard: {
+              display: 'none',
+              left: 'var(--spaceScale-spacing02)',
+              opacity: '0',
+              outline: '0',
+              overflowY: 'auto',
+              padding: 'var(--spaceScale-spacing03) 0',
+              position: 'absolute',
+              transition: 'opacity 0.3s',
+              whiteSpace: 'nowrap',
+
+              props: {
+                dropDirection: {
+                  end: {
+                    left: 'auto',
+                    right: 'var(--spaceScale-spacing02)',
+
+                    'left': {
+                      bottom: 'var(--spaceScale-spacing02)',
+                      top: 'auto',
+                    },
+                    'right': {
+                      bottom: 'var(--spaceScale-spacing02)',
+                      top: 'auto',
+                    },
+                  },
+                  left: {
+                    left: 'auto',
+                    right: '100%',
+                    top: 'var(--spaceScale-spacing02)',
+                  },
+                  right: {
+                    left: '100%',
+                    top: 'var(--spaceScale-spacing02)',
+                  },
+                  up: {
+                    top: 'auto',
+                    bottom: '100%',
+                  },
+                },
+                isOpen: {
+                  display: 'block',
+                  opacity: '1',
+                },
+                maxHeight: {
+                  maxHeight: 'var(--dropdown-content-maxHeight)',
+                },
+                width: {
+                  whiteSpace: 'normal',
+                  width: `${props.width}`,
+                },
+              },
+            },
+            StyledDiv: {
+              padding: 'var(--spaceScale-spacing02) 0',
+            },
+          },
+        },
+        DropdownDivider: {
+          components: {
+            StyledHr: {
+              background: 'var(--colors-neutral06)',
+              border: '0',
+              height: '1px',
+              margin: 'var(--spaceScale-spacing02) 0',
+            },
+          },
+        },
+        DropdownHeader: {
+          components: {
+            StyledDiv: {
+              color: 'var(--colors-neutral03)',
+              fontSize: 'var(--typeScale-size01-fontSize)',
+              lineHeight: 'var(--typeScale-size01-lineHeight)',
+              fontWeight: 'bold',
+              margin: ',',
+              padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05) var(--spaceScale-spacing02)',
+              textTransform: 'uppercase',
+            },
+          },
+        },
+        DropdownMenuItem: {
+          components: {
+            IconWrapper: {
+              color: 'var(--colors-neutral03)',
+              display: 'inline-flex',
+              marginRight: 'var(--spaceScale-spacing05)',
+
+              svg: {
+                height: 'var(--iconSizes-medium) px',
+                width: 'var(--iconSizes-medium) px',
+              },
+            },
+            MenuItemStyles: {
+              alignItems: 'center',
+              color: 'var(--colors-neutral)',
+              cursor: 'pointer',
+              display: 'flex',
+              fontSize: 'var(--typeScale-size03-fontSize)',
+              lineHeight: 'var(--typeScale-size03-lineHeight)',
+              margin: '0',
+              padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05)',
+              whiteSpace: 'nowrap',
+
+              '&:hover': {
+                background: 'var(--colors-neutral07)',
+              },
+
+              '&:focus': {
+                background: 'var(--colors-neutral07)',
+                outlineOffset: '-3px',
+              },
+
+              props: {
+                disabled: {
+                  color: 'var(--colors-disabledText)',
+                  cursor: 'not-allowed',
+
+                  '&:hover': {
+                    background: 'none',
+                  },
+
+                  '&:focus': {
+                    background: 'none',
+                  },
+                },
+                isFixedWidth: {
+                  whiteSpace: 'normal',
+                },
+                isInactive: {
+                  padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05) var(--spaceScale-spacing03) var(--spaceScale-spacing11)',
+                },
+              },
+            },
+          },
+        },
+        DropdownMenuNavItem: {
+          components: {
+            StyledItem: {
+              textDecoration: 'none',
+            },
+          },
+        },
+      },
+      default: {
+        display: 'inline-block',
+        position: 'relative',
+      },
+    },
   },
 };
