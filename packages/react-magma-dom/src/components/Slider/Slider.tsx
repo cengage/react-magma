@@ -6,19 +6,18 @@ import { Handle } from './Handle';
 import { Track } from './Track';
 import { useDimensions } from '../../hooks/useDimensions';
 
-import {
-  ProgressBarProps,
-} from '../ProgressBar';
+import { ProgressBarDirection, ProgressBarProps } from '../ProgressBar';
 
 export enum SliderType {
   range = 'range',
   slider = 'slider',
 }
 
-export interface SliderProps extends Omit<ProgressBarProps, 'onChange' | 'defaultValue'> {
-  allowCross?:boolean;
+export interface SliderProps
+  extends Omit<ProgressBarProps, 'onChange' | 'defaultValue'> {
+  allowCross?: boolean;
 
-  count ?: number;
+  count?: number;
 
   defaultValue?: number | number[];
 
@@ -38,6 +37,8 @@ export interface SliderProps extends Omit<ProgressBarProps, 'onChange' | 'defaul
 
   type?: SliderType;
 
+  width?: number;
+
   value?: number[];
 }
 
@@ -52,20 +53,21 @@ const Container = styled.div<ProgressBarProps>`
 
 export const Slider = (props: SliderProps) => {
   const {
-    allowCross=true,
+    allowCross = true,
     children,
-    count=1,
-    direction,
+    count = 1,
+    direction = ProgressBarDirection.horizontal,
     disabled,
     // hasTooltip,
     height,
     max: rangeMax = 100,
     min: rangeMin = 0,
+    marks,
     onChange,
     steps = 1,
     tabIndex = 0,
     // type = SliderType.slider,
-    // width,
+    width,
   } = props;
 
   const [ratio, setRatio] = React.useState<number>(1);
@@ -77,22 +79,31 @@ export const Slider = (props: SliderProps) => {
   };
 
   React.useEffect(() => {
-    setRatio(trackDimensions.width/(rangeMax-rangeMin))
-    setOffset(trackDimensions.left)
-  }, [trackDimensions])
+    if (direction === ProgressBarDirection.horizontal) {
+      setRatio(trackDimensions.width / (rangeMax - rangeMin));
+      setOffset(trackDimensions.left);
+    } else {
+      setRatio(trackDimensions.height / (rangeMax - rangeMin));
+      setOffset(trackDimensions.top);
+    }
+  }, [trackDimensions]);
 
   const initialValue: number[] = Array(...Array(count)).map(() => rangeMin);
-  const defaultValue: number[] = 'defaultValue' in props ? Array.isArray(props.defaultValue) ?
-    props.defaultValue : Array(...Array(count)).map(() => props.defaultValue) : initialValue;
+  const defaultValue: number[] =
+    'defaultValue' in props
+      ? Array.isArray(props.defaultValue)
+        ? props.defaultValue
+        : Array(...Array(count)).map(() => props.defaultValue)
+      : initialValue;
 
-  const [values, setValues] = React.useState<number[]>(defaultValue)
+  const [values, setValues] = React.useState<number[]>(defaultValue);
 
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
 
   React.useEffect(() => {
-    onChange(values);
-  }, [values])
+    onChange && typeof onChange === 'function' && onChange(values);
+  }, [values]);
 
   // const maxDragControls = useDragControls();
 
@@ -107,36 +118,42 @@ export const Slider = (props: SliderProps) => {
     <Container data-testid={props.testId}>
       <Track
         direction={direction}
-        // disabled={disabled}
+        disabled={disabled}
         height={height}
         isInverse={isInverse}
+        marks={marks}
         offset={minPercent}
         // onPointerDown={startDrag}
         percentage={maxPercent - minPercent}
         ref={trackRef}
         theme={theme}
         transitionDuration={0}
+        width={width}
       />
 
       {children}
 
-      {
-        defaultValue.map((value, index) => {
-          return <Handle
+      {defaultValue.map((value, index) => {
+        return (
+          <Handle
             defaultValue={value}
             disabled={disabled}
-            // direction={direction}
+            direction={direction}
             // dragControls={maxDragControls}
             // hasTooltip={hasTooltip}
             // isInverse={isInverse}
             key={index}
-            min={allowCross || index === 0 ? rangeMin : values[index-1] }
-            max={allowCross || index + 1 === defaultValue.length ? rangeMax : values[index+1]}
+            min={allowCross || index === 0 ? rangeMin : values[index - 1]}
+            max={
+              allowCross || index + 1 === defaultValue.length
+                ? rangeMax
+                : values[index + 1]
+            }
             offset={offset}
             onChange={(point: number) => {
               setValues(currentValues =>
-                currentValues.map((v, i) => i === index ? point : v)
-              )
+                currentValues.map((v, i) => (i === index ? point : v))
+              );
             }}
             ratio={ratio}
             steps={steps}
@@ -144,8 +161,8 @@ export const Slider = (props: SliderProps) => {
             theme={theme}
             trackDimensions={trackDimensions}
           />
-        })
-      }
+        );
+      })}
     </Container>
   );
 };

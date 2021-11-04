@@ -1,5 +1,5 @@
 import {
-  useCallback,
+  // useCallback,
   useState,
   useLayoutEffect,
   useRef,
@@ -20,39 +20,40 @@ const defaultDimensions: DOMRect = {
   left: 0,
   right: 0,
   top: 0,
-  toJSON: () => {}
-}
+  toJSON: () => {},
+};
 
-
-export function useDimensions<T=HTMLElement>({
-  dependencies=[],
-  initialDimensions={},
-  observe=true,
+export function useDimensions<T = HTMLElement>({
+  dependencies = [],
+  initialDimensions = {},
+  observe = true,
 }: UseDimensionsProps = {}): [React.RefObject<T>, DOMRect] {
-
-  const [dimensions, setDimensions] = useState({...defaultDimensions, ...initialDimensions});
+  const [dimensions, setDimensions] = useState({
+    ...defaultDimensions,
+    ...initialDimensions,
+  });
   const ref = useRef<HTMLElement>();
 
   useLayoutEffect(() => {
-    if(!ref) return;
+    if (!ref) return;
 
     const measure = () => {
       setDimensions(ref.current.getBoundingClientRect());
-    }
-    
+    };
+
     measure();
 
-    if(observe) {
+    if (observe) {
       window.addEventListener('resize', measure);
       window.addEventListener('scroll', measure);
     }
 
     return () => {
-      if(observe) {
+      if (observe) {
         window.removeEventListener('resize', measure);
         window.removeEventListener('scroll', measure);
-      } 
-    }
+      }
+    };
   }, [observe, ...dependencies]);
 
   return [ref, dimensions];
