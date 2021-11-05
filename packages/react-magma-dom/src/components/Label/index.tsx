@@ -30,30 +30,6 @@ const StyledLabel = styled.label<{isInverse: boolean; theme: any; size: InputSiz
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
   font-weight: 600;
-  line-height: ${props =>
-    props.size === InputSize.large
-      ? props.theme.typeScale.size03.lineHeight
-      : props.theme.typeScale.size02.lineHeight};
-  margin: ${props =>
-    props.labelPosition === LabelPosition.left
-      ? `0 ${props.theme.spaceScale.spacing05} 0 0`
-      : `0 0 ${props.theme.spaceScale.spacing03}`};
-  max-width: 100%;
-  text-align: left;
-  white-space: nowrap;
-`;
-
-const StyledSpan = styled.span<{isInverse: boolean; theme: any; size: InputSize; labelPosition: LabelPosition}>`
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
-  display: inline-block;
-  font-size: ${props =>
-    props.size === InputSize.large
-      ? props.theme.typeScale.size03.fontSize
-      : props.theme.typeScale.size02.fontSize};
-  font-weight: 600;
   letter-spacing: ${props =>
     props.size === InputSize.large
       ? 'inherit'
@@ -70,6 +46,9 @@ const StyledSpan = styled.span<{isInverse: boolean; theme: any; size: InputSize;
   text-align: left;
   white-space: nowrap;
 `;
+
+const StyledSpan = StyledLabel.withComponent('span')
+
 
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
