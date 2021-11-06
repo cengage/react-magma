@@ -128,7 +128,7 @@ export const defaultI18n: I18nInterface = {
     menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
-  fileUploader: {
+  dropzone: {
     browseFiles: 'Browse Files',
     dragMessage: 'Drag and drop or browse files to upload.',
     errors: {

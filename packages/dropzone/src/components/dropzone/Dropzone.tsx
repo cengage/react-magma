@@ -47,7 +47,7 @@ type DragState =
   | 'dragReject'
   | 'dragActive'
   | 'default';
-export interface FileUploaderProps
+export interface DropzoneProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
   /**
    * Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276
@@ -179,9 +179,9 @@ const Wrapper = styled.div<{ isInverse?: boolean }>`
   font-weight: 600;
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
-export const FileUploader = React.forwardRef<
+export const Dropzone = React.forwardRef<
   HTMLInputElement,
-  FileUploaderProps
+  DropzoneProps
 >((props, ref) => {
   const {
     accept,
@@ -324,12 +324,12 @@ export const FileUploader = React.forwardRef<
     constraints: { maxFiles?: number; minFiles?: number }
   ) => {
     if (code === null) return null;
-    const error = i18n.fileUploader.errors[code];
+    const error = i18n.dropzone.errors[code];
     switch (code) {
       case 'too-many-files':
-        return `${error.message} ${constraints.maxFiles} ${i18n.fileUploader.files}.`;
+        return `${error.message} ${constraints.maxFiles} ${i18n.dropzone.files}.`;
       case 'too-few-files':
-        return `${error.message} ${constraints.minFiles} ${i18n.fileUploader.files}.`;
+        return `${error.message} ${constraints.minFiles} ${i18n.dropzone.files}.`;
       default:
         return error.message;
     }
@@ -411,7 +411,7 @@ export const FileUploader = React.forwardRef<
                 onClick={open}
                 style={{ margin: 0 }}
               >
-                {i18n.fileUploader.browseFiles}
+                {i18n.dropzone.browseFiles}
               </Button>
             </Flex>
           ) : (
@@ -424,7 +424,7 @@ export const FileUploader = React.forwardRef<
                 size={48}
               />
               <Wrapper isInverse={isInverse} theme={theme}>
-                {i18n.fileUploader.dragMessage}
+                {i18n.dropzone.dragMessage}
               </Wrapper>
               <Button
                 color={ButtonColor.secondary}
@@ -434,7 +434,7 @@ export const FileUploader = React.forwardRef<
                 style={{ margin: 0 }}
                 variant={ButtonVariant.solid}
               >
-                {i18n.fileUploader.browseFiles}
+                {i18n.dropzone.browseFiles}
               </Button>
             </Flex>
           )}

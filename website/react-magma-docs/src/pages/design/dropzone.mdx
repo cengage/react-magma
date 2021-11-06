@@ -1,6 +1,6 @@
 ---
-pageTitle: File Uploader Design Guidelines
-title: File Uploader
+pageTitle: Dropzone Design Guidelines
+title: Dropzone
 order: 1
 ---
 
@@ -9,18 +9,20 @@ import './design-guidelines-styles.css';
 import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/file-uploader/" type="design">
-  File Uploader
+<DocsHeading to="/api/dropzone/" type="design">
+  Dropzone
 </DocsHeading>
 <LeadParagraph>
-  File uploaders allow users to upload their own content.  They are commonly used within forms but may also exist on their own.
+  Dropzones allow users to upload their own content. They are commonly used
+  within forms but may also exist on their own.
 </LeadParagraph>
 
-![ ](../../images/file-uploader/uploader-intro-image.png)
+![ ](../../images/dropzone/uploader-intro-image.png)
 
 ## Usage
 
-Use the React Magma file uploader when you want... 
+Use the React Magma dropzone when you want...
+
 - ...users to upload one or more files at a time.
 - ...users to be able to drag and drop files.
 - ...users to see the progress and status of their uploads.
@@ -31,7 +33,7 @@ Use the React Magma file uploader when you want...
 
 ### Full Component
 
-![ ](../../images/file-uploader/uploader-dropzone-anatomy.png)
+![ ](../../images/dropzone/uploader-dropzone-anatomy.png)
 
 1. **Label:** Informs the user what action needs to be taken.
 1. **Description:** Helps the user understand the requirements of what may be uploaded.
@@ -39,10 +41,9 @@ Use the React Magma file uploader when you want...
 1. **Button:** Allows the user to browse their computer’s file system to find the file(s) they wish to upload.
 1. **Uploaded file:** A file that has been successfully uploaded.
 
-
 ### Component Without Dropzone
 
-![ ](../../images/file-uploader/uploader-anatomy.png)
+![ ](../../images/dropzone/uploader-anatomy.png)
 
 1. **Label:** Informs the user what action needs to be taken.
 1. **Description:** Helps the user understand the requirements of what may be uploaded.
@@ -55,7 +56,7 @@ Use the React Magma file uploader when you want...
 
 ### Anatomy
 
-![ ](../../images/file-uploader/uploaded-file-anatomy.png)
+![ ](../../images/dropzone/uploaded-file-anatomy.png)
 
 1. **File type icon:** Helps quickly identify the type of file that was uploaded.
 1. **File name:** Helps the user confirm they uploaded the correct file.
@@ -65,19 +66,19 @@ Use the React Magma file uploader when you want...
 
 A file being uploaded has three different states – loading, success, and uploaded.
 
-![ ](../../images/file-uploader/loading-states.png)
+![ ](../../images/dropzone/loading-states.png)
 
 ### File Types
 
-We use icons on the uploaded file planks to help quickly identify certain commonly used file types – PDF, MS Word, MS Excel, MS Powerpoint, zipped files, etc.  For file types we don’t have a specific icon for, we use a general file icon.
+We use icons on the uploaded file planks to help quickly identify certain commonly used file types – PDF, MS Word, MS Excel, MS Powerpoint, zipped files, etc. For file types we don’t have a specific icon for, we use a general file icon.
 
-![ ](../../images/file-uploader/file-types.png)
+![ ](../../images/dropzone/file-types.png)
 
 ### Overflow
 
 If the name of the file is too long for the space allowed within the container, it will be truncated with an ellipsis (...)
 
-![ ](../../images/file-uploader/uploaded-file-overflow.png)
+![ ](../../images/dropzone/uploaded-file-overflow.png)
 
 ---
 
@@ -85,10 +86,10 @@ If the name of the file is too long for the space allowed within the container, 
 
 When there’s an error uploading a specific file, that file will show an error state with a message. The component comes with basic validation messaging already built into it so you don't have to configure that every time. But if a custom validation message is necessary, make sure the message describes how the user can fix the issue. If the file upload is part of a larger form, you may also include an inline alert at the top of the form.
 
-![ ](../../images/file-uploader/file-validation.png)
+![ ](../../images/dropzone/file-validation.png)
 
 If the error is with the uploader itself and not a specific file, then a validation error message will display below the drop zone or upload button.
 
-![ ](../../images/file-uploader/uploader-validation.png)
+![ ](../../images/dropzone/uploader-validation.png)
 
 <span class="horizontal-spacer"></span>

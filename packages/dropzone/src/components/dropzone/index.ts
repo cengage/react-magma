@@ -1,4 +1,4 @@
 export * from './FileIcon';
 export * from './FilePreview';
-export * from './FileUploader';
+export * from './Dropzone';
 export * from './FilePreview';

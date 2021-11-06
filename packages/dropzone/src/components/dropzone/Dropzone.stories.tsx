@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FileUploader, FileUploaderProps, OnSendFileProps } from './FileUploader';
+import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
 import { Textarea, Datagrid } from 'react-magma-dom';
 
 function csvJSON(csv: string){
@@ -43,8 +43,8 @@ const onSendFile = (props: OnSendFileProps) => {
 };
 
 export default {
-  component: FileUploader,
-  title: 'FileUploader',
+  component: Dropzone,
+  title: 'Dropzone',
   argTypes: {
     noDrag: {
       control: {
@@ -73,9 +73,9 @@ export default {
   },
 };
 
-export const Default = (args: FileUploaderProps) => {
+export const Default = (args: DropzoneProps) => {
   return <div style={{background: args.isInverse ? '#003865' : '#fff', padding: '50px'}} >
-    <FileUploader
+    <Dropzone
       {...args}
       accept={['.png', '.jpg', '.svg']}
       maxFiles={5}
@@ -87,9 +87,9 @@ export const Default = (args: FileUploaderProps) => {
   </div>
 };
 
-export const NoLimits = (args: FileUploaderProps) => {
+export const NoLimits = (args: DropzoneProps) => {
   return <div style={{background: args.isInverse ? '#003865' : '#fff', padding: '50px'}} >
-    <FileUploader
+    <Dropzone
       {...args}
       onSendFile={onSendFile}
       labelText="Upload files"
@@ -113,7 +113,7 @@ export const Image = () => {
   };
 
   return <div>
-    <FileUploader
+    <Dropzone
       onSendFile={onSendFile}
       accept={['image/*']}
       helperMessage="Only PNG files"
@@ -137,7 +137,7 @@ export const Text = () => {
   };
 
   return <div>
-    <FileUploader
+    <Dropzone
       onSendFile={onSendFile}
       accept={['.txt', '.csv']}
       helperMessage="Only TXT or CSV files"
@@ -164,7 +164,7 @@ export const Csv = () => {
   };
 
   return <div>
-    <FileUploader
+    <Dropzone
       onSendFile={onSendFile}
       accept={['.csv']}
       helperMessage="Only CSV files"

@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from 'jest-axe';
-import { FileUploader } from '.';
+import { Dropzone } from '.';
 import { cleanup, render, act, fireEvent, waitFor } from '@testing-library/react';
 import { I18nContext, defaultI18n } from 'react-magma-dom';
 import userEvent from '@testing-library/user-event';
@@ -30,7 +30,7 @@ describe('File Uploader', () => {
 
   it('should render the file uploader component', () => {
     const { container, getByText } = render(
-      <FileUploader/>
+      <Dropzone/>
     );
 
     expect(
@@ -44,7 +44,7 @@ describe('File Uploader', () => {
 
   it('should render the file uploader component without drag', () => {
     const { container, queryByText } = render(
-      <FileUploader noDrag/>
+      <Dropzone noDrag/>
     );
 
     expect(queryByText('Browse Files')).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe('File Uploader', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
-      <FileUploader testId={testId}/>
+      <Dropzone testId={testId}/>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -66,7 +66,7 @@ describe('File Uploader', () => {
     jest.useRealTimers();
 
     const { container } = render(
-      <FileUploader/>
+      <Dropzone/>
     );
 
     return axe(container.innerHTML).then(result => {
@@ -79,13 +79,13 @@ describe('File Uploader', () => {
     const { getByText } = render(
       <I18nContext.Provider value={
           { ...defaultI18n,
-            fileUploader: {
-              ...defaultI18n.fileUploader,
+            dropzone: {
+              ...defaultI18n.dropzone,
               browseFiles
             }
           }
         }>
-        <FileUploader/>
+        <Dropzone/>
       </I18nContext.Provider>
     );
 
@@ -95,7 +95,7 @@ describe('File Uploader', () => {
   it('sets {accept} prop on the <input>', () => {
     const accept = 'image/jpeg';
     const { container } = render(
-      <FileUploader accept={accept}/>
+      <Dropzone accept={accept}/>
     );
 
     const input = container.querySelector('input');
@@ -103,7 +103,7 @@ describe('File Uploader', () => {
   });
 
   it('sets {multiple} prop on the <input>', () => {
-    const { container } = render(<FileUploader multiple />);
+    const { container } = render(<Dropzone multiple />);
 
     const input = container.querySelector('input');
     expect(input).toHaveAttribute('multiple');
@@ -111,7 +111,7 @@ describe('File Uploader', () => {
 
   it('allows adding files via drop', () => {
     const { container } = render(
-      <FileUploader />
+      <Dropzone />
     );
 
     const dropzone = container.querySelector('div');
@@ -125,7 +125,7 @@ describe('File Uploader', () => {
 
   it('allows adding files via drop', () => {
     const { container } = render(
-      <FileUploader />
+      <Dropzone />
     );
 
     const dropzone = container.querySelector('div');
@@ -140,7 +140,7 @@ describe('File Uploader', () => {
   it('border color changes for success', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
-    const ui = <FileUploader testId={testId}/>;
+    const ui = <Dropzone testId={testId}/>;
     const { getByTestId, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
@@ -155,7 +155,7 @@ describe('File Uploader', () => {
   it('border color changes for rejection', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
-    const ui = <FileUploader accept="image/*" testId={testId} />;
+    const ui = <Dropzone accept="image/*" testId={testId} />;
     const { getByTestId, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
@@ -169,7 +169,7 @@ describe('File Uploader', () => {
 
   it('calls onSendFiles for a single file added via the input', async () => {
     const onSendFileSpy = jest.fn();
-    const ui = <FileUploader sendFiles onSendFile={onSendFileSpy} />;
+    const ui = <Dropzone sendFiles onSendFile={onSendFileSpy} />;
 
     const { container, rerender } = render(ui);
     const input = container.querySelector('input');
@@ -184,7 +184,7 @@ describe('File Uploader', () => {
 
   it('calls onSendFiles for multiple files added via the input', async () => {
     const onSendFileSpy = jest.fn();
-    const ui = <FileUploader sendFiles onSendFile={onSendFileSpy} />;
+    const ui = <Dropzone sendFiles onSendFile={onSendFileSpy} />;
 
     const { container, rerender } = render(ui);
     const input = container.querySelector('input');
@@ -208,7 +208,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader sendFiles onSendFile={onSendFileSpy} testId={testId} />
+      <Dropzone sendFiles onSendFile={onSendFileSpy} testId={testId} />
     );
     const { getByTestId, rerender } = render(ui);
 
@@ -228,7 +228,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader sendFiles onSendFile={onSendFileSpy} testId={testId} />
+      <Dropzone sendFiles onSendFile={onSendFileSpy} testId={testId} />
     );
     const { getByTestId, rerender } = render(ui);
 
@@ -251,7 +251,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = sendFiles => (
-      <FileUploader
+      <Dropzone
         sendFiles={sendFiles}
         onSendFile={onSendFileSpy}
         testId={testId}
@@ -277,7 +277,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = <FileUploader
+    const ui = <Dropzone
       sendFiles
       testId={testId}
     />;
@@ -297,7 +297,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles([images[0]]);
     const testId = 'testId';
 
-    const ui = <FileUploader accept={['.png']} testId={testId} />;
+    const ui = <Dropzone accept={['.png']} testId={testId} />;
 
     const { getByTestId, getByRole, rerender } = render(ui);
 
@@ -315,7 +315,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader thumbnails={false} accept={['.png']} testId={testId} />
+      <Dropzone thumbnails={false} accept={['.png']} testId={testId} />
     );
 
     const { getByTestId, queryByRole, rerender } = render(ui);
@@ -333,7 +333,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader accept={['.png']} testId={testId} />
+      <Dropzone accept={['.png']} testId={testId} />
     );
 
     const { getByTestId, getByText, rerender } = render(ui);
@@ -350,7 +350,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(images);
     const testId = 'testId';
 
-    const ui = <FileUploader maxFiles={1} testId={testId} />;
+    const ui = <Dropzone maxFiles={1} testId={testId} />;
 
     const { getByTestId, getByText, rerender } = render(ui);
 
@@ -368,7 +368,7 @@ describe('File Uploader', () => {
       const data = createDtWithFiles(images);
       const testId = 'testId';
 
-      const ui = <FileUploader minFiles={6} testId={testId} />;
+      const ui = <Dropzone minFiles={6} testId={testId} />;
 
       const { getByTestId, getByText, rerender } = render(ui);
 
@@ -386,7 +386,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = <FileUploader maxSize={1} testId={testId} />;
+    const ui = <Dropzone maxSize={1} testId={testId} />;
 
     const { getByTestId, getByText, rerender } = render(ui);
 
@@ -404,7 +404,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = <FileUploader minSize={10000} testId={testId} />;
+    const ui = <Dropzone minSize={10000} testId={testId} />;
 
     const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
 
@@ -426,7 +426,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader sendFiles onSendFile={onSendFile} testId={testId} />
+      <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />
     );
 
     const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
@@ -448,7 +448,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = <FileUploader sendFiles onSendFile={onSendFile} testId={testId} />;
+    const ui = <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />;
 
     const { getByTestId, getByText, rerender } = render(ui);
 
@@ -468,7 +468,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader sendFiles onSendFile={onSendFile} testId={testId} />
+      <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />
     );
 
     const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
@@ -491,7 +491,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader sendFiles onSendFile={onSendFile} testId={testId} />
+      <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />
     );
 
     const { getByTestId, getByLabelText, getByText, queryByText, rerender } =
@@ -521,7 +521,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader sendFiles onDeleteFile={onDeleteFileSpy} onSendFile={onSendFile} testId={testId} />
+      <Dropzone sendFiles onDeleteFile={onDeleteFileSpy} onSendFile={onSendFile} testId={testId} />
     );
 
     const { getByTestId, getByLabelText, getByText, queryByText, rerender } =
@@ -546,7 +546,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = <FileUploader testId={testId} />;
+    const ui = <Dropzone testId={testId} />;
 
     const { getByTestId, getByLabelText, queryByText, rerender } = render(ui);
 
@@ -569,7 +569,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <FileUploader onRemoveFile={onRemoveFileSpy} testId={testId} />
+      <Dropzone onRemoveFile={onRemoveFileSpy} testId={testId} />
     );
 
     const { getByTestId, getByLabelText, queryByText, rerender } = render(ui);

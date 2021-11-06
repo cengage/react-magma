@@ -213,7 +213,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               onClick={handleRemoveFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label={i18n.fileUploader.removeFile}
+              aria-label={i18n.dropzone.removeFile}
               icon={<CloseIcon />}
             />
           </StatusIcons>
@@ -247,7 +247,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               onClick={handleDeleteFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label={i18n.fileUploader.deleteFile}
+              aria-label={i18n.dropzone.deleteFile}
               icon={<DeleteIcon />}
             />
           </Transition>
@@ -308,9 +308,9 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
             <Errors theme={theme}>
               {file.errors.slice(0, 1).map(({ code, ...rest }) => {
                 const { header = '', message } = formatError(
-                  { code, ...rest, ...i18n.fileUploader.errors[code] },
+                  { code, ...rest, ...i18n.dropzone.errors[code] },
                   { accept, minSize, maxSize },
-                  i18n.fileUploader.bytes
+                  i18n.dropzone.bytes
                 );
                 return (
                   <React.Fragment key={code}>
