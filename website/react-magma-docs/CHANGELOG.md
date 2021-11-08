@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.8-next.0
+
+### Patch Changes
+
+- b4cc2a84: - Feature RM New Header
+- Updated dependencies [d3d61224]
+  - @react-magma/dropzone@0.1.0-next.1
+
 ## 2.2.7
 
 ### Patch Changes
