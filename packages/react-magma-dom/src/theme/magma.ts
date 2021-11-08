@@ -554,7 +554,7 @@ export const magma = {
 
   appBar: {
     backgroundColor: colors.neutral08,
-    height: '88px',
+    height: '56px',
     padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
     textColor: colors.neutral,
     compact: {

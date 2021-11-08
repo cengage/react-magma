@@ -133,7 +133,7 @@ export interface I18nInterface {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
   };
-  fileUploader: {
+  dropzone: {
     browseFiles: string;
     dragMessage: string;
     errors: {
@@ -143,6 +143,9 @@ export interface I18nInterface {
       };
     }
     files: string;
+    bytes: string;
+    deleteFile: string;
+    removeFile: string;
   };
   header: {
     navigationButtonLabel: string;
