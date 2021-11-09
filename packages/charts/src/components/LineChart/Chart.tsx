@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { I18nContext, styled, ThemeContext } from 'react-magma-dom';
+import {
+  I18nContext,
+  styled,
+  ThemeContext,
+  useDescendants,
+} from 'react-magma-dom';
 
 import { LineChart, LineChartProps } from './LineChart';
 import { ChartDataTable } from './ChartDataTable';
@@ -54,8 +59,31 @@ function BaseChart<T>(
 ) {
   const { description, title, testId, type, ...other } = props;
   const firstTabRef = React.useRef<HTMLButtonElement>();
+  const lastFocusedScatterPoint = React.useRef<SVGPathElement>();
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+
+  const [pointRefArray, registerPoint, unregisterPoint] = useDescendants();
+
+  function handleChartTabKeydown(event: React.KeyboardEvent) {
+    const { key, shiftKey } = event;
+    switch (key) {
+      case 'Tab': {
+        if (
+          !shiftKey &&
+          lastFocusedScatterPoint &&
+          lastFocusedScatterPoint.current &&
+          pointRefArray.current.find(
+            point => point.current === lastFocusedScatterPoint.current
+          )
+        ) {
+          event.preventDefault();
+          lastFocusedScatterPoint.current.focus();
+        }
+        break;
+      }
+    }
+  }
 
   return (
     <div ref={ref}>
@@ -70,13 +98,22 @@ function BaseChart<T>(
       )}
       <StyledTabsContainer theme={theme}>
         <Tabs aria-label="Line Chart Demo">
-          <Tab ref={firstTabRef}>{i18n.charts.line.chartTabLabel}</Tab>
+          <Tab onKeyDown={handleChartTabKeydown} ref={firstTabRef}>
+            {i18n.charts.line.chartTabLabel}
+          </Tab>
           <Tab>{i18n.charts.line.dataTabLabel}</Tab>
         </Tabs>
         <TabPanelsContainer>
           <StyledTabPanel theme={theme}>
             {type === 'line' && (
-              <LineChart<T> {...other} tabRef={firstTabRef} />
+              <LineChart<T>
+                {...other}
+                lastFocusedScatterPoint={lastFocusedScatterPoint}
+                pointRefArray={pointRefArray}
+                registerPoint={registerPoint}
+                tabRef={firstTabRef}
+                unregisterPoint={unregisterPoint}
+              />
             )}
           </StyledTabPanel>
           <StyledTabPanel theme={theme}>

@@ -9,20 +9,15 @@ import {
   VictoryScatter,
   VictoryScatterProps,
   VictoryTooltip,
-  Point,
   VictoryVoronoiContainer,
 } from 'victory';
 
-import {
-  I18nContext,
-  ThemeContext,
-  useDescendants,
-  styled,
-} from 'react-magma-dom';
+import { I18nContext, ThemeContext, styled } from 'react-magma-dom';
 
 import magmaTheme from './magma-charts';
 import { AxisTooltip, GraphTooltip } from './GraphTooltip';
-import { CustomPointComponent } from './CustomPointComponent';
+import { CustomScatterDataComponent } from './CustomPointComponent';
+import { CustomAxisComponent } from './CustomAxisComponent';
 import { LegendButton } from './LegendButton';
 
 export type LineChartAxisStyle = VictoryAxisProps['style'];
@@ -58,7 +53,29 @@ export interface LineChartProps<T extends ChartDataOptions> {
   /**
    * @internal
    */
-  tabRef?: React.MutableRefObject<HTMLButtonElement>;
+  lastFocusedScatterPoint: React.MutableRefObject<SVGPathElement>;
+  /**
+   * @internal
+   */
+  pointRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>;
+  /**
+   * @internal
+   */
+  registerPoint: (
+    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    ref: React.MutableRefObject<Element>
+  ) => void;
+  /**
+   * @internal
+   */
+  tabRef: React.MutableRefObject<HTMLButtonElement>;
+  /**
+   * @internal
+   */
+  unregisterPoint: (
+    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    ref: React.MutableRefObject<Element>
+  ) => void;
   x?: keyof T;
   y?: keyof T;
 }
@@ -106,6 +123,10 @@ export function LineChart<T>(props: LineChartProps<T>) {
       } = {},
     } = {},
     data,
+    lastFocusedScatterPoint,
+    pointRefArray,
+    registerPoint,
+    unregisterPoint,
     tabRef,
     x,
     y,
@@ -119,11 +140,13 @@ export function LineChart<T>(props: LineChartProps<T>) {
   const [focusedLine, setFocusedLine] = React.useState<number>(null);
   const [showTooltip, setShowTooltip] = React.useState<string>(undefined);
   const [showXAxisLabel, setShowXAxisLabel] = React.useState<boolean>(true);
+  const [hoveringOnXAxisLine, setHoveringOnXAxisLine] =
+    React.useState<boolean>(false);
 
   const containerRef = React.useRef<HTMLDivElement>();
   const firstLegendButtonRef = React.useRef<HTMLButtonElement>();
 
-  const [pointRefArray, registerPoint, unregisterPoint] = useDescendants();
+  // const [pointRefArray, registerPoint, unregisterPoint] = useDescendants();
 
   React.useEffect(() => {
     updateWidth();
@@ -230,6 +253,10 @@ export function LineChart<T>(props: LineChartProps<T>) {
       point.current.getAttribute('data-line-index'),
       10
     );
+    const currentPointIndex = parseInt(
+      point.current.getAttribute('data-point-index'),
+      10
+    );
     const lineIndexes = pointRefArray.current.reduce(buildLineIndexes, []);
 
     const lowestLineIndex = lineIndexes[0];
@@ -237,15 +264,17 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
     return {
       currentLineIndex,
+      currentPointIndex,
       lineIndexes,
       lowestLineIndex,
       highestLineIndex,
     };
   };
 
-  const findPointToFocus = index => point =>
+  const findPointToFocus = (lineIndex, pointIndex) => point =>
     point.current &&
-    parseInt(point.current.getAttribute('data-line-index'), 10) === index;
+    parseInt(point.current.getAttribute('data-line-index'), 10) === lineIndex &&
+    parseInt(point.current.getAttribute('data-point-index'), 10) === pointIndex;
 
   // eslint-disable-next-line complexity
   function handleChartContainerKeyDown(event: React.KeyboardEvent) {
@@ -253,6 +282,9 @@ export function LineChart<T>(props: LineChartProps<T>) {
     switch (key) {
       case 'Tab': {
         event.preventDefault();
+        lastFocusedScatterPoint.current = pointRefArray.current.find(
+          point => point.current === document.activeElement
+        ).current as SVGPathElement;
         shiftKey
           ? tabRef.current.focus()
           : firstLegendButtonRef.current.focus();
@@ -300,6 +332,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
         if (focusedPoint && focusedPoint.current) {
           const {
             currentLineIndex,
+            currentPointIndex,
             lineIndexes,
             lowestLineIndex,
             highestLineIndex,
@@ -308,8 +341,9 @@ export function LineChart<T>(props: LineChartProps<T>) {
           switch (currentLineIndex) {
             case lowestLineIndex: {
               (
-                pointRefArray.current.find(findPointToFocus(highestLineIndex))
-                  .current as HTMLButtonElement
+                pointRefArray.current.find(
+                  findPointToFocus(highestLineIndex, currentPointIndex)
+                ).current as HTMLButtonElement
               ).focus();
               break;
             }
@@ -318,7 +352,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                 lineIndexes[lineIndexes.indexOf(currentLineIndex) - 1];
               (
                 pointRefArray.current.find(
-                  findPointToFocus(nextLowestLineIndex)
+                  findPointToFocus(nextLowestLineIndex, currentPointIndex)
                 ).current as HTMLButtonElement
               ).focus();
             }
@@ -335,6 +369,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
         if (focusedPoint && focusedPoint.current) {
           const {
             currentLineIndex,
+            currentPointIndex,
             lineIndexes,
             lowestLineIndex,
             highestLineIndex,
@@ -343,8 +378,9 @@ export function LineChart<T>(props: LineChartProps<T>) {
           switch (currentLineIndex) {
             case highestLineIndex: {
               (
-                pointRefArray.current.find(findPointToFocus(lowestLineIndex))
-                  .current as HTMLButtonElement
+                pointRefArray.current.find(
+                  findPointToFocus(lowestLineIndex, currentPointIndex)
+                ).current as HTMLButtonElement
               ).focus();
               break;
             }
@@ -353,11 +389,31 @@ export function LineChart<T>(props: LineChartProps<T>) {
                 lineIndexes[lineIndexes.indexOf(currentLineIndex) + 1];
               (
                 pointRefArray.current.find(
-                  findPointToFocus(nextHighestLineIndex)
+                  findPointToFocus(nextHighestLineIndex, currentPointIndex)
                 ).current as HTMLButtonElement
               ).focus();
             }
           }
+        }
+        break;
+      }
+    }
+  }
+
+  function handleFirstLegendButtonKeydown(event: React.KeyboardEvent) {
+    const { key, shiftKey } = event;
+    switch (key) {
+      case 'Tab': {
+        if (
+          shiftKey &&
+          lastFocusedScatterPoint &&
+          lastFocusedScatterPoint.current &&
+          pointRefArray.current.find(
+            point => point.current === lastFocusedScatterPoint.current
+          )
+        ) {
+          event.preventDefault();
+          lastFocusedScatterPoint.current.focus();
         }
         break;
       }
@@ -378,7 +434,9 @@ export function LineChart<T>(props: LineChartProps<T>) {
               name="xAxisGroupLabel"
               voronoiBlacklist={scatterNames}
               voronoiDimension="x"
-              labels={showXAxisLabel ? () => ` ` : undefined}
+              labels={
+                hoveringOnXAxisLine && showXAxisLabel ? () => ` ` : undefined
+              }
               labelComponent={
                 showXAxisLabel ? (
                   <VictoryTooltip
@@ -397,9 +455,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
           }
           {...chart}
         >
-          <VictoryAxis {...xAxisOther} style={xAxisStyles} />
           <VictoryAxis {...yAxisOther} dependentAxis style={yAxisStyles} />
-
           {data.map(
             ({ data: dataset }, i) =>
               !hiddenData.includes(i) && (
@@ -421,6 +477,18 @@ export function LineChart<T>(props: LineChartProps<T>) {
                 />
               )
           )}
+          <VictoryAxis
+            {...xAxisOther}
+            style={xAxisStyles}
+            gridComponent={
+              <CustomAxisComponent
+                events={{
+                  onMouseEnter: () => setHoveringOnXAxisLine(true),
+                  onMouseLeave: () => setHoveringOnXAxisLine(false),
+                }}
+              />
+            }
+          />
           {data.map(
             ({ data: dataset }, i) =>
               !hiddenData.includes(i) && (
@@ -505,18 +573,11 @@ export function LineChart<T>(props: LineChartProps<T>) {
                     })) as unknown as any[]
                   }
                   dataComponent={
-                    <Point
-                      ariaLabel={({ datum }) => `${datum.label}`}
-                      pathComponent={
-                        <CustomPointComponent
-                          lineIndex={i}
-                          pointRefArray={pointRefArray}
-                          registerPoint={registerPoint}
-                          unregisterPoint={unregisterPoint}
-                        />
-                      }
-                      role="button"
-                      tabIndex={0}
+                    <CustomScatterDataComponent
+                      lineIndex={i}
+                      pointRefArray={pointRefArray}
+                      registerPoint={registerPoint}
+                      unregisterPoint={unregisterPoint}
                     />
                   }
                   labels={() => ''}
@@ -553,13 +614,13 @@ export function LineChart<T>(props: LineChartProps<T>) {
               dataIndex={i}
               isHidden={hiddenData.includes(i)}
               key={i}
+              name={name}
               onClick={handleLegendClick}
+              onKeyDown={i === 0 ? handleFirstLegendButtonKeydown : undefined}
               focusCurrentLine={focusCurrentLine}
               ref={i === 0 ? firstLegendButtonRef : undefined}
               resetLineFocus={resetLineFocus}
-            >
-              {name}
-            </LegendButton>
+            />
           );
         })}
       </DataLegendsContainer>

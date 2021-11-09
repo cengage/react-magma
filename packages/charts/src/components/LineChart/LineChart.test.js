@@ -98,10 +98,10 @@ describe('Line Chart', () => {
 
     expect(
       container.querySelectorAll('svg')[2].childNodes[2].querySelector('path')
-    ).toHaveStyle('opacity: .1');
+    ).toHaveStyle('opacity: 1');
     expect(
       container.querySelectorAll('svg')[2].childNodes[3].querySelector('path')
-    ).toHaveStyle('opacity: 1');
+    ).toHaveStyle('opacity: .1');
   });
 
   it('should unrender line if legend button is clicked', () => {
@@ -139,7 +139,7 @@ describe('Line Chart', () => {
 
       userEvent.tab();
 
-      expect(getByText(/team 1/i)).toHaveFocus();
+      expect(getByLabelText(/team 1/i, { selector: 'input' })).toHaveFocus();
     });
 
     it('should only shift tab in to the graph and out, not between lines or scatter points', () => {
@@ -161,6 +161,90 @@ describe('Line Chart', () => {
       userEvent.tab({ shift: true });
 
       expect(getByText(/chart/i, { selector: 'button' })).toHaveFocus();
+    });
+
+    it('should focus last focused scatter point when tabbing or shift tabbing back in to the chart', () => {
+      const data = [
+        {
+          name: 'Team 1',
+          data: [
+            { x: 1, y: 3.9, label: 'Team 1, January, $39k' },
+            { x: 2, y: 2.8, label: 'Team 1, February, $28k' },
+          ],
+        },
+        {
+          name: 'Team 2',
+          data: [
+            { x: 1, y: 2.7, label: 'Team 2, January, $39k' },
+            { x: 2, y: 3.3, label: 'Team 2, February, $33k' },
+          ],
+        },
+      ];
+      const { getByText, getByLabelText } = render(
+        <Chart
+          componentProps={componentProps}
+          type="line"
+          data={data}
+          title="Basic"
+        />
+      );
+
+      userEvent.click(getByText(/chart/i, { selector: 'button' }));
+      userEvent.tab();
+
+      expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
+
+      userEvent.keyboard('{arrowright}');
+
+      expect(getByLabelText(data[0].data[1].label)).toHaveFocus();
+
+      userEvent.tab();
+      userEvent.tab({ shift: true });
+
+      expect(getByLabelText(data[0].data[1].label)).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      userEvent.tab();
+
+      expect(getByLabelText(data[0].data[1].label)).toHaveFocus();
+    });
+
+    it('should focus last scatter point in the graph when shift tabbing back in to the chart and the last focused scatter point is no longer on the graph', () => {
+      const data = [
+        {
+          name: 'Team 1',
+          data: [
+            { x: 1, y: 3.9, label: 'Team 1, January, $39k' },
+            { x: 2, y: 2.8, label: 'Team 1, February, $28k' },
+          ],
+        },
+        {
+          name: 'Team 2',
+          data: [
+            { x: 1, y: 2.7, label: 'Team 2, January, $39k' },
+            { x: 2, y: 3.3, label: 'Team 2, February, $33k' },
+          ],
+        },
+      ];
+      const { getByText, getByLabelText } = render(
+        <Chart
+          componentProps={componentProps}
+          type="line"
+          data={data}
+          title="Basic"
+        />
+      );
+
+      userEvent.click(getByText(/chart/i, { selector: 'button' }));
+      userEvent.tab();
+
+      expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
+
+      userEvent.tab();
+      userEvent.keyboard('{enter}');
+      userEvent.tab({ shift: true });
+
+      expect(getByLabelText(data[1].data[1].label)).toHaveFocus();
     });
 
     it('should use right arrow keys to go through scatter points', () => {
@@ -355,7 +439,7 @@ describe('Line Chart', () => {
 
       userEvent.keyboard('{arrowup}');
 
-      expect(getByLabelText(basicData[2].data[0].label)).toHaveFocus();
+      expect(getByLabelText(basicData[2].data[4].label)).toHaveFocus();
     });
 
     it('should wrap to the last line when clicking the up arrow key while focused on the first line', () => {
@@ -396,7 +480,7 @@ describe('Line Chart', () => {
 
       userEvent.keyboard('{arrowdown}');
 
-      expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
+      expect(getByLabelText(basicData[0].data[4].label)).toHaveFocus();
     });
   });
 });
