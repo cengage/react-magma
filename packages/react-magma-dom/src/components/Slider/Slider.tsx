@@ -14,7 +14,7 @@ export enum SliderType {
 }
 
 export interface SliderProps
-  extends Omit<ProgressBarProps, 'onChange' | 'defaultValue'> {
+  extends Omit<ProgressBarProps, 'defaultValue'> {
   allowCross?: boolean;
 
   count?: number;
@@ -29,7 +29,7 @@ export interface SliderProps
 
   max: number;
 
-  onChange: (values: number[]) => {};
+  onValueChange: (values: number[]) => {};
 
   steps?: number | number[];
 
@@ -63,7 +63,7 @@ export const Slider = (props: SliderProps) => {
     max: rangeMax = 100,
     min: rangeMin = 0,
     marks,
-    onChange,
+    onValueChange,
     steps = 1,
     tabIndex = 0,
     // type = SliderType.slider,
@@ -93,7 +93,7 @@ export const Slider = (props: SliderProps) => {
     'defaultValue' in props
       ? Array.isArray(props.defaultValue)
         ? props.defaultValue
-        : Array(...Array(count)).map(() => props.defaultValue)
+        : Array(...Array(count)).map(() => props.defaultValue as number)
       : initialValue;
 
   const [values, setValues] = React.useState<number[]>(defaultValue);
@@ -102,7 +102,7 @@ export const Slider = (props: SliderProps) => {
   const isInverse = useIsInverse(props.isInverse);
 
   React.useEffect(() => {
-    onChange && typeof onChange === 'function' && onChange(values);
+    onValueChange && typeof onValueChange === 'function' && onValueChange(values);
   }, [values]);
 
   // const maxDragControls = useDragControls();
@@ -150,7 +150,7 @@ export const Slider = (props: SliderProps) => {
                 : values[index + 1]
             }
             offset={offset}
-            onChange={(point: number) => {
+            onValueChange={(point: number) => {
               setValues(currentValues =>
                 currentValues.map((v, i) => (i === index ? point : v))
               );
@@ -159,7 +159,6 @@ export const Slider = (props: SliderProps) => {
             steps={steps}
             tabIndex={tabIndex}
             theme={theme}
-            trackDimensions={trackDimensions}
           />
         );
       })}

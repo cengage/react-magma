@@ -47,7 +47,7 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isLabelVisible?: boolean;
 
-  marks?: Array<Omit<MarkerProps, 'trackLength' | 'dimensions'>>;
+  marks?: Array<Omit<MarkerProps, 'trackLength'>>;
   /**
    * The offset percentage before which the bar is filled
    * @default 0

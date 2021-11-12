@@ -23,16 +23,16 @@ const defaultDimensions: DOMRect = {
   toJSON: () => {},
 };
 
-export function useDimensions<T = HTMLElement>({
+export function useDimensions<T extends HTMLElement>({
   dependencies = [],
   initialDimensions = {},
   observe = true,
-}: UseDimensionsProps = {}): [React.RefObject<T>, DOMRect] {
+}: UseDimensionsProps = {}): [React.MutableRefObject<T>, DOMRect] {
   const [dimensions, setDimensions] = useState({
     ...defaultDimensions,
     ...initialDimensions,
   });
-  const ref = useRef<HTMLElement>();
+  const ref = useRef<T>();
 
   useLayoutEffect(() => {
     if (!ref) return;

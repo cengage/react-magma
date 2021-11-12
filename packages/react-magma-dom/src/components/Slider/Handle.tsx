@@ -4,24 +4,25 @@ import { useDimensions } from '../../hooks/useDimensions';
 import { ThemeInterface } from '../../theme/magma';
 import { useDebounce } from '../../hooks/useDebounce';
 
-import { motion, useMotionValue } from 'framer-motion';
+import { motion, useMotionValue, HTMLMotionProps } from 'framer-motion';
 import { Tooltip } from '../Tooltip';
 import * as React from 'react';
-export interface HandleProps {
+
+export interface HandleProps extends HTMLMotionProps<'div'> {
   defaultValue: number;
   direction?: ProgressBarDirection;
   disabled?: boolean;
   max: number;
   min: number;
   offset: number;
-  onChange: (value: number) => void;
+  onValueChange: (value: number) => void;
   ratio: number;
   steps: number | number[];
   tabIndex?: number;
   theme?: ThemeInterface;
 }
 
-const StyledHandle = styled.div<Omit<HandleProps, 'onChange'>>`
+const AnimatedHandle = styled(motion.div)<Pick<HandleProps, "disabled" | "theme" | "direction">>`
   box-shadow: ${props =>
     props.disabled
       ? 'none'
@@ -49,9 +50,7 @@ const StyledValueLabel = styled.div`
   text-indent: -9999px;
 `;
 
-const AnimatedHandle = StyledHandle.withComponent(motion.div);
-
-export const Handle = (props: any) => {
+export const Handle = (props: HandleProps) => {
   const {
     defaultValue,
     direction,
@@ -59,7 +58,7 @@ export const Handle = (props: any) => {
     max,
     min,
     offset,
-    onChange,
+    onValueChange,
     ratio,
     steps = 1,
     tabIndex = 0,
@@ -108,7 +107,7 @@ export const Handle = (props: any) => {
 
   React.useEffect(() => {
     console.log('debounce', debouncedValue, toPixels(debouncedValue));
-    onChange(debouncedValue);
+    onValueChange(debouncedValue);
   }, [debouncedValue]);
 
   let handleKeyDown = (event: React.KeyboardEvent) => {
@@ -215,8 +214,8 @@ export const Handle = (props: any) => {
       whileDrag={{ cursor: 'grabbing' }}
     >
       {!disabled && (
-        <Tooltip content={value}>
-          <StyledValueLabel aria-label={value}>{value}</StyledValueLabel>
+        <Tooltip content={value.toString()}>
+          <StyledValueLabel aria-label={value.toString()}>{value.toString()}</StyledValueLabel>
         </Tooltip>
       )}
     </AnimatedHandle>
