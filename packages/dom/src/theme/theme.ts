@@ -1071,5 +1071,490 @@ const theme = {
         position: 'relative',
       },
     },
+    Form: {
+      components: {
+        FormAction: {
+          display: 'flex',
+          justifyContent: 'flex-end',
+        },
+      },
+      default: {
+        background: 'var(--colors-neutral08)',
+        color: 'var(--colors-neutral)',
+      },
+      props: {
+        isInverse: {
+          background: 'var(--colors-foundation)',
+          color: 'var(--colors-neutral08)',
+        },
+      },
+    },
+    FormFieldContainer: {
+      default: {
+        color: 'var(--colors-neutral)',
+        marginBottom: 'var(--spaceScale-spacing03)',
+      },
+      props: {
+        isInverse: {
+          color: 'var(--colors-neutral08)',
+        },
+      },
+    },
+    Hyperlink: {
+      default: {
+        color: 'var(--colors-primary)',
+        textDecoration: 'underline',
+
+        '&:not([disabled])': {
+          '&:hover': {
+            color: 'var(--colors-foundation02)',
+          },
+          '&:focus': {
+            color: 'var(--colors-foundation02)',
+          },
+        },
+
+        '&:focus': {
+          outline: '2px dotted var(--colors-focus)',
+          outlineOffset: '3px',
+        },
+      },
+      props: {
+        isInverse: {
+          color: 'var(--colors-primaryInverse)',
+
+          '&:not([disabled])': {
+            '&:hover': {
+              color: 'var(--colors-primaryInverse)',
+            },
+            '&:focus': {
+              color: 'var(--colors-primaryInverse)',
+            },
+          },
+
+          '&:focus': {
+            outline: '2px dotted var(--colors-focusInverse)',
+          },
+        },
+      },
+    },
+    Input: {
+      components: {
+        InputMessage: {
+          alignItems: 'center',
+          borderRadius: 'var(--borderRadius)',
+          color: `${BuildMessageColor(props)}`,
+          display: 'flex',
+          fontSize: 'var(typeScale-size02-fontSize)',
+          lineHeight: 'var(typeScale-size02-lineHeight)',
+          marginTop: 'var(--spaceScale-spacing02)',
+          minHeight: 'var(--spaceScale-spacing06)',
+          textAlign: 'left',
+
+          props: {
+            InputSize: {
+              large: {
+                marginTop: 'var(--spaceScale-spacing03)',
+              },
+            },
+          },
+        },
+        IconWrapper: {
+          display: 'inline-flex',
+          flexShrink: '0',
+          paddingRight: 'var(--spaceScale-spacing02)',
+        },
+      },
+    },
+    InputBase: {
+      components: {
+        IconButtonContainer: {
+          backgroundColor: 'var(--colors-neutral08)',
+          height: 'auto',
+          margin: '0',
+          position: 'relative',
+          right: 'var(--spaceScale-spacing01)',
+
+          svg: {
+            height: 'var(--iconSizes-medium)px',
+            width: 'var(--iconSizes-medium)px',
+          },
+
+          props: {
+            disabled: {
+              backgroundColor: 'var(--colors-neutral07)',
+            },
+            InputSize: {
+              large: {
+                right: 'var(--spaceScale-spacing02)',
+
+                svg: {
+                  height: 'var(--iconSizes-large)px',
+                  width: 'var(--iconSizes-large)px',
+                },
+              },
+            },
+          },
+        },
+        IconWrapper: {
+          color: 'var(--colors-neutral)',
+          left: 'auto',
+          position: 'absolute',
+          top: 'var(--spaceScale-spacing03',
+
+          props: {
+            IconPosition: {
+              left: {
+                'left': 'var(--spaceScale-spacing03)',
+              },
+              right: {
+                'right': 'var(--spaceScale-spacing03)',
+              },
+            },
+            IconSize: {
+              large: {
+                left: 'auto',
+                right: 'auto',
+                top: 'var(--spaceScale-spacing04)',
+
+                props: {
+                  IconPosition: {
+                    left: {
+                      'left': 'var(--spaceScale-spacing04)',
+                    },
+                    right: {
+                      'right': 'var(--spaceScale-spacing04)',
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        IsClearableContainer: {
+          backgroundColor: 'var(--colors-neutral08)',
+          position: 'relative',
+          right: 'var(--spaceScale-spacing01)',
+
+          props: {
+            disabled: {
+              backgroundColor: 'var(--colors-neutral07)',
+            },
+            InputSize: {
+              large: {
+                right: 'var(--spaceScale-spacing02)',
+              },
+            },
+          },
+        },
+      },
+      default: {
+        border: '0',
+        borderRadius: 'var(--borderRadius)',
+        background: 'var(--colors-neutral08)',
+        color: 'var(--colors-neutral)',
+        display: 'block',
+        fontSize: 'var(--typeScale-size03-fontSize)',
+        lineHeight: 'var(--typeScale-size03-lineHeight)',
+        fontFamily: 'var(--bodyFont)',
+        height: 'var(--spaceScale-spacing09)',
+        padding: 'var(--spaceScale-spacing03)',
+        '-webkit-appearance': 'none',
+        width: '100%',
+
+        '&::placeholder': {
+          color: 'var(--colors-neutral03)',
+          opacity: '1',
+        },
+
+        '&:focus': {
+          outline: '0',
+        },
+
+        '&[type="search"]': {
+          '&::-webkit-search-decoration': {
+            display: 'none',
+          },
+          '&::-webkit-search-cancel-button': {
+            display: 'none',
+          },
+          '&::-webkit-search-results-button': {
+            display: 'none',
+          },
+          '&::-webkit-search-results-decoration': {
+            display: 'none',
+          },
+        },
+      },
+      props: {
+        disabled: {
+          background: 'var(--colors-neutral07)',
+          color: 'var(--colors-disabledText)',
+          cursor: 'not-allowed',
+
+          '&::placeholder': {
+            color: 'var(--colors-disabledText)',
+          },
+        },
+        iconPosition: {
+          left: {
+            paddingLeft: 'var(--spaceScale-spacing09)',
+
+            inputSize: {
+              large: {
+                paddingLeft: 'var(--spaceScale-spacing10)',
+              },
+            },
+          },
+          right: {
+            paddingRight: 'var(--spaceScale-spacing09)',
+
+            inputSize: {
+              large: {
+                paddingRight: 'var(--spaceScale-spacing10)',
+              },
+            },
+          },
+        },
+        inputSize: {
+          large: {
+            fontSize: 'var(--typeScale-size04-fontSize)',
+            lineHeight: 'var(--typeScale-size04-lineHeight)',
+            height: 'var(--spaceScale-spacing11)',
+            padding: '0 var(--spaceScale-spacing04)'
+          },
+        },
+      },
+    },
+    Label: {
+      default: {
+        color: 'var(--colors-neutral)',
+        display: 'inline-block',
+        fontSize: 'var(--typeScale-size03-fontSize)',
+        fontWeight: '600',
+        lineHeight: 'var(--typeScale-size02-lineHeight)',
+        margin: '0 0 var(--spaceScale-spacing03)',
+        maxWidth: '100%',
+        textAlign: 'left',
+        whiteSpace: 'nowrap',
+      },
+      props: {
+        labelPosition: {
+          left: {
+            margin: '0 var(--spaceScale-spacing05) 0 0',
+          },
+        },
+        inputSize: {
+          large: {
+            fontSize: 'var(--typeScale-size02-fontSize)',
+          },
+        },
+        isInverse: {
+          color: 'var(--colors-neutral08)',
+        },
+      },
+    },
+    LoadingIndicator: {
+      components: {
+        Message: {
+          opacity: '1',
+          position: 'absolute',
+          transition: 'opacity 0.3s',
+          width: '100%',
+
+          props: {
+            hide: {
+              opacity: '0',
+            },
+          },
+        },
+        MessageContainer: {
+          fontSize: 'var(--typeScale-size02-fontSize)',
+          lineHeight: 'var(--typeScale-size02-lineHeight)',
+          marginTop: 'var(--spaceScale-spacing05)',
+          minHeight: '5em',
+          position: 'relative',
+          textAlign: 'center',
+        },
+      },
+      default: {
+        textAlign: 'center',
+      },
+    },
+    Modal: {
+      components: {
+        CloseBtn: {
+          position: 'absolute',
+          top: '0',
+          right: '0',
+        },
+        H1: {
+          fontSize: 'var(--typographyVisualStyles-headingSmall-desktop-fontSize)',
+          lineHeight: 'var(--typographyVisualStyles-headingSmall-desktop-lineHeight)',
+          margin: '0',
+          paddingRight: 'var(--spaceScale-spacing10)',
+        },
+        ModalBackdrop: {
+          backdropFilter: 'blur(3px)',
+          background: 'rgba(0, 0, 0, 0.6)',
+          bottom: '0',
+          left: '0',
+          right: '0',
+          top: '0',
+          zIndex: '997',
+          position: 'fixed',
+        },
+        ModalBody: {
+          padding: 'var(--spaceScale-spacing05)',
+
+          '@media': {
+            maxWidth: {
+              [`${breakpoints.small}`]: {
+                padding: 'var(--spaceScale-spacing06)',
+              },
+            },
+          },
+        },
+        ModalContent: {
+          background: 'var(--colors-neutral08)',
+          border: '1px solid',
+          borderColor: 'var(--colors-neutral06)',
+          borderRadius: 'var(--borderRadius)',
+          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+          color: 'var(--colors-neutral)',
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: '1000',
+
+          '@media': {
+            maxWidth: {
+              [`${breakpoints.small}`]: {
+                margin: 'var(--spaceScale-spacing08) auto',
+              },
+            },
+          },
+
+          props: {
+            size: {
+              default: {
+                maxWidth: 'var(--modal-width-medium)',
+              },
+              large: {
+                maxWidth: 'var(--modal-width-large)',
+              },
+              small: {
+                maxWidth: 'var(--modal-width-small)',
+              },
+            },
+          },
+        },
+        ModalHeader: {
+          padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05) 0 var(--spaceScale-spacing05)',
+
+          '@media': {
+            maxWidth: {
+              [`${breakpoints.small}`]: {
+                padding: 'var(--spaceScale-spacing05) var(--spaceScale-spacing06) 0 var(--spaceScale-spacing06)',
+              },
+            },
+          },
+        },
+      },
+      default: {
+        bottom: '0',
+        left: '0',
+        overflowY: 'auto',
+        padding: 'var(--spaceScale-spacing03)',
+        right: '0',
+        top: '0',
+        zIndex: '998',
+      },
+    },
+    Pagination: {
+      components: {
+        NavButton: {
+          borderTop: `${BuildBorder}`,
+          borderRight: `${BuildBorder}`,
+          borderBottom: `${BuildBorder}`,
+          borderLeft: `${BuildBorder}`,
+          height: `${BuildButtonSize}`,
+          margin: '0',
+          padding: '0',
+          width: `${BuildButtonSize}`,
+          '&:focus': {
+            zIndex: 1,
+            outline: '0 !important',
+            outlineOffset: 0,
+            overflow: 'visible',
+          },
+          '&:focus:before': {
+            content: '',
+            border: 'var(--spaceScale-spacing01) solid var(--colors-focus)',
+            borderStyle: 'dotted',
+            height: 'calc(100% + 14px)',
+            left: '-7px',
+            position: 'absolute',
+            top: '-7px',
+            width: 'calc(100% + 14px)',
+          },
+
+          props: {
+            isInverse: {
+              '&:focus:before': {
+                border: 'var(--spaceScale-spacing01) solid var(--colors-focusInverse)',
+              },
+            },
+          },
+        },
+        StyledEllipsis: {
+          alignItems: 'center',
+          borderTop: `${BuildBorder}`,
+          borderRight: `${BuildBorder}`,
+          borderBottom: `${BuildBorder}`,
+          display: 'flex',
+          fontSize: `${pageButtonTypeSize}`,
+          height: `${BuildButtonSize}`,
+          justifyContent: 'center',
+          width: `${BuildButtonSize}`,
+        },
+        StyledList: {
+          display: 'flex',
+          margin: '0',
+          padding: '0',
+        },
+        StyledListItem: {
+          listStyleType: 'none',
+          '&:last-child': {
+            'button': {
+              borderLeft: 'none',            
+            },
+          },
+        },
+        StyledNav: {
+          minWidth: '0',
+        },
+        StyledPageButton: {
+          border: 'none',
+          borderTop: `${BuildBorder}`,
+          borderRight: `${BuildBorder}`,
+          borderBottom: `${BuildBorder}`,
+          borderRadius: '0',
+          boxShadow: `${boxShadowColor}`,
+          fontSize: `${pageButtonTypeSize} !important`,
+          height: `${buttonSize}`,
+          margin: '0',
+          minWidth: '0',
+          padding: '0',
+          width: `${buttonSize}`,
+
+          props: {
+
+          },
+        },
+      },
+      default: {
+
+      },
+    },
   },
 };
