@@ -1,6 +1,8 @@
 import * as React from 'react';
+// import styled from '../../theme/styled';
 import {
   InputBase,
+  InputBaseProps,
   InputIconPosition,
   InputSize,
   InputType,
@@ -10,7 +12,7 @@ import { useIsInverse } from '../../inverse';
 import { SearchIcon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
 
-export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface SearchProps extends InputBaseProps {
   /**
    * Style properties for the component container element
    */
@@ -32,6 +34,7 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
   /**
    * Clear contents of input by clicking a clear button
    */
+  iconPosition?: InputIconPosition;
   isClearable?: boolean;
   /**
    * If true, the component will show a loading animation instead of a search button
@@ -104,11 +107,12 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
         iconAriaLabel={
           iconAriaLabel ? iconAriaLabel : i18n.search.iconAriaLabel
         }
-        iconPosition={InputIconPosition.right}
-        isInverse={useIsInverse(props.isInverse)}
         isClearable={isClearable}
+        isInverse={useIsInverse(props.isInverse)}
         onChange={handleChange}
-        onIconClick={isLoading ? null : handleSearch}
+        onIconClick={
+          props.isPredictive ? null : isLoading ? null : handleSearch
+        }
         onKeyDown={handleKeyPress}
         placeholder={placeholder ? placeholder : i18n.search.input.placeholder}
         type={InputType.search}

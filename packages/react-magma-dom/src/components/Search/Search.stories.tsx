@@ -9,7 +9,6 @@ const Template: Story<SearchProps> = args => (
     onSearch={term => {
       alert(term);
     }}
-    isClearable
   />
 );
 
@@ -27,6 +26,12 @@ export default {
       control: {
         type: 'select',
         options: InputSize,
+      },
+    },
+    isPredictive: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
       },
     },
   },
