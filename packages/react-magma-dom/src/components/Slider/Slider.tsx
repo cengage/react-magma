@@ -66,6 +66,7 @@ export const Slider = (props: SliderProps) => {
     onValueChange,
     steps = 1,
     tabIndex = 0,
+    testId,
     // type = SliderType.slider,
     width,
   } = props;
@@ -115,8 +116,9 @@ export const Slider = (props: SliderProps) => {
   const maxPercent = valueToPercent(Math.max(...values));
 
   return (
-    <Container data-testid={props.testId}>
+    <Container>
       <Track
+        data-testid={testId}
         direction={direction}
         disabled={disabled}
         height={height}
@@ -136,6 +138,7 @@ export const Slider = (props: SliderProps) => {
       {defaultValue.map((value, index) => {
         return (
           <Handle
+            testId={testId && `${testId}-handle${index}`}
             defaultValue={value}
             disabled={disabled}
             direction={direction}

@@ -19,6 +19,7 @@ export interface HandleProps extends HTMLMotionProps<'div'> {
   ratio: number;
   steps: number | number[];
   tabIndex?: number;
+  testId?: string;
   theme?: ThemeInterface;
 }
 
@@ -62,6 +63,7 @@ export const Handle = (props: HandleProps) => {
     ratio,
     steps = 1,
     tabIndex = 0,
+    testId,
     theme,
   } = props;
 
@@ -166,6 +168,10 @@ export const Handle = (props: HandleProps) => {
 
   return (
     <AnimatedHandle
+      aria-valuemax={max}
+      aria-valuemin={min}
+      aria-valuenow={value}
+      data-testid={testId}
       direction={direction}
       disabled={disabled}
       drag={
@@ -204,6 +210,7 @@ export const Handle = (props: HandleProps) => {
         console.log(min, max);
       }}
       ref={handleRef}
+      role='slider'
       style={
         direction === ProgressBarDirection.vertical
           ? { marginTop: -handleDimensions.width / 2, y }
