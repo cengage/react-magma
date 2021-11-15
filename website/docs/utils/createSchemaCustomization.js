@@ -1,4 +1,4 @@
-module.exports = ({ actions, schema }) => {
+module.exports = ({ actions }) => {
   const { createTypes } = actions;
   const typeDefs = [
     `type File {
@@ -8,6 +8,7 @@ module.exports = ({ actions, schema }) => {
     `type Fields {
       pagePath: String
       sectionName: String
+      category: String
     }`,
   ];
   createTypes(typeDefs);

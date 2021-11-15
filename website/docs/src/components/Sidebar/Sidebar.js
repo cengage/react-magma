@@ -9,7 +9,9 @@ import {
 } from '@react-magma/dom';
 import { MenuIcon } from 'react-magma-icons';
 import { Logo } from '../Logo';
-import { SideBarContent } from './SideBarContent';
+import { Content } from './Content';
+
+console.log(Content)
 
 const MainNav = styled.div`
   border-right: 1px solid ${magma.colors.neutral06};
@@ -46,7 +48,7 @@ const StyledIconButton = styled(IconButton)`
   }
 `;
 
-export const SideBar = () => {
+export const Sidebar = () => {
   const [showDrawer, setShowDrawer] = React.useState(false);
 
   const isSmallerScreen = useMediaQuery(
@@ -72,11 +74,11 @@ export const SideBar = () => {
             position="left"
           >
             <Logo />
-            {SideBarContent}
+            <Content/>
           </StyledDrawer>
         </>
       ) : (
-        <MainNav>{SideBarContent}</MainNav>
+        <MainNav><Content/></MainNav>
       )}
     </>
   );

@@ -1,16 +1,10 @@
 import React from "react";
-import { Masthead } from "../components/Masthead";
-import { NetlifyFooter } from "../components/NetlifyFooter";
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
-const GeneralLayout = ({ children, ...info }) => {
+const GeneralLayout = ({ children }) => {
   return (
     <div>
-      <Masthead />
-      <main>
-        <div>{children}</div>
-      </main>
-
-      <NetlifyFooter />
+      <MDXRenderer>{children}</MDXRenderer>
     </div>
   );
 };

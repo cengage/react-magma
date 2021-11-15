@@ -10,6 +10,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
+    "clean-start": "gatsby clean && gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"

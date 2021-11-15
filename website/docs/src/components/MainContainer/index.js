@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Masthead } from '../Masthead';
-import { SideBar } from '../SideBar';
+import { Sidebar } from '../Sidebar';
 import { DarkModeContext } from '../DarkMode/DarkModeContext';
 
 import { SkipLink, magma, Container, GlobalStyles } from '@react-magma/dom';
@@ -55,7 +55,7 @@ export const MainContainer = ({ children }) => {
         />
         <StyledContainer>
           <Masthead />
-          <SideBar />
+          <Sidebar />
           {children}
         </StyledContainer>
       </Container>
