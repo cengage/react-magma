@@ -1547,14 +1547,104 @@ const theme = {
           padding: '0',
           width: `${buttonSize}`,
 
-          props: {
+          '&:focus': {
+            borderColor: `${hoverBorder}`,
+            boxShadow: `${hoverBoxShadowColor}`,
+            outline: '0 !important',
+            outlineOffset: '0',
+            overflow: 'visible',
+            zIndex: '1',
+          },
 
+          '&:focus:before': {
+            content: '',
+            border: 'var(--spaceScale-spacing01) solid var(--colors-focus)',
+            borderStyle: 'dotted',
+            height: 'calc(100% + 14px)',
+            left: '-7px',
+            position: 'absolute',
+            top: '-7px',
+            width: 'calc(100% + 14px)',
+          },
+
+          props: {
+            isInverse: {
+              '&:focus:before': {
+                border: 'var(--spaceScale-spacing01) solid var(--colors-focusInverse)',
+              },
+            },
           },
         },
       },
-      default: {
+    },
+    ProgressBar: {
+      components: {
+        Bar: {
+          background: `${buildProgressBarBackground(props)}`,
+          borderRadius: '50em',
+          display: 'flex',
+          transition: 'width 0.3s',
+          width: `${props.percentage}%`,
 
+          props: {
+            isAnimated: {
+              backgroundImage: 'linear-gradient( to right, ${buildProgressBarBackground(props)} 0%, rgba(255, 255, 255, 0.5) 20%, ${buildProgressBarBackground(props)} 40%, ${buildProgressBarBackground(props)} 100%)',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '1800px 104px',
+              display: 'inline-block',
+              position: 'relative',
+              animation: 'hasAnimation',
+            },
+          },
+        },
+        Container: {
+          alignItems: 'center',
+          display: 'flex',
+
+          props: {
+            isLoadingIndicator: {
+              display: 'block',
+            },
+          },
+        },
+        Percentage: {
+          fontSize: 'var(--typeScale-size02-fontSize)',
+          lineHeight: 'var(--typeScale-size02-lineHeight)',
+          marginLeft: 'var(--spaceScale-spacing03)',
+        },
+        TopPercentage: {
+          fontSize: 'var(--typeScale-size05-fontSize)',
+          lineHeight: 'var(--typeScale-size05-lineHeight)',
+          marginBottom: 'var(--spaceScale-spacing03)',
+          textAlign: 'center',
+        },
+        Track: {
+          background: 'var(--colors-neutral08)',
+          boxShadow: 'inset 0 0 0 1px var(--colors-neutral04)',
+          borderRadius: '50em',
+          overflow: 'hidden',
+          display: 'flex',
+          height: `${props.height}`,
+          width: '100%',
+
+          props: {
+            isInverse: {
+              background: 'rgba(0,0,0,0.25)',
+              boxShadow: 'inset 0 0 0 1px var(--colors-tint)',
+            },
+          },
+        },
       },
+    },
+    ProgressRing: {
+      default: {
+        transition: 'stroke-dashoffset 0.35s',
+        transform: 'rotate(-90deg)',
+        transformOrigin: '50% 50%',
+      },
+    },
+    Radio: {
+
     },
   },
 };
