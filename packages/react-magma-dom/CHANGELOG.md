@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.0
+
+### Patch Changes
+
+- 465dc468: feat: Tag Updates for additional colors
+
 ## 2.5.6
 
 ### Patch Changes

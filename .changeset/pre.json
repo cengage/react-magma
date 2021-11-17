@@ -10,6 +10,7 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "additional-colors",
     "hip-buckets-refuse",
     "stupid-wasps-live"
   ]
