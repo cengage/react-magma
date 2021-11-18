@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.1
+
+### Patch Changes
+
+- 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
+
 ## 2.5.7-next.0
 
 ### Patch Changes
