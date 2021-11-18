@@ -379,6 +379,9 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
 
       if (newActiveTabIndex !== null) {
+        onChange &&
+          typeof onChange === 'function' &&
+          onChange(newActiveTabIndex);
         setActiveTabIndex(newActiveTabIndex);
         (buttonRefArray.current[newActiveTabIndex]
           .current as HTMLButtonElement).focus();
