@@ -1,3 +1,5 @@
+import { Flex } from "../../dist";
+
 const theme = {
   defaults: {
     borderRadius: '4px',
@@ -118,10 +120,11 @@ const theme = {
     Alert: {
       components: {
         AlertContents: {
-          alignSelf: 'center',
-          flexGrow: 1,
-          padding: 'var(--spacing-04) 0',
-
+          default: {
+            alignSelf: 'center',
+            flexGrow: 1,
+            padding: 'var(--spacing-04) 0',
+          },
           props: {
             '@media': {
               maxWidth: {
@@ -133,12 +136,13 @@ const theme = {
           },
         },
         AlertInner: {
-          backgroundColor: [`${buildAlertBackground(props)}`],
-          color: 'var(--colors-neutral)',
-          borderRadius: 'var(--borderRadius)',
-          display: 'flex',
-          position: 'relative',
-
+          default: {
+            backgroundColor: [`${buildAlertBackground(props)}`],
+            color: 'var(--colors-neutral)',
+            borderRadius: 'var(--borderRadius)',
+            display: 'flex',
+            position: 'relative',
+          },
           props: {
             isInverse: {
               color: 'var(--colors-neutral08)',
@@ -159,32 +163,35 @@ const theme = {
           },
         },
         DismissButton: {
-          alignSelf: 'stretch',
-          borderRadius: '0 var(--borderRadius) var(--borderRadius) 0',
-          color: 'inherit',
-          height: 'auto',
-          padding: '0 var(--spacing04)',
-          width: 'auto',
+          default: {
+            alignSelf: 'stretch',
+            borderRadius: '0 var(--borderRadius) var(--borderRadius) 0',
+            color: 'inherit',
+            height: 'auto',
+            padding: '0 var(--spacing04)',
+            width: 'auto',
 
-          '&&:focus:not(:disabled)': {
-            outlineOffset: '0 !important',
-            outline: '2px dotted var(--colors-focus)',
-          },
-          '&:hover': {
-            ':not(:disabled):before':{
-              opacity: '0.15',
-              background: 'var(--colors-focus)',
+            '&&:focus:not(:disabled)': {
+              outlineOffset: '0 !important',
+              outline: '2px dotted var(--colors-focus)',
+            },
+            '&:hover': {
+              ':not(:disabled):before':{
+                opacity: '0.15',
+                background: 'var(--colors-focus)',
+              },
+            },
+            '&:focus': {
+              ':not(:disabled):before':{
+                opacity: '0.15',
+                background: 'var(--colors-focus)',
+              },
+            },
+            '&:after': {
+              display: 'none',
             },
           },
-          '&:focus': {
-            ':not(:disabled):before':{
-              opacity: '0.15',
-              background: 'var(--colors-focus)',
-            },
-          },
-          '&:after': {
-            display: 'none',
-          },
+          
           props:{
             warning: {
               background: 'var(--colors-focusInverse)',
@@ -195,8 +202,9 @@ const theme = {
           },
         },
         IconWrapper: {
-          padding: '0 var(--spacing03) 0 var(--spacing04)',
-
+          default: {
+            padding: '0 var(--spacing03) 0 var(--spacing04)',
+          },
           props: {
             '@media': {
               maxWidth: {
@@ -208,17 +216,21 @@ const theme = {
           },
         },
         IconWrapperStyles: {
-          alignItems: 'center',
-          display: 'flex',
-          flexShrink: 0,
-          marginRight: '1px',
+          default: {
+            alignItems: 'center',
+            display: 'flex',
+            flexShrink: 0,
+            marginRight: '1px',
+          },
         },
         ProgressRingWrapper: {
-          opacity: '0.7',
-          marginTop: 'var(--spacing01)',
-          position: 'absolute',
-          top: 'var(--spacing01)',
-          right: 'var(--spacing02)',
+          default: {
+            opacity: '0.7',
+            marginTop: 'var(--spacing01)',
+            position: 'absolute',
+            top: 'var(--spacing01)',
+            right: 'var(--spacing02)',
+          },
         },
       },
       default: {
@@ -337,22 +349,24 @@ const theme = {
           static: 'static', // default
           sticky: 'sticky',
         },
-      }
+      },
     },
     Badge: {
       components: {
         StyledButton: {
-          cursor: 'pointer',
-          transition: 'background 0.35s',
+          default: {
+            cursor: 'pointer',
+            transition: 'background 0.35s',
 
-          '&:hover': {
-            background: `${buildBadgeFocusBackground(props)}`,
-          },
-          '&:focus': {
-            background: `${buildBadgeFocusBackground(props)}`,
-          },
-          '&:active': {
-            background: `${buildBadgeActiveBackground(props)}`
+            '&:hover': {
+              background: `${buildBadgeFocusBackground(props)}`,
+            },
+            '&:focus': {
+              background: `${buildBadgeFocusBackground(props)}`,
+            },
+            '&:active': {
+              background: `${buildBadgeActiveBackground(props)}`
+            },
           },
         },
       },
@@ -393,70 +407,78 @@ const theme = {
     Banner: {
       components: {
         BannerContents: {
-          alignItems: 'center',
-          display: 'flex',
-          flexGrow: 1,
-          justifyContent: 'flex-start',
-          padding: 'var(--spaceScale-spacing04)',
+          default: {
+            alignItems: 'center',
+            display: 'flex',
+            flexGrow: 1,
+            justifyContent: 'flex-start',
+            padding: 'var(--spaceScale-spacing04)',
 
-          '@media': {
-            maxWidth: {
-              [`${breakpoints.small}`]: {
-                justifyContent: 'flex-start',
+            '@media': {
+              maxWidth: {
+                [`${breakpoints.small}`]: {
+                  justifyContent: 'flex-start',
+                },
               },
             },
           },
         },
         ButtonWrapper: {
-          alignItems: 'center',
-          display: 'flex',
-          flexShrink: 0,
+          default: {
+            alignItems: 'center',
+            display: 'flex',
+            flexShrink: '0',
+          },
         },
         DismissButton: {
-          alignSelf: 'stretch',
-          borderRadius: 0,
-          color: 'var(--colors-neutral08)',
-          height: 'auto',
-          padding: '0 var(--spaceScale-spacing05)',
-          width: 'auto',
+          default: {
+            alignSelf: 'stretch',
+            borderRadius: '0',
+            color: 'var(--colors-neutral08)',
+            height: 'auto',
+            padding: '0 var(--spaceScale-spacing05)',
+            width: 'auto',
 
-          '&&:focus:not(:disabled)': {
-            outline: '2px dotted var(--colors-neutral08)',
-            outlineOffset: '0 !important',
-          },
+            '&&:focus:not(:disabled)': {
+              outline: '2px dotted var(--colors-neutral08)',
+              outlineOffset: '0 !important',
+            },
 
-          '&:hover': {
-            ':not(:disabled)': {
-              '&:before': {
-                background: 'var(--colors-neutral08)',
-                opacity: '0.15',
-              },
-              '&:after': {
-                display: 'none',
+            '&:hover': {
+              ':not(:disabled)': {
+                '&:before': {
+                  background: 'var(--colors-neutral08)',
+                  opacity: '0.15',
+                },
+                '&:after': {
+                  display: 'none',
+                },
               },
             },
-          },
 
-          '&:focus': {
-            ':not(:disabled)': {
-              '&:before': {
-                background: 'var(--colors-neutral08)',
-                opacity: '0.15',
-              },
-              '&:after': {
-                display: 'none',
+            '&:focus': {
+              ':not(:disabled)': {
+                '&:before': {
+                  background: 'var(--colors-neutral08)',
+                  opacity: '0.15',
+                },
+                '&:after': {
+                  display: 'none',
+                },
               },
             },
           },
         },
         IconWrapper: {
-          display: 'inline-flex',
-          paddingRight: 'var(--spaceScale-spacing03)',
+          default: {
+            display: 'inline-flex',
+            paddingRight: 'var(--spaceScale-spacing03)',
 
-          '@media': {
-            maxWidth: {
-              [`${breakpoints.small}`]: {
-                display: 'none',
+            '@media': {
+              maxWidth: {
+                [`${breakpoints.small}`]: {
+                  display: 'none',
+                },
               },
             },
           },
@@ -511,11 +533,12 @@ const theme = {
     Breadcrumb: {
       components: {
         BreadcrumbItem: {
-          listStyle: 'none',
-          margin: 0,
-          padding: 0,
-          display: 'flex',
-
+          default: {
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+            display: 'flex',
+          },
           StyledSpan: {
             color: 'var(--colors-neutral03)',
 
@@ -546,19 +569,23 @@ const theme = {
     Card: {
       components: {
         CardBody: {
-          padding: 'var(--spaceScale-spacing05)',
-          textAlign: `${props.align}`,
+          default: {
+            padding: 'var(--spaceScale-spacing05)',
+            textAlign: `${props.align}`,
 
-          '@media': {
-            maxWidth: {
-              [`${breakpoints.small}`]: {
-                padding: 'var(--spaceScale-spacing06)',
+            '@media': {
+              maxWidth: {
+                [`${breakpoints.small}`]: {
+                  padding: 'var(--spaceScale-spacing06)',
+                },
               },
             },
           },
         },
         CardHeading: {
-          marginTop: 0,
+          default: {
+            marginTop: '0',
+          },
         },
       },
       default: {
@@ -605,7 +632,6 @@ const theme = {
       },
     },
     Checkbox: {
-      components: {},
       default: {
         border: '2px solid',
         borderColor: `${buildDisplayInputBorderColor(props)}`,
@@ -639,16 +665,18 @@ const theme = {
     ComboboxInput: {
       components: {
         StyledInput: {
-          border: 0,
-          display: 'flex',
-          flexGrow: 1,
-          height: 'var(--spaceScale-spacing08)',
-          minWidth: 'var(--spaceScale-spacing07)',
-          paddingLeft: 'var(--spaceScale-spacing02)',
-          width: 0,
+          default: {
+            border: 0,
+            display: 'flex',
+            flexGrow: 1,
+            height: 'var(--spaceScale-spacing08)',
+            minWidth: 'var(--spaceScale-spacing07)',
+            paddingLeft: 'var(--spaceScale-spacing02)',
+            width: 0,
 
-          '&:focus': {
-            outline: 0,
+            '&:focus': {
+              outline: 0,
+            },
           },
         },
       },
@@ -716,55 +744,58 @@ const theme = {
         CalendarDay: {
           components: {
             CalendarDayCell: {
-              border: '1px solid var(--colors-neutral06)',
-              color: 'var(--colors-neutral)',
-              fontSize: 'var(--typeScale-size03-fontsize)',
-              lineHeight: 'var(--typeScale-size03-lineHeight)',
-              height: 'var(--spaceScale-spacing09)',
-              padding: '0',
-              position: 'relative',
-              textAlign: 'center',
-              width: 'var(--spaceScale-spacing09)',
+              default: {
+                border: '1px solid var(--colors-neutral06)',
+                color: 'var(--colors-neutral)',
+                fontSize: 'var(--typeScale-size03-fontsize)',
+                lineHeight: 'var(--typeScale-size03-lineHeight)',
+                height: 'var(--spaceScale-spacing09)',
+                padding: '0',
+                position: 'relative',
+                textAlign: 'center',
+                width: 'var(--spaceScale-spacing09)',
+              },
             },
             CalendarDayInner: {
-              alignItems: 'center',
-              background: 'var(--colors-neutral08)',
-              border: '2px solid transparent',
-              borderRadius: '100%',
-              color: 'var(--colors-neutral)',
-              cursor: 'pointer',
-              display: 'flex',
-              height: 'calc(var(--spaceScale-spacing09) - 4px)',
-              justifyContent: 'center',
-              margin: 'var(--spaceScale-spacing01)',
-              overflow: 'hidden',
-              outlineOffset: '0',
-              position: 'relative',
-              transition: 'background 0.5s ease-in-out 0s',
-              width: 'calc(var(--spaceScale-spacing09) - 4px)',
+              default: {
+                alignItems: 'center',
+                background: 'var(--colors-neutral08)',
+                border: '2px solid transparent',
+                borderRadius: '100%',
+                color: 'var(--colors-neutral)',
+                cursor: 'pointer',
+                display: 'flex',
+                height: 'calc(var(--spaceScale-spacing09) - 4px)',
+                justifyContent: 'center',
+                margin: 'var(--spaceScale-spacing01)',
+                overflow: 'hidden',
+                outlineOffset: '0',
+                position: 'relative',
+                transition: 'background 0.5s ease-in-out 0s',
+                width: 'calc(var(--spaceScale-spacing09) - 4px)',
 
-              '&:focus': {
-                outline: '2px dotted var(--colors-focus)',
-              },
+                '&:focus': {
+                  outline: '2px dotted var(--colors-focus)',
+                },
 
-              '&:before': {
-                background: 'var(--colors-neutral)',
-                content: '',
-                height: '200%',
-                left: '0',
-                opacity: '0',
-                position: 'absolute',
-                top: '-50%',
-                transition: '0.2s',
-                width: '200%',
-              },
-
-              '&:hover': {
                 '&:before': {
-                  opacity: '0.1',
+                  background: 'var(--colors-neutral)',
+                  content: '',
+                  height: '200%',
+                  left: '0',
+                  opacity: '0',
+                  position: 'absolute',
+                  top: '-50%',
+                  transition: '0.2s',
+                  width: '200%',
+                },
+
+                '&:hover': {
+                  '&:before': {
+                    opacity: '0.1',
+                  },
                 },
               },
-
               props: {
                 disabled: {
                   color: 'var(--colors-disabledText)',
@@ -783,48 +814,57 @@ const theme = {
               },
             },
             EmptyCell: {
-              border: '0',
-              padding: '0',
+              default: {
+                border: '0',
+                padding: '0',
+              },
             },
             TodayIndicator: {
-              borderLeft: '8px solid var(--colors-pop)',
-              borderTop: '8px solid transparent',
-              borderBottom: '8px solid transparent',
-              bottom: '-6px',
-              display: 'block',
-              height: '0',
-              position: 'absolute',
-              transform: 'rotate(45deg)',
-              right: '-2px',
-              width: '0',
+              default: {
+                borderLeft: '8px solid var(--colors-pop)',
+                borderTop: '8px solid transparent',
+                borderBottom: '8px solid transparent',
+                bottom: '-6px',
+                display: 'block',
+                height: '0',
+                position: 'absolute',
+                transform: 'rotate(45deg)',
+                right: '-2px',
+                width: '0',
+              },
             },
           },
         },
         CalendarHeader: {
           components: {
             CalendarHeaderContainer: {
-              alignItems: 'center',
-              display: 'flex',
-              padding: 'var(--spaceScale-spacing10) 0 var(--spaceScale-spacing03)',
-              marginTop: 'calc(var(--spaceScale-spacing01) * -1))',
+              default: {
+                alignItems: 'center',
+                display: 'flex',
+                padding: 'var(--spaceScale-spacing10) 0 var(--spaceScale-spacing03)',
+                marginTop: 'calc(var(--spaceScale-spacing01) * -1))',
+              },
             },
             CalendarHeaderText: {
-              captionSide: 'initial',
-              color: 'var(--colors-neutral)',
-              fontSize: 'var(--typeScale-size03-fontSize)',
-              lineHeight: 'var(--typeScale-size03-lineHeight)',
-              order: '1',
-              textAlign: 'center',
-              flexGrow: '0',
-              flexWidth: '90%',
-              flexBasis: '90%',
+              default: {
+                captionSide: 'initial',
+                color: 'var(--colors-neutral)',
+                fontSize: 'var(--typeScale-size03-fontSize)',
+                lineHeight: 'var(--typeScale-size03-lineHeight)',
+                order: '1',
+                textAlign: 'center',
+                flexGrow: '0',
+                flexWidth: '90%',
+                flexBasis: '90%',
+              },
             },
             CalendarIconButton: {
-              flexGrow: '0',
-              flexWidth: '10%',
-              flexBasis: '10%',
-              order: '0',
-
+              default: {
+                flexGrow: '0',
+                flexWidth: '10%',
+                flexBasis: '10%',
+                order: '0',
+              },
               props: {
                 next: {
                   order: '2',
@@ -836,63 +876,81 @@ const theme = {
         CalendarMonth: {
           components: {
             CalendarContainer: {
-              background: 'var(--colors-neutral08)',
-              padding: '0 var(--spaceScale-spacing05) var(--spaceScale-spacing03)',
+              default: {
+                background: 'var(--colors-neutral08)',
+                padding: '0 var(--spaceScale-spacing05) var(--spaceScale-spacing03)',
+              },
             },
             CloseButton: {
-              position: 'absolute',
-              right: 'var(--spaceScale-spacing01)',
-              top: 'var(--spaceScale-spacing01)',
-              zIndex: '1',
+              default: {
+                position: 'absolute',
+                right: 'var(--spaceScale-spacing01)',
+                top: 'var(--spaceScale-spacing01)',
+                zIndex: '1',
+              }, 
             },
             HelperButton: {
-              bottom: 'var(--spaceScale-spacing01)',
-              position: 'absolute',
-              right: 'var(--spaceScale-spacing01)',
-              zIndex: '2',
+              default: {
+                bottom: 'var(--spaceScale-spacing01)',
+                position: 'absolute',
+                right: 'var(--spaceScale-spacing01)',
+                zIndex: '2',
+              },
             },
             MonthContainer: {
-              background: 'var(--colors-neutral08)',
-              textAlign: 'center',
-              userSelect: 'none',
-              verticalAlign: 'top',
+              default: {
+                background: 'var(--colors-neutral08)',
+                textAlign: 'center',
+                userSelect: 'none',
+                verticalAlign: 'top',
+              },
             },
             Table: {
-              borderCollapse: 'collapse',
-              borderSpacing: '0',
-              marginBottom: 'var(--spaceScale-spacing09)',
+              default: {
+                borderCollapse: 'collapse',
+                borderSpacing: '0',
+                marginBottom: 'var(--spaceScale-spacing09)',
+              },
             },
             Th: {
-              border: '0',
-              color: 'var(--colors-neutral)',
-              fontSize: 'var(--typeScale-size02-fontSize)',
-              lineHeight: 'var(--typeScale-size02-lineHeight)',
-              fontWeight: 'normal',
-              padding: '0',
-              textAlign: 'center',
+              default: {
+                border: '0',
+                color: 'var(--colors-neutral)',
+                fontSize: 'var(--typeScale-size02-fontSize)',
+                lineHeight: 'var(--typeScale-size02-lineHeight)',
+                fontWeight: 'normal',
+                padding: '0',
+                textAlign: 'center',
+              },
             },
           },
         },
         HelperInformation: {
           components: {
             KeyboardShortcutButtonWrapper: {
-              background: 'rgb(242, 242, 242)',
-              fontFamily: 'monospace',
-              fontSize: 'var(--typeScale-size02-fontSize)',
-              lineHeight: 'var(--typeScale-size02-lineHeight)',
-              marginRight: 'var(--spaceScale-spacing03)',
-              padding: 'var(--spaceScale-spacing02) var(--spaceScale-spacing04)',
-              textTransform: 'uppercase',
+              default: {
+                background: 'rgb(242, 242, 242)',
+                fontFamily: 'monospace',
+                fontSize: 'var(--typeScale-size02-fontSize)',
+                lineHeight: 'var(--typeScale-size02-lineHeight)',
+                marginRight: 'var(--spaceScale-spacing03)',
+                padding: 'var(--spaceScale-spacing02) var(--spaceScale-spacing04)',
+                textTransform: 'uppercase',
+              },
             },
             List: {
-              listStyle: 'none',
-              margin: '0',
-              padding: '0',
-              textAlign: 'left',
+              default: {
+                listStyle: 'none',
+                margin: '0',
+                padding: '0',
+                textAlign: 'left',
+              },
             },
             Item: {
-              display: 'flex',
-              listStyle: 'none',
+              default: {
+                display: 'flex',
+                listStyle: 'none',
+              },
             },
           },
         },
@@ -923,16 +981,17 @@ const theme = {
         DropdownContent: {
           components: {
             StyledCard: {
-              display: 'none',
-              left: 'var(--spaceScale-spacing02)',
-              opacity: '0',
-              outline: '0',
-              overflowY: 'auto',
-              padding: 'var(--spaceScale-spacing03) 0',
-              position: 'absolute',
-              transition: 'opacity 0.3s',
-              whiteSpace: 'nowrap',
-
+              default: {
+                display: 'none',
+                left: 'var(--spaceScale-spacing02)',
+                opacity: '0',
+                outline: '0',
+                overflowY: 'auto',
+                padding: 'var(--spaceScale-spacing03) 0',
+                position: 'absolute',
+                transition: 'opacity 0.3s',
+                whiteSpace: 'nowrap',
+              },
               props: {
                 dropDirection: {
                   end: {
@@ -976,65 +1035,74 @@ const theme = {
               },
             },
             StyledDiv: {
-              padding: 'var(--spaceScale-spacing02) 0',
+              default: {
+                padding: 'var(--spaceScale-spacing02) 0',
+              },
             },
           },
         },
         DropdownDivider: {
           components: {
             StyledHr: {
-              background: 'var(--colors-neutral06)',
-              border: '0',
-              height: '1px',
-              margin: 'var(--spaceScale-spacing02) 0',
+              default: {
+                background: 'var(--colors-neutral06)',
+                border: '0',
+                height: '1px',
+                margin: 'var(--spaceScale-spacing02) 0',
+              },
             },
           },
         },
         DropdownHeader: {
           components: {
             StyledDiv: {
-              color: 'var(--colors-neutral03)',
-              fontSize: 'var(--typeScale-size01-fontSize)',
-              lineHeight: 'var(--typeScale-size01-lineHeight)',
-              fontWeight: 'bold',
-              margin: ',',
-              padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05) var(--spaceScale-spacing02)',
-              textTransform: 'uppercase',
+              default: {
+                color: 'var(--colors-neutral03)',
+                fontSize: 'var(--typeScale-size01-fontSize)',
+                lineHeight: 'var(--typeScale-size01-lineHeight)',
+                fontWeight: 'bold',
+                margin: ',',
+                padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05) var(--spaceScale-spacing02)',
+                textTransform: 'uppercase',
+              },
             },
           },
         },
         DropdownMenuItem: {
           components: {
             IconWrapper: {
-              color: 'var(--colors-neutral03)',
-              display: 'inline-flex',
-              marginRight: 'var(--spaceScale-spacing05)',
+              default: {
+                color: 'var(--colors-neutral03)',
+                display: 'inline-flex',
+                marginRight: 'var(--spaceScale-spacing05)',
 
-              svg: {
-                height: 'var(--iconSizes-medium) px',
-                width: 'var(--iconSizes-medium) px',
-              },
+                svg: {
+                  height: 'var(--iconSizes-medium) px',
+                  width: 'var(--iconSizes-medium) px',
+                },
+              }, 
             },
             MenuItemStyles: {
-              alignItems: 'center',
-              color: 'var(--colors-neutral)',
-              cursor: 'pointer',
-              display: 'flex',
-              fontSize: 'var(--typeScale-size03-fontSize)',
-              lineHeight: 'var(--typeScale-size03-lineHeight)',
-              margin: '0',
-              padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05)',
-              whiteSpace: 'nowrap',
+              default: {
+                alignItems: 'center',
+                color: 'var(--colors-neutral)',
+                cursor: 'pointer',
+                display: 'flex',
+                fontSize: 'var(--typeScale-size03-fontSize)',
+                lineHeight: 'var(--typeScale-size03-lineHeight)',
+                margin: '0',
+                padding: 'var(--spaceScale-spacing03) var(--spaceScale-spacing05)',
+                whiteSpace: 'nowrap',
 
-              '&:hover': {
-                background: 'var(--colors-neutral07)',
+                '&:hover': {
+                  background: 'var(--colors-neutral07)',
+                },
+
+                '&:focus': {
+                  background: 'var(--colors-neutral07)',
+                  outlineOffset: '-3px',
+                },
               },
-
-              '&:focus': {
-                background: 'var(--colors-neutral07)',
-                outlineOffset: '-3px',
-              },
-
               props: {
                 disabled: {
                   color: 'var(--colors-disabledText)',
@@ -1061,7 +1129,9 @@ const theme = {
         DropdownMenuNavItem: {
           components: {
             StyledItem: {
-              textDecoration: 'none',
+              default: {
+                textDecoration: 'none',
+              },
             },
           },
         },
@@ -1074,8 +1144,10 @@ const theme = {
     Form: {
       components: {
         FormAction: {
-          display: 'flex',
-          justifyContent: 'flex-end',
+          default: {
+            display: 'flex',
+            justifyContent: 'flex-end',
+          },
         },
       },
       default: {
@@ -1141,16 +1213,17 @@ const theme = {
     Input: {
       components: {
         InputMessage: {
-          alignItems: 'center',
-          borderRadius: 'var(--borderRadius)',
-          color: `${BuildMessageColor(props)}`,
-          display: 'flex',
-          fontSize: 'var(typeScale-size02-fontSize)',
-          lineHeight: 'var(typeScale-size02-lineHeight)',
-          marginTop: 'var(--spaceScale-spacing02)',
-          minHeight: 'var(--spaceScale-spacing06)',
-          textAlign: 'left',
-
+          default: {
+            alignItems: 'center',
+            borderRadius: 'var(--borderRadius)',
+            color: `${BuildMessageColor(props)}`,
+            display: 'flex',
+            fontSize: 'var(typeScale-size02-fontSize)',
+            lineHeight: 'var(typeScale-size02-lineHeight)',
+            marginTop: 'var(--spaceScale-spacing02)',
+            minHeight: 'var(--spaceScale-spacing06)',
+            textAlign: 'left',
+          },
           props: {
             InputSize: {
               large: {
@@ -1160,26 +1233,29 @@ const theme = {
           },
         },
         IconWrapper: {
-          display: 'inline-flex',
-          flexShrink: '0',
-          paddingRight: 'var(--spaceScale-spacing02)',
+          default: {
+            display: 'inline-flex',
+            flexShrink: '0',
+            paddingRight: 'var(--spaceScale-spacing02)',
+          },
         },
       },
     },
     InputBase: {
       components: {
         IconButtonContainer: {
-          backgroundColor: 'var(--colors-neutral08)',
-          height: 'auto',
-          margin: '0',
-          position: 'relative',
-          right: 'var(--spaceScale-spacing01)',
+          default: {
+            backgroundColor: 'var(--colors-neutral08)',
+            height: 'auto',
+            margin: '0',
+            position: 'relative',
+            right: 'var(--spaceScale-spacing01)',
 
-          svg: {
-            height: 'var(--iconSizes-medium)px',
-            width: 'var(--iconSizes-medium)px',
+            svg: {
+              height: 'var(--iconSizes-medium)px',
+              width: 'var(--iconSizes-medium)px',
+            },
           },
-
           props: {
             disabled: {
               backgroundColor: 'var(--colors-neutral07)',
@@ -1357,11 +1433,12 @@ const theme = {
     LoadingIndicator: {
       components: {
         Message: {
-          opacity: '1',
-          position: 'absolute',
-          transition: 'opacity 0.3s',
-          width: '100%',
-
+          default: {
+            opacity: '1',
+            position: 'absolute',
+            transition: 'opacity 0.3s',
+            width: '100%',
+          },
           props: {
             hide: {
               opacity: '0',
@@ -1369,12 +1446,14 @@ const theme = {
           },
         },
         MessageContainer: {
-          fontSize: 'var(--typeScale-size02-fontSize)',
-          lineHeight: 'var(--typeScale-size02-lineHeight)',
-          marginTop: 'var(--spaceScale-spacing05)',
-          minHeight: '5em',
-          position: 'relative',
-          textAlign: 'center',
+          default: {
+            fontSize: 'var(--typeScale-size02-fontSize)',
+            lineHeight: 'var(--typeScale-size02-lineHeight)',
+            marginTop: 'var(--spaceScale-spacing05)',
+            minHeight: '5em',
+            position: 'relative',
+            textAlign: 'center',
+          },
         },
       },
       default: {
@@ -1384,56 +1463,65 @@ const theme = {
     Modal: {
       components: {
         CloseBtn: {
-          position: 'absolute',
-          top: '0',
-          right: '0',
+          default: {
+            position: 'absolute',
+            top: '0',
+            right: '0',
+          },
         },
         H1: {
-          fontSize: 'var(--typographyVisualStyles-headingSmall-desktop-fontSize)',
-          lineHeight: 'var(--typographyVisualStyles-headingSmall-desktop-lineHeight)',
-          margin: '0',
-          paddingRight: 'var(--spaceScale-spacing10)',
+          default: {
+            fontSize: 'var(--typographyVisualStyles-headingSmall-desktop-fontSize)',
+            lineHeight: 'var(--typographyVisualStyles-headingSmall-desktop-lineHeight)',
+            margin: '0',
+            paddingRight: 'var(--spaceScale-spacing10)',
+          },
         },
         ModalBackdrop: {
-          backdropFilter: 'blur(3px)',
-          background: 'rgba(0, 0, 0, 0.6)',
-          bottom: '0',
-          left: '0',
-          right: '0',
-          top: '0',
-          zIndex: '997',
-          position: 'fixed',
+          default: {
+            backdropFilter: 'blur(3px)',
+            background: 'rgba(0, 0, 0, 0.6)',
+            bottom: '0',
+            left: '0',
+            right: '0',
+            top: '0',
+            zIndex: '997',
+            position: 'fixed',
+          },
         },
         ModalBody: {
-          padding: 'var(--spaceScale-spacing05)',
+          default: {
+            padding: 'var(--spaceScale-spacing05)',
 
-          '@media': {
-            maxWidth: {
-              [`${breakpoints.small}`]: {
-                padding: 'var(--spaceScale-spacing06)',
+            '@media': {
+              maxWidth: {
+                [`${breakpoints.small}`]: {
+                  padding: 'var(--spaceScale-spacing06)',
+                },
               },
             },
           },
         },
         ModalContent: {
-          background: 'var(--colors-neutral08)',
-          border: '1px solid',
-          borderColor: 'var(--colors-neutral06)',
-          borderRadius: 'var(--borderRadius)',
-          boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
-          color: 'var(--colors-neutral)',
-          margin: '0 auto',
-          position: 'relative',
-          zIndex: '1000',
+          default: {
+            background: 'var(--colors-neutral08)',
+            border: '1px solid',
+            borderColor: 'var(--colors-neutral06)',
+            borderRadius: 'var(--borderRadius)',
+            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)',
+            color: 'var(--colors-neutral)',
+            margin: '0 auto',
+            position: 'relative',
+            zIndex: '1000',
 
-          '@media': {
-            maxWidth: {
-              [`${breakpoints.small}`]: {
-                margin: 'var(--spaceScale-spacing08) auto',
+            '@media': {
+              maxWidth: {
+                [`${breakpoints.small}`]: {
+                  margin: 'var(--spaceScale-spacing08) auto',
+                },
               },
             },
           },
-
           props: {
             size: {
               default: {
@@ -1473,31 +1561,32 @@ const theme = {
     Pagination: {
       components: {
         NavButton: {
-          borderTop: `${BuildBorder}`,
-          borderRight: `${BuildBorder}`,
-          borderBottom: `${BuildBorder}`,
-          borderLeft: `${BuildBorder}`,
-          height: `${BuildButtonSize}`,
-          margin: '0',
-          padding: '0',
-          width: `${BuildButtonSize}`,
-          '&:focus': {
-            zIndex: 1,
-            outline: '0 !important',
-            outlineOffset: 0,
-            overflow: 'visible',
+          default: {
+            borderTop: `${BuildBorder}`,
+            borderRight: `${BuildBorder}`,
+            borderBottom: `${BuildBorder}`,
+            borderLeft: `${BuildBorder}`,
+            height: `${BuildButtonSize}`,
+            margin: '0',
+            padding: '0',
+            width: `${BuildButtonSize}`,
+            '&:focus': {
+              zIndex: 1,
+              outline: '0 !important',
+              outlineOffset: 0,
+              overflow: 'visible',
+            },
+            '&:focus:before': {
+              content: '',
+              border: 'var(--spaceScale-spacing01) solid var(--colors-focus)',
+              borderStyle: 'dotted',
+              height: 'calc(100% + 14px)',
+              left: '-7px',
+              position: 'absolute',
+              top: '-7px',
+              width: 'calc(100% + 14px)',
+            },
           },
-          '&:focus:before': {
-            content: '',
-            border: 'var(--spaceScale-spacing01) solid var(--colors-focus)',
-            borderStyle: 'dotted',
-            height: 'calc(100% + 14px)',
-            left: '-7px',
-            position: 'absolute',
-            top: '-7px',
-            width: 'calc(100% + 14px)',
-          },
-
           props: {
             isInverse: {
               '&:focus:before': {
@@ -1580,12 +1669,13 @@ const theme = {
     ProgressBar: {
       components: {
         Bar: {
-          background: `${buildProgressBarBackground(props)}`,
-          borderRadius: '50em',
-          display: 'flex',
-          transition: 'width 0.3s',
-          width: `${props.percentage}%`,
-
+          default: {
+            background: `${buildProgressBarBackground(props)}`,
+            borderRadius: '50em',
+            display: 'flex',
+            transition: 'width 0.3s',
+            width: `${props.percentage}%`,
+          },
           props: {
             isAnimated: {
               backgroundImage: 'linear-gradient( to right, ${buildProgressBarBackground(props)} 0%, rgba(255, 255, 255, 0.5) 20%, ${buildProgressBarBackground(props)} 40%, ${buildProgressBarBackground(props)} 100%)',
@@ -1598,9 +1688,10 @@ const theme = {
           },
         },
         Container: {
-          alignItems: 'center',
-          display: 'flex',
-
+          default: {
+            alignItems: 'center',
+            display: 'flex',
+          },
           props: {
             isLoadingIndicator: {
               display: 'block',
@@ -1608,25 +1699,30 @@ const theme = {
           },
         },
         Percentage: {
-          fontSize: 'var(--typeScale-size02-fontSize)',
-          lineHeight: 'var(--typeScale-size02-lineHeight)',
-          marginLeft: 'var(--spaceScale-spacing03)',
+          default: {
+            fontSize: 'var(--typeScale-size02-fontSize)',
+            lineHeight: 'var(--typeScale-size02-lineHeight)',
+            marginLeft: 'var(--spaceScale-spacing03)',
+          },
         },
         TopPercentage: {
-          fontSize: 'var(--typeScale-size05-fontSize)',
-          lineHeight: 'var(--typeScale-size05-lineHeight)',
-          marginBottom: 'var(--spaceScale-spacing03)',
-          textAlign: 'center',
+          default: {
+            fontSize: 'var(--typeScale-size05-fontSize)',
+            lineHeight: 'var(--typeScale-size05-lineHeight)',
+            marginBottom: 'var(--spaceScale-spacing03)',
+            textAlign: 'center',
+          },
         },
         Track: {
-          background: 'var(--colors-neutral08)',
-          boxShadow: 'inset 0 0 0 1px var(--colors-neutral04)',
-          borderRadius: '50em',
-          overflow: 'hidden',
-          display: 'flex',
-          height: `${props.height}`,
-          width: '100%',
-
+          default: {
+            background: 'var(--colors-neutral08)',
+            boxShadow: 'inset 0 0 0 1px var(--colors-neutral04)',
+            borderRadius: '50em',
+            overflow: 'hidden',
+            display: 'flex',
+            height: `${props.height}`,
+            width: '100%',
+          },
           props: {
             isInverse: {
               background: 'rgba(0,0,0,0.25)',
@@ -1644,7 +1740,36 @@ const theme = {
       },
     },
     Radio: {
-
+      skipping: 'for now',
+    },
+    Select: {
+      components: {
+        NoItemsMessage: {
+          default: {
+            color: 'var(--colors-neutral04)',
+            display: 'block',
+            paddingTop: 'var(--spaceScale-spacing03)',
+            textAlign: 'center',
+          },
+        },
+        SelectContainerElement: {
+          default: {
+            alignItems: 'baseline',
+            display: 'block',
+            position: 'relative',
+          },
+          props: {
+            left: {
+              display: 'flex',
+            },
+          },
+        },
+        InputMessageContainer: {
+          default: {
+            flexGrow: '1',
+          },
+        },
+      },
     },
   },
 };
