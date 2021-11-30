@@ -14,7 +14,6 @@ import {
   TableHeaderCellProps,
   TableRowColor,
   TablePaginationProps,
-  TableHeaderCellScope,
 } from '../Table';
 import { defaultComponents } from './components';
 
