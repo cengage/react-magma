@@ -177,6 +177,10 @@ describe('sizes', () => {
     const input = getByLabelText(labelText);
 
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
+    expect(label).toHaveStyleRule(
+      'letter-spacing',
+      magma.typeScale.size02.letterSpacing
+    );
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
     expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
   });

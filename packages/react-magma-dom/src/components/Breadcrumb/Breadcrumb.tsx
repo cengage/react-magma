@@ -16,6 +16,7 @@ const StyledList = styled.ol<BreadcrumbProps>`
   display: flex;
   flex-wrap: wrap;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   list-style: none;
   margin: 0;

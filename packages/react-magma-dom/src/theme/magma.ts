@@ -91,6 +91,7 @@ export interface TypographyExpressiveSizes {
 
 export interface TypeScaleSize {
   fontSize: string;
+  letterSpacing?: string;
   lineHeight: string;
 }
 
@@ -259,10 +260,12 @@ export interface ThemeInterface {
 const typeScale = {
   size01: {
     fontSize: '12px',
+    letterSpacing: '.32px',
     lineHeight: '16px',
   },
   size02: {
     fontSize: '14px',
+    letterSpacing: '.16px',
     lineHeight: '20px',
   },
   size03: {
@@ -552,7 +555,7 @@ export const magma = {
 
   appBar: {
     backgroundColor: colors.neutral08,
-    height: '88px',
+    height: '56px',
     padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
     textColor: colors.neutral,
     compact: {

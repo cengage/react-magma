@@ -10,9 +10,11 @@ import { Omit, XOR, getNodeText } from '../../utils';
 import { I18nContext } from '../../i18n';
 
 export enum TagColor {
+  danger = 'danger',
   primary = 'primary',
   lowContrast = 'lowContrast',
   highContrast = 'highContrast',
+  success = 'success',
 }
 
 export enum TagSize {
@@ -111,6 +113,10 @@ function buildButtonBackground(props) {
     }
     // Inverse background colors
     switch (props.color) {
+      case 'danger':
+        return `${props.theme.colors.dangerInverse}`;
+      case 'success':
+        return `${props.theme.colors.successInverse}`;
       case 'primary':
         return `${props.theme.colors.primaryInverse}`;
       case 'lowContrast':
@@ -135,6 +141,10 @@ function buildButtonBackground(props) {
   }
   // Default state background colors
   switch (props.color) {
+    case 'danger':
+      return `${props.theme.colors.danger}`;
+    case 'success':
+      return `${props.theme.colors.success}`;
     case 'primary':
       return `${props.theme.colors.primary}`;
     case 'lowContrast':
@@ -163,6 +173,10 @@ function buildButtonTextColor(props) {
     }
     // Inverse text colors
     switch (props.color) {
+      case 'danger':
+        return `${props.theme.colors.neutral}`;
+      case 'success':
+        return `${props.theme.colors.neutral}`;
       case 'primary':
         return `${props.theme.colors.neutral}`;
       case 'lowContrast':
@@ -187,6 +201,10 @@ function buildButtonTextColor(props) {
   }
   // Default state text colors
   switch (props.color) {
+    case 'danger':
+      return `${props.theme.colors.neutral08}`;
+    case 'success':
+      return `${props.theme.colors.neutral08}`;
     case 'primary':
       return `${props.theme.colors.neutral08}`;
     case 'highContrast':
@@ -258,6 +276,12 @@ const TagStyling = props => css`
     ? `${props.theme.typeScale.size01.fontSize}`
     : `${props.theme.typeScale.size02.fontSize}`};
   font-weight: ${props.size === 'small' ? `600` : `inherit`};
+  letter-spacing: ${props.size === 'small'
+    ? `${props.theme.typeScale.size01.letterSpacing}`
+    : `${props.theme.typeScale.size02.letterSpacing}`};
+  min-width: ${props.size === 'small'
+    ? props.theme.spaceScale.spacing10
+    : props.theme.spaceScale.spacing12};
   padding: ${buildTagPadding(props)};
   svg:first-of-type {
     height: ${props.size === 'small'

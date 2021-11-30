@@ -47,7 +47,7 @@ const Heading = styled.h1`
 const List = styled.ol`
   display: none;
 
-  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
+  @media (min-width: ${props => props.theme.breakpoints.large}px) {
     background-color: ${props => props.theme.colors.foundation};
     display: flex;
     left: 0;
@@ -57,7 +57,7 @@ const List = styled.ol`
     padding: 0 ${props => props.theme.spaceScale.spacing05};
     position: fixed;
     right: 0;
-    top: 88px;
+    top: 54px;
     z-index: 2;
   }
 

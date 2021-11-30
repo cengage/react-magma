@@ -16,6 +16,10 @@ export interface FormFieldContainerProps
 
 export interface FormFieldContainerBaseProps {
   /**
+   * Is the wrapped input hidden with display:none? This would make the input look like an actionable item, so FormFieldContainer uses a span in lieu of a label.
+   */
+  actionable?: boolean;
+  /**
    * Style properties for the outer container
    */
   containerStyle?: React.CSSProperties;
@@ -70,6 +74,7 @@ export const FormFieldContainer = React.forwardRef<
   FormFieldContainerProps
 >((props, ref) => {
   const {
+    actionable=true,
     children,
     containerStyle,
     errorMessage,
@@ -101,7 +106,7 @@ export const FormFieldContainer = React.forwardRef<
         theme={theme}
       >
         {labelText && (
-          <Label htmlFor={fieldId} size={inputSize} style={labelStyle}>
+          <Label actionable={actionable} htmlFor={fieldId} size={inputSize} style={labelStyle}>
             {isLabelVisuallyHidden ? (
               <VisuallyHidden>{labelText}</VisuallyHidden>
             ) : (

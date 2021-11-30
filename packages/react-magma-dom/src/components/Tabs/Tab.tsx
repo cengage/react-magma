@@ -114,6 +114,7 @@ export const TabStyles = props => css`
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
   font-weight: 600;
   font-size: ${props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
   height: 100%;
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};

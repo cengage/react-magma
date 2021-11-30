@@ -33,6 +33,10 @@ describe('Badge', () => {
       magma.typeScale.size02.fontSize
     );
     expect(getByText(TEXT)).toHaveStyleRule(
+      'letter-spacing',
+      magma.typeScale.size02.letterSpacing
+    );
+    expect(getByText(TEXT)).toHaveStyleRule(
       'line-height',
       magma.typeScale.size02.lineHeight
     );

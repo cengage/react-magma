@@ -137,7 +137,7 @@ export const defaultI18n: I18nInterface = {
     menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
-  fileUploader: {
+  dropzone: {
     browseFiles: 'Browse Files',
     dragMessage: 'Drag and drop or browse files to upload.',
     errors: {
@@ -166,7 +166,10 @@ export const defaultI18n: I18nInterface = {
         message: 'You must upload at least one file.'
       }
     },
-    files: 'files'
+    files: 'files',
+    bytes: 'Bytes',
+    deleteFile: 'Delete file',
+    removeFile: 'Remove file'
   },
   header: {
     navigationButtonLabel: 'Open navigation menu',
