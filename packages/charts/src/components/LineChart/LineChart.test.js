@@ -97,10 +97,10 @@ describe('Line Chart', () => {
     userEvent.hover(getByText('Team 2'));
 
     expect(
-      container.querySelectorAll('svg')[2].childNodes[2].querySelector('path')
+      container.querySelectorAll('svg')[3].childNodes[2].querySelector('path')
     ).toHaveStyle('opacity: 1');
     expect(
-      container.querySelectorAll('svg')[2].childNodes[3].querySelector('path')
+      container.querySelectorAll('svg')[3].childNodes[3].querySelector('path')
     ).toHaveStyle('opacity: .1');
   });
 
@@ -114,11 +114,11 @@ describe('Line Chart', () => {
       />
     );
 
-    expect(container.querySelectorAll('svg')[2].childNodes.length).toEqual(10);
+    expect(container.querySelectorAll('svg')[3].childNodes.length).toEqual(10);
 
     userEvent.click(getByText('Team 2'));
 
-    expect(container.querySelectorAll('svg')[2].childNodes.length).toEqual(8);
+    expect(container.querySelectorAll('svg')[3].childNodes.length).toEqual(8);
   });
 
   describe('keyboard behavior', () => {

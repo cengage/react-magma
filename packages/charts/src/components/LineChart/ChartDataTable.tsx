@@ -65,6 +65,7 @@ export const ChartDataTable = (props: DataTableProps) => {
               {
                 field: xField,
                 header: xAxisLabel || xKeyValue || 'X',
+                isRowHeader: true,
               },
             ]
           : [],
@@ -114,8 +115,6 @@ export const ChartDataTable = (props: DataTableProps) => {
       return tableData;
     }, baseTableData);
   }
-
-  console.log(dataForTable);
 
   return (
     <Card>

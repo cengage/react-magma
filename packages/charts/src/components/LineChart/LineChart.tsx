@@ -12,7 +12,13 @@ import {
   VictoryVoronoiContainer,
 } from 'victory';
 
-import { I18nContext, ThemeContext, styled } from 'react-magma-dom';
+import {
+  I18nContext,
+  Alert,
+  ThemeContext,
+  styled,
+  AlertVariant,
+} from 'react-magma-dom';
 
 import magmaTheme from './magma-charts';
 import { AxisTooltip, GraphTooltip } from './GraphTooltip';
@@ -145,8 +151,6 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
   const containerRef = React.useRef<HTMLDivElement>();
   const firstLegendButtonRef = React.useRef<HTMLButtonElement>();
-
-  // const [pointRefArray, registerPoint, unregisterPoint] = useDescendants();
 
   React.useEffect(() => {
     updateWidth();
@@ -422,6 +426,11 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
   return (
     <LineChartContainer ref={containerRef}>
+      <Alert variant={AlertVariant.muted}>
+        <strong>Keyboard users: </strong>In the chart below, use your up and
+        down arrows to move between each line. Use your left and right arrows to
+        move between points on a line.
+      </Alert>
       <VictoryChartContainer onKeyDown={handleChartContainerKeyDown}>
         <VictoryChart
           domainPadding={32}

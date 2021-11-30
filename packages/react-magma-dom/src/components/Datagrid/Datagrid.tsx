@@ -14,6 +14,7 @@ import {
   TableHeaderCellProps,
   TableRowColor,
   TablePaginationProps,
+  TableHeaderCellScope,
 } from '../Table';
 import { defaultComponents } from './components';
 
@@ -26,6 +27,11 @@ export interface DatagridColumn extends TableHeaderCellProps {
    * Header text for each column
    */
   header: string;
+  /**
+   * @default false
+   * Set to true if you want the column to be the header for each row
+   */
+  isRowHeader?: boolean;
 }
 
 export interface DatagridRow {
@@ -256,7 +262,11 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
               onHeaderRowSelect={handleHeaderSelect}
             >
               {columns.map(({ field, header, ...other }) => (
-                <TableHeaderCell key={`headercell${field}`} {...other}>
+                <TableHeaderCell
+                  key={`headercell${field}`}
+                  {...other}
+                  isRowHeader={false}
+                >
                   {header}
                 </TableHeaderCell>
               ))}
@@ -274,9 +284,18 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
                 isSelectableDisabled={isSelectableDisabled}
                 onTableRowSelect={event => handleRowSelect(id, event)}
               >
-                {Object.keys(other).map(field => (
-                  <TableCell key={`cell${field}`}>{other[field]}</TableCell>
-                ))}
+                {columns.map(({ field, isRowHeader }: DatagridColumn) => {
+                  return isRowHeader ? (
+                    <TableHeaderCell
+                      key={`cell${field}`}
+                      isRowHeader={isRowHeader}
+                    >
+                      {other[field]}
+                    </TableHeaderCell>
+                  ) : (
+                    <TableCell key={`cell${field}`}>{other[field]}</TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>
