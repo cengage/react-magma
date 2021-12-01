@@ -4,18 +4,19 @@ import {
   ThemeContext,
   TooltipArrow,
   TooltipPosition,
+  ThemeInterface,
+  styled,
 } from 'react-magma-dom';
-import styled from '@emotion/styled';
 
 const StyledGraphTooltip = styled(StyledTooltip)`
-  background: ${props => props.theme.colors.neutral08};
-  border: 1px solid ${props => props.theme.colors.neutral06};
+  background: ${(props: any) => props.theme.colors.neutral08};
+  border: 1px solid ${(props: any) => props.theme.colors.neutral06};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
   box-sizing: border-box;
-  color: ${props => props.theme.colors.neutral};
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  color: ${(props: any) => props.theme.colors.neutral};
+  font-size: ${(props: any) => props.theme.typeScale.size02.fontSize};
   font-weight: normal;
-  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  line-height: ${(props: any) => props.theme.typeScale.size02.lineHeight};
   margin: 0;
   padding: 8px;
   width: fit-content;
@@ -30,8 +31,8 @@ const StyledGraphTooltip = styled(StyledTooltip)`
 `;
 
 const TooltipColorSwatch = styled.span`
-  background: ${props => props.color};
-  border: ${props => (props.color ? 'none' : '3px solid black')};
+  background: ${(props: any) => props.color};
+  border: ${(props: any) => (props.color ? 'none' : '3px solid black')};
   border-radius: 4px;
   height: 20px;
   width: 20px;
@@ -41,28 +42,26 @@ const TooltipColorSwatch = styled.span`
 export const GraphTooltip = (props: any) => {
   const { datum, index, showTooltip, x, y } = props;
 
-  const theme = React.useContext(ThemeContext);
+  const theme: ThemeInterface = React.useContext(ThemeContext);
   const linePointIndex = `${index}-${datum.index}`;
 
-  return (
-    showTooltip === linePointIndex ? (
-      <g style={{ pointerEvents: 'none' }}>
-        <foreignObject x={x} y={y} width="275" height="100%">
-          <StyledGraphTooltip
-            position={TooltipPosition.top}
-            role="tooltip"
-            theme={theme}
-          >
-            <div>
-              <TooltipColorSwatch color={theme.iterableColors[index]} />
-              <span>{datum.label}</span>
-            </div>
-            <TooltipArrow theme={theme} />
-          </StyledGraphTooltip>
-        </foreignObject>
-      </g>
-    ) : null
-  );
+  return showTooltip === linePointIndex ? (
+    <g style={{ pointerEvents: 'none' }}>
+      <foreignObject x={x} y={y} width="275" height="100%">
+        <StyledGraphTooltip
+          position={TooltipPosition.top}
+          role="tooltip"
+          theme={theme}
+        >
+          <div>
+            <TooltipColorSwatch color={theme.iterableColors[index]} />
+            <span>{datum.label}</span>
+          </div>
+          <TooltipArrow theme={theme} />
+        </StyledGraphTooltip>
+      </foreignObject>
+    </g>
+  ) : null;
 };
 
 export const AxisTooltip = (props: any) => {
@@ -73,7 +72,7 @@ export const AxisTooltip = (props: any) => {
     (_, i) => i + 0
   ).filter(i => !hiddenData.includes(i));
 
-  const theme = React.useContext(ThemeContext);
+  const theme: ThemeInterface = React.useContext(ThemeContext);
 
   return (
     <g style={{ pointerEvents: 'none' }}>

@@ -3,7 +3,7 @@ import { VictoryAxisProps } from 'victory';
 
 import { Card, Datagrid, Spinner } from 'react-magma-dom';
 
-export function toCamelCase(str) {
+export function toCamelCase(str: string) {
   return str
     .toLowerCase()
     .replace(/[^a-z 0-9]/gi, '')
@@ -29,7 +29,7 @@ export interface DataTableProps {
 
 export const ChartDataTable = (props: DataTableProps) => {
   const {
-    data,
+    data = [],
     xData: {
       keyValue: xKeyValue,
       label: xAxisLabel,
@@ -48,10 +48,10 @@ export const ChartDataTable = (props: DataTableProps) => {
   }, [data]);
 
   function convertData() {
-    const xField = toCamelCase(xKeyValue || xAxisLabel || 'x');
+    const xField = toCamelCase((xKeyValue || xAxisLabel || 'x') as string);
     const xTickValuesArray = data.reduce((valuesArray, { data: dataset }) => {
-      dataset.forEach(datum => {
-        const value = datum.x || datum[xKeyValue];
+      dataset.forEach((datum: any) => {
+        const value = datum.x || (xKeyValue && datum[xKeyValue]);
         !valuesArray.includes(value) && valuesArray.push(value);
       });
 
@@ -69,26 +69,29 @@ export const ChartDataTable = (props: DataTableProps) => {
               },
             ]
           : [],
-      rows: xTickValuesArray.reduce((agg, tick, index) => {
-        const tickValue =
-          xTickValues &&
-          typeof tick === 'number' &&
-          xTickValues.length === xTickValuesArray.length
-            ? xTickFormat && typeof xTickFormat === 'function'
-              ? xTickFormat(xTickValues[tick - 1])
-              : xTickValues[tick - 1]
-            : xTickFormat && Array.isArray(xTickFormat)
-            ? xTickFormat[tick - 1]
-            : xTickFormat && typeof xTickFormat === 'function'
-            ? xTickFormat(tick)
-            : tick;
-        agg.push({
-          [xField]: tickValue,
-          id: index,
-        });
+      rows: xTickValuesArray.reduce(
+        (agg: any[], tick: number, index: number) => {
+          const tickValue =
+            xTickValues &&
+            typeof tick === 'number' &&
+            xTickValues.length === xTickValuesArray.length
+              ? xTickFormat && typeof xTickFormat === 'function'
+                ? xTickFormat(xTickValues[tick - 1])
+                : xTickValues[tick - 1]
+              : xTickFormat && Array.isArray(xTickFormat)
+              ? xTickFormat[tick - 1]
+              : xTickFormat && typeof xTickFormat === 'function'
+              ? xTickFormat(tick)
+              : tick;
+          agg.push({
+            [xField]: tickValue,
+            id: index,
+          });
 
-        return agg;
-      }, []),
+          return agg;
+        },
+        []
+      ),
     };
 
     return data.reduce((tableData, datum) => {
@@ -100,8 +103,8 @@ export const ChartDataTable = (props: DataTableProps) => {
         header,
       });
 
-      dataset.forEach((d, i) => {
-        const yValue = d.y || d[yKeyValue];
+      dataset.forEach((d: any, i: number) => {
+        const yValue = d.y || (yKeyValue && d[yKeyValue]);
         tableData.rows[i] = {
           ...tableData.rows[i],
           id: baseTableData.rows.length > 0 ? i + 1 : i,

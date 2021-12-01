@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { LineSegment } from 'victory';
+import { LineSegment, LineSegmentProps } from 'victory';
 
-export const CustomAxisComponent = ({ events, ...props }) => {
+export const CustomAxisComponent: React.FunctionComponent<LineSegmentProps> = ({
+  events,
+  ...props
+}: any) => {
   return (
     <g>
       <LineSegment

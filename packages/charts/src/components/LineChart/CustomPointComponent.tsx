@@ -1,8 +1,37 @@
 import * as React from 'react';
-import { Point } from 'victory';
+import { Point, PointProps } from 'victory';
 import { useForceUpdate } from 'react-magma-dom';
 
-export const CustomScatterDataComponent = props => {
+export interface CustomScatterDataComponentInterface extends PointProps {
+  lineIndex: number;
+  pointRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>;
+  registerPoint: (
+    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    ref: React.MutableRefObject<Element>
+  ) => void;
+  unregisterPoint: (
+    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    ref: React.MutableRefObject<Element>
+  ) => void;
+}
+
+export interface CustomPointComponentInterface {
+  lineIndex: number;
+  pointIndex: PointProps['index'];
+  pointRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>;
+  registerPoint: (
+    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    ref: React.MutableRefObject<Element>
+  ) => void;
+  unregisterPoint: (
+    refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    ref: React.MutableRefObject<Element>
+  ) => void;
+}
+
+export const CustomScatterDataComponent = (
+  props: CustomScatterDataComponentInterface
+) => {
   const {
     datum,
     index: pointIndex,
@@ -31,7 +60,7 @@ export const CustomScatterDataComponent = props => {
   );
 };
 
-export const CustomPointComponent = props => {
+export const CustomPointComponent = (props: CustomPointComponentInterface) => {
   const {
     lineIndex,
     pointRefArray,
@@ -41,14 +70,15 @@ export const CustomPointComponent = props => {
     ...other
   } = props;
   const forceUpdate = useForceUpdate();
-  const ref = React.useRef<SVGPathElement>();
+  const ref = React.useRef<SVGPathElement | null>(null);
 
   React.useEffect(() => {
-    registerPoint(pointRefArray, ref);
+    registerPoint(pointRefArray, ref as React.MutableRefObject<Element>);
 
     forceUpdate();
 
-    return () => unregisterPoint(pointRefArray, ref);
+    return () =>
+      unregisterPoint(pointRefArray, ref as React.MutableRefObject<Element>);
   }, []);
 
   return (

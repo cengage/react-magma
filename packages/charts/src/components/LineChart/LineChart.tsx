@@ -18,9 +18,11 @@ import {
   ThemeContext,
   styled,
   AlertVariant,
+  ThemeInterface,
+  I18nInterface,
 } from 'react-magma-dom';
 
-import magmaTheme from './magma-charts';
+import { magmaTheme } from './magma-charts';
 import { AxisTooltip, GraphTooltip } from './GraphTooltip';
 import { CustomScatterDataComponent } from './CustomPointComponent';
 import { CustomAxisComponent } from './CustomAxisComponent';
@@ -59,7 +61,7 @@ export interface LineChartProps<T extends ChartDataOptions> {
   /**
    * @internal
    */
-  lastFocusedScatterPoint: React.MutableRefObject<SVGPathElement|null>;
+  lastFocusedScatterPoint: React.MutableRefObject<SVGPathElement | null>;
   /**
    * @internal
    */
@@ -74,7 +76,7 @@ export interface LineChartProps<T extends ChartDataOptions> {
   /**
    * @internal
    */
-  tabRef: React.MutableRefObject<HTMLButtonElement|null>;
+  tabRef: React.MutableRefObject<HTMLButtonElement | null>;
   /**
    * @internal
    */
@@ -101,8 +103,8 @@ const DataLegendsContainer = styled.div`
 `;
 
 const DataLegendsDescription = styled.p`
-  color: ${props => props.theme.colors.neutral03};
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  color: ${(props: any) => props.theme.colors.neutral03};
+  font-size: ${(props: any) => props.theme.typeScale.size02.fontSize};
 `;
 
 export function LineChart<T>(props: LineChartProps<T>) {
@@ -113,22 +115,22 @@ export function LineChart<T>(props: LineChartProps<T>) {
       scatter = {},
       xAxis: {
         style: {
-          axisLabel: xAxisLabel,
-          tickLabels: xTickLabels,
+          axisLabel: xAxisLabel = undefined,
+          tickLabels: xTickLabels = undefined,
           ...xRest
         } = {},
         ...xAxisOther
-      },
+      } = { style: {} },
       yAxis: {
         style: {
-          axisLabel: yAxisLabel,
-          tickLabels: yTickLabels,
+          axisLabel: yAxisLabel = undefined,
+          tickLabels: yTickLabels = undefined,
           ...yRest
         } = {},
         ...yAxisOther
-      } = {},
+      } = { style: {} },
     } = {},
-    data=[],
+    data = [],
     lastFocusedScatterPoint,
     pointRefArray,
     registerPoint,
@@ -138,13 +140,13 @@ export function LineChart<T>(props: LineChartProps<T>) {
     y,
   } = props;
 
-  const theme = React.useContext(ThemeContext);
-  const i18n = React.useContext(I18nContext);
+  const theme: ThemeInterface = React.useContext(ThemeContext);
+  const i18n: I18nInterface = React.useContext(I18nContext);
 
   const [hiddenData, setHiddenData] = React.useState<number[]>([]);
   const [width, setWidth] = React.useState<number>(800);
-  const [focusedLine, setFocusedLine] = React.useState<number|null>(null);
-  const [showTooltip, setShowTooltip] = React.useState<string|null>(null);
+  const [focusedLine, setFocusedLine] = React.useState<number | null>(null);
+  const [showTooltip, setShowTooltip] = React.useState<string | null>(null);
   const [showXAxisLabel, setShowXAxisLabel] = React.useState<boolean>(true);
   const [hoveringOnXAxisLine, setHoveringOnXAxisLine] =
     React.useState<boolean>(false);
@@ -240,14 +242,19 @@ export function LineChart<T>(props: LineChartProps<T>) {
     setFocusedLine(null);
   }
 
-  const buildLineIndexes = (acc: number[], point: React.MutableRefObject<Element>) => {
+  const buildLineIndexes = (
+    acc: number[],
+    point: React.MutableRefObject<Element>
+  ) => {
     if (point.current) {
       const currentLineIndex = parseInt(
         point.current.getAttribute('data-line-index') as string,
         10
       );
       !acc.includes(currentLineIndex) &&
-        acc.push(parseInt(point.current.getAttribute('data-line-index') as string, 10));
+        acc.push(
+          parseInt(point.current.getAttribute('data-line-index') as string, 10)
+        );
     }
     return acc;
   };
@@ -275,10 +282,14 @@ export function LineChart<T>(props: LineChartProps<T>) {
     };
   };
 
-  const findPointToFocus = (lineIndex: number, pointIndex: number) => (point: React.MutableRefObject<Element>) =>
-    point.current &&
-    parseInt(point.current.getAttribute('data-line-index') as string, 10) === lineIndex &&
-    parseInt(point.current.getAttribute('data-point-index') as string, 10) === pointIndex;
+  const findPointToFocus =
+    (lineIndex: number, pointIndex: number) =>
+    (point: React.MutableRefObject<Element>) =>
+      point.current &&
+      parseInt(point.current.getAttribute('data-line-index') as string, 10) ===
+        lineIndex &&
+      parseInt(point.current.getAttribute('data-point-index') as string, 10) ===
+        pointIndex;
 
   // eslint-disable-next-line complexity
   function handleChartContainerKeyDown(event: React.KeyboardEvent) {
@@ -286,12 +297,15 @@ export function LineChart<T>(props: LineChartProps<T>) {
     switch (key) {
       case 'Tab': {
         event.preventDefault();
-        lastFocusedScatterPoint.current = (pointRefArray.current.find(
-          point => point.current === document.activeElement
-        ) as React.MutableRefObject<Element>).current as SVGPathElement;
+        lastFocusedScatterPoint.current = (
+          pointRefArray.current.find(
+            point => point.current === document.activeElement
+          ) as React.MutableRefObject<Element>
+        ).current as SVGPathElement;
         shiftKey
           ? tabRef.current && tabRef.current.focus()
-          : firstLegendButtonRef.current && firstLegendButtonRef.current.focus();
+          : firstLegendButtonRef.current &&
+            firstLegendButtonRef.current.focus();
         break;
       }
       case 'ArrowRight': {
@@ -345,9 +359,11 @@ export function LineChart<T>(props: LineChartProps<T>) {
           switch (currentLineIndex) {
             case lowestLineIndex: {
               (
-               ( pointRefArray.current.find(
-                  findPointToFocus(highestLineIndex, currentPointIndex)
-                ) as React.MutableRefObject<Element>).current as HTMLButtonElement
+                (
+                  pointRefArray.current.find(
+                    findPointToFocus(highestLineIndex, currentPointIndex)
+                  ) as React.MutableRefObject<Element>
+                ).current as HTMLButtonElement
               ).focus();
               break;
             }
@@ -355,9 +371,11 @@ export function LineChart<T>(props: LineChartProps<T>) {
               const nextLowestLineIndex =
                 lineIndexes[lineIndexes.indexOf(currentLineIndex) - 1];
               (
-               ( pointRefArray.current.find(
-                  findPointToFocus(nextLowestLineIndex, currentPointIndex)
-                ) as React.MutableRefObject<Element>).current as HTMLButtonElement
+                (
+                  pointRefArray.current.find(
+                    findPointToFocus(nextLowestLineIndex, currentPointIndex)
+                  ) as React.MutableRefObject<Element>
+                ).current as HTMLButtonElement
               ).focus();
             }
           }
@@ -382,9 +400,11 @@ export function LineChart<T>(props: LineChartProps<T>) {
           switch (currentLineIndex) {
             case highestLineIndex: {
               (
-                (pointRefArray.current.find(
-                  findPointToFocus(lowestLineIndex, currentPointIndex)
-                )as React.MutableRefObject<Element>).current as HTMLButtonElement
+                (
+                  pointRefArray.current.find(
+                    findPointToFocus(lowestLineIndex, currentPointIndex)
+                  ) as React.MutableRefObject<Element>
+                ).current as HTMLButtonElement
               ).focus();
               break;
             }
@@ -392,9 +412,11 @@ export function LineChart<T>(props: LineChartProps<T>) {
               const nextHighestLineIndex =
                 lineIndexes[lineIndexes.indexOf(currentLineIndex) + 1];
               (
-                (pointRefArray.current.find(
-                  findPointToFocus(nextHighestLineIndex, currentPointIndex)
-                )as React.MutableRefObject<Element>).current as HTMLButtonElement
+                (
+                  pointRefArray.current.find(
+                    findPointToFocus(nextHighestLineIndex, currentPointIndex)
+                  ) as React.MutableRefObject<Element>
+                ).current as HTMLButtonElement
               ).focus();
             }
           }
@@ -530,7 +552,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                             },
                           ];
                         },
-                        onFocus: props => {
+                        onFocus: () => {
                           setShowXAxisLabel(false);
                           return [
                             {
