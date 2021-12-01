@@ -38,14 +38,14 @@ const TooltipColorSwatch = styled.span`
   margin-right: 8px;
 `;
 
-export const GraphTooltip = props => {
+export const GraphTooltip = (props: any) => {
   const { datum, index, showTooltip, x, y } = props;
 
   const theme = React.useContext(ThemeContext);
   const linePointIndex = `${index}-${datum.index}`;
 
   return (
-    showTooltip === linePointIndex && (
+    showTooltip === linePointIndex ? (
       <g style={{ pointerEvents: 'none' }}>
         <foreignObject x={x} y={y} width="275" height="100%">
           <StyledGraphTooltip
@@ -61,11 +61,11 @@ export const GraphTooltip = props => {
           </StyledGraphTooltip>
         </foreignObject>
       </g>
-    )
+    ) : null
   );
 };
 
-export const AxisTooltip = props => {
+export const AxisTooltip = (props: any) => {
   const { x, y, activePoints, hiddenData, dataLength } = props;
 
   const pointsIndexes = Array.from(
@@ -84,7 +84,7 @@ export const AxisTooltip = props => {
           role="tooltip"
           theme={theme}
         >
-          {activePoints.map((point, i) => (
+          {activePoints.map((point: any, i: number) => (
             <div key={i}>
               <TooltipColorSwatch
                 color={theme.iterableColors[pointsIndexes[i]]}

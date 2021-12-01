@@ -29,17 +29,19 @@
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
     "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0"
+    "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0",
+    "react-magma-dom": "^2.5.7-next.0",
+    "react-magma-icons": "^2.3.1"
   },
   "dependencies": {
-    "react-magma-dom": "2.5.7-next.1",
-    "react-magma-icons": "^2.3.1",
     "victory": "^35.4.12"
   },
   "devDependencies": {
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
     "react": "^16.10.0",
-    "react-dom": "^16.10.0"
+    "react-dom": "^16.10.0",
+    "react-magma-dom": "^2.5.7-next.0",
+    "react-magma-icons": "^2.3.1"
   }
 }

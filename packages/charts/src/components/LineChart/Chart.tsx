@@ -55,11 +55,11 @@ const StyledTabPanel = styled(TabPanel)`
 
 function BaseChart<T>(
   props: ChartProps<T>,
-  ref: React.MutableRefObject<HTMLDivElement>
+  ref: React.Ref<HTMLDivElement>
 ) {
   const { description, title, testId, type, ...other } = props;
-  const firstTabRef = React.useRef<HTMLButtonElement>();
-  const lastFocusedScatterPoint = React.useRef<SVGPathElement>();
+  const firstTabRef = React.useRef<HTMLButtonElement>(null);
+  const lastFocusedScatterPoint = React.useRef<SVGPathElement>(null);
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
