@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.2
+
+### Patch Changes
+
+- 2e4f06d6: feat: Predictive Search
+
 ## 2.5.7-next.1
 
 ### Patch Changes
