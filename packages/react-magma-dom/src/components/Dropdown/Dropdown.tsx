@@ -44,6 +44,10 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * Function called when closing the dropdown menu
    */
   onClose?: (event: React.SyntheticEvent) => void;
+  /**
+   * Function called when opening the dropdown menu
+   */
+  onOpen?: () => void;
   testId?: string;
   /**
    * Width of menu
@@ -98,6 +102,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       maxHeight,
       onBeforeShiftFocus,
       onClose,
+      onOpen,
       testId,
       width,
       ...other
@@ -134,6 +139,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           filteredItems[0].current &&
           filteredItems[0].current.focus();
       }, 0);
+
+      onOpen && typeof onOpen === 'function' && onOpen();
     }
 
     function closeDropdown(event) {
