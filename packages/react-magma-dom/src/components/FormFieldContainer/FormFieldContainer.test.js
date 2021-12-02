@@ -15,6 +15,24 @@ describe('FormFieldContainer', () => {
     expect(getByText(TEXT)).toBeInTheDocument();
   });
 
+  
+  it('should render the form field container component', () => {
+    const { getByLabelText } = render(
+      <FormFieldContainer fieldId='input' labelText={TEXT}><input id="input"/></FormFieldContainer>
+    );
+
+    expect(getByLabelText(TEXT)).toBeInTheDocument();
+  });
+
+  it('should render the form field label as a span when not actionable', () => {
+    const { queryByLabelText, getByText } = render(
+      <FormFieldContainer actionable={false} fieldId='input' labelText={TEXT}><input id="input"/></FormFieldContainer>
+    );
+
+    expect(queryByLabelText(TEXT)).not.toBeInTheDocument();
+    expect(getByText(TEXT)).toBeInTheDocument();
+  });
+
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(

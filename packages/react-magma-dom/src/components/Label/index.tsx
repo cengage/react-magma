@@ -11,14 +11,15 @@ export enum LabelPosition {
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
-  isInverse?: boolean;
-  labelPosition?: LabelPosition;
-  size?: InputSize;
-  theme?: any;
-  testId?: string;
+    actionable?: boolean;
+    isInverse?: boolean;
+    labelPosition?: LabelPosition;
+    size?: InputSize;
+    theme?: any;
+    testId?: string;
 }
 
-const StyledLabel = styled.label<LabelProps>`
+const StyledLabel = styled.label<{isInverse: boolean; theme: any; size: InputSize; labelPosition: LabelPosition}>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
@@ -46,12 +47,15 @@ const StyledLabel = styled.label<LabelProps>`
   white-space: nowrap;
 `;
 
+const StyledSpan = StyledLabel.withComponent('span')
+
+
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
-    const { children, labelPosition, size, testId, ...other } = props;
+    const { actionable=true, children, labelPosition, size, testId, ...other } = props;
     const theme = React.useContext(ThemeContext);
 
-    return (
+    return actionable ? (
       <StyledLabel
         {...other}
         data-testid={testId}
@@ -63,6 +67,18 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       >
         {children}
       </StyledLabel>
+    ) : (
+      <StyledSpan
+        {...other}
+        data-testid={testId}
+        isInverse={useIsInverse(props.isInverse)}
+        labelPosition={labelPosition || LabelPosition.top}
+        ref={ref}
+        size={size ? size : InputSize.medium}
+        theme={theme}
+      >
+        {children}
+      </StyledSpan>
     );
   }
 );
