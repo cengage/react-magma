@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.3
+
+### Patch Changes
+
+- 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
+
 ## 2.5.7-next.2
 
 ### Patch Changes
