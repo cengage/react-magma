@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.4
+
+### Patch Changes
+
+- 156c5c1e: docs: page layout templates
+
 ## 2.5.7-next.3
 
 ### Patch Changes
