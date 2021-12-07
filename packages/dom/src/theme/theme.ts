@@ -1,3 +1,4 @@
+import { blocked } from "../../../..";
 import { Flex } from "../../dist";
 
 const theme = {
@@ -137,20 +138,39 @@ const theme = {
         },
         AlertInner: {
           default: {
-            backgroundColor: [`${buildAlertBackground(props)}`],
+            backgroundColor: 'var(--colors-neutral)',
             color: 'var(--colors-neutral)',
             borderRadius: 'var(--borderRadius)',
             display: 'flex',
             position: 'relative',
           },
           props: {
+            danger: {
+              default: {
+                backgroundColor: 'var(--colors-danger)',
+              },
+            },
+            success: {
+              default: {
+                backgroundColor: 'var(--colors-success)',
+              },
+            },
+            warning: {
+              default: {
+                backgroundColor: 'var(--colors-pop04)',
+              },
+            },
             isInverse: {
-              color: 'var(--colors-neutral08)',
+              default: {
+                color: 'var(--colors-neutral08)',
+              },
             },
             isToast: {
-              animation: 'placeholder and keyframes',
-              minWidth: '375px',
-              margin: '0 auto',
+              default: {
+                animation: 'placeholder and keyframes',
+                minWidth: '375px',
+                margin: '0 auto',
+              },
             },
             '@media': {
               maxWidth: {
@@ -319,11 +339,11 @@ const theme = {
         color: 'var(--appBar-textColor)',
         display: 'flex',
         height: 'var(--appBar-height)',
-        left: 0,
+        left: '0',
         padding: 'var(--appBar-padding)',
-        right: 0,
-        top: 0,
-        zIndex: 10,
+        right: '0',
+        top: '0',
+        zIndex: '10',
         position: 'static',
       },
       props: {
@@ -1744,6 +1764,19 @@ const theme = {
     },
     Select: {
       components: {
+        ChildrenContainer: {
+          default: {
+            alignItems: 'center',
+            display: 'flex',
+            flexGrow: '1',
+            flexWrap: 'wrap',
+          },
+        },
+        InputMessageContainer: {
+          default: {
+            flexGrow: '1',
+          },
+        },
         NoItemsMessage: {
           default: {
             color: 'var(--colors-neutral04)',
@@ -1764,9 +1797,403 @@ const theme = {
             },
           },
         },
-        InputMessageContainer: {
+        Shared: {
+          components: {
+            IconWrapper: {
+              default: {
+                paddingLeft: '12px',
+              },
+            },
+            SelectContainer: {
+              default: {
+                position: 'relative',
+              },
+            },
+            SelectText: {
+              default: {
+                flexGrow: '1',
+                padding: '0 8px 0 4px',
+              },
+            },
+            SelectedItemButton: {
+              default: {
+                alignSelf: 'center',
+                background: 'var(--colors.neutral06)',
+                borderRadius: '4px',
+                border: '0',
+                boxShadow: '0 0 0',
+                display: 'flex',
+                fontSize: '12px',
+                lineHeight: '16px',
+                height: '24px',
+                margin: '4px 2px 4px 4px',
+                padding: 'var(--spaceScale-spacing02) var(--spaceScale-spacing02) var(--spaceScale-spacing02) var(--spaceScale-spacing03)',
+                position: 'relative',
+                whiteSpace: 'nowrap',
+              },
+            },
+            SelectedItemsWrapper: {
+              default: {
+                display: 'flex',
+                flexGrow: '1',
+                flexWrap: 'wrap',
+                padding: '0 0 0 4px',
+              },
+            },
+            StyledButton: {
+              default: {
+                alignItems: 'center',
+                display: 'flex',
+                textAlign: 'left',
+              },
+            },
+            StyledCard: {
+              default: {
+                display: 'none',
+                left: '4px',
+                marginTop: '4px',
+                padding: '4px 0 0',
+                position: 'absolute',
+                right: '4px',
+                top: 'auto',
+                zIndex: '2',
+              },
+              props: {
+                isOpen: {
+                  display: 'block',
+                },
+              },
+            },
+            StyledItem: {
+              default: {
+                alignSelf: 'center',
+                background: 'transparent',
+                border: '2px dotted',
+                borderColor: 'transparent',
+                cursor: 'default',
+                lineHeight: '24px',
+                margin: '0',
+                padding: '8px 16px',
+              },
+              props: {
+                isFocused: {
+                  background: 'var(--colors-neutral06)',
+                  borderColor: 'var(--colors-focus)',
+                },
+              },
+            },
+            StyledList: {
+              default: {
+                display: 'none',
+                listStyle: 'none',
+                margin: '0 0 4px',
+                outline: 'none',
+                padding: '0',
+                maxHeight: `${props.maxHeight}`,
+                overflowY: 'auto',
+              },
+              props: {
+                isOpen: {
+                  display: 'block',
+                }
+              },
+            },
+          },
+        },
+        StyledButton: {
           default: {
-            flexGrow: '1',
+            alignItems: 'center',
+            display: 'flex',
+            height: 'auto',
+            minHeight: 'var(--spaceScale-spacing09)',
+            padding: '0 var(--spaceScale-spacing03) 0 var(--spaceScale-spacing02)',
+            textAlign: 'left',
+          },
+        },
+      },
+    },
+    SelectionControls: {
+      components: {
+        InputStyles: {
+          components: {
+            DisplayInputActiveStyles: {
+              default: {
+                opacity: '0.4',
+                transform: 'scale(0)',
+                transition: 'transform 0s',
+              },
+            },
+            DisplayInputStyles: {
+              default: {
+                alignItems: 'center',
+                display: 'flex',
+                height: 'var(--spaceScale-spacing06)',
+                flexShrink: '0',
+                justifyContent: 'center',
+                position: 'relative',
+                transition: 'all 0.2s ease-out',
+                width: 'var(--spaceScale-spacing06)',
+
+                '&:before': {
+                  content: '',
+                  position: 'absolute',
+                },
+
+                '&:after': {
+                  content: '',
+                  position: 'absolute',
+                  borderRadius: '50%',
+                  height: 'var(--spaceScale-spacing09)',
+                  left: 'calc(var(--spaceScale-spacing03) * -1)',
+                  opacity: '0',
+                  padding: '50%',
+                  top: 'calc(var(--spaceScale-spacing03) * -1)',
+                  transform: 'scale(1)',
+                  transition: 'opacity 1s, transform 0.5s',
+                  width: 'var(--spaceScale-spacing09)',
+                },
+              },
+            },
+          },
+        },
+        StyledContainer: {
+          default: {
+            alignItems: 'baseline',
+            display: 'flex',
+            flexWrap: 'nowrap',
+            position: 'relative',
+          },
+        },
+        StyledLabel: {
+          default: {
+            alignItems: 'flex-start',
+            color: 'inherit',
+            display: 'flex',
+            fontSize: 'var(--typeScale-size03-fontSize)',
+            lineHeight: 'var(--typeScale-size03-lineHeight)',
+            margin: '0',
+            padding: 'var(--spaceScale-spacing03) 0',
+          },
+          props: {
+            isInverse: {
+              color: 'var(--colors-neutral08)',
+            },
+          },
+        },
+      },
+    },
+    SkipLink: {
+      left: '-9999px',
+      position: 'fixed',
+      top: '-9999px',
+
+      '&:focus': {
+        left: `${props.positionLeft}px`,
+        top: `${props.positionTop}px`,
+        zIndex: '99999',
+      },
+    },
+    Spinner: {
+      default: {
+        animation: 'spinner-border 0.75s linear infinite',
+        border: `2px solid ${props.color}`,
+        borderRightColor: 'transparent',
+        borderRadius: '50%',
+        display: 'inline-block',
+        height: `${props.size}`,
+        width: `${props.size}`,
+
+        '@keyframes spinner-border': {
+          'to': {
+            transform: 'rotate(360deg)',
+          },
+        },
+      },
+    },
+    StyledButton: {
+      components: {
+        buttonStyles: {
+          default: {
+            alignItems: 'center',
+            background: 'var(--colors-primary)',
+            border: '0',
+            borderColor: 'var(--colors-primary)',
+            borderRadius: 'var(--borderRadius)',
+            color: 'var(--colors-neutral08)',
+            cursor: 'pointer',
+            display: 'inline-flex',
+            flexShrink: '0',
+            fontFamily: 'var(--bodyFont)',
+            fontSize: 'var(--typeScale-size03-fontSize)',
+            fontWeight: '600',
+            height: 'var(--spaceScale-spacing09)',
+            justifyContent: 'center',
+            lineHeight: 'var(--typeScale-size03-lineHeight)',
+            margin: 'var(--spaceScale-spacing02)',
+            minWidth: 'var(--spaceScale-spacing13)',
+            overflow: 'hidden',
+            padding: 'var(--spaceScale.-spacing04) var(--spaceScale.-spacing05)',
+            position: 'relative',
+            textAlign: 'center',
+            textDecoration: 'none',
+            textTransform: `${props.textTransform || 'uppercase'}`,
+            touchAction: 'manipulation',
+            transition: 'background 0.35s, border-color 0.35s, box-shadow 0.35s, color 0.35s',
+            verticalAlign: 'middle',
+            whiteSpace: 'nowrap',
+
+            'svg': {
+              flexShrink: '0',
+            },
+
+            '&:not(:disabled)': {
+              '&:active': {
+                background: `${buildActiveBackground(props)}`,
+                color: `${buildActiveColor(props)}`,
+
+                '&:after': {
+                  opacity: '0.4',
+                  transform: 'translate(-50%, -50%) scale(0)',
+                  transition: 'transform 0s',
+                }
+              },
+              '&:after': {
+                background: `${buildAfterBackground(props)}`,
+                borderRadius: '50%',
+                content: '',
+                height: 'var(--spaceScale-spacing07)',
+                left: '50%',
+                opacity: '0',
+                padding: '50%',
+                position: 'absolute',
+                top: '50%',
+                transform: 'translate(-50%, -50%) scale(1)',
+                transition: 'opacity 1s, transform 0.5s',
+                width: 'var(--spaceScale-spacing07)',
+              },
+              '&:focus': {
+                outline: '2px dotted var(--colors-focus)',
+                outlineOffset: '3px',
+              },
+              '&:hover': {
+                background: `${buildFocusBackground(props)}`,
+                color: `${buildFocusColor(props)}`,
+              },
+            },
+          },
+          props: {
+            colors: {
+              danger: {
+                background: 'var(--colors-danger)',
+                borderColor: 'var(--colors-danger)',
+                color: 'var(--colors-danger)',
+              },
+              marketing: {
+                background: 'var(--colors-pop04)',
+                borderColor: 'var(--colors-pop04)',
+                color: 'var(--colors-foundation02)',
+              },
+              secondary: {
+                background: 'var(--colors-neutral08)',
+                border: '2px solid',
+                color: 'var(--colors-neutral)',
+              },
+              success: {
+                background: 'var(--colors-success)',
+                borderColor: 'var(--colors-success)',
+                color: 'var(--colors-success)',
+              },
+            },
+            disabled: {
+              default: {
+                background: 'var(--colors-neutral06)',
+                borderColor: 'var(--colors-neutral06)',
+                color: 'var(--colors-disabledText)',
+                cursor: 'not-allowed',
+              },
+              props: {
+                isInverse: {
+                  props: {
+                    outline: {
+                      borderColor: 'var(--colors-disabledInverseText)',
+                      color: 'var(--colors-disabledInverseText)',
+                    },
+                  },
+                },
+              },
+            },
+            isFullWidth: {
+              display: 'flex',
+              margin: 'var(--spaceScale-spacing02) 0',
+              width: '100%',
+            },
+            isIconOnly: {
+              default: {
+                display: 'inline-flex',
+                justifyContent: 'center',
+                lineHeight: '1',
+                minWidth: '0',
+                padding: '0',
+                width: 'var(--spaceScale-08)',
+              },
+              size: {
+                small: {
+                  width: 'var(--spaceScale-08)'
+                },
+                large: {
+                  width: 'var(--spaceScale-08)'
+                },
+              },
+            },
+            isInverse: {
+              default: {
+                background: 'var(--colors-neutral08)',
+                borderColor: 'var(--colors-neutral08)',
+                color: 'var(--colors-neutral08)',
+                
+                '&:not(:disabled)': {
+                  '&:focus': {
+                    outline: '2px dotted var(--colors-focusInverse)',
+                    outlineOffset: '3px',
+                  },
+                },
+              },
+            },
+            outline: {
+              default: {
+                border: '2px solid',
+              },             
+            },
+            shape: {
+              leftCap: {
+                borderRadius: 'var(--borderRadius) 0 0 var(--borderRadius)',
+              },
+              rightCap: {
+                borderRadius: '0 var(--borderRadius) var(--borderRadius) 0',
+              },
+              round: {
+                borderRadius: '100%',
+              },
+            },
+            size: {
+              large: {
+                default: {
+                  fontSize: 'var(--typeScale-size04-fontSize)',
+                  height: 'var(--spaceScale-spacing11)',
+                  lineHeight: 'var(--typeScale-size04-lineHeight)',
+                  padding: 'var(--spaceScale.-spacing04) var(--spaceScale.-spacing06)',
+                },
+              },
+              small: {
+                default: {
+                  fontSize: 'var(--typeScale-size01-lineHeight)',
+                  height: 'var(--spaceScale-spacing07)',
+                  lineHeight: 'var(--typeScale-size01-lineHeight)',
+                  minWidth: '0',
+                  padding: 'var(--spaceScale.-spacing02) var(--spaceScale.-spacing03)',
+                },
+              },
+            },
           },
         },
       },
