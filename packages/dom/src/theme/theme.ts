@@ -391,7 +391,7 @@ const theme = {
         },
       },
       default: {
-        background: `${buildBadgeBackground(props)}`,
+        background: 'var(--colors-neutral02)',
         border: '1px solid',
         borderColor: 'transparent',
         borderRadius: 'var(--borderRadius)',
@@ -417,9 +417,31 @@ const theme = {
           textAlign: 'center',
         },
         color: {
+          danger: {
+            default: {
+              background: 'var(--colors-danger)',
+            },
+          },
           light: {
-            borderColor: 'var(--colors-neutral06)',
-            color: 'var(--colors-neutral)',
+            default: {
+              borderColor: 'var(--colors-neutral06)',
+              color: 'var(--colors-neutral)',
+            },
+          },
+          primary: {
+            default: {
+              background: 'var(--colors-primary)',
+            },
+          },
+          secondary: {
+            default: {
+              background: 'var(--colors-neutral02)',
+            },
+          },
+          success: {
+            default: {
+              background: 'var(--colors-neutral02)',
+            },
           },
         },
       },
