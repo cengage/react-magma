@@ -134,6 +134,7 @@ describe('Line Chart', () => {
 
       userEvent.click(getByText(/chart/i, { selector: 'button' }));
       userEvent.tab();
+      userEvent.tab();
 
       expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
 
@@ -191,6 +192,7 @@ describe('Line Chart', () => {
 
       userEvent.click(getByText(/chart/i, { selector: 'button' }));
       userEvent.tab();
+      userEvent.tab();
 
       expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
 
@@ -237,6 +239,7 @@ describe('Line Chart', () => {
 
       userEvent.click(getByText(/chart/i, { selector: 'button' }));
       userEvent.tab();
+      userEvent.tab();
 
       expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
 
@@ -274,6 +277,7 @@ describe('Line Chart', () => {
       );
 
       userEvent.click(getByText(/chart/i, { selector: 'button' }));
+      userEvent.tab();
       userEvent.tab();
 
       expect(getByLabelText(data[0].data[0].label)).toHaveFocus();
@@ -356,6 +360,7 @@ describe('Line Chart', () => {
 
       userEvent.click(getByText(/chart/i, { selector: 'button' }));
       userEvent.tab();
+      userEvent.tab();
 
       expect(getByLabelText(data[0].data[0].label)).toHaveFocus();
 
@@ -413,6 +418,7 @@ describe('Line Chart', () => {
 
       userEvent.click(getByText(/chart/i, { selector: 'button' }));
       userEvent.tab();
+      userEvent.tab();
 
       expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
 
@@ -453,6 +459,7 @@ describe('Line Chart', () => {
       );
 
       userEvent.click(getByText(/chart/i, { selector: 'button' }));
+      userEvent.tab();
       userEvent.tab();
 
       expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
