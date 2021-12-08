@@ -14,10 +14,8 @@ import {
 
 import {
   I18nContext,
-  Alert,
   ThemeContext,
   styled,
-  AlertVariant,
   ThemeInterface,
   I18nInterface,
 } from 'react-magma-dom';
@@ -448,11 +446,6 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
   return (
     <LineChartContainer ref={containerRef}>
-      <Alert variant={AlertVariant.muted}>
-        <strong>Keyboard users: </strong>In the chart below, use your up and
-        down arrows to move between each line. Use your left and right arrows to
-        move between points on a line.
-      </Alert>
       <VictoryChartContainer onKeyDown={handleChartContainerKeyDown}>
         <VictoryChart
           domainPadding={32}

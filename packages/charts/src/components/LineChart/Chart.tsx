@@ -5,16 +5,22 @@ import {
   ThemeContext,
   useDescendants,
 } from 'react-magma-dom';
+import { css } from '@emotion/core';
+import { KeyboardIcon } from 'react-magma-icons';
 
 import { LineChart, LineChartProps } from './LineChart';
 import { ChartDataTable } from './ChartDataTable';
 import {
+  ButtonVariant,
+  Card,
+  IconButton,
   Paragraph,
   TabsContainer,
   Tabs,
   Tab,
   TabPanelsContainer,
   TabPanel,
+  Tooltip,
   TypographyVisualStyle,
 } from 'react-magma-dom';
 
@@ -53,10 +59,33 @@ const StyledTabPanel = styled(TabPanel)`
   padding: 22px 0;
 `;
 
-function BaseChart<T>(
-  props: ChartProps<T>,
-  ref: React.Ref<HTMLDivElement>
-) {
+const KeyboardInstructionsCard = styled(Card)<{
+  isOpen?: boolean;
+}>`
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  display: ${props => (props.isOpen ? 'block' : 'none')};
+  right: ${props => props.theme.spaceScale.spacing02};
+  max-height: ${props =>
+    props.maxHeight ? props.maxHeight : props.theme.dropdown.content.maxHeight};
+  opacity: ${props => (props.isOpen ? '1' : '0')};
+  outline: 0;
+  overflow-y: auto;
+  padding: ${props => props.theme.spaceScale.spacing05}
+    ${props => props.theme.spaceScale.spacing05};
+  position: absolute;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 2;
+
+  ${props =>
+    props.width &&
+    css`
+      white-space: normal;
+      width: ${props.width};
+    `}
+`;
+
+function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
   const { description, title, testId, type, ...other } = props;
   const firstTabRef = React.useRef<HTMLButtonElement>(null);
   const lastFocusedScatterPoint = React.useRef<SVGPathElement>(null);
@@ -64,6 +93,9 @@ function BaseChart<T>(
   const i18n = React.useContext(I18nContext);
 
   const [pointRefArray, registerPoint, unregisterPoint] = useDescendants();
+
+  const [isKeyboardInstructionsOpen, setIsKeyboardInstructionsOpen] =
+    React.useState<boolean>(false);
 
   function handleChartTabKeydown(event: React.KeyboardEvent) {
     const { key, shiftKey } = event;
@@ -85,6 +117,10 @@ function BaseChart<T>(
     }
   }
 
+  function handleKeyboardInstructionsButtonClick() {
+    setIsKeyboardInstructionsOpen(prevOpen => !prevOpen);
+  }
+
   return (
     <div ref={ref}>
       <StyledTitle theme={theme}>{title}</StyledTitle>
@@ -97,11 +133,39 @@ function BaseChart<T>(
         </StyledParagraph>
       )}
       <StyledTabsContainer theme={theme}>
-        <Tabs aria-label="Line Chart Demo">
+        <Tabs>
           <Tab onKeyDown={handleChartTabKeydown} ref={firstTabRef}>
             {i18n.charts.line.chartTabLabel}
           </Tab>
           <Tab>{i18n.charts.line.dataTabLabel}</Tab>
+          <div
+            style={{
+              display: 'inline-block',
+              marginLeft: 'auto',
+            }}
+          >
+            <Tooltip content={i18n.charts.line.keyboardInstructionsTooltip}>
+              <IconButton
+                ariaLabel={i18n.charts.line.keyboardInstructions}
+                icon={<KeyboardIcon />}
+                onClick={handleKeyboardInstructionsButtonClick}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+            <KeyboardInstructionsCard
+              isOpen={isKeyboardInstructionsOpen}
+              theme={theme}
+              width="350px"
+            >
+              <Paragraph
+                visualStyle={TypographyVisualStyle.headingXSmall}
+                style={{ margin: '0 0 16px' }}
+              >
+                {i18n.charts.line.keyboardInstructionsHeader}
+              </Paragraph>
+              {i18n.charts.line.keyboardInstructions}
+            </KeyboardInstructionsCard>
+          </div>
         </Tabs>
         <TabPanelsContainer>
           <StyledTabPanel theme={theme}>

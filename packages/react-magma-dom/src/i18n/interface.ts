@@ -76,6 +76,9 @@ export interface I18nInterface {
       chartTabLabel: string;
       dataLegendsLabel: string;
       dataTabLabel: string;
+      keyboardInstructions: string;
+      keyboardInstructionsHeader: string;
+      keyboardInstructionsTooltip: string;
       legendButtonAriaLabel: string;
     };
   };
@@ -149,7 +152,7 @@ export interface I18nInterface {
         header?: string;
         message: string;
       };
-    }
+    };
     files: string;
     bytes: string;
     deleteFile: string;
