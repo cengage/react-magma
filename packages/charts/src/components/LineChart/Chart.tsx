@@ -61,6 +61,8 @@ const StyledTabPanel = styled(TabPanel)`
 
 const KeyboardInstructionsCard = styled(Card)<{
   isOpen?: boolean;
+  maxHeight?: string;
+  width?: string;
 }>`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   display: ${props => (props.isOpen ? 'block' : 'none')};
@@ -146,7 +148,7 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
           >
             <Tooltip content={i18n.charts.line.keyboardInstructionsTooltip}>
               <IconButton
-                ariaLabel={i18n.charts.line.keyboardInstructions}
+                aria-label={i18n.charts.line.keyboardInstructions}
                 icon={<KeyboardIcon />}
                 onClick={handleKeyboardInstructionsButtonClick}
                 variant={ButtonVariant.link}
