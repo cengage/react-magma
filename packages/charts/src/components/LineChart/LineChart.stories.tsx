@@ -21,7 +21,7 @@ const data = [
   {
     name: 'Team 2',
     data: [
-      { x: 1, y: 27, label: 'Team 2, January, $39k' },
+      { x: 1, y: 27, label: 'Team 2, January, $27k' },
       { x: 2, y: 33, label: 'Team 2, February, $33k' },
       { x: 3, y: 39, label: 'Team 2, March, $39k' },
       { x: 4, y: 28, label: 'Team 2, April, $28k' },
@@ -31,11 +31,11 @@ const data = [
   {
     name: 'Team 3',
     data: [
-      { x: 1, y: 32, label: 'Team 3, January, $39k' },
-      { x: 2, y: 41, label: 'Team 3, February, $39k' },
-      { x: 3, y: 45, label: 'Team 3, March, $39k' },
-      { x: 4, y: 56, label: 'Team 3, April, $39k' },
-      { x: 5, y: 48, label: 'Team 3, May, $39k' },
+      { x: 1, y: 32, label: 'Team 3, January, $32k' },
+      { x: 2, y: 41, label: 'Team 3, February, $41k' },
+      { x: 3, y: 45, label: 'Team 3, March, $45k' },
+      { x: 4, y: 56, label: 'Team 3, April, $56k' },
+      { x: 5, y: 48, label: 'Team 3, May, $48k' },
     ],
   },
   {
@@ -92,7 +92,7 @@ const explicitData = [
   {
     name: 'Team 1',
     data: [
-      { month: 1, sales: 39, label: 'Team 1, January, $41k' },
+      { month: 1, sales: 39, label: 'Team 1, January, $39k' },
       { month: 2, sales: 28, label: 'Team 1, February, $28k' },
       { month: 3, sales: 35, label: 'Team 1, March, $35k' },
       { month: 4, sales: 44, label: 'Team 1, April, $44k' },
@@ -109,7 +109,7 @@ const explicitData = [
   {
     name: 'Team 2',
     data: [
-      { month: 1, sales: 27, label: 'Team 2, January, $29k' },
+      { month: 1, sales: 27, label: 'Team 2, January, $27k' },
       { month: 2, sales: 33, label: 'Team 2, February, $33k' },
       { month: 3, sales: 39, label: 'Team 2, March, $39k' },
       { month: 4, sales: 28, label: 'Team 2, April, $28k' },
