@@ -89,7 +89,7 @@ const KeyboardInstructionsCard = styled(Card)<{
 
 function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
   const { description, title, testId, type, ...other } = props;
-  const firstTabRef = React.useRef<HTMLButtonElement>(null);
+  const keyboardInstructionsRef = React.useRef<HTMLButtonElement>(null);
   const lastFocusedScatterPoint = React.useRef<SVGPathElement>(null);
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
@@ -99,9 +99,45 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
   const [isKeyboardInstructionsOpen, setIsKeyboardInstructionsOpen] =
     React.useState<boolean>(false);
 
-  function handleChartTabKeydown(event: React.KeyboardEvent) {
+  // function handleChartTabKeydown(event: React.KeyboardEvent) {
+  //   const { key, shiftKey } = event;
+  //   switch (key) {
+  //     case 'Tab': {
+  //       if (
+  //         !shiftKey &&
+  //         lastFocusedScatterPoint &&
+  //         lastFocusedScatterPoint.current &&
+  //         pointRefArray.current.find(
+  //           point => point.current === lastFocusedScatterPoint.current
+  //         )
+  //       ) {
+  //         event.preventDefault();
+  //         lastFocusedScatterPoint.current.focus();
+  //       }
+  //       break;
+  //     }
+  //   }
+  // }
+
+  function handleKeyboardInstructionsButtonBlur() {
+    setIsKeyboardInstructionsOpen(false);
+  }
+
+  function handleKeyboardInstructionsButtonClick() {
+    setIsKeyboardInstructionsOpen(prevOpen => !prevOpen);
+  }
+
+  function handleKeyboardInstructionsButtonKeydown(event: React.KeyboardEvent) {
     const { key, shiftKey } = event;
+    // if (key === 'Escape') {
+    //   setIsKeyboardInstructionsOpen(false);
+    // }
+
     switch (key) {
+      case 'Escape': {
+        setIsKeyboardInstructionsOpen(false);
+        break;
+      }
       case 'Tab': {
         if (
           !shiftKey &&
@@ -119,10 +155,6 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
     }
   }
 
-  function handleKeyboardInstructionsButtonClick() {
-    setIsKeyboardInstructionsOpen(prevOpen => !prevOpen);
-  }
-
   return (
     <div ref={ref}>
       <StyledTitle theme={theme}>{title}</StyledTitle>
@@ -136,21 +168,24 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
       )}
       <StyledTabsContainer theme={theme}>
         <Tabs>
-          <Tab onKeyDown={handleChartTabKeydown} ref={firstTabRef}>
-            {i18n.charts.line.chartTabLabel}
-          </Tab>
+          <Tab>{i18n.charts.line.chartTabLabel}</Tab>
           <Tab>{i18n.charts.line.dataTabLabel}</Tab>
           <div
+            onBlur={handleKeyboardInstructionsButtonBlur}
             style={{
               display: 'inline-block',
               marginLeft: 'auto',
             }}
           >
-            <Tooltip content={i18n.charts.line.keyboardInstructionsTooltip}>
+            <Tooltip
+              content={i18n.charts.line.keyboardInstructionsTooltip}
+              ref={keyboardInstructionsRef}
+            >
               <IconButton
                 aria-label={i18n.charts.line.keyboardInstructions}
                 icon={<KeyboardIcon />}
                 onClick={handleKeyboardInstructionsButtonClick}
+                onKeyDown={handleKeyboardInstructionsButtonKeydown}
                 variant={ButtonVariant.link}
               />
             </Tooltip>
@@ -177,7 +212,7 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
                 lastFocusedScatterPoint={lastFocusedScatterPoint}
                 pointRefArray={pointRefArray}
                 registerPoint={registerPoint}
-                tabRef={firstTabRef}
+                tabRef={keyboardInstructionsRef}
                 unregisterPoint={unregisterPoint}
               />
             )}

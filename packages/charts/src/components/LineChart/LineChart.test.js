@@ -3,6 +3,7 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { basicData, explicitData } from './test/exampleChartData';
 import { Chart } from '.';
+import { defaultI18n } from 'react-magma-dom';
 
 const componentProps = {
   xAxis: {
@@ -161,7 +162,9 @@ describe('Line Chart', () => {
 
       userEvent.tab({ shift: true });
 
-      expect(getByText(/chart/i, { selector: 'button' })).toHaveFocus();
+      expect(
+        getByLabelText(defaultI18n.charts.line.keyboardInstructions)
+      ).toHaveFocus();
     });
 
     it('should focus last focused scatter point when tabbing or shift tabbing back in to the chart', () => {
