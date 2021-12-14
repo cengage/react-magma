@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { InputSize } from '../InputBase';
+import { InputIconPosition, InputSize } from '../InputBase';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -56,6 +56,7 @@ export interface FormFieldContainerBaseProps {
    * Relative size of the component
    * @default InputSize.medium
    */
+  iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   testId?: string;
   isInverse?: boolean;
@@ -74,12 +75,13 @@ export const FormFieldContainer = React.forwardRef<
   FormFieldContainerProps
 >((props, ref) => {
   const {
-    actionable=true,
+    actionable = true,
     children,
     containerStyle,
     errorMessage,
     fieldId,
     helperMessage,
+    iconPosition,
     inputSize,
     isInverse: isInverseProp,
     isLabelVisuallyHidden,
@@ -106,7 +108,13 @@ export const FormFieldContainer = React.forwardRef<
         theme={theme}
       >
         {labelText && (
-          <Label actionable={actionable} htmlFor={fieldId} size={inputSize} style={labelStyle}>
+          <Label
+            actionable={actionable}
+            htmlFor={fieldId}
+            iconPosition={iconPosition}
+            size={inputSize}
+            style={labelStyle}
+          >
             {isLabelVisuallyHidden ? (
               <VisuallyHidden>{labelText}</VisuallyHidden>
             ) : (
