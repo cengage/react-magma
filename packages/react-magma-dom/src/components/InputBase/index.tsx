@@ -152,6 +152,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     bottom: ${props.iconPosition === InputIconPosition.top
       ? '40px'
       : 'inherit'};
+    right: ${props.iconPosition === InputIconPosition.top ? '-4px' : 'inherit'};
   }
 `;
 
