@@ -389,7 +389,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
     }
 
     const i18n = React.useContext(I18nContext);
-    const ariaLabel = `${rest['aria-label']}, ${
+    const ariaLabel = `${rest['aria-label'] || ''}, ${
       orientation === TabsOrientation.vertical
         ? i18n.tabs.verticalTabsInstructions
         : i18n.tabs.horizontalTabsInstructions

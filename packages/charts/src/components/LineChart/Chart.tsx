@@ -11,6 +11,7 @@ import { KeyboardIcon } from 'react-magma-icons';
 import { LineChart, LineChartProps } from './LineChart';
 import { ChartDataTable } from './ChartDataTable';
 import {
+  Announce,
   ButtonVariant,
   Card,
   IconButton,
@@ -168,26 +169,28 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
               ref={keyboardInstructionsRef}
             >
               <IconButton
-                aria-label={i18n.charts.line.keyboardInstructions}
+                aria-label={i18n.charts.line.keyboardInstructionsTooltip}
                 icon={<KeyboardIcon />}
                 onClick={handleKeyboardInstructionsButtonClick}
                 onKeyDown={handleKeyboardInstructionsButtonKeydown}
                 variant={ButtonVariant.link}
               />
             </Tooltip>
-            <KeyboardInstructionsCard
-              isOpen={isKeyboardInstructionsOpen}
-              theme={theme}
-              width="350px"
-            >
-              <Paragraph
-                visualStyle={TypographyVisualStyle.headingXSmall}
-                style={{ margin: '0 0 16px' }}
+            <Announce>
+              <KeyboardInstructionsCard
+                isOpen={isKeyboardInstructionsOpen}
+                theme={theme}
+                width="350px"
               >
-                {i18n.charts.line.keyboardInstructionsHeader}
-              </Paragraph>
-              {i18n.charts.line.keyboardInstructions}
-            </KeyboardInstructionsCard>
+                <Paragraph
+                  visualStyle={TypographyVisualStyle.headingXSmall}
+                  style={{ margin: '0 0 16px' }}
+                >
+                  {i18n.charts.line.keyboardInstructionsHeader}
+                </Paragraph>
+                {i18n.charts.line.keyboardInstructions}
+              </KeyboardInstructionsCard>
+            </Announce>
           </div>
         </Tabs>
         <TabPanelsContainer>
