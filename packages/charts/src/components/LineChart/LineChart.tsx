@@ -53,7 +53,13 @@ export interface LineChartComponentProps {
 }
 
 export interface LineChartProps<T extends ChartDataOptions> {
+  /**
+   * Props passed to each component that makes up the line chart. See `victory` for accepted props.
+   */
   componentProps?: LineChartComponentProps;
+  /**
+   * Data used to build the chart
+   */
   data?: LineChartData<T>[];
   isMulti?: boolean;
   /**
@@ -82,7 +88,13 @@ export interface LineChartProps<T extends ChartDataOptions> {
     refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
     ref: React.MutableRefObject<Element>
   ) => void;
+  /**
+   * Value of x key in chart data
+   */
   x?: keyof T;
+  /**
+   * Value of y key in chart data
+   */
   y?: keyof T;
 }
 

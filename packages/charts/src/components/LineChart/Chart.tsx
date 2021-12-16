@@ -25,9 +25,18 @@ import {
 } from 'react-magma-dom';
 
 interface BaseChartProps {
+  /**
+   * Description of what the line chart data represents placed above the chart
+   */
   description?: string;
   testId?: string;
+  /**
+   * Title of the line chart
+   */
   title: string;
+  /**
+   * Type of chart - for now just 'line' is accepted
+   */
   type: string;
 }
 export interface ChartProps<T extends any>
@@ -99,26 +108,6 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
   const [isKeyboardInstructionsOpen, setIsKeyboardInstructionsOpen] =
     React.useState<boolean>(false);
 
-  // function handleChartTabKeydown(event: React.KeyboardEvent) {
-  //   const { key, shiftKey } = event;
-  //   switch (key) {
-  //     case 'Tab': {
-  //       if (
-  //         !shiftKey &&
-  //         lastFocusedScatterPoint &&
-  //         lastFocusedScatterPoint.current &&
-  //         pointRefArray.current.find(
-  //           point => point.current === lastFocusedScatterPoint.current
-  //         )
-  //       ) {
-  //         event.preventDefault();
-  //         lastFocusedScatterPoint.current.focus();
-  //       }
-  //       break;
-  //     }
-  //   }
-  // }
-
   function handleKeyboardInstructionsButtonBlur() {
     setIsKeyboardInstructionsOpen(false);
   }
@@ -129,9 +118,6 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
 
   function handleKeyboardInstructionsButtonKeydown(event: React.KeyboardEvent) {
     const { key, shiftKey } = event;
-    // if (key === 'Escape') {
-    //   setIsKeyboardInstructionsOpen(false);
-    // }
 
     switch (key) {
       case 'Escape': {
