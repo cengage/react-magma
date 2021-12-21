@@ -1,0 +1,87 @@
+---
+pageTitle: Block Quote API
+title: Block Quote
+props:
+  - BlockQuoteProps
+---
+
+<DocsHeading type="api">Block Quote</DocsHeading>
+
+`blockquote` is an element which enables the styling of a quotation. An optional prop of `hasAttribution` may be added for attribution purposes. Both lines can be uniquely customized with font family and color options.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { BlockQuote } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## With Attribution
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
+      <BlockQuoteItem hasAttribution>Sir Nottingshire</BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## Font Family
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem fontFamily="narrative">I like biscuits!</BlockQuoteItem>
+      <BlockQuoteItem fontFamily="narrative" hasAttribution>
+        Sir Nottingshire
+      </BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` prop renders white text for the quotation and nearly white text for the attribution line if enabled.
+
+```typescript
+import React from 'react';
+import { BlockQuote, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <BlockQuote isInverse>
+          <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
+          <BlockQuoteItem hasAttribution>Sir Nottingshire</BlockQuoteItem>
+        </BlockQuote>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+# BlockQuote Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<BlockQuoteProps />
