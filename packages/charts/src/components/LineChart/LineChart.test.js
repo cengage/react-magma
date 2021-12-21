@@ -163,7 +163,7 @@ describe('Line Chart', () => {
       userEvent.tab({ shift: true });
 
       expect(
-        getByLabelText(defaultI18n.charts.line.keyboardInstructions)
+        getByLabelText(defaultI18n.charts.line.keyboardInstructionsTooltip)
       ).toHaveFocus();
     });
 
