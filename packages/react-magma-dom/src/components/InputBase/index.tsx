@@ -25,8 +25,9 @@ export enum InputType {
 }
 
 export enum InputIconPosition {
+  top = 'top',
   left = 'left',
-  right = 'right',
+  right = 'right', // default
 }
 
 export interface InputBaseProps
@@ -101,6 +102,7 @@ export interface InputBaseProps
 
 export interface InputWrapperStylesProps {
   width?: string;
+  iconPosition?: InputIconPosition;
   isInverse?: boolean;
   isClearable?: boolean;
   isPredictive?: boolean;
@@ -146,6 +148,12 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
       ? props.theme.colors.neutral07
       : props.theme.colors.neutral08};
   `}
+  button {
+    bottom: ${props.iconPosition === InputIconPosition.top
+      ? '40px'
+      : 'inherit'};
+    right: ${props.iconPosition === InputIconPosition.top ? '-4px' : 'inherit'};
+  }
 `;
 
 export interface InputBaseStylesProps {
@@ -246,28 +254,42 @@ const IconWrapper = styled.span<{
   isPredictive?: boolean;
   disabled?: boolean;
 }>`
+  bottom: ${props => (props.iconPosition === 'top' ? '45px' : 'inherit')};
   color: ${props => props.theme.colors.neutral};
   left: ${props =>
     props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
-    props.iconPosition === 'right' ? props.theme.spaceScale.spacing03 : 'auto'};
+    props.iconPosition === 'right'
+      ? props.theme.spaceScale.spacing03
+      : props.iconPosition === 'top'
+      ? '3px'
+      : 'auto'};
   position: absolute;
-  top: ${props => props.theme.spaceScale.spacing03};
+  top: ${props =>
+    props.iconPosition === 'top'
+      ? 'inherit'
+      : props => props.theme.spaceScale.spacing03};
 
   ${props =>
     props.inputSize === 'large' &&
     css`
+      bottom: ${props.iconPosition === 'top' ? '56px' : 'inherit'};
       left: ${props.iconPosition === 'left'
         ? props.theme.spaceScale.spacing04
         : 'auto'};
       right: ${props.iconPosition === 'right'
         ? props.theme.spaceScale.spacing04
+        : props.iconPosition === 'top'
+        ? '3px'
         : 'auto'};
-      top: ${props.theme.spaceScale.spacing04};
+      top: ${props.iconPosition === 'top'
+        ? 'inherit'
+        : props.theme.spaceScale.spacing04};
     `}
 `;
 
 const IconButtonContainer = styled.span<{
+  iconPosition?: InputIconPosition;
   size?: InputSize;
   theme: ThemeInterface;
   isClearable?: boolean;
@@ -275,6 +297,7 @@ const IconButtonContainer = styled.span<{
 }>`
   background-color: ${({ disabled, theme }) =>
     disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+  bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
   height: auto;
   margin: 0;
   position: relative;
@@ -382,6 +405,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     return (
       <InputWrapper
         disabled={disabled}
+        iconPosition={iconPosition}
         isInverse={props.isInverse}
         theme={theme}
         style={containerStyle}
@@ -449,6 +473,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
         {onIconClick && (
           <IconButtonContainer
+            iconPosition={iconPosition}
             size={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
