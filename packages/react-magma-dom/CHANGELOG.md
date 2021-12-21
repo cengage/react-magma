@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.5
+
+### Patch Changes
+
+- 253fd1c1: feat: input updates to support additional icon positioning
+
 ## 2.5.7-next.4
 
 ### Patch Changes
