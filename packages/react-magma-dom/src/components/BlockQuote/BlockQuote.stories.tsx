@@ -1,8 +1,13 @@
 import React from 'react';
-import { BlockQuote, BlockQuoteItem, BlockQuoteItemProps, fontStyles } from '.';
+import { BlockQuote, BlockQuoteItem, BlockQuoteItemProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { magma } from '../../theme/magma';
+import {
+  TypographyColor,
+  TypographyContextVariant,
+  TypographyVisualStyle,
+} from '../Typography';
 
 const Template: Story<BlockQuoteItemProps> = args => (
   <BlockQuote {...args}>
@@ -14,13 +19,25 @@ const Template: Story<BlockQuoteItemProps> = args => (
 );
 
 export default {
-  title: 'Block Quote',
+  title: 'BlockQuote',
   component: BlockQuote,
   argTypes: {
-    fontFamily: {
+    contextVariant: {
       control: {
         type: 'select',
-        options: fontStyles,
+        options: TypographyContextVariant,
+      },
+    },
+    color: {
+      control: {
+        type: 'select',
+        options: TypographyColor,
+      },
+    },
+    visualStyle: {
+      control: {
+        type: 'select',
+        options: TypographyVisualStyle,
       },
     },
   },

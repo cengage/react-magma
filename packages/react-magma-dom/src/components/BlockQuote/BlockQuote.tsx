@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { css } from '@emotion/core';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -9,32 +10,46 @@ import { InverseContext, useIsInverse } from '../../inverse';
  * @children required
  */
 export interface BlockQuoteProps extends React.HTMLAttributes<HTMLDivElement> {
-  testId?: string;
+  /**
+   * Style properties for the left border color which accept custom CSS hex values.
+   */
+  borderStyle?: React.CSSProperties;
   isInverse?: boolean;
   /**
    * @internal
    */
+  testId?: string;
   theme?: ThemeInterface;
 }
 
-const StyledBlockQuote = styled.div<BlockQuoteProps>`
+const BlockQuoteStyles = props => css`
   border-left: 4px solid
-    ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.neutral06};
+    ${props.isInverse
+      ? props.borderStyle || props.theme.colors.neutral08
+      : props.borderStyle || props.theme.colors.neutral06};
   padding: 10px 0 4px 20px;
+`;
+
+const StyledBlockQuote = styled.div<BlockQuoteProps>`
+  ${BlockQuoteStyles};
 `;
 
 export const BlockQuote = React.forwardRef<HTMLDivElement, BlockQuoteProps>(
   (props, ref) => {
-    const { children, testId, isInverse: isInverseProp, ...rest } = props;
+    const {
+      borderStyle,
+      children,
+      testId,
+      isInverse: isInverseProp,
+      ...rest
+    } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
     return (
       <InverseContext.Provider value={{ isInverse }}>
         <StyledBlockQuote
+          borderStyle={borderStyle}
           theme={theme}
           isInverse={isInverse}
           ref={ref}

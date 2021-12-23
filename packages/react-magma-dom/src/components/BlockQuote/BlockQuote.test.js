@@ -62,7 +62,7 @@ describe('BlockQuote', () => {
 
     const { getByTestId } = render(
       <BlockQuote>
-        <BlockQuoteItem fontFamily="narrative" testId={testId}>
+        <BlockQuoteItem contextVariant="narrative" testId={testId}>
           TEXT
         </BlockQuoteItem>
       </BlockQuote>
@@ -81,7 +81,7 @@ describe('BlockQuote', () => {
 
     const { getByTestId } = render(
       <BlockQuote>
-        <BlockQuoteItem fontFamily="expressive" testId={testId}>
+        <BlockQuoteItem contextVariant="expressive" testId={testId}>
           TEXT
         </BlockQuoteItem>
       </BlockQuote>

@@ -4,22 +4,28 @@ import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import { BlockQuoteProps } from '.';
-
+import {
+  TypographyVisualStyle,
+  TypographyColor,
+  TypographyContextVariant,
+  TypographyComponent,
+} from '../Typography';
 /**
  * @children required
  */
-export enum fontStyles {
-  expressive = 'expressive',
-  narrative = 'narrative',
-}
-
 export interface BlockQuoteItemProps
   extends BlockQuoteProps,
     React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Allows different font family usage for the quote and attribution between "narrative" and "expressive" if configured
+   * The color of the component, helping to convey meaning or relative emphasis
+   * @default TypographyColor.default
    */
-  fontFamily?: fontStyles;
+  color?: TypographyColor;
+  /**
+   * Additional styles for typography based on the context of the content
+   * @default TypographyContextVariant.default
+   */
+  contextVariant?: TypographyContextVariant;
   /**
    * If true, adds in an attribution line for the quote
    * @default false
@@ -27,31 +33,17 @@ export interface BlockQuoteItemProps
   hasAttribution?: boolean;
   isInverse?: boolean;
   testId?: string;
+  /**
+   * Applies visual styles including font-size, font-weight, line-height and margins
+   * @default TypographyVisualStyle.bodyMedium
+   */
+  visualStyle?: TypographyVisualStyle;
 }
 
 export const blockQuoteStyles = props => css`
-  font-size: ${props.theme.typeScale.size05.fontSize};
   margin: 0;
   padding: 8px 0;
-  //Default
-  color: ${props.theme.colors.neutral};
-  //Expressive font
-  ${props.fontFamily === 'expressive' &&
-  css`
-    font-family: ${props.theme.bodyExpressiveFont};
-  `}
-  //Narrative font
-    ${props.fontFamily === 'narrative' &&
-  css`
-    font-family: ${props.theme.bodyNarrativeFont};
-  `}
-    //Attribution
-    ${props.hasAttribution &&
-  css`
-    color: ${props.theme.colors.neutral03};
-    font-size: ${props.theme.typeScale.size03.fontSize};
-  `}
-    //Inverse
+  //Inverse
   ${props.isInverse &&
   css`
     color: ${props.theme.colors.neutral08};
@@ -64,7 +56,7 @@ export const blockQuoteStyles = props => css`
   `}
 `;
 
-export const StyledBlockQuoteItem = styled.p<BlockQuoteItemProps>`
+const StyledBlockQuoteItem = styled(TypographyComponent)`
   ${blockQuoteStyles}
 `;
 
@@ -72,30 +64,40 @@ export const BlockQuoteItem = React.forwardRef<
   HTMLDivElement,
   BlockQuoteItemProps
 >((props, ref) => {
-  const { children, fontFamily, hasAttribution, testId, ...rest } = props;
+  const { children, color, hasAttribution, testId, visualStyle, ...rest } =
+    props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse();
 
   return (
     <StyledBlockQuoteItem
+      color={
+        hasAttribution
+          ? color || TypographyColor.subdued
+          : color || TypographyColor.default
+      }
       theme={theme}
-      fontFamily={fontFamily}
       hasAttribution={hasAttribution}
       isInverse={isInverse}
       ref={ref}
       data-testid={props.testId}
+      visualStyle={
+        hasAttribution
+          ? visualStyle || TypographyVisualStyle.bodyMedium
+          : visualStyle || TypographyVisualStyle.bodyLarge
+      }
       {...rest}
     >
       {hasAttribution ? (
         <>
-          &#x02015;
+          &#x02015;&nbsp;
           {children}
         </>
       ) : (
         <>
-          &#x002DD;
+          &ldquo;
           {children}
-          &#x002DD;
+          &rdquo;
         </>
       )}
     </StyledBlockQuoteItem>
