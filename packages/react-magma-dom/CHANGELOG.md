@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.6
+
+### Patch Changes
+
+- 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
+
 ## 2.5.7-next.5
 
 ### Patch Changes
