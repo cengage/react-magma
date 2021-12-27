@@ -113,6 +113,27 @@ describe('Tooltip', () => {
     fireEvent.blur(tooltipTrigger);
   });
 
+  it('should allow for a persistent tooltip that does not hide on blur', () => {
+    const { container, getByText } = render(
+      <Tooltip open content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+    );
+    const tooltipTrigger = container.querySelector('button');
+
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).toBeInTheDocument();
+
+    fireEvent.mouseEnter(tooltipTrigger);
+
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
+
+    fireEvent.mouseLeave(tooltipTrigger);
+
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).toBeInTheDocument();
+  });
+
   it('should show the tooltip on mouseenter and hide it on mouseleave', () => {
     const { container, getByText } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
