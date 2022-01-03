@@ -37,12 +37,12 @@ export const baseTableCellStyle = props => css`
 export function buildCellPaddingStyle(density) {
   switch (density) {
     case 'compact':
-      return 'var(--spaceScale-spacing02)} var(--spaceScale-spacing03)}';
+      return 'var(--spaceScale-spacing02) var(--spaceScale-spacing03)';
     case 'loose':
-      return 'var(--spaceScale-spacing06)} var(--spaceScale-spacing08)}';
+      return 'var(--spaceScale-spacing06) var(--spaceScale-spacing08)';
 
     default:
-      return 'var(--spaceScale-spacing04)} var(--spaceScale-spacing05)}';
+      return 'var(--spaceScale-spacing04) var(--spaceScale-spacing05)';
   }
 }
 
