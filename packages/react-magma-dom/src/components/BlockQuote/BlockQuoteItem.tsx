@@ -43,6 +43,9 @@ export interface BlockQuoteItemProps
 export const blockQuoteStyles = props => css`
   margin: 0;
   padding: 8px 0;
+  blockquote {
+    margin: 0;
+  }
   //Inverse
   ${props.isInverse &&
   css`
@@ -89,16 +92,16 @@ export const BlockQuoteItem = React.forwardRef<
       {...rest}
     >
       {hasAttribution ? (
-        <>
+        <figcaption>
           &#x02015;&nbsp;
           {children}
-        </>
+        </figcaption>
       ) : (
-        <>
+        <blockquote>
           &ldquo;
           {children}
           &rdquo;
-        </>
+        </blockquote>
       )}
     </StyledBlockQuoteItem>
   );

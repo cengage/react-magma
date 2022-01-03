@@ -28,9 +28,10 @@ const BlockQuoteStyles = props => css`
       ? props.borderStyle || props.theme.colors.neutral08
       : props.borderStyle || props.theme.colors.neutral06};
   padding: 10px 0 4px 20px;
+  margin: 0;
 `;
 
-const StyledBlockQuote = styled.div<BlockQuoteProps>`
+const StyledBlockQuote = styled.figure<BlockQuoteProps>`
   ${BlockQuoteStyles};
 `;
 
