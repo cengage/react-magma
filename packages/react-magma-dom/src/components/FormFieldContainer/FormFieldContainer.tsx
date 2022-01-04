@@ -67,7 +67,6 @@ const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
-  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const FormFieldContainer = React.forwardRef<
