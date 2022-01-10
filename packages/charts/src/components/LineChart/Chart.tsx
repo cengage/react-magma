@@ -12,7 +12,6 @@ import { LineChart, LineChartProps } from './LineChart';
 import { ChartDataTable } from './ChartDataTable';
 import {
   Announce,
-  AnnouncePoliteness,
   ButtonVariant,
   Card,
   IconButton,
