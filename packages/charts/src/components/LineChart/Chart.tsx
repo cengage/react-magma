@@ -12,6 +12,7 @@ import { LineChart, LineChartProps } from './LineChart';
 import { ChartDataTable } from './ChartDataTable';
 import {
   Announce,
+  AnnouncePoliteness,
   ButtonVariant,
   Card,
   IconButton,
@@ -169,7 +170,9 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
               ref={keyboardInstructionsRef}
             >
               <IconButton
+                aria-controls="keyboardInstructions"
                 aria-label={i18n.charts.line.keyboardInstructionsTooltip}
+                aria-expanded={Boolean(isKeyboardInstructionsOpen)}
                 icon={<KeyboardIcon />}
                 onClick={handleKeyboardInstructionsButtonClick}
                 onKeyDown={handleKeyboardInstructionsButtonKeydown}
@@ -178,6 +181,7 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
             </Tooltip>
             <Announce>
               <KeyboardInstructionsCard
+                id="keyboardInstructions"
                 isOpen={isKeyboardInstructionsOpen}
                 theme={theme}
                 width="350px"
