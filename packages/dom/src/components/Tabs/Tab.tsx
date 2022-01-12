@@ -123,13 +123,11 @@ export const TabStyles = props => css`
 
   ${props.orientation === 'vertical' &&
   css`
-    align-items: flex-start;
     justify-content: ${props.iconPosition === 'left'
       ? 'flex-start'
       : 'flex-end'};
     text-align: left;
     width: 100%;
-
     align-items: center;
   `}
 
@@ -274,10 +272,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           tabIndex={isActive ? 0 : -1}
         >
           {icon && (
-            <StyledIcon
-              iconPosition={tabIconPosition}
-              isIconOnly={isIconOnly}
-            >
+            <StyledIcon iconPosition={tabIconPosition} isIconOnly={isIconOnly}>
               {icon}
             </StyledIcon>
           )}
