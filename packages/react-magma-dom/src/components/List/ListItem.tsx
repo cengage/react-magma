@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
-import { ListProps } from './';
+import { getListDisplay, ListProps } from './';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -11,19 +11,7 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface ListItemProps
   extends ListProps,
-    React.HTMLAttributes<HTMLDivElement> {
-  icon?: React.ReactElement<any> | React.ReactElement<any>[];
-}
-
-function getListDisplay(props) {
-  if (props.description) {
-    return 'block';
-  }
-  if (props.icon) {
-    return 'flex';
-  }
-  return 'list-item';
-}
+    React.HTMLAttributes<HTMLDivElement> {}
 
 const ListItemStyles = props => css`
   display: ${getListDisplay(props)};

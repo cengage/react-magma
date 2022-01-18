@@ -11,6 +11,7 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: boolean;
+  icon?: React.ReactElement<any> | React.ReactElement<any>[];
   iconAlign?: IconAlignment;
   iconSize?: IconSizes;
   isInverse?: boolean;
@@ -82,6 +83,13 @@ export function getListAlignment(props) {
   }
 }
 
+export function getListDisplay(props) {
+  if (props.icon) {
+    return 'grid';
+  }
+  return 'list-item';
+}
+
 function getSpacingStyles(props) {
   switch (props.spacingStyle) {
     case spacingVisualStyle.spacing01:
@@ -126,6 +134,7 @@ const ListStyles = props => css`
   li {
     margin-bottom: ${getSpacingStyles(props)};
     align-items: ${getListAlignment(props)};
+    grid-template-areas: 'a a a';
   }
   p {
     font-size: 0.8em;
@@ -146,8 +155,10 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
   (props, ref) => {
     const {
       children,
+      color,
       description,
       testId,
+      icon,
       iconAlign,
       iconSize,
       isInverse: isInverseProp,
@@ -165,6 +176,7 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
           as={isOrdered ? 'ol' : 'ul'}
           data-testid={props.testId}
           description={description}
+          icon={icon}
           iconAlign={iconAlign}
           iconSize={iconSize}
           isInverse={isInverse}
