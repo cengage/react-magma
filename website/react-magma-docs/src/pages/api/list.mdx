@@ -1,0 +1,44 @@
+---
+pageTitle: List API
+title: List
+props:
+- ListProps
+---
+
+<DocsHeading type="api">
+  List
+</DocsHeading>
+
+List item with styled variations
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { List } from 'react-magma-dom';
+
+export function Example() {
+return <List>List content</List>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { List } from 'react-magma-dom';
+
+export function Example() {
+return <List isInverse>List content</List>;
+}
+```
+
+
+# List Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<ListProps />
