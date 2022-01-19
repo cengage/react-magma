@@ -42,7 +42,8 @@ export function useFocusLock(
 
     updateFocusableItems();
 
-    observer.observe(rootNode.current, { childList: true, subtree: true });
+    rootNode.current &&
+      observer.observe(rootNode.current, { childList: true, subtree: true });
     return () => {
       observer.disconnect();
     };
