@@ -99,9 +99,7 @@ export function Example() {
 
 ## Border Style
 
-The `borderStyle` prop allows custom colors from CSS hex values.
-
-When using custom CSS hex values, we recommend staying within our defined pallette of <Link to="/design-intro/colors">colors</Link>.
+The `borderStyle` prop allows the use of any Magma color or a custom CSS hex value. The available Magma colors are found <Link to="/design-intro/colors">here</Link>.
 
 ```typescript
 import React from 'react';
@@ -110,7 +108,7 @@ import { BlockQuote, BlocckQuoteItem, TypographyColor } from 'react-magma-dom';
 export function Example() {
   return (
     <>
-      <BlockQuote borderStyle={'#E0004D'}>
+      <BlockQuote borderStyle="primary">
         <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
         <BlockQuoteItem hasAttribution>Sir Nottingshire</BlockQuoteItem>
       </BlockQuote>
