@@ -87,11 +87,11 @@ describe('Drawer', () => {
     );
   });
 
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(<Drawer isOpen>{TEXT}</Drawer>);
+  it('Does not violate accessibility standards', async () => {
+    const { baseElement, debug } = render(<Drawer isOpen>{TEXT}</Drawer>);
+    const results = await axe(baseElement);
+    debug();
 
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
-    });
+    return expect(results).toHaveNoViolations();
   });
 });
