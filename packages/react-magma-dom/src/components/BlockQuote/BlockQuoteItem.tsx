@@ -55,7 +55,7 @@ export const blockQuoteStyles = props => css`
     ${props.isInverse &&
   props.hasAttribution &&
   css`
-    color: ${props.theme.colors.neutral07};
+    color: ${props.theme.colors.neutral05};
   `}
 `;
 
@@ -74,6 +74,7 @@ export const BlockQuoteItem = React.forwardRef<
 
   return (
     <StyledBlockQuoteItem
+      as={hasAttribution ? 'figcaption' : 'blockquote'}
       color={
         hasAttribution
           ? color || TypographyColor.subdued
@@ -92,16 +93,16 @@ export const BlockQuoteItem = React.forwardRef<
       {...rest}
     >
       {hasAttribution ? (
-        <figcaption>
+        <>
           &#x02015;&nbsp;
           {children}
-        </figcaption>
+        </>
       ) : (
-        <blockquote>
+        <>
           &ldquo;
           {children}
           &rdquo;
-        </blockquote>
+        </>
       )}
     </StyledBlockQuoteItem>
   );
