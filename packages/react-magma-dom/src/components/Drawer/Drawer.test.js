@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Drawer } from '.';
 import { Transition } from '../Transition';
 import { render, fireEvent } from '@testing-library/react';
@@ -88,9 +88,8 @@ describe('Drawer', () => {
   });
 
   it('Does not violate accessibility standards', async () => {
-    const { baseElement, debug } = render(<Drawer isOpen>{TEXT}</Drawer>);
+    const { baseElement } = render(<Drawer isOpen>{TEXT}</Drawer>);
     const results = await axe(baseElement);
-    debug();
 
     return expect(results).toHaveNoViolations();
   });

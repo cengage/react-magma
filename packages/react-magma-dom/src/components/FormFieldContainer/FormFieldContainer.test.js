@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { FormFieldContainer } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -15,10 +15,11 @@ describe('FormFieldContainer', () => {
     expect(getByText(TEXT)).toBeInTheDocument();
   });
 
-  
   it('should render the form field container component', () => {
     const { getByLabelText } = render(
-      <FormFieldContainer fieldId='input' labelText={TEXT}><input id="input"/></FormFieldContainer>
+      <FormFieldContainer fieldId="input" labelText={TEXT}>
+        <input id="input" />
+      </FormFieldContainer>
     );
 
     expect(getByLabelText(TEXT)).toBeInTheDocument();
@@ -26,7 +27,9 @@ describe('FormFieldContainer', () => {
 
   it('should render the form field label as a span when not actionable', () => {
     const { queryByLabelText, getByText } = render(
-      <FormFieldContainer actionable={false} fieldId='input' labelText={TEXT}><input id="input"/></FormFieldContainer>
+      <FormFieldContainer actionable={false} fieldId="input" labelText={TEXT}>
+        <input id="input" />
+      </FormFieldContainer>
     );
 
     expect(queryByLabelText(TEXT)).not.toBeInTheDocument();
