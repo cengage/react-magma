@@ -52,12 +52,15 @@ export interface ITooltipState {
   isVisible?: boolean;
 }
 
-const ToolTipContainer = styled.div`
+const TooltipContainer = styled.div`
   display: inline;
   pointer-events: auto;
 `;
 
-const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
+export const TooltipArrow = styled.span<{
+  position?: any;
+  isInverse?: boolean;
+}>`
   &&,
   &&:before {
     display: block;
@@ -77,7 +80,7 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
   }
 `;
 
-const StyledTooltip = styled.div<{
+export const StyledTooltip = styled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
   position: TooltipPosition;
@@ -218,7 +221,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const isInverse = useIsInverse(props.isInverse);
 
   return (
-    <ToolTipContainer
+    <TooltipContainer
       {...other}
       data-testid={testId}
       onKeyDown={handleKeyDown}
@@ -242,7 +245,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             {...attributes.popper}
           >
             {content}
-            <ToolTipArrow
+            <TooltipArrow
               isInverse={isInverse}
               ref={setArrowElement}
               style={combinedArrowStyle}
@@ -251,6 +254,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
           </StyledTooltip>
         </div>
       )}
-    </ToolTipContainer>
+    </TooltipContainer>
   );
 });

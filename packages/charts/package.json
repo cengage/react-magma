@@ -1,14 +1,14 @@
 {
-  "name": "@react-magma/dropzone",
-  "version": "0.1.0-next.2",
+  "name": "@react-magma/charts",
+  "version": "0.0.0-next.0",
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
   "source": "src/index.ts",
-  "main": "dist/fileuploader.js",
-  "module": "dist/fileuploader.modern.module.js",
-  "umd:main": "dist/fileuploader.umd.js",
+  "main": "dist/charts.js",
+  "module": "dist/charts.modern.module.js",
+  "umd:main": "dist/charts.umd.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
@@ -34,7 +34,7 @@
     "react-magma-icons": "^2.3.1"
   },
   "dependencies": {
-    "react-dropzone": "11.3.2"
+    "victory": "^35.4.12"
   },
   "devDependencies": {
     "@emotion/core": "^10.1.1",
