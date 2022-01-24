@@ -7,12 +7,6 @@ import { render } from '@testing-library/react';
 const TEXT = 'Test Text';
 
 describe('BlockQuote', () => {
-  it('should render the visually hidden component', () => {
-    const { getByText } = render(<BlockQuote>{TEXT}</BlockQuote>);
-
-    expect(getByText(TEXT)).toBeInTheDocument();
-  });
-
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(

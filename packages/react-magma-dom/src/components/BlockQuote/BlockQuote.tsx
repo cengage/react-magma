@@ -50,9 +50,7 @@ export const BlockQuote = React.forwardRef<HTMLDivElement, BlockQuoteProps>(
     return (
       <InverseContext.Provider value={{ isInverse }}>
         <StyledBlockQuote
-          borderStyle={
-            magma.colors[borderStyle] ? magma.colors[borderStyle] : borderStyle
-          }
+          borderStyle={magma.colors[borderStyle] || borderStyle}
           theme={theme}
           isInverse={isInverse}
           ref={ref}
