@@ -296,6 +296,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             />
             <ModalContainer
               aria-labelledby={header ? headingId : null}
+              aria-label="modal"
+              aria-describedby="modal"
               aria-modal={true}
               data-testid={testId}
               id={id}
@@ -306,6 +308,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               role="dialog"
               style={containerStyle}
               theme={theme}
+              title={header ? headingId : null}
               isOpen={isModalOpen}
               {...containerTransition}
               unmountOnExit={unmountOnExit}

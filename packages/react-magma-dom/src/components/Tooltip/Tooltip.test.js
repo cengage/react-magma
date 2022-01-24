@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Tooltip } from '.';
 import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -115,13 +115,13 @@ describe('Tooltip', () => {
 
   it('should allow for a persistent tooltip that does not hide on blur', () => {
     const { container, getByText } = render(
-      <Tooltip open content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+      <Tooltip open content={CONTENT_TEXT}>
+        {TRIGGER_ELEMENT}
+      </Tooltip>
     );
     const tooltipTrigger = container.querySelector('button');
 
-    expect(
-      container.querySelector('div[role="tooltip"]')
-    ).toBeInTheDocument();
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
 
     fireEvent.mouseEnter(tooltipTrigger);
 
@@ -129,9 +129,7 @@ describe('Tooltip', () => {
 
     fireEvent.mouseLeave(tooltipTrigger);
 
-    expect(
-      container.querySelector('div[role="tooltip"]')
-    ).toBeInTheDocument();
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
   });
 
   it('should show the tooltip on mouseenter and hide it on mouseleave', () => {

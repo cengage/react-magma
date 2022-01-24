@@ -4,7 +4,7 @@ import { Tab } from './Tab';
 import { Tabs } from '.';
 import { TabsContainer } from './TabsContainer';
 import { TabPanel } from './TabPanel';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { TabPanelsContainer } from './TabPanelsContainer';
 

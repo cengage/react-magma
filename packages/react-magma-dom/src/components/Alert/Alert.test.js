@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Alert } from '.';
 import { AlertVariant } from '../AlertBase';
 import { act, render, fireEvent } from '@testing-library/react';
