@@ -33,7 +33,6 @@ const Message = styled.div<InputMessageProps>`
     props.inputSize === InputSize.large
       ? props.theme.spaceScale.spacing03
       : props.theme.spaceScale.spacing02};
-  min-height: ${props => props.theme.spaceScale.spacing06};
   text-align: left;
 `;
 
