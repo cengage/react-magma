@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { Global, css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -28,6 +29,10 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default "Close dialog"
    */
   closeAriaLabel?: string;
+  /**
+   * Style for the modal container
+   */
+  closeButtonSize?: keyof typeof magma.iconSizes;
   /**
    * Style for the modal container
    */
@@ -276,6 +281,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const {
       children,
       closeAriaLabel,
+      closeButtonSize,
       containerStyle,
       contentStyle,
       containerTransition = { slideTop: true },
@@ -295,7 +301,14 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const i18n = React.useContext(I18nContext);
 
     const CloseIconButton = (
-      <CloseIcon color={theme.colors.neutral03} size={theme.iconSizes.small} />
+      <CloseIcon
+        color={theme.colors.neutral03}
+        size={
+          magma.iconSizes[closeButtonSize]
+            ? magma.iconSizes[closeButtonSize]
+            : magma.iconSizes.small
+        }
+      />
     );
 
     return (

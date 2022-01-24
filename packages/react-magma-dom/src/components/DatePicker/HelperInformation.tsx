@@ -61,6 +61,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
 
     return (
       <Modal
+        closeButtonSize="medium"
         containerStyle={{
           position: 'relative',
           padding: '0',
