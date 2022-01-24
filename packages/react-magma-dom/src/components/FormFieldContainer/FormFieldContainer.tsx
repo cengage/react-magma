@@ -122,16 +122,18 @@ export const FormFieldContainer = React.forwardRef<
           </Label>
         )}
         {children}
-        <InputMessage
-          hasError={!!errorMessage}
-          id={descriptionId}
-          isInverse={isInverse}
-          style={messageStyle}
-        >
-          {(errorMessage || helperMessage) && (
-            <>{errorMessage ? errorMessage : helperMessage}</>
-          )}
-        </InputMessage>
+        {(errorMessage || helperMessage) && (
+          <InputMessage
+            hasError={!!errorMessage}
+            id={descriptionId}
+            isInverse={isInverse}
+            style={messageStyle}
+          >
+            {(errorMessage || helperMessage) && (
+              <>{errorMessage ? errorMessage : helperMessage}</>
+            )}
+          </InputMessage>
+        )}
       </StyledFormFieldContainer>
     </InverseContext.Provider>
   );
