@@ -62,9 +62,6 @@ export const MenuItemStyles = props => {
 
     &:focus {
       outline-offset: -3px;
-      color: ${props.disabled
-        ? props.theme.colors.disabledText
-        : props.theme.colors.neutral};
     }
   `;
 };
