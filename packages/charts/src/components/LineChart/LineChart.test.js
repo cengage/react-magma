@@ -247,7 +247,7 @@ describe('Line Chart', () => {
       expect(getByLabelText(basicData[0].data[0].label)).toHaveFocus();
 
       userEvent.tab();
-      userEvent.keyboard('{enter}');
+      userEvent.keyboard('{space}');
       userEvent.tab({ shift: true });
 
       expect(getByLabelText(data[1].data[1].label)).toHaveFocus();
