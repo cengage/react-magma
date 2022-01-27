@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.8
+
+### Patch Changes
+
+- fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
+
 ## 2.5.7-next.7
 
 ### Patch Changes
