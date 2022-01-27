@@ -72,9 +72,9 @@ const StyledTableHeaderCell = styled.th<{
           background: props.isInverse
             ? props.theme.colors.tint03
             : props.theme.colors.neutral07,
-          'border-bottom': '2px solid',
-          'font-weight': 'bold',
-          'vertical-align': 'bottom',
+          borderBottom: '2px solid',
+          fontWeight: 'bold',
+          verticalAlign: 'bottom',
         };
   }}
 
