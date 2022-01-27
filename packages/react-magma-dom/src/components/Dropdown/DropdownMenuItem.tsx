@@ -55,6 +55,9 @@ export const MenuItemStyles = props => {
     &:hover,
     &:focus {
       background: ${props.disabled ? 'none' : props.theme.colors.neutral07};
+      color: ${props.disabled
+        ? props.theme.colors.disabledText
+        : props.theme.colors.neutral};
     }
 
     &:focus {
