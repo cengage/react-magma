@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.7-next.7
+
+### Patch Changes
+
+- a23e8307: Fix: Added portal back into modal
+- dd443552: Remove unknown props on dom elements in breadcrumb. Specifically `isInverse`
+
 ## 2.5.7-next.6
 
 ### Patch Changes
