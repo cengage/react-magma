@@ -130,77 +130,80 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
   return (
     <>
-      <HelperInformation
-        isOpen={context.helperInformationShown}
-        onClose={context.hideHelperInformation}
-      />
       <CalendarContainer
         data-testid="calendarMonthContainer"
         tabIndex={-1}
         theme={theme}
         onKeyDown={context.onKeyDown}
       >
-        <MonthContainer
-          data-testid="monthContainer"
-          data-visible="true"
-          theme={theme}
-          ref={focusTrapElement}
-        >
-          <CalendarHeader ref={headingRef} focusHeader={focusHeader} />
-
-          <Table
-            role="presentation"
-            onBlur={onCalendarTableBlur}
-            onFocus={onCalendarTableFocus}
+        {context.helperInformationShown ? (
+          <HelperInformation
+            isOpen={context.helperInformationShown}
+            onClose={context.hideHelperInformation}
+          />
+        ) : (
+          <MonthContainer
+            data-testid="monthContainer"
+            data-visible="true"
             theme={theme}
+            ref={focusTrapElement}
           >
-            <tbody>
-              <tr>{tableDaysHeaders}</tr>
-              {context
-                .buildCalendarMonth(context.focusedDate)
-                .map((week, i) => (
-                  <tr key={i}>
-                    {week.map((day, dayOfWeek) => (
-                      <CalendarDay
-                        key={dayOfWeek}
-                        day={day}
-                        dayFocusable={dayFocusable}
-                        onDateChange={context.onDateChange}
-                      />
-                    ))}
-                  </tr>
-                ))}
-            </tbody>
-          </Table>
-          <Tooltip
-            content={'Keyboard instructions'}
-            tooltipStyle={{ position: 'fixed' }}
-          >
-            <HelperButton theme={theme}>
+            <CalendarHeader ref={headingRef} focusHeader={focusHeader} />
+
+            <Table
+              role="presentation"
+              onBlur={onCalendarTableBlur}
+              onFocus={onCalendarTableFocus}
+              theme={theme}
+            >
+              <tbody>
+                <tr>{tableDaysHeaders}</tr>
+                {context
+                  .buildCalendarMonth(context.focusedDate)
+                  .map((week, i) => (
+                    <tr key={i}>
+                      {week.map((day, dayOfWeek) => (
+                        <CalendarDay
+                          key={dayOfWeek}
+                          day={day}
+                          dayFocusable={dayFocusable}
+                          onDateChange={context.onDateChange}
+                        />
+                      ))}
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+            <Tooltip
+              content={'Keyboard instructions'}
+              tooltipStyle={{ position: 'fixed' }}
+            >
+              <HelperButton theme={theme}>
+                <IconButton
+                  aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
+                  icon={<KeyboardIcon />}
+                  onClick={context.showHelperInformation}
+                  size={ButtonSize.small}
+                  onFocus={turnOffDateFocused}
+                  type={ButtonType.button}
+                  variant={ButtonVariant.link}
+                />
+              </HelperButton>
+            </Tooltip>
+
+            <CloseButton theme={theme}>
               <IconButton
-                aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
-                icon={<KeyboardIcon />}
-                onClick={context.showHelperInformation}
-                size={ButtonSize.small}
-                onFocus={turnOffDateFocused}
+                aria-label={i18n.datePicker.calendarCloseAriaLabel}
+                color={ButtonColor.secondary}
+                icon={<CloseIcon />}
+                onClick={props.handleCloseButtonClick}
+                size={ButtonSize.medium}
                 type={ButtonType.button}
                 variant={ButtonVariant.link}
               />
-            </HelperButton>
-          </Tooltip>
-
-          <CloseButton theme={theme}>
-            <IconButton
-              aria-label={i18n.datePicker.calendarCloseAriaLabel}
-              color={ButtonColor.secondary}
-              icon={<CloseIcon />}
-              onClick={props.handleCloseButtonClick}
-              size={ButtonSize.medium}
-              type={ButtonType.button}
-              variant={ButtonVariant.link}
-            />
-          </CloseButton>
-        </MonthContainer>
+            </CloseButton>
+          </MonthContainer>
+        )}
       </CalendarContainer>
     </>
   );

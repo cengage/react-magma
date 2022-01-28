@@ -24,7 +24,7 @@ export function useFocusLock(
 
       if (header && header.current) {
         header.current.focus();
-      } else if (focusableItems.current.length > 0) {
+      } else if (focusableItems.current && focusableItems.current.length > 0) {
         const { 0: firstItem } = focusableItems.current;
 
         firstItem.focus();

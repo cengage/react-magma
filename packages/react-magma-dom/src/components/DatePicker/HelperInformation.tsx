@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+
 import { IconButton } from '../IconButton';
 import { Heading } from '../Heading';
-import { ArrowBackIcon } from 'react-magma-icons';
+import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
 import { TypographyVisualStyle } from '../Typography';
 
-import { Modal } from '../Modal';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonSize, ButtonVariant } from '../Button';
 
 interface HelperInformationProps {
   isOpen?: boolean;
@@ -54,39 +54,55 @@ const KeyboardShortcutButtonWrapper = styled.span`
   text-transform: uppercase;
 `;
 
-export const HelperInformation: React.FunctionComponent<HelperInformationProps> =
-  (props: HelperInformationProps) => {
-    const i18n = React.useContext(I18nContext);
-    const theme = React.useContext(ThemeContext);
+const StyledPopup = styled.div`
+  position: relative;
+  background: white;
+`;
 
-    return (
-      <Modal
-        closeButtonSize="medium"
-        containerStyle={{
-          position: 'relative',
-          padding: '0',
-          margin: '0',
-          marginBottom: '-408px',
-        }}
-        contentStyle={{
-          border: 'none',
-          boxShadow: 'none',
-          margin: '0',
-        }}
-        hiddenBackground
-        onClose={props.onClose}
-        isOpen={props.isOpen}
-        unmountOnExit
-      >
+const StyledNavContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+`;
+const StyledContent = styled.div`
+  z-index: 9999;
+  position: relative;
+  background: white;
+  h2 {
+    margin: 10px 0 12px 0;
+  }
+`;
+
+export const HelperInformation: React.FunctionComponent<
+  HelperInformationProps
+> = (props: HelperInformationProps) => {
+  const i18n = React.useContext(I18nContext);
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <StyledPopup onClose={props.onClose} isOpen={props.isOpen}>
+      <StyledNavContainer>
         <IconButton
           icon={<ArrowBackIcon />}
-          onClick={props.onClose}
           size={ButtonSize.small}
-          style={{ margin: '-24px 0 0 -12px' }}
+          style={{ top: '4px', left: '-12px' }}
           variant={ButtonVariant.link}
+          onClick={props.onClose}
         >
           Back to Calendar
         </IconButton>
+        <IconButton
+          aria-label={i18n.datePicker.calendarCloseAriaLabel}
+          color={ButtonColor.secondary}
+          icon={<CloseIcon />}
+          size={ButtonSize.medium}
+          style={{ left: '16px' }}
+          type={ButtonType.button}
+          onClick={props.onClose}
+          variant={ButtonVariant.link}
+        />
+      </StyledNavContainer>
+      <StyledContent>
         <Heading level={2} visualStyle={TypographyVisualStyle.headingXSmall}>
           {i18n.datePicker.helpModal.header}
         </Heading>
@@ -174,6 +190,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
             <div>{i18n.datePicker.helpModal.questionMark.explanation}</div>
           </Item>
         </List>
-      </Modal>
-    );
-  };
+      </StyledContent>
+    </StyledPopup>
+  );
+};

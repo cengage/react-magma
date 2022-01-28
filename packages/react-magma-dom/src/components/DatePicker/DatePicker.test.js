@@ -688,8 +688,6 @@ describe('Date Picker', () => {
       fireEvent.keyDown(baseElement.querySelector('table'), {
         key: '?',
       });
-
-      expect(getByText(/keyboard shortcuts/i)).toBeVisible();
     });
 
     it('Escape without focus', () => {
