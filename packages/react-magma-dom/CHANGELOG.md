@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.7-next.9
+
+### Patch Changes
+
+- c9907a67: feat: Inputs update
+
+  Removed top margin from helper and error messages related to inputs.
+
 ## 2.5.7-next.8
 
 ### Patch Changes
