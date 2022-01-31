@@ -49,9 +49,9 @@ const KeyboardShortcutButtonWrapper = styled.span`
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-right: ${props => props.theme.spaceScale.spacing03};
+  text-transform: uppercase;
   padding: ${props => props.theme.spaceScale.spacing02}
     ${props => props.theme.spaceScale.spacing04};
-  text-transform: uppercase;
 `;
 
 const StyledPopup = styled.div`
@@ -80,7 +80,7 @@ export const HelperInformation: React.FunctionComponent<
   const theme = React.useContext(ThemeContext);
 
   return (
-    <StyledPopup onClose={props.onClose} isOpen={props.isOpen}>
+    <StyledPopup>
       <StyledNavContainer>
         <IconButton
           icon={<ArrowBackIcon />}
