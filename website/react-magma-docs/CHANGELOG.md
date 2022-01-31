@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.2.8-next.11
+
+### Patch Changes
+
+- Updated dependencies [22749327]
+  - react-magma-dom@2.5.7-next.10
+
 ## 2.2.8-next.10
 
 ### Patch Changes

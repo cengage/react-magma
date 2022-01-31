@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.10
+
+### Patch Changes
+
+- 22749327: feat: initial commit of the block quote component
+
 ## 2.5.7-next.9
 
 ### Patch Changes
