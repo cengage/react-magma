@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InputSize } from '../InputBase';
+import { InputIconPosition, InputSize } from '../InputBase';
 import { useIsInverse } from '../../inverse';
 
 export enum LabelPosition {
@@ -11,15 +11,22 @@ export enum LabelPosition {
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
-    actionable?: boolean;
-    isInverse?: boolean;
-    labelPosition?: LabelPosition;
-    size?: InputSize;
-    theme?: any;
-    testId?: string;
+  actionable?: boolean;
+  iconPosition?: InputIconPosition;
+  isInverse?: boolean;
+  labelPosition?: LabelPosition;
+  size?: InputSize;
+  theme?: any;
+  testId?: string;
 }
 
-const StyledLabel = styled.label<{isInverse: boolean; theme: any; size: InputSize; labelPosition: LabelPosition}>`
+const StyledLabel = styled.label<{
+  iconPosition: InputIconPosition;
+  isInverse: boolean;
+  theme: any;
+  size: InputSize;
+  labelPosition: LabelPosition;
+}>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08
@@ -42,17 +49,28 @@ const StyledLabel = styled.label<{isInverse: boolean; theme: any; size: InputSiz
     props.labelPosition === LabelPosition.left
       ? `0 ${props.theme.spaceScale.spacing05} 0 0`
       : `0 0 ${props.theme.spaceScale.spacing03}`};
-  max-width: 100%;
+  max-width: ${props =>
+    props.iconPosition === InputIconPosition.top
+      ? 'calc(100% - 51px)'
+      : '100%'};
   text-align: left;
-  white-space: nowrap;
+  white-space: ${props =>
+    props.iconPosition === InputIconPosition.top ? 'inherit' : 'nowrap'};
 `;
 
-const StyledSpan = StyledLabel.withComponent('span')
-
+const StyledSpan = StyledLabel.withComponent('span');
 
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
-    const { actionable=true, children, labelPosition, size, testId, ...other } = props;
+    const {
+      actionable = true,
+      children,
+      iconPosition,
+      labelPosition,
+      size,
+      testId,
+      ...other
+    } = props;
     const theme = React.useContext(ThemeContext);
 
     return actionable ? (
@@ -60,6 +78,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         {...other}
         data-testid={testId}
         isInverse={useIsInverse(props.isInverse)}
+        iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
         size={size ? size : InputSize.medium}
@@ -72,6 +91,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         {...other}
         data-testid={testId}
         isInverse={useIsInverse(props.isInverse)}
+        iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
         size={size ? size : InputSize.medium}

@@ -1,5 +1,41 @@
 # Change Log
 
+## 2.2.8-next.10
+
+### Patch Changes
+
+- Updated dependencies [c9907a67]
+  - react-magma-dom@2.5.7-next.9
+
+## 2.2.8-next.9
+
+### Patch Changes
+
+- Updated dependencies [fb4741bd]
+  - react-magma-dom@2.5.7-next.8
+
+## 2.2.8-next.8
+
+### Patch Changes
+
+- Updated dependencies [a23e8307]
+- Updated dependencies [dd443552]
+  - react-magma-dom@2.5.7-next.7
+
+## 2.2.8-next.7
+
+### Patch Changes
+
+- Updated dependencies [1bbd5017]
+  - react-magma-dom@2.5.7-next.6
+
+## 2.2.8-next.6
+
+### Patch Changes
+
+- Updated dependencies [253fd1c1]
+  - react-magma-dom@2.5.7-next.5
+
 ## 2.2.8-next.5
 
 ### Patch Changes

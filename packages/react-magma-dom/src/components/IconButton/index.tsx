@@ -88,15 +88,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
-    const {
-      color,
-      shape,
-      size,
-      testId,
-      textTransform,
-      variant,
-      ...rest
-    } = props;
+    const { color, shape, size, testId, textTransform, variant, ...rest } =
+      props;
 
     const theme = React.useContext(ThemeContext);
 

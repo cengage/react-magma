@@ -1,5 +1,38 @@
 # Change Log
 
+## 2.5.7-next.9
+
+### Patch Changes
+
+- c9907a67: feat: Inputs update
+
+  Removed top margin from helper and error messages related to inputs.
+
+## 2.5.7-next.8
+
+### Patch Changes
+
+- fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
+
+## 2.5.7-next.7
+
+### Patch Changes
+
+- a23e8307: Fix: Added portal back into modal
+- dd443552: Remove unknown props on dom elements in breadcrumb. Specifically `isInverse`
+
+## 2.5.7-next.6
+
+### Patch Changes
+
+- 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
+
+## 2.5.7-next.5
+
+### Patch Changes
+
+- 253fd1c1: feat: input updates to support additional icon positioning
+
 ## 2.5.7-next.4
 
 ### Patch Changes

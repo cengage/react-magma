@@ -19,6 +19,11 @@ export interface TableHeaderCellProps
    */
   align?: TableCellAlign;
   /**
+   * @default false
+   * If true, style as a row header rather than a column header
+   */
+  isRowHeader?: boolean;
+  /**
    * If true, the header will render a button for sorting
    */
   isSortable?: boolean;
@@ -55,15 +60,23 @@ const StyledTableHeaderCell = styled.th<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
+  isRowHeader?: boolean;
   isSortable?: boolean;
   textAlign?: TableCellAlign;
   width?: string;
 }>`
-  background: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
-  border-bottom: 2px solid;
-  font-weight: bold;
-  vertical-align: bottom;
+  ${props => {
+    return props.isRowHeader
+      ? {}
+      : {
+          background: props.isInverse
+            ? props.theme.colors.tint03
+            : props.theme.colors.neutral07,
+          borderBottom: '2px solid',
+          fontWeight: 'bold',
+          verticalAlign: 'bottom',
+        };
+  }}
 
   ${baseTableCellStyle}
 
@@ -133,9 +146,10 @@ export const TableHeaderCell = React.forwardRef<
   const {
     align,
     children,
+    isRowHeader = false,
     isSortable,
     onSort,
-    scope,
+    scope = isRowHeader ? TableHeaderCellScope.row : TableHeaderCellScope.col,
     sortDirection,
     testId,
     width,
@@ -174,8 +188,9 @@ export const TableHeaderCell = React.forwardRef<
       hasVerticalBorders={tableContext.hasVerticalBorders}
       isInverse={tableContext.isInverse}
       ref={ref}
+      isRowHeader={isRowHeader}
       isSortable={isSortable}
-      scope={scope || TableHeaderCellScope.col}
+      scope={scope}
       textAlign={align || TableCellAlign.left}
       theme={theme}
       width={widthString}

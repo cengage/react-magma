@@ -7,15 +7,22 @@
     "@react-magma/schema-renderer": "0.0.7",
     "@cengage-patterns/header": "2.0.6",
     "react-magma-docs": "2.2.7",
-    "react-magma-landing": "1.0.10"
+    "react-magma-landing": "1.0.10",
+    "@react-magma/charts": "0.0.0-next.0"
   },
   "changesets": [
     "additional-colors",
     "early-melons-dress",
+    "elodie-is-eating",
+    "few-kangaroos-wait",
+    "few-wasps-cry",
+    "four-cows-sit",
     "happy-monkies-frolick",
     "hip-buckets-refuse",
     "polite-bags-divide",
     "stupid-wasps-live",
+    "thirty-teachers-lie",
+    "wicked-timers-trade",
     "witty-ravens-tickle"
   ]
 }
