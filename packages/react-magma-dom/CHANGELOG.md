@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.7-next.11
+
+### Patch Changes
+
+- edbdda88: Release 2.5.7
+
 ## 2.5.7-next.10
 
 ### Patch Changes
