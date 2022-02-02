@@ -1,6 +1,12 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { Modal, ModalSize } from '../Modal';
+import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+
+import { IconButton } from '../IconButton';
+import { Heading } from '../Heading';
+import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
+import { TypographyVisualStyle } from '../Typography';
+
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -19,6 +25,21 @@ const List = styled.ul`
 const Item = styled.li`
   display: flex;
   list-style: none;
+  margin-bottom: 12px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  align-items: center;
+  span {
+    flex: 0 0 100px;
+    overflow: hidden;
+    line-height: 28px;
+    min-height: 36px;
+    height: max-content;
+    text-align: center;
+  }
+  div {
+    flex: 1;
+  }
 `;
 
 const KeyboardShortcutButtonWrapper = styled.span`
@@ -28,27 +49,65 @@ const KeyboardShortcutButtonWrapper = styled.span`
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-right: ${props => props.theme.spaceScale.spacing03};
+  text-transform: uppercase;
   padding: ${props => props.theme.spaceScale.spacing02}
     ${props => props.theme.spaceScale.spacing04};
-  text-transform: uppercase;
 `;
 
-export const HelperInformation: React.FunctionComponent<HelperInformationProps> =
-  ({ isOpen, onClose }) => {
-    const i18n = React.useContext(I18nContext);
-    const theme = React.useContext(ThemeContext);
+const StyledPopup = styled.div`
+  position: relative;
+  background: white;
+`;
 
-    return (
-      <Modal
-        isBackgroundClickDisabled
-        header={i18n.datePicker.helpModal.header}
-        onClose={onClose}
-        isOpen={isOpen}
-        size={ModalSize.small}
-        unmountOnExit
-      >
+const StyledNavContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+`;
+const StyledContent = styled.div`
+  z-index: 9999;
+  position: relative;
+  background: white;
+  h2 {
+    margin: 10px 0 12px 0;
+  }
+`;
+
+export const HelperInformation: React.FunctionComponent<
+  HelperInformationProps
+> = (props: HelperInformationProps) => {
+  const i18n = React.useContext(I18nContext);
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <StyledPopup>
+      <StyledNavContainer>
+        <IconButton
+          icon={<ArrowBackIcon />}
+          size={ButtonSize.small}
+          style={{ top: '4px', left: '-12px' }}
+          variant={ButtonVariant.link}
+          onClick={props.onClose}
+        >
+          Back to Calendar
+        </IconButton>
+        <IconButton
+          aria-label={i18n.datePicker.calendarCloseAriaLabel}
+          color={ButtonColor.secondary}
+          icon={<CloseIcon />}
+          size={ButtonSize.medium}
+          style={{ left: '16px' }}
+          type={ButtonType.button}
+          onClick={props.onClose}
+          variant={ButtonVariant.link}
+        />
+      </StyledNavContainer>
+      <StyledContent>
+        <Heading level={2} visualStyle={TypographyVisualStyle.headingXSmall}>
+          {i18n.datePicker.helpModal.header}
+        </Heading>
         <List id="DayPickerKeyboardShortcuts_description">
-          <Item>
+          <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               aria-label={i18n.datePicker.helpModal.enter.ariaLabel}
               role="img"
@@ -58,7 +117,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
             </KeyboardShortcutButtonWrapper>
             <div>{i18n.datePicker.helpModal.enter.explanation}</div>
           </Item>
-          <Item>
+          <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
@@ -72,7 +131,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
               {i18n.datePicker.helpModal.rightAndLeftArrowKeys.explanation}
             </div>
           </Item>
-          <Item>
+          <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
@@ -86,7 +145,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
               {i18n.datePicker.helpModal.upAndDownArrowKeys.explanation}
             </div>
           </Item>
-          <Item>
+          <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
@@ -100,7 +159,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
               {i18n.datePicker.helpModal.pageUpAndPageDownKeys.explanation}
             </div>
           </Item>
-          <Item>
+          <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
@@ -110,7 +169,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
             </KeyboardShortcutButtonWrapper>
             <div>{i18n.datePicker.helpModal.homeAndEndKeys.explanation}</div>
           </Item>
-          <Item>
+          <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
@@ -120,7 +179,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
             </KeyboardShortcutButtonWrapper>
             <div>{i18n.datePicker.helpModal.escape.explanation}</div>
           </Item>
-          <Item>
+          <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
@@ -131,6 +190,7 @@ export const HelperInformation: React.FunctionComponent<HelperInformationProps> 
             <div>{i18n.datePicker.helpModal.questionMark.explanation}</div>
           </Item>
         </List>
-      </Modal>
-    );
-  };
+      </StyledContent>
+    </StyledPopup>
+  );
+};

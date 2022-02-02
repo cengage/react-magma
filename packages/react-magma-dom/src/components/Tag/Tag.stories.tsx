@@ -23,7 +23,18 @@ export default {
         options: TagSize,
       },
     },
-    TagColor: {
+    color: {
+      control: {
+        type: 'select',
+        options: TagColor,
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    isInverse: {
       control: {
         type: 'boolean',
       },
@@ -186,7 +197,13 @@ export const OnDeleteWithIcon = args => {
   return (
     <>
       {isVisible && (
-        <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
+        <Tag
+          {...args}
+          onDelete={deleteMe}
+          isInverse
+          color={TagColor.danger}
+          icon={<AccountCircleIcon />}
+        >
           Text Label
         </Tag>
       )}
@@ -217,6 +234,7 @@ export const Inverse = Template.bind({});
 Inverse.args = {
   isInverse: true,
 };
+
 Inverse.decorators = [
   Story => (
     <Card background={magma.colors.foundation} isInverse>

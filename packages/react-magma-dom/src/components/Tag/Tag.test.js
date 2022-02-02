@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Tag, TagColor, TagSize } from '.';
 import { render, fireEvent } from '@testing-library/react';
@@ -35,6 +35,20 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', magma.colors.primary);
+    });
+
+    it('Should render a Tag with a success background', () => {
+      const { getByText } = render(<Tag color={TagColor.success}>{TEXT}</Tag>);
+      const tag = getByText('Text Label').parentElement;
+
+      expect(tag).toHaveStyleRule('background', magma.colors.success);
+    });
+
+    it('Should render a Tag with a danger background', () => {
+      const { getByText } = render(<Tag color={TagColor.danger}>{TEXT}</Tag>);
+      const tag = getByText('Text Label').parentElement;
+
+      expect(tag).toHaveStyleRule('background', magma.colors.danger);
     });
 
     it('Should render a Tag with a high contrast background', () => {
@@ -170,6 +184,28 @@ describe('Tag', () => {
       const tag = getByText('Text Label').parentElement;
 
       expect(tag).toHaveStyleRule('background', magma.colors.primaryInverse);
+    });
+
+    it('Should render a inverse Tag with a success background', () => {
+      const { getByText } = render(
+        <Tag color={TagColor.success} isInverse>
+          {TEXT}
+        </Tag>
+      );
+      const tag = getByText('Text Label').parentElement;
+
+      expect(tag).toHaveStyleRule('background', magma.colors.successInverse);
+    });
+
+    it('Should render a inverse Tag with a danger background', () => {
+      const { getByText } = render(
+        <Tag color={TagColor.danger} isInverse>
+          {TEXT}
+        </Tag>
+      );
+      const tag = getByText('Text Label').parentElement;
+
+      expect(tag).toHaveStyleRule('background', magma.colors.dangerInverse);
     });
 
     it('Should render a inverse Tag with a high contrast background', () => {

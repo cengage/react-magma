@@ -25,8 +25,9 @@ export enum InputType {
 }
 
 export enum InputIconPosition {
+  top = 'top',
   left = 'left',
-  right = 'right',
+  right = 'right', // default
 }
 
 export interface InputBaseProps
@@ -76,6 +77,10 @@ export interface InputBaseProps
   onClear?: () => void;
   isInverse?: boolean;
   /**
+   * For use in predictive search which moves the icon to the left
+   */
+  isPredictive?: boolean;
+  /**
    * Action that will fire when icon is clicked
    */
   onIconClick?: () => void;
@@ -97,8 +102,10 @@ export interface InputBaseProps
 
 export interface InputWrapperStylesProps {
   width?: string;
+  iconPosition?: InputIconPosition;
   isInverse?: boolean;
   isClearable?: boolean;
+  isPredictive?: boolean;
   theme?: ThemeInterface;
   hasError?: boolean;
   disabled?: boolean;
@@ -112,39 +119,40 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   width: ${props.width || 'auto'};
   background-color: ${props.theme.colors.neutral08};
   border-radius: ${props.theme.borderRadius};
-  border: 1px solid ${
-    props.isInverse
+  border: 1px solid
+    ${props.isInverse
       ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03
-  };
+      : props.theme.colors.neutral03};
 
   &:focus-within {
     outline: 2px dotted
-      ${
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus
-      };
+      ${props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus};
     outline-offset: 4px;
   }
 
-  ${
-    props.hasError &&
-    css`
-      border-color: ${props.theme.colors.danger};
-      box-shadow: 0 0 0 1px
-        ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.danger};
-    `
-  }
+  ${props.hasError &&
+  css`
+    border-color: ${props.theme.colors.danger};
+    box-shadow: 0 0 0 1px
+      ${props.isInverse
+        ? props.theme.colors.neutral08
+        : props.theme.colors.danger};
+  `}
 
-  ${
-    props.disabled &&
-    css`
-      border-color: ${props.theme.colors.neutral05};
-      background-color: ${props.disabled ? props.theme.colors.neutral07 : props.theme.colors.neutral08};
-    `
+  ${props.disabled &&
+  css`
+    border-color: ${props.theme.colors.neutral05};
+    background-color: ${props.disabled
+      ? props.theme.colors.neutral07
+      : props.theme.colors.neutral08};
+  `}
+  button {
+    bottom: ${props.iconPosition === InputIconPosition.top
+      ? '40px'
+      : 'inherit'};
+    right: ${props.iconPosition === InputIconPosition.top ? '-4px' : 'inherit'};
   }
 `;
 
@@ -152,6 +160,7 @@ export interface InputBaseStylesProps {
   isInverse?: boolean;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
+  isPredictive?: boolean;
   theme?: ThemeInterface;
   disabled?: boolean;
 }
@@ -230,7 +239,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   `}
 `;
 
-const InputWrapper = styled.div<InputWrapperStylesProps>`
+export const InputWrapper = styled.div<InputWrapperStylesProps>`
   ${inputWrapperStyles}
 `;
 
@@ -242,38 +251,55 @@ const IconWrapper = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   isClearable?: boolean;
+  isPredictive?: boolean;
   disabled?: boolean;
 }>`
-color: ${props => props.theme.colors.neutral};
-left: ${props =>
-  props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
+  bottom: ${props => (props.iconPosition === 'top' ? '45px' : 'inherit')};
+  color: ${props => props.theme.colors.neutral};
+  left: ${props =>
+    props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
-    props.iconPosition === 'right' ? props.theme.spaceScale.spacing03 : 'auto'};
-    position: absolute;
-    top: ${props => props.theme.spaceScale.spacing03};
+    props.iconPosition === 'right'
+      ? props.theme.spaceScale.spacing03
+      : props.iconPosition === 'top'
+      ? '3px'
+      : 'auto'};
+  position: absolute;
+  top: ${props =>
+    props.iconPosition === 'top'
+      ? 'inherit'
+      : props => props.theme.spaceScale.spacing03};
 
-    ${props =>
-      props.inputSize === 'large' &&
-      css`
+  ${props =>
+    props.inputSize === 'large' &&
+    css`
+      bottom: ${props.iconPosition === 'top' ? '56px' : 'inherit'};
       left: ${props.iconPosition === 'left'
-      ? props.theme.spaceScale.spacing04
-      : 'auto'};
+        ? props.theme.spaceScale.spacing04
+        : 'auto'};
       right: ${props.iconPosition === 'right'
-      ? props.theme.spaceScale.spacing04
-      : 'auto'};
-      top: ${props.theme.spaceScale.spacing04};
-      `}
-      `;
+        ? props.theme.spaceScale.spacing04
+        : props.iconPosition === 'top'
+        ? '3px'
+        : 'auto'};
+      top: ${props.iconPosition === 'top'
+        ? 'inherit'
+        : props.theme.spaceScale.spacing04};
+    `}
+`;
 
-      const IconButtonContainer = styled.span<{
-        size?: InputSize;
-        theme: ThemeInterface;
-        isClearable?: boolean;
-        disabled?: boolean;
-      }>`
-      background-color: ${({disabled,  theme}) => disabled ? theme.colors.neutral07 : theme.colors.neutral08};
-      height: auto;
-      margin: 0;
+const IconButtonContainer = styled.span<{
+  iconPosition?: InputIconPosition;
+  size?: InputSize;
+  theme: ThemeInterface;
+  isClearable?: boolean;
+  disabled?: boolean;
+}>`
+  background-color: ${({ disabled, theme }) =>
+    disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+  bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
+  height: auto;
+  margin: 0;
   position: relative;
   right: ${props =>
     props.size === InputSize.large
@@ -298,7 +324,8 @@ const IsClearableContainer = styled.span<{
   isClearable?: boolean;
   disabled?: boolean;
 }>`
-  background-color: ${({disabled,  theme}) => disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+  background-color: ${({ disabled, theme }) =>
+    disabled ? theme.colors.neutral07 : theme.colors.neutral08};
   position: relative;
   right: ${props =>
     props.size === InputSize.large
@@ -327,6 +354,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       iconAriaLabel,
       iconRef,
       isClearable,
+      isPredictive,
       onClear,
       onIconClick,
       onIconKeyDown,
@@ -361,9 +389,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const ref = useForkedRef(forwardedRef, inputRef);
 
     function handleClearInput() {
-      onClear &&
-        typeof onClear === 'function' &&
-        onClear();
+      onClear && typeof onClear === 'function' && onClear();
       setValue('');
       inputRef.current.focus();
     }
@@ -379,6 +405,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     return (
       <InputWrapper
         disabled={disabled}
+        iconPosition={iconPosition}
         isInverse={props.isInverse}
         theme={theme}
         style={containerStyle}
@@ -393,6 +420,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           iconPosition={iconPosition}
           inputSize={inputSize ? inputSize : InputSize.medium}
           isInverse={useIsInverse(props.isInverse)}
+          isPredictive={isPredictive}
           ref={ref}
           onChange={handleChange}
           style={inputStyle}
@@ -401,10 +429,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           value={value}
         />
         {isClearable && value && (
-          <IsClearableContainer
-            theme={theme}
-            disabled={disabled}
-          >
+          <IsClearableContainer theme={theme} disabled={disabled}>
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}
@@ -431,6 +456,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             aria-label={iconAriaLabel}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
+            isPredictive={isPredictive}
             theme={theme}
             disabled={disabled}
           >
@@ -447,6 +473,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
         {onIconClick && (
           <IconButtonContainer
+            iconPosition={iconPosition}
             size={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }

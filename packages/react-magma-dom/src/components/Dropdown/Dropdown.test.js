@@ -316,6 +316,27 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
+  it('should fire onOpen when the menu is opened', () => {
+    const onOpen = jest.fn();
+
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown" onOpen={onOpen}>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+    expect(onOpen).toHaveBeenCalled();
+
+  });
+
   it('should close the menu when menu is blurred', () => {
     const onClose = jest.fn();
 

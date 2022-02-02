@@ -2,7 +2,7 @@ import React from 'react';
 import { Toggle } from '.';
 import { FormGroup } from '../FormGroup';
 import { magma } from '../../theme/magma';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { render, fireEvent } from '@testing-library/react';
 
 describe('Toggle', () => {

@@ -3,7 +3,7 @@ import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
 import { MenuIcon, CloseIcon } from 'react-magma-icons';
-import { Container, IconButton, magma } from 'react-magma-dom';
+import { ButtonColor, Container, IconButton, magma } from 'react-magma-dom';
 import { MainNav } from '../MainNav';
 
 export class SlidingDrawer extends React.Component {
@@ -105,7 +105,7 @@ export class SlidingDrawer extends React.Component {
       @media (min-width: 1024px) {
         animation: none;
         padding-top: 20px;
-        top: 88px;
+        top: 56px;
         transform: translateX(0);
       }
     `;
@@ -131,14 +131,9 @@ export class SlidingDrawer extends React.Component {
     const MenuButton = styled.span`
       position: fixed;
       top: 4px;
-      left: 2px;
+      left: 6px;
       z-index: 11;
-
-      @media (min-width: 769px) {
-        top: 20px;
-      }
-
-      @media (min-width: 1024px) {
+            @media (min-width: 1024px) {
         display: none;
       }
     `;
@@ -146,7 +141,6 @@ export class SlidingDrawer extends React.Component {
     const CloseButton = styled.span`
       display: block;
       text-align: right;
-
       @media (min-width: 1024px) {
         display: none;
       }
@@ -164,8 +158,8 @@ export class SlidingDrawer extends React.Component {
                 <IconButton
                   aria-label="Open navigation menu"
                   aria-expanded={isOpen}
+                  color="secondary"
                   icon={<MenuIcon />}
-                  isInverse
                   onClick={this.openMenu}
                   ref={this.toggleButtonRef}
                   variant="link"

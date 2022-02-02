@@ -241,6 +241,7 @@ export interface ThemeInterface {
   dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
+  iterableColors: string[];
   spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
@@ -554,7 +555,7 @@ export const magma = {
 
   appBar: {
     backgroundColor: colors.neutral08,
-    height: '88px',
+    height: '56px',
     padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
     textColor: colors.neutral,
     compact: {
@@ -620,6 +621,21 @@ export const magma = {
       maxHeight: '250px',
     },
   },
+
+  iterableColors: [
+    '#0085CC',
+    '#E0004D',
+    '#FA6600',
+    '#48A200',
+    '#B12FAD',
+    '#00A393',
+    '#00507A',
+    '#8F0033',
+    '#B84900',
+    '#255200',
+    '#711E6E',
+    '#005249',
+  ],
 
   tabs: {
     approxTabSize: {

@@ -1,5 +1,101 @@
 # Change Log
 
+## 2.2.8-next.12
+
+### Patch Changes
+
+- Updated dependencies [edbdda88]
+  - react-magma-dom@2.5.7-next.11
+
+## 2.2.8-next.11
+
+### Patch Changes
+
+- Updated dependencies [22749327]
+  - react-magma-dom@2.5.7-next.10
+
+## 2.2.8-next.10
+
+### Patch Changes
+
+- Updated dependencies [c9907a67]
+  - react-magma-dom@2.5.7-next.9
+
+## 2.2.8-next.9
+
+### Patch Changes
+
+- Updated dependencies [fb4741bd]
+  - react-magma-dom@2.5.7-next.8
+
+## 2.2.8-next.8
+
+### Patch Changes
+
+- Updated dependencies [a23e8307]
+- Updated dependencies [dd443552]
+  - react-magma-dom@2.5.7-next.7
+
+## 2.2.8-next.7
+
+### Patch Changes
+
+- Updated dependencies [1bbd5017]
+  - react-magma-dom@2.5.7-next.6
+
+## 2.2.8-next.6
+
+### Patch Changes
+
+- Updated dependencies [253fd1c1]
+  - react-magma-dom@2.5.7-next.5
+
+## 2.2.8-next.5
+
+### Patch Changes
+
+- Updated dependencies [156c5c1e]
+  - react-magma-dom@2.5.7-next.4
+
+## 2.2.8-next.4
+
+### Patch Changes
+
+- Updated dependencies [6cbb9cf2]
+  - react-magma-dom@2.5.7-next.3
+
+## 2.2.8-next.3
+
+### Patch Changes
+
+- Updated dependencies [2e4f06d6]
+  - react-magma-dom@2.5.7-next.2
+
+## 2.2.8-next.2
+
+### Patch Changes
+
+- Updated dependencies [4da10cb8]
+  - react-magma-dom@2.5.7-next.1
+
+## 2.2.8-next.1
+
+### Patch Changes
+
+- Updated dependencies [465dc468]
+  - react-magma-dom@2.5.7-next.0
+  - @react-magma/dropzone@0.1.0-next.2
+  - @react-magma/schema-renderer@0.0.8-next.0
+  - @cengage-patterns/header@2.0.7-next.0
+
+## 2.2.8-next.0
+
+### Patch Changes
+
+- b4cc2a84: - Feature RM New Header
+- Updated dependencies [d3d61224]
+  - @react-magma/dropzone@0.1.0-next.1
+
 ## 2.2.7
 
 ### Patch Changes

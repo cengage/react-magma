@@ -1,5 +1,80 @@
 # Change Log
 
+## 2.5.7-next.11
+
+### Patch Changes
+
+- edbdda88: Release 2.5.7
+
+## 2.5.7-next.10
+
+### Patch Changes
+
+- 22749327: feat: initial commit of the block quote component
+
+## 2.5.7-next.9
+
+### Patch Changes
+
+- c9907a67: feat: Inputs update
+
+  Removed top margin from helper and error messages related to inputs.
+
+## 2.5.7-next.8
+
+### Patch Changes
+
+- fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
+
+## 2.5.7-next.7
+
+### Patch Changes
+
+- a23e8307: Fix: Added portal back into modal
+- dd443552: Remove unknown props on dom elements in breadcrumb. Specifically `isInverse`
+
+## 2.5.7-next.6
+
+### Patch Changes
+
+- 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
+
+## 2.5.7-next.5
+
+### Patch Changes
+
+- 253fd1c1: feat: input updates to support additional icon positioning
+
+## 2.5.7-next.4
+
+### Patch Changes
+
+- 156c5c1e: docs: page layout templates
+
+## 2.5.7-next.3
+
+### Patch Changes
+
+- 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
+
+## 2.5.7-next.2
+
+### Patch Changes
+
+- 2e4f06d6: feat: Predictive Search
+
+## 2.5.7-next.1
+
+### Patch Changes
+
+- 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
+
+## 2.5.7-next.0
+
+### Patch Changes
+
+- 465dc468: feat: Tag Updates for additional colors
+
 ## 2.5.6
 
 ### Patch Changes
