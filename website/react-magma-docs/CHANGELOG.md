@@ -1,5 +1,30 @@
 # Change Log
 
+## 2.2.8
+
+### Patch Changes
+
+- b4cc2a84: - Feature RM New Header
+- Updated dependencies [465dc468]
+- Updated dependencies [4da10cb8]
+- Updated dependencies [1bbd5017]
+- Updated dependencies [a23e8307]
+- Updated dependencies [c9907a67]
+- Updated dependencies [fb4741bd]
+- Updated dependencies [6cbb9cf2]
+- Updated dependencies [edbdda88]
+- Updated dependencies [d3d61224]
+- Updated dependencies [2e4f06d6]
+- Updated dependencies [22749327]
+- Updated dependencies [253fd1c1]
+- Updated dependencies [dd443552]
+- Updated dependencies [156c5c1e]
+  - react-magma-dom@2.5.7
+  - @react-magma/dropzone@0.1.0
+  - @react-magma/charts@0.0.0
+  - @react-magma/schema-renderer@0.0.8
+  - @cengage-patterns/header@2.0.7
+
 ## 2.2.8-next.12
 
 ### Patch Changes

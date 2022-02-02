@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.0
+
+### Minor Changes
+
+- d3d61224: - release initial file uploader
+
 ## 0.1.0-next.2
 
 ### Patch Changes
