@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { magma, ThemeInterface } from '../../theme/magma';
 import { TypographyVisualStyle, TypographyComponent } from '../Typography';
 import { InverseContext, useIsInverse } from '../../inverse';
 
@@ -11,8 +11,23 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: boolean;
+  /**
+   * Allows an ordered list to start at a determined value of a letter or number.
+   */
+  hasStart?: string;
+  /**
+   * For use with inline icons within list items.
+   */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
+  /**
+   * Aligns the icon at the top, or center of each list item.
+   */
   iconAlign?: IconAlignment;
+  /**
+   * Sizes the icon between small, medium, and large.
+   * @default 'medium'
+   *
+   */
   iconSize?: IconSizes;
   isInverse?: boolean;
   /**
@@ -20,10 +35,22 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isOrdered?: boolean;
   /**
+   * If list is ordered, then this allows the list to reverse the content.
+   * @default false
+   */
+  isReversed?: boolean;
+  /**
+   * Options for list type bullet formatting.
+   */
+  listType?: ulListType | olListType;
+  /**
+   * Adds a bottom margin to each list item with the Magma space scale.
+   */
+  spacingStyle?: keyof typeof magma.spaceScale;
+  testId?: string;
+  /**
    * @internal
    */
-  spacingStyle?: spacingVisualStyle;
-  testId?: string;
   theme?: ThemeInterface;
   /**
    * Applies visual styles including font-size, font-weight, line-height and margins
@@ -31,23 +58,6 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
    */
 
   visualStyle?: TypographyVisualStyle;
-}
-
-export enum spacingVisualStyle {
-  spacing01 = 'spacing01',
-  spacing02 = 'spacing02',
-  spacing03 = 'spacing03',
-  spacing04 = 'spacing04',
-  spacing05 = 'spacing05',
-  spacing06 = 'spacing06',
-  spacing07 = 'spacing07',
-  spacing08 = 'spacing08',
-  spacing09 = 'spacing09',
-  spacing10 = 'spacing10',
-  spacing11 = 'spacing11',
-  spacing12 = 'spacing12',
-  spacing13 = 'spacing13',
-  spacing14 = 'spacing14',
 }
 
 export enum IconSizes {
@@ -59,6 +69,20 @@ export enum IconSizes {
 export enum IconAlignment {
   center = 'center',
   top = 'top',
+}
+
+export enum ulListType {
+  circle = 'circle',
+  disc = 'disc',
+  square = 'square',
+}
+
+export enum olListType {
+  lowercase = 'a',
+  uppercase = 'A',
+  lowercaseRoman = 'i',
+  uppercaseRoman = 'I',
+  numbers = '1',
 }
 
 export function getIconSizes(props) {
@@ -90,56 +114,33 @@ export function getListDisplay(props) {
   return 'list-item';
 }
 
-function getSpacingStyles(props) {
-  switch (props.spacingStyle) {
-    case spacingVisualStyle.spacing01:
-      return props.theme.spaceScale.spacing01;
-    case spacingVisualStyle.spacing02:
-      return props.theme.spaceScale.spacing02;
-    case spacingVisualStyle.spacing03:
-      return props.theme.spaceScale.spacing03;
-    case spacingVisualStyle.spacing04:
-      return props.theme.spaceScale.spacing04;
-    case spacingVisualStyle.spacing05:
-      return props.theme.spaceScale.spacing05;
-    case spacingVisualStyle.spacing06:
-      return props.theme.spaceScale.spacing06;
-    case spacingVisualStyle.spacing07:
-      return props.theme.spaceScale.spacing07;
-    case spacingVisualStyle.spacing08:
-      return props.theme.spaceScale.spacing08;
-    case spacingVisualStyle.spacing09:
-      return props.theme.spaceScale.spacing09;
-    case spacingVisualStyle.spacing10:
-      return props.theme.spaceScale.spacing10;
-    case spacingVisualStyle.spacing11:
-      return props.theme.spaceScale.spacing11;
-    case spacingVisualStyle.spacing12:
-      return props.theme.spaceScale.spacing12;
-    case spacingVisualStyle.spacing13:
-      return props.theme.spaceScale.spacing13;
-    case spacingVisualStyle.spacing14:
-      return props.theme.spaceScale.spacing14;
-    default:
-      return props.theme.spaceScale.spacing01;
-  }
-}
-
 const ListStyles = props => css`
   margin: 0;
   padding: 0;
+  list-style-type: ${props.listType};
   color: ${props.isInverse
     ? props.theme.colors.neutral08
     : props.theme.colors.neutral};
   li {
-    margin-bottom: ${getSpacingStyles(props)};
     align-items: ${getListAlignment(props)};
-    grid-template-areas: 'a a a';
+    margin-bottom: ${props.spacingStyle};
+    grid-template-areas: 'a b';
+    grid-template-columns: auto 1fr;
+  }
+  span {
+    margin: ${props.iconSize === 'small'
+      ? '0 16px 0 0'
+      : props.iconSize === 'large'
+      ? '0 26px 0 0'
+      : '0 18px 0 0'};
   }
   p {
     font-size: 0.8em;
     font-weight: 400;
-    margin-top: calc(${getSpacingStyles(props)} / 2);
+    margin-top: ${props.spacingStyle ? `calc(${props.spacingStyle} / 2)` : '0'};
+    margin-left: 0;
+    grid-template: 'b';
+    grid-column-start: 2;
   }
   svg {
     height: ${getIconSizes(props)}px;
@@ -158,11 +159,14 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
       color,
       description,
       testId,
+      hasStart,
       icon,
       iconAlign,
       iconSize,
       isInverse: isInverseProp,
       isOrdered,
+      isReversed,
+      listType,
       spacingStyle,
       visualStyle,
       ...rest
@@ -180,8 +184,11 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
           iconAlign={iconAlign}
           iconSize={iconSize}
           isInverse={isInverse}
+          type={listType ? listType : 'inherit'}
+          reversed={isReversed}
           ref={ref}
-          spacingStyle={spacingStyle}
+          spacingStyle={magma.spaceScale[spacingStyle] || spacingStyle}
+          start={hasStart}
           theme={theme}
           visualStyle={
             visualStyle ? visualStyle : TypographyVisualStyle.bodyMedium

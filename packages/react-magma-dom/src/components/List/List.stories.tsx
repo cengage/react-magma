@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  IconAlignment,
-  IconSizes,
+  // IconAlignment,
+  // IconSizes,
   List,
-  ListItem,
-  spacingVisualStyle,
-} from '.';
+} from './List';
+import { ListItem } from './ListItem';
 import { EmailIcon } from 'react-magma-icons';
 import { TypographyVisualStyle } from '../Typography';
+import { magma } from '../..';
 
 export default {
   component: List,
@@ -18,10 +18,15 @@ export default {
         type: 'boolean',
       },
     },
+    isOrdered: {
+      control: {
+        type: 'boolean',
+      },
+    },
     spacingStyle: {
       control: {
         type: 'select',
-        options: spacingVisualStyle,
+        options: magma.spaceScale,
       },
     },
     visualStyle: {
@@ -49,29 +54,12 @@ export const Default = args => {
   );
 };
 
-export const Ordered = args => {
-  return (
-    <List spacingStyle={spacingVisualStyle.spacing04} {...args} isOrdered>
-      <ListItem>Sample text</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-    </List>
-  );
-};
-
 export const IconList = args => {
   return (
-    <List
-      iconAlign={IconAlignment.top}
-      iconSize={IconSizes.large}
-      spacingStyle={spacingVisualStyle.spacing04}
-      {...args}
-    >
-      <ListItem icon={<EmailIcon />}>Sample text</ListItem>
+    <List iconSize="small" {...args} spacingStyle="spacing04">
+      <ListItem icon={<EmailIcon />} iconBackground="danger">
+        Sample text
+      </ListItem>
       <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
       <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
       <ListItem icon={<EmailIcon />}>Sample text again</ListItem>

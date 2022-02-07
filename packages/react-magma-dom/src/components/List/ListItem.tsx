@@ -2,8 +2,8 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { getListDisplay, ListProps } from './';
+import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
@@ -11,15 +11,28 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface ListItemProps
   extends ListProps,
-    React.HTMLAttributes<HTMLDivElement> {}
+    React.HTMLAttributes<HTMLDivElement> {
+  iconBackground?: keyof typeof magma.colors;
+  iconColor?: keyof typeof magma.colors;
+}
 
 const ListItemStyles = props => css`
   display: ${getListDisplay(props)};
-
   margin: 0;
   padding: 0;
-  color: ${props.description ? props.theme.colors.neutral03 : 'inherit'};
+  margin-left: ${props.icon ? 'inherit' : '1.1em'};
+  color: ${props.description && !props.isInverse
+    ? props.theme.colors.neutral03
+    : 'inherit'};
   list-style-type: ${props.icon || props.description ? 'none' : 'inherit'};
+`;
+
+const IconStyles = props => css`
+  background: ${props.iconBackground};
+  color: ${props.iconColor};
+  border-radius: 50%;
+  display: inline-flex;
+  padding: 10px;
 `;
 
 const StyledListItem = styled.li`
@@ -27,12 +40,7 @@ const StyledListItem = styled.li`
 `;
 
 const StyledIcon = styled.span`
-  border-radius: 50%;
-  background: ${props => props.theme.colors.primary};
-  color: ${props => props.theme.colors.neutral08};
-  display: inline-flex;
-  padding: 10px;
-  margin: 0 20px 0 0;
+  ${IconStyles};
 `;
 
 export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
@@ -42,10 +50,10 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
       description,
       icon,
       iconAlign,
-      iconSize,
+      iconBackground,
+      iconColor,
       testId,
       isInverse: isInverseProp,
-      ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
@@ -57,9 +65,21 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
           description={description}
           icon={icon}
           iconAlign={iconAlign}
+          isInverse={isInverse}
           theme={theme}
+          testId={testId}
         >
-          {icon && <StyledIcon theme={theme}>{icon}</StyledIcon>}
+          {icon && (
+            <StyledIcon
+              iconBackground={
+                magma.colors[iconBackground] || magma.colors.primary
+              }
+              iconColor={magma.colors[iconColor] || magma.colors.neutral08}
+              theme={theme}
+            >
+              {icon}
+            </StyledIcon>
+          )}
           {children}
         </StyledListItem>
       </InverseContext.Provider>

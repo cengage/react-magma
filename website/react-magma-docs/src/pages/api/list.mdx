@@ -2,23 +2,58 @@
 pageTitle: List API
 title: List
 props:
-- ListProps
+  - ListProps
 ---
 
-<DocsHeading type="api">
-  List
-</DocsHeading>
+<DocsHeading type="api">List</DocsHeading>
 
-List item with styled variations
+List items are a way of displaying rows of text with various format options.
 
 ## Basic Usage
 
+By default `List` uses an unorganized markup `<ul>`.
+
 ```typescript
 import React from 'react';
-import { List } from 'react-magma-dom';
+import { List, ListItem } from 'react-magma-dom';
 
 export function Example() {
-return <List>List content</List>;
+  return (
+    <List>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+    </List>
+  );
+}
+```
+
+## Organized List
+
+Another method of `List` is the organized list `<ol>`. There are several methods of showing organized list items.
+
+The `hasStart` prop permits the user to define a specific letter or number from which the list items descend.
+
+If the `isReversed` prop is used, the order changes from ascending to descending numbers or letters.
+
+Organized `type` allows for changing the bulleted items from a number to lowercase letters, uppercase letters, lowercase Roman numerals, or uppercase Roman numerals.
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <List isOrdered>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+    </List>
+  );
 }
 ```
 
@@ -29,13 +64,24 @@ inherit the `isInverse` prop unless specified otherwise.
 
 ```typescript
 import React from 'react';
-import { List } from 'react-magma-dom';
+import { Card, CardBody, List } from 'react-magma-dom';
 
 export function Example() {
-return <List isInverse>List content</List>;
+  return (
+    <Card isInverse>
+      <CardBody>
+        <List isInverse>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+        </List>
+      </CardBody>
+    </Card>
+  );
 }
 ```
-
 
 # List Props
 
