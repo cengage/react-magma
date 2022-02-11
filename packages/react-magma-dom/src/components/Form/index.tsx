@@ -38,7 +38,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
    * Number to indicate which level heading will render for the form header (e.g. h1, h2 etc.)
    * @default 3
    */
-  headingLevel: 1 | 2 | 3 | 4 | 5 | 6;
+  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /**
    * Applies visual styles to the form heading including font-size, font-weight, line-height and margins
    */
