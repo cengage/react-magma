@@ -7,6 +7,7 @@ import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
 import { GithubIcon } from 'react-magma-icons';
 
 const LogoLink = styled(Link)`
+  align-items: center;
   color: ${magma.colors.neutral08};
   display: inline-flex;
   font-size: ${magma.typeScale.size05.fontSize};
