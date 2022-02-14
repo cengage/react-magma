@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { EmailIcon } from 'react-magma-icons';
 
 import { IconSizes, List, ListItem } from '.';
