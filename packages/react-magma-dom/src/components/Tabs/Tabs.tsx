@@ -2,7 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import { Omit, getNormalizedScrollLeft, useDescendants } from '../../utils';
+import { Omit, getNormalizedScrollLeft } from '../../utils';
+import { useDescendants } from '../../hooks/useDescendants';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
@@ -55,7 +56,7 @@ export interface TabsProps
   /**
    * The text the screen reader will announce that describes your tablist.
    */
-  'aria-label': string;
+  'aria-label'?: string;
   /**
    * Background color for the tabs menu
    */
@@ -180,11 +181,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     const theme = React.useContext(ThemeContext);
 
-    const {
-      activeTabIndex,
-      setActiveTabIndex,
-      isInverseContainer,
-    } = React.useContext(TabsContainerContext);
+    const { activeTabIndex, setActiveTabIndex, isInverseContainer } =
+      React.useContext(TabsContainerContext);
 
     const isInverse =
       typeof props.isInverse !== 'undefined'
@@ -383,14 +381,15 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           typeof onChange === 'function' &&
           onChange(newActiveTabIndex);
         setActiveTabIndex(newActiveTabIndex);
-        (buttonRefArray.current[newActiveTabIndex]
-          .current as HTMLButtonElement).focus();
+        (
+          buttonRefArray.current[newActiveTabIndex].current as HTMLButtonElement
+        ).focus();
         event.preventDefault();
       }
     }
 
     const i18n = React.useContext(I18nContext);
-    const ariaLabel = `${rest['aria-label']}, ${
+    const ariaLabel = `${rest['aria-label'] || ''}, ${
       orientation === TabsOrientation.vertical
         ? i18n.tabs.verticalTabsInstructions
         : i18n.tabs.horizontalTabsInstructions

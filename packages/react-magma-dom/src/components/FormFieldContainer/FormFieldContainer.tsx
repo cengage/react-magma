@@ -67,7 +67,6 @@ const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
     props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
-  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const FormFieldContainer = React.forwardRef<
@@ -123,16 +122,18 @@ export const FormFieldContainer = React.forwardRef<
           </Label>
         )}
         {children}
-        <InputMessage
-          hasError={!!errorMessage}
-          id={descriptionId}
-          isInverse={isInverse}
-          style={messageStyle}
-        >
-          {(errorMessage || helperMessage) && (
-            <>{errorMessage ? errorMessage : helperMessage}</>
-          )}
-        </InputMessage>
+        {(errorMessage || helperMessage) && (
+          <InputMessage
+            hasError={!!errorMessage}
+            id={descriptionId}
+            isInverse={isInverse}
+            style={messageStyle}
+          >
+            {(errorMessage || helperMessage) && (
+              <>{errorMessage ? errorMessage : helperMessage}</>
+            )}
+          </InputMessage>
+        )}
       </StyledFormFieldContainer>
     </InverseContext.Provider>
   );

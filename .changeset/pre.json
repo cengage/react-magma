@@ -2,22 +2,15 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/dropzone": "0.0.1-next.0",
-    "react-magma-dom": "2.5.6",
-    "@react-magma/schema-renderer": "0.0.7",
-    "@cengage-patterns/header": "2.0.6",
-    "react-magma-docs": "2.2.7",
+    "@react-magma/charts": "0.0.0",
+    "@react-magma/dropzone": "0.1.0",
+    "react-magma-dom": "2.5.7",
+    "@react-magma/schema-renderer": "0.0.8",
+    "@cengage-patterns/header": "2.0.7",
+    "react-magma-docs": "2.2.8",
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
-    "additional-colors",
-    "early-melons-dress",
-    "elodie-is-eating",
-    "happy-monkies-frolick",
-    "hip-buckets-refuse",
-    "polite-bags-divide",
-    "stupid-wasps-live",
-    "thirty-teachers-lie",
-    "witty-ravens-tickle"
+    "thin-adults-clean"
   ]
 }

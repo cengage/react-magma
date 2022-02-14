@@ -1,7 +1,13 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper.js';
 import { Dropzone } from '.';
-import { cleanup, render, act, fireEvent, waitFor } from '@testing-library/react';
+import {
+  cleanup,
+  render,
+  act,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react';
 import { I18nContext, defaultI18n } from 'react-magma-dom';
 import userEvent from '@testing-library/user-event';
 
@@ -20,7 +26,7 @@ describe('File Uploader', () => {
       createFile('cats.png', 1234, 'image/png'),
       createFile('dogs.png', 2345, 'image/png'),
     ];
-  })
+  });
 
   afterEach(() => {
     jest.useRealTimers();
@@ -29,13 +35,9 @@ describe('File Uploader', () => {
   });
 
   it('should render the file uploader component', () => {
-    const { container, getByText } = render(
-      <Dropzone/>
-    );
+    const { container, getByText } = render(<Dropzone />);
 
-    expect(
-      getByText('Browse Files')
-    ).toBeInTheDocument();
+    expect(getByText('Browse Files')).toBeInTheDocument();
 
     expect(
       getByText('Drag and drop or browse files to upload.')
@@ -43,9 +45,7 @@ describe('File Uploader', () => {
   });
 
   it('should render the file uploader component without drag', () => {
-    const { container, queryByText } = render(
-      <Dropzone noDrag/>
-    );
+    const { container, queryByText } = render(<Dropzone noDrag />);
 
     expect(queryByText('Browse Files')).toBeInTheDocument();
     expect(
@@ -55,9 +55,7 @@ describe('File Uploader', () => {
 
   it('should find element by testId', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(
-      <Dropzone testId={testId}/>
-    );
+    const { getByTestId } = render(<Dropzone testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
@@ -65,9 +63,7 @@ describe('File Uploader', () => {
   it('Does not violate accessibility standards', () => {
     jest.useRealTimers();
 
-    const { container } = render(
-      <Dropzone/>
-    );
+    const { container } = render(<Dropzone />);
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
@@ -77,15 +73,16 @@ describe('File Uploader', () => {
   it('Supports i18n', () => {
     const browseFiles = 'find those files';
     const { getByText } = render(
-      <I18nContext.Provider value={
-          { ...defaultI18n,
-            dropzone: {
-              ...defaultI18n.dropzone,
-              browseFiles
-            }
-          }
-        }>
-        <Dropzone/>
+      <I18nContext.Provider
+        value={{
+          ...defaultI18n,
+          dropzone: {
+            ...defaultI18n.dropzone,
+            browseFiles,
+          },
+        }}
+      >
+        <Dropzone />
       </I18nContext.Provider>
     );
 
@@ -94,9 +91,7 @@ describe('File Uploader', () => {
 
   it('sets {accept} prop on the <input>', () => {
     const accept = 'image/jpeg';
-    const { container } = render(
-      <Dropzone accept={accept}/>
-    );
+    const { container } = render(<Dropzone accept={accept} />);
 
     const input = container.querySelector('input');
     expect(input).toHaveAttribute('accept', accept);
@@ -110,9 +105,7 @@ describe('File Uploader', () => {
   });
 
   it('allows adding files via drop', () => {
-    const { container } = render(
-      <Dropzone />
-    );
+    const { container } = render(<Dropzone />);
 
     const dropzone = container.querySelector('div');
 
@@ -124,9 +117,7 @@ describe('File Uploader', () => {
   });
 
   it('allows adding files via drop', () => {
-    const { container } = render(
-      <Dropzone />
-    );
+    const { container } = render(<Dropzone />);
 
     const dropzone = container.querySelector('div');
 
@@ -140,7 +131,7 @@ describe('File Uploader', () => {
   it('border color changes for success', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
-    const ui = <Dropzone testId={testId}/>;
+    const ui = <Dropzone testId={testId} />;
     const { getByTestId, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
@@ -179,7 +170,9 @@ describe('File Uploader', () => {
     dispatchEvt(input, 'change');
     await flushPromises(rerender, ui);
 
-    expect(onSendFileSpy).toHaveBeenCalledWith(expect.objectContaining({file: files[0]}));
+    expect(onSendFileSpy).toHaveBeenCalledWith(
+      expect.objectContaining({ file: files[0] })
+    );
   });
 
   it('calls onSendFiles for multiple files added via the input', async () => {
@@ -277,10 +270,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = <Dropzone
-      sendFiles
-      testId={testId}
-    />;
+    const ui = <Dropzone sendFiles testId={testId} />;
 
     const { getByTestId, getByText, rerender } = render(ui);
 
@@ -332,9 +322,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = (
-      <Dropzone accept={['.png']} testId={testId} />
-    );
+    const ui = <Dropzone accept={['.png']} testId={testId} />;
 
     const { getByTestId, getByText, rerender } = render(ui);
 
@@ -364,23 +352,23 @@ describe('File Uploader', () => {
     ).toBeInTheDocument();
   });
 
-    it('shows errors on too few files in the file list', async () => {
-      const data = createDtWithFiles(images);
-      const testId = 'testId';
+  it('shows errors on too few files in the file list', async () => {
+    const data = createDtWithFiles(images);
+    const testId = 'testId';
 
-      const ui = <Dropzone minFiles={6} testId={testId} />;
+    const ui = <Dropzone minFiles={6} testId={testId} />;
 
-      const { getByTestId, getByText, rerender } = render(ui);
+    const { getByTestId, getByText, rerender } = render(ui);
 
-      const dropzone = getByTestId(testId);
-      fireDrop(dropzone, data);
+    const dropzone = getByTestId(testId);
+    fireDrop(dropzone, data);
 
-      await flushPromises(rerender, ui);
+    await flushPromises(rerender, ui);
 
-      expect(
-        getByText('You must upload a minimum of 6 files.')
-      ).toBeInTheDocument();
-    });
+    expect(
+      getByText('You must upload a minimum of 6 files.')
+    ).toBeInTheDocument();
+  });
 
   it('shows errors on too large of a file in the file list', async () => {
     const data = createDtWithFiles(files);
@@ -419,15 +407,13 @@ describe('File Uploader', () => {
   });
 
   it('adds a Spinner to files in progress', async () => {
-    const onSendFile = ({file, onProgress}) => {
-      onProgress({file, percent: 25})
-    }
+    const onSendFile = ({ file, onProgress }) => {
+      onProgress({ file, percent: 25 });
+    };
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = (
-      <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />
-    );
+    const ui = <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />;
 
     const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
 
@@ -443,7 +429,16 @@ describe('File Uploader', () => {
 
   it('shows an error in the file list on error', async () => {
     const onSendFile = ({ file, onError }) => {
-      onError({ file, errors: [{message: 'error from the processor', header: 'test-error', code: 'error'}] });
+      onError({
+        file,
+        errors: [
+          {
+            message: 'error from the processor',
+            header: 'test-error',
+            code: 'error',
+          },
+        ],
+      });
     };
     const data = createDtWithFiles(files);
     const testId = 'testId';
@@ -467,9 +462,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = (
-      <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />
-    );
+    const ui = <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />;
 
     const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
 
@@ -490,9 +483,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = (
-      <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />
-    );
+    const ui = <Dropzone sendFiles onSendFile={onSendFile} testId={testId} />;
 
     const { getByTestId, getByLabelText, getByText, queryByText, rerender } =
       render(ui);
@@ -521,7 +512,12 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <Dropzone sendFiles onDeleteFile={onDeleteFileSpy} onSendFile={onSendFile} testId={testId} />
+      <Dropzone
+        sendFiles
+        onDeleteFile={onDeleteFileSpy}
+        onSendFile={onSendFile}
+        testId={testId}
+      />
     );
 
     const { getByTestId, getByLabelText, getByText, queryByText, rerender } =
@@ -568,9 +564,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = (
-      <Dropzone onRemoveFile={onRemoveFileSpy} testId={testId} />
-    );
+    const ui = <Dropzone onRemoveFile={onRemoveFileSpy} testId={testId} />;
 
     const { getByTestId, getByLabelText, queryByText, rerender } = render(ui);
 
@@ -584,12 +578,7 @@ describe('File Uploader', () => {
 
     await flushPromises(rerender, ui);
     expect(onRemoveFileSpy).toHaveBeenCalledTimes(1);
-
   });
-
-
-
-
 });
 
 async function flushPromises(rerender, ui) {

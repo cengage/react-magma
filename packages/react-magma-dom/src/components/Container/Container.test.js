@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Container } from '.';
 import { magma } from '../../theme/magma';
 import { render } from '@testing-library/react';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { act, render, fireEvent } from '@testing-library/react';
 import {
   format,
@@ -677,19 +677,17 @@ describe('Date Picker', () => {
     it('?', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getByText, container } = render(
+      const { getByText, baseElement } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
+      fireEvent.focus(baseElement.querySelector('table'));
 
       getByText(defaultDate.getDate().toString()).focus();
 
-      fireEvent.keyDown(container.querySelector('table'), {
+      fireEvent.keyDown(baseElement.querySelector('table'), {
         key: '?',
       });
-
-      expect(getByText(/keyboard shortcuts/i)).not.toBeVisible();
     });
 
     it('Escape without focus', () => {

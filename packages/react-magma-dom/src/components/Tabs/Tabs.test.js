@@ -6,7 +6,7 @@ import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabPanel } from './TabPanel';
 import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 
 describe('Tabs', () => {
   it('should correctly apply the testId', () => {

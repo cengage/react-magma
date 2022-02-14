@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Tag, TagColor, TagSize } from '.';
 import { render, fireEvent } from '@testing-library/react';
