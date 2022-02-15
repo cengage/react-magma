@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.2.9-next.1
+
+### Patch Changes
+
+- 1895ec11: docs: reverting back to v2 header
+
 ## 2.2.9-next.0
 
 ### Patch Changes
