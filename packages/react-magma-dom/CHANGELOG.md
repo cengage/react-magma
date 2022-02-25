@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.8-next.1
+
+### Patch Changes
+
+- 444cd2bb: Update to fix header
+
 ## 2.5.8-next.0
 
 ### Patch Changes
