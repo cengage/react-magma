@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.8
+
+### Patch Changes
+
+- 444cd2bb: Update to fix header
+- 7b0c5714: fix(form): allow customization of Heading in Form component
+
 ## 2.5.8-next.1
 
 ### Patch Changes
