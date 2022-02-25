@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.2.9
+
+### Patch Changes
+
+- 1895ec11: docs: reverting back to v2 header
+- Updated dependencies [444cd2bb]
+- Updated dependencies [7b0c5714]
+  - react-magma-dom@2.5.8
+  - @react-magma/charts@0.0.1
+  - @react-magma/dropzone@0.1.1
+  - @react-magma/schema-renderer@0.0.9
+  - @cengage-patterns/header@2.0.8
+
 ## 2.2.9-next.2
 
 ### Patch Changes
