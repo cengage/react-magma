@@ -137,7 +137,7 @@ const ListStyles = props => css`
   p {
     font-size: 0.8em;
     font-weight: 400;
-    margin-top: ${props.spacingStyle ? `calc(${props.spacingStyle} / 2)` : '0'};
+    margin-bottom: 8px;
     margin-left: 0;
     grid-template: 'b';
     grid-column-start: 2;

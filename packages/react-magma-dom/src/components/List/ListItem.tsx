@@ -12,7 +12,13 @@ import { InverseContext, useIsInverse } from '../../inverse';
 export interface ListItemProps
   extends ListProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Option for changing icon background with all Magma colors.
+   */
   iconBackground?: keyof typeof magma.colors;
+  /**
+   * Option for changing icon color with all Magma colors.
+   */
   iconColor?: keyof typeof magma.colors;
 }
 

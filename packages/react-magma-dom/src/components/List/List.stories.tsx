@@ -40,33 +40,32 @@ export default {
 
 export const Default = args => {
   return (
-    <List {...args}>
-      <ListItem>Sample text</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>
-        Sample text again and a <ListItem description>Check this out</ListItem>
-      </ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-      <ListItem>Sample text again</ListItem>
-    </List>
-  );
-};
-
-export const IconList = args => {
-  return (
-    <List iconSize="small" {...args} spacingStyle="spacing04">
-      <ListItem icon={<EmailIcon />} iconBackground="danger">
-        Sample text
-      </ListItem>
-      <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
-      <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
-      <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
-      <ListItem icon={<EmailIcon />}>
-        Sample text again
-        <ListItem description>This is a description</ListItem>
-      </ListItem>
-    </List>
+    <>
+      <List {...args}>
+        <ListItem>Sample text</ListItem>
+        <ListItem>Sample text again</ListItem>
+        <ListItem>
+          Sample text again and a{' '}
+          <ListItem description>Check this out</ListItem>
+        </ListItem>
+        <ListItem>Sample text again</ListItem>
+        <ListItem>Sample text again</ListItem>
+        <ListItem>Sample text again</ListItem>
+        <ListItem>Sample text again</ListItem>
+      </List>
+      <br />
+      <List {...args} iconSize="small">
+        <ListItem icon={<EmailIcon />} iconBackground="danger">
+          Sample text
+        </ListItem>
+        <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
+        <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
+        <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
+        <ListItem icon={<EmailIcon />}>
+          Sample text again
+          <ListItem description>This is a description</ListItem>
+        </ListItem>
+      </List>
+    </>
   );
 };
