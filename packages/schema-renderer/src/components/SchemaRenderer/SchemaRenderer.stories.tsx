@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { templateTypes } from '../TemplateMapper';
 
-import { Hyperlink } from 'react-magma-dom';
+import { Hyperlink, InputType } from 'react-magma-dom';
 
 const baseSchema: Schema = {
   title: 'Form Header',
@@ -38,17 +38,19 @@ Form.args = {
         component: componentTypes.INPUT,
         name: 'name',
         labelText: 'Name',
+        type: InputType.text,
       },
       {
         component: componentTypes.PASSWORD_INPUT,
         name: 'password',
         labelText: 'Password',
+        type: InputType.password
       },
       {
         component: componentTypes.COMBOBOX,
         name: 'combobox',
         labelText: 'Combobox',
-        defaultItems: [
+        options: [
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
           { label: 'Green', value: 'green' },
@@ -60,7 +62,7 @@ Form.args = {
         name: 'multi-combobox',
         labelText: 'Multi Combobox',
         isMulti: true,
-        defaultItems: [
+        options: [
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
           { label: 'Green', value: 'green' },
@@ -71,7 +73,7 @@ Form.args = {
         component: componentTypes.SELECT,
         name: 'select',
         labelText: 'Select',
-        items: [
+        options: [
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
           { label: 'Green', value: 'green' },
@@ -82,7 +84,7 @@ Form.args = {
         name: 'multi-select',
         labelText: 'Multi Select',
         isMulti: true,
-        items: [
+        options: [
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
           { label: 'Green', value: 'green' },
@@ -354,16 +356,6 @@ Array.args = {
             label: 'Task',
             placeholder: 'Task',
             isRequired: true,
-          },
-          {
-            component: componentTypes.SELECT,
-            name: 'select',
-            labelText: 'Select',
-            items: [
-              { label: 'Red', value: 'red' },
-              { label: 'Blue', value: 'blue' },
-              { label: 'Green', value: 'green' },
-            ],
           },
         ],
       },
