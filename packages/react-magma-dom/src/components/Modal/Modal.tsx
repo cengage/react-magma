@@ -336,7 +336,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               role="dialog"
               style={containerStyle}
               theme={theme}
-              title={header ? headingId : null}
               isOpen={isModalOpen}
               {...containerTransition}
               unmountOnExit={unmountOnExit}
