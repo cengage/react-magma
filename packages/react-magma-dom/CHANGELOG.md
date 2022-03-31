@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.0
+
+### Patch Changes
+
+- cbadaccb: feat: List component
+
 ## 2.5.8
 
 ### Patch Changes
