@@ -214,7 +214,6 @@ export const Csv = (args: DropzoneProps) => {
     };
     reader.readAsText(file);
   };
-
   const onDeleteFile = () => {
     setFile(undefined);
   };
