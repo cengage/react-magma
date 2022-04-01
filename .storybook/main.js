@@ -17,6 +17,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@storybook/addon-toolbars',
     '@storybook/addon-controls',
+    '@storybook/addon-measure',
   ],
   typescript: {
     reactDocgen: false,

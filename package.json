@@ -80,6 +80,7 @@
     "@storybook/addon-docs": "^6.4.12",
     "@storybook/addon-toolbars": "^6.4.12",
     "@storybook/addons": "^6.4.12",
+    "@storybook/addon-measure": "^6.4.20",
     "@storybook/react": "^6.4.12",
     "@testing-library/dom": "^7.31.2",
     "@testing-library/jest-dom": "^5.14.1",
