@@ -198,7 +198,7 @@ describe('sizes', () => {
 
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
     expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
-    expect(input).toHaveStyleRule('padding', `0 ${magma.spaceScale.spacing04}`);
+    expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
   });
 
   it('should default to no autocomplete', () => {
