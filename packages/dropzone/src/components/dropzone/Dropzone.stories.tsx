@@ -1,18 +1,17 @@
 import { useState } from 'react';
 import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
-import { Preview } from './Preview';
 import { Textarea, Datagrid } from 'react-magma-dom';
 
 function csvJSON(csv: string) {
-  var lines = csv.split('\n');
-  var result = [];
-  var headers: Array<string> = lines[0].split(',');
+  const lines = csv.split('\n');
+  const result = [];
+  const headers: Array<string> = lines[0].split(',');
 
-  for (var i = 1; i < lines.length; i++) {
-    var obj: Record<string, string> = {};
-    var currentline = lines[i].split(',');
+  for (let i = 1; i < lines.length; i++) {
+    const obj: Record<string, string> = {};
+    const currentline = lines[i].split(',');
 
-    for (var j = 0; j < headers.length; j++) {
+    for (let j = 0; j < headers.length; j++) {
       obj[headers[j]] = currentline[j];
     }
 
