@@ -11,7 +11,10 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "cool-llamas-taste",
     "eight-radios-impress",
-    "itchy-stingrays-build"
+    "fuzzy-crews-perform",
+    "itchy-stingrays-build",
+    "stupid-cougars-divide"
   ]
 }
