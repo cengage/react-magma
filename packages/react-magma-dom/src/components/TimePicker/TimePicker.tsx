@@ -29,14 +29,11 @@ const InputsContainer = styled.div<{
   width: 144px;
 `;
 
-const Divider = styled.span<{
-  isInverse?: boolean;
-}>`
+const Divider = styled.span`
   display: inline-block;
   margin: 0 1px;
   position: relative;
   top: -1px;
-  color: ${props => (props.isInverse ? props.theme.colors.neutral : 'inherit')};
 `;
 
 const StyledNumInput = styled.input`
@@ -143,10 +140,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             type="number"
             value={hour}
           />
-          <Divider isInverse={isInverse} theme={theme}>
-            {' '}
-            :{' '}
-          </Divider>
+          <Divider> : </Divider>
           <StyledNumInput
             aria-label={minutesLabel}
             data-testid="minutesTimeInput"
