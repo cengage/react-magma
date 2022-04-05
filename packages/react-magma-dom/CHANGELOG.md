@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.6
+
+### Patch Changes
+
+- 3ed0d7de: chore(deps): bump browserslist from 4.14.2 to 4.20.2
+
 ## 2.5.9-next.5
 
 ### Patch Changes
