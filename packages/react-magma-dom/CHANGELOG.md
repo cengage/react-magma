@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.2
+
+### Patch Changes
+
+- 0fc84127: fix(tag.tsx): Disabled tags have the correct cursor
+
 ## 2.5.9-next.1
 
 ### Patch Changes
