@@ -200,8 +200,6 @@ export const OnDeleteWithIcon = args => {
         <Tag
           {...args}
           onDelete={deleteMe}
-          isInverse
-          color={TagColor.danger}
           icon={<AccountCircleIcon />}
         >
           Text Label
@@ -210,7 +208,11 @@ export const OnDeleteWithIcon = args => {
     </>
   );
 };
-OnDeleteWithIcon.args = {};
+OnDeleteWithIcon.args = {
+  ...Default.args,
+  color: TagColor.danger,
+  isInverse: true,
+};
 
 export const Primary = Template.bind({});
 Primary.args = {
