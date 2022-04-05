@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.9-next.1
+
+### Patch Changes
+
+- e4c69ca5: fix(alert): add right padding of 12px
+- 27cad886: Build/fix publish step
+
 ## 2.5.9-next.0
 
 ### Patch Changes
