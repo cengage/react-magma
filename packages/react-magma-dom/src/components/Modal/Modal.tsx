@@ -39,18 +39,9 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   containerStyle?: React.CSSProperties;
   /**
-   * Style for the modal content container
-   */
-  contentStyle?: React.CSSProperties;
-  /**
    * The content of the modal header
    */
   header?: React.ReactNode;
-  /**
-   * If true, the modal background will be transparent
-   * @default false
-   */
-  hiddenBackground?: boolean;
   /**
    * If true, clicking the backdrop will not dismiss the modal
    * @default false
@@ -112,13 +103,9 @@ const ModalContainer = styled(Transition)<{
   z-index: 998;
 `;
 
-const ModalBackdrop = styled(Transition)<{
-  isExiting?: boolean;
-  hiddenBackground?: boolean;
-}>`
-  backdrop-filter: ${props => (props.hiddenBackground ? '0' : 'blur(3px)')};
-  background: ${props =>
-    props.hiddenBackground ? 'none' : 'rgba(0, 0, 0, 0.6)'};
+const ModalBackdrop = styled(Transition)<{ isExiting?: boolean }>`
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.6);
   bottom: 0;
   left: 0;
   right: 0;
@@ -284,9 +271,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       closeAriaLabel,
       closeButtonSize,
       containerStyle,
-      contentStyle,
       containerTransition = { slideTop: true },
-      hiddenBackground,
       isBackgroundClickDisabled,
       isEscKeyDownDisabled,
       header,
@@ -336,7 +321,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               role="dialog"
               style={containerStyle}
               theme={theme}
-              title={header ? headingId : null}
               isOpen={isModalOpen}
               {...containerTransition}
               unmountOnExit={unmountOnExit}
@@ -347,7 +331,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 id={contentId}
                 isExiting={isExiting}
                 ref={ref}
-                style={contentStyle}
                 theme={theme}
               >
                 {header && (
@@ -388,7 +371,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               </ModalContent>
             </ModalContainer>
             <ModalBackdrop
-              hiddenBackground={hiddenBackground}
               data-testid="modal-backdrop"
               isExiting={isExiting}
               onMouseDown={

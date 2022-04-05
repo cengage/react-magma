@@ -421,6 +421,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 .emotion-3 {
@@ -519,6 +520,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 <div>
@@ -615,6 +617,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 .emotion-0 {
@@ -713,6 +716,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 .emotion-0 {
@@ -887,6 +891,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 .emotion-3 {
@@ -985,6 +990,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 <div>
@@ -1081,6 +1087,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 .emotion-0 {
@@ -1179,6 +1186,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+  padding-right: 12px;
 }
 
 .emotion-0 {

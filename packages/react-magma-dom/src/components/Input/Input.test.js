@@ -409,7 +409,7 @@ describe('Input', () => {
       expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
       expect(input).toHaveStyleRule(
         'padding',
-        `0 ${magma.spaceScale.spacing04}`
+        `${magma.spaceScale.spacing04}`
       );
     });
 

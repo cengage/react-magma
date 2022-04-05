@@ -1,5 +1,36 @@
 # Change Log
 
+## 2.5.9-next.5
+
+### Patch Changes
+
+- 4f483f8f: docs: storybook Addon Measure package added
+
+## 2.5.9-next.4
+
+### Patch Changes
+
+- 14b24dd7: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+
+## 2.5.9-next.3
+
+### Patch Changes
+
+- ae7a1fc2: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+
+## 2.5.9-next.2
+
+### Patch Changes
+
+- 0fc84127: fix(tag.tsx): Disabled tags have the correct cursor
+
+## 2.5.9-next.1
+
+### Patch Changes
+
+- e4c69ca5: fix(alert): add right padding of 12px
+- 27cad886: Build/fix publish step
+
 ## 2.5.9-next.0
 
 ### Patch Changes
