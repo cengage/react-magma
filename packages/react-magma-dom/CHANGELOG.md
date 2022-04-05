@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.5
+
+### Patch Changes
+
+- 4f483f8f: docs: storybook Addon Measure package added
+
 ## 2.5.9-next.4
 
 ### Patch Changes
