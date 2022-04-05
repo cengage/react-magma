@@ -312,7 +312,7 @@ const StyledButton = styled.button<{
   size: string;
 }>`
   ${TagStyling};
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const StyledSpan = styled.span<{
