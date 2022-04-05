@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.4
+
+### Patch Changes
+
+- 14b24dd7: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+
 ## 2.5.9-next.3
 
 ### Patch Changes
