@@ -194,7 +194,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
     font-size: ${props.theme.typeScale.size04.fontSize};
     line-height: ${props.theme.typeScale.size04.lineHeight};
     height: ${props.theme.spaceScale.spacing11};
-    padding: 0 ${props.theme.spaceScale.spacing04};
+    padding: ${props.theme.spaceScale.spacing04};
   `}
 
     ${props.iconPosition === 'left' &&
