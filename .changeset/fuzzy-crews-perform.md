@@ -1,5 +1,5 @@
 ---
-"react-magma": patch
+'react-magma-dom': patch
 ---
 
 Fix/drawer issues
