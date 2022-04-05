@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.3
+
+### Patch Changes
+
+- ae7a1fc2: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+
 ## 2.5.9-next.2
 
 ### Patch Changes
