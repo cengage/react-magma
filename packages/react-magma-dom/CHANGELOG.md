@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.5.9-next.8
+
+### Patch Changes
+
+- ecd43306: fix(iconbutton.stories.tsx): updating IconButton stories to hide some properties
+- 8202898b: fix(select.stories.tsx): Fixing Select Multi story
+
 ## 2.5.9-next.7
 
 ### Patch Changes
