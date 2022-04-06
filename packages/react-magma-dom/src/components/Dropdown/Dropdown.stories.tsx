@@ -44,6 +44,9 @@ export default {
         options: DropdownAlignment,
       },
     },
+    onClose: {
+      action: 'onClose',
+    },
   },
 } as Meta;
 
@@ -58,7 +61,7 @@ OnClickOutside.args = {
 
 const AlignmentTemplate: Story<DropdownProps> = args => (
   <>
-    <Dropdown {...args} dropDirection={DropdownDropDirection.right}>
+    <Dropdown {...args} dropDirection={DropdownDropDirection.right} activeIndex={1}>
       <DropdownButton>Right Aligned Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
