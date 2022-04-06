@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.7
+
+### Patch Changes
+
+- 290efc90: fix(tablepagination.tsx): add activeIndex to tablepagination
+
 ## 2.5.9-next.6
 
 ### Patch Changes
