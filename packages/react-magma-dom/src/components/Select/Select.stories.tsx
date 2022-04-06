@@ -38,10 +38,9 @@ Default.args = {
   isMulti: false,
   labelPosition: LabelPosition.top,
 };
-//
 
 export const Multi = (props: MultiSelectProps<SelectOptions>) => (
-  <Select isMulti {...props} />
+  <Select isMulti {...Default.args} {...props} />
 );
 
 export const ErrorMessage = Template.bind({});
