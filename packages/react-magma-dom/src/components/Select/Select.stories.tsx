@@ -40,7 +40,11 @@ Default.args = {
 };
 
 export const Multi = (props: MultiSelectProps<SelectOptions>) => (
-  <Select isMulti {...Default.args} {...props} />
+  <Select isMulti {...props} items={[
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' },
+  ]} />
 );
 
 export const ErrorMessage = Template.bind({});
