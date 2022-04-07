@@ -156,6 +156,7 @@ export const TablePagination = React.forwardRef<
     page: pageProp,
   });
 
+  const [activeIndex, setActiveIndex] = React.useState(rowsPerPage);
   const isLastPage = page * rowsPerPage >= itemCount;
 
   const displayPageStart = (page - 1) * rowsPerPage + 1;
@@ -182,6 +183,7 @@ export const TablePagination = React.forwardRef<
     onRowsPerPageChange &&
       typeof onRowsPerPageChange === 'function' &&
       onRowsPerPageChange(value);
+      setActiveIndex(rowsPerPage);
   }
 
   const previousButton = pageButtons[0];
@@ -201,6 +203,7 @@ export const TablePagination = React.forwardRef<
       <Dropdown
         alignment={DropdownAlignment.end}
         dropDirection={dropdownDropDirection}
+        activeIndex={activeIndex}
       >
         <DropdownButton
           aria-label={i18n.table.pagination.rowsPerPageLabel}

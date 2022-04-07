@@ -1,5 +1,73 @@
 # Change Log
 
+## 2.5.9-next.10
+
+### Patch Changes
+
+- 3208cf6f: docs(storybook): updating storybook version to 6.4.20 and adding essentials addon
+
+## 2.5.9-next.9
+
+### Patch Changes
+
+- 5e9f8de5: fix(select.stories.tsx): fix Select multi example (again)
+
+## 2.5.9-next.8
+
+### Patch Changes
+
+- ecd43306: fix(iconbutton.stories.tsx): updating IconButton stories to hide some properties
+- 8202898b: fix(select.stories.tsx): Fixing Select Multi story
+
+## 2.5.9-next.7
+
+### Patch Changes
+
+- 290efc90: fix(tablepagination.tsx): add activeIndex to tablepagination
+
+## 2.5.9-next.6
+
+### Patch Changes
+
+- 3ed0d7de: chore(deps): bump browserslist from 4.14.2 to 4.20.2
+
+## 2.5.9-next.5
+
+### Patch Changes
+
+- 4f483f8f: docs: storybook Addon Measure package added
+
+## 2.5.9-next.4
+
+### Patch Changes
+
+- 14b24dd7: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+
+## 2.5.9-next.3
+
+### Patch Changes
+
+- ae7a1fc2: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+
+## 2.5.9-next.2
+
+### Patch Changes
+
+- 0fc84127: fix(tag.tsx): Disabled tags have the correct cursor
+
+## 2.5.9-next.1
+
+### Patch Changes
+
+- e4c69ca5: fix(alert): add right padding of 12px
+- 27cad886: Build/fix publish step
+
+## 2.5.9-next.0
+
+### Patch Changes
+
+- cbadaccb: feat: List component
+
 ## 2.5.8
 
 ### Patch Changes

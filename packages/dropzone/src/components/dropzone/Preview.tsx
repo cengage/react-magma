@@ -138,6 +138,13 @@ const formatError = (
   },
   byteLabel: string
 ) => {
+  const accept =
+    Array.isArray(constraints.accept) && constraints.accept.length === 1
+      ? constraints.accept[0]
+      : constraints.accept;
+  const messageSuffix = Array.isArray(accept)
+    ? `one of ${accept.join(', ')}`
+    : accept;
   switch (error.code) {
     case 'file-too-large':
       return {
@@ -150,13 +157,6 @@ const formatError = (
         message: `${error.message} ${formatFileSize(constraints.minSize, 2, byteLabel)}.`,
       };
     case 'file-invalid-type':
-      const accept =
-        Array.isArray(constraints.accept) && constraints.accept.length === 1
-          ? constraints.accept[0]
-          : constraints.accept;
-      const messageSuffix = Array.isArray(accept)
-        ? `one of ${accept.join(', ')}`
-        : accept;
       return { ...error, message: `${error.message}: ${messageSuffix}` };
     default:
       return error;
