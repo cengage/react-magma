@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.9
+
+### Patch Changes
+
+- 1fc0bbc0: docs(header): fix isInverse example in patterns header
+
 ## 2.0.9-next.1
 
 ### Patch Changes

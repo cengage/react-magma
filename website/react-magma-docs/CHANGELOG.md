@@ -1,5 +1,35 @@
 # Change Log
 
+## 2.2.10
+
+### Patch Changes
+
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+  - react-magma-dom@2.5.9
+  - @cengage-patterns/header@2.0.9
+  - @react-magma/dropzone@0.1.2
+  - @react-magma/charts@0.0.2
+  - @react-magma/schema-renderer@0.0.10
+
 ## 2.2.10-next.11
 
 ### Patch Changes

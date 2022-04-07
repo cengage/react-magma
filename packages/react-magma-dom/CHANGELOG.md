@@ -1,5 +1,29 @@
 # Change Log
 
+## 2.5.9
+
+### Patch Changes
+
+- 1fc0bbc0: fix(alert): add right padding of 12px
+- 1fc0bbc0: fix(modal.tsx): Remove title attribute from modals
+- 1fc0bbc0: feat: List component
+- 1fc0bbc0: Build/fix publish step
+- 1fc0bbc0: Fix/drawer issues
+- 1fc0bbc0: fix(tag.stories.tsx): On Delete With Icon Tags not updating color and isInverse
+- 1fc0bbc0: feat: add `xLarge` for iconSizes
+  fix: export `styled` and `useGeneratedId` for external components
+- 1fc0bbc0: fix(select.stories.tsx): fix Select multi example (again)
+- 1fc0bbc0: fix(iconbutton.stories.tsx): updating IconButton stories to hide some properties
+- 1fc0bbc0: fix(tablepagination.tsx): add activeIndex to tablepagination
+- 1fc0bbc0: fix(select.stories.tsx): Fixing Select Multi story
+- 1fc0bbc0: chore(deps): bump browserslist from 4.14.2 to 4.20.2
+- 1fc0bbc0: fix(schemarenderer.stories.tsx): clean up schema data
+- 1fc0bbc0: fix(tag.tsx): Disabled tags have the correct cursor
+- 1fc0bbc0: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+- 1fc0bbc0: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+- 1fc0bbc0: docs: storybook Addon Measure package added
+- 1fc0bbc0: docs(storybook): updating storybook version to 6.4.20 and adding essentials addon
+
 ## 2.5.9-next.10
 
 ### Patch Changes
