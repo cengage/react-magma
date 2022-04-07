@@ -1,5 +1,32 @@
 # Change Log
 
+## 2.2.11
+
+### Patch Changes
+
+- Updated dependencies [e4c69ca5]
+- Updated dependencies [39b2fc49]
+- Updated dependencies [cbadaccb]
+- Updated dependencies [27cad886]
+- Updated dependencies [92e31554]
+- Updated dependencies [6e481733]
+- Updated dependencies [41522e87]
+- Updated dependencies [5e9f8de5]
+- Updated dependencies [ecd43306]
+- Updated dependencies [a998c444]
+- Updated dependencies [f14b3413]
+- Updated dependencies [290efc90]
+- Updated dependencies [8202898b]
+- Updated dependencies [3ed0d7de]
+- Updated dependencies [452e52d5]
+- Updated dependencies [0fc84127]
+- Updated dependencies [14b24dd7]
+- Updated dependencies [ae7a1fc2]
+- Updated dependencies [4f483f8f]
+- Updated dependencies [3208cf6f]
+  - react-magma-dom@2.5.10
+  - @cengage-patterns/header@2.0.10
+  - @react-magma/dropzone@0.1.3
 
 ## 2.2.10
 

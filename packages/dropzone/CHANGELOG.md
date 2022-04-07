@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.3
+
+### Patch Changes
+
+- f14b3413: fix(dropzone.stories.tsx): Preview updates correctly & deleted file is removed
 
 ## 0.1.2
 
