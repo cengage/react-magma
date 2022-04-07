@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.10
+
+### Patch Changes
+
+- 3208cf6f: docs(storybook): updating storybook version to 6.4.20 and adding essentials addon
+
 ## 2.5.9-next.9
 
 ### Patch Changes
