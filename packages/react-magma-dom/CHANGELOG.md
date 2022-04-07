@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.9-next.9
+
+### Patch Changes
+
+- 5e9f8de5: fix(select.stories.tsx): fix Select multi example (again)
+
 ## 2.5.9-next.8
 
 ### Patch Changes
