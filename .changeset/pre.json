@@ -10,5 +10,7 @@
     "react-magma-docs": "2.2.12-next.0",
     "react-magma-landing": "1.0.10"
   },
-  "changesets": []
+  "changesets": [
+    "update-publish-next"
+  ]
 }
