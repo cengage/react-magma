@@ -4,7 +4,6 @@ import { Logo } from '../Logo';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
-import { GithubIcon } from 'react-magma-icons';
 
 const LogoLink = styled(Link)`
   align-items: center;
