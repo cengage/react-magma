@@ -2,7 +2,6 @@ import { ThemeTransitions, transitions } from './components/transition';
 
 export interface Colors {
   primary: string;
-  primaryInverse: string;
   focus: string;
   focusInverse: string;
   foundation: string;
@@ -91,7 +90,6 @@ export interface TypographyExpressiveSizes {
 
 export interface TypeScaleSize {
   fontSize: string;
-  letterSpacing?: string;
   lineHeight: string;
 }
 
@@ -241,7 +239,6 @@ export interface ThemeInterface {
   dropdown: Dropdown;
   headingFont: string;
   iconSizes: IconSizes;
-  iterableColors: string[];
   spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
@@ -260,12 +257,10 @@ export interface ThemeInterface {
 const typeScale = {
   size01: {
     fontSize: '12px',
-    letterSpacing: '.32px',
     lineHeight: '16px',
   },
   size02: {
     fontSize: '14px',
-    letterSpacing: '.16px',
     lineHeight: '20px',
   },
   size03: {
@@ -555,7 +550,7 @@ export const magma = {
 
   appBar: {
     backgroundColor: colors.neutral08,
-    height: '88px',
+    height: '56px',
     padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
     textColor: colors.neutral,
     compact: {
@@ -621,21 +616,6 @@ export const magma = {
       maxHeight: '250px',
     },
   },
-
-  iterableColors: [
-    '#0085CC',
-    '#E0004D',
-    '#FA6600',
-    '#48A200',
-    '#B12FAD',
-    '#00A393',
-    '#00507A',
-    '#8F0033',
-    '#B84900',
-    '#255200',
-    '#711E6E',
-    '#005249',
-  ],
 
   tabs: {
     approxTabSize: {
