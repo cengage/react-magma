@@ -1,0 +1,135 @@
+---
+title: React Magma Versions
+order: 4
+---
+
+# React Magma Versions
+
+On an older version? Want to see the newest unreleased updates? Switch to a different version of the docs at anytime.
+
+## Next Version
+See what changes are in development and coming in a future release.
+```typescript
+import React from 'react';
+import {
+  Card,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Card>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Version</TableHeaderCell>
+              <TableHeaderCell>Docs link</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+              <TableRow>
+                  <TableCell>v2.5.10-next.1</TableCell>
+                  <TableCell><a href="https://react-magma.cengage.com/version/2.5.10-next.1/">Docs</a></TableCell>
+              </TableRow>
+          </TableBody>
+        </Table>
+      </Card>
+    </>
+  );
+}
+```
+
+## Released Versions
+The most recent stable version (&nbsp;✅&nbsp;) is recommended for use in production.
+
+```typescript
+import React from 'react';
+import {
+  Card,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+
+export function Example() {
+  const rows = [
+    [
+      'v2.5.10 ✅',
+      '04/07/2022',
+      'https://react-magma.cengage.com/version/2.5.10/'
+    ],
+    [
+      'v2.5.9',
+      '04/07/2022',
+      'https://react-magma.cengage.com/version/2.5.9/'
+    ],
+    [
+      'v2.5.8',
+      '02/25/2022',
+      'https://react-magma.cengage.com/version/2.5.8/'
+    ],
+    [
+      'v2.5.7',
+      '02/04/2022',
+      'https://react-magma.cengage.com/version/2.5.7/'
+    ],
+    [
+      'v2.5.6',
+      '11/01/2021',
+      'https://react-magma.cengage.com/version/2.5.6/'
+    ],
+    [
+      'v2.5.5',
+      '09/29/2021',
+      'https://react-magma.cengage.com/version/2.5.5/'
+    ],
+    [
+      'v2.5.4',
+      '09/15/2021',
+      'https://react-magma.cengage.com/version/2.5.4/'
+    ],
+    [
+      'v2.5.3',
+      '09/01/2021',
+      'https://react-magma.cengage.com/version/2.5.3/'
+    ],
+  ];
+
+  return (
+    <>
+      <Card>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Version</TableHeaderCell>
+              <TableHeaderCell>Release date</TableHeaderCell>
+              <TableHeaderCell>Docs link</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => {
+                    if (j === 2) {
+                        return <TableCell key={`cell${i}_${j}`}><a href={cell}>Docs</a></TableCell>
+                    }
+                    return <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                })}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
+    </>
+  );
+}
+```

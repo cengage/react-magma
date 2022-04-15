@@ -20,6 +20,7 @@
     "@react-magma/charts": "^0.0.3-next.0",
     "@react-magma/dropzone": "^0.1.4-next.0",
     "@react-magma/schema-renderer": "^0.0.11-next.0",
+    "axios": "^0.21.1",
     "buble": "0.19.4",
     "core-js": "^3.1.4",
     "date-fns": "^2.16.1",
@@ -54,6 +55,7 @@
     "react-magma-icons": "^2.3.1",
     "react-select": "3.0.8",
     "react-spring": "6.1.9",
+    "semver": "^7.3.4",
     "url-loader": "^1.1.2",
     "uuid": "^8.3.0"
   },

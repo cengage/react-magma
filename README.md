@@ -66,7 +66,7 @@ cd packages/react-magma-docs
 npm run develop
 ```
 
-Visit the docs at [http://localhost:3000](http://localhost:3000). The docs will not reflect local changes in the CodeSandbox examples.
+Visit the docs at [http://localhost:8000](http://localhost:8000). The docs will not reflect local changes in the CodeSandbox examples.
 
 ### Project Structure
 
