@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.12-next.3
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+- Updated dependencies [533a5ae3]
+  - @cengage-patterns/header@2.0.11-next.1
+
 ## 2.2.12-next.2
 
 ### Patch Changes

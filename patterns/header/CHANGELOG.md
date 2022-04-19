@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.11-next.1
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+
 ## 2.0.10
 
 ### Patch Changes

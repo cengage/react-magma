@@ -11,6 +11,8 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "docs-updates-docs",
+    "docs-updates-header",
     "dry-clouds-mix",
     "update-publish-next"
   ]
