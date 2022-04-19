@@ -21,10 +21,7 @@ export interface AccordionPanelProps
 }
 
 const StyledPanel = styled.div<AccordionPanelProps>`
-  background: ${props =>
-    props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+  background: transparent;
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral08

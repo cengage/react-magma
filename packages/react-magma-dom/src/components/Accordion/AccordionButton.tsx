@@ -29,10 +29,7 @@ const StyledButton = styled.button<{
   isInverse?: boolean;
   isExpanded?: boolean;
 }>`
-  background: ${props =>
-    props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+  background: transparent;
   border: 0;
   border-top: 1px solid ${props =>
     props.isInverse ? props.theme.colors.tint04 : props.theme.colors.neutral06};
