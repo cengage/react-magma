@@ -1,5 +1,5 @@
 ---
-"react-magma-dom": patch
+"@cengage-patterns/header": patch
 ---
 
 docs: updating header setup requirements
