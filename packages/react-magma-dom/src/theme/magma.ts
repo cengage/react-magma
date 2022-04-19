@@ -517,8 +517,6 @@ const colors = {
   borderInverse: 'rgba(255,255,255,0.25)',
 };
 
-console.log('>>>', colors);
-
 const spaceScale = {
   spacing01: '2px',
   spacing02: '4px',
