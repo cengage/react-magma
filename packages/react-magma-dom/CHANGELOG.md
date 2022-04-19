@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.10-next.2
+
+### Patch Changes
+
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+
 ## 2.5.10-next.1
 
 ### Patch Changes
