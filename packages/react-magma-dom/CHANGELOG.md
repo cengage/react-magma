@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.10-next.3
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+
 ## 2.5.10-next.2
 
 ### Patch Changes
