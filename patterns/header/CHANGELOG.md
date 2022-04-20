@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.0.11
+
+### Patch Changes
+
+- fdc6b27f: docs: addressing a variety of documentation issues
+
 ## 2.0.11-next.1
 
 ### Patch Changes
