@@ -140,7 +140,7 @@ describe('File Uploader', () => {
     fireDragEnter(dropzone, data);
     await flushPromises(rerender, ui);
 
-    expect(dropzone).toHaveStyle('border: 2px dashed #3a8200');
+    expect(dropzone).toHaveStyle('border: 2px dashed #178037');
   });
 
   it('border color changes for rejection', async () => {
@@ -155,7 +155,7 @@ describe('File Uploader', () => {
     fireDragEnter(dropzone, data);
     await flushPromises(rerender, ui);
 
-    expect(dropzone).toHaveStyle('border: 2px dashed #c61d23');
+    expect(dropzone).toHaveStyle('border: 2px dashed #D32821');
   });
 
   it('calls onSendFiles for a single file added via the input', async () => {
