@@ -1,5 +1,34 @@
 # Change Log
 
+## 2.2.12-next.4
+
+### Patch Changes
+
+- Updated dependencies [72db207d]
+  - react-magma-dom@2.5.10-next.3
+
+## 2.2.12-next.3
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+- Updated dependencies [533a5ae3]
+  - @cengage-patterns/header@2.0.11-next.1
+
+## 2.2.12-next.2
+
+### Patch Changes
+
+- Updated dependencies [7ed798b5]
+  - react-magma-dom@2.5.10-next.2
+
+## 2.2.12-next.1
+
+### Patch Changes
+
+- Updated dependencies [a7e57b54]
+  - react-magma-dom@2.5.10-next.1
+
 ## 2.2.11
 
 ### Patch Changes
