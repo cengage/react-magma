@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.5.11
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
 ## 2.5.10-next.3
 
 ### Patch Changes
