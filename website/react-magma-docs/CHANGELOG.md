@@ -1,5 +1,35 @@
 # Change Log
 
+## 2.2.13
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+- Updated dependencies [72db207d]
+- Updated dependencies [533a5ae3]
+- Updated dependencies [7ed798b5]
+- Updated dependencies [a7e57b54]
+  - react-magma-dom@2.5.11
+  - @cengage-patterns/header@2.0.12
+  - @react-magma/charts@0.0.4
+  - @react-magma/dropzone@0.1.5
+  - @react-magma/schema-renderer@0.0.12
+
+## 2.2.12
+
+### Patch Changes
+
+- fdc6b27f: docs: addressing a variety of documentation issues
+- Updated dependencies [fdc6b27f]
+- Updated dependencies [fdc6b27f]
+- Updated dependencies [fdc6b27f]
+- Updated dependencies [fdc6b27f]
+  - react-magma-dom@2.5.10
+  - @cengage-patterns/header@2.0.11
+  - @react-magma/charts@0.0.3
+  - @react-magma/dropzone@0.1.4
+  - @react-magma/schema-renderer@0.0.11
+
 ## 2.2.12-next.4
 
 ### Patch Changes
