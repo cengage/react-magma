@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- 366b25af: feat(magmacolors.ts): Adding new rebrand colors
+
 ## 2.5.11
 
 ### Patch Changes
