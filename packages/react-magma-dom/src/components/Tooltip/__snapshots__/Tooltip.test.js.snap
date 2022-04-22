@@ -2,7 +2,7 @@
 
 exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
 .emotion-1 {
-  background: #3F3F3F;
+  background: #707070;
   border-radius: 4px;
   color: #FFFFFF;
   font-size: 12px;
@@ -64,11 +64,11 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-  background: #3F3F3F;
+  background: #707070;
 }
 
 .emotion-1 {
-  background: #3F3F3F;
+  background: #707070;
   border-radius: 4px;
   color: #FFFFFF;
   font-size: 12px;
@@ -130,7 +130,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-  background: #3F3F3F;
+  background: #707070;
 }
 
 <div

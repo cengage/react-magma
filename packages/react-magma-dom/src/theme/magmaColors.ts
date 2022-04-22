@@ -1,6 +1,10 @@
 export enum MagmaColors {
   primary = 'primary',
   secondary = 'secondary',
-  success = 'success',
+  tertiary = 'tertiary',
+  neutral = 'neutral',
+  info = 'info',
   danger = 'danger',
+  warning = 'warning',
+  success = 'success',
 }

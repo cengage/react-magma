@@ -77,10 +77,10 @@ describe('Styled Button', () => {
         const button = getByTestId('button-test');
 
         expect(button).toHaveStyleRule('background', magma.colors.primary);
-        expect(button).toHaveStyleRule('background', '#004165', {
+        expect(button).toHaveStyleRule('background', '#2d3489', {
           target: ':hover',
         });
-        expect(button).toHaveStyleRule('background', '#002032', {
+        expect(button).toHaveStyleRule('background', '#202563', {
           target: ':active',
         });
         expect(button).toHaveStyleRule('border-color', magma.colors.primary);
@@ -97,10 +97,10 @@ describe('Styled Button', () => {
         const button = getByTestId('button-test');
 
         expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
-        expect(button).toHaveStyleRule('background', '#e5eff4', {
+        expect(button).toHaveStyleRule('background', '#ebecf7', {
           target: ':hover',
         });
-        expect(button).toHaveStyleRule('background', '#b2cfe0', {
+        expect(button).toHaveStyleRule('background', '#c3c6e7', {
           target: ':active',
         });
         expect(button).toHaveStyleRule('color', magma.colors.primary);
