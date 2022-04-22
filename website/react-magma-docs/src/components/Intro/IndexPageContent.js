@@ -195,7 +195,7 @@ export class IndexPageContent extends React.Component {
                   <Hyperlink
                     styledAs="Button"
                     isInverse
-                    to="/design-intro/introduction"
+                    to="/design-intro/get-started"
                   >
                     {linkProps => (
                       <Link {...linkProps}>
