@@ -29,7 +29,7 @@ const Heading = styled.h1`
     text-transform: uppercase;
 
     &:focus {
-      border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+      border-bottom: 2px solid ${props => props.theme.colors.focus};
       outline: 0;
     }
 

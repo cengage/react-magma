@@ -85,7 +85,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   width: auto;
 
   &&:focus:not(:disabled) {
-    outline: 2px dotted
+    outline: 2px solid
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
           ? theme.colors.neutral

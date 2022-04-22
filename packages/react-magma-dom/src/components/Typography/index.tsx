@@ -207,7 +207,7 @@ const baseHeadingStyles = props => css`
   padding: 0;
 
   &:focus {
-    border-bottom: 2px dotted
+    border-bottom: 2px solid
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};

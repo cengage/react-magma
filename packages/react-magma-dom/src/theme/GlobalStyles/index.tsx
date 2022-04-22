@@ -15,9 +15,9 @@ function getStyles(theme, isInverse: boolean) {
     }
 
     *:focus {
-      outline: 2px dotted
+      outline: 2px solid
         ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
-      outline-offset: 4px;
+      outline-offset: 2px;
     }
 
     html {

@@ -39,11 +39,11 @@ const linkStyles = props => css`
         : props.theme.colors.foundation02};
     }
     &:focus {
-      outline: 2px dotted
+      outline: 2px solid
         ${props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-      outline-offset: 3px;
+      outline-offset: 2px;
     }
   }
 `;
