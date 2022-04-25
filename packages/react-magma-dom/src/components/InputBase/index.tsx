@@ -9,6 +9,7 @@ import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
+import { rgba } from 'polished';
 
 export enum InputSize {
   large = 'large',
@@ -117,12 +118,12 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex-shrink: 0;
   position: relative;
   width: ${props.width || 'auto'};
-  background-color: ${props.theme.colors.neutral08};
+  background-color: ${props.isInverse ? rgba(0,0,0,0.2) : props.theme.colors.neutral100};
   border-radius: ${props.theme.borderRadius};
   border: 1px solid
     ${props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+      ? rgba(255,255,255,0.5)
+      : props.theme.colors.neutral500};
 
   &:focus-within {
     outline: 2px dotted
@@ -137,16 +138,16 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     border-color: ${props.theme.colors.danger};
     box-shadow: 0 0 0 1px
       ${props.isInverse
-        ? props.theme.colors.neutral08
+        ? props.theme.colors.danger200
         : props.theme.colors.danger};
   `}
 
   ${props.disabled &&
   css`
-    border-color: ${props.theme.colors.neutral05};
-    background-color: ${props.disabled
-      ? props.theme.colors.neutral07
-      : props.theme.colors.neutral08};
+    border-color: ${props.isInverse ? 'rgba(255,255,255,0.15)' : props.theme.colors.neutral300};
+    background-color: ${props.isInverse
+      ? 'rgba(0,0,0,0.1)'
+      : props.theme.colors.neutral100};
   `}
   button {
     bottom: ${props.iconPosition === InputIconPosition.top
@@ -163,13 +164,14 @@ export interface InputBaseStylesProps {
   isPredictive?: boolean;
   theme?: ThemeInterface;
   disabled?: boolean;
+  hasError?: boolean;
 }
 
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
   border-radius: ${props.theme.borderRadius};
-  background: ${props.theme.colors.neutral08};
-  color: ${props.theme.colors.neutral};
+  background: ${props.isInverse ? rgba(0,0,0,0.2) : props.theme.colors.neutral100};
+  color: ${props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
@@ -210,8 +212,8 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   `}
 
   &::placeholder {
-    color: ${props.theme.colors.neutral03};
-    opacity: 1;
+    color: ${props.isInverse ? rgba(255,255,255,0.7) : props.theme.colors.neutral500};
+    opacity: ${props.isInverse ? 0.7 : 1};
   }
 
   &:focus {
@@ -227,15 +229,21 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
     }
   }
 
-  ${props.disabled &&
+  ${props.disabled && 
   css`
-    background: ${props.theme.colors.neutral07};
-    color: ${props.theme.colors.disabledText};
+    background: ${props.isInverse ? rgba(0,0,0,0.1) : props.theme.colors.neutral200};
+    color: ${props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${props.theme.colors.disabledText};
+      color: ${props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral500};
+      opacity: ${props.isInverse ? 0.4 : 0.6};
     }
+  `}
+
+  ${props.hasError && 
+    css`
+      color: ${props.isInverse ? props.theme.colors.danger200 : props.theme.colors.danger500};
   `}
 `;
 
@@ -296,7 +304,7 @@ const IconButtonContainer = styled.span<{
   disabled?: boolean;
 }>`
   background-color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+    disabled ? theme.colors.neutral200 : theme.colors.neutral900};
   bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
   height: auto;
   margin: 0;
@@ -421,6 +429,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           inputSize={inputSize ? inputSize : InputSize.medium}
           isInverse={useIsInverse(props.isInverse)}
           isPredictive={isPredictive}
+          hasError={hasError}
           ref={ref}
           onChange={handleChange}
           style={inputStyle}

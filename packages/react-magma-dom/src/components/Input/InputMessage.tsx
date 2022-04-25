@@ -16,7 +16,7 @@ export interface InputMessageProps
 function BuildMessageColor(props) {
   const { isInverse, hasError, theme } = props;
   if (isInverse) {
-    return hasError ? theme.colors.dangerInverse : theme.colors.neutral08;
+    return hasError ? theme.colors.danger200 : theme.colors.neutral100;
   }
   return hasError ? theme.colors.danger : theme.colors.neutral03;
 }
