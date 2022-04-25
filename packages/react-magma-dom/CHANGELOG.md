@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.1
+
+### Major Changes
+
+- 38fe6b4c: feat(typography): Updating main typography styles: type, heading, paragraph
+
 ## 3.0.0-next.0
 
 ### Major Changes
