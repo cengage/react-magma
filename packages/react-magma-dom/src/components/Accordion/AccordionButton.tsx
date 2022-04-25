@@ -47,12 +47,12 @@ const StyledButton = styled.button<{
   width: 100%;
 
   &:focus {
-    outline: 2px dotted ${props =>
+    outline: 2px solid ${props =>
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
     }
-    outline-offset: -3px;
+    outline-offset: 2px;
   }
 
   &&[disabled] {

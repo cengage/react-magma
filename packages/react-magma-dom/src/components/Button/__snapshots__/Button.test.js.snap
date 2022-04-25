@@ -31,7 +31,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 600;
   height: 56px;
@@ -62,8 +62,8 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -142,7 +142,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 600;
   height: 56px;
@@ -173,8 +173,8 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -269,7 +269,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 600;
   height: 28px;
@@ -300,8 +300,8 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -380,7 +380,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 600;
   height: 28px;
@@ -411,8 +411,8 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -507,7 +507,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -538,8 +538,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -618,7 +618,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -649,8 +649,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -746,7 +746,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -777,8 +777,8 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -857,7 +857,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -888,8 +888,8 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -985,7 +985,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1016,8 +1016,8 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1096,7 +1096,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1127,8 +1127,8 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1222,7 +1222,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1253,8 +1253,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1332,7 +1332,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1363,8 +1363,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,

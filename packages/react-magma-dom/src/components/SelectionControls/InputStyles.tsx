@@ -60,7 +60,7 @@ export function buildDisplayInputFocusStyles(props) {
     height: 30px;
     position: absolute;
     width: 30px;
-    outline: 2px dotted
+    outline: 2px solid
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};

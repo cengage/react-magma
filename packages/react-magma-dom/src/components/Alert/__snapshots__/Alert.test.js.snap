@@ -31,7 +31,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -81,8 +81,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
-  outline-offset: 3px;
+  outline: 2px solid #A6DEFF;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -132,13 +132,13 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2.emotion-2:focus:not(:disabled) {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
   outline-offset: 0 !important;
 }
 
 .emotion-2:hover:not(:disabled):before,
 .emotion-2:focus:not(:disabled):before {
-  background: #027EE1;
+  background: #0074B7;
   opacity: 0.15;
 }
 
@@ -177,7 +177,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -227,8 +227,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
-  outline-offset: 3px;
+  outline: 2px solid #A6DEFF;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -278,13 +278,13 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2.emotion-2:focus:not(:disabled) {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
   outline-offset: 0 !important;
 }
 
 .emotion-2:hover:not(:disabled):before,
 .emotion-2:focus:not(:disabled):before {
-  background: #027EE1;
+  background: #0074B7;
   opacity: 0.15;
 }
 
@@ -359,7 +359,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -370,7 +370,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-0 {
@@ -458,7 +458,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -469,7 +469,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-0 {
@@ -594,7 +594,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -605,7 +605,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-2 {
@@ -693,7 +693,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -704,7 +704,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-2 {
@@ -829,7 +829,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -840,7 +840,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-0 {
@@ -928,7 +928,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -939,7 +939,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-0 {
@@ -1064,7 +1064,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -1075,7 +1075,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-2 {
@@ -1163,7 +1163,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-3:focus {
-  outline: 2px dotted #027EE1;
+  outline: 2px solid #0074B7;
 }
 
 .emotion-3 a {
@@ -1174,7 +1174,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-3 a:focus {
-  outline: 2px dotted rgba(255,255,255,0.7);
+  outline: 2px solid #A6DEFF;
 }
 
 .emotion-2 {

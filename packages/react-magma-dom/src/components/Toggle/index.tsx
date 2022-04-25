@@ -122,12 +122,12 @@ const Track = styled.span<{
     `}
 
   ${HiddenInput}:focus + label & {
-    outline: 2px dotted
+    outline: 2px solid
       ${props =>
         props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
 
   &:before {

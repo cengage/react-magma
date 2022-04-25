@@ -31,7 +31,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 600;
   height: 56px;
@@ -73,8 +73,8 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -153,7 +153,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 600;
   height: 56px;
@@ -195,8 +195,8 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -306,7 +306,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 600;
   height: 28px;
@@ -348,8 +348,8 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -428,7 +428,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 600;
   height: 28px;
@@ -470,8 +470,8 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -581,7 +581,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -623,8 +623,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -703,7 +703,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -745,8 +745,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -856,7 +856,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -898,8 +898,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -978,7 +978,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1020,8 +1020,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1130,7 +1130,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1172,8 +1172,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1251,7 +1251,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1293,8 +1293,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1404,7 +1404,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 600;
   height: 56px;
@@ -1435,8 +1435,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1519,7 +1519,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
   font-weight: 600;
   height: 56px;
@@ -1550,8 +1550,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1670,7 +1670,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1701,8 +1701,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1785,7 +1785,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -1816,8 +1816,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1936,7 +1936,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 600;
   height: 28px;
@@ -1967,8 +1967,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2051,7 +2051,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
   font-weight: 600;
   height: 28px;
@@ -2082,8 +2082,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2202,7 +2202,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -2233,8 +2233,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2317,7 +2317,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -2348,8 +2348,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2468,7 +2468,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -2499,8 +2499,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2583,7 +2583,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -2614,8 +2614,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2738,7 +2738,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -2769,8 +2769,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2853,7 +2853,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -2884,8 +2884,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -3003,7 +3003,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -3034,8 +3034,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -3117,7 +3117,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -3148,8 +3148,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
