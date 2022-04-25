@@ -13,7 +13,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -38,7 +38,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -74,7 +74,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -99,7 +99,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -134,7 +134,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -159,7 +159,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -194,7 +194,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -219,7 +219,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -254,7 +254,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -279,7 +279,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -319,7 +319,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
@@ -353,7 +353,7 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
 }
 
 .emotion-0:focus {
-  border-bottom: 2px dotted #027EE1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;

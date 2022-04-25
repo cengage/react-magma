@@ -473,11 +473,12 @@ const colors = {
   ...warningColors,
   ...successColors,
   
+  focus: infoColors.info500,
+  focusInverse: infoColors.info200,
+  
   // Legacy Colors - To be deleted after rebranding
   // primary: '#006298', // link color blue
   primaryInverse: '#70CDFF', // link color inverse blue
-  focus: '#027EE1',
-  focusInverse: 'rgba(255,255,255,0.7)',
   foundation: '#00263E',
   foundation02: '#003865',
   foundation03: '#00A9E0',
