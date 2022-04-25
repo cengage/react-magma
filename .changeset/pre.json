@@ -12,6 +12,7 @@
   },
   "changesets": [
     "rebrand-colors",
+    "rebrand-focus",
     "rebrand-type"
   ]
 }
