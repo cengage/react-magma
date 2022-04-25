@@ -56,10 +56,10 @@ export function getBodyFontFamily(props) {
 
 export const colorStyles = props => css`
   color: ${props.isInverse
-    ? props.theme.colors.neutral08
+    ? props.theme.colors.neutral100
     : props.contextVariant === 'expressive'
-    ? props.theme.colors.foundation02
-    : props.theme.colors.neutral};
+    ? props.theme.colors.primary600
+    : props.theme.colors.neutral700};
 
   ${props.color === TypographyColor.danger &&
   !props.isInverse &&
@@ -76,25 +76,26 @@ export const colorStyles = props => css`
 ${props.color === TypographyColor.subdued &&
   !props.isInverse &&
   css`
-    color: ${props.theme.colors.neutral03};
+    color: ${props.theme.colors.neutral500};
   `}
 
   ${props.color === TypographyColor.danger &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.dangerInverse};
+    color: ${props.theme.colors.danger700};
   `}
 
   ${props.color === TypographyColor.success &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.successInverse};
+    color: ${props.theme.colors.success700};
   `}
 
 ${props.color === TypographyColor.subdued &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.focusInverse};
+    color: ${props.theme.colors.neutral100};
+    opacity: 0.7;
   `}
 `;
 

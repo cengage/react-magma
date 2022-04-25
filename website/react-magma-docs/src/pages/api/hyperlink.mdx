@@ -109,7 +109,7 @@ const Link = ({ to, ...rest }) => <a href={to} {...rest} />;
 
 export function Example() {
   return (
-    <Hyperlink styledAs="Button" to="/api/intro">
+    <Hyperlink styledAs="Button" to="./">
       {linkProps => <Link {...linkProps}>Render Props Google</Link>}
     </Hyperlink>
   );

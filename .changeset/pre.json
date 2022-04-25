@@ -2,15 +2,15 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "0.0.3-next.0",
-    "@react-magma/dropzone": "0.1.4-next.0",
-    "react-magma-dom": "2.5.10-next.0",
-    "@react-magma/schema-renderer": "0.0.11-next.0",
-    "@cengage-patterns/header": "2.0.11-next.0",
-    "react-magma-docs": "2.2.12-next.0",
+    "@react-magma/charts": "0.0.4",
+    "@react-magma/dropzone": "0.1.5",
+    "react-magma-dom": "2.5.11",
+    "@react-magma/schema-renderer": "0.0.12",
+    "@cengage-patterns/header": "2.0.12",
+    "react-magma-docs": "2.2.13",
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
-    "update-publish-next"
+    "rebrand-colors"
   ]
 }

@@ -1,5 +1,30 @@
 # Change Log
 
+## 3.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [366b25af]
+  - react-magma-dom@3.0.0-next.0
+
+## 2.0.12
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+
+## 2.0.11
+
+### Patch Changes
+
+- fdc6b27f: docs: addressing a variety of documentation issues
+
+## 2.0.11-next.1
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+
 ## 2.0.10
 
 ### Patch Changes

@@ -6,9 +6,9 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
+  border-color: #3942B0;
   border-radius: 4px;
   color: #FFFFFF;
   cursor: pointer;
@@ -19,7 +19,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -59,7 +59,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -83,7 +83,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -114,9 +114,9 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
+  border-color: #3942B0;
   border-radius: 4px;
   color: #FFFFFF;
   cursor: pointer;
@@ -127,7 +127,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -167,7 +167,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -191,7 +191,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 

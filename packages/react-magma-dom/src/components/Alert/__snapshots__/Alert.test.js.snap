@@ -31,7 +31,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -177,7 +177,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 40px;
@@ -413,7 +413,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-2 {
-  background-color: #C61D23;
+  background-color: #D32821;
   border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
@@ -512,7 +512,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-2 {
-  background-color: #C61D23;
+  background-color: #D32821;
   border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
@@ -609,7 +609,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
+  background-color: #707070;
   border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
@@ -708,7 +708,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
+  background-color: #707070;
   border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
@@ -885,7 +885,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 .emotion-2 {
   background-color: #FFC72C;
   border-radius: 4px;
-  color: #3F3F3F;
+  color: #707070;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -984,7 +984,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 .emotion-2 {
   background-color: #FFC72C;
   border-radius: 4px;
-  color: #3F3F3F;
+  color: #707070;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1079,7 +1079,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
+  background-color: #707070;
   border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
@@ -1178,7 +1178,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-2 {
-  background-color: #3F3F3F;
+  background-color: #707070;
   border-radius: 4px;
   color: #FFFFFF;
   display: -webkit-box;
