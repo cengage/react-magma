@@ -535,13 +535,13 @@ const spaceScale = {
 };
 
 export const magma = {
-  bodyFont: '"Open Sans",Helvetica,sans-serif',
-  bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  bodyFont: '"Work Sans",Helvetica,sans-serif',
+  bodyExpressiveFont: '"Work Sans",Helvetica,sans-serif',
   bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
   borderRadius: '4px',
   colors: colors,
-  headingFont: '"Open Sans",Helvetica,sans-serif',
-  headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  headingFont: '"Work Sans",Helvetica,sans-serif',
+  headingExpressiveFont: '"Work Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
   spacingMultiplier: 8,
@@ -624,22 +624,22 @@ export const magma = {
     headingLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     headingMedium: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     headingSmall: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     heading2XSmall: {
       mobile: typeScale.size03,
