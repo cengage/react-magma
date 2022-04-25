@@ -151,7 +151,7 @@ const CardIcon = styled(Flex)`
   width: 56px;
   border-radius: 50%;
   margin: ${magma.spaceScale.spacing06} 0 0 ${magma.spaceScale.spacing06};
-  background-color: ${magma.colors.foundation02};
+  background-color: ${magma.colors.primary};
 
   > * {
     align-self: center;
@@ -179,7 +179,7 @@ const HeroCardIcon = styled(Flex)`
   width: 72px;
   border-radius: 50%;
   margin: ${magma.spaceScale.spacing06} 0 0 ${magma.spaceScale.spacing06};
-  background-color: ${magma.colors.foundation02};
+  background-color: ${magma.colors.tertiary};
 
   > * {
     align-self: center;
@@ -216,9 +216,9 @@ export function IndexPageContent() {
       </HeaderBlock>
       <StyledGridHero gridGap={magma.spaceScale.spacing06}>
         <StyledGridHeroItem>
-          <HeroCardGrid background={magma.colors.neutral07}>
+          <HeroCardGrid isInverse="true">
             <HeroCardIcon>
-              <ArchitectureIcon color="white"/>
+              <ArchitectureIcon color={magma.colors.primary}/>
             </HeroCardIcon>
             <CardBody>
               <CardHeading>Designing</CardHeading>
@@ -229,6 +229,7 @@ export function IndexPageContent() {
                 <Hyperlink
                   styledAs="Button"
                   to="/design-intro/get-started/"
+                  isInverse="true"
                   >
                   {linkProps => (
                     <Link {...linkProps}>
@@ -242,9 +243,9 @@ export function IndexPageContent() {
         </StyledGridHeroItem>
 
         <StyledGridHeroItem>
-          <HeroCardGrid background={magma.colors.neutral07}>
+          <HeroCardGrid isInverse="true">
             <HeroCardIcon>
-              <CodeIcon color="white"/>
+              <CodeIcon color={magma.colors.primary}/>
             </HeroCardIcon>
             <CardBody>
               <CardHeading>Developing</CardHeading>
@@ -254,6 +255,7 @@ export function IndexPageContent() {
                 <Hyperlink
                     styledAs="Button"
                     to="/api-intro/introduction"
+                    isInverse="true"
                   >
                     {linkProps => (
                       <Link {...linkProps}>
@@ -278,7 +280,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral07}>
             <CardIcon>
-              <AccessibilityIcon color="white" />
+              <AccessibilityIcon color={magma.colors.neutral100} />
             </CardIcon>
             <CardBody>
               <CardHeading>Accessible</CardHeading>
@@ -289,7 +291,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid background={magma.colors.neutral07}>
             <CardIcon>
-              <PaletteIcon color="white" />
+              <PaletteIcon color={magma.colors.neutral100} />
             </CardIcon>
             <CardBody>
               <CardHeading>Themeable</CardHeading>
@@ -300,7 +302,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral07}>
             <CardIcon>
-              <DevicesIcon color="white" />
+              <DevicesIcon color={magma.colors.neutral100} />
             </CardIcon>
             <CardBody>
               <CardHeading>Platform Agnostic</CardHeading>
@@ -311,7 +313,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid background={magma.colors.neutral07}>
             <CardIcon>
-              <ExtensionIcon color="white" />
+              <ExtensionIcon color={magma.colors.neutral100} />
             </CardIcon>
             <CardBody>
               <CardHeading>Scalable</CardHeading>
@@ -323,7 +325,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral07}>
             <CardIcon>
-              <TimelineIcon color="white" />
+              <TimelineIcon color={magma.colors.neutral100} />
             </CardIcon>
             <CardBody>
               <CardHeading>Efficient</CardHeading>
@@ -335,7 +337,7 @@ export function IndexPageContent() {
         <StyledGridItem gridColumn="2">
           <CardGrid background={magma.colors.neutral07}>
             <CardIcon>
-              <GroupsIcon color="white" />
+              <GroupsIcon color={magma.colors.neutral100} />
             </CardIcon>
             <CardBody>
               <CardHeading>Living</CardHeading>
