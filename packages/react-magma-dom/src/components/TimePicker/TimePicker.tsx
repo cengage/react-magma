@@ -31,7 +31,7 @@ const InputsContainer = styled.div<{
 
 const Divider = styled.span`
   display: inline-block;
-  margin: 0 1px;
+  margin: 0 2px;
   position: relative;
   top: -1px;
 `;
@@ -40,7 +40,7 @@ const StyledNumInput = styled.input<{
   isInverse?: boolean;
 }>`
   border: 0;
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: ${props => props.theme.borderRadiusSmall};
   margin-right: ${props => props.theme.spaceScale.spacing01};
   padding: 0 ${props => props.theme.spaceScale.spacing01};
   text-align: right;

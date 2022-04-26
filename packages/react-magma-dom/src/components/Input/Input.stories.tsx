@@ -25,13 +25,18 @@ export default {
         type: 'boolean',
       },
     },
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   errorMessage: '',
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
-  disabled: true,
+  disabled: false,
   helperMessage: 'Helper message',
   placeholder: 'Placeholder text...'
 };
