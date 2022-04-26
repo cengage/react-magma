@@ -9,7 +9,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -117,7 +117,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
