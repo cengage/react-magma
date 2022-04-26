@@ -8,17 +8,18 @@ interface AmPmToggleProps
   children: string;
 }
 
-const StyledAmPmToggle = styled.button<{ theme: ThemeInterface }>`
+const StyledAmPmToggle = styled.button<{ theme: ThemeInterface, isInverse?: boolean }>`
   background: none;
   border: 0;
   border-radius: 3px;
   margin-left: 3px;
   padding: 0 3px;
+  color: ${props => props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
 
   &:focus {
     outline: 0;
-    background: ${props => props.theme.colors.foundation};
-    color: ${props => props.theme.colors.neutral08};
+    background: ${props => props.isInverse ? props.theme.colors.tertiary : props.theme.colors.primary};
+    color: ${props => props.isInverse ? props.theme.colors.neutral900 : props.theme.colors.neutral100};
   }
 `;
 

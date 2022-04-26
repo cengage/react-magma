@@ -118,7 +118,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex-shrink: 0;
   position: relative;
   width: ${props.width || 'auto'};
-  background-color: ${props.isInverse ? rgba(0,0,0,0.2) : props.theme.colors.neutral100};
+  background-color: 'transparent';
   border-radius: ${props.theme.borderRadius};
   border: 1px solid
     ${props.isInverse
@@ -170,7 +170,7 @@ export interface InputBaseStylesProps {
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
   border-radius: ${props.theme.borderRadius};
-  background: ${props.isInverse ? rgba(0,0,0,0.2) : props.theme.colors.neutral100};
+  background: transparent;
   color: ${props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
@@ -304,7 +304,7 @@ const IconButtonContainer = styled.span<{
   disabled?: boolean;
 }>`
   background-color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.neutral200 : theme.colors.neutral900};
+    disabled ? theme.colors.neutral200 : 'transparent'};
   bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
   height: auto;
   margin: 0;
@@ -333,7 +333,7 @@ const IsClearableContainer = styled.span<{
   disabled?: boolean;
 }>`
   background-color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+    disabled ? theme.colors.neutral07 : 'transparent'};
   position: relative;
   right: ${props =>
     props.size === InputSize.large
@@ -443,7 +443,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}
               icon={<ClearIcon />}
-              isInverse={false}
+              isInverse={props.isInverse}
               onClick={handleClearInput}
               onKeyDown={onIconKeyDown}
               ref={iconRef}
@@ -492,7 +492,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             <IconButton
               aria-label={iconAriaLabel}
               icon={icon}
-              isInverse={false}
+              isInverse={props.isInverse}
               onClick={onIconClick}
               onKeyDown={onIconKeyDown}
               ref={iconRef}
