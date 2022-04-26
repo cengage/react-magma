@@ -111,6 +111,35 @@ figcaption .title-caution {
   flex-wrap: wrap;
 }
 
+.swatch-rows .color-detail-container {
+  margin: 0 0 16px 0;
+}
+
+.swatch-rows .color-detail-container:last-of-type {
+  margin: 0 0 0 0;
+}  
+
+.swatch-rows p {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+  color: #454545;
+}
+
+.swatch-rows .color-detail-container p:last-of-type {
+  margin: 0;
+}
+
+.swatch-rows .detail-label {
+  text-transform: uppercase;
+  color: #707070;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+}
+
 .type-details-table {
   border: 1px solid #dfdfdf;
   border-radius: 5px;

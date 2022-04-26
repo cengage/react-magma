@@ -7,10 +7,10 @@ const SwatchContainer = styled.div`
   border: 1px solid
     ${props =>
       props.isInverse ? magma.colors.borderInverse : magma.colors.border};
-  border-radius: ${magma.borderRadius};
-  box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 6px 0px;
+  border-radius: 8px;
   margin: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
   overflow: hidden;
+  background: #f5f5f5;
   width: 200px;
 
   @media (max-width: ${magma.breakpoints.small}px) {
@@ -21,7 +21,7 @@ const SwatchContainer = styled.div`
 
 const SwatchColor = styled.div`
   background: ${props => props.color};
-  height: 100px;
+  height: 88px;
 `;
 
 const ColorDetails = styled.div`
@@ -30,7 +30,7 @@ const ColorDetails = styled.div`
       props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   font-size: ${magma.typeScale.size01.fontSize};
   line-height: ${magma.typeScale.size01.lineHeight};
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05};
+  padding: ${magma.spaceScale.spacing05};
   display: flex;
   flex-direction: column;
 
