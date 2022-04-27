@@ -1193,18 +1193,6 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 `;
 
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
-.emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1212,6 +1200,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   align-items: center;
   background: #3942B0;
   border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1259,12 +1248,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1283,8 +1272,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1322,6 +1311,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   align-items: center;
   background: #3942B0;
   border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -1369,12 +1359,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1393,8 +1383,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1411,6 +1401,18 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
