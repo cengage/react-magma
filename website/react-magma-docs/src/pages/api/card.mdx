@@ -108,7 +108,7 @@ export function Example() {
 
 ## Callout Type
 
-The `cardCalloutType` prop takes values `danger`, `primary`, `success` and `warning`. If this prop is specified, the card will be styled
+The `cardCalloutType` prop takes values `danger`, `info`, `primary`, `success` and `warning`. If this prop is specified, the card will be styled
 with a left border of the appropriate color.
 
 ```tsx
@@ -118,13 +118,6 @@ import { Card, CardBody, CardCalloutType, CardHeading } from 'react-magma-dom';
 export function Example() {
   return (
     <>
-      <Card calloutType={CardCalloutType.success}>
-        <CardBody>
-          <CardHeading>Card Heading</CardHeading>
-          Some content
-        </CardBody>
-      </Card>
-      <br />
       <Card calloutType={CardCalloutType.danger}>
         <CardBody>
           <CardHeading>Card Heading</CardHeading>
@@ -132,7 +125,7 @@ export function Example() {
         </CardBody>
       </Card>
       <br />
-      <Card calloutType={CardCalloutType.warning}>
+      <Card calloutType={CardCalloutType.info}>
         <CardBody>
           <CardHeading>Card Heading</CardHeading>
           Some content
@@ -140,6 +133,20 @@ export function Example() {
       </Card>
       <br />
       <Card calloutType={CardCalloutType.primary}>
+        <CardBody>
+          <CardHeading>Card Heading</CardHeading>
+          Some content
+        </CardBody>
+      </Card>
+      <br />
+      <Card calloutType={CardCalloutType.success}>
+        <CardBody>
+          <CardHeading>Card Heading</CardHeading>
+          Some content
+        </CardBody>
+      </Card>
+      <br />
+      <Card calloutType={CardCalloutType.warning}>
         <CardBody>
           <CardHeading>Card Heading</CardHeading>
           Some content
@@ -196,7 +203,7 @@ export function Example() {
 
 A string for a background color may be passed in using the `background` prop.
 
-The default background color is `magma.colors.neutral08` (white) or `magma.colors.foundation` (dark blue) for inverse cards.
+The default background color is `magma.colors.neutral100` (white) or `magma.colors.primary600` (dark blue) for inverse cards.
 
 The `isInverse` boolean prop can also be used with other dark backgrounds to render content in a light color.
 
@@ -216,7 +223,7 @@ export function Example() {
 
       <br />
 
-      <Card background={magma.colors.neutral06} isInverse={false}>
+      <Card background={magma.colors.neutral200} isInverse={false}>
         <CardBody>
           <CardHeading>Card Heading</CardHeading>
           Some content
