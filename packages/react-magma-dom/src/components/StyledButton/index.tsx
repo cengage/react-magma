@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
+import { transparentize } from 'polished';
 import styled from '@emotion/styled';
 import {
   buildActiveBackground,
@@ -28,13 +29,14 @@ export interface StyledButtonProps extends ButtonProps {
 export const buttonStyles = props => css`
   align-items: center;
   background: ${buildButtonBackground(props)};
-  border: ${props.variant === 'outline' ||
-  (props.variant !== 'link' && props.color === 'secondary' && !props.isInverse)
-    ? '2px solid'
+  border: ${props.variant !== 'link' && props.color === 'secondary'
+    ? '1px solid'
     : '0'};
   border-color: ${buildBorderColor(props)};
   border-radius: ${buildButtonBorderRadius(props)};
-  color: ${buildColor(props)};
+  color: ${props.disabled
+    ? transparentize(0.4, buildColor(props))
+    : buildColor(props)};
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
   display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;
@@ -154,10 +156,9 @@ export const StyledButton = React.forwardRef<
   const theme = React.useContext(ThemeContext);
 
   const spinnerColor =
-    isInverse &&
-    (variant === ButtonVariant.outline || variant === ButtonVariant.link)
-      ? theme.colors.neutral08
-      : theme.colors.neutral03;
+    isInverse && variant === ButtonVariant.link
+      ? theme.colors.neutral100
+      : theme.colors.neutral500;
 
   const spinnerSize =
     size === ButtonSize.small

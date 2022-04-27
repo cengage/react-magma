@@ -569,10 +569,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
+  border: 1px solid;
+  border-color: #8B91DA;
   border-radius: 100%;
-  color: #707070;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -691,10 +691,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
+  border: 1px solid;
+  border-color: #8B91DA;
   border-radius: 100%;
-  color: #707070;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -846,7 +846,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -968,7 +968,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1101,27 +1101,16 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 `;
 
 exports[`IconButton Icon Only Button Snapshot should render with updated variant 1`] = `
-.emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
   border-radius: 100%;
-  color: #3942B0;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1178,12 +1167,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1202,8 +1191,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1239,10 +1228,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
   border-radius: 100%;
-  color: #3942B0;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1299,12 +1289,12 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1323,8 +1313,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1341,6 +1331,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
@@ -1394,7 +1396,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1509,7 +1511,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1660,7 +1662,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1775,7 +1777,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1926,7 +1928,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2041,7 +2043,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2190,10 +2192,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  border-radius: 4px;
-  color: #707070;
+  border: 1px solid;
+  border-color: #8B91DA;
+  border-radius: 8px;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2305,10 +2307,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  border-radius: 4px;
-  color: #707070;
+  border: 1px solid;
+  border-color: #8B91DA;
+  border-radius: 8px;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2458,7 +2460,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2573,7 +2575,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2728,7 +2730,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2843,7 +2845,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2982,19 +2984,16 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
 }
 
-.emotion-0 {
-  padding-right: 8px;
-}
-
 .emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  border-radius: 4px;
-  color: #3942B0;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3040,12 +3039,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -3064,8 +3063,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):active:after {
@@ -3082,6 +3081,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -3096,19 +3099,16 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
 }
 
-.emotion-0 {
-  padding-right: 8px;
-}
-
 .emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  border-radius: 4px;
-  color: #3942B0;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3154,12 +3154,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -3178,8 +3178,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):active:after {
@@ -3196,6 +3196,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  padding-right: 8px;
 }
 
 <div>

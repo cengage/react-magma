@@ -47,21 +47,7 @@ describe('Styled Button', () => {
     expect(getByTestId('button-test')).toBeDisabled();
     expect(getByTestId('button-test')).toHaveStyleRule(
       'background',
-      magma.colors.neutral06
-    );
-  });
-
-  it('should render correct styled for disabled outline button when the passed disabled', () => {
-    const text = 'test text';
-    const { getByTestId } = render(
-      <StyledButton disabled variant="outline" testId="button-test">
-        {text}
-      </StyledButton>
-    );
-
-    expect(getByTestId('button-test')).toHaveStyleRule(
-      'background',
-      'rgba(0,0,0,0)'
+      magma.colors.neutral300
     );
   });
 
@@ -84,26 +70,7 @@ describe('Styled Button', () => {
           target: ':active',
         });
         expect(button).toHaveStyleRule('border-color', magma.colors.primary);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral08);
-      });
-
-      it('outline button', () => {
-        const text = 'test text';
-        const { getByTestId } = render(
-          <StyledButton variant="outline" testId="button-test">
-            {text}
-          </StyledButton>
-        );
-        const button = getByTestId('button-test');
-
-        expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
-        expect(button).toHaveStyleRule('background', '#ebecf7', {
-          target: ':hover',
-        });
-        expect(button).toHaveStyleRule('background', '#c3c6e7', {
-          target: ':active',
-        });
-        expect(button).toHaveStyleRule('color', magma.colors.primary);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
       });
 
       it('link button', () => {
@@ -115,7 +82,7 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', 'rgba(0,0,0,0)');
+        expect(button).toHaveStyleRule('background', 'none');
         expect(button).toHaveStyleRule('color', magma.colors.primary);
       });
     });
@@ -147,7 +114,7 @@ describe('Styled Button', () => {
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.primary);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral08);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
       });
 
       it('secondary button', () => {
@@ -165,48 +132,19 @@ describe('Styled Button', () => {
 
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.neutral08);
+        expect(button).toHaveStyleRule('background', magma.colors.neutral100);
         expect(button).toHaveStyleRule(
           'background',
-          darken(0.1, magma.colors.neutral08),
+          darken(0.1, magma.colors.neutral100),
           { target: ':hover' }
         );
         expect(button).toHaveStyleRule(
           'background',
-          darken(0.2, magma.colors.neutral08),
+          darken(0.2, magma.colors.neutral100),
           { target: ':active' }
         );
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral05);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral);
-      });
-
-      it('success button', () => {
-        const text = 'test text';
-        const { getByTestId } = render(
-          <StyledButton
-            color="success"
-            theme="magma"
-            variant="solid"
-            testId="button-test"
-          >
-            {text}
-          </StyledButton>
-        );
-        const button = getByTestId('button-test');
-
-        expect(button).toHaveStyleRule('background', magma.colors.success);
-        expect(button).toHaveStyleRule(
-          'background',
-          darken(0.1, magma.colors.success),
-          { target: ':hover' }
-        );
-        expect(button).toHaveStyleRule(
-          'background',
-          darken(0.2, magma.colors.success),
-          { target: ':active' }
-        );
-        expect(button).toHaveStyleRule('border-color', magma.colors.success);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral08);
+        expect(button).toHaveStyleRule('border-color', magma.colors.primary300);
+        expect(button).toHaveStyleRule('color', magma.colors.primary500);
       });
 
       it('danger button', () => {
@@ -235,7 +173,7 @@ describe('Styled Button', () => {
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.danger);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral08);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
       });
 
       it('marketing button', () => {
@@ -247,19 +185,22 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.pop04);
+        expect(button).toHaveStyleRule('background', magma.colors.secondary500);
         expect(button).toHaveStyleRule(
           'background',
-          lighten(0.1, magma.colors.pop04),
+          lighten(0.1, magma.colors.secondary500),
           { target: ':hover' }
         );
         expect(button).toHaveStyleRule(
           'background',
-          lighten(0.2, magma.colors.pop04),
+          lighten(0.2, magma.colors.secondary500),
           { target: ':active' }
         );
-        expect(button).toHaveStyleRule('border-color', magma.colors.pop04);
-        expect(button).toHaveStyleRule('color', magma.colors.foundation02);
+        expect(button).toHaveStyleRule(
+          'border-color',
+          magma.colors.secondary500
+        );
+        expect(button).toHaveStyleRule('color', magma.colors.primary500);
       });
     });
 
@@ -279,9 +220,9 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.primary);
+        expect(button).toHaveStyleRule('background', magma.colors.tertiary500);
+        expect(button).toHaveStyleRule('border-color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('color', magma.colors.primary700);
       });
 
       it('secondary button', () => {
@@ -299,29 +240,9 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral);
-      });
-
-      it('success button', () => {
-        const text = 'test text';
-        const { getByTestId } = render(
-          <StyledButton
-            isInverse
-            color="success"
-            theme="magma"
-            variant="solid"
-            testId="button-test"
-          >
-            {text}
-          </StyledButton>
-        );
-        const button = getByTestId('button-test');
-
-        expect(button).toHaveStyleRule('background', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.success);
+        expect(button).toHaveStyleRule('background', 'none');
+        expect(button).toHaveStyleRule('border-color', magma.colors.primary300);
+        expect(button).toHaveStyleRule('color', magma.colors.tertiary500);
       });
 
       it('danger button', () => {
@@ -339,9 +260,9 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral08);
-        expect(button).toHaveStyleRule('color', magma.colors.danger);
+        expect(button).toHaveStyleRule('background', magma.colors.danger200);
+        expect(button).toHaveStyleRule('border-color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('color', magma.colors.danger700);
       });
     });
 
@@ -400,30 +321,6 @@ describe('Styled Button', () => {
         expect(button).toHaveStyleRule(
           'padding',
           `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing06}`
-        );
-      });
-
-      it('disabled inverse outline button', () => {
-        const text = 'test text';
-        const { getByTestId } = render(
-          <StyledButton
-            disabled
-            isInverse
-            variant="outline"
-            testId="button-test"
-          >
-            {text}
-          </StyledButton>
-        );
-        const button = getByTestId('button-test');
-
-        expect(button).toHaveStyleRule(
-          'border-color',
-          magma.colors.disabledInverseText
-        );
-        expect(button).toHaveStyleRule(
-          'color',
-          magma.colors.disabledInverseText
         );
       });
     });

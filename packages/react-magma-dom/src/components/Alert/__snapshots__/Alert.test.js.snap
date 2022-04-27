@@ -18,11 +18,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: none;
   border: 0;
   border-color: #FFFFFF;
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #CDDEFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -73,7 +73,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-align-self: stretch;
   -ms-flex-item-align: stretch;
   align-self: stretch;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
   padding: 0 12px;
@@ -164,11 +164,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: none;
   border: 0;
   border-color: #FFFFFF;
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #CDDEFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -219,7 +219,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-align-self: stretch;
   -ms-flex-item-align: stretch;
   align-self: stretch;
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
   padding: 0 12px;
@@ -414,7 +414,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-2 {
   background-color: #D32821;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -513,7 +513,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-2 {
   background-color: #D32821;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -610,7 +610,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-2 {
   background-color: #707070;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -709,7 +709,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-2 {
   background-color: #707070;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -884,7 +884,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-2 {
   background-color: #FFC72C;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #707070;
   display: -webkit-box;
   display: -webkit-flex;
@@ -983,7 +983,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-2 {
   background-color: #FFC72C;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #707070;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1080,7 +1080,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-2 {
   background-color: #707070;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1179,7 +1179,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-2 {
   background-color: #707070;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   display: -webkit-box;
   display: -webkit-flex;
