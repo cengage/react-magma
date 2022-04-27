@@ -127,6 +127,16 @@ figcaption .title-caution {
   color: #454545;
 }
 
+.swatch-rows .color-test-light {
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.swatch-rows .color-test-dark {
+  color: #454545;
+  margin: 0;
+}
+
 .swatch-rows .color-detail-container p:last-of-type {
   margin: 0;
 }

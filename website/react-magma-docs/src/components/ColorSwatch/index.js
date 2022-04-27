@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { magma, useIsInverse } from 'react-magma-dom';
+import { magma, useIsInverse, Badge, Paragraph, TypographyColor } from 'react-magma-dom';
 
 const SwatchContainer = styled.div`
   border: 1px solid
@@ -22,6 +22,8 @@ const SwatchContainer = styled.div`
 const SwatchColor = styled.div`
   background: ${props => props.color};
   height: 88px;
+  display: flex;
+  justify-content: center;
 `;
 
 const ColorDetails = styled.div`
@@ -43,11 +45,32 @@ const ColorDetails = styled.div`
   }
 `;
 
-export const ColorSwatch = ({ children, color }) => {
+const ColorTestContainer = styled.div`
+  flex: 0 0 auto;
+  text-align: center;
+  align-self: flex-end;
+  margin: 8px;
+`;
+
+const ResultBadge = styled(Badge)`
+  margin: 0;
+  font-weight: 600;
+`;
+
+export const ColorSwatch = ({ children, color, passesDarkTest, passesLightTest }) => {
   const isInverse = useIsInverse();
   return (
     <SwatchContainer isInverse={isInverse}>
-      <SwatchColor color={color}></SwatchColor>
+      <SwatchColor color={color}>
+        <ColorTestContainer>
+          <Paragraph className="color-test-dark">A</Paragraph>
+          <ResultBadge>{passesDarkTest ? 'Pass' : 'Fail'}</ResultBadge>
+        </ColorTestContainer>
+        <ColorTestContainer>
+          <Paragraph className="color-test-light">A</Paragraph>
+          <ResultBadge>{passesLightTest ? 'Pass' : 'Fail'}</ResultBadge>
+        </ColorTestContainer>
+      </SwatchColor>
       <ColorDetails isInverse={isInverse}>{children}</ColorDetails>
     </SwatchContainer>
   );
@@ -56,4 +79,7 @@ export const ColorSwatch = ({ children, color }) => {
 ColorSwatch.propTypes = {
   children: PropTypes.node.isRequired,
   color: PropTypes.any.isRequired,
+  // Whether the color swatch passes or fails contrast test
+  passesDarkTest: PropTypes.bool,
+  passesLightTest: PropTypes.bool,
 };
