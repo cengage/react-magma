@@ -6,6 +6,7 @@ import { ThemeInterface } from '../../theme/magma';
 interface AmPmToggleProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string;
+  isInverse?: boolean;
 }
 
 const StyledAmPmToggle = styled.button<{ theme: ThemeInterface, isInverse?: boolean }>`
