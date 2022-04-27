@@ -28,7 +28,7 @@ export interface HyperlinkProps
 
 const linkStyles = props => css`
   color: ${props.isInverse
-    ? props.theme.colors.primaryInverse
+    ? props.theme.colors.tertiary
     : props.theme.colors.primary};
   text-decoration: underline;
   &:not([disabled]) {
