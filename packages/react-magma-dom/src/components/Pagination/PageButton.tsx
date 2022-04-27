@@ -94,9 +94,7 @@ export const PageButton = React.forwardRef<HTMLButtonElement, PageButtonProps>(
         color={isSelected ? ButtonColor.primary : ButtonColor.secondary}
         theme={theme}
         isInverse={isInverse}
-        variant={
-          isInverse && !isSelected ? ButtonVariant.outline : ButtonVariant.solid
-        }
+        variant={ButtonVariant.solid}
       >
         {children}
       </StyledPageButton>

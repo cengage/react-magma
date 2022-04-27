@@ -18,7 +18,6 @@ export const ButtonProps = () => (
             options: [
               'ButtonColor.primary',
               'ButtonColor.secondary',
-              'ButtonColor.success',
               'ButtonColor.danger',
               'ButtonColor.marketing',
             ],
@@ -108,11 +107,7 @@ export const ButtonProps = () => (
         variant: {
           type: {
             name: 'enum',
-            options: [
-              'ButtonVariant.solid',
-              'ButtonVariant.outline',
-              'ButtonVariant.link',
-            ],
+            options: ['ButtonVariant.solid', 'ButtonVariant.link'],
           },
           required: false,
           description: 'The variant of the button',

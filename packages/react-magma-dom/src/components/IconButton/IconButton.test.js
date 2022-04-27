@@ -230,7 +230,7 @@ describe('IconButton', () => {
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
+            variant={ButtonVariant.solid}
           />
         );
 
@@ -461,7 +461,7 @@ describe('IconButton', () => {
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
+            variant={ButtonVariant.solid}
           >
             Test Text
           </IconButton>
