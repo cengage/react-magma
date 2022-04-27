@@ -35,22 +35,22 @@
 }
 
 .gatsby-resp-image-wrapper {
-  border: 1px solid #dfdfdf;
+  border: 1px solid #d4d4d4;
 }
 
 figure .background {
-  background: #f7f7f7;
-  border: 1px solid #dfdfdf;
+  background: #f5f5f5;
+  border: 1px solid #d4d4d4;
   padding: 8px 0;
 }
 
 figure .image-container {
-  border: 1px solid #dfdfdf;
+  border: 1px solid #d4d4d4;
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 40px 8px 0 8px;
-  background: #f7f7f7;
+  background: #f5f5f5;
 }
 
 figure .image-container span {
@@ -91,18 +91,18 @@ figcaption .title {
 }
 
 figcaption .title-correct {
-  background: #3a8200;
+  background: #178037;
   color: #fff;
 }
 
 figcaption .title-incorrect {
-  background: #c61d23;
+  background: #D32821;
   color: #fff;
 }
 
 figcaption .title-caution {
-  background: #f2a900;
-  color: #3f3f3f;
+  background: #AD5115;
+  color: #fff;
 }
 
 .swatch-rows {
@@ -112,12 +112,12 @@ figcaption .title-caution {
 }
 
 .type-details-table {
-  border: 1px solid #dfdfdf;
-  border-radius: 5px;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
 }
 
 .type-example {
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #d4d4d4;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -139,7 +139,7 @@ figcaption .title-caution {
 .type-specs {
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #dfdfdf;
+  border-left: 1px solid #d4d4d4;
   padding: 24px;
 }
 
@@ -175,7 +175,7 @@ figcaption .title-caution {
   color: #ffffff;
   text-align: center;
   margin-bottom: 30px;
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .principles-c h3 {
@@ -223,7 +223,7 @@ figcaption .title-caution {
   margin: 0 0 20px 0;
   text-align: left;
   background: rgba(0, 0, 0, 0.35);
-  border-radius: 5px;
+  border-radius: 8px;
 }
 
 .principles-c blockquote p {
@@ -420,42 +420,42 @@ td .space-example {
     font-size: 20px;
     font-weight: 400;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-xlarge {
     font-size: 32px;
     font-weight: 600;
     line-height: 40px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-large {
     font-size: 28px;
     font-weight: 300;
     line-height: 40px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-medium {
     font-size: 24px;
     font-weight: 300;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-small {
     font-size: 20px;
     font-weight: 300;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-xsmall {
     font-size: 18px;
     font-weight: 300;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
 }
 
