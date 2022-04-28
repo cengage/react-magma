@@ -10,7 +10,7 @@ const SwatchContainer = styled.div`
   border-radius: 8px;
   margin: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
   overflow: hidden;
-  background: #f5f5f5;
+  background: ${magma.colors.neutral200};
   width: 240px;
 
   @media (max-width: ${magma.breakpoints.small}px) {
