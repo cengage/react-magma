@@ -138,10 +138,6 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   ${props.hasError &&
   css`
     border-color: ${props.theme.colors.danger};
-    box-shadow: 0 0 0 1px
-      ${props.isInverse
-        ? props.theme.colors.danger200
-        : props.theme.colors.danger};
   `}
 
   ${props.disabled &&
@@ -214,8 +210,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   `}
 
   &::placeholder {
-    color: ${props.isInverse ? transparentize(0.7, props.theme.colors.neutral100) : props.theme.colors.neutral500};
-    opacity: ${props.isInverse ? 0.7 : 1};
+    color: ${props.isInverse ? transparentize(0.3, props.theme.colors.neutral100) : props.theme.colors.neutral500};
   }
 
   &:focus {
