@@ -3,7 +3,7 @@
 exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
 .emotion-1 {
   background: #707070;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   font-size: 12px;
   -webkit-letter-spacing: .32px;
@@ -69,7 +69,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
 
 .emotion-1 {
   background: #707070;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   font-size: 12px;
   -webkit-letter-spacing: .32px;

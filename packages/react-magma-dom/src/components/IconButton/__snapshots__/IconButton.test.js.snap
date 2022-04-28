@@ -846,7 +846,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -968,7 +968,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1394,7 +1394,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1509,7 +1509,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1660,7 +1660,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1775,7 +1775,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1926,7 +1926,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2041,7 +2041,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2192,7 +2192,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   background: #FFFFFF;
   border: 2px solid;
   border-color: #BFBFBF;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #707070;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2307,7 +2307,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   background: #FFFFFF;
   border: 2px solid;
   border-color: #BFBFBF;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #707070;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2458,7 +2458,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2573,7 +2573,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2728,7 +2728,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2843,7 +2843,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2993,7 +2993,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -3107,7 +3107,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
