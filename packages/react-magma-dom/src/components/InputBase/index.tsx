@@ -120,7 +120,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   width: ${props.width || 'auto'};
   background-color: ${props.isInverse
     ? transparentize(0.8, props.theme.colors.neutral900)
-    : 'transparent'};
+    : props.theme.colors.neutral100};
   border-radius: ${props.theme.borderRadius};
   border: 1px solid
     ${props.isInverse
