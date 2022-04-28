@@ -7,7 +7,7 @@ const SwatchContainer = styled.div`
   border: 1px solid
     ${props =>
       props.isInverse ? magma.colors.borderInverse : magma.colors.border};
-  border-radius: 8px;
+  border-radius: ${magma.borderRadius};
   margin: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
   overflow: hidden;
   background: ${magma.colors.neutral200};
