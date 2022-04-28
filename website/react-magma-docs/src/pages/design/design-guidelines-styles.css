@@ -113,11 +113,19 @@ figcaption .title-caution {
 
 .swatch-rows .color-detail-container {
   margin: 0 0 16px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .swatch-rows .color-detail-container:last-of-type {
   margin: 0 0 0 0;
-}  
+}
+
+.swatch-rows .color-detail {
+  display: flex;
+  flex-direction: column;
+}
 
 .swatch-rows p {
   margin: 0 0 4px 0;
@@ -130,11 +138,17 @@ figcaption .title-caution {
 .swatch-rows .color-test-light {
   color: #FFFFFF;
   margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
 }
 
 .swatch-rows .color-test-dark {
   color: #454545;
   margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
 }
 
 .swatch-rows .color-detail-container p:last-of-type {
@@ -496,6 +510,7 @@ td .space-example {
     line-height: 32px;
     color: #003865;
   }
+
 }
 
 @media only screen and (max-width: 480px) {

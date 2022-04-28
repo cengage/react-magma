@@ -11,7 +11,7 @@ const SwatchContainer = styled.div`
   margin: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
   overflow: hidden;
   background: #f5f5f5;
-  width: 200px;
+  width: 240px;
 
   @media (max-width: ${magma.breakpoints.small}px) {
     margin-right: 0;
@@ -64,11 +64,11 @@ export const ColorSwatch = ({ children, color, passesDarkTest, passesLightTest }
       <SwatchColor color={color}>
         <ColorTestContainer>
           <Paragraph className="color-test-dark">A</Paragraph>
-          <ResultBadge>{passesDarkTest ? 'Pass' : 'Fail'}</ResultBadge>
+          <ResultBadge>{passesDarkTest ? 'PASS' : 'FAIL'}</ResultBadge>
         </ColorTestContainer>
         <ColorTestContainer>
           <Paragraph className="color-test-light">A</Paragraph>
-          <ResultBadge>{passesLightTest ? 'Pass' : 'Fail'}</ResultBadge>
+          <ResultBadge>{passesLightTest ? 'PASS' : 'FAIL'}</ResultBadge>
         </ColorTestContainer>
       </SwatchColor>
       <ColorDetails isInverse={isInverse}>{children}</ColorDetails>
