@@ -49,7 +49,7 @@ const ColorTestContainer = styled.div`
   flex: 0 0 auto;
   text-align: center;
   align-self: flex-end;
-  margin: 8px;
+  margin: ${magma.spaceScale.spacing03};
 `;
 
 const ResultBadge = styled(Badge)`
