@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import { transparentize } from 'polished';
 import styled from '@emotion/styled';
 import {
   buildActiveBackground,
