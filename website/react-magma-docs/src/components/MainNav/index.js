@@ -21,9 +21,9 @@ const activeStyleDefault = {
 };
 
 const activeStyleInverse = {
-  color: magma.colors.neutral07,
+  color: magma.colors.neutral600,
   fontWeight: 'bold',
-  background: magma.colors.foundation02,
+  background: magma.colors.primary600,
 };
 
 const Heading2 = styled.h2`
@@ -39,7 +39,7 @@ const Heading2 = styled.h2`
 
 const Heading3 = styled.h3`
   color: ${props =>
-    props.isInverse ? magma.colors.neutral06 : magma.colors.neutral700};
+    props.isInverse ? magma.colors.neutral500 : magma.colors.neutral700};
   font-size: ${magma.typeScale.size03.fontSize};
   font-weight: 600;
   margin: ${magma.spaceScale.spacing03} 0 0 0;
@@ -68,7 +68,7 @@ const ListItem = styled.li`
 
 const LinkStyles = props => `
   align-items: center;
-  color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+  color: ${props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   display: flex;
   font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
@@ -81,7 +81,7 @@ const LinkHoverStyles = props => `
 background: ${
   props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200
 };
-color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+color: ${props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
 `;
 
 const StyledLink = styled(Link)`
@@ -105,7 +105,7 @@ const StyledExternalLink = styled.a`
 const StyledLink2 = styled(Link)`
   align-items: center;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+    props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   display: flex;
   font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
@@ -115,9 +115,9 @@ const StyledLink2 = styled(Link)`
   &:hover,
   &:focus {
     background: ${props =>
-      props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200};
+      props.isInverse ? magma.colors.primary600 : magma.colors.neutral200};
     color: ${props =>
-      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+      props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   }
 `;
 
