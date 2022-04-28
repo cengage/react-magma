@@ -35,8 +35,8 @@ const linkStyles = props => css`
     &:hover,
     &:focus {
       color: ${props.isInverse
-        ? props.theme.colors.primaryInverse
-        : props.theme.colors.foundation02};
+        ? props.theme.colors.primary100
+        : props.theme.colors.primary400};
     }
     &:focus {
       outline: 2px solid
