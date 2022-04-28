@@ -34,9 +34,7 @@ export const buttonStyles = props => css`
     : '0'};
   border-color: ${buildBorderColor(props)};
   border-radius: ${buildButtonBorderRadius(props)};
-  color: ${props.disabled
-    ? transparentize(0.4, buildColor(props))
-    : buildColor(props)};
+  color: ${buildColor(props)};
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
   display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;

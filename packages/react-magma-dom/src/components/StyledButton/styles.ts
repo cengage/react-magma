@@ -182,9 +182,9 @@ export function buildColor(props) {
     }
 
     if (props.variant === 'link') {
-      return transparentize(-0.8, props.theme.colors.neutral500);
+      return transparentize(0.4, props.theme.colors.neutral500);
     }
-    return transparentize(-0.8, props.theme.colors.neutral500);
+    return transparentize(0.4, props.theme.colors.neutral500);
   }
 
   if (props.isInverse) {

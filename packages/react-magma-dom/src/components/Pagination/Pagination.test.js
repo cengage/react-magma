@@ -3,6 +3,7 @@ import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Pagination } from '.';
 import { render, fireEvent } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 describe('Pagination', () => {
   it('Should find element by testId', () => {
@@ -48,7 +49,11 @@ describe('Pagination', () => {
     const button = getByLabelText('Previous Page');
 
     expect(button).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(button).toHaveStyleRule('color', 'rgba(112,112,112,0.6)');
+
+    expect(button).toHaveStyleRule(
+      'color',
+      transparentize(0.4, magma.colors.neutral500)
+    );
   });
 
   it('Should render a disabled inverse icon color', () => {
@@ -57,7 +62,10 @@ describe('Pagination', () => {
     );
     const button = getByLabelText('Previous Page');
 
-    expect(button).toHaveStyleRule('color', 'rgba(255,255,255,0.3)');
+    expect(button).toHaveStyleRule(
+      'color',
+      transparentize(0.3, magma.colors.neutral100)
+    );
   });
 
   it('Should render a large variant of the pagination button', () => {
