@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { transparentize } from 'polished';
 
 /**
  * @children required
