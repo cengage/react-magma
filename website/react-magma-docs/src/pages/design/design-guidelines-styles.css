@@ -171,69 +171,39 @@ figcaption .title-caution {
 .principles-c {
   display: flex;
   flex-direction: column;
-  padding: 20px 5%;
-  color: #ffffff;
+  padding: 24px;
+  color: #454545;
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 32px;
   border-radius: 8px;
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
 }
 
 .principles-c h3 {
   font-size: 36px;
-  color: #ffffff;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .principles-c p {
   font-size: 20px;
-  line-height: 30px;
-}
-
-.anticipate-container {
-  background: #006298;
-}
-
-.encourage-container {
-  background: #e0004d;
-}
-
-.inspire-container {
-  background: #fc4c02;
-}
-
-.cultivate-container {
-  background: #48a200;
-}
-
-.preserve-container {
-  background: #f2a900;
-  color: #00263e;
-}
-
-.preserve-container h3 {
-  color: #00263e;
-}
-
-.discover-container {
-  background: #92278f;
+  line-height: 24px;
+  line-height: 32px;
 }
 
 .principles-c blockquote {
-  padding: 20px;
-  margin: 0 0 20px 0;
+  padding: 24px;
+  margin: 0;
   text-align: left;
-  background: rgba(0, 0, 0, 0.35);
+  background: #3942B0;
   border-radius: 8px;
+  color: #FFFFFF;
 }
 
 .principles-c blockquote p {
-  font-size: 15px;
-  line-height: 22px;
-  margin-bottom: 10px;
-}
-
-.preserve-container blockquote {
-  color: #ffffff;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 16px;
 }
 
 blockquote footer {
@@ -467,5 +437,9 @@ td .space-example {
   .principles-c p {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .principles-c blockquote {
+    margin: 0;
   }
 }
