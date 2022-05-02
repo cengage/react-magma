@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.3
+
+### Major Changes
+
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+
 ## 3.0.0-next.2
 
 ### Major Changes

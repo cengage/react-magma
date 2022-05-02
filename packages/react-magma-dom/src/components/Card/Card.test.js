@@ -99,7 +99,7 @@ describe('Card', () => {
     const card = getByText(TEXT);
 
     expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
-    expect(card).toHaveStyleRule('background', magma.colors.primary, {
+    expect(card).toHaveStyleRule('background', magma.colors.primary600, {
       target: ':before',
     });
   });
@@ -121,7 +121,7 @@ describe('Card', () => {
     const card = getByText(TEXT);
 
     expect(card).toHaveStyleRule('padding-left', magma.spaceScale.spacing02);
-    expect(card).toHaveStyleRule('background', magma.colors.pop04, {
+    expect(card).toHaveStyleRule('background', magma.colors.warning, {
       target: ':before',
     });
   });
@@ -147,8 +147,8 @@ describe('Card', () => {
 
     const card = getByText(TEXT);
 
-    expect(card).toHaveStyleRule('background', magma.colors.foundation);
-    expect(card).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(card).toHaveStyleRule('background', magma.colors.primary600);
+    expect(card).toHaveStyleRule('color', magma.colors.neutral100);
   });
 
   it('should render a card with right alignment', () => {
