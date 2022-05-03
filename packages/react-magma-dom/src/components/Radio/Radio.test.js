@@ -3,6 +3,7 @@ import { Radio } from '.';
 import { RadioContext } from '../RadioGroup';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 describe('Radio', () => {
   it('should find element by testId', () => {
