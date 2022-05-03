@@ -151,7 +151,7 @@ const CardIcon = styled(Flex)`
   width: 56px;
   border-radius: 50%;
   margin: ${magma.spaceScale.spacing06} 0 0 ${magma.spaceScale.spacing06};
-  background-color: ${magma.colors.primary};
+  background-color: ${magma.colors.primary500};
 
   > * {
     align-self: center;
@@ -164,7 +164,8 @@ const CardIcon = styled(Flex)`
   @media (max-width: ${magma.breakpoints.small}px) {
     height: ${magma.spaceScale.spacing09};
     width: ${magma.spaceScale.spacing09};
-    margin: ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 0 ${magma.spaceScale.spacing05};
+    margin: ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 0
+      ${magma.spaceScale.spacing05};
 
     > * {
       height: ${magma.spaceScale.spacing07};
@@ -172,7 +173,6 @@ const CardIcon = styled(Flex)`
     }
   }
 `;
-
 
 const HeroCardIcon = styled(Flex)`
   height: 72px;
@@ -218,7 +218,7 @@ export function IndexPageContent() {
         <StyledGridHeroItem>
           <HeroCardGrid isInverse="true">
             <HeroCardIcon>
-              <ArchitectureIcon color={magma.colors.primary}/>
+              <ArchitectureIcon color={magma.colors.primary} />
             </HeroCardIcon>
             <CardBody>
               <CardHeading>Designing</CardHeading>
@@ -230,7 +230,8 @@ export function IndexPageContent() {
                   styledAs="Button"
                   to="/design-intro/get-started/"
                   isInverse="true"
-                  >
+                  color="marketing"
+                >
                   {linkProps => (
                     <Link {...linkProps}>
                       <span>Start Designing</span>
@@ -245,7 +246,7 @@ export function IndexPageContent() {
         <StyledGridHeroItem>
           <HeroCardGrid isInverse="true">
             <HeroCardIcon>
-              <CodeIcon color={magma.colors.primary}/>
+              <CodeIcon color={magma.colors.primary} />
             </HeroCardIcon>
             <CardBody>
               <CardHeading>Developing</CardHeading>
@@ -253,16 +254,17 @@ export function IndexPageContent() {
               grab the code on github when you're ready to get started.
               <CardButton>
                 <Hyperlink
-                    styledAs="Button"
-                    to="/api-intro/introduction"
-                    isInverse="true"
-                  >
-                    {linkProps => (
-                      <Link {...linkProps}>
-                        <span>Start Developing</span>
-                      </Link>
-                    )}
-                  </Hyperlink>
+                  styledAs="Button"
+                  to="/api-intro/introduction"
+                  isInverse="true"
+                  color="marketing"
+                >
+                  {linkProps => (
+                    <Link {...linkProps}>
+                      <span>Start Developing</span>
+                    </Link>
+                  )}
+                </Hyperlink>
               </CardButton>
             </CardBody>
           </HeroCardGrid>
@@ -278,7 +280,7 @@ export function IndexPageContent() {
       </StyledGridHero>
       <StyledGrid>
         <StyledGridItem gridColumn="1">
-          <CardGrid background={magma.colors.neutral07}>
+          <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
               <AccessibilityIcon color={magma.colors.neutral100} />
             </CardIcon>
@@ -289,7 +291,7 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
-          <CardGrid background={magma.colors.neutral07}>
+          <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
               <PaletteIcon color={magma.colors.neutral100} />
             </CardIcon>
@@ -300,7 +302,7 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="1">
-          <CardGrid background={magma.colors.neutral07}>
+          <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
               <DevicesIcon color={magma.colors.neutral100} />
             </CardIcon>
@@ -311,7 +313,7 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
-          <CardGrid background={magma.colors.neutral07}>
+          <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
               <ExtensionIcon color={magma.colors.neutral100} />
             </CardIcon>
@@ -323,7 +325,7 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="1">
-          <CardGrid background={magma.colors.neutral07}>
+          <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
               <TimelineIcon color={magma.colors.neutral100} />
             </CardIcon>
@@ -335,7 +337,7 @@ export function IndexPageContent() {
           </CardGrid>
         </StyledGridItem>
         <StyledGridItem gridColumn="2">
-          <CardGrid background={magma.colors.neutral07}>
+          <CardGrid background={magma.colors.neutral200}>
             <CardIcon>
               <GroupsIcon color={magma.colors.neutral100} />
             </CardIcon>
@@ -354,15 +356,17 @@ export function IndexPageContent() {
           </p>
 
           <Hyperlink
-              styledAs="Button"
-              to="https://github.com/cengage/react-magma/"
-            >
-              {linkProps => (
-                <Link {...linkProps} style={{padding: 0}}>
-                  <IconButton icon={<GithubIcon />} iconPosition="right">Start Contributing</IconButton>
-                </Link>
-              )}
-            </Hyperlink>
+            styledAs="Button"
+            to="https://github.com/cengage/react-magma/"
+          >
+            {linkProps => (
+              <Link {...linkProps} style={{ padding: 0 }}>
+                <IconButton icon={<GithubIcon />} iconPosition="right">
+                  Start Contributing
+                </IconButton>
+              </Link>
+            )}
+          </Hyperlink>
         </CenterBlock>
       </StyledGrid>
     </>
