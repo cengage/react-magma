@@ -170,7 +170,7 @@ describe('Radio', () => {
     const span = container.querySelector('span');
 
     expect(radio).toBeDisabled();
-    expect(span).toHaveStyleRule('color', magma.colors.neutral05);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral300);
   });
 
   it('should render a passed in color', () => {
@@ -211,7 +211,7 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral100);
   });
 
   it('should render an inverse, disabled radio with the correct styles', () => {
@@ -228,7 +228,10 @@ describe('Radio', () => {
     );
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.tint04);
+    expect(span).toHaveStyleRule(
+      'color',
+      transparentize(0.6, magma.colors.neutral100)
+    );
   });
 
   it('should render a radio with hidden label text with the correct styles', () => {
@@ -309,7 +312,7 @@ describe('Radio', () => {
 
     expect(span).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 2px ${magma.colors.dangerInverse}`
+      `0 0 0 2px ${magma.colors.danger200}`
     );
   });
 

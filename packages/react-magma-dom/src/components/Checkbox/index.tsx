@@ -16,6 +16,7 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { omit, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
+import { transparentize } from 'polished';
 
 export enum CheckboxTextPosition {
   left = 'left',
@@ -92,17 +93,17 @@ export const HiddenInput = styled.input`
 function buildCheckIconColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return props.theme.colors.tint04;
+      return transparentize(0.6, props.theme.colors.neutral100);
     }
-    return props.theme.colors.neutral05;
+    return props.theme.colors.neutral300;
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    return props.theme.colors.neutral100;
   }
   if (props.isChecked || props.isIndeterminate) {
     return props.color;
   }
-  return props.theme.colors.neutral02;
+  return props.theme.colors.neutral700;
 }
 
 export const StyledFakeInput = styled.span<{
