@@ -1,5 +1,29 @@
 # Change Log
 
+## 3.0.0-next.4
+
+### Major Changes
+
+- 476c5023: feat(tooltips): Updating tooltip colors
+
+## 3.0.0-next.3
+
+### Major Changes
+
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- 26d70350: feat: Updating focus states from dotted to solid
+
+## 3.0.0-next.1
+
+### Major Changes
+
+- 38fe6b4c: feat(typography): Updating main typography styles: type, heading, paragraph
+
 ## 3.0.0-next.0
 
 ### Major Changes

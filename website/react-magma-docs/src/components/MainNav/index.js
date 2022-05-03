@@ -15,34 +15,33 @@ import styled from '@emotion/styled';
 import { magma, useIsInverse } from 'react-magma-dom';
 
 const activeStyleDefault = {
-  color: magma.colors.neutral,
-  fontWeight: 'bold',
-  background: magma.colors.neutral07,
+  color: magma.colors.neutral700,
+  fontWeight: '600',
+  background: magma.colors.neutral200,
 };
 
 const activeStyleInverse = {
-  color: magma.colors.neutral07,
+  color: magma.colors.neutral600,
   fontWeight: 'bold',
-  background: magma.colors.foundation02,
+  background: magma.colors.primary600,
 };
 
 const Heading2 = styled.h2`
   align-items: center;
   display: flex;
-  font-size: ${magma.typeScale.size05.fontSize};
-  font-weight: 600;
-  line-height: ${magma.typeScale.size05.lineHeight};
+  font-size: ${magma.typeScale.size04.fontSize};
+  font-weight: 500;
+  line-height: ${magma.typeScale.size06.lineHeight};
   justify-content: space-between;
   margin: 0;
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
-    ${magma.spaceScale.spacing04};
+  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
 `;
 
 const Heading3 = styled.h3`
   color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
-  font-size: ${magma.typeScale.size04.fontSize};
-  font-weight: 700;
+    props.isInverse ? magma.colors.neutral500 : magma.colors.neutral700};
+  font-size: ${magma.typeScale.size03.fontSize};
+  font-weight: 600;
   margin: ${magma.spaceScale.spacing03} 0 0 0;
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
 `;
@@ -51,13 +50,13 @@ const HR = styled.hr`
   background: ${props =>
     props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border: none;
-  margin: ${magma.spaceScale.spacing03} 0;
+  margin: 0;
   height: 1px;
 `;
 
 const List = styled.ul`
   list-style-type: none;
-  margin: 0;
+  margin: 0 0 ${magma.spaceScale.spacing03} 0;
   padding: 0;
 `;
 
@@ -69,9 +68,9 @@ const ListItem = styled.li`
 
 const LinkStyles = props => `
   align-items: center;
-  color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+  color: ${props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   display: flex;
-  font-size: ${magma.typeScale.size03.fontSize};
+  font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
   line-height: ${magma.typeScale.size03.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
@@ -80,9 +79,9 @@ const LinkStyles = props => `
 
 const LinkHoverStyles = props => `
 background: ${
-  props.isInverse ? magma.colors.foundation02 : magma.colors.neutral06
+  props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200
 };
-color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+color: ${props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
 `;
 
 const StyledLink = styled(Link)`
@@ -106,9 +105,9 @@ const StyledExternalLink = styled.a`
 const StyledLink2 = styled(Link)`
   align-items: center;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+    props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   display: flex;
-  font-size: ${magma.typeScale.size03.fontSize};
+  font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
   text-decoration: none;
@@ -116,9 +115,9 @@ const StyledLink2 = styled(Link)`
   &:hover,
   &:focus {
     background: ${props =>
-      props.isInverse ? magma.colors.foundation02 : magma.colors.neutral06};
+      props.isInverse ? magma.colors.primary600 : magma.colors.neutral200};
     color: ${props =>
-      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+      props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   }
 `;
 

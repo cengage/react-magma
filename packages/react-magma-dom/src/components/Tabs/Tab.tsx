@@ -162,10 +162,9 @@ export const TabStyles = props => css`
 
   &:focus {
     outline-offset: -2px;
-    outline: ${props.isInverse
+    outline: 2px solid ${props.isInverse
         ? props.theme.colors.focusInverse
-        : props.theme.colors.focus}
-      dotted 2px;
+        : props.theme.colors.focus};
   }
 `;
 

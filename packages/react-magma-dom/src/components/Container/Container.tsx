@@ -29,12 +29,12 @@ const StyledContainer = styled.div<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral100};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: flow-root;
   margin: 0 auto;
   max-width: ${props => props.maxWidth};

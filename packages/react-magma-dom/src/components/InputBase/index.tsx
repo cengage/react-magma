@@ -125,11 +125,11 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
       : props.theme.colors.neutral03};
 
   &:focus-within {
-    outline: 2px dotted
+    outline: 2px solid
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
-    outline-offset: 4px;
+    outline-offset: 2px;
   }
 
   ${props.hasError &&

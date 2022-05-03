@@ -301,6 +301,7 @@ export interface ThemeInterface {
   bodyExpressiveFont: string;
   bodyNarrativeFont: string;
   borderRadius: string;
+  borderRadiusSmall: string;
   colors: Colors;
   combobox: Combobox;
   direction: string;
@@ -473,11 +474,12 @@ const colors = {
   ...warningColors,
   ...successColors,
   
+  focus: infoColors.info500,
+  focusInverse: infoColors.info200,
+  
   // Legacy Colors - To be deleted after rebranding
   // primary: '#006298', // link color blue
   primaryInverse: '#70CDFF', // link color inverse blue
-  focus: '#027EE1',
-  focusInverse: 'rgba(255,255,255,0.7)',
   foundation: '#00263E',
   foundation02: '#003865',
   foundation03: '#00A9E0',
@@ -538,7 +540,8 @@ export const magma = {
   bodyFont: '"Work Sans",Helvetica,sans-serif',
   bodyExpressiveFont: '"Work Sans",Helvetica,sans-serif',
   bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
-  borderRadius: '4px',
+  borderRadius: '8px',
+  borderRadiusSmall: '4px',
   colors: colors,
   headingFont: '"Work Sans",Helvetica,sans-serif',
   headingExpressiveFont: '"Work Sans",Helvetica,sans-serif',
@@ -819,15 +822,15 @@ export const magma = {
   tooltip: {
     arrowSize: '4px',
     arrowSizeDoubled: '8px',
-    backgroundColor: colors.neutral,
-    fontWeight: 600,
+    backgroundColor: colors.neutral700,
+    fontWeight: 500,
     maxWidth: '300px',
-    textColor: colors.neutral08,
+    textColor: colors.neutral100,
     typeScale: typeScale.size01,
     zIndex: 999,
     inverse: {
-      backgroundColor: colors.neutral08,
-      textColor: colors.neutral,
+      backgroundColor: colors.neutral100,
+      textColor: colors.neutral700,
     },
   },
 };

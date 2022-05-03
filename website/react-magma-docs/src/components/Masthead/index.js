@@ -25,7 +25,7 @@ const LogoLink = styled(Link)`
   }
 
   &:focus {
-    outline: 2px dotted ${magma.colors.focusInverse};
+    outline: 2px solid ${magma.colors.focusInverse};
   }
 `;
 

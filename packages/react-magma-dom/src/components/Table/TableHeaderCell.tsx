@@ -111,7 +111,7 @@ const SortButton = styled.button<{
   width: 100%;
 
   &:focus {
-    outline: 2px dotted
+    outline: 2px solid
       ${props =>
         props.isInverse
           ? props.theme.colors.focusInverse

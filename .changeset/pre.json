@@ -11,6 +11,10 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
-    "rebrand-colors"
+    "rebrand-cards",
+    "rebrand-colors",
+    "rebrand-focus",
+    "rebrand-tooltips",
+    "rebrand-type"
   ]
 }

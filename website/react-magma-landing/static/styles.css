@@ -7,7 +7,7 @@
 }
 
 *:focus {
-  outline: 2px dotted #027ee1;
+  outline: 2px solid #0074B7;
   outline-offset: 3px;
 }
 
@@ -59,7 +59,7 @@ h3:focus,
 h4:focus,
 h5:focus,
 h6:focus {
-  border-bottom: 2px dotted #027ee1;
+  border-bottom: 2px solid #027ee1;
   outline: 0;
 }
 

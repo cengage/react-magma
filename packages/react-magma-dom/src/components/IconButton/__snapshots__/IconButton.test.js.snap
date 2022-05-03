@@ -73,8 +73,8 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -195,8 +195,8 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -348,8 +348,8 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -470,8 +470,8 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -623,8 +623,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -745,8 +745,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -846,7 +846,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -898,8 +898,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -968,7 +968,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1020,8 +1020,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1172,8 +1172,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1293,8 +1293,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1394,7 +1394,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1435,8 +1435,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1509,7 +1509,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1550,8 +1550,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1660,7 +1660,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1701,8 +1701,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1775,7 +1775,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1816,8 +1816,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -1926,7 +1926,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1967,8 +1967,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2041,7 +2041,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2082,8 +2082,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2192,7 +2192,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   background: #FFFFFF;
   border: 2px solid;
   border-color: #BFBFBF;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #707070;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2233,8 +2233,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2307,7 +2307,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   background: #FFFFFF;
   border: 2px solid;
   border-color: #BFBFBF;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #707070;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2348,8 +2348,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2458,7 +2458,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2499,8 +2499,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2573,7 +2573,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2614,8 +2614,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2728,7 +2728,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2769,8 +2769,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2843,7 +2843,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2884,8 +2884,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -2993,7 +2993,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -3034,8 +3034,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
@@ -3107,7 +3107,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
   background: rgba(0,0,0,0);
   border: 2px solid;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -3148,8 +3148,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,

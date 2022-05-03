@@ -32,7 +32,7 @@ describe('Banner', () => {
 
     expect(closeBtn).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.neutral}`,
+      `2px solid ${magma.colors.neutral}`,
       {
         target: ':focus',
       }
