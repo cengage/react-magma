@@ -1,5 +1,5 @@
 ---
-"react-magma": patch
+"react-magma-docs": major
 ---
 
 docs: update design guideline images
