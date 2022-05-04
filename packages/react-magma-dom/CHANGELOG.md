@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.5
+
+### Major Changes
+
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+
 ## 3.0.0-next.4
 
 ### Major Changes

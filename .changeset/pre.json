@@ -12,6 +12,7 @@
   },
   "changesets": [
     "cuddly-jokes-guess",
+    "rebrand-breadcrumbs",
     "rebrand-cards",
     "rebrand-colors",
     "rebrand-focus",
