@@ -32,7 +32,7 @@ export interface CheckboxProps
   checked?: boolean;
   /**
    * Hex code for the background color
-   * @default #0000FF
+   * @default #3942B0
    */
   color?: string;
   /**
