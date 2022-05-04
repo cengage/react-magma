@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.5
+
+### Major Changes
+
+- 6839a984: docs: update design guideline images
+
 ## 2.2.14-next.4
 
 ### Patch Changes
