@@ -34,7 +34,7 @@ const StyledLink = styled.button`
   }
 
   &:focus {
-    outline: 2px dotted ${props => props.theme.colors.focusInverse};
+    outline: 2px solid ${props => props.theme.colors.focusInverse};
     outline-offset: 0;
   }
 `;

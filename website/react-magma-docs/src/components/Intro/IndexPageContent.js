@@ -29,7 +29,7 @@ const Heading = styled.h1`
     text-transform: uppercase;
 
     &:focus {
-      border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+      border-bottom: 2px solid ${props => props.theme.colors.focus};
       outline: 0;
     }
 
@@ -195,7 +195,7 @@ export class IndexPageContent extends React.Component {
                   <Hyperlink
                     styledAs="Button"
                     isInverse
-                    to="/design-intro/introduction"
+                    to="/design-intro/get-started"
                   >
                     {linkProps => (
                       <Link {...linkProps}>

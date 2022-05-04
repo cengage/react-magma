@@ -53,8 +53,15 @@ export const Default = () => {
 
         <Checkbox
           checked
-          color={magma.colors.pop02}
-          labelText="Pop checked"
+          color={magma.colors.warning}
+          labelText="Warning checked"
+          onChange={() => updateChecked(!checked)}
+        />
+
+        <Checkbox
+          checked
+          color={magma.colors.info}
+          labelText="Info checked"
           onChange={() => updateChecked(!checked)}
         />
       </FormGroup>
@@ -79,6 +86,7 @@ export const Default = () => {
 };
 
 export const Inverse = () => {
+  const [checked, updateChecked] = React.useState(false);
   return (
     <Card isInverse>
       <CardBody>
@@ -86,6 +94,48 @@ export const Inverse = () => {
           <Checkbox isInverse checked labelText="Checked checkbox" />
           <Checkbox isInverse labelText="Unchecked checkbox" />
         </FormGroup>
+
+        <FormGroup labelText="Colors" isInverse>
+          <Checkbox
+            checked
+            color={magma.colors.primary200}
+            isInverse
+            labelText="Primary checked"
+            onChange={() => updateChecked(!checked)}
+          />
+          <Checkbox
+            checked
+            color={magma.colors.success200}
+            isInverse
+            labelText="Success checked"
+            onChange={() => updateChecked(!checked)}
+          />
+
+          <Checkbox
+            checked
+            color={magma.colors.danger200}
+            isInverse
+            labelText="Danger checked"
+            onChange={() => updateChecked(!checked)}
+          />
+
+          <Checkbox
+            checked
+            color={magma.colors.warning200}
+            isInverse
+            labelText="Warning checked"
+            onChange={() => updateChecked(!checked)}
+          />
+
+          <Checkbox
+            checked
+            color={magma.colors.info200}
+            isInverse
+            labelText="Info checked"
+            onChange={() => updateChecked(!checked)}
+          />
+        </FormGroup>
+
         <FormGroup labelText="Disabled" isInverse>
           <Checkbox isInverse disabled labelText="Disabled checkbox" />
 
@@ -96,6 +146,7 @@ export const Inverse = () => {
             labelText="Disabled checked checkbox"
           />
         </FormGroup>
+
         <FormGroup labelText="Error" isInverse>
           <Checkbox
             isInverse

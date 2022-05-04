@@ -34,7 +34,7 @@ const grey900 = 'pink';
 // *
 // * Typography
 // *
-const sansSerif = '"Open Sans",Helvetica,sans-serif';
+const sansSerif = '"Work Sans",Helvetica,sans-serif';
 const letterSpacing = 'normal';
 const fontSize = 12;
 

@@ -172,7 +172,7 @@ const NavButton = styled(IconButton)`
       props.isInverse
         ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
         : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
-    border-style: dotted;
+    border-style: solid;
     height: calc(100% + 14px);
     left: -7px;
     position: absolute;

@@ -72,8 +72,6 @@ export const Header = (props: HeaderProps) => {
 
   const isInverse = useIsInverse(props.isInverse);
 
-  console.log(theme.iterableColors);
-
   return (
     <AppBar
       isCompact={isCompact}
