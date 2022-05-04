@@ -18,6 +18,7 @@ import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
+import { transparentize } from 'polished';
 
 export enum RadioTextPosition {
   left = 'left',
@@ -76,23 +77,23 @@ const HiddenInput = styled.input<{ indeterminate?: boolean }>`
 function buildRadioIconColor(props) {
   if (props.disabled) {
     if (props.isInverse) {
-      return props.theme.colors.tint04;
+      return transparentize(0.6, props.theme.colors.neutral100);
     }
-    return props.theme.colors.neutral05;
+    return props.theme.colors.neutral300;
   }
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    return props.theme.colors.neutral100;
   }
   if (props.isChecked) {
     return props.color;
   }
-  return props.theme.colors.neutral02;
+  return props.theme.colors.neutral700;
 }
 
 export function buildErrorBorder(props) {
   if (props.hasError) {
     if (props.isInverse) {
-      return `0 0 0 2px ${props.theme.colors.dangerInverse}`;
+      return `0 0 0 2px ${props.theme.colors.danger200}`;
     }
     return `0 0 0 2px ${props.theme.colors.danger}`;
   }
@@ -120,7 +121,7 @@ const StyledFakeInput = styled.span<{
   ${HiddenInput}:checked:not (:disabled) + label & {
     background: ${props => {
       if (props.isInverse) {
-        return props.theme.colors.neutral08;
+        return props.theme.colors.neutral100;
       }
     }};
   }
