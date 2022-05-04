@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.7
+
+### Major Changes
+
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+
 ## 3.0.0-next.6
 
 ### Major Changes
