@@ -405,7 +405,7 @@ const tertiaryColors = {
 };
 
 const neutralColors = {
-  neutral100: '#FFFFFF', // black
+  neutral100: '#FFFFFF', // white
   neutral200: '#F5F5F5',
   neutral300: '#D4D4D4',
   neutral400: '#8D8D8D',
@@ -413,7 +413,7 @@ const neutralColors = {
   neutral600: '#5A5A5A',
   neutral700: '#454545',
   neutral800: '#2D2D2D',
-  neutral900: '#000000', // white
+  neutral900: '#000000', // black
 };
 
 const infoColors = {
