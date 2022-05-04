@@ -33,7 +33,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -144,7 +144,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -271,7 +271,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -382,7 +382,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -509,7 +509,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -544,8 +544,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
@@ -620,7 +620,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -655,8 +655,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
@@ -748,7 +748,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -859,7 +859,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -987,7 +987,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1098,7 +1098,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1213,7 +1213,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1324,7 +1324,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;

@@ -33,7 +33,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -179,7 +179,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;

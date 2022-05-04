@@ -240,7 +240,7 @@ export function buildFocusBackground(props) {
   }
   switch (props.color) {
     case 'secondary':
-      return darken(0.1, props.theme.colors.neutral100);
+      return tint(0.9, props.theme.colors.primary);
     case 'danger':
       return darken(0.1, props.theme.colors.danger);
     default:
@@ -270,7 +270,7 @@ export function buildFocusColor(props) {
     return props.theme.colors.neutral100;
   }
   if (props.color === 'secondary' && !props.isInverse) {
-    return props.theme.colors.neutral;
+    return darken(0.1, props.theme.colors.primary);
   }
   return props.theme.colors.neutral100;
 }

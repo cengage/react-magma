@@ -39,7 +39,7 @@ export const buttonStyles = props => css`
   flex-shrink: 0;
   font-family: ${props.theme.bodyFont};
   font-size: ${buildButtonFontSize(props)};
-  font-weight: 600;
+  font-weight: 500;
   height: ${buildButtonSize(props)};
   justify-content: center;
   letter-spacing: ${props.size === 'small'

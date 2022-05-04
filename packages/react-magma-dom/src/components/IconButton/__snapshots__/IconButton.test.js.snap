@@ -33,7 +33,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -155,7 +155,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -308,7 +308,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -430,7 +430,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -583,7 +583,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -629,8 +629,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
@@ -705,7 +705,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -751,8 +751,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
@@ -858,7 +858,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -980,7 +980,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1121,7 +1121,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1243,7 +1243,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1408,7 +1408,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1523,7 +1523,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1674,7 +1674,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1789,7 +1789,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1940,7 +1940,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -2055,7 +2055,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -2206,7 +2206,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -2241,8 +2241,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-3:not(:disabled):after {
@@ -2321,7 +2321,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -2356,8 +2356,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-3:not(:disabled):after {
@@ -2472,7 +2472,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -2587,7 +2587,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -2742,7 +2742,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -2857,7 +2857,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -3004,7 +3004,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -3119,7 +3119,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
