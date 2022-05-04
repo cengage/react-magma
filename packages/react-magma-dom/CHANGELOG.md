@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.6
+
+### Major Changes
+
+- b737f6cd: feat(table): Updating table with new colors.
+
 ## 3.0.0-next.5
 
 ### Major Changes
