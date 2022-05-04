@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.0.0-next.7
+
+### Major Changes
+
+- b0f75257: feat(accordion): Updating accordion with new colors.
+- 18afc4fc: feat(badge): Updating badge colors. Adding `isInverse` support.
+- 8d0ecf2a: feat(inputs): Updating Inputs with rebrand styles
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+
 ## 3.0.0-next.6
 
 ### Major Changes

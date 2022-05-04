@@ -12,10 +12,14 @@
   },
   "changesets": [
     "cuddly-jokes-guess",
+    "rebrand-accordion",
+    "rebrand-badge",
     "rebrand-breadcrumbs",
     "rebrand-cards",
     "rebrand-colors",
     "rebrand-focus",
+    "rebrand-inputs",
+    "rebrand-processBar",
     "rebrand-table",
     "rebrand-tooltips",
     "rebrand-type"
