@@ -5,6 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { transparentize } from 'polished';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -43,8 +44,6 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
 export enum ProgressBarColor {
   danger = 'danger',
   primary = 'primary', // default
-  pop = 'pop',
-  pop02 = 'pop02',
   success = 'success',
 }
 
@@ -52,20 +51,16 @@ function buildProgressBarBackground(props) {
   if (props.isInverse) {
     switch (props.color) {
       case 'danger':
-        return props.theme.colors.dangerInverse;
+        return props.theme.colors.danger200;
       case 'success':
-        return props.theme.colors.successInverse;
+        return props.theme.colors.success200;
       default:
-        return props.theme.colors.primaryInverse;
+        return props.theme.colors.tertiary;
     }
   }
   switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
-    case 'pop':
-      return props.theme.colors.pop;
-    case 'pop02':
-      return props.theme.colors.pop02;
     case 'success':
       return props.theme.colors.success;
     default:
@@ -80,17 +75,16 @@ const Container = styled.div<{ isLoadingIndicator?: boolean }>`
 
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
-    props.isInverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
+    props.isInverse ? transparentize(0.75, props.theme.colors.neutral900) : props.theme.colors.neutral100};
   box-shadow: inset 0 0 0 1px
     ${props =>
       props.isInverse
-        ? `${props.theme.colors.neutral08}80`
-        : props.theme.colors.neutral04};
+        ? transparentize(0.5, props.theme.colors.neutral100)
+        : props.theme.colors.neutral};
   border-radius: 50em;
   overflow: hidden;
   display: flex;
   height: ${props => props.height};
-  /* padding: 1px; */
   width: 100%;
 `;
 
