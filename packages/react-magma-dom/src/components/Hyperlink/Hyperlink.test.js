@@ -46,7 +46,7 @@ describe('Hyperlink', () => {
 
     const element = getByText(/google/i);
 
-    expect(element).toHaveStyleRule('color', magma.colors.primaryInverse);
+    expect(element).toHaveStyleRule('color', magma.colors.tertiary);
   });
 
   it('should render an anchor element with default button styles', () => {
