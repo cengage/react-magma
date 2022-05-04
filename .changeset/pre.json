@@ -11,8 +11,12 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "cuddly-jokes-guess",
+    "rebrand-breadcrumbs",
+    "rebrand-cards",
     "rebrand-colors",
     "rebrand-focus",
+    "rebrand-tooltips",
     "rebrand-type"
   ]
 }

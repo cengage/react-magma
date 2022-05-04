@@ -822,15 +822,15 @@ export const magma = {
   tooltip: {
     arrowSize: '4px',
     arrowSizeDoubled: '8px',
-    backgroundColor: colors.neutral,
-    fontWeight: 600,
+    backgroundColor: colors.neutral700,
+    fontWeight: 500,
     maxWidth: '300px',
-    textColor: colors.neutral08,
+    textColor: colors.neutral100,
     typeScale: typeScale.size01,
     zIndex: 999,
     inverse: {
-      backgroundColor: colors.neutral08,
-      textColor: colors.neutral,
+      backgroundColor: colors.neutral100,
+      textColor: colors.neutral700,
     },
   },
 };

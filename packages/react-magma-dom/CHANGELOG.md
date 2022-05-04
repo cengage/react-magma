@@ -1,5 +1,23 @@
 # Change Log
 
+## 3.0.0-next.5
+
+### Major Changes
+
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+
+## 3.0.0-next.4
+
+### Major Changes
+
+- 476c5023: feat(tooltips): Updating tooltip colors
+
+## 3.0.0-next.3
+
+### Major Changes
+
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+
 ## 3.0.0-next.2
 
 ### Major Changes

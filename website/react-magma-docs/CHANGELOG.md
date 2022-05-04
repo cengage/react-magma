@@ -1,5 +1,32 @@
 # Change Log
 
+## 3.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [f545eb26]
+  - react-magma-dom@3.0.0-next.5
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- 6839a984: docs: update design guideline images
+
+## 2.2.14-next.4
+
+### Patch Changes
+
+- Updated dependencies [476c5023]
+  - react-magma-dom@3.0.0-next.4
+
+## 2.2.14-next.3
+
+### Patch Changes
+
+- Updated dependencies [6beb7283]
+  - react-magma-dom@3.0.0-next.3
+
 ## 2.2.14-next.2
 
 ### Patch Changes
