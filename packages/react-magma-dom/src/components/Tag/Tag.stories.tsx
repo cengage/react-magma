@@ -204,11 +204,7 @@ export const OnDeleteWithIcon = args => {
   return (
     <>
       {isVisible && (
-        <Tag
-          {...args}
-          onDelete={deleteMe}
-          icon={<AccountCircleIcon />}
-        >
+        <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
           Text Label
         </Tag>
       )}
@@ -217,8 +213,34 @@ export const OnDeleteWithIcon = args => {
 };
 OnDeleteWithIcon.args = {
   ...Default.args,
-  color: TagColor.danger,
   isInverse: true,
+};
+
+export const OnDeleteWithIconInverse = args => {
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  function deleteMe() {
+    setIsVisible(false);
+  }
+  return (
+    <Card isInverse>
+      <CardBody>
+        {isVisible && (
+          <Tag
+            isInverse
+            {...args}
+            onDelete={deleteMe}
+            icon={<AccountCircleIcon />}
+          >
+            Text Label
+          </Tag>
+        )}
+      </CardBody>
+    </Card>
+  );
+};
+OnDeleteWithIconInverse.args = {
+  ...Default.args,
 };
 
 export const Primary = Template.bind({});
