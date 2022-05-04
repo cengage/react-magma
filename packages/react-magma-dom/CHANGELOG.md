@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.8
+
+### Major Changes
+
+- d74ec404: feat(toggle/radio/checkbox): Updating toggle, radio checkbox and indeterminate checkbox with new colors.
+
 ## 3.0.0-next.7
 
 ### Major Changes
