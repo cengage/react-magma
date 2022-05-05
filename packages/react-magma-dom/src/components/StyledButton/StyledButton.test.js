@@ -3,7 +3,7 @@ import { axe } from '../../../axe-helper';
 import { StyledButton } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { darken, lighten, tint } from 'polished';
+import { darken, tint, transparentize } from 'polished';
 
 describe('Styled Button', () => {
   it('should find element by testId', () => {
@@ -243,7 +243,10 @@ describe('Styled Button', () => {
         const button = getByTestId('button-test');
 
         expect(button).toHaveStyleRule('background', 'none');
-        expect(button).toHaveStyleRule('border-color', magma.colors.primary300);
+        expect(button).toHaveStyleRule(
+          'border-color',
+          transparentize(0.5, magma.colors.tertiary500)
+        );
         expect(button).toHaveStyleRule('color', magma.colors.tertiary500);
       });
 
