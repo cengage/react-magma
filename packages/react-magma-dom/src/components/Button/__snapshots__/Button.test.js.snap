@@ -568,8 +568,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #ccc;
-  color: #707070;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -679,8 +679,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #ccc;
-  color: #707070;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {

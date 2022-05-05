@@ -141,7 +141,7 @@ describe('Styled Button', () => {
         );
         expect(button).toHaveStyleRule(
           'background',
-          darken(0.2, magma.colors.neutral100),
+          tint(0.7, magma.colors.primary),
           { target: ':active' }
         );
         expect(button).toHaveStyleRule('border-color', magma.colors.primary300);
@@ -189,12 +189,13 @@ describe('Styled Button', () => {
         expect(button).toHaveStyleRule('background', magma.colors.secondary500);
         expect(button).toHaveStyleRule(
           'background',
-          lighten(0.1, magma.colors.secondary500),
+          darken(0.1, magma.colors.secondary500),
           { target: ':hover' }
         );
         expect(button).toHaveStyleRule(
           'background',
-          lighten(0.2, magma.colors.secondary500),
+          darken(0.15, magma.colors.secondary500),
+
           { target: ':active' }
         );
         expect(button).toHaveStyleRule(
@@ -261,9 +262,9 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.danger200);
+        expect(button).toHaveStyleRule('background', magma.colors.danger);
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral100);
-        expect(button).toHaveStyleRule('color', magma.colors.danger700);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
       });
     });
 

@@ -85,7 +85,7 @@ describe('Banner', () => {
     );
     expect(getByText('btn text').parentElement).toHaveStyleRule(
       'color',
-      magma.colors.danger700
+      magma.colors.neutral100
     );
   });
 
