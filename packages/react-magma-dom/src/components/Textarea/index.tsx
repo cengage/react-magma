@@ -69,15 +69,13 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     >(props.defaultValue || props.value || '');
 
     React.useEffect(() => {
-      if (props.value) {
-        setValue(props.value);
-      }
+      setValue(props.value);
     }, [props.value]);
     function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       props.onChange &&
         typeof props.onChange === 'function' &&
         props.onChange(event);
-
+        
       setValue(event.target.value);
     }
 
@@ -109,7 +107,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           style={textareaStyle}
           theme={theme}
           value={value}
-          width='100%'
+          width="100%"
         />
       </FormFieldContainer>
     );
