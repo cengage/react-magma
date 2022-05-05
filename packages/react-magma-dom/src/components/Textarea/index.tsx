@@ -75,7 +75,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       props.onChange &&
         typeof props.onChange === 'function' &&
         props.onChange(event);
-        
+
       setValue(event.target.value);
     }
 
