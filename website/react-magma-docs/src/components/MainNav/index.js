@@ -211,6 +211,22 @@ export const MainNav = ({ ...props }) => {
               ...navFields
             }
           }
+          layout: allMdx(
+            filter: { fileAbsolutePath: { glob: "**/src/pages/component/layout/**" } }
+            sort: { order: ASC, fields: frontmatter___title }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
+          accessibility: allMdx(
+            filter: { fileAbsolutePath: { glob: "**/src/pages/accessibility/**" } }
+            sort: { order: ASC, fields: frontmatter___title }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
         }
       `}
       render={data => (
@@ -357,7 +373,51 @@ export const MainNav = ({ ...props }) => {
                         </ListItem>
                       ))}
                     </List>
-                    <Heading3 isInverse={isInverse}>API</Heading3>
+                    <Heading3 isInverse={isInverse}>Layout</Heading3>
+                    <List>
+                      {data.layout.edges.map(({ node }) => (
+                        <ListItem key={node.fields.slug}>
+                          <StyledLink2
+                            activeStyle={activeStyle}
+                            isInverse={isInverse}
+                            onClick={props.handleClick}
+                            to={node.fields.slug}
+                          >
+                            {node.frontmatter.title}
+                          </StyledLink2>
+                          <Router>
+                            <SubMenu2
+                              path={withPrefix(node.fields.slug)}
+                              headings={node.headings}
+                              handleClick={props.handleClick}
+                            />
+                          </Router>
+                        </ListItem>
+                      ))}
+                    </List>
+                    <Heading3 isInverse={isInverse}>Accessibility</Heading3>
+                    <List>
+                      {data.accessibility.edges.map(({ node }) => (
+                        <ListItem key={node.fields.slug}>
+                          <StyledLink2
+                            activeStyle={activeStyle}
+                            isInverse={isInverse}
+                            onClick={props.handleClick}
+                            to={node.fields.slug}
+                          >
+                            {node.frontmatter.title}
+                          </StyledLink2>
+                          <Router>
+                            <SubMenu2
+                              path={withPrefix(node.fields.slug)}
+                              headings={node.headings}
+                              handleClick={props.handleClick}
+                            />
+                          </Router>
+                        </ListItem>
+                      ))}
+                    </List>
+                    <Heading3 isInverse={isInverse}>TO BE ORGANIZED</Heading3>
                     <List>
                       {data.apiDocs.edges.map(({ node }) => (
                         <ListItem key={node.fields.slug}>

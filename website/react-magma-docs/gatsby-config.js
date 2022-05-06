@@ -43,6 +43,13 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `accessibility`,
+        path: `${__dirname}/src/pages/components/accessibility`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `design`,
         path: `${__dirname}/src/pages/design`,
       },

@@ -39,6 +39,52 @@ const getPathPrefix = path => {
     }
     return 'patterns';
   }
+
+  if(/designing/.test(path)) {
+    return 'designing';
+  }
+  else if(/developing/.test(path)) {
+    return 'developing';
+  }
+  else if(/contributing/.test(path)) {
+    return 'contributing';
+  }
+  else if(/components/.test(path)) {
+    if (/layout/.test(path)) {
+      return 'layout';
+    }
+    if (/datadisplay/.test(path)) {
+      return 'datadisplay';
+    }
+    if (/inputs/.test(path)) {
+      return 'inputs';
+    }
+    if (/feedback/.test(path)) {
+      return 'feedback';
+    }
+    if (/navigation/.test(path)) {
+      return 'navigation';
+    }
+    if (/utilities/.test(path)) {
+      return 'utilities';
+    }
+    if (/accessibility/.test(path)) {
+      return 'accessibility';
+    }
+    if (/hooks/.test(path)) {
+      return 'hooks';
+    }
+    return 'components';
+  }
+  else if(/datavisualization/.test(path)) {
+    return 'datavisualization';
+  }
+  else if(/patterns/.test(path)) {
+    return 'patterns';
+  }
+  else if(/tools/.test(path)) {
+    return 'tools';
+  }
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
