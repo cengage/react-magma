@@ -29,7 +29,7 @@ Inverse.args = {
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card background={magma.colors.primary600} isInverse>
       <CardBody>
         <Story />
       </CardBody>
