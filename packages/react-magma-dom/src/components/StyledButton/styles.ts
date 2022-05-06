@@ -220,9 +220,13 @@ export function buildFocusBackground(props) {
     return darken(0.1, props.theme.colors.secondary500);
   }
   if (props.color === 'danger') {
-    if (props.variant !== 'solid' && !props.isInverse) {
+    if (props.variant !== 'solid') {
+      if (props.isInverse) {
+        return transparentize(0.3, props.theme.colors.neutral900);
+      }
       return tint(0.9, props.theme.colors.danger);
     }
+    return darken(0.1, props.theme.colors.danger);
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -231,8 +235,6 @@ export function buildFocusBackground(props) {
     switch (props.color) {
       case 'secondary':
         return tint(0.9, props.theme.colors.primary);
-      case 'danger':
-        return darken(0.1, props.theme.colors.danger);
       default:
         return tint(0.9, props.theme.colors.primary);
     }
@@ -326,12 +328,18 @@ export function buildActiveBackground(props) {
 
   if (props.color === 'marketing') {
     if (props.variant !== 'solid' && props.isInverse) {
-      return 'rgba(0, 0, 0, 0.3)';
+      return transparentize(0.7, props.theme.colors.neutral900);
     }
     return darken(0.15, props.theme.colors.secondary500);
   }
   if (props.color === 'danger') {
-    if (props.variant !== 'solid' && !props.isInverse) {
+    if (props.isInverse) {
+      if (props.variant !== 'solid') {
+        return transparentize(0.5, props.theme.colors.neutral900);
+      }
+      return darken(0.2, props.theme.colors.danger);
+    }
+    if (props.variant !== 'solid') {
       return tint(0.7, props.theme.colors.danger);
     }
   }
@@ -342,8 +350,6 @@ export function buildActiveBackground(props) {
     switch (props.color) {
       case 'secondary':
         return tint(0.7, props.theme.colors.primary);
-      case 'danger':
-        return darken(0.2, props.theme.colors.danger);
       default:
         return tint(0.7, props.theme.colors.primary);
     }
@@ -367,7 +373,10 @@ export function buildActiveColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
   if (props.color === 'danger') {
-    if (props.variant !== 'solid' && !props.isInverse) {
+    if (props.variant !== 'solid') {
+      if (props.isInverse) {
+        return props.theme.colors.danger200;
+      }
       return darken(0.2, props.theme.colors.danger);
     }
   }
@@ -390,8 +399,6 @@ export function buildActiveColor(props) {
         return props.theme.colors.tertiary500;
       case 'secondary':
         return props.theme.colors.tertiary500;
-      case 'danger':
-        return props.theme.colors.danger200;
       case 'marketing':
         return props.theme.colors.tertiary500;
 
