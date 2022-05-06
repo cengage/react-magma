@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.0-next.9
+
+### Major Changes
+
+- 059d58fa: feat(buttons): adding in color changes throughout applicable components
+
+  Note: button variant "outline" and button color "success" have been removed as a part of the V3 update which will cause breaking changes.
+
 ## 3.0.0-next.8
 
 ### Major Changes

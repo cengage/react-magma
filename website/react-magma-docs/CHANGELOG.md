@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies [059d58fa]
+  - react-magma-dom@3.0.0-next.9
+
 ## 3.0.0-next.9
 
 ### Patch Changes
