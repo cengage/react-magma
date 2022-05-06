@@ -28,14 +28,6 @@ export const Default = () => {
         Google
       </Hyperlink>
       <Hyperlink
-        color={ButtonColor.success}
-        styledAs="Button"
-        target="_blank"
-        to="https://www.google.com"
-      >
-        Google
-      </Hyperlink>
-      <Hyperlink
         color={ButtonColor.danger}
         styledAs="Button"
         target="_blank"

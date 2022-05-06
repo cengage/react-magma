@@ -90,8 +90,7 @@ export const DropdownSplitButton = React.forwardRef<
         onClick={handleClick}
         shape={ButtonShape.rightCap}
         style={{
-          marginLeft:
-            variant === ButtonVariant.outline ? 0 : theme.spaceScale.spacing01,
+          marginLeft: theme.spaceScale.spacing01,
         }}
         ref={ref}
         variant={variant}
