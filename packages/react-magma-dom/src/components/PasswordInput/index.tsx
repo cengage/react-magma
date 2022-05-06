@@ -141,7 +141,7 @@ export const PasswordInput = React.forwardRef<
                   ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
                   : SHOW_PASSWORD_BUTTON_ARIA_LABEL
               }
-              isInverse={false}
+              isInverse={isInverse}
               onClick={togglePasswordShown}
               size={ButtonSize.small}
               style={{

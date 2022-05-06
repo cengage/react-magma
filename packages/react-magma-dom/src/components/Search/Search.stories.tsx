@@ -34,6 +34,12 @@ export default {
         type: 'boolean',
       },
     },
+    isInverse: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    }
   },
 } as Meta;
 
