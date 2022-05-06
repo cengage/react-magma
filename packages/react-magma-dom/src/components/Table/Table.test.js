@@ -11,6 +11,7 @@ import {
 import { magma } from '../../theme/magma';
 
 import { render, fireEvent } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 describe('Table', () => {
   it('should find element by testId', () => {
@@ -60,7 +61,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      'rgba(63,63,63,0.07)',
+      magma.colors.neutral200,
       {
         target: ':nth-of-type(even)',
       }
@@ -85,7 +86,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.tone02,
+      transparentize(0.93, magma.colors.neutral900),
       {
         target: ':hover',
       }
@@ -172,12 +173,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      magma.colors.tint03
+      transparentize(0.93, magma.colors.neutral100)
     );
 
     expect(getByTestId('row1')).toHaveStyleRule(
       'background',
-      magma.colors.tint02,
+      transparentize(0.85, magma.colors.neutral100),
       {
         target: ':hover',
       }
@@ -185,7 +186,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.tint,
+      transparentize(0.3, magma.colors.neutral100),
       {
         target: ':nth-of-type(even)',
       }
@@ -331,8 +332,12 @@ describe('Table', () => {
       }
     );
 
-    expect(button).toHaveStyleRule('background', magma.colors.tint, {
-      target: ':hover',
-    });
+    expect(button).toHaveStyleRule(
+      'background',
+      transparentize(0.85, magma.colors.neutral100),
+      {
+        target: ':hover',
+      }
+    );
   });
 });

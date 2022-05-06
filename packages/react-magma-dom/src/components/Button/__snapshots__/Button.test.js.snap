@@ -33,7 +33,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -144,7 +144,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -271,7 +271,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -382,7 +382,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -495,10 +495,10 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
+  border: 1px solid;
+  border-color: #8B91DA;
   border-radius: 8px;
-  color: #707070;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -509,7 +509,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -544,8 +544,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
@@ -568,8 +568,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #ccc;
-  color: #707070;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -606,10 +606,10 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
+  border: 1px solid;
+  border-color: #8B91DA;
   border-radius: 8px;
-  color: #707070;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -620,7 +620,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -655,8 +655,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #707070;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
@@ -679,8 +679,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #ccc;
-  color: #707070;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -748,7 +748,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -859,7 +859,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -987,7 +987,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1098,7 +1098,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1193,27 +1193,16 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 `;
 
 exports[`Button Base Button Snapshot should render with updated variant 1`] = `
-.emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
-  color: #3942B0;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1224,7 +1213,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1259,12 +1248,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1283,8 +1272,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1320,10 +1309,11 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
-  color: #3942B0;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1334,7 +1324,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -1369,12 +1359,12 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1393,8 +1383,8 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1411,6 +1401,18 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
