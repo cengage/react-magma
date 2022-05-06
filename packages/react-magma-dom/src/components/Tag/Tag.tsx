@@ -11,6 +11,7 @@ import { Omit, XOR, getNodeText } from '../../utils';
 import { I18nContext } from '../../i18n';
 
 export enum TagColor {
+  default = 'default',
   primary = 'primary',
   lowContrast = 'lowContrast',
   highContrast = 'highContrast',
@@ -174,12 +175,7 @@ function buildButtonTextColor(props) {
     }
   } else if (props.disabled && !props.isInverse) {
     // Disabled state text colors
-    switch (props.color) {
-      case 'primary' || 'highContrast' || 'lowContrast':
-        return transparentize(0.4, props.theme.colors.neutral500);
-      default:
-        return transparentize(0.4, props.theme.colors.neutral500);
-    }
+    return transparentize(0.4, props.theme.colors.neutral500);
   }
   // Default state text colors
   switch (props.color) {
@@ -266,7 +262,7 @@ const TagStyling = props => css`
   font-size: ${props.size === 'small'
     ? `${props.theme.typeScale.size01.fontSize}`
     : `${props.theme.typeScale.size02.fontSize}`};
-  font-weight: ${props.size === 'small' ? `600` : `inherit`};
+  font-weight: ${props.size === 'small' ? `500` : `inherit`};
   letter-spacing: ${props.size === 'small'
     ? `${props.theme.typeScale.size01.letterSpacing}`
     : `${props.theme.typeScale.size02.letterSpacing}`};
