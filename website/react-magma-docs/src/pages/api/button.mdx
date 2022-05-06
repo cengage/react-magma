@@ -36,7 +36,7 @@ export function Example() {
 
 ## Colors
 
-Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `marketing` with `primary` being the default value.
+Colors for buttons include `primary`, `secondary`, `danger`, and `marketing` with `primary` being the default value.
 
 ```tsx
 import React from 'react';
@@ -47,7 +47,6 @@ export function Example() {
     <>
       <Button color={ButtonColor.primary}>Primary (default)</Button>
       <Button color={ButtonColor.secondary}>Secondary</Button>
-      <Button color={ButtonColor.success}>Success</Button>
       <Button color={ButtonColor.danger}>Danger</Button>
       <Button color={ButtonColor.marketing}>Marketing</Button>
     </>
@@ -57,9 +56,9 @@ export function Example() {
 
 ## Variants
 
-Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
+Variants for buttons include `solid` and `link`, with `solid` being the default value.
 
-The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons.
+The `marketing` buttons do not have a `link` variant, and will render as solid buttons.
 
 ```tsx
 import React from 'react';
@@ -72,9 +71,6 @@ export function Example() {
         <Button color={ButtonColor.primary} variant={ButtonVariant.solid}>
           Solid (default)
         </Button>
-        <Button color={ButtonColor.primary} variant={ButtonVariant.outline}>
-          Outline
-        </Button>
         <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
           Link
         </Button>
@@ -83,30 +79,10 @@ export function Example() {
         <Button color={ButtonColor.secondary} variant={ButtonVariant.solid}>
           Solid (default)
         </Button>
-        <Button color={ButtonColor.secondary} variant={ButtonVariant.outline}>
-          Outline
-        </Button>
-        <Button color={ButtonColor.secondary} variant={ButtonVariant.link}>
-          Link
-        </Button>
-      </p>
-      <p>
-        <Button color={ButtonColor.success} variant={ButtonVariant.solid}>
-          Solid (default)
-        </Button>
-        <Button color={ButtonColor.success} variant={ButtonVariant.outline}>
-          Outline
-        </Button>
-        <Button color={ButtonColor.success} variant={ButtonVariant.link}>
-          Link
-        </Button>
       </p>
       <p>
         <Button color={ButtonColor.danger} variant={ButtonVariant.solid}>
           Solid (default)
-        </Button>
-        <Button color={ButtonColor.danger} variant={ButtonVariant.outline}>
-          Outline
         </Button>
         <Button color={ButtonColor.danger} variant={ButtonVariant.link}>
           Link
@@ -163,7 +139,7 @@ export function Example() {
 The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
 The default value is `false`.
 
-While `outline isInverse buttons` and `link isInverse buttons` still accept the `color` property, the `color` property
+While `link isInverse buttons` still accepts the `color` property, the `color` property
 online affects `solid isInverse buttons`.
 
 The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
@@ -187,9 +163,6 @@ export function Example() {
           <Button color={ButtonColor.secondary} isInverse>
             Solid inverse
           </Button>
-          <Button color={ButtonColor.success} isInverse>
-            Solid inverse
-          </Button>
           <Button color={ButtonColor.danger} isInverse>
             Solid inverse
           </Button>
@@ -198,9 +171,6 @@ export function Example() {
           </Button>
         </p>
         <p>
-          <Button variant={ButtonVariant.outline} isInverse>
-            Outline inverse
-          </Button>
           <Button variant={ButtonVariant.link} isInverse>
             Link inverse
           </Button>
@@ -208,9 +178,6 @@ export function Example() {
         <p>
           <Button disabled isInverse>
             Disabled inverse
-          </Button>
-          <Button disabled isInverse variant={ButtonVariant.outline}>
-            Disabled outline inverse
           </Button>
           <Button disabled isInverse variant={ButtonVariant.link}>
             Disabled link inverse
@@ -276,7 +243,7 @@ export function Example() {
   return (
     <>
       <Button disabled>Disabled</Button>
-      <Button disabled variant={ButtonVariant.outline}>
+      <Button disabled variant={ButtonVariant.solid}>
         Disabled
       </Button>
       <Button disabled variant={ButtonVariant.link}>

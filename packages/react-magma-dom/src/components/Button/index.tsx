@@ -4,14 +4,12 @@ import { useIsInverse } from '../../inverse';
 
 export enum ButtonVariant {
   solid = 'solid', //default
-  outline = 'outline',
   link = 'link',
 }
 
 export enum ButtonColor {
   primary = 'primary', //default
   secondary = 'secondary',
-  success = 'success',
   danger = 'danger',
   marketing = 'marketing',
 }

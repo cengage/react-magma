@@ -18,11 +18,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: none;
   border: 0;
   border-color: #FFFFFF;
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #CDDEFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -33,7 +33,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -88,7 +88,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
   background: rgba(0,0,0,0.3);
-  color: #FFFFFF;
+  color: #CDDEFF;
 }
 
 .emotion-2:not(:disabled):after {
@@ -112,7 +112,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 .emotion-2:not(:disabled):active {
   background: rgba(0,0,0,0.5);
-  color: #FFFFFF;
+  color: #CDDEFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -164,11 +164,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: none;
   border: 0;
   border-color: #FFFFFF;
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #CDDEFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -179,7 +179,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -234,7 +234,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
   background: rgba(0,0,0,0.3);
-  color: #FFFFFF;
+  color: #CDDEFF;
 }
 
 .emotion-2:not(:disabled):after {
@@ -258,7 +258,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 .emotion-2:not(:disabled):active {
   background: rgba(0,0,0,0.5);
-  color: #FFFFFF;
+  color: #CDDEFF;
 }
 
 .emotion-2:not(:disabled):active:after {

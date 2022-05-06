@@ -41,7 +41,7 @@ export function Example() {
         <IconButton aria-label="Notifications" icon={<NotificationsIcon />} />
         <IconButton
           aria-label="Notifications"
-          variant={ButtonVariant.outline}
+          variant={ButtonVariant.solid}
           icon={<NotificationsIcon />}
         />
         <IconButton
@@ -57,7 +57,7 @@ export function Example() {
         <IconButton
           aria-label="Settings"
           color={ButtonColor.secondary}
-          variant={ButtonVariant.outline}
+          variant={ButtonVariant.solid}
           icon={<SettingsIcon />}
         />
         <IconButton
@@ -66,20 +66,14 @@ export function Example() {
           variant={ButtonVariant.link}
           icon={<SettingsIcon />}
         />
+        <IconButton aria-label="Correct" icon={<CheckIcon />} />
         <IconButton
           aria-label="Correct"
-          color={ButtonColor.success}
+          variant={ButtonVariant.solid}
           icon={<CheckIcon />}
         />
         <IconButton
           aria-label="Correct"
-          color={ButtonColor.success}
-          variant={ButtonVariant.outline}
-          icon={<CheckIcon />}
-        />
-        <IconButton
-          aria-label="Correct"
-          color={ButtonColor.success}
           variant={ButtonVariant.link}
           icon={<CheckIcon />}
         />
@@ -91,7 +85,7 @@ export function Example() {
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
-          variant={ButtonVariant.outline}
+          variant={ButtonVariant.solid}
           icon={<AlertIcon />}
         />
         <IconButton
@@ -111,15 +105,11 @@ export function Example() {
         <IconButton
           icon={<SettingsIcon />}
           color={ButtonColor.secondary}
-          variant={ButtonVariant.outline}
+          variant={ButtonVariant.solid}
         >
           Settings
         </IconButton>
-        <IconButton
-          icon={<CheckIcon />}
-          color={ButtonColor.success}
-          variant={ButtonVariant.link}
-        >
+        <IconButton icon={<CheckIcon />} variant={ButtonVariant.link}>
           Submit
         </IconButton>
       </p>

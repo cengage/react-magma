@@ -14,7 +14,7 @@ export interface Colors {
   secondary500: string;
   secondary600: string;
   secondary700: string;
-  
+
   tertiary: string;
   tertiary500: string;
   tertiary600: string;
@@ -473,10 +473,10 @@ const colors = {
   ...dangerColors,
   ...warningColors,
   ...successColors,
-  
+
   focus: infoColors.info500,
   focusInverse: infoColors.info200,
-  
+
   // Legacy Colors - To be deleted after rebranding
   // primary: '#006298', // link color blue
   primaryInverse: '#70CDFF', // link color inverse blue
