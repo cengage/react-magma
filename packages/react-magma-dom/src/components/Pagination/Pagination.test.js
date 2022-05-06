@@ -64,7 +64,7 @@ describe('Pagination', () => {
 
     expect(button).toHaveStyleRule(
       'color',
-      transparentize(0.3, magma.colors.neutral100)
+      transparentize(0.7, magma.colors.neutral100)
     );
   });
 

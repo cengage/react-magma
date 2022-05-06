@@ -166,10 +166,10 @@ export function buildColor(props) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      if (props.color === 'secondary') {
-        return transparentize(0.3, props.theme.colors.neutral100);
+      if (props.color === 'secondary' || props.variant === 'link') {
+        return transparentize(0.7, props.theme.colors.neutral100);
       }
-      return transparentize(0.2, props.theme.colors.neutral100);
+      return transparentize(0.6, props.theme.colors.neutral100);
     }
     return transparentize(0.4, props.theme.colors.neutral500);
   }
@@ -215,14 +215,14 @@ export function buildFocusBackground(props) {
 
   if (props.color === 'marketing') {
     if (props.variant !== 'solid' && props.isInverse) {
-      return transparentize(0.3, props.theme.colors.neutral900);
+      return transparentize(0.7, props.theme.colors.neutral900);
     }
     return darken(0.1, props.theme.colors.secondary500);
   }
   if (props.color === 'danger') {
     if (props.variant !== 'solid') {
       if (props.isInverse) {
-        return transparentize(0.3, props.theme.colors.neutral900);
+        return transparentize(0.7, props.theme.colors.neutral900);
       }
       return tint(0.9, props.theme.colors.danger);
     }
