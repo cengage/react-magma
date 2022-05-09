@@ -9,11 +9,7 @@ export default {
 
 export const Default = () => {
   return (
-    <SkipLink
-      to="#"
-      color={ButtonColor.success}
-      variant={ButtonVariant.outline}
-    >
+    <SkipLink to="#" variant={ButtonVariant.solid}>
       Skip to content
     </SkipLink>
   );

@@ -18,11 +18,10 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: none;
   border: 0;
-  border-color: #FFFFFF;
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -33,7 +32,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -76,23 +75,24 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
+  margin: 0 -1px 0 0;
   padding: 0 8px;
   width: auto;
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #A6DEFF;
+  outline: 2px solid #0074B7;
   outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: rgba(0,0,0,0.3);
-  color: #FFFFFF;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #FFFFFF;
+  background: #3942B0;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -111,8 +111,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):active {
-  background: rgba(0,0,0,0.5);
-  color: #FFFFFF;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -136,15 +136,14 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   outline-offset: 0 !important;
 }
 
-.emotion-2:hover:not(:disabled):before,
-.emotion-2:focus:not(:disabled):before {
-  background: #0074B7;
-  opacity: 0.15;
+.emotion-2:not(:disabled):hover {
+  background: rgba(0,0,0,0.1);
+  color: inherit;
 }
 
-.emotion-2:hover:after,
-.emotion-2:focus:after {
-  display: none;
+.emotion-2:not(:disabled):active {
+  background: rgba(0,0,0,0.2);
+  color: inherit;
 }
 
 .emotion-0 {
@@ -164,11 +163,10 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
+  background: none;
   border: 0;
-  border-color: #FFFFFF;
   border-radius: 100%;
-  color: #FFFFFF;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -179,7 +177,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
   font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -222,23 +220,24 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
+  margin: 0 -1px 0 0;
   padding: 0 8px;
   width: auto;
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #A6DEFF;
+  outline: 2px solid #0074B7;
   outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: rgba(0,0,0,0.3);
-  color: #FFFFFF;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #FFFFFF;
+  background: #3942B0;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -257,8 +256,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):active {
-  background: rgba(0,0,0,0.5);
-  color: #FFFFFF;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -282,15 +281,14 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   outline-offset: 0 !important;
 }
 
-.emotion-2:hover:not(:disabled):before,
-.emotion-2:focus:not(:disabled):before {
-  background: #0074B7;
-  opacity: 0.15;
+.emotion-2:not(:disabled):hover {
+  background: rgba(0,0,0,0.1);
+  color: inherit;
 }
 
-.emotion-2:hover:after,
-.emotion-2:focus:after {
-  display: none;
+.emotion-2:not(:disabled):active {
+  background: rgba(0,0,0,0.2);
+  color: inherit;
 }
 
 <button

@@ -116,7 +116,7 @@ export const ExpandCollapseAll = args => {
         disabled={disableExpandAll}
         onClick={handleExpandAll}
         size={ButtonSize.small}
-        variant={ButtonVariant.outline}
+        variant={ButtonVariant.solid}
       >
         Expand All
       </Button>
@@ -124,12 +124,16 @@ export const ExpandCollapseAll = args => {
         disabled={disableCollapseAll}
         onClick={handleCollapseAll}
         size={ButtonSize.small}
-        variant={ButtonVariant.outline}
+        variant={ButtonVariant.solid}
       >
         Collapse All
       </Button>
 
-      <Accordion {...args} index={expandedIndex} onExpandedChange={handleExpandedChange}>
+      <Accordion
+        {...args}
+        index={expandedIndex}
+        onExpandedChange={handleExpandedChange}
+      >
         <AccordionItem>
           <AccordionButton>Section 1</AccordionButton>
           <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>

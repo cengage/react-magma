@@ -2,6 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
+import { transparentize } from 'polished';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   InfoIcon,
@@ -225,9 +226,11 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
   ${props =>
     props.isToast &&
     css`
-      box-shadow: ${props.isInverse
-        ? `0 2px 8px 0 rgba(0, 0, 0, 0.7)`
-        : `0 2px 8px 0 rgba(0, 0, 0, 0.4)`};
+      box-shadow: ${
+        props.isInverse
+          ? `0 2px 8px 0 ${transparentize(0.3, props.theme.colors.neutral900)}`
+          : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`
+      }      
       height: ${props.theme.spaceScale.spacing11};
     `}
 `;
@@ -255,7 +258,7 @@ const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
     props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding: 0 8px;
+    padding: 0 ${props => props.theme.spaceScale.spacing03};
     svg {
       width: 20px;
     }
@@ -265,7 +268,7 @@ const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
 const ProgressRingWrapper = styled.div`
   margin-top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
-  top: ${props => props.theme.spaceScale.spacing02};
+  top: ${props => props.theme.spaceScale.spacing01};
   right: ${props => props.theme.spaceScale.spacing02};
 `;
 
@@ -281,6 +284,7 @@ const shouldForwardProp = prop => {
 
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
+  isInverse?: boolean;
   isToast?: boolean;
 }>`
   align-self: stretch;
@@ -288,6 +292,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     ${props => props.theme.borderRadius} 0;
   color: inherit;
   height: auto;
+  margin: ${props => (props.isToast ? '4px' : '0 -1px 0 0')};
   padding: ${props =>
     props.isToast
       ? `0 ${props.theme.spaceScale.spacing04}`
@@ -302,20 +307,19 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
           : theme.colors.focusInverse};
     outline-offset: 0 !important;
   }
-
-  &:hover,
-  &:focus {
-    :not(:disabled):before {
-      background: ${({ alertVariant, theme }) =>
-        alertVariant === 'warning'
-          ? theme.colors.focus
-          : theme.colors.focusInverse};
-      opacity: 0.15;
-    }
-
-    &:after {
-      display: none;
-    }
+  &:not(:disabled):hover {
+    background: ${props =>
+      props.isInverse
+        ? transparentize(0.8, props.theme.colors.neutral900)
+        : transparentize(0.9, props.theme.colors.neutral900)};
+    color: inherit;
+  }
+  &:not(:disabled):active {
+    background: ${props =>
+      props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral900)
+        : transparentize(0.8, props.theme.colors.neutral900)};
+    color: inherit;
   }
 `;
 
@@ -376,16 +380,18 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
-    const ProgressRingColor =
-      variant === AlertVariant.success
-        ? theme.colors.success500
-        : variant === AlertVariant.warning
-        ? theme.colors.warning500
-        : variant === AlertVariant.danger
-        ? theme.colors.danger500
-        : isInverse
-        ? theme.colors.neutral100
-        : theme.colors.info500;
+    function ProgressRingColor() {
+      switch (props.variant) {
+        case 'success':
+          return theme.colors.success500;
+        case 'warning':
+          return theme.colors.warning500;
+        case 'danger':
+          return theme.colors.danger500;
+        default:
+          return theme.colors.info500;
+      }
+    }
 
     return (
       <StyledAlert
@@ -417,7 +423,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                 {hasTimerRing && isToast && (
                   <ProgressRingWrapper theme={theme}>
                     <ProgressRing
-                      color={ProgressRingColor}
+                      color={ProgressRingColor()}
                       isActive={!isPaused}
                     />
                   </ProgressRingWrapper>
@@ -438,7 +444,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                       }
                     />
                   }
-                  isInverse
+                  isInverse={isInverse}
                   isToast={isToast}
                   onClick={forceDismiss || handleDismiss}
                   theme={theme}

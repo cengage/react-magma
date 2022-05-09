@@ -1,5 +1,46 @@
 # Change Log
 
+## 3.0.0-next.9
+
+### Major Changes
+
+- 059d58fa: feat(buttons): adding in color changes throughout applicable components
+
+  Note: button variant "outline" and button color "success" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.8
+
+### Major Changes
+
+- d74ec404: feat(toggle/radio/checkbox): Updating toggle, radio checkbox and indeterminate checkbox with new colors.
+
+## 3.0.0-next.7
+
+### Major Changes
+
+- b0f75257: feat(accordion): Updating accordion with new colors.
+- 18afc4fc: feat(badge): Updating badge colors. Adding `isInverse` support.
+- 8d0ecf2a: feat(inputs): Updating Inputs with rebrand styles
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+
+## 3.0.0-next.6
+
+### Major Changes
+
+- b737f6cd: feat(table): Updating table with new colors.
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+
+## 3.0.0-next.4
+
+### Major Changes
+
+- 476c5023: feat(tooltips): Updating tooltip colors
+
 ## 3.0.0-next.3
 
 ### Major Changes

@@ -1,19 +1,51 @@
 import React from 'react';
-import { Banner } from '.';
+import { Banner, BannerProps } from '.';
 import { AlertVariant } from '../AlertBase';
+import { Card, CardBody } from '../Card';
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+const Template: Story<BannerProps> = args => (
+  <>
+    <Banner {...args}>Default (info) banner</Banner>
+    <Banner {...args} variant={AlertVariant.success}>
+      Default (success) banner
+    </Banner>
+    <Banner {...args} variant={AlertVariant.warning}>
+      Default (waning) banner
+    </Banner>
+    <Banner {...args} variant={AlertVariant.danger}>
+      Default (danger) banner
+    </Banner>
+  </>
+);
 
 export default {
   component: Banner,
   title: 'Banner',
+  argTypes: {
+    variant: {
+      control: {
+        type: 'select',
+        options: AlertVariant,
+      },
+    },
+  },
+} as Meta;
+
+export const Default = Template.bind({});
+Default.args = {};
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  isInverse: true,
 };
 
-export const Default = () => {
-  return (
-    <>
-      <Banner>Default (info) banner</Banner>
-      <Banner variant={AlertVariant.success}>Default (info) banner</Banner>
-      <Banner variant={AlertVariant.warning}>Default (info) banner</Banner>
-      <Banner variant={AlertVariant.danger}>Default (info) banner</Banner>
-    </>
-  );
-};
+Inverse.decorators = [
+  Story => (
+    <Card>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];

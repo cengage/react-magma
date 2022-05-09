@@ -1,5 +1,56 @@
 # Change Log
 
+## 3.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies [059d58fa]
+  - react-magma-dom@3.0.0-next.9
+
+## 3.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies [d74ec404]
+  - react-magma-dom@3.0.0-next.8
+
+## 3.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies [b0f75257]
+- Updated dependencies [18afc4fc]
+- Updated dependencies [8d0ecf2a]
+- Updated dependencies [7659a0ba]
+  - react-magma-dom@3.0.0-next.7
+
+## 3.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies [b737f6cd]
+  - react-magma-dom@3.0.0-next.6
+
+## 3.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [f545eb26]
+  - react-magma-dom@3.0.0-next.5
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- 6839a984: docs: update design guideline images
+
+## 2.2.14-next.4
+
+### Patch Changes
+
+- Updated dependencies [476c5023]
+  - react-magma-dom@3.0.0-next.4
+
 ## 2.2.14-next.3
 
 ### Patch Changes

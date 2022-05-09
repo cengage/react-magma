@@ -14,7 +14,7 @@ export interface Colors {
   secondary500: string;
   secondary600: string;
   secondary700: string;
-  
+
   tertiary: string;
   tertiary500: string;
   tertiary600: string;
@@ -405,7 +405,7 @@ const tertiaryColors = {
 };
 
 const neutralColors = {
-  neutral100: '#FFFFFF', // black
+  neutral100: '#FFFFFF', // white
   neutral200: '#F5F5F5',
   neutral300: '#D4D4D4',
   neutral400: '#8D8D8D',
@@ -413,7 +413,7 @@ const neutralColors = {
   neutral600: '#5A5A5A',
   neutral700: '#454545',
   neutral800: '#2D2D2D',
-  neutral900: '#000000', // white
+  neutral900: '#000000', // black
 };
 
 const infoColors = {
@@ -473,10 +473,10 @@ const colors = {
   ...dangerColors,
   ...warningColors,
   ...successColors,
-  
+
   focus: infoColors.info500,
   focusInverse: infoColors.info200,
-  
+
   // Legacy Colors - To be deleted after rebranding
   // primary: '#006298', // link color blue
   primaryInverse: '#70CDFF', // link color inverse blue
@@ -822,15 +822,15 @@ export const magma = {
   tooltip: {
     arrowSize: '4px',
     arrowSizeDoubled: '8px',
-    backgroundColor: colors.neutral,
-    fontWeight: 600,
+    backgroundColor: colors.neutral700,
+    fontWeight: 500,
     maxWidth: '300px',
-    textColor: colors.neutral08,
+    textColor: colors.neutral100,
     typeScale: typeScale.size01,
     zIndex: 999,
     inverse: {
-      backgroundColor: colors.neutral08,
-      textColor: colors.neutral,
+      backgroundColor: colors.neutral100,
+      textColor: colors.neutral700,
     },
   },
 };

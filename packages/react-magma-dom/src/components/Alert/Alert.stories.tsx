@@ -2,11 +2,33 @@ import React from 'react';
 import { Alert, AlertProps } from './index';
 import { AlertVariant } from '../AlertBase';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<AlertProps> = args => (
-  <Alert {...args}>I am an Alert</Alert>
+  <>
+    <Alert {...args}>Default</Alert>
+    <Alert {...args} variant={AlertVariant.success}>
+      Success
+    </Alert>
+    <Alert {...args} variant={AlertVariant.warning}>
+      Warning
+    </Alert>
+    <Alert {...args} variant={AlertVariant.danger}>
+      Danger
+    </Alert>
+    <Alert {...args} isDismissible>
+      Default dismissible
+    </Alert>
+    <Alert {...args} isDismissible variant={AlertVariant.success}>
+      Success dismissible
+    </Alert>
+    <Alert {...args} isDismissible variant={AlertVariant.warning}>
+      Warning dismissible
+    </Alert>
+    <Alert {...args} isDismissible variant={AlertVariant.danger}>
+      Danger dismissible
+    </Alert>
+  </>
 );
 
 export default {
@@ -25,35 +47,13 @@ export default {
 export const Default = Template.bind({});
 Default.args = {};
 
-export const Dismissible = Template.bind({});
-Dismissible.args = {
-  isDismissible: true,
-};
-
-export const Danger = Template.bind({});
-Danger.args = {
-  variant: AlertVariant.danger,
-};
-
-export const Success = Template.bind({});
-Success.args = {
-  variant: AlertVariant.success,
-};
-
-export const Warning = Template.bind({});
-Warning.args = {
-  variant: AlertVariant.warning,
-  isDismissible: true,
-};
-
 export const Inverse = Template.bind({});
 Inverse.args = {
-  isDismissible: true,
   isInverse: true,
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

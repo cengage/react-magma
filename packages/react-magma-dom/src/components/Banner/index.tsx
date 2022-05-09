@@ -138,8 +138,6 @@ function renderIcon(variant = 'info', theme: any) {
 
 function getButtonColor(variant: AlertVariant) {
   switch (variant) {
-    case 'success':
-      return ButtonColor.success;
     case 'warning':
       return ButtonColor.secondary;
     case 'danger':

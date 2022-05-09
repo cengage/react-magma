@@ -11,9 +11,19 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "afraid-coats-laugh",
+    "cuddly-jokes-guess",
+    "rebrand-accordion",
+    "rebrand-badge",
+    "rebrand-breadcrumbs",
     "rebrand-cards",
     "rebrand-colors",
     "rebrand-focus",
+    "rebrand-inputs",
+    "rebrand-processBar",
+    "rebrand-table",
+    "rebrand-toggle",
+    "rebrand-tooltips",
     "rebrand-type"
   ]
 }

@@ -148,7 +148,7 @@ it('should render an input with a correctly styled error message', () => {
 
   expect(getByLabelText(labelText)).toHaveStyleRule(
     'color',
-    magma.colors.neutral
+    magma.colors.neutral700
   );
 
   expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);

@@ -267,9 +267,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                 return (
                   <StyledListItem key={index}>
                     <NavButton
-                      variant={
-                        isInverse ? ButtonVariant.outline : ButtonVariant.solid
-                      }
+                      variant={ButtonVariant.solid}
                       color={ButtonColor.secondary}
                       aria-label={i18n.pagination[`${type}ButtonLabel`]}
                       icon={
