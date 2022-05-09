@@ -106,7 +106,10 @@ const ModalContainer = styled(Transition)<{
   z-index: 998;
 `;
 
-const ModalBackdrop = styled(Transition)<{ isExiting?: boolean }>`
+const ModalBackdrop = styled(Transition)<{
+  isExiting?: boolean;
+  theme: ThemeInterface;
+}>`
   backdrop-filter: blur(3px);
   background: ${props => transparentize(0.4, props.theme.colors.neutral900)};
   bottom: 0;
@@ -128,7 +131,8 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
       ? transparentize(0.5, props.theme.colors.tertiary)
       : props.theme.colors.neutral};
   border-radius: ${props => props.theme.borderRadius};
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: ${props =>
+    `0 2px 6px ${transparentize(0.85, props.theme.colors.neutral900)}`};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -164,7 +168,7 @@ const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
   }
 `;
 
-const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
+const H1 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
   font-size: ${props =>
     props.theme.typographyVisualStyles.headingSmall.desktop.fontSize};
   line-height: ${props =>
@@ -332,7 +336,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               aria-modal={true}
               data-testid={testId}
               id={id}
-              isInverse={isInverse}
               onClick={isBackgroundClickDisabled ? null : handleModalClick}
               onMouseDown={
                 isBackgroundClickDisabled ? null : handleModalOnMouseDown
