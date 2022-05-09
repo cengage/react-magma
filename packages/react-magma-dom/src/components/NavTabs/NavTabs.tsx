@@ -53,11 +53,7 @@ export const NavTabs = React.forwardRef<
 
   const isInverse = useIsInverse(props.isInverse);
 
-  const background = backgroundColor
-    ? backgroundColor
-    : isInverse
-    ? theme.colors.foundation
-    : theme.colors.neutral08;
+  const background = backgroundColor ? backgroundColor : 'transparent';
 
   const [tabsMeta, tabsHandleMethods, tabsRefs] = useTabsMeta(
     theme,
@@ -67,11 +63,8 @@ export const NavTabs = React.forwardRef<
   );
 
   const { displayScroll } = tabsMeta;
-  const {
-    handleStartScrollClick,
-    handleEndScrollClick,
-    handleTabsScroll,
-  } = tabsHandleMethods;
+  const { handleStartScrollClick, handleEndScrollClick, handleTabsScroll } =
+    tabsHandleMethods;
   const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
 
   return (
