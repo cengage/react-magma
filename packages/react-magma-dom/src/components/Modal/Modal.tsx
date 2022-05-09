@@ -14,6 +14,8 @@ import { Transition, TransitionProps } from '../Transition';
 import { ThemeInterface } from '../../theme/magma';
 import { omit, useGenerateId, usePrevious } from '../../utils';
 import { useFocusLock } from '../../hooks/useFocusLock';
+import { transparentize } from 'polished';
+import { useIsInverse } from '../../inverse';
 
 export enum ModalSize {
   large = 'large',
@@ -62,6 +64,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   isOpen?: boolean;
+  isInverse?: boolean;
   /**
    * If true, the modal will removed from the DOM when closed
    * @default true
@@ -105,7 +108,7 @@ const ModalContainer = styled(Transition)<{
 
 const ModalBackdrop = styled(Transition)<{ isExiting?: boolean }>`
   backdrop-filter: blur(3px);
-  background: rgba(0, 0, 0, 0.6);
+  background: ${props => transparentize(0.4, props.theme.colors.neutral900)};
   bottom: 0;
   left: 0;
   right: 0;
@@ -115,12 +118,21 @@ const ModalBackdrop = styled(Transition)<{ isExiting?: boolean }>`
 `;
 
 const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
-  background: ${props => props.theme.colors.neutral08};
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral100};
   border: 1px solid;
-  border-color: ${props => props.theme.colors.neutral06};
+  border-color: ${props =>
+    props.isInverse
+      ? transparentize(0.5, props.theme.colors.tertiary)
+      : props.theme.colors.neutral};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  color: ${props => props.theme.colors.neutral};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral};
   margin: 0 auto;
   position: relative;
   z-index: 1000;
@@ -157,8 +169,13 @@ const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
     props.theme.typographyVisualStyles.headingSmall.desktop.fontSize};
   line-height: ${props =>
     props.theme.typographyVisualStyles.headingSmall.desktop.lineHeight};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral};
   margin: 0;
   padding-right: ${props => props.theme.spaceScale.spacing10};
+  font-weight: 600;
 `;
 
 const CloseBtn = styled.span`
@@ -282,17 +299,18 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       ...rest
     } = props;
 
+    const isInverse = useIsInverse(props.isInverse);
+
     const other = omit(['onEscKeyDown'], rest);
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
     const CloseIconButton = (
       <CloseIcon
-        color={theme.colors.neutral03}
         size={
           magma.iconSizes[closeButtonSize]
             ? magma.iconSizes[closeButtonSize]
-            : magma.iconSizes.small
+            : magma.iconSizes.medium
         }
       />
     );
@@ -314,6 +332,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               aria-modal={true}
               data-testid={testId}
               id={id}
+              isInverse={isInverse}
               onClick={isBackgroundClickDisabled ? null : handleModalClick}
               onMouseDown={
                 isBackgroundClickDisabled ? null : handleModalOnMouseDown
@@ -338,6 +357,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     {header && (
                       <H1
                         id={headingId}
+                        isInverse={isInverse}
                         level={1}
                         ref={headingRef}
                         visualStyle={TypographyVisualStyle.headingSmall}
@@ -360,8 +380,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                           ? closeAriaLabel
                           : i18n.modal.closeAriaLabel
                       }
-                      color={ButtonColor.secondary}
+                      color={ButtonColor.primary}
                       icon={CloseIconButton}
+                      isInverse={isInverse}
                       onClick={handleClose}
                       testId="modal-closebtn"
                       variant={ButtonVariant.link}
@@ -381,6 +402,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               fade
               isOpen={isModalOpen}
               unmountOnExit
+              theme={theme}
             />
           </div>,
           document.getElementsByTagName('body')[0]
