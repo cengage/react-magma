@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Textarea } from '.';
+import { Button } from '../Button';
 
 export default {
   component: Textarea,
@@ -7,5 +8,23 @@ export default {
 };
 
 export const Default = () => {
-  return <Textarea labelText="Textarea" value="Some text" />;
+  const [fieldValue, setValue] = useState('');
+  return (
+    <>
+      <Textarea
+        labelText="Textarea"
+        value={fieldValue}
+        onChange={e => {
+          setValue(e.target.value);
+        }}
+      />
+      <Button
+        onClick={e => {
+          setValue('');
+        }}
+      >
+        Clear
+      </Button>
+    </>
+  );
 };
