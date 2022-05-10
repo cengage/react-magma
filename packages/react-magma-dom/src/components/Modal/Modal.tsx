@@ -136,7 +136,7 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
-      : props.theme.colors.neutral};
+      : props.theme.colors.neutral700};
   margin: 0 auto;
   position: relative;
   z-index: 1000;
@@ -176,7 +176,7 @@ const H1 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
-      : props.theme.colors.neutral};
+      : props.theme.colors.neutral700};
   margin: 0;
   padding-right: ${props => props.theme.spaceScale.spacing10};
   font-weight: 600;
