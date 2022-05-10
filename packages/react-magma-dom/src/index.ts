@@ -114,6 +114,7 @@ export {
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
 export { Label, LabelPosition } from './components/Label';
+export { List, ListProps, ListItemProps } from './components/List';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -194,8 +195,10 @@ export {
 export { Toast, ToastProps } from './components/Toast';
 export { Toggle, ToggleTextPosition, ToggleProps } from './components/Toggle';
 export {
-  Tooltip,
   EnumTooltipPosition,
+  StyledTooltip,
+  Tooltip,
+  TooltipArrow,
   TooltipPosition,
   TooltipProps,
 } from './components/Tooltip';
@@ -207,6 +210,7 @@ export {
   TypographyContextVariant,
   TypographyVisualStyle,
 } from './components/Typography';
+
 export {
   VisuallyHidden,
   VisuallyHiddenProps,
@@ -221,18 +225,18 @@ export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
 export { useMediaQuery } from './hooks/useMediaQuery';
 export { useDataPagination } from './hooks/useDataPagination';
+export { useDescendants } from './hooks/useDescendants';
 export { useGenerateId } from './utils';
 export { usePagination } from './components/Pagination/usePagination';
 export { useFocusLock } from './hooks/useFocusLock';
+export { useForceUpdate } from './hooks/useForceUpdate';
 
 export { InverseContext, useIsInverse } from './inverse';
 
 export * from './components/Accordion';
 export * from './components/Transition';
 export * from './components/Drawer';
-
 export * from './components/FormFieldContainer';
-
 export * from './components/Grid';
 
 export * from './components/Slider';
@@ -240,3 +244,8 @@ export * from './components/Slider';
 export * from './components/Tag';
 
 export { useDimensions } from './hooks/useDimensions';
+
+export * from './components/Tag';
+export * from './components/List';
+export * from './components/BlockQuote';
+

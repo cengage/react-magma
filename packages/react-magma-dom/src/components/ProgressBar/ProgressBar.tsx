@@ -8,6 +8,7 @@ import { useDimensions } from '../../hooks/useDimensions';
 import { useForkedRef } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { transparentize } from 'polished';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -19,7 +20,6 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    * The height of the progress bar. Can be a string or number; if number is provided height is in px
    * @default 8
    */
-
   height?: number | string;
   /**
    * The axis direction of the progress bar.
@@ -27,12 +27,12 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   direction?: ProgressBarDirection;
   /**
-   * If true, the progress bar with have a shimmer animation
+   * If true, the progress bar will have a disabled state and styling to match
    * @default false
    */
   disabled?: boolean;
   /**
-   * If true, the progress bar will have a disabled state and styling to match
+   * If true, the progress bar with have a shimmer animation
    * @default false
    */
   isAnimated?: boolean;
@@ -46,7 +46,9 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   isLabelVisible?: boolean;
-
+  /**
+   * TODO
+   */
   marks?: Array<Omit<MarkerProps, 'trackLength'>>;
   /**
    * The offset percentage before which the bar is filled
@@ -65,15 +67,12 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    * The width of the progress bar. Can be a string or number; if number is provided width is in px
    * @default 100%
    */
-
   width?: number | string;
 }
 
 export enum ProgressBarColor {
   danger = 'danger',
   primary = 'primary', // default
-  pop = 'pop',
-  pop02 = 'pop02',
   success = 'success',
 }
 
@@ -86,36 +85,21 @@ function buildProgressBarBackground(props) {
   if (props.isInverse) {
     switch (props.color) {
       case 'danger':
-        return props.theme.colors.dangerInverse;
+        return props.theme.colors.danger200;
       case 'success':
-        return props.theme.colors.successInverse;
+        return props.theme.colors.success200;
       default:
-        return props.theme.colors.primaryInverse;
+        return props.theme.colors.tertiary;
     }
-  } else if (props.disabled) {
-    return `none`;
   }
   switch (props.color) {
     case 'danger':
       return props.theme.colors.danger;
-    case 'pop':
-      return props.theme.colors.pop;
-    case 'pop02':
-      return props.theme.colors.pop02;
     case 'success':
       return props.theme.colors.success;
     default:
       return props.theme.colors.primary;
   }
-}
-
-function buildTrackBorder(props) {
-  if (props.isInverse) {
-    return `inset 0 0 0 1px ${props.theme.colors.neutral08}80`;
-  } else if (props.disabled) {
-    return `inset 0 0 0 1px ${props.theme.colors.neutral06}`;
-  }
-  return `inset 0 0 0 1px ${props.theme.colors.neutral04}`;
 }
 
 const Container = styled.div<{ isLoadingIndicator?: boolean }>`
@@ -125,8 +109,14 @@ const Container = styled.div<{ isLoadingIndicator?: boolean }>`
 
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
-    props.isInverse ? 'rgba(0,0,0,0.25)' : props.theme.colors.neutral08};
-  box-shadow: ${buildTrackBorder};
+    props.isInverse
+      ? transparentize(0.75, props.theme.colors.neutral900)
+      : props.theme.colors.neutral100};
+  box-shadow: inset 0 0 0 1px
+    ${props =>
+      props.isInverse
+        ? transparentize(0.5, props.theme.colors.neutral100)
+        : props.theme.colors.neutral};
   border-radius: 50em;
   overflow: hidden;
   display: flex;
@@ -142,10 +132,10 @@ const Bar = styled.div<ProgressBarProps>`
   background: ${props => buildProgressBarBackground(props)};
   border-radius: 50em;
   display: flex;
+  transition: width 0.3s;
   left: ${props =>
     props.direction === ProgressBarDirection.vertical ? '0' : props.offset}%;
   position: relative;
-
   transition: width ${props => props.transitionDuration}s;
   width: ${props =>
     props.direction === ProgressBarDirection.vertical
@@ -155,6 +145,7 @@ const Bar = styled.div<ProgressBarProps>`
     props.direction === ProgressBarDirection.vertical
       ? props => props.percentage
       : 'inherit'}%;
+
   ${props =>
     props.isAnimated &&
     css`
@@ -190,6 +181,7 @@ const Bar = styled.div<ProgressBarProps>`
 
 const Percentage = styled.span`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: ${props => props.theme.spaceScale.spacing03};
 `;
@@ -239,7 +231,6 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
     const isInverse = useIsInverse(props.isInverse);
 
     const [progressBarRef, progressBarDimensions] = useDimensions();
-
     const ref = useForkedRef(forwardedRef, progressBarRef);
 
     return (

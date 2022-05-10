@@ -26,6 +26,11 @@ export interface DatagridColumn extends TableHeaderCellProps {
    * Header text for each column
    */
   header: string;
+  /**
+   * @default false
+   * Set to true if you want the column to be the header for each row
+   */
+  isRowHeader?: boolean;
 }
 
 export interface DatagridRow {
@@ -48,7 +53,16 @@ export interface DatagridRow {
 }
 
 export interface DatagridComponents {
-  Pagination: React.FunctionComponent<TablePaginationProps>;
+  Pagination?: React.FunctionComponent<TablePaginationProps>;
+}
+
+export interface DatagridComponentsProps {
+  pagination?: Partial<
+    Omit<
+      TablePaginationProps,
+      'page' | 'defaultPage' | 'rowsPerPage' | 'defaultRowsPerPage'
+    >
+  >;
 }
 
 /**
@@ -60,9 +74,14 @@ export interface BaseDatagridProps extends TableProps {
    */
   columns: DatagridColumn[];
   /**
-   *
+   * Custom components to replace internally used components with
+   * @default { Pagination }
    */
-  components: DatagridComponents;
+  components?: DatagridComponents;
+  /**
+   * Props to be passed to the default components used internally to build the datagrid
+   */
+  componentsProps?: DatagridComponentsProps;
   /**
    * Pass in false to turn off pagination
    * @default true
@@ -119,6 +138,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     const {
       columns,
       components: customComponents,
+      componentsProps = {},
       defaultSelectedRows = [],
       onHeaderSelect,
       onRowSelect,
@@ -241,7 +261,11 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
               onHeaderRowSelect={handleHeaderSelect}
             >
               {columns.map(({ field, header, ...other }) => (
-                <TableHeaderCell key={`headercell${field}`} {...other}>
+                <TableHeaderCell
+                  key={`headercell${field}`}
+                  {...other}
+                  isRowHeader={false}
+                >
                   {header}
                 </TableHeaderCell>
               ))}
@@ -259,9 +283,18 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
                 isSelectableDisabled={isSelectableDisabled}
                 onTableRowSelect={event => handleRowSelect(id, event)}
               >
-                {Object.keys(other).map(field => (
-                  <TableCell key={`cell${field}`}>{other[field]}</TableCell>
-                ))}
+                {columns.map(({ field, isRowHeader }: DatagridColumn) => {
+                  return isRowHeader ? (
+                    <TableHeaderCell
+                      key={`cell${field}`}
+                      isRowHeader={isRowHeader}
+                    >
+                      {other[field]}
+                    </TableHeaderCell>
+                  ) : (
+                    <TableCell key={`cell${field}`}>{other[field]}</TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>
@@ -271,6 +304,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             isInverse={props.isInverse}
             itemCount={rows.length}
             {...passedOnPaginationProps}
+            {...componentsProps.pagination}
           />
         )}
       </>

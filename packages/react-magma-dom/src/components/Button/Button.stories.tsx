@@ -13,7 +13,42 @@ import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
-const Template: Story<ButtonProps> = args => <Button {...args}>Button</Button>;
+const Template: Story<ButtonProps> = args => (
+  <>
+    <Button {...args}>Default</Button>
+    <Button {...args} color={ButtonColor.secondary}>
+      Secondary
+    </Button>
+    <Button {...args} color={ButtonColor.danger}>
+      Danger
+    </Button>
+    <Button {...args} color={ButtonColor.marketing}>
+      Marketing
+    </Button>
+    <p>
+      <Button variant={ButtonVariant.link} {...args}>
+        Default
+      </Button>
+      <Button
+        variant={ButtonVariant.link}
+        {...args}
+        color={ButtonColor.secondary}
+      >
+        Secondary
+      </Button>
+      <Button variant={ButtonVariant.link} {...args} color={ButtonColor.danger}>
+        Danger
+      </Button>
+      <Button
+        variant={ButtonVariant.link}
+        {...args}
+        color={ButtonColor.marketing}
+      >
+        Marketing
+      </Button>
+    </p>
+  </>
+);
 
 export default {
   title: 'Button',
@@ -71,15 +106,40 @@ Default.args = {
   onClick: () => {},
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  isInverse: false,
+  isFullWidth: false,
+  disabled: true,
+  onClick: () => {},
+};
+
 export const Inverse = Template.bind({});
 Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
 
+export const InverseDisabled = Template.bind({});
+InverseDisabled.args = {
+  ...Default.args,
+  disabled: true,
+  isInverse: true,
+};
+
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card background={magma.colors.primary600} isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];
+
+InverseDisabled.decorators = [
+  Story => (
+    <Card background={magma.colors.primary600} isInverse>
       <CardBody>
         <Story />
       </CardBody>

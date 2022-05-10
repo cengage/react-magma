@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { SkipLinkContent } from '.';
 import { render } from '@testing-library/react';
 

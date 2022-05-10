@@ -10,9 +10,11 @@ import { Omit, XOR, getNodeText } from '../../utils';
 import { I18nContext } from '../../i18n';
 
 export enum TagColor {
+  danger = 'danger',
   primary = 'primary',
   lowContrast = 'lowContrast',
   highContrast = 'highContrast',
+  success = 'success',
 }
 
 export enum TagSize {
@@ -111,6 +113,10 @@ function buildButtonBackground(props) {
     }
     // Inverse background colors
     switch (props.color) {
+      case 'danger':
+        return `${props.theme.colors.dangerInverse}`;
+      case 'success':
+        return `${props.theme.colors.successInverse}`;
       case 'primary':
         return `${props.theme.colors.primaryInverse}`;
       case 'lowContrast':
@@ -135,6 +141,10 @@ function buildButtonBackground(props) {
   }
   // Default state background colors
   switch (props.color) {
+    case 'danger':
+      return `${props.theme.colors.danger}`;
+    case 'success':
+      return `${props.theme.colors.success}`;
     case 'primary':
       return `${props.theme.colors.primary}`;
     case 'lowContrast':
@@ -163,6 +173,10 @@ function buildButtonTextColor(props) {
     }
     // Inverse text colors
     switch (props.color) {
+      case 'danger':
+        return `${props.theme.colors.neutral}`;
+      case 'success':
+        return `${props.theme.colors.neutral}`;
       case 'primary':
         return `${props.theme.colors.neutral}`;
       case 'lowContrast':
@@ -187,6 +201,10 @@ function buildButtonTextColor(props) {
   }
   // Default state text colors
   switch (props.color) {
+    case 'danger':
+      return `${props.theme.colors.neutral08}`;
+    case 'success':
+      return `${props.theme.colors.neutral08}`;
     case 'primary':
       return `${props.theme.colors.neutral08}`;
     case 'highContrast':
@@ -215,16 +233,33 @@ function buildTagPadding(props) {
   if (props.icon) {
     switch (props.size) {
       case 'small':
-        return `0 ${props.theme.spaceScale.spacing01}`;
+        return `0 ${props.theme.spaceScale.spacing02}`;
       default:
-        return `${props.theme.spaceScale.spacing02}`;
+        return `${props.theme.spaceScale.spacing02} 6px`;
     }
   }
   switch (props.size) {
     case 'small':
-      return `0`;
+      return `0 ${props.theme.spaceScale.spacing02}`;
     default:
-      return `${props.theme.spaceScale.spacing02}`;
+      return `${props.theme.spaceScale.spacing02} 6px`;
+  }
+}
+
+function buildLabelPadding(props) {
+  if (props.icon) {
+    switch (props.size) {
+      case 'small':
+        return `0 ${props.theme.spaceScale.spacing02}`;
+      default:
+        return `0 ${props.theme.spaceScale.spacing03}`;
+    }
+  }
+  switch (props.size) {
+    case 'small':
+      return `0 ${props.theme.spaceScale.spacing02}`;
+    default:
+      return `0 ${props.theme.spaceScale.spacing03}`;
   }
 }
 
@@ -241,24 +276,27 @@ const TagStyling = props => css`
     ? `${props.theme.typeScale.size01.fontSize}`
     : `${props.theme.typeScale.size02.fontSize}`};
   font-weight: ${props.size === 'small' ? `600` : `inherit`};
+  letter-spacing: ${props.size === 'small'
+    ? `${props.theme.typeScale.size01.letterSpacing}`
+    : `${props.theme.typeScale.size02.letterSpacing}`};
+  min-width: ${props.size === 'small'
+    ? props.theme.spaceScale.spacing10
+    : props.theme.spaceScale.spacing12};
   padding: ${buildTagPadding(props)};
   svg:first-of-type {
     height: ${props.size === 'small'
-      ? `${props.theme.iconSizes.small}px`
-      : 'inherit'};
+      ? `${props.theme.iconSizes.xSmall}px`
+      : `${props.theme.iconSizes.small}px`};
     opacity: ${props.disabled ? '60%' : 'inherit'};
     width: ${props.size === 'small'
-      ? `${props.theme.iconSizes.small}px`
-      : 'inherit'};
+      ? `${props.theme.iconSizes.xSmall}px`
+      : `${props.theme.iconSizes.small}px`};
   }
   svg:last-child {
-    margin: ${props.size === 'small'
-      ? `0 ${props.theme.spaceScale.spacing02} 0 -${props.theme.spaceScale.spacing02}`
-      : 'inherit'};
     opacity: ${buildSvgOpacity(props)};
     width: ${props.size === 'small'
-      ? `${props.theme.spaceScale.spacing05}`
-      : 'inherit'};
+      ? `${props.theme.iconSizes.xSmall}px`
+      : `${props.theme.iconSizes.small}px`};
   }
   &:hover {
     svg {
@@ -274,7 +312,7 @@ const StyledButton = styled.button<{
   size: string;
 }>`
   ${TagStyling};
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
 const StyledSpan = styled.span<{
@@ -290,8 +328,7 @@ const LabelWrap = styled.span<{
   size: string;
   icon?: any;
 }>`
-  padding: ${props =>
-    props.size === 'small' && props.icon ? '0 8px 0 4px' : '0 8px'};
+  padding: ${buildLabelPadding};
 `;
 
 function getStyledTag(isClickable: boolean) {
@@ -348,7 +385,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         {...rest}
       >
         {icon}
-        <LabelWrap size={size} {...rest}>
+        <LabelWrap size={size} {...rest} theme={theme}>
           {children}
         </LabelWrap>
         {onDelete && (

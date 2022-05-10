@@ -4,6 +4,7 @@ import { Logo } from '../Logo';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
+import { GithubIcon } from 'react-magma-icons';
 
 const LogoLink = styled(Link)`
   align-items: center;
@@ -25,7 +26,7 @@ const LogoLink = styled(Link)`
   }
 
   &:focus {
-    outline: 2px dotted ${magma.colors.focusInverse};
+    outline: 2px solid ${magma.colors.focusInverse};
   }
 `;
 

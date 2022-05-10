@@ -50,12 +50,6 @@ export default {
         options: ButtonShape,
       },
     },
-    textTransform: {
-      control: {
-        type: 'select',
-        options: ButtonTextTransform,
-      },
-    },
     type: {
       control: {
         type: 'select',
@@ -71,6 +65,15 @@ export default {
 } as Meta;
 
 export const Default = Template.bind({});
+Default.argTypes = {
+  textTransform: {
+    control: {
+      type: 'select',
+      options: ButtonTextTransform,
+    },
+  },
+};
+
 Default.args = {
   isInverse: false,
   isFullWidth: false,
@@ -79,13 +82,22 @@ Default.args = {
 };
 
 export const Inverse = Template.bind({});
+Inverse.argTypes = {
+  textTransform: {
+    control: {
+      type: 'select',
+      options: ButtonTextTransform,
+    },
+  },
+};
+
 Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card background={magma.colors.primary} isInverse>
       <CardBody>
         <Story />
       </CardBody>
@@ -98,9 +110,9 @@ const IconOnlyTemplate: Story<IconButtonProps> = args => (
 );
 
 export const IconOnly = IconOnlyTemplate.bind({});
+
 IconOnly.args = {
   isInverse: false,
-  isFullWidth: false,
   disabled: false,
   onClick: () => {},
 };
@@ -133,6 +145,5 @@ const AnimatedIconTemplate: Story<IconButtonProps> = (props) => {
 export const AnimatedIcon = AnimatedIconTemplate.bind({});
 AnimatedIcon.args = {
   isInverse: false,
-  isFullWidth: false,
   disabled: false,
 };

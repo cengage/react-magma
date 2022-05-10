@@ -23,7 +23,18 @@ export default {
         options: TagSize,
       },
     },
-    TagColor: {
+    color: {
+      control: {
+        type: 'select',
+        options: TagColor,
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    isInverse: {
       control: {
         type: 'boolean',
       },
@@ -34,54 +45,61 @@ export default {
 export const Default = Template.bind({});
 Default.args = {};
 
-export const Disabled = () => {
+export const Disabled = args => {
   return (
     <>
-      <Tag disabled>Disabled</Tag>
+      <Tag {...args}>Disabled</Tag>
       <br />
       <br />
-      <Tag disabled color={TagColor.primary}>
+      <Tag {...args} color={TagColor.primary}>
         Disabled Primary
       </Tag>
       <br />
       <br />
-      <Tag disabled color={TagColor.highContrast}>
+      <Tag {...args} color={TagColor.highContrast}>
         Disabled High Contrast
       </Tag>
       <br />
       <br />
-      <Tag disabled color={TagColor.lowContrast}>
+      <Tag {...args} color={TagColor.lowContrast}>
         Disabled Low Contrast
       </Tag>
     </>
   );
 };
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
+};
 
-export const DisabledInverse = () => {
+export const DisabledInverse = args => {
   return (
     <Card isInverse>
       <CardBody>
-        <Tag isInverse disabled>
-          Disabled Inverse
-        </Tag>
+        <Tag {...args}>Disabled Inverse</Tag>
         <br />
         <br />
-        <Tag isInverse disabled color={TagColor.primary}>
+        <Tag {...args} color={TagColor.primary}>
           Disabled Inverse Primary
         </Tag>
         <br />
         <br />
-        <Tag isInverse disabled color={TagColor.highContrast}>
+        <Tag {...args} color={TagColor.highContrast}>
           Disabled Inverse High Contrast
         </Tag>
         <br />
         <br />
-        <Tag isInverse disabled color={TagColor.lowContrast}>
+        <Tag {...args} color={TagColor.lowContrast}>
           Disabled Inverse Low Contrast
         </Tag>
       </CardBody>
     </Card>
   );
+};
+DisabledInverse.args = {
+  ...Default.args,
+  disabled: true,
+  isInverse: true,
 };
 
 export const WithIcon = TemplateIcon.bind({});
@@ -186,14 +204,22 @@ export const OnDeleteWithIcon = args => {
   return (
     <>
       {isVisible && (
-        <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
+        <Tag
+          {...args}
+          onDelete={deleteMe}
+          icon={<AccountCircleIcon />}
+        >
           Text Label
         </Tag>
       )}
     </>
   );
 };
-OnDeleteWithIcon.args = {};
+OnDeleteWithIcon.args = {
+  ...Default.args,
+  color: TagColor.danger,
+  isInverse: true,
+};
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -217,9 +243,10 @@ export const Inverse = Template.bind({});
 Inverse.args = {
   isInverse: true,
 };
+
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card background={magma.colors.primary} isInverse>
       <CardBody>
         <Story />
       </CardBody>

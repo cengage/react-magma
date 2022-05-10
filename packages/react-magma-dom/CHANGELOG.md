@@ -1,5 +1,432 @@
 # Change Log
 
+## 3.0.0-next.9
+
+### Major Changes
+
+- 059d58fa: feat(buttons): adding in color changes throughout applicable components
+
+  Note: button variant "outline" and button color "success" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.8
+
+### Major Changes
+
+- d74ec404: feat(toggle/radio/checkbox): Updating toggle, radio checkbox and indeterminate checkbox with new colors.
+
+## 3.0.0-next.7
+
+### Major Changes
+
+- b0f75257: feat(accordion): Updating accordion with new colors.
+- 18afc4fc: feat(badge): Updating badge colors. Adding `isInverse` support.
+- 8d0ecf2a: feat(inputs): Updating Inputs with rebrand styles
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+
+## 3.0.0-next.6
+
+### Major Changes
+
+- b737f6cd: feat(table): Updating table with new colors.
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+
+## 3.0.0-next.4
+
+### Major Changes
+
+- 476c5023: feat(tooltips): Updating tooltip colors
+
+## 3.0.0-next.3
+
+### Major Changes
+
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- 26d70350: feat: Updating focus states from dotted to solid
+
+## 3.0.0-next.1
+
+### Major Changes
+
+- 38fe6b4c: feat(typography): Updating main typography styles: type, heading, paragraph
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- 366b25af: feat(magmacolors.ts): Adding new rebrand colors
+
+## 2.5.11
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10-next.3
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+
+## 2.5.10-next.2
+
+### Patch Changes
+
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+
+## 2.5.10-next.1
+
+### Patch Changes
+
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10
+
+### Patch Changes
+
+- fdc6b27f: fix: adding in reference for list props within the index
+- fdc6b27f: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- fdc6b27f: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10-next.3
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+
+## 2.5.10-next.2
+
+### Patch Changes
+
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+
+## 2.5.10-next.1
+
+### Patch Changes
+
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10
+
+### Patch Changes
+
+- e4c69ca5: fix(alert): add right padding of 12px
+- 39b2fc49: fix(modal.tsx): Remove title attribute from modals
+- cbadaccb: feat: List component
+- 27cad886: Build/fix publish step
+- 92e31554: Fix/drawer issues
+- 6e481733: fix(tag.stories.tsx): On Delete With Icon Tags not updating color and isInverse
+- 41522e87: feat: add `xLarge` for iconSizes
+  fix: export `styled` and `useGeneratedId` for external components
+- 5e9f8de5: fix(select.stories.tsx): fix Select multi example (again)
+- ecd43306: fix(iconbutton.stories.tsx): updating IconButton stories to hide some properties
+- 290efc90: fix(tablepagination.tsx): add activeIndex to tablepagination
+- 8202898b: fix(select.stories.tsx): Fixing Select Multi story
+- 3ed0d7de: chore(deps): bump browserslist from 4.14.2 to 4.20.2
+- 452e52d5: fix(schemarenderer.stories.tsx): clean up schema data
+- 0fc84127: fix(tag.tsx): Disabled tags have the correct cursor
+- 14b24dd7: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+- ae7a1fc2: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+- 4f483f8f: docs: storybook Addon Measure package added
+- 3208cf6f: docs(storybook): updating storybook version to 6.4.20 and adding essentials addon
+
+## 2.5.9
+
+### Patch Changes
+
+This was an accidental release. Please skip this version and upgrade to to 2.5.10.
+
+## 2.5.9-next.10
+
+### Patch Changes
+
+- 3208cf6f: docs(storybook): updating storybook version to 6.4.20 and adding essentials addon
+
+## 2.5.9-next.9
+
+### Patch Changes
+
+- 5e9f8de5: fix(select.stories.tsx): fix Select multi example (again)
+
+## 2.5.9-next.8
+
+### Patch Changes
+
+- ecd43306: fix(iconbutton.stories.tsx): updating IconButton stories to hide some properties
+- 8202898b: fix(select.stories.tsx): Fixing Select Multi story
+
+## 2.5.9-next.7
+
+### Patch Changes
+
+- 290efc90: fix(tablepagination.tsx): add activeIndex to tablepagination
+
+## 2.5.9-next.6
+
+### Patch Changes
+
+- 3ed0d7de: chore(deps): bump browserslist from 4.14.2 to 4.20.2
+
+## 2.5.9-next.5
+
+### Patch Changes
+
+- 4f483f8f: docs: storybook Addon Measure package added
+
+## 2.5.9-next.4
+
+### Patch Changes
+
+- 14b24dd7: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+
+## 2.5.9-next.3
+
+### Patch Changes
+
+- ae7a1fc2: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+
+## 2.5.9-next.2
+
+### Patch Changes
+
+- 0fc84127: fix(tag.tsx): Disabled tags have the correct cursor
+
+## 2.5.9-next.1
+
+### Patch Changes
+
+- e4c69ca5: fix(alert): add right padding of 12px
+- 27cad886: Build/fix publish step
+
+## 2.5.9-next.0
+
+### Patch Changes
+
+- cbadaccb: feat: List component
+
+## 2.5.8
+
+### Patch Changes
+
+- 444cd2bb: Update to fix header
+- 7b0c5714: fix(form): allow customization of Heading in Form component
+
+## 2.5.8-next.1
+
+### Patch Changes
+
+- 444cd2bb: Update to fix header
+
+## 2.5.8-next.0
+
+### Patch Changes
+
+- 7b0c5714: fix(form): allow customization of Heading in Form component
+
+## 2.5.7
+
+### Patch Changes
+
+- 465dc468: feat: Tag Updates for additional colors
+- 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
+- 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
+- a23e8307: Fix: Added portal back into modal
+- c9907a67: feat: Inputs update
+
+  Removed top margin from helper and error messages related to inputs.
+
+- fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
+- 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
+- edbdda88: Release 2.5.7
+- 2e4f06d6: feat: Predictive Search
+- 22749327: feat: initial commit of the block quote component
+- 253fd1c1: feat: input updates to support additional icon positioning
+- dd443552: Remove unknown props on dom elements in breadcrumb. Specifically `isInverse`
+- 156c5c1e: docs: page layout templates
+
+## 2.5.7-next.11
+
+### Patch Changes
+
+- edbdda88: Release 2.5.7
+
+## 2.5.7-next.10
+
+### Patch Changes
+
+- 22749327: feat: initial commit of the block quote component
+
+## 2.5.7-next.9
+
+### Patch Changes
+
+- c9907a67: feat: Inputs update
+
+  Removed top margin from helper and error messages related to inputs.
+
+## 2.5.7-next.8
+
+### Patch Changes
+
+- fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
+
+## 2.5.7-next.7
+
+### Patch Changes
+
+- a23e8307: Fix: Added portal back into modal
+- dd443552: Remove unknown props on dom elements in breadcrumb. Specifically `isInverse`
+
+## 2.5.7-next.6
+
+### Patch Changes
+
+- 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
+
+## 2.5.7-next.5
+
+### Patch Changes
+
+- 253fd1c1: feat: input updates to support additional icon positioning
+
+## 2.5.7-next.4
+
+### Patch Changes
+
+- 156c5c1e: docs: page layout templates
+
+## 2.5.7-next.3
+
+### Patch Changes
+
+- 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
+
+## 2.5.7-next.2
+
+### Patch Changes
+
+- 2e4f06d6: feat: Predictive Search
+
+## 2.5.7-next.1
+
+### Patch Changes
+
+- 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
+
+## 2.5.7-next.0
+
+### Patch Changes
+
+- 465dc468: feat: Tag Updates for additional colors
+
+## 2.5.6
+
+### Patch Changes
+
+- 19ac34d7: chore: update storybook to 6.4.0-beta.20 fixes react 17
+- 2cdc9c2a: Allow for mouse to hover in to tooltip message
+- 3435eede: fix(textarea): use specific TextareaHTMLAttributes
+- 5ac10dfb: chore: letter-spacing additions for smaller font sizes
+- cec68d47: fix(magma.ts): added type for primaryInverse color
+
+## 2.5.6-next.4
+
+### Patch Changes
+
+- 5ac10dfb: chore: letter-spacing additions for smaller font sizes
+
+## 2.5.6-next.3
+
+### Patch Changes
+
+- 3435eede: fix(textarea): use specific TextareaHTMLAttributes
+
+## 2.5.6-next.2
+
+### Patch Changes
+
+- 19ac34d7: chore: update storybook to 6.4.0-beta.20 fixes react 17
+
+## 2.5.6-next.1
+
+### Patch Changes
+
+- cec68d47: fix(magma.ts): added type for primaryInverse color
+
+## 2.5.6-next.0
+
+### Patch Changes
+
+- 2cdc9c2a: Allow for mouse to hover in to tooltip message
+
+## 2.5.5
+
+### Patch Changes
+
+- 84507cc4: feat: add fileuploader to i18n
+- 8771bbfe: chore: update icons to 2.3.1
+- ab506800: change to dropdown for table pagination, change drop direction to 'up', and allow dropdown drop direction to be changed through props.
+
+## 2.5.5-next.2
+
+### Patch Changes
+
+- 84507cc: feat: add fileuploader to i18n
+
+## 2.5.5-next.1
+
+### Patch Changes
+
+- ab506800: change to dropdown for table pagination, change drop direction to 'up', and allow dropdown drop direction to be changed through props.
+
+## 2.5.5-next.0
+
+### Patch Changes
+
+- 8771bbfe: chore: update icons to 2.3.1
+
+## 2.5.4
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
+## 2.5.4-next.1
+
+### Patch Changes
+
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
+## 2.5.4-next.0
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+
+## 2.5.3
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
+## 2.5.3-next.0
+
+### Patch Changes
+
+- 52062bae: fix(input): passed messageStyle prop to inputMessage component
+
 ## 2.5.2
 
 ### Patch Changes

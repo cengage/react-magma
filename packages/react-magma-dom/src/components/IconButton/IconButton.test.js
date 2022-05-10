@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { render } from '@testing-library/react';
 import {
   ButtonColor,
@@ -230,7 +230,7 @@ describe('IconButton', () => {
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
+            variant={ButtonVariant.solid}
           />
         );
 
@@ -461,7 +461,7 @@ describe('IconButton', () => {
             id="testId"
             icon={icon}
             iconPosition={ButtonIconPosition.right}
-            variant={ButtonVariant.outline}
+            variant={ButtonVariant.solid}
           >
             Test Text
           </IconButton>

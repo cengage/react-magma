@@ -76,7 +76,7 @@ ControlledNoMulti.args = {
   index: 0,
 };
 
-export const ExpandCollapseAll = () => {
+export const ExpandCollapseAll = args => {
   const [expandedIndex, setExpandedIndex] = React.useState([]);
   const [disableExpandAll, setDisableExpandAll] = React.useState(false);
   const [disableCollapseAll, setDisableCollapseAll] = React.useState(true);
@@ -116,7 +116,7 @@ export const ExpandCollapseAll = () => {
         disabled={disableExpandAll}
         onClick={handleExpandAll}
         size={ButtonSize.small}
-        variant={ButtonVariant.outline}
+        variant={ButtonVariant.solid}
       >
         Expand All
       </Button>
@@ -124,12 +124,16 @@ export const ExpandCollapseAll = () => {
         disabled={disableCollapseAll}
         onClick={handleCollapseAll}
         size={ButtonSize.small}
-        variant={ButtonVariant.outline}
+        variant={ButtonVariant.solid}
       >
         Collapse All
       </Button>
 
-      <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
+      <Accordion
+        {...args}
+        index={expandedIndex}
+        onExpandedChange={handleExpandedChange}
+      >
         <AccordionItem>
           <AccordionButton>Section 1</AccordionButton>
           <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>

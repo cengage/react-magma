@@ -220,7 +220,7 @@ describe('Toast', () => {
 
     expect(getByTestId('test').firstChild.firstChild).toHaveStyleRule(
       'background-color',
-      '#3A8200'
+      '#178037'
     );
   });
 });

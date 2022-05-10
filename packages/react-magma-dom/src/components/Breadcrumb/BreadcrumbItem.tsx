@@ -27,11 +27,15 @@ const StyledItem = styled.li`
 const StyledSpan = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
 
   svg {
     margin: 0 ${props => props.theme.spaceScale.spacing02};
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.tertiary500
+        : props.theme.colors.neutral500};
   }
 `;
 

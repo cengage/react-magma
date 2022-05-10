@@ -61,3 +61,9 @@ Inverse.args = {
   content: 'Lorem ipsum dolar',
   isInverse: true,
 };
+
+export const Open = Template.bind({});
+Open.args = {
+  content: 'Lorem ipsum dolar',
+  open: true,
+};

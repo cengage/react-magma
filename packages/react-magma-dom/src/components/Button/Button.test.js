@@ -1,6 +1,6 @@
 // <reference types="jest-dom/extend-expect"/>
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import {
   Button,
   ButtonColor,
@@ -44,17 +44,12 @@ describe('Button', () => {
     const buttonText = 'Test';
     const testId = 'test-id';
     const spinnerTestId = `${testId}-spinner`;
-    const {
-      getByTestId,
-      getByText,
-      queryByText,
-      rerender,
-      queryByTestId,
-    } = render(
-      <Button testId={testId} isLoading>
-        {buttonText}
-      </Button>
-    );
+    const { getByTestId, getByText, queryByText, rerender, queryByTestId } =
+      render(
+        <Button testId={testId} isLoading>
+          {buttonText}
+        </Button>
+      );
     expect(getByTestId(testId)).toBeInTheDocument();
     expect(getByTestId(spinnerTestId)).toBeInTheDocument();
     expect(queryByText(buttonText)).not.toBeVisible();
@@ -139,11 +134,7 @@ describe('Button', () => {
 
       it('should render with updated variant', () => {
         const { container } = render(
-          <Button
-            id="testId"
-            onClick={jest.fn()}
-            variant={ButtonVariant.outline}
-          >
+          <Button id="testId" onClick={jest.fn()} variant={ButtonVariant.solid}>
             Test Text
           </Button>
         );

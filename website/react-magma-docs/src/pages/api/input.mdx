@@ -93,7 +93,13 @@ import React from 'react';
 import { Input } from 'react-magma-dom';
 
 export function Example() {
-  return <Input labelText="Value" onClear={() => console.log('input cleared...')} isClearable />;
+  return (
+    <Input
+      labelText="Value"
+      onClear={() => console.log('input cleared...')}
+      isClearable
+    />
+  );
 }
 ```
 
@@ -323,7 +329,7 @@ will appear to the right of the field.
 ```tsx
 import React from 'react';
 import { IconButton, Input, Tooltip } from 'react-magma-dom';
-import { HelpOutlineIcon } from 'react-magma-icons';
+import { HelpIcon } from 'react-magma-icons';
 export function Example() {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
@@ -331,13 +337,14 @@ export function Example() {
   };
 
   return (
-    <Input labelText="Help link">
+    <Input labelText="Help link" iconPosition="top">
       <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}
-          icon={<HelpOutlineIcon />}
+          icon={<HelpIcon />}
           onClick={onHelpLinkClick}
           type="button"
+          size="small"
           variant="link"
         />
       </Tooltip>

@@ -97,8 +97,8 @@ const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
   border-spacing: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: table;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};

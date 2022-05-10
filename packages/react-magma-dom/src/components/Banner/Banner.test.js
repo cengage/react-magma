@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Banner } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -32,7 +32,7 @@ describe('Banner', () => {
 
     expect(closeBtn).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.neutral}`,
+      `2px solid ${magma.colors.neutral}`,
       {
         target: ':focus',
       }
@@ -67,7 +67,7 @@ describe('Banner', () => {
 
     const btn = getByText('btn text').parentElement;
 
-    expect(btn).toHaveStyleRule('color', magma.colors.primary);
+    expect(btn).toHaveStyleRule('color', magma.colors.primary700);
 
     fireEvent.click(btn);
     expect(actionBtnClick).toHaveBeenCalled();
@@ -85,24 +85,7 @@ describe('Banner', () => {
     );
     expect(getByText('btn text').parentElement).toHaveStyleRule(
       'color',
-      magma.colors.danger
-    );
-  });
-
-  it('should render an action button with success styles', () => {
-    const { getByText } = render(
-      <Banner
-        actionButtonText="btn text"
-        actionButtonOnClick={() => {}}
-        variant="success"
-      >
-        Test
-      </Banner>
-    );
-
-    expect(getByText('btn text').parentElement).toHaveStyleRule(
-      'color',
-      magma.colors.success
+      magma.colors.neutral100
     );
   });
 
@@ -119,7 +102,7 @@ describe('Banner', () => {
 
     expect(getByText('btn text').parentElement).toHaveStyleRule(
       'color',
-      magma.colors.neutral
+      magma.colors.tertiary500
     );
   });
 

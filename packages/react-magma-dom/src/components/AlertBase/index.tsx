@@ -22,13 +22,15 @@ export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
 } = {
   info: InfoIcon,
+  muted: InfoIcon,
   success: CheckCircleIcon,
   warning: WarningIcon,
   danger: ErrorIcon,
 };
 
 export enum AlertVariant {
-  info = 'info', //default
+  info = 'info', //default,
+  muted = 'muted',
   success = 'success',
   warning = 'warning',
   danger = 'danger',
@@ -54,6 +56,8 @@ export const transitionDuration = 500;
 
 export function buildAlertBackground(props) {
   switch (props.variant) {
+    case 'muted':
+      return 'rgba(0, 0, 0, 0)';
     case 'success':
       return props.theme.colors.success;
     case 'warning':
@@ -83,11 +87,12 @@ const StyledAlert = styled.div<AlertBaseProps>`
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     font-size: ${props => props.theme.typeScale.size02.fontSize};
+    letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
     line-height: ${props => props.theme.typeScale.size02.lineHeight};
   }
 
   &:focus {
-    outline: 2px dotted ${props =>
+    outline: 2px solid ${props =>
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
@@ -152,7 +157,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
     text-decoration: underline;
 
     &:focus {
-      outline: 2px dotted ${props =>
+      outline: 2px solid ${props =>
         props.variant === 'warning'
           ? props.theme.colors.focus
           : props.theme.colors.focusInverse};
@@ -165,11 +170,14 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
   background-color: ${props => buildAlertBackground(props)};
   border-radius: ${props => props.theme.borderRadius};
   color: ${props =>
-    props.isInverse
+    props.variant === AlertVariant.muted
+      ? props.theme.colors.neutral03
+      : props.isInverse
       ? props.theme.colors.neutral08
       : props.theme.colors.neutral};
   display: flex;
   position: relative;
+  padding-right: 12px; 
 
   ${props =>
     props.isToast &&
@@ -237,7 +245,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   width: auto;
 
   &&:focus:not(:disabled) {
-    outline: 2px dotted
+    outline: 2px solid
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
           ? theme.colors.focus

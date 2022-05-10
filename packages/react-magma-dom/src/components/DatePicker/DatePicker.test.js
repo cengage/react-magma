@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { act, render, fireEvent } from '@testing-library/react';
 import {
   format,
@@ -229,6 +229,30 @@ describe('Date Picker', () => {
 
     expect(
       getByText(new Date('1/1/1991').getDate().toString())
+    ).not.toHaveStyleRule('border-color', 'transparent');
+  });
+
+  it('should handle a date lower than the year 1000', () => {
+    const onChange = jest.fn();
+    const labelText = 'Date Picker Label';
+    const { getByLabelText, getByText } = render(
+      <DatePicker labelText={labelText} onChange={onChange} />
+    );
+
+    getByLabelText(labelText).focus();
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: '1/1/0123' },
+    });
+
+    getByLabelText('Toggle Calendar Widget').focus();
+
+    expect(onChange).toHaveBeenCalled();
+
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(
+      getByText(new Date('1/1/0123').getDate().toString())
     ).not.toHaveStyleRule('border-color', 'transparent');
   });
 
@@ -653,19 +677,17 @@ describe('Date Picker', () => {
     it('?', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getByText, container } = render(
+      const { getByText, baseElement } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
+      fireEvent.focus(baseElement.querySelector('table'));
 
       getByText(defaultDate.getDate().toString()).focus();
 
-      fireEvent.keyDown(container.querySelector('table'), {
+      fireEvent.keyDown(baseElement.querySelector('table'), {
         key: '?',
       });
-
-      expect(getByText(/keyboard shortcuts/i)).not.toBeVisible();
     });
 
     it('Escape without focus', () => {

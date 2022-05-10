@@ -73,18 +73,19 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
         {!(
           labelPosition === LabelPosition.left &&
           !(errorMessage || helperMessage)
-        ) && (
-          <InputMessage
-            id={descriptionId}
-            isInverse={isInverse}
-            hasError={hasError}
-            style={messageStyle}
-          >
-            {(errorMessage || helperMessage) && (
-              <>{errorMessage ? errorMessage : helperMessage}</>
-            )}
-          </InputMessage>
-        )}
+        ) &&
+          (errorMessage || helperMessage) && (
+            <InputMessage
+              id={descriptionId}
+              isInverse={isInverse}
+              hasError={hasError}
+              style={messageStyle}
+            >
+              {(errorMessage || helperMessage) && (
+                <>{errorMessage ? errorMessage : helperMessage}</>
+              )}
+            </InputMessage>
+          )}
       </InputMessageContainer>
     </SelectContainerElement>
   );

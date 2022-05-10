@@ -309,7 +309,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       }
     }
 
-
     function handleKeyDown(event: React.KeyboardEvent) {
       if (dateFocused && document.activeElement.closest('table')) {
         const newChosenDate = handleKeyPress(

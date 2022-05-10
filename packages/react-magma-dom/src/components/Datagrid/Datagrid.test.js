@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Datagrid } from '.';
 import { TableRowColor } from '../Table';
 import { Button } from '../Button';
@@ -599,7 +599,9 @@ describe('Datagrid', () => {
         />
       );
 
-      expect(getByText(pagination.rowsPerPage.toString())).toBeInTheDocument();
+      expect(
+        getByText(pagination.rowsPerPage.toString(), { selector: 'div' })
+      ).toBeInTheDocument();
       expect(
         getByText(
           `1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
@@ -638,7 +640,7 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByLabelText('Rows per page:', { selector: 'div' }));
+      fireEvent.click(getByText('Rows per page:', { selector: 'span' }));
 
       fireEvent.click(getByText(pagination.rowsPerPageValues[1].toString()));
 

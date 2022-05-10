@@ -46,7 +46,7 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   align-self: center;
   background: ${props =>
     props.isFocused ? props.theme.colors.neutral06 : 'transparent'};
-  border: 2px dotted;
+  border: 2px solid;
   border-color: ${props =>
     props.isFocused ? props.theme.colors.focus : 'transparent'};
   cursor: default;

@@ -18,9 +18,9 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
+  border-color: #3942B0;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -31,14 +31,18 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -69,13 +73,13 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -99,7 +103,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -136,9 +140,9 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
+  border-color: #3942B0;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -149,14 +153,18 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -187,13 +195,13 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -217,7 +225,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -285,9 +293,9 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
+  border-color: #3942B0;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -298,14 +306,18 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   margin: 4px;
   min-width: 0;
@@ -336,13 +348,13 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -366,7 +378,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -403,9 +415,9 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
+  border-color: #3942B0;
   border-radius: 100%;
   color: #FFFFFF;
   cursor: pointer;
@@ -416,14 +428,18 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   margin: 4px;
   min-width: 0;
@@ -454,13 +470,13 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -484,7 +500,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -553,10 +569,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
+  border: 1px solid;
+  border-color: #8B91DA;
   border-radius: 100%;
-  color: #3F3F3F;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -565,14 +581,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -603,18 +623,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #3F3F3F;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3F3F3F;
+  background: #707070;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -633,8 +653,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):active {
-  background: #ccc;
-  color: #3F3F3F;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -671,10 +691,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
+  border: 1px solid;
+  border-color: #8B91DA;
   border-radius: 100%;
-  color: #3F3F3F;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -683,14 +703,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -721,18 +745,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #3F3F3F;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3F3F3F;
+  background: #707070;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -751,8 +775,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-2:not(:disabled):active {
-  background: #ccc;
-  color: #3F3F3F;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -819,10 +843,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -832,14 +856,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -870,13 +898,13 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -900,7 +928,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -937,10 +965,10 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -950,14 +978,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -988,13 +1020,13 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1018,7 +1050,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-2:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -1069,27 +1101,16 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 `;
 
 exports[`IconButton Icon Only Button Snapshot should render with updated variant 1`] = `
-.emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
   border-radius: 100%;
-  color: #006298;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1098,14 +1119,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -1136,18 +1161,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e5eff4;
-  color: #004165;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #006298;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1166,8 +1191,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):active {
-  background: #b2cfe0;
-  color: #002032;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1203,10 +1228,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
   border-radius: 100%;
-  color: #006298;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1215,14 +1241,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -1253,18 +1283,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #e5eff4;
-  color: #004165;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #006298;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -1283,8 +1313,8 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-2:not(:disabled):active {
-  background: #b2cfe0;
-  color: #002032;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1301,6 +1331,18 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <div>
@@ -1351,10 +1393,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1364,14 +1406,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -1391,13 +1437,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1421,7 +1467,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -1462,10 +1508,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1475,14 +1521,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
   height: 56px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -1502,13 +1552,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1532,7 +1582,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -1609,10 +1659,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1622,14 +1672,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -1649,13 +1703,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1679,7 +1733,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -1720,10 +1774,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1733,14 +1787,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -1760,13 +1818,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1790,7 +1848,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -1867,10 +1925,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1880,14 +1938,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   margin: 4px;
   min-width: 0;
@@ -1907,13 +1969,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1937,7 +1999,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -1978,10 +2040,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1991,14 +2053,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   height: 28px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
+  letter-spacing: .32px;
   line-height: 16px;
   margin: 4px;
   min-width: 0;
@@ -2018,13 +2084,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -2048,7 +2114,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -2126,10 +2192,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  border-radius: 4px;
-  color: #3F3F3F;
+  border: 1px solid;
+  border-color: #8B91DA;
+  border-radius: 8px;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2138,14 +2204,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -2165,18 +2235,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #3F3F3F;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-3:not(:disabled):after {
-  background: #3F3F3F;
+  background: #707070;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -2195,8 +2265,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):active {
-  background: #ccc;
-  color: #3F3F3F;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-3:not(:disabled):active:after {
@@ -2237,10 +2307,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-flex-align: center;
   align-items: center;
   background: #FFFFFF;
-  border: 2px solid;
-  border-color: #BFBFBF;
-  border-radius: 4px;
-  color: #3F3F3F;
+  border: 1px solid;
+  border-color: #8B91DA;
+  border-radius: 8px;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2249,14 +2319,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -2276,18 +2350,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #e6e6e6;
-  color: #3F3F3F;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-3:not(:disabled):after {
-  background: #3F3F3F;
+  background: #707070;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -2306,8 +2380,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-3:not(:disabled):active {
-  background: #ccc;
-  color: #3F3F3F;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-3:not(:disabled):active:after {
@@ -2383,10 +2457,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2396,14 +2470,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -2423,13 +2501,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -2453,7 +2531,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -2494,10 +2572,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2507,14 +2585,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -2534,13 +2616,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -2564,7 +2646,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -2645,10 +2727,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2658,14 +2740,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -2685,13 +2771,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -2715,7 +2801,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -2756,10 +2842,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -2769,14 +2855,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -2796,13 +2886,13 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #004165;
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -2826,7 +2916,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-3:not(:disabled):active {
-  background: #002032;
+  background: #202563;
   color: #FFFFFF;
 }
 
@@ -2894,19 +2984,16 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
 }
 
-.emotion-0 {
-  padding-right: 8px;
-}
-
 .emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  border-radius: 4px;
-  color: #006298;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2915,14 +3002,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -2942,18 +3033,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #e5eff4;
-  color: #004165;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):after {
-  background: #006298;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -2972,8 +3063,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):active {
-  background: #b2cfe0;
-  color: #002032;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):active:after {
@@ -2990,6 +3081,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  padding-right: 8px;
 }
 
 .emotion-1 {
@@ -3004,19 +3099,16 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   align-items: center;
 }
 
-.emotion-0 {
-  padding-right: 8px;
-}
-
 .emotion-3 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: rgba(0,0,0,0);
-  border: 2px solid;
-  border-radius: 4px;
-  color: #006298;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3025,14 +3117,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
   line-height: 24px;
   margin: 4px;
   min-width: 96px;
@@ -3052,18 +3148,18 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
-  background: #e5eff4;
-  color: #004165;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):after {
-  background: #006298;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -3082,8 +3178,8 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-3:not(:disabled):active {
-  background: #b2cfe0;
-  color: #002032;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-3:not(:disabled):active:after {
@@ -3100,6 +3196,10 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
+}
+
+.emotion-0 {
+  padding-right: 8px;
 }
 
 <div>

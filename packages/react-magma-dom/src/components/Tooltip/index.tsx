@@ -33,6 +33,10 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   content: React.ReactNode;
   isInverse?: boolean;
   /**
+   * Override the default opening of the tooltip on hover/focus to remain open
+   */
+  open?: boolean;
+  /**
    * Position the tooltip appears in relation to its trigger
    */
   position?: TooltipPosition;
@@ -48,11 +52,15 @@ export interface ITooltipState {
   isVisible?: boolean;
 }
 
-const ToolTipContainer = styled.div`
+const TooltipContainer = styled.div`
   display: inline;
+  pointer-events: auto;
 `;
 
-const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
+export const TooltipArrow = styled.span<{
+  position?: any;
+  isInverse?: boolean;
+}>`
   &&,
   &&:before {
     display: block;
@@ -72,7 +80,7 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
   }
 `;
 
-const StyledTooltip = styled.div<{
+export const StyledTooltip = styled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
   position: TooltipPosition;
@@ -88,6 +96,7 @@ const StyledTooltip = styled.div<{
       ? props.theme.tooltip.inverse.textColor
       : props.theme.tooltip.textColor};
   font-size: ${props => props.theme.tooltip.typeScale.fontSize};
+  letter-spacing: ${props => props.theme.tooltip.typeScale.letterSpacing};
   line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
   font-weight: ${props => props.theme.tooltip.fontWeight};
   max-width: ${props => props.theme.tooltip.maxWidth};
@@ -96,32 +105,42 @@ const StyledTooltip = styled.div<{
     ${props => props.theme.spaceScale.spacing04};
   z-index: ${props => props.theme.tooltip.zIndex};
 
-  &[data-popper-placement='top'] > span:last-child {
-    bottom: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='top'] {
+    margin-bottom: 14px;
+    & > span:last-child {
+      bottom: 10px;
+    }
   }
 
-  &[data-popper-placement='bottom'] > span:last-child {
-    top: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='bottom'] {
+    margin-top: 14px;
+    & > span:last-child {
+      top: 10px;
+    }
   }
 
-  &[data-popper-placement='left'] > span:last-child {
-    right: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='left'] {
+    margin-right: 14px;
+    & > span:last-child {
+      right: 10px;
+    }
   }
 
-  &[data-popper-placement='right'] > span:last-child {
-    left: -${props => props.theme.tooltip.arrowSize};
+  &[data-popper-placement='right'] {
+    margin-left: 14px;
+    & > span:last-child {
+      left: 10px;
+    }
   }
 `;
 
 // Using any for the ref because it is put ont he passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
-  const [isVisible, setIsVisible] = React.useState<boolean>(false);
-  const [referenceElement, setReferenceElement] = React.useState<HTMLElement>(
-    null
-  );
-  const [popperElement, setPopperElement] = React.useState<HTMLDivElement>(
-    null
-  );
+  const [isVisible, setIsVisible] = React.useState<boolean>(props.open);
+  const [referenceElement, setReferenceElement] =
+    React.useState<HTMLElement>(null);
+  const [popperElement, setPopperElement] =
+    React.useState<HTMLDivElement>(null);
   const [arrowElement, setArrowElement] = React.useState<HTMLSpanElement>(null);
 
   const { styles, attributes } = usePopper(referenceElement, popperElement, {
@@ -130,7 +149,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
       {
         name: 'offset',
         options: {
-          offset: [0, 12],
+          offset: [0, 0],
         },
       },
     ],
@@ -142,7 +161,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   React.useEffect(() => {
     const handleEsc = event => {
       if (event.key === 'Escape') {
-        setIsVisible(false);
+        hideTooltip();
       }
     };
     window.addEventListener('keydown', handleEsc);
@@ -154,7 +173,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
   function handleKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Escape') {
-      setIsVisible(false);
+      hideTooltip();
     }
   }
 
@@ -163,7 +182,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   }
 
   function hideTooltip() {
-    setIsVisible(false);
+    setIsVisible(props.open);
   }
 
   const {
@@ -196,12 +215,13 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     ...styles.popper,
     ...tooltipStyle,
   };
+
   const combinedArrowStyle = { ...styles.arrow, ...arrowStyle };
 
   const isInverse = useIsInverse(props.isInverse);
 
   return (
-    <ToolTipContainer
+    <TooltipContainer
       {...other}
       data-testid={testId}
       onKeyDown={handleKeyDown}
@@ -211,25 +231,29 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     >
       {tooltipTrigger}
       {isVisible && (
-        <StyledTooltip
-          id={id}
-          isInverse={isInverse}
-          position={position ? position : TooltipPosition.top}
+        <div
           ref={setPopperElement}
-          role="tooltip"
           style={combinedTooltipStyles}
-          theme={theme}
           {...attributes.popper}
         >
-          {content}
-          <ToolTipArrow
+          <StyledTooltip
+            id={id}
             isInverse={isInverse}
-            ref={setArrowElement}
-            style={combinedArrowStyle}
+            position={position ? position : TooltipPosition.top}
             theme={theme}
-          />
-        </StyledTooltip>
+            role="tooltip"
+            {...attributes.popper}
+          >
+            {content}
+            <TooltipArrow
+              isInverse={isInverse}
+              ref={setArrowElement}
+              style={combinedArrowStyle}
+              theme={theme}
+            />
+          </StyledTooltip>
+        </div>
       )}
-    </ToolTipContainer>
+    </TooltipContainer>
   );
 });

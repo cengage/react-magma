@@ -227,7 +227,7 @@ describe('Dropdown', () => {
 
     expect(getByLabelText('Toggle menu')).toHaveAttribute(
       'style',
-      'margin-left: 0px;'
+      'margin-left: 2px;'
     );
   });
 
@@ -314,6 +314,26 @@ describe('Dropdown', () => {
     fireEvent.click(getByLabelText(labelText));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should fire onOpen when the menu is opened', () => {
+    const onOpen = jest.fn();
+
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown" onOpen={onOpen}>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    fireEvent.click(getByText('Toggle me'));
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+    expect(onOpen).toHaveBeenCalled();
   });
 
   it('should close the menu when menu is blurred', () => {
@@ -403,15 +423,16 @@ describe('Dropdown', () => {
   it('should call the onBeforeShiftFocus prop when closing the dropdown', () => {
     jest.useFakeTimers();
     const onBeforeShiftFocus = jest.fn();
-    const { getByTestId } = render(
-      <Dropdown onBeforeShiftFocus={onBeforeShiftFocus} testId="dropdown">
-        <DropdownButton testId="toggleButton">Toggle me</DropdownButton>
+    const { getByText, getByTestId } = render(
+      <Dropdown testId="dropdown" onBeforeShiftFocus={onBeforeShiftFocus}>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
       </Dropdown>
     );
 
-    const toggleButton = getByTestId('toggleButton');
-
-    fireEvent.click(toggleButton);
+    fireEvent.click(getByText('Toggle me'));
 
     fireEvent.keyDown(getByTestId('dropdown'), {
       key: 'Escape',
@@ -421,8 +442,6 @@ describe('Dropdown', () => {
     expect(onBeforeShiftFocus).toHaveBeenCalled();
 
     act(jest.runAllTimers);
-
-    expect(document.activeElement).toEqual(toggleButton);
 
     jest.useRealTimers();
   });

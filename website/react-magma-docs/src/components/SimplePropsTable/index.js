@@ -39,6 +39,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
         hasZebraStripes
         style={{
           fontSize: magma.typeScale.size02.fontSize,
+          letterSpacing: magma.typeScale.size02.letterSpacing,
           lineHeight: magma.typeScale.size02.lineHeight,
         }}
       >

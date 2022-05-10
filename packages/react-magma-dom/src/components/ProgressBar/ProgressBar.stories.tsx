@@ -49,7 +49,7 @@ export default {
     },
     percentage: {
       control: {
-        type: 'text',
+        type: 'number',
       },
     },
   },
@@ -58,6 +58,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   percentage: 25,
+  isInverse: false,
 };
 
 export const Inverse = Template.bind({});
@@ -68,7 +69,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card background={magma.colors.primary} isInverse>
       <CardBody>
         <Story />
       </CardBody>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Heading } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -187,7 +187,7 @@ describe('Heading', () => {
 
     expect(heading).toHaveStyleRule(
       'border-bottom',
-      `2px dotted ${magma.colors.focusInverse}`,
+      `2px solid ${magma.colors.focusInverse}`,
       {
         target: ':focus',
       }
@@ -259,7 +259,7 @@ describe('Heading', () => {
       );
       const heading = getByText(headingText);
 
-      expect(heading).toHaveStyleRule('color', magma.colors.foundation02);
+      expect(heading).toHaveStyleRule('color', magma.colors.primary600);
       expect(heading).toHaveStyleRule(
         'font-family',
         magma.headingExpressiveFont
@@ -356,7 +356,7 @@ describe('Heading', () => {
       );
       const heading = getByText(headingText);
 
-      expect(heading).toHaveStyleRule('color', magma.colors.neutral);
+      expect(heading).toHaveStyleRule('color', magma.colors.neutral700);
       expect(heading).toHaveStyleRule(
         'font-family',
         magma.headingNarrativeFont

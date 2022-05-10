@@ -44,6 +44,7 @@ const StyledBanner = styled.div<AlertProps>`
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     text-align: left;
     font-size: ${props => props.theme.typeScale.size02.fontSize};
+    letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
     line-height: ${props => props.theme.typeScale.size02.lineHeight};
   }
 `;
@@ -84,7 +85,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   width: auto;
 
   &&:focus:not(:disabled) {
-    outline: 2px dotted
+    outline: 2px solid
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
           ? theme.colors.neutral
@@ -131,8 +132,6 @@ function renderIcon(variant = 'info', theme: any) {
 
 function getButtonColor(variant: AlertVariant) {
   switch (variant) {
-    case 'success':
-      return ButtonColor.success;
     case 'warning':
       return ButtonColor.secondary;
     case 'danger':

@@ -1,9 +1,11 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { SkipLink } from '.';
 import { SkipLinkContent } from '../SkipLinkContent';
 
 import { render, fireEvent } from '@testing-library/react';
+import { magma } from '../../theme/magma';
+
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 
@@ -21,7 +23,7 @@ describe('SkipLink', () => {
 
     expect(link).toBeInTheDocument();
     expect(link.innerHTML).toEqual('Skip Navigation');
-    expect(link).toHaveStyleRule('background', '#006298');
+    expect(link).toHaveStyleRule('background', '#3942B0');
     expect(link).toHaveStyleRule('color', '#FFFFFF');
     expect(link).toMatchSnapshot();
   });
@@ -76,22 +78,12 @@ describe('SkipLink', () => {
     expect(link).toHaveFocus();
   });
 
-  it('should render the skip link with specified color and variant', () => {
-    const { container } = render(
-      <SkipLink color="success" variant="outline" />
-    );
-    const link = container.querySelector('a');
-
-    expect(link).toHaveStyleRule('background', 'rgba(0,0,0,0)');
-    expect(link).toHaveStyleRule('color', '#3A8200');
-  });
-
   it('should render the skip link button the correct colors for an inverse button', () => {
     const { container } = render(<SkipLink isInverse />);
     const link = container.querySelector('a');
 
-    expect(link).toHaveStyleRule('background', '#FFFFFF');
-    expect(link).toHaveStyleRule('color', '#006298');
+    expect(link).toHaveStyleRule('background', magma.colors.tertiary500);
+    expect(link).toHaveStyleRule('color', magma.colors.primary700);
   });
 
   it('should render the skip link specified position top and left attributes', () => {

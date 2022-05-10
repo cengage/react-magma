@@ -16,7 +16,7 @@ import { useIsInverse } from '../../inverse';
 
 export interface TextareaProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'>,
-    React.HtmlHTMLAttributes<HTMLTextAreaElement> {
+    React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
    * Style properties for the component container element
    */

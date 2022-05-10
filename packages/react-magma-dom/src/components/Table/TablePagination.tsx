@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { IconButton } from '../IconButton';
 import { ButtonColor, ButtonVariant } from '../Button';
-import { Select } from '../Select';
 import { EastIcon, WestIcon } from 'react-magma-icons';
-import { Label, LabelPosition } from '../Label';
+import { Label } from '../Label';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -12,9 +11,23 @@ import { useIsInverse } from '../../inverse';
 import { usePagination } from '../Pagination/usePagination';
 import { XOR } from '../../utils';
 import { useControlled } from '../../hooks/useControlled';
+import {
+  Dropdown,
+  DropdownAlignment,
+  DropdownDropDirection,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { transparentize } from 'polished';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Position of the dropdown content
+   * @default `DropdownDropDirection.up`
+   */
+  dropdownDropDirection?: DropdownDropDirection;
   /**
    * Total number of rows
    */
@@ -89,8 +102,8 @@ const StyledContainer = styled.div<{
   border-top: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.neutral06};
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
@@ -98,6 +111,13 @@ const StyledContainer = styled.div<{
 
 const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
+`;
+
+const RowsPerPageLabel = styled.span`
+  font-weight: 600;
+  line-height: 20px;
+  margin: 0 16px 0 0;
+  text-align: left;
 `;
 
 export const TablePagination = React.forwardRef<
@@ -108,6 +128,7 @@ export const TablePagination = React.forwardRef<
     testId,
     defaultPage,
     defaultRowsPerPage = 10,
+    dropdownDropDirection = DropdownDropDirection.up,
     itemCount,
     onPageChange,
     onRowsPerPageChange,
@@ -136,7 +157,7 @@ export const TablePagination = React.forwardRef<
     page: pageProp,
   });
 
-  const selectContainerStyle = { display: 'flex', alignItems: 'center' };
+  const [activeIndex, setActiveIndex] = React.useState(rowsPerPage);
   const isLastPage = page * rowsPerPage >= itemCount;
 
   const displayPageStart = (page - 1) * rowsPerPage + 1;
@@ -147,9 +168,7 @@ export const TablePagination = React.forwardRef<
     value,
   }));
 
-  function handleRowsPerPageChange(changes) {
-    const { value } = changes.selectedItem;
-
+  function handleRowsPerPageChange(value: number) {
     if (!pageProp) {
       setPageState(1);
 
@@ -165,6 +184,7 @@ export const TablePagination = React.forwardRef<
     onRowsPerPageChange &&
       typeof onRowsPerPageChange === 'function' &&
       onRowsPerPageChange(value);
+    setActiveIndex(rowsPerPage);
   }
 
   const previousButton = pageButtons[0];
@@ -178,15 +198,34 @@ export const TablePagination = React.forwardRef<
       ref={ref}
       theme={theme}
     >
-      <Select
-        containerStyle={selectContainerStyle}
-        labelPosition={LabelPosition.left}
-        labelText={`${i18n.table.pagination.rowsPerPageLabel}:`}
-        selectedItem={rowsPerPageItems.find(item => item.value === rowsPerPage)}
-        isInverse={isInverse}
-        items={rowsPerPageItems}
-        onSelectedItemChange={handleRowsPerPageChange}
-      />
+      <RowsPerPageLabel>
+        {i18n.table.pagination.rowsPerPageLabel}:
+      </RowsPerPageLabel>
+      <Dropdown
+        alignment={DropdownAlignment.end}
+        dropDirection={dropdownDropDirection}
+        activeIndex={activeIndex}
+      >
+        <DropdownButton
+          aria-label={i18n.table.pagination.rowsPerPageLabel}
+          color={ButtonColor.secondary}
+          style={{ minWidth: 0 }}
+          testId="rowPerPageDropdownButton"
+        >
+          {rowsPerPageItems.find(item => item.value === rowsPerPage).label}
+        </DropdownButton>
+        <DropdownContent>
+          {rowsPerPageItems.map((row, index) => (
+            <DropdownMenuItem
+              key={index}
+              onClick={handleRowsPerPageChange}
+              value={row.value}
+            >
+              {row.label}
+            </DropdownMenuItem>
+          ))}
+        </DropdownContent>
+      </Dropdown>
 
       <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}

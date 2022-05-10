@@ -73,7 +73,7 @@ const StyledPageButton = styled(Button)`
       props.isInverse
         ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
         : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
-    border-style: dotted;
+    border-style: solid;
     height: calc(100% + 14px);
     left: -7px;
     position: absolute;
@@ -94,9 +94,7 @@ export const PageButton = React.forwardRef<HTMLButtonElement, PageButtonProps>(
         color={isSelected ? ButtonColor.primary : ButtonColor.secondary}
         theme={theme}
         isInverse={isInverse}
-        variant={
-          isInverse && !isSelected ? ButtonVariant.outline : ButtonVariant.solid
-        }
+        variant={ButtonVariant.solid}
       >
         {children}
       </StyledPageButton>

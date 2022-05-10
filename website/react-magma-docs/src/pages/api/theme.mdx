@@ -59,7 +59,6 @@ function DemoComponent() {
         </RadioGroup>
         <Button>Button</Button>
         <Button color={ButtonColor.secondary}>Secondary Button</Button>
-        <Button color={ButtonColor.success}>Success Button</Button>
         <Button color={ButtonColor.danger}>Danger Button</Button>
       </CardBody>
     </Card>
@@ -108,11 +107,13 @@ The `typeScale` can be set as part of the theme.
 typeScale: {
   size01: {
     fontSize: '12px',
-    lineHeight: '16px'
+    letterSpacing: '.32px',
+    lineHeight: '16px',
   },
   size02: {
     fontSize: '14px',
-    lineHeight: '20px'
+    letterSpacing: '.16px',
+    lineHeight: '20px',
   },
   size03: {
     fontSize: '16px',

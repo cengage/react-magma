@@ -5,7 +5,8 @@ import { css } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';
-import { useForceUpdate, useForkedRef } from '../../utils';
+import { useForkedRef } from '../../utils';
+import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -113,6 +114,7 @@ export const TabStyles = props => css`
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
   font-weight: 600;
   font-size: ${props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
   height: 100%;
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
@@ -160,10 +162,9 @@ export const TabStyles = props => css`
 
   &:focus {
     outline-offset: -2px;
-    outline: ${props.isInverse
+    outline: 2px solid ${props.isInverse
         ? props.theme.colors.focusInverse
-        : props.theme.colors.focus}
-      dotted 2px;
+        : props.theme.colors.focus};
   }
 `;
 

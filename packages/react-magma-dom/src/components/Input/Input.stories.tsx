@@ -2,7 +2,7 @@ import React from 'react';
 import { Input, InputProps } from '.';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { NotificationsIcon } from 'react-magma-icons';
+import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 
@@ -25,12 +25,21 @@ export default {
         type: 'boolean',
       },
     },
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   errorMessage: '',
 } as Meta;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  disabled: false,
+  helperMessage: 'Helper message',
+  placeholder: 'Placeholder text...'
+};
 
 export const Error = Template.bind({});
 Error.args = {
@@ -45,6 +54,21 @@ Large.args = {
 export const File = Template.bind({});
 File.args = {
   type: InputType.file,
+};
+
+export const IconTop = Template.bind({});
+IconTop.args = {
+  ...Default.args,
+  icon: <HelpIcon />,
+  iconPosition: InputIconPosition.top,
+};
+
+export const IconTopLarge = Template.bind({});
+IconTopLarge.args = {
+  ...Default.args,
+  icon: <HelpIcon />,
+  inputSize: InputSize.large,
+  iconPosition: InputIconPosition.top,
 };
 
 export const IconLeft = Template.bind({});
@@ -89,10 +113,11 @@ export const Inverse = Template.bind({});
 Inverse.args = {
   ...Default.args,
   isInverse: true,
+  errorMessage: '',
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card background={magma.colors.primary} isInverse>
       <CardBody>
         <Story />
       </CardBody>
