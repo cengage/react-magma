@@ -92,6 +92,7 @@ export const Default = (args: DropzoneProps) => {
         maxFiles={5}
         maxSize={1024 * 1024}
         onSendFile={onSendFile}
+        sendFiles={true}
         labelText="Upload files"
         helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
       />
@@ -151,7 +152,7 @@ export const Image = (args: DropzoneProps) => {
         {...args}
         onSendFile={onSendFile}
         accept={['image/*']}
-        helperMessage="Only PNG files"
+        helperMessage="Only Image files"
         sendFiles
         onDeleteFile={onDeleteFile}
       />

@@ -105,7 +105,7 @@ const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
         ? theme.colors.dangerInverse
         : theme.colors.danger
       : theme.colors.neutral06};
-  border-width: ${({ file }) => (file.errors ? '2px' : '1px')};
+  border-width: 1px;
   margin: 10px 0;
 `;
 
