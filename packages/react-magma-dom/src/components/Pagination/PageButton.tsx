@@ -40,7 +40,7 @@ const StyledPageButton = styled(Button)`
     width: calc(100% + 14px);
   }
   &:focus {
-    z-index: 9999;
+    z-index: 1;
   }
 `;
 
