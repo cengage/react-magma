@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies [2aa4ebc0]
+  - @cengage-patterns/header@3.0.0-next.1
+
 ## 3.0.0-next.12
 
 ### Patch Changes
