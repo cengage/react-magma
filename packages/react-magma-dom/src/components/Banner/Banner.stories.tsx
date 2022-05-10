@@ -2,7 +2,7 @@ import React from 'react';
 import { Banner, BannerProps } from '.';
 import { AlertVariant } from '../AlertBase';
 import { Card, CardBody } from '../Card';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Story } from '@storybook/react/types-6-0';
 
 const Template: Story<BannerProps> = args => (
   <>
@@ -22,15 +22,7 @@ const Template: Story<BannerProps> = args => (
 export default {
   component: Banner,
   title: 'Banner',
-  argTypes: {
-    variant: {
-      control: {
-        type: 'select',
-        options: AlertVariant,
-      },
-    },
-  },
-} as Meta;
+};
 
 export const Default = Template.bind({});
 Default.args = {};
@@ -42,7 +34,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <Card>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

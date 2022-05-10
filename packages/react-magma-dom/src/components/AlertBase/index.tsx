@@ -204,14 +204,9 @@ const StyledAlert = styled.div<AlertBaseProps>`
     color: inherit;
     font-weight: 600;
     text-decoration: underline;
-
-    &:focus {
-      outline: 2px solid
-        ${props =>
-          props.variant === 'warning'
-            ? props.theme.colors.focus
-            : props.theme.colors.focusInverse};
-    }
+  }
+  &:focus {
+    outline: 2px solid ${buildAlertBorder};
   }
 `;
 
@@ -273,6 +268,12 @@ const ProgressRingWrapper = styled.div`
 `;
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
+  button {
+    &:not(:disabled):focus {
+      outline: 2px solid ${buildAlertBorder};
+      outline-offset: 0 !important;
+    }
+  }
   ${IconWrapperStyles}
 `;
 
@@ -300,25 +301,15 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   width: auto;
 
   &&:focus:not(:disabled) {
-    outline: 2px solid
-      ${({ alertVariant, theme }) =>
-        alertVariant === 'warning'
-          ? theme.colors.focus
-          : theme.colors.focusInverse};
-    outline-offset: 0 !important;
+    background: none;
+    color: inherit;
   }
   &:not(:disabled):hover {
-    background: ${props =>
-      props.isInverse
-        ? transparentize(0.8, props.theme.colors.neutral900)
-        : transparentize(0.9, props.theme.colors.neutral900)};
+    background: none;
     color: inherit;
   }
   &:not(:disabled):active {
-    background: ${props =>
-      props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral900)
-        : transparentize(0.8, props.theme.colors.neutral900)};
+    background: none;
     color: inherit;
   }
 `;
@@ -380,7 +371,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
-    function ProgressRingColor() {
+    function progressRingColor() {
       switch (props.variant) {
         case 'success':
           return theme.colors.success500;
@@ -404,6 +395,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         isToast={isToast}
         ref={ref}
         theme={theme}
+        variant={variant}
       >
         <InverseContext.Provider
           value={{
@@ -419,11 +411,15 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
             {renderIcon(variant, isToast, theme)}
             <AlertContents theme={theme}>{children}</AlertContents>
             {isDismissible && (
-              <DismissibleIconWrapper variant={variant} theme={theme}>
+              <DismissibleIconWrapper
+                isInverse={isInverse}
+                variant={variant}
+                theme={theme}
+              >
                 {hasTimerRing && isToast && (
                   <ProgressRingWrapper theme={theme}>
                     <ProgressRing
-                      color={ProgressRingColor()}
+                      color={progressRingColor()}
                       isActive={!isPaused}
                     />
                   </ProgressRingWrapper>

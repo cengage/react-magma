@@ -1,62 +1,61 @@
 import React from 'react';
-import { Alert, AlertProps } from './index';
+import { Alert } from './index';
 import { AlertVariant } from '../AlertBase';
 import { Card, CardBody } from '../Card';
-import { Story, Meta } from '@storybook/react/types-6-0';
-
-const Template: Story<AlertProps> = args => (
-  <>
-    <Alert {...args}>Default</Alert>
-    <Alert {...args} variant={AlertVariant.success}>
-      Success
-    </Alert>
-    <Alert {...args} variant={AlertVariant.warning}>
-      Warning
-    </Alert>
-    <Alert {...args} variant={AlertVariant.danger}>
-      Danger
-    </Alert>
-    <Alert {...args} isDismissible>
-      Default dismissible
-    </Alert>
-    <Alert {...args} isDismissible variant={AlertVariant.success}>
-      Success dismissible
-    </Alert>
-    <Alert {...args} isDismissible variant={AlertVariant.warning}>
-      Warning dismissible
-    </Alert>
-    <Alert {...args} isDismissible variant={AlertVariant.danger}>
-      Danger dismissible
-    </Alert>
-  </>
-);
 
 export default {
   title: 'Alert',
   component: Alert,
-  argTypes: {
-    variant: {
-      control: {
-        type: 'select',
-        options: AlertVariant,
-      },
-    },
-  },
-} as Meta;
-
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Inverse = Template.bind({});
-Inverse.args = {
-  isInverse: true,
 };
-Inverse.decorators = [
-  Story => (
+
+export const Default = () => {
+  return (
+    <>
+      <Alert>Default</Alert>
+      <Alert variant={AlertVariant.success}>Success</Alert>
+      <Alert variant={AlertVariant.warning}>Warning</Alert>
+      <Alert variant={AlertVariant.danger}>Danger</Alert>
+      <Alert isDismissible>Default dismissible</Alert>
+      <Alert isDismissible variant={AlertVariant.success}>
+        Success dismissible
+      </Alert>
+      <Alert isDismissible variant={AlertVariant.warning}>
+        Warning dismissible
+      </Alert>
+      <Alert isDismissible variant={AlertVariant.danger}>
+        Danger dismissible
+      </Alert>
+    </>
+  );
+};
+
+export const Inverse = () => {
+  return (
     <Card isInverse>
       <CardBody>
-        <Story />
+        <Alert isInverse>Default</Alert>
+        <Alert isInverse variant={AlertVariant.success}>
+          Success
+        </Alert>
+        <Alert isInverse variant={AlertVariant.warning}>
+          Warning
+        </Alert>
+        <Alert isInverse variant={AlertVariant.danger}>
+          Danger
+        </Alert>
+        <Alert isInverse isDismissible>
+          Default dismissible
+        </Alert>
+        <Alert isInverse isDismissible variant={AlertVariant.success}>
+          Success dismissible
+        </Alert>
+        <Alert isInverse isDismissible variant={AlertVariant.warning}>
+          Warning dismissible
+        </Alert>
+        <Alert isInverse isDismissible variant={AlertVariant.danger}>
+          Danger dismissible
+        </Alert>
       </CardBody>
     </Card>
-  ),
-];
+  );
+};
