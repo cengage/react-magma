@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.2.14
+
+### Patch Changes
+
+- Updated dependencies [1c79d940]
+  - react-magma-dom@2.5.12
+
 ## 2.2.13
 
 ### Patch Changes

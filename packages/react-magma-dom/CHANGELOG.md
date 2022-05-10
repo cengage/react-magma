@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.12
+
+### Patch Changes
+
+- 1c79d940: fix(textarea): Textarea can now be cleared
+
 ## 2.5.11
 
 ### Patch Changes
