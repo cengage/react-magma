@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.11
+
+### Major Changes
+
+- 4eba5dc4: feat(pagination): updates to V3 styling
+
 ## 3.0.0-next.10
 
 ### Major Changes
