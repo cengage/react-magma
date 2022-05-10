@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.12
+
+### Major Changes
+
+- 2c98589c: feat(tabs): Updating tabs and nav tabs with new colors.
+
 ## 3.0.0-next.11
 
 ### Major Changes
