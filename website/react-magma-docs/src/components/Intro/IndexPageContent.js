@@ -24,7 +24,7 @@ import styled from '@emotion/styled';
 const StyledGrid = styled(Grid)`
   grid-template-columns: auto auto;
   grid-template-rows: auto;
-  padding: 0 2em 2em;
+  padding: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
 
   @media (max-width: ${magma.breakpoints.small}px) {
     display: block;
@@ -35,7 +35,7 @@ const StyledGrid = styled(Grid)`
 const StyledGridHero = styled(Grid)`
   grid-template-columns: auto auto;
   grid-template-rows: auto;
-  padding: 2em 2em 0;
+  padding: ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
 
   @media (max-width: ${magma.breakpoints.medium}px) {
     padding: 0 1em 1em;
@@ -72,7 +72,8 @@ const StyledGridHeroItem = styled(GridItem)`
 const HeaderBlock = styled.div`
   display: flex;
   align-items: center;
-  padding: ${magma.spaceScale.spacing06};
+  padding: ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06}
+    ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing10};
   text-align: left;
 
   svg {
@@ -112,9 +113,9 @@ const CenterBlock = styled.div`
   margin: auto;
   max-width: 40%;
 
-  button {
-    margin: auto;
-  }
+  // button {
+  //   margin: auto;
+  // }
 
   @media (max-width: ${magma.breakpoints.medium}px) {
     margin: ${magma.spaceScale.spacing06} auto;
@@ -206,7 +207,7 @@ export function IndexPageContent() {
     <>
       <HeaderBlock>
         <div>
-          <Heading level={1}>React Magma Design System</Heading>
+          <Heading level={1}>React Magma Design&nbsp;System</Heading>
           <Heading level={2} visualStyle={TypographyVisualStyle.bodyLarge}>
             React Magma is Cengage's open source design system for creating
             digital experiences with React.
@@ -216,7 +217,7 @@ export function IndexPageContent() {
       </HeaderBlock>
       <StyledGridHero gridGap={magma.spaceScale.spacing06}>
         <StyledGridHeroItem>
-          <HeroCardGrid isInverse="true">
+          <HeroCardGrid isInverse="true" background={magma.colors.primary}>
             <HeroCardIcon>
               <ArchitectureIcon color={magma.colors.primary} />
             </HeroCardIcon>
@@ -244,7 +245,7 @@ export function IndexPageContent() {
         </StyledGridHeroItem>
 
         <StyledGridHeroItem>
-          <HeroCardGrid isInverse="true">
+          <HeroCardGrid isInverse="true" background={magma.colors.primary}>
             <HeroCardIcon>
               <CodeIcon color={magma.colors.primary} />
             </HeroCardIcon>
@@ -359,13 +360,7 @@ export function IndexPageContent() {
             styledAs="Button"
             to="https://github.com/cengage/react-magma/"
           >
-            {linkProps => (
-              <Link {...linkProps} style={{ padding: 0 }}>
-                <IconButton icon={<GithubIcon />} iconPosition="right">
-                  Start Contributing
-                </IconButton>
-              </Link>
-            )}
+            {linkProps => <Link {...linkProps}>Start Contributing</Link>}
           </Hyperlink>
         </CenterBlock>
       </StyledGrid>
