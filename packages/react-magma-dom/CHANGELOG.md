@@ -1,10 +1,102 @@
 # Change Log
 
+
 ## 2.5.12
 
 ### Patch Changes
 
 - 1c79d940: fix(textarea): Textarea can now be cleared
+
+## 3.0.0-next.13
+
+### Major Changes
+
+- e1fba9d10: feat(modal): Updating Modal with rebrand styles. Adding support for `isInverse`.
+
+## 3.0.0-next.12
+
+### Major Changes
+
+- 2c98589c: feat(tabs): Updating tabs and nav tabs with new colors.
+
+## 3.0.0-next.11
+
+### Major Changes
+
+- 4eba5dc4: feat(pagination): updates to V3 styling
+
+## 3.0.0-next.10
+
+### Major Changes
+
+- d2400a77: feat: Updating tags to V3 styling
+
+  Note: tag variants "success" and "danger" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.9
+
+### Major Changes
+
+- 059d58fa: feat(buttons): adding in color changes throughout applicable components
+
+  Note: button variant "outline" and button color "success" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.8
+
+### Major Changes
+
+- d74ec404: feat(toggle/radio/checkbox): Updating toggle, radio checkbox and indeterminate checkbox with new colors.
+
+## 3.0.0-next.7
+
+### Major Changes
+
+- b0f75257: feat(accordion): Updating accordion with new colors.
+- 18afc4fc: feat(badge): Updating badge colors. Adding `isInverse` support.
+- 8d0ecf2a: feat(inputs): Updating Inputs with rebrand styles
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+
+## 3.0.0-next.6
+
+### Major Changes
+
+- b737f6cd: feat(table): Updating table with new colors.
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+
+## 3.0.0-next.4
+
+### Major Changes
+
+- 476c5023: feat(tooltips): Updating tooltip colors
+
+## 3.0.0-next.3
+
+### Major Changes
+
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- 26d70350: feat: Updating focus states from dotted to solid
+
+## 3.0.0-next.1
+
+### Major Changes
+
+- 38fe6b4c: feat(typography): Updating main typography styles: type, heading, paragraph
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- 366b25af: feat(magmacolors.ts): Adding new rebrand colors
 
 ## 2.5.11
 

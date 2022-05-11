@@ -227,7 +227,7 @@ describe('Dropdown', () => {
 
     expect(getByLabelText('Toggle menu')).toHaveAttribute(
       'style',
-      'margin-left: 0px;'
+      'margin-left: 2px;'
     );
   });
 
@@ -334,7 +334,6 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
     expect(onOpen).toHaveBeenCalled();
-
   });
 
   it('should close the menu when menu is blurred', () => {

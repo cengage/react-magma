@@ -44,11 +44,11 @@ const InputContainer = styled.div<{
   ${props =>
     props.isFocused &&
     css`
-      outline: 2px dotted
+      outline: 2px solid
         ${props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-      outline-offset: 4px;
+      outline-offset: 2px;
     `}
 
   ${props =>

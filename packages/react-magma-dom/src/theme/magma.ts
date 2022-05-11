@@ -2,6 +2,73 @@ import { ThemeTransitions, transitions } from './components/transition';
 
 export interface Colors {
   primary: string;
+  primary100: string;
+  primary200: string;
+  primary300: string;
+  primary400: string;
+  primary500: string;
+  primary600: string;
+  primary700: string;
+
+  secondary: string;
+  secondary500: string;
+  secondary600: string;
+  secondary700: string;
+
+  tertiary: string;
+  tertiary500: string;
+  tertiary600: string;
+  tertiary700: string;
+
+  neutral: string;
+  neutral100: string;
+  neutral200: string;
+  neutral300: string;
+  neutral400: string;
+  neutral500: string;
+  neutral600: string;
+  neutral700: string;
+  neutral800: string;
+  neutral900: string;
+
+  info: string;
+  info100: string;
+  info200: string;
+  info300: string;
+  info400: string;
+  info500: string;
+  info600: string;
+  info700: string;
+
+  danger: string;
+  danger100: string;
+  danger200: string;
+  danger300: string;
+  danger400: string;
+  danger500: string;
+  danger600: string;
+  danger700: string;
+
+  warning: string;
+  warning100: string;
+  warning200: string;
+  warning300: string;
+  warning400: string;
+  warning500: string;
+  warning600: string;
+  warning700: string;
+
+  success: string;
+  success100: string;
+  success200: string;
+  success300: string;
+  success400: string;
+  success500: string;
+  success600: string;
+  success700: string;
+
+  // Legacy Colors - To be deleted after rebranding
+  // primary: string;
   primaryInverse: string;
   focus: string;
   focusInverse: string;
@@ -15,12 +82,12 @@ export interface Colors {
   pop04: string;
   pop05: string;
   pop06: string;
-  success: string;
+  // success: string;
   success02: string;
   successInverse: string;
-  danger: string;
+  // danger: string;
   dangerInverse: string;
-  neutral: string;
+  // neutral: string;
   neutral02: string;
   neutral03: string;
   neutral04: string;
@@ -234,6 +301,7 @@ export interface ThemeInterface {
   bodyExpressiveFont: string;
   bodyNarrativeFont: string;
   borderRadius: string;
+  borderRadiusSmall: string;
   colors: Colors;
   combobox: Combobox;
   direction: string;
@@ -314,11 +382,104 @@ const typeScale = {
   },
 };
 
+const primaryColors = {
+  primary100: '#E8E9F8',
+  primary200: '#BABDE9',
+  primary300: '#8B91DA',
+  primary400: '#5D65CB',
+  primary500: '#3942B0',
+  primary600: '#292F7C',
+  primary700: '#1A1E51',
+};
+
+const secondaryColors = {
+  secondary500: '#FEE449',
+  secondary600: '#FEDA0D',
+  secondary700: '#ECC901',
+};
+
+const tertiaryColors = {
+  tertiary500: '#CDDEFF',
+  tertiary600: '#A2C1FF',
+  tertiary700: '#79A5FF',
+};
+
+const neutralColors = {
+  neutral100: '#FFFFFF', // white
+  neutral200: '#F5F5F5',
+  neutral300: '#D4D4D4',
+  neutral400: '#8D8D8D',
+  neutral500: '#707070',
+  neutral600: '#5A5A5A',
+  neutral700: '#454545',
+  neutral800: '#2D2D2D',
+  neutral900: '#000000', // black
+};
+
+const infoColors = {
+  info100: '#E8F5FC',
+  info200: '#A6DEFF',
+  info300: '#2FB3FF',
+  info400: '#009AF3',
+  info500: '#0074B7',
+  info600: '#005F96',
+  info700: '#004A75',
+};
+
+const dangerColors = {
+  danger100: '#FCEBEA',
+  danger200: '#FAAEB0',
+  danger300: '#E8716D',
+  danger400: '#E24943',
+  danger500: '#D32821',
+  danger600: '#A91F1A',
+  danger700: '#7F1714',
+};
+
+const warningColors = {
+  warning100: '#FCEEE5',
+  warning200: '#F6CDB2',
+  warning300: '#E98B4C',
+  warning400: '#E06A1C',
+  warning500: '#AD5115',
+  warning600: '#8D4311',
+  warning700: '#6E340E',
+};
+
+const successColors = {
+  success100: '#E3FAEA',
+  success200: '#ACF0C1',
+  success300: '#3EDD6E',
+  success400: '#21B94E',
+  success500: '#178037',
+  success600: '#136A2D',
+  success700: '#0F5323',
+};
+
 const colors = {
-  primary: '#006298', // link color blue
+  primary: primaryColors.primary500,
+  secondary: secondaryColors.secondary500,
+  tertiary: tertiaryColors.tertiary500,
+  neutral: neutralColors.neutral500,
+  info: infoColors.info500,
+  danger: dangerColors.danger500,
+  warning: warningColors.warning500,
+  success: successColors.success500,
+  ...primaryColors,
+  ...secondaryColors,
+  ...tertiaryColors,
+  ...neutralColors,
+  ...infoColors,
+  ...dangerColors,
+  ...warningColors,
+  ...successColors,
+
+  focus: infoColors.info500,
+  focusInverse: infoColors.info200,
+
+  // Legacy Colors - To be deleted after rebranding
+  // primary: '#006298', // link color blue
   primaryInverse: '#70CDFF', // link color inverse blue
-  focus: '#027EE1',
-  focusInverse: 'rgba(255,255,255,0.7)',
   foundation: '#00263E',
   foundation02: '#003865',
   foundation03: '#00A9E0',
@@ -329,12 +490,12 @@ const colors = {
   pop04: '#FFC72C',
   pop05: '#92278F',
   pop06: '#007A6D',
-  success: '#3A8200',
+  // success: '#3A8200',
   success02: '#48A200',
   successInverse: '#91CF60',
-  danger: '#C61D23',
+  // danger: '#C61D23',
   dangerInverse: '#F59295',
-  neutral: '#3F3F3F', // main dark grey text color
+  // neutral: '#3F3F3F', // main dark grey text color
   neutral02: '#575757',
   neutral03: '#707070',
   neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
@@ -376,13 +537,14 @@ const spaceScale = {
 };
 
 export const magma = {
-  bodyFont: '"Open Sans",Helvetica,sans-serif',
-  bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  bodyFont: '"Work Sans",Helvetica,sans-serif',
+  bodyExpressiveFont: '"Work Sans",Helvetica,sans-serif',
   bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
-  borderRadius: '4px',
+  borderRadius: '8px',
+  borderRadiusSmall: '4px',
   colors: colors,
-  headingFont: '"Open Sans",Helvetica,sans-serif',
-  headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  headingFont: '"Work Sans",Helvetica,sans-serif',
+  headingExpressiveFont: '"Work Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
   direction: 'ltr',
   spacingMultiplier: 8,
@@ -465,22 +627,22 @@ export const magma = {
     headingLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     headingMedium: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     headingSmall: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 300,
+      fontWeight: 700,
     },
     heading2XSmall: {
       mobile: typeScale.size03,
@@ -660,15 +822,15 @@ export const magma = {
   tooltip: {
     arrowSize: '4px',
     arrowSizeDoubled: '8px',
-    backgroundColor: colors.neutral,
-    fontWeight: 600,
+    backgroundColor: colors.neutral700,
+    fontWeight: 500,
     maxWidth: '300px',
-    textColor: colors.neutral08,
+    textColor: colors.neutral100,
     typeScale: typeScale.size01,
     zIndex: 999,
     inverse: {
-      backgroundColor: colors.neutral08,
-      textColor: colors.neutral,
+      backgroundColor: colors.neutral100,
+      textColor: colors.neutral700,
     },
   },
 };

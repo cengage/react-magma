@@ -22,9 +22,14 @@ export const Default = () => {
 
         <Radio
           id="radio2"
-          color={magma.colors.success}
           labelText="Option two label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines"
           value="2"
+        />
+        <Radio
+          id="radio3"
+          color={magma.colors.success}
+          labelText="Option three label with success color"
+          value="3"
         />
       </RadioGroup>
       <RadioGroup
@@ -48,8 +53,8 @@ export const Default = () => {
         value="selectedOption"
         errorMessage="Error message goes here"
       >
-        <Radio id="radio4" labelText="Error" value="4" />
-        <Radio id="radio5" labelText="Error checked" value="selectedOption" />
+        <Radio id="radio5" labelText="Error" value="5" />
+        <Radio id="radio6" labelText="Error checked" value="selectedOption" />
       </RadioGroup>
     </>
   );
@@ -68,6 +73,7 @@ export const Inverse = () => {
             value="selectedOption"
           >
             <Radio id="inverseRadio" labelText="Inverse" value="default" />
+            <Radio id="inverseRadio0" labelText="Inverse with success color" value="0" color={magma.colors.success}/>
             <Radio
               isInverse
               disabled

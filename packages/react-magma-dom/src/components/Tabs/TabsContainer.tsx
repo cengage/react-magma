@@ -19,23 +19,21 @@ interface TabsContainerContextInterface {
   setActiveTabIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const TabsContainerContext = React.createContext<TabsContainerContextInterface>(
-  {
+export const TabsContainerContext =
+  React.createContext<TabsContainerContextInterface>({
     activeTabIndex: 0,
     isInverseContainer: false,
     setActiveTabIndex: () => 0,
-  }
-);
+  });
 
 const StyledTabsContainer = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
-  background: ${props =>
-    props.isInverse ? props.theme.colors.foundation02 : 'none'};
+  background: none;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
+      ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
   display: flex;
   flex-wrap: wrap;

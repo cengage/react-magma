@@ -55,7 +55,7 @@ const CalendarDayInner = styled.button<{
   width: calc(${props => props.theme.spaceScale.spacing09} - 4px);
 
   &:focus {
-    outline: 2px dotted ${props => props.theme.colors.focus};
+    outline: 2px solid ${props => props.theme.colors.focus};
   }
 
   &:before {

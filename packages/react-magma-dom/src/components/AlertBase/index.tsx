@@ -92,7 +92,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
   }
 
   &:focus {
-    outline: 2px dotted ${props =>
+    outline: 2px solid ${props =>
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
@@ -157,7 +157,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
     text-decoration: underline;
 
     &:focus {
-      outline: 2px dotted ${props =>
+      outline: 2px solid ${props =>
         props.variant === 'warning'
           ? props.theme.colors.focus
           : props.theme.colors.focusInverse};
@@ -245,7 +245,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   width: auto;
 
   &&:focus:not(:disabled) {
-    outline: 2px dotted
+    outline: 2px solid
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
           ? theme.colors.focus
