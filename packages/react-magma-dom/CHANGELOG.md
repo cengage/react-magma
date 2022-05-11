@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.13
+
+### Major Changes
+
+- e1fba9d10: feat(modal): Updating Modal with rebrand styles. Adding support for `isInverse`.
+
 ## 3.0.0-next.12
 
 ### Major Changes
