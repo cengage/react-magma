@@ -1,5 +1,38 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- 6839a984: docs: update design guideline images
+- 316d871b: docs: updated guidelines images
+
+### Patch Changes
+
+- Updated dependencies [059d58fa]
+- Updated dependencies [2aa4ebc0]
+- Updated dependencies [b0f75257]
+- Updated dependencies [18afc4fc]
+- Updated dependencies [f545eb26]
+- Updated dependencies [6beb7283]
+- Updated dependencies [366b25af]
+- Updated dependencies [26d70350]
+- Updated dependencies [8d0ecf2a]
+- Updated dependencies [e1fba9d1]
+- Updated dependencies [7659a0ba]
+- Updated dependencies [b737f6cd]
+- Updated dependencies [2c98589c]
+- Updated dependencies [d2400a77]
+- Updated dependencies [d74ec404]
+- Updated dependencies [476c5023]
+- Updated dependencies [38fe6b4c]
+- Updated dependencies [4eba5dc4]
+  - react-magma-dom@3.0.0
+  - @cengage-patterns/header@3.0.0
+  - @react-magma/charts@1.0.0
+  - @react-magma/dropzone@1.0.0
+  - @react-magma/schema-renderer@1.0.0
+
 ## 2.2.14
 
 ### Patch Changes

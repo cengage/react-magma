@@ -1,5 +1,32 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- 059d58fa: feat(buttons): adding in color changes throughout applicable components
+
+  Note: button variant "outline" and button color "success" have been removed as a part of the V3 update which will cause breaking changes.
+
+- b0f75257: feat(accordion): Updating accordion with new colors.
+- 18afc4fc: feat(badge): Updating badge colors. Adding `isInverse` support.
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+- 366b25af: feat(magmacolors.ts): Adding new rebrand colors
+- 26d70350: feat: Updating focus states from dotted to solid
+- 8d0ecf2a: feat(inputs): Updating Inputs with rebrand styles
+- e1fba9d1: feat(modal): Updating Modal with rebrand styles. Adding support for `isInverse`.
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+- b737f6cd: feat(table): Updating table with new colors.
+- 2c98589c: feat(tabs): Updating tabs and nav tabs with new colors.
+- d2400a77: feat: Updating tags to V3 styling
+
+  Note: tag variants "success" and "danger" have been removed as a part of the V3 update which will cause breaking changes.
+
+- d74ec404: feat(toggle/radio/checkbox): Updating toggle, radio checkbox and indeterminate checkbox with new colors.
+- 476c5023: feat(tooltips): Updating tooltip colors
+- 38fe6b4c: feat(typography): Updating main typography styles: type, heading, paragraph
+- 4eba5dc4: feat(pagination): updates to V3 styling
 
 ## 2.5.12
 
