@@ -135,6 +135,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):hover {
   background: none;
   color: inherit;
+  outline: 2px solid #0074B7;
+  outline-offset: 0 !important;
 }
 
 .emotion-2:not(:disabled):active {
@@ -276,6 +278,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):hover {
   background: none;
   color: inherit;
+  outline: 2px solid #0074B7;
+  outline-offset: 0 !important;
 }
 
 .emotion-2:not(:disabled):active {
@@ -315,49 +319,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 `;
 
 exports[`Alert Variants should render an alert with danger variant 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
 .emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
@@ -402,8 +363,47 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3:focus {
-  outline: 2px solid #D32821;
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
+  }
+}
+
+.emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 12px 0;
+}
+
+@media (max-width:600px) {
+  .emotion-1 {
+    padding-left: 0;
+  }
 }
 
 .emotion-2 {
@@ -418,49 +418,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   position: relative;
 }
 
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
 .emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
@@ -505,8 +462,47 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3:focus {
-  outline: 2px solid #D32821;
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
+  }
+}
+
+.emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 12px 0;
+}
+
+@media (max-width:600px) {
+  .emotion-1 {
+    padding-left: 0;
+  }
 }
 
 .emotion-2 {
@@ -602,10 +598,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
-}
-
 .emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
@@ -703,10 +695,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   font-weight: 600;
   -webkit-text-decoration: underline;
   text-decoration: underline;
-}
-
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
 }
 
 .emotion-2 {
@@ -801,49 +789,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 `;
 
 exports[`Alert Variants should render an alert with warning variant 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
 .emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
@@ -888,8 +833,47 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3:focus {
-  outline: 2px solid #AD5115;
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
+  }
+}
+
+.emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 12px 0;
+}
+
+@media (max-width:600px) {
+  .emotion-1 {
+    padding-left: 0;
+  }
 }
 
 .emotion-2 {
@@ -904,49 +888,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   position: relative;
 }
 
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
 .emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
@@ -991,8 +932,47 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3:focus {
-  outline: 2px solid #AD5115;
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width:600px) {
+  .emotion-0 {
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
+  }
+}
+
+.emotion-1 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 12px 0;
+}
+
+@media (max-width:600px) {
+  .emotion-1 {
+    padding-left: 0;
+  }
 }
 
 .emotion-2 {
@@ -1088,10 +1068,6 @@ exports[`Alert should render an alert with default variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
-}
-
 .emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
@@ -1189,10 +1165,6 @@ exports[`Alert should render an alert with default variant 1`] = `
   font-weight: 600;
   -webkit-text-decoration: underline;
   text-decoration: underline;
-}
-
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
 }
 
 .emotion-2 {

@@ -205,9 +205,6 @@ const StyledAlert = styled.div<AlertBaseProps>`
     font-weight: 600;
     text-decoration: underline;
   }
-  &:focus {
-    outline: 2px solid ${buildAlertBorder};
-  }
 `;
 
 const StyledAlertInner = styled.div<AlertBaseProps>`
@@ -268,12 +265,6 @@ const ProgressRingWrapper = styled.div`
 `;
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
-  button {
-    &:not(:disabled):focus {
-      outline: 2px solid ${buildAlertBorder};
-      outline-offset: 0 !important;
-    }
-  }
   ${IconWrapperStyles}
 `;
 
@@ -304,6 +295,12 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   &:not(:disabled):hover {
     background: none;
     color: inherit;
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: 0 !important;
   }
   &:not(:disabled):active {
     background: none;
