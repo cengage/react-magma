@@ -131,8 +131,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
 }
 
-.emotion-2:focus:not(:disabled),
 .emotion-2:not(:disabled):hover {
+  background: none;
+  color: inherit;
+}
+
+.emotion-2:focus:not(:disabled) {
   background: none;
   color: inherit;
   outline: 2px solid #0074B7;
@@ -274,8 +278,12 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
 }
 
-.emotion-2:focus:not(:disabled),
 .emotion-2:not(:disabled):hover {
+  background: none;
+  color: inherit;
+}
+
+.emotion-2:focus:not(:disabled) {
   background: none;
   color: inherit;
   outline: 2px solid #0074B7;

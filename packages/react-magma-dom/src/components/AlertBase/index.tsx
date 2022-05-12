@@ -290,9 +290,11 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
       ? `0 ${props.theme.spaceScale.spacing04}`
       : `0 ${props.theme.spaceScale.spacing03}`};
   width: auto;
-
-  &:focus:not(:disabled),
   &:not(:disabled):hover {
+    background: none;
+    color: inherit;
+  }
+  &:focus:not(:disabled) {
     background: none;
     color: inherit;
     outline: 2px solid
