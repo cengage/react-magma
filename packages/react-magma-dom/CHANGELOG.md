@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.0-next.14
+
+### Major Changes
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+
+  Breaking Change: Muted Alert variant has been removed.
+
 ## 3.0.0-next.13
 
 ### Major Changes
