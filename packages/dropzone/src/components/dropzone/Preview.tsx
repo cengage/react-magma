@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { forwardRef, useContext, useEffect, useState } from 'react';
 
 import {
   CheckCircleIcon,
@@ -103,15 +98,14 @@ const FileName = styled(Flex)`
 `;
 
 const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
-  background-color: ${({ isInverse, theme }) =>
-    isInverse ? theme.colors.foundation02 : theme.colors.neutral08};
+  background-color: none;
   border-color: ${({ file, theme, isInverse }) =>
     file.errors
       ? isInverse
         ? theme.colors.dangerInverse
         : theme.colors.danger
       : theme.colors.neutral06};
-  border-width: ${({ file }) => (file.errors ? '2px' : '1px')};
+  border-width: 1px;
   margin: 10px 0;
 `;
 
@@ -149,12 +143,20 @@ const formatError = (
     case 'file-too-large':
       return {
         ...error,
-        message: `${error.message} ${formatFileSize(constraints.maxSize, 2, byteLabel)}.`,
+        message: `${error.message} ${formatFileSize(
+          constraints.maxSize,
+          2,
+          byteLabel
+        )}.`,
       };
     case 'file-too-small':
       return {
         ...error,
-        message: `${error.message} ${formatFileSize(constraints.minSize, 2, byteLabel)}.`,
+        message: `${error.message} ${formatFileSize(
+          constraints.minSize,
+          2,
+          byteLabel
+        )}.`,
       };
     case 'file-invalid-type':
       return { ...error, message: `${error.message}: ${messageSuffix}` };
@@ -197,7 +199,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
       useEffect(() => {
         let mounted = true;
         setTimeout(() => {
-          if(mounted) {
+          if (mounted) {
             setDone(true);
           }
         }, 1000);
@@ -224,9 +226,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
         return (
           <StatusIcons>
             <Spinner
-              color={
-                isInverse ? theme.colors.foundation04 : theme.colors.primary
-              }
+              color={isInverse ? theme.colors.neutral100 : theme.colors.primary}
             />
           </StatusIcons>
         );
@@ -236,9 +236,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
         <StatusIcons>
           <Transition isOpen={!done} unmountOnExit fade>
             <CheckCircleIcon
-              color={
-                isInverse ? theme.colors.successInverse : theme.colors.success
-              }
+              color={isInverse ? theme.colors.success200 : theme.colors.success}
               style={{ marginTop: '4px' }}
             />
           </Transition>
@@ -283,7 +281,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               {file.errors ? (
                 <ErrorIcon
                   color={
-                    isInverse ? theme.colors.dangerInverse : theme.colors.danger
+                    isInverse ? theme.colors.danger200 : theme.colors.danger
                   }
                   size={24}
                 />
@@ -299,9 +297,15 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
             <FileName xs behavior={FlexBehavior.item} theme={theme}>
               {file.name}
             </FileName>
-            {file.processor && file.processor.status === 'pending' && <Flex role="progressbar" style={{ marginLeft: 'auto' }} behavior={FlexBehavior.item}>
-              {file.processor.percent}
-            </Flex>}
+            {file.processor && file.processor.status === 'pending' && (
+              <Flex
+                role="progressbar"
+                style={{ marginLeft: 'auto' }}
+                behavior={FlexBehavior.item}
+              >
+                {file.processor.percent}
+              </Flex>
+            )}
             <Flex behavior={FlexBehavior.item}>{actions}</Flex>
           </StyledFlex>
           {file.errors && (
@@ -317,7 +321,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                     <ErrorHeader
                       style={{
                         color: isInverse
-                          ? theme.colors.dangerInverse
+                          ? theme.colors.danger200
                           : theme.colors.danger,
                       }}
                     >
