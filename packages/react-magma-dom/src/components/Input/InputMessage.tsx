@@ -4,6 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ErrorIcon } from 'react-magma-icons';
 import { Announce } from '../Announce';
 import { InputSize } from '../InputBase';
+import { transparentize } from 'polished';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -16,9 +17,9 @@ export interface InputMessageProps
 function BuildMessageColor(props) {
   const { isInverse, hasError, theme } = props;
   if (isInverse) {
-    return hasError ? theme.colors.dangerInverse : theme.colors.neutral08;
+    return hasError ? theme.colors.danger200 : transparentize(0.3, props.theme.colors.neutral100);
   }
-  return hasError ? theme.colors.danger : theme.colors.neutral03;
+  return hasError ? theme.colors.danger : theme.colors.neutral500;
 }
 
 const Message = styled.div<InputMessageProps>`

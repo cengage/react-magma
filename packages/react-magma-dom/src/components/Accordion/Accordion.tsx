@@ -94,10 +94,7 @@ export type AccordionProps =
   | AccordionSingleControlledProps;
 
 const StyledAccordion = styled.div<AccordionProps>`
-  background: ${props =>
-    props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+  background: transparent;
   border-bottom: 1px solid ${props => props.theme.colors.neutral06};
   color: ${props =>
     props.isInverse

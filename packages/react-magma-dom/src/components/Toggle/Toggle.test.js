@@ -101,7 +101,7 @@ describe('Toggle', () => {
     const track = getByTestId('toggle-track');
 
     expect(toggle).toHaveAttribute('checked');
-    expect(track).toHaveStyleRule('border-color', magma.colors.success02);
+    expect(track).toHaveStyleRule('border-color', magma.colors.success);
   });
 
   it('should render a toggle with an error message', () => {
@@ -150,7 +150,7 @@ describe('Toggle', () => {
     expect(track).toHaveStyleRule('border-color', magma.colors.danger);
     expect(track).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 1px ${magma.colors.neutral08}`
+      `0 0 0 1px ${magma.colors.neutral100}`
     );
   });
 

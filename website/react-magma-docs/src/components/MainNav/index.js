@@ -46,13 +46,13 @@ const HR = styled.hr`
   background: ${props =>
     props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border: none;
-  margin: ${magma.spaceScale.spacing03} 0;
+  margin: 0;
   height: 1px;
 `;
 
 const List = styled.ul`
   list-style-type: none;
-  margin: 0;
+  margin: 0 0 ${magma.spaceScale.spacing03} 0;
   padding: 0;
 `;
 
@@ -64,9 +64,9 @@ const ListItem = styled.li`
 
 const LinkStyles = props => `
   align-items: center;
-  color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+  color: ${props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   display: flex;
-  font-size: ${magma.typeScale.size03.fontSize};
+  font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
   line-height: ${magma.typeScale.size03.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
@@ -75,9 +75,9 @@ const LinkStyles = props => `
 
 const LinkHoverStyles = props => `
 background: ${
-  props.isInverse ? magma.colors.foundation02 : magma.colors.neutral06
+  props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200
 };
-color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+color: ${props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
 `;
 
 const StyledLink = styled(Link)`
@@ -101,9 +101,9 @@ const StyledExternalLink = styled.a`
 const StyledLink2 = styled(Link)`
   align-items: center;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+    props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   display: flex;
-  font-size: ${magma.typeScale.size03.fontSize};
+  font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
   text-decoration: none;
@@ -111,9 +111,9 @@ const StyledLink2 = styled(Link)`
   &:hover,
   &:focus {
     background: ${props =>
-      props.isInverse ? magma.colors.foundation02 : magma.colors.neutral06};
+      props.isInverse ? magma.colors.primary600 : magma.colors.neutral200};
     color: ${props =>
-      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+      props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
   }
 `;
 

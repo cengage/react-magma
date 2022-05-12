@@ -11,6 +11,7 @@ import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabPanel } from './TabPanel';
+import { Card } from '../Card';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -51,6 +52,7 @@ const Template: Story<TabsProps> = args => (
       <Tab>Main Page</Tab>
       <Tab>FAQ</Tab>
       <Tab>About Us</Tab>
+      <Tab disabled>Disabled</Tab>
     </Tabs>
     <TabPanelsContainer>
       <TabPanel>
@@ -184,3 +186,33 @@ const ScrollingTemplate: Story<TabsProps> = args => (
 
 export const Scrolling = ScrollingTemplate.bind({});
 Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
+
+const InverseTemplate: Story<TabsProps> = args => (
+  <Card isInverse>
+    <TabsContainer>
+      <Tabs aria-label="Sample Tabs" {...args}>
+        <Tab>First item</Tab>
+        <Tab>Second item</Tab>
+        <Tab>Third item</Tab>
+        <Tab disabled>Disabled</Tab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel isInverse>
+          <div>Email</div>
+        </TabPanel>
+        <TabPanel isInverse>
+          <div>Android</div>
+        </TabPanel>
+        <TabPanel isInverse>
+          <div>Notifications</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  </Card>
+);
+
+export const Inverse = InverseTemplate.bind({});
+Inverse.args = {
+  ...Default.args,
+  isInverse: true,
+};

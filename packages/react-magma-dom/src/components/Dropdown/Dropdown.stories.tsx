@@ -61,7 +61,11 @@ OnClickOutside.args = {
 
 const AlignmentTemplate: Story<DropdownProps> = args => (
   <>
-    <Dropdown {...args} dropDirection={DropdownDropDirection.right} activeIndex={1}>
+    <Dropdown
+      {...args}
+      dropDirection={DropdownDropDirection.right}
+      activeIndex={1}
+    >
       <DropdownButton>Right Aligned Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -128,7 +132,6 @@ const CustomTemplate: Story<DropdownProps> = args => (
     <Dropdown>
       <DropdownButton
         aria-label="Extra icon example"
-        color={ButtonColor.success}
         size={ButtonSize.large}
         icon={<MenuIcon />}
       />
@@ -172,7 +175,7 @@ const SplitTemplate: Story<DropdownProps> = args => (
       <DropdownSplitButton
         aria-label="Split"
         size={ButtonSize.medium}
-        variant={ButtonVariant.outline}
+        variant={ButtonVariant.solid}
         color={ButtonColor.danger}
       >
         Split Dropdown

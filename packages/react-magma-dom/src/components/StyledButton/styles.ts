@@ -1,4 +1,4 @@
-import { darken, lighten, tint } from 'polished';
+import { darken, tint, transparentize } from 'polished';
 
 const DEFAULT_STYLE_PROPS = {
   color: 'primary',
@@ -77,23 +77,47 @@ export function buildButtonPadding(props) {
 export function buildButtonBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.variant !== 'solid' && props.color !== 'marketing') {
-    return 'rgba(0,0,0,0)';
-  }
   if (props.disabled) {
-    return props.theme.colors.neutral06;
+    if (props.isInverse) {
+      if (props.color === 'secondary' || props.variant === 'link') {
+        return 'none';
+      }
+      return transparentize(0.7, props.theme.colors.neutral100);
+    }
+    if (props.color === 'secondary') {
+      return props.theme.colors.neutral100;
+    }
+    if (props.variant === 'link') {
+      return 'none';
+    }
+    return props.theme.colors.neutral300;
   }
-  if (props.color === 'marketing') {
-    return props.theme.colors.pop04;
-  }
+
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    if (props.variant === 'link') {
+      return 'none';
+    }
+    if (props.color === 'secondary') {
+      return 'none';
+    }
+    if (props.color === 'marketing') {
+      return props.theme.colors.secondary500;
+    }
+    if (props.color === 'danger') {
+      return props.theme.colors.danger;
+    }
+    return props.theme.colors.tertiary500;
   }
+
+  if (props.variant === 'link') {
+    return 'none';
+  }
+
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.neutral08;
-    case 'success':
-      return props.theme.colors.success;
+      return props.theme.colors.neutral100;
+    case 'marketing':
+      return props.theme.colors.secondary500;
     case 'danger':
       return props.theme.colors.danger;
     default:
@@ -104,25 +128,31 @@ export function buildButtonBackground(props) {
 export function buildBorderColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.disabled && props.isInverse && props.variant === 'outline') {
-    return props.theme.colors.disabledInverseText;
-  }
   if (props.disabled) {
-    return props.theme.colors.neutral06;
+    if (props.isInverse) {
+      if (props.color === 'secondary') {
+        return transparentize(0.8, props.theme.colors.neutral100);
+      }
+      return 'none';
+    }
+    return props.theme.colors.neutral300;
   }
-  if (props.color === 'marketing') {
-    return props.theme.colors.pop04;
-  }
+
   if (props.isInverse) {
-    return props.theme.colors.neutral08;
+    if (props.color === 'secondary') {
+      return transparentize(0.5, props.theme.colors.tertiary500);
+    }
+    return props.theme.colors.neutral100;
+  }
+
+  if (props.color === 'marketing') {
+    return props.theme.colors.secondary500;
   }
   if (props.color === 'secondary') {
-    return props.theme.colors.neutral05;
+    return props.theme.colors.primary300;
   }
   if (props.variant === 'solid') {
     switch (props.color) {
-      case 'success':
-        return props.theme.colors.success;
       case 'danger':
         return props.theme.colors.danger;
       default:
@@ -134,33 +164,49 @@ export function buildBorderColor(props) {
 export function buildColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.disabled && props.isInverse && props.variant !== 'solid') {
-    return props.theme.colors.disabledInverseText;
-  }
   if (props.disabled) {
-    return props.theme.colors.disabledText;
-  }
-  if (props.color === 'marketing') {
-    return props.theme.colors.foundation02;
-  }
-  if (
-    (!props.isInverse && props.variant === 'solid') ||
-    (props.isInverse && props.variant !== 'solid')
-  ) {
-    if (props.color === 'secondary' && !props.isInverse) {
-      return props.theme.colors.neutral;
+    if (props.isInverse) {
+      if (props.color === 'secondary' || props.variant === 'link') {
+        return transparentize(0.7, props.theme.colors.neutral100);
+      }
+      return transparentize(0.6, props.theme.colors.neutral100);
     }
-    return props.theme.colors.neutral08;
+    return transparentize(0.4, props.theme.colors.neutral500);
   }
+
+  if (props.isInverse) {
+    if (props.variant === 'link') {
+      if (props.color === 'danger') {
+        return props.theme.colors.danger200;
+      }
+      return props.theme.colors.tertiary500;
+    }
+    if (props.color === 'secondary') {
+      return props.theme.colors.tertiary500;
+    }
+    if (props.color === 'marketing') {
+      return props.theme.colors.primary500;
+    }
+    if (props.color === 'danger') {
+      return props.theme.colors.neutral100;
+    }
+    return props.theme.colors.primary700;
+  }
+
+  if (props.variant === 'link') {
+    if (props.color === 'danger') {
+      return props.theme.colors.danger500;
+    }
+    return props.theme.colors.primary;
+  }
+
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.neutral;
-    case 'success':
-      return props.theme.colors.success;
-    case 'danger':
-      return props.theme.colors.danger;
-    default:
       return props.theme.colors.primary;
+    case 'marketing':
+      return props.theme.colors.primary;
+    default:
+      return props.theme.colors.neutral100;
   }
 }
 
@@ -168,7 +214,19 @@ export function buildFocusBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
   if (props.color === 'marketing') {
-    return lighten(0.1, props.theme.colors.pop04);
+    if (props.variant !== 'solid' && props.isInverse) {
+      return transparentize(0.7, props.theme.colors.neutral900);
+    }
+    return darken(0.1, props.theme.colors.secondary500);
+  }
+  if (props.color === 'danger') {
+    if (props.variant !== 'solid') {
+      if (props.isInverse) {
+        return transparentize(0.7, props.theme.colors.neutral900);
+      }
+      return tint(0.9, props.theme.colors.danger);
+    }
+    return darken(0.1, props.theme.colors.danger);
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -176,23 +234,17 @@ export function buildFocusBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.9, props.theme.colors.neutral);
-      case 'success':
-        return tint(0.9, props.theme.colors.success);
-      case 'danger':
-        return tint(0.9, props.theme.colors.danger);
+        return tint(0.9, props.theme.colors.primary);
       default:
         return tint(0.9, props.theme.colors.primary);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
-    return 'rgba(0, 0, 0, 0.3)';
+    return transparentize(0.7, props.theme.colors.neutral900);
   }
   switch (props.color) {
     case 'secondary':
-      return darken(0.1, props.theme.colors.neutral08);
-    case 'success':
-      return darken(0.1, props.theme.colors.success);
+      return tint(0.9, props.theme.colors.primary);
     case 'danger':
       return darken(0.1, props.theme.colors.danger);
     default:
@@ -202,8 +254,13 @@ export function buildFocusBackground(props) {
 
 export function buildFocusColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
-  if (props.color === 'marketing') {
-    return props.theme.colors.foundation02;
+  if (props.color === 'marketing' && !props.isInverse) {
+    return darken(0.1, props.theme.colors.primary);
+  }
+  if (props.color === 'danger') {
+    if (props.variant !== 'solid' && !props.isInverse) {
+      return darken(0.1, props.theme.colors.danger);
+    }
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -211,22 +268,33 @@ export function buildFocusColor(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral;
-      case 'success':
-        return darken(0.1, props.theme.colors.success);
+        return darken(0.1, props.theme.colors.primary);
+      case 'marketing':
+        return darken(0.1, props.theme.colors.primary);
       case 'danger':
-        return darken(0.1, props.theme.colors.danger);
+        return props.theme.colors.neutral100;
       default:
         return darken(0.1, props.theme.colors.primary);
     }
   }
-  if (props.variant !== 'solid' && props.isInverse) {
-    return props.theme.colors.neutral08;
+  if (props.variant === 'link' && props.isInverse) {
+    switch (props.color) {
+      case 'primary':
+        return props.theme.colors.tertiary500;
+      case 'secondary':
+        return props.theme.colors.tertiary500;
+      case 'marketing':
+        return props.theme.colors.tertiary500;
+      case 'danger':
+        return props.theme.colors.danger200;
+      default:
+        return props.theme.colors.tertiary500;
+    }
   }
   if (props.color === 'secondary' && !props.isInverse) {
-    return props.theme.colors.neutral;
+    return darken(0.1, props.theme.colors.primary);
   }
-  return props.theme.colors.neutral08;
+  return props.theme.colors.neutral100;
 }
 
 export function buildAfterBackground(props) {
@@ -238,9 +306,7 @@ export function buildAfterBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral;
-      case 'success':
-        return props.theme.colors.success;
+        return props.theme.colors.primary;
       case 'danger':
         return props.theme.colors.danger;
       default:
@@ -254,14 +320,28 @@ export function buildAfterBackground(props) {
   ) {
     return props.theme.colors.neutral;
   }
-  return props.theme.colors.neutral08;
+  return props.theme.colors.neutral100;
 }
 
 export function buildActiveBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
   if (props.color === 'marketing') {
-    return lighten(0.2, props.theme.colors.pop04);
+    if (props.variant !== 'solid' && props.isInverse) {
+      return transparentize(0.7, props.theme.colors.neutral900);
+    }
+    return darken(0.15, props.theme.colors.secondary500);
+  }
+  if (props.color === 'danger') {
+    if (props.isInverse) {
+      if (props.variant !== 'solid') {
+        return transparentize(0.5, props.theme.colors.neutral900);
+      }
+      return darken(0.2, props.theme.colors.danger);
+    }
+    if (props.variant !== 'solid') {
+      return tint(0.7, props.theme.colors.danger);
+    }
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -269,23 +349,19 @@ export function buildActiveBackground(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return tint(0.7, props.theme.colors.neutral);
-      case 'success':
-        return tint(0.7, props.theme.colors.success);
-      case 'danger':
-        return tint(0.7, props.theme.colors.danger);
+        return tint(0.7, props.theme.colors.primary);
       default:
         return tint(0.7, props.theme.colors.primary);
     }
   }
-  if (props.variant !== 'solid' && props.isInverse) {
-    return 'rgba(0, 0, 0, 0.5);';
+
+  if (props.variant === 'link' && props.isInverse) {
+    return transparentize(0.5, props.theme.colors.neutral900);
   }
+
   switch (props.color) {
     case 'secondary':
-      return darken(0.2, props.theme.colors.neutral08);
-    case 'success':
-      return darken(0.2, props.theme.colors.success);
+      return tint(0.7, props.theme.colors.primary);
     case 'danger':
       return darken(0.2, props.theme.colors.danger);
     default:
@@ -296,8 +372,13 @@ export function buildActiveBackground(props) {
 export function buildActiveColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.color === 'marketing') {
-    return props.theme.colors.foundation02;
+  if (props.color === 'danger') {
+    if (props.variant !== 'solid') {
+      if (props.isInverse) {
+        return props.theme.colors.danger200;
+      }
+      return darken(0.2, props.theme.colors.danger);
+    }
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -305,20 +386,32 @@ export function buildActiveColor(props) {
   ) {
     switch (props.color) {
       case 'secondary':
-        return props.theme.colors.neutral;
-      case 'success':
-        return darken(0.2, props.theme.colors.success);
+        return darken(0.2, props.theme.colors.primary);
       case 'danger':
-        return darken(0.2, props.theme.colors.danger);
+        return props.theme.colors.neutral100;
       default:
         return darken(0.2, props.theme.colors.primary);
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
-    return props.theme.colors.neutral08;
+    switch (props.color) {
+      case 'primary':
+        return props.theme.colors.tertiary500;
+      case 'secondary':
+        return props.theme.colors.tertiary500;
+      case 'marketing':
+        return props.theme.colors.tertiary500;
+
+      default:
+        return props.theme.colors.neutral100;
+    }
   }
-  if (props.color === 'secondary' && !props.isInverse) {
-    return props.theme.colors.neutral;
+
+  if (
+    props.color === 'secondary' ||
+    (props.color === 'marketing' && !props.isInverse)
+  ) {
+    return darken(0.2, props.theme.colors.primary);
   }
-  return props.theme.colors.neutral08;
+  return props.theme.colors.neutral100;
 }
