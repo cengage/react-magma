@@ -16,35 +16,30 @@ import { magma, useIsInverse } from 'react-magma-dom';
 
 const activeStyleDefault = {
   color: magma.colors.neutral,
-  fontWeight: 'bold',
-  background: magma.colors.neutral07,
+  background: magma.colors.neutral700,
 };
 
 const activeStyleInverse = {
   color: magma.colors.neutral07,
-  fontWeight: 'bold',
   background: magma.colors.foundation02,
 };
 
 const Heading2 = styled.h2`
-  align-items: center;
   display: flex;
-  font-size: ${magma.typeScale.size05.fontSize};
-  font-weight: 600;
-  line-height: ${magma.typeScale.size05.lineHeight};
-  justify-content: space-between;
-  margin: 0;
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
-    ${magma.spaceScale.spacing04};
+  font-size: ${magma.typeScale.size03.fontSize};
+  line-height: ${magma.typeScale.size03.lineHeight};
+  font-weight: 500;
+  padding: ${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05};
 `;
 
 const Heading3 = styled.h3`
-  color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
-  font-size: ${magma.typeScale.size04.fontSize};
-  font-weight: 700;
-  margin: ${magma.spaceScale.spacing03} 0 0 0;
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
+  font-size: ${magma.typeScale.size01.fontSize};
+  font-weight: 500;
+  text-transform: uppercase;
+  display: inline-block;
+  text-indent: 0;
+  padding-left: 16px;
+  padding-top: 20px;
 `;
 
 const HR = styled.hr`
@@ -216,8 +211,7 @@ export const MainNav = ({ ...props }) => {
       `}
       render={data => (
         <>
-          <Heading2>Magma System</Heading2>
-          <List>
+          {/* <List>
             <ListItem>
               <StyledLink
                 activeStyle={activeStyle}
@@ -246,15 +240,15 @@ export const MainNav = ({ ...props }) => {
                 <LaunchIcon size={magma.iconSizes.small} />
               </StyledExternalLink>
             </ListItem>
-          </List>
-          <HR isInverse={isInverse} />
+          </List> */}
+
           <Location>
             {({ location }) => (
               <Accordion accordion={false}>
                 <AccordionItem expanded={location.pathname.includes('design')}>
                   <AccordionItemTitle>
                     <Heading2 isInverse={isInverse}>
-                      Design
+                      Designing
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
                   </AccordionItemTitle>
@@ -327,11 +321,11 @@ export const MainNav = ({ ...props }) => {
                     </List>
                   </AccordionItemBody>
                 </AccordionItem>
-                <HR isInverse={isInverse} />
+
                 <AccordionItem expanded={location.pathname.includes('api')}>
                   <AccordionItemTitle>
                     <Heading2 isInverse={isInverse}>
-                      Components
+                      Developing
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
                   </AccordionItemTitle>
@@ -358,6 +352,32 @@ export const MainNav = ({ ...props }) => {
                         </ListItem>
                       ))}
                     </List>
+                  </AccordionItemBody>
+                </AccordionItem>
+
+                <AccordionItem>
+                  <AccordionItemTitle>
+                    <Heading2 isInverse={isInverse}>
+                      <StyledLink
+                        activeStyle={activeStyle}
+                        aria-label="Contribution"
+                        isInverse={isInverse}
+                        to="/contribution-guidelines/"
+                      >
+                        Contributing
+                      </StyledLink>
+                    </Heading2>
+                  </AccordionItemTitle>
+                </AccordionItem>
+
+                <AccordionItem expanded={location.pathname.includes('api')}>
+                  <AccordionItemTitle>
+                    <Heading2 isInverse={isInverse}>
+                      Components
+                      <ExpandMoreIcon size={magma.iconSizes.medium} />
+                    </Heading2>
+                  </AccordionItemTitle>
+                  <AccordionItemBody>
                     <Heading3 isInverse={isInverse}>API</Heading3>
                     <List>
                       {data.apiDocs.edges.map(({ node }) => (
@@ -382,7 +402,22 @@ export const MainNav = ({ ...props }) => {
                     </List>
                   </AccordionItemBody>
                 </AccordionItem>
-                <HR isInverse={isInverse} />
+
+                <AccordionItem>
+                  <AccordionItemTitle>
+                    <Heading2 isInverse={isInverse}>
+                      <StyledLink
+                        activeStyle={activeStyle}
+                        aria-label="Data Visualization"
+                        isInverse={isInverse}
+                        // to=""
+                      >
+                        Data Visualization
+                      </StyledLink>
+                    </Heading2>
+                  </AccordionItemTitle>
+                </AccordionItem>
+
                 <AccordionItem
                   expanded={location.pathname.includes('patterns')}
                 >
@@ -439,7 +474,21 @@ export const MainNav = ({ ...props }) => {
                     </List>
                   </AccordionItemBody>
                 </AccordionItem>
-                <HR isInverse={isInverse} />
+
+                <AccordionItem>
+                  <AccordionItemTitle>
+                    <Heading2 isInverse={isInverse}>
+                      <StyledLink
+                        activeStyle={activeStyle}
+                        aria-label="Tools"
+                        isInverse={isInverse}
+                        to=""
+                      >
+                        Tools
+                      </StyledLink>
+                    </Heading2>
+                  </AccordionItemTitle>
+                </AccordionItem>
               </Accordion>
             )}
           </Location>
