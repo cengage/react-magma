@@ -54,7 +54,7 @@ export const MenuItemStyles = props => {
 
     &:hover,
     &:focus {
-      background: ${props.disabled ? 'none' : props.theme.colors.neutral07};
+      background: ${props.disabled ? 'none' : props.theme.colors.neutral200};
       color: ${props.disabled
         ? props.theme.colors.disabledText
         : props.theme.colors.neutral};
@@ -77,7 +77,7 @@ const StyledItem = styled.div<{
 `;
 
 export const IconWrapper = styled.span`
-  color: ${props => props.theme.colors.neutral03};
+  color: ${props => props.theme.colors.neutral};
   display: inline-flex;
   margin-right: ${props => props.theme.spaceScale.spacing05};
 

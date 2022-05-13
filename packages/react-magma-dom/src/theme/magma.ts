@@ -94,7 +94,7 @@ export interface Colors {
   neutral05: string;
   neutral06: string;
   neutral07: string;
-  neutral08: string;
+  neutral100: string;
   disabledText: string;
   disabledInverseText: string;
   toggleBoxShadow: string;
@@ -479,7 +479,7 @@ const colors = {
 
   // Legacy Colors - To be deleted after rebranding
   // primary: '#006298', // link color blue
-  primaryInverse: '#70CDFF', // link color inverse blue
+  // primaryInverse: '#70CDFF', // link color inverse blue
   foundation: '#00263E',
   foundation02: '#003865',
   foundation03: '#00A9E0',
@@ -494,7 +494,7 @@ const colors = {
   success02: '#48A200',
   successInverse: '#91CF60',
   // danger: '#C61D23',
-  dangerInverse: '#F59295',
+  // dangerInverse: '#F59295',
   // neutral: '#3F3F3F', // main dark grey text color
   neutral02: '#575757',
   neutral03: '#707070',
@@ -716,7 +716,7 @@ export const magma = {
   },
 
   appBar: {
-    backgroundColor: colors.neutral08,
+    backgroundColor: colors.neutral100,
     height: '88px',
     padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
     textColor: colors.neutral,
@@ -725,8 +725,8 @@ export const magma = {
       padding: `${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing06}`,
     },
     inverse: {
-      backgroundColor: colors.foundation02,
-      textColor: colors.neutral08,
+      backgroundColor: colors.primary600,
+      textColor: colors.neutral100,
     },
   },
 

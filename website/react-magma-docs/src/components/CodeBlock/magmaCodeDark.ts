@@ -4,7 +4,7 @@ import { magma } from 'react-magma-dom';
 export const magmaCodeDark: PrismTheme = {
   plain: {
     backgroundColor: magma.colors.neutral,
-    color: magma.colors.neutral07,
+    color: magma.colors.neutral200,
   },
   styles: [
     {
@@ -61,7 +61,7 @@ export const magmaCodeDark: PrismTheme = {
         'variable',
       ],
       style: {
-        color: magma.colors.dangerInverse,
+        color: magma.colors.danger200,
       },
     },
     {
@@ -91,7 +91,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['important'],
       style: {
-        color: magma.colors.dangerInverse,
+        color: magma.colors.danger200,
       },
     },
   ],

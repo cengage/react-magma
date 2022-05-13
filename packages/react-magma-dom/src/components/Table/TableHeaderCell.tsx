@@ -177,8 +177,8 @@ export const TableHeaderCell = React.forwardRef<
       <SortDoubleArrowIcon
         color={
           tableContext.isInverse
-            ? theme.colors.neutral06
-            : theme.colors.neutral04
+            ? transparentize(0.3, theme.colors.neutral100)
+            : theme.colors.neutral500
         }
         size={theme.iconSizes.small}
       />

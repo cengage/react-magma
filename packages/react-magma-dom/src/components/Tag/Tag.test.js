@@ -53,7 +53,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral08);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
     });
   });
 
@@ -108,7 +108,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral08);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
       expect(tag).toHaveStyleRule(
         'box-shadow',
         `0 0 0 1px ${magma.colors.neutral300}`
@@ -180,7 +180,7 @@ describe('Tag', () => {
       const { getByText } = render(<Tag isInverse>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral03);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral);
     });
 
     it('Should render a inverse Tag with a primary background', () => {
@@ -202,7 +202,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral08);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
     });
 
     it('Should render a inverse Tag with a low contrast background', () => {

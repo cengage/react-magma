@@ -967,7 +967,7 @@ import styled from '@emotion/styled';
 export function Example() {
   const CustomStyledItem = styled.li(props => ({
     alignSelf: 'center',
-    background: props.isFocused ? props.theme.colors.neutral07 : 'transparent',
+    background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
     lineHeight: '24px',
     margin: '0',
     padding: '8px 16px',
@@ -990,7 +990,7 @@ export function Example() {
 
   const Description = styled.div(props => ({
     fontSize: '12px',
-    color: props.theme.colors.neutral02,
+    color: props.theme.colors.neutral,
   }));
 
   function itemToString(item) {

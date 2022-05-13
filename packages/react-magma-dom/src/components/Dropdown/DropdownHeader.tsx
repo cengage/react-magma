@@ -11,7 +11,7 @@ export interface DropdownHeaderProps
 }
 
 const StyledDiv = styled.div`
-  color: ${props => props.theme.colors.neutral03};
+  color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size01.letterSpacing};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};

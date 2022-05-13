@@ -31,7 +31,7 @@ const handleAnchorLinkClick = (id, handleClick, e) => {
 
 const SubMenuList = styled.ul`
   background: ${props =>
-    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200};
+    props.isInverse ? magma.colors.primary700 : magma.colors.neutral200};
   list-style-type: none;
   margin: 0;
   padding: 0 0 ${magma.spaceScale.spacing03} 0;
@@ -63,7 +63,7 @@ const SubMenuLink = styled.a`
 
 const SubMenuLink2 = styled.a`
   color: ${props =>
-    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral700};
+    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   letter-spacing: ${magma.typeScale.size02.letterSpacing};
@@ -77,7 +77,7 @@ const SubMenuLink2 = styled.a`
     background: ${props =>
       props.isInverse ? magma.colors.foundation : magma.colors.neutral300};
     color: ${props =>
-      props.isInverse ? magma.colors.neutral08 : magma.colors.neutral700};
+      props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
   }
 `;
 

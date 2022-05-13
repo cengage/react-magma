@@ -3,7 +3,7 @@ import { magma } from 'react-magma-dom';
 
 export const magmaCode: PrismTheme = {
   plain: {
-    backgroundColor: magma.colors.neutral07,
+    backgroundColor: magma.colors.neutral200,
     color: magma.colors.foundation,
   },
   styles: [
@@ -22,7 +22,7 @@ export const magmaCode: PrismTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.foundation02,
+        color: magma.colors.primary700,
       },
     },
     {

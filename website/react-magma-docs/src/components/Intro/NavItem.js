@@ -17,7 +17,7 @@ const StyledLink = styled.button`
   border-color: ${props =>
     props.active ? props.theme.colors.pop04 : 'transparent'};
   color: ${props =>
-    props.active ? props.theme.colors.pop04 : props.theme.colors.neutral08};
+    props.active ? props.theme.colors.pop04 : props.theme.colors.neutral100};
   display: block;
   font-size: 13px;
   line-height: 1.3em;
@@ -30,7 +30,7 @@ const StyledLink = styled.button`
   &:hover,
   &:focus {
     background: rgba(0, 0, 0, 0.14);
-    color: ${props => props.theme.colors.neutral06};
+    color: ${props => props.theme.colors.neutral300};
   }
 
   &:focus {

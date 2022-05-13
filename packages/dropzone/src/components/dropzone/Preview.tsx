@@ -73,7 +73,7 @@ const IconStyles = {
 };
 
 const Errors = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.neutral06};
+  border-top: 1px solid ${({ theme }) => theme.colors.neutral300};
   padding: 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
@@ -102,9 +102,9 @@ const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
   border-color: ${({ file, theme, isInverse }) =>
     file.errors
       ? isInverse
-        ? theme.colors.dangerInverse
+        ? theme.colors.danger200
         : theme.colors.danger
-      : theme.colors.neutral06};
+      : theme.colors.neutral300};
   border-width: 1px;
   margin: 10px 0;
 `;
