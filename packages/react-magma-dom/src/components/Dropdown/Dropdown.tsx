@@ -260,7 +260,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           {...other}
           ref={ref}
           data-testid={testId}
-          isInverse={isInverse}
           onKeyDown={isOpen ? handleKeyDown : null}
           onBlur={handleDropdownBlur}
         >

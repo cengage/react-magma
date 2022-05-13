@@ -37,21 +37,21 @@ export interface DropdownMenuItemProps
 }
 
 export function menuColors(props) {
-  if (props.isInverse) {
-    return props.theme.colors.neutral100;
-  }
   if (props.disabled) {
     props.theme.colors.disabledText;
+  }
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
   }
   return props.theme.colors.neutral700;
 }
 
 export function menuBackground(props) {
-  if (props.isInverse) {
-    return props.theme.colors.primary600;
-  }
   if (props.disabled) {
     ('none');
+  }
+  if (props.isInverse) {
+    return props.theme.colors.primary600;
   }
   return props.theme.colors.neutral200;
 }
@@ -84,7 +84,7 @@ export const MenuItemStyles = props => {
     &:active {
       outline-color: ${props.isInverse
         ? props.theme.colors.focusInverse
-        : 'inherit'};
+        : props.theme.colors.focus};
     }
   `;
 };
@@ -103,7 +103,7 @@ const StyledItem = styled.div<{
 export const IconWrapper = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.focusInverse
+      ? props.theme.colors.neutral100
       : props.theme.colors.neutral500};
   display: inline-flex;
   margin-right: ${props => props.theme.spaceScale.spacing05};

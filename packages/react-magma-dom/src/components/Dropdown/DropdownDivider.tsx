@@ -25,7 +25,7 @@ const StyledHr = styled.hr<{
 export const DropdownDivider: React.FunctionComponent<DropdownDividerProps> = (
   props: DropdownDividerProps
 ) => {
-  const { isInverse, testId, ...other } = props;
+  const { testId, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
