@@ -22,6 +22,7 @@ const StyledItem = styled.a<{
   disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;
+  isInverse?: boolean;
 }>`
   ${MenuItemStyles}
   text-decoration: none;
@@ -48,6 +49,7 @@ export const DropdownMenuNavItem = React.forwardRef<
       {...other}
       href={to}
       isFixedWidth={context.isFixedWidth}
+      isInverse={context.isInverse}
       ref={ref}
       role="menuitem"
       tabIndex={-1}

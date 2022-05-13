@@ -36,12 +36,30 @@ export interface DropdownMenuItemProps
   value?: string | number;
 }
 
+export function menuColors(props) {
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+  if (props.disabled) {
+    props.theme.colors.disabledText;
+  }
+  return props.theme.colors.neutral700;
+}
+
+export function menuBackground(props) {
+  if (props.isInverse) {
+    return props.theme.colors.primary600;
+  }
+  if (props.disabled) {
+    ('none');
+  }
+  return props.theme.colors.neutral200;
+}
+
 export const MenuItemStyles = props => {
   return css`
     align-items: center;
-    color: ${props.disabled
-      ? props.theme.colors.disabledText
-      : props.theme.colors.neutral};
+    color: ${menuColors(props)};
     cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
     display: flex;
     font-size: ${props.theme.typeScale.size03.fontSize};
@@ -54,14 +72,19 @@ export const MenuItemStyles = props => {
 
     &:hover,
     &:focus {
-      background: ${props.disabled ? 'none' : props.theme.colors.neutral07};
-      color: ${props.disabled
-        ? props.theme.colors.disabledText
-        : props.theme.colors.neutral};
+      background: ${menuBackground(props)};
     }
 
     &:focus {
-      outline-offset: -3px;
+      outline-color: ${props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus};
+      outline-offset: -2px;
+    }
+    &:active {
+      outline-color: ${props.isInverse
+        ? props.theme.colors.focusInverse
+        : 'inherit'};
     }
   `;
 };
@@ -71,13 +94,17 @@ const StyledItem = styled.div<{
   disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;
+  isInverse?: boolean;
   value?: string | number;
 }>`
   ${MenuItemStyles}
 `;
 
-export const IconWrapper = styled.span`
-  color: ${props => props.theme.colors.neutral03};
+export const IconWrapper = styled.span<{ isInverse?: boolean }>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.focusInverse
+      : props.theme.colors.neutral500};
   display: inline-flex;
   margin-right: ${props => props.theme.spaceScale.spacing05};
 
@@ -146,6 +173,7 @@ export const DropdownMenuItem = React.forwardRef<
       disabled={disabled}
       isFixedWidth={context.isFixedWidth}
       isInactive={isInactive}
+      isInverse={context.isInverse}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       ref={disabled ? null : ref}
@@ -154,9 +182,13 @@ export const DropdownMenuItem = React.forwardRef<
       tabIndex={disabled ? null : -1}
       value={value}
     >
-      {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
+      {icon && (
+        <IconWrapper theme={theme} isInverse={context.isInverse}>
+          {icon}
+        </IconWrapper>
+      )}
       {isActive && (
-        <IconWrapper theme={theme}>
+        <IconWrapper isInverse={context.isInverse} theme={theme}>
           <CheckIcon aria-label={i18n.dropdown.menuItemSelectedAriaLabel} />
         </IconWrapper>
       )}

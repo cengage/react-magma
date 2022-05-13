@@ -593,7 +593,7 @@ describe('Dropdown', () => {
     fireEvent.click(getByText(text));
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule('color', magma.colors.disabledText);
+    expect(getByText(text)).toHaveStyleRule('color', magma.colors.neutral700);
   });
 
   it('should render a dropdown header', () => {
