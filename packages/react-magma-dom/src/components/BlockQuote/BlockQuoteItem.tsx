@@ -49,13 +49,7 @@ export const blockQuoteStyles = props => css`
   //Inverse
   ${props.isInverse &&
   css`
-    color: ${props.theme.colors.neutral08};
-  `}
-  //Inverse & Attribution
-    ${props.isInverse &&
-  props.hasAttribution &&
-  css`
-    color: ${props.theme.colors.neutral05};
+    color: ${props.theme.colors.neutral100};
   `}
 `;
 

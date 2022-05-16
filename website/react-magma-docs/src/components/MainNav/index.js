@@ -79,7 +79,7 @@ const LinkStyles = props => `
 
 const LinkHoverStyles = props => `
 background: ${
-  props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200
+  props.isInverse ? magma.colors.primary700 : magma.colors.neutral200
 };
 color: ${props.isInverse ? magma.colors.neutral600 : magma.colors.neutral700};
 `;

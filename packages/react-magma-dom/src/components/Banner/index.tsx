@@ -83,7 +83,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   align-self: stretch;
   border-radius: 0;
   color: ${({ alertVariant, theme }) =>
-    alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral08};
+    alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral100};
   height: auto;
   padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
@@ -93,7 +93,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
           ? theme.colors.neutral
-          : theme.colors.neutral08};
+          : theme.colors.neutral100};
     outline-offset: 0 !important;
   }
 
@@ -104,7 +104,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
         background: ${({ alertVariant, theme }) =>
           alertVariant === 'warning'
             ? theme.colors.neutral
-            : theme.colors.neutral08};
+            : theme.colors.neutral100};
         opacity: 0.15;
       }
 

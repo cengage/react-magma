@@ -13,7 +13,7 @@ export const Default = () => {
   return (
     <>
       <HideAtBreakpoint maxWidth={599}>
-        <Card isInverse background={magma.colors.foundation02}>
+        <Card isInverse>
           <CardBody>
             <strong>Max-Width:</strong> This text will be visible when the
             browser width is greater than or equal to 600px.
@@ -22,7 +22,7 @@ export const Default = () => {
         <br />
       </HideAtBreakpoint>
       <HideAtBreakpoint minWidth={600}>
-        <Card isInverse background={magma.colors.pop}>
+        <Card isInverse background={magma.colors.info}>
           <CardBody>
             <strong>Min-Width:</strong> This text will be visible when the
             browser width is less than 600px.

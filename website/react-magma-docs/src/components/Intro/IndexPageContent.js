@@ -48,7 +48,7 @@ const List = styled.ol`
   display: none;
 
   @media (min-width: ${props => props.theme.breakpoints.medium}px) {
-    background-color: ${props => props.theme.colors.foundation};
+    background-color: ${props => props.theme.colors.primary700};
     display: flex;
     left: 0;
     list-style: none;
