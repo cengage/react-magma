@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.18
+
+### Major Changes
+
+- 81ab701bf: docs: updating dg images
+
 ## 3.0.0-next.17
 
 ### Patch Changes
