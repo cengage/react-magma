@@ -10,6 +10,7 @@ import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { magma } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 import { act, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -593,7 +594,10 @@ describe('Dropdown', () => {
     fireEvent.click(getByText(text));
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule('color', magma.colors.neutral700);
+    expect(getByText(text)).toHaveStyleRule(
+      'color',
+      transparentize(0.4, magma.colors.neutral500)
+    );
   });
 
   it('should render a dropdown header', () => {

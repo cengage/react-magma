@@ -5,6 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
+import { transparentize } from 'polished';
 import { Omit, useForkedRef } from '../../utils';
 
 export interface DropdownMenuItemProps
@@ -38,7 +39,7 @@ export interface DropdownMenuItemProps
 
 export function menuColors(props) {
   if (props.disabled) {
-    props.theme.colors.disabledText;
+    return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {
     return props.theme.colors.neutral100;
@@ -48,7 +49,7 @@ export function menuColors(props) {
 
 export function menuBackground(props) {
   if (props.disabled) {
-    ('none');
+    return 'none';
   }
   if (props.isInverse) {
     return props.theme.colors.primary600;
