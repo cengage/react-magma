@@ -75,7 +75,7 @@ const SubMenuLink2 = styled.a`
   &:hover,
   &:focus {
     background: ${props =>
-      props.isInverse ? magma.colors.foundation : magma.colors.neutral300};
+      props.isInverse ? magma.colors.primary700 : magma.colors.neutral300};
     color: ${props =>
       props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
   }

@@ -11,7 +11,7 @@ const Item = styled.li`
 `;
 
 const StyledLink = styled.button`
-  background: ${props => props.theme.colors.neutral900};
+  background: ${props => props.theme.colors.primary700};
   border: none;
   border-bottom: 2px solid;
   border-color: ${props =>

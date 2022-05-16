@@ -39,7 +39,7 @@ export const editorTheme = {
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: magma.colors.pop,
+        color: magma.colors.tertiary,
       },
     },
     {
@@ -66,7 +66,7 @@ export const editorTheme = {
         'variable',
       ],
       style: {
-        color: magma.colors.pop,
+        color: magma.colors.tertiary,
       },
     },
     {
