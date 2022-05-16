@@ -60,9 +60,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   width?: string | number;
 }
 
-const Container = styled.div<{
-  isInverse?: boolean;
-}>`
+const Container = styled.div`
   display: inline-block;
   position: relative;
 `;

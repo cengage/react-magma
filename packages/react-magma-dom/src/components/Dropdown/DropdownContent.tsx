@@ -28,7 +28,9 @@ const StyledCard = styled(Card)<{
   width?: string;
 }>`
   background: ${props =>
-    props.isInverse ? props.theme.colors.primary500 : 'inherit'};
+    props.isInverse
+      ? props.theme.colors.primary500
+      : props.theme.colors.neutral100};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: ${props => props.theme.spaceScale.spacing02};
   max-height: ${props =>
