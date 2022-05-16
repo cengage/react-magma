@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.16
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various components
+
 ## 3.0.0-next.15
 
 ### Major Changes

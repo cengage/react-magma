@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0-next.22
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various doc pages
+
+### Patch Changes
+
+- Updated dependencies [9ca1827b2]
+  - react-magma-dom@3.0.0-next.16
+
 ## 3.0.0-next.21
 
 ### Major Changes
