@@ -117,47 +117,56 @@ typeScale: {
   },
   size03: {
     fontSize: '16px',
-    lineHeight: '24px'
+    letterSpacing: '.32px',
+    lineHeight: '24px',
   },
   size04: {
     fontSize: '18px',
-    lineHeight: '32px'
+    lineHeight: '24px',
   },
   size05: {
     fontSize: '20px',
-    lineHeight: '32px'
+    lineHeight: '32px',
   },
   size06: {
     fontSize: '24px',
-    lineHeight: '32px'
+    lineHeight: '32px',
   },
   size07: {
     fontSize: '28px',
-    lineHeight: '40px'
+    lineHeight: '40px',
   },
   size08: {
     fontSize: '32px',
-    lineHeight: '40px'
+    lineHeight: '40px',
   },
   size09: {
     fontSize: '36px',
-    lineHeight: '48px'
+    lineHeight: '48px',
   },
   size10: {
     fontSize: '42px',
-    lineHeight: '48px'
+    lineHeight: '48px',
   },
   size11: {
     fontSize: '48px',
-    lineHeight: '56px'
+    lineHeight: '56px',
   },
   size12: {
-    fontSize: '54px',
-    lineHeight: '64px'
+    fontSize: '52px',
+    lineHeight: '68px',
   },
   size13: {
+    fontSize: '54px',
+    lineHeight: '64px',
+  },
+  size14: {
     fontSize: '60px',
-    lineHeight: '72px'
+    lineHeight: '72px',
+  },
+  size15: {
+    fontSize: '72px',
+    lineHeight: '84px',
   }
 }
 ```
@@ -168,37 +177,42 @@ The theme also contains options for two additional typography variants for those
 ```.js
 typographyVisualStyles: {
   headingXLarge: {
-    mobile: typeScale.size07,
-    desktop: typeScale.size08,
-    fontWeight: 600
-  },
-  headingLarge: {
-    mobile: typeScale.size06,
-    desktop: typeScale.size07,
-    fontWeight: 600
-  },
-  headingMedium: {
-    mobile: typeScale.size05,
-    desktop: typeScale.size06,
-    fontWeight: 600
-  },
+      mobile: typeScale.size07,
+      desktop: typeScale.size09,
+      fontWeight: 600,
+    },
+    headingLarge: {
+      mobile: typeScale.size06,
+      desktop: typeScale.size07,
+      fontWeight: 600,
+    },
+    headingMedium: {
+      mobile: typeScale.size05,
+      desktop: typeScale.size06,
+      fontWeight: 600,
+    },
   ...
 },
 typographyExpressiveVisualStyles: {
+  heading2XLarge: {
+    mobile: typeScale.size13, 
+    desktop: typeScale.size15,
+    fontWeight: 600,
+  },
   headingXLarge: {
-    mobile: typeScale.size08,
-    desktop: typeScale.size11,
-    fontWeight: 600
+    mobile: typeScale.size10,
+    desktop: typeScale.size12,
+    fontWeight: 400,
   },
   headingLarge: {
     mobile: typeScale.size07,
     desktop: typeScale.size09,
-    fontWeight: 300
+    fontWeight: 300,
   },
   headingMedium: {
     mobile: typeScale.size06,
     desktop: typeScale.size07,
-    fontWeight: 300
+    fontWeight: 300,
   },
   ...
 },

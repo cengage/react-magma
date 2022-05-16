@@ -144,12 +144,13 @@ export interface SpacingScale {
 }
 
 export interface TypographyExpressiveSizes {
+  heading2XLarge: any;
   headingXLarge: any;
   headingLarge: any;
   headingMedium: any;
   headingSmall: any;
   headingXSmall: any;
-  headingXXSmall: any;
+  heading2XSmall: any;
   bodyLarge: any;
   bodyMedium: any;
   bodySmall: any;
@@ -176,6 +177,8 @@ export interface TypeScale {
   size11: TypeScaleSize;
   size12: TypeScaleSize;
   size13: TypeScaleSize;
+  size14: TypeScaleSize;
+  size15: TypeScaleSize;
 }
 
 export interface VisualStyle {
@@ -185,6 +188,20 @@ export interface VisualStyle {
 }
 
 export interface TypographyVisualStyles {
+  headingXLarge: VisualStyle;
+  headingLarge: VisualStyle;
+  headingMedium: VisualStyle;
+  headingSmall: VisualStyle;
+  headingXSmall: VisualStyle;
+  heading2XSmall: VisualStyle;
+  bodyLarge: VisualStyle;
+  bodyMedium: VisualStyle;
+  bodySmall: VisualStyle;
+  bodyXSmall: VisualStyle;
+}
+
+export interface TypographyVisualStylesExpressive {
+  heading2XLarge: VisualStyle;
   headingXLarge: VisualStyle;
   headingLarge: VisualStyle;
   headingMedium: VisualStyle;
@@ -317,7 +334,7 @@ export interface ThemeInterface {
   select: Select;
   typeScale: TypeScale;
   typographyVisualStyles: TypographyVisualStyles;
-  typographyExpressiveVisualStyles: TypographyVisualStyles;
+  typographyExpressiveVisualStyles: TypographyVisualStylesExpressive;
   typographyNarrativeVisualStyles: TypographyVisualStyles;
   modal: Modal;
   tabs: Tabs;
@@ -338,6 +355,7 @@ const typeScale = {
   },
   size03: {
     fontSize: '16px',
+    letterSpacing: '.32px',
     lineHeight: '24px',
   },
   size04: {
@@ -373,13 +391,21 @@ const typeScale = {
     lineHeight: '56px',
   },
   size12: {
+    fontSize: '52px',
+    lineHeight: '68px',
+  },
+  size13: {
     fontSize: '54px',
     lineHeight: '64px',
   },
-  size13: {
+  size14: {
     fontSize: '60px',
     lineHeight: '72px',
   },
+  size15: {
+    fontSize: '72px',
+    lineHeight: '84px',
+  }
 };
 
 const primaryColors = {
@@ -570,7 +596,7 @@ export const magma = {
 
   // Typography
   typeScale: typeScale,
-  typographyVisualStyles: {
+  typographyVisualStyles: { // Productive
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
@@ -619,30 +645,35 @@ export const magma = {
     },
   },
   typographyExpressiveVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size08,
-      desktop: typeScale.size11,
+    heading2XLarge: {
+      mobile: typeScale.size13, 
+      desktop: typeScale.size15,
       fontWeight: 600,
+    },
+    headingXLarge: {
+      mobile: typeScale.size10,
+      desktop: typeScale.size12,
+      fontWeight: 400,
     },
     headingLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingMedium: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingSmall: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     heading2XSmall: {
       mobile: typeScale.size03,
