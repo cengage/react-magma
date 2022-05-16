@@ -19,9 +19,9 @@ const Heading = styled.h1`
   && {
     color: inherit;
     font-family: ${props => props.theme.bodyFont};
-    font-size: ${props => props.theme.typeScale.size12.fontSize};
+    font-size: ${props => props.theme.typeScale.size13.fontSize};
     font-weight: 600;
-    line-height: ${props => props.theme.typeScale.size12.lineHeight};
+    line-height: ${props => props.theme.typeScale.size13.lineHeight};
     text-align: center;
     margin: -240px 0 16px;
     padding-top: 240px;

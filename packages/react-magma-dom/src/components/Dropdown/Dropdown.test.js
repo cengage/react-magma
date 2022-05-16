@@ -594,7 +594,10 @@ describe('Dropdown', () => {
     fireEvent.click(getByText(text));
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule('color', transparentize(0.4, magma.colors.neutral500));
+    expect(getByText(text)).toHaveStyleRule(
+      'color',
+      transparentize(0.4, magma.colors.neutral500)
+    );
   });
 
   it('should render a dropdown header', () => {
