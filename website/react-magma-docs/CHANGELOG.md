@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.19
+
+### Major Changes
+
+- b28163af4: docs: update buttons design guidelines
+
 ## 3.0.0-next.18
 
 ### Major Changes
