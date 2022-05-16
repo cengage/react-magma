@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0-next.21
+
+### Major Changes
+
+- a4acd9ac6: docs: update typography and theming docs
+
+### Patch Changes
+
+- Updated dependencies [a4acd9ac6]
+  - react-magma-dom@3.0.0-next.15
+
 ## 3.0.0-next.20
 
 ### Major Changes

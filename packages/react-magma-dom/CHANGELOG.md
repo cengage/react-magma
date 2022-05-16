@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.15
+
+### Major Changes
+
+- a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
+
 ## 3.0.0-next.14
 
 ### Major Changes
