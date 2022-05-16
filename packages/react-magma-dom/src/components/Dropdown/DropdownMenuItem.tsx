@@ -6,6 +6,7 @@ import { I18nContext } from '../../i18n';
 import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 import { Omit, useForkedRef } from '../../utils';
+import { transparentize } from 'polished';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -40,7 +41,7 @@ export const MenuItemStyles = props => {
   return css`
     align-items: center;
     color: ${props.disabled
-      ? props.theme.colors.disabledText
+      ? transparentize(0.4, props.theme.colors.neutral500)
       : props.theme.colors.neutral};
     cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
     display: flex;
@@ -56,7 +57,7 @@ export const MenuItemStyles = props => {
     &:focus {
       background: ${props.disabled ? 'none' : props.theme.colors.neutral200};
       color: ${props.disabled
-        ? props.theme.colors.disabledText
+        ? transparentize(0.4, props.theme.colors.neutral500)
         : props.theme.colors.neutral};
     }
 

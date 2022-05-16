@@ -6,6 +6,7 @@ import { enUS } from 'date-fns/locale';
 import { CalendarContext } from './CalendarContext';
 import { I18nContext } from '../../i18n';
 import { i18nFormat as format } from './utils';
+import { transparentize } from 'polished';
 
 interface CalendarDayProps {
   day: Date;
@@ -41,7 +42,7 @@ const CalendarDayInner = styled.button<{
     props.isChosen
       ? props.theme.colors.neutral100
       : props.disabled
-      ? props.theme.colors.disabledText
+      ? transparentize(0.4, props.theme.colors.neutral500)
       : props.theme.colors.neutral};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;

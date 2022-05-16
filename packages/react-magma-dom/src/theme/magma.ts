@@ -67,44 +67,9 @@ export interface Colors {
   success600: string;
   success700: string;
 
-  // Legacy Colors - To be deleted after rebranding
-  // primary: string;
-  // primaryInverse: string;
   focus: string;
   focusInverse: string;
-  foundation: string;
-  foundation02: string;
-  foundation03: string;
-  foundation04: string;
-  pop: string;
-  pop02: string;
-  // pop03: string;
-  // pop04: string;
-  // pop05: string;
-  // pop06: string;
-  // success: string;
-  // success02: string;
-  // successInverse: string;
-  // danger: string;
-  // dangerInverse: string;
-  // neutral: string;
-  // neutral02: string;
-  // neutral03: string;
-  // neutral04: string;
-  // neutral05: string;
-  // neutral06: string;
-  // neutral07: string;
-  disabledText: string;
-  disabledInverseText: string;
-  toggleBoxShadow: string;
-  // shade: string;
-  // shade02: string;
-  tint: string;
-  tint02: string;
-  tint03: string;
-  tint04: string;
-  // tone: string;
-  // tone02: string;
+  
   border: string;
   borderInverse: string;
 }
@@ -476,45 +441,7 @@ const colors = {
   focus: infoColors.info500,
   focusInverse: infoColors.info200,
 
-  // Legacy Colors - To be deleted after rebranding
-  // primary: '#006298', // link color blue
-  // primaryInverse: '#70CDFF', // link color inverse blue
-  foundation: '#00263E',
-  foundation02: '#003865',
-  foundation03: '#00A9E0',
-  foundation04: '#71C5E8',
-  pop: '#E0004D',
-  pop02: '#FC4C02',
-  // pop03: '#F2A900',
-  // pop04: '#FFC72C',
-  // pop05: '#92278F',
-  // pop06: '#007A6D',
-  // success: '#3A8200',
-  // success02: '#48A200',
-  // successInverse: '#91CF60',
-  // danger: '#C61D23',
-  // dangerInverse: '#F59295',
-  // neutral: '#3F3F3F', // main dark grey text color
-  // neutral02: '#575757',
-  // neutral03: '#707070',
-  // neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
-  // neutral05: '#BFBFBF',
-  // neutral06: '#DFDFDF',
-  // neutral07: '#F7F7F7',
-  // neutral08: '#FFFFFF', // white
-  disabledText: 'rgba(114,114,114,0.6)',
-  disabledInverseText: 'rgba(255,255,255,0.25)',
-  toggleBoxShadow:
-    '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)',
-  // shade: 'rgba(0,0,0,0.05)',
-  // shade02: 'rgba(0,0,0,0.3)',
-  tint: 'rgba(255,255,255,0.05)',
-  tint02: 'rgba(255,255,255,0.1)',
-  tint03: 'rgba(255,255,255,0.1)',
-  tint04: 'rgba(255,255,255,0.4)',
-  // tone: 'rgba(63,63,63,0.07)',
-  // tone02: 'rgba(63,63,63,0.1)',
-  border: '#DFDFDF',
+  border: neutralColors.neutral300,
   borderInverse: 'rgba(255,255,255,0.25)',
 };
 

@@ -22,7 +22,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.foundation04,
+        color: magma.colors.tertiary,
       },
     },
     {
@@ -34,7 +34,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: magma.colors.foundation04,
+        color: magma.colors.tertiary,
       },
     },
     {

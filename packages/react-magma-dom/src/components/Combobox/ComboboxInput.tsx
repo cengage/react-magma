@@ -71,12 +71,12 @@ const InputContainer = styled.div<{
       ? transparentize(0.9, props.theme.colors.neutral900)
       : props.theme.colors.neutral200};
       border-color: ${props.isInverse ? transparentize(0.85, props.theme.colors.neutral100) : props.theme.colors.neutral300};
-      color: ${props.theme.colors.disabledText};
+      color: ${transparentize(0.4, props.theme.colors.neutral500)};
       cursor: not-allowed;
       outline: 0;
 
       &::placeholder {
-        color: ${props.theme.colors.disabledText};
+        color: ${transparentize(0.4, props.theme.colors.neutral500)};
       }
     `}
 `;
