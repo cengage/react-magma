@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.20
+
+### Major Changes
+
+- 604e938d2: docs: updated several pages
+
 ## 3.0.0-next.19
 
 ### Major Changes
