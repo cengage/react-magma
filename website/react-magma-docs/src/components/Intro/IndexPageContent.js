@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { Link } from 'gatsby';
-import { Button, IconButton } from 'react-magma-dom';
 import { Card, CardBody, CardHeading } from 'react-magma-dom';
 import { Flex } from 'react-magma-dom';
 import { Grid, GridItem } from 'react-magma-dom';
@@ -15,7 +14,6 @@ import {
   ExtensionIcon,
   TimelineIcon,
   GroupsIcon,
-  GithubIcon,
 } from 'react-magma-icons';
 import { Logo } from '../Logo';
 import { magma } from 'react-magma-dom';
@@ -32,21 +30,10 @@ const StyledGrid = styled(Grid)`
   }
 `;
 
-const StyledGridHero = styled(Grid)`
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
-  padding: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
-
-  @media (max-width: ${magma.breakpoints.medium}px) {
-    padding: 0 1em 1em;
-    display: block;
-  }
-`;
-
 const StyledGridItem = styled(GridItem)`
   display: grid;
   width: 100%;
-  // padding: ${magma.spaceScale.spacing04};
+  justify-self: center;
 
   @media (max-width: ${magma.breakpoints.small}px) {
     display: block;
@@ -58,9 +45,10 @@ const StyledGridItem = styled(GridItem)`
 const StyledGridHeroItem = styled(GridItem)`
   display: grid;
   width: 100%;
+  justify-self: center;
 
   @media (max-width: ${magma.breakpoints.medium}px) {
-    margin: 0 0 ${magma.spaceScale.spacing07};
+    margin: 0;
   }
 
   @media (max-width: ${magma.breakpoints.small}px) {
@@ -111,14 +99,10 @@ const CenterBlock = styled.div`
   grid-column: 1 / 3;
   text-align: center;
   margin: auto;
-  max-width: 40%;
-
-  // button {
-  //   margin: auto;
-  // }
+  max-width: 60%;
 
   @media (max-width: ${magma.breakpoints.medium}px) {
-    margin: ${magma.spaceScale.spacing06} auto;
+    margin: auto;
     max-width: 90%;
   }
 `;
@@ -215,9 +199,9 @@ export function IndexPageContent() {
         </div>
         <Logo />
       </HeaderBlock>
-      <StyledGridHero gridGap={magma.spaceScale.spacing06}>
+      <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <StyledGridHeroItem>
-          <HeroCardGrid isInverse="true" background={magma.colors.primary}>
+          <HeroCardGrid isInverse background={magma.colors.primary}>
             <HeroCardIcon>
               <ArchitectureIcon color={magma.colors.primary} />
             </HeroCardIcon>
@@ -230,7 +214,7 @@ export function IndexPageContent() {
                 <Hyperlink
                   styledAs="Button"
                   to="/design-intro/get-started/"
-                  isInverse="true"
+                  isInverse
                   color="marketing"
                 >
                   {linkProps => (
@@ -245,7 +229,7 @@ export function IndexPageContent() {
         </StyledGridHeroItem>
 
         <StyledGridHeroItem>
-          <HeroCardGrid isInverse="true" background={magma.colors.primary}>
+          <HeroCardGrid isInverse background={magma.colors.primary}>
             <HeroCardIcon>
               <CodeIcon color={magma.colors.primary} />
             </HeroCardIcon>
@@ -257,7 +241,7 @@ export function IndexPageContent() {
                 <Hyperlink
                   styledAs="Button"
                   to="/api-intro/introduction"
-                  isInverse="true"
+                  isInverse
                   color="marketing"
                 >
                   {linkProps => (
@@ -278,8 +262,7 @@ export function IndexPageContent() {
             and provide a consistent look and user experience.
           </p>
         </CenterBlock>
-      </StyledGridHero>
-      <StyledGrid gridGap={magma.spaceScale.spacing06}>
+
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>

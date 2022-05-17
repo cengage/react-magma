@@ -7,7 +7,7 @@ import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
 
 const LogoLink = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral100};
+  color: ${magma.colors.neutral700};
   display: inline-flex;
   font-size: ${magma.typeScale.size05.fontSize};
   font-weight: 600;
@@ -46,7 +46,7 @@ export const Masthead = props => {
     <Header
       breakpoint={magma.breakpoints.medium}
       isCompact={isSmallerScreen}
-      isInverse
+      isInverse={false}
       logo={HeaderLogo}
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
