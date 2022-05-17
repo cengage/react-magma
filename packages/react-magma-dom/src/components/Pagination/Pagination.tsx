@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
-import { darken } from 'polished';
 import { I18nContext } from '../../i18n';
 import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
@@ -106,42 +105,6 @@ const StyledListItem = styled.li`
   }
 `;
 
-export function BuildBorder(props) {
-  switch (props.color) {
-    case 'primary':
-      if (props.isInverse) {
-        return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral08}`;
-      }
-      return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.primary}`;
-    default:
-      if (props.isInverse) {
-        if (props.disabled) {
-          return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.tint04}`;
-        }
-        return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral08}`;
-      }
-      if (props.disabled) {
-        return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral06}`;
-      }
-      return `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.neutral05}`;
-  }
-}
-
-export function hoverBorder(props) {
-  switch (props.color) {
-    case 'primary':
-      if (props.isInverse) {
-        return `${props.theme.colors.neutral08}`;
-      }
-      return `${darken(0.1, props.theme.colors.primary)}`;
-    default:
-      if (props.isInverse) {
-        return `${props.theme.colors.neutral08}`;
-      }
-      return `${props.theme.colors.neutral05}`;
-  }
-}
-
 function BuildButtonSize(props) {
   switch (props.size) {
     case 'large':
@@ -152,40 +115,14 @@ function BuildButtonSize(props) {
 }
 
 const NavButton = styled(IconButton)`
-  border-top: ${BuildBorder};
-  border-right: ${BuildBorder};
-  border-bottom: ${BuildBorder};
-  border-left: ${BuildBorder};
   height: ${BuildButtonSize};
   margin: 0;
   padding: 0;
   width: ${BuildButtonSize};
-  &:focus {
-    z-index: 1;
-    outline: 0 !important;
-    outline-offset: 0;
-    overflow: visible;
-  }
-  &:focus:before {
-    content: '';
-    border: ${props =>
-      props.isInverse
-        ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
-        : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
-    border-style: solid;
-    height: calc(100% + 14px);
-    left: -7px;
-    position: absolute;
-    top: -7px;
-    width: calc(100% + 14px);
-  }
 `;
 
 const StyledEllipsis = styled.div`
   align-items: center;
-  border-top: ${BuildBorder};
-  border-right: ${BuildBorder};
-  border-bottom: ${BuildBorder};
   display: flex;
   font-size: ${pageButtonTypeSize};
   height: ${BuildButtonSize};

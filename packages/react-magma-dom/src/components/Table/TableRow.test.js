@@ -38,7 +38,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        magma.colors.neutral100
       );
     });
 
@@ -60,7 +60,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        magma.colors.neutral100
       );
     });
 
@@ -104,7 +104,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        magma.colors.neutral100
       );
     });
   });

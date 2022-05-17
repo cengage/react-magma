@@ -28,7 +28,7 @@ const ListItemStyles = props => css`
   padding: 0;
   margin-left: ${props.icon ? 'inherit' : '1.1em'};
   color: ${props.description && !props.isInverse
-    ? props.theme.colors.neutral03
+    ? props.theme.colors.neutral
     : 'inherit'};
   list-style-type: ${props.icon || props.description ? 'none' : 'inherit'};
 `;
@@ -80,7 +80,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
               iconBackground={
                 magma.colors[iconBackground] || magma.colors.primary
               }
-              iconColor={magma.colors[iconColor] || magma.colors.neutral08}
+              iconColor={magma.colors[iconColor] || magma.colors.neutral100}
               theme={theme}
             >
               {icon}

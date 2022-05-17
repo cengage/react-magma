@@ -35,7 +35,7 @@ const StyledGrid = styled(Grid)`
 const StyledGridHero = styled(Grid)`
   grid-template-columns: auto auto;
   grid-template-rows: auto;
-  padding: ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06} 0;
+  padding: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
 
   @media (max-width: ${magma.breakpoints.medium}px) {
     padding: 0 1em 1em;
@@ -46,7 +46,7 @@ const StyledGridHero = styled(Grid)`
 const StyledGridItem = styled(GridItem)`
   display: grid;
   width: 100%;
-  padding: ${magma.spaceScale.spacing04};
+  // padding: ${magma.spaceScale.spacing04};
 
   @media (max-width: ${magma.breakpoints.small}px) {
     display: block;
@@ -272,14 +272,14 @@ export function IndexPageContent() {
         </StyledGridHeroItem>
 
         <CenterBlock>
-          <Heading level={2}>Working smarter, not harder</Heading>
+          <Heading level={2}>Working smarter, not&nbsp;harder</Heading>
           <p>
             Standardized components support collaboration, reinforce branding,
             and provide a consistent look and user experience.
           </p>
         </CenterBlock>
       </StyledGridHero>
-      <StyledGrid>
+      <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <StyledGridItem gridColumn="1">
           <CardGrid background={magma.colors.neutral200}>
             <CardIcon>

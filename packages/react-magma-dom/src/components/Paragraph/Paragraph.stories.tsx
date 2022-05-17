@@ -47,6 +47,31 @@ export const Default = () => {
       >
         Narrative X-Small
       </Paragraph>
+
+      <Paragraph
+        visualStyle={TypographyVisualStyle.bodyLarge}
+        contextVariant={TypographyContextVariant.expressive}
+      >
+        Expressive Large
+      </Paragraph>
+      <Paragraph
+        visualStyle={TypographyVisualStyle.bodyMedium}
+        contextVariant={TypographyContextVariant.expressive}
+      >
+        Expressive Medium
+      </Paragraph>
+      <Paragraph
+        visualStyle={TypographyVisualStyle.bodySmall}
+        contextVariant={TypographyContextVariant.expressive}
+      >
+        Expressive Small
+      </Paragraph>
+      <Paragraph
+        visualStyle={TypographyVisualStyle.bodyXSmall}
+        contextVariant={TypographyContextVariant.expressive}
+      >
+        Expressive X-Small
+      </Paragraph>
     </>
   );
 };

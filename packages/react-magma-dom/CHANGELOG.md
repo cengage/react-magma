@@ -1,5 +1,44 @@
 # Change Log
 
+## 3.0.0-next.16
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various components
+
+## 3.0.0-next.15
+
+### Major Changes
+
+- 484578a87: feat(Dropdowns): Updating Dropdowns with rebrand styles
+- a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
+
+## 3.0.0-next.14
+
+### Major Changes
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+
+  Breaking Change: Muted Alert variant has been removed.
+
+## 3.0.0-next.13
+
+### Major Changes
+
+- e1fba9d10: feat(modal): Updating Modal with rebrand styles. Adding support for `isInverse`.
+
+## 3.0.0-next.12
+
+### Major Changes
+
+- 2c98589c: feat(tabs): Updating tabs and nav tabs with new colors.
+
+## 3.0.0-next.11
+
+### Major Changes
+
+- 4eba5dc4: feat(pagination): updates to V3 styling
+
 ## 3.0.0-next.10
 
 ### Major Changes

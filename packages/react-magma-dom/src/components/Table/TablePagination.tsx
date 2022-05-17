@@ -98,7 +98,7 @@ const StyledContainer = styled.div<{
 }>`
   align-items: center;
   background: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
+    props.isInverse ? transparentize(0.9, props.theme.colors.neutral100) : props.theme.colors.neutral200};
   border-top: 1px solid
     ${props =>
       props.isInverse

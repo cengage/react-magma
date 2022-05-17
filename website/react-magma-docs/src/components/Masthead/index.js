@@ -7,7 +7,7 @@ import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
 
 const LogoLink = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral08};
+  color: ${magma.colors.neutral100};
   display: inline-flex;
   font-size: ${magma.typeScale.size05.fontSize};
   font-weight: 600;
@@ -21,7 +21,7 @@ const LogoLink = styled(Link)`
   &:hover,
   &:focus,
   &:active {
-    color: ${magma.colors.neutral08};
+    color: ${magma.colors.neutral100};
   }
 
   &:focus {

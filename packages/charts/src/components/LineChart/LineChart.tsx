@@ -113,7 +113,7 @@ const DataLegendsContainer = styled.div`
 `;
 
 const DataLegendsDescription = styled.p`
-  color: ${(props: any) => props.theme.colors.neutral03};
+  color: ${(props: any) => props.theme.colors.neutral};
   font-size: ${(props: any) => props.theme.typeScale.size02.fontSize};
 `;
 
@@ -502,7 +502,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                       stroke: theme.iterableColors[i],
                       strokeWidth: '3',
                     },
-                    parent: { border: theme.colors.neutral04 },
+                    parent: { border: theme.colors.neutral400 },
                   }}
                   key={`line${i}`}
                   data={dataset as unknown as any[]}
@@ -594,7 +594,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                   ]}
                   style={{
                     data: {
-                      fill: theme.colors.neutral08,
+                      fill: theme.colors.neutral100,
                       opacity: setLineOpacity(i),
                       stroke: theme.iterableColors[i],
                       strokeWidth: 2,

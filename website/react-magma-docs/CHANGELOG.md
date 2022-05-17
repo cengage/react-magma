@@ -1,5 +1,87 @@
 # Change Log
 
+## 3.0.0-next.22
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various doc pages
+
+### Patch Changes
+
+- Updated dependencies [9ca1827b2]
+  - react-magma-dom@3.0.0-next.16
+
+## 3.0.0-next.21
+
+### Major Changes
+
+- a4acd9ac6: docs: update typography and theming docs
+
+### Patch Changes
+
+- Updated dependencies [484578a87]
+- Updated dependencies [a4acd9ac6]
+  - react-magma-dom@3.0.0-next.15
+
+## 3.0.0-next.20
+
+### Major Changes
+
+- 604e938d2: docs: updated several pages
+
+## 3.0.0-next.19
+
+### Major Changes
+
+- b28163af4: docs: update buttons design guidelines
+
+## 3.0.0-next.18
+
+### Major Changes
+
+- 81ab701bf: docs: updating dg images
+
+## 3.0.0-next.17
+
+### Patch Changes
+
+- Updated dependencies [8690bbf3f]
+  - react-magma-dom@3.0.0-next.14
+
+## 3.0.0-next.16
+
+### Major Changes
+
+- 316d871bf: docs: updated guidelines images
+
+## 3.0.0-next.15
+
+### Patch Changes
+
+- Updated dependencies [e1fba9d10]
+  - react-magma-dom@3.0.0-next.13
+
+## 3.0.0-next.14
+
+### Patch Changes
+
+- Updated dependencies [2c98589c]
+  - react-magma-dom@3.0.0-next.12
+
+## 3.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies [2aa4ebc0]
+  - @cengage-patterns/header@3.0.0-next.1
+
+## 3.0.0-next.12
+
+### Patch Changes
+
+- Updated dependencies [4eba5dc4]
+  - react-magma-dom@3.0.0-next.11
+
 ## 3.0.0-next.11
 
 ### Patch Changes

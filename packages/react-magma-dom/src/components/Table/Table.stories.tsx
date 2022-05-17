@@ -337,8 +337,8 @@ export const PaginationInverse = args => {
   );
 
   return (
-    <Card background={magma.colors.primary600} isInverse>
-      <Table {...args}>
+    <Card isInverse>
+      <Table {...args} isInverse>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>

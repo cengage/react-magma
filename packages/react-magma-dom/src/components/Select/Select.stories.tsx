@@ -66,7 +66,7 @@ Inverse.args = {
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>
@@ -86,7 +86,7 @@ LeftAlignedLabelWithContainer.args = {
 };
 LeftAlignedLabelWithContainer.decorators = [
   Story => (
-    <Card background={magma.colors.neutral07}>
+    <Card>
       <CardBody style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Story />
       </CardBody>

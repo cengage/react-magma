@@ -6,6 +6,7 @@ import { Toggle } from '../Toggle';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
+import { Card } from '../Card';
 
 const info = {
   component: Modal,
@@ -304,6 +305,32 @@ export const ModalInAModal = () => {
         </Modal>
       </Modal>
       <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+    </>
+  );
+};
+
+export const Inverse = () => {
+  const [showModal, setShowModal] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+        isInverse
+      >
+        <p>This is an inverse modal, doing modal things.</p>
+        <p>
+          <Button isInverse>This is a button</Button>
+        </p>
+      </Modal>
+      <Card isInverse>
+        <Button onClick={() => setShowModal(true)} isInverse>
+          Show Modal
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+      </Card>
     </>
   );
 };

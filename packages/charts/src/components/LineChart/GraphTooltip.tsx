@@ -9,8 +9,8 @@ import {
 } from 'react-magma-dom';
 
 const StyledGraphTooltip = styled(StyledTooltip)`
-  background: ${(props: any) => props.theme.colors.neutral08};
-  border: 1px solid ${(props: any) => props.theme.colors.neutral06};
+  background: ${(props: any) => props.theme.colors.neutral100};
+  border: 1px solid ${(props: any) => props.theme.colors.neutral300};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
   box-sizing: border-box;
   color: ${(props: any) => props.theme.colors.neutral};

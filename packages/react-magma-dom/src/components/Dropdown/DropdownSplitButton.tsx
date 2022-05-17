@@ -74,6 +74,7 @@ export const DropdownSplitButton = React.forwardRef<
       <Button
         {...other}
         id={context.dropdownButtonId.current}
+        isInverse={context.isInverse}
         onClick={onClick}
         shape={ButtonShape.leftCap}
         style={{ borderRight: 0, marginRight: 0 }}
@@ -87,6 +88,7 @@ export const DropdownSplitButton = React.forwardRef<
         aria-label={ariaLabel ? ariaLabel : i18n.dropdown.toggleMenuAriaLabel}
         aria-haspopup="true"
         icon={buttonIcon}
+        isInverse={context.isInverse}
         onClick={handleClick}
         shape={ButtonShape.rightCap}
         style={{

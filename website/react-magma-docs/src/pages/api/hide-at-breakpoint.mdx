@@ -20,7 +20,7 @@ export function Example() {
   return (
     <>
       <HideAtBreakpoint maxWidth={599}>
-        <Card isInverse background={magma.colors.foundation02}>
+        <Card isInverse background={magma.colors.primary700}>
           <CardBody>
             <strong>Max-Width:</strong> This text will be visible when the
             browser width is greater than or equal to 600px.
@@ -28,8 +28,8 @@ export function Example() {
         </Card>
         <br />
       </HideAtBreakpoint>
-      <HideAtBreakpoint minWidth={600} background={magma.colors.pop}>
-        <Card isInverse background={magma.colors.pop}>
+      <HideAtBreakpoint minWidth={600} background={magma.colors.info}>
+        <Card isInverse background={magma.colors.success}>
           <CardBody>
             <strong>Min-Width:</strong> This text will be visible when the
             browser width is less than 600px.

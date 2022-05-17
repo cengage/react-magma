@@ -2,7 +2,13 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { AlertProps } from '../Alert';
-import { AlertVariant, buildAlertBackground, VARIANT_ICON } from '../AlertBase';
+import {
+  AlertVariant,
+  buildAlertBackground,
+  buildAlertBorder,
+  buildAlertColor,
+  VARIANT_ICON,
+} from '../AlertBase';
 import { CloseIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
@@ -31,10 +37,7 @@ export interface BannerProps extends AlertProps {
 const StyledBanner = styled.div<AlertProps>`
   align-items: stretch;
   background: ${props => buildAlertBackground(props)};
-  color: ${props =>
-    props.variant === 'warning'
-      ? props.theme.colors.neutral
-      : props.theme.colors.neutral08};
+  color: ${props => buildAlertColor(props)};
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
@@ -49,8 +52,9 @@ const StyledBanner = styled.div<AlertProps>`
   }
 `;
 
-const BannerContents = styled.div`
+const BannerContents = styled.div<{ variant?: AlertVariant }>`
   align-items: center;
+  border-bottom: 1px solid ${props => buildAlertBorder(props)};
   display: flex;
   flex-grow: 1;
   justify-content: flex-start;
@@ -79,7 +83,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   align-self: stretch;
   border-radius: 0;
   color: ${({ alertVariant, theme }) =>
-    alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral08};
+    alertVariant === 'warning' ? theme.colors.neutral : theme.colors.neutral100};
   height: auto;
   padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
@@ -89,7 +93,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
           ? theme.colors.neutral
-          : theme.colors.neutral08};
+          : theme.colors.neutral100};
     outline-offset: 0 !important;
   }
 
@@ -100,7 +104,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
         background: ${({ alertVariant, theme }) =>
           alertVariant === 'warning'
             ? theme.colors.neutral
-            : theme.colors.neutral08};
+            : theme.colors.neutral100};
         opacity: 0.15;
       }
 
@@ -116,7 +120,9 @@ const IconWrapper = styled.span`
   padding-right: ${props => props.theme.spaceScale.spacing03};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    display: none;
+    svg {
+      width: 20px;
+    }
   }
 `;
 
@@ -166,7 +172,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         theme={theme}
         variant={variant}
       >
-        <BannerContents theme={theme}>
+        <BannerContents theme={theme} variant={variant}>
           {renderIcon(variant, theme)}
           {children}
           {actionButtonText && actionButtonOnClick && (
