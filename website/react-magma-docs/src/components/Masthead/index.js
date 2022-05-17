@@ -21,7 +21,7 @@ const LogoLink = styled(Link)`
   &:hover,
   &:focus,
   &:active {
-    color: ${magma.colors.neutral100};
+    color: ${magma.colors.primary};
   }
 
   &:focus {
