@@ -446,80 +446,6 @@ const successColors = {
   success700: '#0F5323',
 };
 
-const primaryColors = {
-  primary100: '#E8E9F8',
-  primary200: '#BABDE9',
-  primary300: '#8B91DA',
-  primary400: '#5D65CB',
-  primary500: '#3942B0',
-  primary600: '#292F7C',
-  primary700: '#1A1E51',
-};
-
-const secondaryColors = {
-  secondary500: '#FEE449',
-  secondary600: '#FEDA0D',
-  secondary700: '#ECC901',
-};
-
-const tertiaryColors = {
-  tertiary500: '#CDDEFF',
-  tertiary600: '#A2C1FF',
-  tertiary700: '#79A5FF',
-};
-
-const neutralColors = {
-  neutral100: '#FFFFFF', // white
-  neutral200: '#F5F5F5',
-  neutral300: '#D4D4D4',
-  neutral400: '#8D8D8D',
-  neutral500: '#707070',
-  neutral600: '#5A5A5A',
-  neutral700: '#454545',
-  neutral800: '#2D2D2D',
-  neutral900: '#000000', // black
-};
-
-const infoColors = {
-  info100: '#E8F5FC',
-  info200: '#A6DEFF',
-  info300: '#2FB3FF',
-  info400: '#009AF3',
-  info500: '#0074B7',
-  info600: '#005F96',
-  info700: '#004A75',
-};
-
-const dangerColors = {
-  danger100: '#FCEBEA',
-  danger200: '#FAAEB0',
-  danger300: '#E8716D',
-  danger400: '#E24943',
-  danger500: '#D32821',
-  danger600: '#A91F1A',
-  danger700: '#7F1714',
-};
-
-const warningColors = {
-  warning100: '#FCEEE5',
-  warning200: '#F6CDB2',
-  warning300: '#E98B4C',
-  warning400: '#E06A1C',
-  warning500: '#AD5115',
-  warning600: '#8D4311',
-  warning700: '#6E340E',
-};
-
-const successColors = {
-  success100: '#E3FAEA',
-  success200: '#ACF0C1',
-  success300: '#3EDD6E',
-  success400: '#21B94E',
-  success500: '#178037',
-  success600: '#136A2D',
-  success700: '#0F5323',
-};
-
 const colors = {
   primary: primaryColors.primary500,
   secondary: secondaryColors.secondary500,
@@ -658,22 +584,22 @@ export const magma = {
     headingLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingMedium: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingSmall: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     heading2XSmall: {
       mobile: typeScale.size03,

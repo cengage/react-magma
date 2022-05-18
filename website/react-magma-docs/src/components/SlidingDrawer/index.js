@@ -133,7 +133,7 @@ export class SlidingDrawer extends React.Component {
       top: 4px;
       left: 6px;
       z-index: 11;
-            @media (min-width: 1024px) {
+      @media (min-width: 1024px) {
         display: none;
       }
     `;
