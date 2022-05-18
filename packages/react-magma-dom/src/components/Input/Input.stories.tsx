@@ -25,12 +25,21 @@ export default {
         type: 'boolean',
       },
     },
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
   errorMessage: '',
 } as Meta;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  disabled: false,
+  helperMessage: 'Helper message',
+  placeholder: 'Placeholder text...'
+};
 
 export const Error = Template.bind({});
 Error.args = {
@@ -104,10 +113,11 @@ export const Inverse = Template.bind({});
 Inverse.args = {
   ...Default.args,
   isInverse: true,
+  errorMessage: '',
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

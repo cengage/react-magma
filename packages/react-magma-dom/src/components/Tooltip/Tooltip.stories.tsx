@@ -16,7 +16,7 @@ const Template: Story<TooltipProps> = args => (
       textAlign: 'center',
       background: args.isInverse
         ? magma.colors.neutral
-        : magma.colors.neutral08,
+        : magma.colors.neutral100,
     }}
   >
     <Tooltip {...args}>

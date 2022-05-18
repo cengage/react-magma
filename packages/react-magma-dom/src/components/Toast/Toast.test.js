@@ -1,4 +1,5 @@
 import React from 'react';
+import { magma } from '../../theme/magma';
 import { Toast } from '.';
 import { ToastsContainer } from './ToastsContainer';
 import { act, render, fireEvent } from '@testing-library/react';
@@ -219,8 +220,8 @@ describe('Toast', () => {
     );
 
     expect(getByTestId('test').firstChild.firstChild).toHaveStyleRule(
-      'background-color',
-      '#3A8200'
+      'background',
+      magma.colors.success100
     );
   });
 });

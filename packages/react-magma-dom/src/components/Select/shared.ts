@@ -45,8 +45,8 @@ export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
 export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   align-self: center;
   background: ${props =>
-    props.isFocused ? props.theme.colors.neutral06 : 'transparent'};
-  border: 2px dotted;
+    props.isFocused ? props.theme.colors.neutral300 : 'transparent'};
+  border: 2px solid;
   border-color: ${props =>
     props.isFocused ? props.theme.colors.focus : 'transparent'};
   cursor: default;
@@ -64,7 +64,7 @@ export const SelectedItemsWrapper = styled.span`
 
 export const SelectedItemButton = styled.button`
   align-self: center;
-  background: ${props => props.theme.colors.neutral06};
+  background: ${props => props.theme.colors.neutral300};
   border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;

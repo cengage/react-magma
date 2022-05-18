@@ -5,7 +5,7 @@ import { useIsInverse } from '../../inverse';
 
 function getStyles(theme, isInverse: boolean) {
   return css`
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
     *,
@@ -15,9 +15,9 @@ function getStyles(theme, isInverse: boolean) {
     }
 
     *:focus {
-      outline: 2px dotted
+      outline: 2px solid
         ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
-      outline-offset: 4px;
+      outline-offset: 2px;
     }
 
     html {
@@ -31,9 +31,9 @@ function getStyles(theme, isInverse: boolean) {
     html,
     body {
       background: ${isInverse
-        ? theme.colors.foundation
-        : theme.colors.neutral08};
-      color: ${isInverse ? theme.colors.neutral08 : theme.colors.neutral};
+        ? theme.colors.primary600
+        : theme.colors.neutral100};
+      color: ${isInverse ? theme.colors.neutral100 : theme.colors.neutral};
       margin: 0;
       padding: 0;
     }
@@ -47,13 +47,13 @@ function getStyles(theme, isInverse: boolean) {
     }
 
     a {
-      color: ${isInverse ? theme.colors.neutral07 : theme.colors.primary};
+      color: ${isInverse ? theme.colors.neutral200 : theme.colors.primary};
       cursor: pointer;
       text-decoration: underline;
 
       &:hover,
       &:focus {
-        color: ${isInverse ? theme.colors.neutral06 : theme.colors.focus};
+        color: ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
       }
     }
 

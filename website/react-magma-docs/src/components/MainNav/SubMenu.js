@@ -31,7 +31,7 @@ const handleAnchorLinkClick = (id, handleClick, e) => {
 
 const SubMenuList = styled.ul`
   background: ${props =>
-    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07};
+    props.isInverse ? magma.colors.primary700 : magma.colors.neutral200};
   list-style-type: none;
   margin: 0;
   padding: 0 0 ${magma.spaceScale.spacing03} 0;
@@ -45,7 +45,7 @@ const SubMenuItem = styled.li`
 
 const SubMenuLink = styled.a`
   color: ${props =>
-    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
+    props.isInverse ? magma.colors.neutral700 : magma.colors.neutral700};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   letter-spacing: ${magma.typeScale.size02.letterSpacing};
@@ -56,14 +56,14 @@ const SubMenuLink = styled.a`
 
   &:hover,
   &:focus {
-    background: ${magma.colors.neutral06};
-    color: ${magma.colors.neutral};
+    background: ${magma.colors.neutral300};
+    color: ${magma.colors.neutral700};
   }
 `;
 
 const SubMenuLink2 = styled.a`
   color: ${props =>
-    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
+    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   letter-spacing: ${magma.typeScale.size02.letterSpacing};
@@ -75,9 +75,9 @@ const SubMenuLink2 = styled.a`
   &:hover,
   &:focus {
     background: ${props =>
-      props.isInverse ? magma.colors.foundation : magma.colors.neutral06};
+      props.isInverse ? magma.colors.primary700 : magma.colors.neutral300};
     color: ${props =>
-      props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
+      props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
   }
 `;
 

@@ -7,10 +7,13 @@ import {
 } from './index';
 import { DropdownButton } from './DropdownButton';
 import { DropdownContent } from './DropdownContent';
+import { DropdownDivider } from './DropdownDivider';
+import { DropdownMenuGroup } from './DropdownMenuGroup';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import { Card, CardBody } from '../Card';
 import { Input } from '../Input';
 import { Checkbox } from '../Checkbox';
 import { PasswordInput } from '../PasswordInput';
@@ -24,6 +27,27 @@ const Template: Story<DropdownProps> = args => (
       <DropdownMenuItem>Menu item 1</DropdownMenuItem>
       <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+    </DropdownContent>
+  </Dropdown>
+);
+
+const HeaderIconTemplate: Story<DropdownProps> = args => (
+  <Dropdown {...args}>
+    <DropdownButton>Full Content Dropdown</DropdownButton>
+    <DropdownContent>
+      <DropdownMenuGroup header="Section title A">
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+      </DropdownMenuGroup>
+      <DropdownDivider />
+      <DropdownMenuGroup header="Section title B">
+        <DropdownMenuItem icon={<MenuIcon />}>Menu item 3</DropdownMenuItem>
+        <DropdownMenuItem icon={<SettingsIcon />}>Menu item 4</DropdownMenuItem>
+      </DropdownMenuGroup>
+      <DropdownDivider />
+      <DropdownMenuGroup>
+        <DropdownMenuItem>Log out</DropdownMenuItem>
+      </DropdownMenuGroup>
     </DropdownContent>
   </Dropdown>
 );
@@ -53,6 +77,9 @@ export default {
 export const Default = Template.bind({});
 Default.args = {};
 
+export const HeaderAndIcons = HeaderIconTemplate.bind({});
+Default.args = {};
+
 export const OnClickOutside = Template.bind({});
 OnClickOutside.args = {
   ...Default.args,
@@ -61,7 +88,11 @@ OnClickOutside.args = {
 
 const AlignmentTemplate: Story<DropdownProps> = args => (
   <>
-    <Dropdown {...args} dropDirection={DropdownDropDirection.right} activeIndex={1}>
+    <Dropdown
+      {...args}
+      dropDirection={DropdownDropDirection.right}
+      activeIndex={1}
+    >
       <DropdownButton>Right Aligned Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -128,7 +159,18 @@ const CustomTemplate: Story<DropdownProps> = args => (
     <Dropdown>
       <DropdownButton
         aria-label="Extra icon example"
-        color={ButtonColor.success}
+        size={ButtonSize.large}
+        icon={<MenuIcon />}
+      />
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+    <br />
+    <Dropdown isInverse>
+      <DropdownButton
+        aria-label="Extra icon example"
         size={ButtonSize.large}
         icon={<MenuIcon />}
       />
@@ -172,10 +214,24 @@ const SplitTemplate: Story<DropdownProps> = args => (
       <DropdownSplitButton
         aria-label="Split"
         size={ButtonSize.medium}
-        variant={ButtonVariant.outline}
+        variant={ButtonVariant.solid}
         color={ButtonColor.danger}
       >
         Split Dropdown
+      </DropdownSplitButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+    <br />
+    <Dropdown isInverse>
+      <DropdownSplitButton
+        aria-label="Split"
+        size={ButtonSize.medium}
+        variant={ButtonVariant.solid}
+      >
+        Split Dropdown Inverse
       </DropdownSplitButton>
       <DropdownContent>
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -236,3 +292,19 @@ const FormTemplate: Story<DropdownProps> = args => (
 
 export const Form = FormTemplate.bind({});
 Form.args = { ...Default.args };
+
+export const Inverse = HeaderIconTemplate.bind({});
+Inverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
+
+Inverse.decorators = [
+  Story => (
+    <Card isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];

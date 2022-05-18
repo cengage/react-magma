@@ -323,7 +323,7 @@ export const UncontrolledPagination = () => {
   );
 };
 
-export const PaginationInverse = () => {
+export const PaginationInverse = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
@@ -337,8 +337,8 @@ export const PaginationInverse = () => {
   );
 
   return (
-    <Card background={magma.colors.neutral} isInverse>
-      <Table isInverse>
+    <Card isInverse>
+      <Table {...args} isInverse>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -364,6 +364,10 @@ export const PaginationInverse = () => {
       />
     </Card>
   );
+};
+PaginationInverse.args = {
+  ...Default.args,
+  isInverse: true,
 };
 
 export const RowColors = () => {
@@ -414,10 +418,10 @@ export const RowColors = () => {
   );
 };
 
-export const RowColorsInverse = () => {
+export const RowColorsInverse = args => {
   return (
-    <Card background={magma.colors.neutral} isInverse>
-      <Table isInverse>
+    <Card background={magma.colors.primary600} isInverse>
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -466,8 +470,12 @@ export const RowColorsInverse = () => {
     </Card>
   );
 };
+RowColorsInverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
 
-export const Sortable = () => {
+export const Sortable = args => {
   const products = [
     { id: 1, name: 'Cheese', price: 5, stock: 20 },
     { id: 2, name: 'Milk', price: 5, stock: 32 },
@@ -515,7 +523,7 @@ export const Sortable = () => {
   return (
     <>
       <Card>
-        <Table>
+        <Table {...args}>
           <TableHead>
             <TableRow>
               <TableHeaderCell
@@ -579,4 +587,8 @@ export const Sortable = () => {
       </Announce>
     </>
   );
+};
+
+Sortable.args = {
+  ...Default.args,
 };

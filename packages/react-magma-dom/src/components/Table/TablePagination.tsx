@@ -19,6 +19,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
+import { transparentize } from 'polished';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -97,12 +98,12 @@ const StyledContainer = styled.div<{
 }>`
   align-items: center;
   background: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
+    props.isInverse ? transparentize(0.9, props.theme.colors.neutral100) : props.theme.colors.neutral200};
   border-top: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.neutral06};
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
@@ -183,7 +184,7 @@ export const TablePagination = React.forwardRef<
     onRowsPerPageChange &&
       typeof onRowsPerPageChange === 'function' &&
       onRowsPerPageChange(value);
-      setActiveIndex(rowsPerPage);
+    setActiveIndex(rowsPerPage);
   }
 
   const previousButton = pageButtons[0];

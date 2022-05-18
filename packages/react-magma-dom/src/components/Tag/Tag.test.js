@@ -3,6 +3,7 @@ import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Tag, TagColor, TagSize } from '.';
 import { render, fireEvent } from '@testing-library/react';
+import { transparentize } from 'polished';
 import { I18nContext, deleteAriaLabel } from '../../i18n';
 import { AccountCircleIcon, CancelIcon } from 'react-magma-icons';
 
@@ -27,7 +28,7 @@ describe('Tag', () => {
       const { getByText } = render(<Tag>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral300);
     });
 
     it('Should render a Tag with a primary background', () => {
@@ -37,27 +38,13 @@ describe('Tag', () => {
       expect(tag).toHaveStyleRule('background', magma.colors.primary);
     });
 
-    it('Should render a Tag with a success background', () => {
-      const { getByText } = render(<Tag color={TagColor.success}>{TEXT}</Tag>);
-      const tag = getByText('Text Label').parentElement;
-
-      expect(tag).toHaveStyleRule('background', magma.colors.success);
-    });
-
-    it('Should render a Tag with a danger background', () => {
-      const { getByText } = render(<Tag color={TagColor.danger}>{TEXT}</Tag>);
-      const tag = getByText('Text Label').parentElement;
-
-      expect(tag).toHaveStyleRule('background', magma.colors.danger);
-    });
-
     it('Should render a Tag with a high contrast background', () => {
       const { getByText } = render(
         <Tag color={TagColor.highContrast}>{TEXT}</Tag>
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral700);
     });
 
     it('Should render a Tag with a low contrast background', () => {
@@ -66,7 +53,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral08);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
     });
   });
 
@@ -75,7 +62,10 @@ describe('Tag', () => {
       const { getByText } = render(<Tag disabled>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.4, magma.colors.neutral300)
+      );
     });
 
     it('Should render a Tag with a disabled primary background', () => {
@@ -86,7 +76,10 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.4, magma.colors.neutral300)
+      );
     });
 
     it('Should render a Tag with a disabled high contrast background', () => {
@@ -97,8 +90,14 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
-      expect(tag).toHaveStyleRule('color', `${magma.colors.neutral03}99`);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.4, magma.colors.neutral300)
+      );
+      expect(tag).toHaveStyleRule(
+        'color',
+        transparentize(0.4, magma.colors.neutral500)
+      );
     });
 
     it('Should render a Tag with a low contrast disabled background', () => {
@@ -109,10 +108,10 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral08);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
       expect(tag).toHaveStyleRule(
         'box-shadow',
-        `0 0 0 1px ${magma.colors.neutral06}`
+        `0 0 0 1px ${magma.colors.neutral300}`
       );
     });
   });
@@ -126,7 +125,10 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.7, magma.colors.neutral100)
+      );
     });
 
     it('Should render a inverse Tag with a disabled primary background', () => {
@@ -137,7 +139,10 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.7, magma.colors.neutral100)
+      );
     });
 
     it('Should render a inverse Tag with a disabled high contrast background', () => {
@@ -148,7 +153,10 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral06);
+      expect(tag).toHaveStyleRule(
+        'background',
+        transparentize(0.7, magma.colors.neutral100)
+      );
     });
 
     it('Should render a inverse Tag with a low contrast disabled background', () => {
@@ -162,7 +170,7 @@ describe('Tag', () => {
       expect(tag).toHaveStyleRule('background', 'none');
       expect(tag).toHaveStyleRule(
         'box-shadow',
-        `0 0 0 1px ${magma.colors.neutral08}40`
+        `0 0 0 1px ${transparentize(0.8, magma.colors.neutral100)}`
       );
     });
   });
@@ -172,7 +180,7 @@ describe('Tag', () => {
       const { getByText } = render(<Tag isInverse>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral03);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral);
     });
 
     it('Should render a inverse Tag with a primary background', () => {
@@ -183,29 +191,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.primaryInverse);
-    });
-
-    it('Should render a inverse Tag with a success background', () => {
-      const { getByText } = render(
-        <Tag color={TagColor.success} isInverse>
-          {TEXT}
-        </Tag>
-      );
-      const tag = getByText('Text Label').parentElement;
-
-      expect(tag).toHaveStyleRule('background', magma.colors.successInverse);
-    });
-
-    it('Should render a inverse Tag with a danger background', () => {
-      const { getByText } = render(
-        <Tag color={TagColor.danger} isInverse>
-          {TEXT}
-        </Tag>
-      );
-      const tag = getByText('Text Label').parentElement;
-
-      expect(tag).toHaveStyleRule('background', magma.colors.dangerInverse);
+      expect(tag).toHaveStyleRule('background', magma.colors.tertiary500);
     });
 
     it('Should render a inverse Tag with a high contrast background', () => {
@@ -216,7 +202,7 @@ describe('Tag', () => {
       );
       const tag = getByText('Text Label').parentElement;
 
-      expect(tag).toHaveStyleRule('background', magma.colors.neutral08);
+      expect(tag).toHaveStyleRule('background', magma.colors.neutral100);
     });
 
     it('Should render a inverse Tag with a low contrast background', () => {

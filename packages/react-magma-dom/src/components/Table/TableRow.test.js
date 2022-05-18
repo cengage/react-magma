@@ -38,7 +38,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        magma.colors.neutral100
       );
     });
 
@@ -60,7 +60,7 @@ describe('Table Row', () => {
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        magma.colors.neutral100
       );
     });
 
@@ -78,11 +78,11 @@ describe('Table Row', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.pop04
+        magma.colors.warning
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral
+        magma.colors.neutral100
       );
     });
 
@@ -100,11 +100,11 @@ describe('Table Row', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.primary
+        magma.colors.info
       );
       expect(getByTestId(testId)).toHaveStyleRule(
         'color',
-        magma.colors.neutral08
+        magma.colors.neutral100
       );
     });
   });

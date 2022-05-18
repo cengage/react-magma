@@ -3,8 +3,8 @@ import { magma } from 'react-magma-dom';
 
 export const magmaCode: PrismTheme = {
   plain: {
-    backgroundColor: magma.colors.neutral07,
-    color: magma.colors.foundation,
+    backgroundColor: magma.colors.neutral200,
+    color: magma.colors.neutral800,
   },
   styles: [
     {
@@ -22,7 +22,7 @@ export const magmaCode: PrismTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.foundation02,
+        color: magma.colors.primary700,
       },
     },
     {
@@ -34,7 +34,7 @@ export const magmaCode: PrismTheme = {
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: magma.colors.foundation,
+        color: magma.colors.primary700,
       },
     },
     {
@@ -61,7 +61,7 @@ export const magmaCode: PrismTheme = {
         'variable',
       ],
       style: {
-        color: magma.colors.pop,
+        color: magma.colors.danger400,
       },
     },
     {
@@ -91,7 +91,7 @@ export const magmaCode: PrismTheme = {
     {
       types: ['important'],
       style: {
-        color: magma.colors.pop,
+        color: magma.colors.tertiary,
       },
     },
   ],

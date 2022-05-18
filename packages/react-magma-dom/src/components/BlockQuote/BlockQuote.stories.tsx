@@ -55,7 +55,7 @@ Inverse.args = {
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

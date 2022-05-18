@@ -65,7 +65,7 @@ export interface FormFieldContainerBaseProps {
 const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
+      ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
 `;
 

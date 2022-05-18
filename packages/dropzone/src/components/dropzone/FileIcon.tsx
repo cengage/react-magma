@@ -24,55 +24,55 @@ const icons = {
   default: {
     Icon: InsertDriveFileIcon,
     style: {
-      color: '#707070',
+      color: magma.colors.neutral500,
     },
   },
   word: {
     Icon: FileWordIcon,
     style: {
-      color: '#006298',
+      color: magma.colors.info500,
     },
   },
   excel: {
     Icon: FileExcelIcon,
     style: {
-      color: '#3A8200',
+      color: magma.colors.success500,
     },
   },
   powerpoint: {
     Icon: FilePowerpointIcon,
     style: {
-      color: '#FC4C02',
+      color: magma.colors.warning500,
     },
   },
   pdf: {
     Icon: FilePdfIcon,
     style: {
-      color: '#C61D23',
+      color: magma.colors.danger500,
     },
   },
   image: {
     Icon: ImageIcon,
     style: {
-      color: '#707070',
+      color: magma.colors.neutral500,
     },
   },
   video: {
     Icon: VideocamIcon,
     style: {
-      color: '#707070',
+      color: magma.colors.neutral500,
     },
   },
   audio: {
     Icon: AudiotrackIcon,
     style: {
-      color: '#707070',
+      color: magma.colors.neutral500,
     },
   },
   archive: {
     Icon: FileZipIcon,
     style: {
-      color: '#707070',
+      color: magma.colors.neutral500,
     },
   },
 };

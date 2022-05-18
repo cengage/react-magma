@@ -164,9 +164,7 @@ export function Example() {
   return (
     <ToastsContainer>
       <Announce>
-        <Button onClick={handleClick} color={ButtonColor.success}>
-          Show Toast
-        </Button>
+        <Button onClick={handleClick}>Show Toast</Button>
         {showToast && (
           <Toast
             id="toast1"

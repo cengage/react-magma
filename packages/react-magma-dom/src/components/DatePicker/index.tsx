@@ -116,7 +116,7 @@ const DatePickerContainer = styled.div`
 `;
 
 const DatePickerCalendar = styled.div<{ opened: boolean }>`
-  border: 1px solid ${props => props.theme.colors.neutral06};
+  border: 1px solid ${props => props.theme.colors.neutral300};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
   display: ${props => (props.opened ? 'block' : 'none')};
@@ -438,7 +438,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             type={InputType.text}
             value={inputValue}
           />
-          <InverseContext.Provider value={{ isInverse: false }}>
+          <InverseContext.Provider value={{ isInverse }}>
             <DatePickerCalendar
               data-testid="calendarContainer"
               opened={calendarOpened}

@@ -19,9 +19,9 @@ const Heading = styled.h1`
   && {
     color: inherit;
     font-family: ${props => props.theme.bodyFont};
-    font-size: ${props => props.theme.typeScale.size12.fontSize};
+    font-size: ${props => props.theme.typeScale.size13.fontSize};
     font-weight: 600;
-    line-height: ${props => props.theme.typeScale.size12.lineHeight};
+    line-height: ${props => props.theme.typeScale.size13.lineHeight};
     text-align: center;
     margin: -240px 0 16px;
     padding-top: 240px;
@@ -29,7 +29,7 @@ const Heading = styled.h1`
     text-transform: uppercase;
 
     &:focus {
-      border-bottom: 2px dotted ${props => props.theme.colors.neutral08};
+      border-bottom: 2px solid ${props => props.theme.colors.focus};
       outline: 0;
     }
 
@@ -47,8 +47,8 @@ const Heading = styled.h1`
 const List = styled.ol`
   display: none;
 
-  @media (min-width: ${props => props.theme.breakpoints.large}px) {
-    background-color: ${props => props.theme.colors.foundation};
+  @media (min-width: ${props => props.theme.breakpoints.medium}px) {
+    background-color: ${props => props.theme.colors.primary700};
     display: flex;
     left: 0;
     list-style: none;
@@ -195,7 +195,7 @@ export class IndexPageContent extends React.Component {
                   <Hyperlink
                     styledAs="Button"
                     isInverse
-                    to="/design-intro/introduction"
+                    to="/design-intro/get-started"
                   >
                     {linkProps => (
                       <Link {...linkProps}>
