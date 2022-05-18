@@ -61,7 +61,7 @@ const StyledParagraph = styled(Paragraph)`
 const StyledTabsContainer = styled(TabsContainer)`
   width: 800px;
   ul {
-    box-shadow: inset 0 -1px 0 ${props => props.theme.colors.neutral06};
+    box-shadow: inset 0 -1px 0 ${props => props.theme.colors.neutral300};
   }
 `;
 

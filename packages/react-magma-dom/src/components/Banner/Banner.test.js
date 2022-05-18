@@ -23,7 +23,7 @@ describe('Banner', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'background',
-      magma.colors.pop04
+      magma.colors.warning100
     );
 
     const closeBtn = getByLabelText('Close this message');

@@ -127,7 +127,7 @@ it('should render an input with a correctly styled helper message', () => {
 
   const helperMessage = getByTestId('inputMessage');
 
-  expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+  expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral);
 });
 
 it('should render an input with a correctly styled error message', () => {

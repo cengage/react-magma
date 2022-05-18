@@ -27,7 +27,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
   });
 
   const asteriskColor = isInverse
-    ? magma.colors.foundation04
+    ? magma.colors.neutral100
     : magma.colors.primary;
 
   return (

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
+import { transparentize } from 'polished';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   InfoIcon,
@@ -22,7 +23,6 @@ export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
 } = {
   info: InfoIcon,
-  muted: InfoIcon,
   success: CheckCircleIcon,
   warning: WarningIcon,
   danger: ErrorIcon,
@@ -30,7 +30,6 @@ export const VARIANT_ICON: {
 
 export enum AlertVariant {
   info = 'info', //default,
-  muted = 'muted',
   success = 'success',
   warning = 'warning',
   danger = 'danger',
@@ -40,6 +39,7 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   closeAriaLabel?: string;
   forceDismiss?: () => void;
   hasTimerRing?: boolean;
+  id?: string;
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
@@ -55,17 +55,68 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
 export const transitionDuration = 500;
 
 export function buildAlertBackground(props) {
+  if (props.isInverse) {
+    switch (props.variant) {
+      case 'success':
+        return props.theme.colors.success700;
+      case 'warning':
+        return props.theme.colors.warning700;
+      case 'danger':
+        return props.theme.colors.danger700;
+      default:
+        return props.theme.colors.info700;
+    }
+  }
   switch (props.variant) {
-    case 'muted':
-      return 'rgba(0, 0, 0, 0)';
     case 'success':
-      return props.theme.colors.success;
+      return props.theme.colors.success100;
     case 'warning':
-      return props.theme.colors.pop04;
+      return props.theme.colors.warning100;
     case 'danger':
-      return props.theme.colors.danger;
+      return props.theme.colors.danger100;
     default:
-      return props.theme.colors.neutral;
+      return props.theme.colors.info100;
+  }
+}
+
+export function buildAlertBorder(props) {
+  if (props.isInverse) {
+    switch (props.variant) {
+      case 'success':
+        return props.theme.colors.success300;
+      case 'warning':
+        return props.theme.colors.warning300;
+      case 'danger':
+        return props.theme.colors.danger200;
+      default:
+        return props.theme.colors.info300;
+    }
+  }
+  switch (props.variant) {
+    case 'success':
+      return props.theme.colors.success500;
+    case 'warning':
+      return props.theme.colors.warning500;
+    case 'danger':
+      return props.theme.colors.danger500;
+    default:
+      return props.theme.colors.info500;
+  }
+}
+
+export function buildAlertColor(props) {
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+  switch (props.variant) {
+    case 'success':
+      return props.theme.colors.success500;
+    case 'warning':
+      return props.theme.colors.warning500;
+    case 'danger':
+      return props.theme.colors.danger500;
+    default:
+      return props.theme.colors.info500;
   }
 }
 
@@ -75,7 +126,6 @@ const StyledAlert = styled.div<AlertBaseProps>`
     props.isExiting
       ? `fadeout ${transitionDuration}ms`
       : `fadein ${transitionDuration}ms`};
-  
   display: flex;
   flex-direction: column;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
@@ -92,11 +142,11 @@ const StyledAlert = styled.div<AlertBaseProps>`
   }
 
   &:focus {
-    outline: 2px solid ${props =>
-      props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
-    }
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
   }
 
   ${props =>
@@ -132,7 +182,6 @@ const StyledAlert = styled.div<AlertBaseProps>`
     }
   }
 
- 
   @keyframes slidein {
     from {
       left: -500px;
@@ -155,35 +204,25 @@ const StyledAlert = styled.div<AlertBaseProps>`
     color: inherit;
     font-weight: 600;
     text-decoration: underline;
-
-    &:focus {
-      outline: 2px solid ${props =>
-        props.variant === 'warning'
-          ? props.theme.colors.focus
-          : props.theme.colors.focusInverse};
-      }
-    }
   }
 `;
 
 const StyledAlertInner = styled.div<AlertBaseProps>`
-  background-color: ${props => buildAlertBackground(props)};
+  background: ${buildAlertBackground};
+  border: 1px solid ${buildAlertBorder};
   border-radius: ${props => props.theme.borderRadius};
-  color: ${props =>
-    props.variant === AlertVariant.muted
-      ? props.theme.colors.neutral03
-      : props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+  color: ${buildAlertColor};
   display: flex;
   position: relative;
-  padding-right: 12px; 
 
   ${props =>
     props.isToast &&
     css`
-      border: 1px solid ${props.theme.colors.neutral08};
-      box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
+      box-shadow: ${
+        props.isInverse
+          ? `0 2px 8px 0 ${transparentize(0.3, props.theme.colors.neutral900)}`
+          : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`
+      }      
       height: ${props.theme.spaceScale.spacing11};
     `}
 `;
@@ -194,7 +233,7 @@ const AlertContents = styled.div`
   padding: ${props => props.theme.spaceScale.spacing04} 0;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding-left: ${props => props.theme.spaceScale.spacing04};
+    padding-left: 0;
   }
 `;
 
@@ -211,15 +250,17 @@ const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
     props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    display: none;
+    padding: 0 ${props => props.theme.spaceScale.spacing03};
+    svg {
+      width: 20px;
+    }
   }
 `;
 
 const ProgressRingWrapper = styled.div`
-  opacity: 0.7;
   margin-top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
-  top: ${props => props.theme.spaceScale.spacing02};
+  top: ${props => props.theme.spaceScale.spacing01};
   right: ${props => props.theme.spaceScale.spacing02};
 `;
 
@@ -235,37 +276,37 @@ const shouldForwardProp = prop => {
 
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
+  isInverse?: boolean;
+  isToast?: boolean;
 }>`
   align-self: stretch;
   border-radius: 0 ${props => props.theme.borderRadius}
     ${props => props.theme.borderRadius} 0;
   color: inherit;
   height: auto;
-  padding: 0 ${props => props.theme.spaceScale.spacing04};
+  margin: ${props => (props.isToast ? '4px' : '0 -1px 0 0')};
+  padding: ${props =>
+    props.isToast
+      ? `0 ${props.theme.spaceScale.spacing04}`
+      : `0 ${props.theme.spaceScale.spacing03}`};
   width: auto;
-
-  &&:focus:not(:disabled) {
+  &:not(:disabled):hover {
+    background: none;
+    color: inherit;
+  }
+  &:focus:not(:disabled) {
+    background: none;
+    color: inherit;
     outline: 2px solid
-      ${({ alertVariant, theme }) =>
-        alertVariant === 'warning'
-          ? theme.colors.focus
-          : theme.colors.focusInverse};
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
     outline-offset: 0 !important;
   }
-
-  &:hover,
-  &:focus {
-    :not(:disabled):before {
-      background: ${({ alertVariant, theme }) =>
-        alertVariant === 'warning'
-          ? theme.colors.focus
-          : theme.colors.focusInverse};
-      opacity: 0.15;
-    }
-
-    &:after {
-      display: none;
-    }
+  &:not(:disabled):active {
+    background: none;
+    color: inherit;
   }
 `;
 
@@ -326,6 +367,19 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
 
+    function progressRingColor() {
+      switch (props.variant) {
+        case 'success':
+          return theme.colors.success500;
+        case 'warning':
+          return theme.colors.warning500;
+        case 'danger':
+          return theme.colors.danger500;
+        default:
+          return theme.colors.info500;
+      }
+    }
+
     return (
       <StyledAlert
         {...other}
@@ -337,6 +391,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         isToast={isToast}
         ref={ref}
         theme={theme}
+        variant={variant}
       >
         <InverseContext.Provider
           value={{
@@ -344,7 +399,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
           }}
         >
           <StyledAlertInner
-            isInverse={variant !== AlertVariant.warning}
+            isInverse={isInverse}
             isToast={isToast}
             theme={theme}
             variant={variant}
@@ -352,15 +407,15 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
             {renderIcon(variant, isToast, theme)}
             <AlertContents theme={theme}>{children}</AlertContents>
             {isDismissible && (
-              <DismissibleIconWrapper variant={variant} theme={theme}>
+              <DismissibleIconWrapper
+                isInverse={isInverse}
+                variant={variant}
+                theme={theme}
+              >
                 {hasTimerRing && isToast && (
                   <ProgressRingWrapper theme={theme}>
                     <ProgressRing
-                      color={
-                        variant === AlertVariant.warning
-                          ? theme.colors.neutral
-                          : theme.colors.neutral08
-                      }
+                      color={progressRingColor()}
                       isActive={!isPaused}
                     />
                   </ProgressRingWrapper>
@@ -381,7 +436,8 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                       }
                     />
                   }
-                  isInverse
+                  isInverse={isInverse}
+                  isToast={isToast}
                   onClick={forceDismiss || handleDismiss}
                   theme={theme}
                   variant={ButtonVariant.link}
