@@ -45,7 +45,7 @@ export const Masthead = props => {
   return (
     <Header
       breakpoint={magma.breakpoints.medium}
-      isCompact={isSmallerScreen}
+      isCompact={true}
       isInverse={false}
       logo={HeaderLogo}
       position={AppBarPosition.sticky}

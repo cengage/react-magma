@@ -95,6 +95,14 @@ const HeaderBlock = styled.div`
   }
 `;
 
+const HeaderText = styled.div`
+  width: 66%;
+
+  @media (max-width: ${magma.breakpoints.small}px) {
+    width: 100%;
+  }
+`;
+
 const CenterBlock = styled.div`
   grid-column: 1 / 3;
   text-align: center;
@@ -188,15 +196,15 @@ const HeroCardIcon = styled(Flex)`
 
 export function IndexPageContent() {
   return (
-    <>
+    <div style={{maxWidth: '1200px', margin: 'auto'}}>
       <HeaderBlock>
-        <div>
+        <HeaderText>
           <Heading level={1}>React Magma Design&nbsp;System</Heading>
           <Heading level={2} visualStyle={TypographyVisualStyle.bodyLarge}>
             React Magma is Cengage's open source design system for creating
             digital experiences with React.
           </Heading>
-        </div>
+        </HeaderText>
         <Logo />
       </HeaderBlock>
       <StyledGrid gridGap={magma.spaceScale.spacing06}>
@@ -347,6 +355,6 @@ export function IndexPageContent() {
           </Hyperlink>
         </CenterBlock>
       </StyledGrid>
-    </>
+    </div>
   );
 }
