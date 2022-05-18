@@ -65,13 +65,13 @@ export class SlidingDrawer extends React.Component {
 
   render() {
     const slidein = keyframes`
-            from { transform: translateX(-280px); }
+            from { transform: translateX(-240px); }
             to   { transform: translateX(0); }
         `;
 
     const slideout = keyframes`
             from { transform: translateX(0); }
-            to   { transform: translateX(-280px); }
+            to   { transform: translateX(-240px); }
         `;
 
     const Panel = styled(Container)`
@@ -85,8 +85,8 @@ export class SlidingDrawer extends React.Component {
       padding: 0 0 24px;
       position: fixed;
       top: 0;
-      transform: translateX(-280px);
-      width: 280px;
+      transform: translateX(-240px);
+      width: 240px;
 
       ${props =>
         props.isActivated &&
@@ -104,7 +104,8 @@ export class SlidingDrawer extends React.Component {
 
       @media (min-width: 1024px) {
         animation: none;
-        padding-top: 20px;
+        background: ${magma.colors.neutral200};
+        /* padding-top: 20px; */
         top: 88px;
         transform: translateX(0);
       }

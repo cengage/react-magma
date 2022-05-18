@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { convertTextToId } from '../../utils';
 import styled from '@emotion/styled';
 import { magma, useIsInverse } from 'react-magma-dom';
+import { css } from '@emotion/core';
 
 const handleAnchorLinkClick = (id, handleClick, e) => {
   const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
@@ -31,7 +32,7 @@ const handleAnchorLinkClick = (id, handleClick, e) => {
 
 const SubMenuList = styled.ul`
   background: ${props =>
-    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07};
+    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200};
   list-style-type: none;
   margin: 0;
   padding: 0 0 ${magma.spaceScale.spacing03} 0;
@@ -43,42 +44,42 @@ const SubMenuItem = styled.li`
   padding: 0;
 `;
 
-const SubMenuLink = styled.a`
-  color: ${props =>
-    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
+const AnchorStyling = props => css`
+  background: inherit;
+  color: ${props.isInverse ? magma.colors.neutral08 : magma.colors.neutral700};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   letter-spacing: ${magma.typeScale.size02.letterSpacing};
   line-height: ${magma.typeScale.size02.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
     ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
+  position: relative;
   text-decoration: none;
-
-  &:hover,
-  &:focus {
-    background: ${magma.colors.neutral06};
-    color: ${magma.colors.neutral};
+  &:hover {
+    color: ${props.isInverse
+      ? magma.colors.neutral08
+      : magma.colors.neutral700};
+    background: ${magma.colors.neutral300};
+  }
+  &:active:before,
+  &:focus:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 4px;
+    border-radius: 2px;
+    background: ${magma.colors.primary};
   }
 `;
 
-const SubMenuLink2 = styled.a`
-  color: ${props =>
-    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
-  display: block;
-  font-size: ${magma.typeScale.size02.fontSize};
-  letter-spacing: ${magma.typeScale.size02.letterSpacing};
-  line-height: ${magma.typeScale.size02.lineHeight};
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
-    ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11};
-  text-decoration: none;
+const SubMenuLink = styled.a`
+  ${AnchorStyling};
+`;
 
-  &:hover,
-  &:focus {
-    background: ${props =>
-      props.isInverse ? magma.colors.foundation : magma.colors.neutral06};
-    color: ${props =>
-      props.isInverse ? magma.colors.neutral08 : magma.colors.neutral};
-  }
+const SubMenuLink2 = styled.a`
+  ${AnchorStyling};
 `;
 
 export const SubMenu = ({ headings, handleClick }) => {

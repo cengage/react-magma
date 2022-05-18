@@ -10,13 +10,78 @@ import {
   AccordionItemTitle,
   AccordionItemBody,
 } from 'react-accessible-accordion';
-import './accordion.css';
 import styled from '@emotion/styled';
 import { magma, useIsInverse } from 'react-magma-dom';
 
+const LinkStyles = props => `
+  align-items: center;
+  color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+  display: flex;
+  font-size: ${magma.typeScale.size03.fontSize};
+  justify-content: space-between;
+  line-height: ${magma.typeScale.size03.lineHeight};
+  padding: 0;
+  text-decoration: none;
+`;
+
+const LinkHoverStyles = props => `
+    color: ${
+      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700
+    };
+  background: ${magma.colors.neutral300};
+`;
+
+const StyledAccordionItem = styled(AccordionItem)`
+  /* Accordion styles */
+  .accordion__body {
+    animation: fadein 0.35s ease-in;
+    display: block;
+    &[aria-hidden='false'] {
+      box-shadow: inset 0 -1px 0 0 ${magma.colors.neutral06};
+      padding-bottom: 10px;
+    }
+  }
+  .accordion__body--hidden {
+    animation: fadeout 0.35s ease-in;
+    display: none;
+  }
+  @keyframes fadein {
+    0% {
+      height: 0;
+    }
+    100% {
+      height: 100%;
+    }
+  }
+  @keyframes fadeout {
+    0% {
+      height: 100%;
+    }
+    100% {
+      height: 0;
+    }
+  }
+`;
+
+const StyledAccordionItemTitle = styled(AccordionItemTitle)`
+  cursor: pointer;
+  border: none;
+  &:hover {
+    ${LinkHoverStyles};
+  }
+  svg {
+    transition: transform 0.35s;
+  }
+  &[aria-expanded='true'] {
+    box-shadow: inset 0 1px 0 0 ${magma.colors.neutral06};
+  }
+  &[aria-expanded='true'] svg {
+    transform: rotate(-180deg);
+  }
+`;
+
 const activeStyleDefault = {
-  color: magma.colors.neutral,
-  background: magma.colors.neutral700,
+  background: magma.colors.neutral300,
 };
 
 const activeStyleInverse = {
@@ -26,28 +91,22 @@ const activeStyleInverse = {
 
 const Heading2 = styled.h2`
   display: flex;
+  justify-content: space-between;
   font-size: ${magma.typeScale.size03.fontSize};
   line-height: ${magma.typeScale.size03.lineHeight};
   font-weight: 500;
-  padding: ${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05};
+  margin: 0;
+  padding: 8px 18px;
 `;
 
 const Heading3 = styled.h3`
+  color: ${magma.colors.neutral700};
   font-size: ${magma.typeScale.size01.fontSize};
-  font-weight: 500;
+  font-weight: 700;
   text-transform: uppercase;
   display: inline-block;
   text-indent: 0;
   padding-left: 16px;
-  padding-top: 20px;
-`;
-
-const HR = styled.hr`
-  background: ${props =>
-    props.isInverse ? magma.colors.borderInverse : magma.colors.border};
-  border: none;
-  margin: ${magma.spaceScale.spacing03} 0;
-  height: 1px;
 `;
 
 const List = styled.ul`
@@ -62,36 +121,15 @@ const ListItem = styled.li`
   padding: 0;
 `;
 
-const LinkStyles = props => `
-  align-items: center;
-  color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
-  display: flex;
-  font-size: ${magma.typeScale.size03.fontSize};
-  justify-content: space-between;
-  line-height: ${magma.typeScale.size03.lineHeight};
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06};
-  text-decoration: none;
-`;
-
-const LinkHoverStyles = props => `
-background: ${
-  props.isInverse ? magma.colors.foundation02 : magma.colors.neutral06
-};
-color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
-`;
-
 const StyledLink = styled(Link)`
   ${LinkStyles};
-
-  &:hover,
-  &:focus {
+  &:hover {
     ${LinkHoverStyles}
   }
 `;
 
 const StyledExternalLink = styled.a`
   ${LinkStyles};
-
   &:hover,
   &:focus {
     ${LinkHoverStyles}
@@ -101,19 +139,26 @@ const StyledExternalLink = styled.a`
 const StyledLink2 = styled(Link)`
   align-items: center;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
   display: flex;
-  font-size: ${magma.typeScale.size03.fontSize};
+  font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
-  padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
+  padding: 6px 26px;
+  position: relative;
   text-decoration: none;
-
-  &:hover,
-  &:focus {
-    background: ${props =>
-      props.isInverse ? magma.colors.foundation02 : magma.colors.neutral06};
-    color: ${props =>
-      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral};
+  &:hover {
+    ${LinkHoverStyles};
+  }
+  &:active:before,
+  &:focus:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 4px;
+    border-radius: 2px;
+    background: ${magma.colors.primary};
   }
 `;
 
@@ -222,14 +267,7 @@ export const MainNav = ({ ...props }) => {
               >
                 Introduction
               </StyledLink>
-              <StyledLink
-                activeStyle={activeStyle}
-                aria-label="Contribution Guidelines"
-                isInverse={isInverse}
-                to="/contribution-guidelines/"
-              >
-                Contribution Guidelines
-              </StyledLink>
+         
               <StyledExternalLink
                 activeStyle={activeStyle}
                 aria-label="View project on GitHub"
@@ -245,13 +283,15 @@ export const MainNav = ({ ...props }) => {
           <Location>
             {({ location }) => (
               <Accordion accordion={false}>
-                <AccordionItem expanded={location.pathname.includes('design')}>
-                  <AccordionItemTitle>
+                <StyledAccordionItem
+                  expanded={location.pathname.includes('design')}
+                >
+                  <StyledAccordionItemTitle>
                     <Heading2 isInverse={isInverse}>
                       Designing
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
-                  </AccordionItemTitle>
+                  </StyledAccordionItemTitle>
                   <AccordionItemBody>
                     <List>
                       <Heading3 isInverse={isInverse}>Intro</Heading3>
@@ -320,15 +360,17 @@ export const MainNav = ({ ...props }) => {
                       ))}
                     </List>
                   </AccordionItemBody>
-                </AccordionItem>
+                </StyledAccordionItem>
 
-                <AccordionItem expanded={location.pathname.includes('api')}>
-                  <AccordionItemTitle>
+                <StyledAccordionItem
+                  expanded={location.pathname.includes('api')}
+                >
+                  <StyledAccordionItemTitle>
                     <Heading2 isInverse={isInverse}>
                       Developing
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
-                  </AccordionItemTitle>
+                  </StyledAccordionItemTitle>
                   <AccordionItemBody>
                     <Heading3 isInverse={isInverse}>Intro</Heading3>
                     <List>
@@ -353,30 +395,30 @@ export const MainNav = ({ ...props }) => {
                       ))}
                     </List>
                   </AccordionItemBody>
-                </AccordionItem>
+                </StyledAccordionItem>
 
                 <AccordionItem>
                   <AccordionItemTitle>
-                    <Heading2 isInverse={isInverse}>
-                      <StyledLink
-                        activeStyle={activeStyle}
-                        aria-label="Contribution"
-                        isInverse={isInverse}
-                        to="/contribution-guidelines/"
-                      >
-                        Contributing
-                      </StyledLink>
-                    </Heading2>
+                    <StyledLink
+                      activeStyle={activeStyle}
+                      aria-label="Contribution"
+                      isInverse={isInverse}
+                      to="/contribution-guidelines/"
+                    >
+                      <Heading2 isInverse={isInverse}>Contributing</Heading2>
+                    </StyledLink>
                   </AccordionItemTitle>
                 </AccordionItem>
 
-                <AccordionItem expanded={location.pathname.includes('api')}>
-                  <AccordionItemTitle>
+                <StyledAccordionItem
+                  expanded={location.pathname.includes('api')}
+                >
+                  <StyledAccordionItemTitle>
                     <Heading2 isInverse={isInverse}>
                       Components
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
-                  </AccordionItemTitle>
+                  </StyledAccordionItemTitle>
                   <AccordionItemBody>
                     <Heading3 isInverse={isInverse}>API</Heading3>
                     <List>
@@ -401,32 +443,32 @@ export const MainNav = ({ ...props }) => {
                       ))}
                     </List>
                   </AccordionItemBody>
-                </AccordionItem>
+                </StyledAccordionItem>
 
                 <AccordionItem>
                   <AccordionItemTitle>
-                    <Heading2 isInverse={isInverse}>
-                      <StyledLink
-                        activeStyle={activeStyle}
-                        aria-label="Data Visualization"
-                        isInverse={isInverse}
-                        // to=""
-                      >
+                    <StyledLink
+                      activeStyle={activeStyle}
+                      aria-label="Data Visualization"
+                      isInverse={isInverse}
+                      // to=""
+                    >
+                      <Heading2 isInverse={isInverse}>
                         Data Visualization
-                      </StyledLink>
-                    </Heading2>
+                      </Heading2>
+                    </StyledLink>
                   </AccordionItemTitle>
                 </AccordionItem>
 
-                <AccordionItem
+                <StyledAccordionItem
                   expanded={location.pathname.includes('patterns')}
                 >
-                  <AccordionItemTitle>
+                  <StyledAccordionItemTitle>
                     <Heading2 isInverse={isInverse}>
                       Patterns
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
-                  </AccordionItemTitle>
+                  </StyledAccordionItemTitle>
                   <AccordionItemBody>
                     <Heading3 isInverse={isInverse}>Intro</Heading3>
                     <List>
@@ -473,20 +515,18 @@ export const MainNav = ({ ...props }) => {
                       ))}
                     </List>
                   </AccordionItemBody>
-                </AccordionItem>
+                </StyledAccordionItem>
 
                 <AccordionItem>
                   <AccordionItemTitle>
-                    <Heading2 isInverse={isInverse}>
-                      <StyledLink
-                        activeStyle={activeStyle}
-                        aria-label="Tools"
-                        isInverse={isInverse}
-                        to=""
-                      >
-                        Tools
-                      </StyledLink>
-                    </Heading2>
+                    <StyledLink
+                      activeStyle={activeStyle}
+                      aria-label="Tools"
+                      isInverse={isInverse}
+                      to=""
+                    >
+                      <Heading2 isInverse={isInverse}>Tools</Heading2>
+                    </StyledLink>
                   </AccordionItemTitle>
                 </AccordionItem>
               </Accordion>
