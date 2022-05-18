@@ -3,6 +3,7 @@ import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { ProgressBar } from '.';
 import { render } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 describe('ProgressBar', () => {
   it('should find element by testId', () => {
@@ -23,7 +24,7 @@ describe('ProgressBar', () => {
 
     expect(container.firstChild.firstChild).toHaveStyleRule(
       'background',
-      'rgba(0,0,0,0.25)'
+      transparentize(0.75, magma.colors.neutral900)
     );
   });
 
@@ -53,24 +54,6 @@ describe('ProgressBar', () => {
     );
   });
 
-  it('should render the progress bar component with pop color', () => {
-    const { container } = render(<ProgressBar percentage={50} color="pop" />);
-
-    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
-      'background',
-      magma.colors.pop
-    );
-  });
-
-  it('should render the progress bar component with pop02 color', () => {
-    const { container } = render(<ProgressBar percentage={50} color="pop02" />);
-
-    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
-      'background',
-      magma.colors.pop02
-    );
-  });
-
   it('should render the progress bar component with success color', () => {
     const { container } = render(
       <ProgressBar percentage={50} color="success" />
@@ -89,7 +72,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.dangerInverse
+      magma.colors.danger200
     );
   });
 
@@ -100,7 +83,7 @@ describe('ProgressBar', () => {
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
-      magma.colors.successInverse
+      magma.colors.success200
     );
   });
 

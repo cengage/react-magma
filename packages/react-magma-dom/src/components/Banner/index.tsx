@@ -85,7 +85,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   width: auto;
 
   &&:focus:not(:disabled) {
-    outline: 2px dotted
+    outline: 2px solid
       ${({ alertVariant, theme }) =>
         alertVariant === 'warning'
           ? theme.colors.neutral
@@ -132,8 +132,6 @@ function renderIcon(variant = 'info', theme: any) {
 
 function getButtonColor(variant: AlertVariant) {
   switch (variant) {
-    case 'success':
-      return ButtonColor.success;
     case 'warning':
       return ButtonColor.secondary;
     case 'danger':

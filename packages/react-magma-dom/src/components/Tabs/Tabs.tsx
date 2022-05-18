@@ -115,11 +115,7 @@ export const StyledContainer = styled('div', {
   theme: ThemeInterface;
 }>`
   background-color: ${props =>
-    props.backgroundColor
-      ? props.backgroundColor
-      : props.isInverse
-      ? props.theme.colors.foundation
-      : 'transparent'};
+    props.backgroundColor ? props.backgroundColor : 'transparent'};
   background: backgroundColor;
   display: flex;
   height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};

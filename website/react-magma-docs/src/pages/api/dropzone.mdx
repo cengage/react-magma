@@ -5,11 +5,13 @@ props:
   - DropzoneProps
 ---
 
-<DocsHeading type="api">Dropzone</DocsHeading>
+<DocsHeading to="/design/dropzone/" type="api">
+  Dropzone
+</DocsHeading>
 
 Upload files
 
-### Basic Usage
+## Basic Usage
 
 ```typescript
 import React from 'react';
@@ -29,7 +31,7 @@ export function Example() {
 }
 ```
 
-### No Dragging
+## No Dragging
 
 ```typescript
 import React from 'react';
@@ -47,7 +49,7 @@ export function Example() {
 }
 ```
 
-### Inverse
+## Inverse
 
 ```typescript
 import React from 'react';
@@ -73,7 +75,7 @@ export function Example() {
 }
 ```
 
-### Handle File Processing
+## Handle File Processing
 
 The File Uploader uses `onSendFile` to process each file.
 Each instance of `onSendFile` will be passed a `file` prop and `onProgress`, `onSuccess` and `onError` callbacks.
@@ -139,19 +141,19 @@ export function Example() {
 }
 ```
 
-### Deleting Files
+## Deleting Files
 
 The File Uploader has two methods for undoing adding a file. `onRemoveFile` will run before the file is processed with `onSendFile` and the cross icon is clicked.
 Since the files have been processed and require more cleanup `onDeleteFile` is ran after the file is processed and the trashcan icon is clicked.
 
-### Processing Examples
+## Processing Examples
 
 Here are some examples of the dropzone. Omitted from the following is uploading the file to some service.
 It's conceivable that a file is uploaded to something like s3 and then the loacation to the file is submitted with the form.
 
 Since the dropzone uses the [FileReader API](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) the possibilities of what can be done with a file are endless.
 
-#### Image File Example
+### Image File Example
 
 ```typescript
 import React from 'react';
@@ -192,7 +194,7 @@ export function Example() {
 }
 ```
 
-#### Text File Example
+### Text File Example
 
 ```typescript
 import React from 'react';
@@ -233,7 +235,7 @@ export function Example() {
 }
 ```
 
-#### CSV Example
+### CSV Example
 
 ```typescript
 import React from 'react';

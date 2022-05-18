@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
-import { ExpandMoreIcon, LaunchIcon } from 'react-magma-icons';
+import { ExpandMoreIcon } from 'react-magma-icons';
 import { SubMenu2 } from './SubMenu';
 import {
   Accordion,
@@ -111,7 +111,7 @@ const Heading3 = styled.h3`
 
 const List = styled.ul`
   list-style-type: none;
-  margin: 0;
+  margin: 0 0 ${magma.spaceScale.spacing03} 0;
   padding: 0;
 `;
 
