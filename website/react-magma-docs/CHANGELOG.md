@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.23
+
+### Major Changes
+
+- 50d3b20ee: homepage: updating home page with new design and rebrand colors
+
 ## 3.0.0-next.22
 
 ### Major Changes
