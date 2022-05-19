@@ -13,18 +13,14 @@ const IndexPage = () => (
           styles={css`
             @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
             .content {
-              background: ${theme.colors.primary700};
-              color: ${theme.colors.neutral100};
+              background: ${theme.colors.neutral100};
+              color: ${theme.colors.neutral700};
               padding: 0;
               overflow: hidden;
             }
             .content-article {
               && {
-                background: linear-gradient(
-                  to bottom,
-                  ${theme.colors.primary700} 0%,
-                  ${theme.colors.tertiary} 100%
-                );
+                background: ${theme.colors.neutral08};
                 margin: 0;
                 max-width: none;
                 padding: 0;

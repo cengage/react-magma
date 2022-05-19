@@ -4,11 +4,10 @@ import { Logo } from '../Logo';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import { magma, useMediaQuery, AppBarPosition, Spacer } from 'react-magma-dom';
-import { GithubIcon } from 'react-magma-icons';
 
 const LogoLink = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral100};
+  color: ${magma.colors.neutral700};
   display: inline-flex;
   font-size: ${magma.typeScale.size05.fontSize};
   font-weight: 600;
@@ -22,7 +21,7 @@ const LogoLink = styled(Link)`
   &:hover,
   &:focus,
   &:active {
-    color: ${magma.colors.neutral100};
+    color: ${magma.colors.primary};
   }
 
   &:focus {
@@ -46,8 +45,8 @@ export const Masthead = props => {
   return (
     <Header
       breakpoint={magma.breakpoints.medium}
-      isCompact={isSmallerScreen}
-      isInverse
+      isCompact={true}
+      isInverse={false}
       logo={HeaderLogo}
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
