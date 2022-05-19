@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.17
+
+### Major Changes
+
+- ce9088243: bug(select): Fix hover styles in Select component to not have focus border.
+
 ## 3.0.0-next.16
 
 ### Major Changes

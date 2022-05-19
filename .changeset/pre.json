@@ -29,6 +29,7 @@
     "rebrand-expressive-docs",
     "rebrand-expressive",
     "rebrand-focus",
+    "rebrand-homepage",
     "rebrand-inputs",
     "rebrand-modal",
     "rebrand-processBar",
@@ -38,6 +39,7 @@
     "rebrand-toggle",
     "rebrand-tooltips",
     "rebrand-type",
+    "select-hover-bug",
     "silent-kangaroos-watch",
     "thick-humans-give",
     "wise-lions-hammer"
