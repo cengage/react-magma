@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { Logo, SmallLogo } from '../Logo';
+import { ButtonVariant, IconButton } from 'react-magma-dom';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import { magma, AppBarPosition } from 'react-magma-dom';
@@ -85,7 +86,7 @@ const HeaderLogo = (
       {/* <Tag color={TagColor.primary} size={TagSize.small}>v3.0.0</Tag> */}
     </LogoLink>
     <RepoLink to="https://github.com/cengage/react-magma">
-      <GithubIcon color={magma.colors.neutral} />
+      <IconButton icon={<GithubIcon />} variant={ButtonVariant.link} />
     </RepoLink>
   </HeaderWrap>
 );
