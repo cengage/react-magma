@@ -115,8 +115,12 @@ const DatePickerContainer = styled.div`
   position: relative;
 `;
 
-const DatePickerCalendar = styled.div<{ opened: boolean }>`
-  border: 1px solid ${props => props.theme.colors.neutral300};
+const DatePickerCalendar = styled.div<{ opened: boolean; isInverse?: boolean }>`
+  border: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral300};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
   display: ${props => (props.opened ? 'block' : 'none')};
@@ -402,6 +406,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           maxDate,
           minDate,
           helperInformationShown,
+          isInverse,
           buildCalendarMonth,
           showHelperInformation,
           hideHelperInformation,
@@ -442,12 +447,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             <DatePickerCalendar
               data-testid="calendarContainer"
               opened={calendarOpened}
+              isInverse={isInverse}
               theme={theme}
             >
               <CalendarMonth
                 focusOnOpen={
                   calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
                 }
+                isInverse={isInverse}
                 handleCloseButtonClick={handleCloseButtonClick}
                 calendarOpened={calendarOpened}
                 setDateFocused={setDateFocused}

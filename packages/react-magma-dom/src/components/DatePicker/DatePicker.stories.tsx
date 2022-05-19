@@ -8,9 +8,15 @@ export default {
 };
 
 export const Default = () => {
-  return <DatePicker labelText="Date" />;
+  return <DatePicker labelText="Date" minDate={Date.now()} />;
 };
 
 export const Inverse = () => {
-  return <Card isInverse><DatePicker labelText="Date" isInverse /></Card>;
+  return (
+    <Card isInverse>
+      <br />
+      <DatePicker labelText="Date" isInverse minDate={Date.now()} />
+      <br />
+    </Card>
+  );
 };

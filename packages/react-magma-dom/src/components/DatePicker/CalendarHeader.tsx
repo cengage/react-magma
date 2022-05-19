@@ -14,6 +14,7 @@ import { I18nContext } from '../../i18n';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;
+  isInverse?: boolean;
 }
 
 const CalendarHeaderContainer = styled.div`
@@ -31,9 +32,12 @@ const CalendarIconButton = styled.div<{ next?: boolean }>`
   order: ${props => (props.next ? 2 : 0)};
 `;
 
-const CalendarHeaderText = styled.div`
+const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
   caption-side: initial;
-  color: ${props => props.theme.colors.neutral};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   order: 1;
@@ -72,7 +76,12 @@ export const CalendarHeader = React.forwardRef<
 
   return (
     <CalendarHeaderContainer theme={theme}>
-      <CalendarHeaderText tabIndex={-1} theme={theme} ref={ref}>
+      <CalendarHeaderText
+        tabIndex={-1}
+        theme={theme}
+        ref={ref}
+        isInverse={props.isInverse}
+      >
         <Announce>{capitalizeCurrentMonth}</Announce>
       </CalendarHeaderText>
       <CalendarIconButton>

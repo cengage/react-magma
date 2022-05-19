@@ -9,8 +9,10 @@ import { TypographyVisualStyle } from '../Typography';
 
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useIsInverse } from '../../inverse';
 
 interface HelperInformationProps {
+  isInverse?: boolean;
   isOpen?: boolean;
   onClose?: (event?: React.SyntheticEvent) => void;
 }
@@ -42,8 +44,13 @@ const Item = styled.li`
   }
 `;
 
-const KeyboardShortcutButtonWrapper = styled.span`
-  background: rgb(242, 242, 242);
+const KeyboardShortcutButtonWrapper = styled.span<{
+  isInverse?: boolean;
+}>`
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary400
+      : props.theme.colors.neutral200};
   font-family: monospace;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
@@ -56,7 +63,6 @@ const KeyboardShortcutButtonWrapper = styled.span`
 
 const StyledPopup = styled.div`
   position: relative;
-  background: white;
 `;
 
 const StyledNavContainer = styled.div`
@@ -67,7 +73,6 @@ const StyledNavContainer = styled.div`
 const StyledContent = styled.div`
   z-index: 9999;
   position: relative;
-  background: white;
   h2 {
     margin: 10px 0 12px 0;
   }
@@ -79,11 +84,14 @@ export const HelperInformation: React.FunctionComponent<
   const i18n = React.useContext(I18nContext);
   const theme = React.useContext(ThemeContext);
 
+  const isInverse = useIsInverse(props.isInverse);
+
   return (
     <StyledPopup>
       <StyledNavContainer>
         <IconButton
           icon={<ArrowBackIcon />}
+          isInverse={isInverse}
           size={ButtonSize.small}
           style={{ top: '4px', left: '-12px' }}
           variant={ButtonVariant.link}
@@ -95,6 +103,7 @@ export const HelperInformation: React.FunctionComponent<
           aria-label={i18n.datePicker.calendarCloseAriaLabel}
           color={ButtonColor.secondary}
           icon={<CloseIcon />}
+          isInverse={isInverse}
           size={ButtonSize.medium}
           style={{ left: '16px' }}
           type={ButtonType.button}
@@ -103,13 +112,18 @@ export const HelperInformation: React.FunctionComponent<
         />
       </StyledNavContainer>
       <StyledContent>
-        <Heading level={2} visualStyle={TypographyVisualStyle.headingXSmall}>
+        <Heading
+          level={2}
+          visualStyle={TypographyVisualStyle.headingXSmall}
+          isInverse={isInverse}
+        >
           {i18n.datePicker.helpModal.header}
         </Heading>
         <List id="DayPickerKeyboardShortcuts_description">
           <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
               aria-label={i18n.datePicker.helpModal.enter.ariaLabel}
+              isInverse={isInverse}
               role="img"
               theme={theme}
             >
@@ -124,6 +138,7 @@ export const HelperInformation: React.FunctionComponent<
               aria-label={
                 i18n.datePicker.helpModal.rightAndLeftArrowKeys.ariaLabel
               }
+              isInverse={isInverse}
             >
               ←/→
             </KeyboardShortcutButtonWrapper>
@@ -138,6 +153,7 @@ export const HelperInformation: React.FunctionComponent<
               aria-label={
                 i18n.datePicker.helpModal.upAndDownArrowKeys.ariaLabel
               }
+              isInverse={isInverse}
             >
               ↑/↓
             </KeyboardShortcutButtonWrapper>
@@ -152,6 +168,7 @@ export const HelperInformation: React.FunctionComponent<
               aria-label={
                 i18n.datePicker.helpModal.pageUpAndPageDownKeys.ariaLabel
               }
+              isInverse={isInverse}
             >
               {i18n.datePicker.helpModal.pageUpAndPageDownKeys.displayValue}
             </KeyboardShortcutButtonWrapper>
@@ -164,6 +181,7 @@ export const HelperInformation: React.FunctionComponent<
               role="img"
               theme={theme}
               aria-label={i18n.datePicker.helpModal.homeAndEndKeys.ariaLabel}
+              isInverse={isInverse}
             >
               {i18n.datePicker.helpModal.homeAndEndKeys.displayValue}
             </KeyboardShortcutButtonWrapper>
@@ -174,6 +192,7 @@ export const HelperInformation: React.FunctionComponent<
               role="img"
               theme={theme}
               aria-label={i18n.datePicker.helpModal.escape.ariaLabel}
+              isInverse={isInverse}
             >
               {i18n.datePicker.helpModal.escape.displayValue}
             </KeyboardShortcutButtonWrapper>
@@ -184,6 +203,7 @@ export const HelperInformation: React.FunctionComponent<
               role="img"
               theme={theme}
               aria-label={i18n.datePicker.helpModal.questionMark.ariaLabel}
+              isInverse={isInverse}
             >
               ?
             </KeyboardShortcutButtonWrapper>
