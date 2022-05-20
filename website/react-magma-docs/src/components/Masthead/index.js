@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { Logo, SmallLogo } from '../Logo';
-import { ButtonVariant, IconButton } from 'react-magma-dom';
+import { magma, AppBarPosition, ButtonVariant, IconButton } from 'react-magma-dom';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, AppBarPosition } from 'react-magma-dom';
 import { GithubIcon } from 'react-magma-icons';
 
 const LogoLink = styled(Link)`
