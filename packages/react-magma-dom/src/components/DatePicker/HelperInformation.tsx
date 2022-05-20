@@ -70,9 +70,16 @@ const StyledNavContainer = styled.div`
   justify-content: space-between;
   padding: 2px;
 `;
-const StyledContent = styled.div`
+const StyledContent = styled.div<{
+  isInverse?: boolean;
+}>`
   z-index: 9999;
   position: relative;
+  color: ${props =>
+    props.isInverse
+      ? props?.theme?.colors?.neutral100
+      : props?.theme?.colors?.neutral700};
+
   h2 {
     margin: 10px 0 12px 0;
   }
@@ -111,7 +118,7 @@ export const HelperInformation: React.FunctionComponent<
           variant={ButtonVariant.link}
         />
       </StyledNavContainer>
-      <StyledContent>
+      <StyledContent isInverse={isInverse}>
         <Heading
           level={2}
           visualStyle={TypographyVisualStyle.headingXSmall}
