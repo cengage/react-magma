@@ -21,14 +21,14 @@ interface CalendarMonthProps {
 }
 
 const CalendarContainer = styled.div`
-  background: ${props => props.theme.colors.neutral08};
+  background: ${props => props.theme.colors.neutral100};
   padding: 0 ${props => props.theme.spaceScale.spacing05}
     ${props => props.theme.spaceScale.spacing03};
   overflow: visible;
 `;
 
 const MonthContainer = styled.div`
-  background: ${props => props.theme.colors.neutral08};
+  background: ${props => props.theme.colors.neutral100};
   text-align: center;
   user-select: none;
   vertical-align: top;

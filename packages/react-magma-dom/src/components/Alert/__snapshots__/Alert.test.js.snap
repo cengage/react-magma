@@ -20,9 +20,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   align-items: center;
   background: none;
   border: 0;
-  border-color: #FFFFFF;
   border-radius: 100%;
-  color: #CDDEFF;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -76,23 +75,24 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
-  padding: 0 12px;
+  margin: 0 -1px 0 0;
+  padding: 0 8px;
   width: auto;
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #A6DEFF;
+  outline: 2px solid #0074B7;
   outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: rgba(0,0,0,0.3);
-  color: #CDDEFF;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #FFFFFF;
+  background: #3942B0;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -111,8 +111,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):active {
-  background: rgba(0,0,0,0.5);
-  color: #CDDEFF;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -131,20 +131,21 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
 }
 
-.emotion-2.emotion-2:focus:not(:disabled) {
+.emotion-2:not(:disabled):hover {
+  background: none;
+  color: inherit;
+}
+
+.emotion-2:focus:not(:disabled) {
+  background: none;
+  color: inherit;
   outline: 2px solid #0074B7;
   outline-offset: 0 !important;
 }
 
-.emotion-2:hover:not(:disabled):before,
-.emotion-2:focus:not(:disabled):before {
-  background: #0074B7;
-  opacity: 0.15;
-}
-
-.emotion-2:hover:after,
-.emotion-2:focus:after {
-  display: none;
+.emotion-2:not(:disabled):active {
+  background: none;
+  color: inherit;
 }
 
 .emotion-0 {
@@ -166,9 +167,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   align-items: center;
   background: none;
   border: 0;
-  border-color: #FFFFFF;
   border-radius: 100%;
-  color: #CDDEFF;
+  color: #3942B0;
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -222,23 +222,24 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   border-radius: 0 8px 8px 0;
   color: inherit;
   height: auto;
-  padding: 0 12px;
+  margin: 0 -1px 0 0;
+  padding: 0 8px;
   width: auto;
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #A6DEFF;
+  outline: 2px solid #0074B7;
   outline-offset: 2px;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: rgba(0,0,0,0.3);
-  color: #CDDEFF;
+  background: #ebecf7;
+  color: #2d3489;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #FFFFFF;
+  background: #3942B0;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -257,8 +258,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):active {
-  background: rgba(0,0,0,0.5);
-  color: #CDDEFF;
+  background: #c3c6e7;
+  color: #202563;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -277,20 +278,21 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   flex-shrink: 0;
 }
 
-.emotion-2.emotion-2:focus:not(:disabled) {
+.emotion-2:not(:disabled):hover {
+  background: none;
+  color: inherit;
+}
+
+.emotion-2:focus:not(:disabled) {
+  background: none;
+  color: inherit;
   outline: 2px solid #0074B7;
   outline-offset: 0 !important;
 }
 
-.emotion-2:hover:not(:disabled):before,
-.emotion-2:focus:not(:disabled):before {
-  background: #0074B7;
-  opacity: 0.15;
-}
-
-.emotion-2:hover:after,
-.emotion-2:focus:after {
-  display: none;
+.emotion-2:not(:disabled):active {
+  background: none;
+  color: inherit;
 }
 
 <button
@@ -369,10 +371,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -391,7 +389,11 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -408,20 +410,20 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
 .emotion-2 {
-  background-color: #D32821;
+  background: #FCEBEA;
+  border: 1px solid #D32821;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #D32821;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 .emotion-3 {
@@ -468,10 +470,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -490,7 +488,11 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -507,20 +509,20 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
 .emotion-2 {
-  background-color: #D32821;
+  background: #FCEBEA;
+  border: 1px solid #D32821;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #D32821;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 <div>
@@ -604,20 +606,16 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-2 {
-  background-color: #707070;
+  background: #E8F5FC;
+  border: 1px solid #0074B7;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #0074B7;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 .emotion-0 {
@@ -638,7 +636,11 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -655,7 +657,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
@@ -703,20 +705,16 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-2 {
-  background-color: #707070;
+  background: #E8F5FC;
+  border: 1px solid #0074B7;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #0074B7;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 .emotion-0 {
@@ -737,7 +735,11 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -754,7 +756,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
@@ -839,10 +841,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -861,7 +859,11 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -878,20 +880,20 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
 .emotion-2 {
-  background-color: #FFC72C;
+  background: #FCEEE5;
+  border: 1px solid #AD5115;
   border-radius: 8px;
-  color: #707070;
+  color: #AD5115;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 .emotion-3 {
@@ -938,10 +940,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -960,7 +958,11 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -977,20 +979,20 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
 .emotion-2 {
-  background-color: #FFC72C;
+  background: #FCEEE5;
+  border: 1px solid #AD5115;
   border-radius: 8px;
-  color: #707070;
+  color: #AD5115;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 <div>
@@ -1074,20 +1076,16 @@ exports[`Alert should render an alert with default variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-2 {
-  background-color: #707070;
+  background: #E8F5FC;
+  border: 1px solid #0074B7;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #0074B7;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 .emotion-0 {
@@ -1108,7 +1106,11 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -1125,7 +1127,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
@@ -1173,20 +1175,16 @@ exports[`Alert should render an alert with default variant 1`] = `
   text-decoration: underline;
 }
 
-.emotion-3 a:focus {
-  outline: 2px solid #A6DEFF;
-}
-
 .emotion-2 {
-  background-color: #707070;
+  background: #E8F5FC;
+  border: 1px solid #0074B7;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #0074B7;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   position: relative;
-  padding-right: 12px;
 }
 
 .emotion-0 {
@@ -1207,7 +1205,11 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-0 {
-    display: none;
+    padding: 0 8px;
+  }
+
+  .emotion-0 svg {
+    width: 20px;
   }
 }
 
@@ -1224,7 +1226,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 @media (max-width:600px) {
   .emotion-1 {
-    padding-left: 12px;
+    padding-left: 0;
   }
 }
 
