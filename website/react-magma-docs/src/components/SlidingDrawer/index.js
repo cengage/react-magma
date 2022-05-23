@@ -106,7 +106,7 @@ export class SlidingDrawer extends React.Component {
         animation: none;
         background: ${magma.colors.neutral200};
         /* padding-top: 20px; */
-        top: 88px;
+        top: 56px;
         transform: translateX(0);
       }
     `;

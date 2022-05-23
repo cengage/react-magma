@@ -37,7 +37,7 @@ const StyledAccordionItem = styled(AccordionItem)`
     animation: fadein 0.35s ease-in;
     display: block;
     &[aria-hidden='false'] {
-      box-shadow: inset 0 -1px 0 0 ${magma.colors.neutral06};
+      box-shadow: inset 0 -1px 0 0 ${magma.colors.neutral300};
       padding-bottom: 10px;
     }
   }
@@ -124,14 +124,6 @@ const ListItem = styled.li`
 const StyledLink = styled(Link)`
   ${LinkStyles};
   &:hover {
-    ${LinkHoverStyles}
-  }
-`;
-
-const StyledExternalLink = styled.a`
-  ${LinkStyles};
-  &:hover,
-  &:focus {
     ${LinkHoverStyles}
   }
 `;
