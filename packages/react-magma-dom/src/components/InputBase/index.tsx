@@ -137,12 +137,16 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
 
   ${props.hasError &&
   css`
-    border-color: ${props.theme.colors.danger};
+    border-color: ${props.isInverse
+      ? props.theme.colors.danger200
+      : props.theme.colors.danger};
   `}
 
   ${props.disabled &&
   css`
-    border-color: ${props.isInverse ? transparentize(0.85, props.theme.colors.neutral100) : props.theme.colors.neutral300};
+    border-color: ${props.isInverse
+      ? transparentize(0.85, props.theme.colors.neutral100)
+      : props.theme.colors.neutral300};
     background-color: ${props.isInverse
       ? transparentize(0.9, props.theme.colors.neutral900)
       : props.theme.colors.neutral200};
@@ -169,7 +173,9 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
   border-radius: ${props.theme.borderRadius};
   background: transparent;
-  color: ${props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  color: ${props.isInverse
+    ? props.theme.colors.neutral100
+    : props.theme.colors.neutral700};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
@@ -210,7 +216,9 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   `}
 
   &::placeholder {
-    color: ${props.isInverse ? transparentize(0.3, props.theme.colors.neutral100) : props.theme.colors.neutral500};
+    color: ${props.isInverse
+      ? transparentize(0.3, props.theme.colors.neutral100)
+      : props.theme.colors.neutral500};
   }
 
   &:focus {
@@ -226,13 +234,17 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
     }
   }
 
-  ${props.disabled && 
+  ${props.disabled &&
   css`
-    color: ${props.isInverse ? transparentize(0.6, props.theme.colors.neutral100) : props.theme.colors.neutral500};
+    color: ${props.isInverse
+      ? transparentize(0.6, props.theme.colors.neutral100)
+      : transparentize(0.4, props.theme.colors.neutral500)};
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${props.isInverse ? transparentize(0.8, props.theme.colors.neutral100) : props.theme.colors.neutral500};
+      color: ${props.isInverse
+        ? transparentize(0.8, props.theme.colors.neutral100)
+        : props.theme.colors.neutral500};
       opacity: ${props.isInverse ? 0.4 : 0.6};
     }
   `}
@@ -255,7 +267,10 @@ const IconWrapper = styled.span<{
   isInverse?: boolean;
 }>`
   bottom: ${props => (props.iconPosition === 'top' ? '45px' : 'inherit')};
-  color: ${props => props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   left: ${props =>
     props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>

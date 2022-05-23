@@ -55,7 +55,7 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   padding: 8px 16px;
   &:hover {
     background: ${props =>
-      props.isFocused ? props.theme.colors.neutral200 : 'transparent'};
+      props?.isFocused ? props?.theme?.colors?.neutral200 : 'transparent'};
     border-color: transparent;
   }
 `;
