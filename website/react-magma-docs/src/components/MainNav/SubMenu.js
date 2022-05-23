@@ -69,7 +69,7 @@ const SubMenuLink2 = styled.a`
   letter-spacing: ${magma.typeScale.size02.letterSpacing};
   line-height: ${magma.typeScale.size02.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
-    ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing08};
+    ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
   text-decoration: none;
 
   &:hover,

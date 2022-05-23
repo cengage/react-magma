@@ -15,7 +15,7 @@ import { magma, useIsInverse } from 'react-magma-dom';
 
 const LinkStyles = props => `
   align-items: center;
-  color: ${props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+  color: ${props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700};
   display: flex;
   font-size: ${magma.typeScale.size03.fontSize};
   justify-content: space-between;
@@ -26,7 +26,7 @@ const LinkStyles = props => `
 
 const LinkHoverStyles = props => `
     color: ${
-      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700
+      props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700
     };
   background: ${magma.colors.neutral300};
 `;
@@ -73,7 +73,7 @@ const StyledAccordionItemTitle = styled(AccordionItemTitle)`
     transition: transform 0.35s;
   }
   &[aria-expanded='true'] {
-    box-shadow: inset 0 1px 0 0 ${magma.colors.neutral06};
+    box-shadow: inset 0 1px 0 0 ${magma.colors.neutral300};
   }
   &[aria-expanded='true'] svg {
     transform: rotate(-180deg);
@@ -85,8 +85,8 @@ const activeStyleDefault = {
 };
 
 const activeStyleInverse = {
-  color: magma.colors.neutral07,
-  background: magma.colors.foundation02,
+  color: magma.colors.neutral200,
+  background: magma.colors.tertiary700,
 };
 
 const Heading2 = styled.h2`
@@ -143,7 +143,7 @@ const StyledActiveLink2 = {
 const StyledLink2 = styled(Link)`
   align-items: center;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+    props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700};
   display: flex;
   font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
@@ -155,7 +155,7 @@ const StyledLink2 = styled(Link)`
   }
   &:focus {
     color: ${props =>
-      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+      props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700};
   }
   &:focus:before {
     ${StyledActiveLink2};
@@ -259,30 +259,6 @@ export const MainNav = ({ ...props }) => {
       `}
       render={data => (
         <>
-          {/* <List>
-            <ListItem>
-              <StyledLink
-                activeStyle={activeStyle}
-                aria-label="Introduction to the Magma System"
-                isInverse={isInverse}
-                onClick={props.handleClick}
-                to="/"
-              >
-                Introduction
-              </StyledLink>
-         
-              <StyledExternalLink
-                activeStyle={activeStyle}
-                aria-label="View project on GitHub"
-                isInverse={isInverse}
-                href="https://github.com/cengage/react-magma"
-              >
-                GitHub
-                <LaunchIcon size={magma.iconSizes.small} />
-              </StyledExternalLink>
-            </ListItem>
-          </List> */}
-
           <Location>
             {({ location }) => (
               <Accordion accordion={false}>

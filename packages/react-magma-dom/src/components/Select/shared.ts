@@ -45,7 +45,7 @@ export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
 export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   align-self: center;
   background: ${props =>
-    props.isFocused ? props.theme.colors.neutral300 : 'transparent'};
+    props.isFocused ? props.theme.colors.neutral200 : 'transparent'};
   border: 2px solid;
   border-color: ${props =>
     props.isFocused ? props.theme.colors.focus : 'transparent'};
@@ -53,6 +53,11 @@ export const StyledItem = styled('li')<{ isFocused?: boolean }>`
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
+  &:hover {
+    background: ${props =>
+      props.isFocused ? props.theme.colors.neutral200 : 'transparent'};
+    border-color: transparent;
+  }
 `;
 
 export const SelectedItemsWrapper = styled.span`
