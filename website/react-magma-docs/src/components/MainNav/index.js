@@ -136,6 +136,18 @@ const StyledExternalLink = styled.a`
   }
 `;
 
+const StyledActiveLink2 = {
+  content: `''`,
+  position: ` absolute`,
+  zIndex: ` 1`,
+  top: ` 0`,
+  left: ` 0`,
+  height: ` 100%`,
+  width: ` 4px`,
+  borderRadius: ` 2px`,
+  background: ` ${magma.colors.primary}`,
+};
+
 const StyledLink2 = styled(Link)`
   align-items: center;
   color: ${props =>
@@ -149,16 +161,15 @@ const StyledLink2 = styled(Link)`
   &:hover {
     ${LinkHoverStyles};
   }
-  &:active:before,
+  &:focus {
+    color: ${props =>
+      props.isInverse ? magma.colors.neutral07 : magma.colors.neutral700};
+  }
   &:focus:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 4px;
-    border-radius: 2px;
-    background: ${magma.colors.primary};
+    ${StyledActiveLink2};
+  }
+  &[aria-current='page']:before {
+    ${StyledActiveLink2};
   }
 `;
 
