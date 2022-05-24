@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.25
+
+### Major Changes
+
+- 41c9d8b17: docs: update react magma logo
+
 ## 3.0.0-next.24
 
 ### Patch Changes
