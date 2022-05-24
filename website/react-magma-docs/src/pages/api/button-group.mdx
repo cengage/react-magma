@@ -1,0 +1,33 @@
+---
+pageTitle: ButtonGroup API
+title: ButtonGroup
+props:
+  - ButtongroupProps
+---
+
+<DocsHeading type="api">ButtonGroup</DocsHeading>
+
+Layout component for Buttons
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonColor } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button color={ButtonColor.secondary}>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+# ButtonGroup Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<ButtongroupProps />
