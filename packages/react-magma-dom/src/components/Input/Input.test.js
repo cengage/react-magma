@@ -131,7 +131,7 @@ describe('Input', () => {
     const input = getByLabelText(labelText).parentElement;
     const errorMessage = getByTestId('inputMessage');
 
-    expect(input).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(input).toHaveStyleRule('border-color', magma.colors.danger200);
 
     expect(errorMessage).toHaveStyleRule('color', magma.colors.danger200);
   });
