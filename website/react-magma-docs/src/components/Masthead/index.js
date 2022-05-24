@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import { Logo, SmallLogo } from '../Logo';
-import { magma, AppBarPosition, ButtonVariant, IconButton } from 'react-magma-dom';
+import {
+  magma,
+  AppBarPosition,
+  ButtonVariant,
+  IconButton,
+} from 'react-magma-dom';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import { GithubIcon } from 'react-magma-icons';
@@ -10,9 +15,10 @@ const LogoLink = styled(Link)`
   align-items: center;
   color: ${magma.colors.neutral};
   display: inline-flex;
-  font-size: ${magma.typeScale.size04.fontSize};
-  font-weight: 600;
+  font-size: ${magma.typeScale.size05.fontSize};
+  font-weight: 500;
   text-decoration: none;
+  text-transform: uppercase;
 
   @media (max-width: 1024px) {
     margin-left: 40px;
@@ -25,13 +31,13 @@ const LogoLink = styled(Link)`
   }
 
   &:focus {
-    outline: 2px solid ${magma.colors.focusInverse};
+    outline: 2px solid ${magma.colors.focus};
   }
 `;
 
 const StyledHeader = styled(Header)`
   box-shadow: none;
-  padding: 16px;
+  padding: 24px;
 `;
 
 const HeaderWrap = styled.div`
@@ -42,7 +48,7 @@ const HeaderWrap = styled.div`
 
 const SmallLogoWrap = styled.span`
   display: none;
-  margin-right: 24px;
+  margin-right: 12px;
   position: relative;
   top: 2px;
   svg {
@@ -55,7 +61,7 @@ const SmallLogoWrap = styled.span`
 
 const LogoWrap = styled.span`
   display: block;
-  margin-right: 24px;
+  margin-right: 12px;
   position: relative;
   top: 2px;
   svg {
@@ -82,6 +88,7 @@ const HeaderLogo = (
       <LogoWrap>
         <Logo />
       </LogoWrap>
+      React Magma
       {/* <Tag color={TagColor.primary} size={TagSize.small}>v3.0.0</Tag> */}
     </LogoLink>
     <RepoLink to="https://github.com/cengage/react-magma">
