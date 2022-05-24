@@ -20,6 +20,7 @@ import {
 import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
+import { transparentize } from 'polished';
 
 export interface DatePickerProps
   extends Omit<
@@ -119,7 +120,7 @@ const DatePickerCalendar = styled.div<{ opened: boolean; isInverse?: boolean }>`
   border: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
+        ? transparentize(0.5, props.theme.colors.neutral100)
         : props.theme.colors.neutral300};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);

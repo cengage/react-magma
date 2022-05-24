@@ -45,6 +45,12 @@ const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
   flex-grow: 0;
   flex-width: 90%;
   flex-basis: 90%;
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
 `;
 
 export const CalendarHeader = React.forwardRef<
