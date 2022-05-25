@@ -67,12 +67,13 @@ export const SelectedItemsWrapper = styled.span`
   padding: 0 0 0 4px;
 `;
 
-export const SelectedItemButton = styled.button`
+export const SelectedItemButton = styled.button<{ isInverse?: boolean }>`
   align-self: center;
-  background: ${props => props.theme.colors.neutral300};
+  background: ${props => props.isInverse ? props.theme.colors.tertiary : props.theme.colors.primary};
   border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;
+  color: ${props => props.isInverse ? props.theme.colors.primary600 : props.theme.colors.neutral100};
   display: flex;
   font-size: 12px;
   line-height: 16px;

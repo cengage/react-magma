@@ -197,6 +197,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                   }
                   onFocus={() => setActiveIndex(index)}
                   theme={theme}
+                  isInverse={isInverse}
                 >
                   {multiSelectedItemString}
                   <IconWrapper>
