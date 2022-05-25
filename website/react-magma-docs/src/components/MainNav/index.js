@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
-import { ExpandMoreIcon } from 'react-magma-icons';
+import { ExpandMoreIcon, LaunchIcon } from 'react-magma-icons';
 import { SubMenu2 } from './SubMenu';
 import {
   Accordion,
@@ -11,23 +11,19 @@ import {
   AccordionItemBody,
 } from 'react-accessible-accordion';
 import styled from '@emotion/styled';
-import { magma, useIsInverse } from 'react-magma-dom';
+import { magma } from 'react-magma-dom';
 
-const LinkStyles = props => `
+const LinkStyles = () => `
   align-items: center;
-  color: ${props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700};
-  display: flex;
+  color: ${magma.colors.neutral700};
   font-size: ${magma.typeScale.size03.fontSize};
-  justify-content: space-between;
   line-height: ${magma.typeScale.size03.lineHeight};
   padding: 0;
   text-decoration: none;
 `;
 
-const LinkHoverStyles = props => `
-    color: ${
-      props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700
-    };
+const LinkHoverStyles = () => `
+  color: ${magma.colors.neutral700};
   background: ${magma.colors.neutral300};
 `;
 
@@ -63,6 +59,10 @@ const StyledAccordionItem = styled(AccordionItem)`
   }
 `;
 
+const StyledAccordion = styled(Accordion)`
+  margin-top: 8px;
+`;
+
 const StyledAccordionItemTitle = styled(AccordionItemTitle)`
   cursor: pointer;
   border: none;
@@ -82,11 +82,6 @@ const StyledAccordionItemTitle = styled(AccordionItemTitle)`
 
 const activeStyleDefault = {
   background: magma.colors.neutral300,
-};
-
-const activeStyleInverse = {
-  color: magma.colors.neutral200,
-  background: magma.colors.tertiary700,
 };
 
 const Heading2 = styled.h2`
@@ -129,21 +124,20 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledActiveLink2 = {
-  content: `''`,
-  position: ` absolute`,
-  zIndex: ` 1`,
-  top: ` 0`,
-  left: ` 0`,
-  height: ` 100%`,
-  width: ` 4px`,
-  borderRadius: ` 2px`,
+  content: "''",
+  position: ' absolute',
+  zIndex: ' 1',
+  top: ' 0',
+  left: ' 0',
+  height: ' 100%',
+  width: ' 4px',
+  borderRadius: ' 2px',
   background: ` ${magma.colors.primary}`,
 };
 
 const StyledLink2 = styled(Link)`
   align-items: center;
-  color: ${props =>
-    props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700};
+  color: ${magma.colors.neutral700};
   display: flex;
   font-size: ${magma.typeScale.size02.fontSize};
   justify-content: space-between;
@@ -154,8 +148,7 @@ const StyledLink2 = styled(Link)`
     ${LinkHoverStyles};
   }
   &:focus {
-    color: ${props =>
-      props.isInverse ? magma.colors.neutral200 : magma.colors.neutral700};
+    color: ${magma.colors.neutral700};
   }
   &:focus:before {
     ${StyledActiveLink2};
@@ -166,8 +159,7 @@ const StyledLink2 = styled(Link)`
 `;
 
 export const MainNav = ({ ...props }) => {
-  const isInverse = useIsInverse();
-  const activeStyle = isInverse ? activeStyleInverse : activeStyleDefault;
+  const activeStyle = activeStyleDefault;
 
   return (
     <StaticQuery
@@ -261,24 +253,60 @@ export const MainNav = ({ ...props }) => {
         <>
           <Location>
             {({ location }) => (
-              <Accordion accordion={false}>
+              <StyledAccordion accordion={false}>
+                <StyledAccordionItem>
+                  <StyledAccordionItemTitle>
+                    <StyledLink
+                      activeStyle={activeStyle}
+                      aria-label="Introduction to the Magma System"
+                      onClick={props.handleClick}
+                      to="/"
+                    >
+                      <Heading2>Introduction</Heading2>
+                    </StyledLink>
+                  </StyledAccordionItemTitle>
+                </StyledAccordionItem>
+                <StyledAccordionItem>
+                  <StyledAccordionItemTitle>
+                    <StyledLink
+                      activeStyle={activeStyle}
+                      aria-label="Contribution Guidelines"
+                      to="/contribution-guidelines/"
+                    >
+                      <Heading2>Contribution Guidelines</Heading2>
+                    </StyledLink>
+                  </StyledAccordionItemTitle>
+                </StyledAccordionItem>
+                <StyledAccordionItem>
+                  <StyledAccordionItemTitle>
+                    <StyledLink
+                      activeStyle={activeStyle}
+                      aria-label="View project on GitHub"
+                      href="https://github.com/cengage/react-magma"
+                    >
+                      <Heading2>
+                        GitHub
+                        <LaunchIcon size={magma.iconSizes.small} />
+                      </Heading2>
+                    </StyledLink>
+                  </StyledAccordionItemTitle>
+                </StyledAccordionItem>
                 <StyledAccordionItem
                   expanded={location.pathname.includes('design')}
                 >
                   <StyledAccordionItemTitle>
-                    <Heading2 isInverse={isInverse}>
-                      Designing
+                    <Heading2>
+                      Design
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
                   </StyledAccordionItemTitle>
                   <AccordionItemBody>
                     <List>
-                      <Heading3 isInverse={isInverse}>Intro</Heading3>
+                      <Heading3>Intro</Heading3>
                       {data.designIntro.edges.map(({ node }) => (
                         <ListItem key={node.fields.slug}>
                           <StyledLink2
                             activeStyle={activeStyle}
-                            isInverse={isInverse}
                             onClick={props.handleClick}
                             to={node.fields.slug}
                           >
@@ -294,13 +322,12 @@ export const MainNav = ({ ...props }) => {
                         </ListItem>
                       ))}
                     </List>
-                    <Heading3 isInverse={isInverse}>Components</Heading3>
+                    <Heading3>Components</Heading3>
                     <List>
                       {data.designComponentDocs.edges.map(({ node }) => (
                         <ListItem key={node.fields.slug}>
                           <StyledLink2
                             activeStyle={activeStyle}
-                            isInverse={isInverse}
                             onClick={props.handleClick}
                             to={node.fields.slug}
                           >
@@ -316,13 +343,12 @@ export const MainNav = ({ ...props }) => {
                         </ListItem>
                       ))}
                     </List>
-                    <Heading3 isInverse={isInverse}>Patterns</Heading3>
+                    <Heading3>Patterns</Heading3>
                     <List>
                       {data.designPatternDocs.edges.map(({ node }) => (
                         <ListItem key={node.fields.slug}>
                           <StyledLink2
                             activeStyle={activeStyle}
-                            isInverse={isInverse}
                             onClick={props.handleClick}
                             to={node.fields.slug}
                           >
@@ -345,67 +371,39 @@ export const MainNav = ({ ...props }) => {
                   expanded={location.pathname.includes('api')}
                 >
                   <StyledAccordionItemTitle>
-                    <Heading2 isInverse={isInverse}>
-                      Developing
-                      <ExpandMoreIcon size={magma.iconSizes.medium} />
-                    </Heading2>
-                  </StyledAccordionItemTitle>
-                  <AccordionItemBody>
-                    <Heading3 isInverse={isInverse}>Intro</Heading3>
-                    <List>
-                      {data.apiIntro.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            isInverse={isInverse}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                  </AccordionItemBody>
-                </StyledAccordionItem>
-
-                <AccordionItem>
-                  <AccordionItemTitle>
-                    <StyledLink
-                      activeStyle={activeStyle}
-                      aria-label="Contribution"
-                      isInverse={isInverse}
-                      to="/contribution-guidelines/"
-                    >
-                      <Heading2 isInverse={isInverse}>Contributing</Heading2>
-                    </StyledLink>
-                  </AccordionItemTitle>
-                </AccordionItem>
-
-                <StyledAccordionItem
-                  expanded={location.pathname.includes('api')}
-                >
-                  <StyledAccordionItemTitle>
-                    <Heading2 isInverse={isInverse}>
+                    <Heading2>
                       Components
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
                   </StyledAccordionItemTitle>
                   <AccordionItemBody>
-                    <Heading3 isInverse={isInverse}>API</Heading3>
+                    <Heading3>Intro</Heading3>
+                    <List>
+                      {data.apiIntro.edges.map(({ node }) => (
+                        <ListItem key={node.fields.slug}>
+                          <StyledLink2
+                            activeStyle={activeStyle}
+                            onClick={props.handleClick}
+                            to={node.fields.slug}
+                          >
+                            {node.frontmatter.title}
+                          </StyledLink2>
+                          <Router>
+                            <SubMenu2
+                              path={withPrefix(node.fields.slug)}
+                              headings={node.headings}
+                              handleClick={props.handleClick}
+                            />
+                          </Router>
+                        </ListItem>
+                      ))}
+                    </List>
+                    <Heading3>API</Heading3>
                     <List>
                       {data.apiDocs.edges.map(({ node }) => (
                         <ListItem key={node.fields.slug}>
                           <StyledLink2
                             activeStyle={activeStyle}
-                            isInverse={isInverse}
                             onClick={props.handleClick}
                             to={node.fields.slug}
                           >
@@ -423,39 +421,23 @@ export const MainNav = ({ ...props }) => {
                     </List>
                   </AccordionItemBody>
                 </StyledAccordionItem>
-
-                <AccordionItem>
-                  <AccordionItemTitle>
-                    <StyledLink
-                      activeStyle={activeStyle}
-                      aria-label="Data Visualization"
-                      isInverse={isInverse}
-                      // to=""
-                    >
-                      <Heading2 isInverse={isInverse}>
-                        Data Visualization
-                      </Heading2>
-                    </StyledLink>
-                  </AccordionItemTitle>
-                </AccordionItem>
 
                 <StyledAccordionItem
                   expanded={location.pathname.includes('patterns')}
                 >
                   <StyledAccordionItemTitle>
-                    <Heading2 isInverse={isInverse}>
+                    <Heading2>
                       Patterns
                       <ExpandMoreIcon size={magma.iconSizes.medium} />
                     </Heading2>
                   </StyledAccordionItemTitle>
                   <AccordionItemBody>
-                    <Heading3 isInverse={isInverse}>Intro</Heading3>
+                    <Heading3>Intro</Heading3>
                     <List>
                       {data.patternsIntro.edges.map(({ node }) => (
                         <ListItem key={node.fields.slug}>
                           <StyledLink2
                             activeStyle={activeStyle}
-                            isInverse={isInverse}
                             onClick={props.handleClick}
                             to={node.fields.slug}
                           >
@@ -471,13 +453,12 @@ export const MainNav = ({ ...props }) => {
                         </ListItem>
                       ))}
                     </List>
-                    <Heading3 isInverse={isInverse}>API</Heading3>
+                    <Heading3>API</Heading3>
                     <List>
                       {data.patternsDocs.edges.map(({ node }) => (
                         <ListItem key={node.fields.slug}>
                           <StyledLink2
                             activeStyle={activeStyle}
-                            isInverse={isInverse}
                             onClick={props.handleClick}
                             to={node.fields.slug}
                           >
@@ -495,20 +476,7 @@ export const MainNav = ({ ...props }) => {
                     </List>
                   </AccordionItemBody>
                 </StyledAccordionItem>
-
-                <AccordionItem>
-                  <AccordionItemTitle>
-                    <StyledLink
-                      activeStyle={activeStyle}
-                      aria-label="Tools"
-                      isInverse={isInverse}
-                      to=""
-                    >
-                      <Heading2 isInverse={isInverse}>Tools</Heading2>
-                    </StyledLink>
-                  </AccordionItemTitle>
-                </AccordionItem>
-              </Accordion>
+              </StyledAccordion>
             )}
           </Location>
         </>
