@@ -22,7 +22,7 @@ export const Default = () => {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.small}>
-        <Card background={magma.colors.tertiary700}>
+        <Card isInverse background={magma.colors.warning500}>
           <CardBody>
             <strong>Small: </strong>This will be shown from 600px pixels up to
             767px.
