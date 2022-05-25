@@ -274,6 +274,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             }
             onFocus={() => setActiveIndex(index)}
             theme={theme}
+            isInverse={isInverse}
           >
             {itemToString(multiSelectedItem)}
             <IconWrapper>

@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.18
+
+### Major Changes
+
+- ce262ae30: feat(combobox): Update combobox items colors and error styling
+
 ## 3.0.0-next.17
 
 ### Major Changes
