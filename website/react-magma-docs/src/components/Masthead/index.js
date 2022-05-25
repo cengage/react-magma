@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import { Logo, SmallLogo } from '../Logo';
+import { Logo } from '../Logo';
 import {
   magma,
   AppBarPosition,
@@ -83,7 +83,7 @@ const HeaderLogo = (
   <HeaderWrap>
     <LogoLink to="/">
       <SmallLogoWrap>
-        <SmallLogo />
+        <Logo />
       </SmallLogoWrap>
       <LogoWrap>
         <Logo />
