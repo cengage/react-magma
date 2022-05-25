@@ -129,7 +129,7 @@ const DatePickerCalendar = styled.div<{ opened: boolean; isInverse?: boolean }>`
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   display: ${props => (props.opened ? 'block' : 'none')};
-  margin-top: -${props => props.theme.spaceScale.spacing07};
+  margin-top: ${props => props.theme.spaceScale.spacing01};
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
   position: absolute;
