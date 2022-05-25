@@ -60,10 +60,6 @@ const InputContainer = styled.div<{
       border-color: ${props.isInverse
         ? props.theme.colors.danger200
         : props.theme.colors.danger};
-      box-shadow: 0 0 0 1px
-        ${props.isInverse
-          ? props.theme.colors.neutral100
-          : props.theme.colors.danger};
     `}
 
     ${props =>
