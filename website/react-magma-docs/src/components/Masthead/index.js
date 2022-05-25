@@ -13,7 +13,7 @@ import { GithubIcon } from 'react-magma-icons';
 
 const LogoLink = styled(Link)`
   align-items: center;
-  color: ${magma.colors.neutral};
+  color: ${magma.colors.neutral700};
   display: inline-flex;
   font-size: ${magma.typeScale.size05.fontSize};
   font-weight: 500;
@@ -27,7 +27,7 @@ const LogoLink = styled(Link)`
   &:hover,
   &:focus,
   &:active {
-    color: ${magma.colors.primary};
+    color: ${magma.colors.neutral700};
   }
 
   &:focus {
