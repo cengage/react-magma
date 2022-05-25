@@ -11,10 +11,6 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @default "#3942B0"
    */
   color?: string;
-  /**
-   * The color of the inverse spinner 
-   * @default "#CDDEFF"
-   */
   isInverse?: boolean;
   /**
    * The height and width of the spinner.  Can be a string or number; if number is provided, the size is in px.

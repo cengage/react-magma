@@ -11,7 +11,6 @@ function buildListHoverColor (props) {
     }
     return props.theme.colors.neutral200;
   }
-
   return 'transparent';
 }
 
@@ -22,7 +21,6 @@ function buildListFocusColor (props) {
     }
     return props.theme.colors.focus;
   }
-
   return 'transparent';
 }
 
