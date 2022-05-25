@@ -10,6 +10,7 @@ import {
 import { Button, ButtonSize, ButtonVariant } from '../Button';
 
 import { Story } from '@storybook/react/types-6-0';
+import { magma } from '../../theme/magma';
 
 export default {
   component: Accordion,
@@ -150,3 +151,16 @@ export const ExpandCollapseAll = args => {
     </>
   );
 };
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  isInverse: true,
+};
+
+Inverse.decorators = [
+  Story => (
+    <div style={{background: magma.colors.primary600}}>
+      <Story />
+    </div>
+  ),
+];
