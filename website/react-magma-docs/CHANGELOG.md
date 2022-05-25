@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies [ce262ae30]
+  - react-magma-dom@3.0.0-next.18
+
 ## 3.0.0-next.25
 
 ### Major Changes
