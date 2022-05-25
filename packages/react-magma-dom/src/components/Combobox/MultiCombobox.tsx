@@ -331,6 +331,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
+        isInverse={isInverse}
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
