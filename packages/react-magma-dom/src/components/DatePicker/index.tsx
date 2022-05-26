@@ -20,6 +20,7 @@ import {
 import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
+import { transparentize } from 'polished';
 
 export interface DatePickerProps
   extends Omit<
@@ -115,12 +116,20 @@ const DatePickerContainer = styled.div`
   position: relative;
 `;
 
-const DatePickerCalendar = styled.div<{ opened: boolean }>`
-  border: 1px solid ${props => props.theme.colors.neutral300};
+const DatePickerCalendar = styled.div<{ opened: boolean; isInverse?: boolean }>`
+  border: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.5, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: ${props => (props.opened ? 'block' : 'none')};
-  margin-top: -${props => props.theme.spaceScale.spacing07};
+  margin-top: ${props => props.theme.spaceScale.spacing01};
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
   position: absolute;
@@ -402,6 +411,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           maxDate,
           minDate,
           helperInformationShown,
+          isInverse,
           buildCalendarMonth,
           showHelperInformation,
           hideHelperInformation,
@@ -442,12 +452,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             <DatePickerCalendar
               data-testid="calendarContainer"
               opened={calendarOpened}
+              isInverse={isInverse}
               theme={theme}
             >
               <CalendarMonth
                 focusOnOpen={
                   calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
                 }
+                isInverse={isInverse}
                 handleCloseButtonClick={handleCloseButtonClick}
                 calendarOpened={calendarOpened}
                 setDateFocused={setDateFocused}
