@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.31
+
+### Major Changes
+
+- 179b94086: docs: update theming example to version 3 theming
+
 ## 3.0.0-next.30
 
 ### Major Changes
