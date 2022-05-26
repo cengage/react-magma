@@ -238,7 +238,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   css`
     color: ${props.isInverse
       ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral500};
+      : transparentize(0.4, props.theme.colors.neutral500)};
     cursor: not-allowed;
 
     &::placeholder {

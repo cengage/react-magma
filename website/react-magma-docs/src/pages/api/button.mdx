@@ -261,7 +261,7 @@ By default, buttons will have a type of `button`.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonType, Input } from 'react-magma-dom';
+import { Button, ButtonType, Input, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const inputRef = React.useRef<HTMLInputElement>();
@@ -279,6 +279,7 @@ export function Example() {
   return (
     <form onSubmit={onFormSubmit} onReset={onFormReset}>
       <Input ref={inputRef} labelText="Form Field" value="" />
+      <Spacer size="24" />
       <Button type={ButtonType.submit}>Submit</Button>
       <Button type={ButtonType.reset}>Reset</Button>
     </form>

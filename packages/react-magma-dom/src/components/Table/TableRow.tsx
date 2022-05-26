@@ -95,7 +95,7 @@ const StyledTableRow = styled.tr<{
       &:nth-of-type(even) {
         background: ${props.hasZebraStripes
           ? props.isInverse
-            ? transparentize(0.3, props.theme.colors.neutral100)
+            ? transparentize(0.93, props.theme.colors.neutral100)
             : props.theme.colors.neutral200
           : 'none'};
       }
