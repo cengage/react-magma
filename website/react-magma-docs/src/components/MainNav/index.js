@@ -96,7 +96,7 @@ const Heading2 = styled.h2`
   line-height: ${magma.typeScale.size03.lineHeight};
   font-weight: 500;
   margin: 0;
-  padding: 8px 18px;
+  padding: ${magma.spaceScale.spacing03} 18px;
   &:hover {
     ${LinkHoverStyles};
   }
@@ -109,7 +109,7 @@ const Heading3 = styled.h3`
   text-transform: uppercase;
   display: inline-block;
   text-indent: 0;
-  padding-left: 16px;
+  padding-left: ${magma.spaceScale.spacing05};
 `;
 
 const List = styled.ul`
@@ -133,13 +133,13 @@ const StyledLink = styled(Link)`
 
 const StyledActiveLink2 = {
   content: "''",
-  position: ' absolute',
-  zIndex: ' 1',
-  top: ' 0',
-  left: ' 0',
-  height: ' 100%',
-  width: ' 4px',
-  borderRadius: ' 2px',
+  position: 'absolute',
+  zIndex: '1',
+  top: '0',
+  left: '0',
+  height: '100%',
+  width: '4px',
+  borderRadius: '2px',
   background: ` ${magma.colors.primary}`,
 };
 
