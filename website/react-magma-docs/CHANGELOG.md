@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.29
+
+### Major Changes
+
+- b64e7bbdb: docs: update accordion inverse example
+
 ## 3.0.0-next.28
 
 ### Patch Changes
