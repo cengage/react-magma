@@ -216,6 +216,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
+        isInverse={isInverse}
         items={getFilteredItems(items)}
         itemToString={itemToString}
         maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
