@@ -2,8 +2,10 @@ import React from 'react';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
+import { Logo } from '../Logo';
+import { LogoLink } from '../Masthead';
 import { MenuIcon, CloseIcon } from 'react-magma-icons';
-import { Container, IconButton, magma } from 'react-magma-dom';
+import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
 import { MainNav } from '../MainNav';
 
 export class SlidingDrawer extends React.Component {
@@ -65,13 +67,13 @@ export class SlidingDrawer extends React.Component {
 
   render() {
     const slidein = keyframes`
-            from { transform: translateX(-240px); }
+            from { transform: translateX(-300px); }
             to   { transform: translateX(0); }
         `;
 
     const slideout = keyframes`
             from { transform: translateX(0); }
-            to   { transform: translateX(-240px); }
+            to   { transform: translateX(-300px); }
         `;
 
     const Panel = styled(Container)`
@@ -85,7 +87,7 @@ export class SlidingDrawer extends React.Component {
       padding: 0 0 24px;
       position: fixed;
       top: 0;
-      transform: translateX(-240px);
+      transform: translateX(-300px);
       width: 240px;
 
       ${props =>
@@ -108,11 +110,15 @@ export class SlidingDrawer extends React.Component {
         top: 56px;
         transform: translateX(0);
       }
+      @media (max-width: 1024px) {
+        width: 300px;
+      }
     `;
 
     const PanelInner = styled.div`
       display: ${props => (props.isOpen ? 'block' : 'none')};
-
+      svg {
+      }
       @media (min-width: 1024px) {
         display: block;
       }
@@ -143,10 +149,30 @@ export class SlidingDrawer extends React.Component {
       }
     `;
 
-    const CloseButton = styled.span`
-      display: block;
-      text-align: right;
+    const SmallLogoLink = styled.div`
+      display: flex;
+      align-items: center;
+      color: ${magma.colors.neutral700};
+      font-size: ${magma.typeScale.size04.fontSize};
+      font-weight: 600;
+      padding-top: 4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      svg {
+        height: 24px;
+      }
+      @media (min-width: 1024px) {
+        display: none;
+      }
+    `;
 
+    const CloseButton = styled.span`
+      justify-content: flex-end;
+      flex: 1;
+      text-align: right;
+      button {
+        bottom: 4px;
+      }
       @media (min-width: 1024px) {
         display: none;
       }
@@ -178,15 +204,21 @@ export class SlidingDrawer extends React.Component {
               isInverse={isInverse}
             >
               <PanelInner isOpen={isOpen}>
-                <CloseButton>
-                  <IconButton
-                    aria-label="Close navigation menu"
-                    color="secondary"
-                    icon={<CloseIcon />}
-                    onClick={this.handleCloseMenu}
-                    variant="link"
-                  />
-                </CloseButton>
+                <SmallLogoLink to="/">
+                  <Spacer size={magma.spaceScale.spacing05} />
+                  <Logo />
+                  <Spacer size={magma.spaceScale.spacing05} />
+                  React Magma
+                  <CloseButton>
+                    <IconButton
+                      aria-label="Close navigation menu"
+                      color="secondary"
+                      icon={<CloseIcon />}
+                      onClick={this.handleCloseMenu}
+                      variant="link"
+                    />
+                  </CloseButton>
+                </SmallLogoLink>
                 <MainNav handleClick={this.handleCloseMenuFromNav} />
               </PanelInner>
             </Panel>

@@ -13,20 +13,12 @@ import {
 import styled from '@emotion/styled';
 import { magma } from 'react-magma-dom';
 
-const LinkStyles = () => `
-  align-items: center;
-  color: ${magma.colors.neutral700};
-  font-size: ${magma.typeScale.size03.fontSize};
-  line-height: ${magma.typeScale.size03.lineHeight};
-  padding: 0;
-  text-decoration: none;
+const StyledAccordion = styled(Accordion)`
+  margin-top: 8px;
+  *:focus {
+    outline-offset: 0;
+  }
 `;
-
-const LinkHoverStyles = () => `
-  color: ${magma.colors.neutral700};
-  background: ${magma.colors.neutral300};
-`;
-
 const StyledAccordionItem = styled(AccordionItem)`
   /* Accordion styles */
   .accordion__body {
@@ -59,16 +51,29 @@ const StyledAccordionItem = styled(AccordionItem)`
   }
 `;
 
-const StyledAccordion = styled(Accordion)`
-  margin-top: 8px;
+const LinkStyles = () => `
+  align-items: center;
+  display:block;
+  color: ${magma.colors.neutral700};
+  font-size: ${magma.typeScale.size03.fontSize};
+  line-height: ${magma.typeScale.size03.lineHeight};
+  padding: 0;
+  text-decoration: none;
+  &:focus{
+    color: ${magma.colors.neutral700};
+    outline: 2px solid ${magma.colors.info500};
+    outline-offset: 0;
+  }
+`;
+
+const LinkHoverStyles = () => `
+  color: ${magma.colors.neutral700};
+  background: ${magma.colors.neutral300};
 `;
 
 const StyledAccordionItemTitle = styled(AccordionItemTitle)`
   cursor: pointer;
   border: none;
-  &:hover {
-    ${LinkHoverStyles};
-  }
   svg {
     transition: transform 0.35s;
   }
@@ -92,6 +97,9 @@ const Heading2 = styled.h2`
   font-weight: 500;
   margin: 0;
   padding: 8px 18px;
+  &:hover {
+    ${LinkHoverStyles};
+  }
 `;
 
 const Heading3 = styled.h3`
@@ -255,41 +263,33 @@ export const MainNav = ({ ...props }) => {
             {({ location }) => (
               <StyledAccordion accordion={false}>
                 <StyledAccordionItem>
-                  <StyledAccordionItemTitle>
-                    <StyledLink
-                      activeStyle={activeStyle}
-                      aria-label="Introduction to the Magma System"
-                      onClick={props.handleClick}
-                      to="/"
-                    >
-                      <Heading2>Introduction</Heading2>
-                    </StyledLink>
-                  </StyledAccordionItemTitle>
-                </StyledAccordionItem>
-                <StyledAccordionItem>
-                  <StyledAccordionItemTitle>
-                    <StyledLink
-                      activeStyle={activeStyle}
-                      aria-label="Contribution Guidelines"
-                      to="/contribution-guidelines/"
-                    >
-                      <Heading2>Contribution Guidelines</Heading2>
-                    </StyledLink>
-                  </StyledAccordionItemTitle>
-                </StyledAccordionItem>
-                <StyledAccordionItem>
-                  <StyledAccordionItemTitle>
-                    <StyledLink
-                      activeStyle={activeStyle}
-                      aria-label="View project on GitHub"
-                      href="https://github.com/cengage/react-magma"
-                    >
-                      <Heading2>
-                        GitHub
-                        <LaunchIcon size={magma.iconSizes.small} />
-                      </Heading2>
-                    </StyledLink>
-                  </StyledAccordionItemTitle>
+                  <StyledLink
+                    activeStyle={activeStyle}
+                    aria-label="Introduction to the Magma System"
+                    onClick={props.handleClick}
+                    to="/"
+                  >
+                    <Heading2>Introduction</Heading2>
+                  </StyledLink>
+
+                  <StyledLink
+                    activeStyle={activeStyle}
+                    aria-label="Contribution Guidelines"
+                    to="/contribution-guidelines/"
+                  >
+                    <Heading2>Contribution Guidelines</Heading2>
+                  </StyledLink>
+
+                  <StyledLink
+                    activeStyle={activeStyle}
+                    aria-label="View project on GitHub"
+                    href="https://github.com/cengage/react-magma"
+                  >
+                    <Heading2>
+                      GitHub
+                      <LaunchIcon size={magma.iconSizes.small} />
+                    </Heading2>
+                  </StyledLink>
                 </StyledAccordionItem>
                 <StyledAccordionItem
                   expanded={location.pathname.includes('design')}
