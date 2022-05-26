@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.0-next.30
+
+### Major Changes
+
+- 0d9b45043: button/form: add spacing around form examples
+  table: fix table inverse background color
+
+### Patch Changes
+
+- Updated dependencies [0d9b45043]
+  - react-magma-dom@3.0.0-next.20
+
 ## 3.0.0-next.29
 
 ### Major Changes
