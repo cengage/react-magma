@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.32
+
+### Major Changes
+
+- c187bed9e: docs: update docs header
+
 ## 3.0.0-next.31
 
 ### Major Changes
