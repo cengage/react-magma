@@ -11,9 +11,16 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "accordion-docs",
     "afraid-coats-laugh",
     "brown-moons-call",
+    "combobox-multi-styles",
+    "combobox-spinner-inverse",
     "cuddly-jokes-guess",
+    "docs-breakpoints",
+    "new-logo-docs",
+    "new-logo-landing",
+    "popular-paws-serve",
     "popular-peaches-cross",
     "rare-eagles-drop",
     "rebrand-accordion",
@@ -41,7 +48,10 @@
     "rebrand-type",
     "select-hover-bug",
     "silent-kangaroos-watch",
+    "styling-fixes-docs",
+    "styling-fixes-dom",
     "thick-humans-give",
+    "wild-frogs-eat",
     "wise-lions-hammer"
   ]
 }

@@ -14,6 +14,7 @@ import { Combobox } from '../Combobox';
 import { Select } from '../Select';
 import styled from '../../theme/styled';
 import { Meta } from '@storybook/react/types-6-0';
+import { magma } from '../../theme/magma';
 
 const Container = styled.div`
   display: grid;
@@ -118,6 +119,10 @@ export const Default = args => {
         <Toggle
           errorMessage="danger will robinson."
           labelText="Toggle"
+        />
+        <Toggle
+          errorMessage="danger will robinson."
+          labelText="Toggle"
           checked
         />
       </Two>
@@ -125,3 +130,107 @@ export const Default = args => {
   );
 };
 Default.args = {};
+
+export const Inverse = args => {
+  return (
+  <Container style={{backgroundColor: magma.colors.primary600}}>
+      <One>
+        <Input
+          errorMessage="danger will robinson."
+          labelText="Input"
+          isClearable
+          isInverse
+        />
+        <PasswordInput
+          errorMessage="danger will robinson."
+          labelText="PasswordInput"
+          isInverse
+        />
+        <DatePicker
+          errorMessage="danger will robinson."
+          labelText="DatePicker"
+          isClearable
+          isInverse
+        />
+        <TimePicker
+          errorMessage="danger will robinson."
+          labelText="TimePicker"
+          isInverse
+        />
+        <Textarea errorMessage="danger will robinson." labelText="Textarea" isInverse/>
+        <Checkbox errorMessage="danger will robinson." labelText="Checkbox" isInverse/>
+        <FormGroup errorMessage="danger will robinson." labelText="FormGroup" isInverse>
+          <Checkbox labelText="Checkbox One" isInverse />
+          <Checkbox labelText="Checkbox Two" isInverse />
+          <Checkbox labelText="Checkbox Three" isInverse />
+        </FormGroup>
+      </One>
+      <Two>
+        <RadioGroup
+          errorMessage="danger will robinson."
+          name="radio"
+          labelText="RadioGroup"
+          isInverse
+        >
+          <Radio labelText="Radio One" isInverse />
+          <Radio labelText="Radio Two" isInverse />
+          <Radio labelText="Radio Three" isInverse />
+        </RadioGroup>
+        <Combobox
+          labelText="Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          errorMessage="danger will robinson."
+          isClearable
+          isInverse
+        />
+        <Combobox
+          labelText="Combobox (multi)"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          errorMessage="danger will robinson."
+          isMulti
+          isInverse
+        />
+        <Select
+          labelText="Select"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          errorMessage="danger will robinson."
+          isInverse
+        />
+        <Select
+          labelText="Select (multi)"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          errorMessage="danger will robinson."
+          isMulti
+          isInverse
+        />
+        <Toggle
+          errorMessage="danger will robinson."
+          labelText="Toggle"
+          isInverse
+        />
+        <Toggle
+          errorMessage="danger will robinson."
+          labelText="Toggle"
+          checked
+          isInverse
+        />
+      </Two>
+    </Container>
+  );
+};

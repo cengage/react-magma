@@ -20,10 +20,6 @@ const StyledContainer = styled.div`
 const StyledSkipLink = styled(SkipLink)`
   display: none;
 
-  &:not(:disabled):focus {
-    background: transparent;
-  }
-
   @media (min-width: 1024px) {
     display: inline-flex;
   }
@@ -51,12 +47,7 @@ export const MainContainer = ({ children }) => {
         className={isDarkMode && 'isInverse'}
       >
         <GlobalStyles />
-        <StyledSkipLink
-          isInverse
-          positionLeft={275}
-          positionTop={16}
-          variant="outline"
-        />
+        <StyledSkipLink positionLeft={220} positionTop={3} variant="solid" />
         <StyledContainer>
           <Masthead />
           <StyledSlidingDrawer isInverse={isDarkMode} />

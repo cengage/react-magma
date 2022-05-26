@@ -5,9 +5,7 @@ props:
   - FormProps
 ---
 
-<DocsHeading type="api">
-  Form
-</DocsHeading>
+<DocsHeading type="api">Form</DocsHeading>
 
 The `Form` component is a relatively simple container. It is used to contain interactive controls and sublit information to a web server.
 
@@ -15,7 +13,7 @@ The `Form` component is a relatively simple container. It is used to contain int
 
 ```typescript
 import React from 'react';
-import { Button, Input } from 'react-magma-dom';
+import { Button, Input, Form, Spacer, SpacerAxis } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -26,6 +24,7 @@ export function Example() {
       errorMessage="Some Form Error"
       actions={
         <div>
+          <Spacer size="24" axis={SpacerAxis.vertical} />
           <Button type={ButtonType.submit}>Submit</Button>
         </div>
       }

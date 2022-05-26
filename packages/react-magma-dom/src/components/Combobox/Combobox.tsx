@@ -300,6 +300,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
+        isInverse={isInverse}
         items={displayItems}
         itemToString={itemToString}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}

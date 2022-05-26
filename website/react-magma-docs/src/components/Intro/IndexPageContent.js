@@ -15,7 +15,8 @@ import {
   TimelineIcon,
   GroupsIcon,
 } from 'react-magma-icons';
-import { Logo } from '../Logo';
+// import { Logo } from '../Logo';
+import ColorLogo from './images/React_Magma_Logo_Color.svg';
 import { magma } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
@@ -205,7 +206,7 @@ export function IndexPageContent() {
             digital experiences with React.
           </Heading>
         </HeaderText>
-        <Logo />
+        <ColorLogo />
       </HeaderBlock>
       <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <StyledGridHeroItem>

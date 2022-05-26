@@ -1,5 +1,61 @@
 # Change Log
 
+## 3.0.0-next.32
+
+### Major Changes
+
+- c187bed9e: docs: update docs header
+
+## 3.0.0-next.31
+
+### Major Changes
+
+- 179b94086: docs: update theming example to version 3 theming
+
+## 3.0.0-next.30
+
+### Major Changes
+
+- 0d9b45043: button/form: add spacing around form examples
+  table: fix table inverse background color
+
+### Patch Changes
+
+- Updated dependencies [0d9b45043]
+  - react-magma-dom@3.0.0-next.20
+
+## 3.0.0-next.29
+
+### Major Changes
+
+- b64e7bbdb: docs: update accordion inverse example
+
+## 3.0.0-next.28
+
+### Patch Changes
+
+- Updated dependencies [97ea53aca]
+  - react-magma-dom@3.0.0-next.19
+
+## 3.0.0-next.27
+
+### Major Changes
+
+- 47f7778df: docs: update breakpoints container examples
+
+## 3.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies [ce262ae30]
+  - react-magma-dom@3.0.0-next.18
+
+## 3.0.0-next.25
+
+### Major Changes
+
+- 41c9d8b17: docs: update react magma logo
+
 ## 3.0.0-next.24
 
 ### Patch Changes
