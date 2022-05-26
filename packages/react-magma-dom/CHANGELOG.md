@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0-next.19
+
+### Major Changes
+
+- 97ea53aca: feat(spinner): Add `isInverse` support for Spinner component.
+  feat(combobox/select): Update styling for items list inverse.
+
 ## 3.0.0-next.18
 
 ### Major Changes
