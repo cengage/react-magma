@@ -18,6 +18,9 @@ const StyledAccordion = styled(Accordion)`
   *:focus {
     outline-offset: 0;
   }
+  @media (max-width: 1024px) {
+    margin-top: 4px;
+  }
 `;
 const StyledAccordionItem = styled(AccordionItem)`
   /* Accordion styles */

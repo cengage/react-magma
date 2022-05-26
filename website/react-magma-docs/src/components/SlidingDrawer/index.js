@@ -130,7 +130,7 @@ export class SlidingDrawer extends React.Component {
       position: fixed;
       right: 0;
       top: 0;
-      z-index: 3;
+      z-index: 10;
     `;
 
     const MenuButton = styled.span`
