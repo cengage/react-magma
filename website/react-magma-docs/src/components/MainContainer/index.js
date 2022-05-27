@@ -9,8 +9,8 @@ import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {
     display: grid;
-    grid-template-columns: 280px auto;
-    grid-template-rows: 56px auto;
+    grid-template-columns: 240px auto;
+    grid-template-rows: 88px auto;
     grid-template-areas:
       'masthead masthead'
       'nav content';
@@ -23,6 +23,10 @@ const StyledSkipLink = styled(SkipLink)`
   @media (min-width: 1024px) {
     display: inline-flex;
   }
+`;
+
+const StyledSlidingDrawer = styled(SlidingDrawer)`
+  background: ${magma.colors.neutral200};
 `;
 
 export const MainContainer = ({ children }) => {
@@ -46,7 +50,7 @@ export const MainContainer = ({ children }) => {
         <StyledSkipLink positionLeft={220} positionTop={3} variant="solid" />
         <StyledContainer>
           <Masthead />
-          <SlidingDrawer isInverse={isDarkMode} />
+          <StyledSlidingDrawer isInverse={isDarkMode} />
           {children}
         </StyledContainer>
       </Container>

@@ -15,8 +15,7 @@ import {
   TimelineIcon,
   GroupsIcon,
 } from 'react-magma-icons';
-// import { Logo } from '../Logo';
-import ColorLogo from './images/React_Magma_Logo_Color.svg';
+import { Logo } from '../Logo';
 import { magma } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
@@ -197,7 +196,7 @@ const HeroCardIcon = styled(Flex)`
 
 export function IndexPageContent() {
   return (
-    <div style={{maxWidth: '1200px', margin: 'auto'}}>
+    <div style={{ maxWidth: '1200px', margin: 'auto' }}>
       <HeaderBlock>
         <HeaderText>
           <Heading level={1}>React Magma Design&nbsp;System</Heading>
@@ -206,7 +205,7 @@ export function IndexPageContent() {
             digital experiences with React.
           </Heading>
         </HeaderText>
-        <ColorLogo />
+        <Logo />
       </HeaderBlock>
       <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <StyledGridHeroItem>
