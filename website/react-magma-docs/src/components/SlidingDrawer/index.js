@@ -116,8 +116,6 @@ export class SlidingDrawer extends React.Component {
 
     const PanelInner = styled.div`
       display: ${props => (props.isOpen ? 'block' : 'none')};
-      svg {
-      }
       @media (min-width: 1024px) {
         display: block;
       }
@@ -147,8 +145,8 @@ export class SlidingDrawer extends React.Component {
       display: flex;
       align-items: center;
       color: ${magma.colors.neutral700};
-      font-size: ${magma.typeScale.size04.fontSize};
-      font-weight: 600;
+      font-size: ${magma.typeScale.size05.fontSize};
+      font-weight: 500;
       padding-top: 4px;
       text-decoration: none;
       text-transform: uppercase;
@@ -201,7 +199,7 @@ export class SlidingDrawer extends React.Component {
                 <SmallLogoLink to="/">
                   <Spacer size={magma.spaceScale.spacing05} />
                   <Logo />
-                  <Spacer size={magma.spaceScale.spacing05} />
+                  <Spacer size={magma.spaceScale.spacing04} />
                   React Magma
                   <CloseButton>
                     <IconButton
