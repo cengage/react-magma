@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.21
+
+### Major Changes
+
+- 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
+
 ## 3.0.0-next.20
 
 ### Major Changes
