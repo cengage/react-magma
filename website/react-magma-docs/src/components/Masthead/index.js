@@ -72,7 +72,7 @@ const LogoWrap = styled.span`
   }
 `;
 
-const RepoLink = styled(Link)`
+const RepoLink = styled.span`
   display: flex;
   align-items: center;
   position: relative;
@@ -91,8 +91,14 @@ const HeaderLogo = (
       React Magma
       {/* <Tag color={TagColor.primary} size={TagSize.small}>v3.0.0</Tag> */}
     </LogoLink>
-    <RepoLink to="https://github.com/cengage/react-magma">
-      <IconButton icon={<GithubIcon />} variant={ButtonVariant.link} />
+    <RepoLink>
+      <IconButton
+        icon={<GithubIcon />}
+        variant={ButtonVariant.link}
+        onClick={() =>
+          window.open('https://github.com/cengage/react-magma', '_blank')
+        }
+      />
     </RepoLink>
   </HeaderWrap>
 );
