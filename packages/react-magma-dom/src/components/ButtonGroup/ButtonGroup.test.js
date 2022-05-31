@@ -28,4 +28,24 @@ describe('ButtonGroup', () => {
       return expect(result).toHaveNoViolations();
     });
   });
+  describe('Horizontal', () => {
+      it('should render with updated color', () => {
+        // const icon = <CheckIcon id="testId" />;
+        // const { container } = render(
+        //   <IconButton
+        //     aria-label="Check Icon"
+        //     id="testId"
+        //     icon={icon}
+        //     iconPosition={ButtonIconPosition.right}
+        //     color={ButtonColor.secondary}
+        //   />
+        // );
+
+        expect(container).toMatchSnapshot();
+      });
+  });
+
+  describe('Vertical', () => {
+
+  });
 });

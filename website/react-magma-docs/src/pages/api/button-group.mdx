@@ -9,19 +9,227 @@ props:
 
 Layout component for Buttons
 
-## Basic Usage
+## Default
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonColor } from 'react-magma-dom';
+import { ButtonGroup, Button } from 'react-magma-dom';
 
 export function Example() {
   return (
     <ButtonGroup>
       <Button>1</Button>
       <Button>2</Button>
-      <Button color={ButtonColor.secondary}>3</Button>
+      <Button>3</Button>
     </ButtonGroup>
+  );
+}
+```
+
+## Horizontal - Center
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.horizontal}
+      alignment="center"
+    >
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Horizontal - Right
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.horizontal}
+      alignment="right"
+    >
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Horizontal - Apart
+
+The `apart` prop should only be used with the `horizontal` orientation.
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.horizontal}
+      alignment="apart"
+    >
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Horizontal - Fill
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.horizontal}
+      alignment="fill"
+    >
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Horizontal - No Space
+
+The `noSpace` prop should only be used with the `horizontal` orientation.
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup noSpace={true}>
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Vertical - Left
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup orientation={ButtonGroupOrientation.vertical} alignment="left">
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Vertical - Center
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.vertical}
+      alignment="center"
+    >
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Vertical - Right
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.vertical}
+      alignment="right"
+    >
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Vertical - Fill
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup orientation={ButtonGroupOrientation.vertical} alignment="fill">
+      <Button>1</Button>
+      <Button>2</Button>
+      <Button>3</Button>
+    </ButtonGroup>
+  );
+}
+```
+
+## Small Screen Sizes
+
+```
+import React from 'react';
+import { ButtonGroup, Button, ButtonGroupOrientation, BreakpointsContainer, Breakpoint, BreakpointScreenSize } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BreakpointsContainer>
+      <Breakpoint screenSize={BreakpointScreenSize.xs}>
+        <ButtonGroup orientation={ButtonGroupOrientation.vertical}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+            <Button>5</Button>
+          </ButtonGroup>
+      </Breakpoint>
+
+      <Breakpoint screenSize={BreakpointScreenSize.small}>
+        <ButtonGroup>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>3</Button>
+          <Button>4</Button>
+          <Button>5</Button>
+        </ButtonGroup>
+      </Breakpoint>
+    </BreakpointsContainer>
   );
 }
 ```

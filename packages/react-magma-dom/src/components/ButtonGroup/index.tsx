@@ -63,7 +63,7 @@ function buildButtonAlignment(props) {
   if (props.alignment === ButtonGroupAlignment.center) {
     return 'center';
   }
-  if (props.alignment === ButtonGroupAlignment.apart) {
+  if (props.alignment === ButtonGroupAlignment.apart && props.orientation === ButtonGroupOrientation.horizontal) {
     return 'space-between';
   }
   if (props.alignment === ButtonGroupAlignment.fill) {
@@ -91,23 +91,49 @@ const StyledButtonGroup = styled.div<{
   > button {
     margin: ${props => buildButtonMargin(props)};
     flex: ${props =>
-      props.alignment === ButtonGroupAlignment.fill ? '1' : 'none'};
+      props.alignment === ButtonGroupAlignment.fill && props.orientation === ButtonGroupOrientation.horizontal ? '1' : 'none'};
+
+    ${props =>
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      css`
+        &:first-of-type {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+      `}
+    
+    ${props =>
+      props.orientation === ButtonGroupOrientation.vertical &&
+      css`
+        &:first-of-type {
+          margin-top: 0;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      `}
 
     ${props =>
       props.noSpace &&
       props.orientation === ButtonGroupOrientation.horizontal &&
       props.alignment !== ButtonGroupAlignment.apart &&
       css`
-        &:first-child {
+        // border-right: 1px solid white;
+        margin-right: 1px;
+
+        &:first-of-type {
           border-radius: ${props.theme.borderRadius} 0 0
             ${props.theme.borderRadius};
         }
-        &:not(:first-child) {
+        &:not(:first-of-type) {
           border-radius: 0;
         }
         &:last-child {
           border-radius: 0 ${props.theme.borderRadius}
             ${props.theme.borderRadius} 0;
+          // border-right: 0;
         }
       `}
   }
