@@ -186,7 +186,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      transparentize(0.3, magma.colors.neutral100),
+      transparentize(0.93, magma.colors.neutral100),
       {
         target: ':nth-of-type(even)',
       }

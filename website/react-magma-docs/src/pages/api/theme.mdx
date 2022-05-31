@@ -30,10 +30,20 @@ import {
 
 const magmaDark = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
-    primary: '#CDDEFF', 
-    focus: '#0074B7',
-    success: '#178037',
-    danger: '#FAAEB0',
+    primary: magma.colors.secondary600, // link color
+    focus: '#FFFFFF',
+    danger: magma.colors.danger200,
+    neutral: '#DFDFDF',
+    neutral100: '#000000',
+    neutral200: '#F7F7F7',
+    neutral300: '#DFDFDF',
+    neutral400: '#BFBFBF',
+    neutral500: '#8f8f8f',
+    neutral600: '#707070',
+    neutral900: '#575757',
+    neutral800: '#3F3F3F',
+    neutral700: '#ffffff',
+    border: magma.colors.secondary600,
   }),
 });
 
@@ -186,7 +196,7 @@ typographyVisualStyles: {
 },
 typographyExpressiveVisualStyles: {
   heading2XLarge: {
-    mobile: typeScale.size13, 
+    mobile: typeScale.size13,
     desktop: typeScale.size15,
     fontWeight: 600,
   },

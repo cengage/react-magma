@@ -196,7 +196,7 @@ const HeroCardIcon = styled(Flex)`
 
 export function IndexPageContent() {
   return (
-    <div style={{maxWidth: '1200px', margin: 'auto'}}>
+    <div style={{ maxWidth: '1200px', margin: 'auto' }}>
       <HeaderBlock>
         <HeaderText>
           <Heading level={1}>React Magma Design&nbsp;System</Heading>

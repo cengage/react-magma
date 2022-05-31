@@ -1,5 +1,33 @@
 # Change Log
 
+## 3.0.0-next.21
+
+### Major Changes
+
+- 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
+
+## 3.0.0-next.20
+
+### Major Changes
+
+- 0d9b45043: fix(select): update disabled state down arrow color
+  fix(toggle): update toggle border color
+  fix(combobox): update input border inverse danger color
+  fix(table): update table inverse hasZebraStripes color
+
+## 3.0.0-next.19
+
+### Major Changes
+
+- 97ea53aca: feat(spinner): Add `isInverse` support for Spinner component.
+  feat(combobox/select): Update styling for items list inverse.
+
+## 3.0.0-next.18
+
+### Major Changes
+
+- ce262ae30: feat(combobox): Update combobox items colors and error styling
+
 ## 3.0.0-next.17
 
 ### Major Changes

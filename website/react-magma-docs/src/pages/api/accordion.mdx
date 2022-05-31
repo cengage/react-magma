@@ -254,7 +254,7 @@ export function Example() {
 
 ## InverseContext
 
-The `isInverse` prop will render a dark background and light text. The children will
+The `isInverse` prop will render light text, to be used on a dark background. The children will
 inherit the `isInverse` prop unless specified otherwise.
 
 ```typescript
@@ -264,20 +264,23 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Accordion isInverse>
-      <AccordionItem>
-        <AccordionButton>Section 1</AccordionButton>
-        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
-      </AccordionItem>
-      <AccordionItem>
-        <AccordionButton>Section 2</AccordionButton>
-        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
-      </AccordionItem>
-    </Accordion>
+    <div style={{background: magma.colors.primary600}}>
+      <Accordion isInverse>
+        <AccordionItem>
+          <AccordionButton>Section 1</AccordionButton>
+          <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Section 2</AccordionButton>
+          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    </div>
   );
 }
 ```
