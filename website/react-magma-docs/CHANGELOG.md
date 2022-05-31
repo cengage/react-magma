@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.34
+
+### Major Changes
+
+- ccaaf77a2: feat: Updating docs sidebar to V3 styling.
+
 ## 3.0.0-next.33
 
 ### Patch Changes
