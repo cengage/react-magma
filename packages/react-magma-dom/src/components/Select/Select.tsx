@@ -199,6 +199,7 @@ export function Select<T>(props: SelectProps<T>) {
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
+        isInverse={isInverse}
         maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         items={items}
         itemToString={itemToString}

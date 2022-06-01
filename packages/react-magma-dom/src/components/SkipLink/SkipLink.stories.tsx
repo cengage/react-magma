@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkipLink } from '.';
-import { ButtonColor, ButtonVariant } from '../Button';
+import { ButtonVariant } from '../Button';
 
 export default {
   component: SkipLink,

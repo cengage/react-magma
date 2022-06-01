@@ -62,6 +62,7 @@ HelperMessage.args = {
 export const Inverse = Template.bind({});
 Inverse.args = {
   ...Default.args,
+  isMulti: false,
   isInverse: true,
 };
 Inverse.decorators = [

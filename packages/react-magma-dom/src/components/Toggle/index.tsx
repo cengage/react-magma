@@ -92,6 +92,23 @@ export function buildIconContainerColor(props) {
   return props.theme.colors.neutral100;
 }
 
+function buildToggleBorderColor(props) {
+  if (props.isInverse) {
+    if (props.hasError) {
+      return props.theme.colors.danger200;
+    }
+    return transparentize(0.5, props.theme.colors.neutral100);
+  }
+
+  if (props.hasError) {
+    return props.theme.colors.danger;
+  }
+  if (props.isChecked) {
+    return props.theme.colors.success;
+  }
+  return props.theme.colors.neutral;
+};
+
 const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
@@ -112,12 +129,7 @@ const Track = styled.span<{
       ? transparentize(0.8, props.theme.colors.neutral900)
       : props.theme.colors.neutral};
   border: 2px solid;
-  border-color: ${props =>
-    props.hasError
-      ? props.theme.colors.danger
-      : props.isInverse
-      ? transparentize(0.5, props.theme.colors.neutral100)
-      : props.theme.colors.neutral};
+  border-color: ${props => buildToggleBorderColor(props)};
   border-radius: 12px;
   box-shadow: ${props =>
     props.isInverse && props.hasError
@@ -134,11 +146,7 @@ const Track = styled.span<{
       background: ${props.isInverse
         ? transparentize(0.8, props.theme.colors.neutral900)
         : props.theme.colors.success};
-      border-color: ${props.hasError
-        ? props.theme.colors.danger
-        : props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral100)
-        : props.theme.colors.success};
+      border-color: ${buildToggleBorderColor(props)};
     `}
 
   ${props =>
