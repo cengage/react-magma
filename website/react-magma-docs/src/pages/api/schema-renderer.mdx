@@ -23,7 +23,7 @@ import {
   Schema,
   templateTypes,
   componentTypes,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
 
 const schema: Schema = {
   title: 'Basic Components',
@@ -83,7 +83,7 @@ import {
   Schema,
   templateTypes,
   componentTypes,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
 import { InputType } from 'react-magma-dom';
 
 const schema: Schema = {
@@ -226,7 +226,8 @@ import {
   componentTypes,
   componentMapper,
   ComponentMapper,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
+import { InputType } from 'react-magma-dom';
 
 export function Example() {
   const schema: Schema = {
@@ -285,7 +286,8 @@ import {
   componentTypes,
   componentMapper,
   ComponentMapper,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
+import { InputType } from 'react-magma-dom';
 
 export function Example() {
   const schema: Schema = {
@@ -334,7 +336,7 @@ import {
   componentTypes,
   componentMapper,
   ComponentMapper,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -418,7 +420,8 @@ import {
   componentTypes,
   componentMapper,
   ComponentMapper,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
+import { InputType } from 'react-magma-dom';
 
 export function Example() {
   const schema: Schema = {
@@ -478,7 +481,7 @@ import {
   componentTypes,
   componentMapper,
   ComponentMapper,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
 
 export function Example() {
   const schema: Schema = {
@@ -522,8 +525,8 @@ import {
   componentMapper,
   ComponentMapper,
   validatorTypes,
-} from 'react-magma-schema-renderer';
-import { Alert, AlertVariant } from 'react-magma-dom';
+} from '@react-magma/schema-renderer';
+import { Alert, AlertVariant, InputType } from 'react-magma-dom';
 
 export function Example() {
   const schema: Schema = {
@@ -683,8 +686,7 @@ import {
   componentMapper,
   ComponentMapper,
   validatorTypes,
-} from 'react-magma-schema-renderer';
-import { Alert, AlertVariant } from 'react-magma-dom';
+} from '@react-magma/schema-renderer';
 
 export function Example() {
   const schema: Schema = {
@@ -735,7 +737,7 @@ import {
   componentMapper,
   ComponentMapper,
   validatorTypes,
-} from 'react-magma-schema-renderer';
+} from '@react-magma/schema-renderer';
 
 const mockEndpoint = value =>
   new Promise((resolve, reject) => {

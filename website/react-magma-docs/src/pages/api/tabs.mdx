@@ -728,16 +728,7 @@ This prop is specified on the `Tabs` component.
 
 ```tsx
 import React from 'react';
-import {
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanelsContainer,
-  TabPanel,
-  TabsOrientation,
-  TabsIconPosition,
-  magma,
-} from 'react-magma-dom';
+import { TabsContainer, Tabs, Tab, TabsIconPosition } from 'react-magma-dom';
 
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
@@ -855,23 +846,21 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
 ```tsx
 import React from 'react';
-import {
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanelsContainer,
-  TabPanel,
-} from 'react-magma-dom';
+import { Card, CardBody, TabsContainer, Tabs, Tab } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <TabsContainer>
-      <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>
-        <Tab>First item</Tab>
-        <Tab>Second item</Tab>
-        <Tab>Third item</Tab>
-      </Tabs>
-    </TabsContainer>
+    <Card isInverse>
+      <CardBody>
+        <TabsContainer>
+          <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>
+            <Tab>First item</Tab>
+            <Tab>Second item</Tab>
+            <Tab>Third item</Tab>
+          </Tabs>
+        </TabsContainer>
+      </CardBody>
+    </Card>
   );
 }
 ```
@@ -880,13 +869,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import {
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanelsContainer,
-  TabPanel,
-} from 'react-magma-dom';
+import { TabsContainer, Tabs, Tab, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -894,7 +877,7 @@ export function Example() {
       <Tabs
         aria-label="Sample Inverse Colors On Dark Background Tabs"
         isInverse
-        backgroundColor={magma.colors.neutral01}
+        backgroundColor={magma.colors.neutral800}
       >
         <Tab>First item</Tab>
         <Tab>Second item</Tab>
@@ -910,6 +893,8 @@ export function Example() {
 ```tsx
 import React from 'react';
 import {
+  Card,
+  CardBody,
   TabsContainer,
   Tabs,
   Tab,
@@ -919,25 +904,29 @@ import {
 
 export function Example() {
   return (
-    <TabsContainer activeIndex={0} isInverse>
-      <Tabs aria-label="Sample Inverse Colors Tabs">
-        <Tab>Main page</Tab>
-        <Tab>FAQ</Tab>
-        <Tab>About us</Tab>
-      </Tabs>
+    <Card isInverse>
+      <CardBody>
+        <TabsContainer activeIndex={0} isInverse>
+          <Tabs aria-label="Sample Inverse Colors Tabs">
+            <Tab>Main page</Tab>
+            <Tab>FAQ</Tab>
+            <Tab>About us</Tab>
+          </Tabs>
 
-      <TabPanelsContainer>
-        <TabPanel>
-          <div>Main page</div>
-        </TabPanel>
-        <TabPanel>
-          <div>FAQ</div>
-        </TabPanel>
-        <TabPanel isInverse={false}>
-          <div>About us</div>
-        </TabPanel>
-      </TabPanelsContainer>
-    </TabsContainer>
+          <TabPanelsContainer>
+            <TabPanel>
+              <div>Main page</div>
+            </TabPanel>
+            <TabPanel>
+              <div>FAQ</div>
+            </TabPanel>
+            <TabPanel isInverse={false}>
+              <div>About us</div>
+            </TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      </CardBody>
+    </Card>
   );
 }
 ```

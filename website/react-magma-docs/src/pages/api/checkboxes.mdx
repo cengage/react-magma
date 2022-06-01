@@ -77,7 +77,11 @@ export function Example() {
         labelText="Success color"
       />
       <Checkbox checked color={magma.colors.danger} labelText="Danger color" />
-      <Checkbox checked color={magma.colors.warning} labelText="Warning color" />
+      <Checkbox
+        checked
+        color={magma.colors.warning}
+        labelText="Warning color"
+      />
       <Checkbox checked color={magma.colors.info} labelText="Info color" />
     </FormGroup>
   );
@@ -372,7 +376,9 @@ Full example of <Link to="/api/internationalization">internationalization overri
 import React from 'react';
 import {
   Checkbox,
+  defaultI18n,
   IndeterminateCheckbox,
+  I18nContext,
   IndeterminateCheckboxStatus,
   magma,
 } from 'react-magma-dom';
