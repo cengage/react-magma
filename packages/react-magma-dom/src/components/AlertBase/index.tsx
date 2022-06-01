@@ -224,6 +224,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
           : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`
       }      
       height: ${props.theme.spaceScale.spacing11};
+      padding-right:0;
     `}
 `;
 
@@ -260,7 +261,7 @@ const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
 const ProgressRingWrapper = styled.div`
   margin-top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
-  top: ${props => props.theme.spaceScale.spacing01};
+  top: auto;
   right: ${props => props.theme.spaceScale.spacing02};
 `;
 
