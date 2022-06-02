@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.35
+
+### Major Changes
+
+- c43ab1632: fixes for codesandbox examples in docs
+
 ## 3.0.0-next.34
 
 ### Major Changes
