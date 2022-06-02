@@ -46,7 +46,6 @@ export const AccordionPanel = React.forwardRef<
       isOpen={isExpanded}
       collapse
       unmountOnExit
-      style={{ overflow: 'visible' }}
     >
       <StyledPanel
         {...rest}

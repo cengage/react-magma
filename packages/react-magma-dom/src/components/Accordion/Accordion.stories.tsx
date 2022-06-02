@@ -195,6 +195,8 @@ export const WithDropdown = args => {
               </Flex>
               <Flex behavior={FlexBehavior.item} xs={12}>
                 <Textarea labelText="Message" />
+                <Textarea labelText="Comments" />
+                <Textarea labelText="Questions" />
               </Flex>
             </Flex>
           </AccordionPanel>
@@ -278,4 +280,5 @@ export const WithDropdown = args => {
 };
 WithDropdown.args = {
   isInverse: false,
+  isMulti: false,
 };
