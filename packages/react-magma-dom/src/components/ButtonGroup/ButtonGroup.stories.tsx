@@ -29,13 +29,13 @@ const Template: Story<ButtonGroupProps> = args => (
     <br /><br />
     <ButtonGroup {...args}>
       <IconButton icon={<SettingsIcon />} color={ButtonColor.secondary}>
-        Button
+        Settings
       </IconButton>
       <IconButton icon={<NotificationsIcon />} color={ButtonColor.secondary}>
-        Button
+        Notifications
       </IconButton>
       <IconButton icon={<ExpandMoreIcon />} color={ButtonColor.secondary}>
-        Button
+        More
       </IconButton>
     </ButtonGroup>
     <br /><br />
