@@ -347,9 +347,8 @@ export const transitions: ThemeTransitions = {
         height: 0,
         opacity: 0,
         transition: {
-          height: { duration: 0.2, ease: 'easeInOut' },
-          opacity: 1,
-          duration: 0.2,
+          height: { duration: 0.2, ease: 'easeInOut', delay: 0.1 },
+          opacity: { property: 1, duration: 0.1, delay: 0 },
         },
       },
       enter: {
@@ -357,8 +356,7 @@ export const transitions: ThemeTransitions = {
         opacity: 1,
         transition: {
           height: { duration: 0.3, ease: 'easeInOut' },
-          opacity: 0,
-          duration: 0.3,
+          opacity: { property: 0, duration: 0.3 }
         },
       },
     },
