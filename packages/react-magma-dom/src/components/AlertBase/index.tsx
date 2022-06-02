@@ -259,7 +259,7 @@ const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
 `;
 
 const ProgressRingWrapper = styled.div`
-  margin-top: ${props => props.theme.spaceScale.spacing01};
+  margin-top: 6px;
   position: absolute;
   top: auto;
   right: ${props => props.theme.spaceScale.spacing02};
