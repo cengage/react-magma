@@ -42,11 +42,7 @@ export const AccordionPanel = React.forwardRef<
     React.useContext(AccordionItemContext);
 
   return (
-    <Transition
-      isOpen={isExpanded}
-      collapse
-      unmountOnExit
-    >
+    <Transition isOpen={isExpanded} collapse unmountOnExit>
       <StyledPanel
         {...rest}
         aria-labelledby={buttonId}

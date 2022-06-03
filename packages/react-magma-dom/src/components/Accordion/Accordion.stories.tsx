@@ -271,7 +271,15 @@ export const WithDropdown = args => {
               onClose={() => setShowModal(false)}
               isOpen={showModal}
             >
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed lorem in tellus dignissim varius in sit amet nibh. Suspendisse ac bibendum diam, at gravida ex. In ac eros et massa faucibus ultricies. Donec molestie tempor diam eleifend tempor. Cras nec feugiat dui, ac tincidunt elit. Duis ac vulputate lorem. Nullam maximus tortor eget cursus aliquam. Praesent leo quam, viverra iaculis elit at, pulvinar malesuada magna.</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                sed lorem in tellus dignissim varius in sit amet nibh.
+                Suspendisse ac bibendum diam, at gravida ex. In ac eros et massa
+                faucibus ultricies. Donec molestie tempor diam eleifend tempor.
+                Cras nec feugiat dui, ac tincidunt elit. Duis ac vulputate
+                lorem. Nullam maximus tortor eget cursus aliquam. Praesent leo
+                quam, viverra iaculis elit at, pulvinar malesuada magna.
+              </p>
               <p>
                 <Button>This is a button</Button>
               </p>
