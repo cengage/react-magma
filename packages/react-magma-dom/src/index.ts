@@ -114,8 +114,6 @@ export {
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
 export { Label, LabelPosition } from './components/Label';
-export { List, ListProps } from './components/List';
-export { ListItem, ListItemProps } from './components/List/ListItem';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -185,9 +183,13 @@ export {
 export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
-
-export { Tag, TagProps } from './components/Tag';
-
+export {
+  Tag,
+  TagProps,
+  BaseTagProps,
+  ClickableTagProps,
+  DeletableTagProps,
+} from './components/Tag';
 export {
   ToastsContainer,
   ToastsContainerProps,
@@ -238,6 +240,5 @@ export * from './components/Transition';
 export * from './components/Drawer';
 export * from './components/FormFieldContainer';
 export * from './components/Grid';
-export * from './components/Tag';
 export * from './components/List';
 export * from './components/BlockQuote';
