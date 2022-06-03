@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.22
+
+### Major Changes
+
+- 465fd0fce: fix: Toast X center alignment
+
 ## 3.0.0-next.21
 
 ### Major Changes
