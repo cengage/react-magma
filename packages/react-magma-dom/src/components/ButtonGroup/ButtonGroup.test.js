@@ -120,22 +120,20 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('justify-content', 'space-between');
       });
     });
-    xdescribe('No Space', () => {
+    describe('No Space', () => {
       it('Removes the border radius around the buttons', () => {
         const { getByTestId } = render(
           <ButtonGroup
             testId={testId}
+            noSpace={true}
             orientation={ButtonGroupOrientation.horizontal}
             alignment={ButtonGroupAlignment.left}
-            noSpace
           >
             <Button testId={`${testId}-1`}>1</Button>
             <Button testId={`${testId}-2`}>2</Button>
             <Button testId={`${testId}-3`}>3</Button>
           </ButtonGroup>
         );
-
-        console.log('>>', getByTestId(testId));
 
         expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
           'border-radius',

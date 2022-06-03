@@ -128,14 +128,14 @@ const StyledButtonGroup = styled.div<{
       css`
         margin-right: 1px;
 
-        &:first-of-type {
+        &:first-of-type:not(:only-of-type) {
           border-radius: ${props.theme.borderRadius} 0 0
             ${props.theme.borderRadius};
         }
         &:not(:first-of-type) {
           border-radius: 0;
         }
-        &:last-child {
+        &:last-child:not(:only-of-type) {
           border-radius: 0 ${props.theme.borderRadius}
             ${props.theme.borderRadius} 0;
         }
