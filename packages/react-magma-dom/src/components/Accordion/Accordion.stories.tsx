@@ -198,7 +198,6 @@ export const WithDropdown = args => {
                 <Textarea labelText="Comments" />
                 <Textarea labelText="Questions" />
                 <Textarea labelText="Jokes" />
-                <Textarea labelText="Anything else?" />
               </Flex>
             </Flex>
           </AccordionPanel>

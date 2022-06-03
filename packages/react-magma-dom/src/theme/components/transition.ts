@@ -355,8 +355,8 @@ export const transitions: ThemeTransitions = {
         height: 'auto',
         opacity: 1,
         transition: {
-          height: { duration: 0.3, ease: 'easeInOut' },
-          opacity: { property: 0, duration: 0.3 }
+          height: { duration: 0.3, ease: 'easeInOut', delay: 0 },
+          opacity: { property: 0, duration: 0.1, delay: 0.2 }
         },
       },
     },
