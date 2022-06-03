@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.13
+
+### Patch Changes
+
+- bf0249c7: bug: Dropdowns/Selects are hidden when used inside other components.
+
 ## 2.5.12
 
 ### Patch Changes
