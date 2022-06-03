@@ -114,7 +114,8 @@ export {
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
 export { Label, LabelPosition } from './components/Label';
-export { List, ListProps, ListItemProps } from './components/List';
+export { List, ListProps } from './components/List';
+export { ListItem, ListItemProps } from './components/List/ListItem';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
