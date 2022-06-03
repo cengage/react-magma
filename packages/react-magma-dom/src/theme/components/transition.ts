@@ -345,19 +345,23 @@ export const transitions: ThemeTransitions = {
     motion: {
       exit: {
         height: 0,
+        opacity: 0,
         transition: {
-          height: { duration: 0.2, ease: 'easeInOut' },
+          height: { duration: 0.2, ease: 'easeInOut', delay: 0.1 },
+          opacity: { property: 1, duration: 0.1, delay: 0 },
         },
       },
       enter: {
         height: 'auto',
+        opacity: 1,
         transition: {
-          height: { duration: 0.3, ease: 'easeInOut' },
+          height: { duration: 0.3, ease: 'easeInOut', delay: 0 },
+          opacity: { property: 0, duration: 0.1, delay: 0.2 }
         },
       },
     },
     baseStyle: {
-      overflow: 'hidden',
+      overflow: 'visible',
     },
   },
 };
