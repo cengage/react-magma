@@ -122,10 +122,10 @@ describe('ButtonGroup', () => {
     });
     describe('No Space', () => {
       it('Removes the border radius around the buttons', () => {
-        const { getByTestId } = render(
+        const { container, getByTestId } = render(
           <ButtonGroup
             testId={testId}
-            noSpace={true}
+            noSpace
             orientation={ButtonGroupOrientation.horizontal}
             alignment={ButtonGroupAlignment.left}
           >
@@ -135,18 +135,20 @@ describe('ButtonGroup', () => {
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
-          'border-radius',
-          '8px 0 0 8px'
-        );
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
-          'border-radius',
-          '0'
-        );
-        expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
-          'border-radius',
-          '0 8px 8px 0'
-        );
+        expect(container).toMatchSnapshot();
+
+        // expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+        //   'border-radius',
+        //   '8px 0 0 8px'
+        // );
+        // expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+        //   'border-radius',
+        //   '0'
+        // );
+        // expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
+        //   'border-radius',
+        //   '0 8px 8px 0'
+        // );
       });
     });
   });
@@ -240,27 +242,29 @@ describe('ButtonGroup', () => {
     });
     describe('No Space', () => {
       it('Does NOT remove the border radius around the buttons', () => {
-        const { getByTestId } = render(
+        const { container, getByTestId } = render(
           <ButtonGroup
             testId={testId}
             orientation={ButtonGroupOrientation.vertical}
             noSpace
           >
-            <Button testId={`${testId}-1`}>1</Button>
-            <Button testId={`${testId}-2`}>2</Button>
-            <Button testId={`${testId}-3`}>3</Button>
+            <Button testId={`${testId}-4`}>1</Button>
+            <Button testId={`${testId}-5`}>2</Button>
+            <Button testId={`${testId}-6`}>3</Button>
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+        expect(container).toMatchSnapshot();
+
+        expect(getByTestId(`${testId}-4`)).toHaveStyleRule(
           'border-radius',
           '8px'
         );
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+        expect(getByTestId(`${testId}-5`)).toHaveStyleRule(
           'border-radius',
           '8px'
         );
-        expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
+        expect(getByTestId(`${testId}-6`)).toHaveStyleRule(
           'border-radius',
           '8px'
         );

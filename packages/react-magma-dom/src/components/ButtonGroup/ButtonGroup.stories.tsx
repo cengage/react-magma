@@ -8,8 +8,16 @@ import {
 } from '.';
 import { Button, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
-import { SettingsIcon, NotificationsIcon, ExpandMoreIcon } from 'react-magma-icons';
-import { BreakpointsContainer, Breakpoint, BreakpointScreenSize } from '../BreakpointsContainer';
+import {
+  SettingsIcon,
+  NotificationsIcon,
+  ExpandMoreIcon,
+} from 'react-magma-icons';
+import {
+  BreakpointsContainer,
+  Breakpoint,
+  BreakpointScreenSize,
+} from '../BreakpointsContainer';
 
 const Template: Story<ButtonGroupProps> = args => (
   <>
@@ -18,7 +26,8 @@ const Template: Story<ButtonGroupProps> = args => (
       <Button>No, Thanks</Button>
       <Button>Remind Me Later</Button>
     </ButtonGroup>
-    <br /><br />
+    <br />
+    <br />
     <ButtonGroup {...args}>
       <Button>1</Button>
       <Button>2</Button>
@@ -26,7 +35,8 @@ const Template: Story<ButtonGroupProps> = args => (
       <Button>4</Button>
       <Button>5</Button>
     </ButtonGroup>
-    <br /><br />
+    <br />
+    <br />
     <ButtonGroup {...args}>
       <IconButton icon={<SettingsIcon />} color={ButtonColor.secondary}>
         Settings
@@ -38,11 +48,24 @@ const Template: Story<ButtonGroupProps> = args => (
         More
       </IconButton>
     </ButtonGroup>
-    <br /><br />
+    <br />
+    <br />
     <ButtonGroup {...args}>
-      <IconButton icon={<SettingsIcon />} aria-label="Button" color={ButtonColor.danger} />
-      <IconButton icon={<NotificationsIcon />} aria-label="Button" color={ButtonColor.danger} />
-      <IconButton icon={<ExpandMoreIcon />} aria-label="Button" color={ButtonColor.danger} />
+      <IconButton
+        icon={<SettingsIcon />}
+        aria-label="Button"
+        color={ButtonColor.danger}
+      />
+      <IconButton
+        icon={<NotificationsIcon />}
+        aria-label="Button"
+        color={ButtonColor.danger}
+      />
+      <IconButton
+        icon={<ExpandMoreIcon />}
+        aria-label="Button"
+        color={ButtonColor.danger}
+      />
     </ButtonGroup>
   </>
 );
@@ -78,17 +101,17 @@ Default.args = {
   noSpace: false,
 };
 
-export const SmallBreakpoint = (args) => {
+export const SmallBreakpoint = args => {
   return (
     <BreakpointsContainer>
       <Breakpoint screenSize={BreakpointScreenSize.xs}>
         <ButtonGroup {...args} orientation={ButtonGroupOrientation.vertical}>
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
-            <Button>5</Button>
-          </ButtonGroup>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>3</Button>
+          <Button>4</Button>
+          <Button>5</Button>
+        </ButtonGroup>
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.small}>
@@ -101,7 +124,7 @@ export const SmallBreakpoint = (args) => {
         </ButtonGroup>
       </Breakpoint>
     </BreakpointsContainer>
-  )
+  );
 };
 SmallBreakpoint.args = {
   ...Default.args,
