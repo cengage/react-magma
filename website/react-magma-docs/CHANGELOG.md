@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.37
+
+### Major Changes
+
+- ad7310916: docs: update GitHub icon focus
+
 ## 3.0.0-next.36
 
 ### Patch Changes
