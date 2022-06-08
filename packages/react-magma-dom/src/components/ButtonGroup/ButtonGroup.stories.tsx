@@ -6,7 +6,13 @@ import {
   ButtonGroupAlignment,
   ButtonGroupProps,
 } from '.';
-import { Button, ButtonColor } from '../Button';
+import {
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  ButtonSize,
+  ButtonTextTransform,
+} from '../Button';
 import { IconButton } from '../IconButton';
 import {
   SettingsIcon,
@@ -33,39 +39,21 @@ const Template: Story<ButtonGroupProps> = args => (
       <Button>2</Button>
       <Button>3</Button>
       <Button>4</Button>
-      <Button>5</Button>
+      <Button color={ButtonColor.danger}>5</Button>
     </ButtonGroup>
     <br />
     <br />
     <ButtonGroup {...args}>
-      <IconButton icon={<SettingsIcon />} color={ButtonColor.secondary}>
-        Settings
-      </IconButton>
-      <IconButton icon={<NotificationsIcon />} color={ButtonColor.secondary}>
-        Notifications
-      </IconButton>
-      <IconButton icon={<ExpandMoreIcon />} color={ButtonColor.secondary}>
-        More
-      </IconButton>
+      <IconButton icon={<SettingsIcon />}>Settings</IconButton>
+      <IconButton icon={<NotificationsIcon />}>Notifications</IconButton>
+      <IconButton icon={<ExpandMoreIcon />}>More</IconButton>
     </ButtonGroup>
     <br />
     <br />
     <ButtonGroup {...args}>
-      <IconButton
-        icon={<SettingsIcon />}
-        aria-label="Button"
-        color={ButtonColor.danger}
-      />
-      <IconButton
-        icon={<NotificationsIcon />}
-        aria-label="Button"
-        color={ButtonColor.danger}
-      />
-      <IconButton
-        icon={<ExpandMoreIcon />}
-        aria-label="Button"
-        color={ButtonColor.danger}
-      />
+      <IconButton icon={<SettingsIcon />} aria-label="Button" />
+      <IconButton icon={<NotificationsIcon />} aria-label="Button" />
+      <IconButton icon={<ExpandMoreIcon />} aria-label="Button" />
     </ButtonGroup>
   </>
 );
@@ -89,6 +77,35 @@ export default {
       control: {
         type: 'select',
         options: ButtonGroupOrientation,
+      },
+    },
+    color: {
+      control: {
+        type: 'select',
+        options: ButtonColor,
+      },
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ButtonSize,
+      },
+    },
+    variant: {
+      control: {
+        type: 'select',
+        options: ButtonVariant,
+      },
+    },
+    textTransform: {
+      control: {
+        type: 'select',
+        options: ButtonTextTransform,
+      },
+    },
+    isInverse: {
+      control: {
+        type: 'boolean',
       },
     },
   },

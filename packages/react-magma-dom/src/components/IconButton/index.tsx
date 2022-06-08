@@ -10,9 +10,10 @@ import {
   ButtonTextTransform,
 } from '../Button';
 import { IconProps } from 'react-magma-icons';
-import { omit, Omit, XOR } from '../../utils';
+import { omit, Omit, resolveProps, XOR } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
+import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -88,22 +89,23 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
-    const { color, shape, size, testId, textTransform, variant, ...rest } =
-      props;
 
+    const contextProps = React.useContext(ButtonGroupContext);
     const theme = React.useContext(ThemeContext);
+    const resolvedProps = resolveProps(contextProps, props);
+    const { color, shape, size, testId, textTransform, variant, ...rest } = resolvedProps;
 
-    if (instanceOfIconOnly(props)) {
-      icon = props.icon;
+    if (instanceOfIconOnly(resolvedProps)) {
+      icon = resolvedProps.icon;
     } else {
-      icon = props.icon;
-      iconPosition = props.iconPosition;
-      children = props.children;
+      icon = resolvedProps.icon;
+      iconPosition = resolvedProps.iconPosition;
+      children = resolvedProps.children;
     }
 
     const other = omit(['iconPosition', 'textPosition'], rest);
 
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(resolvedProps.isInverse);
 
     if (icon && !children) {
       return (

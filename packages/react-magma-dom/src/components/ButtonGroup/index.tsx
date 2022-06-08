@@ -4,6 +4,12 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { css } from '@emotion/core';
+import {
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+  ButtonTextTransform,
+} from '../Button';
 
 export enum ButtonGroupAlignment {
   left = 'left', // default
@@ -28,21 +34,53 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   alignment?: ButtonGroupAlignment;
   /**
+   * The color of the button, indicating its function in the UI
+   * @default ButtonColor.primary
+   */
+  color?: ButtonColor;
+  /**
    * Determines if the buttons are displayed vertically or horizontally
    * @default ButtonGroupOrientation.horizontal
    */
   orientation?: ButtonGroupOrientation;
   /**
+   * The variant of the buttons
+   * @default ButtonVariant.solid
+   */
+  variant?: ButtonVariant;
+  /**
+   * The relative size of the button
+   * @default ButtonSize.medium
+   */
+  size?: ButtonSize;
+  /**
    * Whether no space should be added
    * @default false
    */
   noSpace?: boolean;
+  isInverse?: boolean;
   testId?: string;
+  /**
+   * Determines whether the button appears in all-caps
+   * @default ButtonTextTransform.uppercase
+   */
+  textTransform?: ButtonTextTransform;
   /**
    * @internal
    */
   theme?: ThemeInterface;
 }
+
+export interface ButtonGroupContextInterface {
+  variant?: ButtonVariant;
+  color?: ButtonColor;
+  size?: ButtonSize;
+  textTransform?: ButtonTextTransform;
+  isInverse?: boolean;
+}
+
+export const ButtonGroupContext =
+  React.createContext<ButtonGroupContextInterface>({});
 
 function buildButtonMargin(props) {
   if (props.noSpace) {
@@ -75,10 +113,27 @@ function buildButtonAlignment(props) {
   return 'start';
 }
 
+function buildNoSpaceBorderColor(props) {
+  console.log('props', props);
+
+  if (props.isInverse) {
+    if (props.color === 'secondary') {
+      return props.theme.colors.tertiary;
+    }
+    return props.theme.colors.neutral100;
+  }
+  if (props.color === 'secondary') {
+    return props.theme.colors.primary;
+  }
+  return props.theme.colors.neutral100;
+}
+
 const StyledButtonGroup = styled.div<{
   orientation?: ButtonGroupOrientation;
   alignment?: ButtonGroupAlignment;
   noSpace?: Boolean;
+  color?: ButtonColor;
+  isInverse?: Boolean;
 }>`
   display: flex;
   justify-content: ${props => buildButtonAlignment(props)};
@@ -126,18 +181,22 @@ const StyledButtonGroup = styled.div<{
       props.orientation === ButtonGroupOrientation.horizontal &&
       props.alignment !== ButtonGroupAlignment.apart &&
       css`
-        margin-right: 1px;
-
         &:first-of-type:not(:only-of-type) {
           border-radius: ${props.theme.borderRadius} 0 0
             ${props.theme.borderRadius};
         }
+        &:nth-of-type(2) {
+          border-left: 1px solid ${buildNoSpaceBorderColor(props)};
+        }
         &:not(:first-of-type) {
           border-radius: 0;
+          border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+          // border-left: 1px solid ${buildNoSpaceBorderColor(props)};
         }
         &:last-child:not(:only-of-type) {
           border-radius: 0 ${props.theme.borderRadius}
             ${props.theme.borderRadius} 0;
+          // border-left: 1px solid ${buildNoSpaceBorderColor(props)};
         }
       `}
   }
@@ -145,17 +204,31 @@ const StyledButtonGroup = styled.div<{
 
 export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
   (props, ref) => {
-    const { children, testId, ...rest } = props;
+    const {
+      children,
+      variant,
+      color,
+      size,
+      textTransform,
+      isInverse,
+      testId,
+      ...rest
+    } = props;
+    const context = { variant, color, size, textTransform, isInverse };
     const theme = React.useContext(ThemeContext);
 
     return (
       <StyledButtonGroup
+        color={color}
+        isInverse={isInverse}
         {...rest}
         theme={theme}
         ref={ref}
         data-testid={props.testId}
       >
-        {children}
+        <ButtonGroupContext.Provider value={context}>
+          {children}
+        </ButtonGroupContext.Provider>
       </StyledButtonGroup>
     );
   }
