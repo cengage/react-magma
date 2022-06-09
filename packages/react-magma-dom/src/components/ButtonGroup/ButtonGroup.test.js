@@ -1,8 +1,9 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { ButtonGroup, ButtonGroupOrientation, ButtonGroupAlignment } from '.';
-import { Button } from '../Button';
+import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import { render } from '@testing-library/react';
+import { magma } from '../../theme/magma';
 
 const testId = 'test-id';
 
@@ -137,6 +138,11 @@ describe('ButtonGroup', () => {
 
         expect(container).toMatchSnapshot();
 
+        // expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+        //     'border',
+        //     '1px solid red'
+        //   );
+
         // expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
         //   'border-radius',
         //   '8px 0 0 8px'
@@ -268,6 +274,115 @@ describe('ButtonGroup', () => {
           'border-radius',
           '8px'
         );
+      });
+    });
+  });
+
+  describe('Props for the buttons', () => {
+    describe('Color', () => {
+      it('sets the color of the children button components', () => {
+        const { getByTestId } = render(
+          <ButtonGroup
+            testId={testId}
+            orientation={ButtonGroupOrientation.vertical}
+            color={ButtonColor.danger}
+          >
+            <Button testId={`${testId}-1`}>1</Button>
+            <Button testId={`${testId}-2`}>2</Button>
+            <Button testId={`${testId}-3`}>3</Button>
+          </ButtonGroup>
+        );
+
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', magma.colors.danger);
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', magma.colors.danger);
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('background', magma.colors.danger);
+      });
+      it('sets the color of the children buttons, except if the button has a color set', () => {
+        const { getByTestId } = render(
+          <ButtonGroup
+            testId={testId}
+            orientation={ButtonGroupOrientation.vertical}
+            color={ButtonColor.danger}
+          >
+            <Button testId={`${testId}-1`}>1</Button>
+            <Button testId={`${testId}-2`}>2</Button>
+            <Button testId={`${testId}-3`} color={ButtonColor.marketing}>3</Button>
+          </ButtonGroup>
+        );
+
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', magma.colors.danger);
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', magma.colors.danger);
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('background', magma.colors.secondary);
+      });
+    });
+
+    describe('Size', () => {
+      it('sets the size of the children button components', () => {
+        const { getByTestId } = render(
+          <ButtonGroup
+            testId={testId}
+            orientation={ButtonGroupOrientation.vertical}
+            size={ButtonSize.large}
+          >
+            <Button testId={`${testId}-1`}>1</Button>
+            <Button testId={`${testId}-2`}>2</Button>
+          </ButtonGroup>
+        );
+
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('height', '56px');
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('height', '56px');
+      });
+      it('sets the size of the children buttons, except if the button has a size set', () => {
+        const { getByTestId } = render(
+          <ButtonGroup
+            testId={testId}
+            orientation={ButtonGroupOrientation.vertical}
+            size={ButtonSize.large}
+          >
+            <Button testId={`${testId}-1`}>1</Button>
+            <Button testId={`${testId}-2`}>2</Button>
+            <Button testId={`${testId}-3`} size={ButtonSize.small}>3</Button>
+          </ButtonGroup>
+        );
+
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('height', '56px');
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('height', '56px');
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('height', '28px');
+      });
+    });
+
+    describe('Variant', () => {
+      it('sets the variant of the children button components', () => {
+        const { getByTestId } = render(
+          <ButtonGroup
+            testId={testId}
+            orientation={ButtonGroupOrientation.vertical}
+            variant={ButtonVariant.link}
+          >
+            <Button testId={`${testId}-1`}>1</Button>
+            <Button testId={`${testId}-2`}>2</Button>
+          </ButtonGroup>
+        );
+
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', 'none');
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', 'none');
+      });
+      it('sets the variant of the children buttons, except if the button has a variant set', () => {
+        const { getByTestId } = render(
+          <ButtonGroup
+            testId={testId}
+            orientation={ButtonGroupOrientation.vertical}
+            variant={ButtonVariant.link}
+          >
+            <Button testId={`${testId}-1`}>1</Button>
+            <Button testId={`${testId}-2`}>2</Button>
+            <Button testId={`${testId}-3`} variant={ButtonVariant.solid}>3</Button>
+          </ButtonGroup>
+        );
+
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', 'none');
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', 'none');
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('background', magma.colors.primary);
       });
     });
   });

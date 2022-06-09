@@ -34,7 +34,7 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   alignment?: ButtonGroupAlignment;
   /**
-   * The color of the button, indicating its function in the UI
+   * The color of all the buttons in the group
    * @default ButtonColor.primary
    */
   color?: ButtonColor;
@@ -44,24 +44,24 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   orientation?: ButtonGroupOrientation;
   /**
-   * The variant of the buttons
+   * The variant of all the buttons in the group
    * @default ButtonVariant.solid
    */
   variant?: ButtonVariant;
   /**
-   * The relative size of the button
+   * The relative size of all the buttons in the group
    * @default ButtonSize.medium
    */
   size?: ButtonSize;
   /**
-   * Whether no space should be added
+   * Whether or not the buttons in the group are spaced out
    * @default false
    */
   noSpace?: boolean;
   isInverse?: boolean;
   testId?: string;
   /**
-   * Determines whether the button appears in all-caps
+   * Determines whether all the buttons in the group appear in all-caps
    * @default ButtonTextTransform.uppercase
    */
   textTransform?: ButtonTextTransform;
@@ -114,8 +114,6 @@ function buildButtonAlignment(props) {
 }
 
 function buildNoSpaceBorderColor(props) {
-  console.log('props', props);
-
   if (props.isInverse) {
     if (props.color === 'secondary') {
       return props.theme.colors.tertiary;
@@ -191,12 +189,10 @@ const StyledButtonGroup = styled.div<{
         &:not(:first-of-type) {
           border-radius: 0;
           border-right: 1px solid ${buildNoSpaceBorderColor(props)};
-          // border-left: 1px solid ${buildNoSpaceBorderColor(props)};
         }
         &:last-child:not(:only-of-type) {
           border-radius: 0 ${props.theme.borderRadius}
             ${props.theme.borderRadius} 0;
-          // border-left: 1px solid ${buildNoSpaceBorderColor(props)};
         }
       `}
   }
