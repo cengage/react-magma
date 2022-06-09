@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.39
+
+### Major Changes
+
+- 2979534ed: docs: updated alerts design guidelines
+
 ## 3.0.0-next.38
 
 ### Patch Changes
