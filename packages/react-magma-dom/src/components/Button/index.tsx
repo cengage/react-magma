@@ -100,15 +100,27 @@ export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { children } = props;
-
     const contextProps = React.useContext(ButtonGroupContext);
     const resolvedProps = resolveProps(contextProps, props);
+    const { color, shape, size, testId, textTransform, variant, ...rest } =
+      resolvedProps;
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
     return (
-      <StyledButton {...resolvedProps} isInverse={isInverse} ref={ref}>
-        {children}
+      <StyledButton
+        {...rest}
+        ref={ref}
+        color={color || ButtonColor.primary}
+        isInverse={isInverse}
+        shape={shape || ButtonShape.fill}
+        size={size || ButtonSize.medium}
+        testId={testId}
+        textTransform={
+          textTransform || ButtonTextTransform.uppercase
+        }
+        variant={variant || ButtonVariant.solid}
+      >
+        {resolvedProps.children}
       </StyledButton>
     );
   }

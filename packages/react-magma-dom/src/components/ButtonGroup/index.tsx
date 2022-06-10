@@ -115,13 +115,13 @@ function buildButtonAlignment(props) {
 
 function buildNoSpaceBorderColor(props) {
   if (props.isInverse) {
-    if (props.color === 'secondary') {
+    if (props.color === ButtonColor.secondary) {
       return props.theme.colors.tertiary;
     }
     return props.theme.colors.neutral100;
   }
-  if (props.color === 'secondary') {
-    return props.theme.colors.primary;
+  if (props.color === ButtonColor.secondary) {
+    return props.theme.colors.primary300;
   }
   return props.theme.colors.neutral100;
 }
@@ -182,17 +182,22 @@ const StyledButtonGroup = styled.div<{
         &:first-of-type:not(:only-of-type) {
           border-radius: ${props.theme.borderRadius} 0 0
             ${props.theme.borderRadius};
+          border-right: 0;
         }
         &:nth-of-type(2) {
           border-left: 1px solid ${buildNoSpaceBorderColor(props)};
         }
         &:not(:first-of-type) {
           border-radius: 0;
-          border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+          border-right: ${props.color === ButtonColor.secondary ? '0' : `1px solid ${props.theme.colors.neutral100}`};
+        }
+        &:not(:first-of-type)&:not(:last-child) {
+          border-right: 0;
         }
         &:last-child:not(:only-of-type) {
           border-radius: 0 ${props.theme.borderRadius}
             ${props.theme.borderRadius} 0;
+          border-right: 1px solid ${buildNoSpaceBorderColor(props)};
         }
       `}
   }

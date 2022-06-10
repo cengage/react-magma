@@ -8,6 +8,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   align-items: center;
   background: #3942B0;
   border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -55,12 +56,12 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -79,8 +80,8 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -142,6 +143,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-12 > button:first-of-type:not(:only-of-type) {
   border-radius: 8px 0 0 8px;
+  border-right: 0;
 }
 
 .emotion-12 > button:nth-of-type(2) {
@@ -153,8 +155,13 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   border-right: 1px solid #FFFFFF;
 }
 
+.emotion-12 > button:not(:first-of-type).emotion-12 > button:not(:last-child) {
+  border-right: 0;
+}
+
 .emotion-12 > button:last-child:not(:only-of-type) {
   border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
 }
 
 .emotion-2 {
@@ -164,6 +171,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   align-items: center;
   background: #3942B0;
   border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -211,12 +219,12 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -235,8 +243,8 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -298,6 +306,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-12 > button:first-of-type:not(:only-of-type) {
   border-radius: 8px 0 0 8px;
+  border-right: 0;
 }
 
 .emotion-12 > button:nth-of-type(2) {
@@ -309,8 +318,13 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   border-right: 1px solid #FFFFFF;
 }
 
+.emotion-12 > button:not(:first-of-type).emotion-12 > button:not(:last-child) {
+  border-right: 0;
+}
+
 .emotion-12 > button:last-child:not(:only-of-type) {
   border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
 }
 
 <div>
@@ -321,7 +335,9 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   >
     <button
       class="emotion-2 emotion-3"
+      color="primary"
       data-testid="test-id-1"
+      shape="fill"
       type="button"
     >
       <span
@@ -332,7 +348,9 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
     </button>
     <button
       class="emotion-2 emotion-3"
+      color="primary"
       data-testid="test-id-2"
+      shape="fill"
       type="button"
     >
       <span
@@ -343,7 +361,9 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
     </button>
     <button
       class="emotion-2 emotion-3"
+      color="primary"
       data-testid="test-id-3"
+      shape="fill"
       type="button"
     >
       <span
@@ -364,6 +384,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: center;
   background: #3942B0;
   border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -411,12 +432,12 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -435,8 +456,8 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -507,6 +528,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: center;
   background: #3942B0;
   border: 0;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -554,12 +576,12 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #2d3489;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):after {
-  background: #3942B0;
+  background: #FFFFFF;
   border-radius: 50%;
   content: '';
   height: 28px;
@@ -578,8 +600,8 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #202563;
+  color: #FFFFFF;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -651,7 +673,9 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   >
     <button
       class="emotion-2 emotion-3"
+      color="primary"
       data-testid="test-id-4"
+      shape="fill"
       type="button"
     >
       <span
@@ -662,7 +686,9 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
     </button>
     <button
       class="emotion-2 emotion-3"
+      color="primary"
       data-testid="test-id-5"
+      shape="fill"
       type="button"
     >
       <span
@@ -673,7 +699,9 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
     </button>
     <button
       class="emotion-2 emotion-3"
+      color="primary"
       data-testid="test-id-6"
+      shape="fill"
       type="button"
     >
       <span

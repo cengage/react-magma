@@ -112,13 +112,13 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         <StyledButton
           {...other}
           ref={ref}
-          color={color ? color : ButtonColor.primary}
+          color={color || ButtonColor.primary}
           iconOnly
           testId={testId}
           isInverse={isInverse}
-          shape={shape ? shape : ButtonShape.round}
+          shape={shape || ButtonShape.round}
           size={size ? size : ButtonSize.medium}
-          variant={variant ? variant : ButtonVariant.solid}
+          variant={variant || ButtonVariant.solid}
         >
           {React.Children.only(
             React.cloneElement(icon, {
@@ -134,15 +134,15 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       <StyledButton
         {...other}
         ref={ref}
-        color={color ? color : ButtonColor.primary}
+        color={color || ButtonColor.primary}
         isInverse={isInverse}
-        shape={shape ? shape : ButtonShape.fill}
-        size={size ? size : ButtonSize.medium}
+        shape={shape || ButtonShape.fill}
+        size={size || ButtonSize.medium}
         testId={testId}
         textTransform={
-          textTransform ? textTransform : ButtonTextTransform.uppercase
+          textTransform || ButtonTextTransform.uppercase
         }
-        variant={variant ? variant : ButtonVariant.solid}
+        variant={variant || ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (
           <SpanTextLeft size={size} theme={theme}>
@@ -151,7 +151,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         {React.Children.only(
           React.cloneElement(icon, {
-            size: icon.props.size ? icon.props.size : getIconSize(size, theme),
+            size: icon.props.size || getIconSize(size, theme),
             'data-testid': `${testId}-icon`,
           })
         )}

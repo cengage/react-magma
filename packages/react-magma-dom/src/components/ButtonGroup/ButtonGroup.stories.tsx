@@ -15,9 +15,11 @@ import {
 } from '../Button';
 import { IconButton } from '../IconButton';
 import {
+  FavoriteIcon,
   SettingsIcon,
   NotificationsIcon,
   ExpandMoreIcon,
+  AsteriskIcon,
 } from 'react-magma-icons';
 import {
   BreakpointsContainer,
@@ -28,6 +30,12 @@ import {
 const Template: Story<ButtonGroupProps> = args => (
   <>
     <ButtonGroup {...args}>
+      <Button>Cancel</Button>
+      <Button color={ButtonColor.primary}>Save</Button>
+    </ButtonGroup>
+    <br />
+    <br />
+    <ButtonGroup {...args}>
       <Button>Rate Now</Button>
       <Button>No, Thanks</Button>
       <Button>Remind Me Later</Button>
@@ -35,15 +43,8 @@ const Template: Story<ButtonGroupProps> = args => (
     <br />
     <br />
     <ButtonGroup {...args}>
-      <Button>1</Button>
-      <Button>2</Button>
-      <Button>3</Button>
-      <Button>4</Button>
-      <Button color={ButtonColor.danger}>5</Button>
-    </ButtonGroup>
-    <br />
-    <br />
-    <ButtonGroup {...args}>
+      <IconButton icon={<FavoriteIcon />}>Favorites</IconButton>
+      <IconButton icon={<AsteriskIcon />}> Star</IconButton>
       <IconButton icon={<SettingsIcon />}>Settings</IconButton>
       <IconButton icon={<NotificationsIcon />}>Notifications</IconButton>
       <IconButton icon={<ExpandMoreIcon />}>More</IconButton>

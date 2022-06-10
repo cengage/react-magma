@@ -2,12 +2,12 @@
 pageTitle: ButtonGroup API
 title: ButtonGroup
 props:
-  - ButtongroupProps
+  - ButtonGroupProps
 ---
 
 <DocsHeading type="api">ButtonGroup</DocsHeading>
 
-A ButtonGroup is a layout component for Buttons. It's a helper for aligning 2 or more buttons together.
+A ButtonGroup is a layout component for <Link to="/api/button">Buttons</Link> and <Link to="/api/icon-button">Icon Buttons</Link>. It's a helper for aligning 2 or more buttons together with appropriate spacing.
 
 ## Default
 
@@ -15,14 +15,13 @@ By default, the ButtonGroup will align the buttons horizontally and to the left.
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button } from 'react-magma-dom';
+import { ButtonGroup, Button, ButtonColor } from 'react-magma-dom';
 
 export function Example() {
   return (
     <ButtonGroup>
-      <Button>1</Button>
-      <Button>2</Button>
-      <Button>3</Button>
+      <Button color={ButtonColor.secondary}>Cancel</Button>
+      <Button color={ButtonColor.primary}>Save</Button>
     </ButtonGroup>
   );
 }
@@ -120,15 +119,38 @@ The `noSpace` prop should only be used with the `horizontal` orientation.
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
+import { ButtonGroup, Button, ButtonGroupOrientation, ButtonColor } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace>
+    <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace color={ButtonColor.secondary}>
       <Button>1</Button>
       <Button>2</Button>
       <Button>3</Button>
     </ButtonGroup>
+  );
+}
+```
+
+## Color, Variant, Size, isInverse
+
+The `color`, `variant` and `size` props can be used on the ButtonGroup to set the default value for all the buttons inside it. If a Button in the group also sets that prop, the one in the Button will be visible. 
+
+```typescript
+import React from 'react';
+import { ButtonGroup, Button, ButtonColor, ButtonVariant, ButtonSize, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{background: magma.colors.primary600}}>
+      <ButtonGroup color={ButtonColor.primary} variant={ButtonVariant.solid} size={ButtonSize.large} isInverse>
+        <Button>1</Button>
+        <Button color={ButtonColor.danger}>2</Button>
+        <Button>3</Button>
+        <Button>4</Button>
+        <Button variant={ButtonVariant.link}>5</Button>
+      </ButtonGroup>
+    </div>
   );
 }
 ```
@@ -155,7 +177,7 @@ export function Example() {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.small}>
-        <ButtonGroup>
+        <ButtonGroup orientation={ButtonGroupOrientation.horizontal}>
           <Button>1</Button>
           <Button>2</Button>
           <Button>3</Button>
@@ -172,4 +194,4 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<ButtongroupProps />
+<ButtonGroupProps />

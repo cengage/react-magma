@@ -226,7 +226,9 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -464,7 +466,9 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -704,6 +708,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
     class="emotion-2 emotion-3"
     color="secondary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -941,6 +946,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
     shape="round"
     type="button"
@@ -1180,7 +1186,9 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -1418,7 +1426,9 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span

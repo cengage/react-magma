@@ -137,24 +137,6 @@ describe('ButtonGroup', () => {
         );
 
         expect(container).toMatchSnapshot();
-
-        // expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
-        //     'border',
-        //     '1px solid red'
-        //   );
-
-        // expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
-        //   'border-radius',
-        //   '8px 0 0 8px'
-        // );
-        // expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
-        //   'border-radius',
-        //   '0'
-        // );
-        // expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
-        //   'border-radius',
-        //   '0 8px 8px 0'
-        // );
       });
     });
   });
@@ -261,19 +243,6 @@ describe('ButtonGroup', () => {
         );
 
         expect(container).toMatchSnapshot();
-
-        expect(getByTestId(`${testId}-4`)).toHaveStyleRule(
-          'border-radius',
-          '8px'
-        );
-        expect(getByTestId(`${testId}-5`)).toHaveStyleRule(
-          'border-radius',
-          '8px'
-        );
-        expect(getByTestId(`${testId}-6`)).toHaveStyleRule(
-          'border-radius',
-          '8px'
-        );
       });
     });
   });
