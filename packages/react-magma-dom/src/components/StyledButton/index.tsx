@@ -46,9 +46,7 @@ export const buttonStyles = props => css`
     ? props.theme.typeScale.size01.letterSpacing
     : 'inherit'};
   line-height: ${buildButtonLineHeight(props)};
-  margin: ${props.isFullWidth
-    ? `${props.theme.spaceScale.spacing02} 0`
-    : props.theme.spaceScale.spacing02};
+  margin: 0;
   min-width: ${props.size === 'small' ? '0' : props.theme.spaceScale.spacing13};
   overflow: hidden;
   padding: ${buildButtonPadding(props)};

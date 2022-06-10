@@ -20,6 +20,7 @@ import {
   DropdownMenuItem,
 } from '../Dropdown';
 import { transparentize } from 'polished';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -230,27 +231,29 @@ export const TablePagination = React.forwardRef<
       <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
-
-      <IconButton
-        aria-label={i18n.table.pagination.previousAriaLabel}
-        color={ButtonColor.secondary}
-        disabled={previousButton.disabled}
-        icon={<WestIcon />}
-        isInverse={isInverse}
-        onClick={previousButton.onClick}
-        testId="previousBtn"
-        variant={ButtonVariant.link}
-      />
-      <IconButton
-        aria-label={i18n.table.pagination.nextAriaLabel}
-        color={ButtonColor.secondary}
-        disabled={nextButton.disabled}
-        icon={<EastIcon />}
-        isInverse={isInverse}
-        onClick={nextButton.onClick}
-        testId="nextBtn"
-        variant={ButtonVariant.link}
-      />
+      
+      <ButtonGroup alignment={ButtonGroupAlignment.center}>
+        <IconButton
+          aria-label={i18n.table.pagination.previousAriaLabel}
+          color={ButtonColor.secondary}
+          disabled={previousButton.disabled}
+          icon={<WestIcon />}
+          isInverse={isInverse}
+          onClick={previousButton.onClick}
+          testId="previousBtn"
+          variant={ButtonVariant.link}
+        />
+        <IconButton
+          aria-label={i18n.table.pagination.nextAriaLabel}
+          color={ButtonColor.secondary}
+          disabled={nextButton.disabled}
+          icon={<EastIcon />}
+          isInverse={isInverse}
+          onClick={nextButton.onClick}
+          testId="nextBtn"
+          variant={ButtonVariant.link}
+        />
+      </ButtonGroup>
     </StyledContainer>
   );
 });

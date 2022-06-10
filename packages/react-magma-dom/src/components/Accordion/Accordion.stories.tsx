@@ -11,6 +11,7 @@ import { Button, ButtonSize, ButtonVariant } from '../Button';
 
 import { Story } from '@storybook/react/types-6-0';
 import { magma } from '../../theme/magma';
+import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   component: Accordion,
@@ -113,23 +114,15 @@ export const ExpandCollapseAll = args => {
 
   return (
     <>
-      <Button
-        disabled={disableExpandAll}
-        onClick={handleExpandAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Expand All
-      </Button>
-      <Button
-        disabled={disableCollapseAll}
-        onClick={handleCollapseAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Collapse All
-      </Button>
-
+      <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
+        <Button disabled={disableExpandAll} onClick={handleExpandAll}>
+          Expand All
+        </Button>
+        <Button disabled={disableCollapseAll} onClick={handleCollapseAll}>
+          Collapse All
+        </Button>
+      </ButtonGroup>
+      <br />
       <Accordion
         {...args}
         index={expandedIndex}
@@ -159,7 +152,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <div style={{background: magma.colors.primary600}}>
+    <div style={{ background: magma.colors.primary600 }}>
       <Story />
     </div>
   ),

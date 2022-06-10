@@ -27,13 +27,15 @@ inherit the `isInverse` prop unless specified otherwise.
 
 ```typescript
 import React from 'react';
-import { FormFieldContainer } from 'react-magma-dom';
+import { FormFieldContainer, Card } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <FormFieldContainer isInverse>
-      FormFieldContainer content
-    </FormFieldContainer>
+    <Card isInverse style={{padding: '12px'}}>
+      <FormFieldContainer isInverse>
+        FormFieldContainer content
+      </FormFieldContainer>
+    </Card>
   );
 }
 ```
