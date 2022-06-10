@@ -92,6 +92,8 @@ function buildButtonMargin(props) {
   if (props.orientation === ButtonGroupOrientation.vertical) {
     return `${props.theme.spaceScale.spacing02} 0`;
   }
+
+  return `0 ${props.theme.spaceScale.spacing02}`;
 }
 
 function buildButtonAlignment(props) {
@@ -127,11 +129,12 @@ function buildNoSpaceBorderColor(props) {
 }
 
 const StyledButtonGroup = styled.div<{
-  orientation?: ButtonGroupOrientation;
   alignment?: ButtonGroupAlignment;
-  noSpace?: Boolean;
   color?: ButtonColor;
   isInverse?: Boolean;
+  noSpace?: Boolean;
+  orientation?: ButtonGroupOrientation;
+  variant?: ButtonVariant;
 }>`
   display: flex;
   justify-content: ${props => buildButtonAlignment(props)};
@@ -177,6 +180,7 @@ const StyledButtonGroup = styled.div<{
     ${props =>
       props.noSpace &&
       props.orientation === ButtonGroupOrientation.horizontal &&
+      props.variant == ButtonVariant.solid &&
       props.alignment !== ButtonGroupAlignment.apart &&
       css`
         &:first-of-type:not(:only-of-type) {
@@ -189,7 +193,9 @@ const StyledButtonGroup = styled.div<{
         }
         &:not(:first-of-type) {
           border-radius: 0;
-          border-right: ${props.color === ButtonColor.secondary ? '0' : `1px solid ${props.theme.colors.neutral100}`};
+          border-right: ${props.color === ButtonColor.secondary
+            ? '0'
+            : `1px solid ${props.theme.colors.neutral100}`};
         }
         &:not(:first-of-type)&:not(:last-child) {
           border-right: 0;
@@ -206,26 +212,31 @@ const StyledButtonGroup = styled.div<{
 export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
   (props, ref) => {
     const {
+      alignment,
       children,
-      variant,
       color,
-      size,
-      textTransform,
       isInverse,
+      orientation,
+      noSpace,
+      size,
       testId,
-      ...rest
+      textTransform,
+      variant,
     } = props;
     const context = { variant, color, size, textTransform, isInverse };
     const theme = React.useContext(ThemeContext);
 
     return (
       <StyledButtonGroup
-        color={color}
+        alignment={alignment || ButtonGroupAlignment.left}
+        color={color || ButtonColor.primary}
         isInverse={isInverse}
-        {...rest}
+        orientation={orientation || ButtonGroupOrientation.horizontal}
+        noSpace={noSpace}
+        variant={variant || ButtonVariant.solid}
         theme={theme}
         ref={ref}
-        data-testid={props.testId}
+        data-testid={testId}
       >
         <ButtonGroupContext.Provider value={context}>
           {children}
