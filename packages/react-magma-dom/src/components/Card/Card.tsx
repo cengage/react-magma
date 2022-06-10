@@ -30,6 +30,9 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
    */
   hasDropShadow?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS.

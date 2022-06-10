@@ -11,6 +11,9 @@ export interface SpacerProps extends React.HTMLAttributes<HTMLSpanElement> {
    * Height and/or width of the component. If a number is provided, will be set in pixels.
    */
   size: number | string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

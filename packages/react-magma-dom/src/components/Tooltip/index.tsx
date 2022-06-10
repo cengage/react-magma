@@ -40,6 +40,9 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
    * Position the tooltip appears in relation to its trigger
    */
   position?: TooltipPosition;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Style properties for the inner tooltip content

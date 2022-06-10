@@ -10,6 +10,9 @@ export interface ProgressRingProps
   percentage?: number;
   radius?: number;
   strokeWidth?: number;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

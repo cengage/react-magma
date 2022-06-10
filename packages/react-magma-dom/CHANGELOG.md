@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.0.0-next.23
+
+### Patch Changes
+
+- 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
+- 3a27353aa: fix(textarea): Textarea can now be cleared
+
+## 3.0.0-next.22
+
+### Major Changes
+
+- 465fd0fce: fix: Toast X center alignment
+
 ## 3.0.0-next.21
 
 ### Major Changes

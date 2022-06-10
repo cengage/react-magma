@@ -52,6 +52,9 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * Function called when opening the dropdown menu
    */
   onOpen?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of menu

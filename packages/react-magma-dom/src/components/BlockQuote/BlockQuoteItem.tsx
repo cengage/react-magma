@@ -32,6 +32,9 @@ export interface BlockQuoteItemProps
    */
   hasAttribution?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Applies visual styles including font-size, font-weight, line-height and margins

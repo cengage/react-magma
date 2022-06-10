@@ -29,6 +29,9 @@ export interface ParagraphProps
    * @default false
    */
   noMargins?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

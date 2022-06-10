@@ -82,6 +82,9 @@ export interface ButtonStyles {
  */
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

@@ -80,6 +80,9 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default 0
    */
   spacing?: number;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Defines the flex-wrap style property. It's applied for all screen sizes.

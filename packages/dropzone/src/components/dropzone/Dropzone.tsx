@@ -116,6 +116,9 @@ export interface DropzoneProps
    * @default false
    */
   sendFiles?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Show thumbnails for images in lieu of the file icon.

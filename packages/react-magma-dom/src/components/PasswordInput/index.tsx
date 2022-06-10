@@ -44,6 +44,9 @@ export interface PasswordInputProps
    * @default "Show"
    */
   showPasswordButtonText?: string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

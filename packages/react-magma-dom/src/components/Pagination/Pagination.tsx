@@ -10,6 +10,9 @@ import { usePagination } from './usePagination';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   isInverse?: boolean;
   page?: number;

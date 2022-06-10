@@ -15,6 +15,9 @@ export interface HideAtBreakpointProps
    * Minimum width at which to hide the content
    */
   minWidth?: number;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

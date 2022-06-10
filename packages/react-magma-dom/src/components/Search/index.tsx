@@ -51,6 +51,9 @@ export interface SearchProps extends InputBaseProps {
    * Action that will fire when search icon button is clicked
    */
   onSearch: (term: string) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Value of the input element

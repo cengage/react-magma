@@ -6,6 +6,9 @@ import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { useForkedRef } from '../../utils';
 
 export interface UseAccordionButtonProps {
+  /**
+   * @internal
+   */
   testId?: string;
   isInverse?: boolean;
 }
@@ -25,9 +28,8 @@ export function useAccordionButton(
     setExpandedIndex,
   } = React.useContext(AccordionContext);
 
-  const { buttonId, index, isDisabled, isExpanded, panelId } = React.useContext(
-    AccordionItemContext
-  );
+  const { buttonId, index, isDisabled, isExpanded, panelId } =
+    React.useContext(AccordionItemContext);
 
   const handleClick = () => {
     typeof onExpandedChange === 'function' && onExpandedChange(index);
@@ -57,8 +59,9 @@ export function useAccordionButton(
 
   const focusLast = () => {
     const arrLength = buttonRefArray.current.length;
-    (buttonRefArray.current[arrLength - 1]
-      .current as HTMLButtonElement).focus();
+    (
+      buttonRefArray.current[arrLength - 1].current as HTMLButtonElement
+    ).focus();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {

@@ -15,6 +15,9 @@ export interface CardHeadingProps
    */
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

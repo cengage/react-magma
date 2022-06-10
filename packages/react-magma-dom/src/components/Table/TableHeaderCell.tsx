@@ -42,6 +42,9 @@ export interface TableHeaderCellProps
    * @default TableSortDirection.none
    */
   sortDirection?: TableSortDirection;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS

@@ -8,6 +8,9 @@ import { ThemeContext } from '../../theme/ThemeContext';
  */
 export interface CardBodyProps
   extends React.LabelHTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

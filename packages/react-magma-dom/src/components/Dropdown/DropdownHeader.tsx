@@ -9,6 +9,9 @@ import { transparentize } from 'polished';
  */
 export interface DropdownHeaderProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
