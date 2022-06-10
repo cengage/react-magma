@@ -330,6 +330,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 <div>
   <div
     class="emotion-12"
+    color="primary"
     data-testid="test-id"
     orientation="horizontal"
   >
@@ -668,6 +669,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 <div>
   <div
     class="emotion-12"
+    color="primary"
     data-testid="test-id"
     orientation="vertical"
   >
