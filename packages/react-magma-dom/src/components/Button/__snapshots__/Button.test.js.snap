@@ -68,6 +68,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -178,6 +179,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -306,6 +308,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -416,6 +419,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -784,6 +788,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -894,6 +899,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1022,6 +1028,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1132,6 +1139,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1248,6 +1256,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -1358,6 +1367,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
+  background: #2d3489;
   color: #FFFFFF;
 }
 

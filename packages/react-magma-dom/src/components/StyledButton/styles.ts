@@ -240,6 +240,7 @@ export function buildFocusBackground(props) {
   ) {
     return tint(0.9, props.theme.colors.primary);
   }
+  return darken(0.1, props.theme.colors.primary);
 }
 
 export function buildFocusColor(props) {
