@@ -1,5 +1,38 @@
 # Change Log
 
+## 3.0.0-next.39
+
+### Major Changes
+
+- 2979534ed: docs: updated alerts design guidelines
+
+## 3.0.0-next.38
+
+### Patch Changes
+
+- Updated dependencies [3a27353aa]
+- Updated dependencies [3a27353aa]
+  - react-magma-dom@3.0.0-next.23
+
+## 3.0.0-next.37
+
+### Major Changes
+
+- ad7310916: docs: update GitHub icon focus
+
+## 3.0.0-next.36
+
+### Patch Changes
+
+- Updated dependencies [465fd0fce]
+  - react-magma-dom@3.0.0-next.22
+
+## 3.0.0-next.35
+
+### Major Changes
+
+- c43ab1632: fixes for codesandbox examples in docs
+
 ## 3.0.0-next.34
 
 ### Major Changes

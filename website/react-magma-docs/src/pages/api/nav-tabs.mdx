@@ -380,16 +380,20 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ```tsx
 import React from 'react';
-import { NavTab, NavTabs } from 'react-magma-dom';
+import { Card, CardBody, NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
   return (
-    <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
-      <NavTab isActive to="#">
-        First link
-      </NavTab>
-      <NavTab to="#">Second link</NavTab>
-      <NavTab to="#">Third link</NavTab>
-    </NavTabs>
+    <Card isInverse>
+      <CardBody>
+        <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
+          <NavTab isActive to="#">
+            First link
+          </NavTab>
+          <NavTab to="#">Second link</NavTab>
+          <NavTab to="#">Third link</NavTab>
+        </NavTabs>
+      </CardBody>
+    </Card>
   );
 }
 ```

@@ -27,14 +27,16 @@ inherit the `isInverse` prop unless specified otherwise.
 
 ```typescript
 import React from 'react';
-import { FormFieldContainer, Card } from 'react-magma-dom';
+import { Card, CardBody, FormFieldContainer } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card isInverse style={{padding: '12px'}}>
-      <FormFieldContainer isInverse>
-        FormFieldContainer content
-      </FormFieldContainer>
+    <Card isInverse style={{ padding: '12px' }}>
+      <CardBody>
+        <FormFieldContainer fieldId="1" isInverse>
+          FormFieldContainer content
+        </FormFieldContainer>
+      </CardBody>
     </Card>
   );
 }
@@ -48,8 +50,7 @@ Full example of <Link to="/api/internationalization">internationalization overri
 
 ```tsx
 import React from 'react';
-import { es } from 'date-fns/locale';
-import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+import { FormFieldContainer, I18nContext, defaultI18n } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -59,7 +60,9 @@ export function Example() {
         example: 'example i18n',
       }}
     >
-      <FormFieldContainer>override default i18n value: </FormFieldContainer>
+      <FormFieldContainer fieldId="">
+        override default i18n value:{' '}
+      </FormFieldContainer>
     </I18nContext.Provider>
   );
 }

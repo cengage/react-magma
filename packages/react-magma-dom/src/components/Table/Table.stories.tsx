@@ -17,6 +17,14 @@ import {
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Select } from '../Select';
+import { Combobox } from '../Combobox';
 
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -590,5 +598,78 @@ export const Sortable = args => {
 };
 
 Sortable.args = {
+  ...Default.args,
+};
+
+export const WithDropdown = args => {
+  return (
+    <>
+      <Table maxWidth={500} {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>
+              <Dropdown>
+                <DropdownButton>Basic Dropdown</DropdownButton>
+                <DropdownContent>
+                  <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                </DropdownContent>
+              </Dropdown>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>
+              <Select
+                labelText="Select Example"
+                items={[
+                  { label: 'Red', value: 'red' },
+                  { label: 'Blue', value: 'blue' },
+                  { label: 'Green', value: 'green' },
+                  { label: 'Yellow', value: 'yellow' },
+                ]}
+              />
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>
+              <Combobox
+                isMulti
+                labelText="ComboBox Example"
+                defaultItems={[
+                  { label: 'Pink', value: 'pink' },
+                  { label: 'Orange', value: 'orange' },
+                  { label: 'Purple', value: 'purple' },
+                ]}
+              />
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+WithDropdown.args = {
   ...Default.args,
 };

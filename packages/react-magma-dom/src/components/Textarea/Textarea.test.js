@@ -49,6 +49,15 @@ describe('Textarea', () => {
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
   });
 
+  it('should clear the textarea when an empty string is passed', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<Textarea value="hello" testId={testId} />);
+    const textarea = getByTestId(testId);
+
+    fireEvent.change(textarea, {target: {value: ''}})
+    expect(textarea.value).toBe('');
+  });
+
   it('should render a textarea with a correctly styled helper message', () => {
     const testMessage = 'Test message';
     const { getByTestId } = render(<Textarea helperMessage={testMessage} />);
