@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.24
+
+### Major Changes
+
+- 787017f90: feat(buttongroup): New ButtonGroup component
+
 ## 3.0.0-next.23
 
 ### Patch Changes

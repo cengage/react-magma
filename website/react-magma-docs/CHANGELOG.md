@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0-next.40
+
+### Major Changes
+
+- 787017f90: ButtonGroup: New ButtonGroup component docs
+
+### Patch Changes
+
+- Updated dependencies [787017f90]
+  - react-magma-dom@3.0.0-next.24
+
 ## 3.0.0-next.39
 
 ### Major Changes
