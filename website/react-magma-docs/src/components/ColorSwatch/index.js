@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
-import { magma, useIsInverse, Badge, Paragraph, TypographyColor } from 'react-magma-dom';
+import {
+  magma,
+  useIsInverse,
+  Badge,
+  Paragraph,
+  BadgeColor,
+} from 'react-magma-dom';
 
 const SwatchContainer = styled.div`
   border: 1px solid
@@ -57,18 +63,27 @@ const ResultBadge = styled(Badge)`
   font-weight: 600;
 `;
 
-export const ColorSwatch = ({ children, color, passesDarkTest, passesLightTest }) => {
+export const ColorSwatch = ({
+  children,
+  color,
+  passesDarkTest,
+  passesLightTest,
+}) => {
   const isInverse = useIsInverse();
   return (
     <SwatchContainer isInverse={isInverse}>
       <SwatchColor color={color}>
         <ColorTestContainer>
           <Paragraph className="color-test-dark">A</Paragraph>
-          <ResultBadge>{passesDarkTest ? 'PASS' : 'FAIL'}</ResultBadge>
+          <ResultBadge color={BadgeColor.secondary}>
+            {passesDarkTest ? 'PASS' : 'FAIL'}
+          </ResultBadge>
         </ColorTestContainer>
         <ColorTestContainer>
           <Paragraph className="color-test-light">A</Paragraph>
-          <ResultBadge>{passesLightTest ? 'PASS' : 'FAIL'}</ResultBadge>
+          <ResultBadge color={BadgeColor.secondary}>
+            {passesLightTest ? 'PASS' : 'FAIL'}
+          </ResultBadge>
         </ColorTestContainer>
       </SwatchColor>
       <ColorDetails isInverse={isInverse}>{children}</ColorDetails>
