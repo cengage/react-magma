@@ -59,7 +59,6 @@ exports[`SkipLink should render the skip link component 1`] = `
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #2d3489;
   color: #FFFFFF;
 }
 
@@ -167,7 +166,6 @@ exports[`SkipLink should render the skip link component 1`] = `
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #2d3489;
   color: #FFFFFF;
 }
 
