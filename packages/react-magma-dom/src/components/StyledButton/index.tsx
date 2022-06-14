@@ -66,7 +66,6 @@ export const buttonStyles = props => css`
     : props.isFullWidth
     ? '100%'
     : 'auto'};
-  // z-index: 1;
 
   &:not(:disabled) {
     &:focus {
