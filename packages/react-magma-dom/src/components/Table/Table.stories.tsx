@@ -83,6 +83,11 @@ export default {
         options: TableDensity,
       },
     },
+    minWidth: {
+      control: {
+        type: 'number',
+      }
+    }
   },
 } as Meta;
 

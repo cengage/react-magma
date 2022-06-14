@@ -89,7 +89,7 @@ export const TableContext = React.createContext<TableContextInterface>({
 });
 
 const TableContainer = styled.div`
-  overflow-x: visible;
+  overflow: auto;
 `;
 
 const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
