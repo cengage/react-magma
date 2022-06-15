@@ -12,6 +12,7 @@ import {
 import { Card, CardBody } from '../Card';
 import { Button, ButtonColor } from '../Button';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   title: 'Flex',
@@ -174,8 +175,10 @@ OneSetWidth.args = {
 const TemplateContainerOnly: Story<FlexProps> = args => (
   <Card>
     <Flex behavior={FlexBehavior.container} {...args}>
-      <Button color={ButtonColor.secondary}>Cancel</Button>
-      <Button>Save</Button>
+      <ButtonGroup>
+        <Button color={ButtonColor.secondary}>Cancel</Button>
+        <Button>Save</Button>
+      </ButtonGroup>
     </Flex>
   </Card>
 );

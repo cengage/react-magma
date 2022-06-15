@@ -133,6 +133,7 @@ import {
   Toast,
   ToastsContainer,
   AlertVariant,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -164,6 +165,7 @@ export function Example() {
   return (
     <ToastsContainer>
       <Announce>
+        <ButtonGroup>
         <Button onClick={handleClick}>Show Toast</Button>
         {showToast && (
           <Toast
@@ -198,6 +200,7 @@ export function Example() {
             Toast three
           </Toast>
         )}
+        </ButtonGroup>
       </Announce>
     </ToastsContainer>
   );

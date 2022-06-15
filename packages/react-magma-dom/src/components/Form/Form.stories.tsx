@@ -25,6 +25,7 @@ import { Toggle } from '../Toggle';
 import { Tooltip } from '../Tooltip';
 import { SettingsIcon } from 'react-magma-icons';
 import { Story } from '@storybook/react/types-6-0';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 
 export default {
   component: Form,
@@ -36,12 +37,12 @@ const Template: Story<FormProps> = args => (
 );
 
 const Actions = () => (
-  <>
-    <Button color={ButtonColor.secondary}>Cancel</Button>
+  <ButtonGroup alignment={ButtonGroupAlignment.right} color={ButtonColor.secondary}>
+    <Button>Cancel</Button>
     <Button type={ButtonType.submit} color={ButtonColor.primary}>
       Submit
     </Button>
-  </>
+  </ButtonGroup>
 );
 
 const Fields = () => (
