@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.25
+
+### Major Changes
+
+- ca2c61de6: feat(tooltip): Fix tooltip position bug
+
 ## 3.0.0-next.24
 
 ### Major Changes
