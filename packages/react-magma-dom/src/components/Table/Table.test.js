@@ -23,7 +23,7 @@ describe('Table', () => {
 
   it('should render table with a border', () => {
     const { getByTestId } = render(
-      <Table hasTableBorder testId="table">
+      <Table hasOuterBorder testId="table">
         <TableHead>
           <TableRow>
             <TableHeaderCell>heading 1</TableHeaderCell>
@@ -40,6 +40,35 @@ describe('Table', () => {
     );
 
     expect(getByTestId('table')).toHaveStyleRule('border', '1px solid');
+    expect(getByTestId('table')).toHaveStyleRule(
+      'border-color',
+      magma.colors.neutral300
+    );
+  });
+
+  it('should render table with an inverse border', () => {
+    const { getByTestId } = render(
+      <Table hasOuterBorder isInverse testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table')).toHaveStyleRule('border', '1px solid');
+    expect(getByTestId('table')).toHaveStyleRule(
+      'border-color',
+      transparentize(0.6, magma.colors.neutral100)
+    );
   });
 
   it('should render table with vertical borders', () => {

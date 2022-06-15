@@ -18,9 +18,9 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   hasHoverStyles?: boolean;
   /**
-   * If true, the table will have a border
+   * If true, the table will have an outer border
    */
-  hasTableBorder?: boolean;
+  hasOuterBorder?: boolean;
   /**
    * If true, columns will have vertical borders
    */
@@ -98,12 +98,12 @@ const TableContainer = styled.div`
 `;
 
 const StyledTable = styled.table<{
-  hasTableBorder?: boolean;
+  hasOuterBorder?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
   border-collapse: collapse;
-  border: ${props => (props.hasTableBorder ? '1px solid' : 0)};
+  border: ${props => (props.hasOuterBorder ? '1px solid' : 0)};
   border-color: ${props =>
     props.isInverse
       ? transparentize(0.6, props.theme.colors.neutral100)
@@ -126,7 +126,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       children,
       density,
       hasHoverStyles,
-      hasTableBorder,
+      hasOuterBorder,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
@@ -156,7 +156,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           <StyledTable
             {...other}
             data-testid={testId}
-            hasTableBorder={hasTableBorder}
+            hasOuterBorder={hasOuterBorder}
             isInverse={isInverse}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
