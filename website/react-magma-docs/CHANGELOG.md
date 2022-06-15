@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0-next.46
+
+### Major Changes
+
+- 732f5c908: fix(button): Update Buttons in docs to use ButtonGroup.
+
+### Patch Changes
+
+- Updated dependencies [732f5c908]
+  - react-magma-dom@3.0.0-next.29
+
 ## 3.0.0-next.45
 
 ### Patch Changes

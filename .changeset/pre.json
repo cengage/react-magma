@@ -19,6 +19,8 @@
     "bug-textarea",
     "button-group-docs",
     "button-group-dom",
+    "button-margin-removed-docs",
+    "button-margin-removed",
     "codesandbox-fixes",
     "colors-badge-docs",
     "combobox-multi-styles",
