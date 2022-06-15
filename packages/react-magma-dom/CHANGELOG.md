@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.27
+
+### Major Changes
+
+- cc23aacf6: fix(toast): bring back dropshadow for toasts
+
 ## 3.0.0-next.26
 
 ### Major Changes

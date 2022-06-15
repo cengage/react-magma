@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.0.0-next.43
+
+### Major Changes
+
+- cc23aacf6: toast: add toast `isInverse` example to docs
+
+### Patch Changes
+
+- Updated dependencies [cc23aacf6]
+  - react-magma-dom@3.0.0-next.27
+
 ## 3.0.0-next.42
 
 ### Patch Changes
