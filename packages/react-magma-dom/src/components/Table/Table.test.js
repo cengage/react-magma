@@ -21,6 +21,27 @@ describe('Table', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should render table with a border', () => {
+    const { getByTestId } = render(
+      <Table hasTableBorder testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table')).toHaveStyleRule('border', '1px solid');
+  });
+
   it('should render table with vertical borders', () => {
     const { getByText } = render(
       <Table hasVerticalBorders>

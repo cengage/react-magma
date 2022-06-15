@@ -50,27 +50,25 @@ const rows = [
 ];
 
 const Template: Story<TableProps> = args => (
-  <Card>
-    <Table {...args}>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
+  <Table {...args}>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {rows.map((row, i) => (
+        <TableRow key={`row${i}`}>
+          {row.map((cell, j) => (
+            <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+          ))}
         </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map((row, i) => (
-          <TableRow key={`row${i}`}>
-            {row.map((cell, j) => (
-              <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Card>
+      ))}
+    </TableBody>
+  </Table>
 );
 
 export default {
@@ -89,8 +87,14 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   hasHoverStyles: false,
+  hasTableBorder: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+};
+
+export const WithTableBorder = Template.bind({});
+WithTableBorder.args = {
+  hasTableBorder: true,
 };
 
 const rowsLong = [
@@ -253,7 +257,7 @@ export const ControlledPagination = () => {
   );
 
   return (
-    <Card>
+    <>
       <Table>
         <TableHead>
           <TableRow>
@@ -280,7 +284,7 @@ export const ControlledPagination = () => {
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
-    </Card>
+    </>
   );
 };
 
@@ -302,7 +306,7 @@ export const UncontrolledPagination = () => {
   );
 
   return (
-    <Card>
+    <>
       <Table>
         <TableHead>
           <TableRow>
@@ -327,13 +331,13 @@ export const UncontrolledPagination = () => {
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
       />
-    </Card>
+    </>
   );
 };
 
 export const PaginationInverse = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [rowsPerPage] = React.useState<number>(10);
 
   function handlePageChange(_, page) {
     setPageIndex(page);
@@ -380,49 +384,47 @@ PaginationInverse.args = {
 
 export const RowColors = () => {
   return (
-    <Card>
-      <Table hasHoverStyles hasZebraStripes>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow color={TableRowColor.success}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.danger}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.info}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.warning}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </Card>
+    <Table hasHoverStyles hasZebraStripes>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow color={TableRowColor.success}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.danger}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.info}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.warning}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 
@@ -530,66 +532,63 @@ export const Sortable = args => {
 
   return (
     <>
-      <Card>
-        <Table {...args}>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('name');
-                }}
-                isSortable
-                sortDirection={
-                  sortConfig.key === 'name'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                Name
-              </TableHeaderCell>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('price');
-                }}
-                isSortable
-                align={TableCellAlign.right}
-                sortDirection={
-                  sortConfig.key === 'price'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                Price
-              </TableHeaderCell>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('stock');
-                }}
-                isSortable
-                align={TableCellAlign.right}
-                sortDirection={
-                  sortConfig.key === 'stock'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                In Stock
-              </TableHeaderCell>
+      <Table {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              onSort={() => {
+                requestSort('name');
+              }}
+              isSortable
+              sortDirection={
+                sortConfig.key === 'name'
+                  ? sortConfig.direction
+                  : TableSortDirection.none
+              }
+            >
+              Name
+            </TableHeaderCell>
+            <TableHeaderCell
+              onSort={() => {
+                requestSort('price');
+              }}
+              isSortable
+              align={TableCellAlign.right}
+              sortDirection={
+                sortConfig.key === 'price'
+                  ? sortConfig.direction
+                  : TableSortDirection.none
+              }
+            >
+              Price
+            </TableHeaderCell>
+            <TableHeaderCell
+              onSort={() => {
+                requestSort('stock');
+              }}
+              isSortable
+              align={TableCellAlign.right}
+              sortDirection={
+                sortConfig.key === 'stock'
+                  ? sortConfig.direction
+                  : TableSortDirection.none
+              }
+            >
+              In Stock
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {sortedItems.map(item => (
+            <TableRow key={item.id}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell align={TableCellAlign.right}>${item.price}</TableCell>
+              <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {sortedItems.map(item => (
-              <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell align={TableCellAlign.right}>
-                  ${item.price}
-                </TableCell>
-                <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Card>
+          ))}
+        </TableBody>
+      </Table>
+
       <Announce>
         <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
       </Announce>

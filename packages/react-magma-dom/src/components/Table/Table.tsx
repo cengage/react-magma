@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -16,6 +17,10 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    * If true, row will be visually highlighted on hover
    */
   hasHoverStyles?: boolean;
+  /**
+   * If true, the table will have a border
+   */
+  hasTableBorder?: boolean;
   /**
    * If true, columns will have vertical borders
    */
@@ -92,8 +97,17 @@ const TableContainer = styled.div`
   overflow-x: visible;
 `;
 
-const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
+const StyledTable = styled.table<{
+  hasTableBorder?: boolean;
+  isInverse?: boolean;
+  minWidth: number;
+}>`
   border-collapse: collapse;
+  border: ${props => (props.hasTableBorder ? '1px solid' : 0)};
+  border-color: ${props =>
+    props.isInverse
+      ? transparentize(0.6, props.theme.colors.neutral100)
+      : props.theme.colors.neutral300};
   border-spacing: 0;
   color: ${props =>
     props.isInverse
@@ -112,6 +126,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       children,
       density,
       hasHoverStyles,
+      hasTableBorder,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
@@ -141,6 +156,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           <StyledTable
             {...other}
             data-testid={testId}
+            hasTableBorder={hasTableBorder}
             isInverse={isInverse}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
