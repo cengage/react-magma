@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.28
+
+### Major Changes
+
+- 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
+
 ## 3.0.0-next.27
 
 ### Major Changes
