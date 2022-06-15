@@ -6,3 +6,4 @@
 - tabs: update `isInverse` example (#765)
 - pagination: fix `Handle Page Change` example (#773)
 - table: fix `minWidth` example (#771)
+- tag: remove `internationalization` example (#764)

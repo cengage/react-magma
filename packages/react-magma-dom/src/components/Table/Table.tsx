@@ -88,8 +88,8 @@ export const TableContext = React.createContext<TableContextInterface>({
   selectedItems: [],
 });
 
-const TableContainer = styled.div`
-  overflow: auto;
+const TableContainer = styled.div<{ minWidth: number }>`
+  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
 `;
 
 const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
@@ -137,7 +137,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isSelectable,
         }}
       >
-        <TableContainer>
+        <TableContainer minWidth={minWidth}>
           <StyledTable
             {...other}
             data-testid={testId}
