@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.44
+
+### Major Changes
+
+- 187ebf455: docs: update badges in colors tiles
+
 ## 3.0.0-next.43
 
 ### Major Changes
