@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.26
+
+### Major Changes
+
+- 133d2cf32: fix(table): update sortable table header cursor
+
 ## 3.0.0-next.25
 
 ### Major Changes
