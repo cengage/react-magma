@@ -177,7 +177,6 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
       : props.theme.colors.neutral};
   display: flex;
   position: relative;
-  padding-right: 12px; 
 
   ${props =>
     props.isToast &&
