@@ -190,7 +190,9 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
 const AlertContents = styled.div`
   align-self: center;
   flex-grow: 1;
-  padding: ${props => props.theme.spaceScale.spacing04} 0;
+  padding: ${props => props.theme.spaceScale.spacing04}
+    ${props => props.theme.spaceScale.spacing04}
+    ${props => props.theme.spaceScale.spacing04} 0;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: ${props => props.theme.spaceScale.spacing04};
