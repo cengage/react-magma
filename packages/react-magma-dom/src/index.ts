@@ -19,6 +19,8 @@ export {
   BreakpointsContainer,
   Breakpoint,
   BreakpointScreenSize,
+  BreakpointProps,
+  BreakpointsContainerProps,
 } from './components/BreakpointsContainer';
 export {
   Button,
