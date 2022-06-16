@@ -18,6 +18,9 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
    * Max-width of the component, set by CSS.  If a number is provided, value will be in pixels
    */
   maxWidth?: number | string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

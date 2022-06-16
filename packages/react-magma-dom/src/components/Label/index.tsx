@@ -17,6 +17,9 @@ export interface LabelProps
   labelPosition?: LabelPosition;
   size?: InputSize;
   theme?: any;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

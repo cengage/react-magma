@@ -75,6 +75,9 @@ export interface TabsProps
    */
   onChange?: (newActiveIndex: number) => void;
   orientation?: TabsOrientation;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

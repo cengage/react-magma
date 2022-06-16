@@ -10,6 +10,9 @@ import { ChevronRightIcon } from 'react-magma-icons';
  */
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current="page" on it.

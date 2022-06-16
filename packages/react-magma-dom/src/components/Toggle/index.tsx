@@ -56,6 +56,9 @@ export interface ToggleProps
    * Content for label; can be a node or a string
    */
   labelText: React.ReactNode;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Whether the label appears to the left of the right of the toggle switch
@@ -107,7 +110,7 @@ function buildToggleBorderColor(props) {
     return props.theme.colors.success;
   }
   return props.theme.colors.neutral;
-};
+}
 
 const HiddenLabelText = styled.span`
   ${HiddenStyles};

@@ -89,6 +89,9 @@ export interface InputBaseProps
    * Action that will fire when icon receives keypress
    */
   onIconKeyDown?: (event) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

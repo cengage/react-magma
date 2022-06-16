@@ -39,6 +39,9 @@ export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   minSize?: number;
   onDeleteFile?: (file: FilePreview) => void;
   onRemoveFile?: (file: FilePreview) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   thumbnails: boolean;
 }

@@ -82,6 +82,9 @@ export interface DatePickerProps
    * @default false
    */
   required?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Value of the date input, used when setting the date value externally

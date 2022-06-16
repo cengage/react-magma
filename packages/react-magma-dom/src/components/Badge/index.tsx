@@ -18,6 +18,9 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
    * Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span.
    */
   onClick?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Indicates the style variant of the component

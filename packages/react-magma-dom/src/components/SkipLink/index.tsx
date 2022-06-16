@@ -22,6 +22,9 @@ export interface SkipLinkProps extends HyperlinkProps {
    * @default 10
    */
   positionTop?: number;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

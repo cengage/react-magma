@@ -7,6 +7,9 @@ import { transparentize } from 'polished';
 export interface DropdownDividerProps
   extends React.HTMLAttributes<HTMLHRElement> {
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

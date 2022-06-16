@@ -11,6 +11,9 @@ export interface ToastsContainerProps
    * @internal
    */
   toastsArray?: any;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

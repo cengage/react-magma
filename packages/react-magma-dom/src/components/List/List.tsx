@@ -47,6 +47,9 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
    * Adds a bottom margin to each list item with the Magma space scale.
    */
   spacingStyle?: keyof typeof magma.spaceScale;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

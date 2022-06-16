@@ -88,6 +88,9 @@ export interface InternalSelectProps<T> {
    * Text for select trigger button or combobox input placeholder
    */
   placeholder?: string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -166,9 +169,7 @@ export function instanceOfDefaultItemObject(
   return object && 'label' in object;
 }
 
-export function instanceOfToBeCreatedItemObject(
-  object: any
-): object is {
+export function instanceOfToBeCreatedItemObject(object: any): object is {
   label: string;
   value: string;
   react_magma__created_item: boolean;

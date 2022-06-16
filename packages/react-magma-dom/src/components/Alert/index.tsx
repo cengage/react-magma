@@ -20,6 +20,9 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
    * Action that fires when the close button is clicked (required when isDismissible is true)
    */
   onDismiss?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * The variant of the alert, indicating its function in the UI

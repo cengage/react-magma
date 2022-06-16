@@ -58,6 +58,9 @@ export interface RadioProps
    * Content of label; can be node or string
    */
   labelText: React.ReactNode;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Whether the label appears to the left of the right of the radio button

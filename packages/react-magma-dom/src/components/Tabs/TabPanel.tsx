@@ -24,6 +24,9 @@ export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   index?: number;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

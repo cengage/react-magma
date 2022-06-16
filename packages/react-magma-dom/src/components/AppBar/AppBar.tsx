@@ -15,6 +15,9 @@ export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   isCompact?: boolean;
   isInverse?: boolean;
   position?: AppBarPosition;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

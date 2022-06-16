@@ -10,6 +10,9 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

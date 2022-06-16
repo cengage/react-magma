@@ -28,6 +28,9 @@ export interface IndeterminateCheckboxProps
    * @default IndeterminateCheckboxStatus.unchecked
    */
   status: IndeterminateCheckboxStatus;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

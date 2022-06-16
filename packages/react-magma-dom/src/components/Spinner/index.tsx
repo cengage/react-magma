@@ -21,6 +21,9 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @internal
    */
   theme?: ThemeInterface;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -58,7 +61,13 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
       <StyledSpinner
         {...other}
         aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
-        color={color ? color : props.isInverse ? theme.colors.tertiary : theme.colors.primary}
+        color={
+          color
+            ? color
+            : props.isInverse
+            ? theme.colors.tertiary
+            : theme.colors.primary
+        }
         data-testid={testId}
         ref={ref}
         role="img"

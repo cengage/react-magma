@@ -26,6 +26,9 @@ export interface HeaderProps extends AppBarProps {
   logo?: React.ReactNode;
   onMenuButtonClick?: () => void;
   searchProps?: SearchProps;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
