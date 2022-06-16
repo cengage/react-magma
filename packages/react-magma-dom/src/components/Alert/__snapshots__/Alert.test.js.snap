@@ -403,7 +403,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
@@ -501,7 +501,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
@@ -647,7 +647,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
@@ -745,7 +745,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
@@ -869,7 +869,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
@@ -967,7 +967,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
@@ -1113,7 +1113,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
@@ -1211,7 +1211,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 12px 0;
+  padding: 12px 12px 12px 0;
 }
 
 @media (max-width:600px) {
