@@ -101,7 +101,7 @@ export function Example() {
 
 ## Table With Border
 
-The `hasTableBorder` prop is a boolean which gives the table a border. By default the table border is off.
+The `hasOuterBorder ` prop is a boolean which gives the table an outer border. By default the border is off.
 
 ```tsx
 import React from 'react';
@@ -155,7 +155,7 @@ export function Example() {
   ];
 
   return (
-    <Table hasTableBorder>
+    <Table hasOuterBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -652,7 +652,7 @@ export function Example() {
         hasZebraStripes
         hasVerticalBorders
         hasHoverStyles
-        hasTableBorder
+        hasOuterBorder
       >
         <TableHead>
           <TableRow>

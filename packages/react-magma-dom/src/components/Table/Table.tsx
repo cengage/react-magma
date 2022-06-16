@@ -19,6 +19,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   hasHoverStyles?: boolean;
   /**
    * If true, the table will have an outer border
+   * @default false
    */
   hasOuterBorder?: boolean;
   /**

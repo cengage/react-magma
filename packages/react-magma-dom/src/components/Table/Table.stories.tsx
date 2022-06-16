@@ -87,14 +87,14 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   hasHoverStyles: false,
-  hasTableBorder: false,
+  hasOuterBorder: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
 };
 
-export const WithTableBorder = Template.bind({});
-WithTableBorder.args = {
-  hasTableBorder: true,
+export const WithOuterBorder = Template.bind({});
+WithOuterBorder.args = {
+  hasOuterBorder: true,
 };
 
 const rowsLong = [
