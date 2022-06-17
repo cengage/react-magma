@@ -44,7 +44,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -155,7 +155,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -226,7 +226,9 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -282,7 +284,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -393,7 +395,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -464,7 +466,9 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -520,7 +524,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -631,7 +635,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -704,6 +708,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
     class="emotion-2 emotion-3"
     color="secondary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -759,7 +764,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -870,7 +875,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -941,6 +946,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
     shape="round"
     type="button"
@@ -998,7 +1004,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1109,7 +1115,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1180,7 +1186,9 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -1224,7 +1232,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1335,7 +1343,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1418,7 +1426,9 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span

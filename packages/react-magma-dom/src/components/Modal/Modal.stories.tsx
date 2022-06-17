@@ -7,6 +7,7 @@ import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
 import { Card } from '../Card';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 
 const info = {
   component: Modal,
@@ -26,9 +27,10 @@ export const Default = () => {
         isOpen={showModal}
       >
         <p>This is a modal, doing modal things.</p>
-        <p>
-          <Button>This is a button</Button>
-        </p>
+        <ButtonGroup alignment={ButtonGroupAlignment.right}>
+          <Button color={ButtonColor.secondary}>Cancel</Button>
+          <Button>Save</Button>
+        </ButtonGroup>
       </Modal>
       <Button onClick={() => setShowModal(true)}>
         Show Modal
@@ -255,16 +257,18 @@ export const OnCloseBehavior = () => {
       <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal}>
         <p>This is a modal, doing modal things.</p>
       </Modal>
-      {showButton && (
-        <Button onClick={onModalShow}>Show Modal and Hide Button</Button>
-      )}
-      <Button
-        color={ButtonColor.secondary}
-        ref={buttonRef}
-        onClick={onButtonShow}
-      >
-        Reset
-      </Button>
+      <ButtonGroup>
+        {showButton && (
+          <Button onClick={onModalShow}>Show Modal and Hide Button</Button>
+        )}
+        <Button
+          color={ButtonColor.secondary}
+          ref={buttonRef}
+          onClick={onButtonShow}
+        >
+          Reset
+        </Button>
+      </ButtonGroup>
     </>
   );
 };
@@ -293,7 +297,9 @@ export const ModalInAModal = () => {
         <div>
           <DatePicker labelText="Pick a date" />
         </div>
-        <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+        <p>
+          <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+        </p>
 
         <Modal
           size={ModalSize.small}

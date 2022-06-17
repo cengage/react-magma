@@ -221,13 +221,10 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
   ${props =>
     props.isToast &&
     css`
-      box-shadow: ${
-        props.isInverse
-          ? `0 2px 8px 0 ${transparentize(0.3, props.theme.colors.neutral900)}`
-          : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`
-      }      
-      height: ${props.theme.spaceScale.spacing11};
-      padding-right:0;
+      box-shadow: ${props.isInverse
+        ? `0 2px 8px 0 ${transparentize(0.3, props.theme.colors.neutral900)}`
+        : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`};
+      padding-right: 0;
     `}
 `;
 

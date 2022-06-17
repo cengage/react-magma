@@ -22,6 +22,7 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   testId?: string;
+  hi?: string;
 }
 
 const StyledContainer = styled.div<{

@@ -128,6 +128,7 @@ const SortButton = styled.button<{
 
   &:hover,
   &:focus {
+    cursor: pointer;
     background: ${props =>
       props.isInverse
         ? transparentize(0.85, props.theme.colors.neutral100)
