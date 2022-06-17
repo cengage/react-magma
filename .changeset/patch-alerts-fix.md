@@ -2,4 +2,4 @@
 "react-magma-dom": patch
 ---
 
-fix: Alignment on Alerts.
+fix: Close button alignment on Alerts.
