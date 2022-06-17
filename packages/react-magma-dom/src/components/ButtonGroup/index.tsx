@@ -20,7 +20,7 @@ export enum ButtonGroupAlignment {
 }
 
 export enum ButtonGroupOrientation {
-  horizontal = 'horizontal',
+  horizontal = 'horizontal', // default
   vertical = 'vertical',
 }
 
@@ -30,7 +30,7 @@ export enum ButtonGroupOrientation {
 export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Alignment of the dropdown content
-   * @default `ButtonGroupAlignment.left`
+   * @default ButtonGroupAlignment.left
    */
   alignment?: ButtonGroupAlignment;
   /**
@@ -59,6 +59,9 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   noSpace?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Determines whether all the buttons in the group appear in all-caps

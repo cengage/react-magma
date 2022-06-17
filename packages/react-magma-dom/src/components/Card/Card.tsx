@@ -42,7 +42,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
 
 export enum CardAlignment {
   center = 'center',
-  left = 'left',
+  left = 'left', // default
   right = 'right',
 }
 

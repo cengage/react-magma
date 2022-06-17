@@ -27,8 +27,8 @@ export interface DatagridColumn extends TableHeaderCellProps {
    */
   header: string;
   /**
-   * @default false
    * Set to true if you want the column to be the header for each row
+   * @default false
    */
   isRowHeader?: boolean;
 }
@@ -80,6 +80,7 @@ export interface BaseDatagridProps extends TableProps {
   components?: DatagridComponents;
   /**
    * Props to be passed to the default components used internally to build the datagrid
+   * @default {}
    */
   componentsProps?: DatagridComponentsProps;
   /**
@@ -108,6 +109,7 @@ export interface BaseDatagridProps extends TableProps {
   onSelectedRowsChange?: (newSelectedRows: (string | number)[]) => void;
   /**
    * Pagination data used to create the pagination footer. Created using the usePagination hook.
+   * @default {}
    */
   paginationProps?: Partial<TablePaginationProps>;
 }

@@ -47,7 +47,7 @@ export interface ButtonStyles {
    */
   color?: ButtonColor;
   /**
-   *  Set the button to display full-width.
+   * Set the button to display full-width.
    * @default false
    */
   isFullWidth?: boolean;
@@ -118,9 +118,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         shape={shape || ButtonShape.fill}
         size={size || ButtonSize.medium}
         testId={testId}
-        textTransform={
-          textTransform || ButtonTextTransform.uppercase
-        }
+        textTransform={textTransform || ButtonTextTransform.uppercase}
         variant={variant || ButtonVariant.solid}
       >
         {resolvedProps.children}

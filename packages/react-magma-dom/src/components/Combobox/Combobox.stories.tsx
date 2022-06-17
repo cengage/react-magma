@@ -5,7 +5,6 @@ import { SelectOptions } from '../Select';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { magma } from '../../theme/magma';
 
 const Template: Story<ComboboxProps<SelectOptions>> = args => (
   <Combobox {...args} />
