@@ -6,6 +6,9 @@ import styled from '@emotion/styled';
  */
 export interface HideAtBreakpointProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @default HideAtBreakpointDisplayType.block
+   */
   displayType?: HideAtBreakpointDisplayType;
   /**
    * Maximum width at which to hide the content

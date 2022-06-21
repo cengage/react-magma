@@ -5,6 +5,7 @@ import { convertStyleValueToString } from '../../utils';
 export interface SpacerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * Determines whether the spacer takes up space horizontally, vertically or both.
+   * @default SpacerAxis.both
    */
   axis?: SpacerAxis;
   /**

@@ -52,6 +52,7 @@ export interface BasePaginationProps
   onPageChange?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
    * Size toggles between default and large variant buttons.
+   * @default PageButtonSize.medium
    */
   size?: PageButtonSize;
   /**

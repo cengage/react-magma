@@ -398,7 +398,7 @@ export function Example() {
 }
 ```
 
-### With Blue Background
+### With Dark Grey Background
 
 ```tsx
 import React from 'react';
@@ -407,7 +407,7 @@ export function Example() {
   return (
     <NavTabs
       aria-label="Sample Inverse Colors Nav Tabs with Dark Background"
-      backgroundColor={magma.colors.neutral}
+      backgroundColor={magma.colors.neutral800}
       isInverse
     >
       <NavTab isActive to="#">
@@ -484,14 +484,6 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
       description:
         'If true, the component will have inverse styling to better appear on a dark background',
       defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
   }}
 />

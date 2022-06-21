@@ -26,7 +26,7 @@ export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Position of the dropdown content
-   * @default `DropdownDropDirection.up`
+   * @default DropdownDropDirection.up
    */
   dropdownDropDirection?: DropdownDropDirection;
   /**

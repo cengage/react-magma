@@ -33,7 +33,7 @@ export interface RadioProps
   css?: any; // Adding css prop to fix emotion error
   /**
    * Hex code for the background color
-   * @default #0000FF
+   * @default theme.colors.primary
    */
   color?: string;
   /**

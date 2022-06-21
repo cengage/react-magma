@@ -32,6 +32,7 @@ export interface ToggleProps
   containerStyle?: React.CSSProperties;
   /**
    * If true, checkbox is checked on first render
+   * @default false
    */
   defaultChecked?: boolean;
   /**

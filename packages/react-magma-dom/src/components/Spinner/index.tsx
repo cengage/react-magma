@@ -8,7 +8,7 @@ import { ThemeInterface } from '../../theme/magma';
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * The color of the spinner border
-   * @default "#3942B0"
+   * @default theme.colors.primary (#3942B0)
    */
   color?: string;
   isInverse?: boolean;

@@ -14,7 +14,13 @@ export interface LabelProps
   actionable?: boolean;
   iconPosition?: InputIconPosition;
   isInverse?: boolean;
+  /**
+   * @default LabelPosition.top
+   */
   labelPosition?: LabelPosition;
+  /**
+   * @default InputSize.medium
+   */
   size?: InputSize;
   theme?: any;
   /**
