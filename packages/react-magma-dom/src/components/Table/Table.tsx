@@ -23,12 +23,12 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   hasOuterBorder?: boolean;
   /**
-   * If true, columns will have vertical borders
+   * If true, the table will have square edges
+   * @default false
    */
   hasSquareCorners?: boolean;
   /**
-   * If true, the table will have square edges
-   * @default false
+   * If true, columns will have vertical borders
    */
   hasVerticalBorders?: boolean;
   /**
