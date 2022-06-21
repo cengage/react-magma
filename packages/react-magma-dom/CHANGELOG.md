@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.14
+
+### Patch Changes
+
+- 2814dc5e: fix: Close button alignment on Alerts.
+
 ## 2.5.13
 
 ### Patch Changes
