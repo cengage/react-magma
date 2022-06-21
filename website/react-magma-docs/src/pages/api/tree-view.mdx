@@ -1,0 +1,41 @@
+---
+pageTitle: TreeView API
+title: TreeView
+props:
+  - TreeViewProps
+---
+
+<DocsHeading type="api">TreeView</DocsHeading>
+
+TreeView provides a hierarchical list of items that can be collapsed or expanded to hide or reveal their contents.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { TreeView } from 'react-magma-dom';
+
+export function Example() {
+  return <TreeView>TreeView content</TreeView>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { TreeView } from 'react-magma-dom';
+
+export function Example() {
+  return <TreeView isInverse>TreeView content</TreeView>;
+}
+```
+
+# TreeView Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<TreeViewProps />
