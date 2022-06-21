@@ -119,7 +119,7 @@ const StyledTable = styled.table<{
         }`
       : 0};
   border-radius: ${props =>
-    props.hasSquareCorners ? 0 : props.theme.spaceScale.spacing03};
+    props.hasSquareCorners ? 0 : props.theme.borderRadius};
   border-spacing: 0;
   color: ${props =>
     props.isInverse
