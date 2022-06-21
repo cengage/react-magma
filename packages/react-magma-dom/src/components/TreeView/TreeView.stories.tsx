@@ -1,5 +1,7 @@
 import React from 'react';
-import { TreeView } from '.';
+import { TreeView, TreeItem } from '.';
+
+import { FolderIcon } from 'react-magma-icons';
 
 export default {
   component: TreeView,
@@ -14,6 +16,10 @@ export default {
 };
 
 export const Default = (args) => {
-  return <TreeView {...args}>Sample text</TreeView>;
+  return (
+    <TreeView {...args}>
+      <TreeItem icon={<FolderIcon />} {...args}>Sample text</TreeItem>
+    </TreeView>
+  );
 };
 
