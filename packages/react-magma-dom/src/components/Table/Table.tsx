@@ -25,6 +25,11 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   /**
    * If true, columns will have vertical borders
    */
+  hasSquareCorners?: boolean;
+  /**
+   * If true, the table will have square edges
+   * @default false
+   */
   hasVerticalBorders?: boolean;
   /**
    * If true, every other row will have a background color
@@ -100,15 +105,21 @@ const TableContainer = styled.div`
 
 const StyledTable = styled.table<{
   hasOuterBorder?: boolean;
+  hasSquareCorners?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
   border-collapse: collapse;
-  border: ${props => (props.hasOuterBorder ? '1px solid' : 0)};
-  border-color: ${props =>
-    props.isInverse
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
+  box-shadow: ${props =>
+    props.hasOuterBorder
+      ? `0 0 0 1px ${
+          props.isInverse
+            ? transparentize(0.6, props.theme.colors.neutral100)
+            : props.theme.colors.neutral300
+        }`
+      : 0};
+  border-radius: ${props =>
+    props.hasSquareCorners ? 0 : props.theme.spaceScale.spacing03};
   border-spacing: 0;
   color: ${props =>
     props.isInverse
@@ -118,6 +129,7 @@ const StyledTable = styled.table<{
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   min-width: ${props => props.minWidth}px;
+  overflow: ${props => (props.hasSquareCorners ? 'inherit' : 'hidden')};
   width: 100%;
 `;
 
@@ -128,6 +140,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       density,
       hasHoverStyles,
       hasOuterBorder,
+      hasSquareCorners,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
@@ -158,6 +171,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             {...other}
             data-testid={testId}
             hasOuterBorder={hasOuterBorder}
+            hasSquareCorners={hasSquareCorners}
             isInverse={isInverse}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}

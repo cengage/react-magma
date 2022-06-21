@@ -39,10 +39,9 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByTestId('table')).toHaveStyleRule('border', '1px solid');
     expect(getByTestId('table')).toHaveStyleRule(
-      'border-color',
-      magma.colors.neutral300
+      'box-shadow',
+      `0 0 0 1px ${magma.colors.neutral300}`
     );
   });
 
@@ -64,11 +63,57 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByTestId('table')).toHaveStyleRule('border', '1px solid');
     expect(getByTestId('table')).toHaveStyleRule(
-      'border-color',
-      transparentize(0.6, magma.colors.neutral100)
+      'box-shadow',
+      `0 0 0 1px ${transparentize(0.6, magma.colors.neutral100)}`
     );
+  });
+
+  it('should render table with a border radius', () => {
+    const { getByTestId } = render(
+      <Table hasOuterBorder isInverse testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table')).toHaveStyleRule(
+      'border-radius',
+      magma.spaceScale.spacing03
+    );
+    expect(getByTestId('table')).toHaveStyleRule('overflow', 'hidden');
+  });
+
+  it('should render table without a border radius', () => {
+    const { getByTestId } = render(
+      <Table hasOuterBorder hasSquareCorners isInverse testId="table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table')).toHaveStyleRule('border-radius', '0');
+    expect(getByTestId('table')).toHaveStyleRule('overflow', 'inherit');
   });
 
   it('should render table with vertical borders', () => {
