@@ -110,12 +110,12 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
   (props, ref) => {
     const {
       children,
-      density,
+      density = TableDensity.normal,
       hasHoverStyles,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
-      minWidth,
+      minWidth = 600,
       rowCount,
       selectedItems,
       testId,

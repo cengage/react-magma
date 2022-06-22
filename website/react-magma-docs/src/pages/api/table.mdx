@@ -810,7 +810,7 @@ export function Example() {
 
 For larger data sets, the `TablePagination` component can be added underneath a table.
 The `TablePagination` takes props for `count`, which is the total number of rows, `page` which is the zero-based page number and `rowsPerPage`.
-It also takes the functions `onChangeRowsPerPage` and `onChangePage`.
+It also takes the function `onRowsPerPageChange`.
 
 This component does not handle the actual pagination of the table itself, it simply provides the UI and allows for the consumer to do the sorting.
 
@@ -976,10 +976,6 @@ export function Example() {
     setPageIndex(0);
   }
 
-  function handlePageChange(page) {
-    setPageIndex(page);
-  }
-
   const rowsToShow = rows.slice(
     pageIndex * rowsPerPage,
     pageIndex * rowsPerPage + rowsPerPage
@@ -1008,8 +1004,7 @@ export function Example() {
       </Table>
       <TablePagination
         count={rows.length}
-        onChangeRowsPerPage={handleRowsPerPageChange}
-        onChangePage={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
