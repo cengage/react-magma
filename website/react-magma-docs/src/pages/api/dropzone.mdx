@@ -1,8 +1,6 @@
 ---
 pageTitle: Dropzone API
 title: Dropzone
-props:
-  - DropzoneProps
 ---
 
 <DocsHeading to="/design/dropzone/" type="api">
@@ -307,4 +305,133 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<DropzoneProps />
+<SimplePropsTable
+  propertyValues={{
+    accept: {
+      type: {
+        name: 'string | string[]',
+      },
+      required: false,
+      description:
+        'Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276',
+      defaultValue: '',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'Enable/Disable the input',
+      defaultValue: 'false',
+    },
+    dropzoneOptions: {
+      type: {
+        name: 'DropzoneOptions',
+      },
+      required: false,
+      description:
+        'Additional props to pass to the dropzone, see https://react-dropzone.js.org/#src',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Content of the helper message.',
+      defaultValue: '',
+    },
+    maxFiles: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'Maximum accepted number of files The default value is 0 which means there is no limitation to how many files are accepted.',
+      defaultValue: '0',
+    },
+    minFiles: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Minimum accepted number of files.',
+      defaultValue: '',
+    },
+    maxSize: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Maximum file size (in bytes)',
+      defaultValue: 'Infinity',
+    },
+    minSize: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Minimum file size (in bytes)',
+      defaultValue: '0',
+    },
+    multiple: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'Allow drag and drop (or selection from the file dialog) of multiple files.',
+      defaultValue: 'true',
+    },
+    noDrag: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, disables drag n drop',
+      defaultValue: 'false',
+    },
+    onDeleteFile: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Callback for when a file is deleted',
+      defaultValue: '',
+    },
+    onRemoveFile: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Callback for when a file is deleted',
+      defaultValue: '',
+    },
+    onSendFile: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Callback for when a file is added to the preview list via dropping or selecting. Will be ran on new files when `sendFiles` is true.',
+      defaultValue: '',
+    },
+    sendFiles: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'Run `onSendFile` on any new files. Delay processing by setting to `false` until processing is desired.',
+      defaultValue: 'false',
+    },
+    thumbnails: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'Show thumbnails for images in lieu of the file icon.',
+      defaultValue: 'true',
+    }
+  }}
+/>

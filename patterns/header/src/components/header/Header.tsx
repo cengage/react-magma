@@ -20,6 +20,7 @@ import {
 import { MenuIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
 
+// NOTE: These props are manually copied to header.mdx
 export interface HeaderProps extends AppBarProps {
   breakpoint?: number;
   callToActionProps?: HyperlinkProps;

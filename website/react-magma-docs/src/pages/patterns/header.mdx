@@ -1,8 +1,6 @@
 ---
 pageTitle: Header
 title: Header
-props:
-  - HeaderProps
 ---
 
 <DocsHeading to="/design/header/" type="api">
@@ -242,4 +240,73 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `header` element.**
 
-<HeaderProps />
+<SimplePropsTable
+  propertyValues={{
+    isCompact: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the component will render at a shorter height with less padding',
+      defaultValue: 'false',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: 'false',
+    },
+    position: {
+      type: {
+        name: 'enum',
+        options: ['AppBarPosition.static', 'AppBarPosition.absolute', 'AppBarPosition.fixed', 'AppBarPosition.relative', 'AppBarPosition.sticky'],
+      },
+      required: false,
+      description: 'Position of the AppBar',
+      defaultValue: 'AppBarPosition.static',
+    },
+    breakpoint: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    callToActionProps: {
+      type: {
+        name: '',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    logo: {
+      type: {
+        name: 'React.ReactNode',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    onMenuButtonClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    searchProps: {
+      type: {
+        name: 'SearchProps',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+  }}
+/>
+

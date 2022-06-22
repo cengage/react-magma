@@ -52,6 +52,7 @@ export interface LineChartComponentProps {
   yAxis?: VictoryAxisProps;
 }
 
+// NOTE: These props are manually copied to line-chart.mdx
 export interface LineChartProps<T extends ChartDataOptions> {
   /**
    * Props passed to each component that makes up the line chart. See `victory` for accepted props.
