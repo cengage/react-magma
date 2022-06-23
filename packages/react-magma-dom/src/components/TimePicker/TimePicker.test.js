@@ -59,6 +59,32 @@ describe('TimePicker', () => {
       expect(hoursInput.value).toEqual('');
     });
 
+    it('should call the onChange when backspace is clicked on the hours input', () => {
+      const onKeyDown = jest.fn();
+      const { getByTestId } = render(
+        <TimePicker label="label" onKeyDown={onKeyDown} />
+      );
+
+      const hoursInput = getByTestId('hoursTimeInput');
+
+      fireEvent.keyDown(hoursInput, { key: 'Backspace' });
+
+      expect(onKeyDown).toHaveBeenCalled();
+    });
+
+    it('should call the onChange when backspace is clicked on the minutes input', () => {
+      const onKeyDown = jest.fn();
+      const { getByTestId } = render(
+        <TimePicker label="label" onKeyDown={onKeyDown} />
+      );
+
+      const minsInput = getByTestId('minutesTimeInput');
+
+      fireEvent.keyDown(minsInput, { key: 'Backspace' });
+
+      expect(onKeyDown).toHaveBeenCalled();
+    });
+
     it('should focus the minute input if the right arrow key is clicked', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
@@ -381,7 +407,7 @@ describe('TimePicker', () => {
     });
   });
 
-  it('should render the timepicker with a error message', () => {
+  it('should render the timepicker with an error message', () => {
     const message = 'test error';
     const label = 'test label';
     const { getByText } = render(

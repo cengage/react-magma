@@ -98,6 +98,12 @@ import { Card, CardBody, Paragraph, TimePicker } from 'react-magma-dom';
 
 export function Example() {
   const [timeValue, setTimeValue] = React.useState('');
+  const [onChangeCalledTimes, setOnChangeCalledTimes] = React.useState(0);
+
+  function handleOnChange(value) {
+    setTimeValue(value);
+    setOnChangeCalledTimes(onChangeCalledTimes + 1);
+  }
 
   return (
     <Card>
@@ -105,9 +111,12 @@ export function Example() {
         <Paragraph>
           <strong>Time Value:</strong> {timeValue}
         </Paragraph>
+        <Paragraph>
+          onChange called {onChangeCalledTimes} times
+        </Paragraph>
         <TimePicker
           labelText="Time Due"
-          onChange={value => setTimeValue(value)}
+          onChange={handleOnChange}
         />
       </CardBody>
     </Card>

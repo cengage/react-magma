@@ -146,7 +146,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             max="12"
             min="1"
             onChange={handleHourChange}
-            onKeyDown={handleHourKeyDown}
+            onKeyDown={(e) => handleHourKeyDown(e, handleHourChange)}
             placeholder="--"
             ref={hourRef}
             theme={theme}
@@ -163,7 +163,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             max="59"
             min="0"
             onChange={handleMinuteChange}
-            onKeyDown={handleMinuteKeyDown}
+            onKeyDown={(e) => handleMinuteKeyDown(e, handleMinuteChange)}
             placeholder="--"
             ref={minuteRef}
             step={minutesStep || 1}

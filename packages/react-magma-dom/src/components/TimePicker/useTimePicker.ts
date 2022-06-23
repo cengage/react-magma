@@ -131,8 +131,9 @@ export function useTimePicker(props: UseTimePickerProps) {
     updateTime(`${hour}:${minute} ${newAmPm}`);
   }
 
-  function handleHourKeyDown(event: React.KeyboardEvent) {
+  function handleHourKeyDown(event: React.KeyboardEvent, hourChangeFunc) {
     if (event.key === 'Backspace') {
+      hourChangeFunc(event);
       setHour('');
     }
 
@@ -141,8 +142,9 @@ export function useTimePicker(props: UseTimePickerProps) {
     }
   }
 
-  function handleMinuteKeyDown(event: React.KeyboardEvent) {
+  function handleMinuteKeyDown(event: React.KeyboardEvent, minChangeFunc) {
     if (event.key === 'Backspace') {
+      minChangeFunc(event);
       setMinute('');
     }
 
