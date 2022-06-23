@@ -38,6 +38,7 @@ const HeaderIconTemplate: Story<DropdownProps> = args => (
       <DropdownMenuGroup header="Section title A">
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
         <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+        <DropdownMenuItem disabled>Menu item disabled</DropdownMenuItem>
       </DropdownMenuGroup>
       <DropdownDivider />
       <DropdownMenuGroup header="Section title B">
@@ -70,6 +71,11 @@ export default {
     },
     onClose: {
       action: 'onClose',
+    },
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
     },
   },
 } as Meta;
@@ -141,7 +147,7 @@ export const LargeButton = LargeTemplate.bind({});
 LargeButton.args = { ...Default.args };
 
 const CustomTemplate: Story<DropdownProps> = args => (
-  <>
+  <div style={{ margin: '100px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton
         aria-label="Extra icon example"
@@ -156,7 +162,7 @@ const CustomTemplate: Story<DropdownProps> = args => (
       </DropdownContent>
     </Dropdown>
     <br />
-    <Dropdown>
+    <Dropdown {...args}>
       <DropdownButton
         aria-label="Extra icon example"
         size={ButtonSize.large}
@@ -167,19 +173,7 @@ const CustomTemplate: Story<DropdownProps> = args => (
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
-    <br />
-    <Dropdown isInverse>
-      <DropdownButton
-        aria-label="Extra icon example"
-        size={ButtonSize.large}
-        icon={<MenuIcon />}
-      />
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-  </>
+  </div>
 );
 
 export const CustomIconButton = CustomTemplate.bind({});
