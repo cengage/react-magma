@@ -7,6 +7,7 @@ import { InverseContext, useIsInverse } from '../../inverse';
 import { Transition } from '../Transition';
 
 import { ExpandLessIcon, ExpandMoreIcon, IconProps } from 'react-magma-icons';
+import { Checkbox } from '../Checkbox';
 
 /**
 * @children required
@@ -56,12 +57,6 @@ const IconWrapper = styled.span<{ noIconButton?: boolean; isInverse?: boolean }>
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral500};
   margin-right: ${props => props.theme.spaceScale.spacing03};
-  margin-left: ${props =>
-    props.noIconButton
-    ? addPxStyleStrings([
-      props.theme.spaceScale.spacing05,
-      props.theme.iconSizes.medium])
-    : props.theme.spaceScale.spacing05};
 
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
@@ -79,6 +74,17 @@ const StyledButton = styled.button<{ theme?: ThemeInterface; isInverse?: boolean
   vertical-align: middle;
 `;
 
+const StyledCheckbox = styled.div<{theme?: ThemeInterface; isInverse?: boolean;}>`
+  border: none;
+  color: inherit;
+  background: inherit;
+  padding: 0;
+  margin-right: ${props => props.theme.spaceScale.spacing05};
+  vertical-align: middle;
+  display: inline-flex;
+  width: ${props => props.theme.iconSizes.medium}px;
+`
+
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
   (props, ref) => {
     const {children, testId, isInverse: isInverseProp, icon, ...rest} = props;
@@ -88,6 +94,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const [expanded, setExpanded] = React.useState(true);
 
     const hasOwnTreeItems = React.Children.toArray(children).filter((child: React.ReactElement<any>) => child.type === TreeItem).length > 0;
+
+    const [selected, updateSelected] = React.useState(false);
 
     return (<InverseContext.Provider value={{ isInverse, }}>
       <StyledTreeItem
@@ -105,6 +113,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             }
           </StyledButton>
         }
+
+        <StyledCheckbox isInverse={isInverse} theme={theme}>
+          <Checkbox labelText="" onChange={() => updateSelected(!selected)}></Checkbox>
+        </StyledCheckbox>
+
         {icon &&
           <IconWrapper isInverse={isInverse} theme={theme} noIconButton={hasOwnTreeItems}>
           {icon}

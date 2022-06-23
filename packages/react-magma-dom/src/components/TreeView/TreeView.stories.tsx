@@ -18,37 +18,36 @@ export default {
 export const Default = (args) => {
   return (
     <TreeView {...args}>
-      <TreeItem {...args}>Home
-        <TreeItem {...args}>Bath
-          <TreeItem {...args}>Bathroom Storage
+      <TreeItem icon={<FolderIcon/>} {...args}>Home
+        <TreeItem icon={<FolderIcon/>} {...args}>Bath
+          <TreeItem icon={<FolderIcon/>} {...args}>Bathroom Storage
             <TreeItem {...args}>Item 1</TreeItem>
             <TreeItem {...args}>Item 2</TreeItem>
           </TreeItem>
           <TreeItem {...args}>Shower Curtains & Accessories
           </TreeItem>
-          <TreeItem {...args}>Bath Towels
+          <TreeItem icon={<FolderIcon/>} {...args}>Bath Towels
             <TreeItem {...args}>Item 1</TreeItem>
             <TreeItem {...args}>Item 2</TreeItem>
           </TreeItem>
         </TreeItem>
-        <TreeItem {...args}>Bedding
+        <TreeItem icon={<FolderIcon/>} {...args}>Bedding
             <TreeItem {...args}>Item 1</TreeItem>
             <TreeItem {...args}>Item 2</TreeItem>
         </TreeItem>
         <TreeItem {...args}>Arts & Crafts
         </TreeItem>
-        <TreeItem {...args}>Storage & Organization
+        <TreeItem icon={<FolderIcon/>} {...args}>Storage & Organization
           <TreeItem {...args}>Item 1</TreeItem>
           <TreeItem {...args}>Item 2</TreeItem>
         </TreeItem>
       </TreeItem>
-      <TreeItem {...args}>Furniture
+      <TreeItem icon={<FolderIcon/>} {...args}>Furniture
         <TreeItem {...args}>Item 1</TreeItem>
         <TreeItem {...args}>Item 2</TreeItem>
       </TreeItem>
-      <TreeItem {...args}>Kitchen & Dining
-      </TreeItem>
-      <TreeItem {...args}>Patio & Garden
+      <TreeItem {...args}>Kitchen & Dining</TreeItem>
+      <TreeItem icon={<FolderIcon/>} {...args}>Patio & Garden
         <TreeItem {...args}>Item 1</TreeItem>
         <TreeItem {...args}>Item 2</TreeItem>
       </TreeItem>
