@@ -8,7 +8,7 @@ import { InverseContext, useIsInverse } from '../../inverse';
 /**
 * @children required
 */
-export interface TreeViewProps extends React.HTMLAttributes<HTMLDivElement>{
+export interface TreeViewProps extends React.HTMLAttributes<HTMLUListElement>{
   testId?: string;
   isInverse?: boolean;
   /**
@@ -17,7 +17,7 @@ export interface TreeViewProps extends React.HTMLAttributes<HTMLDivElement>{
   theme?: ThemeInterface;
 }
 
-const StyledTreeView = styled.div<TreeViewProps>`
+const StyledTreeView = styled.ul<TreeViewProps>`
   background: ${props =>
   props.isInverse
   ? props.theme.colors.primary600
@@ -26,9 +26,13 @@ const StyledTreeView = styled.div<TreeViewProps>`
   props.isInverse
   ? props.theme.colors.neutral100
   : props.theme.colors.neutral};
+  ul {
+    padding: 0px;
+    margin-left: ${props => props.theme.spaceScale.spacing06};
+  }
 `;
 
-export const TreeView = React.forwardRef<HTMLDivElement, TreeViewProps>(
+export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
   (props, ref) => {
     const {children, testId, isInverse: isInverseProp,  ...rest} = props;
     const theme = React.useContext(ThemeContext);
