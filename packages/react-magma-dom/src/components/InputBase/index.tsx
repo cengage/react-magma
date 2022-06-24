@@ -327,11 +327,11 @@ const IconButtonContainer = styled.span<{
 `;
 
 function getClearablePosition(props) {
-  if (props.iconPosition === 'right' && props.icon) {
+  if (props.iconPosition === 'right' && props.icon && !props.onIconClick) {
     if (props.inputSize === 'large') {
-      return props.theme.spaceScale.spacing09;
+      return props.theme.spaceScale.spacing10;
     }
-    return props.theme.spaceScale.spacing07;
+    return props.theme.spaceScale.spacing09;
   }
   if (props.inputSize === 'large') {
     return props.theme.spaceScale.spacing02;
@@ -345,6 +345,7 @@ const IsClearableContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   isClearable?: boolean;
+  onIconClick?: () => void;
   disabled?: boolean;
 }>`
   background-color: transparent;
@@ -455,6 +456,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             icon={icon}
             iconPosition={iconPosition}
             inputSize={inputSize}
+            onIconClick={onIconClick}
           >
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
