@@ -169,7 +169,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <div style={{ background: magma.colors.primary600 }}>
+    <div style={{ background: magma.colors.primary600, padding: '12px' }}>
       <Story />
     </div>
   ),
