@@ -124,7 +124,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
         {treeContext.isSelectable &&
           <StyledCheckbox isInverse={isInverse} theme={theme}>
-            <Checkbox isTextVisuallyHidden labelText="Checkbox" onChange={() => updateSelected(!selected)}></Checkbox>
+            <Checkbox isInverse={isInverse} isTextVisuallyHidden labelText="Checkbox" onChange={() => updateSelected(!selected)}></Checkbox>
           </StyledCheckbox>
         }
         {treeContext.hasIcons &&
