@@ -47,6 +47,9 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   isPaused?: boolean;
   isToast?: boolean;
   onDismiss?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   toastDuration?: number;
   variant?: AlertVariant;

@@ -23,6 +23,9 @@ const transitionPreset: {
  * @children required
  */
 export interface DrawerProps extends Omit<ModalProps, 'size'> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Style properties for the drawer

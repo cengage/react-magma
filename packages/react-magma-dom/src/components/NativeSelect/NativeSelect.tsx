@@ -18,6 +18,9 @@ import { useGenerateId } from '../../utils';
 export interface NativeSelectProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.SelectHTMLAttributes<HTMLSelectElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   optionLabel?: string;
 }

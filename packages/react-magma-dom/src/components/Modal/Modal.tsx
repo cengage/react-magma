@@ -87,6 +87,9 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default ModalSize.medium
    */
   size?: ModalSize;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

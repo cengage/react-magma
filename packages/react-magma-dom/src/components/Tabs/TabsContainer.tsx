@@ -10,6 +10,9 @@ interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   activeIndex?: number;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

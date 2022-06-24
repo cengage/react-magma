@@ -26,7 +26,7 @@ export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Position of the dropdown content
-   * @default `DropdownDropDirection.up`
+   * @default DropdownDropDirection.up
    */
   dropdownDropDirection?: DropdownDropDirection;
   /**
@@ -46,6 +46,9 @@ export interface BaseTablePaginationProps
    * Values added to the rows per page select
    */
   rowsPerPageValues?: number[];
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -99,7 +102,9 @@ const StyledContainer = styled.div<{
 }>`
   align-items: center;
   background: ${props =>
-    props.isInverse ? transparentize(0.9, props.theme.colors.neutral100) : props.theme.colors.neutral200};
+    props.isInverse
+      ? transparentize(0.9, props.theme.colors.neutral100)
+      : props.theme.colors.neutral200};
   border-top: 1px solid
     ${props =>
       props.isInverse

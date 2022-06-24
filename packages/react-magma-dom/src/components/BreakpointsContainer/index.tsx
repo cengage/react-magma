@@ -17,7 +17,7 @@ export interface BreakpointsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Object that defines the pixel size of individual breakpoints
-   * @default { xs: 0, small: 600, medium: 768, large: 1024, xl: 1200 }
+   * @default  {xs: 0, small: 600, medium: 768, large: 1024, xl: 1200}
    */
   breakpoints?: object;
 }
@@ -28,6 +28,9 @@ export interface BreakpointProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default BreakpointScreenSize.xs
    */
   screenSize?: BreakpointScreenSize;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -56,11 +59,9 @@ function getMinWidth(
   return breakpointValues[nextSize];
 }
 
-export const BreakpointsContainer: React.FunctionComponent<BreakpointsContainerProps> = ({
-  children,
-  breakpoints,
-  ...other
-}: BreakpointsContainerProps) => {
+export const BreakpointsContainer: React.FunctionComponent<
+  BreakpointsContainerProps
+> = ({ children, breakpoints, ...other }: BreakpointsContainerProps) => {
   const definedBreakpoints = [];
 
   React.Children.forEach(children, (child: React.ReactElement) => {

@@ -33,7 +33,7 @@ export interface RadioProps
   css?: any; // Adding css prop to fix emotion error
   /**
    * Hex code for the background color
-   * @default #0000FF
+   * @default theme.colors.primary
    */
   color?: string;
   /**
@@ -58,6 +58,9 @@ export interface RadioProps
    * Content of label; can be node or string
    */
   labelText: React.ReactNode;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Whether the label appears to the left of the right of the radio button

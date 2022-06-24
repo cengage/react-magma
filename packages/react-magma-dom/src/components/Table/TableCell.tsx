@@ -12,6 +12,9 @@ export interface TableCellProps
    * @default TableCellAlign.left
    */
   align?: TableCellAlign;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS

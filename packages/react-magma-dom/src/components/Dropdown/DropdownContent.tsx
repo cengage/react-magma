@@ -16,6 +16,9 @@ import { useForkedRef } from '../../utils';
 export interface DropdownContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

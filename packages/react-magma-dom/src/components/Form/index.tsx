@@ -45,7 +45,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   headingVisualStyle?: TypographyVisualStyle;
   isInverse?: boolean;
   /**
-   * Handler for form submission
+   * @internal
    */
   testId?: string;
 }

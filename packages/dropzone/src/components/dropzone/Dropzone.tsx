@@ -48,6 +48,8 @@ type DragState =
   | 'dragReject'
   | 'dragActive'
   | 'default';
+
+// NOTE: These props are manually copied to dropzone.mdx
 export interface DropzoneProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId' | 'errorMessage'> {
   /**
@@ -116,6 +118,9 @@ export interface DropzoneProps
    * @default false
    */
   sendFiles?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Show thumbnails for images in lieu of the file icon.

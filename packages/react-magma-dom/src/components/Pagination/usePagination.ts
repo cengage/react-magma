@@ -10,6 +10,7 @@ export interface UsePaginationProps {
   count?: number;
   /**
    * Page selected by default when the component is uncontrolled
+   * @default 1
    */
   defaultPage?: number;
   /**

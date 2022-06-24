@@ -12,6 +12,9 @@ export interface TypographyProps<T = HTMLParagraphElement>
   isInverse?: boolean;
   noMargins?: boolean;
   ref?: any;
+  /**
+   * @internal
+   */
   testId?: string;
   theme?: any;
   visualStyle?: TypographyVisualStyle;
