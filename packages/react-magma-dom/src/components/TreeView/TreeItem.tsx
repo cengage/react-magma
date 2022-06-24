@@ -3,11 +3,12 @@ import styled from '../../theme/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { InverseContext, useIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 import { Transition } from '../Transition';
 
 import { ExpandLessIcon, ExpandMoreIcon, IconProps } from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
+import { TreeContext } from './';
 
 /**
 * @children required
@@ -21,6 +22,7 @@ export interface TreeItemProps extends React.HTMLAttributes<HTMLLIElement>{
   theme?: ThemeInterface;
   icon?: React.ReactElement<IconProps>;
   hasOwnTreeItems?: boolean;
+  isSelectable?: boolean;
 }
 
 const addPxStyleStrings = (
@@ -51,13 +53,17 @@ const StyledTreeItem = styled.li<TreeItemProps>`
     ])};
 `;
 
-const IconWrapper = styled.span<{ noIconButton?: boolean; isInverse?: boolean }>`
+const IconWrapper = styled.span<{ hasIcon?: boolean; isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral500};
   margin-right: ${props => props.theme.spaceScale.spacing03};
-
+  margin-left: ${props =>
+    props.hasIcon
+    ? '24px'
+    : '0px'
+    };
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
     width: ${props => props.theme.iconSizes.medium}px;
@@ -89,15 +95,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
   (props, ref) => {
     const {children, testId, isInverse: isInverseProp, icon, ...rest} = props;
     const theme = React.useContext(ThemeContext);
+    const treeContext = React.useContext(TreeContext);
     const isInverse = useIsInverse(isInverseProp);
-
+    const isSelectable = treeContext.isSelectable;
+    const hasIcons = treeContext.hasIcons;
     const [expanded, setExpanded] = React.useState(true);
 
     const hasOwnTreeItems = React.Children.toArray(children).filter((child: React.ReactElement<any>) => child.type === TreeItem).length > 0;
 
     const [selected, updateSelected] = React.useState(false);
 
-    return (<InverseContext.Provider value={{ isInverse, }}>
+    return (<TreeContext.Provider value={{ isInverse, isSelectable, hasIcons }}>
       <StyledTreeItem
         theme={theme} 
         isInverse={isInverse}
@@ -114,12 +122,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           </StyledButton>
         }
 
-        <StyledCheckbox isInverse={isInverse} theme={theme}>
-          <Checkbox labelText="" onChange={() => updateSelected(!selected)}></Checkbox>
-        </StyledCheckbox>
-
-        {icon &&
-          <IconWrapper isInverse={isInverse} theme={theme} noIconButton={hasOwnTreeItems}>
+        {treeContext.isSelectable &&
+          <StyledCheckbox isInverse={isInverse} theme={theme}>
+            <Checkbox isTextVisuallyHidden labelText="Checkbox" onChange={() => updateSelected(!selected)}></Checkbox>
+          </StyledCheckbox>
+        }
+        {treeContext.hasIcons &&
+          <IconWrapper isInverse={isInverse} theme={theme} hasIcon={treeContext.hasIcons && !icon}>
           {icon}
           </IconWrapper>
         }
@@ -135,5 +144,5 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           })
         }
       </StyledTreeItem>
-    </InverseContext.Provider>);
+    </TreeContext.Provider>);
 });

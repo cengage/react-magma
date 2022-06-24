@@ -17,7 +17,7 @@ export default {
 
 export const Default = (args) => {
   return (
-    <TreeView {...args}>
+    <TreeView isSelectable={true} hasIcons={false} {...args}>
       <TreeItem icon={<FolderIcon/>} {...args}>Home
         <TreeItem icon={<FolderIcon/>} {...args}>Bath
           <TreeItem icon={<FolderIcon/>} {...args}>Bathroom Storage

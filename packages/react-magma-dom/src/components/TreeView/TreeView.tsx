@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { InverseContext, useIsInverse } from '../../inverse';
+import { useIsInverse } from '../../inverse';
 
 /**
 * @children required
@@ -11,11 +11,25 @@ import { InverseContext, useIsInverse } from '../../inverse';
 export interface TreeViewProps extends React.HTMLAttributes<HTMLUListElement>{
   testId?: string;
   isInverse?: boolean;
+  isSelectable?: boolean;
+  hasIcons?: boolean;
   /**
   * @internal
   */
   theme?: ThemeInterface;
 }
+
+interface TreeContextInterface {
+  isInverse?: boolean;
+  isSelectable?: boolean;
+  hasIcons?: boolean;
+}
+
+export const TreeContext = React.createContext<TreeContextInterface>({
+  isInverse: false,
+  isSelectable: false,
+  hasIcons: false,
+});
 
 const StyledTreeView = styled.ul<TreeViewProps>`
   background: ${props =>
@@ -34,20 +48,20 @@ const StyledTreeView = styled.ul<TreeViewProps>`
 
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
   (props, ref) => {
-    const {children, testId, isInverse: isInverseProp,  ...rest} = props;
+    const {children, testId, isInverse: isInverseProp, isSelectable, hasIcons, ...rest} = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
-    return (<InverseContext.Provider value={{ isInverse, }}>
+    return (<TreeContext.Provider value={{ isInverse, isSelectable, hasIcons}}>
       <StyledTreeView
-       theme={theme} 
-       isInverse={isInverse}
-      ref={ref}
-      data-testid={props.testId}
-      {...rest} >
-        {children}
+        theme={theme} 
+        isInverse={isInverse}
+        ref={ref}
+        data-testid={props.testId}
+        {...rest} >
+          {children}
         
       </StyledTreeView>
-    </InverseContext.Provider>);
+    </TreeContext.Provider>);
   }
 )
