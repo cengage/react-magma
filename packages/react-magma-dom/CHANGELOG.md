@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.30
+
+### Major Changes
+
+- 41215ce1e: feat(table): Update Storybook examples
+
 ## 3.0.0-next.29
 
 ### Major Changes
