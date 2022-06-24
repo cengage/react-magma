@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.47
+
+### Major Changes
+
+- e226b8597: docs: missing props tables fixes
+
 ## 3.0.0-next.46
 
 ### Major Changes
