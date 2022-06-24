@@ -234,7 +234,7 @@ const rowsLong = [
   ],
 ];
 
-export const ControlledPagination = () => {
+export const ControlledPagination = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
@@ -254,7 +254,7 @@ export const ControlledPagination = () => {
 
   return (
     <Card>
-      <Table>
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -284,7 +284,7 @@ export const ControlledPagination = () => {
   );
 };
 
-export const UncontrolledPagination = () => {
+export const UncontrolledPagination = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
@@ -303,7 +303,7 @@ export const UncontrolledPagination = () => {
 
   return (
     <Card>
-      <Table>
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -378,10 +378,10 @@ PaginationInverse.args = {
   isInverse: true,
 };
 
-export const RowColors = () => {
+export const RowColors = args => {
   return (
     <Card>
-      <Table hasHoverStyles hasZebraStripes>
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -424,6 +424,11 @@ export const RowColors = () => {
       </Table>
     </Card>
   );
+};
+RowColors.args = {
+  ...Default.args,
+  hasHoverStyles: true,
+  hasZebraStripe: true,
 };
 
 export const RowColorsInverse = args => {
