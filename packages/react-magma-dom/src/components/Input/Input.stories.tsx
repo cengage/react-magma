@@ -45,6 +45,7 @@ Default.args = {
   helperMessage: 'Helper message',
   placeholder: 'Placeholder text...',
 };
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const Error = Template.bind({});
 Error.args = {
