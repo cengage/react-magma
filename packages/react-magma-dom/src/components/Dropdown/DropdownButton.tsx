@@ -34,7 +34,7 @@ export interface IconTextDropdownButtonProps extends ButtonProps {
   icon?: React.ReactElement<IconProps>;
   /**
    * Position within the button for the icon to appear
-   * @default `ButtonIconPosition.right`
+   * @default ButtonIconPosition.right
    */
   iconPosition?: ButtonIconPosition;
   /**

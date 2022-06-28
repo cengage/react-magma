@@ -25,6 +25,9 @@ export interface TableRowProps
   onHeaderRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onTableRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   rowIndex?: number;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

@@ -47,6 +47,9 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   minWidth?: number;
   rowCount?: number;
   selectedItems?: Array<number>;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

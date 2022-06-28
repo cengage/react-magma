@@ -39,6 +39,7 @@ export interface ComboboxProps<T extends SelectOptions>
   hasError?: boolean;
   /**
    * Position of text label relative to form field
+   * @default LabelPosition.top
    */
   labelPosition?: LabelPosition;
   /**
@@ -46,13 +47,13 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   innerRef?: React.Ref<HTMLInputElement>;
   /**
-   * If true, the loading component is shown
-   * @default false
-   */
-  /**
    * @internal
    */
   isMulti?: false;
+  /**
+   * If true, the loading component is shown
+   * @default false
+   */
   isLoading?: boolean;
   /**
    * Default selectable options. Can be an array of strings or objects
@@ -101,6 +102,14 @@ export interface ComboboxProps<T extends SelectOptions>
    * Reference to the toggle button element wrapping the input in the combobox
    */
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
+  /**
+   * @internal
+   */
+  testId?: string;
+  /**
+   * Style properties for the component container element
+   */
+  containerStyle?: React.CSSProperties;
 }
 
 export interface MultiComboboxProps<T extends SelectOptions>

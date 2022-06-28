@@ -1,5 +1,43 @@
 # Change Log
 
+## 3.0.0-next.30
+
+### Major Changes
+
+- 41215ce1e: feat(table): Update Storybook examples
+
+## 3.0.0-next.29
+
+### Major Changes
+
+- 732f5c908: fix(button): Remove margin from buttons
+
+  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
+
+## 3.0.0-next.28
+
+### Major Changes
+
+- 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
+
+## 3.0.0-next.27
+
+### Major Changes
+
+- cc23aacf6: fix(toast): bring back dropshadow for toasts
+
+## 3.0.0-next.26
+
+### Major Changes
+
+- 133d2cf32: fix(table): update sortable table header cursor
+
+## 3.0.0-next.25
+
+### Major Changes
+
+- ca2c61de6: feat(tooltip): Fix tooltip position bug
+
 ## 3.0.0-next.24
 
 ### Major Changes

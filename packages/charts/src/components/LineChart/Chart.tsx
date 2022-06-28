@@ -30,6 +30,9 @@ interface BaseChartProps {
    * Description of what the line chart data represents placed above the chart
    */
   description?: string;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Title of the line chart

@@ -1,21 +1,21 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 
-export interface ContainerProps {
+export interface StyledContainerProps {
   children?: any;
   style?: React.CSSProperties;
 }
 
-const StyledContainerComponent = styled.div<ContainerProps>`
+const StyledContainerComponent = styled.div<StyledContainerProps>`
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;
   position: relative;
 `;
 
-export const StyledContainer: React.FunctionComponent<ContainerProps> = ({
+export const StyledContainer: React.FunctionComponent<StyledContainerProps> = ({
   children,
   style,
-}: ContainerProps) => (
+}: StyledContainerProps) => (
   <StyledContainerComponent style={style}>{children}</StyledContainerComponent>
 );

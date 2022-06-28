@@ -26,6 +26,7 @@ import {
   Select,
   ThemeContext,
   magma,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 const magmaDark = Object.assign({}, magma, {
@@ -58,9 +59,11 @@ function DemoComponent() {
           <Radio labelText="Radio 1" value="1" />
           <Radio labelText="Radio 2" value="2" />
         </RadioGroup>
-        <Button>Button</Button>
-        <Button color={ButtonColor.secondary}>Secondary Button</Button>
-        <Button color={ButtonColor.danger}>Danger Button</Button>
+        <ButtonGroup>
+          <Button>Button</Button>
+          <Button color={ButtonColor.secondary}>Secondary Button</Button>
+          <Button color={ButtonColor.danger}>Danger Button</Button>
+        </ButtonGroup>
       </CardBody>
     </Card>
   );

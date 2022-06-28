@@ -44,7 +44,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -166,7 +166,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -319,7 +319,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -441,7 +441,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -594,7 +594,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -716,7 +716,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -869,7 +869,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -991,7 +991,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1132,7 +1132,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1254,7 +1254,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1419,7 +1419,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -1534,7 +1534,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -1685,7 +1685,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1800,7 +1800,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1951,7 +1951,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -2066,7 +2066,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -2217,7 +2217,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -2332,7 +2332,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -2483,7 +2483,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -2598,7 +2598,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -2753,7 +2753,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -2868,7 +2868,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -3015,7 +3015,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -3130,7 +3130,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;

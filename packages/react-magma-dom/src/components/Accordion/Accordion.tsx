@@ -16,6 +16,9 @@ import { ThemeInterface } from '../../theme/magma';
 interface BaseAccordionProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

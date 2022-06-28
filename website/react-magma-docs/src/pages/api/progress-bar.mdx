@@ -28,7 +28,7 @@ The `percentage` prop is used to display how much of the bar should be filled in
 
 ```tsx
 import React from 'react';
-import { ProgressBar, Button, Paragraph } from 'react-magma-dom';
+import { ProgressBar, Button, ButtonGroup, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const [percentage, setPercentage] = React.useState(0);
@@ -44,14 +44,15 @@ export function Example() {
   return (
     <>
       <ProgressBar percentage={percentage} />
-      <Paragraph>
+      <Spacer size={12} />
+      <ButtonGroup>
         <Button disabled={percentage >= 100} onClick={handleIncrease}>
           Increase
         </Button>
         <Button disabled={percentage <= 0} onClick={handleDecrease}>
           Decrease
         </Button>
-      </Paragraph>
+      </ButtonGroup>
     </>
   );
 }

@@ -105,14 +105,6 @@ export function IconButtonProps() {
           description: 'The relative size of the button',
           defaultValue: 'medium',
         },
-        testId: {
-          type: {
-            name: 'string',
-          },
-          required: false,
-          description:
-            'Test ID attached to an internal element as `data-testid` for consumer testing',
-        },
         textTransform: {
           type: {
             name: 'enum',

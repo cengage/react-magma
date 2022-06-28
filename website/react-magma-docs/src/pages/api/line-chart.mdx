@@ -1,8 +1,6 @@
 ---
 pageTitle: LineChart API
 title: LineChart
-props:
-  - ChartProps
 ---
 
 <DocsHeading type="api">LineChart</DocsHeading>
@@ -90,4 +88,49 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<ChartProps />
+<SimplePropsTable
+  propertyValues={{
+    componentProps: {
+      type: {
+        name: 'enum',
+        options: ['LineChartComponentProps.chart', 'LineChartComponentProps.line', 'LineChartComponentProps.scatter', 'LineChartComponentProps.xAxis', 'LineChartComponentProps.yAxis'],
+      },
+      required: false,
+      description: 'Props passed to each component that makes up the line chart. See `victory` for accepted props.',
+      defaultValue: '{}',
+    },
+    data: {
+      type: {
+        name: 'array',
+      },
+      required: false,
+      description: 'Data used to build the chart',
+      defaultValue: '[]',
+    },
+    isMulti: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: 'false',
+    },
+    x: {
+      type: {
+        name: 'keyof T',
+      },
+      required: false,
+      description: 'Value of x key in chart data',
+      defaultValue: '',
+    },
+    y: {
+      type: {
+        name: 'keyof T',
+      },
+      required: false,
+      description: 'Value of y key in chart data',
+      defaultValue: '',
+    },
+  }}
+/>
+

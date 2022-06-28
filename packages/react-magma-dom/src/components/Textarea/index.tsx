@@ -22,6 +22,9 @@ export interface TextareaProps
    */
   containerStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Style properties for the textarea element
