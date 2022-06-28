@@ -6,8 +6,8 @@ import { Toggle } from '../Toggle';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
-import { Card } from '../Card';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+import { Container } from '../Container';
 
 const info = {
   component: Modal,
@@ -331,12 +331,12 @@ export const Inverse = () => {
           <Button isInverse>This is a button</Button>
         </p>
       </Modal>
-      <Card isInverse>
+      <Container isInverse style={{ padding: '12px' }}>
         <Button onClick={() => setShowModal(true)} isInverse>
           Show Modal
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
-      </Card>
+      </Container>
     </>
   );
 };
