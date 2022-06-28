@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.33
+
+### Major Changes
+
+- d70e4cf17: feat(badge): Update hover/active/focus styles
+
 ## 3.0.0-next.32
 
 ### Major Changes
