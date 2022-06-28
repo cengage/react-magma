@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.35
+
+### Major Changes
+
+- c765e88d1: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
+
 ## 3.0.0-next.34
 
 ### Major Changes
