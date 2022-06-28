@@ -298,32 +298,6 @@ export function Example() {
 }
 ```
 
-## Internationalization
-
-If you're using strings in your component, they must be internationalized.
-
-Full example of <Link to="/api/internationalization">internationalization override options</Link>
-
-```tsx
-import React from 'react';
-import { es } from 'date-fns/locale';
-import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <I18nContext.Provider
-      value={{
-        ...defaultI18n,
-        example: 'example i18n',
-      }}
-    >
-      <tag>override default i18n value: </tag>
-    </I18nContext.Provider>
-  );
-}
-```
-
-
 ## Tag Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**

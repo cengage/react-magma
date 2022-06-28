@@ -846,18 +846,29 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, TabsContainer, Tabs, Tab } from 'react-magma-dom';
+import { Card, CardBody, TabsContainer, Tabs, Tab, TabPanelsContainer, TabPanel } from 'react-magma-dom';
 
 export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <TabsContainer>
+        <TabsContainer isInverse>
           <Tabs aria-label="Sample Inverse Colors Tabs" isInverse>
-            <Tab>First item</Tab>
-            <Tab>Second item</Tab>
-            <Tab>Third item</Tab>
+            <Tab isInverse>First item</Tab>
+            <Tab isInverse>Second item</Tab>
+            <Tab isInverse>Third item</Tab>
           </Tabs>
+          <TabPanelsContainer isInverse>
+            <TabPanel isInverse>
+              <div>Main page</div>
+            </TabPanel>
+            <TabPanel isInverse>
+              <div>FAQ</div>
+            </TabPanel>
+            <TabPanel isInverse>
+              <div>About us</div>
+            </TabPanel>
+          </TabPanelsContainer>
         </TabsContainer>
       </CardBody>
     </Card>
@@ -883,123 +894,6 @@ export function Example() {
         <Tab>Second item</Tab>
         <Tab>Third item</Tab>
       </Tabs>
-    </TabsContainer>
-  );
-}
-```
-
-### Applied to Tabs Container
-
-```tsx
-import React from 'react';
-import {
-  Card,
-  CardBody,
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanelsContainer,
-  TabPanel,
-} from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Card isInverse>
-      <CardBody>
-        <TabsContainer activeIndex={0} isInverse>
-          <Tabs aria-label="Sample Inverse Colors Tabs">
-            <Tab>Main page</Tab>
-            <Tab>FAQ</Tab>
-            <Tab>About us</Tab>
-          </Tabs>
-
-          <TabPanelsContainer>
-            <TabPanel>
-              <div>Main page</div>
-            </TabPanel>
-            <TabPanel>
-              <div>FAQ</div>
-            </TabPanel>
-            <TabPanel isInverse={false}>
-              <div>About us</div>
-            </TabPanel>
-          </TabPanelsContainer>
-        </TabsContainer>
-      </CardBody>
-    </Card>
-  );
-}
-```
-
-### Applied to Tab Panels Container
-
-```tsx
-import React from 'react';
-import {
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanelsContainer,
-  TabPanel,
-} from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <TabsContainer>
-      <Tabs aria-label="Sample Inverse Colors Tabs">
-        <Tab>Main page</Tab>
-        <Tab>FAQ</Tab>
-        <Tab>About us</Tab>
-      </Tabs>
-
-      <TabPanelsContainer isInverse>
-        <TabPanel>
-          <div>Main page</div>
-        </TabPanel>
-        <TabPanel>
-          <div>FAQ</div>
-        </TabPanel>
-        <TabPanel isInverse={false}>
-          <div>About us</div>
-        </TabPanel>
-      </TabPanelsContainer>
-    </TabsContainer>
-  );
-}
-```
-
-### Applied to Tab Panel
-
-```tsx
-import React from 'react';
-import {
-  TabsContainer,
-  Tabs,
-  Tab,
-  TabPanelsContainer,
-  TabPanel,
-} from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <TabsContainer>
-      <Tabs aria-label="Sample Inverse Colors Tabs">
-        <Tab>Main page</Tab>
-        <Tab>FAQ</Tab>
-        <Tab>About us</Tab>
-      </Tabs>
-
-      <TabPanelsContainer>
-        <TabPanel isInverse>
-          <div>Main page</div>
-        </TabPanel>
-        <TabPanel>
-          <div>FAQ</div>
-        </TabPanel>
-        <TabPanel>
-          <div>About us</div>
-        </TabPanel>
-      </TabPanelsContainer>
     </TabsContainer>
   );
 }

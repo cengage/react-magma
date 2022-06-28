@@ -856,33 +856,38 @@ import {
 
 export function Example() {
   return (
-    <Table minWidth={900}>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Column 1</TableHeaderCell>
-          <TableHeaderCell>Column 2</TableHeaderCell>
-          <TableHeaderCell>Column 3</TableHeaderCell>
-          <TableHeaderCell>Column 4</TableHeaderCell>
-          <TableHeaderCell>Column 5</TableHeaderCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Sit amet</TableCell>
-          <TableCell>Consectetur</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Lorem ipsum dolor sit amet</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Consectetur</TableCell>
-          <TableCell>Sit amet</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <>
+      <Table minWidth={920}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column 1</TableHeaderCell>
+            <TableHeaderCell>Column 2</TableHeaderCell>
+            <TableHeaderCell>Column 3</TableHeaderCell>
+            <TableHeaderCell>Column 4</TableHeaderCell>
+            <TableHeaderCell>Column 5</TableHeaderCell>
+            <TableHeaderCell>Column 6</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Nam purus purus, cursus</TableCell>
+            <TableCell>Lorem ipsum dolor</TableCell>
+            <TableCell>Sit amet</TableCell>
+            <TableCell>Donec ac nisi nunc. Vestibulum eget pulvinar ante. </TableCell>
+            <TableCell>Donec ac nisi nunc. Vestibulum eget pulvinar ante. </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet</TableCell>
+            <TableCell>Fusce ultricies velit condimentum</TableCell>
+            <TableCell>Sed feugiat nunc nec</TableCell>
+            <TableCell>Pellentesque at pulvinar</TableCell>
+            <TableCell>Sit amet</TableCell>
+            <TableCell>Sit amet</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
   );
 }
 ```
@@ -946,7 +951,7 @@ export function Example() {
 
 For larger data sets, the `TablePagination` component can be added underneath a table.
 The `TablePagination` takes props for `count`, which is the total number of rows, `page` which is the zero-based page number and `rowsPerPage`.
-It also takes the functions `onChangeRowsPerPage` and `onChangePage`.
+It also takes the function `onRowsPerPageChange`.
 
 This component does not handle the actual pagination of the table itself, it simply provides the UI and allows for the consumer to do the sorting.
 
@@ -1111,10 +1116,6 @@ export function Example() {
     setPageIndex(0);
   }
 
-  function handlePageChange(page) {
-    setPageIndex(page);
-  }
-
   const rowsToShow = rows.slice(
     pageIndex * rowsPerPage,
     pageIndex * rowsPerPage + rowsPerPage
@@ -1143,8 +1144,7 @@ export function Example() {
       </Table>
       <TablePagination
         count={rows.length}
-        onChangeRowsPerPage={handleRowsPerPageChange}
-        onChangePage={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
