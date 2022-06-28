@@ -3,7 +3,7 @@ import { axe } from '../../../axe-helper';
 import { StyledButton } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { darken, tint, transparentize } from 'polished';
+import { transparentize } from 'polished';
 
 describe('Styled Button', () => {
   it('should find element by testId', () => {

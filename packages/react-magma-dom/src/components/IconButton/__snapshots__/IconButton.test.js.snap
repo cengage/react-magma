@@ -630,7 +630,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
   background: #E8E9F8;
-  color: #2d3489;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
@@ -752,7 +752,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
   background: #E8E9F8;
-  color: #2d3489;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
@@ -2242,7 +2242,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
   background: #E8E9F8;
-  color: #2d3489;
+  color: #3942B0;
 }
 
 .emotion-3:not(:disabled):after {
@@ -2357,7 +2357,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 .emotion-3:not(:disabled):hover,
 .emotion-3:not(:disabled):focus {
   background: #E8E9F8;
-  color: #2d3489;
+  color: #3942B0;
 }
 
 .emotion-3:not(:disabled):after {
