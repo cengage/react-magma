@@ -39,6 +39,9 @@ export interface DropdownMenuItemProps
 
 export function menuColors(props) {
   if (props.disabled) {
+    if (props.isInverse) {
+      return transparentize(0.6, props.theme.colors.neutral100);
+    }
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {

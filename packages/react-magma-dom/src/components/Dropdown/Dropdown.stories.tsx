@@ -21,35 +21,42 @@ import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<DropdownProps> = args => (
-  <Dropdown {...args}>
-    <DropdownButton>Basic Dropdown</DropdownButton>
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+    <Dropdown {...args}>
+      <DropdownButton>Basic Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  </div>
 );
 
 const HeaderIconTemplate: Story<DropdownProps> = args => (
-  <Dropdown {...args}>
-    <DropdownButton>Full Content Dropdown</DropdownButton>
-    <DropdownContent>
-      <DropdownMenuGroup header="Section title A">
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-      </DropdownMenuGroup>
-      <DropdownDivider />
-      <DropdownMenuGroup header="Section title B">
-        <DropdownMenuItem icon={<MenuIcon />}>Menu item 3</DropdownMenuItem>
-        <DropdownMenuItem icon={<SettingsIcon />}>Menu item 4</DropdownMenuItem>
-      </DropdownMenuGroup>
-      <DropdownDivider />
-      <DropdownMenuGroup>
-        <DropdownMenuItem>Log out</DropdownMenuItem>
-      </DropdownMenuGroup>
-    </DropdownContent>
-  </Dropdown>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+    <Dropdown {...args}>
+      <DropdownButton>Full Content Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuGroup header="Section title A">
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem disabled>Menu item disabled</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuGroup header="Section title B">
+          <DropdownMenuItem icon={<MenuIcon />}>Menu item 3</DropdownMenuItem>
+          <DropdownMenuItem icon={<SettingsIcon />}>
+            Menu item 4
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>Log out</DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownContent>
+    </Dropdown>
+  </div>
 );
 
 export default {
@@ -71,6 +78,11 @@ export default {
     onClose: {
       action: 'onClose',
     },
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -87,7 +99,7 @@ OnClickOutside.args = {
 };
 
 const AlignmentTemplate: Story<DropdownProps> = args => (
-  <>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown
       {...args}
       dropDirection={DropdownDropDirection.right}
@@ -121,27 +133,29 @@ const AlignmentTemplate: Story<DropdownProps> = args => (
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
-  </>
+  </div>
 );
 
 export const AlignmentButton = AlignmentTemplate.bind({});
 AlignmentButton.args = { ...Default.args };
 
 const LargeTemplate: Story<DropdownProps> = args => (
-  <Dropdown {...args}>
-    <DropdownButton size={ButtonSize.large}>Basic Dropdown</DropdownButton>
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+    <Dropdown {...args}>
+      <DropdownButton size={ButtonSize.large}>Basic Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  </div>
 );
 
 export const LargeButton = LargeTemplate.bind({});
 LargeButton.args = { ...Default.args };
 
 const CustomTemplate: Story<DropdownProps> = args => (
-  <>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton
         aria-label="Extra icon example"
@@ -156,7 +170,7 @@ const CustomTemplate: Story<DropdownProps> = args => (
       </DropdownContent>
     </Dropdown>
     <br />
-    <Dropdown>
+    <Dropdown {...args}>
       <DropdownButton
         aria-label="Extra icon example"
         size={ButtonSize.large}
@@ -167,39 +181,29 @@ const CustomTemplate: Story<DropdownProps> = args => (
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
-    <br />
-    <Dropdown isInverse>
-      <DropdownButton
-        aria-label="Extra icon example"
-        size={ButtonSize.large}
-        icon={<MenuIcon />}
-      />
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-  </>
+  </div>
 );
 
 export const CustomIconButton = CustomTemplate.bind({});
 CustomIconButton.args = { ...Default.args };
 
 const SmallTemplate: Story<DropdownProps> = args => (
-  <Dropdown {...args}>
-    <DropdownButton size={ButtonSize.small}>Basic Dropdown</DropdownButton>
-    <DropdownContent>
-      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-    </DropdownContent>
-  </Dropdown>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+    <Dropdown {...args}>
+      <DropdownButton size={ButtonSize.small}>Basic Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  </div>
 );
 
 export const SmallButton = SmallTemplate.bind({});
 SmallButton.args = { ...Default.args };
 
 const SplitTemplate: Story<DropdownProps> = args => (
-  <>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownSplitButton aria-label="Split" size={ButtonSize.medium}>
         Split Dropdown
@@ -238,56 +242,60 @@ const SplitTemplate: Story<DropdownProps> = args => (
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
-  </>
+  </div>
 );
 export const SplitButton = SplitTemplate.bind({});
 SplitButton.args = { ...Default.args };
 
 const LinkMenuTemplate: Story<DropdownProps> = args => (
-  <Dropdown {...args}>
-    <DropdownButton>Dropdown of links</DropdownButton>
-    <DropdownContent>
-      <DropdownMenuNavItem
-        icon={<SettingsIcon />}
-        to="http://www.google.com"
-        target="_blank"
-      >
-        Google
-      </DropdownMenuNavItem>
-      <DropdownMenuNavItem
-        icon={<MenuIcon />}
-        to="http://www.cengage.com"
-        target="_blank"
-      >
-        Cengage
-      </DropdownMenuNavItem>
-    </DropdownContent>
-  </Dropdown>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+    <Dropdown {...args}>
+      <DropdownButton>Dropdown of links</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuNavItem
+          icon={<SettingsIcon />}
+          to="http://www.google.com"
+          target="_blank"
+        >
+          Google
+        </DropdownMenuNavItem>
+        <DropdownMenuNavItem
+          icon={<MenuIcon />}
+          to="http://www.cengage.com"
+          target="_blank"
+        >
+          Cengage
+        </DropdownMenuNavItem>
+      </DropdownContent>
+    </Dropdown>
+  </div>
 );
 
 export const LinkMenu = LinkMenuTemplate.bind({});
 LinkMenu.args = { ...Default.args };
 
 const FormTemplate: Story<DropdownProps> = args => (
-  <Dropdown {...args}>
-    <DropdownButton>Dropdown with form</DropdownButton>
-    <DropdownContent>
-      <form style={{ margin: 0, padding: '16px' }}>
-        <Input labelText="Email Address" />
-        <PasswordInput labelText="Password" />
-        <Checkbox labelText="Remember me" />
-        <div style={{ textAlign: 'center' }}>
-          <p>
-            By signing in, you agree to our <a href="#terms">Terms of use</a>.
-          </p>
-          <Button isFullWidth>Sign In</Button>
-          <p>
-            <a href="#password">Forgot password?</a>
-          </p>
-        </div>
-      </form>
-    </DropdownContent>
-  </Dropdown>
+  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+    <Dropdown {...args}>
+      <DropdownButton>Dropdown with form</DropdownButton>
+      <DropdownContent>
+        <form style={{ margin: 0, padding: '16px' }}>
+          <Input labelText="Email Address" />
+          <PasswordInput labelText="Password" />
+          <Checkbox labelText="Remember me" />
+          <div style={{ textAlign: 'center' }}>
+            <p>
+              By signing in, you agree to our <a href="#terms">Terms of use</a>.
+            </p>
+            <Button isFullWidth>Sign In</Button>
+            <p>
+              <a href="#password">Forgot password?</a>
+            </p>
+          </div>
+        </form>
+      </DropdownContent>
+    </Dropdown>
+  </div>
 );
 
 export const Form = FormTemplate.bind({});
