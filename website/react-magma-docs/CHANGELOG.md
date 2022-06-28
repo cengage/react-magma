@@ -1,5 +1,74 @@
 # Change Log
 
+## 3.0.0-next.49
+
+### Patch Changes
+
+- Updated dependencies [e93d09159]
+  - react-magma-dom@3.0.0-next.31
+
+## 3.0.0-next.48
+
+### Patch Changes
+
+- Updated dependencies [41215ce1e]
+  - react-magma-dom@3.0.0-next.30
+
+## 3.0.0-next.47
+
+### Major Changes
+
+- e226b8597: docs: missing props tables fixes
+
+## 3.0.0-next.46
+
+### Major Changes
+
+- 732f5c908: fix(button): Update Buttons in docs to use ButtonGroup.
+
+### Patch Changes
+
+- Updated dependencies [732f5c908]
+  - react-magma-dom@3.0.0-next.29
+
+## 3.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies [7cec9a9ab]
+  - react-magma-dom@3.0.0-next.28
+
+## 3.0.0-next.44
+
+### Major Changes
+
+- 187ebf455: docs: update badges in colors tiles
+
+## 3.0.0-next.43
+
+### Major Changes
+
+- cc23aacf6: toast: add toast `isInverse` example to docs
+
+### Patch Changes
+
+- Updated dependencies [cc23aacf6]
+  - react-magma-dom@3.0.0-next.27
+
+## 3.0.0-next.42
+
+### Patch Changes
+
+- Updated dependencies [133d2cf32]
+  - react-magma-dom@3.0.0-next.26
+
+## 3.0.0-next.41
+
+### Patch Changes
+
+- Updated dependencies [ca2c61de6]
+  - react-magma-dom@3.0.0-next.25
+
 ## 3.0.0-next.40
 
 ### Major Changes

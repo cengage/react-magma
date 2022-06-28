@@ -168,7 +168,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```tsx
 import React from 'react';
-import { RadioGroup, Radio, Button, ButtonColor } from 'react-magma-dom';
+import { RadioGroup, Radio, Button, ButtonColor, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
@@ -209,10 +209,12 @@ export function Example() {
         <Radio labelText="Yellow" value="Y" />
       </RadioGroup>
       <br />
-      <Button onClick={submit}>Submit</Button>
-      <Button onClick={reset} color={ButtonColor.secondary}>
-        Reset
-      </Button>
+      <ButtonGroup>
+        <Button onClick={submit}>Submit</Button>
+        <Button onClick={reset} color={ButtonColor.secondary}>
+          Reset
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -457,7 +459,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 ```tsx
 import React from 'react';
-import { RadioGroup, Radio, Button, ButtonColor } from 'react-magma-dom';
+import { RadioGroup, Radio, Button, ButtonColor, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const radioRef = React.useRef();
@@ -487,14 +489,15 @@ export function Example() {
         <Radio id="forwardRefRadio2" labelText="Option two label" value="2" />
       </RadioGroup>
 
-      <Button onClick={handleButtonClick}>Toggle option 1</Button>
-
-      <Button
-        color={ButtonColor.secondary}
-        onClick={handleSecondaryButtonClick}
-      >
-        Focus option 1
-      </Button>
+      <ButtonGroup>
+        <Button onClick={handleButtonClick}>Toggle option 1</Button>
+        <Button
+          color={ButtonColor.secondary}
+          onClick={handleSecondaryButtonClick}
+        >
+          Focus option 1
+        </Button>
+      </ButtonGroup>
     </>
   );
 }

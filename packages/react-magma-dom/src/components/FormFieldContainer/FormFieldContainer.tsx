@@ -58,6 +58,9 @@ export interface FormFieldContainerBaseProps {
    */
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
+  /**
+   * @internal
+   */
   testId?: string;
   isInverse?: boolean;
 }

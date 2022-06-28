@@ -30,6 +30,9 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
    */
   hasDropShadow?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS.
@@ -39,7 +42,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
 
 export enum CardAlignment {
   center = 'center',
-  left = 'left',
+  left = 'left', // default
   right = 'right',
 }
 

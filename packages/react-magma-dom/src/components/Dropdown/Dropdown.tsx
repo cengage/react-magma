@@ -24,12 +24,12 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   activeIndex?: number;
   /**
    * Alignment of the dropdown content
-   * @default `DropdownAlignment.start`
+   * @default DropdownAlignment.start
    */
   alignment?: DropdownAlignment;
   /**
    * Position of the dropdown content
-   * @default `DropdownDropDirection.down`
+   * @default DropdownDropDirection.down
    */
   dropDirection?: DropdownDropDirection;
   isInverse?: boolean;
@@ -52,6 +52,9 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * Function called when opening the dropdown menu
    */
   onOpen?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of menu

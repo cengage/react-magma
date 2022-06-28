@@ -117,7 +117,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           testId={testId}
           isInverse={isInverse}
           shape={shape || ButtonShape.round}
-          size={size ? size : ButtonSize.medium}
+          size={size || ButtonSize.medium}
           variant={variant || ButtonVariant.solid}
         >
           {React.Children.only(

@@ -18,8 +18,6 @@ const defaultDescriptions = {
   children: 'The content of the component',
   isInverse:
     'If true, the component will have inverse styling to better appear on a dark background',
-  testId:
-    'Test ID attached to an internal element as `data-testid` for consumer testing',
 };
 
 const defaultDefaults = {

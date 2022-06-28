@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { AlertBase, AlertBaseProps, transitionDuration } from '../AlertBase';
+import { AlertBase, AlertBaseProps, AlertVariant, transitionDuration } from '../AlertBase';
 import { getTrapElements } from '../../utils';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
@@ -22,6 +22,11 @@ export interface ToastProps extends AlertBaseProps {
    * @default false
    */
   disableAutoDismiss?: boolean;
+  /**
+   * The variant of the toast, indicating its function in the UI
+   * @default AlertVariant.info
+   */
+  variant?: AlertVariant;
   /**
    * Number of milliseconds the toast displays before it closes
    * @default 5000
