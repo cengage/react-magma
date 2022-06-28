@@ -246,32 +246,32 @@ export function buildFocusBackground(props) {
 export function buildFocusColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
-  if (props.color === 'marketing' && !props.isInverse) {
-    return props.theme.colors.primary;
+  if (props.color === 'marketing') {
+    if (!props.isInverse || props.variant === 'solid') {
+      return props.theme.colors.primary;
+    }
   }
+
   if (props.color === 'danger') {
     if (props.variant !== 'solid' && !props.isInverse) {
       return props.theme.colors.danger600;
     }
+    if (props.variant === 'solid' && props.isInverse) {
+      return props.theme.colors.neutral100;
+    }
   }
+
   if (props.color === 'secondary') {
-    // solid & link inverse buttons have the same color
     if (props.isInverse) {
       return props.theme.colors.tertiary500;
     }
     return props.theme.colors.primary;
   }
-  if (
-    (props.variant !== 'solid' && !props.isInverse) ||
-    (props.variant === 'solid' && props.isInverse)
-  ) {
-    switch (props.color) {
-      case 'danger':
-        return props.theme.colors.neutral100;
-      default:
-        return props.theme.colors.primary700;
-    }
+
+  if (props.variant === 'link' && !props.isInverse) {
+    return props.theme.colors.primary;
   }
+
   if (props.variant === 'link' && props.isInverse) {
     switch (props.color) {
       case 'primary':
@@ -283,6 +283,10 @@ export function buildFocusColor(props) {
       default:
         return props.theme.colors.tertiary500;
     }
+  }
+
+  if (props.variant === 'solid' && props.isInverse) {
+    return props.theme.colors.primary700;
   }
   return props.theme.colors.neutral100;
 }

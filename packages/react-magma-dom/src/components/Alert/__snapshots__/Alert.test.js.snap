@@ -88,7 +88,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
   background: #E8E9F8;
-  color: #1A1E51;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
@@ -235,7 +235,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
   background: #E8E9F8;
-  color: #1A1E51;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
