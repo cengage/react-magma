@@ -211,6 +211,7 @@ export const TablePagination = React.forwardRef<
         alignment={DropdownAlignment.end}
         dropDirection={dropdownDropDirection}
         activeIndex={activeIndex}
+        isInverse={isInverse}
       >
         <DropdownButton
           aria-label={i18n.table.pagination.rowsPerPageLabel}
