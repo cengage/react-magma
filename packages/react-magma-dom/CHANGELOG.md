@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.34
+
+### Major Changes
+
+- a46f65eef: fix(table): fix `minWidth` scroll
+
 ## 3.0.0-next.33
 
 ### Major Changes

@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.0.0-next.52
+
+### Major Changes
+
+- a46f65eef: - spinner: update `isInverse` example (#772)
+  - tabs: update `isInverse` example (#765)
+  - pagination: fix `Handle Page Change` example (#773)
+  - table: fix `minWidth` example (#771)
+  - tag: remove `internationalization` example (#764)
+
+### Patch Changes
+
+- Updated dependencies [a46f65eef]
+  - react-magma-dom@3.0.0-next.34
+
 ## 3.0.0-next.51
 
 ### Patch Changes
