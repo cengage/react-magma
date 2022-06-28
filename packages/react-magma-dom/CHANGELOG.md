@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.32
+
+### Major Changes
+
+- 2251bf681: feat(table): Adding border prop hasOuterBorder for tables.
+
 ## 3.0.0-next.31
 
 ### Patch Changes
