@@ -7,6 +7,8 @@ import {
   buildAlertBackground,
   buildAlertBorder,
   buildAlertColor,
+  buildLinkColor,
+  buildLinkHoverColor,
   VARIANT_ICON,
 } from '../AlertBase';
 import { CloseIcon } from 'react-magma-icons';
@@ -14,6 +16,7 @@ import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
 
 /**
  * @children required
@@ -32,6 +35,7 @@ export interface BannerProps extends AlertProps {
    * @default false
    */
   isDismissible?: boolean;
+  isInverse?: boolean;
 }
 
 const StyledBanner = styled.div<AlertProps>`
@@ -52,7 +56,10 @@ const StyledBanner = styled.div<AlertProps>`
   }
 `;
 
-const BannerContents = styled.div<{ variant?: AlertVariant }>`
+const BannerContents = styled.div<{
+  variant?: AlertVariant;
+  isInverse?: boolean;
+}>`
   align-items: center;
   border-bottom: 1px solid ${props => buildAlertBorder(props)};
   display: flex;
@@ -62,6 +69,18 @@ const BannerContents = styled.div<{ variant?: AlertVariant }>`
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     justify-content: flex-start;
+  }
+
+  a {
+    color: ${props => buildLinkColor(props)};
+    font-weight: 400;
+    text-decoration: underline;
+    &:not([disabled]) {
+      &:focus,
+      &:hover {
+        color: ${props => buildLinkHoverColor(props)};
+      }
+    }
   }
 `;
 
@@ -79,40 +98,60 @@ const shouldForwardProp = prop => {
 
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
+  isInverse?: boolean;
 }>`
   align-self: stretch;
   border-radius: 0;
-  color: ${({ alertVariant, theme }) =>
-    alertVariant === 'warning'
-      ? theme.colors.neutral
-      : theme.colors.neutral100};
+  color: ${props =>
+    buildAlertBorder({
+      variant: props.alertVariant,
+      theme: props.theme,
+      isInverse: props.isInverse,
+    })};
   height: auto;
   padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
+  border-bottom: 1px solid
+    ${props =>
+      buildAlertBorder({
+        variant: props.alertVariant,
+        theme: props.theme,
+        isInverse: props.isInverse,
+      })};
 
-  &&:focus:not(:disabled) {
-    outline: 2px solid
-      ${({ alertVariant, theme }) =>
-        alertVariant === 'warning'
-          ? theme.colors.neutral
-          : theme.colors.neutral100};
-    outline-offset: 0 !important;
-  }
-
-  &:hover,
-  &:focus {
-    :not(:disabled) {
-      &:before {
-        background: ${({ alertVariant, theme }) =>
-          alertVariant === 'warning'
-            ? theme.colors.neutral
-            : theme.colors.neutral100};
-        opacity: 0.15;
-      }
-
-      &:after {
-        display: none;
-      }
+  &:not(:disabled) {
+    &:hover {
+      background: none;
+      color: ${props =>
+        buildAlertBorder({
+          variant: props.alertVariant,
+          theme: props.theme,
+          isInverse: props.isInverse,
+        })};
+    }
+    &:focus {
+      background: none;
+      color: ${props =>
+        buildAlertBorder({
+          variant: props.alertVariant,
+          theme: props.theme,
+          isInverse: props.isInverse,
+        })};
+      outline: 2px solid
+        ${props =>
+          props.isInverse
+            ? props.theme.colors.focusInverse
+            : props.theme.colors.focus};
+      outline-offset: 0 !important;
+    }
+    &:active {
+      background: none;
+      color: ${props =>
+        buildAlertBorder({
+          variant: props.alertVariant,
+          theme: props.theme,
+          isInverse: props.isInverse,
+        })};
     }
   }
 `;
@@ -140,8 +179,6 @@ function renderIcon(variant = 'info', theme: any) {
 
 function getButtonColor(variant: AlertVariant) {
   switch (variant) {
-    case 'warning':
-      return ButtonColor.secondary;
     case 'danger':
       return ButtonColor.danger;
     default:
@@ -159,12 +196,13 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       isDismissible,
       onDismiss,
       testId,
-      variant,
+      variant = AlertVariant.info,
       ...other
     } = props;
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
+    const isInverse = useIsInverse(props.isInverse);
 
     return (
       <StyledBanner
@@ -174,13 +212,13 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         theme={theme}
         variant={variant}
       >
-        <BannerContents theme={theme} variant={variant}>
+        <BannerContents theme={theme} variant={variant} isInverse={isInverse}>
           {renderIcon(variant, theme)}
           {children}
           {actionButtonText && actionButtonOnClick && (
             <Button
               color={getButtonColor(variant)}
-              isInverse
+              isInverse={isInverse}
               onClick={actionButtonOnClick}
               style={{ margin: `0 0 0 ${theme.spaceScale.spacing08}` }}
               size={ButtonSize.small}
@@ -191,14 +229,14 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         </BannerContents>
 
         {isDismissible && (
-          <ButtonWrapper>
+          <ButtonWrapper color={variant}>
             <DismissButton
               alertVariant={variant}
               aria-label={
                 closeAriaLabel ? closeAriaLabel : i18n.alert.dismissAriaLabel
               }
               icon={<CloseIcon size={theme.iconSizes.small} />}
-              isInverse
+              isInverse={isInverse}
               onClick={onDismiss}
               theme={theme}
               variant={ButtonVariant.link}
