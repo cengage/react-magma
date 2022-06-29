@@ -415,7 +415,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-2 {
-  background: #FCEBEA;
+  background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
   color: #D32821;
@@ -514,7 +514,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-2 {
-  background: #FCEBEA;
+  background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
   color: #D32821;
