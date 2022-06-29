@@ -1,5 +1,46 @@
 # Change Log
 
+## 3.0.0-next.40
+
+### Major Changes
+
+- 733aa23b7: fix(theme): Update `danger100` hex color
+
+## 3.0.0-next.39
+
+### Major Changes
+
+- 7d66f867b: fix(timepicker): `onChange` is called on 'Backspace' key press
+
+## 3.0.0-next.38
+
+### Major Changes
+
+- 403e601ae: feat(tabs): Update Storybook examples
+
+### Patch Changes
+
+- 9d8ae22c6: fix(accordion): Update Storybook `isInverse` example
+
+## 3.0.0-next.37
+
+### Major Changes
+
+- 31dfdba9e: feat(table): Add `isInverse` support for TablePagination dropdowns
+
+## 3.0.0-next.36
+
+### Major Changes
+
+- eeec99508: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
+- 8c17d7e86: feat(button): Updated hover/focus/active states on buttons using the new color palette.
+
+## 3.0.0-next.35
+
+### Major Changes
+
+- c765e88d1: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
+
 ## 3.0.0-next.34
 
 ### Major Changes

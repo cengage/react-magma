@@ -84,8 +84,8 @@ export default {
     minWidth: {
       control: {
         type: 'number',
-      }
-    }
+      },
+    },
   },
 } as Meta;
 
@@ -262,7 +262,6 @@ export const ControlledPagination = args => {
   );
 
   return (
-
     <>
       <Table>
         <TableHead>
@@ -314,7 +313,6 @@ export const UncontrolledPagination = args => {
   return (
     <>
       <Table>
-
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -344,10 +342,14 @@ export const UncontrolledPagination = args => {
 
 export const PaginationInverse = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage] = React.useState<number>(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
   function handlePageChange(_, page) {
     setPageIndex(page);
+  }
+
+  function handleRowsPerPageChange(newNumberOfRows) {
+    setRowsPerPage(newNumberOfRows);
   }
 
   const rowsToShow = rowsLong.slice(
@@ -380,6 +382,7 @@ export const PaginationInverse = args => {
         itemCount={rowsLong.length}
         isInverse
         onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
       />
     </Card>
   );

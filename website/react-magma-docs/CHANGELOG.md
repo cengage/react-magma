@@ -1,5 +1,55 @@
 # Change Log
 
+## 3.0.0-next.59
+
+### Patch Changes
+
+- Updated dependencies [733aa23b7]
+  - react-magma-dom@3.0.0-next.40
+
+## 3.0.0-next.58
+
+### Major Changes
+
+- 188481504: docs(modal): add `isInverse` example
+
+## 3.0.0-next.57
+
+### Patch Changes
+
+- Updated dependencies [7d66f867b]
+  - react-magma-dom@3.0.0-next.39
+
+## 3.0.0-next.56
+
+### Patch Changes
+
+- Updated dependencies [9d8ae22c6]
+- Updated dependencies [403e601ae]
+  - react-magma-dom@3.0.0-next.38
+
+## 3.0.0-next.55
+
+### Patch Changes
+
+- Updated dependencies [31dfdba9e]
+  - react-magma-dom@3.0.0-next.37
+
+## 3.0.0-next.54
+
+### Patch Changes
+
+- Updated dependencies [eeec99508]
+- Updated dependencies [8c17d7e86]
+  - react-magma-dom@3.0.0-next.36
+
+## 3.0.0-next.53
+
+### Patch Changes
+
+- Updated dependencies [c765e88d1]
+  - react-magma-dom@3.0.0-next.35
+
 ## 3.0.0-next.52
 
 ### Major Changes

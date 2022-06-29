@@ -4,7 +4,6 @@ import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 
 const Template: Story<InputProps> = args => (
   <Input {...args} labelText="Example" />
@@ -14,6 +13,12 @@ export default {
   title: 'Input',
   component: Input,
   argTypes: {
+    iconPosition: {
+      control: {
+        type: 'select',
+        options: InputIconPosition,
+      },
+    },
     inputSize: {
       control: {
         type: 'select',
@@ -38,23 +43,27 @@ export const Default = Template.bind({});
 Default.args = {
   disabled: false,
   helperMessage: 'Helper message',
-  placeholder: 'Placeholder text...'
+  placeholder: 'Placeholder text...',
 };
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const Error = Template.bind({});
 Error.args = {
   errorMessage: 'Please correct this error',
 };
+Error.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const Large = Template.bind({});
 Large.args = {
   inputSize: InputSize.large,
 };
+Large.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const File = Template.bind({});
 File.args = {
   type: InputType.file,
 };
+File.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const IconTop = Template.bind({});
 IconTop.args = {
@@ -115,6 +124,8 @@ Inverse.args = {
   isInverse: true,
   errorMessage: '',
 };
+Inverse.parameters = { controls: { exclude: ['iconPosition'] } };
+
 Inverse.decorators = [
   Story => (
     <Card isInverse>

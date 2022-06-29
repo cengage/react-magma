@@ -56,7 +56,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -80,7 +80,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -219,7 +219,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -243,7 +243,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -433,7 +433,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -457,7 +457,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -577,7 +577,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -601,7 +601,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 

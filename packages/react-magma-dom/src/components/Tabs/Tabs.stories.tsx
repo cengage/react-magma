@@ -78,6 +78,7 @@ const Template: Story<TabsProps> = args => (
 
 export const Default = Template.bind({});
 Default.args = {};
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
 const IconTemplate: Story<TabsProps> = args => (
   <TabsContainer>
@@ -101,7 +102,10 @@ const IconTemplate: Story<TabsProps> = args => (
 );
 
 export const Icon = IconTemplate.bind({});
-Icon.args = { ...Default.args };
+Icon.args = {
+  ...Default.args,
+  iconPosition: TabsIconPosition.left,
+};
 
 const IconOnlyTemplate: Story<TabsProps> = args => (
   <TabsContainer>
@@ -126,6 +130,7 @@ const IconOnlyTemplate: Story<TabsProps> = args => (
 
 export const IconOnly = IconOnlyTemplate.bind({});
 IconOnly.args = { ...Default.args };
+IconOnly.parameters = { ...Default.parameters };
 
 const ScrollingTemplate: Story<TabsProps> = args => (
   <div>
@@ -194,9 +199,10 @@ const ScrollingTemplate: Story<TabsProps> = args => (
 
 export const Scrolling = ScrollingTemplate.bind({});
 Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
+Scrolling.parameters = { ...Default.parameters };
 
 const InverseTemplate: Story<TabsProps> = args => (
-  <Card isInverse>
+  <Card isInverse={args.isInverse}>
     <TabsContainer>
       <Tabs aria-label="Sample Tabs" {...args}>
         <Tab>First item</Tab>
@@ -205,13 +211,13 @@ const InverseTemplate: Story<TabsProps> = args => (
         <Tab disabled>Disabled</Tab>
       </Tabs>
       <TabPanelsContainer>
-        <TabPanel isInverse>
+        <TabPanel isInverse={args.isInverse}>
           <div>Email</div>
         </TabPanel>
-        <TabPanel isInverse>
+        <TabPanel isInverse={args.isInverse}>
           <div>Android</div>
         </TabPanel>
-        <TabPanel isInverse>
+        <TabPanel isInverse={args.isInverse}>
           <div>Notifications</div>
         </TabPanel>
       </TabPanelsContainer>
@@ -224,6 +230,7 @@ Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
+Inverse.parameters = { ...Default.parameters };
 
 const WithDropdownTemplate: Story<TabsProps> = args => (
   <Card>
@@ -279,3 +286,4 @@ export const WithDropdown = WithDropdownTemplate.bind({});
 WithDropdown.args = {
   ...Default.args,
 };
+WithDropdown.parameters = { ...Default.parameters };
