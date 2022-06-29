@@ -154,12 +154,6 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
       ? transparentize(0.9, props.theme.colors.neutral900)
       : props.theme.colors.neutral200};
   `}
-  button {
-    bottom: ${props.iconPosition === InputIconPosition.top
-      ? '40px'
-      : 'inherit'};
-    right: ${props.iconPosition === InputIconPosition.top ? '-4px' : 'inherit'};
-  }
 `;
 
 export interface InputBaseStylesProps {
@@ -335,18 +329,31 @@ const IconButtonContainer = styled.span<{
   }
 `;
 
+function getClearablePosition(props) {
+  if (props.iconPosition === 'right' && props.icon && !props.onIconClick) {
+    if (props.inputSize === 'large') {
+      return props.theme.spaceScale.spacing10;
+    }
+    return props.theme.spaceScale.spacing09;
+  }
+  if (props.inputSize === 'large') {
+    return props.theme.spaceScale.spacing02;
+  }
+  return props.theme.spaceScale.spacing01;
+}
+
 const IsClearableContainer = styled.span<{
-  size?: InputSize;
   theme: ThemeInterface;
+  icon?: React.ReactElement<IconProps>;
+  iconPosition?: InputIconPosition;
+  inputSize?: InputSize;
   isClearable?: boolean;
+  onIconClick?: () => void;
   disabled?: boolean;
 }>`
   background-color: transparent;
   position: relative;
-  right: ${props =>
-    props.size === InputSize.large
-      ? props.theme.spaceScale.spacing02
-      : props.theme.spaceScale.spacing01};
+  right: ${getClearablePosition};
 `;
 
 function getIconSize(size: string, theme: ThemeInterface) {
@@ -446,7 +453,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           value={value}
         />
         {isClearable && value && (
-          <IsClearableContainer theme={theme} disabled={disabled}>
+          <IsClearableContainer
+            theme={theme}
+            disabled={disabled}
+            icon={icon}
+            iconPosition={iconPosition}
+            inputSize={inputSize}
+            onIconClick={onIconClick}
+          >
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}
