@@ -12,6 +12,7 @@
   },
   "changesets": [
     "accordion-docs",
+    "accordion-examples",
     "afraid-coats-laugh",
     "badge-colors",
     "beige-beds-work",
@@ -75,6 +76,7 @@
     "table-pagination-inverse",
     "table-storybook",
     "tables-border",
+    "tabs-storybook",
     "thick-humans-give",
     "toast-dropshadow",
     "toast-inverse",

@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.0.0-next.38
+
+### Major Changes
+
+- 403e601ae: feat(tabs): Update Storybook examples
+
+### Patch Changes
+
+- 9d8ae22c6: fix(accordion): Update Storybook `isInverse` example
+
 ## 3.0.0-next.37
 
 ### Major Changes
