@@ -4,7 +4,6 @@ import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 
 const Template: Story<InputProps> = args => (
   <Input {...args} labelText="Example" />
@@ -38,7 +37,7 @@ export const Default = Template.bind({});
 Default.args = {
   disabled: false,
   helperMessage: 'Helper message',
-  placeholder: 'Placeholder text...'
+  placeholder: 'Placeholder text...',
 };
 
 export const Error = Template.bind({});
