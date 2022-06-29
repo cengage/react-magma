@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.58
+
+### Major Changes
+
+- 188481504: docs(modal): add `isInverse` example
+
 ## 3.0.0-next.57
 
 ### Patch Changes
