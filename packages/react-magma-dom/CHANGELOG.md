@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.37
+
+### Major Changes
+
+- 31dfdba9e: feat(table): Add `isInverse` support for TablePagination dropdowns
+
 ## 3.0.0-next.36
 
 ### Major Changes

@@ -72,6 +72,7 @@
     "styling-fixes-docs",
     "styling-fixes-dom",
     "table-minwidth",
+    "table-pagination-inverse",
     "table-storybook",
     "tables-border",
     "thick-humans-give",
