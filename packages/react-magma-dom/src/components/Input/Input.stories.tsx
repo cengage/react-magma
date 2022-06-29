@@ -51,16 +51,19 @@ export const Error = Template.bind({});
 Error.args = {
   errorMessage: 'Please correct this error',
 };
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const Large = Template.bind({});
 Large.args = {
   inputSize: InputSize.large,
 };
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const File = Template.bind({});
 File.args = {
   type: InputType.file,
 };
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const IconTop = Template.bind({});
 IconTop.args = {
@@ -121,6 +124,8 @@ Inverse.args = {
   isInverse: true,
   errorMessage: '',
 };
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
+
 Inverse.decorators = [
   Story => (
     <Card isInverse>
