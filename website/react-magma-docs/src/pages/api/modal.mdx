@@ -230,6 +230,44 @@ export function Example() {
 }
 ```
 
+## isInverse
+```tsx
+import React from 'react';
+import { Button, Hyperlink, Modal, VisuallyHidden } from 'react-magma-dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+        isInverse
+      >
+        <p>This is a modal, doing modal things.</p>
+        <p>
+          This is <Hyperlink to="#" isInverse>linked text</Hyperlink> in the modal
+        </p>
+        <p>
+          <Button isInverse>This is a button</Button>
+        </p>
+        <p>
+          This is <Hyperlink to="#" isInverse>some more linked text</Hyperlink> in the
+          modal
+        </p>
+      </Modal>
+      <div style={{background: magma.colors.primary600, padding: '12px'}}>
+        <Button onClick={() => setShowModal(true)} isInverse>
+          Show Modal
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+      </div>
+    </>
+  );
+}
+```
+
 ## Modal Props
 
 **This component uses `forwardRef`. The ref is applied to the `div` element that wraps the Modal content.**
