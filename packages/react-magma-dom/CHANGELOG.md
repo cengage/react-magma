@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.40
+
+### Major Changes
+
+- 733aa23b7: fix(theme): Update `danger100` hex color
+
 ## 3.0.0-next.39
 
 ### Major Changes
