@@ -124,7 +124,7 @@ Inverse.args = {
   isInverse: true,
   errorMessage: '',
 };
-Default.parameters = { controls: { exclude: ['iconPosition'] } };
+Inverse.parameters = { controls: { exclude: ['iconPosition'] } };
 
 Inverse.decorators = [
   Story => (
