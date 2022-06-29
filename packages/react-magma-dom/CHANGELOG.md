@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0-next.36
+
+### Major Changes
+
+- eeec99508: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
+- 8c17d7e86: feat(button): Updated hover/focus/active states on buttons using the new color palette.
+
 ## 3.0.0-next.35
 
 ### Major Changes
