@@ -96,18 +96,29 @@ const shouldForwardProp = prop => {
   return isPropValid(prop) || allowedProps.includes(prop);
 };
 
+function buildDismissButtonColor(props) {
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+  switch (props.alertVariant) {
+    case 'success':
+      return props.theme.colors.success500;
+    case 'warning':
+      return props.theme.colors.warning500;
+    case 'danger':
+      return props.theme.colors.danger500;
+    default:
+      return props.theme.colors.info500;
+  }
+}
+
 const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
   isInverse?: boolean;
 }>`
   align-self: stretch;
   border-radius: 0;
-  color: ${props =>
-    buildAlertBorder({
-      variant: props.alertVariant,
-      theme: props.theme,
-      isInverse: props.isInverse,
-    })};
+  color: ${props => buildDismissButtonColor(props)};
   height: auto;
   padding: 0 ${props => props.theme.spaceScale.spacing05};
   width: auto;
@@ -122,21 +133,11 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   &:not(:disabled) {
     &:hover {
       background: none;
-      color: ${props =>
-        buildAlertBorder({
-          variant: props.alertVariant,
-          theme: props.theme,
-          isInverse: props.isInverse,
-        })};
+      color: ${props => buildDismissButtonColor(props)};
     }
     &:focus {
       background: none;
-      color: ${props =>
-        buildAlertBorder({
-          variant: props.alertVariant,
-          theme: props.theme,
-          isInverse: props.isInverse,
-        })};
+      color: ${props => buildDismissButtonColor(props)};
       outline: 2px solid
         ${props =>
           props.isInverse
@@ -146,12 +147,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     }
     &:active {
       background: none;
-      color: ${props =>
-        buildAlertBorder({
-          variant: props.alertVariant,
-          theme: props.theme,
-          isInverse: props.isInverse,
-        })};
+      color: ${props => buildDismissButtonColor(props)};
     }
   }
 `;

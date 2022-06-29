@@ -122,7 +122,7 @@ describe('Banner', () => {
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.warning300);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,
@@ -145,7 +145,7 @@ describe('Banner', () => {
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.success300);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,
@@ -168,7 +168,7 @@ describe('Banner', () => {
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.info300);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,
@@ -191,7 +191,7 @@ describe('Banner', () => {
         );
 
         const closeBtn = getByLabelText('Close this message');
-        expect(closeBtn).toHaveStyleRule('color', magma.colors.danger200);
+        expect(closeBtn).toHaveStyleRule('color', magma.colors.neutral100);
         expect(closeBtn).toHaveStyleRule(
           'outline',
           `2px solid ${magma.colors.focusInverse}`,

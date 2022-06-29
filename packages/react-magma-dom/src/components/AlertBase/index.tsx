@@ -416,6 +416,9 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const i18n = React.useContext(I18nContext);
 
     function progressRingColor() {
+      if (isInverse) {
+        return theme.colors.neutral100;
+      }
       switch (props.variant) {
         case 'success':
           return theme.colors.success500;
