@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.39
+
+### Major Changes
+
+- 7d66f867b: fix(timepicker): `onChange` is called on 'Backspace' key press
+
 ## 3.0.0-next.38
 
 ### Major Changes
