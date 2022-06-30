@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0-next.41
+
+### Major Changes
+
+- e9e7a6008: fix(alert/banner/toast): Update hyperlink styles
+  fix(banner): Update styles for close button
+
 ## 3.0.0-next.40
 
 ### Major Changes
