@@ -123,6 +123,47 @@ export function buildAlertColor(props) {
   }
 }
 
+export function buildLinkColor(props) {
+  if (props.isInverse) {
+    switch (props.variant) {
+      case 'success':
+        return props.theme.colors.success200;
+      case 'warning':
+        return props.theme.colors.warning200;
+      case 'danger':
+        return props.theme.colors.danger200;
+      default:
+        return props.theme.colors.info200;
+    }
+  }
+  switch (props.variant) {
+    case 'success':
+      return props.theme.colors.success700;
+    case 'warning':
+      return props.theme.colors.warning700;
+    case 'danger':
+      return props.theme.colors.danger700;
+    default:
+      return props.theme.colors.info700;
+  }
+}
+
+export function buildLinkHoverColor(props) {
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+  switch (props.variant) {
+    case 'success':
+      return props.theme.colors.success;
+    case 'warning':
+      return props.theme.colors.warning;
+    case 'danger':
+      return props.theme.colors.danger;
+    default:
+      return props.theme.colors.info;
+  }
+}
+
 const StyledAlert = styled.div<AlertBaseProps>`
   align-items: stretch;
   animation: ${props =>
@@ -204,9 +245,15 @@ const StyledAlert = styled.div<AlertBaseProps>`
   }
 
   a {
-    color: inherit;
-    font-weight: 600;
+    color: ${props => buildLinkColor(props)};
+    font-weight: 400;
     text-decoration: underline;
+    &:not([disabled]) {
+      &:focus,
+      &:hover {
+        color: ${props => buildLinkHoverColor(props)};
+      }
+    }
   }
 `;
 
@@ -369,6 +416,9 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const i18n = React.useContext(I18nContext);
 
     function progressRingColor() {
+      if (isInverse) {
+        return theme.colors.neutral100;
+      }
       switch (props.variant) {
         case 'success':
           return theme.colors.success500;
@@ -394,11 +444,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         theme={theme}
         variant={variant}
       >
-        <InverseContext.Provider
-          value={{
-            isInverse: variant !== AlertVariant.warning,
-          }}
-        >
+        <InverseContext.Provider value={{ isInverse }}>
           <StyledAlertInner
             isInverse={isInverse}
             isToast={isToast}

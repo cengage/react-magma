@@ -3,6 +3,7 @@ import { Toast } from '.';
 import { magma } from '../../theme/magma';
 import { AlertVariant } from '../AlertBase';
 import { Button, ButtonSize } from '../Button';
+import { Hyperlink } from '../Hyperlink';
 
 export default {
   component: Toast,
@@ -94,7 +95,7 @@ export const TwoLine = args => {
       {showToast ? (
         <Toast onDismiss={handleDismiss} {...args}>
           Toast with a breaking line of content which will appear exactly right
-          now!
+          now! Oh, and here's a <Hyperlink to="#">hyperlink</Hyperlink> for fun.
         </Toast>
       ) : null}
     </div>
