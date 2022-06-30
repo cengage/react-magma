@@ -9,6 +9,12 @@ title: Dropzone
 
 Upload files
 
+<Alert variant="warning">
+  <strong>Important!</strong> Dropzone is imported from{' '}
+  <inlineCode>@react-magma/dropzone</inlineCode>{' '}
+  which must be installed as a peer dependency.
+</Alert>
+
 ## Basic Usage
 
 ```typescript
@@ -87,7 +93,7 @@ then switched to true when needed.
 ```typescript
 import React from 'react';
 import { Dropzone } from '@react-magma/dropzone';
-import { Button } from 'react-magma-dom';
+import { Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const [file, setFile] = React.useState<string>();
@@ -131,6 +137,7 @@ export function Example() {
         onSendFile={onSendFile}
         sendFiles={sendFiles}
       />
+      <Spacer size={12} />
       <Button disabled={sendFiles} onClick={() => setSendFiles(true)}>
         Upload files
       </Button>

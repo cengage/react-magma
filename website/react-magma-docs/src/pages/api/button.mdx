@@ -58,7 +58,7 @@ export function Example() {
 
 Variants for buttons include `solid` and `link`, with `solid` being the default value.
 
-The `marketing` buttons do not have a `link` variant, and will render as solid buttons.
+The `marketing` buttons can only use the `solid` variant.
 
 ```tsx
 import React from 'react';
@@ -204,7 +204,7 @@ import { Button, ButtonTextTransform, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <Button>All caps</Button>
+      <Button>All caps (default)</Button>
       <Button textTransform={ButtonTextTransform.none}>
         No Text Transform
       </Button>
@@ -246,12 +246,12 @@ import { Button, ButtonVariant, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <Button disabled>Disabled</Button>
+      <Button disabled>Disabled (default)</Button>
       <Button disabled variant={ButtonVariant.solid}>
-        Disabled
+        Disabled Solid
       </Button>
       <Button disabled variant={ButtonVariant.link}>
-        Disabled
+        Disabled Link
       </Button>
     </ButtonGroup>
   );

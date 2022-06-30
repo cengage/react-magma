@@ -303,6 +303,41 @@ export function Example() {
 }
 ```
 
+## Inverse
+```tsx
+import React from 'react';
+import { IconButton, ButtonVariant, ButtonColor, ButtonGroup } from 'react-magma-dom';
+import {
+  AlertIcon,
+  NotificationsIcon,
+  Card,
+  CardBody,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <ButtonGroup>
+          <IconButton
+            aria-label="Alert"
+            variant={ButtonVariant.solid}
+            icon={<AlertIcon />}
+            isInverse
+          />
+          <IconButton
+            aria-label="Notifications"
+            variant={ButtonVariant.solid}
+            icon={<NotificationsIcon />}
+            isInverse
+          />
+        </ButtonGroup>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Event Handling
 
 The `onClick` event will fire when the button is clicked, or when the enter or spacebar key is pressed.

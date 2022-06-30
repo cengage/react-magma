@@ -114,12 +114,14 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { DatePicker, Card, magma } from 'react-magma-dom';
+import { DatePicker, Card, CardBody, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card background={magma.colors.primary}>
-      <DatePicker isInverse />
+    <Card isInverse>
+      <CardBody>
+        <DatePicker isInverse />
+      </CardBody>
     </Card>
   );
 }
