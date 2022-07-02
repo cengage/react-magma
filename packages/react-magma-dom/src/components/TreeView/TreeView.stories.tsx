@@ -1,7 +1,8 @@
 import React from 'react';
 import { TreeView, TreeItem } from '.';
 
-import { FolderIcon } from 'react-magma-icons';
+import { AssignmentIcon, FolderIcon } from 'react-magma-icons';
+import { ExpandInitialOptions } from './useTreeView';
 
 export default {
   component: TreeView,
@@ -11,162 +12,89 @@ export default {
       control: {
         type: 'boolean',
       },
+      defaultValue: false,
+    },
+    isSelectable: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: true,
     },
   },
 };
 
 export const Default = (args) => {
   return (
-    <TreeView isSelectable={true} hasIcons={true} {...args}>
-      <TreeItem icon={<FolderIcon/>} {...args}>Home
-        <TreeItem icon={<FolderIcon/>} {...args}>Bath
-          <TreeItem icon={<FolderIcon/>} {...args}>Bathroom Storage
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
-          </TreeItem>
-          <TreeItem {...args}>Shower Curtains & Accessories
-          </TreeItem>
-          <TreeItem icon={<FolderIcon/>} {...args}>Bath Towels
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
-          </TreeItem>
+    <TreeView expandInitial={ExpandInitialOptions.All} {...args}>
+      <TreeItem icon={<FolderIcon/>} {...args}>Part 1: Introduction
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 1: Lorem ipsum dolor sit amet
         </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Bedding
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 2: Lorem ipsum dolor sit amet
         </TreeItem>
-        <TreeItem {...args}>Arts & Crafts
-        </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Storage & Organization
-          <TreeItem {...args}>Item 1</TreeItem>
-          <TreeItem {...args}>Item 2</TreeItem>
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 3: Lorem ipsum dolor sit amet
+          <TreeItem icon={<AssignmentIcon/>} {...args}>Section 1: Lorem ipsum dolor sit amet
+          </TreeItem>
+          <TreeItem icon={<AssignmentIcon/>} {...args}>Section 2: Lorem ipsum dolor sit amet
+          </TreeItem>
+          <TreeItem icon={<AssignmentIcon/>} {...args}>Section 3: Lorem ipsum dolor sit amet
+          </TreeItem>
         </TreeItem>
       </TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Furniture
-        <TreeItem {...args}>Item 1</TreeItem>
-        <TreeItem {...args}>Item 2</TreeItem>
-      </TreeItem>
-      <TreeItem {...args}>Kitchen & Dining</TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Patio & Garden
-        <TreeItem {...args}>Item 1</TreeItem>
-        <TreeItem {...args}>Item 2</TreeItem>
-      </TreeItem>
-    </TreeView>
-  );
-};
-
-export const NoCheckboxes = (args) => {
-  return (
-    <TreeView isSelectable={false} hasIcons={true} {...args}>
-      <TreeItem icon={<FolderIcon/>} {...args}>Home
-        <TreeItem icon={<FolderIcon/>} {...args}>Bath
-          <TreeItem icon={<FolderIcon/>} {...args}>Bathroom Storage
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
-          </TreeItem>
-          <TreeItem {...args}>Shower Curtains & Accessories
-          </TreeItem>
-          <TreeItem icon={<FolderIcon/>} {...args}>Bath Towels
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
-          </TreeItem>
+      <TreeItem icon={<FolderIcon/>} {...args}>Part 2: Lorem ipsum dolor sit amet
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 4: Lorem ipsum dolor sit amet
         </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Bedding
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 5: Lorem ipsum dolor sit amet
         </TreeItem>
-        <TreeItem {...args}>Arts & Crafts
-        </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Storage & Organization
-          <TreeItem {...args}>Item 1</TreeItem>
-          <TreeItem {...args}>Item 2</TreeItem>
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 6: Lorem ipsum dolor sit amet
         </TreeItem>
       </TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Furniture
-        <TreeItem {...args}>Item 1</TreeItem>
-        <TreeItem {...args}>Item 2</TreeItem>
-      </TreeItem>
-      <TreeItem {...args}>Kitchen & Dining</TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Patio & Garden
-        <TreeItem {...args}>Item 1</TreeItem>
-        <TreeItem {...args}>Item 2</TreeItem>
-      </TreeItem>
-    </TreeView>
-  );
-};
-export const NoIcons = (args) => {
-  return (
-    <TreeView isSelectable={true} hasIcons={false} {...args}>
-      <TreeItem icon={<FolderIcon/>} {...args}>Home
-        <TreeItem icon={<FolderIcon/>} {...args}>Bath
-          <TreeItem icon={<FolderIcon/>} {...args}>Bathroom Storage
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
-          </TreeItem>
-          <TreeItem {...args}>Shower Curtains & Accessories
-          </TreeItem>
-          <TreeItem icon={<FolderIcon/>} {...args}>Bath Towels
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
-          </TreeItem>
+      <TreeItem icon={<FolderIcon/>} {...args}>Part 3: Lorem ipsum dolor sit amet
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 7: Lorem ipsum dolor sit amet
         </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Bedding
-            <TreeItem {...args}>Item 1</TreeItem>
-            <TreeItem {...args}>Item 2</TreeItem>
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 8: Lorem ipsum dolor sit amet
         </TreeItem>
-        <TreeItem {...args}>Arts & Crafts
-        </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Storage & Organization
-          <TreeItem {...args}>Item 1</TreeItem>
-          <TreeItem {...args}>Item 2</TreeItem>
-        </TreeItem>
-      </TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Furniture
-        <TreeItem {...args}>Item 1</TreeItem>
-        <TreeItem {...args}>Item 2</TreeItem>
-      </TreeItem>
-      <TreeItem {...args}>Kitchen & Dining</TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Patio & Garden
-        <TreeItem {...args}>Item 1</TreeItem>
-        <TreeItem {...args}>Item 2</TreeItem>
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 9: Lorem ipsum dolor sit amet
+        </TreeItem> 
+        <TreeItem icon={<AssignmentIcon/>} {...args}>Chapter 10: Lorem ipsum dolor sit amet
+        </TreeItem> 
       </TreeItem>
     </TreeView>
   );
 };
 
-export const NoIconsNoCheckboxes = (args) => {
+export const DefaultCollapsed = (args) => {
   return (
-    <TreeView isSelectable={false} hasIcons={false} {...args}>
-      <TreeItem icon={<FolderIcon/>} {...args}>Home
-        <TreeItem icon={<FolderIcon/>} {...args}>Bath
-          <TreeItem icon={<FolderIcon/>} {...args}>Bathroom Storage
+    <TreeView {...args}>
+      <TreeItem {...args}>Home
+        <TreeItem {...args}>Bath
+          <TreeItem {...args}>Bathroom Storage
             <TreeItem {...args}>Item 1</TreeItem>
             <TreeItem {...args}>Item 2</TreeItem>
           </TreeItem>
           <TreeItem {...args}>Shower Curtains & Accessories
           </TreeItem>
-          <TreeItem icon={<FolderIcon/>} {...args}>Bath Towels
+          <TreeItem {...args}>Bath Towels
             <TreeItem {...args}>Item 1</TreeItem>
             <TreeItem {...args}>Item 2</TreeItem>
           </TreeItem>
         </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Bedding
+        <TreeItem {...args}>Bedding
             <TreeItem {...args}>Item 1</TreeItem>
             <TreeItem {...args}>Item 2</TreeItem>
         </TreeItem>
         <TreeItem {...args}>Arts & Crafts
         </TreeItem>
-        <TreeItem icon={<FolderIcon/>} {...args}>Storage & Organization
+        <TreeItem {...args}>Storage & Organization
           <TreeItem {...args}>Item 1</TreeItem>
           <TreeItem {...args}>Item 2</TreeItem>
         </TreeItem>
       </TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Furniture
+      <TreeItem {...args}>Furniture
         <TreeItem {...args}>Item 1</TreeItem>
         <TreeItem {...args}>Item 2</TreeItem>
       </TreeItem>
       <TreeItem {...args}>Kitchen & Dining</TreeItem>
-      <TreeItem icon={<FolderIcon/>} {...args}>Patio & Garden
+      <TreeItem {...args}>Patio & Garden
         <TreeItem {...args}>Item 1</TreeItem>
         <TreeItem {...args}>Item 2</TreeItem>
       </TreeItem>
