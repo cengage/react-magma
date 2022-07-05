@@ -753,17 +753,6 @@ export function Example() {
 }
 ```
 
-## Prevent Default Focus Handling - Deprecated
-
-<Alert variant="warning">This functionality has been deprecated.</Alert>
-
-Originally by default when the `dropdown` closed we put focus on the button that triggered the opening of the `dropdown`.
-To remove the auto-focusing on close you would pass in a function named `onBeforeShiftFocus` in which you would call the `preventMagmaFocus` function on the `event`.
-This caused a bug when another element was supposed to be focused the focus would be forced back on to the trigger button if you did not put in this workaround.
-To fix this we have deprecated the workaround and the default now is to allow the consumer to handle the focusing of elements.
-If your dropdown items do not trigger an event that changes the focus, you should make sure to put the focus back the correct element
-as seen in this [example of focusing the trigger button on closing of the dropdown](/api/dropdown/#handle_focus_on_close).
-
 ## Dropdown Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
