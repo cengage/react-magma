@@ -35,27 +35,27 @@ const Template: Story<DropdownProps> = args => (
 
 const HeaderIconTemplate: Story<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
-      <Dropdown>
-        <DropdownButton size={ButtonSize.small} color={ButtonColor.marketing}>
-          Extra Props Example 1
-        </DropdownButton>
-        <DropdownContent>
+    <Dropdown {...args}>
+      <DropdownButton>Full Content Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuGroup header="Section title A">
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownSplitButton
-        size={ButtonSize.large}
-        variant={ButtonVariant.solid}
-        color={ButtonColor.danger} aria-label={''}        >
-          Extra Props Split
-        </DropdownSplitButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem disabled>Menu item disabled</DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuGroup header="Section title B">
+          <DropdownMenuItem icon={<MenuIcon />}>Menu item 3</DropdownMenuItem>
+          <DropdownMenuItem icon={<SettingsIcon />}>
+            Menu item 4
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>Log out</DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownContent>
+    </Dropdown>
   </div>
 );
 
