@@ -539,8 +539,9 @@ export function Example() {
       <Dropdown>
         <DropdownSplitButton
           size={ButtonSize.large}
-          variant="outline"
+          variant={ButtonVariant.solid}
           color={ButtonColor.danger}
+          aria-label={'Custom Button Example'}
         >
           Extra Props Split
         </DropdownSplitButton>
@@ -749,6 +750,35 @@ export function Example() {
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
+  );
+}
+```
+
+## Inverse
+```tsx
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+  Card,
+  CardBody
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Dropdown isInverse>
+          <DropdownButton>Basic Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item one</DropdownMenuItem>
+            <DropdownMenuItem>Menu item two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </CardBody>
+    </Card>
   );
 }
 ```

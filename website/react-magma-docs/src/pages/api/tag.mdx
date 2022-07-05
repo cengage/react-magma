@@ -27,6 +27,27 @@ export function Example() {
 }
 ```
 
+## Colors
+
+```tsx
+import React from 'react';
+import { Spacer, SpacerAxis, Tag, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Tag>Default</Tag>
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+      <Tag color="primary">Primary</Tag>
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+      <Tag color="lowContrast">Low Contrast</Tag>
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+      <Tag color="highContrast">High Contrast</Tag>
+    </>
+  );
+}
+```
+
 ## Tag With Icon
 
 ```typescript
@@ -163,27 +184,6 @@ export function Example() {
           Show Tags Again
         </Button>
       )}
-    </>
-  );
-}
-```
-
-## Colors
-
-```tsx
-import React from 'react';
-import { Spacer, SpacerAxis, Tag, magma } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <>
-      <Tag>Default</Tag>
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="primary">Primary</Tag>
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="lowContrast">Low Contrast</Tag>
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="highContrast">High Contrast</Tag>
     </>
   );
 }

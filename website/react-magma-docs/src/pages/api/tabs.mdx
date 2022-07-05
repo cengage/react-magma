@@ -880,21 +880,25 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { TabsContainer, Tabs, Tab, magma } from 'react-magma-dom';
+import { TabsContainer, Tabs, Tab, Card, CardBody, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <TabsContainer>
-      <Tabs
-        aria-label="Sample Inverse Colors On Dark Background Tabs"
-        isInverse
-        backgroundColor={magma.colors.neutral800}
-      >
-        <Tab>First item</Tab>
-        <Tab>Second item</Tab>
-        <Tab>Third item</Tab>
-      </Tabs>
-    </TabsContainer>
+    <Card style={{background: magma.colors.neutral800}}>
+      <CardBody>
+        <TabsContainer>
+          <Tabs
+            aria-label="Sample Inverse Colors On Dark Background Tabs"
+            isInverse
+            backgroundColor={magma.colors.neutral800}
+          >
+            <Tab>First item</Tab>
+            <Tab>Second item</Tab>
+            <Tab>Third item</Tab>
+          </Tabs>
+        </TabsContainer>
+      </CardBody>
+    </Card>
   );
 }
 ```

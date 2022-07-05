@@ -218,10 +218,10 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should render a split dropdown with no margin on outline variants', () => {
+  it('should render a split dropdown with no margin on solid variants', () => {
     const { getByLabelText } = render(
       <Dropdown>
-        <DropdownSplitButton variant="outline">Toggle me</DropdownSplitButton>
+        <DropdownSplitButton variant="solid">Toggle me</DropdownSplitButton>
         <DropdownContent />
       </Dropdown>
     );

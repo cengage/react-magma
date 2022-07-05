@@ -115,6 +115,7 @@ import {
   Button,
   ButtonSize,
   ButtonVariant,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -153,22 +154,24 @@ export function Example() {
 
   return (
     <>
-      <Button
-        disabled={disableExpandAll}
-        onClick={handleExpandAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Expand All
-      </Button>
-      <Button
-        disabled={disableCollapseAll}
-        onClick={handleCollapseAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Collapse All
-      </Button>
+      <ButtonGroup>
+        <Button
+          disabled={disableExpandAll}
+          onClick={handleExpandAll}
+          size={ButtonSize.small}
+          variant={ButtonVariant.solid}
+        >
+          Expand All
+        </Button>
+        <Button
+          disabled={disableCollapseAll}
+          onClick={handleCollapseAll}
+          size={ButtonSize.small}
+          variant={ButtonVariant.solid}
+        >
+          Collapse All
+        </Button>
+      </ButtonGroup>
 
       <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
         <AccordionItem>
@@ -252,7 +255,7 @@ export function Example() {
 }
 ```
 
-## InverseContext
+## Inverse
 
 The `isInverse` prop will render light text, to be used on a dark background. The children will
 inherit the `isInverse` prop unless specified otherwise.
@@ -264,23 +267,26 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  magma,
+  Card,
+  CardBody
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <div style={{background: magma.colors.primary600, padding: '12px'}}>
-      <Accordion isInverse>
-        <AccordionItem>
-          <AccordionButton>Section 1</AccordionButton>
-          <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>Section 2</AccordionButton>
-          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-    </div>
+    <Card isInverse>
+      <CardBody>
+        <Accordion isInverse>
+          <AccordionItem>
+            <AccordionButton>Section 1</AccordionButton>
+            <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>Section 2</AccordionButton>
+            <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </CardBody>
+    </Card>
   );
 }
 ```
@@ -288,24 +294,6 @@ export function Example() {
 ## Accordion Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
-
-## AccordionItem Props
-
-**Any other props supplied will be provided to the wrapping `div` element.**
-
-<AccordionItemProps />
-
-## AccordionButton Props
-
-**Any other props supplied will be provided to the wrapping `button` element.**
-
-<AccordionButtonProps />
-
-## AccordionPanel Props
-
-**Any other props supplied will be provided to the wrapping `div` element.**
-
-<AccordionPanelProps />
 
 ### Controlled
 #### Single Controlled
@@ -324,3 +312,21 @@ export function Example() {
 #### Multiple Not Controlled
 
 <AccordionMultipleProps />
+
+## AccordionItem Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<AccordionItemProps />
+
+## AccordionButton Props
+
+**Any other props supplied will be provided to the wrapping `button` element.**
+
+<AccordionButtonProps />
+
+## AccordionPanel Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<AccordionPanelProps />

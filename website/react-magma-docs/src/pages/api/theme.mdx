@@ -27,6 +27,7 @@ import {
   ThemeContext,
   magma,
   ButtonGroup,
+  Spacer,
 } from 'react-magma-dom';
 
 const magmaDark = Object.assign({}, magma, {
@@ -93,6 +94,7 @@ export function Example() {
           },
         ]}
       />
+      <Spacer size="24" />
       <ThemeContext.Provider value={theme}>
         <DemoComponent />
       </ThemeContext.Provider>

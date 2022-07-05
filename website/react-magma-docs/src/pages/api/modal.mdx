@@ -233,7 +233,7 @@ export function Example() {
 ## isInverse
 ```tsx
 import React from 'react';
-import { Button, Hyperlink, Modal, VisuallyHidden } from 'react-magma-dom';
+import { Button, Hyperlink, Modal, VisuallyHidden, Card, CardBody } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
 
@@ -257,12 +257,14 @@ export function Example() {
           modal
         </p>
       </Modal>
-      <div style={{background: magma.colors.primary600, padding: '12px'}}>
-        <Button onClick={() => setShowModal(true)} isInverse>
-          Show Modal
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-        </Button>
-      </div>
+      <Card isInverse>
+        <CardBody>
+          <Button onClick={() => setShowModal(true)} isInverse>
+            Show Modal
+            <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          </Button>
+        </CardBody>
+      </Card>
     </>
   );
 }

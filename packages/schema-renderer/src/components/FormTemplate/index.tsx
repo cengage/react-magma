@@ -5,6 +5,7 @@ import {
   ButtonVariant,
   ButtonType,
   Form,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
@@ -23,7 +24,7 @@ export const FormTemplate = ({
   const { submitting, pristine } = getState();
 
   const actions = (
-    <>
+    <ButtonGroup>
       <Button
         disabled={pristine}
         variant={ButtonVariant.link}
@@ -38,7 +39,7 @@ export const FormTemplate = ({
       >
         {submitLabel || 'Submit'}
       </Button>
-    </>
+    </ButtonGroup>
   );
 
   const actionsVisible = React.useMemo(() => {

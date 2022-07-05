@@ -156,35 +156,30 @@ export function Example() {
 }
 ```
 
+## Inverse
+
+```tsx
+import React from 'react';
+import { Toggle, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Toggle isInverse labelText="Inverse toggle" />
+        <Toggle isInverse disabled checked labelText="Inverse disabled" />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Testing
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
 ```html noCodeSandbox
-<div>
-  <input id="Toggle0" data-testid="test-id" name="" type="checkbox" value="" />
-  <label for="Toggle0">
-    <span>Toggle Label</span>
-    <span>
-      <span>
-        <svg
-          aria-hidden="true"
-          class="icon"
-          height="11"
-          width="11"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 29.37 21.88"
-        >
-          <path
-            d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-            transform="translate(-0.87 -3.06)"
-          ></path>
-        </svg>
-      </span>
-    </span>
-  </label>
-</div>
+<Toggle labelText="Toggle label" testId="toggle-testid" />
 ```
 
 ## Toggle Props

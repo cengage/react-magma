@@ -41,6 +41,7 @@ export interface LoadingIndicatorProps
    * @default LoadingIndicatorType.spinner
    */
   type?: LoadingIndicatorType;
+  isInverse?: boolean;
 }
 
 export enum LoadingIndicatorType {

@@ -138,11 +138,11 @@ The `color`, `variant` and `size` props can be used on the ButtonGroup to set th
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonColor, ButtonVariant, ButtonSize, magma } from 'react-magma-dom';
+import { ButtonGroup, Button, ButtonColor, ButtonVariant, ButtonSize, Container } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <div style={{background: magma.colors.primary600}}>
+    <Container isInverse style={{padding: '12px'}}>
       <ButtonGroup color={ButtonColor.primary} variant={ButtonVariant.solid} size={ButtonSize.large} isInverse>
         <Button>1</Button>
         <Button color={ButtonColor.danger}>2</Button>
@@ -150,7 +150,7 @@ export function Example() {
         <Button>4</Button>
         <Button variant={ButtonVariant.link}>5</Button>
       </ButtonGroup>
-    </div>
+    </Container>
   );
 }
 ```
