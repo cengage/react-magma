@@ -126,6 +126,27 @@ export function Example() {
 }
 ```
 
+## Inverse
+
+```tsx
+import React from 'react';
+import { FormGroup, Checkbox, Toggle, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <FormGroup labelText="Choose one or more colors" isInverse>
+          <Checkbox labelText="Red" isInverse />
+          <Checkbox labelText="Blue" isInverse />
+          <Checkbox labelText="Purple" isInverse />
+        </FormGroup>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Form Group Props
 
 **This component uses `forwardRef`. The ref is applied to the Form Group `div` element.**

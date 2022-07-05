@@ -11,7 +11,7 @@ A container with a transition
 
 ## Basic Usage
 
-Drawer accepts a position (top, right, bottom, or left.)
+Drawer accepts a position (top, right, bottom, or left)
 
 ```typescript
 import React from 'react';
@@ -38,6 +38,39 @@ export function Example() {
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
     </>
+  );
+}
+```
+
+## Inverse
+```typescript
+import React from 'react';
+import { Button, Drawer, VisuallyHidden, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
+
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Drawer
+          header="Drawer Title"
+          onClose={() => setShowDrawer(false)}
+          isOpen={showDrawer}
+          position="right"
+          isInverse
+        >
+          <p>This is a Drawer, doing Drawer things.</p>
+          <p>
+            <Button isInverse>This is a button</Button>
+          </p>
+        </Drawer>
+        <Button onClick={() => setShowDrawer(true)} isInverse>
+          Show Drawer
+          <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+        </Button>
+      </CardBody>
+    </Card>
   );
 }
 ```

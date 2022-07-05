@@ -39,6 +39,7 @@ export interface DrawerProps extends Omit<ModalProps, 'size'> {
    * Set the position of the drawer
    */
   position?: DrawerPosition;
+  isInverse?: boolean;
 }
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(

@@ -26,7 +26,7 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
   /**
    * The variant of the alert, indicating its function in the UI
-   * @default `AlertVariant.info`
+   * @default AlertVariant.info
    */
   variant?: AlertVariant;
 }
