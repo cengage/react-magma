@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.61
+
+### Major Changes
+
+- acd630071: docs: Clean up docs for all components. Ensure `isInverse` is documented.
+
 ## 3.0.0-next.60
 
 ### Patch Changes
