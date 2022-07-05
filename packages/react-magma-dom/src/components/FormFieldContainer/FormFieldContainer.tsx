@@ -8,6 +8,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
+ * Interal use only: Wrapper for all field components
  * @children required
  */
 export interface FormFieldContainerProps

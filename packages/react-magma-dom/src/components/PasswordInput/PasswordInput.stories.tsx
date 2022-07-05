@@ -1,7 +1,6 @@
 import React from 'react';
 import { PasswordInput, PasswordInputProps } from '.';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<PasswordInputProps> = args => (
@@ -30,7 +29,7 @@ Inverse.args = {
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.primary} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

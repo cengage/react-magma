@@ -4,7 +4,7 @@ import { Modal, ModalProps } from '../Modal';
 import { TransitionProps } from '../Transition';
 
 export enum DrawerPosition {
-  top = 'top',
+  top = 'top', // default
   bottom = 'bottom',
   left = 'left',
   right = 'right',
@@ -37,6 +37,7 @@ export interface DrawerProps extends Omit<ModalProps, 'size'> {
   containerStyle?: React.CSSProperties;
   /**
    * Set the position of the drawer
+   * @default DrawerPosition.top
    */
   position?: DrawerPosition;
   isInverse?: boolean;
