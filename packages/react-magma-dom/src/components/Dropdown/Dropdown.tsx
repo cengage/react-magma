@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { useDescendants } from '../../hooks/useDescendants';
-import { useForkedRef } from '../../utils';
+import { resolveProps, useForkedRef } from '../../utils';
 import { useIsInverse } from '../../inverse';
+import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -64,8 +65,8 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Container = styled.div`
-  display: inline-block;
-  position: relative;
+  // display: inline-block;
+  // position: relative;
 `;
 
 interface DropdownContextInterface {
@@ -100,8 +101,13 @@ export const DropdownContext = React.createContext<DropdownContextInterface>({
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
 
+
+
 export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
   (props, forwardedRef) => {
+    const contextProps = React.useContext(ButtonGroupContext);
+    const resolvedProps = resolveProps(contextProps, props);
+    
     const {
       activeIndex,
       alignment,
@@ -114,8 +120,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       testId,
       width,
       ...other
-    } = props;
-
+    } = resolvedProps;
+    
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
     const [activeItemIndex, setActiveItemIndex] = React.useState<number>(
@@ -232,7 +238,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     const widthString = typeof width === 'number' ? `${width}px` : width;
 
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(resolvedProps.isInverse);
 
     return (
       <DropdownContext.Provider

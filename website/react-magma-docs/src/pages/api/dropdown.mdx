@@ -90,11 +90,12 @@ import {
   DropdownContent,
   DropdownDropDirection,
   DropdownMenuItem,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown dropDirection={DropdownDropDirection.left}>
         <DropdownButton>Drop Left</DropdownButton>
         <DropdownContent>
@@ -116,7 +117,7 @@ export function Example() {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -140,56 +141,61 @@ import {
   DropdownContent,
   DropdownDropDirection,
   DropdownMenuItem,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.left}
-      >
-        <DropdownButton>Top-Aligned Drop Left</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.left}
+        >
+          <DropdownButton>Top-Aligned Drop Left</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.right}
-      >
-        <DropdownButton>Top-Aligned Drop Right</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.right}
+        >
+          <DropdownButton>Top-Aligned Drop Right</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
 
       <br />
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.down}
-      >
-        <DropdownButton>Right-Aligned Drop Down</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.down}
+        >
+          <DropdownButton>Right-Aligned Drop Down</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.up}
-      >
-        <DropdownButton>Right-Aligned Drop Up</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.up}
+        >
+          <DropdownButton>Right-Aligned Drop Up</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
     </>
   );
 }
@@ -448,11 +454,12 @@ import {
   Input,
   magma,
   PasswordInput,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown width="300px">
         <DropdownButton>Dropdown with Login Form</DropdownButton>
         <DropdownContent>
@@ -503,7 +510,7 @@ export function Example() {
           </form>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -517,6 +524,7 @@ import React from 'react';
 import {
   ButtonColor,
   ButtonSize,
+  ButtonGroup,
   Dropdown,
   DropdownButton,
   DropdownContent,
@@ -526,7 +534,7 @@ import {
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown>
         <DropdownButton size={ButtonSize.small} color={ButtonColor.marketing}>
           Extra Props Example 1
@@ -550,7 +558,7 @@ export function Example() {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -566,6 +574,7 @@ import {
   ButtonIconPosition,
   ButtonSize,
   ButtonVariant,
+  ButtonGroup,
   Dropdown,
   DropdownButton,
   DropdownContent,
@@ -575,7 +584,7 @@ import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown>
         <DropdownButton
           aria-label="Extra icon example"
@@ -628,7 +637,7 @@ export function Example() {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```

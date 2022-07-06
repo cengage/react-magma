@@ -93,7 +93,7 @@ function buildButtonMargin(props) {
     return `0 ${props.theme.spaceScale.spacing02}`;
   }
   if (props.orientation === ButtonGroupOrientation.vertical) {
-    return `${props.theme.spaceScale.spacing02} 0`;
+    return `0 0 ${props.theme.spaceScale.spacing02}`;
   }
 
   return `0 ${props.theme.spaceScale.spacing02}`;
