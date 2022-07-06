@@ -3,7 +3,6 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TableHeaderCell,
   TableRow,
@@ -14,35 +13,30 @@ import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 
-describe('TableContainer', () => {
+describe('Table', () => {
   it('should find element by testId', () => {
-    const testId = 'table-wrapper-test-id';
+    const testId = 'test-id';
+    const { getByTestId } = render(<Table testId={testId} />);
 
-    const { getByTestId } = render(
-      <TableContainer testId="table-wrapper-test-id" />
-    );
-
-    expect(getByTestId('table-wrapper-test-id')).toBeInTheDocument();
+    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render table with a border', () => {
     const { getByTestId } = render(
-      <TableContainer hasOuterBorder>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>heading 1</TableHeaderCell>
-              <TableHeaderCell>heading 2</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>cell 1</TableCell>
-              <TableCell>cell 2</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table hasOuterBorder testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
 
     expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
@@ -53,22 +47,20 @@ describe('TableContainer', () => {
 
   it('should render table with an inverse border', () => {
     const { getByTestId } = render(
-      <TableContainer hasOuterBorder isInverse>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>heading 1</TableHeaderCell>
-              <TableHeaderCell>heading 2</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>cell 1</TableCell>
-              <TableCell>cell 2</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table hasOuterBorder isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
 
     expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
@@ -79,68 +71,50 @@ describe('TableContainer', () => {
 
   it('should render table with a border radius', () => {
     const { getByTestId } = render(
-      <TableContainer hasOuterBorder isInverse>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>heading 1</TableHeaderCell>
-              <TableHeaderCell>heading 2</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>cell 1</TableCell>
-              <TableCell>cell 2</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table hasOuterBorder isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
 
     expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
       'border-radius',
       magma.spaceScale.spacing03
     );
-    expect(getByTestId('table')).toHaveStyleRule('overflow', 'hidden');
   });
 
   it('should render table without a border radius', () => {
     const { getByTestId } = render(
-      <TableContainer hasOuterBorder hasSquareCorners isInverse>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>heading 1</TableHeaderCell>
-              <TableHeaderCell>heading 2</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>cell 1</TableCell>
-              <TableCell>cell 2</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Table hasOuterBorder hasSquareCorners isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
 
     expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
       'border-radius',
       '0'
     );
-    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
-      'overflow',
-      'inherit'
-    );
-  });
-});
-
-describe('Table', () => {
-  it('should find element by testId', () => {
-    const testId = 'test-id';
-    const { getByTestId } = render(<Table testId={testId} />);
-
-    expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render table with vertical borders', () => {
