@@ -118,7 +118,7 @@ export const TableContainer = styled.div<{
             : props.theme.colors.neutral300
         }`
       : 0};
-  overflow-x: ${props => (props.minWidth ? 'auto' : 'visible')};
+  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
 `;
 
 export const StyledTable = styled.table<{
