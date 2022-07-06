@@ -102,17 +102,14 @@ export const TableContext = React.createContext<TableContextInterface>({
   selectedItems: [],
 });
 
-const TableContainer = styled.div<{ minWidth: number }>`
-  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
-`;
-
-const StyledTable = styled.table<{
+export const TableContainer = styled.div<{
+  minWidth: number;
   hasOuterBorder?: boolean;
   hasSquareCorners?: boolean;
   isInverse?: boolean;
-  minWidth: number;
 }>`
-  border-collapse: collapse;
+  border-radius: ${props =>
+    props.hasSquareCorners ? 0 : props.theme.borderRadius};
   box-shadow: ${props =>
     props.hasOuterBorder
       ? `0 0 0 1px ${
@@ -121,8 +118,14 @@ const StyledTable = styled.table<{
             : props.theme.colors.neutral300
         }`
       : 0};
-  border-radius: ${props =>
-    props.hasSquareCorners ? 0 : props.theme.borderRadius};
+  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
+`;
+
+export const StyledTable = styled.table<{
+  isInverse?: boolean;
+  minWidth: number;
+}>`
+  border-collapse: collapse;
   border-spacing: 0;
   color: ${props =>
     props.isInverse
@@ -132,7 +135,6 @@ const StyledTable = styled.table<{
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   min-width: ${props => props.minWidth}px;
-  overflow: ${props => (props.hasSquareCorners ? 'inherit' : 'hidden')};
   width: 100%;
 `;
 
@@ -158,6 +160,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
+    const tableWrapper = `table-wrapper-${testId}`;
+
     return (
       <TableContext.Provider
         value={{
@@ -169,12 +173,17 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isSelectable,
         }}
       >
-        <TableContainer minWidth={minWidth}>
+        <TableContainer
+          data-testid={tableWrapper}
+          hasOuterBorder={hasOuterBorder}
+          hasSquareCorners={hasSquareCorners}
+          isInverse={isInverse}
+          minWidth={minWidth}
+          theme={theme}
+        >
           <StyledTable
             {...other}
             data-testid={testId}
-            hasOuterBorder={hasOuterBorder}
-            hasSquareCorners={hasSquareCorners}
             isInverse={isInverse}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
