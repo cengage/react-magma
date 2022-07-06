@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.42
+
+### Major Changes
+
+- f38b9dd97: feat(table): Moving prop hasOuterBorder to a wrapping container to fix overflow issues.
+
 ## 3.0.0-next.41
 
 ### Major Changes

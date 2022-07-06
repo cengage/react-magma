@@ -76,6 +76,7 @@
     "sortable-tables",
     "styling-fixes-docs",
     "styling-fixes-dom",
+    "table-border-conflict",
     "table-minwidth",
     "table-pagination-inverse",
     "table-storybook",
