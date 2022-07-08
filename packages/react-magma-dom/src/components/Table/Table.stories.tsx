@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from '../Card';
 import {
   Table,
   TableCell,
@@ -15,7 +14,6 @@ import {
   TableSortDirection,
   TableCellAlign,
 } from './';
-import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
@@ -405,7 +403,7 @@ export const PaginationInverse = args => {
 
   return (
     <TableContainer isInverse>
-      <Table {...args} isInverse>
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -491,8 +489,8 @@ RowColors.args = {
 
 export const RowColorsInverse = args => {
   return (
-    <Card background={magma.colors.primary600} isInverse>
-      <Table {...args}>
+    <TableContainer isInverse>
+      <Table isInverse {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -538,7 +536,7 @@ export const RowColorsInverse = args => {
           </TableRow>
         </TableBody>
       </Table>
-    </Card>
+    </TableContainer>
   );
 };
 RowColorsInverse.args = {

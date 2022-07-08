@@ -20,6 +20,8 @@ export interface TableContainerProps
 }
 
 export const StyledTableContainer = styled.div<TableContainerProps>`
+  background: ${props =>
+    props.isInverse ? props.theme.colors.primary600 : 'inherit'};
   border-radius: ${props =>
     props.hasSquareCorners ? 0 : props.theme.borderRadius};
   box-shadow: ${props =>
@@ -30,6 +32,8 @@ export const StyledTableContainer = styled.div<TableContainerProps>`
             : props.theme.colors.neutral300
         }`
       : 0};
+  color: ${props =>
+    props.isInverse ? props.theme.colors.neutral100 : 'inherit'};
   overflow: hidden;
   padding: 0;
 `;
