@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -102,22 +101,9 @@ export const TableContext = React.createContext<TableContextInterface>({
   selectedItems: [],
 });
 
-export const TableContainer = styled.div<{
+export const TableWrapper = styled.div<{
   minWidth: number;
-  hasOuterBorder?: boolean;
-  hasSquareCorners?: boolean;
-  isInverse?: boolean;
 }>`
-  border-radius: ${props =>
-    props.hasSquareCorners ? 0 : props.theme.borderRadius};
-  box-shadow: ${props =>
-    props.hasOuterBorder
-      ? `0 0 0 1px ${
-          props.isInverse
-            ? transparentize(0.6, props.theme.colors.neutral100)
-            : props.theme.colors.neutral300
-        }`
-      : 0};
   overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
 `;
 
@@ -136,6 +122,9 @@ export const StyledTable = styled.table<{
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   min-width: ${props => props.minWidth}px;
   width: 100%;
+  thead {
+    overflow: hidden;
+  }
 `;
 
 export const Table = React.forwardRef<HTMLTableElement, TableProps>(
@@ -160,8 +149,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const tableWrapper = `table-wrapper-${testId}`;
-
     return (
       <TableContext.Provider
         value={{
@@ -173,14 +160,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isSelectable,
         }}
       >
-        <TableContainer
-          data-testid={tableWrapper}
-          hasOuterBorder={hasOuterBorder}
-          hasSquareCorners={hasSquareCorners}
-          isInverse={isInverse}
-          minWidth={minWidth}
-          theme={theme}
-        >
+        <TableWrapper minWidth={minWidth} theme={theme}>
           <StyledTable
             {...other}
             data-testid={testId}
@@ -191,7 +171,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           >
             {children}
           </StyledTable>
-        </TableContainer>
+        </TableWrapper>
       </TableContext.Provider>
     );
   }

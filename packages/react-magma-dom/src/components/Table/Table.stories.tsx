@@ -3,6 +3,7 @@ import { Card } from '../Card';
 import {
   Table,
   TableCell,
+  TableContainer,
   TableHead,
   TableRow,
   TableHeaderCell,
@@ -97,9 +98,54 @@ Default.args = {
   hasZebraStripes: false,
 };
 
-export const WithOuterBorder = Template.bind({});
-WithOuterBorder.args = {
-  hasOuterBorder: true,
+export const WithTableContainer = args => {
+  const [pageIndex, setPageIndex] = React.useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+
+  function handleRowsPerPageChange(numberOfRows) {
+    setRowsPerPage(numberOfRows);
+    setPageIndex(1);
+  }
+
+  function handlePageChange(_, page) {
+    setPageIndex(page);
+  }
+
+  const rowsToShow = rowsLong.slice(
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
+  );
+
+  return (
+    <TableContainer hasOuterBorder>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowsToShow.map((row, i) => (
+            <TableRow key={`row${i}`}>
+              {row.map((cell, j) => (
+                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <TablePagination
+        itemCount={rowsLong.length}
+        onRowsPerPageChange={handleRowsPerPageChange}
+        onPageChange={handlePageChange}
+        page={pageIndex}
+        rowsPerPage={rowsPerPage}
+      />
+    </TableContainer>
+  );
 };
 
 const rowsLong = [
@@ -358,7 +404,7 @@ export const PaginationInverse = args => {
   );
 
   return (
-    <Card isInverse>
+    <TableContainer isInverse>
       <Table {...args} isInverse>
         <TableHead>
           <TableRow>
@@ -384,7 +430,7 @@ export const PaginationInverse = args => {
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
       />
-    </Card>
+    </TableContainer>
   );
 };
 PaginationInverse.args = {
