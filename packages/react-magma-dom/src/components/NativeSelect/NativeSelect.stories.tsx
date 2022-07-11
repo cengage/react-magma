@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { magma } from '../../theme/magma';
 import { NativeSelect, NativeSelectProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -83,7 +82,7 @@ HelperMessageInverse.args = {
 
 InverseDisabled.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>
@@ -92,7 +91,7 @@ InverseDisabled.decorators = [
 ];
 HelperMessageInverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>
@@ -101,7 +100,7 @@ HelperMessageInverse.decorators = [
 ];
 HasErrorInverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>
@@ -110,7 +109,7 @@ HasErrorInverse.decorators = [
 ];
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

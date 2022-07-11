@@ -1,5 +1,22 @@
 # Change Log
 
+## 1.0.0-next.1
+
+### Major Changes
+
+- c7adf03a4: feat(dropzone): Updating dropzone colors.
+
+## 1.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [366b25af]
+  - react-magma-dom@3.0.0-next.0
+
+## 0.1.5
+
+## 0.1.4
+
 ## 0.1.3
 
 ### Patch Changes

@@ -15,16 +15,25 @@ import { useForkedRef } from '../../utils';
  */
 export interface DropdownContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
 const StyledCard = styled(Card)<{
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
+  isInverse?: boolean;
   isOpen?: boolean;
   maxHeight?: string;
   width?: string;
 }>`
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary500
+      : props.theme.colors.neutral100};
   display: ${props => (props.isOpen ? 'block' : 'none')};
   left: ${props => props.theme.spaceScale.spacing02};
   max-height: ${props =>
@@ -104,7 +113,7 @@ export const DropdownContent = React.forwardRef<
       alignment={context.alignment}
       dropDirection={context.dropDirection}
       hasDropShadow
-      isInverse={false}
+      isInverse={context.isInverse}
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
       ref={ref}

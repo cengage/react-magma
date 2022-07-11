@@ -1,62 +1,76 @@
 import React from 'react';
-import { Alert, AlertProps } from './index';
+import { Alert } from './index';
 import { AlertVariant } from '../AlertBase';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
-import { Story, Meta } from '@storybook/react/types-6-0';
-
-const Template: Story<AlertProps> = args => (
-  <Alert {...args}>I am an Alert</Alert>
-);
+import { Hyperlink } from '../Hyperlink';
 
 export default {
   title: 'Alert',
   component: Alert,
-  argTypes: {
-    variant: {
-      control: {
-        type: 'select',
-        options: AlertVariant,
-      },
-    },
-  },
-} as Meta;
-
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Dismissible = Template.bind({});
-Dismissible.args = {
-  isDismissible: true,
 };
 
-export const Danger = Template.bind({});
-Danger.args = {
-  variant: AlertVariant.danger,
+export const Default = () => {
+  return (
+    <>
+      <Alert>Default</Alert>
+      <Alert variant={AlertVariant.success}>Success <Hyperlink to="#">hyperlink</Hyperlink></Alert>
+      <Alert variant={AlertVariant.warning}>Warning <Hyperlink to="#">hyperlink</Hyperlink></Alert>
+      <Alert variant={AlertVariant.danger}>Danger <Hyperlink to="#">hyperlink</Hyperlink></Alert>
+      <Alert isDismissible>
+        Default dismissible with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Alert>
+      <Alert isDismissible variant={AlertVariant.success}>
+        Success dismissible with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Alert>
+      <Alert isDismissible variant={AlertVariant.warning}>
+        Warning dismissible with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Alert>
+      <Alert isDismissible variant={AlertVariant.danger}>
+        Danger dismissible with <Hyperlink to="#">hyperlink</Hyperlink>
+      </Alert>
+    </>
+  );
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  variant: AlertVariant.success,
-};
-
-export const Warning = Template.bind({});
-Warning.args = {
-  variant: AlertVariant.warning,
-  isDismissible: true,
-};
-
-export const Inverse = Template.bind({});
-Inverse.args = {
-  isDismissible: true,
-  isInverse: true,
-};
-Inverse.decorators = [
-  Story => (
-    <Card background={magma.colors.foundation} isInverse>
+export const Inverse = () => {
+  return (
+    <Card isInverse>
       <CardBody>
-        <Story />
+        <Alert isInverse>Default</Alert>
+        <Alert isInverse variant={AlertVariant.success}>
+          Success
+        </Alert>
+        <Alert isInverse variant={AlertVariant.warning}>
+          Warning
+        </Alert>
+        <Alert isInverse variant={AlertVariant.danger}>
+          Danger
+        </Alert>
+        <Alert isInverse isDismissible>
+          Default dismissible with{' '}
+          <Hyperlink to="#" isInverse>
+            hyperlink
+          </Hyperlink>
+        </Alert>
+        <Alert isInverse isDismissible variant={AlertVariant.success}>
+          Success dismissible with{' '}
+          <Hyperlink to="#" isInverse>
+            hyperlink
+          </Hyperlink>
+        </Alert>
+        <Alert isInverse isDismissible variant={AlertVariant.warning}>
+          Warning dismissible with{' '}
+          <Hyperlink to="#" isInverse>
+            hyperlink
+          </Hyperlink>
+        </Alert>
+        <Alert isInverse isDismissible variant={AlertVariant.danger}>
+          Danger dismissible with{' '}
+          <Hyperlink to="#" isInverse>
+            hyperlink
+          </Hyperlink>
+        </Alert>
       </CardBody>
     </Card>
-  ),
-];
+  );
+};

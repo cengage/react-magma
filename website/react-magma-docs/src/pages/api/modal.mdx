@@ -66,6 +66,7 @@ import {
   Modal,
   ModalSize,
   VisuallyHidden,
+  ButtonGroup,
 } from 'react-magma-dom';
 export function Example() {
   const [showSmallModal, setShowSmallModal] = React.useState(false);
@@ -91,14 +92,16 @@ export function Example() {
         <p>This is a large modal, doing large modal things.</p>
       </Modal>
 
-      <Button size={ButtonSize.small} onClick={() => setShowSmallModal(true)}>
-        Show Small Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-      </Button>
-      <Button size={ButtonSize.large} onClick={() => setShowLargeModal(true)}>
-        Show Large Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-      </Button>
+      <ButtonGroup>
+        <Button size={ButtonSize.small} onClick={() => setShowSmallModal(true)}>
+          Show Small Modal
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+        <Button size={ButtonSize.large} onClick={() => setShowLargeModal(true)}>
+          Show Large Modal
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -112,7 +115,7 @@ the first actionable element.
 
 ```tsx
 import React from 'react';
-import { Button, Modal, ModalSize, VisuallyHidden } from 'react-magma-dom';
+import { Button, Modal, ModalSize, VisuallyHidden, ButtonGroup, ButtonGroupAlignment } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModalHeader, setShowModalHeader] = React.useState(false);
@@ -125,9 +128,9 @@ export function Example() {
         isOpen={showModal}
       >
         <p>This modal has no header.</p>
-        <div style={{ textAlign: 'center' }}>
+        <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModal(false)}>OK</Button>
-        </div>
+        </ButtonGroup>
       </Modal>
       <Modal
         header="This modal has a header"
@@ -136,18 +139,20 @@ export function Example() {
         isOpen={showModalHeader}
       >
         <p>This modal has no header.</p>
-        <div style={{ textAlign: 'center' }}>
+        <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModalHeader(false)}>OK</Button>
-        </div>
+        </ButtonGroup>
       </Modal>
-      <Button onClick={() => setShowModal(true)}>
-        Show Modal with no header
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-      </Button>
-      <Button onClick={() => setShowModalHeader(true)}>
-        Show Modal with header
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-      </Button>
+      <ButtonGroup>
+        <Button onClick={() => setShowModal(true)}>
+          Show Modal with no header
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+        <Button onClick={() => setShowModalHeader(true)}>
+          Show Modal with header
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -220,6 +225,46 @@ export function Example() {
       <Button onClick={() => setShowModal(true)}>
         Show Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
+    </>
+  );
+}
+```
+
+## isInverse
+```tsx
+import React from 'react';
+import { Button, Hyperlink, Modal, VisuallyHidden, Card, CardBody } from 'react-magma-dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        onClose={() => setShowModal(false)}
+        isOpen={showModal}
+        isInverse
+      >
+        <p>This is a modal, doing modal things.</p>
+        <p>
+          This is <Hyperlink to="#" isInverse>linked text</Hyperlink> in the modal
+        </p>
+        <p>
+          <Button isInverse>This is a button</Button>
+        </p>
+        <p>
+          This is <Hyperlink to="#" isInverse>some more linked text</Hyperlink> in the
+          modal
+        </p>
+      </Modal>
+      <Card isInverse>
+        <CardBody>
+          <Button onClick={() => setShowModal(true)} isInverse>
+            Show Modal
+            <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          </Button>
+        </CardBody>
+      </Card>
     </>
   );
 }

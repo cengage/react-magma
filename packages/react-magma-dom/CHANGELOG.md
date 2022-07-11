@@ -1,5 +1,338 @@
 # Change Log
 
+## 3.0.0-next.42
+
+### Major Changes
+
+- f38b9dd97: feat(table): Moving prop hasOuterBorder to a wrapping container to fix overflow issues.
+
+## 3.0.0-next.41
+
+### Major Changes
+
+- e9e7a6008: fix(alert/banner/toast): Update hyperlink styles
+  fix(banner): Update styles for close button
+
+## 3.0.0-next.40
+
+### Major Changes
+
+- 733aa23b7: fix(theme): Update `danger100` hex color
+
+## 3.0.0-next.39
+
+### Major Changes
+
+- 7d66f867b: fix(timepicker): `onChange` is called on 'Backspace' key press
+
+## 3.0.0-next.38
+
+### Major Changes
+
+- 403e601ae: feat(tabs): Update Storybook examples
+
+### Patch Changes
+
+- 9d8ae22c6: fix(accordion): Update Storybook `isInverse` example
+
+## 3.0.0-next.37
+
+### Major Changes
+
+- 31dfdba9e: feat(table): Add `isInverse` support for TablePagination dropdowns
+
+## 3.0.0-next.36
+
+### Major Changes
+
+- eeec99508: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
+- 8c17d7e86: feat(button): Updated hover/focus/active states on buttons using the new color palette.
+
+## 3.0.0-next.35
+
+### Major Changes
+
+- c765e88d1: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
+
+## 3.0.0-next.34
+
+### Major Changes
+
+- a46f65eef: fix(table): fix `minWidth` scroll
+
+## 3.0.0-next.33
+
+### Major Changes
+
+- d70e4cf17: feat(badge): Update hover/active/focus styles
+
+## 3.0.0-next.32
+
+### Major Changes
+
+- 2251bf681: feat(table): Adding border prop hasOuterBorder for tables.
+
+## 3.0.0-next.31
+
+### Patch Changes
+
+- e93d09159: fix(container): Update Storybook examples
+
+## 3.0.0-next.30
+
+### Major Changes
+
+- 41215ce1e: feat(table): Update Storybook examples
+
+## 3.0.0-next.29
+
+### Major Changes
+
+- 732f5c908: fix(button): Remove margin from buttons
+
+  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
+
+## 3.0.0-next.28
+
+### Major Changes
+
+- 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
+
+## 3.0.0-next.27
+
+### Major Changes
+
+- cc23aacf6: fix(toast): bring back dropshadow for toasts
+
+## 3.0.0-next.26
+
+### Major Changes
+
+- 133d2cf32: fix(table): update sortable table header cursor
+
+## 3.0.0-next.25
+
+### Major Changes
+
+- ca2c61de6: feat(tooltip): Fix tooltip position bug
+
+## 3.0.0-next.24
+
+### Major Changes
+
+- 787017f90: feat(buttongroup): New ButtonGroup component
+
+## 3.0.0-next.23
+
+### Patch Changes
+
+- 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
+- 3a27353aa: fix(textarea): Textarea can now be cleared
+
+## 3.0.0-next.22
+
+### Major Changes
+
+- 465fd0fce: fix: Toast X center alignment
+
+## 3.0.0-next.21
+
+### Major Changes
+
+- 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
+
+## 3.0.0-next.20
+
+### Major Changes
+
+- 0d9b45043: fix(select): update disabled state down arrow color
+  fix(toggle): update toggle border color
+  fix(combobox): update input border inverse danger color
+  fix(table): update table inverse hasZebraStripes color
+
+## 3.0.0-next.19
+
+### Major Changes
+
+- 97ea53aca: feat(spinner): Add `isInverse` support for Spinner component.
+  feat(combobox/select): Update styling for items list inverse.
+
+## 3.0.0-next.18
+
+### Major Changes
+
+- ce262ae30: feat(combobox): Update combobox items colors and error styling
+
+## 3.0.0-next.17
+
+### Major Changes
+
+- ce9088243: bug(select): Fix hover styles in Select component to not have focus border.
+
+## 3.0.0-next.16
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various components
+
+## 3.0.0-next.15
+
+### Major Changes
+
+- 484578a87: feat(Dropdowns): Updating Dropdowns with rebrand styles
+- a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
+
+## 3.0.0-next.14
+
+### Major Changes
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+
+  Breaking Change: Muted Alert variant has been removed.
+
+## 3.0.0-next.13
+
+### Major Changes
+
+- e1fba9d10: feat(modal): Updating Modal with rebrand styles. Adding support for `isInverse`.
+
+## 3.0.0-next.12
+
+### Major Changes
+
+- 2c98589c: feat(tabs): Updating tabs and nav tabs with new colors.
+
+## 3.0.0-next.11
+
+### Major Changes
+
+- 4eba5dc4: feat(pagination): updates to V3 styling
+
+## 3.0.0-next.10
+
+### Major Changes
+
+- d2400a77: feat: Updating tags to V3 styling
+
+  Note: tag variants "success" and "danger" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.9
+
+### Major Changes
+
+- 059d58fa: feat(buttons): adding in color changes throughout applicable components
+
+  Note: button variant "outline" and button color "success" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.8
+
+### Major Changes
+
+- d74ec404: feat(toggle/radio/checkbox): Updating toggle, radio checkbox and indeterminate checkbox with new colors.
+
+## 3.0.0-next.7
+
+### Major Changes
+
+- b0f75257: feat(accordion): Updating accordion with new colors.
+- 18afc4fc: feat(badge): Updating badge colors. Adding `isInverse` support.
+- 8d0ecf2a: feat(inputs): Updating Inputs with rebrand styles
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+
+## 3.0.0-next.6
+
+### Major Changes
+
+- b737f6cd: feat(table): Updating table with new colors.
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+
+## 3.0.0-next.4
+
+### Major Changes
+
+- 476c5023: feat(tooltips): Updating tooltip colors
+
+## 3.0.0-next.3
+
+### Major Changes
+
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- 26d70350: feat: Updating focus states from dotted to solid
+
+## 3.0.0-next.1
+
+### Major Changes
+
+- 38fe6b4c: feat(typography): Updating main typography styles: type, heading, paragraph
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- 366b25af: feat(magmacolors.ts): Adding new rebrand colors
+
+## 2.5.11
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10-next.3
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+
+## 2.5.10-next.2
+
+### Patch Changes
+
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+
+## 2.5.10-next.1
+
+### Patch Changes
+
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10
+
+### Patch Changes
+
+- fdc6b27f: fix: adding in reference for list props within the index
+- fdc6b27f: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- fdc6b27f: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10-next.3
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+
+## 2.5.10-next.2
+
+### Patch Changes
+
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+
+## 2.5.10-next.1
+
+### Patch Changes
+
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
 ## 2.5.10
 
 ### Patch Changes

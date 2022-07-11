@@ -1,8 +1,6 @@
 ---
 pageTitle: Header
 title: Header
-props:
-  - HeaderProps
 ---
 
 <DocsHeading to="/design/header/" type="api">
@@ -17,6 +15,7 @@ If you have a need for a header with more customization or different features in
 
 1. Your project needs to be running **React v16.8** or greater
 2. `react-magma-icons` and `react-magma-dom` must be installed as peer dependencies
+3. Header is part of a separate package. Install it using `npm i @cengage-patterns/header --save`
 
 ## Basic Usage
 
@@ -80,7 +79,7 @@ export function Example() {
 
 ## Call to Action
 
-The `callToActionProps` prop takes an object of <Link to="/api/hyperlink/#search_props">Hyperlink Props</Link> from the <Link to="/api/hyperlink">Hyperlink component</Link>.
+The `callToActionProps` prop takes an object of <Link to="/api/hyperlink/#hyperlink_props">Hyperlink Props</Link> from the <Link to="/api/hyperlink">Hyperlink component</Link>.
 
 ```typescript
 import React from 'react';
@@ -202,7 +201,7 @@ export function Example() {
 
 By specifying a `breakpoint` in pixels, the `Header` pattern will only display all content other than the header when the width of the browser is above that breakpoint. When the browser is more narrow than that breakpoint, a menu icon will appear if a `onMenuButtonClick` prop is provided.
 
-The <Link to="api/use-media-query/">useMediaQuery hook</Link> can be used to change the `isCompact` prop for different screen sizes.
+The <Link to="../../api/use-media-query/">useMediaQuery hook</Link> can be used to change the `isCompact` prop for different screen sizes.
 
 The `Header` does not provide a way to display the items that are hidden at smaller screen sizes. It is the responsibility of the consumer to display those items in another way.
 
@@ -241,4 +240,73 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `header` element.**
 
-<HeaderProps />
+<SimplePropsTable
+  propertyValues={{
+    isCompact: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, the component will render at a shorter height with less padding',
+      defaultValue: 'false',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: 'false',
+    },
+    position: {
+      type: {
+        name: 'enum',
+        options: ['AppBarPosition.static', 'AppBarPosition.absolute', 'AppBarPosition.fixed', 'AppBarPosition.relative', 'AppBarPosition.sticky'],
+      },
+      required: false,
+      description: 'Position of the AppBar',
+      defaultValue: 'AppBarPosition.static',
+    },
+    breakpoint: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    callToActionProps: {
+      type: {
+        name: '',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    logo: {
+      type: {
+        name: 'React.ReactNode',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    onMenuButtonClick: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+    searchProps: {
+      type: {
+        name: 'SearchProps',
+      },
+      required: false,
+      description: ' ',
+      defaultValue: '',
+    },
+  }}
+/>
+

@@ -6,10 +6,10 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -19,9 +19,9 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -32,7 +32,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -53,13 +53,13 @@ exports[`SkipLink should render the skip link component 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -83,7 +83,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -114,10 +114,10 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
-  border-radius: 4px;
+  border-color: #3942B0;
+  border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -127,9 +127,9 @@ exports[`SkipLink should render the skip link component 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Open Sans",Helvetica,sans-serif;
+  font-family: "Work Sans",Helvetica,sans-serif;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
@@ -140,7 +140,7 @@ exports[`SkipLink should render the skip link component 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -161,13 +161,13 @@ exports[`SkipLink should render the skip link component 1`] = `
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px dotted #027EE1;
-  outline-offset: 3px;
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #004165;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -191,7 +191,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 }
 
 .emotion-0:not(:disabled):active {
-  background: #002032;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 

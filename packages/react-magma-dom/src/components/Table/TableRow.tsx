@@ -8,6 +8,7 @@ import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -24,31 +25,48 @@ export interface TableRowProps
   onHeaderRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onTableRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   rowIndex?: number;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
 function buildTableRowBackground(props) {
+  if (props.isInverse) {
+    switch (props.color) {
+      case 'success':
+        return props.theme.colors.success200;
+      case 'warning':
+        return props.theme.colors.warning200;
+      case 'danger':
+        return props.theme.colors.danger200;
+      case 'info':
+        return props.theme.colors.info200;
+      default:
+        return 'inherit';
+    }
+  }
+
   switch (props.color) {
     case 'success':
       return props.theme.colors.success;
     case 'warning':
-      return props.theme.colors.pop04;
+      return props.theme.colors.warning;
     case 'danger':
       return props.theme.colors.danger;
     case 'info':
-      return props.theme.colors.primary;
+      return props.theme.colors.info;
     default:
       return 'inherit';
   }
 }
 
 function buildTableRowColor(props) {
-  if (props.color === 'warning') {
-    return props.theme.colors.neutral;
+  if (props.color && props.isInverse) {
+    return props.theme.colors.neutral700;
   }
-
-  if (props.color) {
-    return props.theme.colors.neutral08;
+  if (props.color && !props.isInverse) {
+    return props.theme.colors.neutral100;
   }
 
   return 'inherit';
@@ -63,8 +81,8 @@ const StyledTableRow = styled.tr<{
   border-bottom: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.tint04
-        : props.theme.colors.neutral06};
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   color: inherit;
   display: table-row;
   outline: 0;
@@ -80,8 +98,8 @@ const StyledTableRow = styled.tr<{
       &:nth-of-type(even) {
         background: ${props.hasZebraStripes
           ? props.isInverse
-            ? props.theme.colors.tint
-            : props.theme.colors.tone
+            ? transparentize(0.93, props.theme.colors.neutral100)
+            : props.theme.colors.neutral200
           : 'none'};
       }
     `};
@@ -92,7 +110,9 @@ const StyledTableRow = styled.tr<{
     css`
     &:hover {
       background: ${
-        props.isInverse ? props.theme.colors.tint02 : props.theme.colors.tone02
+        props.isInverse
+          ? transparentize(0.85, props.theme.colors.neutral100)
+          : transparentize(0.93, props.theme.colors.neutral900)
       };
     `}
 

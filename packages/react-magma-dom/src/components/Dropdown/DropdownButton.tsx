@@ -11,7 +11,6 @@ import {
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
-import { useIsInverse } from '../../inverse';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -35,7 +34,7 @@ export interface IconTextDropdownButtonProps extends ButtonProps {
   icon?: React.ReactElement<IconProps>;
   /**
    * Position within the button for the icon to appear
-   * @default `ButtonIconPosition.right`
+   * @default ButtonIconPosition.right
    */
   iconPosition?: ButtonIconPosition;
   /**
@@ -111,8 +110,6 @@ export const DropdownButton = React.forwardRef<
   let children;
   const { icon = buttonIcon, iconPosition, ...other } = props;
 
-  const isInverse = useIsInverse(props.isInverse);
-
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
   }
@@ -141,7 +138,7 @@ export const DropdownButton = React.forwardRef<
       icon={icon}
       iconPosition={iconPositionToUse}
       id={context.dropdownButtonId.current}
-      isInverse={isInverse}
+      isInverse={context.isInverse}
       onClick={handleClick}
       ref={ref}
       theme={theme}

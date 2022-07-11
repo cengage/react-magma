@@ -17,6 +17,14 @@ import {
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Select } from '../Select';
+import { Combobox } from '../Combobox';
 
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -42,27 +50,25 @@ const rows = [
 ];
 
 const Template: Story<TableProps> = args => (
-  <Card>
-    <Table {...args}>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
+  <Table {...args}>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {rows.map((row, i) => (
+        <TableRow key={`row${i}`}>
+          {row.map((cell, j) => (
+            <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+          ))}
         </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map((row, i) => (
-          <TableRow key={`row${i}`}>
-            {row.map((cell, j) => (
-              <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-            ))}
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Card>
+      ))}
+    </TableBody>
+  </Table>
 );
 
 export default {
@@ -75,14 +81,25 @@ export default {
         options: TableDensity,
       },
     },
+    minWidth: {
+      control: {
+        type: 'number',
+      },
+    },
   },
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
   hasHoverStyles: false,
+  hasOuterBorder: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+};
+
+export const WithOuterBorder = Template.bind({});
+WithOuterBorder.args = {
+  hasOuterBorder: true,
 };
 
 const rowsLong = [
@@ -226,7 +243,7 @@ const rowsLong = [
   ],
 ];
 
-export const ControlledPagination = () => {
+export const ControlledPagination = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
@@ -245,7 +262,7 @@ export const ControlledPagination = () => {
   );
 
   return (
-    <Card>
+    <>
       <Table>
         <TableHead>
           <TableRow>
@@ -272,11 +289,11 @@ export const ControlledPagination = () => {
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
-    </Card>
+    </>
   );
 };
 
-export const UncontrolledPagination = () => {
+export const UncontrolledPagination = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
@@ -294,7 +311,7 @@ export const UncontrolledPagination = () => {
   );
 
   return (
-    <Card>
+    <>
       <Table>
         <TableHead>
           <TableRow>
@@ -319,16 +336,20 @@ export const UncontrolledPagination = () => {
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
       />
-    </Card>
+    </>
   );
 };
 
-export const PaginationInverse = () => {
+export const PaginationInverse = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
   function handlePageChange(_, page) {
     setPageIndex(page);
+  }
+
+  function handleRowsPerPageChange(newNumberOfRows) {
+    setRowsPerPage(newNumberOfRows);
   }
 
   const rowsToShow = rowsLong.slice(
@@ -337,8 +358,8 @@ export const PaginationInverse = () => {
   );
 
   return (
-    <Card background={magma.colors.neutral} isInverse>
-      <Table isInverse>
+    <Card isInverse>
+      <Table {...args} isInverse>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -361,15 +382,71 @@ export const PaginationInverse = () => {
         itemCount={rowsLong.length}
         isInverse
         onPageChange={handlePageChange}
+        onRowsPerPageChange={handleRowsPerPageChange}
       />
     </Card>
   );
 };
+PaginationInverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
 
-export const RowColors = () => {
+export const RowColors = args => {
   return (
-    <Card>
-      <Table hasHoverStyles hasZebraStripes>
+    <Table hasHoverStyles hasZebraStripes>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow color={TableRowColor.success}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.danger}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.info}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.warning}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+};
+RowColors.args = {
+  ...Default.args,
+  hasHoverStyles: true,
+  hasZebraStripe: true,
+};
+
+export const RowColorsInverse = args => {
+  return (
+    <Card background={magma.colors.primary600} isInverse>
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -408,54 +485,6 @@ export const RowColors = () => {
             <TableCell>dolar sit</TableCell>
             <TableCell>amet</TableCell>
           </TableRow>
-        </TableBody>
-      </Table>
-    </Card>
-  );
-};
-
-export const RowColorsInverse = () => {
-  return (
-    <Card background={magma.colors.neutral} isInverse>
-      <Table isInverse>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow color={TableRowColor.success}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.danger}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.info}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.warning}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
           <TableRow>
             <TableCell>Lorem ipsum</TableCell>
             <TableCell>dolar sit</TableCell>
@@ -466,8 +495,12 @@ export const RowColorsInverse = () => {
     </Card>
   );
 };
+RowColorsInverse.args = {
+  ...Default.args,
+  isInverse: true,
+};
 
-export const Sortable = () => {
+export const Sortable = args => {
   const products = [
     { id: 1, name: 'Cheese', price: 5, stock: 20 },
     { id: 2, name: 'Milk', price: 5, stock: 32 },
@@ -514,69 +547,143 @@ export const Sortable = () => {
 
   return (
     <>
-      <Card>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('name');
-                }}
-                isSortable
-                sortDirection={
-                  sortConfig.key === 'name'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                Name
-              </TableHeaderCell>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('price');
-                }}
-                isSortable
-                align={TableCellAlign.right}
-                sortDirection={
-                  sortConfig.key === 'price'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                Price
-              </TableHeaderCell>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('stock');
-                }}
-                isSortable
-                align={TableCellAlign.right}
-                sortDirection={
-                  sortConfig.key === 'stock'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                In Stock
-              </TableHeaderCell>
+      <Table {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell
+              onSort={() => {
+                requestSort('name');
+              }}
+              isSortable
+              sortDirection={
+                sortConfig.key === 'name'
+                  ? sortConfig.direction
+                  : TableSortDirection.none
+              }
+            >
+              Name
+            </TableHeaderCell>
+            <TableHeaderCell
+              onSort={() => {
+                requestSort('price');
+              }}
+              isSortable
+              align={TableCellAlign.right}
+              sortDirection={
+                sortConfig.key === 'price'
+                  ? sortConfig.direction
+                  : TableSortDirection.none
+              }
+            >
+              Price
+            </TableHeaderCell>
+            <TableHeaderCell
+              onSort={() => {
+                requestSort('stock');
+              }}
+              isSortable
+              align={TableCellAlign.right}
+              sortDirection={
+                sortConfig.key === 'stock'
+                  ? sortConfig.direction
+                  : TableSortDirection.none
+              }
+            >
+              In Stock
+            </TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {sortedItems.map(item => (
+            <TableRow key={item.id}>
+              <TableCell>{item.name}</TableCell>
+              <TableCell align={TableCellAlign.right}>${item.price}</TableCell>
+              <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {sortedItems.map(item => (
-              <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell align={TableCellAlign.right}>
-                  ${item.price}
-                </TableCell>
-                <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Card>
+          ))}
+        </TableBody>
+      </Table>
+
       <Announce>
         <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
       </Announce>
     </>
   );
+};
+
+Sortable.args = {
+  ...Default.args,
+};
+
+export const WithDropdown = args => {
+  return (
+    <>
+      <Table maxWidth={500} {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>
+              <Dropdown>
+                <DropdownButton>Basic Dropdown</DropdownButton>
+                <DropdownContent>
+                  <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                </DropdownContent>
+              </Dropdown>
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>
+              <Select
+                labelText="Select Example"
+                items={[
+                  { label: 'Red', value: 'red' },
+                  { label: 'Blue', value: 'blue' },
+                  { label: 'Green', value: 'green' },
+                  { label: 'Yellow', value: 'yellow' },
+                ]}
+              />
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+            <TableCell>
+              <Combobox
+                isMulti
+                labelText="ComboBox Example"
+                defaultItems={[
+                  { label: 'Pink', value: 'pink' },
+                  { label: 'Orange', value: 'orange' },
+                  { label: 'Purple', value: 'purple' },
+                ]}
+              />
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+WithDropdown.args = {
+  ...Default.args,
 };

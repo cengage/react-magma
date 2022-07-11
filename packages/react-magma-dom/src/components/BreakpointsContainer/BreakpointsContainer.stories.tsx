@@ -13,7 +13,7 @@ export const Default = () => {
   return (
     <BreakpointsContainer>
       <Breakpoint screenSize={BreakpointScreenSize.xs}>
-        <Card background={magma.colors.pop04}>
+        <Card background={magma.colors.secondary}>
           <CardBody>
             <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
             to 599px.
@@ -22,7 +22,7 @@ export const Default = () => {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.small}>
-        <Card isInverse background={magma.colors.foundation02}>
+        <Card isInverse background={magma.colors.warning500}>
           <CardBody>
             <strong>Small: </strong>This will be shown from 600px pixels up to
             767px.
@@ -31,7 +31,7 @@ export const Default = () => {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.medium}>
-        <Card isInverse background={magma.colors.pop}>
+        <Card isInverse background={magma.colors.info700}>
           <CardBody>
             <strong>Medium: </strong>This text will be visible when the browser
             width is 768px and up to 1023px.

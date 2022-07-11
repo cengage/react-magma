@@ -18,7 +18,6 @@ export const ButtonProps = () => (
             options: [
               'ButtonColor.primary',
               'ButtonColor.secondary',
-              'ButtonColor.success',
               'ButtonColor.danger',
               'ButtonColor.marketing',
             ],
@@ -72,14 +71,6 @@ export const ButtonProps = () => (
           description: 'The relative size of the button',
           defaultValue: 'medium',
         },
-        testId: {
-          type: {
-            name: 'string',
-          },
-          required: false,
-          description:
-            'Test ID attached to an internal element as `data-testid` for consumer testing',
-        },
         textTransform: {
           type: {
             name: 'enum',
@@ -108,11 +99,7 @@ export const ButtonProps = () => (
         variant: {
           type: {
             name: 'enum',
-            options: [
-              'ButtonVariant.solid',
-              'ButtonVariant.outline',
-              'ButtonVariant.link',
-            ],
+            options: ['ButtonVariant.solid', 'ButtonVariant.link'],
           },
           required: false,
           description: 'The variant of the button',

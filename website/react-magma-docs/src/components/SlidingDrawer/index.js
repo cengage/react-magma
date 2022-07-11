@@ -2,8 +2,9 @@ import React from 'react';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
+import { Logo } from '../Logo';
 import { MenuIcon, CloseIcon } from 'react-magma-icons';
-import { Container, IconButton, magma } from 'react-magma-dom';
+import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
 import { MainNav } from '../MainNav';
 
 export class SlidingDrawer extends React.Component {
@@ -65,13 +66,13 @@ export class SlidingDrawer extends React.Component {
 
   render() {
     const slidein = keyframes`
-            from { transform: translateX(-280px); }
+            from { transform: translateX(-300px); }
             to   { transform: translateX(0); }
         `;
 
     const slideout = keyframes`
             from { transform: translateX(0); }
-            to   { transform: translateX(-280px); }
+            to   { transform: translateX(-300px); }
         `;
 
     const Panel = styled(Container)`
@@ -85,8 +86,8 @@ export class SlidingDrawer extends React.Component {
       padding: 0 0 24px;
       position: fixed;
       top: 0;
-      transform: translateX(-280px);
-      width: 280px;
+      transform: translateX(-300px);
+      width: 240px;
 
       ${props =>
         props.isActivated &&
@@ -104,15 +105,17 @@ export class SlidingDrawer extends React.Component {
 
       @media (min-width: 1024px) {
         animation: none;
-        padding-top: 20px;
-        top: 88px;
+        background: ${magma.colors.neutral200};
+        top: 56px;
         transform: translateX(0);
+      }
+      @media (max-width: 1024px) {
+        width: 300px;
       }
     `;
 
     const PanelInner = styled.div`
       display: ${props => (props.isOpen ? 'block' : 'none')};
-
       @media (min-width: 1024px) {
         display: block;
       }
@@ -125,28 +128,43 @@ export class SlidingDrawer extends React.Component {
       position: fixed;
       right: 0;
       top: 0;
-      z-index: 3;
+      z-index: 10;
     `;
 
     const MenuButton = styled.span`
       position: fixed;
       top: 4px;
-      left: 2px;
+      left: 6px;
       z-index: 11;
-
-      @media (min-width: 769px) {
-        top: 20px;
+      @media (min-width: 1024px) {
+        display: none;
       }
+    `;
 
+    const SmallLogoLink = styled.div`
+      display: flex;
+      align-items: center;
+      color: ${magma.colors.neutral700};
+      font-size: ${magma.typeScale.size05.fontSize};
+      font-weight: 500;
+      padding-top: 4px;
+      text-decoration: none;
+      text-transform: uppercase;
+      svg {
+        height: 24px;
+      }
       @media (min-width: 1024px) {
         display: none;
       }
     `;
 
     const CloseButton = styled.span`
-      display: block;
+      justify-content: flex-end;
+      flex: 1;
       text-align: right;
-
+      button {
+        bottom: 4px;
+      }
       @media (min-width: 1024px) {
         display: none;
       }
@@ -164,8 +182,8 @@ export class SlidingDrawer extends React.Component {
                 <IconButton
                   aria-label="Open navigation menu"
                   aria-expanded={isOpen}
+                  color="secondary"
                   icon={<MenuIcon />}
-                  isInverse
                   onClick={this.openMenu}
                   ref={this.toggleButtonRef}
                   variant="link"
@@ -178,15 +196,21 @@ export class SlidingDrawer extends React.Component {
               isInverse={isInverse}
             >
               <PanelInner isOpen={isOpen}>
-                <CloseButton>
-                  <IconButton
-                    aria-label="Close navigation menu"
-                    color="secondary"
-                    icon={<CloseIcon />}
-                    onClick={this.handleCloseMenu}
-                    variant="link"
-                  />
-                </CloseButton>
+                <SmallLogoLink to="/">
+                  <Spacer size={magma.spaceScale.spacing05} />
+                  <Logo />
+                  <Spacer size={magma.spaceScale.spacing04} />
+                  React Magma
+                  <CloseButton>
+                    <IconButton
+                      aria-label="Close navigation menu"
+                      color="secondary"
+                      icon={<CloseIcon />}
+                      onClick={this.handleCloseMenu}
+                      variant="link"
+                    />
+                  </CloseButton>
+                </SmallLogoLink>
                 <MainNav handleClick={this.handleCloseMenuFromNav} />
               </PanelInner>
             </Panel>

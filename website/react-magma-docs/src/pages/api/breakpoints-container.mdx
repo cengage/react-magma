@@ -3,7 +3,7 @@ pageTitle: Breakpoints Container API
 title: Breakpoints Container
 props:
   - BreakpointProps
-  - BreakpointContainerProps
+  - BreakpointsContainerProps
 ---
 
 <DocsHeading type="api">Breakpoints Container</DocsHeading>
@@ -33,7 +33,7 @@ export function Example() {
   return (
     <BreakpointsContainer>
       <Breakpoint screenSize={BreakpointScreenSize.xs}>
-        <Card background={magma.colors.pop04}>
+        <Card background={magma.colors.secondary}>
           <CardBody>
             <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
             to 599px.
@@ -42,7 +42,7 @@ export function Example() {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.small}>
-        <Card isInverse background={magma.colors.foundation02}>
+        <Card isInverse background={magma.colors.warning500}>
           <CardBody>
             <strong>Small: </strong>This will be shown from 600px pixels up to
             767px.
@@ -51,7 +51,7 @@ export function Example() {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.medium}>
-        <Card isInverse background={magma.colors.pop}>
+        <Card isInverse background={magma.colors.info700}>
           <CardBody>
             <strong>Medium: </strong>This text will be visible when the browser
             width is 768px and up to 1023px.
@@ -108,7 +108,7 @@ export function Example() {
   return (
     <BreakpointsContainer>
       <Breakpoint screenSize={BreakpointScreenSize.xs}>
-        <Card background={magma.colors.pop04}>
+        <Card background={magma.colors.secondary}>
           <CardBody>
             <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
             to 959px.
@@ -117,7 +117,7 @@ export function Example() {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.medium}>
-        <Card isInverse background={magma.colors.pop}>
+        <Card isInverse background={magma.colors.info700}>
           <CardBody>
             <strong>Medium: </strong>This text will be visible when the browser
             width is 960px and larger.
@@ -155,7 +155,7 @@ export function Example() {
   return (
     <BreakpointsContainer breakpoints={customBreakpoints}>
       <Breakpoint screenSize={BreakpointScreenSize.xs}>
-        <Card background={magma.colors.pop04}>
+        <Card background={magma.colors.secondary}>
           <CardBody>
             <strong>Extra-Small: </strong>This will be shown from 0 pixels, up
             to 499px.
@@ -164,7 +164,7 @@ export function Example() {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.small}>
-        <Card isInverse background={magma.colors.foundation02}>
+        <Card isInverse background={magma.colors.warning500}>
           <CardBody>
             <strong>Small: </strong>This will be shown from 400px pixels up to
             759px.
@@ -173,7 +173,7 @@ export function Example() {
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.medium}>
-        <Card isInverse background={magma.colors.pop}>
+        <Card isInverse background={magma.colors.info700}>
           <CardBody>
             <strong>Medium: </strong>This text will be visible when the browser
             width is 760px and up to 1079px.
@@ -200,7 +200,7 @@ export function Example() {
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-<BreakpointContainerProps />
+<BreakpointsContainerProps />
 
 ## Breakpoint Props
 

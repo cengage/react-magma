@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { useDescendants } from '../../hooks/useDescendants';
 import { useForkedRef } from '../../utils';
+import { useIsInverse } from '../../inverse';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -23,18 +24,20 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   activeIndex?: number;
   /**
    * Alignment of the dropdown content
-   * @default `DropdownAlignment.start`
+   * @default DropdownAlignment.start
    */
   alignment?: DropdownAlignment;
   /**
    * Position of the dropdown content
-   * @default `DropdownDropDirection.down`
+   * @default DropdownDropDirection.down
    */
   dropDirection?: DropdownDropDirection;
+  isInverse?: boolean;
   /**
    * Max-height of dropdown content
    * @default 250px
    */
+
   maxHeight?: string | number;
   /**
    * Function called on dropdown close before focusing the toggle button
@@ -49,6 +52,9 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * Function called when opening the dropdown menu
    */
   onOpen?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of menu
@@ -71,6 +77,7 @@ interface DropdownContextInterface {
   handleDropdownBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   isFixedWidth?: boolean;
+  isInverse?: boolean;
   isOpen?: boolean;
   maxHeight?: string;
   menuRef?: any;
@@ -225,6 +232,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     const widthString = typeof width === 'number' ? `${width}px` : width;
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return (
       <DropdownContext.Provider
         value={{
@@ -237,6 +246,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           itemRefArray,
           isFixedWidth: !!width,
           isOpen,
+          isInverse,
           maxHeight: maxHeightString,
           menuRef,
           openDropdown,

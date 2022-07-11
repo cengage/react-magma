@@ -20,12 +20,16 @@ import {
 import { MenuIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
 
+// NOTE: These props are manually copied to header.mdx
 export interface HeaderProps extends AppBarProps {
   breakpoint?: number;
   callToActionProps?: HyperlinkProps;
   logo?: React.ReactNode;
   onMenuButtonClick?: () => void;
   searchProps?: SearchProps;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -71,8 +75,6 @@ export const Header = (props: HeaderProps) => {
   } = props;
 
   const isInverse = useIsInverse(props.isInverse);
-
-  console.log(theme.iterableColors);
 
   return (
     <AppBar

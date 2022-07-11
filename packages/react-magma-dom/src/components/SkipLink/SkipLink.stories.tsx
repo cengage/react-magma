@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkipLink } from '.';
-import { ButtonColor, ButtonVariant } from '../Button';
+import { ButtonVariant } from '../Button';
 
 export default {
   component: SkipLink,
@@ -9,11 +9,7 @@ export default {
 
 export const Default = () => {
   return (
-    <SkipLink
-      to="#"
-      color={ButtonColor.success}
-      variant={ButtonVariant.outline}
-    >
+    <SkipLink to="#" variant={ButtonVariant.solid}>
       Skip to content
     </SkipLink>
   );

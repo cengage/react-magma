@@ -134,11 +134,7 @@ describe('Button', () => {
 
       it('should render with updated variant', () => {
         const { container } = render(
-          <Button
-            id="testId"
-            onClick={jest.fn()}
-            variant={ButtonVariant.outline}
-          >
+          <Button id="testId" onClick={jest.fn()} variant={ButtonVariant.solid}>
             Test Text
           </Button>
         );

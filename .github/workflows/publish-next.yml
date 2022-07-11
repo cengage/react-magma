@@ -52,8 +52,8 @@ jobs:
           echo "::set-output name=version::$(npm run --silent getVersion)"
       - name: Build Docs
         run: npm run build:docs
-        env:
-          PATH_PREFIX: /version/next
+      - name: Build Storybook
+        run: npm run build:storybook
       - name: Deploy Docs to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -64,6 +64,19 @@ jobs:
           enable-commit-comment: true
           overwrites-pull-request-comment: true
           alias: next
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy Dev Storybook to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: false
+          alias: storybook-preview-dev
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

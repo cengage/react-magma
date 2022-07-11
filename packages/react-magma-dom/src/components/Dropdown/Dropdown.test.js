@@ -10,6 +10,7 @@ import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { magma } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 import { act, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -217,17 +218,17 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should render a split dropdown with no margin on outline variants', () => {
+  it('should render a split dropdown with no margin on solid variants', () => {
     const { getByLabelText } = render(
       <Dropdown>
-        <DropdownSplitButton variant="outline">Toggle me</DropdownSplitButton>
+        <DropdownSplitButton variant="solid">Toggle me</DropdownSplitButton>
         <DropdownContent />
       </Dropdown>
     );
 
     expect(getByLabelText('Toggle menu')).toHaveAttribute(
       'style',
-      'margin-left: 0px;'
+      'margin-left: 2px;'
     );
   });
 
@@ -334,7 +335,6 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
     expect(onOpen).toHaveBeenCalled();
-
   });
 
   it('should close the menu when menu is blurred', () => {
@@ -594,7 +594,10 @@ describe('Dropdown', () => {
     fireEvent.click(getByText(text));
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule('color', magma.colors.disabledText);
+    expect(getByText(text)).toHaveStyleRule(
+      'color',
+      transparentize(0.4, magma.colors.neutral500)
+    );
   });
 
   it('should render a dropdown header', () => {

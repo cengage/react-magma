@@ -28,9 +28,8 @@ export interface StyledButtonProps extends ButtonProps {
 export const buttonStyles = props => css`
   align-items: center;
   background: ${buildButtonBackground(props)};
-  border: ${props.variant === 'outline' ||
-  (props.variant !== 'link' && props.color === 'secondary' && !props.isInverse)
-    ? '2px solid'
+  border: ${props.variant !== 'link' && props.color === 'secondary'
+    ? '1px solid'
     : '0'};
   border-color: ${buildBorderColor(props)};
   border-radius: ${buildButtonBorderRadius(props)};
@@ -40,16 +39,14 @@ export const buttonStyles = props => css`
   flex-shrink: 0;
   font-family: ${props.theme.bodyFont};
   font-size: ${buildButtonFontSize(props)};
-  font-weight: 600;
+  font-weight: 500;
   height: ${buildButtonSize(props)};
   justify-content: center;
   letter-spacing: ${props.size === 'small'
     ? props.theme.typeScale.size01.letterSpacing
     : 'inherit'};
   line-height: ${buildButtonLineHeight(props)};
-  margin: ${props.isFullWidth
-    ? `${props.theme.spaceScale.spacing02} 0`
-    : props.theme.spaceScale.spacing02};
+  margin: 0;
   min-width: ${props.size === 'small' ? '0' : props.theme.spaceScale.spacing13};
   overflow: hidden;
   padding: ${buildButtonPadding(props)};
@@ -70,11 +67,11 @@ export const buttonStyles = props => css`
 
   &:not(:disabled) {
     &:focus {
-      outline: 2px dotted
+      outline: 2px solid
         ${props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-      outline-offset: 3px;
+      outline-offset: 2px;
     }
 
     &:hover,
@@ -154,10 +151,9 @@ export const StyledButton = React.forwardRef<
   const theme = React.useContext(ThemeContext);
 
   const spinnerColor =
-    isInverse &&
-    (variant === ButtonVariant.outline || variant === ButtonVariant.link)
-      ? theme.colors.neutral08
-      : theme.colors.neutral03;
+    isInverse && variant === ButtonVariant.link
+      ? theme.colors.neutral100
+      : theme.colors.neutral500;
 
   const spinnerSize =
     size === ButtonSize.small

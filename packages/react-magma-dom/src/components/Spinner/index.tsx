@@ -8,9 +8,10 @@ import { ThemeInterface } from '../../theme/magma';
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * The color of the spinner border
-   * @default "#006298"
+   * @default theme.colors.primary (#3942B0)
    */
   color?: string;
+  isInverse?: boolean;
   /**
    * The height and width of the spinner.  Can be a string or number; if number is provided, the size is in px.
    * @default 16
@@ -20,6 +21,9 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @internal
    */
   theme?: ThemeInterface;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -57,7 +61,13 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
       <StyledSpinner
         {...other}
         aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
-        color={color ? color : theme.colors.primary}
+        color={
+          color
+            ? color
+            : props.isInverse
+            ? theme.colors.tertiary
+            : theme.colors.primary
+        }
         data-testid={testId}
         ref={ref}
         role="img"

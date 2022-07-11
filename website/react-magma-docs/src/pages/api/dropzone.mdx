@@ -1,15 +1,21 @@
 ---
 pageTitle: Dropzone API
 title: Dropzone
-props:
-  - DropzoneProps
 ---
 
-<DocsHeading type="api">Dropzone</DocsHeading>
+<DocsHeading to="/design/dropzone/" type="api">
+  Dropzone
+</DocsHeading>
 
 Upload files
 
-### Basic Usage
+<Alert variant="warning">
+  <strong>Important!</strong> Dropzone is imported from{' '}
+  <inlineCode>@react-magma/dropzone</inlineCode>{' '}
+  which must be installed as a peer dependency.
+</Alert>
+
+## Basic Usage
 
 ```typescript
 import React from 'react';
@@ -29,7 +35,7 @@ export function Example() {
 }
 ```
 
-### No Dragging
+## No Dragging
 
 ```typescript
 import React from 'react';
@@ -47,7 +53,7 @@ export function Example() {
 }
 ```
 
-### Inverse
+## Inverse
 
 ```typescript
 import React from 'react';
@@ -73,7 +79,7 @@ export function Example() {
 }
 ```
 
-### Handle File Processing
+## Handle File Processing
 
 The File Uploader uses `onSendFile` to process each file.
 Each instance of `onSendFile` will be passed a `file` prop and `onProgress`, `onSuccess` and `onError` callbacks.
@@ -87,7 +93,7 @@ then switched to true when needed.
 ```typescript
 import React from 'react';
 import { Dropzone } from '@react-magma/dropzone';
-import { Button } from 'react-magma-dom';
+import { Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const [file, setFile] = React.useState<string>();
@@ -131,6 +137,7 @@ export function Example() {
         onSendFile={onSendFile}
         sendFiles={sendFiles}
       />
+      <Spacer size={12} />
       <Button disabled={sendFiles} onClick={() => setSendFiles(true)}>
         Upload files
       </Button>
@@ -139,19 +146,19 @@ export function Example() {
 }
 ```
 
-### Deleting Files
+## Deleting Files
 
 The File Uploader has two methods for undoing adding a file. `onRemoveFile` will run before the file is processed with `onSendFile` and the cross icon is clicked.
 Since the files have been processed and require more cleanup `onDeleteFile` is ran after the file is processed and the trashcan icon is clicked.
 
-### Processing Examples
+## Processing Examples
 
 Here are some examples of the dropzone. Omitted from the following is uploading the file to some service.
 It's conceivable that a file is uploaded to something like s3 and then the loacation to the file is submitted with the form.
 
 Since the dropzone uses the [FileReader API](https://developer.mozilla.org/en-US/docs/Web/API/FileReader) the possibilities of what can be done with a file are endless.
 
-#### Image File Example
+### Image File Example
 
 ```typescript
 import React from 'react';
@@ -192,7 +199,7 @@ export function Example() {
 }
 ```
 
-#### Text File Example
+### Text File Example
 
 ```typescript
 import React from 'react';
@@ -233,7 +240,7 @@ export function Example() {
 }
 ```
 
-#### CSV Example
+### CSV Example
 
 ```typescript
 import React from 'react';
@@ -305,4 +312,133 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-<DropzoneProps />
+<SimplePropsTable
+  propertyValues={{
+    accept: {
+      type: {
+        name: 'string | string[]',
+      },
+      required: false,
+      description:
+        'Set accepted file types. See https://github.com/okonet/attr-accept for more information. Keep in mind that mime type determination is not reliable across platforms. CSV files, for example, are reported as text/plain under macOS but as application/vnd.ms-excel under Windows. In some cases there might not be a mime type set at all. See: https://github.com/react-dropzone/react-dropzone/issues/276',
+      defaultValue: '',
+    },
+    disabled: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'Enable/Disable the input',
+      defaultValue: 'false',
+    },
+    dropzoneOptions: {
+      type: {
+        name: 'DropzoneOptions',
+      },
+      required: false,
+      description:
+        'Additional props to pass to the dropzone, see https://react-dropzone.js.org/#src',
+      defaultValue: '',
+    },
+    helperMessage: {
+      type: {
+        name: 'string',
+      },
+      required: false,
+      description: 'Content of the helper message.',
+      defaultValue: '',
+    },
+    maxFiles: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description:
+        'Maximum accepted number of files The default value is 0 which means there is no limitation to how many files are accepted.',
+      defaultValue: '0',
+    },
+    minFiles: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Minimum accepted number of files.',
+      defaultValue: '',
+    },
+    maxSize: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Maximum file size (in bytes)',
+      defaultValue: 'Infinity',
+    },
+    minSize: {
+      type: {
+        name: 'number',
+      },
+      required: false,
+      description: 'Minimum file size (in bytes)',
+      defaultValue: '0',
+    },
+    multiple: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'Allow drag and drop (or selection from the file dialog) of multiple files.',
+      defaultValue: 'true',
+    },
+    noDrag: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'If true, disables drag n drop',
+      defaultValue: 'false',
+    },
+    onDeleteFile: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Callback for when a file is deleted',
+      defaultValue: '',
+    },
+    onRemoveFile: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description: 'Callback for when a file is deleted',
+      defaultValue: '',
+    },
+    onSendFile: {
+      type: {
+        name: 'function',
+      },
+      required: false,
+      description:
+        'Callback for when a file is added to the preview list via dropping or selecting. Will be ran on new files when `sendFiles` is true.',
+      defaultValue: '',
+    },
+    sendFiles: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description:
+        'Run `onSendFile` on any new files. Delay processing by setting to `false` until processing is desired.',
+      defaultValue: 'false',
+    },
+    thumbnails: {
+      type: {
+        name: 'boolean',
+      },
+      required: false,
+      description: 'Show thumbnails for images in lieu of the file icon.',
+      defaultValue: 'true',
+    }
+  }}
+/>

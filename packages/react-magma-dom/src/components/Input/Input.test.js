@@ -4,6 +4,7 @@ import { Input } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from 'react-magma-icons';
+import { transparentize } from 'polished';
 
 describe('Input', () => {
   it('should find element by testId', () => {
@@ -42,7 +43,7 @@ describe('Input', () => {
     const { getByTestId } = render(<Input testId={testId} />);
     const input = getByTestId(testId);
 
-    expect(input).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(input).toHaveStyleRule('background', 'transparent');
     expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
       '1px solid #707070'
@@ -79,7 +80,7 @@ describe('Input', () => {
 
     expect(getByText(labelText)).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
   });
 
@@ -89,7 +90,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral);
   });
 
   it('should render an inverse input with a correctly styled helper message', () => {
@@ -100,7 +101,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(helperMessage).toHaveStyleRule('color', transparentize(0.3, magma.colors.neutral100));
   });
 
   it('should render an input with a correctly styled error message', () => {
@@ -130,9 +131,9 @@ describe('Input', () => {
     const input = getByLabelText(labelText).parentElement;
     const errorMessage = getByTestId('inputMessage');
 
-    expect(input).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(input).toHaveStyleRule('border-color', magma.colors.danger200);
 
-    expect(errorMessage).toHaveStyleRule('color', magma.colors.dangerInverse);
+    expect(errorMessage).toHaveStyleRule('color', magma.colors.danger200);
   });
 
   it('should render an input with a right-aligned icon by default', () => {

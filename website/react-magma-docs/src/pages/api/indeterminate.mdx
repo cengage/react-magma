@@ -82,6 +82,31 @@ export function Example() {
 }
 ```
 
+## Inverse
+```tsx
+import React from 'react';
+import {
+  IndeterminateCheckbox,
+  IndeterminateCheckboxStatus,
+  Card,
+  CardBody,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <IndeterminateCheckbox
+          status={IndeterminateCheckboxStatus.indeterminate}
+          labelText="Colors"
+          isInverse
+        />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Indeterminate Checkbox Props
 
 **Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**

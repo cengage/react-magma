@@ -12,12 +12,17 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
   /**
    * Left/right padding, set by CSS.  If a number is provided, value will be in pixels
+   * @default theme.spaceScale.spacing06
    */
   gutterWidth?: number | string;
   /**
    * Max-width of the component, set by CSS.  If a number is provided, value will be in pixels
+   * @default none
    */
   maxWidth?: number | string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -29,12 +34,12 @@ const StyledContainer = styled.div<{
 }>`
   background: ${props =>
     props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral100};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: flow-root;
   margin: 0 auto;
   max-width: ${props => props.maxWidth};

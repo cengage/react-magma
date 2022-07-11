@@ -9,6 +9,7 @@ import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
+import { transparentize } from 'polished';
 
 export enum InputSize {
   large = 'large',
@@ -88,6 +89,9 @@ export interface InputBaseProps
    * Action that will fire when icon receives keypress
    */
   onIconKeyDown?: (event) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -117,43 +121,39 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex-shrink: 0;
   position: relative;
   width: ${props.width || 'auto'};
-  background-color: ${props.theme.colors.neutral08};
+  background-color: ${props.isInverse
+    ? transparentize(0.8, props.theme.colors.neutral900)
+    : props.theme.colors.neutral100};
   border-radius: ${props.theme.borderRadius};
   border: 1px solid
     ${props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+      ? transparentize(0.5, props.theme.colors.neutral100)
+      : props.theme.colors.neutral500};
 
   &:focus-within {
-    outline: 2px dotted
+    outline: 2px solid
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
-    outline-offset: 4px;
+    outline-offset: 2px;
   }
 
   ${props.hasError &&
   css`
-    border-color: ${props.theme.colors.danger};
-    box-shadow: 0 0 0 1px
-      ${props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.danger};
+    border-color: ${props.isInverse
+      ? props.theme.colors.danger200
+      : props.theme.colors.danger};
   `}
 
   ${props.disabled &&
   css`
-    border-color: ${props.theme.colors.neutral05};
-    background-color: ${props.disabled
-      ? props.theme.colors.neutral07
-      : props.theme.colors.neutral08};
+    border-color: ${props.isInverse
+      ? transparentize(0.85, props.theme.colors.neutral100)
+      : props.theme.colors.neutral300};
+    background-color: ${props.isInverse
+      ? transparentize(0.9, props.theme.colors.neutral900)
+      : props.theme.colors.neutral200};
   `}
-  button {
-    bottom: ${props.iconPosition === InputIconPosition.top
-      ? '40px'
-      : 'inherit'};
-    right: ${props.iconPosition === InputIconPosition.top ? '-4px' : 'inherit'};
-  }
 `;
 
 export interface InputBaseStylesProps {
@@ -163,13 +163,16 @@ export interface InputBaseStylesProps {
   isPredictive?: boolean;
   theme?: ThemeInterface;
   disabled?: boolean;
+  hasError?: boolean;
 }
 
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
   border-radius: ${props.theme.borderRadius};
-  background: ${props.theme.colors.neutral08};
-  color: ${props.theme.colors.neutral};
+  background: transparent;
+  color: ${props.isInverse
+    ? props.theme.colors.neutral100
+    : props.theme.colors.neutral700};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
@@ -210,8 +213,9 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   `}
 
   &::placeholder {
-    color: ${props.theme.colors.neutral03};
-    opacity: 1;
+    color: ${props.isInverse
+      ? transparentize(0.3, props.theme.colors.neutral100)
+      : props.theme.colors.neutral500};
   }
 
   &:focus {
@@ -229,12 +233,16 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
 
   ${props.disabled &&
   css`
-    background: ${props.theme.colors.neutral07};
-    color: ${props.theme.colors.disabledText};
+    color: ${props.isInverse
+      ? transparentize(0.6, props.theme.colors.neutral100)
+      : transparentize(0.4, props.theme.colors.neutral500)};
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${props.theme.colors.disabledText};
+      color: ${props.isInverse
+        ? transparentize(0.8, props.theme.colors.neutral100)
+        : props.theme.colors.neutral500};
+      opacity: ${props.isInverse ? 0.4 : 0.6};
     }
   `}
 `;
@@ -253,9 +261,13 @@ const IconWrapper = styled.span<{
   isClearable?: boolean;
   isPredictive?: boolean;
   disabled?: boolean;
+  isInverse?: boolean;
 }>`
   bottom: ${props => (props.iconPosition === 'top' ? '45px' : 'inherit')};
-  color: ${props => props.theme.colors.neutral};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   left: ${props =>
     props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
@@ -295,8 +307,7 @@ const IconButtonContainer = styled.span<{
   isClearable?: boolean;
   disabled?: boolean;
 }>`
-  background-color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+  background-color: transparent;
   bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
   height: auto;
   margin: 0;
@@ -318,19 +329,31 @@ const IconButtonContainer = styled.span<{
   }
 `;
 
+function getClearablePosition(props) {
+  if (props.iconPosition === 'right' && props.icon && !props.onIconClick) {
+    if (props.inputSize === 'large') {
+      return props.theme.spaceScale.spacing10;
+    }
+    return props.theme.spaceScale.spacing09;
+  }
+  if (props.inputSize === 'large') {
+    return props.theme.spaceScale.spacing02;
+  }
+  return props.theme.spaceScale.spacing01;
+}
+
 const IsClearableContainer = styled.span<{
-  size?: InputSize;
   theme: ThemeInterface;
+  icon?: React.ReactElement<IconProps>;
+  iconPosition?: InputIconPosition;
+  inputSize?: InputSize;
   isClearable?: boolean;
+  onIconClick?: () => void;
   disabled?: boolean;
 }>`
-  background-color: ${({ disabled, theme }) =>
-    disabled ? theme.colors.neutral07 : theme.colors.neutral08};
+  background-color: transparent;
   position: relative;
-  right: ${props =>
-    props.size === InputSize.large
-      ? props.theme.spaceScale.spacing02
-      : props.theme.spaceScale.spacing01};
+  right: ${getClearablePosition};
 `;
 
 function getIconSize(size: string, theme: ThemeInterface) {
@@ -421,6 +444,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           inputSize={inputSize ? inputSize : InputSize.medium}
           isInverse={useIsInverse(props.isInverse)}
           isPredictive={isPredictive}
+          hasError={hasError}
           ref={ref}
           onChange={handleChange}
           style={inputStyle}
@@ -429,12 +453,19 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           value={value}
         />
         {isClearable && value && (
-          <IsClearableContainer theme={theme} disabled={disabled}>
+          <IsClearableContainer
+            theme={theme}
+            disabled={disabled}
+            icon={icon}
+            iconPosition={iconPosition}
+            inputSize={inputSize}
+            onIconClick={onIconClick}
+          >
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}
               icon={<ClearIcon />}
-              isInverse={false}
+              isInverse={props.isInverse}
               onClick={handleClearInput}
               onKeyDown={onIconKeyDown}
               ref={iconRef}
@@ -456,6 +487,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             aria-label={iconAriaLabel}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
+            isInverse={props.isInverse}
             isPredictive={isPredictive}
             theme={theme}
             disabled={disabled}
@@ -483,7 +515,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             <IconButton
               aria-label={iconAriaLabel}
               icon={icon}
-              isInverse={false}
+              isInverse={props.isInverse}
               onClick={onIconClick}
               onKeyDown={onIconKeyDown}
               ref={iconRef}

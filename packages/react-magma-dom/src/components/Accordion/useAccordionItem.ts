@@ -9,6 +9,9 @@ export interface UseAccordionItemProps {
    */
   index?: number;
   isDisabled?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -21,13 +24,12 @@ interface AccordionItemContextInterface {
   setIsExpanded?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const AccordionItemContext = React.createContext<AccordionItemContextInterface>(
-  {
+export const AccordionItemContext =
+  React.createContext<AccordionItemContextInterface>({
     isDisabled: false,
     isExpanded: false,
     setIsExpanded: () => {},
-  }
-);
+  });
 
 export function useAccordionItem(props: UseAccordionItemProps) {
   const { index, isDisabled } = props;
@@ -42,9 +44,9 @@ export function useAccordionItem(props: UseAccordionItemProps) {
 
   React.useEffect(() => {
     const newIsExpanded = isMulti
-      ? Array.isArray(expandedIndex) && expandedIndex.includes(index) 
+      ? Array.isArray(expandedIndex) && expandedIndex.includes(index)
       : expandedIndex == index;
-    
+
     setIsExpanded(newIsExpanded);
   });
 

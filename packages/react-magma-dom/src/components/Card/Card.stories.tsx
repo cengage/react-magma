@@ -6,15 +6,35 @@ import { CardHeading } from './CardHeading';
 export default {
   component: Card,
   title: 'Card',
+  argTypes: {
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    hasDropShadow: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 };
 
-export const Default = () => {
+export const Default = (args) => {
   return (
-    <Card>
+    <Card {...args}>
       <CardBody>
         <CardHeading>Card Heading</CardHeading>
         Some content
       </CardBody>
     </Card>
   );
+};
+
+Default.args = {
+  isInverse: false,
+  align: '',
+  background: '',
+  calloutType: '',
+  width: null,
 };

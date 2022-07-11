@@ -1,21 +1,30 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { DropdownContext } from './Dropdown';
+import { transparentize } from 'polished';
 
 /**
  * @children required
  */
 export interface DropdownHeaderProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
-const StyledDiv = styled.div`
-  color: ${props => props.theme.colors.neutral03};
+const StyledDiv = styled.div<{ isInverse?: boolean }>`
+  color: ${props =>
+    props.isInverse
+      ? transparentize(0.3, props.theme.colors.neutral100)
+      : props.theme.colors.neutral500};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
+  font-weight: ${props =>
+    props.theme.typographyVisualStyles.heading2XSmall.fontWeight};
   letter-spacing: ${props => props.theme.typeScale.size01.letterSpacing};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};
-  font-weight: bold;
   margin: 0;
   padding: ${props =>
     `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing02}`};
@@ -29,9 +38,15 @@ export const DropdownHeader = React.forwardRef<
   const { children, testId, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
+  const context = React.useContext(DropdownContext);
 
   return (
-    <StyledDiv {...other} data-testid={testId} theme={theme}>
+    <StyledDiv
+      {...other}
+      data-testid={testId}
+      isInverse={context.isInverse}
+      theme={theme}
+    >
       {children}
     </StyledDiv>
   );

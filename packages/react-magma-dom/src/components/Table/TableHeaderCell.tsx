@@ -10,6 +10,7 @@ import {
 } from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
+import { transparentize } from 'polished';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
@@ -41,6 +42,9 @@ export interface TableHeaderCellProps
    * @default TableSortDirection.none
    */
   sortDirection?: TableSortDirection;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS
@@ -70,8 +74,8 @@ const StyledTableHeaderCell = styled.th<{
       ? {}
       : {
           background: props.isInverse
-            ? props.theme.colors.tint03
-            : props.theme.colors.neutral07,
+            ? transparentize(0.93, props.theme.colors.neutral100)
+            : props.theme.colors.neutral200,
           borderBottom: '2px solid',
           fontWeight: 'bold',
           verticalAlign: 'bottom',
@@ -101,7 +105,10 @@ const SortButton = styled.button<{
   align-items: flex-end;
   background: none;
   border: 0;
-  color: inherit;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: flex;
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
@@ -111,7 +118,7 @@ const SortButton = styled.button<{
   width: 100%;
 
   &:focus {
-    outline: 2px dotted
+    outline: 2px solid
       ${props =>
         props.isInverse
           ? props.theme.colors.focusInverse
@@ -121,14 +128,17 @@ const SortButton = styled.button<{
 
   &:hover,
   &:focus {
+    cursor: pointer;
     background: ${props =>
-      props.isInverse ? props.theme.colors.tint : props.theme.colors.neutral06};
+      props.isInverse
+        ? transparentize(0.85, props.theme.colors.neutral100)
+        : transparentize(0.93, props.theme.colors.neutral900)};
 
     svg {
       fill: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral};
+          ? props.theme.colors.neutral100
+          : props.theme.colors.neutral700};
     }
   }
 `;
@@ -171,8 +181,8 @@ export const TableHeaderCell = React.forwardRef<
       <SortDoubleArrowIcon
         color={
           tableContext.isInverse
-            ? theme.colors.neutral06
-            : theme.colors.neutral04
+            ? transparentize(0.3, theme.colors.neutral100)
+            : theme.colors.neutral500
         }
         size={theme.iconSizes.small}
       />

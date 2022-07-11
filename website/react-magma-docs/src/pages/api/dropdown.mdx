@@ -445,7 +445,6 @@ import {
   DropdownContent,
   DropdownDivider,
   DropdownHeader,
-  DropdownMenuItem,
   Input,
   magma,
   PasswordInput,
@@ -490,7 +489,7 @@ export function Example() {
           </DropdownHeader>
           <form
             style={{
-              color: magma.colors.neutral03,
+              color: magma.colors.neutral,
               margin: 0,
               paddingLeft: magma.spaceScale.spacing05,
               paddingRight: magma.spaceScale.spacing05,
@@ -540,8 +539,9 @@ export function Example() {
       <Dropdown>
         <DropdownSplitButton
           size={ButtonSize.large}
-          variant="outline"
+          variant={ButtonVariant.solid}
           color={ButtonColor.danger}
+          aria-label={'Custom Button Example'}
         >
           Extra Props Split
         </DropdownSplitButton>
@@ -592,7 +592,6 @@ export function Example() {
       <Dropdown>
         <DropdownButton
           aria-label="Extra icon example"
-          color={ButtonColor.success}
           size={ButtonSize.large}
           icon={<MenuIcon />}
         />
@@ -603,7 +602,7 @@ export function Example() {
       </Dropdown>
       <Dropdown>
         <DropdownButton
-          variant={ButtonVariant.outline}
+          variant={ButtonVariant.solid}
           size={ButtonSize.small}
           iconPosition={ButtonIconPosition.right}
           icon={<SettingsIcon />}
@@ -617,7 +616,7 @@ export function Example() {
       </Dropdown>
       <Dropdown>
         <DropdownButton
-          variant={ButtonVariant.outline}
+          variant={ButtonVariant.solid}
           size={ButtonSize.small}
           iconPosition={ButtonIconPosition.left}
           icon={<SettingsIcon />}
@@ -751,6 +750,35 @@ export function Example() {
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
+  );
+}
+```
+
+## Inverse
+```tsx
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+  Card,
+  CardBody
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Dropdown isInverse>
+          <DropdownButton>Basic Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item one</DropdownMenuItem>
+            <DropdownMenuItem>Menu item two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </CardBody>
+    </Card>
   );
 }
 ```

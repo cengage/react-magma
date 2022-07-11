@@ -14,9 +14,18 @@ export interface LabelProps
   actionable?: boolean;
   iconPosition?: InputIconPosition;
   isInverse?: boolean;
+  /**
+   * @default LabelPosition.top
+   */
   labelPosition?: LabelPosition;
+  /**
+   * @default InputSize.medium
+   */
   size?: InputSize;
   theme?: any;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -29,14 +38,14 @@ const StyledLabel = styled.label<{
 }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: inline-block;
   font-size: ${props =>
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: ${props =>
     props.size === InputSize.large
       ? 'inherit'

@@ -63,6 +63,7 @@ export interface TabsProps
   backgroundColor?: string;
   /**
    * The orientation of icon on Tab
+   * @default TabsIconPosition.left
    */
   iconPosition?: TabsIconPosition;
   /**
@@ -74,7 +75,13 @@ export interface TabsProps
    * The onChange handler for managing state of Tabs component by your custom logic.
    */
   onChange?: (newActiveIndex: number) => void;
+  /**
+   * @default TabsOrientation.horizontal
+   */
   orientation?: TabsOrientation;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -115,11 +122,7 @@ export const StyledContainer = styled('div', {
   theme: ThemeInterface;
 }>`
   background-color: ${props =>
-    props.backgroundColor
-      ? props.backgroundColor
-      : props.isInverse
-      ? props.theme.colors.foundation
-      : 'transparent'};
+    props.backgroundColor ? props.backgroundColor : 'transparent'};
   background: backgroundColor;
   display: flex;
   height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
