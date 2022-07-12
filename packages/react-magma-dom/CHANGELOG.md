@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.43
+
+### Major Changes
+
+- 81b1b76d7: dropdown: Remove deprecated prop `onBeforeShiftFocus`
+
 ## 3.0.0-next.42
 
 ### Major Changes
