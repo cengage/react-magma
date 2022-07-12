@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.0.0-next.63
+
+### Major Changes
+
+- 03a2e3657: various minor updates:
+
+  - document DrawerPosition default
+  - remove FormFieldContainer from docs as it's just an internal component
+  - update color for List items
+  - update table inverse example
+  - fix typos
+  - rename tags design page to tag
+
 ## 3.0.0-next.62
 
 ### Patch Changes
