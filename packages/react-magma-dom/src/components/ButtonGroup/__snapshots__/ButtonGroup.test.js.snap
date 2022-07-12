@@ -126,6 +126,54 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex-direction: row;
 }
 
+.emotion-12 > button:first-child,
+.emotion-12 > div button:first-child {
+  margin-left: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div button:last-child {
+  margin-right: 0;
+}
+
+.emotion-12 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > div button {
+  width: inherit;
+}
+
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-12 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
 .emotion-12 > button {
   margin: 0;
   -webkit-flex: none;
@@ -133,33 +181,25 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex: none;
 }
 
-.emotion-12 > button:first-of-type {
-  margin-left: 0;
-}
-
-.emotion-12 > button:last-child {
-  margin-right: 0;
-}
-
-.emotion-12 > button:first-of-type:not(:only-of-type) {
+.emotion-12 > button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-12 > button:nth-of-type(2) {
+.emotion-12 > button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-12 > button:not(:first-of-type) {
+.emotion-12 > button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-12 > button:not(:first-of-type).emotion-12 > button:not(:last-child) {
+.emotion-12 > button:not(:first-child).emotion-12 > button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-12 > button:last-child:not(:only-of-type) {
+.emotion-12 > button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
@@ -289,6 +329,54 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex-direction: row;
 }
 
+.emotion-12 > button:first-child,
+.emotion-12 > div button:first-child {
+  margin-left: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div button:last-child {
+  margin-right: 0;
+}
+
+.emotion-12 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > div button {
+  width: inherit;
+}
+
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-12 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
 .emotion-12 > button {
   margin: 0;
   -webkit-flex: none;
@@ -296,33 +384,25 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex: none;
 }
 
-.emotion-12 > button:first-of-type {
-  margin-left: 0;
-}
-
-.emotion-12 > button:last-child {
-  margin-right: 0;
-}
-
-.emotion-12 > button:first-of-type:not(:only-of-type) {
+.emotion-12 > button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-12 > button:nth-of-type(2) {
+.emotion-12 > button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-12 > button:not(:first-of-type) {
+.emotion-12 > button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-12 > button:not(:first-of-type).emotion-12 > button:not(:last-child) {
+.emotion-12 > button:not(:first-child).emotion-12 > button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-12 > button:last-child:not(:only-of-type) {
+.emotion-12 > button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
@@ -507,19 +587,59 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: start;
 }
 
-.emotion-12 > button {
+.emotion-12 > button:first-child,
+.emotion-12 > div button:first-child {
+  margin-top: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div button:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-12 > div {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 > button:first-of-type {
-  margin-top: 0;
+.emotion-12 > div button {
+  width: inherit;
 }
 
-.emotion-12 > button:last-child {
-  margin-bottom: 0;
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-12 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
 .emotion-2 {
@@ -651,19 +771,59 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: start;
 }
 
-.emotion-12 > button {
+.emotion-12 > button:first-child,
+.emotion-12 > div button:first-child {
+  margin-top: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div button:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-12 > div {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 > button:first-of-type {
-  margin-top: 0;
+.emotion-12 > div button {
+  width: inherit;
 }
 
-.emotion-12 > button:last-child {
-  margin-bottom: 0;
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-12 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
 <div>

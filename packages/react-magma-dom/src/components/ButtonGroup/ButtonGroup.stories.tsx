@@ -159,25 +159,94 @@ SmallBreakpoint.args = {
 
 export const WithDropdowns = args => {
   return (
-    <ButtonGroup {...args}>
-      <Button>Button</Button>
-      <Dropdown>
-        <DropdownButton>Foo</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton>Bar</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    </ButtonGroup>
+    <>
+      <ButtonGroup {...args}>
+        <Button>Favorite</Button>
+        <Dropdown>
+          <DropdownButton>Settings</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Notifications</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup {...args}>
+        <Dropdown>
+          <DropdownButton>Settings</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Button>Favorite</Button>
+        <Dropdown>
+          <DropdownButton>Notifications</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup {...args}>
+        <Dropdown>
+          <DropdownButton>Settings</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Notifications</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Button>Favorite</Button>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup {...args}>
+        <Dropdown>
+          <DropdownButton>Settings</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Notifications</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Favorites</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
+    </>
   );
 };
 

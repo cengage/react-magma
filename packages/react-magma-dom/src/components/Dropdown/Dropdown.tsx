@@ -65,8 +65,8 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Container = styled.div`
-  // display: inline-block;
-  // position: relative;
+  display: inline-block;
+  position: relative;
 `;
 
 interface DropdownContextInterface {
@@ -100,8 +100,6 @@ export const DropdownContext = React.createContext<DropdownContextInterface>({
 });
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
-
-
 
 export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
   (props, forwardedRef) => {
