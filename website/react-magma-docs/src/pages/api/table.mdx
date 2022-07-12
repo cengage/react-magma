@@ -732,8 +732,12 @@ export function Example() {
             <TableCell>Nam purus purus, cursus</TableCell>
             <TableCell>Lorem ipsum dolor</TableCell>
             <TableCell>Sit amet</TableCell>
-            <TableCell>Donec ac nisi nunc. Vestibulum eget pulvinar ante. </TableCell>
-            <TableCell>Donec ac nisi nunc. Vestibulum eget pulvinar ante. </TableCell>
+            <TableCell>
+              Donec ac nisi nunc. Vestibulum eget pulvinar ante.{' '}
+            </TableCell>
+            <TableCell>
+              Donec ac nisi nunc. Vestibulum eget pulvinar ante.{' '}
+            </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Lorem ipsum dolor sit amet</TableCell>
@@ -966,17 +970,21 @@ export function Example() {
       'Lorem ipsum',
     ],
   ];
-  const [pageIndex, setPageIndex] = React.useState<number>(0);
+  const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
   function handleRowsPerPageChange(numberOfPages) {
     setRowsPerPage(numberOfPages);
-    setPageIndex(0);
+    setPageIndex(1);
+  }
+
+  function handlePageChange(_, page) {
+    setPageIndex(page);
   }
 
   const rowsToShow = rows.slice(
-    pageIndex * rowsPerPage,
-    pageIndex * rowsPerPage + rowsPerPage
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
   );
 
   return (
@@ -1001,8 +1009,9 @@ export function Example() {
         </TableBody>
       </Table>
       <TablePagination
-        count={rows.length}
+        itemCount={rows.length}
         onRowsPerPageChange={handleRowsPerPageChange}
+        onPageChange={handlePageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
       />
