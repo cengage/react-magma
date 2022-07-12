@@ -40,11 +40,6 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
 
   maxHeight?: string | number;
   /**
-   * Function called on dropdown close before focusing the toggle button
-   * @deprecated true
-   */
-  onBeforeShiftFocus?: (event: React.SyntheticEvent) => void;
-  /**
    * Function called when closing the dropdown menu
    */
   onClose?: (event: React.SyntheticEvent) => void;
@@ -108,7 +103,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       children,
       dropDirection,
       maxHeight,
-      onBeforeShiftFocus,
       onClose,
       onOpen,
       testId,
@@ -153,11 +147,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     function closeDropdown(event) {
       setIsOpen(false);
-
-      if (onBeforeShiftFocus && typeof onBeforeShiftFocus === 'function') {
-        event.preventMagmaFocus = handlePreventMagmaFocus;
-        onBeforeShiftFocus(event);
-      }
 
       onClose && typeof onClose === 'function' && onClose(event);
     }
@@ -224,8 +213,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         closeDropdown(event);
       }
     }
-
-    function handlePreventMagmaFocus() {}
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
