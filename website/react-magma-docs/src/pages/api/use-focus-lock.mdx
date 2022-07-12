@@ -11,7 +11,7 @@ The `useFocusLock` custom hook can be used to lock the browsers focus in a given
 
 ```tsx codesandbox=magma
 import React from 'react';
-import { useFocusLock, Toggle, Input, Button } from 'react-magma-dom';
+import { useFocusLock, Toggle, Input, Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const [isLocked, setIsLocked] = React.useState<boolean>(false);
@@ -26,6 +26,7 @@ export function Example() {
       <Toggle labelText="Lock Focus" onClick={handleLock} />
       <div ref={focusTrapElement}>
         <Input labelText="Example Input" />
+        <Spacer size="12" />
         <Button>Example Button</Button>
       </div>
     </>
@@ -39,7 +40,7 @@ If your container has a header that describes the section you are locking the fo
 
 ```tsx codesandbox=magma
 import React from 'react';
-import { useFocusLock, Toggle, Input, Button, Heading } from 'react-magma-dom';
+import { useFocusLock, Toggle, Input, Button, Heading, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const headingRef = React.useRef<HTMLHeadingElement>();
@@ -58,6 +59,7 @@ export function Example() {
           Description Heading
         </Heading>
         <Input labelText="Example Input" />
+        <Spacer size="12" />
         <Button>Example Button</Button>
       </div>
     </>

@@ -105,31 +105,52 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isTag1Visible, setTag1Visible] = React.useState(true);
+  const [isTag2Visible, setTag2Visible] = React.useState(true);
 
-  function deleteMe() {
-    setIsVisible(false);
+  function deleteTag1() {
+    setTag1Visible(false);
   }
 
-  function showMe() {
-    setIsVisible(true);
+  function showTag1() {
+    setTag1Visible(true);
   }
+
+  function deleteTag2() {
+    setTag2Visible(false);
+  }
+
+  function showTag2() {
+    setTag2Visible(true);
+  }
+
   return (
     <>
-      {isVisible && <Tag onDelete={deleteMe}>Deletable Tag</Tag>}
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      {isVisible && (
-        <Tag onDelete={deleteMe} size="small">
-          Deletable Tag Small
-        </Tag>
-      )}
-      {!isVisible && (
+      {isTag1Visible ? (
+        <Tag onDelete={deleteTag1}>Deletable Tag</Tag>
+      ) : (
         <Button
           color={ButtonColor.secondary}
-          onClick={showMe}
+          onClick={showTag1}
           size={ButtonSize.small}
         >
-          Show Tags Again
+          Show Tag Again
+        </Button>
+      )}
+
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+
+      {isTag2Visible ? (
+        <Tag onDelete={deleteTag2} size="small">
+          Deletable Tag Small
+        </Tag>
+      ) : (
+        <Button
+          color={ButtonColor.secondary}
+          onClick={showTag2}
+          size={ButtonSize.small}
+        >
+          Show Tag Again
         </Button>
       )}
     </>
@@ -153,35 +174,52 @@ import {
 import { AccountCircleIcon } from 'react-magma-icons';
 
 export function Example() {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isTag1Visible, setTag1Visible] = React.useState(true);
+  const [isTag2Visible, setTag2Visible] = React.useState(true);
 
-  function deleteMe() {
-    setIsVisible(false);
+  function deleteTag1() {
+    setTag1Visible(false);
   }
 
-  function showMe() {
-    setIsVisible(true);
+  function showTag1() {
+    setTag1Visible(true);
   }
+
+  function deleteTag2() {
+    setTag2Visible(false);
+  }
+
+  function showTag2() {
+    setTag2Visible(true);
+  }
+
   return (
     <>
-      {isVisible && (
-        <Tag icon={<AccountCircleIcon />} onDelete={deleteMe}>
-          Deletable Tag
-        </Tag>
-      )}
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      {isVisible && (
-        <Tag icon={<AccountCircleIcon />} onDelete={deleteMe} size="small">
-          Deletable Tag Small
-        </Tag>
-      )}
-      {!isVisible && (
+      {isTag1Visible ? (
+        <Tag icon={<AccountCircleIcon />} onDelete={deleteTag1}>Deletable Tag</Tag>
+      ) : (
         <Button
           color={ButtonColor.secondary}
-          onClick={showMe}
+          onClick={showTag1}
           size={ButtonSize.small}
         >
-          Show Tags Again
+          Show Tag Again
+        </Button>
+      )}
+
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+
+      {isTag2Visible ? (
+        <Tag icon={<AccountCircleIcon />} onDelete={deleteTag2} size="small">
+          Deletable Tag Small
+        </Tag>
+      ) : (
+        <Button
+          color={ButtonColor.secondary}
+          onClick={showTag2}
+          size={ButtonSize.small}
+        >
+          Show Tag Again
         </Button>
       )}
     </>
@@ -193,7 +231,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Tag } from 'react-magma-dom';
+import { Tag, Spacer, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -210,7 +248,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Spacer, Tag } from 'react-magma-dom';
+import { Spacer, Tag, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -276,7 +314,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Spacer, Tag } from 'react-magma-dom';
+import { Card, CardBody, Spacer, Tag, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (

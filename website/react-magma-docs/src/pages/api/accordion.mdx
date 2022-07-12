@@ -116,6 +116,7 @@ import {
   ButtonSize,
   ButtonVariant,
   ButtonGroup,
+  Spacer,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -172,7 +173,7 @@ export function Example() {
           Collapse All
         </Button>
       </ButtonGroup>
-
+      <Spacer size="12" />
       <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
         <AccordionItem>
           <AccordionButton>Section 1</AccordionButton>
