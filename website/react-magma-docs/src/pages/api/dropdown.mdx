@@ -24,6 +24,8 @@ The `DropdownButton` is a button that handles the opening and closing of the men
 
 The `DropdownContent` component contains the content that appears when the button is clicked. That content may contain individual menu items, represented in `DropdownMenuItem` components, or it may contain other markup.
 
+When using multiple dropdowns, they should be wrapped in a <Link to="/api/button-group">ButtonGroup</Link>.
+
 ```tsx
 import React from 'react';
 import {
@@ -584,60 +586,62 @@ import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <ButtonGroup>
-      <Dropdown>
-        <DropdownButton
-          aria-label="Extra icon example"
-          color={ButtonColor.secondary}
-          size={ButtonSize.large}
-          variant={ButtonVariant.link}
-          icon={<SettingsIcon />}
-        />
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          aria-label="Extra icon example"
-          size={ButtonSize.large}
-          icon={<MenuIcon />}
-        />
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          variant={ButtonVariant.solid}
-          size={ButtonSize.small}
-          iconPosition={ButtonIconPosition.right}
-          icon={<SettingsIcon />}
-        >
-          Icon Right with Text
-        </DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          variant={ButtonVariant.solid}
-          size={ButtonSize.small}
-          iconPosition={ButtonIconPosition.left}
-          icon={<SettingsIcon />}
-        >
-          Icon Left with Text
-        </DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    </ButtonGroup>
+    <>
+      <ButtonGroup>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            color={ButtonColor.secondary}
+            size={ButtonSize.large}
+            variant={ButtonVariant.link}
+            icon={<SettingsIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            size={ButtonSize.large}
+            icon={<MenuIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            variant={ButtonVariant.solid}
+            size={ButtonSize.small}
+            iconPosition={ButtonIconPosition.right}
+            icon={<SettingsIcon />}
+          >
+            Icon Right with Text
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            variant={ButtonVariant.solid}
+            size={ButtonSize.small}
+            iconPosition={ButtonIconPosition.left}
+            icon={<SettingsIcon />}
+          >
+            Icon Left with Text
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
+    </>
   );
 }
 ```

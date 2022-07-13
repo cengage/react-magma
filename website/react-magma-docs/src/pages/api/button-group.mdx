@@ -7,7 +7,7 @@ props:
 
 <DocsHeading type="api">ButtonGroup</DocsHeading>
 
-A ButtonGroup is a layout component for <Link to="/api/button">Buttons</Link> and <Link to="/api/icon-button">Icon Buttons</Link>. It's a helper for aligning 2 or more buttons together with appropriate spacing.
+A ButtonGroup is a layout component for <Link to="/api/button">Buttons</Link>, <Link to="/api/icon-button">Icon Buttons</Link> and <Link to="/api/dropdown">Dropdown Buttons</Link>. It's a helper for aligning 2 or more buttons together with appropriate spacing.
 
 ## Default
 
@@ -67,7 +67,7 @@ The `apart` prop should only be used with the `horizontal` orientation.
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonGroupOrientation, ButtonGroupAlignment } from 'react-magma-dom';
+import { ButtonGroup, Button, ButtonGroupOrientation, ButtonGroupAlignment, Dropdown, DropdownButton, DropdownContent, DropdownMenuItem } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -76,7 +76,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.right}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -85,7 +90,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.center}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -94,7 +104,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.apart}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -103,7 +118,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.fill}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -123,11 +143,34 @@ import { ButtonGroup, Button, ButtonGroupOrientation, ButtonColor } from 'react-
 
 export function Example() {
   return (
-    <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace color={ButtonColor.secondary}>
-      <Button>1</Button>
-      <Button>2</Button>
-      <Button>3</Button>
-    </ButtonGroup>
+    <>
+      <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace color={ButtonColor.secondary}>
+        <Button>1</Button>
+        <Button>2</Button>
+        <Button>3</Button>
+      </ButtonGroup>
+      <br/><br/>
+      <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>2</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>3</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
+    </>
   );
 }
 ```

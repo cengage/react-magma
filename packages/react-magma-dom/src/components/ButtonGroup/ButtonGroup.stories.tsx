@@ -246,6 +246,31 @@ export const WithDropdowns = args => {
           </DropdownContent>
         </Dropdown>
       </ButtonGroup>
+      <br/>
+      <ButtonGroup {...args}>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            size={ButtonSize.large}
+            icon={<SettingsIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            size={ButtonSize.large}
+            icon={<AsteriskIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
     </>
   );
 };

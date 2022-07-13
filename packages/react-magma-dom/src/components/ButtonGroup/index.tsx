@@ -187,7 +187,7 @@ const StyledButtonGroup = styled.div<{
         width: 40px;
       }
       width: ${props =>
-        props.alignment === ButtonGroupAlignment.fill ? '100%' : 'inherit'};
+        props.alignment === ButtonGroupAlignment.fill ? '100%' : ''};
     }
 
     ${props =>
