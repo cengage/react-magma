@@ -127,12 +127,12 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-12 > button:first-child,
-.emotion-12 > div button:first-child {
+.emotion-12 > div:first-child {
   margin-left: 0;
 }
 
 .emotion-12 > button:last-child,
-.emotion-12 > div button:last-child {
+.emotion-12 > div:last-child {
   margin-right: 0;
 }
 
@@ -326,12 +326,12 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-12 > button:first-child,
-.emotion-12 > div button:first-child {
+.emotion-12 > div:first-child {
   margin-left: 0;
 }
 
 .emotion-12 > button:last-child,
-.emotion-12 > div button:last-child {
+.emotion-12 > div:last-child {
   margin-right: 0;
 }
 
@@ -580,12 +580,12 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-12 > button:first-child,
-.emotion-12 > div button:first-child {
+.emotion-12 > div:first-child {
   margin-top: 0;
 }
 
 .emotion-12 > button:last-child,
-.emotion-12 > div button:last-child {
+.emotion-12 > div:last-child {
   margin-bottom: 0;
 }
 
@@ -760,12 +760,12 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-12 > button:first-child,
-.emotion-12 > div button:first-child {
+.emotion-12 > div:first-child {
   margin-top: 0;
 }
 
 .emotion-12 > button:last-child,
-.emotion-12 > div button:last-child {
+.emotion-12 > div:last-child {
   margin-bottom: 0;
 }
 
@@ -987,12 +987,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-22 > button:first-child,
-.emotion-22 > div button:first-child {
+.emotion-22 > div:first-child {
   margin-left: 0;
 }
 
 .emotion-22 > button:last-child,
-.emotion-22 > div button:last-child {
+.emotion-22 > div:last-child {
   margin-right: 0;
 }
 
@@ -1318,12 +1318,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-22 > button:first-child,
-.emotion-22 > div button:first-child {
+.emotion-22 > div:first-child {
   margin-left: 0;
 }
 
 .emotion-22 > button:last-child,
-.emotion-22 > div button:last-child {
+.emotion-22 > div:last-child {
   margin-right: 0;
 }
 
@@ -1527,7 +1527,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   <div
     class="emotion-22"
     color="primary"
-    data-testid="test-id"
     orientation="horizontal"
   >
     <button
@@ -1550,7 +1549,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         aria-haspopup="true"
         class="emotion-7 emotion-3"
         color="primary"
-        id="d7049fc4-173d-4087-8fdf-d719e8cfd8b0"
+        id="2"
         shape="fill"
         type="button"
       >
@@ -1585,6 +1584,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         width="auto"
       >
         <div
+          aria-labelledby="2"
           class="emotion-10"
           role="menu"
         >
@@ -1606,7 +1606,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         aria-haspopup="true"
         class="emotion-7 emotion-3"
         color="primary"
-        id="6a24b088-5317-492e-aef7-9c1f2cf6ab2f"
+        id="3"
         shape="fill"
         type="button"
       >
@@ -1641,6 +1641,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         width="auto"
       >
         <div
+          aria-labelledby="3"
           class="emotion-10"
           role="menu"
         >
@@ -1789,12 +1790,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-22 > button:first-child,
-.emotion-22 > div button:first-child {
+.emotion-22 > div:first-child {
   margin-top: 0;
 }
 
 .emotion-22 > button:last-child,
-.emotion-22 > div button:last-child {
+.emotion-22 > div:last-child {
   margin-bottom: 0;
 }
 
@@ -2128,12 +2129,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-22 > button:first-child,
-.emotion-22 > div button:first-child {
+.emotion-22 > div:first-child {
   margin-top: 0;
 }
 
 .emotion-22 > button:last-child,
-.emotion-22 > div button:last-child {
+.emotion-22 > div:last-child {
   margin-bottom: 0;
 }
 
@@ -2341,7 +2342,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   <div
     class="emotion-22"
     color="primary"
-    data-testid="test-id"
     orientation="vertical"
   >
     <button
@@ -2364,7 +2364,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         aria-haspopup="true"
         class="emotion-7 emotion-3"
         color="primary"
-        id="59ddab86-93ce-4294-af2c-ccaa7386d770"
+        id="2"
         shape="fill"
         type="button"
       >
@@ -2399,6 +2399,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         width="auto"
       >
         <div
+          aria-labelledby="2"
           class="emotion-10"
           role="menu"
         >
@@ -2420,7 +2421,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         aria-haspopup="true"
         class="emotion-7 emotion-3"
         color="primary"
-        id="7590bc8f-d8dd-4c94-bbca-983356ed04be"
+        id="3"
         shape="fill"
         type="button"
       >
@@ -2455,6 +2456,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         width="auto"
       >
         <div
+          aria-labelledby="3"
           class="emotion-10"
           role="menu"
         >
@@ -2599,12 +2601,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-22 > button:first-child,
-.emotion-22 > div button:first-child {
+.emotion-22 > div:first-child {
   margin-left: 0;
 }
 
 .emotion-22 > button:last-child,
-.emotion-22 > div button:last-child {
+.emotion-22 > div:last-child {
   margin-right: 0;
 }
 
@@ -2976,12 +2978,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-22 > button:first-child,
-.emotion-22 > div button:first-child {
+.emotion-22 > div:first-child {
   margin-left: 0;
 }
 
 .emotion-22 > button:last-child,
-.emotion-22 > div button:last-child {
+.emotion-22 > div:last-child {
   margin-right: 0;
 }
 
@@ -3231,7 +3233,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   <div
     class="emotion-22"
     color="primary"
-    data-testid="test-id"
     orientation="horizontal"
   >
     <button
@@ -3254,7 +3255,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         aria-haspopup="true"
         class="emotion-7 emotion-3"
         color="primary"
-        id="eb82f9d5-b9e3-462b-9121-16c6009b3442"
+        id="2"
         shape="fill"
         type="button"
       >
@@ -3289,6 +3290,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         width="auto"
       >
         <div
+          aria-labelledby="2"
           class="emotion-10"
           role="menu"
         >
@@ -3310,7 +3312,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         aria-haspopup="true"
         class="emotion-7 emotion-3"
         color="primary"
-        id="1a0ef03a-432d-4c21-b68d-72cc2f976fe7"
+        id="3"
         shape="fill"
         type="button"
       >
@@ -3345,6 +3347,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         width="auto"
       >
         <div
+          aria-labelledby="3"
           class="emotion-10"
           role="menu"
         >

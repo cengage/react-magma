@@ -119,7 +119,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       width,
       ...other
     } = resolvedProps;
-    
+
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
     const [activeItemIndex, setActiveItemIndex] = React.useState<number>(

@@ -150,7 +150,7 @@ const StyledButtonGroup = styled.div<{
       align-items: ${buildButtonAlignment(props)};
     `}
 
-  > button, > div button {
+  > button, > div {
     ${props =>
       props.orientation === ButtonGroupOrientation.horizontal &&
       css`
