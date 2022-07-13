@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.65
+
+### Major Changes
+
+- 8dd5e09ce: docs: created design guidelines for button group
+
 ## 3.0.0-next.64
 
 ### Patch Changes
