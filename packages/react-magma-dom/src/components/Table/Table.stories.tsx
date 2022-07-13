@@ -50,25 +50,27 @@ const rows = [
 ];
 
 const Template: Story<TableProps> = args => (
-  <Table {...args}>
-    <TableHead>
-      <TableRow>
-        <TableHeaderCell>Column</TableHeaderCell>
-        <TableHeaderCell>Column</TableHeaderCell>
-        <TableHeaderCell>Column</TableHeaderCell>
-        <TableHeaderCell>Column</TableHeaderCell>
-      </TableRow>
-    </TableHead>
-    <TableBody>
-      {rows.map((row, i) => (
-        <TableRow key={`row${i}`}>
-          {row.map((cell, j) => (
-            <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-          ))}
+  <Card isInverse={args.isInverse}>
+    <Table {...args}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
         </TableRow>
-      ))}
-    </TableBody>
-  </Table>
+      </TableHead>
+      <TableBody>
+        {rows.map((row, i) => (
+          <TableRow key={`row${i}`}>
+            {row.map((cell, j) => (
+              <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+            ))}
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
+  </Card>
 );
 
 export default {
@@ -92,14 +94,50 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   hasHoverStyles: false,
-  hasOuterBorder: false,
+  hasSquareCorners: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+  isInverse: false,
 };
 
-export const WithOuterBorder = Template.bind({});
-WithOuterBorder.args = {
-  hasOuterBorder: true,
+export const SquareCorners = args => {
+  const pageIndex = 1;
+  const rowsPerPage = 10;
+
+  const rowsToShow = rowsLong.slice(
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
+  );
+
+  return (
+    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+      <Table style={{ background: magma.colors.neutral100 }} {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowsToShow.map((row, i) => (
+            <TableRow key={`row${i}`}>
+              {row.map((cell, j) => (
+                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  );
+};
+SquareCorners.args = {
+  hasSquareCorners: true,
+  hasHoverStyles: false,
+  hasVerticalBorders: false,
+  hasZebraStripes: false,
 };
 
 const rowsLong = [
@@ -262,8 +300,8 @@ export const ControlledPagination = args => {
   );
 
   return (
-    <>
-      <Table>
+    <Card isInverse={args.isInverse}>
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -288,9 +326,13 @@ export const ControlledPagination = args => {
         onPageChange={handlePageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
+        isInverse={args.isInverse}
       />
-    </>
+    </Card>
   );
+};
+ControlledPagination.args = {
+  ...Default.args,
 };
 
 export const UncontrolledPagination = args => {
@@ -394,7 +436,7 @@ PaginationInverse.args = {
 
 export const RowColors = args => {
   return (
-    <Table hasHoverStyles hasZebraStripes>
+    <Table {...args}>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -403,6 +445,16 @@ export const RowColors = args => {
         </TableRow>
       </TableHead>
       <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
         <TableRow color={TableRowColor.success}>
           <TableCell>Lorem ipsum</TableCell>
           <TableCell>dolar sit</TableCell>
@@ -423,16 +475,6 @@ export const RowColors = args => {
           <TableCell>dolar sit</TableCell>
           <TableCell>amet</TableCell>
         </TableRow>
-        <TableRow>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
       </TableBody>
     </Table>
   );
@@ -445,7 +487,7 @@ RowColors.args = {
 
 export const RowColorsInverse = args => {
   return (
-    <Card background={magma.colors.primary600} isInverse>
+    <Card isInverse>
       <Table {...args}>
         <TableHead>
           <TableRow>
@@ -546,7 +588,7 @@ export const Sortable = args => {
   };
 
   return (
-    <>
+    <Card isInverse={args.isInverse}>
       <Table {...args}>
         <TableHead>
           <TableRow>
@@ -607,7 +649,7 @@ export const Sortable = args => {
       <Announce>
         <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
       </Announce>
-    </>
+    </Card>
   );
 };
 
@@ -617,7 +659,7 @@ Sortable.args = {
 
 export const WithDropdown = args => {
   return (
-    <>
+    <Card isInverse={args.isInverse}>
       <Table maxWidth={500} {...args}>
         <TableHead>
           <TableRow>
@@ -633,7 +675,7 @@ export const WithDropdown = args => {
             <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
             <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
             <TableCell>
-              <Dropdown>
+              <Dropdown isInverse={args.isInverse}>
                 <DropdownButton>Basic Dropdown</DropdownButton>
                 <DropdownContent>
                   <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -660,6 +702,7 @@ export const WithDropdown = args => {
                   { label: 'Green', value: 'green' },
                   { label: 'Yellow', value: 'yellow' },
                 ]}
+                isInverse={args.isInverse}
               />
             </TableCell>
           </TableRow>
@@ -676,12 +719,13 @@ export const WithDropdown = args => {
                   { label: 'Orange', value: 'orange' },
                   { label: 'Purple', value: 'purple' },
                 ]}
+                isInverse={args.isInverse}
               />
             </TableCell>
           </TableRow>
         </TableBody>
       </Table>
-    </>
+    </Card>
   );
 };
 WithDropdown.args = {

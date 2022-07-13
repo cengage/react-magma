@@ -21,57 +21,9 @@ describe('Table', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should render table with a border', () => {
-    const { getByTestId } = render(
-      <Table hasOuterBorder testId="test-id">
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>cell 1</TableCell>
-            <TableCell>cell 2</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    );
-
-    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
-      'box-shadow',
-      `0 0 0 1px ${magma.colors.neutral300}`
-    );
-  });
-
-  it('should render table with an inverse border', () => {
-    const { getByTestId } = render(
-      <Table hasOuterBorder isInverse testId="test-id">
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>cell 1</TableCell>
-            <TableCell>cell 2</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    );
-
-    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
-      'box-shadow',
-      `0 0 0 1px ${transparentize(0.6, magma.colors.neutral100)}`
-    );
-  });
-
   it('should render table with a border radius', () => {
     const { getByTestId } = render(
-      <Table hasOuterBorder isInverse testId="test-id">
+      <Table isInverse testId="test-id">
         <TableHead>
           <TableRow>
             <TableHeaderCell>heading 1</TableHeaderCell>
@@ -95,7 +47,7 @@ describe('Table', () => {
 
   it('should render table without a border radius', () => {
     const { getByTestId } = render(
-      <Table hasOuterBorder hasSquareCorners isInverse testId="test-id">
+      <Table hasSquareCorners isInverse testId="test-id">
         <TableHead>
           <TableRow>
             <TableHeaderCell>heading 1</TableHeaderCell>

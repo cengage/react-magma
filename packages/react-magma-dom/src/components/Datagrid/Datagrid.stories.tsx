@@ -2,7 +2,7 @@ import React from 'react';
 import { Datagrid } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DatagridProps } from './Datagrid';
-import { TablePaginationProps, TableRowColor } from '../Table';
+import { TableDensity, TablePaginationProps, TableRowColor } from '../Table';
 import { usePagination } from '../Pagination/usePagination';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
@@ -288,12 +288,15 @@ const coloredRows = [
 ];
 
 const defaultArgs = {
+  density: TableDensity.normal,
   columns: columns,
   rows: rowsForPagination,
   hasHoverStyles: false,
+  hasSquareCorners: true,
   hasVerticalBorders: false,
   hasZebraStripes: false,
   isSelectable: false,
+  isInverse: false,
   paginationProps: {},
 };
 

@@ -2,7 +2,6 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -15,13 +14,9 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   density?: TableDensity;
   /**
    * If true, row will be visually highlighted on hover
-   */
-  hasHoverStyles?: boolean;
-  /**
-   * If true, the table will have an outer border
    * @default false
    */
-  hasOuterBorder?: boolean;
+  hasHoverStyles?: boolean;
   /**
    * If true, the table will have square edges
    * @default false
@@ -104,20 +99,11 @@ export const TableContext = React.createContext<TableContextInterface>({
 
 export const TableContainer = styled.div<{
   minWidth: number;
-  hasOuterBorder?: boolean;
   hasSquareCorners?: boolean;
   isInverse?: boolean;
 }>`
   border-radius: ${props =>
     props.hasSquareCorners ? 0 : props.theme.borderRadius};
-  box-shadow: ${props =>
-    props.hasOuterBorder
-      ? `0 0 0 1px ${
-          props.isInverse
-            ? transparentize(0.6, props.theme.colors.neutral100)
-            : props.theme.colors.neutral300
-        }`
-      : 0};
   overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
 `;
 
@@ -144,7 +130,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       children,
       density = TableDensity.normal,
       hasHoverStyles,
-      hasOuterBorder,
       hasSquareCorners,
       hasVerticalBorders,
       hasZebraStripes,
@@ -175,7 +160,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       >
         <TableContainer
           data-testid={tableWrapper}
-          hasOuterBorder={hasOuterBorder}
           hasSquareCorners={hasSquareCorners}
           isInverse={isInverse}
           minWidth={minWidth}
