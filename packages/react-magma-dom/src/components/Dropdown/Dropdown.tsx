@@ -148,6 +148,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     function closeDropdown(event) {
       setIsOpen(false);
 
+      toggleRef.current.focus();
+
       onClose && typeof onClose === 'function' && onClose(event);
     }
 
