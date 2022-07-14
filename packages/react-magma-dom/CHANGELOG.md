@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.44
+
+### Patch Changes
+
+- 23fc1b1a1: fix(buttongroup): Add `Dropdown` support
+
 ## 3.0.0-next.43
 
 ### Major Changes
