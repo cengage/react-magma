@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.45
+
+### Major Changes
+
+- 7ab1d3c30: feat(table): Removing `hasOuterBorder` prop. This was a new prop this version, so this is not a breaking change.
+
 ## 3.0.0-next.44
 
 ### Patch Changes
