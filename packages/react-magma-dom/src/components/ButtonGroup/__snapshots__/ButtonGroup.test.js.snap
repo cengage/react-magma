@@ -1754,7 +1754,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-22 > div {
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
@@ -1769,7 +1769,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-22 > button {
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
@@ -2093,7 +2093,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-22 > div {
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
@@ -2108,7 +2108,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-22 > button {
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
