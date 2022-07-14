@@ -192,6 +192,9 @@ const StyledButtonGroup = styled.div<{
 
     ${props =>
       props.noSpace &&
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      props.variant == ButtonVariant.solid &&
+      props.alignment !== ButtonGroupAlignment.apart &&
       css`
         &:first-child:not(:only-child) {
           button {
