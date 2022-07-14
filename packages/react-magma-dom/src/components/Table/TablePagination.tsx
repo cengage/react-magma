@@ -119,11 +119,15 @@ const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
 `;
 
-const RowsPerPageLabel = styled.span`
+const RowsPerPageLabel = styled.span<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
   font-weight: 600;
   line-height: 20px;
   margin: 0 16px 0 0;
   text-align: left;
+  color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
 `;
 
 export const TablePagination = React.forwardRef<
@@ -204,7 +208,7 @@ export const TablePagination = React.forwardRef<
       ref={ref}
       theme={theme}
     >
-      <RowsPerPageLabel>
+      <RowsPerPageLabel isInverse={isInverse} theme={theme}>
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
       <Dropdown
@@ -237,7 +241,7 @@ export const TablePagination = React.forwardRef<
       <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
-      
+
       <ButtonGroup alignment={ButtonGroupAlignment.center}>
         <IconButton
           aria-label={i18n.table.pagination.previousAriaLabel}
