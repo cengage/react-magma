@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.66
+
+### Major Changes
+
+- c33ca59e2: docs: updated pdf file
+
 ## 3.0.0-next.65
 
 ### Major Changes
