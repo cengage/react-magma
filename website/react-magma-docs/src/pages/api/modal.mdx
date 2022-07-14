@@ -25,14 +25,16 @@ import React from 'react';
 import { Button, Hyperlink, Modal, VisuallyHidden } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef();
+
+  function handleOnClose() {
+    setShowModal(false);
+    buttonRef.current.focus();
+  }
 
   return (
     <>
-      <Modal
-        header="Modal Title"
-        onClose={() => setShowModal(false)}
-        isOpen={showModal}
-      >
+      <Modal header="Modal Title" onClose={handleOnClose} isOpen={showModal}>
         <p>This is a modal, doing modal things.</p>
         <p>
           This is <Hyperlink to="#">linked text</Hyperlink> in the modal
@@ -45,7 +47,7 @@ export function Example() {
           modal
         </p>
       </Modal>
-      <Button onClick={() => setShowModal(true)}>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
         Show Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
@@ -71,13 +73,18 @@ import {
 export function Example() {
   const [showSmallModal, setShowSmallModal] = React.useState(false);
   const [showLargeModal, setShowLargeModal] = React.useState(false);
+  const smallButtonRef = React.useRef();
+  const largeButtonRef = React.useRef();
 
   return (
     <>
       <Modal
         size={ModalSize.small}
         header="Modal Small"
-        onClose={() => setShowSmallModal(false)}
+        onClose={() => {
+          setShowSmallModal(false);
+          smallButtonRef.current.focus();
+        }}
         isOpen={showSmallModal}
       >
         <p>This is a small modal, doing small modal things.</p>
@@ -86,18 +93,29 @@ export function Example() {
       <Modal
         size={ModalSize.large}
         header="Modal Large"
-        onClose={() => setShowLargeModal(false)}
+        onClose={() => {
+          setShowLargeModal(false);
+          largeButtonRef.current.focus();
+        }}
         isOpen={showLargeModal}
       >
         <p>This is a large modal, doing large modal things.</p>
       </Modal>
 
       <ButtonGroup>
-        <Button size={ButtonSize.small} onClick={() => setShowSmallModal(true)}>
+        <Button
+          size={ButtonSize.small}
+          onClick={() => setShowSmallModal(true)}
+          ref={smallButtonRef}
+        >
           Show Small Modal
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
-        <Button size={ButtonSize.large} onClick={() => setShowLargeModal(true)}>
+        <Button
+          size={ButtonSize.large}
+          onClick={() => setShowLargeModal(true)}
+          ref={largeButtonRef}
+        >
           Show Large Modal
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
@@ -115,16 +133,28 @@ the first actionable element.
 
 ```tsx
 import React from 'react';
-import { Button, Modal, ModalSize, VisuallyHidden, ButtonGroup, ButtonGroupAlignment } from 'react-magma-dom';
+import {
+  Button,
+  Modal,
+  ModalSize,
+  VisuallyHidden,
+  ButtonGroup,
+  ButtonGroupAlignment,
+} from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModalHeader, setShowModalHeader] = React.useState(false);
+  const buttonRef = React.useRef();
+  const headerButtonRef = React.useRef();
 
   return (
     <>
       <Modal
         size={ModalSize.small}
-        onClose={() => setShowModal(false)}
+        onClose={() => {
+          setShowModal(false);
+          buttonRef.current.focus();
+        }}
         isOpen={showModal}
       >
         <p>This modal has no header.</p>
@@ -135,7 +165,10 @@ export function Example() {
       <Modal
         header="This modal has a header"
         size={ModalSize.small}
-        onClose={() => setShowModalHeader(false)}
+        onClose={() => {
+          setShowModalHeader(false);
+          headerButtonRef.current.focus();
+        }}
         isOpen={showModalHeader}
       >
         <p>This modal has no header.</p>
@@ -144,11 +177,11 @@ export function Example() {
         </ButtonGroup>
       </Modal>
       <ButtonGroup>
-        <Button onClick={() => setShowModal(true)}>
+        <Button onClick={() => setShowModal(true)} ref={buttonRef}>
           Show Modal with no header
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
-        <Button onClick={() => setShowModalHeader(true)}>
+        <Button onClick={() => setShowModalHeader(true)} ref={headerButtonRef}>
           Show Modal with header
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
@@ -167,19 +200,25 @@ import React from 'react';
 import { Button, Modal } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef();
 
   return (
     <>
       <Modal
         header="Modal Title"
         isCloseButtonHidden
-        onClose={() => setShowModal(false)}
+        onClose={() => {
+          setShowModal(false);
+          buttonRef.current.focus();
+        }}
         isOpen={showModal}
       >
         <p>The standard modal close button is hidden.</p>
         <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
       </Modal>
-      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 }
@@ -195,19 +234,20 @@ import { Button, Modal, VisuallyHidden } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [magmaCloseCalledTimes, setMagmaCloseCalledTimes] = React.useState(0);
-  const [
-    internalCloseCalledTimes,
-    setInternalCloseCalledTimes,
-  ] = React.useState(0);
+  const [internalCloseCalledTimes, setInternalCloseCalledTimes] =
+    React.useState(0);
+  const buttonRef = React.useRef();
 
   function closeModal() {
     setMagmaCloseCalledTimes(magmaCloseCalledTimes + 1);
     setShowModal(false);
+    buttonRef.current.focus();
   }
 
   function customCloseModal() {
     setInternalCloseCalledTimes(internalCloseCalledTimes + 1);
     setShowModal(false);
+    buttonRef.current.focus();
   }
 
   return (
@@ -222,7 +262,7 @@ export function Example() {
       <p>
         <strong>Internal Close Called Times:</strong> {internalCloseCalledTimes}
       </p>
-      <Button onClick={() => setShowModal(true)}>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
         Show Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
     </>
@@ -231,35 +271,54 @@ export function Example() {
 ```
 
 ## isInverse
+
 ```tsx
 import React from 'react';
-import { Button, Hyperlink, Modal, VisuallyHidden, Card, CardBody } from 'react-magma-dom';
+import {
+  Button,
+  Hyperlink,
+  Modal,
+  VisuallyHidden,
+  Card,
+  CardBody,
+} from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef();
 
   return (
     <>
       <Modal
         header="Modal Title"
-        onClose={() => setShowModal(false)}
+        onClose={() => {
+          setShowModal(false);
+          buttonRef.current.focus();
+        }}
         isOpen={showModal}
         isInverse
       >
         <p>This is a modal, doing modal things.</p>
         <p>
-          This is <Hyperlink to="#" isInverse>linked text</Hyperlink> in the modal
+          This is{' '}
+          <Hyperlink to="#" isInverse>
+            linked text
+          </Hyperlink>{' '}
+          in the modal
         </p>
         <p>
           <Button isInverse>This is a button</Button>
         </p>
         <p>
-          This is <Hyperlink to="#" isInverse>some more linked text</Hyperlink> in the
-          modal
+          This is{' '}
+          <Hyperlink to="#" isInverse>
+            some more linked text
+          </Hyperlink>{' '}
+          in the modal
         </p>
       </Modal>
       <Card isInverse>
         <CardBody>
-          <Button onClick={() => setShowModal(true)} isInverse>
+          <Button onClick={() => setShowModal(true)} ref={buttonRef} isInverse>
             Show Modal
             <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
           </Button>
