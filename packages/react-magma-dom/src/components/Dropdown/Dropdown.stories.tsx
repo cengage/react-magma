@@ -95,7 +95,6 @@ Default.args = {};
 export const OnClickOutside = Template.bind({});
 OnClickOutside.args = {
   ...Default.args,
-  onClose: event => alert('I am closing'),
 };
 
 const AlignmentTemplate: Story<DropdownProps> = args => (
