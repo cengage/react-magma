@@ -24,6 +24,8 @@ The `DropdownButton` is a button that handles the opening and closing of the men
 
 The `DropdownContent` component contains the content that appears when the button is clicked. That content may contain individual menu items, represented in `DropdownMenuItem` components, or it may contain other markup.
 
+When using multiple dropdowns, they should be wrapped in a <Link to="/api/button-group">ButtonGroup</Link>.
+
 ```tsx
 import React from 'react';
 import {
@@ -90,11 +92,12 @@ import {
   DropdownContent,
   DropdownDropDirection,
   DropdownMenuItem,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown dropDirection={DropdownDropDirection.left}>
         <DropdownButton>Drop Left</DropdownButton>
         <DropdownContent>
@@ -116,7 +119,7 @@ export function Example() {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -140,56 +143,61 @@ import {
   DropdownContent,
   DropdownDropDirection,
   DropdownMenuItem,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.left}
-      >
-        <DropdownButton>Top-Aligned Drop Left</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.left}
+        >
+          <DropdownButton>Top-Aligned Drop Left</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.right}
-      >
-        <DropdownButton>Top-Aligned Drop Right</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.right}
+        >
+          <DropdownButton>Top-Aligned Drop Right</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
 
       <br />
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.down}
-      >
-        <DropdownButton>Right-Aligned Drop Down</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.down}
+        >
+          <DropdownButton>Right-Aligned Drop Down</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.up}
-      >
-        <DropdownButton>Right-Aligned Drop Up</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.up}
+        >
+          <DropdownButton>Right-Aligned Drop Up</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
     </>
   );
 }
@@ -448,11 +456,12 @@ import {
   Input,
   magma,
   PasswordInput,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown width="300px">
         <DropdownButton>Dropdown with Login Form</DropdownButton>
         <DropdownContent>
@@ -503,7 +512,7 @@ export function Example() {
           </form>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -517,6 +526,7 @@ import React from 'react';
 import {
   ButtonColor,
   ButtonSize,
+  ButtonGroup,
   Dropdown,
   DropdownButton,
   DropdownContent,
@@ -526,7 +536,7 @@ import {
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown>
         <DropdownButton size={ButtonSize.small} color={ButtonColor.marketing}>
           Extra Props Example 1
@@ -550,7 +560,7 @@ export function Example() {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -566,6 +576,7 @@ import {
   ButtonIconPosition,
   ButtonSize,
   ButtonVariant,
+  ButtonGroup,
   Dropdown,
   DropdownButton,
   DropdownContent,
@@ -576,58 +587,60 @@ import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <Dropdown>
-        <DropdownButton
-          aria-label="Extra icon example"
-          color={ButtonColor.secondary}
-          size={ButtonSize.large}
-          variant={ButtonVariant.link}
-          icon={<SettingsIcon />}
-        />
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          aria-label="Extra icon example"
-          size={ButtonSize.large}
-          icon={<MenuIcon />}
-        />
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          variant={ButtonVariant.solid}
-          size={ButtonSize.small}
-          iconPosition={ButtonIconPosition.right}
-          icon={<SettingsIcon />}
-        >
-          Icon Right with Text
-        </DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          variant={ButtonVariant.solid}
-          size={ButtonSize.small}
-          iconPosition={ButtonIconPosition.left}
-          icon={<SettingsIcon />}
-        >
-          Icon Left with Text
-        </DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            color={ButtonColor.secondary}
+            size={ButtonSize.large}
+            variant={ButtonVariant.link}
+            icon={<SettingsIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            size={ButtonSize.large}
+            icon={<MenuIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            variant={ButtonVariant.solid}
+            size={ButtonSize.small}
+            iconPosition={ButtonIconPosition.right}
+            icon={<SettingsIcon />}
+          >
+            Icon Right with Text
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            variant={ButtonVariant.solid}
+            size={ButtonSize.small}
+            iconPosition={ButtonIconPosition.left}
+            icon={<SettingsIcon />}
+          >
+            Icon Left with Text
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
     </>
   );
 }

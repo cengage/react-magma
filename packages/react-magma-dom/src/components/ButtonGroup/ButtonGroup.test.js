@@ -2,6 +2,12 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { ButtonGroup, ButtonGroupOrientation, ButtonGroupAlignment } from '.';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
@@ -123,7 +129,7 @@ describe('ButtonGroup', () => {
     });
     describe('No Space', () => {
       it('Removes the border radius around the buttons', () => {
-        const { container, getByTestId } = render(
+        const { container } = render(
           <ButtonGroup
             testId={testId}
             noSpace
@@ -230,7 +236,7 @@ describe('ButtonGroup', () => {
     });
     describe('No Space', () => {
       it('Does NOT remove the border radius around the buttons', () => {
-        const { container, getByTestId } = render(
+        const { container } = render(
           <ButtonGroup
             testId={testId}
             orientation={ButtonGroupOrientation.vertical}
@@ -262,9 +268,18 @@ describe('ButtonGroup', () => {
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', magma.colors.danger);
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', magma.colors.danger);
-        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('background', magma.colors.danger);
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+          'background',
+          magma.colors.danger
+        );
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+          'background',
+          magma.colors.danger
+        );
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
+          'background',
+          magma.colors.danger
+        );
       });
       it('sets the color of the children buttons, except if the button has a color set', () => {
         const { getByTestId } = render(
@@ -275,13 +290,24 @@ describe('ButtonGroup', () => {
           >
             <Button testId={`${testId}-1`}>1</Button>
             <Button testId={`${testId}-2`}>2</Button>
-            <Button testId={`${testId}-3`} color={ButtonColor.marketing}>3</Button>
+            <Button testId={`${testId}-3`} color={ButtonColor.marketing}>
+              3
+            </Button>
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', magma.colors.danger);
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', magma.colors.danger);
-        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('background', magma.colors.secondary);
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+          'background',
+          magma.colors.danger
+        );
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+          'background',
+          magma.colors.danger
+        );
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
+          'background',
+          magma.colors.secondary
+        );
       });
     });
 
@@ -310,7 +336,9 @@ describe('ButtonGroup', () => {
           >
             <Button testId={`${testId}-1`}>1</Button>
             <Button testId={`${testId}-2`}>2</Button>
-            <Button testId={`${testId}-3`} size={ButtonSize.small}>3</Button>
+            <Button testId={`${testId}-3`} size={ButtonSize.small}>
+              3
+            </Button>
           </ButtonGroup>
         );
 
@@ -333,8 +361,14 @@ describe('ButtonGroup', () => {
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', 'none');
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', 'none');
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+          'background',
+          'none'
+        );
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+          'background',
+          'none'
+        );
       });
       it('sets the variant of the children buttons, except if the button has a variant set', () => {
         const { getByTestId } = render(
@@ -345,14 +379,103 @@ describe('ButtonGroup', () => {
           >
             <Button testId={`${testId}-1`}>1</Button>
             <Button testId={`${testId}-2`}>2</Button>
-            <Button testId={`${testId}-3`} variant={ButtonVariant.solid}>3</Button>
+            <Button testId={`${testId}-3`} variant={ButtonVariant.solid}>
+              3
+            </Button>
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('background', 'none');
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('background', 'none');
-        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('background', magma.colors.primary);
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+          'background',
+          'none'
+        );
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+          'background',
+          'none'
+        );
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
+          'background',
+          magma.colors.primary
+        );
       });
+    });
+  });
+
+  describe('With dropdowns', () => {
+    it('Snapshot: Horizontal & center alignment', () => {
+      const { container } = render(
+        <ButtonGroup
+          orientation={ButtonGroupOrientation.horizontal}
+          alignment={ButtonGroupAlignment.center}
+        >
+          <Button>1</Button>
+          <Dropdown>
+            <DropdownButton id="2">Dropdown 2</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton id="3">Dropdown 3</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('Snapshot: noSpace', () => {
+      const { container } = render(
+        <ButtonGroup
+          noSpace
+          orientation={ButtonGroupOrientation.horizontal}
+          alignment={ButtonGroupAlignment.left}
+        >
+          <Button>1</Button>
+          <Dropdown>
+            <DropdownButton id="2">Dropdown 2</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton id="3">Dropdown 3</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('Snapshot: Vertical & fill alignment', () => {
+      const { container } = render(
+        <ButtonGroup
+          orientation={ButtonGroupOrientation.vertical}
+          alignment={ButtonGroupAlignment.fill}
+        >
+          <Button>1</Button>
+          <Dropdown>
+            <DropdownButton id="2">Dropdown 2</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton id="3">Dropdown 3</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      );
+
+      expect(container).toMatchSnapshot();
     });
   });
 });
