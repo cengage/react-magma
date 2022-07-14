@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.46
+
+### Major Changes
+
+- b5c4415da: 800 fix focus state in Dropdown Component. Updated modal docs
+
 ## 3.0.0-next.45
 
 ### Major Changes
