@@ -101,6 +101,7 @@ export const CalendarHeader = React.forwardRef<
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onPrevMonthClick}
+          style={{ margin: '6px' }}
         />
       </CalendarIconButton>
       <CalendarIconButton next>
@@ -114,6 +115,7 @@ export const CalendarHeader = React.forwardRef<
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onNextMonthClick}
+          style={{ margin: '6px' }}
         />
       </CalendarIconButton>
     </CalendarHeaderContainer>
