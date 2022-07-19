@@ -29,6 +29,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    * @internal
    */
   isSelectable?: boolean;
+  isSortableBySelected?: boolean;
   /**
    * Minimum width for the table in pixels
    * @default 600
@@ -75,6 +76,7 @@ interface TableContextInterface {
   isSelectable?: boolean;
   rowCount?: number;
   selectedItems?: Array<number>;
+  isSortableBySelected?: boolean;
 }
 
 export const TableContext = React.createContext<TableContextInterface>({
@@ -84,6 +86,7 @@ export const TableContext = React.createContext<TableContextInterface>({
   hasVerticalBorders: false,
   isInverse: false,
   isSelectable: false,
+  isSortableBySelected: false,
   rowCount: 0,
   selectedItems: [],
 });
@@ -119,6 +122,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       rowCount,
       selectedItems,
       testId,
+      isSortableBySelected,
       ...other
     } = props;
 
@@ -135,6 +139,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           hasVerticalBorders,
           isInverse: isInverse,
           isSelectable,
+          isSortableBySelected,
         }}
       >
         <TableContainer>
