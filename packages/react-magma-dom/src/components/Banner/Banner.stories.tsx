@@ -24,7 +24,7 @@ const Template: Story<BannerProps> = args => (
       </Hyperlink>
     </Banner>
     <Banner {...args} variant={AlertVariant.warning}>
-      Default (waning) banner with&nbsp;
+      Default (warning) banner with&nbsp;
       <Hyperlink to="#" isInverse={args.isInverse}>
         hyperlink
       </Hyperlink>
@@ -61,7 +61,7 @@ const Template: Story<BannerProps> = args => (
       variant={AlertVariant.warning}
       {...args}
     >
-      Dismissible (waning) banner
+      Dismissible (warning) banner
     </Banner>
     <Banner
       isDismissible
