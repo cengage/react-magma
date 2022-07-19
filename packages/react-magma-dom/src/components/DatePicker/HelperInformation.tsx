@@ -112,7 +112,7 @@ export const HelperInformation: React.FunctionComponent<
           icon={<CloseIcon />}
           isInverse={isInverse}
           size={ButtonSize.medium}
-          style={{ left: '16px' }}
+          style={{ left: '16px', margin: '4px' }}
           type={ButtonType.button}
           onClick={props.onClose}
           variant={ButtonVariant.link}
