@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.48
+
+### Major Changes
+
+- 058ddea9b: feat(datepicker): Update spacing around buttons
+
 ## 3.0.0-next.47
 
 ### Major Changes
