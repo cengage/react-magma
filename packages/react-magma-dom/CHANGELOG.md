@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.47
+
+### Major Changes
+
+- ab69379bb: fix(nativeSelect): Add background color to the options for `isInverse`. In Windows, the Native Select dropdown has a white background which makes the options invisible.
+
 ## 3.0.0-next.46
 
 ### Major Changes
