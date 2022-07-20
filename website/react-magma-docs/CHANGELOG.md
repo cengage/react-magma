@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0-next.72
+
+### Major Changes
+
+- 632302b74: docs: Update Datagrid `Row Colors` example
+
 ## 3.0.0-next.71
 
 ### Patch Changes
