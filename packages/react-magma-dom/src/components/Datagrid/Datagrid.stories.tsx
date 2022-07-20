@@ -318,6 +318,12 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   paginationProps,
   ...args
 }) => {
+  const [sortConfig, setSortConfig] = React.useState({
+    key: '',
+    direction: TableSortDirection.none,
+    message: '',
+  });
+  
   const requestSort = (key: string) => {
     let direction = TableSortDirection.ascending;
     if (
@@ -344,12 +350,6 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
     { id: 5, name: 'Butter', price: 2, stock: 99 },
     { id: 6, name: 'Sour Cream ', price: 4, stock: 86 },
   ];
-
-  const [sortConfig, setSortConfig] = React.useState({
-    key: '',
-    direction: TableSortDirection.none,
-    message: '',
-  });
 
   const [selectedItems, setSelectedItems] = React.useState([]);
 
@@ -402,7 +402,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   }
 
   function handleHeaderSelect(ev: React.ChangeEvent<HTMLInputElement>) {
-    if (ev.target.checked) {
+    if (ev.target.checked && selectedItems.length === 0) {
       const checkedIds = [];
       products.filter(prod => checkedIds.push(prod.id));
       setSelectedItems(checkedIds);
