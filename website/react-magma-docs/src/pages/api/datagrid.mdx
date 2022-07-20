@@ -219,7 +219,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, TableRowColor } from 'react-magma-dom';
+import { Datagrid, TableRowColor } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -257,9 +257,7 @@ export function Example() {
   ];
 
   return (
-    <Card>
-      <Datagrid columns={columns} rows={coloredRows} />
-    </Card>
+    <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />
   );
 }
 ```
