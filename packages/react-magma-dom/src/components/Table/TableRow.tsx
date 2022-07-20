@@ -213,7 +213,6 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
 
     function handleSort() {
       onSort && typeof onSort === 'function' && onSort();
-      console.log('sort button clicked');
     }
 
     const SortIcon =
@@ -243,29 +242,32 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         theme={theme}
       >
         {tableContext.isSelectable && isHeaderRow && (
-          <TableHeaderCell width={theme.spaceScale.spacing05} style={{background: isHovering ? theme.colors.neutral06 : ''}}>
-            <span style={{display: 'flex', flexDirection: 'row'}}>
-            <IndeterminateCheckbox
-              status={headerRowStatus}
-              isInverse={getIsCheckboxInverse()}
-              labelStyle={{ padding: 0 }}
-              labelText="Select all rows"
-              isTextVisuallyHidden
-              onChange={onHeaderRowSelect}
-            />
-            {tableContext.isSortableBySelected && (
-              <SortButton
-                density={tableContext.density}
-                isInverse={tableContext.isInverse}
-                onClick={handleSort}
-                textAlign={TableCellAlign.left}
-                theme={theme}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-              >
-                <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
-              </SortButton>
-            )}
+          <TableHeaderCell
+            width={theme.spaceScale.spacing05}
+            style={{ background: isHovering ? theme.colors.neutral06 : '' }}
+          >
+            <span style={{ display: 'flex', flexDirection: 'row' }}>
+              <IndeterminateCheckbox
+                status={headerRowStatus}
+                isInverse={getIsCheckboxInverse()}
+                labelStyle={{ padding: 0 }}
+                labelText="Select all rows"
+                isTextVisuallyHidden
+                onChange={onHeaderRowSelect}
+              />
+              {tableContext.isSortableBySelected && (
+                <SortButton
+                  density={tableContext.density}
+                  isInverse={tableContext.isInverse}
+                  onClick={handleSort}
+                  textAlign={TableCellAlign.left}
+                  theme={theme}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
+                </SortButton>
+              )}
             </span>
           </TableHeaderCell>
         )}

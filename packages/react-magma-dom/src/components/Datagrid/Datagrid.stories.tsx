@@ -318,7 +318,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   paginationProps,
   ...args
 }) => {
-  const requestSort = key => {
+  const requestSort = (key: string) => {
     let direction = TableSortDirection.ascending;
     if (
       sortConfig &&
@@ -354,22 +354,39 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   const [selectedItems, setSelectedItems] = React.useState([]);
 
   const sortedItems = React.useMemo(() => {
-    let sortableItems = [...products];
+    const selectedItemsToSort = products.filter(product =>
+      selectedItems.includes(product.id)
+    );
+    const nonSelectedItems = products.filter(
+      product => !selectedItems.includes(product.id)
+    );
 
+    let sortOrder = 0;
     if (sortConfig !== null) {
-      sortableItems.sort((a, b) => {
+      if (selectedItemsToSort.length < 2) {
+        sortOrder =
+          sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
+      }
+      selectedItemsToSort.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
+          sortOrder =
+            sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
         }
         if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
+          sortOrder =
+            sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
         }
-        return 0;
+        return sortOrder;
       });
     }
-    // console.log('sortableItems', sortableItems);
-    return sortableItems;
-  }, [products, sortConfig]);
+    if (selectedItemsToSort.length === 0) {
+      return products;
+    } else if (sortOrder === 1) {
+      return selectedItemsToSort.concat(nonSelectedItems);
+    } else {
+      return nonSelectedItems.concat(selectedItemsToSort);
+    }
+  }, [sortConfig]);
 
   function handleSelectedItems(
     id: string | number,
@@ -400,7 +417,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
       rows={sortedItems}
       columns={productColumns}
       onSortBySelected={() => {
-        requestSort('selectable');
+        requestSort('name');
       }}
       onRowSelect={handleSelectedItems}
       onHeaderSelect={handleHeaderSelect}

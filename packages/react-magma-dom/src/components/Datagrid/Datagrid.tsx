@@ -186,6 +186,10 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       setRowsToShow(hasPagination ? getPageItems(currentPage) : rows);
     }, [currentPage, rowsPerPage]);
 
+    React.useEffect(() => {
+      setRowsToShow(rows);
+    }, [rows]);
+
     const { Pagination } = defaultComponents({
       ...customComponents,
     });
@@ -237,7 +241,6 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     }
 
     function handleHeaderSelect(event: React.ChangeEvent<HTMLInputElement>) {
-      // console.log('handleHeaderSelect clicked');
       if (
         headerRowStatus === IndeterminateCheckboxStatus.indeterminate ||
         headerRowStatus === IndeterminateCheckboxStatus.checked
@@ -266,7 +269,6 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       onSortBySelected &&
         typeof onSortBySelected === 'function' &&
         onSortBySelected();
-      // console.log('handleRowSort');
     }
 
     return (
