@@ -32,6 +32,9 @@ export interface BlockQuoteItemProps
    */
   hasAttribution?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Applies visual styles including font-size, font-weight, line-height and margins
@@ -49,13 +52,7 @@ export const blockQuoteStyles = props => css`
   //Inverse
   ${props.isInverse &&
   css`
-    color: ${props.theme.colors.neutral08};
-  `}
-  //Inverse & Attribution
-    ${props.isInverse &&
-  props.hasAttribution &&
-  css`
-    color: ${props.theme.colors.neutral05};
+    color: ${props.theme.colors.neutral100};
   `}
 `;
 

@@ -20,7 +20,7 @@ export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
   color?: TypographyColor;
   /**
    * Additional styles for typography based on the context of the content
-   * @default TypographyColor.default
+   * @default TypographyContextVariant.default
    */
   contextVariant?: TypographyContextVariant;
   isInverse?: boolean;
@@ -28,6 +28,9 @@ export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
    * Number to indicate which level heading will render (e.g. h1, h2 etc.)
    */
   level: 1 | 2 | 3 | 4 | 5 | 6;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Applies visual styles including font-size, font-weight, line-height and margins
@@ -37,7 +40,8 @@ export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
 
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
-    const { level, testId, visualStyle, children, ...other } = props;
+    const { level, testId, visualStyle, children, contextVariant, ...other } =
+      props;
     const theme = React.useContext(ThemeContext);
 
     const stylesFromLevel = {
@@ -55,6 +59,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
       <TypographyComponent
         {...other}
         as={headingElement}
+        contextVariant={contextVariant}
         data-testid={testId}
         isInverse={useIsInverse(props.isInverse)}
         ref={ref}

@@ -11,6 +11,7 @@ import { SelectTriggerButton } from '../Select/SelectTriggerButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import { useGenerateId } from '../../utils';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -18,12 +19,22 @@ import { useGenerateId } from '../../utils';
 export interface NativeSelectProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.SelectHTMLAttributes<HTMLSelectElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   optionLabel?: string;
 }
-const StyledNativeSelect = styled.select`
+const StyledNativeSelect = styled.select<{
+  theme: ThemeInterface;
+  isInverse?: boolean;
+}>`
   ${inputBaseStyles};
   background: inherit;
+  > option {
+    background: ${props =>
+      props.isInverse ? props.theme.colors.neutral600 : 'none'};
+  }
 `;
 
 export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(

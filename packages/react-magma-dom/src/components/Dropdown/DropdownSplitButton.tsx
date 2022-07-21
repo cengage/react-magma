@@ -1,12 +1,19 @@
 import * as React from 'react';
 
-import { Button, ButtonShape, ButtonStyles, ButtonVariant } from '../Button';
+import {
+  Button,
+  ButtonColor,
+  ButtonShape,
+  ButtonStyles,
+  ButtonVariant,
+} from '../Button';
 import { IconButton } from '../IconButton';
 import { ArrowDropUpIcon, ArrowDropDownIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
-import { useForkedRef, useGenerateId } from '../../utils';
+import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { ButtonGroupContext } from '../ButtonGroup';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
   /**
@@ -35,6 +42,13 @@ export const DropdownSplitButton = React.forwardRef<
   HTMLButtonElement,
   DropdownSplitButtonProps
 >((props, forwardedRef) => {
+  const context = React.useContext(DropdownContext);
+  const buttonGroupContext = React.useContext(ButtonGroupContext);
+  const theme = React.useContext(ThemeContext);
+
+  const resolvedContext = resolveProps(buttonGroupContext, context);
+  const resolvedProps = resolveProps(props, resolvedContext);
+
   const {
     'aria-label': ariaLabel,
     children,
@@ -42,38 +56,42 @@ export const DropdownSplitButton = React.forwardRef<
     variant = ButtonVariant.solid,
     onClick,
     ...other
-  } = props;
+  } = resolvedProps;
 
-  const context = React.useContext(DropdownContext);
+  const ref = useForkedRef(forwardedRef, resolvedContext.toggleRef);
 
-  const theme = React.useContext(ThemeContext);
-
-  const ref = useForkedRef(forwardedRef, context.toggleRef);
-
-  context.dropdownButtonId.current = useGenerateId(id);
+  resolvedContext.dropdownButtonId.current = useGenerateId(id);
 
   const buttonIcon =
-    context.dropDirection === DropdownDropDirection.up ? (
+    resolvedContext.dropDirection === DropdownDropDirection.up ? (
       <ArrowDropUpIcon size={theme.iconSizes.medium} testId="caretUp" />
     ) : (
       <ArrowDropDownIcon size={theme.iconSizes.medium} testId="caretDown" />
     );
 
   function handleClick(event: React.SyntheticEvent) {
-    if (context.isOpen) {
-      context.closeDropdown(event);
+    if (resolvedContext.isOpen) {
+      resolvedContext.closeDropdown(event);
     } else {
-      context.openDropdown();
+      resolvedContext.openDropdown();
     }
   }
 
   const i18n = React.useContext(I18nContext);
 
+  function buildIconButtonStyles(props) {
+    if (props.color === ButtonColor.secondary) {
+      return '0';
+    }
+    return theme.spaceScale.spacing01;
+  }
+
   return (
     <>
       <Button
         {...other}
-        id={context.dropdownButtonId.current}
+        id={resolvedContext.dropdownButtonId.current}
+        isInverse={resolvedContext.isInverse}
         onClick={onClick}
         shape={ButtonShape.leftCap}
         style={{ borderRight: 0, marginRight: 0 }}
@@ -83,14 +101,15 @@ export const DropdownSplitButton = React.forwardRef<
       </Button>
       <IconButton
         {...other}
-        aria-expanded={context.isOpen}
+        aria-expanded={resolvedContext.isOpen}
         aria-label={ariaLabel ? ariaLabel : i18n.dropdown.toggleMenuAriaLabel}
         aria-haspopup="true"
         icon={buttonIcon}
+        isInverse={resolvedContext.isInverse}
         onClick={handleClick}
         shape={ButtonShape.rightCap}
         style={{
-          marginLeft: theme.spaceScale.spacing01,
+          marginLeft: buildIconButtonStyles(resolvedProps),
         }}
         ref={ref}
         variant={variant}

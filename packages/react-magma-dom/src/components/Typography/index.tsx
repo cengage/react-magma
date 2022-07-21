@@ -12,6 +12,9 @@ export interface TypographyProps<T = HTMLParagraphElement>
   isInverse?: boolean;
   noMargins?: boolean;
   ref?: any;
+  /**
+   * @internal
+   */
   testId?: string;
   theme?: any;
   visualStyle?: TypographyVisualStyle;
@@ -25,12 +28,13 @@ export enum TypographyColor {
 }
 
 export enum TypographyContextVariant {
-  default = 'default', // default
+  default = 'default', // default - productive
   expressive = 'expressive',
   narrative = 'narrative',
 }
 
 export enum TypographyVisualStyle {
+  heading2XLarge = 'heading2XLarge',
   headingXLarge = 'headingXLarge',
   headingLarge = 'headingLarge',
   headingMedium = 'headingMedium',
@@ -82,13 +86,13 @@ ${props.color === TypographyColor.subdued &&
   ${props.color === TypographyColor.danger &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.danger700};
+    color: ${props.theme.colors.danger200};
   `}
 
   ${props.color === TypographyColor.success &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.success700};
+    color: ${props.theme.colors.success200};
   `}
 
 ${props.color === TypographyColor.subdued &&
@@ -217,6 +221,27 @@ const baseHeadingStyles = props => css`
   }
 
   ${colorStyles(props)}
+`;
+
+export const heading2XLargeStyles = props => css`
+  ${baseHeadingStyles(props)}
+
+  ${props.contextVariant === 'expressive' &&
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+      .mobile.lineHeight};
+
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const headingXLargeStyles = props => css`
@@ -548,6 +573,8 @@ export const heading2XSmallStyles = props => css`
 
 function getTypographyStyles(props) {
   switch (props.visualStyle) {
+    case TypographyVisualStyle.heading2XLarge:
+      return heading2XLargeStyles(props);
     case TypographyVisualStyle.headingXLarge:
       return headingXLargeStyles(props);
     case TypographyVisualStyle.headingLarge:

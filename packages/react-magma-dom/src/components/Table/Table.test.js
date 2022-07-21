@@ -21,6 +21,54 @@ describe('Table', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should render table with a border radius', () => {
+    const { getByTestId } = render(
+      <Table isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+      'border-radius',
+      magma.spaceScale.spacing03
+    );
+  });
+
+  it('should render table without a border radius', () => {
+    const { getByTestId } = render(
+      <Table hasSquareCorners isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+      'border-radius',
+      '0'
+    );
+  });
+
   it('should render table with vertical borders', () => {
     const { getByText } = render(
       <Table hasVerticalBorders>
@@ -186,7 +234,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      transparentize(0.3, magma.colors.neutral100),
+      transparentize(0.93, magma.colors.neutral100),
       {
         target: ':nth-of-type(even)',
       }

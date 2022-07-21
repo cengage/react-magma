@@ -67,6 +67,23 @@ export function Example() {
 }
 ```
 
+## isInverse
+
+```tsx
+import React from 'react';
+import { Spinner, Spacer, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{background: magma.colors.primary600, padding: '12px'}}>
+      <Spacer size={magma.spaceScale.spacing04} />
+      <Spinner size={30} isInverse />
+      <Spacer size={magma.spaceScale.spacing04} />
+    </div>
+  );
+}
+```
+
 ## Spinner Props
 
 **This component uses `forwardRef`. The ref is applied to the outer `span` element.**

@@ -24,11 +24,10 @@ If no children are included, then they render in the icon-only style.
 
 ```tsx
 import React from 'react';
-import { IconButton, ButtonVariant, ButtonColor } from 'react-magma-dom';
+import { IconButton, ButtonVariant, ButtonColor, ButtonGroup } from 'react-magma-dom';
 import {
   AlertIcon,
   CheckIcon,
-  InfoIcon,
   NotificationsIcon,
   SettingsIcon,
 } from 'react-magma-icons';
@@ -36,8 +35,7 @@ import {
 export function Example() {
   return (
     <>
-      <p>
-        <IconButton aria-label="Notifications" icon={<NotificationsIcon />} />
+      <ButtonGroup>
         <IconButton aria-label="Notifications" icon={<NotificationsIcon />} />
         <IconButton
           aria-label="Notifications"
@@ -49,6 +47,9 @@ export function Example() {
           variant={ButtonVariant.link}
           icon={<NotificationsIcon />}
         />
+      </ButtonGroup>
+      <br />
+      <ButtonGroup>
         <IconButton
           aria-label="Settings"
           color={ButtonColor.secondary}
@@ -66,6 +67,9 @@ export function Example() {
           variant={ButtonVariant.link}
           icon={<SettingsIcon />}
         />
+      </ButtonGroup>
+      <br />
+      <ButtonGroup>
         <IconButton aria-label="Correct" icon={<CheckIcon />} />
         <IconButton
           aria-label="Correct"
@@ -77,6 +81,9 @@ export function Example() {
           variant={ButtonVariant.link}
           icon={<CheckIcon />}
         />
+      </ButtonGroup>
+      <br />
+      <ButtonGroup>
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
@@ -94,14 +101,18 @@ export function Example() {
           variant={ButtonVariant.link}
           icon={<AlertIcon />}
         />
+      </ButtonGroup>
+      <br />
+      <ButtonGroup>
         <IconButton
           aria-label="Notifications"
           disabled
           icon={<NotificationsIcon />}
         />
-      </p>
-      <p>
         <IconButton icon={<NotificationsIcon />}>Notifications</IconButton>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup>
         <IconButton
           icon={<SettingsIcon />}
           color={ButtonColor.secondary}
@@ -112,7 +123,7 @@ export function Example() {
         <IconButton icon={<CheckIcon />} variant={ButtonVariant.link}>
           Submit
         </IconButton>
-      </p>
+      </ButtonGroup>
     </>
   );
 }
@@ -159,12 +170,12 @@ The `iconPosition` property takes the values `left` and `right`.
 
 ```tsx
 import React from 'react';
-import { ButtonColor, ButtonIconPosition, IconButton } from 'react-magma-dom';
+import { ButtonColor, ButtonIconPosition, IconButton, ButtonGroup } from 'react-magma-dom';
 import { NotificationsIcon, InfoIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <IconButton icon={<NotificationsIcon />}>Icon Left</IconButton>
       <IconButton
         color={ButtonColor.secondary}
@@ -173,7 +184,7 @@ export function Example() {
       >
         Icon Right
       </IconButton>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -184,13 +195,13 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 
 ```tsx
 import React from 'react';
-import { ButtonIconPosition, ButtonSize, IconButton } from 'react-magma-dom';
+import { ButtonIconPosition, ButtonSize, IconButton, ButtonGroup } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <>
-      <p>
+      <ButtonGroup>
         <IconButton
           icon={<NotificationsIcon aria-label="Notifications" />}
           size={ButtonSize.small}
@@ -200,8 +211,9 @@ export function Example() {
           icon={<NotificationsIcon aria-label="Notifications" />}
           size={ButtonSize.large}
         />
-      </p>
-      <p>
+      </ButtonGroup>
+      <br/>
+      <ButtonGroup>
         <IconButton
           icon={<NotificationsIcon />}
           size={ButtonSize.small}
@@ -222,7 +234,7 @@ export function Example() {
         >
           Large Notifications
         </IconButton>
-      </p>
+      </ButtonGroup>
     </>
   );
 }
@@ -234,12 +246,12 @@ Icon only buttons have `shape = round`, by default.
 
 ```tsx
 import React from 'react';
-import { ButtonShape, IconButton } from 'react-magma-dom';
+import { ButtonShape, IconButton, ButtonGroup } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <IconButton icon={<NotificationsIcon aria-label="Notifications" />} />
       <IconButton
         icon={<NotificationsIcon aria-label="Notifications" />}
@@ -253,7 +265,7 @@ export function Example() {
         icon={<NotificationsIcon aria-label="Notifications" />}
         shape={ButtonShape.leftCap}
       />
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -273,6 +285,7 @@ export function Example() {
       <IconButton icon={<NotificationsIcon />} isFullWidth>
         Full-Width Notifications Button
       </IconButton>
+      <br />
       <IconButton
         icon={<NotificationsIcon />}
         isFullWidth
@@ -280,12 +293,47 @@ export function Example() {
       >
         Full-Width Notifications Button
       </IconButton>
-
+      <br />
       <IconButton
         icon={<NotificationsIcon aria-label="Notifications" />}
         isFullWidth
       />
     </>
+  );
+}
+```
+
+## Inverse
+```tsx
+import React from 'react';
+import { IconButton, ButtonVariant, ButtonColor, ButtonGroup } from 'react-magma-dom';
+import {
+  AlertIcon,
+  NotificationsIcon,
+  Card,
+  CardBody,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <ButtonGroup>
+          <IconButton
+            aria-label="Alert"
+            variant={ButtonVariant.solid}
+            icon={<AlertIcon />}
+            isInverse
+          />
+          <IconButton
+            aria-label="Notifications"
+            variant={ButtonVariant.solid}
+            icon={<NotificationsIcon />}
+            isInverse
+          />
+        </ButtonGroup>
+      </CardBody>
+    </Card>
   );
 }
 ```
@@ -297,7 +345,7 @@ Events do not fire on disabled buttons.
 
 ```tsx
 import React from 'react';
-import { IconButton } from 'react-magma-dom';
+import { IconButton, ButtonGroup } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   const [iconButtonCounter, setIconButtonCounter] = React.useState(0);
@@ -309,32 +357,34 @@ export function Example() {
         <strong>Icon Counter: </strong> {iconButtonCounter} |{' '}
         <strong>Text Icon Counter: </strong> {textIconButtonCounter}
       </p>
-      <IconButton
-        icon={<NotificationsIcon />}
-        onClick={() => {
-          setIconButtonCounter(count => count + 1);
-        }}
-      >
-        Click me
-      </IconButton>
-      <IconButton
-        icon={<NotificationsIcon />}
-        textPosition="left"
-        onClick={() => {
-          setTextIconButtonCounter(count => count + 1);
-        }}
-      >
-        Click me
-      </IconButton>
-      <IconButton
-        disabled
-        icon={<NotificationsIcon />}
-        onClick={() => {
-          setIconButtonCounter(count => count + 1);
-        }}
-      >
-        Click me if you can
-      </IconButton>
+      <ButtonGroup>
+        <IconButton
+          icon={<NotificationsIcon />}
+          onClick={() => {
+            setIconButtonCounter(count => count + 1);
+          }}
+        >
+          Click me
+        </IconButton>
+        <IconButton
+          icon={<NotificationsIcon />}
+          textPosition="left"
+          onClick={() => {
+            setTextIconButtonCounter(count => count + 1);
+          }}
+        >
+          Click me
+        </IconButton>
+        <IconButton
+          disabled
+          icon={<NotificationsIcon />}
+          onClick={() => {
+            setIconButtonCounter(count => count + 1);
+          }}
+        >
+          Click me if you can
+        </IconButton>
+      </ButtonGroup>
     </>
   );
 }
@@ -344,8 +394,8 @@ export function Example() {
 
 Passing in the `testId` prop will add the `data-testid` attribute to the button element for easier querying in tests.
 
-```html
-<IconButton data-testid="test-id" aria-label="Test">
+```html noCodeSandbox
+<IconButton testId="test-id" aria-label="Test">
   <svg
     aria-hidden="true"
     class="icon"

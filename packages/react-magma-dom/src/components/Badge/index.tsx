@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { darken, lighten, transparentize } from 'polished';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -18,6 +18,9 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
    * Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span.
    */
   onClick?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Indicates the style variant of the component
@@ -99,77 +102,6 @@ export function buildBadgeTextColor(props) {
   return props.theme.colors.neutral100;
 }
 
-export function buildBadgeFocusBackground(props) {
-  if (props.isInverse) {
-    switch (props.color) {
-      case BadgeColor.danger:
-        return darken(0.1, props.theme.colors.danger200);
-      case BadgeColor.light:
-        return lighten(0.05, props.theme.colors.neutral600);
-      case BadgeColor.primary:
-        return darken(0.1, props.theme.colors.tertiary);
-      case BadgeColor.secondary:
-        return darken(0.1, props.theme.colors.neutral100);
-      case BadgeColor.success:
-        return darken(0.1, props.theme.colors.success200);
-
-      default:
-        return darken(0.1, props.theme.colors.tertiary);
-    }
-  }
-
-  switch (props.color) {
-    case BadgeColor.danger:
-      return darken(0.1, props.theme.colors.danger);
-    case BadgeColor.light:
-      return lighten(0.1, props.theme.colors.neutral100);
-    case BadgeColor.primary:
-      return darken(0.1, props.theme.colors.primary);
-    case BadgeColor.secondary:
-      return darken(0.1, props.theme.colors.neutral700);
-    case BadgeColor.success:
-      return darken(0.1, props.theme.colors.success);
-
-    default:
-      return darken(0.1, props.theme.colors.primary);
-  }
-}
-
-export function buildBadgeActiveBackground(props) {
-  if (props.isInverse) {
-    switch (props.color) {
-      case BadgeColor.danger:
-        return darken(0.2, props.theme.colors.danger200);
-      case BadgeColor.light:
-        return lighten(0.1, props.theme.colors.neutral600);
-      case BadgeColor.primary:
-        return darken(0.2, props.theme.colors.tertiary);
-      case BadgeColor.secondary:
-        return darken(0.2, props.theme.colors.neutral100);
-      case BadgeColor.success:
-        return darken(0.2, props.theme.colors.success200);
-
-      default:
-        return darken(0.2, props.theme.colors.tertiary);
-    }
-  }
-  switch (props.color) {
-    case BadgeColor.danger:
-      return darken(0.2, props.theme.colors.danger);
-    case BadgeColor.light:
-      return lighten(0.1, props.theme.colors.neutral100);
-    case BadgeColor.primary:
-      return darken(0.2, props.theme.colors.primary);
-    case BadgeColor.secondary:
-      return darken(0.2, props.theme.colors.neutral700);
-    case BadgeColor.success:
-      return darken(0.2, props.theme.colors.success);
-
-    default:
-      return darken(0.2, props.theme.colors.primary);
-  }
-}
-
 export function buildBadgeBorderColor(props) {
   if (props.color === BadgeColor.light) {
     if (props.isInverse) {
@@ -219,15 +151,13 @@ const StyledSpan = styled.span<BadgeProps>`
 const StyledButton = styled.button<BadgeProps>`
   ${baseBadgeStyles};
   cursor: pointer;
-  transition: background 0.35s;
 
-  &:hover,
   &:focus {
-    background: ${props => buildBadgeFocusBackground(props)};
-  }
-
-  &:active {
-    background: ${props => buildBadgeActiveBackground(props)};
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
   }
 `;
 

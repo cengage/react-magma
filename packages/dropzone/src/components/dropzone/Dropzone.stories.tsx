@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
-import { Textarea, Datagrid } from 'react-magma-dom';
+import { Textarea, Datagrid, magma } from 'react-magma-dom';
 
 function csvJSON(csv: string) {
   const lines = csv.split('\n');
@@ -82,8 +82,8 @@ export const Default = (args: DropzoneProps) => {
   return (
     <div
       style={{
-        background: args.isInverse ? '#003865' : '#fff',
-        padding: '50px',
+        background: args.isInverse ? magma.colors.primary600 : 'none',
+        padding: '24px',
       }}
     >
       <Dropzone
@@ -92,6 +92,7 @@ export const Default = (args: DropzoneProps) => {
         maxFiles={5}
         maxSize={1024 * 1024}
         onSendFile={onSendFile}
+        sendFiles={true}
         labelText="Upload files"
         helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
       />
@@ -103,8 +104,8 @@ export const NoLimits = (args: DropzoneProps) => {
   return (
     <div
       style={{
-        background: args.isInverse ? '#003865' : '#fff',
-        padding: '50px',
+        background: args.isInverse ? magma.colors.primary600 : 'none',
+        padding: '24px',
       }}
     >
       <Dropzone
@@ -141,12 +142,17 @@ export const Image = (args: DropzoneProps) => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        background: args.isInverse ? magma.colors.primary600 : 'none',
+        padding: '24px',
+      }}
+    >
       <Dropzone
         {...args}
         onSendFile={onSendFile}
         accept={['image/*']}
-        helperMessage="Only PNG files"
+        helperMessage="Only Image files"
         sendFiles
         onDeleteFile={onDeleteFile}
       />
@@ -179,7 +185,12 @@ export const Text = (args: DropzoneProps) => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        background: args.isInverse ? magma.colors.primary600 : 'none',
+        padding: '24px',
+      }}
+    >
       <Dropzone
         {...args}
         onSendFile={onSendFile}
@@ -218,7 +229,12 @@ export const Csv = (args: DropzoneProps) => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        background: args.isInverse ? magma.colors.primary600 : 'none',
+        padding: '24px',
+      }}
+    >
       <Dropzone
         {...args}
         onSendFile={onSendFile}

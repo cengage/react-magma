@@ -42,6 +42,9 @@ export interface TableHeaderCellProps
    * @default TableSortDirection.none
    */
   sortDirection?: TableSortDirection;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS
@@ -125,6 +128,7 @@ const SortButton = styled.button<{
 
   &:hover,
   &:focus {
+    cursor: pointer;
     background: ${props =>
       props.isInverse
         ? transparentize(0.85, props.theme.colors.neutral100)
@@ -177,8 +181,8 @@ export const TableHeaderCell = React.forwardRef<
       <SortDoubleArrowIcon
         color={
           tableContext.isInverse
-            ? theme.colors.neutral06
-            : theme.colors.neutral04
+            ? transparentize(0.3, theme.colors.neutral100)
+            : theme.colors.neutral500
         }
         size={theme.iconSizes.small}
       />

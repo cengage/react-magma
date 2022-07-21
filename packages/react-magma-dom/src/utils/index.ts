@@ -237,3 +237,28 @@ export function toCamelCase(str) {
     )
     .replace(/\s+/g, '');
 }
+
+type ResolvedProps = {
+  [key: string]: any;
+};
+
+/**
+ * Add keys & values of `defaultProps` that do not exist in `props`
+ * @param {object} defaultProps
+ * @param {object} props
+ * @returns {Person} resolved props
+ */
+export function resolveProps(
+  defaultProps: object,
+  props: object
+): ResolvedProps {
+  const output = { ...props };
+
+  Object.keys(defaultProps).forEach(propName => {
+    if (output[propName] === undefined) {
+      output[propName] = defaultProps[propName];
+    }
+  });
+
+  return output;
+};

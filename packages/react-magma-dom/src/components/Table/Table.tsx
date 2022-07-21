@@ -14,8 +14,14 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   density?: TableDensity;
   /**
    * If true, row will be visually highlighted on hover
+   * @default false
    */
   hasHoverStyles?: boolean;
+  /**
+   * If true, the table will have square edges
+   * @default false
+   */
+  hasSquareCorners?: boolean;
   /**
    * If true, columns will have vertical borders
    */
@@ -36,6 +42,9 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   minWidth?: number;
   rowCount?: number;
   selectedItems?: Array<number>;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -88,11 +97,20 @@ export const TableContext = React.createContext<TableContextInterface>({
   selectedItems: [],
 });
 
-const TableContainer = styled.div`
-  overflow-x: auto;
+export const TableContainer = styled.div<{
+  minWidth: number;
+  hasSquareCorners?: boolean;
+  isInverse?: boolean;
+}>`
+  border-radius: ${props =>
+    props.hasSquareCorners ? 0 : props.theme.borderRadius};
+  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
 `;
 
-const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
+export const StyledTable = styled.table<{
+  isInverse?: boolean;
+  minWidth: number;
+}>`
   border-collapse: collapse;
   border-spacing: 0;
   color: ${props =>
@@ -110,12 +128,13 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
   (props, ref) => {
     const {
       children,
-      density,
+      density = TableDensity.normal,
       hasHoverStyles,
+      hasSquareCorners,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
-      minWidth,
+      minWidth = 600,
       rowCount,
       selectedItems,
       testId,
@@ -125,6 +144,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     const theme = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
+
+    const tableWrapper = `table-wrapper-${testId}`;
 
     return (
       <TableContext.Provider
@@ -137,7 +158,13 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isSelectable,
         }}
       >
-        <TableContainer>
+        <TableContainer
+          data-testid={tableWrapper}
+          hasSquareCorners={hasSquareCorners}
+          isInverse={isInverse}
+          minWidth={minWidth}
+          theme={theme}
+        >
           <StyledTable
             {...other}
             data-testid={testId}

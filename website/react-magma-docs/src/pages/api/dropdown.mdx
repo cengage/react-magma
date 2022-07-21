@@ -24,6 +24,8 @@ The `DropdownButton` is a button that handles the opening and closing of the men
 
 The `DropdownContent` component contains the content that appears when the button is clicked. That content may contain individual menu items, represented in `DropdownMenuItem` components, or it may contain other markup.
 
+When using multiple dropdowns, they should be wrapped in a <Link to="/api/button-group">ButtonGroup</Link>.
+
 ```tsx
 import React from 'react';
 import {
@@ -90,11 +92,12 @@ import {
   DropdownContent,
   DropdownDropDirection,
   DropdownMenuItem,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown dropDirection={DropdownDropDirection.left}>
         <DropdownButton>Drop Left</DropdownButton>
         <DropdownContent>
@@ -116,7 +119,7 @@ export function Example() {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -140,56 +143,61 @@ import {
   DropdownContent,
   DropdownDropDirection,
   DropdownMenuItem,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.left}
-      >
-        <DropdownButton>Top-Aligned Drop Left</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.left}
+        >
+          <DropdownButton>Top-Aligned Drop Left</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.right}
-      >
-        <DropdownButton>Top-Aligned Drop Right</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.right}
+        >
+          <DropdownButton>Top-Aligned Drop Right</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
 
       <br />
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.down}
-      >
-        <DropdownButton>Right-Aligned Drop Down</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.down}
+        >
+          <DropdownButton>Right-Aligned Drop Down</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
 
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={DropdownDropDirection.up}
-      >
-        <DropdownButton>Right-Aligned Drop Up</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={DropdownDropDirection.up}
+        >
+          <DropdownButton>Right-Aligned Drop Up</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
     </>
   );
 }
@@ -445,15 +453,15 @@ import {
   DropdownContent,
   DropdownDivider,
   DropdownHeader,
-  DropdownMenuItem,
   Input,
   magma,
   PasswordInput,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown width="300px">
         <DropdownButton>Dropdown with Login Form</DropdownButton>
         <DropdownContent>
@@ -490,7 +498,7 @@ export function Example() {
           </DropdownHeader>
           <form
             style={{
-              color: magma.colors.neutral03,
+              color: magma.colors.neutral,
               margin: 0,
               paddingLeft: magma.spaceScale.spacing05,
               paddingRight: magma.spaceScale.spacing05,
@@ -504,7 +512,7 @@ export function Example() {
           </form>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -518,6 +526,7 @@ import React from 'react';
 import {
   ButtonColor,
   ButtonSize,
+  ButtonGroup,
   Dropdown,
   DropdownButton,
   DropdownContent,
@@ -527,7 +536,7 @@ import {
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Dropdown>
         <DropdownButton size={ButtonSize.small} color={ButtonColor.marketing}>
           Extra Props Example 1
@@ -540,8 +549,9 @@ export function Example() {
       <Dropdown>
         <DropdownSplitButton
           size={ButtonSize.large}
-          variant="outline"
+          variant={ButtonVariant.solid}
           color={ButtonColor.danger}
+          aria-label={'Custom Button Example'}
         >
           Extra Props Split
         </DropdownSplitButton>
@@ -550,7 +560,7 @@ export function Example() {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -566,6 +576,7 @@ import {
   ButtonIconPosition,
   ButtonSize,
   ButtonVariant,
+  ButtonGroup,
   Dropdown,
   DropdownButton,
   DropdownContent,
@@ -576,58 +587,60 @@ import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <Dropdown>
-        <DropdownButton
-          aria-label="Extra icon example"
-          color={ButtonColor.secondary}
-          size={ButtonSize.large}
-          variant={ButtonVariant.link}
-          icon={<SettingsIcon />}
-        />
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          aria-label="Extra icon example"
-          size={ButtonSize.large}
-          icon={<MenuIcon />}
-        />
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          variant={ButtonVariant.solid}
-          size={ButtonSize.small}
-          iconPosition={ButtonIconPosition.right}
-          icon={<SettingsIcon />}
-        >
-          Icon Right with Text
-        </DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown>
-        <DropdownButton
-          variant={ButtonVariant.solid}
-          size={ButtonSize.small}
-          iconPosition={ButtonIconPosition.left}
-          icon={<SettingsIcon />}
-        >
-          Icon Left with Text
-        </DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
+      <ButtonGroup>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            color={ButtonColor.secondary}
+            size={ButtonSize.large}
+            variant={ButtonVariant.link}
+            icon={<SettingsIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            aria-label="Extra icon example"
+            size={ButtonSize.large}
+            icon={<MenuIcon />}
+          />
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            variant={ButtonVariant.solid}
+            size={ButtonSize.small}
+            iconPosition={ButtonIconPosition.right}
+            icon={<SettingsIcon />}
+          >
+            Icon Right with Text
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton
+            variant={ButtonVariant.solid}
+            size={ButtonSize.small}
+            iconPosition={ButtonIconPosition.left}
+            icon={<SettingsIcon />}
+          >
+            Icon Left with Text
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
     </>
   );
 }
@@ -754,16 +767,34 @@ export function Example() {
 }
 ```
 
-## Prevent Default Focus Handling - Deprecated
+## Inverse
+```tsx
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+  Card,
+  CardBody
+} from 'react-magma-dom';
 
-<Alert variant="warning">This functionality has been deprecated.</Alert>
-
-Originally by default when the `dropdown` closed we put focus on the button that triggered the opening of the `dropdown`.
-To remove the auto-focusing on close you would pass in a function named `onBeforeShiftFocus` in which you would call the `preventMagmaFocus` function on the `event`.
-This caused a bug when another element was supposed to be focused the focus would be forced back on to the trigger button if you did not put in this workaround.
-To fix this we have deprecated the workaround and the default now is to allow the consumer to handle the focusing of elements.
-If your dropdown items do not trigger an event that changes the focus, you should make sure to put the focus back the correct element
-as seen in this [example of focusing the trigger button on closing of the dropdown](/api/dropdown/#handle_focus_on_close).
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Dropdown isInverse>
+          <DropdownButton>Basic Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item one</DropdownMenuItem>
+            <DropdownMenuItem>Menu item two</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </CardBody>
+    </Card>
+  );
+}
+```
 
 ## Dropdown Props
 

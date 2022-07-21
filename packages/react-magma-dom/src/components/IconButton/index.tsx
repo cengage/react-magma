@@ -10,9 +10,10 @@ import {
   ButtonTextTransform,
 } from '../Button';
 import { IconProps } from 'react-magma-icons';
-import { omit, Omit, XOR } from '../../utils';
+import { omit, Omit, resolveProps, XOR } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
+import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum ButtonIconPosition {
   left = 'left',
@@ -88,35 +89,36 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
-    const { color, shape, size, testId, textTransform, variant, ...rest } =
-      props;
 
+    const contextProps = React.useContext(ButtonGroupContext);
     const theme = React.useContext(ThemeContext);
+    const resolvedProps = resolveProps(contextProps, props);
+    const { color, shape, size, testId, textTransform, variant, ...rest } = resolvedProps;
 
-    if (instanceOfIconOnly(props)) {
-      icon = props.icon;
+    if (instanceOfIconOnly(resolvedProps)) {
+      icon = resolvedProps.icon;
     } else {
-      icon = props.icon;
-      iconPosition = props.iconPosition;
-      children = props.children;
+      icon = resolvedProps.icon;
+      iconPosition = resolvedProps.iconPosition;
+      children = resolvedProps.children;
     }
 
     const other = omit(['iconPosition', 'textPosition'], rest);
 
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(resolvedProps.isInverse);
 
     if (icon && !children) {
       return (
         <StyledButton
           {...other}
           ref={ref}
-          color={color ? color : ButtonColor.primary}
+          color={color || ButtonColor.primary}
           iconOnly
           testId={testId}
           isInverse={isInverse}
-          shape={shape ? shape : ButtonShape.round}
-          size={size ? size : ButtonSize.medium}
-          variant={variant ? variant : ButtonVariant.solid}
+          shape={shape || ButtonShape.round}
+          size={size || ButtonSize.medium}
+          variant={variant || ButtonVariant.solid}
         >
           {React.Children.only(
             React.cloneElement(icon, {
@@ -132,15 +134,15 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       <StyledButton
         {...other}
         ref={ref}
-        color={color ? color : ButtonColor.primary}
+        color={color || ButtonColor.primary}
         isInverse={isInverse}
-        shape={shape ? shape : ButtonShape.fill}
-        size={size ? size : ButtonSize.medium}
+        shape={shape || ButtonShape.fill}
+        size={size || ButtonSize.medium}
         testId={testId}
         textTransform={
-          textTransform ? textTransform : ButtonTextTransform.uppercase
+          textTransform || ButtonTextTransform.uppercase
         }
-        variant={variant ? variant : ButtonVariant.solid}
+        variant={variant || ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (
           <SpanTextLeft size={size} theme={theme}>
@@ -149,7 +151,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         )}
         {React.Children.only(
           React.cloneElement(icon, {
-            size: icon.props.size ? icon.props.size : getIconSize(size, theme),
+            size: icon.props.size || getIconSize(size, theme),
             'data-testid': `${testId}-icon`,
           })
         )}

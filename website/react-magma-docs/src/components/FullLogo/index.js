@@ -18,7 +18,7 @@ export const FullLogo = () => (
     query={graphql`
       query {
         placeholderImage: file(
-          relativePath: { eq: "React_Magma_Logo_Full.png" }
+          relativePath: { eq: "react-magma-icon.svg" }
         ) {
           childImageSharp {
             fluid(maxWidth: 600) {
