@@ -1,5 +1,5 @@
 ---
-"react-magma-dom": major
+"react-magma-dom": minor
 ---
 
 dropdown: Remove deprecated prop `onBeforeShiftFocus`

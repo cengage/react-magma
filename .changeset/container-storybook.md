@@ -1,5 +1,5 @@
 ---
-"react-magma-dom": patch
+"react-magma-dom": minor
 ---
 
 fix(container): Update Storybook examples

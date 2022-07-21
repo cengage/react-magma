@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': major
+"react-magma-dom": minor
 ---
 
 feat: Updating alerts to V3 styling, this effects banners and toasts in addition.

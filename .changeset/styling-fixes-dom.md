@@ -1,5 +1,5 @@
 ---
-"react-magma-dom": major
+"react-magma-dom": minor
 ---
 
 fix(select): update disabled state down arrow color

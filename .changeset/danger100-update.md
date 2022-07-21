@@ -1,5 +1,5 @@
 ---
-"react-magma-dom": major
+"react-magma-dom": minor
 ---
 
 fix(theme): Update `danger100` hex color

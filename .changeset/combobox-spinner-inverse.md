@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': major
+"react-magma-dom": minor
 ---
 
 feat(spinner): Add `isInverse` support for Spinner component.

@@ -1,5 +1,5 @@
 ---
-"react-magma-dom": major
+"react-magma-dom": minor
 ---
 
 feat(tabs): Update Storybook examples

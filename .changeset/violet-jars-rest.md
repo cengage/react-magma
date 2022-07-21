@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': major
+"react-magma-dom": minor
 ---
 
 fix: Toast X center alignment
