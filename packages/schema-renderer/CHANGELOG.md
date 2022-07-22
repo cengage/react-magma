@@ -1,5 +1,11 @@
 # @react-magma/schema-renderer
 
+## 1.0.1
+
+### Patch Changes
+
+- 9cdfce87: Force publish
+
 ## 1.0.0
 
 ## 1.0.0-next.0
