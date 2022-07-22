@@ -1,6 +1,15 @@
 # Change Log
 
-## 3.0.0
+## 3.0.0 (NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above)
+
+### Major Changes
+- 732f5c908: fix(button): Remove margin from buttons
+  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+  Breaking Change: Muted Alert variant has been removed.
+
+- 81b1b76d: dropdown: Remove deprecated prop `onBeforeShiftFocus`
 
 ### Minor Changes
 
@@ -9,9 +18,6 @@
 - d70e4cf17: feat(badge): Update hover/active/focus styles
 - eeec9950: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
 - 787017f90: feat(buttongroup): New ButtonGroup component
-- 732f5c908: fix(button): Remove margin from buttons
-
-  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
 
 - 8c17d7e8: feat(button): Updated hover/focus/active states on buttons using the new color palette.
 - 23fc1b1a: fix(buttongroup): Add `Dropdown` support
@@ -24,15 +30,10 @@
 - c765e88d: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
 - b5c4415d: 800 fix focus state in Dropdown Component. Updated modal docs
 - ab69379b: fix(nativeSelect): Add background color to the options for `isInverse`. In Windows, the Native Select dropdown has a white background which makes the options invisible.
-- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
-
-  Breaking Change: Muted Alert variant has been removed.
-
 - 9ca1827b2: feat: Update colors throughout various components
 - 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
 - 484578a87: feat(Dropdowns): Updating Dropdowns with rebrand styles
 - a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
-- 81b1b76d: dropdown: Remove deprecated prop `onBeforeShiftFocus`
 - 7ab1d3c3: feat(table): Removing `hasOuterBorder` prop. This was a new prop this version, so this is not a breaking change.
 - 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
 - ce9088243: bug(select): Fix hover styles in Select component to not have focus border.
