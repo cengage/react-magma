@@ -1,5 +1,94 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- b64e7bbdb: docs: update accordion inverse example
+- 2979534ed: docs: updated alerts design guidelines
+- b28163af4: docs: update buttons design guidelines
+- 787017f90: ButtonGroup: New ButtonGroup component docs
+- 732f5c908: fix(button): Update Buttons in docs to use ButtonGroup.
+- c43ab1632: fixes for codesandbox examples in docs
+- 187ebf455: docs: update badges in colors tiles
+- 632302b7: docs: Update Datagrid `Row Colors` example
+- 47f7778df: docs: update breakpoints container examples
+- acd63007: docs: Clean up docs for all components. Ensure `isInverse` is documented.
+- a46f65ee: - spinner: update `isInverse` example (#772)
+  - tabs: update `isInverse` example (#765)
+  - pagination: fix `Handle Page Change` example (#773)
+  - table: fix `minWidth` example (#771)
+  - tag: remove `internationalization` example (#764)
+- e226b8597: docs: missing props tables fixes
+- c33ca59e: docs: updated pdf file
+- ad7310916: docs: update GitHub icon focus
+- 8dd5e09c: docs: created design guidelines for button group
+- 18848150: docs(modal): add `isInverse` example
+- 41c9d8b17: docs: update react magma logo
+- c187bed9e: docs: update docs header
+- 81ab701bf: docs: updating dg images
+- 9ca1827b2: feat: Update colors throughout various doc pages
+- ccaaf77a2: feat: Updating docs sidebar to V3 styling.
+- a4acd9ac6: docs: update typography and theming docs
+- 50d3b20ee: homepage: updating home page with new design and rebrand colors
+- 604e938d2: docs: updated several pages
+- 0d9b45043: button/form: add spacing around form examples
+  table: fix table inverse background color
+- 03a2e365: various minor updates:
+
+  - document DrawerPosition default
+  - remove FormFieldContainer from docs as it's just an internal component
+  - update color for List items
+  - update table inverse example
+  - fix typos
+  - rename tags design page to tag
+
+- cc23aacf6: toast: add toast `isInverse` example to docs
+- 179b94086: docs: update theming example to version 3 theming
+
+### Patch Changes
+
+- Updated dependencies [9d8ae22c]
+- Updated dependencies [e9e7a600]
+- Updated dependencies [d70e4cf17]
+- Updated dependencies [eeec9950]
+- Updated dependencies [3a27353aa]
+- Updated dependencies [3a27353aa]
+- Updated dependencies [787017f90]
+- Updated dependencies [732f5c908]
+- Updated dependencies [8c17d7e8]
+- Updated dependencies [23fc1b1a]
+- Updated dependencies [ce262ae30]
+- Updated dependencies [97ea53aca]
+- Updated dependencies [e93d09159]
+- Updated dependencies [733aa23b]
+- Updated dependencies [058ddea9]
+- Updated dependencies [c765e88d]
+- Updated dependencies [b5c4415d]
+- Updated dependencies [ab69379b]
+- Updated dependencies [8690bbf3f]
+- Updated dependencies [9ca1827b2]
+- Updated dependencies [27e91f1e9]
+- Updated dependencies [484578a87]
+- Updated dependencies [c7adf03a4]
+- Updated dependencies [a4acd9ac6]
+- Updated dependencies [81b1b76d]
+- Updated dependencies [7ab1d3c3]
+- Updated dependencies [7cec9a9ab]
+- Updated dependencies [ce9088243]
+- Updated dependencies [133d2cf32]
+- Updated dependencies [0d9b45043]
+- Updated dependencies [a46f65ee]
+- Updated dependencies [31dfdba9]
+- Updated dependencies [41215ce1e]
+- Updated dependencies [403e601a]
+- Updated dependencies [7d66f867]
+- Updated dependencies [cc23aacf6]
+- Updated dependencies [ca2c61de6]
+- Updated dependencies [465fd0fce]
+  - react-magma-dom@3.0.0
+  - @react-magma/dropzone@1.0.0
+
 ## 3.0.0-next.72
 
 ### Major Changes
@@ -1498,8 +1587,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### 2.1.4-alpha.5 (2021-02-12)
 
 **Note:** Version bump only for package react-magma-docs
-
-=======
 
 ### 2.1.5-alpha.0 (2021-02-18)
 

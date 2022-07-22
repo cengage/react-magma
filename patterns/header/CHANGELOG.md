@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.0
+
+### Patch Changes
+
+- 2aa4ebc0: docs: updating header setup requirements
+
 ## 3.0.0-next.1
 
 ### Patch Changes
