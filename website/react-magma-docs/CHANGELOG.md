@@ -1,5 +1,16 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies [9cdfce87]
+- Updated dependencies [9cdfce87]
+- Updated dependencies [9cdfce87]
+  - @react-magma/dropzone@1.0.1
+  - @cengage-patterns/header@3.0.1
+  - @react-magma/schema-renderer@1.0.1
+
 ## 4.0.0
 
 ### Major Changes

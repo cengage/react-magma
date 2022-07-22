@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- 9cdfce87: Force publish
+
 ## 3.0.0
 
 ### Patch Changes
