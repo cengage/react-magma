@@ -4,13 +4,13 @@ import { magma } from 'react-magma-dom';
 export const magmaCodeDark: PrismTheme = {
   plain: {
     backgroundColor: magma.colors.neutral,
-    color: magma.colors.neutral07,
+    color: magma.colors.neutral200,
   },
   styles: [
     {
       types: ['comment', 'prolog', 'doctype', 'cdata', 'punctuation'],
       style: {
-        color: magma.colors.successInverse,
+        color: magma.colors.success200,
       },
     },
     {
@@ -22,25 +22,25 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.foundation04,
+        color: magma.colors.tertiary,
       },
     },
     {
       types: ['property', 'function'],
       style: {
-        color: magma.colors.successInverse,
+        color: magma.colors.success200,
       },
     },
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: magma.colors.foundation04,
+        color: magma.colors.tertiary,
       },
     },
     {
       types: ['attr-name'],
       style: {
-        color: magma.colors.successInverse,
+        color: magma.colors.success200,
       },
     },
     {
@@ -61,7 +61,7 @@ export const magmaCodeDark: PrismTheme = {
         'variable',
       ],
       style: {
-        color: magma.colors.dangerInverse,
+        color: magma.colors.danger200,
       },
     },
     {
@@ -91,7 +91,7 @@ export const magmaCodeDark: PrismTheme = {
     {
       types: ['important'],
       style: {
-        color: magma.colors.dangerInverse,
+        color: magma.colors.danger200,
       },
     },
   ],

@@ -19,6 +19,8 @@ export {
   BreakpointsContainer,
   Breakpoint,
   BreakpointScreenSize,
+  BreakpointProps,
+  BreakpointsContainerProps,
 } from './components/BreakpointsContainer';
 export {
   Button,
@@ -114,7 +116,6 @@ export {
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
 export { Label, LabelPosition } from './components/Label';
-export { List, ListProps, ListItemProps } from './components/List';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -240,3 +241,4 @@ export * from './components/Grid';
 export * from './components/Tag';
 export * from './components/List';
 export * from './components/BlockQuote';
+export * from './components/ButtonGroup'

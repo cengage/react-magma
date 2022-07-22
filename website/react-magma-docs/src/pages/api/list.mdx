@@ -2,7 +2,8 @@
 pageTitle: List API
 title: List
 props:
-  - ListProps, ListItemProps
+  - ListProps
+  - ListItemProps
 ---
 
 <DocsHeading to="/design/list/" type="api">
@@ -156,21 +157,21 @@ export function Example() {
       <ListItem
         icon={<EmailIcon />}
         iconColor="danger"
-        iconBackground="neutral06"
+        iconBackground="neutral300"
       >
         Icon List content
       </ListItem>
       <ListItem
         icon={<EmailIcon />}
         iconColor="primary"
-        iconBackground="neutral07"
+        iconBackground="neutral200"
       >
         Icon List content
       </ListItem>
       <ListItem
         icon={<EmailIcon />}
         iconColor="success"
-        iconBackground="neutral08"
+        iconBackground="neutral100"
       >
         Icon List content
       </ListItem>
@@ -215,7 +216,7 @@ export function Example() {
 }
 ```
 
-## InverseContext
+## Inverse
 
 The `isInverse` prop will render a dark background and light text. The children will
 inherit the `isInverse` prop unless specified otherwise.
@@ -241,14 +242,13 @@ export function Example() {
 }
 ```
 
-## List Item Props
-
-**Any other props supplied will be provided to the wrapping `list` element.**
-
-<ListItemProps />
 
 ## List Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <ListProps />
+
+## List Item Props
+
+<ListItemProps />

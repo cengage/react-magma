@@ -29,6 +29,9 @@ export interface UseAccordionProps {
    * Event that fires when an accordion button is clicked
    */
   onExpandedChange?: (event: any) => void;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

@@ -87,6 +87,9 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default ModalSize.medium
    */
   size?: ModalSize;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -182,10 +185,11 @@ const H1 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
   font-weight: 600;
 `;
 
-const CloseBtn = styled.span`
+const CloseBtn = styled.span<{ theme?: ThemeInterface }>`
   position: absolute;
   top: 0;
   right: 0;
+  margin: ${props => props.theme.spaceScale.spacing02};
 `;
 const ModalBody = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05};
@@ -376,7 +380,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   {children}
                 </ModalBody>
                 {!isCloseButtonHidden && (
-                  <CloseBtn>
+                  <CloseBtn theme={theme}>
                     <IconButton
                       aria-label={
                         closeAriaLabel

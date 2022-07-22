@@ -9,8 +9,8 @@ export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default AnnouncePoliteness.polite
    */
   politeness?: AnnouncePoliteness;
-  /*
-   * Test ID attached to an internal element as `data-testid` for consumer testing
+  /**
+   * @internal
    */
   testId?: string;
 }

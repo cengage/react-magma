@@ -5,17 +5,23 @@ props:
   - FormProps
 ---
 
-<DocsHeading type="api">
-  Form
-</DocsHeading>
+<DocsHeading type="api">Form</DocsHeading>
 
-The `Form` component is a relatively simple container. It is used to contain interactive controls and sublit information to a web server.
+The `Form` component is a relatively simple container. It is used to contain interactive controls and submit information to a web server.
 
 ## Basic Usage
 
 ```typescript
 import React from 'react';
-import { Button, Input } from 'react-magma-dom';
+import {
+  Button,
+  ButtonType,
+  ButtonColor,
+  ButtonGroup,
+  Form,
+  Input,
+  Spacer,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -25,13 +31,69 @@ export function Example() {
       description="Some Form Description"
       errorMessage="Some Form Error"
       actions={
-        <div>
+        <ButtonGroup>
+          <Button color={ButtonColor.secondary}>Cancel</Button>
           <Button type={ButtonType.submit}>Submit</Button>
-        </div>
+        </ButtonGroup>
       }
     >
-      <Input labelText="some input" />
+     <>
+        <Input labelText="Name" />
+        <Spacer size="12" />
+        <Input labelText="Email" />
+        <Spacer size="24" />
+      </>
     </Form>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import {
+  Button,
+  ButtonType,
+  ButtonColor,
+  ButtonGroup,
+  Form,
+  Input,
+  Spacer,
+  Card,
+  CardBody,
+  TypographyVisualStyle,
+  TypographyContextVariant,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Form
+          onSubmit={() => alert('form submitted')}
+          header="Form Heading"
+          description="Some Form Description"
+          errorMessage="Some Form Error"
+          headingVisualStyle={TypographyVisualStyle.headingLarge}
+          headingContextVariant={TypographyContextVariant.expressive}
+          isInverse
+          actions={
+            <ButtonGroup>
+              <Button color={ButtonColor.secondary}>Cancel</Button>
+              <Button type={ButtonType.submit}>Submit</Button>
+            </ButtonGroup>
+          }
+        >
+          <>
+            <Input labelText="Name" />
+            <Spacer size="12" />
+            <Input labelText="Email" />
+            <Spacer size="24" />
+          </>
+        </Form>
+      </CardBody>
+    </Card>
   );
 }
 ```

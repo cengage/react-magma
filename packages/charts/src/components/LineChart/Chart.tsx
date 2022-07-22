@@ -30,6 +30,9 @@ interface BaseChartProps {
    * Description of what the line chart data represents placed above the chart
    */
   description?: string;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Title of the line chart
@@ -61,7 +64,7 @@ const StyledParagraph = styled(Paragraph)`
 const StyledTabsContainer = styled(TabsContainer)`
   width: 800px;
   ul {
-    box-shadow: inset 0 -1px 0 ${props => props.theme.colors.neutral06};
+    box-shadow: inset 0 -1px 0 ${props => props.theme.colors.neutral300};
   }
 `;
 

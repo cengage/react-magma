@@ -38,7 +38,7 @@ describe('Alert', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px solid ${magma.colors.focusInverse}`,
+      `2px solid ${magma.colors.info500}`,
       {
         target: ':focus',
       }
@@ -55,7 +55,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.neutral08
+      magma.colors.info500
     );
   });
 
@@ -69,7 +69,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.neutral
+      magma.colors.warning500
     );
   });
 

@@ -95,7 +95,7 @@ describe('List', () => {
     expect(container.querySelector('p')).toBeInTheDocument();
     expect(container.querySelector('p')).toHaveStyleRule(
       'color',
-      magma.colors.neutral03
+      magma.colors.neutral
     );
   });
 

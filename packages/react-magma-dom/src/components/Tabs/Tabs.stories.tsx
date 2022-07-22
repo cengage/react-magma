@@ -12,6 +12,14 @@ import { TabsContainer } from './TabsContainer';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabPanel } from './TabPanel';
 import { Card } from '../Card';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Combobox } from '../Combobox';
+import { Select } from '../Select';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -70,6 +78,7 @@ const Template: Story<TabsProps> = args => (
 
 export const Default = Template.bind({});
 Default.args = {};
+Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
 const IconTemplate: Story<TabsProps> = args => (
   <TabsContainer>
@@ -93,7 +102,10 @@ const IconTemplate: Story<TabsProps> = args => (
 );
 
 export const Icon = IconTemplate.bind({});
-Icon.args = { ...Default.args };
+Icon.args = {
+  ...Default.args,
+  iconPosition: TabsIconPosition.left,
+};
 
 const IconOnlyTemplate: Story<TabsProps> = args => (
   <TabsContainer>
@@ -118,6 +130,7 @@ const IconOnlyTemplate: Story<TabsProps> = args => (
 
 export const IconOnly = IconOnlyTemplate.bind({});
 IconOnly.args = { ...Default.args };
+IconOnly.parameters = { ...Default.parameters };
 
 const ScrollingTemplate: Story<TabsProps> = args => (
   <div>
@@ -186,9 +199,10 @@ const ScrollingTemplate: Story<TabsProps> = args => (
 
 export const Scrolling = ScrollingTemplate.bind({});
 Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
+Scrolling.parameters = { ...Default.parameters };
 
 const InverseTemplate: Story<TabsProps> = args => (
-  <Card isInverse>
+  <Card isInverse={args.isInverse}>
     <TabsContainer>
       <Tabs aria-label="Sample Tabs" {...args}>
         <Tab>First item</Tab>
@@ -197,13 +211,13 @@ const InverseTemplate: Story<TabsProps> = args => (
         <Tab disabled>Disabled</Tab>
       </Tabs>
       <TabPanelsContainer>
-        <TabPanel isInverse>
+        <TabPanel isInverse={args.isInverse}>
           <div>Email</div>
         </TabPanel>
-        <TabPanel isInverse>
+        <TabPanel isInverse={args.isInverse}>
           <div>Android</div>
         </TabPanel>
-        <TabPanel isInverse>
+        <TabPanel isInverse={args.isInverse}>
           <div>Notifications</div>
         </TabPanel>
       </TabPanelsContainer>
@@ -216,3 +230,60 @@ Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
+Inverse.parameters = { ...Default.parameters };
+
+const WithDropdownTemplate: Story<TabsProps> = args => (
+  <Card>
+    <TabsContainer>
+      <Tabs aria-label="Sample Tabs" {...args}>
+        <Tab>Dropdown</Tab>
+        <Tab>Select</Tab>
+        <Tab>ComboBox</Tab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <Dropdown>
+            <DropdownButton>Basic Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </TabPanel>
+        <TabPanel>
+          <Select
+            labelText="Select Example"
+            items={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+              { label: 'Yellow', value: 'yellow' },
+            ]}
+          />
+        </TabPanel>
+        <TabPanel>
+          <Combobox
+            isMulti
+            labelText="ComboBox Example"
+            defaultItems={[
+              { label: 'Pink', value: 'pink' },
+              { label: 'Orange', value: 'orange' },
+              { label: 'Purple', value: 'purple' },
+            ]}
+          />
+        </TabPanel>
+      </TabPanelsContainer>
+    </TabsContainer>
+  </Card>
+);
+
+export const WithDropdown = WithDropdownTemplate.bind({});
+WithDropdown.args = {
+  ...Default.args,
+};
+WithDropdown.parameters = { ...Default.parameters };

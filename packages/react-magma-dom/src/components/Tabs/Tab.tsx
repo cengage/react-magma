@@ -23,6 +23,9 @@ export interface TabProps
    */
   isActive?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal

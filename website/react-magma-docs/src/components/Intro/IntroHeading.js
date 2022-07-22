@@ -16,7 +16,7 @@ const StyledHeading = styled.h2`
     padding: 264px 0 ${props => props.theme.spaceScale.spacing03};
 
     &:focus {
-      border-bottom: 2px solid ${props => props.theme.colors.neutral08};
+      border-bottom: 2px solid ${props => props.theme.colors.neutral100};
       outline: 0;
     }
 

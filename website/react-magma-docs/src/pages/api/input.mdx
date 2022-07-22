@@ -146,7 +146,7 @@ While React Magma provides the error styling, it is up to the consumer app to ha
 
 ```tsx
 import React from 'react';
-import { Input, Button } from 'react-magma-dom';
+import { Input, Button, ButtonGroup, Spacer } from 'react-magma-dom';
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [nameValue, setNameValue] = React.useState('');
@@ -174,10 +174,13 @@ export function Example() {
         required
         value={nameValue}
       />
-      <Button onClick={submit}>Submit</Button>
-      <Button onClick={reset} color="secondary">
-        Reset
-      </Button>
+      <Spacer size="12" />
+      <ButtonGroup>
+        <Button onClick={submit}>Submit</Button>
+        <Button onClick={reset} color="secondary">
+          Reset
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -415,14 +418,14 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 ```tsx
 import React from 'react';
-import { Button, Input } from 'react-magma-dom';
+import { Button, Input, Spacer } from 'react-magma-dom';
 export function Example() {
   const inputRef = React.useRef();
 
   return (
     <div>
       <Input ref={inputRef} labelText="Input to be focused" />
-
+      <Spacer size="12" />
       <Button
         onClick={() => {
           inputRef.current.focus();
@@ -461,19 +464,8 @@ export function Example() {
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
-```html
-<div>
-  <label for="input1">Label</label>
-  <div>
-    <input
-      id="input1"
-      data-testid="test-id"
-      placeholder="This is a placeholder"
-      type="text"
-      value="Default Value"
-    />
-  </div>
-</div>
+```html noCodeSandbox
+  <Input labelText="Label" testId="test-id"/>
 ```
 
 ## Input Props
@@ -634,14 +626,6 @@ All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/
       required: false,
       description: 'If true, the form field is required',
       defaultValue: 'false',
-    },
-    testId: {
-      type: {
-        name: 'string',
-      },
-      required: false,
-      description:
-        'Test ID attached to an internal element as `data-testid` for consumer testing',
     },
     type: {
       type: {

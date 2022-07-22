@@ -2,14 +2,19 @@ import React from 'react';
 import { Search, SearchProps } from '.';
 import { InputSize } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { Card, CardBody } from '../Card';
 
 const Template: Story<SearchProps> = args => (
-  <Search
-    {...args}
-    onSearch={term => {
-      alert(term);
-    }}
-  />
+  <Card isInverse={args.isInverse}>
+    <CardBody>
+      <Search
+        {...args}
+        onSearch={term => {
+          alert(term);
+        }}
+      />
+    </CardBody>
+  </Card>
 );
 
 export default {
@@ -39,7 +44,7 @@ export default {
       control: {
         type: 'boolean',
       },
-    }
+    },
   },
 } as Meta;
 

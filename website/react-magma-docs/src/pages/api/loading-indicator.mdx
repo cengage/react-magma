@@ -120,22 +120,39 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
 
 ```tsx
 import React from 'react';
-import { Announce, Button, LoadingIndicator } from 'react-magma-dom';
+import { Announce, Button, LoadingIndicator, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   const [showLoader, setShowLoader] = React.useState(false);
 
   return (
     <>
-      <p>
+      <ButtonGroup>
         <Button onClick={() => setShowLoader(true)}>
           Show Loading Indicator
         </Button>
         <Button onClick={() => setShowLoader(false)}>
           Hide Loading Indicator
         </Button>
-      </p>
+      </ButtonGroup>
+      <br/>
       <Announce>{showLoader && <LoadingIndicator />}</Announce>
     </>
+  );
+}
+```
+
+## Inverse
+
+```tsx
+import React from 'react';
+import { LoadingIndicator, Card, CardBody } from 'react-magma-dom';
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <LoadingIndicator isInverse />
+      </CardBody>
+    </Card>
   );
 }
 ```

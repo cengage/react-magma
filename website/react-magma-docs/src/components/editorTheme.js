@@ -2,7 +2,7 @@ import { magma } from 'react-magma-dom';
 
 export const editorTheme = {
   plain: {
-    backgroundColor: magma.colors.neutral07,
+    backgroundColor: magma.colors.neutral200,
     color: magma.colors.neutral,
   },
   styles: [
@@ -21,25 +21,25 @@ export const editorTheme = {
     {
       types: ['tag', 'operator', 'number'],
       style: {
-        color: magma.colors.foundation02,
+        color: magma.colors.primary700,
       },
     },
     {
       types: ['punctuation'],
       style: {
-        color: magma.colors.neutral03,
+        color: magma.colors.neutral,
       },
     },
     {
       types: ['property', 'function'],
       style: {
-        color: magma.colors.foundation02,
+        color: magma.colors.primary700,
       },
     },
     {
       types: ['tag-id', 'selector', 'atrule-id'],
       style: {
-        color: magma.colors.pop,
+        color: magma.colors.tertiary,
       },
     },
     {
@@ -66,7 +66,7 @@ export const editorTheme = {
         'variable',
       ],
       style: {
-        color: magma.colors.pop,
+        color: magma.colors.tertiary,
       },
     },
     {

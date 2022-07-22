@@ -36,6 +36,9 @@ export interface BaseNavTabProps
    * @default TabsOrientation.horizontal
    */
   orientation?: TabsOrientation;
+  /**
+   * @internal
+   */
   testId?: string;
   to?: string;
   /**
@@ -143,13 +146,8 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
 
   const isIconOnly = !children;
 
-  const {
-    orientation,
-    borderPosition,
-    iconPosition,
-    isInverse,
-    isFullWidth,
-  } = React.useContext(NavTabsContext);
+  const { orientation, borderPosition, iconPosition, isInverse, isFullWidth } =
+    React.useContext(NavTabsContext);
 
   const tabIconPosition = iconPosition
     ? iconPosition

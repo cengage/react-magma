@@ -19,6 +19,10 @@ export interface HyperlinkProps
    * How the hyperlink is styled (can look like either a plain link or a button)
    */
   styledAs?: 'Button' | 'Link';
+  isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * The href value of the link

@@ -219,7 +219,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, TableRowColor } from 'react-magma-dom';
+import { Datagrid, TableRowColor } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -257,9 +257,7 @@ export function Example() {
   ];
 
   return (
-    <Card>
-      <Datagrid columns={columns} rows={coloredRows} />
-    </Card>
+    <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />
   );
 }
 ```
@@ -888,7 +886,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -1092,7 +1090,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -1315,7 +1313,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, DropdownDropDirection } from 'react-magma-dom';
+import { Datagrid, DropdownDropDirection } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -1519,7 +1517,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, usePagination } from 'react-magma-dom';
+import { Datagrid, Button, usePagination, ButtonGroup, Spacer, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -1728,15 +1726,18 @@ export function Example() {
         }}
       >
         You are on page {page}
-        <Button
-          disabled={previousButton.disabled}
-          onClick={previousButton.onClick}
-        >
-          Previous Page
-        </Button>
-        <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
-          Next Page
-        </Button>
+        <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing05} />
+        <ButtonGroup>
+          <Button
+            disabled={previousButton.disabled}
+            onClick={previousButton.onClick}
+          >
+            Previous Page
+          </Button>
+          <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
+            Next Page
+          </Button>
+        </ButtonGroup>
       </div>
     );
   };
@@ -1949,7 +1950,7 @@ export function Example() {
 }
 ```
 
-## InverseContext
+## Inverse
 
 The `isInverse` prop will render a dark background and light text. The children will
 inherit the `isInverse` prop unless specified otherwise.

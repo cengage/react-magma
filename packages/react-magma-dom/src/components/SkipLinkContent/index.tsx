@@ -7,10 +7,15 @@ import { TARGET_ID } from '../SkipLink';
  */
 export interface SkipLinkContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
-export const SkipLinkContent: React.FunctionComponent<SkipLinkContentProps> = props => {
+export const SkipLinkContent: React.FunctionComponent<
+  SkipLinkContentProps
+> = props => {
   const { children, testId } = props;
   return (
     <div

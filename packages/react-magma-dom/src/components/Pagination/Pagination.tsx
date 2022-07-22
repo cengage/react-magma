@@ -10,6 +10,9 @@ import { usePagination } from './usePagination';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   isInverse?: boolean;
   page?: number;
@@ -49,6 +52,7 @@ export interface BasePaginationProps
   onPageChange?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
    * Size toggles between default and large variant buttons.
+   * @default PageButtonSize.medium
    */
   size?: PageButtonSize;
   /**

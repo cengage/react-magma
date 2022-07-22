@@ -8,6 +8,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
+ * Interal use only: Wrapper for all field components
  * @children required
  */
 export interface FormFieldContainerProps
@@ -58,6 +59,9 @@ export interface FormFieldContainerBaseProps {
    */
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
+  /**
+   * @internal
+   */
   testId?: string;
   isInverse?: boolean;
 }
@@ -65,7 +69,7 @@ export interface FormFieldContainerBaseProps {
 const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
+      ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
 `;
 

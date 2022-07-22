@@ -59,7 +59,7 @@ export const LegendButton = React.forwardRef<HTMLButtonElement, any>(
             padding: '0',
           }}
           inputStyle={{
-            border: color ? `none` : `2px solid ${theme.colors.neutral02}`,
+            border: color ? `none` : `2px solid ${theme.colors.neutral800}`,
             borderRadius: '4px',
           }}
           labelText={name}
