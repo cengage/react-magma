@@ -1,8 +1,15 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- 04e0a5a8: Release 3.1.0
+
 ## 3.0.0 (NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above)
 
 ### Major Changes
+
 - 732f5c908: fix(button): Remove margin from buttons
   BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
 
