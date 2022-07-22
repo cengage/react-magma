@@ -1,5 +1,12 @@
 # @react-magma/schema-renderer
 
+## 1.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [fc8a20bf]
+  - react-magma-dom@3.1.1-next.0
+
 ## 1.0.1
 
 ### Patch Changes

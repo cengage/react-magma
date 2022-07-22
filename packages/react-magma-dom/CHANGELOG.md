@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.0
+
+### Patch Changes
+
+- fc8a20bf: build(deps): bump terser from 4.8.0 to 4.8.1
+
 ## 3.1.0
 
 ### Minor Changes
