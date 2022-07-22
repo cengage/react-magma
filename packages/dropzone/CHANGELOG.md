@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.0.0
+
+### Major Changes
+
+- c7adf03a4: feat(dropzone): Updating dropzone colors.
+
 ## 1.0.0-next.1
 
 ### Major Changes
