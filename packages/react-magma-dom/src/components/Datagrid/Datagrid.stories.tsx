@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Datagrid } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DatagridProps } from './Datagrid';
@@ -323,7 +323,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
     direction: TableSortDirection.none,
     message: '',
   });
-  
+
   const requestSort = (key: string) => {
     let direction = TableSortDirection.ascending;
     if (
@@ -388,7 +388,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
     }
   }, [sortConfig]);
 
-  function handleSelectedItems(
+  function handleRowSelect(
     id: string | number,
     ev: React.ChangeEvent<HTMLInputElement>
   ) {
@@ -419,7 +419,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
       onSortBySelected={() => {
         requestSort('name');
       }}
-      onRowSelect={handleSelectedItems}
+      onRowSelect={handleRowSelect}
       onHeaderSelect={handleHeaderSelect}
       sortDirection={sortConfig.direction}
     />

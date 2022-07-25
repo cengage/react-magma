@@ -217,9 +217,25 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
 
     const SortIcon =
       sortDirection === TableSortDirection.ascending ? (
-        <SouthIcon size={theme.iconSizes.small} />
+        <SouthIcon
+          color={
+            tableContext.isInverse
+              ? theme.colors.neutral06
+              : theme.colors.neutral04
+          }
+          size={theme.iconSizes.small}
+          testId="sort-ascending"
+        />
       ) : sortDirection === TableSortDirection.descending ? (
-        <NorthIcon size={theme.iconSizes.small} />
+        <NorthIcon
+          color={
+            tableContext.isInverse
+              ? theme.colors.neutral06
+              : theme.colors.neutral04
+          }
+          size={theme.iconSizes.small}
+          testId="sort-descending"
+        />
       ) : (
         <SortDoubleArrowIcon
           color={
@@ -228,6 +244,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
               : theme.colors.neutral04
           }
           size={theme.iconSizes.small}
+          testId="sort-none"
         />
       );
 
@@ -264,6 +281,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                   theme={theme}
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
+                  data-testid={`${testId || ''}-sort-button`}
                 >
                   <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
                 </SortButton>

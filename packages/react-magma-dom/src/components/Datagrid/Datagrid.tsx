@@ -111,6 +111,9 @@ export interface BaseDatagridProps extends TableProps {
    * Pagination data used to create the pagination footer. Created using the usePagination hook.
    */
   paginationProps?: Partial<TablePaginationProps>;
+  /**
+   * Function called when the sort button is clicked for selectable tables
+   */
   onSortBySelected?: () => void;
   /**
    * Direction by which the column is sorted

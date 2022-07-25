@@ -26,9 +26,12 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   hasZebraStripes?: boolean;
   isInverse?: boolean;
   /**
-   * @internal
+   * @internal - used within DataGrid
    */
   isSelectable?: boolean;
+  /**
+   * @internal - used within DataGrid
+   */
   isSortableBySelected?: boolean;
   /**
    * Minimum width for the table in pixels
