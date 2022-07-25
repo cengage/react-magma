@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.3-next.2
+
+### Patch Changes
+
+- 4b181548: build(deps): bump gatsby-plugin-mdx from 1.10.1 to 2.14.1
+
 ## 4.0.3-next.1
 
 ### Patch Changes
