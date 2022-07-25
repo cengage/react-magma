@@ -11,6 +11,7 @@
     "react-magma-landing": "1.1.0"
   },
   "changesets": [
+    "spotty-kangaroos-sniff",
     "unlucky-boats-ring"
   ]
 }

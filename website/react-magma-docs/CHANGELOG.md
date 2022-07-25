@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [105cf25b]
+  - react-magma-dom@3.1.1-next.1
+
 ## 4.0.3-next.0
 
 ### Patch Changes

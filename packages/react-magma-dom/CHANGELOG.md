@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.1
+
+### Patch Changes
+
+- 105cf25b: build(deps): bump parse-url from 6.0.0 to 6.0.2
+
 ## 3.1.1-next.0
 
 ### Patch Changes
