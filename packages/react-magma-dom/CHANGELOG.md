@@ -1,5 +1,333 @@
 # Change Log
 
+## 3.1.1-next.1
+
+### Patch Changes
+
+- 105cf25b: build(deps): bump parse-url from 6.0.0 to 6.0.2
+
+## 3.1.1-next.0
+
+### Patch Changes
+
+- fc8a20bf: build(deps): bump terser from 4.8.0 to 4.8.1
+
+## 3.1.0
+
+### Minor Changes
+
+- 04e0a5a8: Release 3.1.0
+
+## 3.0.0 (NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above)
+
+### Major Changes
+
+- 732f5c908: fix(button): Remove margin from buttons
+  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+  Breaking Change: Muted Alert variant has been removed.
+
+- 81b1b76d: dropdown: Remove deprecated prop `onBeforeShiftFocus`
+
+### Minor Changes
+
+- e9e7a600: fix(alert/banner/toast): Update hyperlink styles
+  fix(banner): Update styles for close button
+- d70e4cf17: feat(badge): Update hover/active/focus styles
+- eeec9950: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
+- 787017f90: feat(buttongroup): New ButtonGroup component
+
+- 8c17d7e8: feat(button): Updated hover/focus/active states on buttons using the new color palette.
+- 23fc1b1a: fix(buttongroup): Add `Dropdown` support
+- ce262ae30: feat(combobox): Update combobox items colors and error styling
+- 97ea53aca: feat(spinner): Add `isInverse` support for Spinner component.
+  feat(combobox/select): Update styling for items list inverse.
+- e93d09159: fix(container): Update Storybook examples
+- 733aa23b: fix(theme): Update `danger100` hex color
+- 058ddea9: feat(datepicker): Update spacing around buttons
+- c765e88d: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
+- b5c4415d: 800 fix focus state in Dropdown Component. Updated modal docs
+- ab69379b: fix(nativeSelect): Add background color to the options for `isInverse`. In Windows, the Native Select dropdown has a white background which makes the options invisible.
+- 9ca1827b2: feat: Update colors throughout various components
+- 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
+- 484578a87: feat(Dropdowns): Updating Dropdowns with rebrand styles
+- a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
+- 7ab1d3c3: feat(table): Removing `hasOuterBorder` prop. This was a new prop this version, so this is not a breaking change.
+- 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
+- ce9088243: bug(select): Fix hover styles in Select component to not have focus border.
+- 133d2cf32: fix(table): update sortable table header cursor
+- 0d9b45043: fix(select): update disabled state down arrow color
+  fix(toggle): update toggle border color
+  fix(combobox): update input border inverse danger color
+  fix(table): update table inverse hasZebraStripes color
+- a46f65ee: fix(table): fix `minWidth` scroll
+- 31dfdba9: feat(table): Add `isInverse` support for TablePagination dropdowns
+- 41215ce1e: feat(table): Update Storybook examples
+- 403e601a: feat(tabs): Update Storybook examples
+- 7d66f867: fix(timepicker): `onChange` is called on 'Backspace' key press
+- cc23aacf6: fix(toast): bring back dropshadow for toasts
+- ca2c61de6: feat(tooltip): Fix tooltip position bug
+- 465fd0fce: fix: Toast X center alignment
+
+### Patch Changes
+
+- 9d8ae22c: fix(accordion): Update Storybook `isInverse` example
+- 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
+- 3a27353aa: fix(textarea): Textarea can now be cleared
+
+## 3.0.0-next.48
+
+### Major Changes
+
+- 058ddea9b: feat(datepicker): Update spacing around buttons
+
+## 3.0.0-next.47
+
+### Major Changes
+
+- ab69379bb: fix(nativeSelect): Add background color to the options for `isInverse`. In Windows, the Native Select dropdown has a white background which makes the options invisible.
+
+## 3.0.0-next.46
+
+### Major Changes
+
+- b5c4415da: 800 fix focus state in Dropdown Component. Updated modal docs
+
+## 3.0.0-next.45
+
+### Major Changes
+
+- 7ab1d3c30: feat(table): Removing `hasOuterBorder` prop. This was a new prop this version, so this is not a breaking change.
+
+## 3.0.0-next.44
+
+### Patch Changes
+
+- 23fc1b1a1: fix(buttongroup): Add `Dropdown` support
+
+## 3.0.0-next.43
+
+### Major Changes
+
+- 81b1b76d7: dropdown: Remove deprecated prop `onBeforeShiftFocus`
+
+## 3.0.0-next.42
+
+### Major Changes
+
+- f38b9dd97: feat(table): Moving prop hasOuterBorder to a wrapping container to fix overflow issues.
+
+## 3.0.0-next.41
+
+### Major Changes
+
+- e9e7a6008: fix(alert/banner/toast): Update hyperlink styles
+  fix(banner): Update styles for close button
+
+## 3.0.0-next.40
+
+### Major Changes
+
+- 733aa23b7: fix(theme): Update `danger100` hex color
+
+## 3.0.0-next.39
+
+### Major Changes
+
+- 7d66f867b: fix(timepicker): `onChange` is called on 'Backspace' key press
+
+## 3.0.0-next.38
+
+### Major Changes
+
+- 403e601ae: feat(tabs): Update Storybook examples
+
+### Patch Changes
+
+- 9d8ae22c6: fix(accordion): Update Storybook `isInverse` example
+
+## 3.0.0-next.37
+
+### Major Changes
+
+- 31dfdba9e: feat(table): Add `isInverse` support for TablePagination dropdowns
+
+## 3.0.0-next.36
+
+### Major Changes
+
+- eeec99508: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
+- 8c17d7e86: feat(button): Updated hover/focus/active states on buttons using the new color palette.
+
+## 3.0.0-next.35
+
+### Major Changes
+
+- c765e88d1: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
+
+## 3.0.0-next.34
+
+### Major Changes
+
+- a46f65eef: fix(table): fix `minWidth` scroll
+
+## 3.0.0-next.33
+
+### Major Changes
+
+- d70e4cf17: feat(badge): Update hover/active/focus styles
+
+## 3.0.0-next.32
+
+### Major Changes
+
+- 2251bf681: feat(table): Adding border prop hasOuterBorder for tables.
+
+## 3.0.0-next.31
+
+### Patch Changes
+
+- e93d09159: fix(container): Update Storybook examples
+
+## 3.0.0-next.30
+
+### Major Changes
+
+- 41215ce1e: feat(table): Update Storybook examples
+
+## 3.0.0-next.29
+
+### Major Changes
+
+- 732f5c908: fix(button): Remove margin from buttons
+
+  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
+
+## 3.0.0-next.28
+
+### Major Changes
+
+- 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
+
+## 3.0.0-next.27
+
+### Major Changes
+
+- cc23aacf6: fix(toast): bring back dropshadow for toasts
+
+## 3.0.0-next.26
+
+### Major Changes
+
+- 133d2cf32: fix(table): update sortable table header cursor
+
+## 3.0.0-next.25
+
+### Major Changes
+
+- ca2c61de6: feat(tooltip): Fix tooltip position bug
+
+## 3.0.0-next.24
+
+### Major Changes
+
+- 787017f90: feat(buttongroup): New ButtonGroup component
+
+## 3.0.0-next.23
+
+### Patch Changes
+
+- 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
+- 3a27353aa: fix(textarea): Textarea can now be cleared
+
+## 3.0.0-next.22
+
+### Major Changes
+
+- 465fd0fce: fix: Toast X center alignment
+
+## 3.0.0-next.21
+
+### Major Changes
+
+- 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
+
+## 3.0.0-next.20
+
+### Major Changes
+
+- 0d9b45043: fix(select): update disabled state down arrow color
+  fix(toggle): update toggle border color
+  fix(combobox): update input border inverse danger color
+  fix(table): update table inverse hasZebraStripes color
+
+## 3.0.0-next.19
+
+### Major Changes
+
+- 97ea53aca: feat(spinner): Add `isInverse` support for Spinner component.
+  feat(combobox/select): Update styling for items list inverse.
+
+## 3.0.0-next.18
+
+### Major Changes
+
+- ce262ae30: feat(combobox): Update combobox items colors and error styling
+
+## 3.0.0-next.17
+
+### Major Changes
+
+- ce9088243: bug(select): Fix hover styles in Select component to not have focus border.
+
+## 3.0.0-next.16
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various components
+
+## 3.0.0-next.15
+
+### Major Changes
+
+- 484578a87: feat(Dropdowns): Updating Dropdowns with rebrand styles
+- a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
+
+## 3.0.0-next.14
+
+### Major Changes
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+
+  Breaking Change: Muted Alert variant has been removed.
+
+## 3.0.0-next.13
+
+### Major Changes
+
+- e1fba9d10: feat(modal): Updating Modal with rebrand styles. Adding support for `isInverse`.
+
+## 3.0.0-next.12
+
+### Major Changes
+
+- 2c98589c: feat(tabs): Updating tabs and nav tabs with new colors.
+
+## 3.0.0-next.11
+
+### Major Changes
+
+- 4eba5dc4: feat(pagination): updates to V3 styling
+
+## 3.0.0-next.10
+
+### Major Changes
+
+- d2400a77: feat: Updating tags to V3 styling
+
+  Note: tag variants "success" and "danger" have been removed as a part of the V3 update which will cause breaking changes.
+
 ## 3.0.0-next.9
 
 ### Major Changes

@@ -147,7 +147,7 @@ describe('Toggle', () => {
     );
     const track = getByTestId('toggle-track');
 
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border-color', magma.colors.danger200);
     expect(track).toHaveStyleRule(
       'box-shadow',
       `0 0 0 1px ${magma.colors.neutral100}`

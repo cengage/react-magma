@@ -33,14 +33,14 @@ const Styled{{capitalize componentName}} = styled.div<{{capitalize componentName
   {{#if useInverse}}
   background: ${props =>
   props.isInverse
-  ? props.theme.colors.foundation
-  : props.theme.colors.neutral08};
+  ? props.theme.colors.primary600
+  : props.theme.colors.neutral100};
   color: ${props =>
   props.isInverse
-  ? props.theme.colors.neutral08
+  ? props.theme.colors.neutral100
   : props.theme.colors.neutral};
   {{else}}
-  background: ${props => props.theme.colors.neutral08};
+  background: ${props => props.theme.colors.neutral100};
   color: ${props => props.theme.colors.neutral};
   {{/if}}
   {{/if}}

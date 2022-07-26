@@ -64,7 +64,7 @@ it('should render with inverse styles', () => {
 
   expect(getByTestId(testId)).toHaveStyleRule(
     'background',
-    magma.colors.foundation02
+    'none'
   );
 });
 

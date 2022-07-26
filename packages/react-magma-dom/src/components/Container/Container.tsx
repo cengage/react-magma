@@ -12,12 +12,17 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
   /**
    * Left/right padding, set by CSS.  If a number is provided, value will be in pixels
+   * @default theme.spaceScale.spacing06
    */
   gutterWidth?: number | string;
   /**
    * Max-width of the component, set by CSS.  If a number is provided, value will be in pixels
+   * @default none
    */
   maxWidth?: number | string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

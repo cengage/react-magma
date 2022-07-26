@@ -31,7 +31,7 @@ describe('BlockQuote', () => {
 
     const blockquote = getByTestId(testId);
 
-    expect(blockquote).toHaveStyleRule('border-left', '4px solid #DFDFDF');
+    expect(blockquote).toHaveStyleRule('border-left', `4px solid ${magma.colors.neutral300}`);
   });
 
   it('should render the component with the correct inverse styles', () => {
@@ -125,7 +125,7 @@ describe('BlockQuote', () => {
       'font-size',
       magma.typeScale.size03.fontSize,
       'color',
-      magma.colors.neutral07
+      magma.colors.neutral200
     );
   });
 });

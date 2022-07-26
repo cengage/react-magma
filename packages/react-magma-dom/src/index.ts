@@ -19,6 +19,8 @@ export {
   BreakpointsContainer,
   Breakpoint,
   BreakpointScreenSize,
+  BreakpointProps,
+  BreakpointsContainerProps,
 } from './components/BreakpointsContainer';
 export {
   Button,
@@ -114,7 +116,6 @@ export {
 } from './components/InputBase';
 export { InputMessage } from './components/Input/InputMessage';
 export { Label, LabelPosition } from './components/Label';
-export { List, ListProps, ListItemProps } from './components/List';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
@@ -148,7 +149,6 @@ export {
   SkipLinkContent,
   SkipLinkContentProps,
 } from './components/SkipLinkContent';
-export { Slider, SliderProps } from './components/Slider';
 export { Spacer, SpacerProps, SpacerAxis } from './components/Spacer';
 export { Spinner, SpinnerProps } from './components/Spinner';
 export {
@@ -248,4 +248,4 @@ export { useDimensions } from './hooks/useDimensions';
 export * from './components/Tag';
 export * from './components/List';
 export * from './components/BlockQuote';
-
+export * from './components/ButtonGroup'

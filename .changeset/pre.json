@@ -2,28 +2,17 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "0.0.4",
-    "@react-magma/dropzone": "0.1.5",
-    "react-magma-dom": "2.5.11",
-    "@react-magma/schema-renderer": "0.0.12",
-    "@cengage-patterns/header": "2.0.12",
-    "react-magma-docs": "2.2.13",
-    "react-magma-landing": "1.0.10"
+    "@react-magma/charts": "1.0.0",
+    "@react-magma/dropzone": "1.0.1",
+    "react-magma-dom": "3.1.0",
+    "@react-magma/schema-renderer": "1.0.1",
+    "@cengage-patterns/header": "3.0.1",
+    "react-magma-docs": "4.0.2",
+    "react-magma-landing": "1.1.0"
   },
   "changesets": [
-    "afraid-coats-laugh",
-    "cuddly-jokes-guess",
-    "rebrand-accordion",
-    "rebrand-badge",
-    "rebrand-breadcrumbs",
-    "rebrand-cards",
-    "rebrand-colors",
-    "rebrand-focus",
-    "rebrand-inputs",
-    "rebrand-processBar",
-    "rebrand-table",
-    "rebrand-toggle",
-    "rebrand-tooltips",
-    "rebrand-type"
+    "cool-flies-retire",
+    "spotty-kangaroos-sniff",
+    "unlucky-boats-ring"
   ]
 }

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { Button, ButtonColor, ButtonProps, ButtonVariant } from '../Button';
-import { BuildBorder, hoverBorder } from './Pagination';
-import { darken } from 'polished';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -25,60 +23,24 @@ function buttonSize(props) {
   }
 }
 
-function boxShadowColor(props) {
-  if (props.color === 'primary') {
-    if (props.isInverse) {
-      return `-${props.theme.spaceScale.spacing01} 0 0 ${props.theme.colors.neutral08}`;
-    }
-    return `-${props.theme.spaceScale.spacing01} 0 0 ${props.theme.colors.primary}`;
-  }
-}
-
-function hoverBoxShadowColor(props) {
-  if (props.color === 'primary') {
-    if (props.isInverse) {
-      return `-${props.theme.spaceScale.spacing01} 0 0 ${props.theme.colors.neutral08}`;
-    }
-    return `-${props.theme.spaceScale.spacing01} 0 0 ${darken(
-      0.1,
-      props.theme.colors.primary
-    )}`;
-  }
-}
-
 const StyledPageButton = styled(Button)`
-  border: none;
-  border-top: ${BuildBorder};
-  border-right: ${BuildBorder};
-  border-bottom: ${BuildBorder};
   border-radius: 0;
-  box-shadow: ${boxShadowColor};
   font-size: ${pageButtonTypeSize} !important;
   height: ${buttonSize};
-  margin: 0;
+  margin: 0 0 0 -1px;
   min-width: 0;
   padding: 0;
   width: ${buttonSize};
-  &:focus {
-    border-color: ${hoverBorder};
-    box-shadow: ${hoverBoxShadowColor};
-    outline: 0 !important;
-    outline-offset: 0;
-    overflow: visible;
-    z-index: 1;
-  }
   &:focus:before {
     content: '';
-    border: ${props =>
-      props.isInverse
-        ? `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focusInverse}`
-        : `${props.theme.spaceScale.spacing01} solid ${props.theme.colors.focus}`};
-    border-style: solid;
     height: calc(100% + 14px);
     left: -7px;
     position: absolute;
     top: -7px;
     width: calc(100% + 14px);
+  }
+  &:focus {
+    z-index: 1;
   }
 `;
 

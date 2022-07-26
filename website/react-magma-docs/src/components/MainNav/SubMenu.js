@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { convertTextToId } from '../../utils';
 import styled from '@emotion/styled';
-import { magma, useIsInverse } from 'react-magma-dom';
+import { magma } from 'react-magma-dom';
 
 const handleAnchorLinkClick = (id, handleClick, e) => {
   const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
@@ -30,8 +30,7 @@ const handleAnchorLinkClick = (id, handleClick, e) => {
 };
 
 const SubMenuList = styled.ul`
-  background: ${props =>
-    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral200};
+  background: ${magma.colors.neutral200};
   list-style-type: none;
   margin: 0;
   padding: 0 0 ${magma.spaceScale.spacing03} 0;
@@ -44,8 +43,7 @@ const SubMenuItem = styled.li`
 `;
 
 const SubMenuLink = styled.a`
-  color: ${props =>
-    props.isInverse ? magma.colors.neutral700 : magma.colors.neutral700};
+  color: ${magma.colors.neutral700};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   letter-spacing: ${magma.typeScale.size02.letterSpacing};
@@ -62,29 +60,25 @@ const SubMenuLink = styled.a`
 `;
 
 const SubMenuLink2 = styled.a`
-  color: ${props =>
-    props.isInverse ? magma.colors.neutral08 : magma.colors.neutral700};
+  color: ${magma.colors.neutral700};
   display: block;
   font-size: ${magma.typeScale.size02.fontSize};
   letter-spacing: ${magma.typeScale.size02.letterSpacing};
   line-height: ${magma.typeScale.size02.lineHeight};
   padding: ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing06}
-    ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11};
+    ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing09};
   text-decoration: none;
 
   &:hover,
   &:focus {
-    background: ${props =>
-      props.isInverse ? magma.colors.foundation : magma.colors.neutral300};
-    color: ${props =>
-      props.isInverse ? magma.colors.neutral08 : magma.colors.neutral700};
+    background: ${magma.colors.neutral300};
+    color: ${magma.colors.neutral700};
   }
 `;
 
 export const SubMenu = ({ headings, handleClick }) => {
-  const isInverse = useIsInverse();
   return (
-    <SubMenuList isInverse={isInverse}>
+    <SubMenuList>
       {headings.map((heading, index) => {
         const id = convertTextToId(heading.value);
 
@@ -92,7 +86,6 @@ export const SubMenu = ({ headings, handleClick }) => {
           <SubMenuItem key={index}>
             <SubMenuLink
               href={`#${id}`}
-              isInverse={isInverse}
               onClick={e => {
                 handleAnchorLinkClick(id, handleClick, e);
               }}
@@ -107,9 +100,8 @@ export const SubMenu = ({ headings, handleClick }) => {
 };
 
 export const SubMenu2 = ({ headings, handleClick }) => {
-  const isInverse = useIsInverse();
   return (
-    <SubMenuList isInverse={isInverse}>
+    <SubMenuList>
       {headings.map((heading, index) => {
         const id = convertTextToId(heading.value);
 
@@ -117,7 +109,6 @@ export const SubMenu2 = ({ headings, handleClick }) => {
           <SubMenuItem key={index}>
             <SubMenuLink2
               href={`#${id}`}
-              isInverse={isInverse}
               onClick={e => {
                 handleAnchorLinkClick(id, handleClick, e);
               }}

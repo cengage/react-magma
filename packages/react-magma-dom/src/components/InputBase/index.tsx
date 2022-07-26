@@ -89,6 +89,9 @@ export interface InputBaseProps
    * Action that will fire when icon receives keypress
    */
   onIconKeyDown?: (event) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -137,22 +140,20 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
 
   ${props.hasError &&
   css`
-    border-color: ${props.theme.colors.danger};
+    border-color: ${props.isInverse
+      ? props.theme.colors.danger200
+      : props.theme.colors.danger};
   `}
 
   ${props.disabled &&
   css`
-    border-color: ${props.isInverse ? transparentize(0.85, props.theme.colors.neutral100) : props.theme.colors.neutral300};
+    border-color: ${props.isInverse
+      ? transparentize(0.85, props.theme.colors.neutral100)
+      : props.theme.colors.neutral300};
     background-color: ${props.isInverse
       ? transparentize(0.9, props.theme.colors.neutral900)
       : props.theme.colors.neutral200};
   `}
-  button {
-    bottom: ${props.iconPosition === InputIconPosition.top
-      ? '40px'
-      : 'inherit'};
-    right: ${props.iconPosition === InputIconPosition.top ? '-4px' : 'inherit'};
-  }
 `;
 
 export interface InputBaseStylesProps {
@@ -169,7 +170,9 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   border: 0;
   border-radius: ${props.theme.borderRadius};
   background: transparent;
-  color: ${props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  color: ${props.isInverse
+    ? props.theme.colors.neutral100
+    : props.theme.colors.neutral700};
   display: block;
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
@@ -210,7 +213,9 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   `}
 
   &::placeholder {
-    color: ${props.isInverse ? transparentize(0.3, props.theme.colors.neutral100) : props.theme.colors.neutral500};
+    color: ${props.isInverse
+      ? transparentize(0.3, props.theme.colors.neutral100)
+      : props.theme.colors.neutral500};
   }
 
   &:focus {
@@ -226,13 +231,17 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
     }
   }
 
-  ${props.disabled && 
+  ${props.disabled &&
   css`
-    color: ${props.isInverse ? transparentize(0.6, props.theme.colors.neutral100) : props.theme.colors.neutral500};
+    color: ${props.isInverse
+      ? transparentize(0.6, props.theme.colors.neutral100)
+      : transparentize(0.4, props.theme.colors.neutral500)};
     cursor: not-allowed;
 
     &::placeholder {
-      color: ${props.isInverse ? transparentize(0.8, props.theme.colors.neutral100) : props.theme.colors.neutral500};
+      color: ${props.isInverse
+        ? transparentize(0.8, props.theme.colors.neutral100)
+        : props.theme.colors.neutral500};
       opacity: ${props.isInverse ? 0.4 : 0.6};
     }
   `}
@@ -255,7 +264,10 @@ const IconWrapper = styled.span<{
   isInverse?: boolean;
 }>`
   bottom: ${props => (props.iconPosition === 'top' ? '45px' : 'inherit')};
-  color: ${props => props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   left: ${props =>
     props.iconPosition === 'left' ? props.theme.spaceScale.spacing03 : 'auto'};
   right: ${props =>
@@ -317,18 +329,31 @@ const IconButtonContainer = styled.span<{
   }
 `;
 
+function getClearablePosition(props) {
+  if (props.iconPosition === 'right' && props.icon && !props.onIconClick) {
+    if (props.inputSize === 'large') {
+      return props.theme.spaceScale.spacing10;
+    }
+    return props.theme.spaceScale.spacing09;
+  }
+  if (props.inputSize === 'large') {
+    return props.theme.spaceScale.spacing02;
+  }
+  return props.theme.spaceScale.spacing01;
+}
+
 const IsClearableContainer = styled.span<{
-  size?: InputSize;
   theme: ThemeInterface;
+  icon?: React.ReactElement<IconProps>;
+  iconPosition?: InputIconPosition;
+  inputSize?: InputSize;
   isClearable?: boolean;
+  onIconClick?: () => void;
   disabled?: boolean;
 }>`
   background-color: transparent;
   position: relative;
-  right: ${props =>
-    props.size === InputSize.large
-      ? props.theme.spaceScale.spacing02
-      : props.theme.spaceScale.spacing01};
+  right: ${getClearablePosition};
 `;
 
 function getIconSize(size: string, theme: ThemeInterface) {
@@ -428,7 +453,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           value={value}
         />
         {isClearable && value && (
-          <IsClearableContainer theme={theme} disabled={disabled}>
+          <IsClearableContainer
+            theme={theme}
+            disabled={disabled}
+            icon={icon}
+            iconPosition={iconPosition}
+            inputSize={inputSize}
+            onIconClick={onIconClick}
+          >
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
               disabled={disabled}

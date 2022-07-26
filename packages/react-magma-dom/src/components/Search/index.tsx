@@ -51,6 +51,9 @@ export interface SearchProps extends InputBaseProps {
    * Action that will fire when search icon button is clicked
    */
   onSearch: (term: string) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Value of the input element
@@ -63,6 +66,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
     const {
       iconAriaLabel,
       isClearable,
+      isInverse,
       isLoading,
       labelText,
       placeholder,
@@ -74,7 +78,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
 
     const [value, setValue] = React.useState<string>(props.value);
 
-    const icon = isLoading ? <Spinner /> : <SearchIcon />;
+    const icon = isLoading ? <Spinner isInverse={isInverse} /> : <SearchIcon />;
 
     React.useEffect(() => {
       setValue(props.value);

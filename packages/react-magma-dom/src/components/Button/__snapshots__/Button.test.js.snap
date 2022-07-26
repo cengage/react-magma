@@ -44,7 +44,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -68,7 +68,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -92,7 +92,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -155,7 +155,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 24px;
@@ -179,7 +179,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -203,7 +203,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -226,7 +226,9 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -282,7 +284,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -306,7 +308,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -330,7 +332,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -393,7 +395,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
-  margin: 4px;
+  margin: 0;
   min-width: 0;
   overflow: hidden;
   padding: 4px 8px;
@@ -417,7 +419,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -441,7 +443,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -464,7 +466,9 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -520,7 +524,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -544,8 +548,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #E8E9F8;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
@@ -568,8 +572,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #BABDE9;
+  color: #292F7C;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -631,7 +635,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -655,8 +659,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #E8E9F8;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
@@ -679,8 +683,8 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #BABDE9;
+  color: #292F7C;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -704,6 +708,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
     class="emotion-2 emotion-3"
     color="secondary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -759,7 +764,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -783,7 +788,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -807,7 +812,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -870,7 +875,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -894,7 +899,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -918,7 +923,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -941,6 +946,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
     shape="round"
     type="button"
@@ -998,7 +1004,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1022,7 +1028,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -1046,7 +1052,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -1109,7 +1115,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1133,7 +1139,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -1157,7 +1163,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -1180,7 +1186,9 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span
@@ -1224,7 +1232,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1248,7 +1256,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -1272,7 +1280,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -1335,7 +1343,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
-  margin: 4px;
+  margin: 0;
   min-width: 96px;
   overflow: hidden;
   padding: 12px 16px;
@@ -1359,7 +1367,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #2d3489;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
@@ -1383,7 +1391,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 }
 
 .emotion-2:not(:disabled):active {
-  background: #202563;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -1418,7 +1426,9 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 <div>
   <button
     class="emotion-2 emotion-3"
+    color="primary"
     id="testId"
+    shape="fill"
     type="button"
   >
     <span

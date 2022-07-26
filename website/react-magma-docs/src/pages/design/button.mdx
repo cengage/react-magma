@@ -28,22 +28,6 @@ Buttons communicate actions that users can take.
 
 ---
 
-## Principles
-
-### Identifiable
-
-Buttons should indicate that they can trigger an action.
-
-### Findable
-
-Buttons should be easy to find among other elements, including other buttons.
-
-### Clear
-
-A button’s action and state should be clear.
-
----
-
 ## Types
 
 ### Text Button (low emphasis)
@@ -58,7 +42,7 @@ Text buttons are typically used for less important actions.
 
 Outlined buttons are used for more emphasis than text buttons due to the stroke.
 
-<Button color="primary" variant="outline">
+<Button color="secondary" variant="solid">
   Outlined Button
 </Button>
 
@@ -153,7 +137,7 @@ Text labels should always be short and have clear purpose. If a button requires 
 
 ### Icon
 
-You can place icons next to text labels to both clarify an action and call attention to a button. If a text label is not used, an icon should be present to signify what the button does.
+You can place icons next to text labels to both clarify an action and call attention to a button. If a text label is not used, make sure the icon is intuitive and clear through testing. Also, consider using a tooltip so its exact meaning can be easily seen on hover.
 
 <div class="two-col">
   <div class="row">
@@ -210,6 +194,8 @@ You can place icons next to text labels to both clarify an action and call atten
 
 Other than the standard sized buttons, there are two other sizes – Large and small.
 
+![ ](../../images/buttons/button-sizes.png)
+
 _Large_ buttons can be used in scenarios where space allows and you desire a much more prominent call to action.
 
 _Small_ buttons can be used in scenarios where you want less emphasis on some actions because there are other more prominent actions on the UI. They can also be used when space is limited for the number of buttons you need.
@@ -220,13 +206,11 @@ _Small_ buttons can be used in scenarios where you want less emphasis on some ac
 
 ## Button Colors
 
-Color can help reinforce the type of action that a button will perform if tapped. The default colors of Magma are carefully chosen to both fit Cengage branding guidelines, as well as meet the accessibility requirement for color contrast ratio of at least 4.5:1. If deviations to these colors are required, then you assume responsibility to meet accessibility requirements.
+Color can help reinforce the type of action that a button will perform if tapped. The default colors of the buttons are carefully chosen to both fit Cengage branding guidelines, as well as meet the accessibility requirement for color contrast ratio. If deviations to these colors are required, then you assume responsibility to meet accessibility requirements.
 
-By default, a button using the **Primary** color should be used. This includes outlined buttons.
+The **primary** button should be used by default for important actions.  From there you can use **secondary** or buttons without a container for other actions, but they draw less attention than primary buttons.
 
-If you can justify in your design that the button’s purpose is to create or do something positive, you may use the button using the **Success** color. This includes outlined buttons.
-
-If you can justify in your design that the button’s purpose is to destroy or remove something, you may use the button using the **Danger** color. This includes outlined buttons.
+For actions that delete things, you can emphasize this action with the **danger** buttons.
 
 <div class="two-col">
   <div class="row">
@@ -236,27 +220,13 @@ If you can justify in your design that the button’s purpose is to destroy or r
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>
-            Use the <strong>Primary</strong> colored button for the primary
+            Use the <strong>Primary</strong> button for the primary
             action unless there is a specific reason to use something else.
           </p>
         </figcaption>
       </figure>
     </div>
     <div class="col col-2">
-      <figure>
-        <img src="../../images/buttons/ex_6_2.png" alt="" />
-        <figcaption>
-          <p class="title title-correct">Correct</p>
-          <p>
-            Consider using the <strong>Success</strong> variation for buttons
-            that will execute an action that creates something new.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col col-1">
       <figure>
         <img src="../../images/buttons/ex_6_3.png" alt="" />
         <figcaption>
@@ -272,7 +242,7 @@ If you can justify in your design that the button’s purpose is to destroy or r
   </div>
 </div>
 
-If your button is going on a dark background, you can use any of the solid buttons, but the link and outline buttons won’t work well. Adding the isInverse prop to the solid or link buttons will give you a new set of options to choose from that work well on dark backgrounds.
+If your button is going on a dark background, all of the buttons have an inverse appearance for optimal accessibility. They are carefully designed for use within entirely dark themes for Dark Mode.
 
 <div class="one-col">
   <div class="row">
@@ -312,7 +282,7 @@ Outline and link buttons are a little different since they don't have a backgrou
 
 It’s important for users to clearly see when the browser’s focus is on a button. This is especially important for users who can’t use a mouse, but instead have to rely on a keyboard or other means for navigating through the elements on the page. The default focus presentation built into the browsers are not consistent, and have varying success in visibility depending on what’s behind the button. For this reason, we are putting our own custom focus effect on Magma components.
 
-The solid outline is 2px thick with at least a 2px offset, and the color is #0074B7 (\$focus). These properties ensure the outline is visible on a light background. The color changes to semi-transparent-white for optimal visibility on dark backgrounds.
+The solid outline is 2px thick with at least a 2px offset, and the color is info-500. These properties ensure the outline is visible on a light background. The color changes to semi-transparent-white for optimal visibility on dark backgrounds.
 
 <div class="two-col">
   <div class="row">
@@ -384,16 +354,6 @@ Multiple button types can be used to express different emphasis levels. When usi
       </figure>
     </div>
     <div class="col col-2">
-      <figure>
-        <img src="../../images/buttons/ex_8_4.png" alt="" />
-        <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
-          <p>
-            Avoid using two solid buttons next to one another if they don’t have
-            the same fill color.
-          </p>
-        </figcaption>
-      </figure>
     </div>
   </div>
 </div>

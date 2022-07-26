@@ -9,6 +9,7 @@ import {
   useAccordion,
 } from './useAccordion';
 import { ThemeInterface } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -16,6 +17,9 @@ import { ThemeInterface } from '../../theme/magma';
 interface BaseAccordionProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -95,10 +99,14 @@ export type AccordionProps =
 
 const StyledAccordion = styled.div<AccordionProps>`
   background: transparent;
-  border-bottom: 1px solid ${props => props.theme.colors.neutral06};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
+      ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
 `;
 

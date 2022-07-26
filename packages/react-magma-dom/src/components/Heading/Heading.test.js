@@ -183,7 +183,7 @@ describe('Heading', () => {
     );
     const heading = getByText(headingText);
 
-    expect(heading).toHaveStyleRule('color', magma.colors.neutral08);
+    expect(heading).toHaveStyleRule('color', magma.colors.neutral100);
 
     expect(heading).toHaveStyleRule(
       'border-bottom',

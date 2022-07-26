@@ -22,7 +22,7 @@ import React from 'react';
 import { Pagination } from 'react-magma-dom';
 
 export function Example() {
-  return <Pagination count={4}></Pagination>;
+  return <Pagination count={4} />;
 }
 ```
 
@@ -39,7 +39,7 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <Pagination isInverse count={4}></Pagination>
+        <Pagination isInverse count={4} />
       </CardBody>
     </Card>
   );
@@ -55,7 +55,7 @@ import React from 'react';
 import { Pagination } from 'react-magma-dom';
 
 export function Example() {
-  return <Pagination size="large" count={4}></Pagination>;
+  return <Pagination size="large" count={4} />;
 }
 ```
 
@@ -70,16 +70,16 @@ import { Pagination } from 'react-magma-dom';
 export function Example() {
   const [page, setPage] = React.useState(1);
 
-  function handlePageChange(pageNumber) {
+  function handlePageChange(_, pageNumber) {
     setPage(pageNumber);
   }
   return (
     <div>
       <p>
         <strong>Page </strong>
-        <span> {page}</span>
+        <span>{page}</span>
       </p>
-      <Pagination onPageChange={handlePageChange} count={4}></Pagination>
+      <Pagination onPageChange={handlePageChange} count={4} />
     </div>
   );
 }

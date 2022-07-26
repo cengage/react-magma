@@ -8,8 +8,22 @@ import {
   AccordionPanel,
 } from '.';
 import { Button, ButtonSize, ButtonVariant } from '../Button';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Input } from '../Input';
+import { Flex, FlexBehavior } from '../Flex';
+import { Textarea } from '../Textarea';
+import { Select } from '../Select';
+import { Combobox } from '../Combobox';
+import { Modal } from '../Modal';
+import { magma } from '../../theme/magma';
 
 import { Story } from '@storybook/react/types-6-0';
+import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   component: Accordion,
@@ -46,7 +60,12 @@ const Template: Story<AccordionProps> = args => (
     </AccordionItem>
     <AccordionItem>
       <AccordionButton>Section 3</AccordionButton>
-      <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      <AccordionPanel>
+        Content for section three lorem ipsum. Content for section three lorem
+        ipsum. Content for section three lorem ipsum. Content for section three
+        lorem ipsum. Content for section three lorem ipsum. Content for section
+        three lorem ipsum.
+      </AccordionPanel>
     </AccordionItem>
     <AccordionItem isDisabled>
       <AccordionButton>Section 4</AccordionButton>
@@ -112,23 +131,15 @@ export const ExpandCollapseAll = args => {
 
   return (
     <>
-      <Button
-        disabled={disableExpandAll}
-        onClick={handleExpandAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Expand All
-      </Button>
-      <Button
-        disabled={disableCollapseAll}
-        onClick={handleCollapseAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Collapse All
-      </Button>
-
+      <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
+        <Button disabled={disableExpandAll} onClick={handleExpandAll}>
+          Expand All
+        </Button>
+        <Button disabled={disableCollapseAll} onClick={handleCollapseAll}>
+          Collapse All
+        </Button>
+      </ButtonGroup>
+      <br />
       <Accordion
         {...args}
         index={expandedIndex}
@@ -149,4 +160,131 @@ export const ExpandCollapseAll = args => {
       </Accordion>
     </>
   );
+};
+
+export const Inverse = Template.bind({});
+Inverse.args = {
+  isInverse: true,
+};
+
+Inverse.decorators = [
+  Story => (
+    <div style={{ background: magma.colors.primary600, padding: '12px' }}>
+      <Story />
+    </div>
+  ),
+];
+export const WithDropdown = args => {
+  const [showModal, setShowModal] = React.useState(false);
+
+  return (
+    <>
+      <Accordion {...args}>
+        <AccordionItem>
+          <AccordionButton>Personal Information</AccordionButton>
+          <AccordionPanel>
+            <Flex behavior={FlexBehavior.container} spacing={2}>
+              <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Input labelText="Email" />
+              </Flex>
+              <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Input labelText="Full Name" />
+              </Flex>
+              <Flex behavior={FlexBehavior.item} xs={12}>
+                <Textarea labelText="Message" />
+                <Textarea labelText="Comments" />
+                <Textarea labelText="Questions" />
+                <Textarea labelText="Jokes" />
+              </Flex>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Shipping Address</AccordionButton>
+          <AccordionPanel>
+            <Flex behavior={FlexBehavior.container} spacing={2}>
+              <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Input labelText="City" />
+              </Flex>
+              <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Select
+                  labelText="State"
+                  items={[
+                    { label: 'AL', value: 'al' },
+                    { label: 'AK', value: 'ak' },
+                    { label: 'CA', value: 'ca' },
+                    { label: 'CO', value: 'co' },
+                    { label: 'FL', value: 'fl' },
+                    { label: 'MA', value: 'ma' },
+                    { label: 'NJ', value: 'nj' },
+                    { label: 'NY', value: 'ny' },
+                    { label: 'OH', value: 'oh' },
+                    { label: 'VA', value: 'va' },
+                    { label: 'WY', value: 'wy' },
+                  ]}
+                />
+              </Flex>
+              <Flex behavior={FlexBehavior.item} xs={12}>
+                <Textarea labelText="Additional Information" />
+              </Flex>
+            </Flex>
+          </AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Random</AccordionButton>
+          <AccordionPanel>
+            <Flex behavior={FlexBehavior.container} spacing={2}>
+              <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Combobox
+                  isMulti
+                  labelText="ComboBox Example"
+                  defaultItems={[
+                    { label: 'Pink', value: 'pink' },
+                    { label: 'Orange', value: 'orange' },
+                    { label: 'Purple', value: 'purple' },
+                  ]}
+                />
+              </Flex>
+              <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Dropdown>
+                  <DropdownButton>Basic Dropdown</DropdownButton>
+                  <DropdownContent>
+                    <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number 4</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number 5</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item 5</DropdownMenuItem>
+                  </DropdownContent>
+                </Dropdown>
+              </Flex>
+            </Flex>
+            <Modal
+              header="Modal Title"
+              onClose={() => setShowModal(false)}
+              isOpen={showModal}
+            >
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
+                sed lorem in tellus dignissim varius in sit amet nibh.
+                Suspendisse ac bibendum diam, at gravida ex. In ac eros et massa
+                faucibus ultricies. Donec molestie tempor diam eleifend tempor.
+                Cras nec feugiat dui, ac tincidunt elit. Duis ac vulputate
+                lorem. Nullam maximus tortor eget cursus aliquam. Praesent leo
+                quam, viverra iaculis elit at, pulvinar malesuada magna.
+              </p>
+              <p>
+                <Button>This is a button</Button>
+              </p>
+            </Modal>
+            <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+          </AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    </>
+  );
+};
+WithDropdown.args = {
+  isInverse: false,
+  isMulti: false,
 };

@@ -8,6 +8,7 @@ import { ThemeInterface } from '../../theme/magma';
 export type ItemRenderOptions<T> = {
   key: string;
   isFocused?: boolean;
+  isInverse?: boolean;
   item: T;
   itemRef: React.Ref<HTMLLIElement>;
   itemString: string;
@@ -44,10 +45,11 @@ export const DefaultLoadingIndicator = props => {
 export function DefaultItem<T>({
   itemRef,
   itemString,
+  isInverse,
   ...props
 }: ItemRenderOptions<T>) {
   return (
-    <StyledItem {...props} ref={itemRef}>
+    <StyledItem {...props} isInverse={isInverse} ref={itemRef}>
       {itemString}
     </StyledItem>
   );

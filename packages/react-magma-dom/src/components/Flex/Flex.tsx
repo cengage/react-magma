@@ -73,6 +73,7 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   direction?: FlexDirection;
   /**
    * If true, the component will have the flex item behavior. You should be wrapping items with a container.
+   * @default FlexJustify.flexStart
    */
   justify?: FlexJustify;
   /**
@@ -80,6 +81,9 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default 0
    */
   spacing?: number;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Defines the flex-wrap style property. It's applied for all screen sizes.

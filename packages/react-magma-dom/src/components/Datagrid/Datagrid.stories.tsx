@@ -2,9 +2,12 @@ import React from 'react';
 import { Datagrid } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DatagridProps } from './Datagrid';
-import { TablePaginationProps, TableRowColor } from '../Table';
+import { TableDensity, TablePaginationProps, TableRowColor } from '../Table';
 import { usePagination } from '../Pagination/usePagination';
 import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
+import { magma } from '../../theme/magma';
+import { Spacer, SpacerAxis } from '../Spacer';
 
 const rowsForPagination = [
   {
@@ -188,22 +191,23 @@ const Template: Story<Omit<DatagridProps, 'selectedRows'>> = args => (
   <Datagrid {...args}>Sample Text</Datagrid>
 );
 
-const ControlledTemplate: Story<Omit<DatagridProps, 'defaultSelectedRows'>> =
-  args => {
-    const [selectedRows, updatedSelectedRows] = React.useState<
-      (string | number)[]
-    >([1]);
+const ControlledTemplate: Story<
+  Omit<DatagridProps, 'defaultSelectedRows'>
+> = args => {
+  const [selectedRows, updatedSelectedRows] = React.useState<
+    (string | number)[]
+  >([1]);
 
-    return (
-      <Datagrid
-        {...args}
-        selectedRows={selectedRows}
-        onSelectedRowsChange={updatedSelectedRows}
-      >
-        Sample Text
-      </Datagrid>
-    );
-  };
+  return (
+    <Datagrid
+      {...args}
+      selectedRows={selectedRows}
+      onSelectedRowsChange={updatedSelectedRows}
+    >
+      Sample Text
+    </Datagrid>
+  );
+};
 
 const ControlledPaginatedTemplate: Story<DatagridProps> = ({
   paginationProps,
@@ -284,12 +288,15 @@ const coloredRows = [
 ];
 
 const defaultArgs = {
+  density: TableDensity.normal,
   columns: columns,
   rows: rowsForPagination,
   hasHoverStyles: false,
+  hasSquareCorners: true,
   hasVerticalBorders: false,
   hasZebraStripes: false,
   isSelectable: false,
+  isInverse: false,
   paginationProps: {},
 };
 
@@ -352,28 +359,31 @@ WithoutPagination.args = {
   hasPagination: false,
 };
 
-const CustomPaginationComponent: React.FunctionComponent<TablePaginationProps> =
-  props => {
-    const { itemCount, rowsPerPage, onPageChange } = props;
-    const { page, pageButtons } = usePagination({
-      count: itemCount / rowsPerPage,
-      numberOfAdjacentPages: 0,
-      numberOfEdgePages: 0,
-      onPageChange,
-    });
+const CustomPaginationComponent: React.FunctionComponent<
+  TablePaginationProps
+> = props => {
+  const { itemCount, rowsPerPage, onPageChange } = props;
+  const { page, pageButtons } = usePagination({
+    count: itemCount / rowsPerPage,
+    numberOfAdjacentPages: 0,
+    numberOfEdgePages: 0,
+    onPageChange,
+  });
 
-    const previousButton = pageButtons[0];
-    const nextButton = pageButtons[pageButtons.length - 1];
+  const previousButton = pageButtons[0];
+  const nextButton = pageButtons[pageButtons.length - 1];
 
-    return (
-      <div
-        style={{
-          alignItems: 'center',
-          display: 'flex',
-          justifyContent: 'flex-end',
-        }}
-      >
-        You are on page {page}
+  return (
+    <div
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'flex-end',
+      }}
+    >
+      You are on page {page}
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing05} />
+      <ButtonGroup>
         <Button
           disabled={previousButton.disabled}
           onClick={previousButton.onClick}
@@ -383,9 +393,10 @@ const CustomPaginationComponent: React.FunctionComponent<TablePaginationProps> =
         <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
           Next Page
         </Button>
-      </div>
-    );
-  };
+      </ButtonGroup>
+    </div>
+  );
+};
 
 export const PaginationWithCustomComponent = Template.bind({});
 PaginationWithCustomComponent.args = {

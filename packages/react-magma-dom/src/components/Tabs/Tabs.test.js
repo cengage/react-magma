@@ -257,18 +257,18 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.pop02,
+      magma.colors.tertiary,
       {
         target: ':after',
       }
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
     expect(getByTestId('buttonNext')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
   });
 

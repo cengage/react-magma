@@ -14,7 +14,14 @@ export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
    **/
   isCompact?: boolean;
   isInverse?: boolean;
+  /**
+   * Position of the AppBar
+   * @default AppBarPosition.static
+   **/
   position?: AppBarPosition;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -43,8 +50,8 @@ const StyledHeader = styled.header<{
   border-bottom: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.foundation
-        : props.theme.colors.neutral06};
+        ? props.theme.colors.primary700
+        : props.theme.colors.neutral300};
   box-shadow: ${props =>
     props.position === AppBarPosition.sticky ||
     props.position === AppBarPosition.fixed
