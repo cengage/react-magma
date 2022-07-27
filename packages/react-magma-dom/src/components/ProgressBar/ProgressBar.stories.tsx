@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
-import { ProgressBar, ProgressBarProps, ProgressBarColor } from '.';
+import { ProgressBar, ProgressBarProps, ProgressBarColor, ProgressBarDirection } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<ProgressBarProps> = args => <ProgressBar {...args} />;
@@ -13,6 +13,12 @@ export default {
       control: {
         type: 'select',
         options: ProgressBarColor,
+      },
+    },
+    direction: {
+      control: {
+        type: 'select',
+        options: ProgressBarDirection,
       },
     },
     height: {

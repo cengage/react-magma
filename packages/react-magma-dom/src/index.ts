@@ -238,6 +238,13 @@ export * from './components/Transition';
 export * from './components/Drawer';
 export * from './components/FormFieldContainer';
 export * from './components/Grid';
+
+export * from './components/Slider';
+
+export * from './components/Tag';
+
+export { useDimensions } from './hooks/useDimensions';
+
 export * from './components/Tag';
 export * from './components/List';
 export * from './components/BlockQuote';
