@@ -12,6 +12,7 @@ export interface HandleProps extends HTMLMotionProps<'div'> {
   defaultValue: number;
   direction?: ProgressBarDirection;
   disabled?: boolean;
+  isInverse?: boolean;
   max: number;
   min: number;
   offset: number;
@@ -23,17 +24,19 @@ export interface HandleProps extends HTMLMotionProps<'div'> {
   theme?: ThemeInterface;
 }
 
-const AnimatedHandle = styled(motion.div)<Pick<HandleProps, "disabled" | "theme" | "direction">>`
-  box-shadow: ${props =>
-    props.disabled
-      ? 'none'
-      : `inset 0 0 0 1px ${props.theme.colors.neutral04},
-    0 0 4px ${props.theme.colors.shade02}`};
+const AnimatedHandle = styled(motion.div)<
+  Pick<HandleProps, 'disabled' | 'theme' | 'direction' | 'isInverse'>
+>`
   background: ${props =>
     props.disabled
-      ? props.theme.colors.neutral05
-      : props.theme.colors.neutral08};
+      ? props.theme.colors.neutral300
+      : props.theme.colors.neutral100};
   position: absolute;
+  border: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral500};
   left: ${props =>
     props.direction === ProgressBarDirection.vertical ? '-4px' : 'inherit'};
   width: 16px;
@@ -56,6 +59,7 @@ export const Handle = (props: HandleProps) => {
     defaultValue,
     direction,
     disabled,
+    isInverse,
     max,
     min,
     offset,
@@ -66,6 +70,8 @@ export const Handle = (props: HandleProps) => {
     testId,
     theme,
   } = props;
+
+  console.log('offset', offset);
 
   const clamp = (val: number) => {
     return val > max ? max : val < min ? min : val;
@@ -194,6 +200,7 @@ export const Handle = (props: HandleProps) => {
       }
       dragElastic={0}
       dragMomentum={false}
+      isInverse={isInverse}
       onDrag={(event, info) => {
         setValue(
           round(
@@ -210,7 +217,7 @@ export const Handle = (props: HandleProps) => {
         console.log(min, max);
       }}
       ref={handleRef}
-      role='slider'
+      role="slider"
       style={
         direction === ProgressBarDirection.vertical
           ? { marginTop: -handleDimensions.width / 2, y }
@@ -222,7 +229,9 @@ export const Handle = (props: HandleProps) => {
     >
       {!disabled && (
         <Tooltip content={value.toString()}>
-          <StyledValueLabel aria-label={value.toString()}>{value.toString()}</StyledValueLabel>
+          <StyledValueLabel aria-label={value.toString()}>
+            {value.toString()}
+          </StyledValueLabel>
         </Tooltip>
       )}
     </AnimatedHandle>

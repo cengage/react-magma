@@ -8,12 +8,14 @@ export interface MarkerProps extends ProgressBarProps {
   label?: string;
   percentage: number;
   trackLength: number;
+  isInverse?: boolean;
+  theme?: any;
 }
 
 const getAlignment = ({ dimensions, percentage, trackLength }: MarkerProps) => {
   const position = (trackLength * percentage) / 100;
   const width = dimensions.width / 2;
-  console.log(position, width);
+  // console.log(position, width);
 
   return width > position
     ? 'calc(0% + 2px)'
@@ -25,7 +27,7 @@ const getAlignment = ({ dimensions, percentage, trackLength }: MarkerProps) => {
 const getMargin = ({ dimensions, percentage, trackLength }: MarkerProps) => {
   const position = (trackLength * percentage) / 100;
   const width = dimensions.width / 2;
-  console.log(position, width);
+  // console.log(position, width);
 
   return width > position
     ? 0
@@ -57,7 +59,10 @@ export const StyledMarker = styled.div<MarkerProps>`
     position: absolute;
     height: 4px;
     width: 4px;
-    background: #8f8f8f;
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
     border-radius: 4px;
     left: ${props =>
       props.direction === ProgressBarDirection.vertical
@@ -70,24 +75,41 @@ export const StyledMarker = styled.div<MarkerProps>`
 `;
 export const StyledMarkerLabel = styled.div<ProgressBarProps>`
   font-size: 14px;
-  color: #3f3f3f;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   margin: ${props =>
     props.direction === ProgressBarDirection.vertical
       ? '0 0 0 18px'
       : '2px 0 0 0'};
 `;
 
-export const Marker = ({ direction, label, ...rest }: MarkerProps) => {
+export const Marker = ({
+  direction,
+  isInverse,
+  theme,
+  label,
+  ...rest
+}: MarkerProps) => {
   const [handleRef, handleDimensions] = useDimensions<HTMLDivElement>();
-  console.log(rest);
+
   return (
     <StyledMarker
       ref={handleRef}
       dimensions={handleDimensions}
       direction={direction}
+      isInverse={isInverse}
+      theme={theme}
       {...rest}
     >
-      <StyledMarkerLabel direction={direction}>{label}</StyledMarkerLabel>
+      <StyledMarkerLabel
+        direction={direction}
+        isInverse={isInverse}
+        theme={theme}
+      >
+        {label}
+      </StyledMarkerLabel>
     </StyledMarker>
   );
 };

@@ -7,6 +7,7 @@ import { Track } from './Track';
 import { useDimensions } from '../../hooks/useDimensions';
 
 import { ProgressBarDirection, ProgressBarProps } from '../ProgressBar';
+import { lowerFirst } from 'lodash';
 
 export enum SliderType {
   range = 'range',
@@ -24,6 +25,8 @@ export interface SliderProps
   disabled?: boolean;
 
   hasTooltip?: boolean;
+
+  isInverse?: boolean;
 
   min?: number;
 
@@ -60,6 +63,7 @@ export const Slider = (props: SliderProps) => {
     disabled,
     // hasTooltip,
     height,
+    isInverse: isInverseProp,
     max: rangeMax = 100,
     min: rangeMin = 0,
     marks,
@@ -78,6 +82,9 @@ export const Slider = (props: SliderProps) => {
   const valueToPercent = (value: number) => {
     return ((value - rangeMin) * 100) / (rangeMax - rangeMin);
   };
+
+  console.log('trackDimensions', trackDimensions);
+  
 
   React.useEffect(() => {
     if (direction === ProgressBarDirection.horizontal) {
@@ -100,7 +107,7 @@ export const Slider = (props: SliderProps) => {
   const [values, setValues] = React.useState<number[]>(defaultValue);
 
   const theme = React.useContext(ThemeContext);
-  const isInverse = useIsInverse(props.isInverse);
+  const isInverse = useIsInverse(isInverseProp);
 
   React.useEffect(() => {
     onValueChange && typeof onValueChange === 'function' && onValueChange(values);
@@ -144,7 +151,7 @@ export const Slider = (props: SliderProps) => {
             direction={direction}
             // dragControls={maxDragControls}
             // hasTooltip={hasTooltip}
-            // isInverse={isInverse}
+            isInverse={isInverse}
             key={index}
             min={allowCross || index === 0 ? rangeMin : values[index - 1]}
             max={

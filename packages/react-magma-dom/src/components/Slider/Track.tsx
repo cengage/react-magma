@@ -3,5 +3,5 @@ import { ProgressBar } from '../ProgressBar';
 
 export const Track = styled(ProgressBar)`
   position: absolute;
-  width: ${props => (props.width ? props.width : '100%')};
+  width: ${props => (props.width || '100%')};
 `;

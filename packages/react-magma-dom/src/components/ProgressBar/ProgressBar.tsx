@@ -272,6 +272,8 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             <Marker
               direction={direction}
               trackLength={progressBarDimensions.width}
+              isInverse={isInverse}
+              theme={theme}
               {...props}
             />
           ))}
