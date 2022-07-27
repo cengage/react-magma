@@ -7,7 +7,6 @@ import { Track } from './Track';
 import { useDimensions } from '../../hooks/useDimensions';
 
 import { ProgressBarDirection, ProgressBarProps } from '../ProgressBar';
-import { lowerFirst } from 'lodash';
 
 export enum SliderType {
   range = 'range',
