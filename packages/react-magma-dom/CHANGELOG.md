@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.6.0
+
+### Minor Changes
+
+- 1afe29a3: feat(datagrid): Add `isSortableBySelected` prop to DataGrid, allowing tables to be sorted by the selected items.
+
 ## 2.5.14
 
 ### Patch Changes
