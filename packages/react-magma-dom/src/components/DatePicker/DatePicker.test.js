@@ -990,5 +990,30 @@ describe('Date Picker', () => {
       fireEvent.blur(datePickerInput);
       expect(datePickerInput).toHaveAttribute('value', '2022/29/09');
     });
+
+    it('supports MMMM d, yyyy format', () => {
+      const defaultDate = new Date('November 3, 2022');
+      const selectDate = new Date('November 21, 2022');
+      const label = 'MMMM d, yyyy Date Picker';
+      const { getByText, getByLabelText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            dateFormat: 'MMMM d, yyyy',
+          }}
+        >
+          <DatePicker labelText={label} defaultDate={defaultDate} />
+        </I18nContext.Provider>
+      );
+
+      const datePickerInput = getByLabelText(label);
+      const calendar = getByLabelText('Toggle Calendar Widget');
+
+      expect(datePickerInput).toHaveAttribute('placeholder', 'mmmm d, yyyy');
+      fireEvent.click(calendar);
+      fireEvent.click(getByText(selectDate.getDate().toString()));
+      fireEvent.blur(datePickerInput);
+      expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
+    });
   });
 });

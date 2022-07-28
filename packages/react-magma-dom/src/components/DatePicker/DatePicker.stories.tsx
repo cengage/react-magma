@@ -44,6 +44,15 @@ export const NonDefaultFormats = () => {
       >
         <DatePicker labelText="Date format: yyyy/dd/MM" />
       </I18nContext.Provider>
+      <br />
+      <I18nContext.Provider
+        value={{
+          ...defaultI18n,
+          dateFormat: 'MMMM d, yyyy',
+        }}
+      >
+        <DatePicker labelText="Date format: MMMM d, yyyy" />
+      </I18nContext.Provider>
     </>
   );
 };
