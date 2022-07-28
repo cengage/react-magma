@@ -1,7 +1,9 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { NativeSelect } from '.';
 import { render } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 describe('NativeSelect', () => {
   it('should find element by testId', () => {
@@ -33,5 +35,29 @@ describe('NativeSelect', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should render a disabled select', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <NativeSelect disabled testId={testId}></NativeSelect>
+    );
+    const nativeselect = getByTestId(testId);
+    expect(nativeselect).toHaveStyleRule(
+      'color',
+      transparentize(0.4, magma.colors.neutral500)
+    );
+  });
+
+  it('should render a disabled inverse select', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <NativeSelect disabled isInverse testId={testId}></NativeSelect>
+    );
+    const nativeselect = getByTestId(testId);
+    expect(nativeselect).toHaveStyleRule(
+      'color',
+      transparentize(0.6, magma.colors.neutral100)
+    );
   });
 });

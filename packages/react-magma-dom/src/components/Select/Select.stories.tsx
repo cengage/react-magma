@@ -4,7 +4,6 @@ import { Select, SelectOptions, SelectProps, MultiSelectProps } from './';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { magma } from '../../theme/magma';
 
 const Template: Story<SelectProps<SelectOptions>> = args => (
   <Select {...args} />
@@ -39,12 +38,22 @@ Default.args = {
   labelPosition: LabelPosition.top,
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
+  ...Default.args,
+};
+
 export const Multi = (props: MultiSelectProps<SelectOptions>) => (
-  <Select isMulti {...props} items={[
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Green', value: 'green' },
-  ]} />
+  <Select
+    isMulti
+    {...props}
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ]}
+  />
 );
 
 export const ErrorMessage = Template.bind({});

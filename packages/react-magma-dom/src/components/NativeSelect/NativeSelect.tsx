@@ -1,17 +1,18 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 
-import { inputBaseStyles } from '../InputBase';
+import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
 } from '../FormFieldContainer';
-import { SelectTriggerButton } from '../Select/SelectTriggerButton';
 
+import { DefaultDropdownIndicator } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import { useGenerateId } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -22,19 +23,37 @@ export interface NativeSelectProps
   /**
    * @internal
    */
-  testId?: string;
   optionLabel?: string;
+  testId?: string;
 }
-const StyledNativeSelect = styled.select<{
-  theme: ThemeInterface;
+const StyledNativeSelectWrapper = styled.div<{
+  disabled?: boolean;
   isInverse?: boolean;
+  theme: ThemeInterface;
 }>`
-  ${inputBaseStyles};
-  background: inherit;
-  > option {
-    background: ${props =>
-      props.isInverse ? props.theme.colors.neutral600 : 'none'};
+  align-items: center;
+  display: flex;
+  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
+  ${inputWrapperStyles}
+  svg {
+    color: ${props =>
+      props.isInverse && props.disabled
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.disabled
+        ? transparentize(0.4, props.theme.colors.neutral500)
+        : 'inherit'};
+    margin: 0 0 0 -${props => props.theme.spaceScale.spacing06};
+    pointer-events: none;
+    z-index: 1;
   }
+`;
+
+const StyledNativeSelect = styled.select<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
+  margin: -1px 0;
+  ${inputBaseStyles};
 `;
 
 export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
@@ -69,11 +88,10 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         messageStyle={messageStyle}
         ref={ref}
       >
-        <SelectTriggerButton
+        <StyledNativeSelectWrapper
           disabled={disabled}
-          hasError={!!errorMessage}
           isInverse={isInverse}
-          toggleButtonProps={''}
+          theme={theme}
         >
           <StyledNativeSelect
             {...other}
@@ -85,7 +103,8 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           >
             {children}
           </StyledNativeSelect>
-        </SelectTriggerButton>
+          <DefaultDropdownIndicator disabled={disabled} />
+        </StyledNativeSelectWrapper>
       </FormFieldContainer>
     );
   }
