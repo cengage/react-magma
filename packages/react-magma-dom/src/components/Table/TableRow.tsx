@@ -1,7 +1,15 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
-import { TableContext, TableRowColor, TableCell, TableHeaderCell } from './';
+import {
+  TableContext,
+  TableRowColor,
+  TableCell,
+  TableHeaderCell,
+  TableCellAlign,
+  TableDensity,
+  TableSortDirection,
+} from './';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Checkbox } from '../Checkbox';
 import {
@@ -9,6 +17,7 @@ import {
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
 import { transparentize } from 'polished';
+import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
 
 /**
  * @children required
@@ -22,6 +31,15 @@ export interface TableRowProps
   headerRowStatus?: IndeterminateCheckboxStatus;
   isSelected?: boolean;
   isSelectableDisabled?: boolean;
+  /**
+   * Direction by which the column is sorted
+   * @default TableSortDirection.none
+   */
+  sortDirection?: TableSortDirection;
+  /**
+   * Event that fires when clicking the table header cell sort button
+   */
+  onSort?: () => void;
   onHeaderRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onTableRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   rowIndex?: number;
@@ -124,6 +142,47 @@ const StyledTableRow = styled.tr<{
     `};
 `;
 
+const SortButton = styled.button<{
+  density?: TableDensity;
+  isInverse?: boolean;
+  textAlign?: TableCellAlign;
+}>`
+  align-items: flex-end;
+  background: none;
+  border: 0;
+  color: inherit;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  flex: 1 1 auto;
+
+  &:focus {
+    outline: 2px dotted
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: -2px;
+  }
+
+  &:hover,
+  &:focus {
+    cursor: pointer;
+
+    svg {
+      fill: ${props =>
+        props.isInverse
+          ? props.theme.colors.neutral100
+          : props.theme.colors.neutral700};
+    }
+  }
+`;
+
+const SortIconWrapper = styled.span`
+  position: relative;
+  top: ${props => props.theme.spaceScale.spacing01};
+`;
+
 export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   (props, ref) => {
     const {
@@ -131,9 +190,11 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       headerRowStatus,
       isSelected,
       isSelectableDisabled,
+      sortDirection,
       onHeaderRowSelect,
       onTableRowSelect,
       rowIndex,
+      onSort,
       testId,
       ...other
     } = props;
@@ -160,6 +221,53 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       return tableContext.isInverse;
     }
 
+    const [isHovering, setIsHovering] = React.useState(false);
+
+    const handleMouseEnter = () => {
+      if (tableContext.isSortableBySelected) setIsHovering(true);
+    };
+
+    const handleMouseLeave = () => {
+      if (tableContext.isSortableBySelected) setIsHovering(false);
+    };
+
+    function handleSort() {
+      onSort && typeof onSort === 'function' && onSort();
+    }
+
+    const SortIcon =
+      sortDirection === TableSortDirection.ascending ? (
+        <SouthIcon
+          color={
+            tableContext.isInverse
+              ? theme.colors.neutral100
+              : theme.colors.neutral700
+          }
+          size={theme.iconSizes.small}
+          testId="sort-ascending"
+        />
+      ) : sortDirection === TableSortDirection.descending ? (
+        <NorthIcon
+          color={
+            tableContext.isInverse
+              ? theme.colors.neutral100
+              : theme.colors.neutral700
+          }
+          size={theme.iconSizes.small}
+          testId="sort-descending"
+        />
+      ) : (
+        <SortDoubleArrowIcon
+          color={
+            tableContext.isInverse
+              ? theme.colors.neutral100
+              : theme.colors.neutral700
+          }
+          size={theme.iconSizes.small}
+          testId="sort-none"
+        />
+      );
+
     return (
       <StyledTableRow
         {...other}
@@ -171,15 +279,34 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         theme={theme}
       >
         {tableContext.isSelectable && isHeaderRow && (
-          <TableHeaderCell width={theme.spaceScale.spacing05}>
-            <IndeterminateCheckbox
-              status={headerRowStatus}
-              isInverse={getIsCheckboxInverse()}
-              labelStyle={{ padding: 0 }}
-              labelText="Select all rows"
-              isTextVisuallyHidden
-              onChange={onHeaderRowSelect}
-            />
+          <TableHeaderCell
+            width={theme.spaceScale.spacing05}
+            style={{ background: isHovering ? transparentize(0.93, theme.colors.neutral900) : '' }}
+          >
+            <span style={{ display: 'flex', flexDirection: 'row' }}>
+              <IndeterminateCheckbox
+                status={headerRowStatus}
+                isInverse={getIsCheckboxInverse()}
+                labelStyle={{ padding: 0 }}
+                labelText="Select all rows"
+                isTextVisuallyHidden
+                onChange={onHeaderRowSelect}
+              />
+              {tableContext.isSortableBySelected && (
+                <SortButton
+                  density={tableContext.density}
+                  isInverse={tableContext.isInverse}
+                  onClick={handleSort}
+                  textAlign={TableCellAlign.left}
+                  theme={theme}
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  data-testid={`${testId || ''}-sort-button`}
+                >
+                  <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
+                </SortButton>
+              )}
+            </span>
           </TableHeaderCell>
         )}
         {tableContext.isSelectable && !isHeaderRow && (
