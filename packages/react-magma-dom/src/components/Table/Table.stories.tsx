@@ -475,7 +475,7 @@ export const RowColorsInverse = () => {
   );
 };
 
-export const Sortable = () => {
+export const Sortable = args => {
   const products = [
     { id: 1, name: 'Cheese', price: 5, stock: 20 },
     { id: 2, name: 'Milk', price: 5, stock: 32 },

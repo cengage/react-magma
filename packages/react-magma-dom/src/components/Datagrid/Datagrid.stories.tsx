@@ -2,7 +2,11 @@ import React from 'react';
 import { Datagrid } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { DatagridProps } from './Datagrid';
-import { TablePaginationProps, TableRowColor } from '../Table';
+import {
+  TablePaginationProps,
+  TableRowColor,
+  TableSortDirection,
+} from '../Table';
 import { usePagination } from '../Pagination/usePagination';
 import { Button } from '../Button';
 
@@ -188,22 +192,23 @@ const Template: Story<Omit<DatagridProps, 'selectedRows'>> = args => (
   <Datagrid {...args}>Sample Text</Datagrid>
 );
 
-const ControlledTemplate: Story<Omit<DatagridProps, 'defaultSelectedRows'>> =
-  args => {
-    const [selectedRows, updatedSelectedRows] = React.useState<
-      (string | number)[]
-    >([1]);
+const ControlledTemplate: Story<
+  Omit<DatagridProps, 'defaultSelectedRows'>
+> = args => {
+  const [selectedRows, updatedSelectedRows] = React.useState<
+    (string | number)[]
+  >([1]);
 
-    return (
-      <Datagrid
-        {...args}
-        selectedRows={selectedRows}
-        onSelectedRowsChange={updatedSelectedRows}
-      >
-        Sample Text
-      </Datagrid>
-    );
-  };
+  return (
+    <Datagrid
+      {...args}
+      selectedRows={selectedRows}
+      onSelectedRowsChange={updatedSelectedRows}
+    >
+      Sample Text
+    </Datagrid>
+  );
+};
 
 const ControlledPaginatedTemplate: Story<DatagridProps> = ({
   paginationProps,
@@ -290,6 +295,7 @@ const defaultArgs = {
   hasVerticalBorders: false,
   hasZebraStripes: false,
   isSelectable: false,
+  isSortableBySelected: false,
   paginationProps: {},
 };
 
@@ -303,7 +309,127 @@ ColoredRows.args = {
 };
 
 export const Selectable = Template.bind({});
-Selectable.args = { ...defaultArgs, isSelectable: true };
+Selectable.args = {
+  ...defaultArgs,
+  isSelectable: true,
+};
+
+export const SelectableAndSortable: Story<DatagridProps> = ({
+  paginationProps,
+  ...args
+}) => {
+  const [sortConfig, setSortConfig] = React.useState({
+    key: '',
+    direction: TableSortDirection.none,
+    message: '',
+  });
+
+  const requestSort = (key: string) => {
+    let direction = TableSortDirection.ascending;
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === TableSortDirection.ascending
+    ) {
+      direction = TableSortDirection.descending;
+    }
+    const message = `Table is sorted by ${key}, ${direction}`;
+    setSortConfig({ key, direction, message });
+  };
+
+  const productColumns = [
+    { field: 'name', header: 'Name' },
+    { field: 'price', header: 'Price' },
+    { field: 'stock', header: 'Stock' },
+  ];
+  const products = [
+    { id: 1, name: 'Cheese', price: 5, stock: 20 },
+    { id: 2, name: 'Milk', price: 5, stock: 32 },
+    { id: 3, name: 'Yogurt', price: 3, stock: 12 },
+    { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
+    { id: 5, name: 'Butter', price: 2, stock: 99 },
+    { id: 6, name: 'Sour Cream ', price: 4, stock: 86 },
+  ];
+
+  const [selectedItems, setSelectedItems] = React.useState([]);
+
+  const sortedItems = React.useMemo(() => {
+    const selectedItemsToSort = products.filter(product =>
+      selectedItems.includes(product.id)
+    );
+    const nonSelectedItems = products.filter(
+      product => !selectedItems.includes(product.id)
+    );
+
+    let sortOrder = 0;
+    if (sortConfig !== null) {
+      if (selectedItemsToSort.length < 2) {
+        sortOrder =
+          sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
+      }
+      selectedItemsToSort.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          sortOrder =
+            sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          sortOrder =
+            sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
+        }
+        return sortOrder;
+      });
+    }
+    if (selectedItemsToSort.length === 0) {
+      return products;
+    } else if (sortOrder === 1) {
+      return selectedItemsToSort.concat(nonSelectedItems);
+    } else {
+      return nonSelectedItems.concat(selectedItemsToSort);
+    }
+  }, [sortConfig]);
+
+  function handleRowSelect(
+    id: string | number,
+    ev: React.ChangeEvent<HTMLInputElement>
+  ) {
+    if (ev.target.checked) {
+      if (!selectedItems.includes(id)) {
+        setSelectedItems([...selectedItems, id]);
+      }
+    } else if (!ev.target.checked) {
+      setSelectedItems(selectedItems.filter(i => i !== id));
+    }
+  }
+
+  function handleHeaderSelect(ev: React.ChangeEvent<HTMLInputElement>) {
+    if (ev.target.checked && selectedItems.length === 0) {
+      const checkedIds = [];
+      products.filter(prod => checkedIds.push(prod.id));
+      setSelectedItems(checkedIds);
+    } else {
+      setSelectedItems([]);
+    }
+  }
+
+  return (
+    <Datagrid
+      {...args}
+      rows={sortedItems}
+      columns={productColumns}
+      onSortBySelected={() => {
+        requestSort('name');
+      }}
+      onRowSelect={handleRowSelect}
+      onHeaderSelect={handleHeaderSelect}
+      sortDirection={sortConfig.direction}
+    />
+  );
+};
+
+SelectableAndSortable.args = {
+  isSelectable: true,
+  isSortableBySelected: true,
+};
 
 export const ControlledSelectable = ControlledTemplate.bind({});
 ControlledSelectable.args = {
@@ -352,40 +478,41 @@ WithoutPagination.args = {
   hasPagination: false,
 };
 
-const CustomPaginationComponent: React.FunctionComponent<TablePaginationProps> =
-  props => {
-    const { itemCount, rowsPerPage, onPageChange } = props;
-    const { page, pageButtons } = usePagination({
-      count: itemCount / rowsPerPage,
-      numberOfAdjacentPages: 0,
-      numberOfEdgePages: 0,
-      onPageChange,
-    });
+const CustomPaginationComponent: React.FunctionComponent<
+  TablePaginationProps
+> = props => {
+  const { itemCount, rowsPerPage, onPageChange } = props;
+  const { page, pageButtons } = usePagination({
+    count: itemCount / rowsPerPage,
+    numberOfAdjacentPages: 0,
+    numberOfEdgePages: 0,
+    onPageChange,
+  });
 
-    const previousButton = pageButtons[0];
-    const nextButton = pageButtons[pageButtons.length - 1];
+  const previousButton = pageButtons[0];
+  const nextButton = pageButtons[pageButtons.length - 1];
 
-    return (
-      <div
-        style={{
-          alignItems: 'center',
-          display: 'flex',
-          justifyContent: 'flex-end',
-        }}
+  return (
+    <div
+      style={{
+        alignItems: 'center',
+        display: 'flex',
+        justifyContent: 'flex-end',
+      }}
+    >
+      You are on page {page}
+      <Button
+        disabled={previousButton.disabled}
+        onClick={previousButton.onClick}
       >
-        You are on page {page}
-        <Button
-          disabled={previousButton.disabled}
-          onClick={previousButton.onClick}
-        >
-          Previous Page
-        </Button>
-        <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
-          Next Page
-        </Button>
-      </div>
-    );
-  };
+        Previous Page
+      </Button>
+      <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
+        Next Page
+      </Button>
+    </div>
+  );
+};
 
 export const PaginationWithCustomComponent = Template.bind({});
 PaginationWithCustomComponent.args = {

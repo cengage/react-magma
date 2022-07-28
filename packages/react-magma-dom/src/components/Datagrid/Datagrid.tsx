@@ -14,6 +14,7 @@ import {
   TableHeaderCellProps,
   TableRowColor,
   TablePaginationProps,
+  TableSortDirection,
 } from '../Table';
 import { defaultComponents } from './components';
 
@@ -110,6 +111,15 @@ export interface BaseDatagridProps extends TableProps {
    * Pagination data used to create the pagination footer. Created using the usePagination hook.
    */
   paginationProps?: Partial<TablePaginationProps>;
+  /**
+   * Function called when the sort button is clicked for selectable tables
+   */
+  onSortBySelected?: () => void;
+  /**
+   * Direction by which the column is sorted
+   * @default TableSortDirection.none
+   */
+  sortDirection?: TableSortDirection;
 }
 
 export interface ControlledSelectedRowsProps {
@@ -147,6 +157,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       rows,
       selectedRows: selectedRowsProp,
       hasPagination = true,
+      onSortBySelected,
+      sortDirection,
       ...other
     } = props;
     const [rowsToShow, setRowsToShow] = React.useState<DatagridRow[]>([]);
@@ -176,6 +188,10 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     React.useEffect(() => {
       setRowsToShow(hasPagination ? getPageItems(currentPage) : rows);
     }, [currentPage, rowsPerPage]);
+
+    React.useEffect(() => {
+      setRowsToShow(rows);
+    }, [rows]);
 
     const { Pagination } = defaultComponents({
       ...customComponents,
@@ -252,6 +268,12 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       }
     }
 
+    function handleRowSort() {
+      onSortBySelected &&
+        typeof onSortBySelected === 'function' &&
+        onSortBySelected();
+    }
+
     return (
       <>
         <Table {...other} ref={ref}>
@@ -259,6 +281,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             <TableRow
               headerRowStatus={headerRowStatus}
               onHeaderRowSelect={handleHeaderSelect}
+              onSort={handleRowSort}
+              sortDirection={sortDirection}
             >
               {columns.map(({ field, header, ...other }) => (
                 <TableHeaderCell
