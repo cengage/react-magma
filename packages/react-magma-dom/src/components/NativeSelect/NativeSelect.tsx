@@ -28,6 +28,7 @@ export interface NativeSelectProps
 }
 const StyledNativeSelectWrapper = styled.div<{
   disabled?: boolean;
+  hasError?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
@@ -90,6 +91,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       >
         <StyledNativeSelectWrapper
           disabled={disabled}
+          hasError={!!errorMessage}
           isInverse={isInverse}
           theme={theme}
         >

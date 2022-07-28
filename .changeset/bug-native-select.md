@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-Removing SelectTriggerButton to fix dropdown caret issues.
+fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.

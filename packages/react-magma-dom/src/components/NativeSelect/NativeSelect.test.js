@@ -60,4 +60,32 @@ describe('NativeSelect', () => {
       transparentize(0.6, magma.colors.neutral100)
     );
   });
+
+  it('should render an error state', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <NativeSelect
+        errorMessage="This is an error"
+        testId={testId}
+      ></NativeSelect>
+    );
+    const nativeselect = getByTestId(testId).parentElement;
+    expect(nativeselect).toHaveStyleRule('border-color', magma.colors.danger);
+  });
+
+  it('should render an inverse error state', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <NativeSelect
+        errorMessage="This is an error"
+        isInverse
+        testId={testId}
+      ></NativeSelect>
+    );
+    const nativeselect = getByTestId(testId).parentElement;
+    expect(nativeselect).toHaveStyleRule(
+      'border-color',
+      magma.colors.danger200
+    );
+  });
 });

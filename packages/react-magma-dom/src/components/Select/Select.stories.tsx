@@ -40,8 +40,8 @@ Default.args = {
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  disabled: true,
   ...Default.args,
+  disabled: true,
 };
 
 export const Multi = (props: MultiSelectProps<SelectOptions>) => (
