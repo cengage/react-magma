@@ -32,10 +32,8 @@ const StyledNativeSelectWrapper = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
-  align-items: center;
-  display: flex;
-  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
   ${inputWrapperStyles}
+  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
   svg {
     color: ${props =>
       props.isInverse && props.disabled

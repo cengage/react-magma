@@ -15,16 +15,6 @@ describe('NativeSelect', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should show an error message', () => {
-    const labelText = 'Label';
-    const errorMessage = 'This is an error';
-    const { getByText } = render(
-      <NativeSelect labelText={labelText} errorMessage={errorMessage} />
-    );
-
-    expect(getByText(errorMessage)).toBeInTheDocument();
-  });
-
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <NativeSelect labelText="Test">
