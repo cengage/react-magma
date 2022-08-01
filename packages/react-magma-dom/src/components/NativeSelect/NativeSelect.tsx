@@ -51,8 +51,14 @@ const StyledNativeSelect = styled.select<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
-  margin: -1px 0;
   ${inputBaseStyles};
+  height: 38px;
+  // Required for Windows && Chrome support
+  background: inherit;
+  > option {
+    background: ${props =>
+      props.isInverse ? props.theme.colors.neutral600 : 'none'};
+  }
 `;
 
 export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(

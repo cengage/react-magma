@@ -53,29 +53,37 @@ describe('NativeSelect', () => {
 
   it('should render an error state', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(
+    const { getByTestId, getByText } = render(
       <NativeSelect
         errorMessage="This is an error"
         testId={testId}
       ></NativeSelect>
     );
+
     const nativeselect = getByTestId(testId).parentElement;
     expect(nativeselect).toHaveStyleRule('border-color', magma.colors.danger);
+
+    const errorMessage = 'This is an error';
+    expect(getByText(errorMessage)).toBeInTheDocument();
   });
 
   it('should render an inverse error state', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(
+    const { getByTestId, getByText } = render(
       <NativeSelect
         errorMessage="This is an error"
         isInverse
         testId={testId}
       ></NativeSelect>
     );
+
     const nativeselect = getByTestId(testId).parentElement;
     expect(nativeselect).toHaveStyleRule(
       'border-color',
       magma.colors.danger200
     );
+
+    const errorMessage = 'This is an error';
+    expect(getByText(errorMessage)).toBeInTheDocument();
   });
 });
