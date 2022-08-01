@@ -150,14 +150,17 @@ const SortButton = styled.button<{
   align-items: flex-end;
   background: none;
   border: 0;
-  color: inherit;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   margin: 0;
   text-align: left;
   width: 100%;
   flex: 1 1 auto;
 
   &:focus {
-    outline: 2px dotted
+    outline: 2px solid
       ${props =>
         props.isInverse
           ? props.theme.colors.focusInverse
@@ -168,7 +171,6 @@ const SortButton = styled.button<{
   &:hover,
   &:focus {
     cursor: pointer;
-
     svg {
       fill: ${props =>
         props.isInverse
@@ -260,8 +262,8 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         <SortDoubleArrowIcon
           color={
             tableContext.isInverse
-              ? theme.colors.neutral100
-              : theme.colors.neutral700
+              ? transparentize(0.3, theme.colors.neutral100)
+              : theme.colors.neutral500
           }
           size={theme.iconSizes.small}
           testId="sort-none"
@@ -281,7 +283,11 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         {tableContext.isSelectable && isHeaderRow && (
           <TableHeaderCell
             width={theme.spaceScale.spacing05}
-            style={{ background: isHovering ? transparentize(0.93, theme.colors.neutral900) : '' }}
+            style={{
+              background: isHovering
+                ? transparentize(0.93, theme.colors.neutral900)
+                : '',
+            }}
           >
             <span style={{ display: 'flex', flexDirection: 'row' }}>
               <IndeterminateCheckbox

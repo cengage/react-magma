@@ -327,27 +327,77 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
 }) => {
   const [sortConfig, setSortConfig] = React.useState({
     key: '',
-    direction: TableSortDirection.none,
     message: '',
   });
+  const [selectedDirection, setSelectedDirection] = React.useState(
+    TableSortDirection.none
+  );
+  const [priceDirection, setPriceDirection] = React.useState(
+    TableSortDirection.none
+  );
+  const [stockDirection, setStockDirection] = React.useState(
+    TableSortDirection.none
+  );
 
   const requestSort = (key: string) => {
     let direction = TableSortDirection.ascending;
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === TableSortDirection.ascending
-    ) {
-      direction = TableSortDirection.descending;
+
+    if (key === 'name') {
+      if (
+        sortConfig?.key === key &&
+        selectedDirection === TableSortDirection.ascending
+      ) {
+        direction = TableSortDirection.descending;
+      }
+      setSelectedDirection(direction);
+      setPriceDirection(TableSortDirection.none);
+      setStockDirection(TableSortDirection.none);
+    } else if (key === 'price'){
+      if (
+        sortConfig?.key === key &&
+        priceDirection === TableSortDirection.ascending
+      ) {
+        direction = TableSortDirection.descending;
+      }
+      setPriceDirection(direction);
+      setSelectedDirection(TableSortDirection.none);
+      setStockDirection(TableSortDirection.none);
+    } else if (key === 'stock'){
+      if (
+        sortConfig?.key === key &&
+        stockDirection === TableSortDirection.ascending
+      ) {
+        direction = TableSortDirection.descending;
+      }
+      setStockDirection(direction);
+      setPriceDirection(TableSortDirection.none);
+      setSelectedDirection(TableSortDirection.none);
     }
+
     const message = `Table is sorted by ${key}, ${direction}`;
-    setSortConfig({ key, direction, message });
+    setSortConfig({ key, message });
   };
 
   const productColumns = [
     { field: 'name', header: 'Name' },
-    { field: 'price', header: 'Price' },
-    { field: 'stock', header: 'Stock' },
+    {
+      field: 'price',
+      header: 'Price',
+      isSortable: true,
+      onSort: () => {
+        requestSort('price');
+      },
+      sortDirection: priceDirection,
+    },
+    {
+      field: 'stock',
+      header: 'Stock',
+      isSortable: true,
+      onSort: () => {
+        requestSort('stock');
+      },
+      sortDirection: stockDirection,
+    },
   ];
   const products = [
     { id: 1, name: 'Cheese', price: 5, stock: 20 },
@@ -361,37 +411,51 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   const [selectedItems, setSelectedItems] = React.useState([]);
 
   const sortedItems = React.useMemo(() => {
-    const selectedItemsToSort = products.filter(product =>
-      selectedItems.includes(product.id)
-    );
-    const nonSelectedItems = products.filter(
-      product => !selectedItems.includes(product.id)
-    );
-
-    let sortOrder = 0;
-    if (sortConfig !== null) {
-      if (selectedItemsToSort.length < 2) {
-        sortOrder =
-          sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
-      }
-      selectedItemsToSort.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
+    if (sortConfig.key === 'name') {
+      const selectedItemsToSort = products.filter(product =>
+        selectedItems.includes(product.id)
+      );
+      const nonSelectedItems = products.filter(
+        product => !selectedItems.includes(product.id)
+      );
+      let sortOrder = 0;
+      if (sortConfig !== null) {
+        if (selectedItemsToSort.length < 2) {
           sortOrder =
-            sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
+            selectedDirection === TableSortDirection.ascending ? -1 : 1;
+        }
+        selectedItemsToSort.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            sortOrder =
+              selectedDirection === TableSortDirection.ascending ? -1 : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            sortOrder =
+              selectedDirection === TableSortDirection.ascending ? 1 : -1;
+          }
+          return sortOrder;
+        });
+      }
+      if (selectedItemsToSort.length === 0) {
+        return products;
+      } else if (sortOrder === 1) {
+        return selectedItemsToSort.concat(nonSelectedItems);
+      } else {
+        return nonSelectedItems.concat(selectedItemsToSort);
+      }
+    } else {
+      let sortableItems = [...products];
+      const direction = sortConfig.key === 'price' ? priceDirection : stockDirection;
+      sortableItems.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return direction === TableSortDirection.ascending ? -1 : 1;
         }
         if (a[sortConfig.key] > b[sortConfig.key]) {
-          sortOrder =
-            sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
+          return direction === TableSortDirection.ascending ? 1 : -1;
         }
-        return sortOrder;
+        return 0;
       });
-    }
-    if (selectedItemsToSort.length === 0) {
-      return products;
-    } else if (sortOrder === 1) {
-      return selectedItemsToSort.concat(nonSelectedItems);
-    } else {
-      return nonSelectedItems.concat(selectedItemsToSort);
+      return sortableItems;
     }
   }, [sortConfig]);
 
@@ -428,7 +492,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
       }}
       onRowSelect={handleRowSelect}
       onHeaderSelect={handleHeaderSelect}
-      sortDirection={sortConfig.direction}
+      sortDirection={selectedDirection}
     />
   );
 };

@@ -118,7 +118,7 @@ export interface BaseDatagridProps extends TableProps {
    */
   onSortBySelected?: () => void;
   /**
-   * Direction by which the column is sorted
+   * Direction by which the selectable column is sorted
    * @default TableSortDirection.none
    */
   sortDirection?: TableSortDirection;
