@@ -47,16 +47,26 @@ const StyledNativeSelectWrapper = styled.div<{
   }
 `;
 
+function borderColors(props) {
+  if (props.isInverse) {
+    if (props.hasError) {
+      return props.theme.colors.danger200;
+    }
+    return transparentize(0.5, props.theme.colors.neutral100);
+  }
+  if (props.hasError) {
+    return props.theme.colors.danger;
+  }
+  return props.theme.colors.neutral500;
+}
+
 const StyledNativeSelect = styled.select<{
+  hasError?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
   ${inputBaseStyles};
-  border: 1px solid
-    ${props =>
-      props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral100)
-        : props.theme.colors.neutral500};
+  border: 1px solid ${borderColors};
   // Required for Windows && Chrome support
   background: inherit;
   > option {
@@ -106,6 +116,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           <StyledNativeSelect
             {...other}
             data-testid={testId}
+            hasError={!!errorMessage}
             disabled={disabled}
             id={id}
             isInverse={isInverse}

@@ -58,9 +58,9 @@ describe('NativeSelect', () => {
       <NativeSelect errorMessage={errorMessage} testId={testId}></NativeSelect>
     );
 
-    expect(getByTestId(testId).parentElement).toHaveStyleRule(
-      'border-color',
-      magma.colors.danger
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.danger}`
     );
 
     expect(getByText(errorMessage)).toBeInTheDocument();
@@ -77,9 +77,9 @@ describe('NativeSelect', () => {
       ></NativeSelect>
     );
 
-    expect(getByTestId(testId).parentElement).toHaveStyleRule(
-      'border-color',
-      magma.colors.danger200
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.danger200}`
     );
 
     expect(getByText(errorMessage)).toBeInTheDocument();
