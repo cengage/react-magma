@@ -51,6 +51,30 @@ describe('NativeSelect', () => {
     );
   });
 
+  it('should render a default border', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <NativeSelect testId={testId}></NativeSelect>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border',
+      `1px solid ${magma.colors.neutral500}`
+    );
+  });
+
+  it('should render a default inverse border', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <NativeSelect isInverse testId={testId}></NativeSelect>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border',
+      `1px solid ${transparentize(0.5, magma.colors.neutral100)}`
+    );
+  });
+
   it('should render an error state', () => {
     const testId = 'test-id';
     const errorMessage = 'This is an error';
