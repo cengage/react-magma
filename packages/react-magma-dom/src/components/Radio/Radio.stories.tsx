@@ -12,11 +12,7 @@ export default {
 export const Default = () => {
   return (
     <>
-      <RadioGroup
-        labelText="Basic Usage"
-        id="basicGroup1"
-        name="basic1"
-      >
+      <RadioGroup labelText="Basic Usage" id="basicGroup1" name="basic1">
         <Radio id="radio1" labelText="Option one label" value="1" />
         <Radio
           id="radio2"
@@ -30,19 +26,9 @@ export const Default = () => {
           value="3"
         />
       </RadioGroup>
-      <RadioGroup
-        labelText="Disabled"
-        id="basicGroup2"
-        name="basic2"
-        value="5"
-      >
+      <RadioGroup labelText="Disabled" id="basicGroup2" name="basic2" value="5">
         <Radio id="radio4" disabled labelText="Disabled" value="4" />
-        <Radio
-          id="radio5"
-          disabled
-          labelText="Disabled checked"
-          value="5"
-        />
+        <Radio id="radio5" disabled labelText="Disabled checked" value="5" />
       </RadioGroup>
       <RadioGroup
         labelText="Error"
