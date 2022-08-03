@@ -13,7 +13,6 @@ import { useIsInverse } from '../../inverse';
 import { useGenerateId } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
-import { I18nContext } from '../../i18n';
 
 /**
  * @children required
@@ -92,12 +91,14 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       testId,
       ...other
     } = props;
-    const theme = React.useContext(ThemeContext);
-    const i18n = React.useContext(I18nContext);
-    const isInverse = useIsInverse(isInverseProp);
-    const id = useGenerateId(defaultId);
 
-    const nativeSelectLabel = i18n.select.placeholder;
+    console.log(other);
+
+    const theme = React.useContext(ThemeContext);
+
+    const isInverse = useIsInverse(isInverseProp);
+
+    const id = useGenerateId(defaultId);
 
     return (
       <FormFieldContainer
@@ -118,14 +119,13 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           theme={theme}
         >
           <StyledNativeSelect
-            aria-label={nativeSelectLabel}
-            {...other}
             data-testid={testId}
             hasError={!!errorMessage}
             disabled={disabled}
             id={id}
             isInverse={isInverse}
             theme={theme}
+            {...other}
           >
             {children}
           </StyledNativeSelect>
