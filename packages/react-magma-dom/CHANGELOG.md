@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.4
+
+### Patch Changes
+
+- c1a8c2664: fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.
+
 ## 3.1.1-next.3
 
 ### Patch Changes
