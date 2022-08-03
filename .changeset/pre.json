@@ -10,5 +10,10 @@
     "react-magma-docs": "4.0.3-next.2",
     "react-magma-landing": "1.1.0"
   },
-  "changesets": []
+  "changesets": [
+    "bug-tabs",
+    "cool-flies-retire",
+    "spotty-kangaroos-sniff",
+    "unlucky-boats-ring"
+  ]
 }

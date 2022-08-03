@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.2
+
+### Patch Changes
+
+- 14de7d4bb: fix(Tabs): Removing unnecessary aria-label from wrapping div
+
 ## 3.1.1-next.1
 
 ### Patch Changes
