@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import { Omit, getNormalizedScrollLeft } from '../../utils';
+import { omit, Omit, getNormalizedScrollLeft } from '../../utils';
 import { useDescendants } from '../../hooks/useDescendants';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -398,6 +398,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         : i18n.tabs.horizontalTabsInstructions
     }`;
 
+    const other = omit(['aria-label'], rest);
+
     return (
       <StyledContainer
         data-testid={testId}
@@ -406,7 +408,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         orientation={orientation || TabsOrientation.horizontal}
         ref={ref}
         theme={theme}
-        {...rest}
+        {...other}
       >
         <ButtonPrev
           backgroundColor={background}
