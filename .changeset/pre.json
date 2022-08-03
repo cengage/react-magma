@@ -13,6 +13,7 @@
   "changesets": [
     "bug-tabs",
     "cool-flies-retire",
+    "datagrid_sortable",
     "spotty-kangaroos-sniff",
     "unlucky-boats-ring"
   ]
