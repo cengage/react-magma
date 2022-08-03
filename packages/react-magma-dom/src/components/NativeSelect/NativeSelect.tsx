@@ -92,8 +92,6 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       ...other
     } = props;
 
-    console.log(other);
-
     const theme = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(isInverseProp);
