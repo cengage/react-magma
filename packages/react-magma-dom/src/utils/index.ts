@@ -16,7 +16,7 @@ export function useGenerateId(newId?: string) {
     newId && updateId(generateId(newId));
   }, [newId]);
 
-  return id;
+  return id || generateId(newId);
 }
 
 export function omit(props, obj) {
