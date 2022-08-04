@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.5
+
+### Patch Changes
+
+- 79dd48126: fix(DatePicker): Fix support for non-default date formats (dd/mm/yyyy, yyyy/MM/dd, yyyy/dd/MM). Add support for MMMM d, yyyy.
+
 ## 3.1.1-next.4
 
 ### Patch Changes
