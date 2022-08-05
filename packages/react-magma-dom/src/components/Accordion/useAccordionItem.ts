@@ -37,7 +37,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
   const { expandedIndex, isMulti } = React.useContext(AccordionContext);
 
-  const idPrefix = useGenerateId();
+  const idPrefix = useGenerateId(index.toString());
 
   const buttonId = `${idPrefix}_btn`;
   const panelId = `${idPrefix}_panel`;
