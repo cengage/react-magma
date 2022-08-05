@@ -23,16 +23,14 @@ export const Default = () => {
       <SkipLink to="#" variant={ButtonVariant.solid}>
         Skip to content
       </SkipLink>
-      <nav>
-        {arr.map(index => (
-          <Paragraph key={index} noMargins>
-            #{index}
-          </Paragraph>
-        ))}
-      </nav>
+      {arr.map(index => (
+        <Paragraph key={index} noMargins>
+          #{index}
+        </Paragraph>
+      ))}
       <SkipLinkContent>
         <Paragraph visualStyle={TypographyVisualStyle.headingXLarge}>
-          Content to jump to.{' '}
+          Content to jump to.
         </Paragraph>
       </SkipLinkContent>
     </>
