@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.7
+
+### Patch Changes
+
+- 4fb880c9f: refactor(radio): Update Storybook examples with a11y violations.
+
 ## 3.1.1-next.6
 
 ### Patch Changes
