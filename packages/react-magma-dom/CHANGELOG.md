@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.10
+
+### Patch Changes
+
+- 3fbb41fa2: refactor(indeterminatecheckbox): Update Storybook example with a11y violations.
+
 ## 3.1.1-next.9
 
 ### Patch Changes
