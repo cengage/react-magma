@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.11
+
+### Patch Changes
+
+- ad190dd9d: fix(pagination): Fix Pagination a11y issue regarding `<ul>` only having `<li>` as children.
+
 ## 3.1.1-next.10
 
 ### Patch Changes

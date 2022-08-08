@@ -19,6 +19,7 @@
     "datagrid_sortable",
     "datepicker-format-support",
     "indeterminate-a11y",
+    "pagination-a11y",
     "radio-storybooka11y",
     "skiplink-a11y",
     "spotty-kangaroos-sniff",
