@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.1.1-next.9
+
+### Patch Changes
+
+- 3016a8e3f: fix(accordion): Accordion Item `buttonId` will be based on the index to avoid duplicate ids.
+  refactor(accordion): Update Storybook example with a11y violations.
+
 ## 3.1.1-next.8
 
 ### Patch Changes
