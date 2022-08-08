@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.8
+
+### Patch Changes
+
+- e9e508d99: refactor(skiplink): Update Storybook example with a11y violations.
+
 ## 3.1.1-next.7
 
 ### Patch Changes
