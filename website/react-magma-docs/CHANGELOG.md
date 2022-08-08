@@ -1,5 +1,47 @@
 # Change Log
 
+## 4.0.3-next.8
+
+### Patch Changes
+
+- Updated dependencies [4fb880c9f]
+  - react-magma-dom@3.1.1-next.7
+
+## 4.0.3-next.7
+
+### Patch Changes
+
+- Updated dependencies [56f9cab83]
+  - react-magma-dom@3.1.1-next.6
+
+## 4.0.3-next.6
+
+### Patch Changes
+
+- Updated dependencies [79dd48126]
+  - react-magma-dom@3.1.1-next.5
+
+## 4.0.3-next.5
+
+### Patch Changes
+
+- Updated dependencies [c1a8c2664]
+  - react-magma-dom@3.1.1-next.4
+
+## 4.0.3-next.4
+
+### Patch Changes
+
+- Updated dependencies [e24d4229d]
+  - react-magma-dom@3.1.1-next.3
+
+## 4.0.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [14de7d4bb]
+  - react-magma-dom@3.1.1-next.2
+
 ## 4.0.3-next.2
 
 ### Patch Changes

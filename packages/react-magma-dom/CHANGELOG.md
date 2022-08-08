@@ -1,5 +1,41 @@
 # Change Log
 
+## 3.1.1-next.7
+
+### Patch Changes
+
+- 4fb880c9f: refactor(radio): Update Storybook examples with a11y violations.
+
+## 3.1.1-next.6
+
+### Patch Changes
+
+- 56f9cab83: refactor(appbar): Update Storybook example with a11y violations.
+
+## 3.1.1-next.5
+
+### Patch Changes
+
+- 79dd48126: fix(DatePicker): Fix support for non-default date formats (dd/mm/yyyy, yyyy/MM/dd, yyyy/dd/MM). Add support for MMMM d, yyyy.
+
+## 3.1.1-next.4
+
+### Patch Changes
+
+- c1a8c2664: fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.
+
+## 3.1.1-next.3
+
+### Patch Changes
+
+- e24d4229d: feat(datagrid): Add `isSortableBySelected` prop to DataGrid, allowing tables to be sorted by the selected items.
+
+## 3.1.1-next.2
+
+### Patch Changes
+
+- 14de7d4bb: fix(Tabs): Removing unnecessary aria-label from wrapping div
+
 ## 3.1.1-next.1
 
 ### Patch Changes
