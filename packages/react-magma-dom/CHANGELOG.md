@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.6
+
+### Patch Changes
+
+- 56f9cab83: refactor(appbar): Update Storybook example with a11y violations.
+
 ## 3.1.1-next.5
 
 ### Patch Changes
