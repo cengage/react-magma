@@ -63,7 +63,7 @@ Default.args = {
                 This is a warning alert.{' '}
                 <Hyperlink to="#">Follow this link</Hyperlink>
               </Alert>
-              FAQ
+              <p>FAQ</p>
             </div>
           </TabPanel>
         </TabPanelsContainer>
