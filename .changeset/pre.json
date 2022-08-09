@@ -11,6 +11,7 @@
     "react-magma-landing": "1.1.0"
   },
   "changesets": [
+    "a11yinput",
     "accordion_a11y",
     "appbar-a11y",
     "bug-native-select",

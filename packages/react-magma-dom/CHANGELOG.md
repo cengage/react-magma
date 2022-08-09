@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.13
+
+### Patch Changes
+
+- 101269ae7: refactor(Input): Update Storybook example with a11y violations.
+
 ## 3.1.1-next.12
 
 ### Patch Changes
