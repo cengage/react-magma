@@ -109,12 +109,14 @@ export const ClickableIcon = Template.bind({});
 ClickableIcon.args = {
   ...Default.args,
   icon: <NotificationsIcon />,
+  iconAriaLabel: 'Bell Icon',
   onIconClick: () => {},
 };
 
 export const ClickableIconLarge = Template.bind({});
 ClickableIconLarge.args = {
   ...ClickableIcon.args,
+  iconAriaLabel: 'Bell Icon',
   inputSize: InputSize.large,
 };
 
