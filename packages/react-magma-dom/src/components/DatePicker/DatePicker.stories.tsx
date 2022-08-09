@@ -4,15 +4,34 @@ import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 
+const today: Date = new Date();
+
 export default {
   component: DatePicker,
   title: 'DatePicker',
+  argTypes: {
+    minDate: {
+      control: {
+        type: 'date',
+      },
+    },
+    isClearable: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 };
 
-const today: Date = new Date();
+export const Default = args => {
+  return <DatePicker {...args} />;
+};
 
-export const Default = () => {
-  return <DatePicker labelText="Date" minDate={today} />;
+Default.args = {
+  labelText: 'Date',
+  minDate: today,
+  errorMessage: '',
+  helperMessage: '',
 };
 
 export const NonDefaultFormats = () => {
@@ -57,12 +76,17 @@ export const NonDefaultFormats = () => {
   );
 };
 
-export const Inverse = () => {
+export const Inverse = (args) => {
   return (
     <div style={{ background: magma.colors.primary600, padding: '0 12px' }}>
       <br />
-      <DatePicker labelText="Date" isInverse minDate={today} />
+      <DatePicker {...args} />
       <br />
     </div>
   );
+};
+
+Inverse.args = {
+  ...Default.args,
+  isInverse: true,
 };

@@ -54,10 +54,14 @@ export interface FormFieldContainerBaseProps {
    */
   messageStyle?: React.CSSProperties;
   /**
+   * Position within the component for the icon to appear
+   * @default InputIconPosition.right
+   */
+  iconPosition?: InputIconPosition;
+  /**
    * Relative size of the component
    * @default InputSize.medium
    */
-  iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   /**
    * @internal
