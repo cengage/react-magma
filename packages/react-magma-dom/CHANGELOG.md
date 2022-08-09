@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.12
+
+### Patch Changes
+
+- dac39a9a5: fix(input): Fix double focus on all input types (search, datepicker, password). When the icon is focused, only the icon will have visible focus and not the whole input.
+
 ## 3.1.1-next.11
 
 ### Patch Changes
