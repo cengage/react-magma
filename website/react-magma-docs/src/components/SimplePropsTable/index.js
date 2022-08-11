@@ -22,7 +22,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
     background: ${isInverse ? magma.colors.borderInverse : magma.colors.border};
     border: none;
     height: 1px;
-    margin: ${magma.spaceScale.spacing07} 0 ${magma.spaceScale.spacing03};
+    margin: ${magma.spaceScale.spacing06} 0 0;
     padding: 0;
   `;
 
