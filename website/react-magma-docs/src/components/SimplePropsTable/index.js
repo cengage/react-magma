@@ -1,14 +1,11 @@
 import React from 'react';
-import { NotificationIcon } from 'react-magma-icons';
 import {
   magma,
-  IconButton,
   Flex,
   FlexAlignItems,
   FlexBehavior,
   FlexDirection,
   Paragraph,
-  Tooltip,
   useIsInverse,
   Tag,
   TagColor,
@@ -22,8 +19,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
   const isInverse = useIsInverse();
 
   const HR = styled.hr`
-    background: ${props =>
-      props.isInverse ? magma.colors.borderInverse : magma.colors.border};
+    background: ${isInverse ? magma.colors.borderInverse : magma.colors.border};
     border: none;
     height: 1px;
     margin: ${magma.spaceScale.spacing07} 0 ${magma.spaceScale.spacing03};
@@ -56,7 +52,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
           }
 
           return (
-            <>
+            <div key={name}>
               <Flex
                 behavior={FlexBehavior.container}
                 alignItems={FlexAlignItems.center}
@@ -69,7 +65,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                 >
                   <Paragraph
                     contextVariant={TypographyContextVariant.narrative}
-                    style={{ fontFamily: 'Courier', color: magma.colors.info }}
+                    style={{ fontFamily: 'Courier', color: prop.deprecated ? magma.colors.neutral600 : magma.colors.info }}
                   >
                     {name}
                   </Paragraph>
@@ -91,14 +87,12 @@ export const SimplePropsTable = ({ propertyValues }) => {
                     </Tag>
                   )}
                   {prop.deprecated && (
-                    <Tooltip content="Deprecated">
-                      <IconButton
-                        aria-label="deprecated"
-                        icon={<NotificationIcon color={magma.colors.danger} />}
-                        size="small"
-                        variant="link"
-                      />
-                    </Tooltip>
+                    <Tag
+                      size={TagSize.small}
+                      isInverse={isInverse}
+                    >
+                      Deprecated
+                    </Tag>
                   )}
                 </Flex>
               </Flex>
@@ -163,10 +157,10 @@ export const SimplePropsTable = ({ propertyValues }) => {
                     {prop.type.options &&
                       Object.keys(prop.type.options).map(i => {
                         return (
-                          <div key={i}>
+                          <span key={i}>
                             {prop.type.options[i]}
                             <br />
-                          </div>
+                          </span>
                         );
                       })}
                   </Paragraph>
@@ -199,7 +193,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                 </Flex>
               </Flex>
               <HR />
-            </>
+            </div>
           );
         })}
     </>
