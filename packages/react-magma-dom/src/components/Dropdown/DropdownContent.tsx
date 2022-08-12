@@ -9,6 +9,7 @@ import {
 } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
+import { usePopper } from "react-popper";
 
 /**
  * @children required
@@ -53,46 +54,43 @@ const StyledCard = styled(Card)<{
       white-space: normal;
       width: ${props.width};
     `}
-
-  ${props =>
-    props.dropDirection === 'up' &&
-    css`
-      top: auto;
-      bottom: 100%;
-    `}
-
-  ${props =>
-    props.dropDirection === 'left' &&
-    css`
-      left: auto;
-      right: 100%;
-      top: ${props.theme.spaceScale.spacing02};
-    `}
-
-  ${props =>
-    props.dropDirection === 'right' &&
-    css`
-      left: 100%;
-      top: ${props.theme.spaceScale.spacing02};
-    `}
-
-  ${props =>
-    props.alignment === 'end' &&
-    props.dropDirection !== 'left' &&
-    props.dropDirection !== 'right' &&
-    css`
-      left: auto;
-      right: ${props.theme.spaceScale.spacing02};
-    `}
-
- ${props =>
-    props.alignment === 'end' &&
-    (props.dropDirection === 'left' || props.dropDirection === 'right') &&
-    css`
-      bottom: ${props.theme.spaceScale.spacing02};
-      top: auto;
-    `}
 `;
+  
+  // ${props => props.dropDirection === DropdownDropDirection.up &&
+  //   css`
+  //     top: auto;
+  //     bottom: 100%;
+  //   `}
+
+  // ${props => props.dropDirection === DropdownDropDirection.left &&
+  //   css`
+  //     left: auto;
+  //     right: 100%;
+  //     top: ${props.theme.spaceScale.spacing02};
+  //   `}
+
+  // ${props => props.dropDirection === DropdownDropDirection.right &&
+  //   css`
+  //     left: 100%;
+  //     top: ${props.theme.spaceScale.spacing02};
+  //   `}
+
+//   ${props => props.alignment === DropdownAlignment.end &&
+//     props.dropDirection !== DropdownDropDirection.left &&
+//     props.dropDirection !== DropdownDropDirection.right &&
+//     css`
+//       left: auto;
+//       right: ${props.theme.spaceScale.spacing02};
+//     `}
+
+//  ${props =>
+//     props.alignment === DropdownAlignment.end &&
+//     (props.dropDirection === DropdownDropDirection.left || props.dropDirection === DropdownDropDirection.right) &&
+//     css`
+//       bottom: ${props.theme.spaceScale.spacing02};
+//       top: auto;
+//     `}
+// `;
 
 const StyledDiv = styled.div`
   padding: ${props => props.theme.spaceScale.spacing02} 0;
@@ -106,6 +104,18 @@ export const DropdownContent = React.forwardRef<
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
   const ref = useForkedRef(forwardedRef, context.menuRef);
+
+  const { styles, attributes } = usePopper(context.toggleRef.current, context.menuRef.current, {
+    // placement: context.dropDirection,
+    modifiers: [
+      {
+        name: 'flip',
+        options: {
+          fallbackPlacements: ['top', 'bottom'],
+        },
+      },
+    ],
+  });
 
   return (
     <StyledCard
@@ -121,11 +131,14 @@ export const DropdownContent = React.forwardRef<
       testId={testId || 'dropdownContent'}
       theme={theme}
       width={context.width}
-    >
+      style={styles.popper}
+      {...attributes.popper}
+      >
       <StyledDiv
         aria-labelledby={context.dropdownButtonId.current}
         role="menu"
         theme={theme}
+        style={styles.flip}
       >
         {children}
       </StyledDiv>

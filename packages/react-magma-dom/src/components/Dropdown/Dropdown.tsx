@@ -6,10 +6,10 @@ import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum DropdownDropDirection {
-  down = 'down', //default
+  down = 'bottom', //default
   left = 'left',
   right = 'right',
-  up = 'up',
+  up = 'top',
 }
 
 export enum DropdownAlignment {
@@ -92,6 +92,8 @@ export const DropdownContext = React.createContext<DropdownContextInterface>({
   isOpen: false,
   registerDropdownMenuItem: (elements, element) => {},
   setIsOpen: () => false,
+  // toggleRef: React.useRef<any>(),
+  // menuRef: React.useRef<any>(),
 });
 
 export const useDropdownContext = () => React.useContext(DropdownContext);
@@ -121,7 +123,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     );
 
     const ownRef = React.useRef<any>();
-    const toggleRef = React.useRef<HTMLButtonElement>();
+    // const toggleRef = React.useRef<HTMLButtonElement>();
+    const toggleRef = React.useRef<any>([]);
     const menuRef = React.useRef<any>([]);
     const dropdownButtonId = React.useRef<string>('');
 
