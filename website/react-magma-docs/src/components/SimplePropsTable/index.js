@@ -7,6 +7,7 @@ import {
   FlexDirection,
   Paragraph,
   useIsInverse,
+  Spacer,
   Tag,
   TagColor,
   TagSize,
@@ -25,6 +26,23 @@ export const SimplePropsTable = ({ propertyValues }) => {
     margin: ${magma.spaceScale.spacing06} 0 0;
     padding: 0;
   `;
+
+  const StyledParagraphKey = styled(Paragraph)`
+    font-weight: 600;
+    padding-bottom: 0;
+  `;
+  
+const StyledFlexLeft = styled(Flex)`
+  @media (max-width: ${magma.breakpoints.small}px) {
+    padding: 8px 8px 4px !important;
+  }
+`;
+
+const StyledFlexRight = styled(Flex)`
+  @media (max-width: ${magma.breakpoints.small}px) {
+    padding-top: 0 !important;
+  }
+`;
 
   if (propertyValues === undefined) {
     return null;
@@ -65,7 +83,7 @@ export const SimplePropsTable = ({ propertyValues }) => {
                 >
                   <Paragraph
                     contextVariant={TypographyContextVariant.narrative}
-                    style={{ fontFamily: 'Courier', color: prop.deprecated ? magma.colors.neutral600 : magma.colors.info }}
+                    style={{ fontWeight: 'bold', fontFamily: 'Courier', color: prop.deprecated ? magma.colors.neutral600 : magma.colors.info, marginBottom: '16px' }}
                   >
                     {name}
                   </Paragraph>
@@ -99,48 +117,47 @@ export const SimplePropsTable = ({ propertyValues }) => {
               <Flex behavior={FlexBehavior.container} spacing={2}>
                 {prop.description && (
                   <>
-                    <Flex
+                    <StyledFlexLeft
                       behavior={FlexBehavior.item}
                       xs={3}
                       direction={FlexDirection.column}
-                    >
-                      <Paragraph
+                      spacing={0}
+                      >
+                      <StyledParagraphKey
                         visualStyle={TypographyVisualStyle.bodySmall}
                         noMargins
-                        style={{ fontWeight: '600' }}
-                      >
+                        >
                         Description
-                      </Paragraph>
-                    </Flex>
-                    <Flex
+                      </StyledParagraphKey>
+                    </StyledFlexLeft>
+                    <StyledFlexRight
                       behavior={FlexBehavior.item}
                       xs={12}
                       md={9}
                       direction={FlexDirection.column}
-                    >
+                      >
                       <Paragraph
                         visualStyle={TypographyVisualStyle.bodySmall}
                         noMargins
                       >
                         {prop.description}
                       </Paragraph>
-                    </Flex>
+                    </StyledFlexRight>
                   </>
                 )}
-                <Flex
+                <StyledFlexLeft
                   behavior={FlexBehavior.item}
                   xs={3}
                   direction={FlexDirection.column}
                 >
-                  <Paragraph
+                  <StyledParagraphKey
                     visualStyle={TypographyVisualStyle.bodySmall}
                     noMargins
-                    style={{ fontWeight: '600' }}
                   >
                     Type
-                  </Paragraph>
-                </Flex>
-                <Flex
+                  </StyledParagraphKey>
+                </StyledFlexLeft>
+                <StyledFlexRight
                   behavior={FlexBehavior.item}
                   xs={12}
                   md={9}
@@ -164,21 +181,20 @@ export const SimplePropsTable = ({ propertyValues }) => {
                         );
                       })}
                   </Paragraph>
-                </Flex>
-                <Flex
+                </StyledFlexRight>
+                <StyledFlexLeft
                   behavior={FlexBehavior.item}
                   xs={3}
                   direction={FlexDirection.column}
                 >
-                  <Paragraph
+                  <StyledParagraphKey
                     visualStyle={TypographyVisualStyle.bodySmall}
                     noMargins
-                    style={{ fontWeight: '600' }}
                   >
                     Default
-                  </Paragraph>
-                </Flex>
-                <Flex
+                  </StyledParagraphKey>
+                </StyledFlexLeft>
+                <StyledFlexRight
                   behavior={FlexBehavior.item}
                   xs={12}
                   md={9}
@@ -190,12 +206,13 @@ export const SimplePropsTable = ({ propertyValues }) => {
                   >
                     {getPropDefaultValue(prop.defaultValue)}
                   </Paragraph>
-                </Flex>
+                </StyledFlexRight>
               </Flex>
               <HR />
             </div>
           );
         })}
+        <Spacer size="32" />
     </>
   );
 };
