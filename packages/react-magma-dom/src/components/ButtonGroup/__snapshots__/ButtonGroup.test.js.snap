@@ -1534,6 +1534,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       <div
         class="emotion-11"
         data-testid="dropdownContent"
+        style="position: absolute; left: 0px; top: 0px;"
         tabindex="-1"
         width="auto"
       >
@@ -1591,6 +1592,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       <div
         class="emotion-11"
         data-testid="dropdownContent"
+        style="position: absolute; left: 0px; top: 0px;"
         tabindex="-1"
         width="auto"
       >
@@ -2349,6 +2351,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       <div
         class="emotion-11"
         data-testid="dropdownContent"
+        style="position: absolute; left: 0px; top: 0px;"
         tabindex="-1"
         width="auto"
       >
@@ -2406,6 +2409,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       <div
         class="emotion-11"
         data-testid="dropdownContent"
+        style="position: absolute; left: 0px; top: 0px;"
         tabindex="-1"
         width="auto"
       >
@@ -3240,6 +3244,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       <div
         class="emotion-11"
         data-testid="dropdownContent"
+        style="position: absolute; left: 0px; top: 0px;"
         tabindex="-1"
         width="auto"
       >
@@ -3297,6 +3302,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       <div
         class="emotion-11"
         data-testid="dropdownContent"
+        style="position: absolute; left: 0px; top: 0px;"
         tabindex="-1"
         width="auto"
       >
