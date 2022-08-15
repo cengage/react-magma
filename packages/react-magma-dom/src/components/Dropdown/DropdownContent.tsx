@@ -106,12 +106,19 @@ export const DropdownContent = React.forwardRef<
   const ref = useForkedRef(forwardedRef, context.menuRef);
 
   const { styles, attributes } = usePopper(context.toggleRef.current, context.menuRef.current, {
-    // placement: context.dropDirection,
+    placement: context.dropDirection,
     modifiers: [
+      {
+        name: "offset",
+        enabled: true,
+        options: {
+          offset: [0, 0],
+        },
+      },
       {
         name: 'flip',
         options: {
-          fallbackPlacements: ['top', 'bottom'],
+          fallbackPlacements: ['top', 'bottom', 'right', 'left'],
         },
       },
     ],

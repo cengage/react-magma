@@ -19,14 +19,16 @@ import { Checkbox } from '../Checkbox';
 import { PasswordInput } from '../PasswordInput';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { Spacer, SpacerAxis } from '../Spacer';
+import { ButtonGroup } from '../ButtonGroup';
 
 const Template: Story<DropdownProps> = args => (
-  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+  <div style={{ textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton>Basic Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two two two </DropdownMenuItem>
         <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
@@ -75,9 +77,6 @@ export default {
         options: DropdownAlignment,
       },
     },
-    onClose: {
-      action: 'onClose',
-    },
     isInverse: {
       control: {
         type: 'boolean',
@@ -98,40 +97,44 @@ OnClickOutside.args = {
 };
 
 const AlignmentTemplate: Story<DropdownProps> = args => (
-  <div style={{ margin: '150px auto', textAlign: 'center' }}>
-    <Dropdown
-      {...args}
-      dropDirection={DropdownDropDirection.right}
-      activeIndex={1}
-    >
-      <DropdownButton>Right Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <Dropdown {...args} dropDirection={DropdownDropDirection.left}>
-      <DropdownButton>Left Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
+  <div style={{ margin: '150px' }}>
+    <ButtonGroup>
+      <Dropdown
+        {...args}
+        dropDirection={DropdownDropDirection.right}
+        activeIndex={1}
+      >
+        <DropdownButton>Right Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args} dropDirection={DropdownDropDirection.left}>
+        <DropdownButton>Left Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
     <br />
-    <Dropdown {...args} dropDirection={DropdownDropDirection.up}>
-      <DropdownButton>Top Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <Dropdown {...args} dropDirection={DropdownDropDirection.down}>
-      <DropdownButton>Bottom Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
+    <ButtonGroup>
+      <Dropdown {...args} dropDirection={DropdownDropDirection.up}>
+        <DropdownButton>Top Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args} dropDirection={DropdownDropDirection.down}>
+        <DropdownButton>Bottom Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
   </div>
 );
 
@@ -331,5 +334,58 @@ Inverse.decorators = [
         <Story />
       </CardBody>
     </Card>
+  ),
+];
+
+export const Popper = Template.bind({});
+Popper.args = {
+  ...Default.args,
+};
+
+Popper.decorators = [
+  Story => (
+    <>
+      Vertical overflow
+      <div
+        style={{
+          width: '400px',
+          height: '400px',
+          border: '2px solid black',
+          overflowY: 'scroll',
+        }}
+      >
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+        <Story />
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+      </div>
+      Horizontal overflow
+      <div
+        style={{
+          width: '800px',
+          height: '200px',
+          border: '2px solid black',
+          overflowX: 'scroll',
+          paddingLeft: '250px',
+        }}
+      >
+        <Spacer size={900} axis={SpacerAxis.horizontal} />
+        <Story />
+      </div>
+      Both directions overflow
+      <div
+        style={{
+          width: '800px',
+          height: '400px',
+          border: '2px solid black',
+          overflow: 'scroll',
+          paddingLeft: '200px',
+        }}
+      >
+        <Spacer size={1000} axis={SpacerAxis.horizontal} />
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+        <Story />
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+      </div>
+    </>
   ),
 ];

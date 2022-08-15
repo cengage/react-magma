@@ -25,6 +25,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   activeIndex?: number;
   /**
    * Alignment of the dropdown content
+   * TODO: Deprecate this if no longer needed with popper
    * @default DropdownAlignment.start
    */
   alignment?: DropdownAlignment;
