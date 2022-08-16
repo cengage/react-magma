@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.3-next.15
+
+### Patch Changes
+
+- de90d13fe: docs: Updating layout of props tables
+
 ## 4.0.3-next.14
 
 ### Patch Changes
