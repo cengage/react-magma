@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.14
+
+### Patch Changes
+
+- 6e0582249: fix(datagrid): Add aria-label to sort by selectable button
+
 ## 3.1.1-next.13
 
 ### Patch Changes
