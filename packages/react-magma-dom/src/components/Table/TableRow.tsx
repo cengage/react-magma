@@ -308,6 +308,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   data-testid={`${testId || ''}-sort-button`}
+                  aria-label="Sort rows"
                 >
                   <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
                 </SortButton>
