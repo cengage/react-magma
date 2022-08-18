@@ -13,6 +13,8 @@ import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
 import { magma } from '../../theme/magma';
 import { Spacer, SpacerAxis } from '../Spacer';
+import { Announce } from '../Announce';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 const rowsForPagination = [
   {
@@ -483,17 +485,22 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   }
 
   return (
-    <Datagrid
-      {...args}
-      rows={sortedItems}
-      columns={productColumns}
-      onSortBySelected={() => {
-        requestSort('name');
-      }}
-      onRowSelect={handleRowSelect}
-      onHeaderSelect={handleHeaderSelect}
-      sortDirection={selectedDirection}
-    />
+    <>
+      <Datagrid
+        {...args}
+        rows={sortedItems}
+        columns={productColumns}
+        onSortBySelected={() => {
+          requestSort('name');
+        }}
+        onRowSelect={handleRowSelect}
+        onHeaderSelect={handleHeaderSelect}
+        sortDirection={selectedDirection}
+        />
+        <Announce>
+          <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+      </Announce>
+    </>
   );
 };
 
