@@ -157,6 +157,55 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   `}
 `;
 
+function getInputPadding(props: InputBaseStylesProps) {
+  const { inputSize, isClearable, iconPosition } = props;
+  let padding = {
+    left: props.theme.spaceScale.spacing03,
+    right: props.theme.spaceScale.spacing03,
+  };
+  if (inputSize === 'large') {
+    if (isClearable) {
+      if (iconPosition === 'right') {
+        padding.right = '92px';
+      } else if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing11;
+        padding.right = props.theme.spaceScale.spacing11;
+      } else {
+        // icon top, no icon
+        padding.right = props.theme.spaceScale.spacing11;
+      }
+    } else {
+      if (iconPosition === 'right') {
+        padding.right = props.theme.spaceScale.spacing10;
+      }
+      if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing10;
+      }
+    }
+  }
+  else if (inputSize === 'medium') {
+    if (isClearable) {
+      if (iconPosition === 'right') {
+        padding.right = '68px';
+      } else if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing09;
+        padding.right = props.theme.spaceScale.spacing09;
+      } else {
+        // icon top, no icon
+        padding.right = props.theme.spaceScale.spacing09;
+      }
+    } else {
+      if (iconPosition === 'right') {
+        padding.right = props.theme.spaceScale.spacing09;
+      }
+      if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing09;
+      }
+    }
+  }
+  return padding;
+}
+
 export interface InputBaseStylesProps {
   isInverse?: boolean;
   iconPosition?: InputIconPosition;
@@ -165,6 +214,7 @@ export interface InputBaseStylesProps {
   theme?: ThemeInterface;
   disabled?: boolean;
   hasError?: boolean;
+  isClearable?: boolean;
 }
 
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
@@ -183,16 +233,6 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   -webkit-appearance: none;
   width: 100%;
 
-  ${props.iconPosition === 'left' &&
-  css`
-    padding-left: ${props.theme.spaceScale.spacing09};
-  `}
-
-  ${props.iconPosition === 'right' &&
-  css`
-    padding-right: ${props.theme.spaceScale.spacing09};
-  `}
-
   ${props.inputSize === 'large' &&
   css`
     font-size: ${props.theme.typeScale.size04.fontSize};
@@ -201,17 +241,8 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
     padding: ${props.theme.spaceScale.spacing04};
   `}
 
-    ${props.iconPosition === 'left' &&
-  props.inputSize === 'large' &&
-  css`
-    padding-left: ${props.theme.spaceScale.spacing10};
-  `}
-
-      ${props.iconPosition === 'right' &&
-  props.inputSize === 'large' &&
-  css`
-    padding-right: ${props.theme.spaceScale.spacing10};
-  `}
+  padding-left: ${getInputPadding(props).left};
+  padding-right: ${getInputPadding(props).right};
 
   &::placeholder {
     color: ${props.isInverse
@@ -307,7 +338,7 @@ const IconWrapper = styled.span<{
 
 const IconButtonContainer = styled.span<{
   iconPosition?: InputIconPosition;
-  size?: InputSize;
+  inputSize?: InputSize;
   theme: ThemeInterface;
 }>`
   background-color: transparent;
@@ -317,17 +348,19 @@ const IconButtonContainer = styled.span<{
   position: relative;
   width: 0;
   transform: translate(
-    -${props => (props.size === InputSize.large ? props.theme.spaceScale.spacing10 : '34px')},
+    -${props => (props.inputSize === InputSize.large ? props.theme.spaceScale.spacing10 : '34px')},
     ${props =>
-      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '7px'}
+      props.inputSize === InputSize.large
+        ? props.theme.spaceScale.spacing03
+        : '7px'}
   );
   svg {
     height: ${props =>
-      props.size === InputSize.large
+      props.inputSize === InputSize.large
         ? `${props.theme.iconSizes.large}px`
         : `${props.theme.iconSizes.medium}px`};
     width: ${props =>
-      props.size === InputSize.large
+      props.inputSize === InputSize.large
         ? `${props.theme.iconSizes.large}px`
         : `${props.theme.iconSizes.medium}px`};
   }
@@ -349,14 +382,14 @@ const PasswordButtonContainer = styled.span<{
 function getClearablePosition(props) {
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
-      return props.theme.spaceScale.spacing09;
+      return '88px';
     }
-    return props.theme.spaceScale.spacing08;
+    return props.theme.spaceScale.spacing12;
   }
   if (props.inputSize === 'large') {
-    return props.theme.spaceScale.spacing02;
+    return props.theme.spaceScale.spacing10;
   }
-  return props.theme.spaceScale.spacing01;
+  return '34px';
 }
 
 const IsClearableContainer = styled.span<{
@@ -364,13 +397,20 @@ const IsClearableContainer = styled.span<{
   icon?: React.ReactElement<IconProps>;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
-  isClearable?: boolean;
   onIconClick?: () => void;
-  disabled?: boolean;
 }>`
   background-color: transparent;
+  margin: 0;
   position: relative;
-  right: ${getClearablePosition};
+  height: auto;
+  width: 0;
+  transform: translate(
+    -${props => getClearablePosition(props)},
+    ${props =>
+      props.inputSize === InputSize.large
+        ? props.theme.spaceScale.spacing03
+        : '7px'}
+  );
 `;
 
 function getIconSize(size: string, theme: ThemeInterface) {
@@ -460,6 +500,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             data-testid={testId}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
+            isClearable={isClearable}
             isInverse={useIsInverse(props.isInverse)}
             isPredictive={isPredictive}
             hasError={hasError}
@@ -470,36 +511,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             type={type ? type : InputType.text}
             value={value}
           />
-          {isClearable && value && (
-            <IsClearableContainer
-              theme={theme}
-              disabled={disabled}
-              icon={icon}
-              iconPosition={iconPosition}
-              inputSize={inputSize}
-              onIconClick={onIconClick}
-            >
-              <IconButton
-                aria-label={i18n.input.isClearableAriaLabel}
-                disabled={disabled}
-                icon={<ClearIcon />}
-                isInverse={props.isInverse}
-                onClick={handleClearInput}
-                onKeyDown={onIconKeyDown}
-                ref={iconRef}
-                shape={ButtonShape.fill}
-                size={
-                  inputSize === InputSize.large
-                    ? ButtonSize.medium
-                    : ButtonSize.small
-                }
-                testId="clear-button"
-                type={ButtonType.button}
-                variant={ButtonVariant.link}
-              />
-            </IsClearableContainer>
-          )}
-
           {icon && !onIconClick && (
             <IconWrapper
               aria-label={iconAriaLabel}
@@ -521,10 +532,38 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             </IconWrapper>
           )}
         </InputWrapper>
+        {isClearable && value && (
+          <IsClearableContainer
+            theme={theme}
+            iconPosition={iconPosition}
+            inputSize={inputSize}
+            onIconClick={onIconClick}
+            icon={icon}
+          >
+            <IconButton
+              aria-label={i18n.input.isClearableAriaLabel}
+              disabled={disabled}
+              icon={<ClearIcon />}
+              isInverse={props.isInverse}
+              onClick={handleClearInput}
+              onKeyDown={onIconKeyDown}
+              ref={iconRef}
+              shape={ButtonShape.fill}
+              size={
+                inputSize === InputSize.large
+                  ? ButtonSize.medium
+                  : ButtonSize.small
+              }
+              testId="clear-button"
+              type={ButtonType.button}
+              variant={ButtonVariant.link}
+            />
+          </IsClearableContainer>
+        )}
         {onIconClick ? (
           <IconButtonContainer
             iconPosition={iconPosition}
-            size={
+            inputSize={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
