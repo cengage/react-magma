@@ -43,6 +43,8 @@ export const Default = Template.bind({});
 Default.args = {
   disabled: false,
   helperMessage: 'Helper message',
+  isClearable: true,
+  isInverse: false,
   placeholder: 'Placeholder text...',
 };
 Default.parameters = { controls: { exclude: ['iconPosition'] } };
@@ -56,6 +58,8 @@ Error.parameters = { controls: { exclude: ['iconPosition'] } };
 export const Large = Template.bind({});
 Large.args = {
   inputSize: InputSize.large,
+  isClearable: true,
+  isInverse: false,
 };
 Large.parameters = { controls: { exclude: ['iconPosition'] } };
 
@@ -112,13 +116,14 @@ ClickableIcon.args = {
   iconAriaLabel: 'Notifications',
   onIconClick: () => {},
 };
+ClickableIcon.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const ClickableIconLarge = Template.bind({});
 ClickableIconLarge.args = {
   ...ClickableIcon.args,
-  iconAriaLabel: 'Notifications',
   inputSize: InputSize.large,
 };
+ClickableIconLarge.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const Inverse = Template.bind({});
 Inverse.args = {
