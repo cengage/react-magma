@@ -23,6 +23,7 @@
     "docs-props-table",
     "double-focus",
     "indeterminate-a11y",
+    "input_isClearable",
     "pagination-a11y",
     "radio-storybooka11y",
     "skiplink-a11y",

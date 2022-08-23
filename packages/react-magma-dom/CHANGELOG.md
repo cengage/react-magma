@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1-next.15
+
+### Patch Changes
+
+- 4a229b55c: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+
 ## 3.1.1-next.14
 
 ### Patch Changes
