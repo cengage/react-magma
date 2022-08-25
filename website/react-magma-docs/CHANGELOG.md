@@ -1,5 +1,33 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- 663a334d: build(deps): bump gatsby-plugin-mdx from 1.10.1 to 2.14.1
+- 663a334d: docs: Updating layout of props tables
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+  - react-magma-dom@3.1.1
+  - @react-magma/charts@1.0.1
+  - @react-magma/dropzone@1.0.2
+  - @react-magma/schema-renderer@1.0.2
+  - @cengage-patterns/header@3.0.2
+
 ## 4.0.3-next.17
 
 ### Patch Changes

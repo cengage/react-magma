@@ -1,5 +1,7 @@
 # @react-magma/charts
 
+## 1.0.1
+
 ## 1.0.1-next.0
 
 ### Patch Changes
