@@ -39,6 +39,12 @@ export default {
         type: 'boolean',
       },
     },
+    isClearable: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
     isInverse: {
       defaultValue: false,
       control: {

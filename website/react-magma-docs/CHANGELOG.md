@@ -1,5 +1,133 @@
 # Change Log
 
+## 4.0.3-next.17
+
+### Patch Changes
+
+- Updated dependencies [4a229b55c]
+  - react-magma-dom@3.1.1-next.15
+
+## 4.0.3-next.16
+
+### Patch Changes
+
+- Updated dependencies [6e0582249]
+  - react-magma-dom@3.1.1-next.14
+
+## 4.0.3-next.15
+
+### Patch Changes
+
+- de90d13fe: docs: Updating layout of props tables
+
+## 4.0.3-next.14
+
+### Patch Changes
+
+- Updated dependencies [101269ae7]
+  - react-magma-dom@3.1.1-next.13
+
+## 4.0.3-next.13
+
+### Patch Changes
+
+- Updated dependencies [dac39a9a5]
+  - react-magma-dom@3.1.1-next.12
+
+## 4.0.3-next.12
+
+### Patch Changes
+
+- Updated dependencies [ad190dd9d]
+  - react-magma-dom@3.1.1-next.11
+
+## 4.0.3-next.11
+
+### Patch Changes
+
+- Updated dependencies [3fbb41fa2]
+  - react-magma-dom@3.1.1-next.10
+
+## 4.0.3-next.10
+
+### Patch Changes
+
+- Updated dependencies [3016a8e3f]
+  - react-magma-dom@3.1.1-next.9
+
+## 4.0.3-next.9
+
+### Patch Changes
+
+- Updated dependencies [e9e508d99]
+  - react-magma-dom@3.1.1-next.8
+
+## 4.0.3-next.8
+
+### Patch Changes
+
+- Updated dependencies [4fb880c9f]
+  - react-magma-dom@3.1.1-next.7
+
+## 4.0.3-next.7
+
+### Patch Changes
+
+- Updated dependencies [56f9cab83]
+  - react-magma-dom@3.1.1-next.6
+
+## 4.0.3-next.6
+
+### Patch Changes
+
+- Updated dependencies [79dd48126]
+  - react-magma-dom@3.1.1-next.5
+
+## 4.0.3-next.5
+
+### Patch Changes
+
+- Updated dependencies [c1a8c2664]
+  - react-magma-dom@3.1.1-next.4
+
+## 4.0.3-next.4
+
+### Patch Changes
+
+- Updated dependencies [e24d4229d]
+  - react-magma-dom@3.1.1-next.3
+
+## 4.0.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [14de7d4bb]
+  - react-magma-dom@3.1.1-next.2
+
+## 4.0.3-next.2
+
+### Patch Changes
+
+- 4b181548: build(deps): bump gatsby-plugin-mdx from 1.10.1 to 2.14.1
+
+## 4.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [105cf25b]
+  - react-magma-dom@3.1.1-next.1
+
+## 4.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [fc8a20bf]
+  - react-magma-dom@3.1.1-next.0
+  - @react-magma/charts@1.0.1-next.0
+  - @react-magma/dropzone@1.0.2-next.0
+  - @react-magma/schema-renderer@1.0.2-next.0
+  - @cengage-patterns/header@3.0.2-next.0
+
 ## 4.0.2
 
 ### Patch Changes

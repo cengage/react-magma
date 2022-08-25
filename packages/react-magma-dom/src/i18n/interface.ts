@@ -3,7 +3,7 @@ import { Locale } from 'date-fns';
 export interface I18nInterface {
   example: string;
   locale: Locale;
-  dateFormat: 'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM';
+  dateFormat: 'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM' | 'MMMM d, yyyy';
   timeFormat: '12' | '24';
   months: {
     long: {

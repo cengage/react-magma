@@ -4,7 +4,14 @@ import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { InputType } from '../InputBase';
-import { isAfter, isBefore, isValid, isSameDay } from 'date-fns';
+import {
+  isAfter,
+  isBefore,
+  isValid,
+  isSameDay,
+  parse,
+  isMatch,
+} from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 import { EventIcon } from 'react-magma-icons';
@@ -265,8 +272,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function isValidDateFromString(value: string, day: Date) {
-      const isValidDateFormat = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(value);
-      const isValidDate = isValid(day);
+      const isValidDateFormat = isMatch(value, i18n.dateFormat);
+      const parsedDate = parse(value, i18n.dateFormat, new Date());
+      const isValidDate = isValid(parsedDate);
 
       return isValidDateFormat && isValidDate;
     }
@@ -295,7 +303,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function handleInputBlur(event: React.FocusEvent) {
       const { value } = inputRef.current;
-      const day = new Date(value);
+      const day = parse(value, i18n.dateFormat, new Date());
       const convertedMinDate = getDateFromString(props.minDate);
       const convertedMaxDate = getDateFromString(props.maxDate);
 

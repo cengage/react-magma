@@ -1,5 +1,102 @@
 # Change Log
 
+## 3.1.1-next.15
+
+### Patch Changes
+
+- 4a229b55c: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+
+## 3.1.1-next.14
+
+### Patch Changes
+
+- 6e0582249: fix(datagrid): Add aria-label to sort by selectable button
+
+## 3.1.1-next.13
+
+### Patch Changes
+
+- 101269ae7: refactor(Input): Update Storybook example with a11y violations.
+
+## 3.1.1-next.12
+
+### Patch Changes
+
+- dac39a9a5: fix(input): Fix double focus on all input types (search, datepicker, password). When the icon is focused, only the icon will have visible focus and not the whole input.
+
+## 3.1.1-next.11
+
+### Patch Changes
+
+- ad190dd9d: fix(pagination): Fix Pagination a11y issue regarding `<ul>` only having `<li>` as children.
+
+## 3.1.1-next.10
+
+### Patch Changes
+
+- 3fbb41fa2: refactor(indeterminatecheckbox): Update Storybook example with a11y violations.
+
+## 3.1.1-next.9
+
+### Patch Changes
+
+- 3016a8e3f: fix(accordion): Accordion Item `buttonId` will be based on the index to avoid duplicate ids.
+  refactor(accordion): Update Storybook example with a11y violations.
+
+## 3.1.1-next.8
+
+### Patch Changes
+
+- e9e508d99: refactor(skiplink): Update Storybook example with a11y violations.
+
+## 3.1.1-next.7
+
+### Patch Changes
+
+- 4fb880c9f: refactor(radio): Update Storybook examples with a11y violations.
+
+## 3.1.1-next.6
+
+### Patch Changes
+
+- 56f9cab83: refactor(appbar): Update Storybook example with a11y violations.
+
+## 3.1.1-next.5
+
+### Patch Changes
+
+- 79dd48126: fix(DatePicker): Fix support for non-default date formats (dd/mm/yyyy, yyyy/MM/dd, yyyy/dd/MM). Add support for MMMM d, yyyy.
+
+## 3.1.1-next.4
+
+### Patch Changes
+
+- c1a8c2664: fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.
+
+## 3.1.1-next.3
+
+### Patch Changes
+
+- e24d4229d: feat(datagrid): Add `isSortableBySelected` prop to DataGrid, allowing tables to be sorted by the selected items.
+
+## 3.1.1-next.2
+
+### Patch Changes
+
+- 14de7d4bb: fix(Tabs): Removing unnecessary aria-label from wrapping div
+
+## 3.1.1-next.1
+
+### Patch Changes
+
+- 105cf25b: build(deps): bump parse-url from 6.0.0 to 6.0.2
+
+## 3.1.1-next.0
+
+### Patch Changes
+
+- fc8a20bf: build(deps): bump terser from 4.8.0 to 4.8.1
+
 ## 3.1.0
 
 ### Minor Changes

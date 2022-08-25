@@ -32,9 +32,13 @@ export interface SearchProps extends InputBaseProps {
    */
   inputStyle?: React.CSSProperties;
   /**
-   * Clear contents of input by clicking a clear button
+   * Position within the component for the icon to appear
+   * @default InputIconPosition.right
    */
   iconPosition?: InputIconPosition;
+  /**
+   * Clear contents of input by clicking a clear button
+   */
   isClearable?: boolean;
   /**
    * If true, the component will show a loading animation instead of a search button

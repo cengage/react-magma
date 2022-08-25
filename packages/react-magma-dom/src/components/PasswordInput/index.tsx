@@ -62,6 +62,7 @@ export const PasswordInput = React.forwardRef<
 
   const {
     containerStyle,
+    disabled,
     errorMessage,
     helperMessage,
     hiddenPasswordAnnounceText,
@@ -129,9 +130,11 @@ export const PasswordInput = React.forwardRef<
           descriptionId ? descriptionId : props['aria-describedby']
         }
         aria-invalid={!!errorMessage}
+        disabled={disabled}
         hasError={!!errorMessage}
         id={id}
         inputSize={inputSize}
+        inputStyle={{ width: 'calc(100% - 52px)' }}
         isInverse={isInverse}
         ref={ref}
         type={passwordShown ? InputType.text : InputType.password}
@@ -144,6 +147,7 @@ export const PasswordInput = React.forwardRef<
                   ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
                   : SHOW_PASSWORD_BUTTON_ARIA_LABEL
               }
+              disabled={disabled}
               isInverse={isInverse}
               onClick={togglePasswordShown}
               size={ButtonSize.small}

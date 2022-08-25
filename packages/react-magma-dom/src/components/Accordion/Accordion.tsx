@@ -29,7 +29,7 @@ interface BaseAccordionProps
 
 export interface AccordionMultipleProps extends BaseAccordionProps {
   /**
-   * Zero-based indices of item to expanded initially.  When isMulti is true this is an array of numbers.
+   * Zero-based indices of item to expanded initially. When isMulti is true this is an array of numbers.
    * @default []
    */
   defaultIndex?: number[];
@@ -47,7 +47,7 @@ export interface AccordionSingleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Zero-based index of item to expanded initially.  When isMulti is a false this is a number.
+   * Zero-based index of item to expanded initially. When isMulti is false this is a number.
    * @default null
    */
   defaultIndex?: number;
