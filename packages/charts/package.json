@@ -41,11 +41,7 @@
     "@emotion/styled": "^10.0.27",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
-<<<<<<< HEAD
-    "react-magma-dom": "^3.1.1-next.0",
-=======
     "react-magma-dom": "^3.1.1",
->>>>>>> 3f80aa9881cc6953f5882c220e9bcd0cdad4b92e
     "react-magma-icons": "^2.3.1"
   }
 }
