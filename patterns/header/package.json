@@ -2,7 +2,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "3.0.2-next.0",
+  "version": "3.0.2",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -38,7 +38,7 @@
     "downshift": "^5.4.5",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
-    "react-magma-dom": "^3.1.1-next.0",
+    "react-magma-dom": "^3.1.1",
     "react-magma-icons": "^2.3.1",
     "uuid": "^8.3.0"
   },
