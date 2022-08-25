@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.0
+
+### Patch Changes
+
+- 2b099eb59: build: Resolve merge conflicts when pulling main -> dev
+
 ## 4.0.3
 
 ### Patch Changes
