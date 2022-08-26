@@ -9,6 +9,7 @@ import {
   AccordionButton,
   AccordionItem,
   AccordionPanel,
+  Hyperlink,
   magma,
 } from 'react-magma-dom';
 import styled from '@emotion/styled';
@@ -162,6 +163,19 @@ const StyledLink2 = styled(Link)`
   }
 `;
 
+// Returns the index of the accordion panel to open by default
+function defaultPanelIndex(location) {
+  if (location.pathname.includes('design')) {
+    return [0];
+  }
+  if (location.pathname.includes('api')) {
+    return [1];
+  }
+  if (location.pathname.includes('patterns')) {
+    return [2];
+  }
+}
+
 export const MainNav = ({ ...props }) => {
   const activeStyle = activeStyleDefault;
 
@@ -255,211 +269,210 @@ export const MainNav = ({ ...props }) => {
       `}
       render={data => (
         <StyledWrapper>
-          <StyledLink
-            activeStyle={activeStyle}
-            aria-label="Introduction to the Magma System"
-            onClick={props.handleClick}
-            to="/"
-          >
-            <Heading2>Introduction</Heading2>
-          </StyledLink>
-
-          <StyledLink
-            activeStyle={activeStyle}
-            aria-label="Contribution Guidelines"
-            to="/contribution-guidelines/"
-          >
-            <Heading2>Contribution Guidelines</Heading2>
-          </StyledLink>
-
-          <StyledLink
-            activeStyle={activeStyle}
-            aria-label="View project on GitHub"
-            href="https://github.com/cengage/react-magma"
-          >
-            <Heading2>
-              GitHub
-              <LaunchIcon size={magma.iconSizes.small} />
-            </Heading2>
-          </StyledLink>
           <Location>
             {({ location }) => (
-              <StyledAccordion>
-                <StyledAccordionItem
-                  value={location.pathname.includes('design')}
+              <>
+                <StyledLink
+                  activeStyle={activeStyle}
+                  aria-label="Introduction to the Magma System"
+                  onClick={props.handleClick}
+                  to="/"
                 >
-                  <StyledAccordionButton>
-                    <Heading2>Design</Heading2>
-                  </StyledAccordionButton>
-                  <StyledAccordionPanel>
-                    <List>
+                  <Heading2>Introduction</Heading2>
+                </StyledLink>
+
+                <StyledLink
+                  activeStyle={activeStyle}
+                  aria-label="Contribution Guidelines"
+                  to="/contribution-guidelines/"
+                >
+                  <Heading2>Contribution Guidelines</Heading2>
+                </StyledLink>
+
+                <Hyperlink
+                  aria-label="View project on GitHub"
+                  to="https://github.com/cengage/react-magma"
+                  target="_blank"
+                >
+                  <Heading2>
+                    GitHub
+                    <LaunchIcon size={magma.iconSizes.small} />
+                  </Heading2>
+                </Hyperlink>
+
+                <StyledAccordion defaultIndex={defaultPanelIndex(location)}>
+                  <StyledAccordionItem>
+                    <StyledAccordionButton>
+                      <Heading2>Design</Heading2>
+                    </StyledAccordionButton>
+                    <StyledAccordionPanel>
+                      <List>
+                        <Heading3>Intro</Heading3>
+                        {data.designIntro.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                            <Router>
+                              <SubMenu2
+                                path={withPrefix(node.fields.slug)}
+                                headings={node.headings}
+                                handleClick={props.handleClick}
+                              />
+                            </Router>
+                          </ListItem>
+                        ))}
+                      </List>
+                      <Heading3>Components</Heading3>
+                      <List>
+                        {data.designComponentDocs.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                            <Router>
+                              <SubMenu2
+                                path={withPrefix(node.fields.slug)}
+                                headings={node.headings}
+                                handleClick={props.handleClick}
+                              />
+                            </Router>
+                          </ListItem>
+                        ))}
+                      </List>
+                      <Heading3>Patterns</Heading3>
+                      <List>
+                        {data.designPatternDocs.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                            <Router>
+                              <SubMenu2
+                                path={withPrefix(node.fields.slug)}
+                                headings={node.headings}
+                                handleClick={props.handleClick}
+                              />
+                            </Router>
+                          </ListItem>
+                        ))}
+                      </List>
+                    </StyledAccordionPanel>
+                  </StyledAccordionItem>
+
+                  <StyledAccordionItem>
+                    <StyledAccordionButton>
+                      <Heading2>Components</Heading2>
+                    </StyledAccordionButton>
+                    <StyledAccordionPanel>
                       <Heading3>Intro</Heading3>
-                      {data.designIntro.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                    <Heading3>Components</Heading3>
-                    <List>
-                      {data.designComponentDocs.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                    <Heading3>Patterns</Heading3>
-                    <List>
-                      {data.designPatternDocs.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                  </StyledAccordionPanel>
-                </StyledAccordionItem>
+                      <List>
+                        {data.apiIntro.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                            <Router>
+                              <SubMenu2
+                                path={withPrefix(node.fields.slug)}
+                                headings={node.headings}
+                                handleClick={props.handleClick}
+                              />
+                            </Router>
+                          </ListItem>
+                        ))}
+                      </List>
+                      <Heading3>API</Heading3>
+                      <List>
+                        {data.apiDocs.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                            <Router>
+                              <SubMenu2
+                                path={withPrefix(node.fields.slug)}
+                                headings={node.headings}
+                                handleClick={props.handleClick}
+                              />
+                            </Router>
+                          </ListItem>
+                        ))}
+                      </List>
+                    </StyledAccordionPanel>
+                  </StyledAccordionItem>
 
-                <StyledAccordionItem value={location.pathname.includes('api')}>
-                  <StyledAccordionButton>
-                    <Heading2>Components</Heading2>
-                  </StyledAccordionButton>
-                  <StyledAccordionPanel>
-                    <Heading3>Intro</Heading3>
-                    <List>
-                      {data.apiIntro.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                    <Heading3>API</Heading3>
-                    <List>
-                      {data.apiDocs.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                  </StyledAccordionPanel>
-                </StyledAccordionItem>
-
-                <StyledAccordionItem
-                  value={location.pathname.includes('patterns')}
-                >
-                  <StyledAccordionButton>
-                    <Heading2>Patterns</Heading2>
-                  </StyledAccordionButton>
-                  <StyledAccordionPanel>
-                    <Heading3>Intro</Heading3>
-                    <List>
-                      {data.patternsIntro.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                    <Heading3>API</Heading3>
-                    <List>
-                      {data.patternsDocs.edges.map(({ node }) => (
-                        <ListItem key={node.fields.slug}>
-                          <StyledLink2
-                            activeStyle={activeStyle}
-                            onClick={props.handleClick}
-                            to={node.fields.slug}
-                          >
-                            {node.frontmatter.title}
-                          </StyledLink2>
-                          <Router>
-                            <SubMenu2
-                              path={withPrefix(node.fields.slug)}
-                              headings={node.headings}
-                              handleClick={props.handleClick}
-                            />
-                          </Router>
-                        </ListItem>
-                      ))}
-                    </List>
-                  </StyledAccordionPanel>
-                </StyledAccordionItem>
-              </StyledAccordion>
+                  <StyledAccordionItem>
+                    <StyledAccordionButton>
+                      <Heading2>Patterns</Heading2>
+                    </StyledAccordionButton>
+                    <StyledAccordionPanel>
+                      <Heading3>Intro</Heading3>
+                      <List>
+                        {data.patternsIntro.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                            <Router>
+                              <SubMenu2
+                                path={withPrefix(node.fields.slug)}
+                                headings={node.headings}
+                                handleClick={props.handleClick}
+                              />
+                            </Router>
+                          </ListItem>
+                        ))}
+                      </List>
+                      <Heading3>API</Heading3>
+                      <List>
+                        {data.patternsDocs.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                            <Router>
+                              <SubMenu2
+                                path={withPrefix(node.fields.slug)}
+                                headings={node.headings}
+                                handleClick={props.handleClick}
+                              />
+                            </Router>
+                          </ListItem>
+                        ))}
+                      </List>
+                    </StyledAccordionPanel>
+                  </StyledAccordionItem>
+                </StyledAccordion>
+              </>
             )}
           </Location>
         </StyledWrapper>
