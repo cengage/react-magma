@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.2-next.0
+
+### Patch Changes
+
+- 17ee57afe: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
 ## 3.1.1
 
 ### Patch Changes
