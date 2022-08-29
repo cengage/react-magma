@@ -14,5 +14,5 @@ jobs:
     - name: Add new issues to react-magma project
       uses: srggrs/assign-one-project-github-action@1.2.0
       with:
-        project: 'https://github.com/cengage/react-magma/projects/1'
-        column_name: 'Triage'
+        project: 'https://github.com/orgs/cengage/projects/1/views/7'
+        column_name: 'To Do'
