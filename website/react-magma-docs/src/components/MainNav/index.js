@@ -128,6 +128,16 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledHyperlink = styled(Hyperlink)`
+  ${LinkStyles}
+  &:hover {
+    ${LinkHoverStyles}
+  }
+  &:not([disabled]):hover {
+    ${LinkHoverStyles}
+  }
+`;
+
 const StyledActiveLink2 = {
   content: "''",
   position: 'absolute',
@@ -289,7 +299,7 @@ export const MainNav = ({ ...props }) => {
                   <Heading2>Contribution Guidelines</Heading2>
                 </StyledLink>
 
-                <Hyperlink
+                <StyledHyperlink
                   aria-label="View project on GitHub"
                   to="https://github.com/cengage/react-magma"
                   target="_blank"
@@ -298,7 +308,7 @@ export const MainNav = ({ ...props }) => {
                     GitHub
                     <LaunchIcon size={magma.iconSizes.small} />
                   </Heading2>
-                </Hyperlink>
+                </StyledHyperlink>
 
                 <StyledAccordion defaultIndex={defaultPanelIndex(location)}>
                   <StyledAccordionItem>

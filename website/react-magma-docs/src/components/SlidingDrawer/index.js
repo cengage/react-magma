@@ -15,7 +15,6 @@ export class SlidingDrawer extends React.Component {
       isActivated: false,
     };
     this.toggleButtonRef = React.createRef();
-    this.closeMenu = this.closeMenu.bind(this);
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
