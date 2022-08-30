@@ -19,7 +19,7 @@ This template is ideal for applications that need as much of the screen as possi
 import React from 'react';
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, useMediaQuery } from 'react-magma-dom';
+import { Drawer, DrawerPosition, magma, useMediaQuery } from 'react-magma-dom';
 
 const Container = styled.div`
   display: grid;
@@ -40,31 +40,37 @@ const Content = styled.div`
   max-width: 1600px;
   width: calc(100% - 48px);
   justify-self:center;
-  background:${magma.colors.neutral06};
+  background:${magma.colors.neutral300};
   padding:${magma.spaceScale.spacing05};
   height:calc(100vh - 122px);
 `;
 
-const Sidebar = () => (
-  <StyledSidebar>Sidebar</StyledSidebar>
-);
-
 export function Example() {
-
+  const [showDrawer, setShowDrawer] = React.useState(false)
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
   );
 
+
   return (
 
-      <Container>
+    <Container>
 
-        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} />
+      <StyledHeader
+        isInverse logo={<strong>LOGO</strong>}
+        breakpoint={magma.breakpoints.large}
+        isCompact={isSmallerScreen}
+        onMenuButtonClick={() => setShowDrawer(true)}
+      />
 
-        <Content>Content</Content>
+        <Drawer onClose={() => setShowDrawer(false)}
+        isOpen={showDrawer} position={DrawerPosition.left}>
+          Content
+        </Drawer>
 
-      </Container>
+      <Content>Content</Content>
 
+    </Container>
   );
 }
 ```
@@ -109,11 +115,8 @@ const Content = styled.div`
   height:calc(100vh - 122px);
 `;
 
-const Sidebar = () => (
-  <StyledSidebar>Sidebar</StyledSidebar>
-);
-
 export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false)
 
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
@@ -123,7 +126,9 @@ export function Example() {
 
       <Container>
 
-        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} />
+        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} onMenuButtonClick={() => setShowDrawer(true)}/>
+
+        <Drawer position={DrawerPosition.left} onClose={() => setShowDrawer(false)} isOpen={showDrawer}>Sidebar</Drawer>
 
         <Content>Content</Content>
 
@@ -168,7 +173,7 @@ const StyledSidebar = styled.div`
   grid-area: sidebar;
   background:${magma.colors.neutral06};
   padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 32px);
+  height:calc(100vh - 50px);
 `;
 
 const Content = styled.div`
@@ -248,7 +253,7 @@ const StyledSidebar = styled.div`
   grid-area: sidebar;
   background:${magma.colors.neutral06};
   padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 32px);
+  height:calc(100vh - 50px);
 `;
 
 const Content = styled.div`
