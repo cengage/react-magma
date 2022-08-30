@@ -27,14 +27,6 @@ const StyledAccordion = styled(Accordion)`
   border-bottom: 0;
 `;
 
-const StyledAccordionPanel = styled(AccordionPanel)`
-  padding: 0;
-  &[aria-hidden='false'] {
-    box-shadow: inset 0 -1px 0 0 ${magma.colors.neutral300};
-    padding-bottom: 10px;
-  }
-`;
-
 const StyledAccordionItem = styled(AccordionItem)`
   h3 {
     color: ${magma.colors.neutral700};
@@ -49,7 +41,22 @@ const StyledAccordionItem = styled(AccordionItem)`
   button {
     &[aria-expanded='true'] {
       box-shadow: inset 0 1px 0 0 ${magma.colors.neutral300};
+      div {
+        transform: rotate(180deg) !important;
+      }
     }
+  }
+  > div {
+    opacity: 1 !important;
+    height: 100% !important;
+  }
+`;
+
+const StyledAccordionPanel = styled(AccordionPanel)`
+  padding: 0;
+  &[aria-hidden='false'] {
+    box-shadow: inset 0 -1px 0 0 ${magma.colors.neutral300};
+    padding-bottom: 10px;
   }
 `;
 
