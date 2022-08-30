@@ -10,6 +10,9 @@ import { ChevronRightIcon } from 'react-magma-icons';
  */
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current="page" on it.
@@ -27,11 +30,15 @@ const StyledItem = styled.li`
 const StyledSpan = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
 
   svg {
     margin: 0 ${props => props.theme.spaceScale.spacing02};
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.tertiary500
+        : props.theme.colors.neutral500};
   }
 `;
 

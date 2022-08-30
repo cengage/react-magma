@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Spinner } from '.';
 import { render } from '@testing-library/react';
 import { I18nContext } from '../../i18n';

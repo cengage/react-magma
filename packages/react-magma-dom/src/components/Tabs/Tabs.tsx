@@ -2,7 +2,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import { Omit, getNormalizedScrollLeft, useDescendants } from '../../utils';
+import { omit, Omit, getNormalizedScrollLeft } from '../../utils';
+import { useDescendants } from '../../hooks/useDescendants';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
@@ -55,13 +56,14 @@ export interface TabsProps
   /**
    * The text the screen reader will announce that describes your tablist.
    */
-  'aria-label': string;
+  'aria-label'?: string;
   /**
    * Background color for the tabs menu
    */
   backgroundColor?: string;
   /**
    * The orientation of icon on Tab
+   * @default TabsIconPosition.left
    */
   iconPosition?: TabsIconPosition;
   /**
@@ -73,7 +75,13 @@ export interface TabsProps
    * The onChange handler for managing state of Tabs component by your custom logic.
    */
   onChange?: (newActiveIndex: number) => void;
+  /**
+   * @default TabsOrientation.horizontal
+   */
   orientation?: TabsOrientation;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -114,11 +122,7 @@ export const StyledContainer = styled('div', {
   theme: ThemeInterface;
 }>`
   background-color: ${props =>
-    props.backgroundColor
-      ? props.backgroundColor
-      : props.isInverse
-      ? props.theme.colors.foundation
-      : 'transparent'};
+    props.backgroundColor ? props.backgroundColor : 'transparent'};
   background: backgroundColor;
   display: flex;
   height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
@@ -180,11 +184,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     const theme = React.useContext(ThemeContext);
 
-    const {
-      activeTabIndex,
-      setActiveTabIndex,
-      isInverseContainer,
-    } = React.useContext(TabsContainerContext);
+    const { activeTabIndex, setActiveTabIndex, isInverseContainer } =
+      React.useContext(TabsContainerContext);
 
     const isInverse =
       typeof props.isInverse !== 'undefined'
@@ -379,19 +380,25 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
 
       if (newActiveTabIndex !== null) {
+        onChange &&
+          typeof onChange === 'function' &&
+          onChange(newActiveTabIndex);
         setActiveTabIndex(newActiveTabIndex);
-        (buttonRefArray.current[newActiveTabIndex]
-          .current as HTMLButtonElement).focus();
+        (
+          buttonRefArray.current[newActiveTabIndex].current as HTMLButtonElement
+        ).focus();
         event.preventDefault();
       }
     }
 
     const i18n = React.useContext(I18nContext);
-    const ariaLabel = `${rest['aria-label']}, ${
+    const ariaLabel = `${rest['aria-label'] || ''}, ${
       orientation === TabsOrientation.vertical
         ? i18n.tabs.verticalTabsInstructions
         : i18n.tabs.horizontalTabsInstructions
     }`;
+
+    const other = omit(['aria-label'], rest);
 
     return (
       <StyledContainer
@@ -401,7 +408,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         orientation={orientation || TabsOrientation.horizontal}
         ref={ref}
         theme={theme}
-        {...rest}
+        {...other}
       >
         <ButtonPrev
           backgroundColor={background}

@@ -12,33 +12,33 @@
                 <g id="Group-7" transform="translate(190.000000, 212.000000)">
                     <g id="Accessible-Copy" transform="translate(1.000000, 1365.000000)">
                         <g id="Group-18">
-                            <g id="🎨/pop02" fill="#FA6600">
+                            <g id="🎨/secondary" fill="#FA6600">
                                 <rect id="Rectangle" x="0" y="0" width="250" height="250"></rect>
                             </g>
-                            <g id="🎨/pop02-copy" fill="#E0004D">
+                            <g id="🎨/secondary" fill="#E0004D">
                                 <polygon id="Rectangle" points="125 129 250 0 250 250 0 250"></polygon>
                             </g>
                             <g id="Group-11" transform="translate(100.000000, 47.000000)" fill="#FFFFFF">
-                                <g id="🎨/neutral08">
+                                <g id="🎨/neutral100">
                                     <rect id="Rectangle" x="0" y="0" width="120" height="8"></rect>
                                 </g>
-                                <g id="🎨/neutral08" transform="translate(0.000000, 16.000000)">
+                                <g id="🎨/neutral100" transform="translate(0.000000, 16.000000)">
                                     <rect id="Rectangle" x="0" y="0" width="90" height="8"></rect>
                                 </g>
                             </g>
                             <g id="Group-11-Copy" transform="translate(100.000000, 113.000000)" fill="#FFFFFF">
-                                <g id="🎨/neutral08">
+                                <g id="🎨/neutral100">
                                     <rect id="Rectangle" x="0" y="0" width="120" height="8"></rect>
                                 </g>
-                                <g id="🎨/neutral08" transform="translate(0.000000, 16.000000)">
+                                <g id="🎨/neutral100" transform="translate(0.000000, 16.000000)">
                                     <rect id="Rectangle" x="0" y="0" width="90" height="8"></rect>
                                 </g>
                             </g>
                             <g id="Group-11-Copy-2" transform="translate(100.000000, 180.000000)" fill="#FFFFFF">
-                                <g id="🎨/neutral08">
+                                <g id="🎨/neutral100">
                                     <rect id="Rectangle" x="0" y="0" width="120" height="8"></rect>
                                 </g>
-                                <g id="🎨/neutral08" transform="translate(0.000000, 16.000000)">
+                                <g id="🎨/neutral100" transform="translate(0.000000, 16.000000)">
                                     <rect id="Rectangle" x="0" y="0" width="90" height="8"></rect>
                                 </g>
                             </g>
@@ -49,7 +49,7 @@
                                         <use xlink:href="#path-1"></use>
                                     </mask>
                                     <use id="Shape" fill="#444444" fill-rule="nonzero" xlink:href="#path-1"></use>
-                                    <g id="🎨/neutral08" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="evenodd">
+                                    <g id="🎨/neutral100" mask="url(#mask-2)" fill="#FFFFFF" fill-rule="evenodd">
                                         <rect id="Rectangle" x="0" y="0" width="35" height="35"></rect>
                                     </g>
                                 </g>
@@ -58,7 +58,7 @@
                                         <use xlink:href="#path-3"></use>
                                     </mask>
                                     <use id="Shape" fill="#444444" fill-rule="nonzero" xlink:href="#path-3"></use>
-                                    <g id="🎨/neutral08" mask="url(#mask-4)" fill="#FFFFFF" fill-rule="evenodd">
+                                    <g id="🎨/neutral100" mask="url(#mask-4)" fill="#FFFFFF" fill-rule="evenodd">
                                         <rect id="Rectangle" x="0" y="0" width="35" height="35"></rect>
                                     </g>
                                 </g>
@@ -67,7 +67,7 @@
                                         <use xlink:href="#path-5"></use>
                                     </mask>
                                     <use id="Shape" fill="#444444" fill-rule="nonzero" xlink:href="#path-5"></use>
-                                    <g id="🎨/neutral08" mask="url(#mask-6)" fill="#FFFFFF" fill-rule="evenodd">
+                                    <g id="🎨/neutral100" mask="url(#mask-6)" fill="#FFFFFF" fill-rule="evenodd">
                                         <rect id="Rectangle" x="0" y="0" width="35" height="35"></rect>
                                     </g>
                                 </g>

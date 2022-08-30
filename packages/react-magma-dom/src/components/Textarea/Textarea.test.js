@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Textarea } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -49,13 +49,22 @@ describe('Textarea', () => {
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
   });
 
+  it('should clear the textarea when an empty string is passed', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(<Textarea value="hello" testId={testId} />);
+    const textarea = getByTestId(testId);
+
+    fireEvent.change(textarea, {target: {value: ''}})
+    expect(textarea.value).toBe('');
+  });
+
   it('should render a textarea with a correctly styled helper message', () => {
     const testMessage = 'Test message';
     const { getByTestId } = render(<Textarea helperMessage={testMessage} />);
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral);
   });
 
   it('should render a textarea with a correctly styled error message', () => {

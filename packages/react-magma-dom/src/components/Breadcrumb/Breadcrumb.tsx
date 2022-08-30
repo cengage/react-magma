@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -9,13 +10,23 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
+  /**
+   * The text the screen reader will announce that describes your breadcrumb.
+   */
+  'aria-label'?: string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
-const StyledList = styled.ol<BreadcrumbProps>`
+const StyledList = styled('ol', {
+  shouldForwardProp: isPropValid,
+})<BreadcrumbProps>`
   display: flex;
   flex-wrap: wrap;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   list-style: none;
   margin: 0;
@@ -24,11 +35,17 @@ const StyledList = styled.ol<BreadcrumbProps>`
 
 export const Breadcrumb = React.forwardRef<HTMLOListElement, BreadcrumbProps>(
   (props, ref) => {
-    const { 'aria-label': ariaLabel, children, testId, ...other } = props;
+    const {
+      'aria-label': ariaLabel,
+      children,
+      isInverse: isInverseProp,
+      testId,
+      ...other
+    } = props;
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(isInverseProp);
 
     return (
       <InverseContext.Provider value={{ isInverse }}>

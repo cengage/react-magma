@@ -3,7 +3,7 @@ import { Locale } from 'date-fns';
 export interface I18nInterface {
   example: string;
   locale: Locale;
-  dateFormat: 'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM';
+  dateFormat: 'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM' | 'MMMM d, yyyy';
   timeFormat: '12' | '24';
   months: {
     long: {
@@ -71,6 +71,17 @@ export interface I18nInterface {
   breadcrumb: {
     navAriaLabel: string;
   };
+  charts: {
+    line: {
+      chartTabLabel: string;
+      dataLegendsLabel: string;
+      dataTabLabel: string;
+      keyboardInstructions: string;
+      keyboardInstructionsHeader: string;
+      keyboardInstructionsTooltip: string;
+      legendButtonAriaLabel: string;
+    };
+  };
   combobox: {
     clearIndicatorAriaLabel: string;
     createLabel: string;
@@ -133,7 +144,7 @@ export interface I18nInterface {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
   };
-  fileUploader: {
+  dropzone: {
     browseFiles: string;
     dragMessage: string;
     errors: {
@@ -141,8 +152,11 @@ export interface I18nInterface {
         header?: string;
         message: string;
       };
-    }
+    };
     files: string;
+    bytes: string;
+    deleteFile: string;
+    removeFile: string;
   };
   header: {
     navigationButtonLabel: string;
@@ -238,7 +252,7 @@ export interface I18nInterface {
   };
   tag: {
     deleteAriaLabel: string;
-  }
+  };
   timePicker: {
     hoursAriaLabel: string;
     minutesAriaLabel: string;

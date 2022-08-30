@@ -4,7 +4,7 @@ import { Tab } from './Tab';
 import { Tabs } from '.';
 import { TabsContainer } from './TabsContainer';
 import { TabPanel } from './TabPanel';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { TabPanelsContainer } from './TabPanelsContainer';
 
@@ -76,9 +76,9 @@ it('should render with inverse styles', () => {
 
   expect(getByTestId(testId)).toHaveStyleRule(
     'background',
-    magma.colors.foundation02
+    'none'
   );
-  expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral08);
+  expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral100);
 });
 
 describe('Test for accessibility', () => {

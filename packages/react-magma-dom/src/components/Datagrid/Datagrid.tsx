@@ -14,6 +14,7 @@ import {
   TableHeaderCellProps,
   TableRowColor,
   TablePaginationProps,
+  TableSortDirection,
 } from '../Table';
 import { defaultComponents } from './components';
 
@@ -26,6 +27,11 @@ export interface DatagridColumn extends TableHeaderCellProps {
    * Header text for each column
    */
   header: string;
+  /**
+   * Set to true if you want the column to be the header for each row
+   * @default false
+   */
+  isRowHeader?: boolean;
 }
 
 export interface DatagridRow {
@@ -75,6 +81,7 @@ export interface BaseDatagridProps extends TableProps {
   components?: DatagridComponents;
   /**
    * Props to be passed to the default components used internally to build the datagrid
+   * @default {}
    */
   componentsProps?: DatagridComponentsProps;
   /**
@@ -103,8 +110,18 @@ export interface BaseDatagridProps extends TableProps {
   onSelectedRowsChange?: (newSelectedRows: (string | number)[]) => void;
   /**
    * Pagination data used to create the pagination footer. Created using the usePagination hook.
+   * @default {}
    */
   paginationProps?: Partial<TablePaginationProps>;
+  /**
+   * Function called when the sort button is clicked for selectable tables
+   */
+  onSortBySelected?: () => void;
+  /**
+   * Direction by which the selectable column is sorted
+   * @default TableSortDirection.none
+   */
+  sortDirection?: TableSortDirection;
 }
 
 export interface ControlledSelectedRowsProps {
@@ -142,6 +159,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       rows,
       selectedRows: selectedRowsProp,
       hasPagination = true,
+      onSortBySelected,
+      sortDirection,
       ...other
     } = props;
     const [rowsToShow, setRowsToShow] = React.useState<DatagridRow[]>([]);
@@ -171,6 +190,10 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     React.useEffect(() => {
       setRowsToShow(hasPagination ? getPageItems(currentPage) : rows);
     }, [currentPage, rowsPerPage]);
+
+    React.useEffect(() => {
+      setRowsToShow(rows);
+    }, [rows]);
 
     const { Pagination } = defaultComponents({
       ...customComponents,
@@ -247,6 +270,12 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       }
     }
 
+    function handleRowSort() {
+      onSortBySelected &&
+        typeof onSortBySelected === 'function' &&
+        onSortBySelected();
+    }
+
     return (
       <>
         <Table {...other} ref={ref}>
@@ -254,9 +283,15 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             <TableRow
               headerRowStatus={headerRowStatus}
               onHeaderRowSelect={handleHeaderSelect}
+              onSort={handleRowSort}
+              sortDirection={sortDirection}
             >
               {columns.map(({ field, header, ...other }) => (
-                <TableHeaderCell key={`headercell${field}`} {...other}>
+                <TableHeaderCell
+                  key={`headercell${field}`}
+                  {...other}
+                  isRowHeader={false}
+                >
                   {header}
                 </TableHeaderCell>
               ))}
@@ -274,9 +309,18 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
                 isSelectableDisabled={isSelectableDisabled}
                 onTableRowSelect={event => handleRowSelect(id, event)}
               >
-                {Object.keys(other).map(field => (
-                  <TableCell key={`cell${field}`}>{other[field]}</TableCell>
-                ))}
+                {columns.map(({ field, isRowHeader }: DatagridColumn) => {
+                  return isRowHeader ? (
+                    <TableHeaderCell
+                      key={`cell${field}`}
+                      isRowHeader={isRowHeader}
+                    >
+                      {other[field]}
+                    </TableHeaderCell>
+                  ) : (
+                    <TableCell key={`cell${field}`}>{other[field]}</TableCell>
+                  );
+                })}
               </TableRow>
             ))}
           </TableBody>

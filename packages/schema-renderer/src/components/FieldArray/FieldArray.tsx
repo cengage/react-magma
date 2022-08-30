@@ -5,7 +5,6 @@ import {
   Button,
   ButtonColor,
   ButtonType,
-  Heading,
   Paragraph,
 } from 'react-magma-dom';
 
@@ -38,7 +37,7 @@ export const FieldArray = ({ ...props }: any) => {
       {({ fields: { map, value = [], push, remove } }) => {
         return (
           <>
-            {label && <Heading level={6}>{label}</Heading>}
+            {<h6>label</h6>}
             <Button
               color={ButtonColor.primary}
               type={ButtonType.button}

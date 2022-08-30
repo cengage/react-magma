@@ -63,7 +63,7 @@ describe('Tab Panels Container', () => {
 
     expect(getByText('Tab 1 Info')).toHaveStyleRule(
       'background',
-      magma.colors.foundation02
+      'none'
     );
   });
 
@@ -86,7 +86,7 @@ describe('Tab Panels Container', () => {
 
     expect(getByText('Tab 1 Info')).toHaveStyleRule(
       'background',
-      magma.colors.neutral08
+      'none'
     );
 
     fireEvent.click(getByText('This is tab 2'), {
@@ -95,7 +95,7 @@ describe('Tab Panels Container', () => {
 
     expect(getByText('Tab 2 Info')).toHaveStyleRule(
       'background',
-      magma.colors.foundation02
+      'none'
     );
   });
 });

@@ -1,16 +1,81 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
 import { AccountCircleIcon } from 'react-magma-icons';
-import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Tag, TagColor, TagProps, TagSize } from '.';
 
-const Template: Story<TagProps> = args => <Tag {...args}>Text Label</Tag>;
-
-const TemplateIcon: Story<TagProps> = args => (
-  <Tag {...args} icon={<AccountCircleIcon />}>
-    Text Label
-  </Tag>
+const Template: Story<TagProps> = args => (
+  <>
+    <>
+      <Tag {...args}>Default</Tag>
+      <Tag {...args} color={TagColor.primary}>
+        Primary
+      </Tag>
+      <Tag {...args} color={TagColor.highContrast}>
+        High Contrast
+      </Tag>
+      <Tag {...args} color={TagColor.lowContrast}>
+        Low Contrast
+      </Tag>
+    </>
+    <p>
+      <Tag {...args} icon={<AccountCircleIcon />}>
+        Default Icon
+      </Tag>
+      <Tag {...args} icon={<AccountCircleIcon />} color={TagColor.primary}>
+        Primary Icon
+      </Tag>
+      <Tag {...args} icon={<AccountCircleIcon />} color={TagColor.highContrast}>
+        High Contrast Icon
+      </Tag>
+      <Tag {...args} icon={<AccountCircleIcon />} color={TagColor.lowContrast}>
+        Low Contrast Icon
+      </Tag>
+    </p>
+    <p>
+      <Tag {...args} size={TagSize.small}>
+        Default Small
+      </Tag>
+      <Tag {...args} size={TagSize.small} color={TagColor.primary}>
+        Primary Small
+      </Tag>
+      <Tag {...args} size={TagSize.small} color={TagColor.highContrast}>
+        High Contrast Small
+      </Tag>
+      <Tag {...args} size={TagSize.small} color={TagColor.lowContrast}>
+        Low Contrast Small
+      </Tag>
+    </p>
+    <p>
+      <Tag {...args} icon={<AccountCircleIcon />} size={TagSize.small}>
+        Default Small Icon
+      </Tag>
+      <Tag
+        {...args}
+        icon={<AccountCircleIcon />}
+        size={TagSize.small}
+        color={TagColor.primary}
+      >
+        Primary Small Icon
+      </Tag>
+      <Tag
+        {...args}
+        icon={<AccountCircleIcon />}
+        size={TagSize.small}
+        color={TagColor.highContrast}
+      >
+        High Contrast Small Icon
+      </Tag>
+      <Tag
+        {...args}
+        icon={<AccountCircleIcon />}
+        size={TagSize.small}
+        color={TagColor.lowContrast}
+      >
+        Low Contrast Small Icon
+      </Tag>
+    </p>
+  </>
 );
 
 export default {
@@ -23,7 +88,18 @@ export default {
         options: TagSize,
       },
     },
-    TagColor: {
+    color: {
+      control: {
+        type: 'select',
+        options: TagColor,
+      },
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    isInverse: {
       control: {
         type: 'boolean',
       },
@@ -34,112 +110,40 @@ export default {
 export const Default = Template.bind({});
 Default.args = {};
 
-export const Disabled = () => {
-  return (
-    <>
-      <Tag disabled>Disabled</Tag>
-      <br />
-      <br />
-      <Tag disabled color={TagColor.primary}>
-        Disabled Primary
-      </Tag>
-      <br />
-      <br />
-      <Tag disabled color={TagColor.highContrast}>
-        Disabled High Contrast
-      </Tag>
-      <br />
-      <br />
-      <Tag disabled color={TagColor.lowContrast}>
-        Disabled Low Contrast
-      </Tag>
-    </>
-  );
+export const Disabled = Template.bind({});
+Disabled.args = {
+  disabled: true,
 };
 
-export const DisabledInverse = () => {
-  return (
+export const Inverse = Template.bind({});
+Inverse.args = {
+  isInverse: true,
+};
+
+export const InverseDisabled = Template.bind({});
+InverseDisabled.args = {
+  isInverse: true,
+  disabled: true,
+};
+
+Inverse.decorators = [
+  Story => (
     <Card isInverse>
       <CardBody>
-        <Tag isInverse disabled>
-          Disabled Inverse
-        </Tag>
-        <br />
-        <br />
-        <Tag isInverse disabled color={TagColor.primary}>
-          Disabled Inverse Primary
-        </Tag>
-        <br />
-        <br />
-        <Tag isInverse disabled color={TagColor.highContrast}>
-          Disabled Inverse High Contrast
-        </Tag>
-        <br />
-        <br />
-        <Tag isInverse disabled color={TagColor.lowContrast}>
-          Disabled Inverse Low Contrast
-        </Tag>
+        <Story />
       </CardBody>
     </Card>
-  );
-};
-
-export const WithIcon = TemplateIcon.bind({});
-WithIcon.args = {};
-
-export const Size = Template.bind({});
-Size.args = {
-  ...Default.args,
-  size: TagSize.small,
-};
-
-export const SizeWithIcon = TemplateIcon.bind({});
-SizeWithIcon.args = {
-  ...Default.args,
-  size: TagSize.small,
-};
-
-export const SizeWithDelete = args => {
-  const [isVisible, setIsVisible] = React.useState(true);
-
-  function deleteMe() {
-    setIsVisible(false);
-  }
-  return (
-    <>
-      {isVisible && (
-        <Tag {...args} onDelete={deleteMe}>
-          <span>Who the what the</span>Text Label
-        </Tag>
-      )}
-    </>
-  );
-};
-SizeWithDelete.args = {
-  ...Default.args,
-  size: TagSize.small,
-};
-
-export const SizeWithIconDelete = args => {
-  const [isVisible, setIsVisible] = React.useState(true);
-
-  function deleteMe() {
-    setIsVisible(false);
-  }
-  return (
-    <>
-      {isVisible && (
-        <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
-          Text Label
-        </Tag>
-      )}
-    </>
-  );
-};
-SizeWithIconDelete.args = {
-  ...Default.args,
-  size: TagSize.small,
-};
+  ),
+];
+InverseDisabled.decorators = [
+  Story => (
+    <Card isInverse>
+      <CardBody>
+        <Story />
+      </CardBody>
+    </Card>
+  ),
+];
 
 export const OnClick = args => {
   const [counter, setCounter] = React.useState<number>(0);
@@ -159,7 +163,7 @@ export const OnClick = args => {
 };
 OnClick.args = {};
 
-export const OnDelete = args => {
+export const WithDelete = args => {
   const [isVisible, setIsVisible] = React.useState(true);
 
   function deleteMe() {
@@ -167,62 +171,43 @@ export const OnDelete = args => {
   }
   return (
     <>
-      {isVisible && (
-        <Tag {...args} onDelete={deleteMe}>
-          Text Label
-        </Tag>
-      )}
+      <p>
+        {isVisible && (
+          <Tag {...args} onDelete={deleteMe}>
+            Delete
+          </Tag>
+        )}
+      </p>
+      <p>
+        {isVisible && (
+          <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
+            Delete Icon
+          </Tag>
+        )}
+      </p>
+      <p>
+        {isVisible && (
+          <Tag size={TagSize.small} {...args} onDelete={deleteMe}>
+            Delete Small
+          </Tag>
+        )}
+      </p>
+      <p>
+        {isVisible && (
+          <Tag
+            size={TagSize.small}
+            {...args}
+            onDelete={deleteMe}
+            icon={<AccountCircleIcon />}
+          >
+            Delete Icon Small
+          </Tag>
+        )}
+      </p>
     </>
   );
 };
-OnDelete.args = {};
 
-export const OnDeleteWithIcon = args => {
-  const [isVisible, setIsVisible] = React.useState(true);
-
-  function deleteMe() {
-    setIsVisible(false);
-  }
-  return (
-    <>
-      {isVisible && (
-        <Tag {...args} onDelete={deleteMe} icon={<AccountCircleIcon />}>
-          Text Label
-        </Tag>
-      )}
-    </>
-  );
-};
-OnDeleteWithIcon.args = {};
-
-export const Primary = Template.bind({});
-Primary.args = {
+WithDelete.args = {
   ...Default.args,
-  color: TagColor.primary,
 };
-
-export const LowContrast = Template.bind({});
-LowContrast.args = {
-  ...Default.args,
-  color: TagColor.lowContrast,
-};
-
-export const HighContrast = Template.bind({});
-HighContrast.args = {
-  ...Default.args,
-  color: TagColor.highContrast,
-};
-
-export const Inverse = Template.bind({});
-Inverse.args = {
-  isInverse: true,
-};
-Inverse.decorators = [
-  Story => (
-    <Card background={magma.colors.foundation} isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];

@@ -7,28 +7,39 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     node: {
       fs: 'empty',
     },
+    resolve: {
+      extensions: ['*', '.mjs', '.js', '.json'],
+    },
+    module: {
+      rules: [
+        {
+          test: /\.mjs$/,
+          include: /node_modules/,
+          type: 'javascript/auto',
+        },
+      ],
+    },
   });
 };
 
 const getPathPrefix = path => {
-  if(/design/.test(path)){
-    if(/intro/.test(path)) {
+  if (/design/.test(path)) {
+    if (/intro/.test(path)) {
       return 'design-intro';
     }
     return 'design';
-  } else if(/api/.test(path)){
-    if(/intro/.test(path)) {
+  } else if (/api/.test(path)) {
+    if (/intro/.test(path)) {
       return 'api-intro';
     }
     return 'api';
-  } else if(/patterns/.test(path)){
-    if(/intro/.test(path)) {
+  } else if (/patterns/.test(path)) {
+    if (/intro/.test(path)) {
       return 'patterns-intro';
     }
     return 'patterns';
-  } 
-}
-
+  }
+};
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;

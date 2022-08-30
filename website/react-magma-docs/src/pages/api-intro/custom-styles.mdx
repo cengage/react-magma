@@ -40,7 +40,7 @@ export function Example() {
 ## Style Props for Complex Components
 
 Some non-atomic components support styling of individual elements within the component via use of specific props.
-For example, the <Link to="/api/checkbox">Checkbox</Link> supports the following properties: `containerStyle`, `inputStyle`
+For example, the <Link to="/api/checkboxes">Checkbox</Link> supports the following properties: `containerStyle`, `inputStyle`
 and `labelStyle`. In these cases, the `style` prop would have no effect because there is more than one element to target.
 
 ```typescript
@@ -106,9 +106,6 @@ const theme = {
 
   colors: {
     ...magma.colors,
-
-    primary: '#0000FF',
-    foundation02: '#FF0000',
   },
 };
 

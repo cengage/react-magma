@@ -11,6 +11,7 @@ import {
 } from 'downshift';
 
 import { SelectedItemsWrapper } from '../Select/shared';
+import { transparentize } from 'polished';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -28,12 +29,14 @@ const InputContainer = styled.div<{
   theme?: any;
 }>`
   align-items: center;
-  background: ${props => props.theme.colors.neutral08};
+  background-color: ${props => props.isInverse
+    ? transparentize(0.8, props.theme.colors.neutral900)
+    : props.theme.colors.neutral100};
   border: 1px solid;
   border-color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral03};
+      ? transparentize(0.5, props.theme.colors.neutral100)
+      : props.theme.colors.neutral500};
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
   min-height: ${props => props.theme.spaceScale.spacing09};
@@ -44,34 +47,34 @@ const InputContainer = styled.div<{
   ${props =>
     props.isFocused &&
     css`
-      outline: 2px dotted
+      outline: 2px solid
         ${props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-      outline-offset: 4px;
+      outline-offset: 2px;
     `}
 
   ${props =>
     props.hasError &&
     css`
-      border-color: ${props.theme.colors.danger};
-      box-shadow: 0 0 0 1px
-        ${props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.danger};
+      border-color: ${props.isInverse
+        ? props.theme.colors.danger200
+        : props.theme.colors.danger};
     `}
 
     ${props =>
     props.disabled &&
     css`
-      background: ${props.theme.colors.neutral07};
-      border-color: ${props.theme.colors.neutral05};
-      color: ${props.theme.colors.disabledText};
+      background: ${props.isInverse
+      ? transparentize(0.9, props.theme.colors.neutral900)
+      : props.theme.colors.neutral200};
+      border-color: ${props.isInverse ? transparentize(0.85, props.theme.colors.neutral100) : props.theme.colors.neutral300};
+      color: ${transparentize(0.4, props.theme.colors.neutral500)};
       cursor: not-allowed;
       outline: 0;
 
       &::placeholder {
-        color: ${props.theme.colors.disabledText};
+        color: ${transparentize(0.4, props.theme.colors.neutral500)};
       }
     `}
 `;
@@ -169,6 +172,19 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     ...(innerRef && { ref: innerRef }),
   });
 
+  const dropdownIndicatorColor = () => {
+    if (disabled) {
+      if (isInverse) {
+        return transparentize(0.6, theme.colors.neutral100);
+      }
+      return theme.colors.neutral500;
+    }
+    if (isInverse) {
+      return theme.colors.neutral100;
+    }
+    return theme.colors.neutral;
+  }
+
   return (
     <ComboBoxContainer
       {...getComboboxProps()}
@@ -196,6 +212,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
             aria-describedby={ariaDescribedBy}
             aria-invalid={hasError}
             disabled={disabled}
+            isInverse={isInverse}
             placeholder={placeholder}
             theme={theme}
           />
@@ -208,7 +225,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         )}
         <DropdownIndicator
           aria-label="toggle menu"
-          color={theme.colors.neutral}
+          color={dropdownIndicatorColor()}
         />
       </InputContainer>
     </ComboBoxContainer>

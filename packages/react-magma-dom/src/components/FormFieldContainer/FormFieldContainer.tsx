@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { InputSize } from '../InputBase';
+import { InputIconPosition, InputSize } from '../InputBase';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -8,6 +8,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
+ * Interal use only: Wrapper for all field components
  * @children required
  */
 export interface FormFieldContainerProps
@@ -15,6 +16,10 @@ export interface FormFieldContainerProps
     React.HTMLAttributes<HTMLDivElement> {}
 
 export interface FormFieldContainerBaseProps {
+  /**
+   * Is the wrapped input hidden with display:none? This would make the input look like an actionable item, so FormFieldContainer uses a span in lieu of a label.
+   */
+  actionable?: boolean;
   /**
    * Style properties for the outer container
    */
@@ -49,10 +54,18 @@ export interface FormFieldContainerBaseProps {
    */
   messageStyle?: React.CSSProperties;
   /**
+   * Position within the component for the icon to appear
+   * @default InputIconPosition.right
+   */
+  iconPosition?: InputIconPosition;
+  /**
    * Relative size of the component
    * @default InputSize.medium
    */
   inputSize?: InputSize;
+  /**
+   * @internal
+   */
   testId?: string;
   isInverse?: boolean;
 }
@@ -60,9 +73,8 @@ export interface FormFieldContainerBaseProps {
 const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
+      ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
-  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const FormFieldContainer = React.forwardRef<
@@ -70,11 +82,13 @@ export const FormFieldContainer = React.forwardRef<
   FormFieldContainerProps
 >((props, ref) => {
   const {
+    actionable = true,
     children,
     containerStyle,
     errorMessage,
     fieldId,
     helperMessage,
+    iconPosition,
     inputSize,
     isInverse: isInverseProp,
     isLabelVisuallyHidden,
@@ -101,7 +115,13 @@ export const FormFieldContainer = React.forwardRef<
         theme={theme}
       >
         {labelText && (
-          <Label htmlFor={fieldId} size={inputSize} style={labelStyle}>
+          <Label
+            actionable={actionable}
+            htmlFor={fieldId}
+            iconPosition={iconPosition}
+            size={inputSize}
+            style={labelStyle}
+          >
             {isLabelVisuallyHidden ? (
               <VisuallyHidden>{labelText}</VisuallyHidden>
             ) : (
@@ -110,16 +130,18 @@ export const FormFieldContainer = React.forwardRef<
           </Label>
         )}
         {children}
-        <InputMessage
-          hasError={!!errorMessage}
-          id={descriptionId}
-          isInverse={isInverse}
-          style={messageStyle}
-        >
-          {(errorMessage || helperMessage) && (
-            <>{errorMessage ? errorMessage : helperMessage}</>
-          )}
-        </InputMessage>
+        {(errorMessage || helperMessage) && (
+          <InputMessage
+            hasError={!!errorMessage}
+            id={descriptionId}
+            isInverse={isInverse}
+            style={messageStyle}
+          >
+            {(errorMessage || helperMessage) && (
+              <>{errorMessage ? errorMessage : helperMessage}</>
+            )}
+          </InputMessage>
+        )}
       </StyledFormFieldContainer>
     </InverseContext.Provider>
   );

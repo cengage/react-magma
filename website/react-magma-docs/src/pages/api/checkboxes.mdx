@@ -77,7 +77,12 @@ export function Example() {
         labelText="Success color"
       />
       <Checkbox checked color={magma.colors.danger} labelText="Danger color" />
-      <Checkbox checked color={magma.colors.pop02} labelText="Pop color" />
+      <Checkbox
+        checked
+        color={magma.colors.warning}
+        labelText="Warning color"
+      />
+      <Checkbox checked color={magma.colors.info} labelText="Info color" />
     </FormGroup>
   );
 }
@@ -371,7 +376,9 @@ Full example of <Link to="/api/internationalization">internationalization overri
 import React from 'react';
 import {
   Checkbox,
+  defaultI18n,
   IndeterminateCheckbox,
+  I18nContext,
   IndeterminateCheckboxStatus,
   magma,
 } from 'react-magma-dom';
@@ -442,36 +449,13 @@ export function Example() {
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
-```html
-<div>
-  <input
-    id="checkbox0"
-    data-testid="test-id"
-    type="checkbox"
-    value=""
-    checked=""
+```html noCodeSandbox
+  <Checkbox
+    defaultChecked={true}
+    id="customId"
+    labelText="Checkbox"
+    testId="checkbox-id"
   />
-  <label for="checkbox0">
-    <span>
-      <span color="" class="css-1on1hey e1amet8c3"></span>
-      <svg
-        aria-hidden="true"
-        class="icon"
-        height="12"
-        width="12"
-        fill="currentColor"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 29.37 21.88"
-      >
-        <path
-          d="M26.71,3.06,11.89,17.88,4.4,10.4.87,13.93l11,11L30.24,6.59Z"
-          transform="translate(-0.87 -3.06)"
-        ></path>
-      </svg>
-    </span>
-    Checkbox Label
-  </label>
-</div>
 ```
 
 ## Checkbox Props

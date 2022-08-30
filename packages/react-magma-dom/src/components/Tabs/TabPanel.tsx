@@ -8,13 +8,10 @@ const StyledTabPanel = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
-  background: ${props =>
-    props.isInverse
-      ? props.theme.colors.foundation02
-      : props.theme.colors.neutral08};
+  background: none;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
+      ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
   flex: 1;
   height: 100%;
@@ -27,6 +24,9 @@ export interface TabPanelProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   index?: number;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

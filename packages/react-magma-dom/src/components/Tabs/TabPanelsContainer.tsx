@@ -4,6 +4,9 @@ import { TabsContainerContext } from './TabsContainer';
 
 interface TabPanelContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Search } from '.';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';

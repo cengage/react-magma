@@ -72,6 +72,19 @@ export const defaultI18n: I18nInterface = {
   breadcrumb: {
     navAriaLabel: 'Breadcrumb',
   },
+  charts: {
+    line: {
+      chartTabLabel: 'Chart',
+      dataLegendsLabel:
+        'Select one or more of the categories below to filter out the ones you don’t want to see.',
+      dataTabLabel: 'Data',
+      keyboardInstructions:
+        'In the chart below, use your up and down arrows to move between each line. Use your left and right arrows to move between points on a line.',
+      keyboardInstructionsHeader: 'Keyboard Instructions',
+      keyboardInstructionsTooltip: 'Keyboard Instructions',
+      legendButtonAriaLabel: 'Toggle data for {name}',
+    },
+  },
   combobox: {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
@@ -128,36 +141,39 @@ export const defaultI18n: I18nInterface = {
     menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
-  fileUploader: {
+  dropzone: {
     browseFiles: 'Browse Files',
     dragMessage: 'Drag and drop or browse files to upload.',
     errors: {
       'too-many-errors': {
-        message: 'Files must not have any errors.'
+        message: 'Files must not have any errors.',
       },
       'too-many-files': {
-        message: 'You must upload a maximum of'
+        message: 'You must upload a maximum of',
       },
       'too-few-files': {
-        message: 'You must upload a minimum of'
+        message: 'You must upload a minimum of',
       },
       'file-invalid-type': {
         header: 'Invalid File Type',
-        message: 'Upload only the allowed file types'
+        message: 'Upload only the allowed file types',
       },
       'file-too-large': {
         header: 'File exceeds size limit',
-        message: 'Upload only files with a maximum size of'
+        message: 'Upload only files with a maximum size of',
       },
       'file-too-small': {
         header: 'File size is below the limit',
-        message: 'Upload only files with a minimum size of'
+        message: 'Upload only files with a minimum size of',
       },
-      'required': {
-        message: 'You must upload at least one file.'
-      }
+      required: {
+        message: 'You must upload at least one file.',
+      },
     },
-    files: 'files'
+    files: 'files',
+    bytes: 'Bytes',
+    deleteFile: 'Delete file',
+    removeFile: 'Remove file',
   },
   header: {
     navigationButtonLabel: 'Open navigation menu',

@@ -2,7 +2,7 @@ import React from 'react';
 import { Tab } from './Tab';
 import { CheckIcon } from 'react-magma-icons';
 import { render, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Tabs } from '.';
 import { TabsContainer } from './TabsContainer';
@@ -127,7 +127,7 @@ describe('Tab', () => {
 
     expect(getByTestId(testId)).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
   });
 

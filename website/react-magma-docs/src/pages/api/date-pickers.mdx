@@ -110,6 +110,45 @@ export function Example() {
 }
 ```
 
+## Inverse
+
+```tsx
+import React from 'react';
+import { DatePicker, Card, CardBody, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <DatePicker isInverse />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Date Formats
+
+By default, the component uses the `MM/dd/yyyy` date format. This can be changed in the I18nContext. In addition to the default, the component supports the following formats: `dd/MM/yyyy`, `yyyy/MM/dd`, `yyyy/dd/MM` and `MMMM d, yyyy`.
+
+```tsx
+import React from 'react';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        dateFormat: 'dd/MM/yyyy',
+      }}
+    >
+      <DatePicker labelText="Date format: dd/MM/yyyy" />
+    </I18nContext.Provider>
+  );
+}
+```
+
 ## Events
 
 ### On Input Change

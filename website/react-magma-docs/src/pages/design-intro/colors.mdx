@@ -10,304 +10,1021 @@ import { ColorSwatch } from '../../components/ColorSwatch';
 import { magma } from 'react-magma-dom';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-# [Color]('design')
+<DocsHeading type="design">Color</DocsHeading>
 
-Color helps express hierarchy, establish brand presence, give meaning, and
-indicate element states.
+Color helps express hierarchy, establish brand presence, give meaning, and indicate element states.
 
-## Color Palette
+## Introduction
 
-_\* Contrast ratio on each color is based on a white background. _
+Application of the color palette brings a unified and recognizable consistency to Cengage’s array of digital products and interfaces. We are committed to complying with the [Web Content Accessibility Guidelines AA standard contrast ratios](https://www.w3.org/TR/WCAG/). 
 
-### Primary
+All text should be legible and meet accessibility standards. The WCAG 2.1 guidelines require a 4.5:1 color contrast between text and background for normal text, and 3:1 for large text. **At Cengage we strive to always hit 4.5:1 to avoid any possible issues or questions about whether a piece of text is accessible.** Additionally, any non-text visual information provided that is necessary for a user to identify that a control is present and how to operate it must have a minimum 3:1 contrast ratio with the adjacent colors.
 
-The primary color is the main brand color. A brand color can be used in key moments, in ways that associate that color with specific actions and information.
+## Primary
+
+The primary colors are based on our main brand color. These colors are used in logical ways throughout product and marketing to guide the eye and highlight the important elements.
+
+We use primary-500 to indicate primary actions, buttons, text links, etc.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.primary}>
-    <span>
-      <strong>primary</strong>
-    </span>
-    <span class="color-hex">{magma.colors.primary}</span>
-    <span>rgb(0,98,152)</span>
-    <span>6.56:1</span>
+  <ColorSwatch color={magma.colors.primary700} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>primary-700</p>
+        <p>Space Cadet</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.primary700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>26,30,81</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.primary600} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>primary-600</p>
+        <p>Resolution Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.primary600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>41,47,124</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.primary500} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>primary-500</p>
+        <p>Free Speech Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.primary500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>57,66,176</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.primary400} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>primary-400</p>
+        <p>Slate Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.primary400}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>93,101,203</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.primary300} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>primary-300</p>
+        <p>Blue Bell</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.primary300}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>139,145,218</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.primary200} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>primary-200</p>
+        <p>Lavender Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.primary200}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>186,189,233</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.primary100} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>primary-100</p>
+        <p>Quartz</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.primary100}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>232,233,248</p>
+      </div>
+    </div>
   </ColorSwatch>
 </div>
 
-### Focus
+## Secondary
 
-The focus color is used to visually highlight elements that are in focus on the UI. This color compliments the palette, while standing out against light colors to make the focus states visually distinct. This color will meet the 3:1 contrast ratio required as long as you use neutral07 or neutral08 as your background.
-If you are using dark backgrounds, then the focus color should use the focusInverse color instead, which is a semi-transparent white.
+The secondary colors are based off secondary-500 from the Cengage Higher Ed branding guidelines. It is commonly used for important calls to action on pages where purchases are made.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.focus}>
-    <span>
-      <strong>focus</strong>
-    </span>
-    <span class="color-hex">{magma.colors.focus}</span>
-    <span>rgb(2, 126, 225)</span>
-    <span>contrast ratio: 4.13:1</span>
+  <ColorSwatch color={magma.colors.secondary700} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>secondary-700</p>
+        <p>Golden Poppy</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.secondary700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>236,201,1</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.focusInverse}>
-    <span>
-      <strong>focusInverse</strong>
-    </span>
-    <span>rgba(255, 255, 255, 0.7)</span>
-    <span>contrast ratio: 1.0:1</span>
+  <ColorSwatch color={magma.colors.secondary600} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>secondary-600</p>
+        <p>Sizzling Sunrise</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.secondary600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>254,218,13</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.secondary500} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>secondary-500</p>
+        <p>Paris Daisy</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.secondary500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>254,228,73</p>
+      </div>
+    </div>
   </ColorSwatch>
 </div>
 
-### Foundation
+## Tertiary
 
-Our blues are just like us: confident, cool and collected. They also, just like us, play nicely with others. Go ahead and use multiple shades of blue in webpages to show off the dynamic palette.
+The tertiary colors are based off tertiary-500 from the Cengage Higher Ed branding guidelines. It is commonly used in place of the primary colors on dark backgrounds.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.foundation}>
-    <span>
-      <strong>foundation</strong>
-    </span>
-    <span class="color-hex">{magma.colors.foundation}</span>
-    <span>rgb(0,38,62)</span>
-    <span>contrast ratio: 15.59:1</span>
+  <ColorSwatch color={magma.colors.tertiary700} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>tertiary-700</p>
+        <p>Maya Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.tertiary700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>121,165,255</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.foundation02}>
-    <span>
-      <strong>foundation02</strong>
-    </span>
-    <span class="color-hex">{magma.colors.foundation02}</span>
-    <span>rgb(0,56,101)</span>
-    <span>contrast ratio: 11.97:1</span>
+  <ColorSwatch color={magma.colors.tertiary600} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>tertiary-600</p>
+        <p>Columbia Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.tertiary600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>162,193,255</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.foundation03}>
-    <span>
-      <strong>foundation03</strong>
-    </span>
-    <span class="color-hex">{magma.colors.foundation03}</span>
-    <span>rgb(0,169,224)</span>
-    <span>contrast ratio: 2.70:1</span>
-  </ColorSwatch>
-  <ColorSwatch color={magma.colors.foundation04}>
-    <span>
-      <strong>foundation04</strong>
-    </span>
-    <span class="color-hex">{magma.colors.foundation04}</span>
-    <span>rgb(113,197,232)</span>
-    <span>contrast ratio: 1.93:1</span>
+  <ColorSwatch color={magma.colors.tertiary500} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>tertiary-500</p>
+        <p>Periwinkle Crayola</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.tertiary500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>205,222,255</p>
+      </div>
+    </div>
   </ColorSwatch>
 </div>
 
-### Feedback
+## Neutrals
 
-Feedback colors should be used to reinforce positive or negative feedback to users.
+The neutrals come in varying levels of saturation to create the right level of contrast. Dark neutrals are the primary colors we use for typography. We commonly use light neutrals for type set on a dark background, or for subtle backgrounds that don’t take away from the cleanliness of a page.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.success}>
-    <span>
-      <strong>success</strong>
-    </span>
-    <span class="color-hex">{magma.colors.success}</span>
-    <span>rgb(58,130,0)</span>
-    <span>contrast ratio: 4.80:1</span>
+  <ColorSwatch color={magma.colors.neutral900} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-900</p>
+        <p>Black</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral900}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>0,0,0</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.success02}>
-    <span>
-      <strong>success02</strong>
-    </span>
-    <span class="color-hex">{magma.colors.success02}</span>
-    <span>rgb(72,162,0)</span>
-    <span>contrast ratio: 3.25:1</span>
+  <ColorSwatch color={magma.colors.neutral800} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-800</p>
+        <p>Jet</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral800}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>45,45,45</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.danger}>
-    <span>
-      <strong>danger</strong>
-    </span>
-    <span class="color-hex">{magma.colors.danger}</span>
-    <span>rgb(198,29,35)</span>
-    <span>contrast ratio: 5.83:1</span>
+  <ColorSwatch color={magma.colors.neutral700} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-700</p>
+        <p>Onyx</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>69,69,69</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.neutral600} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-600</p>
+        <p>Mortar</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>90,90,90</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.neutral500} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-500</p>
+        <p>Sonic Silver</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>112,112,112</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.neutral400} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-400</p>
+        <p>Suva Gray</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral400}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>141,141,141</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.neutral300} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-300</p>
+        <p>Light Gray</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral300}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>212,212,212</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.neutral200} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-200</p>
+        <p>White Smoke</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral200}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>245,245,245</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.neutral100} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>neutral-100</p>
+        <p>White</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.neutral100}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>255,255,255</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  
+</div>
+
+## Info
+
+The info colors are used to provide users with neutral, informational feedback. They are primarily used within alerts, and to indicate when an interactive element is in the focused state.
+
+<div class="swatch-rows">
+  <ColorSwatch color={magma.colors.info700} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>info-700</p>
+        <p>Blue Lagoon</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.info700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>26,30,81</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.info600} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>info-600</p>
+        <p>Sapphire Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.info600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>41,47,124</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.info500} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>info-500</p>
+        <p>French Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.info500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>57,66,176</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.info400} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>info-400</p>
+        <p>Deep Sky Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.info400}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>93,101,203</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.info300} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>info-300</p>
+        <p>Blue Jeans</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.info300}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>139,145,218</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.info200} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>info-200</p>
+        <p>Uranian Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.info200}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>186,189,233</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.info100} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>info-100</p>
+        <p>Alice Blue</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.info100}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>232,233,248</p>
+      </div>
+    </div>
   </ColorSwatch>
 </div>
 
-### Pops
+## Danger
 
-The goal of our pop colors is to create some buzzy vibrations with our blues. Let’s try to just use one pop (or two pops that are next to each other in the palette) at a time to keep the Cengage vibe going strong. Do not create tonal versions of these colors.
+The danger colors are mainly used for backgrounds in messages and in error states to draw attention to important information or actions that are destructive or block workflow. You'll find red used in components such as alerts, buttons, and typography.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.pop}>
-    <span>
-      <strong>pop</strong>
-    </span>
-    <span class="color-hex">{magma.colors.pop}</span>
-    <span>rgb(224,0,77)</span>
-    <span>contrast ratio: 4.91:1</span>
+  <ColorSwatch color={magma.colors.danger700} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>danger-700</p>
+        <p>Falu Red</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.danger700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>127,23,20</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.pop02}>
-    <span>
-      <strong>pop02</strong>
-    </span>
-    <span class="color-hex">{magma.colors.pop02}</span>
-    <span>rgb(252,76,2)</span>
-    <span>contrast ratio: 3.40:1</span>
+  <ColorSwatch color={magma.colors.danger600} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>danger-600</p>
+        <p>Carnelian</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.danger600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>169,31,26</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.pop03}>
-    <span>
-      <strong>pop03</strong>
-    </span>
-    <span class="color-hex">{magma.colors.pop03}</span>
-    <span>rgb(242,169,0)</span>
-    <span>contrast ratio: 2.0:1</span>
+  <ColorSwatch color={magma.colors.danger500} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>danger-500</p>
+        <p>Maximum Red</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.danger500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>211,40,33</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.pop04}>
-    <span>
-      <strong>pop04</strong>
-    </span>
-    <span class="color-hex">{magma.colors.pop04}</span>
-    <span>rgb(255,199,44)</span>
-    <span>contrast ratio: 1.56:1</span>
+  <ColorSwatch color={magma.colors.danger400} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>danger-400</p>
+        <p>Cinnabar</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.danger400}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>226,73,67</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.pop05}>
-    <span>
-      <strong>pop05</strong>
-    </span>
-    <span class="color-hex">{magma.colors.pop05}</span>
-    <span>rgb(146, 39, 143)</span>
-    <span>contrast ratio: 7.21:1</span>
+  <ColorSwatch color={magma.colors.danger300} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>danger-300</p>
+        <p>Light Coral</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.danger300}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>232,113,109</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.pop06}>
-    <span>
-      <strong>pop06</strong>
-    </span>
-    <span class="color-hex">{magma.colors.pop06}</span>
-    <span>rgb(0,122,109)</span>
-    <span>contrast ratio: 5.24:1</span>
+  <ColorSwatch color={magma.colors.danger200} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>danger-200</p>
+        <p>Sundown</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.danger200}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>250,174,176</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.danger100} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>danger-100</p>
+        <p>Rose White</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.danger100}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>253,239,238</p>
+      </div>
+    </div>
   </ColorSwatch>
 </div>
 
-### Neutral
+## Warning
 
-Sometimes, going subtle makes a statement, too. Use our neutrals for the ultimate in legibility or to provide a rest from the buzzy bolds.
+The warning colors are used to indicate a warning or that progress is impeded. It is primarily used within the alert components.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.neutral}>
-    <span>
-      <strong>neutral</strong>
-    </span>
-    <span class="color-hex">{magma.colors.neutral}</span>
-    <span>rgb(63,63,63)</span>
-    <span>contrast ratio: 10.53:1</span>
+  <ColorSwatch color={magma.colors.warning700} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>warning-700</p>
+        <p>Sepia</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.warning700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>110,52,14</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral02}>
-    <span>
-      <strong>neutral02</strong>
-    </span>
-    <span class="color-hex">{magma.colors.neutral02}</span>
-    <span>rgb(87,87,87)</span>
-    <span>contrast ratio: 7.22:1</span>
+  <ColorSwatch color={magma.colors.warning600} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>warning-600</p>
+        <p>Saddle Brown</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.warning600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>141,67,17</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral03}>
-    <span>
-      <strong>neutral03</strong>
-    </span>
-    <span class="color-hex">{magma.colors.neutral03}</span>
-    <span>rgb(112,112,112)</span>
-    <span>contrast ratio: 4.95:1</span>
+  <ColorSwatch color={magma.colors.warning500} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>warning-500</p>
+        <p>Windsor Tan</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.warning500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>173,81,21</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral04}>
-    <span>
-      <strong>neutral04</strong>
-    </span>
-    <span class="color-hex">{magma.colors.neutral04}</span>
-    <span>rgb(143,143,143)</span>
-    <span>contrast ratio: 3.23:1</span>
+  <ColorSwatch color={magma.colors.warning400} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>warning-400</p>
+        <p>Spanish Orange</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.warning400}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>224,106,28</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral05}>
-    <span>
-      <strong>neutral05</strong>
-    </span>
-    <span class="color-hex">{magma.colors.neutral05}</span>
-    <span>rgb(191,191,191)</span>
-    <span>contrast ratio: 1.83:1</span>
+  <ColorSwatch color={magma.colors.warning300} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>warning-300</p>
+        <p>Persian Orange</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.warning300}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>233,139,76</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral06}>
-    <span>
-      <strong>neutral06</strong>
-    </span>
-    <span>{magma.colors.neutral06}</span>
-    <span>rgb(223,223,223)</span>
-    <span>contrast ratio: 1.33:1</span>
+  <ColorSwatch color={magma.colors.warning200} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>warning-200</p>
+        <p>Apricot</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.warning200}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>246,205,178</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral07}>
-    <span>
-      <strong>neutral07</strong>
-    </span>
-    <span class="color-hex">{magma.colors.neutral07}</span>
-    <span>rgb(247,247,247)</span>
-    <span>contrast ratio: 1.07:1</span>
-  </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral08}>
-    <span>
-      <strong>neutral08</strong>
-    </span>
-    <span class="color-hex">{magma.colors.neutral08}</span>
-    <span>rgb(255,255,255)</span>
-    <span>contrast ratio: 1.0:1</span>
+  <ColorSwatch color={magma.colors.warning100} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>warning-100</p>
+        <p>Linen</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.warning100}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>252,238,229</p>
+      </div>
+    </div>
   </ColorSwatch>
 </div>
 
-### Inverse Colors
+## Success
 
-The inverse colors are designed to be used against dark backgrounds.
+We use green to celebrate success. The success colors are commonly used in the alerts and through typography.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.primaryInverse}>
-    <span>
-      <strong>primaryInverse</strong>
-    </span>
-    <span class="color-hex">{magma.colors.primaryInverse}</span>
-    <span>rgb(112 205 255)</span>
-    <span>contrast ratio: 5.95:1 (against #3F3F3F)</span>
+  <ColorSwatch color={magma.colors.success700} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>success-700</p>
+        <p>Crusoe</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.success700}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>15,83,35</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.successInverse}>
-    <span>
-      <strong>successInverse</strong>
-    </span>
-    <span class="color-hex">{magma.colors.successInverse}</span>
-    <span>rgb(145,207,96)</span>
-    <span>contrast ratio: 5.66:1 (against #3F3F3F)</span>
+  <ColorSwatch color={magma.colors.success600} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>success-600</p>
+        <p>Dartmouth Green</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.success600}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>19,106,45</p>
+      </div>
+    </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.dangerInverse}>
-    <span>
-      <strong>dangerInverse</strong>
-    </span>
-    <span class="color-hex">{magma.colors.dangerInverse}</span>
-    <span>rgb(245,146,149)</span>
-    <span>contrast ratio: 4.72:1 (against #3F3F3F)</span>
+  <ColorSwatch color={magma.colors.success500} passesDarkTest={false} passesLightTest={true}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>success-500</p>
+        <p>Dark Spring Green</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.success500}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>23,128,55</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.success400} passesDarkTest={false} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>success-400</p>
+        <p>Lime Green</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.success400}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>33,185,78</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.success300} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>success-300</p>
+        <p>Emerald</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.success300}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>62,221,110</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.success200} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>success-200</p>
+        <p>Celadon</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.success200}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>172,240,193</p>
+      </div>
+    </div>
+  </ColorSwatch>
+  <ColorSwatch color={magma.colors.success100} passesDarkTest={true} passesLightTest={false}>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Name</p>
+        <p>success-100</p>
+        <p>Honeydew</p>
+      </div>
+    </div>
+    <div class="color-detail-container">
+      <div class="color-detail">
+        <p class="detail-label">Hex</p>
+        <p class="color-hex">{magma.colors.success100}</p>
+      </div>
+      <div class="color-detail">
+        <p class="detail-label">RGB</p>
+        <p>227,250,234</p>
+      </div>
+    </div>
   </ColorSwatch>
 </div>
-
----
-
-## Principles
-
-### Consistent
-
-Color should be applied throughout a UI consistently and be compatible with the brand it represents.
-
-### Hierarchical
-
-Color indicates which elements are interactive, how they relate to other elements, and their level of prominence. Important elements should stand out the most.
-
-### Legible
-
-Text and important elements, like icons, should meet legibility standards when appearing on colored backgrounds, across all screen and device types.
-
-### Expressive
-
-Reinforce your brand by showing brand colors at memorable moments that reinforce your brand’s style.
-
----
-
-## Accessibility
-
-All text should be legible and meet accessibility standards. [The Web Content Accessibility Guidelines (WCAG 2.1)](https://www.w3.org/TR/WCAG21/#contrast-minimum) level AA requires a 4.5:1 color contrast between text and background for normal text, and 3:1 to large text. Large text is at least 18 point or 14 point bold. Additionally, any non-text visual information provided that is necessary for a user to identify that a control is present and how to operate it must have a minimum 3:1 contrast ratio with the adjacent colors.
-
-The contrast ratio displayed on each color above is based on that color on a white background. If you are using a background color other than white, make sure you check the contrast ratio using a tool like the one found at [webaim.org](https://webaim.org/resources/contrastchecker/)\*

@@ -2,7 +2,8 @@
 pageTitle: Tag API
 title: Tag
 props:
-  - DeleteableTagProps, ClickableTagProps
+  - DeletableTagProps
+  - ClickableTagProps
 ---
 
 <DocsHeading to="/design/tags" type="api">
@@ -26,11 +27,32 @@ export function Example() {
 }
 ```
 
+## Colors
+
+```tsx
+import React from 'react';
+import { Spacer, SpacerAxis, Tag, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Tag>Default</Tag>
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+      <Tag color="primary">Primary</Tag>
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+      <Tag color="lowContrast">Low Contrast</Tag>
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+      <Tag color="highContrast">High Contrast</Tag>
+    </>
+  );
+}
+```
+
 ## Tag With Icon
 
 ```typescript
 import React from 'react';
-import { Spacer, Tag } from 'react-magma-dom';
+import { Spacer, SpacerAxis, Tag, magma } from 'react-magma-dom';
 import { AccountCircleIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -72,34 +94,63 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Button, ButtonColor, ButtonSize, Spacer, Tag } from 'react-magma-dom';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  Spacer,
+  SpacerAxis,
+  Tag,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isTag1Visible, setTag1Visible] = React.useState(true);
+  const [isTag2Visible, setTag2Visible] = React.useState(true);
 
-  function deleteMe() {
-    setIsVisible(false);
+  function deleteTag1() {
+    setTag1Visible(false);
   }
 
-  function showMe() {
-    setIsVisible(true);
+  function showTag1() {
+    setTag1Visible(true);
   }
+
+  function deleteTag2() {
+    setTag2Visible(false);
+  }
+
+  function showTag2() {
+    setTag2Visible(true);
+  }
+
   return (
     <>
-      {isVisible && <Tag onDelete={deleteMe}>Deletable Tag</Tag>}
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      {isVisible && (
-        <Tag onDelete={deleteMe} size="small">
-          Deletable Tag Small
-        </Tag>
-      )}
-      {!isVisible && (
+      {isTag1Visible ? (
+        <Tag onDelete={deleteTag1}>Deletable Tag</Tag>
+      ) : (
         <Button
           color={ButtonColor.secondary}
-          onClick={showMe}
+          onClick={showTag1}
           size={ButtonSize.small}
         >
-          Show Tags Again
+          Show Tag Again
+        </Button>
+      )}
+
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
+
+      {isTag2Visible ? (
+        <Tag onDelete={deleteTag2} size="small">
+          Deletable Tag Small
+        </Tag>
+      ) : (
+        <Button
+          color={ButtonColor.secondary}
+          onClick={showTag2}
+          size={ButtonSize.small}
+        >
+          Show Tag Again
         </Button>
       )}
     </>
@@ -111,62 +162,66 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Button, ButtonColor, ButtonSize, Spacer, Tag } from 'react-magma-dom';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  Spacer,
+  SpacerAxis,
+  Tag,
+  magma,
+} from 'react-magma-dom';
 import { AccountCircleIcon } from 'react-magma-icons';
 
 export function Example() {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isTag1Visible, setTag1Visible] = React.useState(true);
+  const [isTag2Visible, setTag2Visible] = React.useState(true);
 
-  function deleteMe() {
-    setIsVisible(false);
+  function deleteTag1() {
+    setTag1Visible(false);
   }
 
-  function showMe() {
-    setIsVisible(true);
+  function showTag1() {
+    setTag1Visible(true);
   }
+
+  function deleteTag2() {
+    setTag2Visible(false);
+  }
+
+  function showTag2() {
+    setTag2Visible(true);
+  }
+
   return (
     <>
-      {isVisible && (
-        <Tag icon={<AccountCircleIcon />} onDelete={deleteMe}>
-          Deletable Tag
-        </Tag>
-      )}
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      {isVisible && (
-        <Tag icon={<AccountCircleIcon />} onDelete={deleteMe} size="small">
-          Deletable Tag Small
-        </Tag>
-      )}
-      {!isVisible && (
+      {isTag1Visible ? (
+        <Tag icon={<AccountCircleIcon />} onDelete={deleteTag1}>Deletable Tag</Tag>
+      ) : (
         <Button
           color={ButtonColor.secondary}
-          onClick={showMe}
+          onClick={showTag1}
           size={ButtonSize.small}
         >
-          Show Tags Again
+          Show Tag Again
         </Button>
       )}
-    </>
-  );
-}
-```
 
-## Colors
+      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
 
-```tsx
-import React from 'react';
-import { Spacer, Tag } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <>
-      <Tag>Default</Tag>
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="primary">Primary</Tag>
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="lowContrast">Low Contrast</Tag>
-      <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="highContrast">High Contrast</Tag>
+      {isTag2Visible ? (
+        <Tag icon={<AccountCircleIcon />} onDelete={deleteTag2} size="small">
+          Deletable Tag Small
+        </Tag>
+      ) : (
+        <Button
+          color={ButtonColor.secondary}
+          onClick={showTag2}
+          size={ButtonSize.small}
+        >
+          Show Tag Again
+        </Button>
+      )}
     </>
   );
 }
@@ -176,7 +231,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Tag } from 'react-magma-dom';
+import { Tag, Spacer, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -193,7 +248,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Spacer, Tag } from 'react-magma-dom';
+import { Spacer, Tag, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -214,7 +269,14 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Tag } from 'react-magma-dom';
+import {
+  Card,
+  CardBody,
+  Spacer,
+  SpacerAxis,
+  Tag,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -252,7 +314,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Spacer, Tag } from 'react-magma-dom';
+import { Card, CardBody, Spacer, Tag, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -274,38 +336,13 @@ export function Example() {
 }
 ```
 
-## Internationalization
-
-If you're using strings in your component, they must be internationalized.
-
-Full example of <Link to="/api/internationalization">internationalization override options</Link>
-
-```tsx
-import React from 'react';
-import { es } from 'date-fns/locale';
-import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <I18nContext.Provider
-      value={{
-        ...defaultI18n,
-        example: 'example i18n',
-      }}
-    >
-      <tag>override default i18n value: </tag>
-    </I18nContext.Provider>
-  );
-}
-```
-
 ## Tag Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 ### Deletable Tag Props
 
-<DeleteableTagProps />
+<DeletableTagProps />
 
 ### Clickable Tag Props
 

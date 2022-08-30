@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { darken, lighten } from 'polished';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -13,10 +13,14 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
    * @default BadgeColor.primary
    */
   color?: BadgeColor;
+  isInverse?: boolean;
   /**
    * Action that fires when the badge is clicked. Causes the Badge to render as a button instead of a span.
    */
   onClick?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Indicates the style variant of the component
@@ -27,8 +31,8 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
 
 export enum BadgeColor {
   danger = 'danger',
-  primary = 'primary',
-  secondary = 'secondary', // default
+  primary = 'primary', // default
+  secondary = 'secondary',
   success = 'success',
   light = 'light',
 }
@@ -39,76 +43,91 @@ export enum BadgeVariant {
 }
 
 export function buildBadgeBackground(props) {
+  if (props.isInverse) {
+    switch (props.color) {
+      case BadgeColor.danger:
+        return props.theme.colors.danger200;
+      case BadgeColor.light:
+        return 'transparent';
+      case BadgeColor.primary:
+        return props.theme.colors.tertiary;
+      case BadgeColor.secondary:
+        return props.theme.colors.neutral100;
+      case BadgeColor.success:
+        return props.theme.colors.success200;
+
+      default:
+        return props.theme.colors.tertiary;
+    }
+  }
+
   switch (props.color) {
-    case 'danger':
+    case BadgeColor.danger:
       return props.theme.colors.danger;
-    case 'light':
-      return props.theme.colors.neutral07;
-    case 'primary':
+    case BadgeColor.light:
+      return props.theme.colors.neutral100;
+    case BadgeColor.primary:
       return props.theme.colors.primary;
-    case 'secondary':
-      return props.theme.colors.neutral02;
-    case 'success':
+    case BadgeColor.secondary:
+      return props.theme.colors.neutral700;
+    case BadgeColor.success:
       return props.theme.colors.success;
 
     default:
-      return props.theme.colors.neutral02;
+      return props.theme.colors.primary;
   }
 }
 
-export function buildBadgeFocusBackground(props) {
-  switch (props.color) {
-    case 'danger':
-      return darken(0.1, props.theme.colors.danger);
-    case 'light':
-      return lighten(0.05, props.theme.colors.neutral07);
-    case 'primary':
-      return darken(0.1, props.theme.colors.primary);
-    case 'secondary':
-      return darken(0.1, props.theme.colors.neutral02);
-    case 'success':
-      return darken(0.1, props.theme.colors.success);
+export function buildBadgeTextColor(props) {
+  if (props.isInverse) {
+    switch (props.color) {
+      case BadgeColor.danger:
+        return props.theme.colors.danger700;
+      case BadgeColor.light:
+        return props.theme.colors.neutral100;
+      case BadgeColor.primary:
+        return props.theme.colors.primary600;
+      case BadgeColor.secondary:
+        return props.theme.colors.neutral700;
+      case BadgeColor.success:
+        return props.theme.colors.success700;
 
-    default:
-      return darken(0.1, props.theme.colors.neutral02);
+      default:
+        return props.theme.colors.primary600;
+    }
   }
+  if (props.color === BadgeColor.light) {
+    return props.theme.colors.neutral700;
+  }
+  return props.theme.colors.neutral100;
 }
 
-export function buildBadgeActiveBackground(props) {
-  switch (props.color) {
-    case 'danger':
-      return darken(0.2, props.theme.colors.danger);
-    case 'light':
-      return lighten(0.1, props.theme.colors.neutral07);
-    case 'primary':
-      return darken(0.2, props.theme.colors.primary);
-    case 'secondary':
-      return darken(0.2, props.theme.colors.neutral02);
-    case 'success':
-      return darken(0.2, props.theme.colors.success);
-
-    default:
-      return darken(0.2, props.theme.colors.neutral02);
+export function buildBadgeBorderColor(props) {
+  if (props.color === BadgeColor.light) {
+    if (props.isInverse) {
+      return transparentize(0.3, props.theme.colors.neutral100);
+    }
+    return props.color;
   }
+  return 'transparent';
 }
 
 export const baseBadgeStyles = props => css`
   background: ${buildBadgeBackground(props)};
   border: 1px solid;
-  border-color: ${props.color === BadgeColor.light
-    ? props.theme.colors.neutral06
-    : 'transparent'};
+  border-color: ${buildBadgeBorderColor(props)};
   border-radius: ${props.variant === BadgeVariant.counter
     ? props.theme.spaceScale.spacing06
-    : props.theme.borderRadius};
-  color: ${props.color === 'light'
-    ? props.theme.colors.neutral
-    : props.theme.colors.neutral08};
+    : props.theme.borderRadiusSmall};
+  color: ${buildBadgeTextColor(props)};
   display: inline-block;
-  font-weight: bold;
+  font-weight: 500;
   font-size: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.fontSize
     : props.theme.typeScale.size01.fontSize};
+  letter-spacing: ${props.variant === BadgeVariant.counter
+    ? props.theme.typeScale.size02.letterSpacing
+    : props.theme.typeScale.size01.letterSpacing};
   line-height: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.lineHeight
     : props.theme.typeScale.size01.lineHeight};
@@ -132,15 +151,13 @@ const StyledSpan = styled.span<BadgeProps>`
 const StyledButton = styled.button<BadgeProps>`
   ${baseBadgeStyles};
   cursor: pointer;
-  transition: background 0.35s;
 
-  &:hover,
   &:focus {
-    background: ${props => buildBadgeFocusBackground(props)};
-  }
-
-  &:active {
-    background: ${props => buildBadgeActiveBackground(props)};
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
   }
 `;
 
@@ -150,7 +167,7 @@ function getStyledBadgeComponent(isClickable: boolean) {
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (props, ref) => {
-    const { children, onClick, testId, variant, ...other } = props;
+    const { children, isInverse, onClick, testId, variant, ...other } = props;
 
     const BadgeComponent = getStyledBadgeComponent(Boolean(onClick));
 
@@ -160,6 +177,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       <BadgeComponent
         {...other}
         data-testid={testId}
+        isInverse={isInverse}
         variant={variant ? variant : BadgeVariant.label}
         onClick={onClick}
         ref={ref}

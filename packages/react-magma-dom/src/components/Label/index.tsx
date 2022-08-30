@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InputSize } from '../InputBase';
+import { InputIconPosition, InputSize } from '../InputBase';
 import { useIsInverse } from '../../inverse';
 
 export enum LabelPosition {
@@ -11,24 +11,45 @@ export enum LabelPosition {
 
 export interface LabelProps
   extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  actionable?: boolean;
+  iconPosition?: InputIconPosition;
   isInverse?: boolean;
+  /**
+   * @default LabelPosition.top
+   */
   labelPosition?: LabelPosition;
+  /**
+   * @default InputSize.medium
+   */
   size?: InputSize;
   theme?: any;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
-const StyledLabel = styled.label<LabelProps>`
+const StyledLabel = styled.label<{
+  iconPosition: InputIconPosition;
+  isInverse: boolean;
+  theme: any;
+  size: InputSize;
+  labelPosition: LabelPosition;
+}>`
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: inline-block;
   font-size: ${props =>
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
-  font-weight: 600;
+  font-weight: 500;
+  letter-spacing: ${props =>
+    props.size === InputSize.large
+      ? 'inherit'
+      : props.theme.typeScale.size02.letterSpacing};
   line-height: ${props =>
     props.size === InputSize.large
       ? props.theme.typeScale.size03.lineHeight
@@ -37,21 +58,36 @@ const StyledLabel = styled.label<LabelProps>`
     props.labelPosition === LabelPosition.left
       ? `0 ${props.theme.spaceScale.spacing05} 0 0`
       : `0 0 ${props.theme.spaceScale.spacing03}`};
-  max-width: 100%;
+  max-width: ${props =>
+    props.iconPosition === InputIconPosition.top
+      ? 'calc(100% - 51px)'
+      : '100%'};
   text-align: left;
-  white-space: nowrap;
+  white-space: ${props =>
+    props.iconPosition === InputIconPosition.top ? 'inherit' : 'nowrap'};
 `;
+
+const StyledSpan = StyledLabel.withComponent('span');
 
 export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (props, ref) => {
-    const { children, labelPosition, size, testId, ...other } = props;
+    const {
+      actionable = true,
+      children,
+      iconPosition,
+      labelPosition,
+      size,
+      testId,
+      ...other
+    } = props;
     const theme = React.useContext(ThemeContext);
 
-    return (
+    return actionable ? (
       <StyledLabel
         {...other}
         data-testid={testId}
         isInverse={useIsInverse(props.isInverse)}
+        iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
         size={size ? size : InputSize.medium}
@@ -59,6 +95,19 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       >
         {children}
       </StyledLabel>
+    ) : (
+      <StyledSpan
+        {...other}
+        data-testid={testId}
+        isInverse={useIsInverse(props.isInverse)}
+        iconPosition={iconPosition}
+        labelPosition={labelPosition || LabelPosition.top}
+        ref={ref}
+        size={size ? size : InputSize.medium}
+        theme={theme}
+      >
+        {children}
+      </StyledSpan>
     );
   }
 );

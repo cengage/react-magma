@@ -1,5 +1,109 @@
 # Change Log
 
+## 3.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [17ee57afe]
+  - react-magma-dom@3.1.2-next.0
+
+## 3.0.2
+
+## 3.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [fc8a20bf]
+  - react-magma-dom@3.1.1-next.0
+
+## 3.0.1
+
+### Patch Changes
+
+- 9cdfce87: Force publish
+
+## 3.0.0
+
+### Patch Changes
+
+- 2aa4ebc0: docs: updating header setup requirements
+
+## 3.0.0-next.1
+
+### Patch Changes
+
+- 2aa4ebc0: docs: updating header setup requirements
+
+## 3.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [366b25af]
+  - react-magma-dom@3.0.0-next.0
+
+## 2.0.12
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+
+## 2.0.11
+
+### Patch Changes
+
+- fdc6b27f: docs: addressing a variety of documentation issues
+
+## 2.0.11-next.1
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+
+## 2.0.10
+
+### Patch Changes
+
+- a998c444: docs(header): fix isInverse example in patterns header
+
+## 2.0.9
+
+### Patch Changes
+
+- 1fc0bbc0: docs(header): fix isInverse example in patterns header
+
+## 2.0.9-next.1
+
+### Patch Changes
+
+- a998c444: docs(header): fix isInverse example in patterns header
+
+## 2.0.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [cbadaccb]
+  - react-magma-dom@2.5.9-next.0
+
+## 2.0.8
+
+## 2.0.8-next.0
+
+### Patch Changes
+
+- Updated dependencies [7b0c5714]
+  - react-magma-dom@2.5.8-next.0
+
+## 2.0.7
+
+## 2.0.7-next.0
+
+### Patch Changes
+
+- Updated dependencies [465dc468]
+  - react-magma-dom@2.5.7-next.0
+
+## 2.0.6
+
 ## 2.0.6-next.0
 
 ### Patch Changes

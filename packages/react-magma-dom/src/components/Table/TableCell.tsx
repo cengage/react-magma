@@ -3,6 +3,7 @@ import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { TableCellAlign, TableContext, TableDensity } from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { transparentize } from 'polished';
 
 export interface TableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {
@@ -11,6 +12,9 @@ export interface TableCellProps
    * @default TableCellAlign.left
    */
   align?: TableCellAlign;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS
@@ -22,8 +26,8 @@ export interface TableCellProps
 export const baseTableCellStyle = props => css`
   border-right: ${props.hasVerticalBorders ? '1px solid' : 0};
   border-color: ${props.isInverse
-    ? props.theme.colors.tint04
-    : props.theme.colors.neutral06};
+    ? transparentize(0.6, props.theme.colors.neutral100)
+    : props.theme.colors.neutral300};
   display: table-cell;
   font-size: inherit;
   line-height: inherit;

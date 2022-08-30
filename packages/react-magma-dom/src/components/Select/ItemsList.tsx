@@ -21,14 +21,20 @@ interface ItemsListProps<T> {
   getMenuProps: (options?: UseSelectGetMenuPropsOptions) => any;
   highlightedIndex?: number;
   isOpen?: boolean;
+  isInverse?: boolean;
   items: T[];
   itemToString: (item: T) => string;
   maxHeight?: number | string;
   menuStyle?: React.CSSProperties;
 }
 
-const NoItemsMessage = styled.span`
-  color: ${props => props.theme.colors.neutral04};
+const NoItemsMessage = styled.span<{
+  isInverse?: boolean;
+}>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral400};
   display: block;
   padding-top: ${props => props.theme.spaceScale.spacing03};
   text-align: center;
@@ -38,6 +44,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   const {
     customComponents,
     isOpen,
+    isInverse,
     getMenuProps,
     items,
     itemToString,
@@ -60,9 +67,10 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   return (
     <StyledCard
       hasDropShadow
-      isInverse={false}
+      isInverse={isInverse}
       isOpen={isOpen}
       style={menuStyle}
+      theme={theme}
     >
       <StyledList isOpen={isOpen} {...getMenuProps()} maxHeight={heightString}>
         {isOpen && hasItems ? (
@@ -80,6 +88,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
 
             const itemProps: ItemRenderOptions<T> = {
               isFocused: highlightedIndex === index,
+              isInverse,
               itemRef: ref,
               item,
               itemString,
@@ -91,8 +100,8 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
             return <Item<T> {...itemProps} key={key} />;
           })
         ) : (
-          <StyledItem tabIndex={-1}>
-            <NoItemsMessage theme={theme}>
+          <StyledItem isInverse={isInverse} theme={theme} tabIndex={-1}>
+            <NoItemsMessage theme={theme} isInverse={isInverse}>
               {i18n.emptyItemsListText}
             </NoItemsMessage>
           </StyledItem>

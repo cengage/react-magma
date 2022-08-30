@@ -46,7 +46,7 @@ Sometimes links can be styled as buttons in order to give them more weight on th
 
 ```tsx
 import React from 'react';
-import { ButtonColor, ButtonTextTransform, Hyperlink } from 'react-magma-dom';
+import { ButtonColor, ButtonTextTransform, Hyperlink, Spacer, SpacerAxis } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -59,22 +59,17 @@ export function Example() {
       >
         Google
       </Hyperlink>
+      <Spacer size="8" axis={SpacerAxis.horizontal} />
       <Hyperlink
         color={ButtonColor.secondary}
+        textTransform={ButtonTextTransform.none}
         styledAs="Button"
         target="_blank"
         to="https://www.google.com"
       >
         Google
       </Hyperlink>
-      <Hyperlink
-        color={ButtonColor.success}
-        styledAs="Button"
-        target="_blank"
-        to="https://www.google.com"
-      >
-        Google
-      </Hyperlink>
+      <Spacer size="8" axis={SpacerAxis.horizontal} />
       <Hyperlink
         color={ButtonColor.danger}
         styledAs="Button"
@@ -83,6 +78,7 @@ export function Example() {
       >
         Google
       </Hyperlink>
+      <Spacer size="8" axis={SpacerAxis.horizontal} />
       <Hyperlink
         color={ButtonColor.marketing}
         styledAs="Button"
@@ -109,7 +105,7 @@ const Link = ({ to, ...rest }) => <a href={to} {...rest} />;
 
 export function Example() {
   return (
-    <Hyperlink styledAs="Button" to="/api/intro">
+    <Hyperlink styledAs="Button" to="./">
       {linkProps => <Link {...linkProps}>Render Props Google</Link>}
     </Hyperlink>
   );

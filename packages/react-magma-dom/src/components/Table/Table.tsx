@@ -14,8 +14,14 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   density?: TableDensity;
   /**
    * If true, row will be visually highlighted on hover
+   * @default false
    */
   hasHoverStyles?: boolean;
+  /**
+   * If true, the table will have square edges
+   * @default false
+   */
+  hasSquareCorners?: boolean;
   /**
    * If true, columns will have vertical borders
    */
@@ -26,9 +32,13 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   hasZebraStripes?: boolean;
   isInverse?: boolean;
   /**
-   * @internal
+   * @internal - used within DataGrid
    */
   isSelectable?: boolean;
+  /**
+   * @internal - used within DataGrid
+   */
+  isSortableBySelected?: boolean;
   /**
    * Minimum width for the table in pixels
    * @default 600
@@ -36,6 +46,9 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   minWidth?: number;
   rowCount?: number;
   selectedItems?: Array<number>;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -75,6 +88,7 @@ interface TableContextInterface {
   isSelectable?: boolean;
   rowCount?: number;
   selectedItems?: Array<number>;
+  isSortableBySelected?: boolean;
 }
 
 export const TableContext = React.createContext<TableContextInterface>({
@@ -84,21 +98,31 @@ export const TableContext = React.createContext<TableContextInterface>({
   hasVerticalBorders: false,
   isInverse: false,
   isSelectable: false,
+  isSortableBySelected: false,
   rowCount: 0,
   selectedItems: [],
 });
 
-const TableContainer = styled.div`
-  overflow-x: auto;
+export const TableContainer = styled.div<{
+  minWidth: number;
+  hasSquareCorners?: boolean;
+  isInverse?: boolean;
+}>`
+  border-radius: ${props =>
+    props.hasSquareCorners ? 0 : props.theme.borderRadius};
+  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
 `;
 
-const StyledTable = styled.table<{ isInverse?: boolean; minWidth: number }>`
+export const StyledTable = styled.table<{
+  isInverse?: boolean;
+  minWidth: number;
+}>`
   border-collapse: collapse;
   border-spacing: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: table;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
@@ -110,21 +134,25 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
   (props, ref) => {
     const {
       children,
-      density,
+      density = TableDensity.normal,
       hasHoverStyles,
+      hasSquareCorners,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
-      minWidth,
+      minWidth = 600,
       rowCount,
       selectedItems,
       testId,
+      isSortableBySelected,
       ...other
     } = props;
 
     const theme = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
+
+    const tableWrapper = `table-wrapper-${testId}`;
 
     return (
       <TableContext.Provider
@@ -135,9 +163,16 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           hasVerticalBorders,
           isInverse: isInverse,
           isSelectable,
+          isSortableBySelected,
         }}
       >
-        <TableContainer>
+        <TableContainer
+          data-testid={tableWrapper}
+          hasSquareCorners={hasSquareCorners}
+          isInverse={isInverse}
+          minWidth={minWidth}
+          theme={theme}
+        >
           <StyledTable
             {...other}
             data-testid={testId}

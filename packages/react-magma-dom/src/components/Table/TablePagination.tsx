@@ -19,12 +19,14 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
+import { transparentize } from 'polished';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Position of the dropdown content
-   * @default `DropdownDropDirection.up`
+   * @default DropdownDropDirection.up
    */
   dropdownDropDirection?: DropdownDropDirection;
   /**
@@ -44,6 +46,9 @@ export interface BaseTablePaginationProps
    * Values added to the rows per page select
    */
   rowsPerPageValues?: number[];
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -97,12 +102,14 @@ const StyledContainer = styled.div<{
 }>`
   align-items: center;
   background: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
+    props.isInverse
+      ? transparentize(0.9, props.theme.colors.neutral100)
+      : props.theme.colors.neutral200};
   border-top: 1px solid
     ${props =>
       props.isInverse
-        ? props.theme.colors.neutral08
-        : props.theme.colors.neutral06};
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
@@ -112,11 +119,15 @@ const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
 `;
 
-const RowsPerPageLabel = styled.span`
+const RowsPerPageLabel = styled.span<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
   font-weight: 600;
   line-height: 20px;
   margin: 0 16px 0 0;
   text-align: left;
+  color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
 `;
 
 export const TablePagination = React.forwardRef<
@@ -156,6 +167,7 @@ export const TablePagination = React.forwardRef<
     page: pageProp,
   });
 
+  const [activeIndex, setActiveIndex] = React.useState(rowsPerPage);
   const isLastPage = page * rowsPerPage >= itemCount;
 
   const displayPageStart = (page - 1) * rowsPerPage + 1;
@@ -182,6 +194,7 @@ export const TablePagination = React.forwardRef<
     onRowsPerPageChange &&
       typeof onRowsPerPageChange === 'function' &&
       onRowsPerPageChange(value);
+    setActiveIndex(rowsPerPage);
   }
 
   const previousButton = pageButtons[0];
@@ -195,12 +208,14 @@ export const TablePagination = React.forwardRef<
       ref={ref}
       theme={theme}
     >
-      <RowsPerPageLabel>
+      <RowsPerPageLabel isInverse={isInverse} theme={theme}>
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
       <Dropdown
         alignment={DropdownAlignment.end}
         dropDirection={dropdownDropDirection}
+        activeIndex={activeIndex}
+        isInverse={isInverse}
       >
         <DropdownButton
           aria-label={i18n.table.pagination.rowsPerPageLabel}
@@ -227,26 +242,28 @@ export const TablePagination = React.forwardRef<
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
 
-      <IconButton
-        aria-label={i18n.table.pagination.previousAriaLabel}
-        color={ButtonColor.secondary}
-        disabled={previousButton.disabled}
-        icon={<WestIcon />}
-        isInverse={isInverse}
-        onClick={previousButton.onClick}
-        testId="previousBtn"
-        variant={ButtonVariant.link}
-      />
-      <IconButton
-        aria-label={i18n.table.pagination.nextAriaLabel}
-        color={ButtonColor.secondary}
-        disabled={nextButton.disabled}
-        icon={<EastIcon />}
-        isInverse={isInverse}
-        onClick={nextButton.onClick}
-        testId="nextBtn"
-        variant={ButtonVariant.link}
-      />
+      <ButtonGroup alignment={ButtonGroupAlignment.center}>
+        <IconButton
+          aria-label={i18n.table.pagination.previousAriaLabel}
+          color={ButtonColor.secondary}
+          disabled={previousButton.disabled}
+          icon={<WestIcon />}
+          isInverse={isInverse}
+          onClick={previousButton.onClick}
+          testId="previousBtn"
+          variant={ButtonVariant.link}
+        />
+        <IconButton
+          aria-label={i18n.table.pagination.nextAriaLabel}
+          color={ButtonColor.secondary}
+          disabled={nextButton.disabled}
+          icon={<EastIcon />}
+          isInverse={isInverse}
+          onClick={nextButton.onClick}
+          testId="nextBtn"
+          variant={ButtonVariant.link}
+        />
+      </ButtonGroup>
     </StyledContainer>
   );
 });

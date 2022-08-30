@@ -2,13 +2,16 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "react-magma-dom": "2.5.5",
-    "@react-magma/schema-renderer": "0.0.6",
-    "@cengage-patterns/header": "2.0.5",
-    "react-magma-docs": "2.2.6",
-    "react-magma-landing": "1.0.10"
+    "@react-magma/charts": "1.0.1",
+    "@react-magma/dropzone": "1.0.2",
+    "react-magma-dom": "3.1.1",
+    "@react-magma/schema-renderer": "1.0.2",
+    "@cengage-patterns/header": "3.0.2",
+    "react-magma-docs": "4.0.3",
+    "react-magma-landing": "1.1.0"
   },
   "changesets": [
-    "fuzzy-moles-smoke"
+    "green-coins-taste",
+    "storybook-package"
   ]
 }

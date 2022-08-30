@@ -1,6 +1,8 @@
 import * as React from 'react';
+// import styled from '../../theme/styled';
 import {
   InputBase,
+  InputBaseProps,
   InputIconPosition,
   InputSize,
   InputType,
@@ -10,7 +12,7 @@ import { useIsInverse } from '../../inverse';
 import { SearchIcon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
 
-export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
+export interface SearchProps extends InputBaseProps {
   /**
    * Style properties for the component container element
    */
@@ -30,6 +32,11 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
    */
   inputStyle?: React.CSSProperties;
   /**
+   * Position within the component for the icon to appear
+   * @default InputIconPosition.right
+   */
+  iconPosition?: InputIconPosition;
+  /**
    * Clear contents of input by clicking a clear button
    */
   isClearable?: boolean;
@@ -48,6 +55,9 @@ export interface SearchProps extends React.HTMLAttributes<HTMLInputElement> {
    * Action that will fire when search icon button is clicked
    */
   onSearch: (term: string) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Value of the input element
@@ -60,6 +70,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
     const {
       iconAriaLabel,
       isClearable,
+      isInverse,
       isLoading,
       labelText,
       placeholder,
@@ -71,7 +82,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
 
     const [value, setValue] = React.useState<string>(props.value);
 
-    const icon = isLoading ? <Spinner /> : <SearchIcon />;
+    const icon = isLoading ? <Spinner isInverse={isInverse} /> : <SearchIcon />;
 
     React.useEffect(() => {
       setValue(props.value);
@@ -104,11 +115,12 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
         iconAriaLabel={
           iconAriaLabel ? iconAriaLabel : i18n.search.iconAriaLabel
         }
-        iconPosition={InputIconPosition.right}
-        isInverse={useIsInverse(props.isInverse)}
         isClearable={isClearable}
+        isInverse={useIsInverse(props.isInverse)}
         onChange={handleChange}
-        onIconClick={isLoading ? null : handleSearch}
+        onIconClick={
+          props.isPredictive ? null : isLoading ? null : handleSearch
+        }
         onKeyDown={handleKeyPress}
         placeholder={placeholder ? placeholder : i18n.search.input.placeholder}
         type={InputType.search}

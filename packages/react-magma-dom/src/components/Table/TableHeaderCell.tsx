@@ -10,6 +10,7 @@ import {
 } from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
+import { transparentize } from 'polished';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
@@ -18,6 +19,11 @@ export interface TableHeaderCellProps
    * @default TableCellAlign.left
    */
   align?: TableCellAlign;
+  /**
+   * @default false
+   * If true, style as a row header rather than a column header
+   */
+  isRowHeader?: boolean;
   /**
    * If true, the header will render a button for sorting
    */
@@ -36,6 +42,9 @@ export interface TableHeaderCellProps
    * @default TableSortDirection.none
    */
   sortDirection?: TableSortDirection;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS
@@ -55,15 +64,23 @@ const StyledTableHeaderCell = styled.th<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
+  isRowHeader?: boolean;
   isSortable?: boolean;
   textAlign?: TableCellAlign;
   width?: string;
 }>`
-  background: ${props =>
-    props.isInverse ? props.theme.colors.tint03 : props.theme.colors.neutral07};
-  border-bottom: 2px solid;
-  font-weight: bold;
-  vertical-align: bottom;
+  ${props => {
+    return props.isRowHeader
+      ? {}
+      : {
+          background: props.isInverse
+            ? transparentize(0.93, props.theme.colors.neutral100)
+            : props.theme.colors.neutral200,
+          borderBottom: '2px solid',
+          fontWeight: 'bold',
+          verticalAlign: 'bottom',
+        };
+  }}
 
   ${baseTableCellStyle}
 
@@ -88,7 +105,10 @@ const SortButton = styled.button<{
   align-items: flex-end;
   background: none;
   border: 0;
-  color: inherit;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: flex;
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
@@ -98,7 +118,7 @@ const SortButton = styled.button<{
   width: 100%;
 
   &:focus {
-    outline: 2px dotted
+    outline: 2px solid
       ${props =>
         props.isInverse
           ? props.theme.colors.focusInverse
@@ -108,14 +128,17 @@ const SortButton = styled.button<{
 
   &:hover,
   &:focus {
+    cursor: pointer;
     background: ${props =>
-      props.isInverse ? props.theme.colors.tint : props.theme.colors.neutral06};
+      props.isInverse
+        ? transparentize(0.85, props.theme.colors.neutral100)
+        : transparentize(0.93, props.theme.colors.neutral900)};
 
     svg {
       fill: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral08
-          : props.theme.colors.neutral};
+          ? props.theme.colors.neutral100
+          : props.theme.colors.neutral700};
     }
   }
 `;
@@ -133,9 +156,10 @@ export const TableHeaderCell = React.forwardRef<
   const {
     align,
     children,
+    isRowHeader = false,
     isSortable,
     onSort,
-    scope,
+    scope = isRowHeader ? TableHeaderCellScope.row : TableHeaderCellScope.col,
     sortDirection,
     testId,
     width,
@@ -157,8 +181,8 @@ export const TableHeaderCell = React.forwardRef<
       <SortDoubleArrowIcon
         color={
           tableContext.isInverse
-            ? theme.colors.neutral06
-            : theme.colors.neutral04
+            ? transparentize(0.3, theme.colors.neutral100)
+            : theme.colors.neutral500
         }
         size={theme.iconSizes.small}
       />
@@ -174,8 +198,9 @@ export const TableHeaderCell = React.forwardRef<
       hasVerticalBorders={tableContext.hasVerticalBorders}
       isInverse={tableContext.isInverse}
       ref={ref}
+      isRowHeader={isRowHeader}
       isSortable={isSortable}
-      scope={scope || TableHeaderCellScope.col}
+      scope={scope}
       textAlign={align || TableCellAlign.left}
       theme={theme}
       width={widthString}

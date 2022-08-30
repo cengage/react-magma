@@ -67,6 +67,9 @@ export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   required?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Value of the radio button that is the default selected value for the group

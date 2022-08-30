@@ -4,6 +4,7 @@ import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -29,6 +30,9 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
    */
   hasDropShadow?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of the component, set by CSS.
@@ -38,7 +42,7 @@ export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
 
 export enum CardAlignment {
   center = 'center',
-  left = 'left',
+  left = 'left', // default
   right = 'right',
 }
 
@@ -47,6 +51,7 @@ export enum CardCalloutType {
   primary = 'primary',
   success = 'success',
   warning = 'warning',
+  info = 'info',
 }
 
 export function buildCalloutBackground(
@@ -55,25 +60,29 @@ export function buildCalloutBackground(
   if (props.isInverse) {
     switch (props.calloutType) {
       case 'danger':
-        return props.theme.colors.dangerInverse;
+        return props.theme.colors.danger200;
+      case 'info':
+        return props.theme.colors.tertiary500;
       case 'success':
-        return props.theme.colors.successInverse;
+        return props.theme.colors.success200;
       case 'warning':
-        return props.theme.colors.pop04;
+        return props.theme.colors.warning200;
       default:
-        return props.theme.colors.foundation04;
+        return props.theme.colors.primary500;
     }
   }
 
   switch (props.calloutType) {
     case 'danger':
       return props.theme.colors.danger;
+    case 'info':
+      return props.theme.colors.info;
     case 'success':
       return props.theme.colors.success;
     case 'warning':
-      return props.theme.colors.pop04;
+      return props.theme.colors.warning;
     default:
-      return props.theme.colors.primary;
+      return props.theme.colors.primary600;
   }
 }
 
@@ -82,18 +91,22 @@ const StyledCard = styled.div<CardProps>`
     props.background
       ? props.background
       : props.isInverse
-      ? props.theme.colors.foundation
-      : props.theme.colors.neutral08};
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral100};
   border: 1px solid
     ${props =>
-      props.background ? props.background : props.theme.colors.neutral06};
+      props.background
+        ? props.background
+        : props.isInverse
+        ? transparentize(0.5, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: ${props =>
     props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: flex;
   flex-direction: column;
   overflow: visible;

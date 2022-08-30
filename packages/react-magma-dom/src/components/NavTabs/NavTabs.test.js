@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { CheckIcon } from 'react-magma-icons';
 import { NavTabs } from '.';
 import { NavTab } from './NavTab';

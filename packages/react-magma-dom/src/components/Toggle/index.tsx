@@ -12,6 +12,7 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
+import { transparentize } from 'polished';
 
 export enum ToggleTextPosition {
   left = 'left', // default
@@ -31,6 +32,7 @@ export interface ToggleProps
   containerStyle?: React.CSSProperties;
   /**
    * If true, checkbox is checked on first render
+   * @default false
    */
   defaultChecked?: boolean;
   /**
@@ -55,6 +57,9 @@ export interface ToggleProps
    * Content for label; can be a node or a string
    */
   labelText: React.ReactNode;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Whether the label appears to the left of the right of the toggle switch
@@ -75,6 +80,39 @@ export interface ToggleProps
   trackStyle?: React.CSSProperties;
 }
 
+export function buildIconContainerColor(props) {
+  if (props.isInverse) {
+    if (props.disabled) {
+      if (props.isChecked) {
+        return transparentize(0.6, props.theme.colors.neutral100);
+      }
+      return 'transparent';
+    }
+    return props.theme.colors.success200;
+  }
+  if (props.disabled) {
+    return transparentize(0.6, props.theme.colors.neutral);
+  }
+  return props.theme.colors.neutral100;
+}
+
+function buildToggleBorderColor(props) {
+  if (props.isInverse) {
+    if (props.hasError) {
+      return props.theme.colors.danger200;
+    }
+    return transparentize(0.5, props.theme.colors.neutral100);
+  }
+
+  if (props.hasError) {
+    return props.theme.colors.danger;
+  }
+  if (props.isChecked) {
+    return props.theme.colors.success;
+  }
+  return props.theme.colors.neutral;
+}
+
 const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
@@ -90,14 +128,16 @@ const Track = styled.span<{
   isInverse?: boolean;
   theme?: any;
 }>`
-  background: ${props => props.theme.colors.neutral04};
+  background: ${props =>
+    props.isInverse
+      ? transparentize(0.8, props.theme.colors.neutral900)
+      : props.theme.colors.neutral};
   border: 2px solid;
-  border-color: ${props =>
-    props.hasError ? props.theme.colors.danger : props.theme.colors.neutral04};
+  border-color: ${props => buildToggleBorderColor(props)};
   border-radius: 12px;
   box-shadow: ${props =>
     props.isInverse && props.hasError
-      ? `0 0 0 1px ${props.theme.colors.neutral08}`
+      ? `0 0 0 1px ${props.theme.colors.neutral100}`
       : '0 0 0'};
   cursor: pointer;
   height: 24px;
@@ -107,27 +147,31 @@ const Track = styled.span<{
   ${props =>
     props.isChecked &&
     css`
-      background: ${props.theme.colors.success02};
-      border-color: ${props.hasError
-        ? props.theme.colors.danger
-        : props.theme.colors.success02};
+      background: ${props.isInverse
+        ? transparentize(0.8, props.theme.colors.neutral900)
+        : props.theme.colors.success};
+      border-color: ${buildToggleBorderColor(props)};
     `}
 
   ${props =>
     props.disabled &&
     css`
-      background: ${props.theme.colors.neutral06};
-      border-color: ${props.theme.colors.neutral06};
+      background: ${props.isInverse
+        ? transparentize(0.9, props.theme.colors.neutral900)
+        : props.theme.colors.neutral300};
+      border-color: ${props.isInverse
+        ? transparentize(0.85, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
       cursor: not-allowed;
     `}
 
   ${HiddenInput}:focus + label & {
-    outline: 2px dotted
+    outline: 2px solid
       ${props =>
         props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-    outline-offset: 3px;
+    outline-offset: 2px;
   }
 
   &:before {
@@ -150,7 +194,7 @@ const Track = styled.span<{
     ${props =>
       props.isChecked &&
       css`
-        background: ${props.theme.colors.success02};
+        background: ${props.theme.colors.success};
         left: 12px;
       `}
   }
@@ -166,10 +210,14 @@ const Track = styled.span<{
 
 const Thumb = styled.span<{
   isChecked?: boolean;
+  isInverse?: boolean;
   disabled?: boolean;
   theme?: any;
 }>`
-  background: ${props => props.theme.colors.neutral08};
+  background: ${props =>
+    props.isInverse && props.disabled
+      ? transparentize(0.6, props.theme.colors.neutral100)
+      : props.theme.colors.neutral100};
   border-radius: 100%;
   height: 20px;
   left: 0;
@@ -186,11 +234,13 @@ const Thumb = styled.span<{
     `}
 `;
 
-const IconContainer = styled.span<{ disabled?: boolean; theme?: any }>`
-  color: ${props =>
-    props.disabled
-      ? props.theme.colors.neutral05
-      : props.theme.colors.neutral08};
+const IconContainer = styled.span<{
+  disabled?: boolean;
+  theme?: any;
+  isChecked?: boolean;
+  isInverse?: boolean;
+}>`
+  color: ${props => buildIconContainerColor(props)};
   left: ${props => props.theme.spaceScale.spacing02};
   position: absolute;
   top: ${props => props.theme.spaceScale.spacing01};
@@ -323,11 +373,17 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
               style={trackStyle}
               theme={theme}
             >
-              <IconContainer disabled={disabled} theme={theme}>
+              <IconContainer
+                disabled={disabled}
+                theme={theme}
+                isInverse={isInverse}
+                isChecked={isChecked}
+              >
                 <CheckIcon size={theme.iconSizes.xSmall} />
               </IconContainer>
               <Thumb
                 isChecked={isChecked}
+                isInverse={isInverse}
                 disabled={disabled}
                 style={thumbStyle}
                 theme={theme}

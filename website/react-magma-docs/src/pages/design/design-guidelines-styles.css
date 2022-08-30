@@ -35,22 +35,22 @@
 }
 
 .gatsby-resp-image-wrapper {
-  border: 1px solid #dfdfdf;
+  border: 1px solid #d4d4d4;
 }
 
 figure .background {
-  background: #f7f7f7;
-  border: 1px solid #dfdfdf;
+  background: #f5f5f5;
+  border: 1px solid #d4d4d4;
   padding: 8px 0;
 }
 
 figure .image-container {
-  border: 1px solid #dfdfdf;
+  border: 1px solid #d4d4d4;
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 40px 8px 0 8px;
-  background: #f7f7f7;
+  background: #f5f5f5;
 }
 
 figure .image-container span {
@@ -91,18 +91,18 @@ figcaption .title {
 }
 
 figcaption .title-correct {
-  background: #3a8200;
+  background: #178037;
   color: #fff;
 }
 
 figcaption .title-incorrect {
-  background: #c61d23;
+  background: #D32821;
   color: #fff;
 }
 
 figcaption .title-caution {
-  background: #f2a900;
-  color: #3f3f3f;
+  background: #AD5115;
+  color: #fff;
 }
 
 .swatch-rows {
@@ -111,13 +111,66 @@ figcaption .title-caution {
   flex-wrap: wrap;
 }
 
+.swatch-rows .color-detail-container {
+  margin: 0 0 16px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.swatch-rows .color-detail-container:last-of-type {
+  margin: 0 0 0 0;
+}
+
+.swatch-rows .color-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.swatch-rows p {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.16px;
+  color: #454545;
+}
+
+.swatch-rows .color-test-light {
+  color: #FFFFFF;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.swatch-rows .color-test-dark {
+  color: #454545;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0;
+}
+
+.swatch-rows .color-detail-container p:last-of-type {
+  margin: 0;
+}
+
+.swatch-rows .detail-label {
+  text-transform: uppercase;
+  color: #707070;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+}
+
 .type-details-table {
-  border: 1px solid #dfdfdf;
-  border-radius: 5px;
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
 }
 
 .type-example {
-  border-bottom: 1px solid #dfdfdf;
+  border-bottom: 1px solid #d4d4d4;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -139,7 +192,7 @@ figcaption .title-caution {
 .type-specs {
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #dfdfdf;
+  border-left: 1px solid #d4d4d4;
   padding: 24px;
 }
 
@@ -171,69 +224,39 @@ figcaption .title-caution {
 .principles-c {
   display: flex;
   flex-direction: column;
-  padding: 20px 5%;
-  color: #ffffff;
+  padding: 24px;
+  color: #454545;
   text-align: center;
-  margin-bottom: 30px;
-  border-radius: 5px;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
 }
 
 .principles-c h3 {
   font-size: 36px;
-  color: #ffffff;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .principles-c p {
   font-size: 20px;
-  line-height: 30px;
-}
-
-.anticipate-container {
-  background: #006298;
-}
-
-.encourage-container {
-  background: #e0004d;
-}
-
-.inspire-container {
-  background: #fc4c02;
-}
-
-.cultivate-container {
-  background: #48a200;
-}
-
-.preserve-container {
-  background: #f2a900;
-  color: #00263e;
-}
-
-.preserve-container h3 {
-  color: #00263e;
-}
-
-.discover-container {
-  background: #92278f;
+  line-height: 24px;
+  line-height: 32px;
 }
 
 .principles-c blockquote {
-  padding: 20px;
-  margin: 0 0 20px 0;
+  padding: 24px;
+  margin: 0;
   text-align: left;
-  background: rgba(0, 0, 0, 0.35);
-  border-radius: 5px;
+  background: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
 }
 
 .principles-c blockquote p {
-  font-size: 15px;
-  line-height: 22px;
-  margin-bottom: 10px;
-}
-
-.preserve-container blockquote {
-  color: #ffffff;
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 16px;
 }
 
 blockquote footer {
@@ -420,43 +443,44 @@ td .space-example {
     font-size: 20px;
     font-weight: 400;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-xlarge {
     font-size: 32px;
     font-weight: 600;
     line-height: 40px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-large {
     font-size: 28px;
     font-weight: 300;
     line-height: 40px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-medium {
     font-size: 24px;
     font-weight: 300;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-small {
     font-size: 20px;
     font-weight: 300;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
 
   .expressive-heading-xsmall {
     font-size: 18px;
     font-weight: 300;
     line-height: 32px;
-    color: #003865;
+    color: #292F7C;
   }
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -467,5 +491,9 @@ td .space-example {
   .principles-c p {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .principles-c blockquote {
+    margin: 0;
   }
 }

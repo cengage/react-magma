@@ -4,11 +4,15 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ErrorIcon } from 'react-magma-icons';
 import { Announce } from '../Announce';
 import { InputSize } from '../InputBase';
+import { transparentize } from 'polished';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
   hasError?: boolean;
   id?: string;
+  /**
+   * @default InputSize.medium
+   */
   inputSize?: InputSize;
   isInverse?: boolean;
 }
@@ -16,9 +20,11 @@ export interface InputMessageProps
 function BuildMessageColor(props) {
   const { isInverse, hasError, theme } = props;
   if (isInverse) {
-    return hasError ? theme.colors.dangerInverse : theme.colors.neutral08;
+    return hasError
+      ? theme.colors.danger200
+      : transparentize(0.3, props.theme.colors.neutral100);
   }
-  return hasError ? theme.colors.danger : theme.colors.neutral03;
+  return hasError ? theme.colors.danger : theme.colors.neutral500;
 }
 
 const Message = styled.div<InputMessageProps>`
@@ -27,12 +33,12 @@ const Message = styled.div<InputMessageProps>`
   color: ${props => BuildMessageColor(props)};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-top: ${props =>
     props.inputSize === InputSize.large
       ? props.theme.spaceScale.spacing03
       : props.theme.spaceScale.spacing02};
-  min-height: ${props => props.theme.spaceScale.spacing06};
   text-align: left;
 `;
 

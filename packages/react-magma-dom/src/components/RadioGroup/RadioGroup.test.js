@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { RadioGroup } from '.';
 import { Radio } from '../Radio';
 import { render, fireEvent, waitFor } from '@testing-library/react';

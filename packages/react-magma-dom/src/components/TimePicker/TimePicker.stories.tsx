@@ -1,7 +1,6 @@
 import React from 'react';
 import { TimePicker, TimePickerProps } from '.';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<TimePickerProps> = args => (
@@ -39,7 +38,7 @@ Inverse.args = {
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.foundation} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

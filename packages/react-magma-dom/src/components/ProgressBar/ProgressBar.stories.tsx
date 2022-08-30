@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 import { ProgressBar, ProgressBarProps, ProgressBarColor } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -38,7 +37,7 @@ export default {
     },
     percentage: {
       control: {
-        type: 'text',
+        type: 'number',
       },
     },
   },
@@ -47,6 +46,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   percentage: 25,
+  isInverse: false,
 };
 
 export const Inverse = Template.bind({});
@@ -57,7 +57,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

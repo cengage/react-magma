@@ -6,7 +6,7 @@ import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabPanel } from './TabPanel';
 import { magma } from '../../theme/magma';
 import { render, fireEvent } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 
 describe('Tabs', () => {
   it('should correctly apply the testId', () => {
@@ -257,18 +257,18 @@ describe('Tabs', () => {
 
     expect(getByText('Tab 1').parentElement).toHaveStyleRule(
       'background',
-      magma.colors.pop02,
+      magma.colors.tertiary,
       {
         target: ':after',
       }
     );
     expect(getByTestId('buttonPrev')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
     expect(getByTestId('buttonNext')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
   });
 
@@ -778,6 +778,24 @@ describe('Tabs', () => {
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
       expect(getByText('Tab 2 Info')).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
+    });
+
+    it('should call passed in onChange function when tab panel is changed by keyboard navigation', () => {
+      const onChange = jest.fn();
+      const { getByText } = render(
+        <Tabs onChange={onChange}>
+          <Tab>This is tab 1</Tab>
+          <Tab>This is tab 2</Tab>
+          <Tab>This is tab 3</Tab>
+        </Tabs>
+      );
+
+      fireEvent.keyDown(getByText('This is tab 1'), {
+        key: 'ArrowRight',
+      });
+
+      expect(onChange).toHaveBeenCalled();
+      expect(onChange).toHaveBeenCalledWith(1);
     });
   });
 });

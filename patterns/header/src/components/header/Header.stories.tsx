@@ -161,21 +161,18 @@ EverythingInverse.args = {
         <IconButton
           aria-label="Settings"
           icon={<SettingsIcon />}
-          isInverse
           onClick={() => {}}
           variant={ButtonVariant.link}
         />
         <IconButton
           aria-label="Notifications"
           icon={<NotificationsIcon />}
-          isInverse
           onClick={() => {}}
           variant={ButtonVariant.link}
         />
         <IconButton
           aria-label="Person"
           icon={<PersonIcon />}
-          isInverse
           onClick={() => {}}
           variant={ButtonVariant.link}
         />

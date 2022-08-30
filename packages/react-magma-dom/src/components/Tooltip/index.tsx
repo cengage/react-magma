@@ -33,9 +33,17 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   content: React.ReactNode;
   isInverse?: boolean;
   /**
+   * Override the default opening of the tooltip on hover/focus to remain open
+   */
+  open?: boolean;
+  /**
    * Position the tooltip appears in relation to its trigger
+   * @default TooltipPosition.top
    */
   position?: TooltipPosition;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Style properties for the inner tooltip content
@@ -48,12 +56,15 @@ export interface ITooltipState {
   isVisible?: boolean;
 }
 
-const ToolTipContainer = styled.div`
+const TooltipContainer = styled.div`
   display: inline;
   pointer-events: auto;
 `;
 
-const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
+export const TooltipArrow = styled.span<{
+  position?: any;
+  isInverse?: boolean;
+}>`
   &&,
   &&:before {
     display: block;
@@ -73,7 +84,7 @@ const ToolTipArrow = styled.span<{ position?: any; isInverse?: boolean }>`
   }
 `;
 
-const StyledTooltip = styled.div<{
+export const StyledTooltip = styled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
   position: TooltipPosition;
@@ -89,6 +100,7 @@ const StyledTooltip = styled.div<{
       ? props.theme.tooltip.inverse.textColor
       : props.theme.tooltip.textColor};
   font-size: ${props => props.theme.tooltip.typeScale.fontSize};
+  letter-spacing: ${props => props.theme.tooltip.typeScale.letterSpacing};
   line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
   font-weight: ${props => props.theme.tooltip.fontWeight};
   max-width: ${props => props.theme.tooltip.maxWidth};
@@ -126,9 +138,9 @@ const StyledTooltip = styled.div<{
   }
 `;
 
-// Using any for the ref because it is put ont he passed in children which does not have a specific type
+// Using any for the ref because it is put on the passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
-  const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [isVisible, setIsVisible] = React.useState<boolean>(props.open);
   const [referenceElement, setReferenceElement] =
     React.useState<HTMLElement>(null);
   const [popperElement, setPopperElement] =
@@ -153,7 +165,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   React.useEffect(() => {
     const handleEsc = event => {
       if (event.key === 'Escape') {
-        setIsVisible(false);
+        hideTooltip();
       }
     };
     window.addEventListener('keydown', handleEsc);
@@ -165,7 +177,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
   function handleKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Escape') {
-      setIsVisible(false);
+      hideTooltip();
     }
   }
 
@@ -174,7 +186,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   }
 
   function hideTooltip() {
-    setIsVisible(false);
+    setIsVisible(props.open);
   }
 
   const {
@@ -204,6 +216,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   });
 
   const combinedTooltipStyles = {
+    zIndex: theme.tooltip.zIndex,
     ...styles.popper,
     ...tooltipStyle,
   };
@@ -213,7 +226,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const isInverse = useIsInverse(props.isInverse);
 
   return (
-    <ToolTipContainer
+    <TooltipContainer
       {...other}
       data-testid={testId}
       onKeyDown={handleKeyDown}
@@ -237,7 +250,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             {...attributes.popper}
           >
             {content}
-            <ToolTipArrow
+            <TooltipArrow
               isInverse={isInverse}
               ref={setArrowElement}
               style={combinedArrowStyle}
@@ -246,6 +259,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
           </StyledTooltip>
         </div>
       )}
-    </ToolTipContainer>
+    </TooltipContainer>
   );
 });

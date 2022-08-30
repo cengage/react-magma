@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '.';
 import { Button } from '../Button';
 import { magma } from '../../theme/magma';
@@ -37,9 +37,9 @@ describe('Accordion', () => {
     const panel = getByText('Panel 1');
     const accordion = getByTestId(testId);
 
-    expect(btn).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(panel).toHaveStyleRule('background', magma.colors.neutral08);
-    expect(accordion).toHaveStyleRule('background', magma.colors.neutral08);
+    expect(btn).toHaveStyleRule('background', 'transparent');
+    expect(panel).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule('background', 'transparent');
   });
 
   it('should render the component with the correct inverse styles', () => {
@@ -58,9 +58,9 @@ describe('Accordion', () => {
     const panel = getByText('Panel 1');
     const accordion = getByTestId(testId);
 
-    expect(btn).toHaveStyleRule('background', magma.colors.foundation);
-    expect(panel).toHaveStyleRule('background', magma.colors.foundation);
-    expect(accordion).toHaveStyleRule('background', magma.colors.foundation);
+    expect(btn).toHaveStyleRule('background', 'transparent');
+    expect(panel).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule('background', 'transparent');
   });
 
   it('should render the component a left-aligned icon', () => {

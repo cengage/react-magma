@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { StyledButton } from '../StyledButton';
 import { useIsInverse } from '../../inverse';
+import { ButtonGroupContext } from '../ButtonGroup';
+import { resolveProps } from '../../utils';
 
 export enum ButtonVariant {
   solid = 'solid', //default
-  outline = 'outline',
   link = 'link',
 }
 
 export enum ButtonColor {
   primary = 'primary', //default
   secondary = 'secondary',
-  success = 'success',
   danger = 'danger',
   marketing = 'marketing',
 }
@@ -47,7 +47,7 @@ export interface ButtonStyles {
    */
   color?: ButtonColor;
   /**
-   *  Set the button to display full-width.
+   * Set the button to display full-width.
    * @default false
    */
   isFullWidth?: boolean;
@@ -84,6 +84,9 @@ export interface ButtonStyles {
  */
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -100,13 +103,25 @@ export type ButtonProps = BaseButtonProps & ButtonStyles;
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
-    const { children, ...rest } = props;
-
-    const isInverse = useIsInverse(props.isInverse);
+    const contextProps = React.useContext(ButtonGroupContext);
+    const resolvedProps = resolveProps(contextProps, props);
+    const { color, shape, size, testId, textTransform, variant, ...rest } =
+      resolvedProps;
+    const isInverse = useIsInverse(resolvedProps.isInverse);
 
     return (
-      <StyledButton {...rest} isInverse={isInverse} ref={ref}>
-        {children}
+      <StyledButton
+        {...rest}
+        ref={ref}
+        color={color || ButtonColor.primary}
+        isInverse={isInverse}
+        shape={shape || ButtonShape.fill}
+        size={size || ButtonSize.medium}
+        testId={testId}
+        textTransform={textTransform || ButtonTextTransform.uppercase}
+        variant={variant || ButtonVariant.solid}
+      >
+        {resolvedProps.children}
       </StyledButton>
     );
   }

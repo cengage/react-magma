@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDescendants } from '../../utils';
+import { useDescendants } from '../../hooks/useDescendants';
 
 export enum AccordionIconPosition {
   left = 'left',
@@ -29,6 +29,9 @@ export interface UseAccordionProps {
    * Event that fires when an accordion button is clicked
    */
   onExpandedChange?: (event: any) => void;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

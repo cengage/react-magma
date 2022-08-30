@@ -11,6 +11,7 @@ import {
 import { magma } from '../../theme/magma';
 
 import { render, fireEvent } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 describe('Table', () => {
   it('should find element by testId', () => {
@@ -18,6 +19,54 @@ describe('Table', () => {
     const { getByTestId } = render(<Table testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('should render table with a border radius', () => {
+    const { getByTestId } = render(
+      <Table isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+      'border-radius',
+      magma.spaceScale.spacing03
+    );
+  });
+
+  it('should render table without a border radius', () => {
+    const { getByTestId } = render(
+      <Table hasSquareCorners isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+      'border-radius',
+      '0'
+    );
   });
 
   it('should render table with vertical borders', () => {
@@ -60,7 +109,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      'rgba(63,63,63,0.07)',
+      magma.colors.neutral200,
       {
         target: ':nth-of-type(even)',
       }
@@ -85,7 +134,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.tone02,
+      transparentize(0.93, magma.colors.neutral900),
       {
         target: ':hover',
       }
@@ -172,12 +221,12 @@ describe('Table', () => {
 
     expect(getByText('heading 1')).toHaveStyleRule(
       'background',
-      magma.colors.tint03
+      transparentize(0.93, magma.colors.neutral100)
     );
 
     expect(getByTestId('row1')).toHaveStyleRule(
       'background',
-      magma.colors.tint02,
+      transparentize(0.85, magma.colors.neutral100),
       {
         target: ':hover',
       }
@@ -185,7 +234,7 @@ describe('Table', () => {
 
     expect(getByTestId('row2')).toHaveStyleRule(
       'background',
-      magma.colors.tint,
+      transparentize(0.93, magma.colors.neutral100),
       {
         target: ':nth-of-type(even)',
       }
@@ -325,14 +374,18 @@ describe('Table', () => {
 
     expect(button).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.focusInverse}`,
+      `2px solid ${magma.colors.focusInverse}`,
       {
         target: ':focus',
       }
     );
 
-    expect(button).toHaveStyleRule('background', magma.colors.tint, {
-      target: ':hover',
-    });
+    expect(button).toHaveStyleRule(
+      'background',
+      transparentize(0.85, magma.colors.neutral100),
+      {
+        target: ':hover',
+      }
+    );
   });
 });

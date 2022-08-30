@@ -5,9 +5,11 @@ import { css } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';
-import { useForceUpdate, useForkedRef } from '../../utils';
+import { useForkedRef } from '../../utils';
+import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeInterface } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,6 +23,9 @@ export interface TabProps
    */
   isActive?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -52,7 +57,9 @@ export const StyledTabsChild = styled('li', {
 
   &:after {
     background: ${props =>
-      props.isInverse ? props.theme.colors.pop02 : props.theme.colors.primary};
+      props.isInverse
+        ? props.theme.colors.tertiary
+        : props.theme.colors.primary};
     border-radius: 2px;
     content: '';
     display: block;
@@ -97,30 +104,42 @@ function getFlexDirection(position: TabsIconPosition) {
   }
 }
 
+function buildTabStylesColor(props) {
+  if (props.isInverse) {
+    if (props.disabled) {
+      return transparentize(0.6, props.theme.colors.neutral100);
+    }
+    if (props.isActive) {
+      return props.theme.colors.neutral100;
+    }
+    return transparentize(0.3, props.theme.colors.neutral100);
+  }
+
+  if (props.disabled) {
+    return transparentize(0.6, props.theme.colors.neutral500);
+  }
+  if (props.isActive) {
+    return props.theme.colors.primary;
+  }
+  return props.theme.colors.neutral500;
+}
+
 export const TabStyles = props => css`
   align-items: center;
   background: transparent;
   border: 0;
-  color: ${props.isActive && !props.isInverse
-    ? props.theme.colors.primary
-    : props.isInverse
-    ? props.theme.colors.neutral08
-    : props.theme.colors.neutral03};
+  color: ${buildTabStylesColor(props)};
   cursor: ${props.disabled ? 'auto' : 'pointer'};
   display: flex;
   flex-direction: ${getFlexDirection(props.iconPosition)};
   flex-grow: 0;
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
-  font-weight: 600;
+  font-weight: 500;
   font-size: ${props.theme.typeScale.size02.fontSize};
+  letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
   height: 100%;
   justify-content: ${props.iconPosition === 'left' ? 'flex-start' : 'center'};
-  opacity: ${props.disabled
-    ? 0.4
-    : props.isInverse && !props.isActive
-    ? 0.7
-    : 1};
   padding: ${props.theme.spaceScale.spacing04}
     ${props.theme.spaceScale.spacing05};
   position: relative;
@@ -147,23 +166,23 @@ export const TabStyles = props => css`
     background-color: ${props.isActive
       ? ''
       : props.isInverse
-      ? props.theme.colors.shade02
-      : props.theme.colors.shade};
+      ? transparentize(0.7, props.theme.colors.neutral900)
+      : transparentize(0.95, props.theme.colors.neutral900)};
     color: ${props.isActive
       ? props.isInverse
-        ? props.theme.colors.neutral08
+        ? props.theme.colors.neutral100
         : props.theme.colors.primary
       : props.isInverse
-      ? props.theme.colors.neutral08
-      : props.theme.colors.neutral02};
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   }
 
   &:focus {
     outline-offset: -2px;
-    outline: ${props.isInverse
+    outline: 2px solid
+      ${props.isInverse
         ? props.theme.colors.focusInverse
-        : props.theme.colors.focus}
-      dotted 2px;
+        : props.theme.colors.focus};
   }
 `;
 

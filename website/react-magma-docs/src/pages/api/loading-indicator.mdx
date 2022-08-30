@@ -120,28 +120,45 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
 
 ```tsx
 import React from 'react';
-import { Announce, Button, LoadingIndicator } from 'react-magma-dom';
+import { Announce, Button, LoadingIndicator, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   const [showLoader, setShowLoader] = React.useState(false);
 
   return (
     <>
-      <p>
+      <ButtonGroup>
         <Button onClick={() => setShowLoader(true)}>
           Show Loading Indicator
         </Button>
         <Button onClick={() => setShowLoader(false)}>
           Hide Loading Indicator
         </Button>
-      </p>
+      </ButtonGroup>
+      <br/>
       <Announce>{showLoader && <LoadingIndicator />}</Announce>
     </>
   );
 }
 ```
 
+## Inverse
+
+```tsx
+import React from 'react';
+import { LoadingIndicator, Card, CardBody } from 'react-magma-dom';
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <LoadingIndicator isInverse />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Loading Indicator Props
 
-**All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props will be applied to the internal element. The internal element will be either a `div` when using the `ProgressBar` or a `span` when using the `Spinner`. Additionally, depending on which component is used internally, you can provide any props that the <Link to="/api/spinner#spinner_props">Spinner</Link> or the <Link to="/api/progress-bar#progress_bar%20props">ProgressBar</Link> accepts. This is controlled by the passed in `type` prop.**
+**All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props will be applied to the internal element. The internal element will be either a `div` when using the `ProgressBar` or a `span` when using the `Spinner`. Additionally, depending on which component is used internally, you can provide any props that the <Link to="/api/spinner#spinner_props">Spinner</Link> or the <Link to="/api/progress-bar#progress_bar_props">ProgressBar</Link> accepts. This is controlled by the passed in `type` prop.**
 
 <LoadingIndicatorProps />

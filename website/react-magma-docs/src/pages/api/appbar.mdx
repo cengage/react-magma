@@ -58,7 +58,7 @@ If the `position` is set to `sticky` or `fixed`, the app bar will have a small d
 
 ```typescript
 import React from 'react';
-import { AppBar, AppBarPostition, Heading, Paragraph } from 'react-magma-dom';
+import { AppBar, AppBarPosition, Heading, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -119,7 +119,7 @@ import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <AppBar isInverse>
-      <strong
+      <div
         style={{
           alignItems: 'center',
           display: 'flex',
@@ -128,8 +128,8 @@ export function Example() {
       >
         <ImageIcon size={24} />
         <Spacer size={magma.spaceScale.spacing03} />
-        LOGO
-      </strong>
+        <strong>LOGO</strong>
+      </div>
       <Spacer size={magma.spaceScale.spacing12} />
       <Search onSearch={() => {}} placeholder="Search for content..." />
       <Spacer size={magma.spaceScale.spacing06} />

@@ -1,5 +1,810 @@
 # Change Log
 
+## 3.1.2-next.0
+
+### Patch Changes
+
+- 17ee57afe: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
+## 3.1.1
+
+### Patch Changes
+
+- 663a334d: refactor(Input): Update Storybook example with a11y violations.
+- 663a334d: fix(accordion): Accordion Item `buttonId` will be based on the index to avoid duplicate ids.
+  refactor(accordion): Update Storybook example with a11y violations.
+- 663a334d: refactor(appbar): Update Storybook example with a11y violations.
+- 663a334d: fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.
+- 663a334d: fix(Tabs): Removing unnecessary aria-label from wrapping div
+- 663a334d: fix(datagrid): Add aria-label to sort by selectable button
+- 663a334d: feat(datagrid): Add `isSortableBySelected` prop to DataGrid, allowing tables to be sorted by the selected items.
+- 663a334d: fix(DatePicker): Fix support for non-default date formats (dd/mm/yyyy, yyyy/MM/dd, yyyy/dd/MM). Add support for MMMM d, yyyy.
+- 663a334d: fix(input): Fix double focus on all input types (search, datepicker, password). When the icon is focused, only the icon will have visible focus and not the whole input.
+- 663a334d: refactor(indeterminatecheckbox): Update Storybook example with a11y violations.
+- 663a334d: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+- 663a334d: fix(pagination): Fix Pagination a11y issue regarding `<ul>` only having `<li>` as children.
+- 663a334d: refactor(radio): Update Storybook examples with a11y violations.
+- 663a334d: refactor(skiplink): Update Storybook example with a11y violations.
+- 663a334d: build(deps): bump parse-url from 6.0.0 to 6.0.2
+- 663a334d: build(deps): bump terser from 4.8.0 to 4.8.1
+
+## 3.1.1-next.15
+
+### Patch Changes
+
+- 4a229b55c: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+
+## 3.1.1-next.14
+
+### Patch Changes
+
+- 6e0582249: fix(datagrid): Add aria-label to sort by selectable button
+
+## 3.1.1-next.13
+
+### Patch Changes
+
+- 101269ae7: refactor(Input): Update Storybook example with a11y violations.
+
+## 3.1.1-next.12
+
+### Patch Changes
+
+- dac39a9a5: fix(input): Fix double focus on all input types (search, datepicker, password). When the icon is focused, only the icon will have visible focus and not the whole input.
+
+## 3.1.1-next.11
+
+### Patch Changes
+
+- ad190dd9d: fix(pagination): Fix Pagination a11y issue regarding `<ul>` only having `<li>` as children.
+
+## 3.1.1-next.10
+
+### Patch Changes
+
+- 3fbb41fa2: refactor(indeterminatecheckbox): Update Storybook example with a11y violations.
+
+## 3.1.1-next.9
+
+### Patch Changes
+
+- 3016a8e3f: fix(accordion): Accordion Item `buttonId` will be based on the index to avoid duplicate ids.
+  refactor(accordion): Update Storybook example with a11y violations.
+
+## 3.1.1-next.8
+
+### Patch Changes
+
+- e9e508d99: refactor(skiplink): Update Storybook example with a11y violations.
+
+## 3.1.1-next.7
+
+### Patch Changes
+
+- 4fb880c9f: refactor(radio): Update Storybook examples with a11y violations.
+
+## 3.1.1-next.6
+
+### Patch Changes
+
+- 56f9cab83: refactor(appbar): Update Storybook example with a11y violations.
+
+## 3.1.1-next.5
+
+### Patch Changes
+
+- 79dd48126: fix(DatePicker): Fix support for non-default date formats (dd/mm/yyyy, yyyy/MM/dd, yyyy/dd/MM). Add support for MMMM d, yyyy.
+
+## 3.1.1-next.4
+
+### Patch Changes
+
+- c1a8c2664: fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.
+
+## 3.1.1-next.3
+
+### Patch Changes
+
+- e24d4229d: feat(datagrid): Add `isSortableBySelected` prop to DataGrid, allowing tables to be sorted by the selected items.
+
+## 3.1.1-next.2
+
+### Patch Changes
+
+- 14de7d4bb: fix(Tabs): Removing unnecessary aria-label from wrapping div
+
+## 3.1.1-next.1
+
+### Patch Changes
+
+- 105cf25b: build(deps): bump parse-url from 6.0.0 to 6.0.2
+
+## 3.1.1-next.0
+
+### Patch Changes
+
+- fc8a20bf: build(deps): bump terser from 4.8.0 to 4.8.1
+
+## 3.1.0
+
+### Minor Changes
+
+- 04e0a5a8: Release 3.1.0
+
+## 3.0.0 (NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above)
+
+### Major Changes
+
+- 732f5c908: fix(button): Remove margin from buttons
+  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+  Breaking Change: Muted Alert variant has been removed.
+
+- 81b1b76d: dropdown: Remove deprecated prop `onBeforeShiftFocus`
+
+### Minor Changes
+
+- e9e7a600: fix(alert/banner/toast): Update hyperlink styles
+  fix(banner): Update styles for close button
+- d70e4cf17: feat(badge): Update hover/active/focus styles
+- eeec9950: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
+- 787017f90: feat(buttongroup): New ButtonGroup component
+
+- 8c17d7e8: feat(button): Updated hover/focus/active states on buttons using the new color palette.
+- 23fc1b1a: fix(buttongroup): Add `Dropdown` support
+- ce262ae30: feat(combobox): Update combobox items colors and error styling
+- 97ea53aca: feat(spinner): Add `isInverse` support for Spinner component.
+  feat(combobox/select): Update styling for items list inverse.
+- e93d09159: fix(container): Update Storybook examples
+- 733aa23b: fix(theme): Update `danger100` hex color
+- 058ddea9: feat(datepicker): Update spacing around buttons
+- c765e88d: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
+- b5c4415d: 800 fix focus state in Dropdown Component. Updated modal docs
+- ab69379b: fix(nativeSelect): Add background color to the options for `isInverse`. In Windows, the Native Select dropdown has a white background which makes the options invisible.
+- 9ca1827b2: feat: Update colors throughout various components
+- 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
+- 484578a87: feat(Dropdowns): Updating Dropdowns with rebrand styles
+- a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
+- 7ab1d3c3: feat(table): Removing `hasOuterBorder` prop. This was a new prop this version, so this is not a breaking change.
+- 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
+- ce9088243: bug(select): Fix hover styles in Select component to not have focus border.
+- 133d2cf32: fix(table): update sortable table header cursor
+- 0d9b45043: fix(select): update disabled state down arrow color
+  fix(toggle): update toggle border color
+  fix(combobox): update input border inverse danger color
+  fix(table): update table inverse hasZebraStripes color
+- a46f65ee: fix(table): fix `minWidth` scroll
+- 31dfdba9: feat(table): Add `isInverse` support for TablePagination dropdowns
+- 41215ce1e: feat(table): Update Storybook examples
+- 403e601a: feat(tabs): Update Storybook examples
+- 7d66f867: fix(timepicker): `onChange` is called on 'Backspace' key press
+- cc23aacf6: fix(toast): bring back dropshadow for toasts
+- ca2c61de6: feat(tooltip): Fix tooltip position bug
+- 465fd0fce: fix: Toast X center alignment
+
+### Patch Changes
+
+- 9d8ae22c: fix(accordion): Update Storybook `isInverse` example
+- 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
+- 3a27353aa: fix(textarea): Textarea can now be cleared
+
+## 3.0.0-next.48
+
+### Major Changes
+
+- 058ddea9b: feat(datepicker): Update spacing around buttons
+
+## 3.0.0-next.47
+
+### Major Changes
+
+- ab69379bb: fix(nativeSelect): Add background color to the options for `isInverse`. In Windows, the Native Select dropdown has a white background which makes the options invisible.
+
+## 3.0.0-next.46
+
+### Major Changes
+
+- b5c4415da: 800 fix focus state in Dropdown Component. Updated modal docs
+
+## 3.0.0-next.45
+
+### Major Changes
+
+- 7ab1d3c30: feat(table): Removing `hasOuterBorder` prop. This was a new prop this version, so this is not a breaking change.
+
+## 3.0.0-next.44
+
+### Patch Changes
+
+- 23fc1b1a1: fix(buttongroup): Add `Dropdown` support
+
+## 3.0.0-next.43
+
+### Major Changes
+
+- 81b1b76d7: dropdown: Remove deprecated prop `onBeforeShiftFocus`
+
+## 3.0.0-next.42
+
+### Major Changes
+
+- f38b9dd97: feat(table): Moving prop hasOuterBorder to a wrapping container to fix overflow issues.
+
+## 3.0.0-next.41
+
+### Major Changes
+
+- e9e7a6008: fix(alert/banner/toast): Update hyperlink styles
+  fix(banner): Update styles for close button
+
+## 3.0.0-next.40
+
+### Major Changes
+
+- 733aa23b7: fix(theme): Update `danger100` hex color
+
+## 3.0.0-next.39
+
+### Major Changes
+
+- 7d66f867b: fix(timepicker): `onChange` is called on 'Backspace' key press
+
+## 3.0.0-next.38
+
+### Major Changes
+
+- 403e601ae: feat(tabs): Update Storybook examples
+
+### Patch Changes
+
+- 9d8ae22c6: fix(accordion): Update Storybook `isInverse` example
+
+## 3.0.0-next.37
+
+### Major Changes
+
+- 31dfdba9e: feat(table): Add `isInverse` support for TablePagination dropdowns
+
+## 3.0.0-next.36
+
+### Major Changes
+
+- eeec99508: fix(input): fixed positioning for clearable button when inputs have an icon on the right or top.
+- 8c17d7e86: feat(button): Updated hover/focus/active states on buttons using the new color palette.
+
+## 3.0.0-next.35
+
+### Major Changes
+
+- c765e88d1: feat(dropdown): Update dropdown item `isInverse` && `disabled` color.
+
+## 3.0.0-next.34
+
+### Major Changes
+
+- a46f65eef: fix(table): fix `minWidth` scroll
+
+## 3.0.0-next.33
+
+### Major Changes
+
+- d70e4cf17: feat(badge): Update hover/active/focus styles
+
+## 3.0.0-next.32
+
+### Major Changes
+
+- 2251bf681: feat(table): Adding border prop hasOuterBorder for tables.
+
+## 3.0.0-next.31
+
+### Patch Changes
+
+- e93d09159: fix(container): Update Storybook examples
+
+## 3.0.0-next.30
+
+### Major Changes
+
+- 41215ce1e: feat(table): Update Storybook examples
+
+## 3.0.0-next.29
+
+### Major Changes
+
+- 732f5c908: fix(button): Remove margin from buttons
+
+  BREAKING CHANGE: Margin from buttons have been removed. Use `ButtonGroup` when using multiple buttons.
+
+## 3.0.0-next.28
+
+### Major Changes
+
+- 7cec9a9ab: feat(button): Update Secondary button hover/active/focus states.
+
+## 3.0.0-next.27
+
+### Major Changes
+
+- cc23aacf6: fix(toast): bring back dropshadow for toasts
+
+## 3.0.0-next.26
+
+### Major Changes
+
+- 133d2cf32: fix(table): update sortable table header cursor
+
+## 3.0.0-next.25
+
+### Major Changes
+
+- ca2c61de6: feat(tooltip): Fix tooltip position bug
+
+## 3.0.0-next.24
+
+### Major Changes
+
+- 787017f90: feat(buttongroup): New ButtonGroup component
+
+## 3.0.0-next.23
+
+### Patch Changes
+
+- 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
+- 3a27353aa: fix(textarea): Textarea can now be cleared
+
+## 3.0.0-next.22
+
+### Major Changes
+
+- 465fd0fce: fix: Toast X center alignment
+
+## 3.0.0-next.21
+
+### Major Changes
+
+- 27e91f1e9: feat(DatePicker): Update DatePicker with new colors. Add `isInverse` support.
+
+## 3.0.0-next.20
+
+### Major Changes
+
+- 0d9b45043: fix(select): update disabled state down arrow color
+  fix(toggle): update toggle border color
+  fix(combobox): update input border inverse danger color
+  fix(table): update table inverse hasZebraStripes color
+
+## 3.0.0-next.19
+
+### Major Changes
+
+- 97ea53aca: feat(spinner): Add `isInverse` support for Spinner component.
+  feat(combobox/select): Update styling for items list inverse.
+
+## 3.0.0-next.18
+
+### Major Changes
+
+- ce262ae30: feat(combobox): Update combobox items colors and error styling
+
+## 3.0.0-next.17
+
+### Major Changes
+
+- ce9088243: bug(select): Fix hover styles in Select component to not have focus border.
+
+## 3.0.0-next.16
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various components
+
+## 3.0.0-next.15
+
+### Major Changes
+
+- 484578a87: feat(Dropdowns): Updating Dropdowns with rebrand styles
+- a4acd9ac6: feat(heading): Update expressive `contextVariant` styles.
+
+## 3.0.0-next.14
+
+### Major Changes
+
+- 8690bbf3f: feat: Updating alerts to V3 styling, this effects banners and toasts in addition.
+
+  Breaking Change: Muted Alert variant has been removed.
+
+## 3.0.0-next.13
+
+### Major Changes
+
+- e1fba9d10: feat(modal): Updating Modal with rebrand styles. Adding support for `isInverse`.
+
+## 3.0.0-next.12
+
+### Major Changes
+
+- 2c98589c: feat(tabs): Updating tabs and nav tabs with new colors.
+
+## 3.0.0-next.11
+
+### Major Changes
+
+- 4eba5dc4: feat(pagination): updates to V3 styling
+
+## 3.0.0-next.10
+
+### Major Changes
+
+- d2400a77: feat: Updating tags to V3 styling
+
+  Note: tag variants "success" and "danger" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.9
+
+### Major Changes
+
+- 059d58fa: feat(buttons): adding in color changes throughout applicable components
+
+  Note: button variant "outline" and button color "success" have been removed as a part of the V3 update which will cause breaking changes.
+
+## 3.0.0-next.8
+
+### Major Changes
+
+- d74ec404: feat(toggle/radio/checkbox): Updating toggle, radio checkbox and indeterminate checkbox with new colors.
+
+## 3.0.0-next.7
+
+### Major Changes
+
+- b0f75257: feat(accordion): Updating accordion with new colors.
+- 18afc4fc: feat(badge): Updating badge colors. Adding `isInverse` support.
+- 8d0ecf2a: feat(inputs): Updating Inputs with rebrand styles
+- 7659a0ba: feat(processBar): Updating processBar colors. `pop` and `pop02` have been removed.
+
+## 3.0.0-next.6
+
+### Major Changes
+
+- b737f6cd: feat(table): Updating table with new colors.
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- f545eb26: feat(breadcrumb): Updating Breadcrumb with new colors
+
+## 3.0.0-next.4
+
+### Major Changes
+
+- 476c5023: feat(tooltips): Updating tooltip colors
+
+## 3.0.0-next.3
+
+### Major Changes
+
+- 6beb7283: feat(cards): Updating cards with new colors. Added `info` as a new `cardCalloutType`.
+
+## 3.0.0-next.2
+
+### Major Changes
+
+- 26d70350: feat: Updating focus states from dotted to solid
+
+## 3.0.0-next.1
+
+### Major Changes
+
+- 38fe6b4c: feat(typography): Updating main typography styles: type, heading, paragraph
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- 366b25af: feat(magmacolors.ts): Adding new rebrand colors
+
+## 2.5.11
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10-next.3
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+
+## 2.5.10-next.2
+
+### Patch Changes
+
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+
+## 2.5.10-next.1
+
+### Patch Changes
+
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10
+
+### Patch Changes
+
+- fdc6b27f: fix: adding in reference for list props within the index
+- fdc6b27f: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- fdc6b27f: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10-next.3
+
+### Patch Changes
+
+- 72db207d: fix: adding in reference for list props within the index
+
+## 2.5.10-next.2
+
+### Patch Changes
+
+- 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+
+## 2.5.10-next.1
+
+### Patch Changes
+
+- a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+## 2.5.10
+
+### Patch Changes
+
+- e4c69ca5: fix(alert): add right padding of 12px
+- 39b2fc49: fix(modal.tsx): Remove title attribute from modals
+- cbadaccb: feat: List component
+- 27cad886: Build/fix publish step
+- 92e31554: Fix/drawer issues
+- 6e481733: fix(tag.stories.tsx): On Delete With Icon Tags not updating color and isInverse
+- 41522e87: feat: add `xLarge` for iconSizes
+  fix: export `styled` and `useGeneratedId` for external components
+- 5e9f8de5: fix(select.stories.tsx): fix Select multi example (again)
+- ecd43306: fix(iconbutton.stories.tsx): updating IconButton stories to hide some properties
+- 290efc90: fix(tablepagination.tsx): add activeIndex to tablepagination
+- 8202898b: fix(select.stories.tsx): Fixing Select Multi story
+- 3ed0d7de: chore(deps): bump browserslist from 4.14.2 to 4.20.2
+- 452e52d5: fix(schemarenderer.stories.tsx): clean up schema data
+- 0fc84127: fix(tag.tsx): Disabled tags have the correct cursor
+- 14b24dd7: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+- ae7a1fc2: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+- 4f483f8f: docs: storybook Addon Measure package added
+- 3208cf6f: docs(storybook): updating storybook version to 6.4.20 and adding essentials addon
+
+## 2.5.9
+
+### Patch Changes
+
+This was an accidental release. Please skip this version and upgrade to to 2.5.10.
+
+## 2.5.9-next.10
+
+### Patch Changes
+
+- 3208cf6f: docs(storybook): updating storybook version to 6.4.20 and adding essentials addon
+
+## 2.5.9-next.9
+
+### Patch Changes
+
+- 5e9f8de5: fix(select.stories.tsx): fix Select multi example (again)
+
+## 2.5.9-next.8
+
+### Patch Changes
+
+- ecd43306: fix(iconbutton.stories.tsx): updating IconButton stories to hide some properties
+- 8202898b: fix(select.stories.tsx): Fixing Select Multi story
+
+## 2.5.9-next.7
+
+### Patch Changes
+
+- 290efc90: fix(tablepagination.tsx): add activeIndex to tablepagination
+
+## 2.5.9-next.6
+
+### Patch Changes
+
+- 3ed0d7de: chore(deps): bump browserslist from 4.14.2 to 4.20.2
+
+## 2.5.9-next.5
+
+### Patch Changes
+
+- 4f483f8f: docs: storybook Addon Measure package added
+
+## 2.5.9-next.4
+
+### Patch Changes
+
+- 14b24dd7: fix(tag.stories.tsx): Tag preview updates when control props are toggled
+
+## 2.5.9-next.3
+
+### Patch Changes
+
+- ae7a1fc2: fix(InputBase/index.tsx): fix alignment for "Choose file" button for inputSize large
+
+## 2.5.9-next.2
+
+### Patch Changes
+
+- 0fc84127: fix(tag.tsx): Disabled tags have the correct cursor
+
+## 2.5.9-next.1
+
+### Patch Changes
+
+- e4c69ca5: fix(alert): add right padding of 12px
+- 27cad886: Build/fix publish step
+
+## 2.5.9-next.0
+
+### Patch Changes
+
+- cbadaccb: feat: List component
+
+## 2.5.8
+
+### Patch Changes
+
+- 444cd2bb: Update to fix header
+- 7b0c5714: fix(form): allow customization of Heading in Form component
+
+## 2.5.8-next.1
+
+### Patch Changes
+
+- 444cd2bb: Update to fix header
+
+## 2.5.8-next.0
+
+### Patch Changes
+
+- 7b0c5714: fix(form): allow customization of Heading in Form component
+
+## 2.5.7
+
+### Patch Changes
+
+- 465dc468: feat: Tag Updates for additional colors
+- 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
+- 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
+- a23e8307: Fix: Added portal back into modal
+- c9907a67: feat: Inputs update
+
+  Removed top margin from helper and error messages related to inputs.
+
+- fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
+- 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
+- edbdda88: Release 2.5.7
+- 2e4f06d6: feat: Predictive Search
+- 22749327: feat: initial commit of the block quote component
+- 253fd1c1: feat: input updates to support additional icon positioning
+- dd443552: Remove unknown props on dom elements in breadcrumb. Specifically `isInverse`
+- 156c5c1e: docs: page layout templates
+
+## 2.5.7-next.11
+
+### Patch Changes
+
+- edbdda88: Release 2.5.7
+
+## 2.5.7-next.10
+
+### Patch Changes
+
+- 22749327: feat: initial commit of the block quote component
+
+## 2.5.7-next.9
+
+### Patch Changes
+
+- c9907a67: feat: Inputs update
+
+  Removed top margin from helper and error messages related to inputs.
+
+## 2.5.7-next.8
+
+### Patch Changes
+
+- fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
+
+## 2.5.7-next.7
+
+### Patch Changes
+
+- a23e8307: Fix: Added portal back into modal
+- dd443552: Remove unknown props on dom elements in breadcrumb. Specifically `isInverse`
+
+## 2.5.7-next.6
+
+### Patch Changes
+
+- 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
+
+## 2.5.7-next.5
+
+### Patch Changes
+
+- 253fd1c1: feat: input updates to support additional icon positioning
+
+## 2.5.7-next.4
+
+### Patch Changes
+
+- 156c5c1e: docs: page layout templates
+
+## 2.5.7-next.3
+
+### Patch Changes
+
+- 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
+
+## 2.5.7-next.2
+
+### Patch Changes
+
+- 2e4f06d6: feat: Predictive Search
+
+## 2.5.7-next.1
+
+### Patch Changes
+
+- 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
+
+## 2.5.7-next.0
+
+### Patch Changes
+
+- 465dc468: feat: Tag Updates for additional colors
+
+## 2.5.6
+
+### Patch Changes
+
+- 19ac34d7: chore: update storybook to 6.4.0-beta.20 fixes react 17
+- 2cdc9c2a: Allow for mouse to hover in to tooltip message
+- 3435eede: fix(textarea): use specific TextareaHTMLAttributes
+- 5ac10dfb: chore: letter-spacing additions for smaller font sizes
+- cec68d47: fix(magma.ts): added type for primaryInverse color
+
+## 2.5.6-next.4
+
+### Patch Changes
+
+- 5ac10dfb: chore: letter-spacing additions for smaller font sizes
+
+## 2.5.6-next.3
+
+### Patch Changes
+
+- 3435eede: fix(textarea): use specific TextareaHTMLAttributes
+
+## 2.5.6-next.2
+
+### Patch Changes
+
+- 19ac34d7: chore: update storybook to 6.4.0-beta.20 fixes react 17
+
+## 2.5.6-next.1
+
+### Patch Changes
+
+- cec68d47: fix(magma.ts): added type for primaryInverse color
+
 ## 2.5.6-next.0
 
 ### Patch Changes

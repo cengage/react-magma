@@ -83,7 +83,6 @@ import {
   SkipLinkContent,
   Paragraph,
   Hyperlink,
-  ButtonColor,
   ButtonVariant,
 } from 'react-magma-dom';
 
@@ -104,7 +103,7 @@ const SideNav = ({ length }) => {
 export function Example() {
   return (
     <div>
-      <SkipLink color={ButtonColor.success} variant={ButtonVariant.outline} />
+      <SkipLink variant={ButtonVariant.solid} />
       <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
@@ -167,7 +166,7 @@ import {
   SkipLink,
   SkipLinkContent,
   Paragraph,
-  Hyperlink,,
+  Hyperlink,
 } from 'react-magma-dom';
 
 const SideNav = ({ length }) => {

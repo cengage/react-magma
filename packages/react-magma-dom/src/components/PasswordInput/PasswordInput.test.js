@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { PasswordInput } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -127,7 +127,7 @@ it('should render an input with a correctly styled helper message', () => {
 
   const helperMessage = getByTestId('inputMessage');
 
-  expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+  expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral);
 });
 
 it('should render an input with a correctly styled error message', () => {
@@ -148,7 +148,7 @@ it('should render an input with a correctly styled error message', () => {
 
   expect(getByLabelText(labelText)).toHaveStyleRule(
     'color',
-    magma.colors.neutral
+    magma.colors.neutral700
   );
 
   expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
@@ -177,6 +177,10 @@ describe('sizes', () => {
     const input = getByLabelText(labelText);
 
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size02.fontSize);
+    expect(label).toHaveStyleRule(
+      'letter-spacing',
+      magma.typeScale.size02.letterSpacing
+    );
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
     expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
   });
@@ -194,7 +198,7 @@ describe('sizes', () => {
 
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
     expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
-    expect(input).toHaveStyleRule('padding', `0 ${magma.spaceScale.spacing04}`);
+    expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
   });
 
   it('should default to no autocomplete', () => {

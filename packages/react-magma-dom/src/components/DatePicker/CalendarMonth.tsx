@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
-import { CloseIcon, HelpOutlineIcon } from 'react-magma-icons';
+import { Tooltip } from '../Tooltip';
+import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
@@ -15,18 +16,26 @@ import { useFocusLock } from '../../hooks/useFocusLock';
 interface CalendarMonthProps {
   calendarOpened?: boolean;
   focusOnOpen?: boolean;
+  isInverse?: boolean;
   handleCloseButtonClick: (event: React.SyntheticEvent) => void;
   setDateFocused?: (value: boolean) => void;
 }
 
-const CalendarContainer = styled.div`
-  background: ${props => props.theme.colors.neutral08};
+const CalendarContainer = styled.div<{ isInverse?: boolean }>`
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary500
+      : props.theme.colors.neutral100};
   padding: 0 ${props => props.theme.spaceScale.spacing05}
     ${props => props.theme.spaceScale.spacing03};
+  overflow: visible;
 `;
 
-const MonthContainer = styled.div`
-  background: ${props => props.theme.colors.neutral08};
+const MonthContainer = styled.div<{ isInverse?: boolean }>`
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary500
+      : props.theme.colors.neutral100};
   text-align: center;
   user-select: none;
   vertical-align: top;
@@ -35,12 +44,15 @@ const MonthContainer = styled.div`
 const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: ${props => props.theme.spaceScale.spacing09};
+  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const Th = styled.th`
+const Th = styled.th<{ isInverse?: boolean }>`
   border: 0;
-  color: ${props => props.theme.colors.neutral};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   font-weight: normal;
@@ -49,9 +61,10 @@ const Th = styled.th`
 `;
 
 const HelperButton = styled.span<{ theme?: any }>`
-  bottom: ${props => props.theme.spaceScale.spacing01};
+  margin: ${props => props.theme.spaceScale.spacing02};
+  top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
-  right: ${props => props.theme.spaceScale.spacing01};
+  left: ${props => props.theme.spaceScale.spacing01};
   z-index: 2;
 `;
 
@@ -60,6 +73,7 @@ const CloseButton = styled.span<{ theme?: any }>`
   right: ${props => props.theme.spaceScale.spacing01};
   top: ${props => props.theme.spaceScale.spacing01};
   z-index: 1;
+  margin: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
@@ -121,74 +135,96 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const startOfWeek = days.indexOf(i18n.datePicker.startOfWeek);
   const sortedDays = days.slice(startOfWeek).concat(days.slice(0, startOfWeek));
   const tableDaysHeaders = sortedDays.map((day, index) => (
-    <Th key={index} theme={theme}>
+    <Th key={index} theme={theme} isInverse={context.isInverse}>
       {i18n.days.min[day]}
     </Th>
   ));
 
   return (
-    <CalendarContainer
-      data-testid="calendarMonthContainer"
-      tabIndex={-1}
-      theme={theme}
-      onKeyDown={context.onKeyDown}
-    >
-      <MonthContainer
-        data-testid="monthContainer"
-        data-visible="true"
+    <>
+      <CalendarContainer
+        data-testid="calendarMonthContainer"
+        tabIndex={-1}
         theme={theme}
-        ref={focusTrapElement}
+        onKeyDown={context.onKeyDown}
+        isInverse={context.isInverse}
       >
-        <CalendarHeader ref={headingRef} focusHeader={focusHeader} />
-        <Table
-          role="presentation"
-          onBlur={onCalendarTableBlur}
-          onFocus={onCalendarTableFocus}
-          theme={theme}
-        >
-          <tbody>
-            <tr>{tableDaysHeaders}</tr>
-            {context.buildCalendarMonth(context.focusedDate).map((week, i) => (
-              <tr key={i}>
-                {week.map((day, dayOfWeek) => (
-                  <CalendarDay
-                    key={dayOfWeek}
-                    day={day}
-                    dayFocusable={dayFocusable}
-                    onDateChange={context.onDateChange}
-                  />
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        <HelperButton theme={theme}>
-          <IconButton
-            aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
-            icon={<HelpOutlineIcon />}
-            onClick={context.showHelperInformation}
-            size={ButtonSize.small}
-            onFocus={turnOffDateFocused}
-            type={ButtonType.button}
-            variant={ButtonVariant.link}
-          />
+        {context.helperInformationShown ? (
           <HelperInformation
             isOpen={context.helperInformationShown}
+            isInverse={context.isInverse}
             onClose={context.hideHelperInformation}
           />
-        </HelperButton>
-        <CloseButton theme={theme}>
-          <IconButton
-            aria-label={i18n.datePicker.calendarCloseAriaLabel}
-            color={ButtonColor.secondary}
-            icon={<CloseIcon />}
-            onClick={props.handleCloseButtonClick}
-            size={ButtonSize.medium}
-            type={ButtonType.button}
-            variant={ButtonVariant.link}
-          />
-        </CloseButton>
-      </MonthContainer>
-    </CalendarContainer>
+        ) : (
+          <MonthContainer
+            data-testid="monthContainer"
+            data-visible="true"
+            isInverse={context.isInverse}
+            theme={theme}
+            ref={focusTrapElement}
+          >
+            <CalendarHeader
+              ref={headingRef}
+              focusHeader={focusHeader}
+              isInverse={context.isInverse}
+            />
+
+            <Table
+              role="presentation"
+              onBlur={onCalendarTableBlur}
+              onFocus={onCalendarTableFocus}
+              theme={theme}
+            >
+              <tbody>
+                <tr>{tableDaysHeaders}</tr>
+                {context
+                  .buildCalendarMonth(context.focusedDate)
+                  .map((week, i) => (
+                    <tr key={i}>
+                      {week.map((day, dayOfWeek) => (
+                        <CalendarDay
+                          key={dayOfWeek}
+                          isInverse={context.isInverse}
+                          day={day}
+                          dayFocusable={dayFocusable}
+                          onDateChange={context.onDateChange}
+                        />
+                      ))}
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+            <Tooltip
+              content={'Keyboard instructions'}
+              tooltipStyle={{ position: 'fixed' }}
+            >
+              <HelperButton theme={theme}>
+                <IconButton
+                  aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
+                  icon={<KeyboardIcon />}
+                  onClick={context.showHelperInformation}
+                  size={ButtonSize.small}
+                  onFocus={turnOffDateFocused}
+                  type={ButtonType.button}
+                  variant={ButtonVariant.link}
+                />
+              </HelperButton>
+            </Tooltip>
+
+            <CloseButton theme={theme}>
+              <IconButton
+                aria-label={i18n.datePicker.calendarCloseAriaLabel}
+                color={ButtonColor.secondary}
+                icon={<CloseIcon />}
+                onClick={props.handleCloseButtonClick}
+                size={ButtonSize.medium}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
+            </CloseButton>
+          </MonthContainer>
+        )}
+      </CalendarContainer>
+    </>
   );
 };

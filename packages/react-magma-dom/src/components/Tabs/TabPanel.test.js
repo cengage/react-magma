@@ -2,7 +2,7 @@ import React from 'react';
 import { TabPanel } from './TabPanel';
 import { TabsContainerContext } from './TabsContainer';
 import { render } from '@testing-library/react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { TabPanelsContainer } from './TabPanelsContainer';
 
@@ -64,7 +64,7 @@ it('should render with inverse styles', () => {
 
   expect(getByTestId(testId)).toHaveStyleRule(
     'background',
-    magma.colors.foundation02
+    'none'
   );
 });
 

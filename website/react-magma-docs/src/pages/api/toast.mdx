@@ -48,32 +48,116 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
 
 **It is strongly recommended that `warning` and `danger` toasts do not auto-dismiss**, so that users have time to process the information in them.
 
-### Info
-
 ```tsx
 import React from 'react';
-import { Button, Toast, AlertVariant } from 'react-magma-dom';
+import {
+  Announce,
+  Button,
+  ButtonColor,
+  ButtonGroup,
+  Card,
+  Toast,
+  ToastsContainer,
+  AlertVariant,
+  Spacer,
+} from 'react-magma-dom';
 
 export function Example() {
   const [showToast, setShowToast] = React.useState(false);
+  const [showToast2, setShowToast2] = React.useState(false);
+  const [showToast3, setShowToast3] = React.useState(false);
+  const [showToast4, setShowToast4] = React.useState(false);
 
   function handleClick() {
     setShowToast(true);
   }
-
   function handleDismiss() {
     setShowToast(false);
   }
 
+  function handleClick2() {
+    setShowToast2(true);
+  }
+  function handleDismiss2() {
+    setShowToast2(false);
+  }
+
+  function handleClick3() {
+    setShowToast3(true);
+  }
+  function handleDismiss3() {
+    setShowToast3(false);
+  }
+
+  function handleClick4() {
+    setShowToast4(true);
+  }
+  function handleDismiss4() {
+    setShowToast4(false);
+  }
+
   return (
-    <>
-      <Button onClick={handleClick}>Show Success Toast</Button>
-      {showToast ? (
-        <Toast onDismiss={handleDismiss} variant={AlertVariant.success}>
-          Success Toast
-        </Toast>
-      ) : null}
-    </>
+      <ToastsContainer>
+        <Announce>
+          <ButtonGroup>
+            <Button onClick={handleClick}>
+              Show Success Toast
+            </Button>
+            {showToast && (
+              <Toast
+                id="toast1"
+                onDismiss={handleDismiss}
+                variant={AlertVariant.success}
+              >
+                This is a success toast
+              </Toast>
+            )}
+
+            <Button onClick={handleClick2}>
+              Show Warning Toast
+            </Button>
+            {showToast2 && (
+              <Toast
+                id="toast2"
+                variant={AlertVariant.warning}
+                onDismiss={handleDismiss2}
+                disableAutoDismiss
+              >
+                This is is a warning toast
+              </Toast>
+            )}
+            </ButtonGroup>
+            <br />
+            <ButtonGroup>
+            <Button onClick={handleClick3}>
+              Show Danger Toast
+            </Button>
+            {showToast3 && (
+              <Toast
+                id="toast3"
+                variant={AlertVariant.danger}
+                onDismiss={handleDismiss3}
+                disableAutoDismiss
+              >
+                This is a danger toast
+              </Toast>
+            )}
+
+              <Button onClick={handleClick4}>
+                Show Info Toast
+              </Button>
+              {showToast4 && (
+                <Toast
+                  id="toast4"
+                  variant={AlertVariant.info}
+                  onDismiss={handleDismiss4}
+                >
+                  This is an info toast
+                </Toast>
+            )}
+          </ButtonGroup>
+        </Announce>
+      </ToastsContainer>
   );
 }
 ```
@@ -133,6 +217,7 @@ import {
   Toast,
   ToastsContainer,
   AlertVariant,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -164,9 +249,8 @@ export function Example() {
   return (
     <ToastsContainer>
       <Announce>
-        <Button onClick={handleClick} color={ButtonColor.success}>
-          Show Toast
-        </Button>
+        <ButtonGroup>
+        <Button onClick={handleClick}>Show Toast</Button>
         {showToast && (
           <Toast
             id="toast1"
@@ -200,6 +284,7 @@ export function Example() {
             Toast three
           </Toast>
         )}
+        </ButtonGroup>
       </Announce>
     </ToastsContainer>
   );
@@ -380,30 +465,132 @@ export function Example() {
 }
 ```
 
+## isInverse
+
+```tsx
+import React from 'react';
+import {
+  Announce,
+  Button,
+  ButtonColor,
+  ButtonGroup,
+  Card,
+  Toast,
+  ToastsContainer,
+  AlertVariant,
+  Spacer,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [showToast, setShowToast] = React.useState(false);
+  const [showToast2, setShowToast2] = React.useState(false);
+  const [showToast3, setShowToast3] = React.useState(false);
+  const [showToast4, setShowToast4] = React.useState(false);
+
+  function handleClick() {
+    setShowToast(true);
+  }
+  function handleDismiss() {
+    setShowToast(false);
+  }
+
+  function handleClick2() {
+    setShowToast2(true);
+  }
+  function handleDismiss2() {
+    setShowToast2(false);
+  }
+
+  function handleClick3() {
+    setShowToast3(true);
+  }
+  function handleDismiss3() {
+    setShowToast3(false);
+  }
+
+  function handleClick4() {
+    setShowToast4(true);
+  }
+  function handleDismiss4() {
+    setShowToast4(false);
+  }
+
+  return (
+    <Card isInverse style={{padding: '8px'}}>
+      <ToastsContainer>
+        <Announce>
+          <ButtonGroup>
+            <Button onClick={handleClick} isInverse>
+              Show Success Inverse Toast
+            </Button>
+            {showToast && (
+              <Toast
+                id="toast1"
+                onDismiss={handleDismiss}
+                variant={AlertVariant.success}
+                isInverse
+              >
+                This is a success toast
+              </Toast>
+            )}
+
+            <Button onClick={handleClick2} isInverse>
+              Show Warning Inverse Toast
+            </Button>
+            {showToast2 && (
+              <Toast
+                id="toast2"
+                variant={AlertVariant.warning}
+                onDismiss={handleDismiss2}
+                isInverse
+              >
+                This is is a warning toast
+              </Toast>
+            )}
+            </ButtonGroup>
+            <br />
+            <ButtonGroup>
+            <Button onClick={handleClick3} isInverse>
+              Show Danger Toast Inverse
+            </Button>
+            {showToast3 && (
+              <Toast
+                id="toast3"
+                variant={AlertVariant.danger}
+                onDismiss={handleDismiss3}
+                isInverse
+              >
+                This is a danger toast
+              </Toast>
+            )}
+
+              <Button onClick={handleClick4} isInverse>
+                Show Info Toast Inverse
+              </Button>
+              {showToast4 && (
+                <Toast
+                  id="toast4"
+                  variant={AlertVariant.info}
+                  onDismiss={handleDismiss4}
+                  isInverse
+                >
+                  This is an info toast
+                </Toast>
+            )}
+          </ButtonGroup>
+        </Announce>
+      </ToastsContainer>
+    </Card>
+  );
+}
+```
+
 ## Testing
 
 Passing in the `testId` prop will pass the `testId` to the internal `Alert` element.
 
-```html
-<div data-testid="test-id">
-  <span>
-    <svg
-      aria-hidden="true"
-      class="icon"
-      height="20"
-      width="20"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 27.3 27.3"
-    >
-      <path
-        d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
-        transform="translate(-0.35 -0.35)"
-      ></path>
-    </svg>
-  </span>
-  <div>Quick Toast</div>
-</div>
+```html noCodeSandbox
+ <Toast testId="toast-id" onDismiss={() => {}}>This is a toast</Toast>
 ```
 
 ## ToastsContainer Props
@@ -415,3 +602,5 @@ Passing in the `testId` prop will pass the `testId` to the internal `Alert` elem
 **This component uses `forwardRef`. The ref is applied to the outer `div` element.**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
+
+<ToastProps />

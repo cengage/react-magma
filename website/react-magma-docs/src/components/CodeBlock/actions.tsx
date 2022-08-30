@@ -58,7 +58,7 @@ export default function App() {
 const ActionsDiv = styled.div<{ isInverse?: boolean }>`
   align-items: flex-end;
   background: ${props =>
-    props.isInverse ? magma.colors.foundation02 : magma.colors.neutral07};
+    props.isInverse ? magma.colors.primary700 : magma.colors.neutral200};
   border: 1px solid
     ${props =>
       props.isInverse ? magma.colors.borderInverse : magma.colors.border};
@@ -108,6 +108,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         'react-dom': pkg.dependencies['react-dom'],
         'react-magma-icons': pkg.dependencies['react-magma-icons'],
         'react-magma-dom': pkg.dependencies['react-magma-dom'],
+        '@react-magma/charts': pkg.dependencies['@react-magma/charts'],
         '@cengage-patterns/header':
           pkg.dependencies['@cengage-patterns/header'],
         '@react-magma/schema-renderer': pkg.dependencies['@react-magma/schema-renderer'],

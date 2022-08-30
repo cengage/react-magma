@@ -18,6 +18,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       containerStyle,
       errorMessage,
       helperMessage,
+      iconPosition,
       id: defaultId,
       inputSize = InputSize.medium,
       isLabelVisuallyHidden,
@@ -39,6 +40,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         errorMessage={errorMessage}
         fieldId={id}
         helperMessage={helperMessage}
+        iconPosition={iconPosition}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
         inputSize={inputSize}
@@ -53,6 +55,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           }
           aria-invalid={!!errorMessage}
           hasError={!!errorMessage}
+          iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
           isInverse={isInverse}

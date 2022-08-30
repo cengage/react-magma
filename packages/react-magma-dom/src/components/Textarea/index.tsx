@@ -16,12 +16,15 @@ import { useIsInverse } from '../../inverse';
 
 export interface TextareaProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'>,
-    React.HtmlHTMLAttributes<HTMLTextAreaElement> {
+    React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Style properties for the textarea element
@@ -69,9 +72,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     >(props.defaultValue || props.value || '');
 
     React.useEffect(() => {
-      if (props.value) {
-        setValue(props.value);
-      }
+      setValue(props.value);
     }, [props.value]);
     function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       props.onChange &&
@@ -109,7 +110,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           style={textareaStyle}
           theme={theme}
           value={value}
-          width='100%'
+          width="100%"
         />
       </FormFieldContainer>
     );

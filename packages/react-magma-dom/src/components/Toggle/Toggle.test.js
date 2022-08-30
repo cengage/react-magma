@@ -2,7 +2,7 @@ import React from 'react';
 import { Toggle } from '.';
 import { FormGroup } from '../FormGroup';
 import { magma } from '../../theme/magma';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { render, fireEvent } from '@testing-library/react';
 
 describe('Toggle', () => {
@@ -101,7 +101,7 @@ describe('Toggle', () => {
     const track = getByTestId('toggle-track');
 
     expect(toggle).toHaveAttribute('checked');
-    expect(track).toHaveStyleRule('border-color', magma.colors.success02);
+    expect(track).toHaveStyleRule('border-color', magma.colors.success);
   });
 
   it('should render a toggle with an error message', () => {
@@ -147,10 +147,10 @@ describe('Toggle', () => {
     );
     const track = getByTestId('toggle-track');
 
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border-color', magma.colors.danger200);
     expect(track).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 1px ${magma.colors.neutral08}`
+      `0 0 0 1px ${magma.colors.neutral100}`
     );
   });
 

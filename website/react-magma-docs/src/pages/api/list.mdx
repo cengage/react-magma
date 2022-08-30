@@ -1,0 +1,254 @@
+---
+pageTitle: List API
+title: List
+props:
+  - ListProps
+  - ListItemProps
+---
+
+<DocsHeading to="/design/list/" type="api">
+  List
+</DocsHeading>
+
+Lists are vertical groupings of related content. Lists come either ordered or unordered.
+
+## Basic Usage
+
+By default `List` uses an unorganized markup `<ul>`.
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <List>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+      <ListItem>List content</ListItem>
+    </List>
+  );
+}
+```
+
+## Ordered List
+
+Another method of `List` is the ordered list `<ol>`. There are several methods of showing ordered list items.
+
+The `hasStart` prop permits the user to define a specific letter or number from which the list items descend.
+
+If the `isReversed` prop is used, the order changes from ascending to descending numbers or letters.
+
+Ordered `type` allows for changing the bulleted items from a number to lowercase letters, uppercase letters, lowercase Roman numerals, or uppercase Roman numerals.
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <List isOrdered>
+      <ListItem>Ordered List content</ListItem>
+      <ListItem>Ordered List content</ListItem>
+      <ListItem>Ordered List content</ListItem>
+      <ListItem>Ordered List content</ListItem>
+      <ListItem>Ordered List content</ListItem>
+    </List>
+  );
+}
+```
+
+## Description
+
+The `description` prop is a boolean which changes a nested list item into a styled paragraph.
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <List>
+      <ListItem>
+        List content
+        <ListItem description>Here is a description list item</ListItem>
+      </ListItem>
+    </List>
+  );
+}
+```
+
+## Icon List
+
+An Icon `List` allows the user to use Magma Icons in place of bulleted or numeric characters.
+
+Included within this feature are `iconAlign` which changes vertical alignment.
+
+`iconBackground` and `iconColor` change both the background and icon colors.
+
+`iconSize` will toggle between three size states with medium being default.
+
+### Default Icon size
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+import { EmailIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <List spacingStyle="spacing02">
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+    </List>
+  );
+}
+```
+
+### Small Icon size
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+import { EmailIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <List iconSize="small" spacingStyle="spacing02">
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+    </List>
+  );
+}
+```
+
+### Large Icon size
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+import { EmailIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <List iconSize="large" spacingStyle="spacing02">
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+    </List>
+  );
+}
+```
+
+### Icon colors
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+import { EmailIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <List spacingStyle="spacing02">
+      <ListItem
+        icon={<EmailIcon />}
+        iconColor="danger"
+        iconBackground="neutral300"
+      >
+        Icon List content
+      </ListItem>
+      <ListItem
+        icon={<EmailIcon />}
+        iconColor="primary"
+        iconBackground="neutral200"
+      >
+        Icon List content
+      </ListItem>
+      <ListItem
+        icon={<EmailIcon />}
+        iconColor="success"
+        iconBackground="neutral100"
+      >
+        Icon List content
+      </ListItem>
+    </List>
+  );
+}
+```
+
+### Icon Alignment top
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+import { EmailIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <List iconAlign="top" spacingStyle="spacing02">
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+    </List>
+  );
+}
+```
+
+### Icon Alignment center
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+import { EmailIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <List iconAlign="center" spacingStyle="spacing02">
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+    </List>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { Card, CardBody, List, ListItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <List isInverse>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+          <ListItem>List content</ListItem>
+        </List>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+
+## List Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<ListProps />
+
+## List Item Props
+
+<ListItemProps />

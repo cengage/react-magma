@@ -29,43 +29,45 @@ export const Default = Template.bind({});
 Default.args = {
   children: (
     <div>
+      <NavTabs aria-label="Sample Nav Tabs" style={{ marginBottom: '16px' }}>
+        <NavTab isActive to="#">
+          NavTab One
+        </NavTab>
+        <NavTab to="#">NavTab Two</NavTab>
+      </NavTabs>
       <Heading level={2}>Content Heading</Heading>
       <Paragraph>
         Container content goes here. This content has a{' '}
         <Hyperlink to="#">hyperlink</Hyperlink>.
       </Paragraph>
 
-      <NavTabs aria-label="Sample Nav Tabs" style={{ marginBottom: '16px' }}>
-        <NavTab to="#">Link 1</NavTab>
-        <NavTab to="#">Link 1</NavTab>
-      </NavTabs>
-
-      <TabsContainer
-        activeIndex={1}
-        isInverse={false}
-        style={{ marginBottom: '16px' }}
-      >
+      <TabsContainer activeIndex={1} style={{ marginBottom: '16px' }}>
         <Tabs aria-label="Sample Tabs">
-          <Tab>First item</Tab>
-          <Tab>Second item</Tab>
+          <Tab>First tab</Tab>
+          <Tab>Second tab</Tab>
         </Tabs>
 
         <TabPanelsContainer>
           <TabPanel>
-            <div>Main page</div>
+            <div>
+              <Alert variant={AlertVariant.success} isDismissible>
+                This is a success alert.{' '}
+                <Hyperlink to="#">Follow this link</Hyperlink>
+              </Alert>
+              Main page
+            </div>
           </TabPanel>
           <TabPanel>
-            <div>FAQ</div>
+            <div>
+              <Alert variant={AlertVariant.warning} isDismissible>
+                This is a warning alert.{' '}
+                <Hyperlink to="#">Follow this link</Hyperlink>
+              </Alert>
+              FAQ
+            </div>
           </TabPanel>
         </TabPanelsContainer>
       </TabsContainer>
-
-      <Alert variant={AlertVariant.warning} isDismissible>
-        This is a warning alert. <Hyperlink to="#">Follow this link</Hyperlink>
-      </Alert>
-      <Alert variant={AlertVariant.success} isDismissible>
-        This is a success alert. <Hyperlink to="#">Follow this link</Hyperlink>
-      </Alert>
     </div>
   ),
   isInverse: false,

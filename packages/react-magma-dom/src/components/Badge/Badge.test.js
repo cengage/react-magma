@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Badge } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
@@ -33,6 +33,10 @@ describe('Badge', () => {
       magma.typeScale.size02.fontSize
     );
     expect(getByText(TEXT)).toHaveStyleRule(
+      'letter-spacing',
+      magma.typeScale.size02.letterSpacing
+    );
+    expect(getByText(TEXT)).toHaveStyleRule(
       'line-height',
       magma.typeScale.size02.lineHeight
     );
@@ -50,20 +54,6 @@ describe('Badge', () => {
         'background',
         magma.colors.primary
       );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.1, magma.colors.primary),
-        {
-          target: ':focus',
-        }
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.2, magma.colors.primary),
-        {
-          target: ':active',
-        }
-      );
     });
 
     it('should render the secondary badge', () => {
@@ -75,21 +65,7 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral02
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.1, magma.colors.neutral02),
-        {
-          target: ':focus',
-        }
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.2, magma.colors.neutral02),
-        {
-          target: ':active',
-        }
+        magma.colors.neutral700
       );
     });
 
@@ -104,20 +80,6 @@ describe('Badge', () => {
         'background',
         magma.colors.success
       );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.1, magma.colors.success),
-        {
-          target: ':focus',
-        }
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.2, magma.colors.success),
-        {
-          target: ':active',
-        }
-      );
     });
 
     it('should render the danger badge', () => {
@@ -131,20 +93,6 @@ describe('Badge', () => {
         'background',
         magma.colors.danger
       );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.1, magma.colors.danger),
-        {
-          target: ':focus',
-        }
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.2, magma.colors.danger),
-        {
-          target: ':active',
-        }
-      );
     });
 
     it('should render the light badge', () => {
@@ -156,21 +104,7 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral07
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        lighten(0.05, magma.colors.neutral07),
-        {
-          target: ':focus',
-        }
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        lighten(0.1, magma.colors.neutral07),
-        {
-          target: ':active',
-        }
+        magma.colors.neutral100
       );
     });
 
@@ -179,22 +113,85 @@ describe('Badge', () => {
 
       expect(getByText(TEXT)).toHaveStyleRule(
         'background',
-        magma.colors.neutral02
+        magma.colors.primary
       );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.1, magma.colors.neutral02),
-        {
-          target: ':focus',
-        }
-      );
-      expect(getByText(TEXT)).toHaveStyleRule(
-        'background',
-        darken(0.2, magma.colors.neutral02),
-        {
-          target: ':active',
-        }
-      );
+    });
+
+    describe('inverse', () => {
+      it('should render the inverse primary badge', () => {
+        const { getByText } = render(
+          <Badge color="primary" onClick={() => {}} isInverse>
+            {TEXT}
+          </Badge>
+        );
+
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'background',
+          magma.colors.tertiary
+        );
+      });
+
+      it('should render the inverse secondary badge', () => {
+        const { getByText } = render(
+          <Badge color="secondary" onClick={() => {}} isInverse>
+            {TEXT}
+          </Badge>
+        );
+
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'background',
+          magma.colors.neutral100
+        );
+      });
+
+      it('should render the inverse success badge', () => {
+        const { getByText } = render(
+          <Badge color="success" onClick={() => {}} isInverse>
+            {TEXT}
+          </Badge>
+        );
+
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'background',
+          magma.colors.success200
+        );
+      });
+
+      it('should render the inverse danger badge', () => {
+        const { getByText } = render(
+          <Badge color="danger" onClick={() => {}} isInverse>
+            {TEXT}
+          </Badge>
+        );
+
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'background',
+          magma.colors.danger200
+        );
+      });
+
+      it('should render the inverse light badge', () => {
+        const { getByText } = render(
+          <Badge color="light" onClick={() => {}} isInverse>
+            {TEXT}
+          </Badge>
+        );
+
+        expect(getByText(TEXT)).toHaveStyleRule('background', 'transparent');
+      });
+
+      it('should render the inverse default badge', () => {
+        const { getByText } = render(
+          <Badge onClick={() => {}} isInverse>
+            {TEXT}
+          </Badge>
+        );
+
+        expect(getByText(TEXT)).toHaveStyleRule(
+          'background',
+          magma.colors.tertiary
+        );
+      });
     });
   });
 

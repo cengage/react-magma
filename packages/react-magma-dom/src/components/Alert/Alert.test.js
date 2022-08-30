@@ -1,5 +1,5 @@
 import React from 'react';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
 import { Alert } from '.';
 import { AlertVariant } from '../AlertBase';
 import { act, render, fireEvent } from '@testing-library/react';
@@ -38,7 +38,7 @@ describe('Alert', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px dotted ${magma.colors.focusInverse}`,
+      `2px solid ${magma.colors.info500}`,
       {
         target: ':focus',
       }
@@ -55,7 +55,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.neutral08
+      magma.colors.info500
     );
   });
 
@@ -69,7 +69,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.neutral
+      magma.colors.warning500
     );
   });
 

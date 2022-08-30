@@ -1,5 +1,1230 @@
 # Change Log
 
+## 4.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [17ee57afe]
+  - react-magma-dom@3.1.2-next.0
+  - @react-magma/charts@1.0.2-next.0
+  - @react-magma/dropzone@1.0.3-next.0
+  - @react-magma/schema-renderer@1.0.3-next.0
+  - @cengage-patterns/header@3.0.3-next.0
+
+## 4.0.4-next.0
+
+### Patch Changes
+
+- 2b099eb59: build: Resolve merge conflicts when pulling main -> dev
+
+## 4.0.3
+
+### Patch Changes
+
+- 663a334d: build(deps): bump gatsby-plugin-mdx from 1.10.1 to 2.14.1
+- 663a334d: docs: Updating layout of props tables
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+  - react-magma-dom@3.1.1
+  - @react-magma/charts@1.0.1
+  - @react-magma/dropzone@1.0.2
+  - @react-magma/schema-renderer@1.0.2
+  - @cengage-patterns/header@3.0.2
+
+## 4.0.3-next.17
+
+### Patch Changes
+
+- Updated dependencies [4a229b55c]
+  - react-magma-dom@3.1.1-next.15
+
+## 4.0.3-next.16
+
+### Patch Changes
+
+- Updated dependencies [6e0582249]
+  - react-magma-dom@3.1.1-next.14
+
+## 4.0.3-next.15
+
+### Patch Changes
+
+- de90d13fe: docs: Updating layout of props tables
+
+## 4.0.3-next.14
+
+### Patch Changes
+
+- Updated dependencies [101269ae7]
+  - react-magma-dom@3.1.1-next.13
+
+## 4.0.3-next.13
+
+### Patch Changes
+
+- Updated dependencies [dac39a9a5]
+  - react-magma-dom@3.1.1-next.12
+
+## 4.0.3-next.12
+
+### Patch Changes
+
+- Updated dependencies [ad190dd9d]
+  - react-magma-dom@3.1.1-next.11
+
+## 4.0.3-next.11
+
+### Patch Changes
+
+- Updated dependencies [3fbb41fa2]
+  - react-magma-dom@3.1.1-next.10
+
+## 4.0.3-next.10
+
+### Patch Changes
+
+- Updated dependencies [3016a8e3f]
+  - react-magma-dom@3.1.1-next.9
+
+## 4.0.3-next.9
+
+### Patch Changes
+
+- Updated dependencies [e9e508d99]
+  - react-magma-dom@3.1.1-next.8
+
+## 4.0.3-next.8
+
+### Patch Changes
+
+- Updated dependencies [4fb880c9f]
+  - react-magma-dom@3.1.1-next.7
+
+## 4.0.3-next.7
+
+### Patch Changes
+
+- Updated dependencies [56f9cab83]
+  - react-magma-dom@3.1.1-next.6
+
+## 4.0.3-next.6
+
+### Patch Changes
+
+- Updated dependencies [79dd48126]
+  - react-magma-dom@3.1.1-next.5
+
+## 4.0.3-next.5
+
+### Patch Changes
+
+- Updated dependencies [c1a8c2664]
+  - react-magma-dom@3.1.1-next.4
+
+## 4.0.3-next.4
+
+### Patch Changes
+
+- Updated dependencies [e24d4229d]
+  - react-magma-dom@3.1.1-next.3
+
+## 4.0.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [14de7d4bb]
+  - react-magma-dom@3.1.1-next.2
+
+## 4.0.3-next.2
+
+### Patch Changes
+
+- 4b181548: build(deps): bump gatsby-plugin-mdx from 1.10.1 to 2.14.1
+
+## 4.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [105cf25b]
+  - react-magma-dom@3.1.1-next.1
+
+## 4.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [fc8a20bf]
+  - react-magma-dom@3.1.1-next.0
+  - @react-magma/charts@1.0.1-next.0
+  - @react-magma/dropzone@1.0.2-next.0
+  - @react-magma/schema-renderer@1.0.2-next.0
+  - @cengage-patterns/header@3.0.2-next.0
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies [04e0a5a8]
+  - react-magma-dom@3.1.0
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies [9cdfce87]
+- Updated dependencies [9cdfce87]
+- Updated dependencies [9cdfce87]
+  - @react-magma/dropzone@1.0.1
+  - @cengage-patterns/header@3.0.1
+  - @react-magma/schema-renderer@1.0.1
+
+## 4.0.0
+
+### Major Changes
+
+- b64e7bbdb: docs: update accordion inverse example
+- 2979534ed: docs: updated alerts design guidelines
+- b28163af4: docs: update buttons design guidelines
+- 787017f90: ButtonGroup: New ButtonGroup component docs
+- 732f5c908: fix(button): Update Buttons in docs to use ButtonGroup.
+- c43ab1632: fixes for codesandbox examples in docs
+- 187ebf455: docs: update badges in colors tiles
+- 632302b7: docs: Update Datagrid `Row Colors` example
+- 47f7778df: docs: update breakpoints container examples
+- acd63007: docs: Clean up docs for all components. Ensure `isInverse` is documented.
+- a46f65ee: - spinner: update `isInverse` example (#772)
+  - tabs: update `isInverse` example (#765)
+  - pagination: fix `Handle Page Change` example (#773)
+  - table: fix `minWidth` example (#771)
+  - tag: remove `internationalization` example (#764)
+- e226b8597: docs: missing props tables fixes
+- c33ca59e: docs: updated pdf file
+- ad7310916: docs: update GitHub icon focus
+- 8dd5e09c: docs: created design guidelines for button group
+- 18848150: docs(modal): add `isInverse` example
+- 41c9d8b17: docs: update react magma logo
+- c187bed9e: docs: update docs header
+- 81ab701bf: docs: updating dg images
+- 9ca1827b2: feat: Update colors throughout various doc pages
+- ccaaf77a2: feat: Updating docs sidebar to V3 styling.
+- a4acd9ac6: docs: update typography and theming docs
+- 50d3b20ee: homepage: updating home page with new design and rebrand colors
+- 604e938d2: docs: updated several pages
+- 0d9b45043: button/form: add spacing around form examples
+  table: fix table inverse background color
+- 03a2e365: various minor updates:
+
+  - document DrawerPosition default
+  - remove FormFieldContainer from docs as it's just an internal component
+  - update color for List items
+  - update table inverse example
+  - fix typos
+  - rename tags design page to tag
+
+- cc23aacf6: toast: add toast `isInverse` example to docs
+- 179b94086: docs: update theming example to version 3 theming
+
+### Patch Changes
+
+- Updated dependencies [9d8ae22c]
+- Updated dependencies [e9e7a600]
+- Updated dependencies [d70e4cf17]
+- Updated dependencies [eeec9950]
+- Updated dependencies [3a27353aa]
+- Updated dependencies [3a27353aa]
+- Updated dependencies [787017f90]
+- Updated dependencies [732f5c908]
+- Updated dependencies [8c17d7e8]
+- Updated dependencies [23fc1b1a]
+- Updated dependencies [ce262ae30]
+- Updated dependencies [97ea53aca]
+- Updated dependencies [e93d09159]
+- Updated dependencies [733aa23b]
+- Updated dependencies [058ddea9]
+- Updated dependencies [c765e88d]
+- Updated dependencies [b5c4415d]
+- Updated dependencies [ab69379b]
+- Updated dependencies [8690bbf3f]
+- Updated dependencies [9ca1827b2]
+- Updated dependencies [27e91f1e9]
+- Updated dependencies [484578a87]
+- Updated dependencies [c7adf03a4]
+- Updated dependencies [a4acd9ac6]
+- Updated dependencies [81b1b76d]
+- Updated dependencies [7ab1d3c3]
+- Updated dependencies [7cec9a9ab]
+- Updated dependencies [ce9088243]
+- Updated dependencies [133d2cf32]
+- Updated dependencies [0d9b45043]
+- Updated dependencies [a46f65ee]
+- Updated dependencies [31dfdba9]
+- Updated dependencies [41215ce1e]
+- Updated dependencies [403e601a]
+- Updated dependencies [7d66f867]
+- Updated dependencies [cc23aacf6]
+- Updated dependencies [ca2c61de6]
+- Updated dependencies [465fd0fce]
+  - react-magma-dom@3.0.0
+  - @react-magma/dropzone@1.0.0
+
+## 3.0.0-next.72
+
+### Major Changes
+
+- 632302b74: docs: Update Datagrid `Row Colors` example
+
+## 3.0.0-next.71
+
+### Patch Changes
+
+- Updated dependencies [058ddea9b]
+  - react-magma-dom@3.0.0-next.48
+
+## 3.0.0-next.70
+
+### Patch Changes
+
+- Updated dependencies [ab69379bb]
+  - react-magma-dom@3.0.0-next.47
+
+## 3.0.0-next.69
+
+### Patch Changes
+
+- Updated dependencies [b5c4415da]
+  - react-magma-dom@3.0.0-next.46
+
+## 3.0.0-next.68
+
+### Patch Changes
+
+- Updated dependencies [7ab1d3c30]
+  - react-magma-dom@3.0.0-next.45
+
+## 3.0.0-next.67
+
+### Patch Changes
+
+- Updated dependencies [23fc1b1a1]
+  - react-magma-dom@3.0.0-next.44
+
+## 3.0.0-next.66
+
+### Major Changes
+
+- c33ca59e2: docs: updated pdf file
+
+## 3.0.0-next.65
+
+### Major Changes
+
+- 8dd5e09ce: docs: created design guidelines for button group
+
+## 3.0.0-next.64
+
+### Patch Changes
+
+- Updated dependencies [81b1b76d7]
+  - react-magma-dom@3.0.0-next.43
+
+## 3.0.0-next.63
+
+### Major Changes
+
+- 03a2e3657: various minor updates:
+
+  - document DrawerPosition default
+  - remove FormFieldContainer from docs as it's just an internal component
+  - update color for List items
+  - update table inverse example
+  - fix typos
+  - rename tags design page to tag
+
+## 3.0.0-next.62
+
+### Patch Changes
+
+- Updated dependencies [f38b9dd97]
+  - react-magma-dom@3.0.0-next.42
+
+## 3.0.0-next.61
+
+### Major Changes
+
+- acd630071: docs: Clean up docs for all components. Ensure `isInverse` is documented.
+
+## 3.0.0-next.60
+
+### Patch Changes
+
+- Updated dependencies [e9e7a6008]
+  - react-magma-dom@3.0.0-next.41
+
+## 3.0.0-next.59
+
+### Patch Changes
+
+- Updated dependencies [733aa23b7]
+  - react-magma-dom@3.0.0-next.40
+
+## 3.0.0-next.58
+
+### Major Changes
+
+- 188481504: docs(modal): add `isInverse` example
+
+## 3.0.0-next.57
+
+### Patch Changes
+
+- Updated dependencies [7d66f867b]
+  - react-magma-dom@3.0.0-next.39
+
+## 3.0.0-next.56
+
+### Patch Changes
+
+- Updated dependencies [9d8ae22c6]
+- Updated dependencies [403e601ae]
+  - react-magma-dom@3.0.0-next.38
+
+## 3.0.0-next.55
+
+### Patch Changes
+
+- Updated dependencies [31dfdba9e]
+  - react-magma-dom@3.0.0-next.37
+
+## 3.0.0-next.54
+
+### Patch Changes
+
+- Updated dependencies [eeec99508]
+- Updated dependencies [8c17d7e86]
+  - react-magma-dom@3.0.0-next.36
+
+## 3.0.0-next.53
+
+### Patch Changes
+
+- Updated dependencies [c765e88d1]
+  - react-magma-dom@3.0.0-next.35
+
+## 3.0.0-next.52
+
+### Major Changes
+
+- a46f65eef: - spinner: update `isInverse` example (#772)
+  - tabs: update `isInverse` example (#765)
+  - pagination: fix `Handle Page Change` example (#773)
+  - table: fix `minWidth` example (#771)
+  - tag: remove `internationalization` example (#764)
+
+### Patch Changes
+
+- Updated dependencies [a46f65eef]
+  - react-magma-dom@3.0.0-next.34
+
+## 3.0.0-next.51
+
+### Patch Changes
+
+- Updated dependencies [d70e4cf17]
+  - react-magma-dom@3.0.0-next.33
+
+## 3.0.0-next.50
+
+### Patch Changes
+
+- Updated dependencies [2251bf681]
+  - react-magma-dom@3.0.0-next.32
+
+## 3.0.0-next.49
+
+### Patch Changes
+
+- Updated dependencies [e93d09159]
+  - react-magma-dom@3.0.0-next.31
+
+## 3.0.0-next.48
+
+### Patch Changes
+
+- Updated dependencies [41215ce1e]
+  - react-magma-dom@3.0.0-next.30
+
+## 3.0.0-next.47
+
+### Major Changes
+
+- e226b8597: docs: missing props tables fixes
+
+## 3.0.0-next.46
+
+### Major Changes
+
+- 732f5c908: fix(button): Update Buttons in docs to use ButtonGroup.
+
+### Patch Changes
+
+- Updated dependencies [732f5c908]
+  - react-magma-dom@3.0.0-next.29
+
+## 3.0.0-next.45
+
+### Patch Changes
+
+- Updated dependencies [7cec9a9ab]
+  - react-magma-dom@3.0.0-next.28
+
+## 3.0.0-next.44
+
+### Major Changes
+
+- 187ebf455: docs: update badges in colors tiles
+
+## 3.0.0-next.43
+
+### Major Changes
+
+- cc23aacf6: toast: add toast `isInverse` example to docs
+
+### Patch Changes
+
+- Updated dependencies [cc23aacf6]
+  - react-magma-dom@3.0.0-next.27
+
+## 3.0.0-next.42
+
+### Patch Changes
+
+- Updated dependencies [133d2cf32]
+  - react-magma-dom@3.0.0-next.26
+
+## 3.0.0-next.41
+
+### Patch Changes
+
+- Updated dependencies [ca2c61de6]
+  - react-magma-dom@3.0.0-next.25
+
+## 3.0.0-next.40
+
+### Major Changes
+
+- 787017f90: ButtonGroup: New ButtonGroup component docs
+
+### Patch Changes
+
+- Updated dependencies [787017f90]
+  - react-magma-dom@3.0.0-next.24
+
+## 3.0.0-next.39
+
+### Major Changes
+
+- 2979534ed: docs: updated alerts design guidelines
+
+## 3.0.0-next.38
+
+### Patch Changes
+
+- Updated dependencies [3a27353aa]
+- Updated dependencies [3a27353aa]
+  - react-magma-dom@3.0.0-next.23
+
+## 3.0.0-next.37
+
+### Major Changes
+
+- ad7310916: docs: update GitHub icon focus
+
+## 3.0.0-next.36
+
+### Patch Changes
+
+- Updated dependencies [465fd0fce]
+  - react-magma-dom@3.0.0-next.22
+
+## 3.0.0-next.35
+
+### Major Changes
+
+- c43ab1632: fixes for codesandbox examples in docs
+
+## 3.0.0-next.34
+
+### Major Changes
+
+- ccaaf77a2: feat: Updating docs sidebar to V3 styling.
+
+## 3.0.0-next.33
+
+### Patch Changes
+
+- Updated dependencies [27e91f1e9]
+  - react-magma-dom@3.0.0-next.21
+
+## 3.0.0-next.32
+
+### Major Changes
+
+- c187bed9e: docs: update docs header
+
+## 3.0.0-next.31
+
+### Major Changes
+
+- 179b94086: docs: update theming example to version 3 theming
+
+## 3.0.0-next.30
+
+### Major Changes
+
+- 0d9b45043: button/form: add spacing around form examples
+  table: fix table inverse background color
+
+### Patch Changes
+
+- Updated dependencies [0d9b45043]
+  - react-magma-dom@3.0.0-next.20
+
+## 3.0.0-next.29
+
+### Major Changes
+
+- b64e7bbdb: docs: update accordion inverse example
+
+## 3.0.0-next.28
+
+### Patch Changes
+
+- Updated dependencies [97ea53aca]
+  - react-magma-dom@3.0.0-next.19
+
+## 3.0.0-next.27
+
+### Major Changes
+
+- 47f7778df: docs: update breakpoints container examples
+
+## 3.0.0-next.26
+
+### Patch Changes
+
+- Updated dependencies [ce262ae30]
+  - react-magma-dom@3.0.0-next.18
+
+## 3.0.0-next.25
+
+### Major Changes
+
+- 41c9d8b17: docs: update react magma logo
+
+## 3.0.0-next.24
+
+### Patch Changes
+
+- Updated dependencies [ce9088243]
+  - react-magma-dom@3.0.0-next.17
+
+## 3.0.0-next.23
+
+### Major Changes
+
+- 50d3b20ee: homepage: updating home page with new design and rebrand colors
+
+## 3.0.0-next.22
+
+### Major Changes
+
+- 9ca1827b2: feat: Update colors throughout various doc pages
+
+### Patch Changes
+
+- Updated dependencies [9ca1827b2]
+  - react-magma-dom@3.0.0-next.16
+
+## 3.0.0-next.21
+
+### Major Changes
+
+- a4acd9ac6: docs: update typography and theming docs
+
+### Patch Changes
+
+- Updated dependencies [484578a87]
+- Updated dependencies [a4acd9ac6]
+  - react-magma-dom@3.0.0-next.15
+
+## 3.0.0-next.20
+
+### Major Changes
+
+- 604e938d2: docs: updated several pages
+
+## 3.0.0-next.19
+
+### Major Changes
+
+- b28163af4: docs: update buttons design guidelines
+
+## 3.0.0-next.18
+
+### Major Changes
+
+- 81ab701bf: docs: updating dg images
+
+## 3.0.0-next.17
+
+### Patch Changes
+
+- Updated dependencies [8690bbf3f]
+  - react-magma-dom@3.0.0-next.14
+
+## 3.0.0-next.16
+
+### Major Changes
+
+- 316d871bf: docs: updated guidelines images
+
+## 3.0.0-next.15
+
+### Patch Changes
+
+- Updated dependencies [e1fba9d10]
+  - react-magma-dom@3.0.0-next.13
+
+## 3.0.0-next.14
+
+### Patch Changes
+
+- Updated dependencies [2c98589c]
+  - react-magma-dom@3.0.0-next.12
+
+## 3.0.0-next.13
+
+### Patch Changes
+
+- Updated dependencies [2aa4ebc0]
+  - @cengage-patterns/header@3.0.0-next.1
+
+## 3.0.0-next.12
+
+### Patch Changes
+
+- Updated dependencies [4eba5dc4]
+  - react-magma-dom@3.0.0-next.11
+
+## 3.0.0-next.11
+
+### Patch Changes
+
+- Updated dependencies [d2400a77]
+  - react-magma-dom@3.0.0-next.10
+
+## 3.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies [059d58fa]
+  - react-magma-dom@3.0.0-next.9
+
+## 3.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies [d74ec404]
+  - react-magma-dom@3.0.0-next.8
+
+## 3.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies [b0f75257]
+- Updated dependencies [18afc4fc]
+- Updated dependencies [8d0ecf2a]
+- Updated dependencies [7659a0ba]
+  - react-magma-dom@3.0.0-next.7
+
+## 3.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies [b737f6cd]
+  - react-magma-dom@3.0.0-next.6
+
+## 3.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [f545eb26]
+  - react-magma-dom@3.0.0-next.5
+
+## 3.0.0-next.5
+
+### Major Changes
+
+- 6839a984: docs: update design guideline images
+
+## 2.2.14-next.4
+
+### Patch Changes
+
+- Updated dependencies [476c5023]
+  - react-magma-dom@3.0.0-next.4
+
+## 2.2.14-next.3
+
+### Patch Changes
+
+- Updated dependencies [6beb7283]
+  - react-magma-dom@3.0.0-next.3
+
+## 2.2.14-next.2
+
+### Patch Changes
+
+- Updated dependencies [26d70350]
+  - react-magma-dom@3.0.0-next.2
+
+## 2.2.14-next.1
+
+### Patch Changes
+
+- Updated dependencies [38fe6b4c]
+  - react-magma-dom@3.0.0-next.1
+
+## 2.2.14-next.0
+
+### Patch Changes
+
+- Updated dependencies [366b25af]
+  - react-magma-dom@3.0.0-next.0
+  - @react-magma/charts@1.0.0-next.0
+  - @react-magma/dropzone@1.0.0-next.0
+  - @react-magma/schema-renderer@1.0.0-next.0
+  - @cengage-patterns/header@3.0.0-next.0
+
+## 2.2.13
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+- Updated dependencies [72db207d]
+- Updated dependencies [533a5ae3]
+- Updated dependencies [7ed798b5]
+- Updated dependencies [a7e57b54]
+  - react-magma-dom@2.5.11
+  - @cengage-patterns/header@2.0.12
+  - @react-magma/charts@0.0.4
+  - @react-magma/dropzone@0.1.5
+  - @react-magma/schema-renderer@0.0.12
+
+## 2.2.12
+
+### Patch Changes
+
+- fdc6b27f: docs: addressing a variety of documentation issues
+- Updated dependencies [fdc6b27f]
+- Updated dependencies [fdc6b27f]
+- Updated dependencies [fdc6b27f]
+- Updated dependencies [fdc6b27f]
+  - react-magma-dom@2.5.10
+  - @cengage-patterns/header@2.0.11
+  - @react-magma/charts@0.0.3
+  - @react-magma/dropzone@0.1.4
+  - @react-magma/schema-renderer@0.0.11
+
+## 2.2.12-next.4
+
+### Patch Changes
+
+- Updated dependencies [72db207d]
+  - react-magma-dom@2.5.10-next.3
+
+## 2.2.12-next.3
+
+### Patch Changes
+
+- 533a5ae3: docs: addressing a variety of documentation issues
+- Updated dependencies [533a5ae3]
+  - @cengage-patterns/header@2.0.11-next.1
+
+## 2.2.12-next.2
+
+### Patch Changes
+
+- Updated dependencies [7ed798b5]
+  - react-magma-dom@2.5.10-next.2
+
+## 2.2.12-next.1
+
+### Patch Changes
+
+- Updated dependencies [a7e57b54]
+  - react-magma-dom@2.5.10-next.1
+
+## 2.2.11
+
+### Patch Changes
+
+- Updated dependencies [e4c69ca5]
+- Updated dependencies [39b2fc49]
+- Updated dependencies [cbadaccb]
+- Updated dependencies [27cad886]
+- Updated dependencies [92e31554]
+- Updated dependencies [6e481733]
+- Updated dependencies [41522e87]
+- Updated dependencies [5e9f8de5]
+- Updated dependencies [ecd43306]
+- Updated dependencies [a998c444]
+- Updated dependencies [f14b3413]
+- Updated dependencies [290efc90]
+- Updated dependencies [8202898b]
+- Updated dependencies [3ed0d7de]
+- Updated dependencies [452e52d5]
+- Updated dependencies [0fc84127]
+- Updated dependencies [14b24dd7]
+- Updated dependencies [ae7a1fc2]
+- Updated dependencies [4f483f8f]
+- Updated dependencies [3208cf6f]
+  - react-magma-dom@2.5.10
+  - @cengage-patterns/header@2.0.10
+  - @react-magma/dropzone@0.1.3
+
+## 2.2.10
+
+### Patch Changes
+
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+- Updated dependencies [1fc0bbc0]
+  - react-magma-dom@2.5.9
+  - @cengage-patterns/header@2.0.9
+  - @react-magma/dropzone@0.1.2
+  - @react-magma/charts@0.0.2
+  - @react-magma/schema-renderer@0.0.10
+
+## 2.2.10-next.11
+
+### Patch Changes
+
+- Updated dependencies [3208cf6f]
+  - react-magma-dom@2.5.9-next.10
+
+## 2.2.10-next.10
+
+### Patch Changes
+
+- Updated dependencies [5e9f8de5]
+  - react-magma-dom@2.5.9-next.9
+
+## 2.2.10-next.9
+
+### Patch Changes
+
+- Updated dependencies [ecd43306]
+- Updated dependencies [8202898b]
+  - react-magma-dom@2.5.9-next.8
+
+## 2.2.10-next.8
+
+### Patch Changes
+
+- Updated dependencies [290efc90]
+  - react-magma-dom@2.5.9-next.7
+
+## 2.2.10-next.7
+
+### Patch Changes
+
+- Updated dependencies [3ed0d7de]
+  - react-magma-dom@2.5.9-next.6
+
+## 2.2.10-next.6
+
+### Patch Changes
+
+- Updated dependencies [4f483f8f]
+  - react-magma-dom@2.5.9-next.5
+
+## 2.2.10-next.5
+
+### Patch Changes
+
+- Updated dependencies [14b24dd7]
+  - react-magma-dom@2.5.9-next.4
+
+## 2.2.10-next.4
+
+### Patch Changes
+
+- Updated dependencies [ae7a1fc2]
+  - react-magma-dom@2.5.9-next.3
+
+## 2.2.10-next.3
+
+### Patch Changes
+
+- Updated dependencies [0fc84127]
+  - react-magma-dom@2.5.9-next.2
+
+## 2.2.10-next.2
+
+### Patch Changes
+
+- Updated dependencies [e4c69ca5]
+- Updated dependencies [27cad886]
+  - react-magma-dom@2.5.9-next.1
+
+## 2.2.10-next.1
+
+### Patch Changes
+
+- Updated dependencies [a998c444]
+  - @cengage-patterns/header@2.0.9-next.1
+
+## 2.2.10-next.0
+
+### Patch Changes
+
+- Updated dependencies [cbadaccb]
+  - react-magma-dom@2.5.9-next.0
+  - @react-magma/charts@0.0.2-next.0
+  - @react-magma/dropzone@0.1.2-next.0
+  - @react-magma/schema-renderer@0.0.10-next.0
+  - @cengage-patterns/header@2.0.9-next.0
+
+## 2.2.9
+
+### Patch Changes
+
+- 1895ec11: docs: reverting back to v2 header
+- Updated dependencies [444cd2bb]
+- Updated dependencies [7b0c5714]
+  - react-magma-dom@2.5.8
+  - @react-magma/charts@0.0.1
+  - @react-magma/dropzone@0.1.1
+  - @react-magma/schema-renderer@0.0.9
+  - @cengage-patterns/header@2.0.8
+
+## 2.2.9-next.2
+
+### Patch Changes
+
+- Updated dependencies [444cd2bb]
+  - react-magma-dom@2.5.8-next.1
+
+## 2.2.9-next.1
+
+### Patch Changes
+
+- 1895ec11: docs: reverting back to v2 header
+
+## 2.2.9-next.0
+
+### Patch Changes
+
+- Updated dependencies [7b0c5714]
+  - react-magma-dom@2.5.8-next.0
+  - @react-magma/charts@0.0.1-next.0
+  - @react-magma/dropzone@0.1.1-next.0
+  - @react-magma/schema-renderer@0.0.9-next.0
+  - @cengage-patterns/header@2.0.8-next.0
+
+## 2.2.8
+
+### Patch Changes
+
+- b4cc2a84: - Feature RM New Header
+- Updated dependencies [465dc468]
+- Updated dependencies [4da10cb8]
+- Updated dependencies [1bbd5017]
+- Updated dependencies [a23e8307]
+- Updated dependencies [c9907a67]
+- Updated dependencies [fb4741bd]
+- Updated dependencies [6cbb9cf2]
+- Updated dependencies [edbdda88]
+- Updated dependencies [d3d61224]
+- Updated dependencies [2e4f06d6]
+- Updated dependencies [22749327]
+- Updated dependencies [253fd1c1]
+- Updated dependencies [dd443552]
+- Updated dependencies [156c5c1e]
+  - react-magma-dom@2.5.7
+  - @react-magma/dropzone@0.1.0
+  - @react-magma/charts@0.0.0
+  - @react-magma/schema-renderer@0.0.8
+  - @cengage-patterns/header@2.0.7
+
+## 2.2.8-next.12
+
+### Patch Changes
+
+- Updated dependencies [edbdda88]
+  - react-magma-dom@2.5.7-next.11
+
+## 2.2.8-next.11
+
+### Patch Changes
+
+- Updated dependencies [22749327]
+  - react-magma-dom@2.5.7-next.10
+
+## 2.2.8-next.10
+
+### Patch Changes
+
+- Updated dependencies [c9907a67]
+  - react-magma-dom@2.5.7-next.9
+
+## 2.2.8-next.9
+
+### Patch Changes
+
+- Updated dependencies [fb4741bd]
+  - react-magma-dom@2.5.7-next.8
+
+## 2.2.8-next.8
+
+### Patch Changes
+
+- Updated dependencies [a23e8307]
+- Updated dependencies [dd443552]
+  - react-magma-dom@2.5.7-next.7
+
+## 2.2.8-next.7
+
+### Patch Changes
+
+- Updated dependencies [1bbd5017]
+  - react-magma-dom@2.5.7-next.6
+
+## 2.2.8-next.6
+
+### Patch Changes
+
+- Updated dependencies [253fd1c1]
+  - react-magma-dom@2.5.7-next.5
+
+## 2.2.8-next.5
+
+### Patch Changes
+
+- Updated dependencies [156c5c1e]
+  - react-magma-dom@2.5.7-next.4
+
+## 2.2.8-next.4
+
+### Patch Changes
+
+- Updated dependencies [6cbb9cf2]
+  - react-magma-dom@2.5.7-next.3
+
+## 2.2.8-next.3
+
+### Patch Changes
+
+- Updated dependencies [2e4f06d6]
+  - react-magma-dom@2.5.7-next.2
+
+## 2.2.8-next.2
+
+### Patch Changes
+
+- Updated dependencies [4da10cb8]
+  - react-magma-dom@2.5.7-next.1
+
+## 2.2.8-next.1
+
+### Patch Changes
+
+- Updated dependencies [465dc468]
+  - react-magma-dom@2.5.7-next.0
+  - @react-magma/dropzone@0.1.0-next.2
+  - @react-magma/schema-renderer@0.0.8-next.0
+  - @cengage-patterns/header@2.0.7-next.0
+
+## 2.2.8-next.0
+
+### Patch Changes
+
+- b4cc2a84: - Feature RM New Header
+- Updated dependencies [d3d61224]
+  - @react-magma/dropzone@0.1.0-next.1
+
+## 2.2.7
+
+### Patch Changes
+
+- Updated dependencies [19ac34d7]
+- Updated dependencies [2cdc9c2a]
+- Updated dependencies [3435eede]
+- Updated dependencies [5ac10dfb]
+- Updated dependencies [cec68d47]
+  - react-magma-dom@2.5.6
+  - @react-magma/schema-renderer@0.0.7
+  - @cengage-patterns/header@2.0.6
+
+## 2.2.7-next.4
+
+### Patch Changes
+
+- Updated dependencies [5ac10dfb]
+  - react-magma-dom@2.5.6-next.4
+
+## 2.2.7-next.3
+
+### Patch Changes
+
+- Updated dependencies [3435eede]
+  - react-magma-dom@2.5.6-next.3
+
+## 2.2.7-next.2
+
+### Patch Changes
+
+- Updated dependencies [19ac34d7]
+  - react-magma-dom@2.5.6-next.2
+
+## 2.2.7-next.1
+
+### Patch Changes
+
+- Updated dependencies [cec68d47]
+  - react-magma-dom@2.5.6-next.1
+
 ## 2.2.7-next.0
 
 ### Patch Changes
@@ -553,8 +1778,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### 2.1.4-alpha.5 (2021-02-12)
 
 **Note:** Version bump only for package react-magma-docs
-
-=======
 
 ### 2.1.5-alpha.0 (2021-02-18)
 

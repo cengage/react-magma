@@ -221,7 +221,7 @@ describe('Calendar Month', () => {
   it('should call the close helper information', async () => {
     const hideHelperInformation = jest.fn();
     const focusedDate = new Date('January 18, 2019');
-    const { rerender } = render(
+    const { getByText } = render(
       <CalendarContext.Provider
         value={{
           buildCalendarMonth: getCalendarMonthWeeks,
@@ -238,22 +238,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    rerender(
-      <CalendarContext.Provider
-        value={{
-          buildCalendarMonth: getCalendarMonthWeeks,
-          focusedDate,
-          setDateFocused: jest.fn(),
-          onPrevMonthClick: jest.fn(),
-          onNextMonthClick: jest.fn(),
-          showHelperInformation: jest.fn(),
-          hideHelperInformation,
-          helperInformationShown: false,
-        }}
-      >
-        <CalendarMonth calendarOpened={true} />
-      </CalendarContext.Provider>
-    );
+    fireEvent.click(getByText(/Back to Calendar/i));
 
     await act(async () => {
       jest.runAllTimers();

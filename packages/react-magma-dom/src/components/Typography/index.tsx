@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 
-export interface TypographyProps<T=HTMLParagraphElement> extends React.HTMLAttributes<T> {
+export interface TypographyProps<T = HTMLParagraphElement>
+  extends React.HTMLAttributes<T> {
   as?: string;
   children?: any;
   color?: TypographyColor;
@@ -11,6 +12,9 @@ export interface TypographyProps<T=HTMLParagraphElement> extends React.HTMLAttri
   isInverse?: boolean;
   noMargins?: boolean;
   ref?: any;
+  /**
+   * @internal
+   */
   testId?: string;
   theme?: any;
   visualStyle?: TypographyVisualStyle;
@@ -24,12 +28,13 @@ export enum TypographyColor {
 }
 
 export enum TypographyContextVariant {
-  default = 'default', // default
+  default = 'default', // default - productive
   expressive = 'expressive',
   narrative = 'narrative',
 }
 
 export enum TypographyVisualStyle {
+  heading2XLarge = 'heading2XLarge',
   headingXLarge = 'headingXLarge',
   headingLarge = 'headingLarge',
   headingMedium = 'headingMedium',
@@ -55,10 +60,10 @@ export function getBodyFontFamily(props) {
 
 export const colorStyles = props => css`
   color: ${props.isInverse
-    ? props.theme.colors.neutral08
+    ? props.theme.colors.neutral100
     : props.contextVariant === 'expressive'
-    ? props.theme.colors.foundation02
-    : props.theme.colors.neutral};
+    ? props.theme.colors.primary600
+    : props.theme.colors.neutral700};
 
   ${props.color === TypographyColor.danger &&
   !props.isInverse &&
@@ -75,25 +80,26 @@ export const colorStyles = props => css`
 ${props.color === TypographyColor.subdued &&
   !props.isInverse &&
   css`
-    color: ${props.theme.colors.neutral03};
+    color: ${props.theme.colors.neutral500};
   `}
 
   ${props.color === TypographyColor.danger &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.dangerInverse};
+    color: ${props.theme.colors.danger200};
   `}
 
   ${props.color === TypographyColor.success &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.successInverse};
+    color: ${props.theme.colors.success200};
   `}
 
 ${props.color === TypographyColor.subdued &&
   props.isInverse &&
   css`
-    color: ${props.theme.colors.focusInverse};
+    color: ${props.theme.colors.neutral100};
+    opacity: 0.7;
   `}
 `;
 
@@ -154,12 +160,16 @@ export const paragraphSmallStyles = props => css`
   ${baseParagraphStyles(props)}
 
   font-size: ${props.theme.typographyVisualStyles.bodySmall.mobile.fontSize};
+  letter-spacing: ${props.theme.typographyVisualStyles.bodySmall.mobile
+    .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.bodySmall.mobile
     .lineHeight};
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing05} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
+    letter-spacing: ${props.theme.typographyVisualStyles.bodySmall.desktop
+      .letterSpacing};
     line-height: ${props.theme.typographyVisualStyles.bodySmall.desktop
       .lineHeight};
   }
@@ -169,6 +179,8 @@ export const paragraphXSmallStyles = props => css`
   ${baseParagraphStyles(props)}
 
   font-size: ${props.theme.typographyVisualStyles.bodyXSmall.mobile.fontSize};
+  letter-spacing: ${props.theme.typographyVisualStyles.bodyXSmall.mobile
+    .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.bodyXSmall.mobile
     .lineHeight};
   margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing03} 0`};
@@ -176,6 +188,8 @@ export const paragraphXSmallStyles = props => css`
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
       .fontSize};
+    letter-spacing: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
+      .letterSpacing};
     line-height: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
       .lineHeight};
   }
@@ -198,7 +212,7 @@ const baseHeadingStyles = props => css`
   padding: 0;
 
   &:focus {
-    border-bottom: 2px dotted
+    border-bottom: 2px solid
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
@@ -207,6 +221,27 @@ const baseHeadingStyles = props => css`
   }
 
   ${colorStyles(props)}
+`;
+
+export const heading2XLargeStyles = props => css`
+  ${baseHeadingStyles(props)}
+
+  ${props.contextVariant === 'expressive' &&
+  css`
+    font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+      .mobile.fontSize};
+    font-weight: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+      .fontWeight};
+    line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+      .mobile.lineHeight};
+
+    @media (min-width: ${props.theme.breakpoints.small}px) {
+      font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+        .desktop.fontSize};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
+        .desktop.lineHeight};
+    }
+  `};
 `;
 
 export const headingXLargeStyles = props => css`
@@ -475,6 +510,8 @@ export const heading2XSmallStyles = props => css`
   font-size: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
     .fontSize};
   font-weight: ${props.theme.typographyVisualStyles.heading2XSmall.fontWeight};
+  letter-spacing: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
+    .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
     .lineHeight};
   text-transform: uppercase;
@@ -485,6 +522,8 @@ export const heading2XSmallStyles = props => css`
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
       .fontSize};
+    letter-spacing: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
+      .letterSpacing};
     line-height: ${props.theme.typographyVisualStyles.heading2XSmall.desktop
       .lineHeight};
   }
@@ -495,6 +534,8 @@ export const heading2XSmallStyles = props => css`
       .mobile.fontSize};
     font-weight: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
       .fontWeight};
+    letter-spacing: ${props.theme.typographyExpressiveVisualStyles
+      .heading2XSmall.mobile.letterSpacing};
     line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
       .mobile.lineHeight};
     text-transform: none;
@@ -502,6 +543,8 @@ export const heading2XSmallStyles = props => css`
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
         .desktop.fontSize};
+      letter-spacing: ${props.theme.typographyExpressiveVisualStyles
+        .heading2XSmall.desktop.letterSpacing};
       line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XSmall
         .desktop.lineHeight};
     }
@@ -513,11 +556,15 @@ export const heading2XSmallStyles = props => css`
       .mobile.fontSize};
     font-weight: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
       .fontWeight};
+    letter-spacing: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
+      .mobile.letterSpacing};
     line-height: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
       .mobile.lineHeight};
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
         .desktop.fontSize};
+      letter-spacing: ${props.theme.typographyNarrativeVisualStyles
+        .heading2XSmall.desktop.letterSpacing};
       line-height: ${props.theme.typographyNarrativeVisualStyles.heading2XSmall
         .desktop.lineHeight};
     }
@@ -526,6 +573,8 @@ export const heading2XSmallStyles = props => css`
 
 function getTypographyStyles(props) {
   switch (props.visualStyle) {
+    case TypographyVisualStyle.heading2XLarge:
+      return heading2XLargeStyles(props);
     case TypographyVisualStyle.headingXLarge:
       return headingXLargeStyles(props);
     case TypographyVisualStyle.headingLarge:

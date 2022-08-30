@@ -1,0 +1,177 @@
+---
+pageTitle: Block Quote API
+title: Block Quote
+props:
+  - BlockQuoteProps
+  - BlockQuoteItemProps
+---
+
+<DocsHeading type="api">Block Quote</DocsHeading>
+
+`BlockQuote` is an element which enables the styling of a quotation. An optional prop of `hasAttribution` may be added for attribution purposes. Both lines can be uniquely customized with font family and color options.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## With Attribution
+
+`hasAttribution` is an optional boolean which adds a second line providing a source for the quotation.
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
+      <BlockQuoteItem hasAttribution>Sir Nottingshire</BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## Visual Styles
+
+Block Quote has four visual styles which are: `bodyLarge`, `bodyMedium`, `bodySmall`, and `bodyXSmall`, which determine the paragraph's relative size (including font-size, line-height, margins, font-weight, etc).
+The default `visualStyle` for the main quotation is `bodyMedium`.
+
+In addition to the blockquote visual styles, the `visualStyle` prop can also accept the values for the different heading visual styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`.
+These visual styles are also used with the <Link to="/api/paragraph">Paragraph</Link> and <Link to="/api/heading">Heading</Link> components. The underlying HTML will still render as a `p` element.
+
+```typescript
+import React from 'react';
+import {
+  BlockQuote,
+  BlockQuoteItem,
+  TypographyVisualStyle,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem visualStyle={TypographyVisualStyle.headingLarge}>
+        I like biscuits!
+      </BlockQuoteItem>
+      <BlockQuoteItem
+        visualStyle={TypographyVisualStyle.headingMedium}
+        hasAttribution
+      >
+        Sir Nottingshire
+      </BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## Color
+
+The `color` prop allows three additional custom font colors aside from the defaults: `success`, `danger` and `subdued`.
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem, TypographyColor } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem color={TypographyColor.success}>
+        I like biscuits!
+      </BlockQuoteItem>
+      <BlockQuoteItem color={TypographyColor.danger} hasAttribution>
+        Sir Nottingshire
+      </BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## Border Style
+
+The `borderStyle` prop allows the use of any Magma color or a custom CSS hex value. The available Magma colors are found <Link to="/design-intro/colors">here</Link>.
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <BlockQuote borderStyle="primary">
+        <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
+        <BlockQuoteItem hasAttribution>Sir Nottingshire</BlockQuoteItem>
+      </BlockQuote>
+    </>
+  );
+}
+```
+
+## Context Variant
+
+The `contextVariant` prop can be used to set additional styles on `BlockQuote`. The default `contextVariant` is `default`.
+
+This prop may be customized between `hasAttribution` and the main quote element with `narrative` and `expressive` font families.
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <BlockQuote>
+      <BlockQuoteItem contextVariant="narrative">
+        I like biscuits!
+      </BlockQuoteItem>
+      <BlockQuoteItem contextVariant="expressive" hasAttribution>
+        Sir Nottingshire
+      </BlockQuoteItem>
+    </BlockQuote>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` prop renders white text for the quotation and nearly white text for the attribution line if enabled.
+
+```typescript
+import React from 'react';
+import { BlockQuote, BlockQuoteItem, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <BlockQuote isInverse>
+          <BlockQuoteItem>I like biscuits!</BlockQuoteItem>
+          <BlockQuoteItem hasAttribution>Sir Nottingshire</BlockQuoteItem>
+        </BlockQuote>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Block Quote Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<BlockQuoteProps />
+
+## Block Quote Item Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<BlockQuoteItemProps />

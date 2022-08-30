@@ -44,7 +44,13 @@ The aria-label, by default is Close this message but can be overridden using the
 
 ```tsx
 import React from 'react';
-import { Banner, AlertVariant, Button, ButtonColor, ButtonSize, from 'react-magma-dom';
+import {
+  Banner,
+  AlertVariant,
+  Button,
+  ButtonColor,
+  ButtonSize,
+} from 'react-magma-dom';
 
 export function Example() {
   const [showBanner, updateShowBanner] = React.useState<boolean>(true);
@@ -103,6 +109,30 @@ export function Example() {
     >
       Default banner
     </Banner>
+  );
+}
+```
+
+## Inverse
+```tsx
+import React from 'react';
+import { Banner, AlertVariant, Container } from 'react-magma-dom';
+
+export function Example() {
+  function handleActionButtonClick() {
+    alert('action button clicked!');
+  }
+  return (
+    <Container isInverse style={{padding: '12px'}}>
+      <Banner actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick} isInverse>Default (info) banner</Banner>
+      <Banner variant={AlertVariant.success} actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick} isInverse>Success banner</Banner>
+      <Banner variant={AlertVariant.warning} actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick} isInverse>Warning banner</Banner>
+      <Banner variant={AlertVariant.danger} actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick} isInverse>Danger banner</Banner>
+    </Container>
   );
 }
 ```

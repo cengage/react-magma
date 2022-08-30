@@ -15,7 +15,7 @@ Select components are used for collecting user provided information from a list 
 
 For combobox/autocomplete functionality, please see the <Link to="/api/combobox">Combobox component</Link>.
 
-If you are migrating from the <Link to="/api/legacy-select">Legacy Select</Link>, please see the <Link to="/select-migration">Select Migration docs</Link> for details on how to make the transition.
+If you are migrating from the Legacy Select, please see the <Link to="/select-migration">Select Migration docs</Link> for details on how to make the transition.
 
 By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
 `itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function
@@ -843,7 +843,7 @@ which is a function that returns the string representation of your `item` which 
 </Alert>
 
 If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
-custom `type`](/api/select#custom_items_typescript).
+custom `type`](#custom_items_typescript).
 
 ```tsx
 import React from 'react';
@@ -967,7 +967,7 @@ import styled from '@emotion/styled';
 export function Example() {
   const CustomStyledItem = styled.li(props => ({
     alignSelf: 'center',
-    background: props.isFocused ? props.theme.colors.neutral07 : 'transparent',
+    background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
     lineHeight: '24px',
     margin: '0',
     padding: '8px 16px',
@@ -990,7 +990,7 @@ export function Example() {
 
   const Description = styled.div(props => ({
     fontSize: '12px',
-    color: props.theme.colors.neutral02,
+    color: props.theme.colors.neutral,
   }));
 
   function itemToString(item) {

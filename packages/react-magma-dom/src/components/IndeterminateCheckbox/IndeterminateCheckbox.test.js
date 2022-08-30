@@ -2,7 +2,8 @@ import React from 'react';
 import { IndeterminateCheckbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { axe } from 'jest-axe';
+import { axe } from '../../../axe-helper';
+import { transparentize } from 'polished';
 
 describe('Indeterminate Checkbox', () => {
   it('should find element by testId', () => {
@@ -73,7 +74,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
   });
 
@@ -90,7 +91,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
   });
 
@@ -127,7 +128,7 @@ describe('Indeterminate Checkbox', () => {
 
     const span = container.querySelector('span');
 
-    expect(span).toHaveStyleRule('color', magma.colors.neutral05);
+    expect(span).toHaveStyleRule('color', magma.colors.neutral300);
     expect(span).toHaveStyleRule('cursor', 'not-allowed');
   });
 
@@ -145,7 +146,7 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText(label)).toHaveProperty('indeterminate');
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.tint04
+      transparentize(0.6, magma.colors.neutral100)
     );
   });
 
@@ -157,7 +158,7 @@ describe('Indeterminate Checkbox', () => {
 
     expect(container.querySelector('span')).toHaveStyleRule(
       'color',
-      magma.colors.tint04
+      transparentize(0.6, magma.colors.neutral100)
     );
   });
 

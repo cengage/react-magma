@@ -47,10 +47,10 @@ const Content = styled.div`
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false)
+
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
   );
-
 
   return (
 
@@ -110,7 +110,7 @@ const Content = styled.div`
   max-width: 1152px;
   width: calc(100% - 48px);
   justify-self:center;
-  background:${magma.colors.neutral06};
+  background:${magma.colors.neutral300};
   padding:${magma.spaceScale.spacing05};
   height:calc(100vh - 122px);
 `;
@@ -171,7 +171,7 @@ const StyledHeader = styled(Header)`
 const StyledSidebar = styled.div`
   width:240px;
   grid-area: sidebar;
-  background:${magma.colors.neutral06};
+  background:${magma.colors.neutral300};
   padding:${magma.spaceScale.spacing05};
   height:calc(100vh - 50px);
 `;
@@ -181,7 +181,7 @@ const Content = styled.div`
   max-width: 1600px;
   width:100%;
   justify-self:center;
-  background:${magma.colors.neutral06};
+  background:${magma.colors.neutral300};
   padding:${magma.spaceScale.spacing05};
   height:calc(100vh - 122px);
 `;
@@ -251,7 +251,7 @@ const StyledHeader = styled(Header)`
 const StyledSidebar = styled.div`
   width:240px;
   grid-area: sidebar;
-  background:${magma.colors.neutral06};
+  background:${magma.colors.neutral300};
   padding:${magma.spaceScale.spacing05};
   height:calc(100vh - 50px);
 `;
@@ -261,7 +261,7 @@ const Content = styled.div`
   max-width: 1600px;
   width:100%;
   justify-self:center;
-  background:${magma.colors.neutral06};
+  background:${magma.colors.neutral300};
   padding:${magma.spaceScale.spacing05};
   height:calc(100vh - 122px);
 `;

@@ -31,18 +31,22 @@ const InputsContainer = styled.div<{
 
 const Divider = styled.span`
   display: inline-block;
-  margin: 0 1px;
+  margin: 0 2px;
   position: relative;
   top: -1px;
 `;
 
-const StyledNumInput = styled.input`
+const StyledNumInput = styled.input<{
+  isInverse?: boolean;
+}>`
   border: 0;
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: ${props => props.theme.borderRadiusSmall};
   margin-right: ${props => props.theme.spaceScale.spacing01};
   padding: 0 ${props => props.theme.spaceScale.spacing01};
   text-align: right;
   width: ${props => props.theme.spaceScale.spacing06};
+  color: ${props =>  props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  background: transparent;
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -50,10 +54,18 @@ const StyledNumInput = styled.input`
 
   -moz-appearance: textfield;
 
+  &::placeholder {
+    color: ${props => props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  }
+
   &:focus {
     outline: 0;
-    background: ${props => props.theme.colors.foundation02};
-    color: ${props => props.theme.colors.neutral08};
+    background: ${props =>  props.isInverse ? props.theme.colors.tertiary : props.theme.colors.primary};
+    color: ${props =>  props.isInverse ? props.theme.colors.neutral900 : props.theme.colors.neutral100};
+
+    &::placeholder {
+      color: ${props => props.isInverse ? props.theme.colors.neutral900 : props.theme.colors.neutral100};
+    }
   }
 `;
 
@@ -121,7 +133,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           theme={theme}
         >
           <ScheduleIcon
-            color={theme.colors.neutral}
+            color={isInverse ? theme.colors.neutral100 : theme.colors.neutral700}
             style={{ marginRight: theme.spaceScale.spacing02 }}
           />
           <StyledNumInput
@@ -129,11 +141,12 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             aria-describedby={descriptionId}
             data-testid="hoursTimeInput"
             id={hourId}
+            isInverse={isInverse}
             maxLength={2}
             max="12"
             min="1"
             onChange={handleHourChange}
-            onKeyDown={handleHourKeyDown}
+            onKeyDown={(e) => handleHourKeyDown(e, handleHourChange)}
             placeholder="--"
             ref={hourRef}
             theme={theme}
@@ -145,11 +158,12 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             aria-label={minutesLabel}
             data-testid="minutesTimeInput"
             id={minuteId}
+            isInverse={isInverse}
             maxLength={2}
             max="59"
             min="0"
             onChange={handleMinuteChange}
-            onKeyDown={handleMinuteKeyDown}
+            onKeyDown={(e) => handleMinuteKeyDown(e, handleMinuteChange)}
             placeholder="--"
             ref={minuteRef}
             step={minutesStep || 1}
@@ -159,6 +173,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           />
           <AmPmToggle
             aria-label={amPmLabel}
+            isInverse={isInverse}
             ref={amPmRef}
             onClick={toggleAmPm}
             onKeyDown={handleAmPmKeyDown}
