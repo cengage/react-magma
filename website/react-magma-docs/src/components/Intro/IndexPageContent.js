@@ -1,10 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { Link } from 'gatsby';
-import { Card, CardBody, CardHeading } from 'react-magma-dom';
-import { Flex } from 'react-magma-dom';
-import { Grid, GridItem } from 'react-magma-dom';
-import { Heading, TypographyVisualStyle, Hyperlink } from 'react-magma-dom';
+import {
+  Card,
+  CardBody,
+  CardHeading,
+  Flex,
+  Grid,
+  GridItem,
+  IconButton,
+  magma,
+  Heading,
+  TypographyVisualStyle,
+  Hyperlink,
+} from 'react-magma-dom';
 import {
   ArchitectureIcon,
   CodeIcon,
@@ -14,9 +23,9 @@ import {
   ExtensionIcon,
   TimelineIcon,
   GroupsIcon,
+  GithubIcon,
 } from 'react-magma-icons';
 import { Logo } from '../Logo';
-import { magma } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
 const StyledGrid = styled(Grid)`
@@ -27,6 +36,24 @@ const StyledGrid = styled(Grid)`
   @media (max-width: ${magma.breakpoints.small}px) {
     display: block;
     padding: 0 1em 1em;
+  }
+`;
+
+const StyledGridTop = styled(Grid)`
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  padding: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
+
+  @media (max-width: ${magma.breakpoints.medium}px) {
+    display: block;
+    padding: 0;
+    margin: ${magma.spaceScale.spacing06};
+  }
+
+  @media (max-width: ${magma.breakpoints.small}px) {
+    display: block;
+    padding: 0 1em 1em;
+    margin: 0;
   }
 `;
 
@@ -49,6 +76,7 @@ const StyledGridHeroItem = styled(GridItem)`
 
   @media (max-width: ${magma.breakpoints.medium}px) {
     margin: 0;
+    margin-bottom: ${magma.spaceScale.spacing05};
   }
 
   @media (max-width: ${magma.breakpoints.small}px) {
@@ -207,7 +235,8 @@ export function IndexPageContent() {
         </HeaderText>
         <Logo />
       </HeaderBlock>
-      <StyledGrid gridGap={magma.spaceScale.spacing06}>
+
+      <StyledGridTop gridGap={magma.spaceScale.spacing06}>
         <StyledGridHeroItem>
           <HeroCardGrid isInverse background={magma.colors.primary}>
             <HeroCardIcon>
@@ -262,7 +291,9 @@ export function IndexPageContent() {
             </CardBody>
           </HeroCardGrid>
         </StyledGridHeroItem>
+        </StyledGridTop>
 
+        <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <CenterBlock>
           <Heading level={2}>Working smarter, not&nbsp;harder</Heading>
           <p>
@@ -347,12 +378,15 @@ export function IndexPageContent() {
             contributing, review our contribution guidelines to get started.
           </p>
 
-          <Hyperlink
-            styledAs="Button"
-            to="https://github.com/cengage/react-magma/"
+          <IconButton
+            icon={<GithubIcon />}
+            aria-label="Start Contributing"
+            onClick={() => {
+              window.open('https://github.com/cengage/react-magma/', '_blank');
+            }}
           >
-            {linkProps => <Link {...linkProps}>Start Contributing</Link>}
-          </Hyperlink>
+            Start Contributing
+          </IconButton>
         </CenterBlock>
       </StyledGrid>
     </div>
