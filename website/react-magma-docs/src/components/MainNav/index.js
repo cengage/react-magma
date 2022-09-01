@@ -47,8 +47,7 @@ const StyledAccordionItem = styled(AccordionItem)`
     }
   }
   > div {
-    opacity: 1 !important;
-    height: 100% !important;
+    height: ${props => props.isOpen ? '100% !important' : ''};
   }
 `;
 
@@ -193,12 +192,19 @@ function defaultPanelIndex(location) {
   }
 }
 
+function isAccordionSectionOpen(location, id) {
+  const isOpen = location.pathname.includes(id);
+  console.log(isOpen);
+  return isOpen;
+}
+
 export const MainNav = ({ ...props }) => {
   const activeStyle = activeStyleDefault;
 
   return (
     <StaticQuery
-      query={graphql`
+      query={graphql
+        `
         fragment navFields on MdxEdge {
           node {
             frontmatter {
@@ -318,7 +324,7 @@ export const MainNav = ({ ...props }) => {
                 </StyledHyperlink>
 
                 <StyledAccordion defaultIndex={defaultPanelIndex(location)}>
-                  <StyledAccordionItem>
+                  <StyledAccordionItem isOpen={isAccordionSectionOpen(location, 'design')}>
                     <StyledAccordionButton>
                       <Heading2>Design</Heading2>
                     </StyledAccordionButton>
@@ -389,7 +395,7 @@ export const MainNav = ({ ...props }) => {
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
 
-                  <StyledAccordionItem>
+                  <StyledAccordionItem  isOpen={isAccordionSectionOpen(location, 'api')}>
                     <StyledAccordionButton>
                       <Heading2>Components</Heading2>
                     </StyledAccordionButton>
@@ -439,7 +445,7 @@ export const MainNav = ({ ...props }) => {
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
 
-                  <StyledAccordionItem>
+                  <StyledAccordionItem  isOpen={isAccordionSectionOpen(location, 'patterns')}>
                     <StyledAccordionButton>
                       <Heading2>Patterns</Heading2>
                     </StyledAccordionButton>
