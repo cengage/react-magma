@@ -40,7 +40,8 @@ const StyledGrid = styled(Grid)`
 `;
 
 const StyledGridTop = styled(Grid)`
-  grid-template-columns: auto auto;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
   grid-template-rows: auto;
   padding: 0 ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06};
 
