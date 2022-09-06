@@ -47,8 +47,7 @@ const StyledAccordionItem = styled(AccordionItem)`
     }
   }
   > div {
-    opacity: 1 !important;
-    height: 100% !important;
+    height: ${props => (props.isOpen ? '100% !important' : '')};
   }
 `;
 
@@ -193,6 +192,10 @@ function defaultPanelIndex(location) {
   }
 }
 
+function isAccordionItemOpen(location, id) {
+  return location.pathname.includes(id);
+}
+
 export const MainNav = ({ ...props }) => {
   const activeStyle = activeStyleDefault;
 
@@ -318,7 +321,9 @@ export const MainNav = ({ ...props }) => {
                 </StyledHyperlink>
 
                 <StyledAccordion defaultIndex={defaultPanelIndex(location)}>
-                  <StyledAccordionItem>
+                  <StyledAccordionItem
+                    isOpen={isAccordionItemOpen(location, 'design')}
+                  >
                     <StyledAccordionButton>
                       <Heading2>Design</Heading2>
                     </StyledAccordionButton>
@@ -389,7 +394,9 @@ export const MainNav = ({ ...props }) => {
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
 
-                  <StyledAccordionItem>
+                  <StyledAccordionItem
+                    isOpen={isAccordionItemOpen(location, 'api')}
+                  >
                     <StyledAccordionButton>
                       <Heading2>Components</Heading2>
                     </StyledAccordionButton>
@@ -439,7 +446,9 @@ export const MainNav = ({ ...props }) => {
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
 
-                  <StyledAccordionItem>
+                  <StyledAccordionItem
+                    isOpen={isAccordionItemOpen(location, 'patterns')}
+                  >
                     <StyledAccordionButton>
                       <Heading2>Patterns</Heading2>
                     </StyledAccordionButton>
