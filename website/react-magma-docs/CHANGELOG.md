@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.2
+
+### Patch Changes
+
+- f35c3c5de: docs(IndexPageContent): Update Home page styling for medium devices and add GitHub icon to Contribute button.
+
 ## 4.0.4-next.1
 
 ### Patch Changes

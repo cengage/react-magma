@@ -12,6 +12,7 @@
   },
   "changesets": [
     "green-coins-taste",
+    "homepage-updates",
     "storybook-package"
   ]
 }
