@@ -1,5 +1,39 @@
 # Change Log
 
+## 3.1.2-next.0
+
+### Patch Changes
+
+- 17ee57afe: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
+## 3.1.1
+
+### Patch Changes
+
+- 663a334d: refactor(Input): Update Storybook example with a11y violations.
+- 663a334d: fix(accordion): Accordion Item `buttonId` will be based on the index to avoid duplicate ids.
+  refactor(accordion): Update Storybook example with a11y violations.
+- 663a334d: refactor(appbar): Update Storybook example with a11y violations.
+- 663a334d: fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.
+- 663a334d: fix(Tabs): Removing unnecessary aria-label from wrapping div
+- 663a334d: fix(datagrid): Add aria-label to sort by selectable button
+- 663a334d: feat(datagrid): Add `isSortableBySelected` prop to DataGrid, allowing tables to be sorted by the selected items.
+- 663a334d: fix(DatePicker): Fix support for non-default date formats (dd/mm/yyyy, yyyy/MM/dd, yyyy/dd/MM). Add support for MMMM d, yyyy.
+- 663a334d: fix(input): Fix double focus on all input types (search, datepicker, password). When the icon is focused, only the icon will have visible focus and not the whole input.
+- 663a334d: refactor(indeterminatecheckbox): Update Storybook example with a11y violations.
+- 663a334d: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+- 663a334d: fix(pagination): Fix Pagination a11y issue regarding `<ul>` only having `<li>` as children.
+- 663a334d: refactor(radio): Update Storybook examples with a11y violations.
+- 663a334d: refactor(skiplink): Update Storybook example with a11y violations.
+- 663a334d: build(deps): bump parse-url from 6.0.0 to 6.0.2
+- 663a334d: build(deps): bump terser from 4.8.0 to 4.8.1
+
+## 3.1.1-next.15
+
+### Patch Changes
+
+- 4a229b55c: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+
 ## 3.1.1-next.14
 
 ### Patch Changes
