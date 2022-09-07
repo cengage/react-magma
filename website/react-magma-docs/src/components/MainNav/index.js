@@ -41,9 +41,9 @@ const StyledAccordionItem = styled(AccordionItem)`
   button {
     &[aria-expanded='true'] {
       box-shadow: inset 0 1px 0 0 ${magma.colors.neutral300};
-      div {
-        transform: rotate(180deg) !important;
-      }
+    }
+    svg {
+      color: ${magma.colors.neutral700};
     }
   }
   > div {
@@ -141,6 +141,9 @@ const StyledHyperlink = styled(Hyperlink)`
   }
   &:not([disabled]):hover {
     ${LinkHoverStyles}
+  }
+  &:not([disabled]):focus {
+    color: inherit;
   }
 `;
 
