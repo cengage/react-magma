@@ -171,13 +171,8 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     onKeyDown: onInputKeyDown,
     onKeyPress: onInputKeyPress,
     onKeyUp: onInputKeyUp,
-    // ref: innerRef,
     ...(innerRef && { ref: innerRef }),
   });
-
-  // console.log('innerRef', innerRef && { ref: innerRef });
-  console.log(inputProps.ref);
-  
 
   const dropdownIndicatorColor = () => {
     if (disabled) {
@@ -211,6 +206,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         isInverse={isInverse}
         style={inputStyle}
         theme={theme}
+        ref={innerRef}
       >
         <SelectedItemsWrapper>
           {selectedItems}
@@ -222,7 +218,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
             isInverse={isInverse}
             placeholder={placeholder}
             theme={theme}
-            ref={otherRef}
           />
         </SelectedItemsWrapper>
         {children}

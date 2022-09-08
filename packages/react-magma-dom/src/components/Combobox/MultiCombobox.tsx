@@ -285,9 +285,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
-    console.log('>>> inputRef', inputRef);
-
-    // TODO
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -360,7 +357,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         isLoading={isLoading}
         hasError={hasError}
         innerRef={ref}
-        otherRef={inputRef}
         onInputBlur={onInputBlur}
         onInputFocus={handleInputFocus}
         onInputKeyDown={onInputKeyDown}
