@@ -40,12 +40,18 @@ Default.args = {
 };
 
 export const Multi = (props: MultiComboboxProps<SelectOptions>) => (
-  <Combobox isMulti labelText="Multi Example" defaultItems={[
+  <Combobox defaultItems={[
     { label: 'Red', value: 'red' },
     { label: 'Blue', value: 'blue' },
     { label: 'Green', value: 'green' },
-  ]} />
+  ]} {...props} />
 );
+Multi.args = {
+  labelText: "Multi Example",
+  isMulti: true,
+  isClearable: true,
+  errorMessage: '',
+}
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {

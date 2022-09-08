@@ -105,6 +105,7 @@ interface ComboboxInputProps<T> {
   ) => any;
   hasError?: boolean;
   innerRef?: React.Ref<HTMLInputElement>;
+  otherRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
   disabled?: boolean;
   isInverse?: boolean;
@@ -129,6 +130,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     getToggleButtonProps,
     hasError,
     innerRef,
+    otherRef,
     inputStyle,
     disabled,
     isInverse,
@@ -169,8 +171,13 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     onKeyDown: onInputKeyDown,
     onKeyPress: onInputKeyPress,
     onKeyUp: onInputKeyUp,
+    // ref: innerRef,
     ...(innerRef && { ref: innerRef }),
   });
+
+  // console.log('innerRef', innerRef && { ref: innerRef });
+  console.log(inputProps.ref);
+  
 
   const dropdownIndicatorColor = () => {
     if (disabled) {
@@ -215,6 +222,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
             isInverse={isInverse}
             placeholder={placeholder}
             theme={theme}
+            ref={otherRef}
           />
         </SelectedItemsWrapper>
         {children}

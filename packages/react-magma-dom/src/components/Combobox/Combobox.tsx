@@ -238,6 +238,9 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
+    console.log('single', inputRef, innerRef, ref);
+    console.log('toggleButtonRef', toggleButtonRef);
+
     if (inputRef.current) {
       inputRef.current.focus();
     }

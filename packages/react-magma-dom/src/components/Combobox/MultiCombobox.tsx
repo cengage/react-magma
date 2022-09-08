@@ -2,27 +2,31 @@ import * as React from 'react';
 import { instanceOfDefaultItemObject } from '../Select';
 import { useCombobox, useMultipleSelection } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
+import { defaultComponents } from '../Select/components';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { SelectedItemButton, IconWrapper } from '../Select/shared';
 import { useComboboxItems, defaultOnInputValueChange } from './shared';
+import { useForkedRef } from '../../utils';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { MultiComboboxProps } from '.';
+import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 
 export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
     ariaDescribedBy,
     components: customComponents,
-    errorMessage,
     defaultItems,
     disableCreateItem,
+    errorMessage,
     hasError,
     helperMessage,
     inputStyle,
+    isClearable,
     disabled,
     innerRef,
     isLabelVisuallyHidden,
@@ -54,12 +58,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
-  const [
-    allItems,
-    displayItems,
-    setDisplayItems,
-    updateItemsRef,
-  ] = useComboboxItems(defaultItems, items);
+  const [allItems, displayItems, setDisplayItems, updateItemsRef] =
+    useComboboxItems(defaultItems, items);
 
   function checkSelectedItemValidity(itemToCheck) {
     return (
@@ -76,6 +76,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     removeSelectedItem,
     setActiveIndex,
     selectedItems,
+    reset,
   } = useMultipleSelection({
     ...props,
     ...(props.initialSelectedItems && {
@@ -118,10 +119,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   function defaultOnSelectedItemChange(changes) {
     if (isCreatedItem(changes.selectedItem)) {
-      const {
-        react_magma__created_item,
-        ...createdItem
-      } = changes.selectedItem;
+      const { react_magma__created_item, ...createdItem } =
+        changes.selectedItem;
 
       const newItem =
         react_magma__created_item &&
@@ -172,9 +171,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     const { type, changes } = actionAndChanges;
     switch (type) {
       case useCombobox.stateChangeTypes.InputKeyDownEnter: {
-        const newSelectedItem = getFilteredItems(displayItems)[
-          state.highlightedIndex
-        ];
+        const newSelectedItem =
+          getFilteredItems(displayItems)[state.highlightedIndex];
         return {
           ...changes,
           ...(newSelectedItem && {
@@ -255,6 +253,48 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     onInputFocus && typeof onInputFocus === 'function' && onInputFocus(event);
   }
 
+  const { ClearIndicator } = defaultComponents<T>({
+    ...customComponents,
+  });
+
+  function itemsArrayToString(itemsArray: any[]) {
+    let allItems = [];
+    itemsArray.map(item => {
+      if (typeof item === 'string') {
+        allItems.push(item);
+      } else if (instanceOfDefaultItemObject(item)) {
+        allItems.push(item.label);
+      }
+    });
+
+    return allItems.join(', ');
+  }
+
+  const inputRef = React.useRef<HTMLInputElement>();
+  const ref = useForkedRef(innerRef || null, inputRef);
+
+  const clearIndicatori18n =
+    selectedItems.length > 1
+      ? i18n.combobox.multi.clearIndicatorAriaLabel
+      : i18n.combobox.clearIndicatorAriaLabel;
+
+  const clearIndicatorAriaLabel = clearIndicatori18n
+    .replace(/\{labelText\}/g, labelText)
+    .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
+
+  function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
+    event.stopPropagation();
+
+    console.log('>>> inputRef', inputRef);
+
+    // TODO
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+
+    reset();
+  }
+
   const selectedItemsContent =
     selectedItems && selectedItems.length > 0 ? (
       <>
@@ -290,9 +330,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
+      hasError={hasError}
       helperMessage={helperMessage}
-      isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
+      isInverse={isInverse}
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
@@ -318,6 +359,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         isInverse={isInverse}
         isLoading={isLoading}
         hasError={hasError}
+        innerRef={ref}
+        otherRef={inputRef}
         onInputBlur={onInputBlur}
         onInputFocus={handleInputFocus}
         onInputKeyDown={onInputKeyDown}
@@ -326,7 +369,18 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         placeholder={placeholder}
         selectedItems={selectedItemsContent}
         toggleButtonRef={toggleButtonRef}
-      />
+      >
+        {isClearable && selectedItems?.length > 0 && (
+          <ClearIndicator
+            aria-label={clearIndicatorAriaLabel}
+            icon={<CloseIcon />}
+            onClick={defaultHandleClearIndicatorClick}
+            shape={ButtonShape.fill}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        )}
+      </ComboboxInput>
       <ItemsList
         customComponents={customComponents}
         getItemProps={getItemProps}

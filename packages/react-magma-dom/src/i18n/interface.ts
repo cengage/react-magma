@@ -85,6 +85,9 @@ export interface I18nInterface {
   combobox: {
     clearIndicatorAriaLabel: string;
     createLabel: string;
+    multi: {
+      clearIndicatorAriaLabel: string;
+    };
   };
   datePicker: {
     startOfWeek:
