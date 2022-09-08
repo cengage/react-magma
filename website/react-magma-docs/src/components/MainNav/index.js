@@ -103,6 +103,9 @@ const Heading2 = styled.h2`
 const StyledAccordionButton = styled(AccordionButton)`
   border-top: 0;
   ${headingStyles};
+  &:hover {
+    ${LinkHoverStyles};
+  }
 `;
 
 const Heading3 = styled.h3`
