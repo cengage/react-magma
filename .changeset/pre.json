@@ -11,6 +11,7 @@
     "react-magma-landing": "1.1.0"
   },
   "changesets": [
+    "docs-props-sidebar",
     "green-coins-taste",
     "homepage-updates",
     "storybook-package"

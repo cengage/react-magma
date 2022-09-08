@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.3
+
+### Patch Changes
+
+- 66c7daf7e: docs: Updating Sidebar to use our Accordion component.
+
 ## 4.0.4-next.2
 
 ### Patch Changes
