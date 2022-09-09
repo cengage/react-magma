@@ -489,32 +489,74 @@ describe('Combobox', () => {
     );
   });
 
-  it('should not select an item that is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    const { getByLabelText } = render(
-      <Combobox labelText={labelText} items={items} selectedItem="Pink" />
-    );
+  describe('isTypeahead', () => {
+    describe('when isTypeahead is true,', () => {
+      it('should be able to select an item that is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByLabelText } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            selectedItem="Pink"
+            isTypeahead
+          />
+        );
 
-    expect(
-      getByLabelText(labelText, { selector: 'input' }).textContent
-    ).not.toEqual('Pink');
-  });
+        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual('Pink');
+      });
 
-  it('should not use the initial selected item if it is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    const { getByLabelText } = render(
-      <Combobox
-        labelText={labelText}
-        items={items}
-        initialSelectedItem="Pink"
-      />
-    );
+      it('should be able to use the initial selected item even if it is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByLabelText } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            initialSelectedItem="Pink"
+            isTypeahead
+          />
+        );
 
-    expect(
-      getByLabelText(labelText, { selector: 'input' }).textContent
-    ).not.toEqual('Pink');
+        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual('Pink');
+      });
+    });
+
+    describe('when isTypeahead is false,', () => {
+      it('should not select an item that is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByLabelText } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            selectedItem="Pink"
+            isTypeahead={false}
+          />
+        );
+
+        expect(
+          getByLabelText(labelText, { selector: 'input' }).textContent
+        ).not.toEqual('Pink');
+      });
+
+      it('should not use the initial selected item if it is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByLabelText } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            initialSelectedItem="Pink"
+            isTypeahead={false}
+          />
+        );
+
+        expect(
+          getByLabelText(labelText, { selector: 'input' }).textContent
+        ).not.toEqual('Pink');
+      });
+    });
   });
 
   it('should disable the combobox', () => {

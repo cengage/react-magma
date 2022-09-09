@@ -32,6 +32,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
+    isTypeahead = false,
     itemListMaxHeight,
     items,
     itemToString,
@@ -61,7 +62,16 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
 
+  React.useEffect(() => {
+    console.log('defaultItems', defaultItems);
+    
+  }, [defaultItems]);
+
   function checkSelectedItemValidity(itemToCheck) {
+    // When using Typeahead, don't validate the items
+    if (isTypeahead) {
+      return allItems;
+    }
     return (
       allItems.current.findIndex(
         i => itemToString(i) === itemToString(itemToCheck)
@@ -370,6 +380,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
             icon={<CloseIcon />}
+            isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             shape={ButtonShape.fill}
             size={ButtonSize.small}

@@ -570,36 +570,78 @@ describe('Combobox', () => {
     expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
   });
 
-  it('should not select an item that is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    const { getByText, queryByText } = render(
-      <MultiCombobox
-        isMulti
-        labelText={labelText}
-        items={items}
-        selectedItems={['Red', 'Pink']}
-      />
-    );
+  describe('isTypeahead', () => {
+    describe('when isTypeahead is true,', () => {
+      it('should be able to select an item that is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByText, queryByText } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            selectedItems={['Red', 'Pink']}
+            isTypeahead
+          />
+        );
+    
+        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+        expect(queryByText('Pink', { selector: 'button' })).toBeInTheDocument();
+      });
+    
+      it('should be able to use the initial selected item even if it is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByText, queryByText } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            initialSelectedItems={['Red', 'Pink']}
+            isTypeahead
+          />
+        );
+    
+        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+        expect(queryByText('Pink', { selector: 'button' })).toBeInTheDocument();
+      });
+    });
 
-    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-    expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
-  });
-
-  it('should not use the initial selected item if it is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-    const { getByText, queryByText } = render(
-      <MultiCombobox
-        isMulti
-        labelText={labelText}
-        items={items}
-        initialSelectedItems={['Red', 'Pink']}
-      />
-    );
-
-    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-    expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
+    describe('when isTypeahead is false,', () => {
+      it('should not select an item that is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByText, queryByText } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            selectedItems={['Red', 'Pink']}
+            isTypeahead={false}
+          />
+        );
+    
+        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+        expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
+      });
+    
+      it('should not use the initial selected item if it is not in the items list', () => {
+        const labelText = 'Label';
+        const items = ['Red', 'Blue', 'Green'];
+        const { getByText, queryByText } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            initialSelectedItems={['Red', 'Pink']}
+            isTypeahead={false}
+          />
+        );
+    
+        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+        expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
+      });
+    });
   });
 
   it('should disable the combobox', () => {

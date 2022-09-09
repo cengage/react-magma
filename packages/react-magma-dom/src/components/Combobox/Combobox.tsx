@@ -31,6 +31,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
+    isTypeahead = false,
     itemListMaxHeight,
     items,
     itemToString,
@@ -149,6 +150,10 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     useComboboxItems(defaultItems, items);
 
   function getValidItem(itemToCheck: T, key: string): object {
+    // When using Typeahead, don't validate the items
+    if (isTypeahead) {
+      return allItems;
+    }
     return allItems.current.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
@@ -279,6 +284,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
             icon={<CloseIcon />}
+            isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             shape={ButtonShape.fill}
             size={ButtonSize.small}

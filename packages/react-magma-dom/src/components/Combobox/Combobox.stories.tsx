@@ -123,9 +123,9 @@ export const Typeahead = () => {
   ];
 
   //retrived from db
-  const selectedProductsHistory = ['red', 'blue', 'orange'];
+  const defaultItems = ['red', 'blue', 'orange'];
 
-  const selectedItemsHistory = selectedProductsHistory
+  const selectedItemsHistory = defaultItems
     .slice(0, 5)
     .map(product => {
       return { label: product, value: product };
@@ -148,11 +148,14 @@ export const Typeahead = () => {
     const newSuggestedItems = matches.slice(0, 5).map(item => {
       return { label: item, value: item };
     });
-    console.log(newSuggestedItems)
     setSuggestedItems(newSuggestedItems);
   };
 
   // console.log('selectedItems', selectedItems);
+  React.useEffect(() => {
+    console.log('suggestedItems', suggestedItems);
+    
+  }, [suggestedItems]);
   
 
   return (
@@ -162,7 +165,7 @@ export const Typeahead = () => {
       isMulti
       isClearable
       disableCreateItem
-      preloadsItems={false}
+      isTypeahead={true}
       // defaultItems={suggestedItems}
       // selectedItems={selectedItems}
       onInputKeyPress={findMatchingItems}

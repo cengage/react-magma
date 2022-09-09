@@ -110,6 +110,10 @@ export interface ComboboxProps<T extends SelectOptions>
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
+  /**
+   * TODO: proposed prop
+   */
+  isTypeahead?: boolean;
 }
 
 export interface MultiComboboxProps<T extends SelectOptions>
