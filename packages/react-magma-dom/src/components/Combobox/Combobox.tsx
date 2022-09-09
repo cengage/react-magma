@@ -71,10 +71,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   function defaultOnSelectedItemChange(changes) {
     if (isCreatedItem(changes.selectedItem)) {
-      const {
-        react_magma__created_item,
-        ...createdItem
-      } = changes.selectedItem;
+      const { react_magma__created_item, ...createdItem } =
+        changes.selectedItem;
 
       const newItem =
         react_magma__created_item &&
@@ -147,12 +145,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
   }
 
-  const [
-    allItems,
-    displayItems,
-    setDisplayItems,
-    updateItemsRef,
-  ] = useComboboxItems(defaultItems, items);
+  const [allItems, displayItems, setDisplayItems, updateItemsRef] =
+    useComboboxItems(defaultItems, items);
 
   function getValidItem(itemToCheck: T, key: string): object {
     return allItems.current.findIndex(
@@ -163,10 +157,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   }
 
   function handleOnIsOpenChange(changes) {
-    const {
-      isOpen: changedIsOpen,
-      selectedItem: changedSelectedItem,
-    } = changes;
+    const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
+      changes;
 
     if (!changedIsOpen) {
       setDisplayItems(allItems.current);
@@ -237,9 +229,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
-
-    console.log('single', inputRef, innerRef, ref);
-    console.log('toggleButtonRef', toggleButtonRef);
 
     if (inputRef.current) {
       inputRef.current.focus();

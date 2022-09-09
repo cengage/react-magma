@@ -29,9 +29,10 @@ const InputContainer = styled.div<{
   theme?: any;
 }>`
   align-items: center;
-  background-color: ${props => props.isInverse
-    ? transparentize(0.8, props.theme.colors.neutral900)
-    : props.theme.colors.neutral100};
+  background-color: ${props =>
+    props.isInverse
+      ? transparentize(0.8, props.theme.colors.neutral900)
+      : props.theme.colors.neutral100};
   border: 1px solid;
   border-color: ${props =>
     props.isInverse
@@ -66,9 +67,11 @@ const InputContainer = styled.div<{
     props.disabled &&
     css`
       background: ${props.isInverse
-      ? transparentize(0.9, props.theme.colors.neutral900)
-      : props.theme.colors.neutral200};
-      border-color: ${props.isInverse ? transparentize(0.85, props.theme.colors.neutral100) : props.theme.colors.neutral300};
+        ? transparentize(0.9, props.theme.colors.neutral900)
+        : props.theme.colors.neutral200};
+      border-color: ${props.isInverse
+        ? transparentize(0.85, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
       color: ${transparentize(0.4, props.theme.colors.neutral500)};
       cursor: not-allowed;
       outline: 0;
@@ -105,7 +108,6 @@ interface ComboboxInputProps<T> {
   ) => any;
   hasError?: boolean;
   innerRef?: React.Ref<HTMLInputElement>;
-  otherRef?: React.Ref<HTMLInputElement>;
   inputStyle?: React.CSSProperties;
   disabled?: boolean;
   isInverse?: boolean;
@@ -130,7 +132,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     getToggleButtonProps,
     hasError,
     innerRef,
-    otherRef,
     inputStyle,
     disabled,
     isInverse,
@@ -185,7 +186,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
       return theme.colors.neutral100;
     }
     return theme.colors.neutral;
-  }
+  };
 
   return (
     <ComboBoxContainer

@@ -40,18 +40,21 @@ Default.args = {
 };
 
 export const Multi = (props: MultiComboboxProps<SelectOptions>) => (
-  <Combobox defaultItems={[
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
-    { label: 'Green', value: 'green' },
-  ]} {...props} />
+  <Combobox
+    defaultItems={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ]}
+    {...props}
+  />
 );
 Multi.args = {
-  labelText: "Multi Example",
+  labelText: 'Multi Example',
   isMulti: true,
   isClearable: true,
   errorMessage: '',
-}
+};
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {
@@ -101,3 +104,69 @@ LeftAlignedLabelWithContainer.decorators = [
     </Card>
   ),
 ];
+
+export const Typeahead = () => {
+  const largeListOfItems = [
+    'red',
+    'blue',
+    'green',
+    'orange',
+    'aqua',
+    'gold',
+    'periwinkle',
+    'lavender',
+    'marigold',
+    'yellow',
+    'purple',
+    'dusty_rose',
+    'burnt_sienna',
+  ];
+
+  //retrived from db
+  const selectedProductsHistory = ['red', 'blue', 'orange'];
+
+  const selectedItemsHistory = selectedProductsHistory
+    .slice(0, 5)
+    .map(product => {
+      return { label: product, value: product };
+    });
+
+  const [suggestedItems, setSuggestedItems] =
+    React.useState(selectedItemsHistory);
+
+  const [selectedItems, updateSelectedItems] = React.useState([]);
+
+  function handleSelectedItemsChange(changes) {
+    updateSelectedItems(changes.selectedItems);
+  }
+
+  const findMatchingItems = function (event) {
+    const query = event.target.value + event.key;
+    const matches = largeListOfItems.filter(item => {
+      return item.toLowerCase().includes(query.toLowerCase());
+    });
+    const newSuggestedItems = matches.slice(0, 5).map(item => {
+      return { label: item, value: item };
+    });
+    console.log(newSuggestedItems)
+    setSuggestedItems(newSuggestedItems);
+  };
+
+  // console.log('selectedItems', selectedItems);
+  
+
+  return (
+    <Combobox
+      labelText="Typeahead Example"
+      items={suggestedItems}
+      isMulti
+      isClearable
+      disableCreateItem
+      preloadsItems={false}
+      // defaultItems={suggestedItems}
+      // selectedItems={selectedItems}
+      onInputKeyPress={findMatchingItems}
+      onSelectedItemsChange={handleSelectedItemsChange}
+    />
+  );
+};
