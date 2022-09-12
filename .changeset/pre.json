@@ -11,6 +11,8 @@
     "react-magma-landing": "1.1.0"
   },
   "changesets": [
+    "anchor-color-landing",
+    "anchor-color",
     "docs-props-sidebar",
     "green-coins-taste",
     "homepage-updates",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.1-next.0
+
+### Patch Changes
+
+- 754c389ba: Update anchor stylings.
+
 ## 1.1.0
 
 ### Minor Changes
