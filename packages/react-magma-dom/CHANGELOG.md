@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.2-next.1
+
+### Patch Changes
+
+- 754c389ba: fix(GlobalStyles): Fix default `a:hover` color to match Hyperlink
+
 ## 3.1.2-next.0
 
 ### Patch Changes
