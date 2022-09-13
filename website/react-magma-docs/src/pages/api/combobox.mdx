@@ -897,9 +897,9 @@ export function Example() {
       <Combobox
         labelText="Combobox with custom items"
         defaultItems={[
-          { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
-          { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
-          { id: 2, name: 'green', representation: 'Green', hex: '#008000' },
+          { id: 10, name: 'red', representation: 'Red', hex: '#FF0000' },
+          { id: 11, name: 'blue', representation: 'Blue', hex: '#0000FF' },
+          { id: 12, name: 'green', representation: 'Green', hex: '#008000' },
         ]}
         newItemTransform={newItemTransform}
         itemToString={itemToString}
@@ -947,19 +947,19 @@ interface CustomComboboxItem {
 export function Example() {
   const customItems: CustomComboboxItem[] = [
     {
-      id: 1,
+      id: 21,
       actual: 'red',
       representation: 'Red',
       hex: '#FF0000',
     },
     {
-      id: 2,
+      id: 22,
       actual: 'blue',
       representation: 'Blue',
       hex: '#0000FF',
     },
     {
-      id: 3,
+      id: 23,
       actual: 'green',
       representation: 'Green',
       hex: '#008000',
@@ -1070,21 +1070,21 @@ export function Example() {
       components={{ Item: CustomItem }}
       defaultItems={[
         {
-          id: 0,
+          id: 30,
           name: 'red',
           representation: 'Red',
           hex: '#FF0000',
           description: 'The color of roses',
         },
         {
-          id: 1,
+          id: 31,
           name: 'blue',
           representation: 'Blue',
           hex: '#0000FF',
           description: 'The color of blueberries',
         },
         {
-          id: 2,
+          id: 32,
           name: 'green',
           representation: 'Green',
           hex: '#008000',
