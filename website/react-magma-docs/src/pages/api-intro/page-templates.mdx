@@ -3,7 +3,7 @@ title: Page Templates
 order: 2
 ---
 
-# Page Templates (work in progress)
+# Page Templates
 
 Get started on your project more quickly with these ready-made page templates.
 
@@ -69,7 +69,7 @@ export function Example() {
       </Drawer>
 
       <GridItem
-        gridColumn=" 1 / 5"
+        gridColumn="1 / 5"
         as="main"
         style={{
           backgroundColor: magma.colors.primary500,
@@ -83,38 +83,42 @@ export function Example() {
         Main
       </GridItem>
       <GridItem
-        gridColumn="1 / 3"
+        gridColumn={isSmallerScreen ? '1 / 5' : '1 / 3'}
         as="card1"
         style={{
           backgroundColor: magma.colors.primary100,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
-          margin: '0 0 0 25px',
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 0 0 25px',
         }}
       >
         Content
       </GridItem>
       <GridItem
-        gridColumn="3 / 4"
+        gridColumn={isSmallerScreen ? '1 / 5' : '3 / 4'}
         as="card2"
         style={{
           backgroundColor: magma.colors.primary300,
           color: magma.colors.neutral100,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0',
         }}
       >
         Content
       </GridItem>
       <GridItem
-        gridColumn="4 /5"
+        gridColumn={isSmallerScreen ? '1 / 5' : '4 /5'}
         as="card3"
         style={{
           backgroundColor: magma.colors.primary400,
           color: magma.colors.neutral100,
           textAlign: 'center',
           padding: magma.spaceScale.spacing05,
-          margin: '0 25px 0 0',
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 25px 0 0',
         }}
       >
         Content
@@ -182,11 +186,14 @@ export function Example() {
     <Container>
       <GridItem gridColumn="1 / 3" as="header">
         <Header
-          isInverse
           logo={<strong>LOGO</strong>}
           breakpoint={magma.breakpoints.large}
           isCompact={isSmallerScreen}
           onMenuButtonClick={() => setShowDrawer(true)}
+          style={{
+            backgroundColor: magma.colors.warning400,
+            color: magma.colors.neutral100,
+          }}
         />
       </GridItem>
 
@@ -216,27 +223,31 @@ export function Example() {
       </GridItem>
 
       <GridItem
-        gridColumn="1 / 2"
+        gridColumn={isSmallerScreen ? '1 / 3' : '1 /  2'}
         as="article1"
         style={{
           textAlign: 'center',
           backgroundColor: magma.colors.warning300,
           color: magma.colors.neutral100,
           padding: magma.spaceScale.spacing05,
-          marginLeft: '75px',
+          justifySelf: isSmallerScreen ? 'center' : 'stretch',
+          width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 0 0 75px',
         }}
       >
         article 1
       </GridItem>
       <GridItem
-        gridColumn="2 / 3"
+        gridColumn={isSmallerScreen ? '1 / 3' : '2 / 3'}
         as="article2"
         style={{
           textAlign: 'center',
-          backgroundColor: magma.colors.warning400,
+          backgroundColor: magma.colors.warning300,
           color: magma.colors.neutral100,
           padding: magma.spaceScale.spacing05,
-          marginRight: '75px',
+          justifySelf: isSmallerScreen ? 'center' : 'stretch',
+          width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 75px 0 0 ',
         }}
       >
         article 2
@@ -385,7 +396,7 @@ const StyledSidebar = styled.div`
   grid-area: sidebar;
   background: ${magma.colors.primary200};
   padding: ${magma.spaceScale.spacing05};
-  height: calc(100vh - 55px);
+  height: calc(100vh - 95px);
 `;
 
 const StyledFooter = styled.div`
