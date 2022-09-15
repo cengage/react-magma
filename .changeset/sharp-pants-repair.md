@@ -2,4 +2,4 @@
 "react-magma-docs": patch
 ---
 
-Feature/page templates
+fix(PageTemplates): Updates to Page Templates examples, removed work in progress label
