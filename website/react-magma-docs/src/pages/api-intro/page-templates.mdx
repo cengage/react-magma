@@ -17,7 +17,6 @@ This template is ideal for applications that need as much of the screen as possi
 
 ```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import {
   Drawer,
@@ -30,17 +29,6 @@ import {
   useMediaQuery,
 } from 'react-magma-dom';
 
-const Container = styled(Grid)`
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
-  grid-template-areas:
-    'header header header header'
-    'main main main main'
-    'card1 card1 card2 card3'
-    'footer footer footer footer';
-  gap: 0.5em;
-`;
-
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
 
@@ -49,8 +37,13 @@ export function Example() {
   );
 
   return (
-    <Container GridJustifyContent={GridJustifyContent.center}>
-      <GridItem gridColumn="1 / 5" as="header">
+    <Grid
+      GridJustifyContent={GridJustifyContent.center}
+      gridTemplateColumns={'repeat(4, 1fr)'}
+      gridTemplateRows={'0.2fr 1.5fr 1.2fr 0.8fr'}
+      gridGap="0.5em"
+    >
+      <GridItem gridColumn="1 / 5">
         <Header
           isInverse
           logo={<strong>LOGO</strong>}
@@ -70,7 +63,6 @@ export function Example() {
 
       <GridItem
         gridColumn="1 / 5"
-        as="main"
         style={{
           backgroundColor: magma.colors.primary500,
           color: magma.colors.neutral100,
@@ -84,7 +76,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '1 / 3'}
-        as="card1"
         style={{
           backgroundColor: magma.colors.primary100,
           textAlign: 'center',
@@ -97,7 +88,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '3 / 4'}
-        as="card2"
         style={{
           backgroundColor: magma.colors.primary300,
           color: magma.colors.neutral100,
@@ -111,7 +101,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '4 /5'}
-        as="card3"
         style={{
           backgroundColor: magma.colors.primary400,
           color: magma.colors.neutral100,
@@ -125,7 +114,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn="1 / 5"
-        as="footer"
         style={{
           backgroundColor: magma.colors.primary600,
           color: magma.colors.neutral100,
@@ -137,7 +125,7 @@ export function Example() {
       >
         Footer
       </GridItem>
-    </Container>
+    </Grid>
   );
 }
 ```
@@ -154,7 +142,6 @@ This template is great for pages that focus more on reading content like marketi
 
 ```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import {
   Drawer,
@@ -165,16 +152,6 @@ import {
   useMediaQuery,
 } from 'react-magma-dom';
 
-const Container = styled(Grid)`
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'header header'
-    'content content'
-    'article1 article2';
-  gap: 1em;
-`;
-
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
 
@@ -183,8 +160,12 @@ export function Example() {
   );
 
   return (
-    <Container>
-      <GridItem gridColumn="1 / 3" as="header">
+    <Grid
+      gridTemplateColumns={'auto 1fr'}
+      gridTemplateRows={'auto 1fr'}
+      gridGap="1em"
+    >
+      <GridItem gridColumn="1 / 3">
         <Header
           logo={<strong>LOGO</strong>}
           breakpoint={magma.breakpoints.large}
@@ -207,7 +188,6 @@ export function Example() {
 
       <GridItem
         gridColumn="1 / 3"
-        as="content"
         style={{
           textAlign: 'center',
           backgroundColor: magma.colors.warning500,
@@ -224,7 +204,6 @@ export function Example() {
 
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 3' : '1 /  2'}
-        as="article1"
         style={{
           textAlign: 'center',
           backgroundColor: magma.colors.warning300,
@@ -239,7 +218,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 3' : '2 / 3'}
-        as="article2"
         style={{
           textAlign: 'center',
           backgroundColor: magma.colors.warning300,
@@ -252,7 +230,7 @@ export function Example() {
       >
         article 2
       </GridItem>
-    </Container>
+    </Grid>
   );
 }
 ```
@@ -269,7 +247,6 @@ This template includes a screen region for a left sidebar and includes all of th
 
 ```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import {
   Drawer,
@@ -279,30 +256,6 @@ import {
   magma,
   useMediaQuery,
 } from 'react-magma-dom';
-
-const Container = styled(Grid)`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'sidebar header'
-    'sidebar content';
-  gap: 0.25em;
-`;
-
-const StyledSidebar = styled.div`
-  width: 240px;
-  grid-area: sidebar;
-  background: ${magma.colors.neutral300};
-  padding: ${magma.spaceScale.spacing05};
-  height: calc(100vh - 32px);
-`;
-
-const Sidebar = () => (
-  <StyledSidebar style={{ background: magma.colors.secondary700 }}>
-    Sidebar
-  </StyledSidebar>
-);
 
 export function Example() {
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -316,16 +269,37 @@ export function Example() {
   );
 
   return (
-    <Container>
+    <Grid
+      gridTemplateColumns={'auto 1fr'}
+      gridTemplateRows={'auto 1fr'}
+      gridTemplateAreas={('sidebar header header', 'sidebar content content')}
+      gridGap={'0.25em'}
+    >
       {isLargeScreen ? (
         <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
-          <Sidebar />
+          <div
+            style={{
+              background: magma.colors.secondary700,
+              padding: magma.spaceScale.spacing05,
+              width: '240px',
+              height: 'calc(100vh - 32px)',
+            }}
+          >
+            Sidebar
+          </div>
         </Drawer>
       ) : (
-        <Sidebar />
+        <GridItem
+          as={'sidebar'}
+          gridColumn="1 / 2"
+          gridRow="1 / 3"
+          style={{ background: magma.colors.secondary700, width: '240px' }}
+        >
+          Sidebar
+        </GridItem>
       )}
 
-      <GridItem as="header" gridColumn="2 / 4">
+      <GridItem as={'header'} gridColumn="2 / 3">
         <Header
           isInverse
           logo={<strong>LOGO</strong>}
@@ -339,20 +313,20 @@ export function Example() {
 
       <GridItem
         as="content"
-        gridRow="2"
-        gridColumn="2 / 4"
+        gridColumn="2 / 3"
         style={{
           maxWidth: '1600px',
           width: '100%',
           justifySelf: 'center',
           background: magma.colors.secondary500,
           padding: magma.spaceScale.spacing05,
+          margin: '0 auto',
           height: 'calc(100vh - 122px)',
         }}
       >
         Content
       </GridItem>
-    </Container>
+    </Grid>
   );
 }
 ```
@@ -369,7 +343,6 @@ This template also includes the sidebar screen region, but the header extends al
 
 ```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import {
   Drawer,
@@ -379,52 +352,6 @@ import {
   magma,
   useMediaQuery,
 } from 'react-magma-dom';
-
-const Container = styled(Grid)`
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'header header'
-    'sidebar content'
-    'sidebar footer';
-  gap: 2px;
-  justify-content: 'center';
-`;
-
-const StyledSidebar = styled.div`
-  width: 240px;
-  grid-area: sidebar;
-  background: ${magma.colors.primary200};
-  padding: ${magma.spaceScale.spacing05};
-  height: calc(100vh - 95px);
-`;
-
-const StyledFooter = styled.div`
-  grid-area: footer;
-  max-width: 1600px;
-  width: 100%;
-  justify-self: center;
-  background: ${magma.colors.primary700};
-  color: ${magma.colors.neutral100};
-  padding: ${magma.spaceScale.spacing05};
-`;
-
-const Sidebar = () => (
-  <StyledSidebar style={{ backgroundColor: magma.colors.primary200 }}>
-    Sidebar
-  </StyledSidebar>
-);
-
-const Footer = () => (
-  <StyledFooter
-    style={{
-      backgroundColor: magma.colors.primary700,
-      color: magma.colors.neutral100,
-    }}
-  >
-    Footer
-  </StyledFooter>
-);
 
 export function Example() {
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -438,14 +365,13 @@ export function Example() {
   );
 
   return (
-    <Container>
-      {isLargeScreen ? (
-        <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
-          <Sidebar />
-        </Drawer>
-      ) : (
-        <Sidebar />
-      )}
+    <Grid
+      gridJustifyContent={GridJustifyContent.center}
+      gridTemplateColumns="auto 1fr"
+      gridTemplateRows="auto 1fr"
+      gridTemplateAreas={('header header', 'sidebar content', 'sidebar footer')}
+      gridGap="2px"
+    >
       <GridItem as="header" gridColumn="1 / 4">
         <Header
           isInverse
@@ -457,6 +383,35 @@ export function Example() {
           }}
         />
       </GridItem>
+
+      {isLargeScreen ? (
+        <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
+          <div
+            style={{
+              background: magma.colors.primary200,
+              padding: magma.spaceScale.spacing05,
+              width: '240px',
+              height: 'calc(100vh - 32px)',
+            }}
+          >
+            Sidebar
+          </div>
+        </Drawer>
+      ) : (
+        <GridItem
+          as="sidebar"
+          gridColumn="1 / 2"
+          gridRow="2 / 4"
+          style={{
+            width: '240px',
+            background: magma.colors.primary200,
+            padding: magma.spaceScale.spacing05,
+            height: 'calc(100vh - 95px)',
+          }}
+        >
+          Sidebar
+        </GridItem>
+      )}
 
       <GridItem
         as="content"
@@ -474,8 +429,24 @@ export function Example() {
       >
         Content
       </GridItem>
-      <Footer />
-    </Container>
+
+      <GridItem
+        as="footer"
+        gridColumn="2 / 4"
+        gridRow="3"
+        style={{
+          maxWidth: '1600px',
+          width: '100%',
+          justifySelf: 'center',
+          background: magma.colors.primary700,
+          color: magma.colors.neutral100,
+          padding: magma.spaceScale.spacing05,
+          height: '10vh',
+        }}
+      >
+        Footer
+      </GridItem>
+    </Grid>
   );
 }
 ```
