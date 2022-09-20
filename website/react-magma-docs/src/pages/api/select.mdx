@@ -125,10 +125,8 @@ import React from 'react';
 import { Select } from 'react-magma-dom';
 
 export function Example() {
-  const [
-    highlightedIndexChangeCount,
-    updateHighlightedIndexChangeCount,
-  ] = React.useState(0);
+  const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] =
+    React.useState(0);
   const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState(0);
   const [selectedItem, updateSelectedItem] = React.useState(undefined);
 
@@ -582,9 +580,8 @@ import React from 'react';
 import { Select } from 'react-magma-dom';
 
 export function Example() {
-  const [currentSelectEvent, updateCurrentSelectEvent] = React.useState(
-    undefined
-  );
+  const [currentSelectEvent, updateCurrentSelectEvent] =
+    React.useState(undefined);
 
   function handleSelectBlur(event) {
     updateCurrentSelectEvent('Blur');
@@ -1079,7 +1076,7 @@ The `type` property in the `changes` object that is returned from the `onStateCh
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `select` or a
 `multi-select` are listed below.
 
-<Alert variant="info">
+<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
@@ -1097,45 +1094,153 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ### Select
 
-- `SelectStateChangeTypes.MenuKeyDownArrowDown`
-- `SelectStateChangeTypes.MenuKeyDownArrowUp`
-- `SelectStateChangeTypes.MenuKeyDownEscape`
-- `SelectStateChangeTypes.MenuKeyDownHome`
-- `SelectStateChangeTypes.MenuKeyDownEnd`
-- `SelectStateChangeTypes.MenuKeyDownEnter`
-- `SelectStateChangeTypes.MenuKeyDownSpaceButton`
-- `SelectStateChangeTypes.MenuKeyDownCharacter`
-- `SelectStateChangeTypes.MenuBlur`
-- `SelectStateChangeTypes.MenuMouseLeave`
-- `SelectStateChangeTypes.ItemMouseMove`
-- `SelectStateChangeTypes.ItemClick`
-- `SelectStateChangeTypes.ToggleButtonKeyDownCharacter`
-- `SelectStateChangeTypes.ToggleButtonKeyDownArrowDown`
-- `SelectStateChangeTypes.ToggleButtonKeyDownArrowUp`
-- `SelectStateChangeTypes.ToggleButtonClick`
-- `SelectStateChangeTypes.FunctionToggleMenu`
-- `SelectStateChangeTypes.FunctionOpenMenu`
-- `SelectStateChangeTypes.FunctionCloseMenu`
-- `SelectStateChangeTypes.FunctionSetHighlightedIndex`
-- `SelectStateChangeTypes.FunctionSelectItem`
-- `SelectStateChangeTypes.FunctionSetInputValue`
-- `SelectStateChangeTypes.FunctionReset`
+<div style={{ overflowX: 'scroll' }}>
+  <ul>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownArrowDown</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownArrowUp</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownEscape</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownHome</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownEnd</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownEnter</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownSpaceButton</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuKeyDownCharacter</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuBlur</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.MenuMouseLeave</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.ItemMouseMove</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.ItemClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        SelectStateChangeTypes.ToggleButtonKeyDownCharacter
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        SelectStateChangeTypes.ToggleButtonKeyDownArrowDown
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.ToggleButtonKeyDownArrowUp</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.ToggleButtonClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.FunctionToggleMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.FunctionOpenMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.FunctionCloseMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        SelectStateChangeTypes.FunctionSetHighlightedIndex
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.FunctionSelectItem</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.FunctionSetInputValue</inlineCode>
+    </li>
+    <li>
+      <inlineCode>SelectStateChangeTypes.FunctionReset</inlineCode>
+    </li>
+  </ul>
+</div>
 
 ### MultiSelect
 
-- `MultipleSelectionStateChangeTypes.SelectedItemClick`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious`
-- `MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious`
-- `MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace`
-- `MultipleSelectionStateChangeTypes.DropdownClick`
-- `MultipleSelectionStateChangeTypes.FunctionAddSelectedItem`
-- `MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem`
-- `MultipleSelectionStateChangeTypes.FunctionSetSelectedItems`
-- `MultipleSelectionStateChangeTypes.FunctionSetActiveIndex`
-- `MultipleSelectionStateChangeTypes.FunctionReset`
+<div style={{ overflowX: 'scroll' }}>
+  <ul>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemClick
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>MultipleSelectionStateChangeTypes.DropdownClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionAddSelectedItem
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionSetSelectedItems
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionSetActiveIndex
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>MultipleSelectionStateChangeTypes.FunctionReset</inlineCode>
+    </li>
+  </ul>
+</div>
 
 ## Select Props
 

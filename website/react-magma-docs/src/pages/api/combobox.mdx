@@ -97,13 +97,10 @@ import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
 export function Example() {
-  const [
-    highlightedIndexChangeCount,
-    updateHighlightedIndexChangeCount,
-  ] = React.useState<number>(0);
-  const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState<number>(
-    0
-  );
+  const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] =
+    React.useState<number>(0);
+  const [isOpenChangeCount, updateIsOpenChangeCount] =
+    React.useState<number>(0);
   const [selectedItem, updateSelectedItem] = React.useState(undefined);
 
   function onHighlightedIndexChange(changes) {
@@ -858,9 +855,8 @@ import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
 export function Example() {
-  const [controlledSelectedItem, updateControlledSelectedItem] = React.useState(
-    ''
-  );
+  const [controlledSelectedItem, updateControlledSelectedItem] =
+    React.useState('');
   const [controlledItems, updateControlledItems] = React.useState([
     { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
     { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
@@ -1226,7 +1222,7 @@ The `type` property in the `changes` object that is returned from the `onStateCh
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `combobox` or a
 `multi-combobox` are listed below.
 
-<Alert variant="info">
+<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
@@ -1244,41 +1240,137 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ### Combobox
 
-- `ComboboxStateChangeTypes.InputKeyDownArrowDown`
-- `ComboboxStateChangeTypes.InputKeyDownArrowUp`
-- `ComboboxStateChangeTypes.InputKeyDownEscape`
-- `ComboboxStateChangeTypes.InputKeyDownHome`
-- `ComboboxStateChangeTypes.InputKeyDownEnd`
-- `ComboboxStateChangeTypes.InputKeyDownEnter`
-- `ComboboxStateChangeTypes.InputChange`
-- `ComboboxStateChangeTypes.InputBlur`
-- `ComboboxStateChangeTypes.MenuMouseLeave`
-- `ComboboxStateChangeTypes.ItemMouseMove`
-- `ComboboxStateChangeTypes.ItemClick`
-- `ComboboxStateChangeTypes.ToggleButtonClick`
-- `ComboboxStateChangeTypes.FunctionToggleMenu`
-- `ComboboxStateChangeTypes.FunctionOpenMenu`
-- `ComboboxStateChangeTypes.FunctionCloseMenu`
-- `ComboboxStateChangeTypes.FunctionSetHighlightedIndex`
-- `ComboboxStateChangeTypes.FunctionSelectItem`
-- `ComboboxStateChangeTypes.FunctionSetInputValue`
-- `ComboboxStateChangeTypes.FunctionReset`
+<div style={{ overflowX: 'scroll' }}>
+  <ul>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownArrowDown</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownArrowUp</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEscape</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownHome</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEnd</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEnter</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputChange</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputBlur</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.MenuMouseLeave</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.ItemMouseMove</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.ItemClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.ToggleButtonClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionToggleMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionOpenMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionCloseMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        ComboboxStateChangeTypes.FunctionSetHighlightedIndex
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionSelectItem</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionSetInputValue</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionReset</inlineCode>
+    </li>
+  </ul>
+</div>
 
 ### MultiCombobox
 
-- `MultipleSelectionStateChangeTypes.SelectedItemClick`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious`
-- `MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious`
-- `MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace`
-- `MultipleSelectionStateChangeTypes.DropdownClick`
-- `MultipleSelectionStateChangeTypes.FunctionAddSelectedItem`
-- `MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem`
-- `MultipleSelectionStateChangeTypes.FunctionSetSelectedItems`
-- `MultipleSelectionStateChangeTypes.FunctionSetActiveIndex`
-- `MultipleSelectionStateChangeTypes.FunctionReset`
+<div style={{ overflowX: 'scroll' }}>
+  <ul>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemClick
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>MultipleSelectionStateChangeTypes.DropdownClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionAddSelectedItem
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionSetSelectedItems
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionSetActiveIndex
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>MultipleSelectionStateChangeTypes.FunctionReset</inlineCode>
+    </li>
+  </ul>
+</div>
 
 ## Combobox Props
 

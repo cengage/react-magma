@@ -169,11 +169,7 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   const icon = <NotificationsIcon size={10} />;
 
-  return (
-    <IconButton aria-label="Notifications" icon={icon}>
-      Notification with Custom Icon Size
-    </IconButton>
-  );
+  return <IconButton aria-label="Notifications" icon={icon}>With Custom Icon Size</IconButton>;
 }
 ```
 
@@ -322,7 +318,7 @@ export function Example() {
         isFullWidth
         aria-label="Notifications"
       >
-        Full-Width Notifications Button
+        Full-Width Notifications Btn
       </IconButton>
       <br />
       <IconButton
@@ -331,7 +327,7 @@ export function Example() {
         iconPosition={ButtonIconPosition.right}
         aria-label="Notifications"
       >
-        Full-Width Notifications Button
+        Full-Width Notifications Btn
       </IconButton>
       <br />
       <IconButton
