@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.2-next.2
+
+### Patch Changes
+
+- ffa945119: fix(ButtonGroup): Add `flex-wrap: wrap` to ButtonGroup
+
 ## 3.1.2-next.1
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.4-next.5
+
+### Patch Changes
+
+- ffa945119: Update API pages that scroll horizontally on small screens.
+- Updated dependencies [ffa945119]
+  - react-magma-dom@3.1.2-next.2
+
 ## 4.0.4-next.4
 
 ### Patch Changes

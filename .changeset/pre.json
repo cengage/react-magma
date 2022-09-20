@@ -13,9 +13,11 @@
   "changesets": [
     "anchor-color-landing",
     "anchor-color",
+    "buttongroup",
     "docs-props-sidebar",
     "green-coins-taste",
     "homepage-updates",
+    "smallScreens-docs",
     "storybook-package"
   ]
 }
