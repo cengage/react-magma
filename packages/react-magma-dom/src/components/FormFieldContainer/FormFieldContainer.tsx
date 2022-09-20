@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { CharacterCounter } from '../CharacterCounter';
 import { InputIconPosition, InputSize } from '../InputBase';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
@@ -8,7 +9,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
- * Interal use only: Wrapper for all field components
+ * Internal use only: Wrapper for all field components
  * @children required
  */
 export interface FormFieldContainerProps
@@ -37,6 +38,10 @@ export interface FormFieldContainerBaseProps {
    */
   helperMessage?: React.ReactNode;
   /**
+   * Total number of character in an input.
+   */
+  inputTotal?: number;
+  /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
    * @default false
    */
@@ -49,6 +54,8 @@ export interface FormFieldContainerBaseProps {
    * Content for label; can be a node or a string
    */
   labelText?: React.ReactNode;
+
+  maxLength?: number;
   /**
    * Style properties for the helper or error message
    */
@@ -63,6 +70,10 @@ export interface FormFieldContainerBaseProps {
    * @default InputSize.medium
    */
   inputSize?: InputSize;
+  /**
+   * Measures the maxLength property against the amount of characters in an input
+   */
+  numberBoundary?: number;
   /**
    * @internal
    */
@@ -90,11 +101,14 @@ export const FormFieldContainer = React.forwardRef<
     helperMessage,
     iconPosition,
     inputSize,
+    inputTotal,
     isInverse: isInverseProp,
     isLabelVisuallyHidden,
     labelStyle,
     labelText,
+    maxLength,
     messageStyle,
+    numberBoundary,
     testId,
     ...rest
   } = props;
@@ -130,6 +144,15 @@ export const FormFieldContainer = React.forwardRef<
           </Label>
         )}
         {children}
+
+        {maxLength && (
+          <CharacterCounter
+            inputTotal={inputTotal}
+            maxLength={maxLength}
+            numberBoundary={numberBoundary}
+          />
+        )}
+
         {(errorMessage || helperMessage) && (
           <InputMessage
             hasError={!!errorMessage}

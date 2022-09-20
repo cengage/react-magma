@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
@@ -24,6 +25,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       isLabelVisuallyHidden,
       labelStyle,
       labelText,
+      maxLength,
       messageStyle,
       ...other
     } = props;
@@ -33,6 +35,22 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
     const isInverse = useIsInverse(props.isInverse);
+
+    const [charsLeft, setCharsLeft] = useState(0);
+
+    const [characterLength, setCharacterLength] = useState(0);
+
+    function subtractThis(first, second) {
+      setCharsLeft(first - second);
+    }
+
+    function characterCount() {
+      if (characterLength < maxLength) {
+        subtractThis(maxLength, characterLength);
+      } else if (characterLength > maxLength) {
+        subtractThis(characterLength, maxLength);
+      }
+    }
 
     return (
       <FormFieldContainer
@@ -44,9 +62,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
         inputSize={inputSize}
+        inputTotal={characterLength}
         labelStyle={labelStyle}
         labelText={labelText}
+        maxLength={maxLength}
         messageStyle={messageStyle}
+        numberBoundary={charsLeft}
+        onChange={characterCount}
       >
         <InputBase
           {...other}
@@ -59,6 +81,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           id={id}
           inputSize={inputSize}
           isInverse={isInverse}
+          // onChange={
+          //   maxLength ? e => setCharacterLength(e.target.value.length) : null
+          // }
           ref={ref}
         >
           {children}

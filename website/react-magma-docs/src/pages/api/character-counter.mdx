@@ -1,0 +1,68 @@
+---
+pageTitle: Charactercounter API
+title: Charactercounter
+props:
+- CharactercounterProps
+---
+
+<DocsHeading type="api">
+  Charactercounter
+</DocsHeading>
+
+A numeric counter below Input and Textarea reflecting a set limit of characters on input by the user
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Charactercounter } from 'react-magma-dom';
+
+export function Example() {
+return <Charactercounter>Charactercounter content</Charactercounter>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { Charactercounter } from 'react-magma-dom';
+
+export function Example() {
+return <Charactercounter isInverse>Charactercounter content</Charactercounter>;
+}
+```
+
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        example: 'example i18n',
+      }}
+    >
+      <Charactercounter>override default i18n value: </Charactercounter>
+    </I18nContext.Provider>
+  );
+}
+```
+
+# Charactercounter Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<CharactercounterProps />

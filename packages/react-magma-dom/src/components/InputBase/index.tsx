@@ -82,6 +82,10 @@ export interface InputBaseProps
    */
   isPredictive?: boolean;
   /**
+   * Character Counter that uses a maximum number for allowable characters within an Input
+   */
+  maxLength?: number;
+  /**
    * Action that will fire when icon is clicked
    */
   onIconClick?: () => void;
@@ -182,8 +186,7 @@ function getInputPadding(props: InputBaseStylesProps) {
         padding.left = props.theme.spaceScale.spacing10;
       }
     }
-  }
-  else if (inputSize === 'medium') {
+  } else if (inputSize === 'medium') {
     if (isClearable) {
       if (iconPosition === 'right') {
         padding.right = '68px';
@@ -435,6 +438,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       iconRef,
       isClearable,
       isPredictive,
+      maxLength,
       onClear,
       onIconClick,
       onIconKeyDown,

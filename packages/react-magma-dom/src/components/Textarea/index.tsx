@@ -25,6 +25,7 @@ export interface TextareaProps
   /**
    * @internal
    */
+  maxLength?: number;
   testId?: string;
   /**
    * Style properties for the textarea element
@@ -56,6 +57,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       isLabelVisuallyHidden,
       labelStyle,
       labelText,
+      maxLength,
       messageStyle,
       testId,
       textareaStyle,
@@ -94,6 +96,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         isInverse={isInverse}
         labelStyle={labelStyle}
         labelText={labelText}
+        maxLength={maxLength}
       >
         <StyledTextArea
           {...other}
