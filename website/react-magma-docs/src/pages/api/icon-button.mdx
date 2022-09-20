@@ -24,7 +24,12 @@ If no children are included, then they render in the icon-only style.
 
 ```tsx
 import React from 'react';
-import { IconButton, ButtonVariant, ButtonColor, ButtonGroup } from 'react-magma-dom';
+import {
+  IconButton,
+  ButtonVariant,
+  ButtonColor,
+  ButtonGroup,
+} from 'react-magma-dom';
 import {
   AlertIcon,
   CheckIcon,
@@ -157,9 +162,7 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   const icon = <NotificationsIcon size={10} />;
 
-  return (
-    <IconButton icon={icon}>Notification with Custom Icon Size</IconButton>
-  );
+  return <IconButton icon={icon}>With Custom Icon Size</IconButton>;
 }
 ```
 
@@ -170,7 +173,12 @@ The `iconPosition` property takes the values `left` and `right`.
 
 ```tsx
 import React from 'react';
-import { ButtonColor, ButtonIconPosition, IconButton, ButtonGroup } from 'react-magma-dom';
+import {
+  ButtonColor,
+  ButtonIconPosition,
+  IconButton,
+  ButtonGroup,
+} from 'react-magma-dom';
 import { NotificationsIcon, InfoIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -195,7 +203,12 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 
 ```tsx
 import React from 'react';
-import { ButtonIconPosition, ButtonSize, IconButton, ButtonGroup } from 'react-magma-dom';
+import {
+  ButtonIconPosition,
+  ButtonSize,
+  IconButton,
+  ButtonGroup,
+} from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -212,7 +225,7 @@ export function Example() {
           size={ButtonSize.large}
         />
       </ButtonGroup>
-      <br/>
+      <br />
       <ButtonGroup>
         <IconButton
           icon={<NotificationsIcon />}
@@ -283,7 +296,7 @@ export function Example() {
   return (
     <>
       <IconButton icon={<NotificationsIcon />} isFullWidth>
-        Full-Width Notifications Button
+        Full-Width Notifications Btn
       </IconButton>
       <br />
       <IconButton
@@ -291,7 +304,7 @@ export function Example() {
         isFullWidth
         iconPosition={ButtonIconPosition.right}
       >
-        Full-Width Notifications Button
+        Full-Width Notifications Btn
       </IconButton>
       <br />
       <IconButton
@@ -304,9 +317,15 @@ export function Example() {
 ```
 
 ## Inverse
+
 ```tsx
 import React from 'react';
-import { IconButton, ButtonVariant, ButtonColor, ButtonGroup } from 'react-magma-dom';
+import {
+  IconButton,
+  ButtonVariant,
+  ButtonColor,
+  ButtonGroup,
+} from 'react-magma-dom';
 import {
   AlertIcon,
   NotificationsIcon,
