@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.6
+
+### Patch Changes
+
+- ab2d3e189: fix(PageTemplates): Updates to Page Templates examples, removed work in progress label
+
 ## 4.0.4-next.5
 
 ### Patch Changes
