@@ -7,14 +7,6 @@ import { I18nContext, defaultI18n } from '../../i18n';
 const TEXT = 'Test Text';
 
 xdescribe('CharacterCounter', () => {
-  it('should render the visually hidden component', () => {
-    const { container, getByText } = render(
-      <CharacterCounter>{TEXT}</CharacterCounter>
-    );
-
-    expect(getByText(TEXT)).toBeInTheDocument();
-  });
-
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
@@ -35,8 +27,8 @@ xdescribe('CharacterCounter', () => {
   it('Supports i18n', () => {
     const example = 'example i18n';
     const { getByText } = render(
-      <I18nContext.Provider value={{ ...defaultI18n, example }}>
-        <CharacterCounter>override default i18n value: </CharacterCounter>
+      <I18nContext.Provider value={{ ...defaultI18n, characterCounter }}>
+        <CharacterCounter>characterCounter.charactersAllowed</CharacterCounter>
       </I18nContext.Provider>
     );
 

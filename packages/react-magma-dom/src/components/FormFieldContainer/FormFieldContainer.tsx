@@ -38,6 +38,10 @@ export interface FormFieldContainerBaseProps {
    */
   helperMessage?: React.ReactNode;
   /**
+   * Returns a zero.
+   */
+  inputClear?: number;
+  /**
    * Total number of character in an input.
    */
   inputTotal?: number;
@@ -71,17 +75,15 @@ export interface FormFieldContainerBaseProps {
    */
   inputSize?: InputSize;
   /**
-   * Measures the maxLength property against the amount of characters in an input
-   */
-  numberBoundary?: number;
-  /**
    * @internal
    */
   testId?: string;
   isInverse?: boolean;
 }
 
-const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
+const StyledFormFieldContainer = styled.div<{
+  isInverse?: boolean;
+}>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -100,6 +102,7 @@ export const FormFieldContainer = React.forwardRef<
     fieldId,
     helperMessage,
     iconPosition,
+    inputClear,
     inputSize,
     inputTotal,
     isInverse: isInverseProp,
@@ -108,7 +111,6 @@ export const FormFieldContainer = React.forwardRef<
     labelText,
     maxLength,
     messageStyle,
-    numberBoundary,
     testId,
     ...rest
   } = props;
@@ -144,12 +146,12 @@ export const FormFieldContainer = React.forwardRef<
           </Label>
         )}
         {children}
-
         {maxLength && (
           <CharacterCounter
+            inputClear={inputClear}
             inputTotal={inputTotal}
+            isInverse={isInverse}
             maxLength={maxLength}
-            numberBoundary={numberBoundary}
           />
         )}
 

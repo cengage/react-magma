@@ -18,6 +18,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       children,
       containerStyle,
       errorMessage,
+      hasError,
       helperMessage,
       iconPosition,
       id: defaultId,
@@ -36,19 +37,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const [charsLeft, setCharsLeft] = useState(0);
-
     const [characterLength, setCharacterLength] = useState(0);
 
-    function subtractThis(first, second) {
-      setCharsLeft(first - second);
+    function handleChange(e) {
+      if (maxLength) {
+        setCharacterLength(e.target.value.length);
+      }
     }
 
-    function characterCount() {
-      if (characterLength < maxLength) {
-        subtractThis(maxLength, characterLength);
-      } else if (characterLength > maxLength) {
-        subtractThis(characterLength, maxLength);
+    function handleClear() {
+      if (maxLength) {
+        setCharacterLength(null);
       }
     }
 
@@ -61,14 +60,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         iconPosition={iconPosition}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
+        inputClear={characterLength}
         inputSize={inputSize}
         inputTotal={characterLength}
         labelStyle={labelStyle}
         labelText={labelText}
         maxLength={maxLength}
         messageStyle={messageStyle}
-        numberBoundary={charsLeft}
-        onChange={characterCount}
       >
         <InputBase
           {...other}
@@ -76,14 +74,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          hasError={!!errorMessage}
+          hasError={!!errorMessage || characterLength > maxLength}
           iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
           isInverse={isInverse}
-          // onChange={
-          //   maxLength ? e => setCharacterLength(e.target.value.length) : null
-          // }
+          onChange={maxLength ? handleChange : props.onChange}
+          onClear={maxLength ? handleClear : props.onClear}
           ref={ref}
         >
           {children}

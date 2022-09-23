@@ -82,7 +82,7 @@ export interface InputBaseProps
    */
   isPredictive?: boolean;
   /**
-   * Character Counter that uses a maximum number for allowable characters within an Input
+   * A number value which gives Character Counter the maximum length of allowable characters in a Input.
    */
   maxLength?: number;
   /**

@@ -1,17 +1,16 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-
 import { ErrorIcon } from 'react-magma-icons';
 import { FormFieldContainerProps } from '../FormFieldContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { InputSize } from '../InputBase';
-// import { I18nContext } from '../../i18n';
+import { I18nContext } from '../../i18n';
 
 export interface CharacterCounterProps
   extends Omit<FormFieldContainerProps, 'fieldId'>,
     React.HTMLAttributes<HTMLDivElement> {
-  errorStying?: boolean;
+  activeStying?: boolean;
   hasError?: boolean;
   inputSize?: InputSize;
   isInverse?: boolean;
@@ -22,12 +21,25 @@ export interface CharacterCounterProps
   theme?: ThemeInterface;
 }
 
+function buildFontColor(props: CharacterCounterProps) {
+  if (props.isInverse && props.hasError) {
+    return props.theme.colors.danger200;
+  }
+  if (props.hasError) {
+    return props.theme.colors.danger;
+  }
+}
+
 const StyledCharacterCounter = styled.div<CharacterCounterProps>`
   align-items: center;
   border-radius: ${props => props.theme.borderRadius};
-  color: ${props => (props.hasError ? props.theme.colors.danger : 'inherit')};
+  color: ${buildFontColor};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  font-weight: ${props =>
+    props.activeStying
+      ? props.theme.typographyVisualStyles.headingXSmall.fontWeight
+      : ''};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-top: ${props =>
@@ -36,6 +48,8 @@ const StyledCharacterCounter = styled.div<CharacterCounterProps>`
       : props.theme.spaceScale.spacing02};
   text-align: left;
   svg {
+    color: ${props =>
+      props.isInverse ? props.theme.colors.danger200 : 'inherit'};
     margin-right: ${props => props.theme.spaceScale.spacing02};
   }
 `;
@@ -47,57 +61,69 @@ export const CharacterCounter = React.forwardRef<
   const {
     children,
     hasError,
+    inputClear,
     inputTotal,
     maxLength,
-    numberBoundary,
     testId,
-    isInverse: isInverseProp,
+    isInverse,
     ...rest
   } = props;
+
   const theme = React.useContext(ThemeContext);
-  // const i18n = React.useContext(I18nContext);
 
-  function nameSwitches() {
-    if (inputTotal < maxLength) {
-      if (inputTotal === maxLength - 1) {
-        return `${numberBoundary} character left`;
-      } else if (numberBoundary > 1) {
-        return `${numberBoundary} characters left`;
-      }
-    }
+  const i18n = React.useContext(I18nContext);
 
-    if (inputTotal > maxLength) {
-      if (inputTotal === maxLength + 1) {
-        return `${numberBoundary} character over limit`;
-      }
-      return `${numberBoundary} characters over limit`;
-    }
-
-    if (inputTotal == maxLength) {
-      return `0 characters left`;
-    }
-
-    if (inputTotal === 0) {
-      return `${maxLength} characters allowed`;
-    }
-    if (maxLength === 1) {
-      return `${maxLength} character allowed`;
-    }
-  }
+  const activeStyling = inputTotal < maxLength || inputTotal == maxLength;
 
   const errorStyling = inputTotal > maxLength;
 
+  const characterCountDown = maxLength - inputTotal;
+
+  const characterCountUp = inputTotal - maxLength;
+
+  function characterTitleCount() {
+    if (inputTotal < maxLength) {
+      if (inputTotal === maxLength - 1) {
+        return `${characterCountDown} ${i18n.characterCounter.characterLeft}`;
+      } else if (characterCountDown > 1) {
+        return `${characterCountDown} ${i18n.characterCounter.charactersLeft}`;
+      }
+    }
+    if (inputTotal > maxLength) {
+      if (inputTotal === maxLength + 1) {
+        return `${characterCountUp} ${i18n.characterCounter.characterOver}`;
+      }
+      return `${characterCountUp} ${i18n.characterCounter.charactersOver}`;
+    }
+    if (inputTotal === maxLength) {
+      return `0 ${i18n.characterCounter.charactersLeft}`;
+    }
+  }
+
+  function characterTitle() {
+    if (inputClear > 0) {
+      return characterTitleCount();
+    } else {
+      if (maxLength === 1) {
+        return `${maxLength} ${i18n.characterCounter.characterAllowed}`;
+      }
+      return `${maxLength} ${i18n.characterCounter.charactersAllowed}`;
+    }
+  }
+
   return (
     <StyledCharacterCounter
+      aria-live="polite"
       data-testid={props.testId}
+      activeStying={!inputClear ? null : activeStyling}
       hasError={errorStyling}
+      isInverse={isInverse}
       ref={ref}
       theme={theme}
       {...rest}
     >
-      {console.log(inputTotal)}
       {errorStyling && <ErrorIcon size={theme.iconSizes.small} />}
-      {nameSwitches()}
+      {characterTitle()}
     </StyledCharacterCounter>
   );
 });
