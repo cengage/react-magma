@@ -102,6 +102,10 @@ export interface InputBaseProps
    * @default InputType.text
    */
   type?: InputType;
+  /**
+   * Boolean for whether this is a Password Input or not
+   */
+  isPasswordInput?: boolean;
 }
 
 export interface InputWrapperStylesProps {
@@ -182,8 +186,7 @@ function getInputPadding(props: InputBaseStylesProps) {
         padding.left = props.theme.spaceScale.spacing10;
       }
     }
-  }
-  else if (inputSize === 'medium') {
+  } else if (inputSize === 'medium') {
     if (isClearable) {
       if (iconPosition === 'right') {
         padding.right = '68px';
@@ -380,6 +383,14 @@ const PasswordButtonContainer = styled.span<{
 `;
 
 function getClearablePosition(props) {
+  if (props.hasChildren) {
+    if (props.iconPosition === 'right') {
+      if (props.inputSize === 'large') {
+        return '92px';
+      }
+      return props.theme.spaceScale.spacing12;
+    }
+  }
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
       return '88px';
@@ -398,6 +409,7 @@ const IsClearableContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   onIconClick?: () => void;
+  hasChildren?: boolean;
 }>`
   background-color: transparent;
   margin: 0;
@@ -434,6 +446,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       iconAriaLabel,
       iconRef,
       isClearable,
+      isPasswordInput,
       isPredictive,
       onClear,
       onIconClick,
@@ -539,6 +552,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             inputSize={inputSize}
             onIconClick={onIconClick}
             icon={icon}
+            hasChildren={!!children && !isPasswordInput}
           >
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
@@ -560,7 +574,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             />
           </IsClearableContainer>
         )}
-        {onIconClick ? (
+        {onIconClick && (
           <IconButtonContainer
             iconPosition={iconPosition}
             inputSize={
@@ -586,7 +600,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               variant={ButtonVariant.link}
             />
           </IconButtonContainer>
-        ) : (
+        )}
+        {isPasswordInput ? (
           <PasswordButtonContainer
             size={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
@@ -595,6 +610,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           >
             {children}
           </PasswordButtonContainer>
+        ) : (
+          <IconButtonContainer
+            iconPosition={iconPosition}
+            inputSize={inputSize ? inputSize : InputSize.medium}
+            theme={theme}
+          >
+            {children}
+          </IconButtonContainer>
         )}
       </InputContainer>
     );

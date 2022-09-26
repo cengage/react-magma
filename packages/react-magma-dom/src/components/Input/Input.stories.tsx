@@ -4,6 +4,9 @@ import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<InputProps> = args => (
   <Input {...args} labelText="Example" />
@@ -142,3 +145,49 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const WithChildren = args => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+  return (
+    <>
+      <Input
+        labelText="Help link - top"
+        iconPosition={InputIconPosition.top}
+        {...args}
+      >
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+      <Input
+        labelText="Help link - right"
+        iconPosition={InputIconPosition.right}
+        {...args}
+      >
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+    </>
+  );
+};
+WithChildren.parameters = {
+  controls: { exclude: ['iconPosition', 'isInverse'] },
+};
