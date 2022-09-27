@@ -24,6 +24,9 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
    * @internal
    */
   customTransition?: MotionVariants<'enter' | 'exit'>;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Should children fade in/out

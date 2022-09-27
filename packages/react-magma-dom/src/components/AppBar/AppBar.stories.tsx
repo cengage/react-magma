@@ -34,7 +34,7 @@ Default.args = {
 
 const TabsTemplate: Story<AppBarProps> = args => (
   <AppBar {...args}>
-    <strong
+    <div
       style={{
         alignItems: 'center',
         display: 'flex',
@@ -43,8 +43,8 @@ const TabsTemplate: Story<AppBarProps> = args => (
     >
       <ImageIcon size={args.isCompact ? 24 : 40} />
       <Spacer size={magma.spaceScale.spacing03} />
-      LOGO
-    </strong>
+      <strong>LOGO</strong>
+    </div>
     <Spacer size={magma.spaceScale.spacing12} />
     <Search onSearch={() => {}} placeholder="Search for content..." />
     <Spacer size={magma.spaceScale.spacing06} />

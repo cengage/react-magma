@@ -5,6 +5,7 @@ import { magma } from 'react-magma-dom';
 const StyledFooter = styled.footer`
   padding: ${magma.spaceScale.spacing07} 0;
   text-align: center;
+  background: ${magma.colors.neutral100};
 `;
 
 export const NetlifyFooter = () => (

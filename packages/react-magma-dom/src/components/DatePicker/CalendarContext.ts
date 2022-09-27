@@ -7,6 +7,7 @@ export interface CalendarContextInterface {
   maxDate?: Date;
   minDate?: Date;
   helperInformationShown?: boolean;
+  isInverse?: boolean;
   buildCalendarMonth: (date: Date, enableOutsideDates?: boolean) => Date[][];
   showHelperInformation: () => void;
   hideHelperInformation: () => void;

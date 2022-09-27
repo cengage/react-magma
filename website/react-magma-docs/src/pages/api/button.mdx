@@ -13,6 +13,8 @@ props:
 
 Buttons are clickable items used to perform an action. See the <Link to="/design/button/">Button Design Guidelines</Link> for more information on when to use the different kinds of buttons.
 
+When using multiple buttons, they should be wrapped in a <Link to="/api/button-group">ButtonGroup</Link>.
+
 When used with icons, the Button component takes a slightly different set of props. For information on how to use this component with icons, please see documentation on <Link to="/api/icon-button">Icon Buttons</Link>.
 
 ## Sizes
@@ -21,97 +23,75 @@ Sizes for buttons include `small`, `medium`, and `large`, with `medium` being th
 
 ```tsx
 import React from 'react';
-import { Button, ButtonSize } from 'react-magma-dom';
+import { Button, ButtonSize, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Button size={ButtonSize.small}>Small</Button>
       <Button>Default</Button>
       <Button size={ButtonSize.large}>Large</Button>
-    </>
+    </ButtonGroup>
   );
 }
 ```
 
 ## Colors
 
-Colors for buttons include `primary`, `secondary`, `success`, `danger`, and `marketing` with `primary` being the default value.
+Colors for buttons include `primary`, `secondary`, `danger`, and `marketing` with `primary` being the default value.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor } from 'react-magma-dom';
+import { Button, ButtonColor, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Button color={ButtonColor.primary}>Primary (default)</Button>
       <Button color={ButtonColor.secondary}>Secondary</Button>
-      <Button color={ButtonColor.success}>Success</Button>
       <Button color={ButtonColor.danger}>Danger</Button>
       <Button color={ButtonColor.marketing}>Marketing</Button>
-    </>
+    </ButtonGroup>
   );
 }
 ```
 
 ## Variants
 
-Variants for buttons include `solid`, `outline`, and `link`, with `solid` being the default value.
+Variants for buttons include `solid` and `link`, with `solid` being the default value.
 
-The `marketing` buttons do not have `outline` and `link` variants, and will render as solid buttons.
+The `marketing` buttons can only use the `solid` variant.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor, ButtonVariant } from 'react-magma-dom';
+import { Button, ButtonColor, ButtonVariant, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
-      <p>
+      <ButtonGroup>
         <Button color={ButtonColor.primary} variant={ButtonVariant.solid}>
           Solid (default)
-        </Button>
-        <Button color={ButtonColor.primary} variant={ButtonVariant.outline}>
-          Outline
         </Button>
         <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
           Link
         </Button>
-      </p>
-      <p>
+      </ButtonGroup>
+      <br/>
+      <ButtonGroup>
         <Button color={ButtonColor.secondary} variant={ButtonVariant.solid}>
           Solid (default)
         </Button>
-        <Button color={ButtonColor.secondary} variant={ButtonVariant.outline}>
-          Outline
-        </Button>
-        <Button color={ButtonColor.secondary} variant={ButtonVariant.link}>
-          Link
-        </Button>
-      </p>
-      <p>
-        <Button color={ButtonColor.success} variant={ButtonVariant.solid}>
-          Solid (default)
-        </Button>
-        <Button color={ButtonColor.success} variant={ButtonVariant.outline}>
-          Outline
-        </Button>
-        <Button color={ButtonColor.success} variant={ButtonVariant.link}>
-          Link
-        </Button>
-      </p>
-      <p>
+      </ButtonGroup>
+      <br/>
+      <ButtonGroup>
         <Button color={ButtonColor.danger} variant={ButtonVariant.solid}>
           Solid (default)
-        </Button>
-        <Button color={ButtonColor.danger} variant={ButtonVariant.outline}>
-          Outline
         </Button>
         <Button color={ButtonColor.danger} variant={ButtonVariant.link}>
           Link
         </Button>
-      </p>
+      </ButtonGroup>
     </>
   );
 }
@@ -123,11 +103,11 @@ Shapes for buttons include `fill`, `leftCap`, and `rightCap`, with `fill` being 
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor, ButtonShape } from 'react-magma-dom';
+import { Button, ButtonColor, ButtonShape, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Button color={ButtonColor.primary}>Fill (default)</Button>
       <Button color={ButtonColor.primary} shape={ButtonShape.leftCap}>
         Left Cap
@@ -135,7 +115,7 @@ export function Example() {
       <Button color={ButtonColor.primary} shape={ButtonShape.rightCap}>
         Right Cap
       </Button>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -146,14 +126,14 @@ When a button is in a loading state, the label can be replaced with a loading sp
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
+    <ButtonGroup>
       <Button isLoading>Save</Button>
       <Button isLoading={false}>Save</Button>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -163,7 +143,7 @@ export function Example() {
 The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
 The default value is `false`.
 
-While `outline isInverse buttons` and `link isInverse buttons` still accept the `color` property, the `color` property
+While `link isInverse buttons` still accepts the `color` property, the `color` property
 online affects `solid isInverse buttons`.
 
 The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
@@ -174,6 +154,7 @@ import {
   Button,
   ButtonColor,
   ButtonVariant,
+  ButtonGroup,
   Card,
   CardBody,
 } from 'react-magma-dom';
@@ -182,12 +163,9 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <p>
+        <ButtonGroup>
           <Button isInverse>Solid inverse</Button>
           <Button color={ButtonColor.secondary} isInverse>
-            Solid inverse
-          </Button>
-          <Button color={ButtonColor.success} isInverse>
             Solid inverse
           </Button>
           <Button color={ButtonColor.danger} isInverse>
@@ -196,26 +174,20 @@ export function Example() {
           <Button color={ButtonColor.marketing} isInverse>
             Marketing inverse
           </Button>
-        </p>
-        <p>
-          <Button variant={ButtonVariant.outline} isInverse>
-            Outline inverse
-          </Button>
+        </ButtonGroup>
+        <ButtonGroup>
           <Button variant={ButtonVariant.link} isInverse>
             Link inverse
           </Button>
-        </p>
-        <p>
+        </ButtonGroup>
+        <ButtonGroup>
           <Button disabled isInverse>
             Disabled inverse
-          </Button>
-          <Button disabled isInverse variant={ButtonVariant.outline}>
-            Disabled outline inverse
           </Button>
           <Button disabled isInverse variant={ButtonVariant.link}>
             Disabled link inverse
           </Button>
-        </p>
+        </ButtonGroup>
       </CardBody>
     </Card>
   );
@@ -229,19 +201,19 @@ This sets the CSS `text-transform` property.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonTextTransform } from 'react-magma-dom';
+import { Button, ButtonTextTransform, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
-      <Button>All caps</Button>
+    <ButtonGroup>
+      <Button>All caps (default)</Button>
       <Button textTransform={ButtonTextTransform.none}>
         No Text Transform
       </Button>
       <Button textTransform={ButtonTextTransform.uppercase}>
         Uppercase transform
       </Button>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -258,6 +230,7 @@ export function Example() {
   return (
     <>
       <Button isFullWidth>Full Width button</Button>
+      <br />
       <Button isFullWidth color={ButtonColor.secondary}>
         Full Width button
       </Button>
@@ -270,19 +243,19 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Button, ButtonVariant } from 'react-magma-dom';
+import { Button, ButtonVariant, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
-      <Button disabled>Disabled</Button>
-      <Button disabled variant={ButtonVariant.outline}>
-        Disabled
+    <ButtonGroup>
+      <Button disabled>Disabled (default)</Button>
+      <Button disabled variant={ButtonVariant.solid}>
+        Disabled Solid
       </Button>
       <Button disabled variant={ButtonVariant.link}>
-        Disabled
+        Disabled Link
       </Button>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -294,7 +267,7 @@ By default, buttons will have a type of `button`.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonType, Input } from 'react-magma-dom';
+import { Button, ButtonType, ButtonGroup, Input, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const inputRef = React.useRef<HTMLInputElement>();
@@ -312,8 +285,11 @@ export function Example() {
   return (
     <form onSubmit={onFormSubmit} onReset={onFormReset}>
       <Input ref={inputRef} labelText="Form Field" value="" />
-      <Button type={ButtonType.submit}>Submit</Button>
-      <Button type={ButtonType.reset}>Reset</Button>
+      <Spacer size="12" />
+      <ButtonGroup>
+        <Button type={ButtonType.submit}>Submit</Button>
+        <Button type={ButtonType.reset}>Reset</Button>
+      </ButtonGroup>
     </form>
   );
 }
@@ -326,7 +302,7 @@ Events do not fire on disabled buttons.
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const [counter, setCounter] = React.useState<number>(0);
@@ -340,11 +316,12 @@ export function Example() {
       <p>
         <strong>Counter: </strong> <span id="counter">{counter}</span>
       </p>
-      <Button onClick={handleUpdateCounter}>Click me</Button>
-
-      <Button disabled onClick={handleUpdateCounter}>
-        Click me
-      </Button>
+      <ButtonGroup>
+        <Button onClick={handleUpdateCounter}>Click me</Button>
+        <Button disabled onClick={handleUpdateCounter}>
+          Click me
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -356,7 +333,7 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const buttonRef = React.useRef<HTMLButtonElement>();
@@ -366,11 +343,10 @@ export function Example() {
   }
 
   return (
-    <>
+    <ButtonGroup>
       <Button ref={buttonRef}>Button to be focused</Button>
-
       <Button onClick={handleButtonFocus}>Click to focus other button</Button>
-    </>
+    </ButtonGroup>
   );
 }
 ```
@@ -379,8 +355,8 @@ export function Example() {
 
 Passing in the `testId` prop will add the `data-testid` attribute to the button element for easier querying in tests.
 
-```html
-<button data-testid="test-id">Default</button>
+```html noCodeSandbox
+<Button testId="test-id">Default</Button>
 ```
 
 ## Button Props

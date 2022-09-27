@@ -8,7 +8,7 @@
 
 *:focus {
   outline: 2px solid #0074B7;
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
 html {
@@ -23,7 +23,7 @@ body {
 
 body {
   background: #fff;
-  color: #3f3f3f;
+  color: #454545;
   font-family: 'Work Sans', Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -32,14 +32,14 @@ body {
 }
 
 a {
-  color: #006298;
+  color: #3942B0;
   cursor: pointer;
   text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-  color: #003865;
+  color: #5D65CB;
 }
 
 h1,
@@ -59,7 +59,7 @@ h3:focus,
 h4:focus,
 h5:focus,
 h6:focus {
-  border-bottom: 2px solid #027ee1;
+  border-bottom: 2px solid #0074B7;
   outline: 0;
 }
 
@@ -110,8 +110,8 @@ li {
 }
 
 header {
-  background: #003865;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.37);
+  background: #fff;
+  border-bottom: 1px solid #D4D4D4;
   color: #fff;
   grid-area: masthead;
   padding: 0 20px;
@@ -128,10 +128,15 @@ header {
   display: inline-flex;
   height: 80px;
   justify-content: flex-start;
+  margin-right: 24px;
+}
+
+.header-inner svg {
+  margin-right: 20px;
 }
 
 header h1 {
-  color: #fff;
+  color: #454545;
   margin: 0;
 }
 
@@ -169,7 +174,7 @@ header h1 {
 .box {
   padding: 20px;
   width: 45%;
-  border: 1px solid #dfdfdf;
+  border: 1px solid #D4D4D4;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   display: flex;
@@ -192,9 +197,9 @@ header h1 {
 
 .btn {
   align-items: center;
-  background: #006298;
+  background: #3942B0;
   border: 0;
-  border-color: #006298;
+  border-color: #3942B0;
   border-radius: 4px;
   color: #fff;
   display: inline-flex;
@@ -218,7 +223,7 @@ header h1 {
 
 .btn:hover,
 .btn:focus {
-  background: #004165;
+  background: #292F7C;
   color: #fff;
 }
 

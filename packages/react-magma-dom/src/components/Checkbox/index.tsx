@@ -32,7 +32,7 @@ export interface CheckboxProps
   checked?: boolean;
   /**
    * Hex code for the background color
-   * @default #3942B0
+   * @default #3942B0 (theme.colors.primary)
    */
   color?: string;
   /**
@@ -74,6 +74,13 @@ export interface CheckboxProps
    * Content of label; can be node or string
    */
   labelText: React.ReactNode;
+  /**
+   * Action that fires when selected value of the checkbox changes
+   */
+   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Whether the label appears to the left of the right of the checkbox

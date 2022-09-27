@@ -31,9 +31,9 @@ function getStyles(theme, isInverse: boolean) {
     html,
     body {
       background: ${isInverse
-        ? theme.colors.foundation
-        : theme.colors.neutral08};
-      color: ${isInverse ? theme.colors.neutral08 : theme.colors.neutral};
+        ? theme.colors.primary600
+        : theme.colors.neutral100};
+      color: ${isInverse ? theme.colors.neutral100 : theme.colors.neutral};
       margin: 0;
       padding: 0;
     }
@@ -47,13 +47,18 @@ function getStyles(theme, isInverse: boolean) {
     }
 
     a {
-      color: ${isInverse ? theme.colors.neutral07 : theme.colors.primary};
+      color: ${isInverse ? theme.colors.tertiary : theme.colors.primary};
       cursor: pointer;
       text-decoration: underline;
 
       &:hover,
       &:focus {
-        color: ${isInverse ? theme.colors.neutral06 : theme.colors.focus};
+        color: ${isInverse ? theme.colors.primary100 : theme.colors.primary400};
+      }
+      &:focus {
+        outline: 2px solid
+          ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
+        outline-offset: 2px;
       }
     }
 

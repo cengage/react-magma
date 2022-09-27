@@ -97,13 +97,10 @@ import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
 export function Example() {
-  const [
-    highlightedIndexChangeCount,
-    updateHighlightedIndexChangeCount,
-  ] = React.useState<number>(0);
-  const [isOpenChangeCount, updateIsOpenChangeCount] = React.useState<number>(
-    0
-  );
+  const [highlightedIndexChangeCount, updateHighlightedIndexChangeCount] =
+    React.useState<number>(0);
+  const [isOpenChangeCount, updateIsOpenChangeCount] =
+    React.useState<number>(0);
   const [selectedItem, updateSelectedItem] = React.useState(undefined);
 
   function onHighlightedIndexChange(changes) {
@@ -418,68 +415,6 @@ export function Example() {
 }
 ```
 
-## Inverse
-
-The isInverse prop is an optional boolean, that used when the component is to be displayed on a dark background.
-
-```tsx
-import React from 'react';
-import { Card, CardBody, Combobox } from 'react-magma-dom';
-
-export function Example() {
-  const [selectedItem, updateSelectedItem] = React.useState('');
-
-  function onSelectedItemChange(changes) {
-    updateSelectedItem(changes.selectedItem);
-  }
-
-  const [selectedItems, updateSelectedItems] = React.useState([]);
-
-  function handleSelectedItemsChange(changes) {
-    updateSelectedItems(changes.selectedItems);
-  }
-
-  function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
-  }
-
-  return (
-    <Card isInverse>
-      <CardBody>
-        <Combobox
-          id="comboboxInverseId"
-          isInverse
-          labelText="Combobox"
-          defaultItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-        />
-
-        <Combobox
-          errorMessage="Please correct this error"
-          isMulti
-          id="comboboxMultiInverseId"
-          isInverse
-          labelText="Multi combobox"
-          defaultItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-          initialSelectedItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-        />
-      </CardBody>
-    </Card>
-  );
-}
-```
-
 ## Accessibility
 
 The `getA11yStatusMessage` prop is a passed in function that allows for customization of the screen-reader accessible message whenever the following props
@@ -746,6 +681,8 @@ export function Example() {
 
 ## Inverse
 
+The isInverse prop is an optional boolean used when the component is to be displayed on a dark background.
+
 ```tsx
 import React from 'react';
 import { Card, CardBody, Combobox } from 'react-magma-dom';
@@ -918,9 +855,8 @@ import React from 'react';
 import { Combobox } from 'react-magma-dom';
 
 export function Example() {
-  const [controlledSelectedItem, updateControlledSelectedItem] = React.useState(
-    ''
-  );
+  const [controlledSelectedItem, updateControlledSelectedItem] =
+    React.useState('');
   const [controlledItems, updateControlledItems] = React.useState([
     { id: 0, name: 'red', representation: 'Red', hex: '#FF0000' },
     { id: 1, name: 'blue', representation: 'Blue', hex: '#0000FF' },
@@ -1082,7 +1018,7 @@ import { Combobox } from 'react-magma-dom';
 export function Example() {
   const CustomStyledItem = styled.li(props => ({
     alignSelf: 'center',
-    background: props.isFocused ? props.theme.colors.neutral07 : 'transparent',
+    background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
     lineHeight: '24px',
     margin: '0',
     padding: '8px 16px',
@@ -1105,7 +1041,7 @@ export function Example() {
 
   const Description = styled.div(props => ({
     fontSize: '12px',
-    color: props.theme.colors.neutral02,
+    color: props.theme.colors.neutral500,
   }));
 
   function itemToString(item) {
@@ -1286,7 +1222,7 @@ The `type` property in the `changes` object that is returned from the `onStateCh
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `combobox` or a
 `multi-combobox` are listed below.
 
-<Alert variant="info">
+<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
@@ -1304,41 +1240,137 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ### Combobox
 
-- `ComboboxStateChangeTypes.InputKeyDownArrowDown`
-- `ComboboxStateChangeTypes.InputKeyDownArrowUp`
-- `ComboboxStateChangeTypes.InputKeyDownEscape`
-- `ComboboxStateChangeTypes.InputKeyDownHome`
-- `ComboboxStateChangeTypes.InputKeyDownEnd`
-- `ComboboxStateChangeTypes.InputKeyDownEnter`
-- `ComboboxStateChangeTypes.InputChange`
-- `ComboboxStateChangeTypes.InputBlur`
-- `ComboboxStateChangeTypes.MenuMouseLeave`
-- `ComboboxStateChangeTypes.ItemMouseMove`
-- `ComboboxStateChangeTypes.ItemClick`
-- `ComboboxStateChangeTypes.ToggleButtonClick`
-- `ComboboxStateChangeTypes.FunctionToggleMenu`
-- `ComboboxStateChangeTypes.FunctionOpenMenu`
-- `ComboboxStateChangeTypes.FunctionCloseMenu`
-- `ComboboxStateChangeTypes.FunctionSetHighlightedIndex`
-- `ComboboxStateChangeTypes.FunctionSelectItem`
-- `ComboboxStateChangeTypes.FunctionSetInputValue`
-- `ComboboxStateChangeTypes.FunctionReset`
+<div style={{ overflowX: 'scroll' }}>
+  <ul>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownArrowDown</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownArrowUp</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEscape</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownHome</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEnd</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEnter</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputChange</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.InputBlur</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.MenuMouseLeave</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.ItemMouseMove</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.ItemClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.ToggleButtonClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionToggleMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionOpenMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionCloseMenu</inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        ComboboxStateChangeTypes.FunctionSetHighlightedIndex
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionSelectItem</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionSetInputValue</inlineCode>
+    </li>
+    <li>
+      <inlineCode>ComboboxStateChangeTypes.FunctionReset</inlineCode>
+    </li>
+  </ul>
+</div>
 
 ### MultiCombobox
 
-- `MultipleSelectionStateChangeTypes.SelectedItemClick`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext`
-- `MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious`
-- `MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious`
-- `MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace`
-- `MultipleSelectionStateChangeTypes.DropdownClick`
-- `MultipleSelectionStateChangeTypes.FunctionAddSelectedItem`
-- `MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem`
-- `MultipleSelectionStateChangeTypes.FunctionSetSelectedItems`
-- `MultipleSelectionStateChangeTypes.FunctionSetActiveIndex`
-- `MultipleSelectionStateChangeTypes.FunctionReset`
+<div style={{ overflowX: 'scroll' }}>
+  <ul>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemClick
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>MultipleSelectionStateChangeTypes.DropdownClick</inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionAddSelectedItem
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionSetSelectedItems
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>
+        MultipleSelectionStateChangeTypes.FunctionSetActiveIndex
+      </inlineCode>
+    </li>
+    <li>
+      <inlineCode>MultipleSelectionStateChangeTypes.FunctionReset</inlineCode>
+    </li>
+  </ul>
+</div>
 
 ## Combobox Props
 

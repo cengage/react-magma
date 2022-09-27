@@ -38,8 +38,12 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;
   /**
    * Position the tooltip appears in relation to its trigger
+   * @default TooltipPosition.top
    */
   position?: TooltipPosition;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Style properties for the inner tooltip content
@@ -134,7 +138,7 @@ export const StyledTooltip = styled.div<{
   }
 `;
 
-// Using any for the ref because it is put ont he passed in children which does not have a specific type
+// Using any for the ref because it is put on the passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(props.open);
   const [referenceElement, setReferenceElement] =
@@ -212,6 +216,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   });
 
   const combinedTooltipStyles = {
+    zIndex: theme.tooltip.zIndex,
     ...styles.popper,
     ...tooltipStyle,
   };

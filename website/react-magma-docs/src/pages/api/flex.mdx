@@ -17,7 +17,7 @@ Item widths are set in percentages, so they’re always fluid and sized relative
 
 ```tsx
 import React from 'react';
-import { Flex, FlexProps, FlexBehavior, Card, CardBody } from 'react-magma-dom';
+import { Flex, FlexBehavior, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -68,7 +68,7 @@ To specify a different layout for different screen sizes, you can use any of the
 
 ```tsx
 import React from 'react';
-import { Flex, FlexProps, FlexBehavior, Card } from 'react-magma-dom';
+import { Card, CardBody, Flex, FlexBehavior } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -119,23 +119,23 @@ The `spacing` prop can be used to determine the amount of space between flex ite
 
 ```tsx
 import React from 'react';
-import { Flex, FlexProps, FlexBehavior, Card, CardBody } from 'react-magma-dom';
+import { Flex, FlexBehavior, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
   return (
     <Flex behavior={FlexBehavior.container} spacing={4}>
       <Flex behavior={FlexBehavior.item} xs={4}>
-        <Card width={200}>
+        <Card>
           <CardBody>Content</CardBody>
         </Card>
       </Flex>
       <Flex behavior={FlexBehavior.item} xs={4}>
-        <Card width={200}>
+        <Card>
           <CardBody>Content</CardBody>
         </Card>
       </Flex>
       <Flex behavior={FlexBehavior.item} xs={4}>
-        <Card width={200}>
+        <Card>
           <CardBody>Content</CardBody>
         </Card>
       </Flex>
@@ -200,7 +200,7 @@ By using `FlexBehavior.both`, a `Flex` component can behave as both an container
 
 ```tsx
 import React from 'react';
-import { Flex, FlexProps, FlexBehavior, Card, CardBody } from 'react-magma-dom';
+import { Flex, FlexBehavior, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -268,15 +268,13 @@ The `alignItems`, `alignContent`, `justify`, `direction` and `wrap` props can be
 ```tsx
 import React from 'react';
 import {
+  Card,
+  CardBody,
   Flex,
-  FlexProps,
-  FlexAlignContent,
   FlexAlignItems,
   FlexBehavior,
-  FlexDirection,
   FlexJustify,
   FlexWrap,
-  magma,
 } from 'react-magma-dom';
 
 export function Example() {

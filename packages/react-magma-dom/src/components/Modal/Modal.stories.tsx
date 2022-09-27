@@ -6,6 +6,8 @@ import { Toggle } from '../Toggle';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+import { Container } from '../Container';
 
 const info = {
   component: Modal,
@@ -16,20 +18,25 @@ export default info;
 
 export const Default = () => {
   const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   return (
     <>
       <Modal
         header="Modal Title"
-        onClose={() => setShowModal(false)}
+        onClose={() => {
+          setShowModal(false);
+          buttonRef.current.focus();
+        }}
         isOpen={showModal}
       >
         <p>This is a modal, doing modal things.</p>
-        <p>
-          <Button>This is a button</Button>
-        </p>
+        <ButtonGroup alignment={ButtonGroupAlignment.right}>
+          <Button color={ButtonColor.secondary}>Cancel</Button>
+          <Button>Save</Button>
+        </ButtonGroup>
       </Modal>
-      <Button onClick={() => setShowModal(true)}>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
         Show Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
@@ -39,6 +46,7 @@ export const Default = () => {
 
 export const LongContentWithScrolling = () => {
   const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -46,6 +54,7 @@ export const LongContentWithScrolling = () => {
 
   const onModalClose = () => {
     setShowModal(false);
+    buttonRef.current.focus();
   };
 
   return (
@@ -91,13 +100,14 @@ export const LongContentWithScrolling = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Modal>
-      <Button onClick={onModalShow}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
     </>
   );
 };
 
 export const RadioInModal = () => {
   const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -105,6 +115,7 @@ export const RadioInModal = () => {
 
   const onModalClose = () => {
     setShowModal(false);
+    buttonRef.current.focus();
   };
 
   return (
@@ -116,7 +127,7 @@ export const RadioInModal = () => {
           <Radio labelText="Option two label" value="2" />
         </RadioGroup>
       </Modal>
-      <Button onClick={onModalShow}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
     </>
   );
 };
@@ -126,6 +137,7 @@ export const ModalContentUpdate = () => {
   const [page, setPage] = React.useState(1);
   const [showHidden, setShowHidden] = React.useState(false);
   const [goToNextPageEnabled, setGoToNextPageEnabled] = React.useState(true);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -133,6 +145,7 @@ export const ModalContentUpdate = () => {
 
   const onModalClose = () => {
     setShowModal(false);
+    buttonRef.current.focus();
   };
 
   const goToPage1 = () => {
@@ -193,13 +206,14 @@ export const ModalContentUpdate = () => {
           )}
         </div>
       </Modal>
-      <Button onClick={onModalShow}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
     </>
   );
 };
 
 export const NoHeaderOrFocusableContent = () => {
   const [showModalNoFocus, setShowModalNoFocus] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   const onModalNoFocusShow = () => {
     setShowModalNoFocus(true);
@@ -207,6 +221,7 @@ export const NoHeaderOrFocusableContent = () => {
 
   const onModalNoFocusClose = () => {
     setShowModalNoFocus(false);
+    buttonRef.current.focus();
   };
 
   return (
@@ -223,46 +238,8 @@ export const NoHeaderOrFocusableContent = () => {
           this this. A modal should have something actionable inside it.
         </p>
       </Modal>
-      <Button onClick={onModalNoFocusShow}>
+      <Button onClick={onModalNoFocusShow} ref={buttonRef}>
         Show Modal with nothing focusable
-      </Button>
-    </>
-  );
-};
-
-export const OnCloseBehavior = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const [showButton, setShowButton] = React.useState(true);
-  const buttonRef = React.useRef();
-
-  const onModalShow = () => {
-    setShowModal(true);
-    setShowButton(false);
-  };
-
-  const onModalClose = () => {
-    setShowModal(false);
-    setShowButton(true);
-  };
-
-  const onButtonShow = () => {
-    setShowButton(true);
-  };
-
-  return (
-    <>
-      <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal}>
-        <p>This is a modal, doing modal things.</p>
-      </Modal>
-      {showButton && (
-        <Button onClick={onModalShow}>Show Modal and Hide Button</Button>
-      )}
-      <Button
-        color={ButtonColor.secondary}
-        ref={buttonRef}
-        onClick={onButtonShow}
-      >
-        Reset
       </Button>
     </>
   );
@@ -271,12 +248,16 @@ export const OnCloseBehavior = () => {
 export const ModalInAModal = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   return (
     <>
       <Modal
         header="Modal Title"
-        onClose={() => setShowModal(false)}
+        onClose={() => {
+          setShowModal(false);
+          buttonRef.current.focus();
+        }}
         isOpen={showModal}
       >
         <p>This is a modal, doing modal things.</p>
@@ -292,7 +273,9 @@ export const ModalInAModal = () => {
         <div>
           <DatePicker labelText="Pick a date" />
         </div>
-        <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+        <p>
+          <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+        </p>
 
         <Modal
           size={ModalSize.small}
@@ -303,7 +286,37 @@ export const ModalInAModal = () => {
           <p>This is modal 2</p>
         </Modal>
       </Modal>
-      <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>Show Modal</Button>
+    </>
+  );
+};
+
+export const Inverse = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        onClose={() => {
+          setShowModal(false);
+          buttonRef.current.focus();
+        }}
+        isOpen={showModal}
+        isInverse
+      >
+        <p>This is an inverse modal, doing modal things.</p>
+        <p>
+          <Button isInverse>This is a button</Button>
+        </p>
+      </Modal>
+      <Container isInverse style={{ padding: '12px' }}>
+        <Button onClick={() => setShowModal(true)} ref={buttonRef} isInverse>
+          Show Modal
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+      </Container>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { magma } from '../../theme/magma';
 import { Pagination, PageButtonSize } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { PaginationProps } from './Pagination';
@@ -63,7 +62,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

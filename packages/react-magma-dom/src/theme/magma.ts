@@ -14,7 +14,7 @@ export interface Colors {
   secondary500: string;
   secondary600: string;
   secondary700: string;
-  
+
   tertiary: string;
   tertiary500: string;
   tertiary600: string;
@@ -67,45 +67,9 @@ export interface Colors {
   success600: string;
   success700: string;
 
-  // Legacy Colors - To be deleted after rebranding
-  // primary: string;
-  primaryInverse: string;
   focus: string;
   focusInverse: string;
-  foundation: string;
-  foundation02: string;
-  foundation03: string;
-  foundation04: string;
-  pop: string;
-  pop02: string;
-  pop03: string;
-  pop04: string;
-  pop05: string;
-  pop06: string;
-  // success: string;
-  success02: string;
-  successInverse: string;
-  // danger: string;
-  dangerInverse: string;
-  // neutral: string;
-  neutral02: string;
-  neutral03: string;
-  neutral04: string;
-  neutral05: string;
-  neutral06: string;
-  neutral07: string;
-  neutral08: string;
-  disabledText: string;
-  disabledInverseText: string;
-  toggleBoxShadow: string;
-  shade: string;
-  shade02: string;
-  tint: string;
-  tint02: string;
-  tint03: string;
-  tint04: string;
-  tone: string;
-  tone02: string;
+  
   border: string;
   borderInverse: string;
 }
@@ -144,12 +108,13 @@ export interface SpacingScale {
 }
 
 export interface TypographyExpressiveSizes {
+  heading2XLarge: any;
   headingXLarge: any;
   headingLarge: any;
   headingMedium: any;
   headingSmall: any;
   headingXSmall: any;
-  headingXXSmall: any;
+  heading2XSmall: any;
   bodyLarge: any;
   bodyMedium: any;
   bodySmall: any;
@@ -176,6 +141,8 @@ export interface TypeScale {
   size11: TypeScaleSize;
   size12: TypeScaleSize;
   size13: TypeScaleSize;
+  size14: TypeScaleSize;
+  size15: TypeScaleSize;
 }
 
 export interface VisualStyle {
@@ -185,6 +152,20 @@ export interface VisualStyle {
 }
 
 export interface TypographyVisualStyles {
+  headingXLarge: VisualStyle;
+  headingLarge: VisualStyle;
+  headingMedium: VisualStyle;
+  headingSmall: VisualStyle;
+  headingXSmall: VisualStyle;
+  heading2XSmall: VisualStyle;
+  bodyLarge: VisualStyle;
+  bodyMedium: VisualStyle;
+  bodySmall: VisualStyle;
+  bodyXSmall: VisualStyle;
+}
+
+export interface TypographyVisualStylesExpressive {
+  heading2XLarge: VisualStyle;
   headingXLarge: VisualStyle;
   headingLarge: VisualStyle;
   headingMedium: VisualStyle;
@@ -317,7 +298,7 @@ export interface ThemeInterface {
   select: Select;
   typeScale: TypeScale;
   typographyVisualStyles: TypographyVisualStyles;
-  typographyExpressiveVisualStyles: TypographyVisualStyles;
+  typographyExpressiveVisualStyles: TypographyVisualStylesExpressive;
   typographyNarrativeVisualStyles: TypographyVisualStyles;
   modal: Modal;
   tabs: Tabs;
@@ -338,6 +319,7 @@ const typeScale = {
   },
   size03: {
     fontSize: '16px',
+    letterSpacing: '.32px',
     lineHeight: '24px',
   },
   size04: {
@@ -373,13 +355,21 @@ const typeScale = {
     lineHeight: '56px',
   },
   size12: {
+    fontSize: '52px',
+    lineHeight: '68px',
+  },
+  size13: {
     fontSize: '54px',
     lineHeight: '64px',
   },
-  size13: {
+  size14: {
     fontSize: '60px',
     lineHeight: '72px',
   },
+  size15: {
+    fontSize: '72px',
+    lineHeight: '84px',
+  }
 };
 
 const primaryColors = {
@@ -427,7 +417,7 @@ const infoColors = {
 };
 
 const dangerColors = {
-  danger100: '#FCEBEA',
+  danger100: '#FDEFEE',
   danger200: '#FAAEB0',
   danger300: '#E8716D',
   danger400: '#E24943',
@@ -473,49 +463,11 @@ const colors = {
   ...dangerColors,
   ...warningColors,
   ...successColors,
-  
+
   focus: infoColors.info500,
   focusInverse: infoColors.info200,
-  
-  // Legacy Colors - To be deleted after rebranding
-  // primary: '#006298', // link color blue
-  primaryInverse: '#70CDFF', // link color inverse blue
-  foundation: '#00263E',
-  foundation02: '#003865',
-  foundation03: '#00A9E0',
-  foundation04: '#71C5E8',
-  pop: '#E0004D',
-  pop02: '#FC4C02',
-  pop03: '#F2A900',
-  pop04: '#FFC72C',
-  pop05: '#92278F',
-  pop06: '#007A6D',
-  // success: '#3A8200',
-  success02: '#48A200',
-  successInverse: '#91CF60',
-  // danger: '#C61D23',
-  dangerInverse: '#F59295',
-  // neutral: '#3F3F3F', // main dark grey text color
-  neutral02: '#575757',
-  neutral03: '#707070',
-  neutral04: '#8f8f8f', // lightest gray that meets 3:1 contrast ratio
-  neutral05: '#BFBFBF',
-  neutral06: '#DFDFDF',
-  neutral07: '#F7F7F7',
-  neutral08: '#FFFFFF', // white
-  disabledText: 'rgba(114,114,114,0.6)',
-  disabledInverseText: 'rgba(255,255,255,0.25)',
-  toggleBoxShadow:
-    '0 2px 2px -1px rgba(0, 0, 0, 0.3), 0 0 4px 0 rgba(0, 0, 0, 0.24),0 0 5px 0 rgba(0, 0, 0, 0.22)',
-  shade: 'rgba(0,0,0,0.05)',
-  shade02: 'rgba(0,0,0,0.3)',
-  tint: 'rgba(255,255,255,0.05)',
-  tint02: 'rgba(255,255,255,0.1)',
-  tint03: 'rgba(255,255,255,0.1)',
-  tint04: 'rgba(255,255,255,0.4)',
-  tone: 'rgba(63,63,63,0.07)',
-  tone02: 'rgba(63,63,63,0.1)',
-  border: '#DFDFDF',
+
+  border: neutralColors.neutral300,
   borderInverse: 'rgba(255,255,255,0.25)',
 };
 
@@ -570,7 +522,7 @@ export const magma = {
 
   // Typography
   typeScale: typeScale,
-  typographyVisualStyles: {
+  typographyVisualStyles: { // Productive
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
@@ -619,30 +571,35 @@ export const magma = {
     },
   },
   typographyExpressiveVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size08,
-      desktop: typeScale.size11,
+    heading2XLarge: {
+      mobile: typeScale.size13, 
+      desktop: typeScale.size15,
       fontWeight: 600,
+    },
+    headingXLarge: {
+      mobile: typeScale.size10,
+      desktop: typeScale.size12,
+      fontWeight: 400,
     },
     headingLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingMedium: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingSmall: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 700,
+      fontWeight: 300,
     },
     heading2XSmall: {
       mobile: typeScale.size03,
@@ -716,7 +673,7 @@ export const magma = {
   },
 
   appBar: {
-    backgroundColor: colors.neutral08,
+    backgroundColor: colors.neutral100,
     height: '88px',
     padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
     textColor: colors.neutral,
@@ -725,8 +682,8 @@ export const magma = {
       padding: `${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing06}`,
     },
     inverse: {
-      backgroundColor: colors.foundation02,
-      textColor: colors.neutral08,
+      backgroundColor: colors.primary600,
+      textColor: colors.neutral100,
     },
   },
 

@@ -38,6 +38,9 @@ export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default 0
    */
   percentage?: number;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -75,7 +78,9 @@ const Container = styled.div<{ isLoadingIndicator?: boolean }>`
 
 const Track = styled.div<ProgressBarProps>`
   background: ${props =>
-    props.isInverse ? transparentize(0.75, props.theme.colors.neutral900) : props.theme.colors.neutral100};
+    props.isInverse
+      ? transparentize(0.75, props.theme.colors.neutral900)
+      : props.theme.colors.neutral100};
   box-shadow: inset 0 0 0 1px
     ${props =>
       props.isInverse

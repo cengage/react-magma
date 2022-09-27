@@ -1,5 +1,23 @@
 # Change Log
 
+## 1.1.1-next.0
+
+### Patch Changes
+
+- 754c389ba: Update anchor stylings.
+
+## 1.1.0
+
+### Minor Changes
+
+- 41c9d8b17: update react magma logo and colors
+
+## 1.1.0-next.0
+
+### Minor Changes
+
+- 41c9d8b17: update react magma logo and colors
+
 ## 1.0.10
 
 ### Patch Changes

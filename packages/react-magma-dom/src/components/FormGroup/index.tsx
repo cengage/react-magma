@@ -41,6 +41,9 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    * Content of label for form group; can be a node or a string. Alternatively, the labelledById prop can be used
    */
   labelText?: React.ReactNode;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 

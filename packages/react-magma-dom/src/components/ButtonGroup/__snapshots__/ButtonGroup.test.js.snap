@@ -1,0 +1,3356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup Horizontal No Space Removes the border radius around the buttons 1`] = `
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-12 > button:first-child,
+.emotion-12 > div:first-child {
+  margin-left: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div:last-child {
+  margin-right: 0;
+}
+
+.emotion-12 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-12 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > button:first-child:not(:only-child) {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > button:nth-child(2) {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button:not(:first-child) {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button:not(:first-child).emotion-12 > button:not(:last-child) {
+  border-right: 0;
+}
+
+.emotion-12 > button:last-child:not(:only-child) {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-12 > button:first-child,
+.emotion-12 > div:first-child {
+  margin-left: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div:last-child {
+  margin-right: 0;
+}
+
+.emotion-12 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-12 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > button:first-child:not(:only-child) {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-12 > button:nth-child(2) {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button:not(:first-child) {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 > button:not(:first-child).emotion-12 > button:not(:last-child) {
+  border-right: 0;
+}
+
+.emotion-12 > button:last-child:not(:only-child) {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+<div>
+  <div
+    class="emotion-12"
+    color="primary"
+    data-testid="test-id"
+    orientation="horizontal"
+  >
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-1"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        1
+      </span>
+    </button>
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-2"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        2
+      </span>
+    </button>
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-3"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        3
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around the buttons 1`] = `
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+}
+
+.emotion-12 > button:first-child,
+.emotion-12 > div:first-child {
+  margin-top: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-12 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+}
+
+.emotion-12 > button:first-child,
+.emotion-12 > div:first-child {
+  margin-top: 0;
+}
+
+.emotion-12 > button:last-child,
+.emotion-12 > div:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-12 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-12 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+<div>
+  <div
+    class="emotion-12"
+    color="primary"
+    data-testid="test-id"
+    orientation="vertical"
+  >
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-4"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        1
+      </span>
+    </button>
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-5"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        2
+      </span>
+    </button>
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-6"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        3
+      </span>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] = `
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-22 > button:first-child,
+.emotion-22 > div:first-child {
+  margin-left: 0;
+}
+
+.emotion-22 > button:last-child,
+.emotion-22 > div:last-child {
+  margin-right: 0;
+}
+
+.emotion-22 > div {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-22 > button {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-7 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 8px;
+}
+
+.emotion-7:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-7:not(:disabled):hover,
+.emotion-7:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-7:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-7 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-4 {
+  padding-right: 8px;
+}
+
+.emotion-11 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  left: 4px;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  position: absolute;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.emotion-10 {
+  padding: 4px 0;
+}
+
+.emotion-9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-9:hover,
+.emotion-9:focus {
+  background: #F5F5F5;
+}
+
+.emotion-9:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-9:active {
+  outline-color: #0074B7;
+}
+
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-22 > button:first-child,
+.emotion-22 > div:first-child {
+  margin-left: 0;
+}
+
+.emotion-22 > button:last-child,
+.emotion-22 > div:last-child {
+  margin-right: 0;
+}
+
+.emotion-22 > div {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-22 > button {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-7 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 8px;
+}
+
+.emotion-7:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-7:not(:disabled):hover,
+.emotion-7:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-7:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-7 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-4 {
+  padding-right: 8px;
+}
+
+.emotion-11 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  left: 4px;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  position: absolute;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.emotion-10 {
+  padding: 4px 0;
+}
+
+.emotion-9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-9:hover,
+.emotion-9:focus {
+  background: #F5F5F5;
+}
+
+.emotion-9:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-9:active {
+  outline-color: #0074B7;
+}
+
+<div>
+  <div
+    class="emotion-22"
+    color="primary"
+    orientation="horizontal"
+  >
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        1
+      </span>
+    </button>
+    <div
+      class="emotion-12"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="emotion-7 emotion-3"
+        color="primary"
+        id="2"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-0 emotion-1"
+        >
+          <span
+            class="emotion-4"
+          >
+            Dropdown 2
+          </span>
+          <svg
+            class="icon"
+            data-testid="caretDown"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="emotion-11"
+        data-testid="dropdownContent"
+        tabindex="-1"
+        width="auto"
+      >
+        <div
+          aria-labelledby="2"
+          class="emotion-10"
+          role="menu"
+        >
+          <div
+            class="emotion-9"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Menu item 2.1
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-12"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="emotion-7 emotion-3"
+        color="primary"
+        id="3"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-0 emotion-1"
+        >
+          <span
+            class="emotion-4"
+          >
+            Dropdown 3
+          </span>
+          <svg
+            class="icon"
+            data-testid="caretDown"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="emotion-11"
+        data-testid="dropdownContent"
+        tabindex="-1"
+        width="auto"
+      >
+        <div
+          aria-labelledby="3"
+          class="emotion-10"
+          role="menu"
+        >
+          <div
+            class="emotion-9"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Menu item 3.1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+  -webkit-justify-content: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.emotion-22 > button:first-child,
+.emotion-22 > div:first-child {
+  margin-top: 0;
+}
+
+.emotion-22 > button:last-child,
+.emotion-22 > div:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-22 > div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > div button {
+  width: 100%;
+}
+
+.emotion-22 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-22 > button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-7 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 8px;
+}
+
+.emotion-7:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-7:not(:disabled):hover,
+.emotion-7:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-7:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-7 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-4 {
+  padding-right: 8px;
+}
+
+.emotion-11 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  left: 4px;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  position: absolute;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.emotion-10 {
+  padding: 4px 0;
+}
+
+.emotion-9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-9:hover,
+.emotion-9:focus {
+  background: #F5F5F5;
+}
+
+.emotion-9:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-9:active {
+  outline-color: #0074B7;
+}
+
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+  -webkit-justify-content: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.emotion-22 > button:first-child,
+.emotion-22 > div:first-child {
+  margin-top: 0;
+}
+
+.emotion-22 > button:last-child,
+.emotion-22 > div:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-22 > div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > div button {
+  width: 100%;
+}
+
+.emotion-22 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-22 > button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-12 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-7 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 8px;
+}
+
+.emotion-7:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-7:not(:disabled):hover,
+.emotion-7:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-7:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-7 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-4 {
+  padding-right: 8px;
+}
+
+.emotion-11 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  left: 4px;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  position: absolute;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.emotion-10 {
+  padding: 4px 0;
+}
+
+.emotion-9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-9:hover,
+.emotion-9:focus {
+  background: #F5F5F5;
+}
+
+.emotion-9:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-9:active {
+  outline-color: #0074B7;
+}
+
+<div>
+  <div
+    class="emotion-22"
+    color="primary"
+    orientation="vertical"
+  >
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        1
+      </span>
+    </button>
+    <div
+      class="emotion-12"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="emotion-7 emotion-3"
+        color="primary"
+        id="2"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-0 emotion-1"
+        >
+          <span
+            class="emotion-4"
+          >
+            Dropdown 2
+          </span>
+          <svg
+            class="icon"
+            data-testid="caretDown"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="emotion-11"
+        data-testid="dropdownContent"
+        tabindex="-1"
+        width="auto"
+      >
+        <div
+          aria-labelledby="2"
+          class="emotion-10"
+          role="menu"
+        >
+          <div
+            class="emotion-9"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Menu item 2.1
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-12"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="emotion-7 emotion-3"
+        color="primary"
+        id="3"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-0 emotion-1"
+        >
+          <span
+            class="emotion-4"
+          >
+            Dropdown 3
+          </span>
+          <svg
+            class="icon"
+            data-testid="caretDown"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="emotion-11"
+        data-testid="dropdownContent"
+        tabindex="-1"
+        width="auto"
+      >
+        <div
+          aria-labelledby="3"
+          class="emotion-10"
+          role="menu"
+        >
+          <div
+            class="emotion-9"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Menu item 3.1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-22 > button:first-child,
+.emotion-22 > div:first-child {
+  margin-left: 0;
+}
+
+.emotion-22 > button:last-child,
+.emotion-22 > div:last-child {
+  margin-right: 0;
+}
+
+.emotion-22 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-22 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-22 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-22 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-22 > div:not(:first-child).emotion-22 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-22 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-22 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > button:first-child:not(:only-child) {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-22 > button:nth-child(2) {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-22 > button:not(:first-child) {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-22 > button:not(:first-child).emotion-22 > button:not(:last-child) {
+  border-right: 0;
+}
+
+.emotion-22 > button:last-child:not(:only-child) {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-7 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 8px;
+}
+
+.emotion-7:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-7:not(:disabled):hover,
+.emotion-7:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-7:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-7 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-4 {
+  padding-right: 8px;
+}
+
+.emotion-11 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  left: 4px;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  position: absolute;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.emotion-10 {
+  padding: 4px 0;
+}
+
+.emotion-9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-9:hover,
+.emotion-9:focus {
+  background: #F5F5F5;
+}
+
+.emotion-9:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-9:active {
+  outline-color: #0074B7;
+}
+
+.emotion-2 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-2:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-2:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-2:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-2 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-0 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-22 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-22 > button:first-child,
+.emotion-22 > div:first-child {
+  margin-left: 0;
+}
+
+.emotion-22 > button:last-child,
+.emotion-22 > div:last-child {
+  margin-right: 0;
+}
+
+.emotion-22 > div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-22 > div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-22 > div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-22 > div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-22 > div:not(:first-child).emotion-22 > div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-22 > div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-22 > button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-22 > button:first-child:not(:only-child) {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-22 > button:nth-child(2) {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-22 > button:not(:first-child) {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-22 > button:not(:first-child).emotion-22 > button:not(:last-child) {
+  border-right: 0;
+}
+
+.emotion-22 > button:last-child:not(:only-child) {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-12 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-7 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 8px;
+}
+
+.emotion-7:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+}
+
+.emotion-7:not(:disabled):hover,
+.emotion-7:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):after {
+  background: #FFFFFF;
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
+  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
+  transition: opacity 1s,transform 0.5s;
+  width: 28px;
+}
+
+.emotion-7:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-7:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-7 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-4 {
+  padding-right: 8px;
+}
+
+.emotion-11 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  left: 4px;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  position: absolute;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.emotion-10 {
+  padding: 4px 0;
+}
+
+.emotion-9 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-9:hover,
+.emotion-9:focus {
+  background: #F5F5F5;
+}
+
+.emotion-9:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-9:active {
+  outline-color: #0074B7;
+}
+
+<div>
+  <div
+    class="emotion-22"
+    color="primary"
+    orientation="horizontal"
+  >
+    <button
+      class="emotion-2 emotion-3"
+      color="primary"
+      shape="fill"
+      type="button"
+    >
+      <span
+        class="emotion-0 emotion-1"
+      >
+        1
+      </span>
+    </button>
+    <div
+      class="emotion-12"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="emotion-7 emotion-3"
+        color="primary"
+        id="2"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-0 emotion-1"
+        >
+          <span
+            class="emotion-4"
+          >
+            Dropdown 2
+          </span>
+          <svg
+            class="icon"
+            data-testid="caretDown"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="emotion-11"
+        data-testid="dropdownContent"
+        tabindex="-1"
+        width="auto"
+      >
+        <div
+          aria-labelledby="2"
+          class="emotion-10"
+          role="menu"
+        >
+          <div
+            class="emotion-9"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Menu item 2.1
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="emotion-12"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="true"
+        class="emotion-7 emotion-3"
+        color="primary"
+        id="3"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-0 emotion-1"
+        >
+          <span
+            class="emotion-4"
+          >
+            Dropdown 3
+          </span>
+          <svg
+            class="icon"
+            data-testid="caretDown"
+            fill="currentColor"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </span>
+      </button>
+      <div
+        class="emotion-11"
+        data-testid="dropdownContent"
+        tabindex="-1"
+        width="auto"
+      >
+        <div
+          aria-labelledby="3"
+          class="emotion-10"
+          role="menu"
+        >
+          <div
+            class="emotion-9"
+            role="menuitem"
+            tabindex="-1"
+          >
+            Menu item 3.1
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

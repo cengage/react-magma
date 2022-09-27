@@ -10,6 +10,7 @@ import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { magma } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 import { act, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -217,17 +218,17 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should render a split dropdown with no margin on outline variants', () => {
+  it('should render a split dropdown with no margin on solid variants', () => {
     const { getByLabelText } = render(
       <Dropdown>
-        <DropdownSplitButton variant="outline">Toggle me</DropdownSplitButton>
+        <DropdownSplitButton variant="solid">Toggle me</DropdownSplitButton>
         <DropdownContent />
       </Dropdown>
     );
 
     expect(getByLabelText('Toggle menu')).toHaveAttribute(
       'style',
-      'margin-left: 0px;'
+      'margin-left: 2px;'
     );
   });
 
@@ -334,7 +335,6 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
     expect(onOpen).toHaveBeenCalled();
-
   });
 
   it('should close the menu when menu is blurred', () => {
@@ -419,60 +419,6 @@ describe('Dropdown', () => {
     });
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-  });
-
-  it('should call the onBeforeShiftFocus prop when closing the dropdown', () => {
-    jest.useFakeTimers();
-    const onBeforeShiftFocus = jest.fn();
-    const { getByText, getByTestId } = render(
-      <Dropdown testId="dropdown" onBeforeShiftFocus={onBeforeShiftFocus}>
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    );
-
-    fireEvent.click(getByText('Toggle me'));
-
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'Escape',
-      code: 27,
-    });
-
-    expect(onBeforeShiftFocus).toHaveBeenCalled();
-
-    act(jest.runAllTimers);
-
-    jest.useRealTimers();
-  });
-
-  it('should not focus the toggle button if preventMagmaFocus is on the event from the onBeforeShiftFocus prop', () => {
-    const { getByTestId, getByText } = render(
-      <Dropdown
-        onBeforeShiftFocus={event => event.preventMagmaFocus()}
-        testId="dropdown"
-      >
-        <DropdownButton testId="toggleButton">Toggle me</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    );
-
-    const toggleButton = getByTestId('toggleButton');
-
-    fireEvent.click(toggleButton);
-
-    getByText(/menu item 1/i).focus();
-
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'Escape',
-      code: 27,
-    });
-
-    expect(document.activeElement).not.toEqual(toggleButton);
   });
 
   it('go to the first or next item when the down arrow key is pressed', () => {
@@ -594,7 +540,10 @@ describe('Dropdown', () => {
     fireEvent.click(getByText(text));
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
-    expect(getByText(text)).toHaveStyleRule('color', magma.colors.disabledText);
+    expect(getByText(text)).toHaveStyleRule(
+      'color',
+      transparentize(0.4, magma.colors.neutral500)
+    );
   });
 
   it('should render a dropdown header', () => {

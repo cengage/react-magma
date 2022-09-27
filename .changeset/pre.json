@@ -2,27 +2,23 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "0.0.4",
-    "@react-magma/dropzone": "0.1.5",
-    "react-magma-dom": "2.5.11",
-    "@react-magma/schema-renderer": "0.0.12",
-    "@cengage-patterns/header": "2.0.12",
-    "react-magma-docs": "2.2.13",
-    "react-magma-landing": "1.0.10"
+    "@react-magma/charts": "1.0.1",
+    "@react-magma/dropzone": "1.0.2",
+    "react-magma-dom": "3.1.1",
+    "@react-magma/schema-renderer": "1.0.2",
+    "@cengage-patterns/header": "3.0.2",
+    "react-magma-docs": "4.0.3",
+    "react-magma-landing": "1.1.0"
   },
   "changesets": [
-    "cuddly-jokes-guess",
-    "rebrand-accordion",
-    "rebrand-badge",
-    "rebrand-breadcrumbs",
-    "rebrand-cards",
-    "rebrand-colors",
-    "rebrand-focus",
-    "rebrand-inputs",
-    "rebrand-processBar",
-    "rebrand-table",
-    "rebrand-toggle",
-    "rebrand-tooltips",
-    "rebrand-type"
+    "anchor-color-landing",
+    "anchor-color",
+    "buttongroup",
+    "docs-props-sidebar",
+    "green-coins-taste",
+    "homepage-updates",
+    "sharp-pants-repair",
+    "smallScreens-docs",
+    "storybook-package"
   ]
 }

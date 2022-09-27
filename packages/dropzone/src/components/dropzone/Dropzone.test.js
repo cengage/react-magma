@@ -8,7 +8,7 @@ import {
   fireEvent,
   waitFor,
 } from '@testing-library/react';
-import { I18nContext, defaultI18n } from 'react-magma-dom';
+import { I18nContext, defaultI18n, magma } from 'react-magma-dom';
 import userEvent from '@testing-library/user-event';
 
 const TEXT = 'Test Text';
@@ -135,12 +135,14 @@ describe('File Uploader', () => {
     const { getByTestId, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
-    expect(dropzone).toHaveStyle('border: 2px dashed #bfbfbf');
+    expect(dropzone).toHaveStyle(
+      `border: 1px dashed ${magma.colors.neutral400}`
+    );
 
     fireDragEnter(dropzone, data);
     await flushPromises(rerender, ui);
 
-    expect(dropzone).toHaveStyle('border: 2px dashed #178037');
+    expect(dropzone).toHaveStyle(`border: 1px dashed ${magma.colors.success}`);
   });
 
   it('border color changes for rejection', async () => {
@@ -150,12 +152,14 @@ describe('File Uploader', () => {
     const { getByTestId, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
-    expect(dropzone).toHaveStyle('border: 2px dashed #bfbfbf');
+    expect(dropzone).toHaveStyle(
+      `border: 1px dashed ${magma.colors.neutral400}`
+    );
 
     fireDragEnter(dropzone, data);
     await flushPromises(rerender, ui);
 
-    expect(dropzone).toHaveStyle('border: 2px dashed #D32821');
+    expect(dropzone).toHaveStyle(`border: 1px dashed ${magma.colors.danger}`);
   });
 
   it('calls onSendFiles for a single file added via the input', async () => {

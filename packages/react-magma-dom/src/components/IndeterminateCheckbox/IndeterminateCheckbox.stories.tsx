@@ -15,18 +15,27 @@ export default {
 
 export const Default = () => {
   return (
-    <FormGroup>
+    <FormGroup labelText="Indeterminate Checkbox Examples">
       <IndeterminateCheckbox
         color={magma.colors.primary}
         defaultChecked={true}
         status={IndeterminateCheckboxStatus.indeterminate}
         labelText="Indeterminate checkbox"
+        id="0"
       />
       <IndeterminateCheckbox
         disabled
         defaultChecked={true}
         status={IndeterminateCheckboxStatus.indeterminate}
         labelText="Disabled indeterminate checkbox"
+        id="1"
+      />
+      <IndeterminateCheckbox
+        defaultChecked={true}
+        status={IndeterminateCheckboxStatus.indeterminate}
+        labelText="Error indeterminate checkbox"
+        id="2"
+        errorMessage="Error"
       />
     </FormGroup>
   );
@@ -36,17 +45,29 @@ export const Inverse = () => {
   return (
     <Card isInverse>
       <CardBody>
-        <FormGroup>
+        <FormGroup
+          labelText="Inverse Indeterminate Checkbox Examples"
+          isInverse
+        >
           <IndeterminateCheckbox
             isInverse
             labelText="Indeterminate checkbox inverse"
             status={IndeterminateCheckboxStatus.indeterminate}
+            id="3"
           />
           <IndeterminateCheckbox
             disabled
             isInverse
             labelText="Disabled indeterminate checkbox inverse"
             status={IndeterminateCheckboxStatus.indeterminate}
+            id="4"
+          />
+          <IndeterminateCheckbox
+            isInverse
+            labelText="Error indeterminate checkbox"
+            status={IndeterminateCheckboxStatus.indeterminate}
+            id="5"
+            errorMessage="Error"
           />
         </FormGroup>
       </CardBody>
@@ -86,6 +107,7 @@ export const Behavior = () => {
         onChange={handleUpdateIndeterminateChecked}
         status={status}
         labelText="Colors"
+        id="5"
       />
       <div style={{ marginLeft: magma.spaceScale.spacing08 }}>
         <Checkbox

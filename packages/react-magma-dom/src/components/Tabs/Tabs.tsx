@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { TabsContainerContext } from './TabsContainer';
 import isPropValid from '@emotion/is-prop-valid';
-import { Omit, getNormalizedScrollLeft } from '../../utils';
+import { omit, Omit, getNormalizedScrollLeft } from '../../utils';
 import { useDescendants } from '../../hooks/useDescendants';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -63,6 +63,7 @@ export interface TabsProps
   backgroundColor?: string;
   /**
    * The orientation of icon on Tab
+   * @default TabsIconPosition.left
    */
   iconPosition?: TabsIconPosition;
   /**
@@ -74,7 +75,13 @@ export interface TabsProps
    * The onChange handler for managing state of Tabs component by your custom logic.
    */
   onChange?: (newActiveIndex: number) => void;
+  /**
+   * @default TabsOrientation.horizontal
+   */
   orientation?: TabsOrientation;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -115,11 +122,7 @@ export const StyledContainer = styled('div', {
   theme: ThemeInterface;
 }>`
   background-color: ${props =>
-    props.backgroundColor
-      ? props.backgroundColor
-      : props.isInverse
-      ? props.theme.colors.foundation
-      : 'transparent'};
+    props.backgroundColor ? props.backgroundColor : 'transparent'};
   background: backgroundColor;
   display: flex;
   height: ${props => (props.orientation === 'vertical' ? '100%' : 'auto')};
@@ -395,6 +398,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         : i18n.tabs.horizontalTabsInstructions
     }`;
 
+    const other = omit(['aria-label'], rest);
+
     return (
       <StyledContainer
         data-testid={testId}
@@ -403,7 +408,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         orientation={orientation || TabsOrientation.horizontal}
         ref={ref}
         theme={theme}
-        {...rest}
+        {...other}
       >
         <ButtonPrev
           backgroundColor={background}

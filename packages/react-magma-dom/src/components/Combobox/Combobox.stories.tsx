@@ -5,7 +5,6 @@ import { SelectOptions } from '../Select';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { magma } from '../../theme/magma';
 
 const Template: Story<ComboboxProps<SelectOptions>> = args => (
   <Combobox {...args} />
@@ -41,7 +40,11 @@ Default.args = {
 };
 
 export const Multi = (props: MultiComboboxProps<SelectOptions>) => (
-  <Combobox isMulti {...props} />
+  <Combobox isMulti labelText="Multi Example" defaultItems={[
+    { label: 'Red', value: 'red' },
+    { label: 'Blue', value: 'blue' },
+    { label: 'Green', value: 'green' },
+  ]} />
 );
 
 export const ErrorMessage = Template.bind({});
@@ -60,10 +63,11 @@ export const Inverse = Template.bind({});
 Inverse.args = {
   ...Default.args,
   isInverse: true,
+  disabled: false,
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.neutral} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>
@@ -84,7 +88,7 @@ LeftAlignedLabelWithContainer.args = {
 };
 LeftAlignedLabelWithContainer.decorators = [
   Story => (
-    <Card background={magma.colors.neutral07}>
+    <Card>
       <CardBody style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Story />
       </CardBody>

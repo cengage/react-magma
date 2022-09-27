@@ -80,7 +80,7 @@ describe('Input', () => {
 
     expect(getByText(labelText)).toHaveStyleRule(
       'color',
-      magma.colors.neutral08
+      magma.colors.neutral100
     );
   });
 
@@ -90,7 +90,7 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral03);
+    expect(helperMessage).toHaveStyleRule('color', magma.colors.neutral);
   });
 
   it('should render an inverse input with a correctly styled helper message', () => {
@@ -131,7 +131,7 @@ describe('Input', () => {
     const input = getByLabelText(labelText).parentElement;
     const errorMessage = getByTestId('inputMessage');
 
-    expect(input).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(input).toHaveStyleRule('border-color', magma.colors.danger200);
 
     expect(errorMessage).toHaveStyleRule('color', magma.colors.danger200);
   });

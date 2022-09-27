@@ -3,7 +3,7 @@ title: Page Templates
 order: 2
 ---
 
-# Page Templates (work in progress)
+# Page Templates
 
 Get started on your project more quickly with these ready-made page templates.
 
@@ -15,56 +15,117 @@ This template is ideal for applications that need as much of the screen as possi
   <img src="../../images/layout/template-full-width.png" alt=" " />
 </figure>
 
-```noRender
+```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { magma, useMediaQuery } from 'react-magma-dom';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'header header'
-    'content content';
-  gap: 2px;
-`;
-
-const StyledHeader = styled(Header)`
-  grid-area: header;
-`;
-
-const Content = styled.div`
-  grid-area: content;
-  max-width: 1600px;
-  width: calc(100% - 48px);
-  justify-self:center;
-  background:${magma.colors.neutral06};
-  padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 122px);
-`;
-
-const Sidebar = () => (
-  <StyledSidebar>Sidebar</StyledSidebar>
-);
+import {
+  Drawer,
+  DrawerPosition,
+  Grid,
+  GridAlignContent,
+  GridItem,
+  GridJustifyContent,
+  magma,
+  useMediaQuery,
+} from 'react-magma-dom';
 
 export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
 
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
   );
 
   return (
+    <Grid
+      gridJustifyContent={GridJustifyContent.center}
+      gridTemplateColumns={'repeat(4, 1fr)'}
+      gridTemplateRows={'0.2fr 1.5fr 1.2fr 0.8fr'}
+      gridGap="0.5em"
+    >
+      <GridItem gridColumn="1 / 5">
+        <Header
+          isInverse
+          logo={<strong>LOGO</strong>}
+          breakpoint={magma.breakpoints.large}
+          isCompact={isSmallerScreen}
+          onMenuButtonClick={() => setShowDrawer(true)}
+        />
+      </GridItem>
 
-      <Container>
+      <Drawer
+        onClose={() => setShowDrawer(false)}
+        isOpen={showDrawer}
+        position={DrawerPosition.left}
+      >
+        Content
+      </Drawer>
 
-        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} />
-
-        <Content>Content</Content>
-
-      </Container>
-
+      <GridItem
+        gridColumn="1 / 5"
+        style={{
+          backgroundColor: magma.colors.primary500,
+          color: magma.colors.neutral100,
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: 'calc(100% - 48px)',
+          margin: '0 auto',
+        }}
+      >
+        Main
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '1 / 3'}
+        style={{
+          backgroundColor: magma.colors.primary100,
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 0 0 25px',
+        }}
+      >
+        Content
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '3 / 4'}
+        style={{
+          backgroundColor: magma.colors.primary300,
+          color: magma.colors.neutral100,
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0',
+        }}
+      >
+        Content
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '4 /5'}
+        style={{
+          backgroundColor: magma.colors.primary400,
+          color: magma.colors.neutral100,
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 25px 0 0',
+        }}
+      >
+        Content
+      </GridItem>
+      <GridItem
+        gridColumn="1 / 5"
+        style={{
+          backgroundColor: magma.colors.primary600,
+          color: magma.colors.neutral100,
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: 'calc(100% - 48px)',
+          margin: '0 auto',
+        }}
+      >
+        Footer
+      </GridItem>
+    </Grid>
   );
 }
 ```
@@ -79,56 +140,97 @@ This template is great for pages that focus more on reading content like marketi
   <img src="../../images/layout/template-restricted-width.png" alt=" " />
 </figure>
 
-```noRender
+```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { Drawer, DrawerPosition, magma, useMediaQuery } from 'react-magma-dom';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'header header'
-    'content content';
-  gap: 2px;
-`;
-
-const StyledHeader = styled(Header)`
-  grid-area: header;
-`;
-
-const Content = styled.div`
-  grid-area: content;
-  max-width: 1152px;
-  width: calc(100% - 48px);
-  justify-self:center;
-  background:${magma.colors.neutral06};
-  padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 122px);
-`;
-
-const Sidebar = () => (
-  <StyledSidebar>Sidebar</StyledSidebar>
-);
+import {
+  Drawer,
+  DrawerPosition,
+  Grid,
+  GridItem,
+  magma,
+  useMediaQuery,
+} from 'react-magma-dom';
 
 export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
 
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
   );
 
   return (
+    <Grid
+      gridTemplateColumns={'auto 1fr'}
+      gridTemplateRows={'auto 1fr'}
+      gridGap="1em"
+    >
+      <GridItem gridColumn="1 / 3">
+        <Header
+          logo={<strong>LOGO</strong>}
+          breakpoint={magma.breakpoints.large}
+          isCompact={isSmallerScreen}
+          onMenuButtonClick={() => setShowDrawer(true)}
+          style={{
+            backgroundColor: magma.colors.warning400,
+            color: magma.colors.neutral100,
+          }}
+        />
+      </GridItem>
 
-      <Container>
+      <Drawer
+        position={DrawerPosition.left}
+        onClose={() => setShowDrawer(false)}
+        isOpen={showDrawer}
+      >
+        Sidebar
+      </Drawer>
 
-        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} />
+      <GridItem
+        gridColumn="1 / 3"
+        style={{
+          textAlign: 'center',
+          backgroundColor: magma.colors.warning500,
+          color: magma.colors.neutral100,
+          width: 'calc(100% - 148px)',
+          maxWidth: '952px',
+          justifySelf: 'center',
+          padding: magma.spaceScale.spacing05,
+          height: 'calc(70vh - 122px)',
+        }}
+      >
+        content
+      </GridItem>
 
-        <Content>Content</Content>
-
-      </Container>
-
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 3' : '1 /  2'}
+        style={{
+          textAlign: 'center',
+          backgroundColor: magma.colors.warning300,
+          color: magma.colors.neutral100,
+          padding: magma.spaceScale.spacing05,
+          justifySelf: isSmallerScreen ? 'center' : 'stretch',
+          width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 0 0 75px',
+        }}
+      >
+        article 1
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 3' : '2 / 3'}
+        style={{
+          textAlign: 'center',
+          backgroundColor: magma.colors.warning300,
+          color: magma.colors.neutral100,
+          padding: magma.spaceScale.spacing05,
+          justifySelf: isSmallerScreen ? 'center' : 'stretch',
+          width: isSmallerScreen ? 'calc(100% - 148px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 75px 0 0 ',
+        }}
+      >
+        article 2
+      </GridItem>
+    </Grid>
   );
 }
 ```
@@ -143,50 +245,19 @@ This template includes a screen region for a left sidebar and includes all of th
   <img src="../../images/layout/template-sidebar-app-header.png" alt=" " />
 </figure>
 
-```noRender
+```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { Drawer, DrawerPosition, magma, useMediaQuery } from 'react-magma-dom';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'sidebar header'
-    'sidebar content';
-  gap: 2px;
-`;
-
-const StyledHeader = styled(Header)`
-  grid-area: header;
-`;
-
-const StyledSidebar = styled.div`
-  width:240px;
-  grid-area: sidebar;
-  background:${magma.colors.neutral06};
-  padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 32px);
-`;
-
-const Content = styled.div`
-  grid-area: content;
-  max-width: 1600px;
-  width:100%;
-  justify-self:center;
-  background:${magma.colors.neutral06};
-  padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 122px);
-`;
-
-const Sidebar = () => (
-  <StyledSidebar>Sidebar</StyledSidebar>
-);
+import {
+  Drawer,
+  DrawerPosition,
+  Grid,
+  GridItem,
+  magma,
+  useMediaQuery,
+} from 'react-magma-dom';
 
 export function Example() {
-
   const [openDrawer, setOpenDrawer] = React.useState(false);
 
   const isLargeScreen = useMediaQuery(
@@ -198,17 +269,64 @@ export function Example() {
   );
 
   return (
+    <Grid
+      gridTemplateColumns={'auto 1fr'}
+      gridTemplateRows={'auto 1fr'}
+      gridTemplateAreas={('sidebar header header', 'sidebar content content')}
+      gridGap={'0.25em'}
+    >
+      {isLargeScreen ? (
+        <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
+          <div
+            style={{
+              background: magma.colors.secondary700,
+              padding: magma.spaceScale.spacing05,
+              width: '240px',
+              height: 'calc(100vh - 32px)',
+            }}
+          >
+            Sidebar
+          </div>
+        </Drawer>
+      ) : (
+        <GridItem
+          as={'sidebar'}
+          gridColumn="1 / 2"
+          gridRow="1 / 3"
+          style={{ background: magma.colors.secondary700, width: '240px' }}
+        >
+          Sidebar
+        </GridItem>
+      )}
 
-      <Container>
+      <GridItem as={'header'} gridColumn="2 / 3">
+        <Header
+          isInverse
+          logo={<strong>LOGO</strong>}
+          breakpoint={magma.breakpoints.large}
+          isCompact={isSmallerScreen}
+          onMenuButtonClick={() => {
+            setOpenDrawer(!openDrawer);
+          }}
+        />
+      </GridItem>
 
-        { isLargeScreen ? <Drawer position={DrawerPosition.left} isOpen={openDrawer}><Sidebar/></Drawer> : <Sidebar/> }
-
-        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} onMenuButtonClick={() => {setOpenDrawer(!openDrawer)}}/>
-
-        <Content>Content</Content>
-
-      </Container>
-
+      <GridItem
+        as="content"
+        gridColumn="2 / 3"
+        style={{
+          maxWidth: '1600px',
+          width: '100%',
+          justifySelf: 'center',
+          background: magma.colors.secondary500,
+          padding: magma.spaceScale.spacing05,
+          margin: '0 auto',
+          height: 'calc(100vh - 122px)',
+        }}
+      >
+        Content
+      </GridItem>
+    </Grid>
   );
 }
 ```
@@ -223,50 +341,19 @@ This template also includes the sidebar screen region, but the header extends al
   <img src="../../images/layout/template-sidebar-global-header.png" alt=" " />
 </figure>
 
-```noRender
+```tsx
 import React from 'react';
-import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
-import { Drawer, DrawerPosition, magma, useMediaQuery } from 'react-magma-dom';
-
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'header header'
-    'sidebar content';
-  gap: 2px;
-`;
-
-const StyledHeader = styled(Header)`
-  grid-area: header;
-`;
-
-const StyledSidebar = styled.div`
-  width:240px;
-  grid-area: sidebar;
-  background:${magma.colors.neutral06};
-  padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 32px);
-`;
-
-const Content = styled.div`
-  grid-area: content;
-  max-width: 1600px;
-  width:100%;
-  justify-self:center;
-  background:${magma.colors.neutral06};
-  padding:${magma.spaceScale.spacing05};
-  height:calc(100vh - 122px);
-`;
-
-const Sidebar = () => (
-  <StyledSidebar>Sidebar</StyledSidebar>
-);
+import {
+  Drawer,
+  DrawerPosition,
+  Grid,
+  GridItem,
+  magma,
+  useMediaQuery,
+} from 'react-magma-dom';
 
 export function Example() {
-
   const [openDrawer, setOpenDrawer] = React.useState(false);
 
   const isLargeScreen = useMediaQuery(
@@ -278,17 +365,88 @@ export function Example() {
   );
 
   return (
+    <Grid
+      gridJustifyContent={GridJustifyContent.center}
+      gridTemplateColumns="auto 1fr"
+      gridTemplateRows="auto 1fr"
+      gridTemplateAreas={('header header', 'sidebar content', 'sidebar footer')}
+      gridGap="2px"
+    >
+      <GridItem as="header" gridColumn="1 / 4">
+        <Header
+          isInverse
+          logo={<strong>LOGO</strong>}
+          breakpoint={magma.breakpoints.large}
+          isCompact={isSmallerScreen}
+          onMenuButtonClick={() => {
+            setOpenDrawer(!openDrawer);
+          }}
+        />
+      </GridItem>
 
-      <Container>
+      {isLargeScreen ? (
+        <Drawer position={DrawerPosition.left} isOpen={openDrawer}>
+          <div
+            style={{
+              background: magma.colors.primary200,
+              padding: magma.spaceScale.spacing05,
+              width: '240px',
+              height: 'calc(100vh - 32px)',
+            }}
+          >
+            Sidebar
+          </div>
+        </Drawer>
+      ) : (
+        <GridItem
+          as="sidebar"
+          gridColumn="1 / 2"
+          gridRow="2 / 4"
+          style={{
+            width: '240px',
+            background: magma.colors.primary200,
+            padding: magma.spaceScale.spacing05,
+            height: 'calc(100vh - 95px)',
+          }}
+        >
+          Sidebar
+        </GridItem>
+      )}
 
-        { isLargeScreen ? <Drawer position={DrawerPosition.left} isOpen={openDrawer}><Sidebar/></Drawer> : <Sidebar/> }
+      <GridItem
+        as="content"
+        gridColumn="2 / 4"
+        gridRow="2"
+        style={{
+          maxWidth: '1600px',
+          width: '100%',
+          justifySelf: 'center',
+          background: magma.colors.primary500,
+          color: magma.colors.neutral100,
+          padding: magma.spaceScale.spacing05,
+          height: 'calc(100vh - 122px)',
+        }}
+      >
+        Content
+      </GridItem>
 
-        <StyledHeader isInverse logo={<strong>LOGO</strong>} breakpoint={magma.breakpoints.large} isCompact={isSmallerScreen} onMenuButtonClick={() => {setOpenDrawer(!openDrawer)}}/>
-
-        <Content>Content</Content>
-
-      </Container>
-
+      <GridItem
+        as="footer"
+        gridColumn="2 / 4"
+        gridRow="3"
+        style={{
+          maxWidth: '1600px',
+          width: '100%',
+          justifySelf: 'center',
+          background: magma.colors.primary700,
+          color: magma.colors.neutral100,
+          padding: magma.spaceScale.spacing05,
+          height: '10vh',
+        }}
+      >
+        Footer
+      </GridItem>
+    </Grid>
   );
 }
 ```

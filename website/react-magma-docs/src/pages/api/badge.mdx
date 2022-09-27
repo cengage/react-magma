@@ -29,25 +29,28 @@ The `counter` is for displaying a numeric count, and can be used inside a button
 
 ```tsx
 import React from 'react';
-import { Badge, BadgeColor, BadgeVariant, Button } from 'react-magma-dom';
+import { Badge, BadgeColor, BadgeVariant, Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
       <Badge variant={BadgeVariant.label}>Label</Badge>
       <Badge variant={BadgeVariant.counter}>99+</Badge>
-      <Button>
-        Messages
-        <Badge variant={BadgeVariant.counter} color={BadgeColor.light}>
-          99+
-        </Badge>
-      </Button>
-      <Button color={BadgeColor.secondary}>
-        Messages
-        <Badge variant={BadgeVariant.counter} color={BadgeColor.primary}>
-          99+
-        </Badge>
-      </Button>
+      <br/><br/>
+      <ButtonGroup>
+        <Button>
+          Messages
+          <Badge variant={BadgeVariant.counter} color={BadgeColor.light}>
+            99+
+          </Badge>
+        </Button>
+        <Button color={BadgeColor.secondary}>
+          Messages
+          <Badge variant={BadgeVariant.counter} color={BadgeColor.primary}>
+            99+
+          </Badge>
+        </Button>
+      </ButtonGroup>
     </>
   );
 }
@@ -55,7 +58,7 @@ export function Example() {
 
 ## Colors
 
-Five colors of badges are available, `primary`, `secondary`, `success`, `danger`, and `light`. The default color is `secondary`.
+Five colors of badges are available, `primary` (default), `secondary`, `light`, `danger`, and `success`. 
 
 ```tsx
 import React from 'react';
@@ -103,6 +106,24 @@ export function Example() {
         Click me too
       </Badge>
     </>
+  );
+}
+```
+
+## Inverse
+```tsx
+import React from 'react';
+import { Badge, BadgeColor, Container } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse style={{padding: '12px'}}>
+      <Badge color={BadgeColor.primary} isInverse>Primary</Badge>
+      <Badge color={BadgeColor.secondary} isInverse>Secondary</Badge>
+      <Badge color={BadgeColor.light} isInverse>Light</Badge>
+      <Badge color={BadgeColor.danger} isInverse>Danger</Badge>
+      <Badge color={BadgeColor.success} isInverse>Success</Badge>
+    </Container>
   );
 }
 ```

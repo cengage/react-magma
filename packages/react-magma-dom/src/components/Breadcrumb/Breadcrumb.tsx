@@ -10,6 +10,13 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
+  /**
+   * The text the screen reader will announce that describes your breadcrumb.
+   */
+  'aria-label'?: string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
