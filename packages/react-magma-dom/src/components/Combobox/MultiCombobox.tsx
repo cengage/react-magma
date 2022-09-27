@@ -62,11 +62,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
 
-  React.useEffect(() => {
-    console.log('defaultItems', defaultItems);
-    
-  }, [defaultItems]);
-
   function checkSelectedItemValidity(itemToCheck) {
     // When using Typeahead, don't validate the items
     if (isTypeahead) {

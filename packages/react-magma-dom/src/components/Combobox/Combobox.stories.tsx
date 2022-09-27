@@ -105,7 +105,7 @@ LeftAlignedLabelWithContainer.decorators = [
   ),
 ];
 
-export const Typeahead = () => {
+export const Typeahead = (args) => {
   const largeListOfItems = [
     'red',
     'blue',
@@ -125,41 +125,48 @@ export const Typeahead = () => {
   //retrived from db
   const defaultItems = ['red', 'blue', 'orange'];
 
-  const selectedItemsHistory = defaultItems
-    .slice(0, 5)
-    .map(product => {
-      return { label: product, value: product };
-    });
+  const selectedItemsHistory = defaultItems.slice(0, 5).map(product => {
+    return { label: product, value: product };
+  });
 
   const [suggestedItems, setSuggestedItems] =
     React.useState(selectedItemsHistory);
 
   const [selectedItems, updateSelectedItems] = React.useState([]);
 
+  const [inputQuery, setInputQuery] = React.useState('');
+
   function handleSelectedItemsChange(changes) {
     updateSelectedItems(changes.selectedItems);
   }
 
-  const findMatchingItems = function (event) {
+  function updateQuery(event) {
     const query = event.target.value + event.key;
+    console.log('inputQuery before', inputQuery);
+    console.log('inputQuery after', query);
+    setInputQuery(query);
+  }
+
+  function findMatchingItems() {
+    console.log('heree', inputQuery);
+    
     const matches = largeListOfItems.filter(item => {
-      return item.toLowerCase().includes(query.toLowerCase());
+      return item.toLowerCase().includes(inputQuery.toLowerCase());
     });
     const newSuggestedItems = matches.slice(0, 5).map(item => {
       return { label: item, value: item };
     });
-    setSuggestedItems(newSuggestedItems);
-  };
 
-  // console.log('selectedItems', selectedItems);
+    setSuggestedItems(newSuggestedItems);
+  }
+
   React.useEffect(() => {
-    console.log('suggestedItems', suggestedItems);
-    
-  }, [suggestedItems]);
-  
+    findMatchingItems();
+  }, [inputQuery]);
 
   return (
     <Combobox
+      {...args}
       labelText="Typeahead Example"
       items={suggestedItems}
       isMulti
@@ -168,7 +175,8 @@ export const Typeahead = () => {
       isTypeahead={true}
       // defaultItems={suggestedItems}
       // selectedItems={selectedItems}
-      onInputKeyPress={findMatchingItems}
+      // onInputKeyPress={findMatchingItems}
+      onInputKeyPress={updateQuery}
       onSelectedItemsChange={handleSelectedItemsChange}
     />
   );
