@@ -339,10 +339,60 @@ const IconWrapper = styled.span<{
     `}
 `;
 
+function getIconButtonSVGSize(props) {
+  const { hasChildren, inputSize, theme } = props;
+  if (hasChildren) {
+    if (inputSize === InputSize.large) {
+      return `${theme.iconSizes.medium}px`;
+    }
+    return `${theme.iconSizes.small}px`;
+  }
+  if (inputSize === InputSize.large) {
+    return `${theme.iconSizes.large}px`;
+  }
+  return `${theme.iconSizes.medium}px`;
+}
+
+function getIconButtonTransform(props) {
+  const { hasChildren, iconPosition, inputSize, theme } = props;
+  let position = { x: '', y: '' };
+
+  if (hasChildren) {
+    if (inputSize === InputSize.large) {
+      if (iconPosition === InputIconPosition.top) {
+        position.x = '-26px';
+        position.y = '0';
+      } else {
+        position.x = '-44px';
+        position.y = '14px';
+      }
+    } else if (inputSize === InputSize.medium) {
+      if (iconPosition === InputIconPosition.top) {
+        position.x = '-26px';
+        position.y = '6px';
+      } else {
+        position.x = '-34px';
+        position.y = '6px';
+      }
+    }
+    return position;
+  }
+
+  if (inputSize === InputSize.large) {
+    position.x = `-${theme.spaceScale.spacing10}`;
+    position.y = theme.spaceScale.spacing03;
+  } else if (inputSize === InputSize.medium) {
+    position.x = '-24px';
+    position.y = '7px';
+  }
+  return position;
+}
+
 const IconButtonContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   theme: ThemeInterface;
+  hasChildren?: boolean;
 }>`
   background-color: transparent;
   bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
@@ -351,21 +401,12 @@ const IconButtonContainer = styled.span<{
   position: relative;
   width: 0;
   transform: translate(
-    -${props => (props.inputSize === InputSize.large ? props.theme.spaceScale.spacing10 : '34px')},
-    ${props =>
-      props.inputSize === InputSize.large
-        ? props.theme.spaceScale.spacing03
-        : '7px'}
+    ${props => getIconButtonTransform(props).x},
+    ${props => getIconButtonTransform(props).y}
   );
   svg {
-    height: ${props =>
-      props.inputSize === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
-    width: ${props =>
-      props.inputSize === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
+    height: ${props => getIconButtonSVGSize(props)};
+    width: ${props => getIconButtonSVGSize(props)};
   }
 `;
 
@@ -615,6 +656,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
             theme={theme}
+            hasChildren={true}
           >
             {children}
           </IconButtonContainer>

@@ -38,6 +38,12 @@ export default {
         type: 'boolean',
       },
     },
+    type: {
+      control: {
+        type: 'select',
+        options: InputType
+      }
+    }
   },
   errorMessage: '',
 } as Meta;
@@ -49,6 +55,7 @@ Default.args = {
   isClearable: true,
   isInverse: false,
   placeholder: 'Placeholder text...',
+  type: InputType.text,
 };
 Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
@@ -185,9 +192,35 @@ export const WithChildren = args => {
           />
         </Tooltip>
       </Input>
+      <br/>
+      <hr/>
+      <Input
+        labelText="With two icons"
+        icon={<NotificationsIcon />}
+        {...args}
+      >
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+      <br/>
+      <hr/>
+      <Input
+        labelText="With 1 icon, not child"
+        icon={<NotificationsIcon />}
+        iconPosition={InputIconPosition.right}
+        {...args}
+      />
     </>
   );
 };
 WithChildren.parameters = {
-  controls: { exclude: ['iconPosition', 'isInverse'] },
+  controls: { exclude: ['iconPosition', 'isInverse', 'type'] },
 };
