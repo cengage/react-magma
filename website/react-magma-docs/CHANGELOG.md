@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.9
+
+### Patch Changes
+
+- c66969253: docs(appbar): Fix components overlapping in AppBar Tabs example.
+
 ## 4.0.4-next.8
 
 ### Patch Changes
