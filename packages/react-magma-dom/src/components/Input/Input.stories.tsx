@@ -77,7 +77,7 @@ export const File = Template.bind({});
 File.args = {
   type: InputType.file,
 };
-File.parameters = { controls: { exclude: ['iconPosition'] } };
+File.parameters = { controls: { exclude: ['iconPosition', 'isClearable'] } };
 
 export const IconTop = Template.bind({});
 IconTop.args = {
@@ -210,14 +210,6 @@ export const WithChildren = args => {
           />
         </Tooltip>
       </Input>
-      <br/>
-      <hr/>
-      <Input
-        labelText="With 1 icon, not child"
-        icon={<NotificationsIcon />}
-        iconPosition={InputIconPosition.right}
-        {...args}
-      />
     </>
   );
 };

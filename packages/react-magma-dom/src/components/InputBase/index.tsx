@@ -324,7 +324,7 @@ const IconWrapper = styled.span<{
   ${props =>
     props.inputSize === 'large' &&
     css`
-      bottom: ${props.iconPosition === 'top' ? '56px' : 'inherit'};
+      bottom: ${props.iconPosition === 'top' ? '62px' : 'inherit'};
       left: ${props.iconPosition === 'left'
         ? props.theme.spaceScale.spacing04
         : 'auto'};
@@ -340,8 +340,9 @@ const IconWrapper = styled.span<{
 `;
 
 function getIconButtonSVGSize(props) {
-  const { hasChildren, inputSize, theme } = props;
-  if (hasChildren) {
+  const { isClickable, iconPosition, inputSize, theme } = props;
+
+  if (isClickable && iconPosition === InputIconPosition.top) {
     if (inputSize === InputSize.large) {
       return `${theme.iconSizes.medium}px`;
     }
@@ -354,26 +355,32 @@ function getIconButtonSVGSize(props) {
 }
 
 function getIconButtonTransform(props) {
-  const { hasChildren, iconPosition, inputSize, theme } = props;
+  const { isClickable, iconPosition, inputSize, hasChildren, theme } = props;
   let position = { x: '', y: '' };
 
-  if (hasChildren) {
+  if (iconPosition === InputIconPosition.top) {
     if (inputSize === InputSize.large) {
-      if (iconPosition === InputIconPosition.top) {
-        position.x = '-26px';
-        position.y = '0';
-      } else {
-        position.x = '-44px';
+      position.x = '-30px';
+      position.y = '2px';
+    } else if (inputSize === InputSize.medium) {
+      position.x = '-28px';
+      position.y = '5px';
+    }
+    return position;
+  }
+
+  if (isClickable) {
+    if (inputSize === InputSize.large) {
+      if (hasChildren) {
+        position.x = '-43px';
         position.y = '14px';
+      } else {
+        position.x = '-49px';
+        position.y = '8px';
       }
     } else if (inputSize === InputSize.medium) {
-      if (iconPosition === InputIconPosition.top) {
-        position.x = '-26px';
-        position.y = '6px';
-      } else {
-        position.x = '-34px';
-        position.y = '6px';
-      }
+      position.x = '-35px';
+      position.y = '6px';
     }
     return position;
   }
@@ -392,6 +399,7 @@ const IconButtonContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   theme: ThemeInterface;
+  isClickable?: boolean;
   hasChildren?: boolean;
 }>`
   background-color: transparent;
@@ -466,11 +474,21 @@ const IsClearableContainer = styled.span<{
   );
 `;
 
-function getIconSize(size: string, theme: ThemeInterface) {
+function getIconSize(
+  size: string,
+  theme: ThemeInterface,
+  iconPosition: InputIconPosition
+) {
   switch (size) {
     case 'large':
+      if (iconPosition === InputIconPosition.top) {
+        return theme.iconSizes.medium;
+      }
       return theme.iconSizes.large;
     default:
+      if (iconPosition === InputIconPosition.top) {
+        return theme.iconSizes.small;
+      }
       return theme.iconSizes.medium;
   }
 }
@@ -579,7 +597,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                 React.cloneElement(icon, {
                   size: getIconSize(
                     inputSize ? inputSize : InputSize.medium,
-                    theme
+                    theme,
+                    iconPosition
                   ),
                 })
               )}
@@ -622,6 +641,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
+            isClickable={true}
           >
             <IconButton
               aria-label={iconAriaLabel}
@@ -656,6 +676,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
             theme={theme}
+            isClickable={true}
             hasChildren={true}
           >
             {children}
