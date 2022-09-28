@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.2-next.3
+
+### Patch Changes
+
+- 9502d28a6: fix(Input): Fix placement of `children` inside Input component (ex: help icon).
+
 ## 3.1.2-next.2
 
 ### Patch Changes
