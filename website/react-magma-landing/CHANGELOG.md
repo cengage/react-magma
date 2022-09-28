@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.1-next.1
+
+### Patch Changes
+
+- e4c07d07c: Update 404 / error page.
+
 ## 1.1.1-next.0
 
 ### Patch Changes

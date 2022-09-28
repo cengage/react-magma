@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.8
+
+### Patch Changes
+
+- e4c07d07c: Update error page.
+
 ## 4.0.4-next.7
 
 ### Patch Changes
