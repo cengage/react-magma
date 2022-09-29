@@ -31,7 +31,7 @@ import {
   ButtonGroup,
 } from 'react-magma-dom';
 import {
-  AlertIcon,
+  PriorityHighIcon,
   CheckIcon,
   NotificationsIcon,
   SettingsIcon,
@@ -92,19 +92,19 @@ export function Example() {
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
-          icon={<AlertIcon />}
+          icon={<PriorityHighIcon />}
         />
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
           variant={ButtonVariant.solid}
-          icon={<AlertIcon />}
+          icon={<PriorityHighIcon />}
         />
         <IconButton
           aria-label="Error"
           color={ButtonColor.danger}
           variant={ButtonVariant.link}
-          icon={<AlertIcon />}
+          icon={<PriorityHighIcon />}
         />
       </ButtonGroup>
       <br />
@@ -114,18 +114,25 @@ export function Example() {
           disabled
           icon={<NotificationsIcon />}
         />
-        <IconButton icon={<NotificationsIcon />}>Notifications</IconButton>
+        <IconButton icon={<NotificationsIcon />} aria-label="Notifications">
+          Notifications
+        </IconButton>
       </ButtonGroup>
       <br />
       <ButtonGroup>
         <IconButton
+          aria-label="Settings"
           icon={<SettingsIcon />}
           color={ButtonColor.secondary}
           variant={ButtonVariant.solid}
         >
           Settings
         </IconButton>
-        <IconButton icon={<CheckIcon />} variant={ButtonVariant.link}>
+        <IconButton
+          icon={<CheckIcon />}
+          variant={ButtonVariant.link}
+          aria-label="Check"
+        >
           Submit
         </IconButton>
       </ButtonGroup>
@@ -162,7 +169,7 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   const icon = <NotificationsIcon size={10} />;
 
-  return <IconButton icon={icon}>With Custom Icon Size</IconButton>;
+  return <IconButton aria-label="Notifications" icon={icon}>With Custom Icon Size</IconButton>;
 }
 ```
 
@@ -184,11 +191,14 @@ import { NotificationsIcon, InfoIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <ButtonGroup>
-      <IconButton icon={<NotificationsIcon />}>Icon Left</IconButton>
+      <IconButton icon={<NotificationsIcon />} aria-label="Notifications">
+        Icon Left
+      </IconButton>
       <IconButton
         color={ButtonColor.secondary}
         icon={<InfoIcon />}
         iconPosition={ButtonIconPosition.right}
+        aria-label="Information"
       >
         Icon Right
       </IconButton>
@@ -216,18 +226,21 @@ export function Example() {
     <>
       <ButtonGroup>
         <IconButton
-          icon={<NotificationsIcon aria-label="Notifications" />}
+          icon={<NotificationsIcon />}
           size={ButtonSize.small}
+          aria-label="Notifications"
         />
-        <IconButton icon={<NotificationsIcon aria-label="Notifications" />} />
+        <IconButton icon={<NotificationsIcon />} aria-label="Notifications" />
         <IconButton
-          icon={<NotificationsIcon aria-label="Notifications" />}
+          icon={<NotificationsIcon />}
+          aria-label="Notifications"
           size={ButtonSize.large}
         />
       </ButtonGroup>
       <br />
       <ButtonGroup>
         <IconButton
+          aria-label="Notifications"
           icon={<NotificationsIcon />}
           size={ButtonSize.small}
           iconPosition={ButtonIconPosition.left}
@@ -235,12 +248,14 @@ export function Example() {
           Small Notifications
         </IconButton>
         <IconButton
+          aria-label="Notifications"
           icon={<NotificationsIcon />}
           iconPosition={ButtonIconPosition.left}
         >
           Medium Notifications
         </IconButton>
         <IconButton
+          aria-label="Notifications"
           icon={<NotificationsIcon />}
           size={ButtonSize.large}
           iconPosition={ButtonIconPosition.left}
@@ -265,17 +280,20 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <ButtonGroup>
-      <IconButton icon={<NotificationsIcon aria-label="Notifications" />} />
+      <IconButton icon={<NotificationsIcon />} aria-label="Notifications" />
       <IconButton
-        icon={<NotificationsIcon aria-label="Notifications" />}
+        icon={<NotificationsIcon />}
+        aria-label="Notifications"
         shape={ButtonShape.fill}
       />
       <IconButton
-        icon={<NotificationsIcon aria-label="Notifications" />}
+        icon={<NotificationsIcon />}
+        aria-label="Notifications"
         shape={ButtonShape.rightCap}
       />
       <IconButton
-        icon={<NotificationsIcon aria-label="Notifications" />}
+        icon={<NotificationsIcon />}
+        aria-label="Notifications"
         shape={ButtonShape.leftCap}
       />
     </ButtonGroup>
@@ -295,7 +313,11 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <IconButton icon={<NotificationsIcon />} isFullWidth>
+      <IconButton
+        icon={<NotificationsIcon />}
+        isFullWidth
+        aria-label="Notifications"
+      >
         Full-Width Notifications Btn
       </IconButton>
       <br />
@@ -303,12 +325,14 @@ export function Example() {
         icon={<NotificationsIcon />}
         isFullWidth
         iconPosition={ButtonIconPosition.right}
+        aria-label="Notifications"
       >
         Full-Width Notifications Btn
       </IconButton>
       <br />
       <IconButton
-        icon={<NotificationsIcon aria-label="Notifications" />}
+        icon={<NotificationsIcon />}
+        aria-label="Notifications"
         isFullWidth
       />
     </>
@@ -327,7 +351,7 @@ import {
   ButtonGroup,
 } from 'react-magma-dom';
 import {
-  AlertIcon,
+  PriorityHighIcon,
   NotificationsIcon,
   Card,
   CardBody,
@@ -341,7 +365,7 @@ export function Example() {
           <IconButton
             aria-label="Alert"
             variant={ButtonVariant.solid}
-            icon={<AlertIcon />}
+            icon={<PriorityHighIcon />}
             isInverse
           />
           <IconButton
@@ -379,6 +403,7 @@ export function Example() {
       <ButtonGroup>
         <IconButton
           icon={<NotificationsIcon />}
+          aria-label="Notifications"
           onClick={() => {
             setIconButtonCounter(count => count + 1);
           }}
@@ -387,6 +412,7 @@ export function Example() {
         </IconButton>
         <IconButton
           icon={<NotificationsIcon />}
+          aria-label="Notifications"
           textPosition="left"
           onClick={() => {
             setTextIconButtonCounter(count => count + 1);
@@ -397,6 +423,7 @@ export function Example() {
         <IconButton
           disabled
           icon={<NotificationsIcon />}
+          aria-label="Notifications"
           onClick={() => {
             setIconButtonCounter(count => count + 1);
           }}
