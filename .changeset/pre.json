@@ -11,9 +11,19 @@
     "react-magma-landing": "1.1.0"
   },
   "changesets": [
+    "a11y-docs",
+    "anchor-color-landing",
+    "anchor-color",
+    "appbar-spacing",
+    "buttongroup",
+    "docs-error-page",
     "docs-props-sidebar",
+    "fix-helpicon",
     "green-coins-taste",
     "homepage-updates",
+    "landing-error-page",
+    "sharp-pants-repair",
+    "smallScreens-docs",
     "storybook-package"
   ]
 }

@@ -1,5 +1,51 @@
 # Change Log
 
+## 4.0.4-next.10
+
+### Patch Changes
+
+- 677a0adae: docs: Various a11y fixes including duplicate IDs, missing alt attributes, missing aria-labels.
+
+## 4.0.4-next.9
+
+### Patch Changes
+
+- c66969253: docs(appbar): Fix components overlapping in AppBar Tabs example.
+
+## 4.0.4-next.8
+
+### Patch Changes
+
+- e4c07d07c: Update error page.
+
+## 4.0.4-next.7
+
+### Patch Changes
+
+- Updated dependencies [9502d28a6]
+  - react-magma-dom@3.1.2-next.3
+
+## 4.0.4-next.6
+
+### Patch Changes
+
+- ab2d3e189: fix(PageTemplates): Updates to Page Templates examples, removed work in progress label
+
+## 4.0.4-next.5
+
+### Patch Changes
+
+- ffa945119: Update API pages that scroll horizontally on small screens.
+- Updated dependencies [ffa945119]
+  - react-magma-dom@3.1.2-next.2
+
+## 4.0.4-next.4
+
+### Patch Changes
+
+- Updated dependencies [754c389ba]
+  - react-magma-dom@3.1.2-next.1
+
 ## 4.0.4-next.3
 
 ### Patch Changes
