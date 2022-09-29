@@ -7,6 +7,7 @@ import { IconButton } from '../IconButton';
 import { Input } from '../Input';
 import { Textarea } from '../Textarea';
 import { Tooltip } from '../Tooltip';
+import { InputSize } from '../InputBase';
 
 export default {
   component: CharacterCounter,
@@ -21,7 +22,20 @@ export default {
 };
 
 export const Default = args => {
-  return <Input labelText="Character Counter" maxLength={22} />;
+  return (
+    <Input testId="test-this-id" labelText="Character Counter" maxLength={4} />
+  );
+};
+
+export const Large = args => {
+  return (
+    <Input
+      inputSize={InputSize.large}
+      testId="test-this-id"
+      labelText="Character Counter"
+      maxLength={4}
+    />
+  );
 };
 
 export const Inverse = args => {

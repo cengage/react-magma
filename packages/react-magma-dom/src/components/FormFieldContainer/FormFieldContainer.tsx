@@ -38,13 +38,9 @@ export interface FormFieldContainerBaseProps {
    */
   helperMessage?: React.ReactNode;
   /**
-   * Returns a zero.
+   * Total number of characters in an input.
    */
-  inputClear?: number;
-  /**
-   * Total number of character in an input.
-   */
-  inputTotal?: number;
+  inputLength?: number;
   /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
    * @default false
@@ -58,7 +54,9 @@ export interface FormFieldContainerBaseProps {
    * Content for label; can be a node or a string
    */
   labelText?: React.ReactNode;
-
+  /**
+   * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
+   */
   maxLength?: number;
   /**
    * Style properties for the helper or error message
@@ -102,9 +100,8 @@ export const FormFieldContainer = React.forwardRef<
     fieldId,
     helperMessage,
     iconPosition,
-    inputClear,
     inputSize,
-    inputTotal,
+    inputLength,
     isInverse: isInverseProp,
     isLabelVisuallyHidden,
     labelStyle,
@@ -124,7 +121,7 @@ export const FormFieldContainer = React.forwardRef<
     <InverseContext.Provider value={{ isInverse }}>
       <StyledFormFieldContainer
         {...rest}
-        data-testid={props.testId}
+        data-testid={testId}
         isInverse={isInverse}
         ref={ref}
         style={containerStyle}
@@ -148,10 +145,11 @@ export const FormFieldContainer = React.forwardRef<
         {children}
         {maxLength && (
           <CharacterCounter
-            inputClear={inputClear}
-            inputTotal={inputTotal}
+            inputLength={inputLength}
+            inputSize={inputSize}
             isInverse={isInverse}
             maxLength={maxLength}
+            testId={testId}
           />
         )}
 

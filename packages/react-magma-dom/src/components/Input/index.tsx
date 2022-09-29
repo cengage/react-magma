@@ -28,6 +28,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       labelText,
       maxLength,
       messageStyle,
+      testId,
       ...other
     } = props;
 
@@ -39,16 +40,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const [characterLength, setCharacterLength] = useState(0);
 
-    function handleChange(e) {
-      if (maxLength) {
-        setCharacterLength(e.target.value.length);
-      }
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(event);
+      setCharacterLength(event.target.value.length);
     }
 
     function handleClear() {
-      if (maxLength) {
-        setCharacterLength(null);
-      }
+      props.onClear && typeof props.onClear === 'function' && props.onClear();
+      setCharacterLength(null);
     }
 
     return (
@@ -60,13 +61,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         iconPosition={iconPosition}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
-        inputClear={characterLength}
         inputSize={inputSize}
-        inputTotal={characterLength}
+        inputLength={characterLength}
         labelStyle={labelStyle}
         labelText={labelText}
         maxLength={maxLength}
         messageStyle={messageStyle}
+        testId={testId + '-formFieldContainer'}
       >
         <InputBase
           {...other}
@@ -79,9 +80,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           id={id}
           inputSize={inputSize}
           isInverse={isInverse}
-          onChange={maxLength ? handleChange : props.onChange}
-          onClear={maxLength ? handleClear : props.onClear}
+          onChange={handleChange}
+          onClear={handleClear}
           ref={ref}
+          testId={testId}
         >
           {children}
         </InputBase>

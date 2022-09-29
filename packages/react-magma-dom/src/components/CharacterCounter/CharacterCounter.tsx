@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
+import { transparentize } from 'polished';
 import { ErrorIcon } from 'react-magma-icons';
 import { FormFieldContainerProps } from '../FormFieldContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -10,10 +11,9 @@ import { I18nContext } from '../../i18n';
 export interface CharacterCounterProps
   extends Omit<FormFieldContainerProps, 'fieldId'>,
     React.HTMLAttributes<HTMLDivElement> {
-  activeStying?: boolean;
   hasError?: boolean;
+  inputLength?: number;
   inputSize?: InputSize;
-  isInverse?: boolean;
   testId?: string;
   /**
    * @internal
@@ -22,22 +22,31 @@ export interface CharacterCounterProps
 }
 
 function buildFontColor(props: CharacterCounterProps) {
-  if (props.isInverse && props.hasError) {
-    return props.theme.colors.danger200;
+  if (props.isInverse) {
+    if (props.hasError) {
+      return props.theme.colors.danger200;
+    }
+    return transparentize(0.3, props.theme.colors.neutral100);
   }
   if (props.hasError) {
     return props.theme.colors.danger;
   }
 }
 
-const StyledCharacterCounter = styled.div<CharacterCounterProps>`
+const StyledCharacterCounter = styled.div<{
+  activeStyling?: boolean;
+  hasError?: boolean;
+  inputLength?: number;
+  inputSize?: InputSize;
+  isInverse?: boolean;
+}>`
   align-items: center;
   border-radius: ${props => props.theme.borderRadius};
   color: ${buildFontColor};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   font-weight: ${props =>
-    props.activeStying
+    !props.activeStyling && !props.hasError && props.inputLength >= 1
       ? props.theme.typographyVisualStyles.headingXSmall.fontWeight
       : ''};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
@@ -61,8 +70,8 @@ export const CharacterCounter = React.forwardRef<
   const {
     children,
     hasError,
-    inputClear,
-    inputTotal,
+    inputLength,
+    inputSize,
     maxLength,
     testId,
     isInverse,
@@ -73,35 +82,35 @@ export const CharacterCounter = React.forwardRef<
 
   const i18n = React.useContext(I18nContext);
 
-  const activeStyling = inputTotal < maxLength || inputTotal == maxLength;
+  const characterStyling =
+    maxLength < inputLength && hasError
+      ? inputLength < maxLength
+      : inputLength > maxLength;
 
-  const errorStyling = inputTotal > maxLength;
-
-  const characterCountDown = maxLength - inputTotal;
-
-  const characterCountUp = inputTotal - maxLength;
+  const characterLimit =
+    maxLength > inputLength ? maxLength - inputLength : inputLength - maxLength;
 
   function characterTitleCount() {
-    if (inputTotal < maxLength) {
-      if (inputTotal === maxLength - 1) {
-        return `${characterCountDown} ${i18n.characterCounter.characterLeft}`;
-      } else if (characterCountDown > 1) {
-        return `${characterCountDown} ${i18n.characterCounter.charactersLeft}`;
+    if (inputLength < maxLength) {
+      if (inputLength === maxLength - 1) {
+        return `${characterLimit} ${i18n.characterCounter.characterLeft}`;
+      } else if (characterLimit > 1) {
+        return `${characterLimit} ${i18n.characterCounter.charactersLeft}`;
       }
     }
-    if (inputTotal > maxLength) {
-      if (inputTotal === maxLength + 1) {
-        return `${characterCountUp} ${i18n.characterCounter.characterOver}`;
+    if (inputLength > maxLength) {
+      if (inputLength === maxLength + 1) {
+        return `${characterLimit} ${i18n.characterCounter.characterOver}`;
       }
-      return `${characterCountUp} ${i18n.characterCounter.charactersOver}`;
+      return `${characterLimit} ${i18n.characterCounter.charactersOver}`;
     }
-    if (inputTotal === maxLength) {
+    if (inputLength === maxLength) {
       return `0 ${i18n.characterCounter.charactersLeft}`;
     }
   }
 
   function characterTitle() {
-    if (inputClear > 0) {
+    if (inputLength > 0) {
       return characterTitleCount();
     } else {
       if (maxLength === 1) {
@@ -110,19 +119,21 @@ export const CharacterCounter = React.forwardRef<
       return `${maxLength} ${i18n.characterCounter.charactersAllowed}`;
     }
   }
-
   return (
     <StyledCharacterCounter
       aria-live="polite"
-      data-testid={props.testId}
-      activeStying={!inputClear ? null : activeStyling}
-      hasError={errorStyling}
+      activeStyling={characterStyling}
+      data-testid={testId}
+      hasError={characterStyling}
       isInverse={isInverse}
+      inputLength={inputLength}
+      inputSize={inputSize}
       ref={ref}
       theme={theme}
       {...rest}
     >
-      {errorStyling && <ErrorIcon size={theme.iconSizes.small} />}
+      {console.log(testId)}
+      {characterStyling && <ErrorIcon size={theme.iconSizes.small} />}
       {characterTitle()}
     </StyledCharacterCounter>
   );
