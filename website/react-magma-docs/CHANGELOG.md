@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.10
+
+### Patch Changes
+
+- 677a0adae: docs: Various a11y fixes including duplicate IDs, missing alt attributes, missing aria-labels.
+
 ## 4.0.4-next.9
 
 ### Patch Changes
