@@ -132,7 +132,6 @@ export const CharacterCounter = React.forwardRef<
       theme={theme}
       {...rest}
     >
-      {console.log(testId)}
       {characterStyling && <ErrorIcon size={theme.iconSizes.small} />}
       {characterTitle()}
     </StyledCharacterCounter>
