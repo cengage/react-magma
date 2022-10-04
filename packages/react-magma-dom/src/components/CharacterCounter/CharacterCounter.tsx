@@ -1,19 +1,22 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { transparentize } from 'polished';
-import { ErrorIcon } from 'react-magma-icons';
 import { FormFieldContainerProps } from '../FormFieldContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { InputSize } from '../InputBase';
 import { I18nContext } from '../../i18n';
+import { InputMessage } from '../Input/InputMessage';
 
 export interface CharacterCounterProps
   extends Omit<FormFieldContainerProps, 'fieldId'>,
     React.HTMLAttributes<HTMLDivElement> {
-  hasError?: boolean;
+  /**
+   * Total number of characters in an input.
+   */
   inputLength?: number;
-  inputSize?: InputSize;
+  /**
+   * Sets the maximum amount of characters allowed.
+   */
+  maxLength?: number;
   testId?: string;
   /**
    * @internal
@@ -21,75 +24,41 @@ export interface CharacterCounterProps
   theme?: ThemeInterface;
 }
 
-function buildFontColor(props: CharacterCounterProps) {
-  if (props.isInverse) {
-    if (props.hasError) {
-      return props.theme.colors.danger200;
-    }
-    return transparentize(0.3, props.theme.colors.neutral100);
-  }
-  if (props.hasError) {
-    return props.theme.colors.danger;
+function buildFontWeight(props: CharacterCounterProps) {
+  if (
+    (props.inputLength < props.maxLength && props.inputLength >= 1) ||
+    props.inputLength === props.maxLength
+  ) {
+    return props.theme.typographyVisualStyles.headingXSmall.fontWeight;
   }
 }
+const StyledWrapper = styled.div``;
 
-const StyledCharacterCounter = styled.div<{
-  activeStyling?: boolean;
-  hasError?: boolean;
+const StyledInputMessage = styled(InputMessage)<{
   inputLength?: number;
-  inputSize?: InputSize;
-  isInverse?: boolean;
+  maxLength?: number;
 }>`
-  align-items: center;
-  border-radius: ${props => props.theme.borderRadius};
-  color: ${buildFontColor};
-  display: flex;
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
-  font-weight: ${props =>
-    !props.activeStyling && !props.hasError && props.inputLength >= 1
-      ? props.theme.typographyVisualStyles.headingXSmall.fontWeight
-      : ''};
-  letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
-  line-height: ${props => props.theme.typeScale.size02.lineHeight};
-  margin-top: ${props =>
-    props.inputSize === InputSize.large
-      ? props.theme.spaceScale.spacing03
-      : props.theme.spaceScale.spacing02};
-  text-align: left;
-  svg {
-    color: ${props =>
-      props.isInverse ? props.theme.colors.danger200 : 'inherit'};
-    margin-right: ${props => props.theme.spaceScale.spacing02};
-  }
+  font-weight: ${buildFontWeight};
 `;
 
 export const CharacterCounter = React.forwardRef<
   HTMLDivElement,
   CharacterCounterProps
 >((props, ref) => {
-  const {
-    children,
-    hasError,
-    inputLength,
-    inputSize,
-    maxLength,
-    testId,
-    isInverse,
-    ...rest
-  } = props;
+  const { children, inputLength, maxLength, testId, isInverse, ...rest } =
+    props;
 
   const theme = React.useContext(ThemeContext);
 
   const i18n = React.useContext(I18nContext);
 
-  const characterStyling =
-    maxLength < inputLength && hasError
-      ? inputLength < maxLength
-      : inputLength > maxLength;
+  const isOverMaxLength = inputLength > maxLength;
 
+  // As the user types, this shows the remaining characters set by maxLength which counts down to zero then counts up if over the limit.
   const characterLimit =
     maxLength > inputLength ? maxLength - inputLength : inputLength - maxLength;
 
+  // Changes the Character Counter title states from remaining to over the limit.
   function characterTitleCount() {
     if (inputLength < maxLength) {
       if (inputLength === maxLength - 1) {
@@ -109,6 +78,7 @@ export const CharacterCounter = React.forwardRef<
     }
   }
 
+  // Character Counter default "allowed" title states.
   function characterTitle() {
     if (inputLength > 0) {
       return characterTitleCount();
@@ -119,21 +89,19 @@ export const CharacterCounter = React.forwardRef<
       return `${maxLength} ${i18n.characterCounter.charactersAllowed}`;
     }
   }
+
   return (
-    <StyledCharacterCounter
-      aria-live="polite"
-      activeStyling={characterStyling}
-      data-testid={testId}
-      hasError={characterStyling}
-      isInverse={isInverse}
-      inputLength={inputLength}
-      inputSize={inputSize}
-      ref={ref}
-      theme={theme}
-      {...rest}
-    >
-      {characterStyling && <ErrorIcon size={theme.iconSizes.small} />}
-      {characterTitle()}
-    </StyledCharacterCounter>
+    <StyledWrapper data-testid={testId} aria-live="polite">
+      <StyledInputMessage
+        hasError={isOverMaxLength}
+        isInverse={isInverse}
+        inputLength={inputLength}
+        maxLength={maxLength}
+        theme={theme}
+        {...rest}
+      >
+        {characterTitle()}
+      </StyledInputMessage>
+    </StyledWrapper>
   );
 });

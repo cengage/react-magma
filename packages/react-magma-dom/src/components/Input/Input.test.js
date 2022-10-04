@@ -2,9 +2,11 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Input } from '.';
 import { render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
-import { CheckIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
+import { magma } from '../../theme/magma';
+import { CheckIcon, ErrorIcon } from 'react-magma-icons';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 describe('Input', () => {
   it('should find element by testId', () => {
@@ -101,7 +103,10 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', transparentize(0.3, magma.colors.neutral100));
+    expect(helperMessage).toHaveStyleRule(
+      'color',
+      transparentize(0.3, magma.colors.neutral100)
+    );
   });
 
   it('should render an input with a correctly styled error message', () => {
@@ -408,10 +413,7 @@ describe('Input', () => {
         magma.typeScale.size04.fontSize
       );
       expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
-      expect(input).toHaveStyleRule(
-        'padding',
-        `${magma.spaceScale.spacing04}`
-      );
+      expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
     });
 
     describe('events', () => {
@@ -471,6 +473,218 @@ describe('Input', () => {
       const { container } = render(<Input labelText="test label" />);
       return axe(container.innerHTML).then(result => {
         return expect(result).toHaveNoViolations();
+      });
+    });
+  });
+
+  describe('Character Counter', () => {
+    const characterAllowed = defaultI18n.characterCounter.characterAllowed;
+    const charactersAllowed = defaultI18n.characterCounter.charactersAllowed;
+    const characterLeft = defaultI18n.characterCounter.characterLeft;
+    const charactersLeft = defaultI18n.characterCounter.charactersLeft;
+    const characterOver = defaultI18n.characterCounter.characterOver;
+    const charactersOver = defaultI18n.characterCounter.charactersOver;
+    const labelText = 'Character Counter';
+
+    describe('Characters Allowed', () => {
+      it('Shows the default label of "characters allowed" if maxLength is 0', () => {
+        const { getByText } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+            }}
+          >
+            <Input maxLength={0} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByText('0 ' + charactersAllowed)).toBeInTheDocument();
+      });
+
+      it('Shows the default label of "character allowed" if maxLength is 1', () => {
+        const { getByText } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+            }}
+          >
+            <Input maxLength={1} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByText('1 ' + characterAllowed)).toBeInTheDocument();
+      });
+      it('Shows the default label of "characters allowed" if maxLength is greater than 1', () => {
+        const { getByText } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+            }}
+          >
+            <Input maxLength={2} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
+      });
+    });
+
+    describe('Characters Left', () => {
+      it('Shows the label "characters left" as the user types', () => {
+        const onChange = jest.fn();
+        const { getByText, getByLabelText } = render(
+          <Input labelText={labelText} maxLength={4} onChange={onChange} />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'dd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+        expect(getByText('2 ' + charactersLeft)).toBeInTheDocument();
+      });
+
+      it('Shows the label "characters left" if user types to zero', () => {
+        const onChange = jest.fn();
+        const { getByText, getByLabelText } = render(
+          <Input labelText={labelText} maxLength={4} onChange={onChange} />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'dddd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+        expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+      });
+
+      it('Shows the label "character left" as the user types to one remaining character', () => {
+        const onChange = jest.fn();
+        const { getByText, getByLabelText } = render(
+          <Input labelText={labelText} maxLength={4} onChange={onChange} />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'ddd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+        expect(getByText('1 ' + characterLeft)).toBeInTheDocument();
+      });
+    });
+
+    describe('Characters Over Limit', () => {
+      it('Shows the label "character over limit" as the user types over the limit by one', () => {
+        const onChange = jest.fn();
+        const { getByText, getByLabelText } = render(
+          <Input labelText={labelText} maxLength={4} onChange={onChange} />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'ddddd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+        expect(getByText('1 ' + characterOver)).toBeInTheDocument();
+      });
+
+      it('Shows the label "characters over limit" as the user types over the limit', () => {
+        const onChange = jest.fn();
+        const { getByText, getByLabelText } = render(
+          <Input labelText={labelText} maxLength={4} onChange={onChange} />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'dddddd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+        expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
+      });
+
+      it('Shows the inverse label "characters over limit" as the user types over the limit', () => {
+        const onChange = jest.fn();
+        const { getByText, getByLabelText } = render(
+          <Input
+            isInverse
+            labelText={labelText}
+            maxLength={4}
+            onChange={onChange}
+          />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'dddddd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+        expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
+      });
+    });
+
+    it('Shows the label "characters left" equal to the maxLength if the user clears the input', () => {
+      const onChangeSpy = jest.fn();
+      const targetValue = '';
+      const { getByText, getByLabelText } = render(
+        <Input
+          labelText={labelText}
+          maxLength={4}
+          onChange={onChangeSpy}
+          value="dddd"
+        />
+      );
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: targetValue },
+      });
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
+    describe('styling', () => {
+      it('Shows the error glyph if user exceeds maxLength prop', () => {
+        const onChange = jest.fn();
+        const icon = <ErrorIcon />;
+        const { container, getByLabelText } = render(
+          <>
+            <Input labelText={labelText} maxLength={4} onChange={onChange} />
+            {icon}
+          </>
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'ddddd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'height',
+          magma.iconSizes.small.toString()
+        );
+      });
+      it('Shows the inverse error styling text and glyph if user exceeds maxLength prop', () => {
+        const onChange = jest.fn();
+        const { container, getByLabelText } = render(
+          <Input
+            isInverse
+            labelText={labelText}
+            maxLength={4}
+            onChange={onChange}
+          />
+        );
+
+        fireEvent.change(getByLabelText(labelText), {
+          target: { value: 'dddddd' },
+        });
+
+        expect(onChange).toHaveBeenCalled();
+
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'height',
+          magma.iconSizes.small.toString()
+        );
       });
     });
   });

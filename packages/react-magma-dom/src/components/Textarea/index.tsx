@@ -110,7 +110,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           aria-invalid={!!errorMessage}
           data-testid={testId}
-          hasError={!!errorMessage}
+          hasError={!!errorMessage || characterLength > maxLength}
           id={id}
           isInverse={isInverse}
           onChange={handleChange}

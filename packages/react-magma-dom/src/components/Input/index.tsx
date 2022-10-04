@@ -49,7 +49,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     function handleClear() {
       props.onClear && typeof props.onClear === 'function' && props.onClear();
-      setCharacterLength(null);
+      setCharacterLength(0);
     }
 
     return (

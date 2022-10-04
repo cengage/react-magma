@@ -143,13 +143,13 @@ export const FormFieldContainer = React.forwardRef<
           </Label>
         )}
         {children}
-        {maxLength && (
+        {typeof maxLength === 'number' && (
           <CharacterCounter
             inputLength={inputLength}
             inputSize={inputSize}
             isInverse={isInverse}
             maxLength={maxLength}
-            testId={testId}
+            testId={testId && `${testId}-character-counter`}
           />
         )}
 
