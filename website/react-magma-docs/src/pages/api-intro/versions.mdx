@@ -13,51 +13,34 @@ import {
 } from 'react-magma-dom';
 import { getVersions } from './getVersions';
 
-
-export const Thing = () => {
-  const [result, setResult] = React.useState([]);
+export const NextVersionTable = () => {
+  const [tags, setTags] = React.useState([]);
+  const [row, setRow] = React.useState();
   React.useEffect(() => {
     const getVersionsAndTags = new Promise((res) => res(getVersions()));
     getVersionsAndTags.then(function(val) {
-      console.log('---', val);
-      setResult(val);
+      setTags(val.tags);
     });
   }, []);
-  const getRowsData = () => {
-    if (result && result.versions) {
-      const versions = result.versions;
-      const x = versions.map((item, key) => {
-        return [item.version, item.time, `https://react-magma.cengage.com/version/${item.version}`];
-      });
-      console.log('+++++', x);
+  React.useEffect(() => {
+    if (tags && tags.next) {
+      setRow(<TableRow><TableCell>{tags.next.version}</TableCell><TableCell>{tags.next.date}</TableCell><TableCell><a href='https://next--upbeat-sinoussi-f675aa.netlify.app/'>Docs</a></TableCell></TableRow>);
     } else {
-      console.log('EMPTY');
-      return 'empty';
+      setRow(<></>);
     }
-  };
-  return(
-    <>
-      Results -- <br/>
-      {getRowsData()}
-    </>
-  );
-};
-
-export const NextVersionTable = () => {
+  }, [tags]);
   return (
     <>
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeaderCell>Version</TableHeaderCell>
+            <TableHeaderCell style={{width: '300px'}}>Version</TableHeaderCell>
+            <TableHeaderCell>Release date</TableHeaderCell>
             <TableHeaderCell>Docs link</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
-            <TableRow>
-                <TableCell>v2.5.10-next.1</TableCell>
-                <TableCell><a href="https://react-magma.cengage.com/version/2.5.10-next.1/">Docs</a></TableCell>
-            </TableRow>
+          {row}
         </TableBody>
       </Table>
     </>
@@ -65,29 +48,42 @@ export const NextVersionTable = () => {
 };
 
 export const ReleasedVersionsTable = () => {
-  const rows = [];
-  
-  return (
+  const [allVersions, setAllVersions] = React.useState([]);
+  const [rows, setRows] = React.useState();
+  React.useEffect(() => {
+    const getVersionsAndTags = new Promise((res) => res(getVersions()));
+    getVersionsAndTags.then(function(val) {
+      setAllVersions(val.versions);
+    });
+  }, []);
+  React.useEffect(() => {
+    if (allVersions) {
+      const versions = allVersions.reverse();
+      const tableRow = versions.map((row, i) => {
+        return (
+          <TableRow key={`row${i}`}>
+            <TableCell key={`row${i}-version`}>{row.version}{i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}</TableCell>
+             <TableCell key={`row${i}-date`}>{row.date}</TableCell>
+             <TableCell key={`row${i}-docs`}><a href={`https://react-magma.cengage.com/version/${row.version}`}>Docs</a></TableCell>
+          </TableRow>
+        )});
+      setRows(tableRow);
+    } else {
+      setRows(<></>);
+    }
+  }, [allVersions]);
+  return(
     <>
       <Table>
           <TableHead>
             <TableRow>
-              <TableHeaderCell>Version</TableHeaderCell>
+              <TableHeaderCell style={{width: '300px'}}>Version</TableHeaderCell>
               <TableHeaderCell>Release date</TableHeaderCell>
               <TableHeaderCell>Docs link</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, i) => (
-              <TableRow key={`row${i}`}>
-                {row.map((cell, j) => {
-                    if (j === 2) {
-                        return <TableCell key={`cell${i}_${j}`}><a href={cell}>Docs</a></TableCell>
-                    }
-                    return <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-                })}
-              </TableRow>
-            ))}
+            {rows}
           </TableBody>
         </Table>
     </>
@@ -97,8 +93,6 @@ export const ReleasedVersionsTable = () => {
 # React Magma Versions 
 
 On an older version? Want to see the newest unreleased updates? Switch to a different version of the docs at anytime.
-
-<Thing />
 
 ## Next Version
 See what changes are in development and coming in a future release.
