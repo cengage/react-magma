@@ -3,16 +3,7 @@ title: React Magma Versions
 order: 4
 ---
 
-# React Magma Versions
-
-On an older version? Want to see the newest unreleased updates? Switch to a different version of the docs at anytime.
-
-## Next Version
-See what changes are in development and coming in a future release.
-```typescript
-import React from 'react';
 import {
-  Card,
   Table,
   TableHead,
   TableRow,
@@ -20,94 +11,65 @@ import {
   TableBody,
   TableCell,
 } from 'react-magma-dom';
+import { getVersions } from './getVersions';
 
-export function Example() {
-  return (
+
+export const Thing = () => {
+  const [result, setResult] = React.useState([]);
+  React.useEffect(() => {
+    const getVersionsAndTags = new Promise((res) => res(getVersions()));
+    getVersionsAndTags.then(function(val) {
+      console.log('---', val);
+      setResult(val);
+    });
+  }, []);
+  const getRowsData = () => {
+    if (result && result.versions) {
+      const versions = result.versions;
+      const x = versions.map((item, key) => {
+        return [item.version, item.time, `https://react-magma.cengage.com/version/${item.version}`];
+      });
+      console.log('+++++', x);
+    } else {
+      console.log('EMPTY');
+      return 'empty';
+    }
+  };
+  return(
     <>
-      <Card>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Version</TableHeaderCell>
-              <TableHeaderCell>Docs link</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-              <TableRow>
-                  <TableCell>v2.5.10-next.1</TableCell>
-                  <TableCell><a href="https://react-magma.cengage.com/version/2.5.10-next.1/">Docs</a></TableCell>
-              </TableRow>
-          </TableBody>
-        </Table>
-      </Card>
+      Results -- <br/>
+      {getRowsData()}
     </>
   );
-}
-```
+};
 
-## Released Versions
-The most recent stable version (&nbsp;✅&nbsp;) is recommended for use in production.
-
-```typescript
-import React from 'react';
-import {
-  Card,
-  Table,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
-  TableBody,
-  TableCell,
-} from 'react-magma-dom';
-
-export function Example() {
-  const rows = [
-    [
-      'v2.5.10 ✅',
-      '04/07/2022',
-      'https://react-magma.cengage.com/version/2.5.10/'
-    ],
-    [
-      'v2.5.9',
-      '04/07/2022',
-      'https://react-magma.cengage.com/version/2.5.9/'
-    ],
-    [
-      'v2.5.8',
-      '02/25/2022',
-      'https://react-magma.cengage.com/version/2.5.8/'
-    ],
-    [
-      'v2.5.7',
-      '02/04/2022',
-      'https://react-magma.cengage.com/version/2.5.7/'
-    ],
-    [
-      'v2.5.6',
-      '11/01/2021',
-      'https://react-magma.cengage.com/version/2.5.6/'
-    ],
-    [
-      'v2.5.5',
-      '09/29/2021',
-      'https://react-magma.cengage.com/version/2.5.5/'
-    ],
-    [
-      'v2.5.4',
-      '09/15/2021',
-      'https://react-magma.cengage.com/version/2.5.4/'
-    ],
-    [
-      'v2.5.3',
-      '09/01/2021',
-      'https://react-magma.cengage.com/version/2.5.3/'
-    ],
-  ];
-
+export const NextVersionTable = () => {
   return (
     <>
-      <Card>
-        <Table>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Version</TableHeaderCell>
+            <TableHeaderCell>Docs link</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+            <TableRow>
+                <TableCell>v2.5.10-next.1</TableCell>
+                <TableCell><a href="https://react-magma.cengage.com/version/2.5.10-next.1/">Docs</a></TableCell>
+            </TableRow>
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+export const ReleasedVersionsTable = () => {
+  const rows = [];
+  
+  return (
+    <>
+      <Table>
           <TableHead>
             <TableRow>
               <TableHeaderCell>Version</TableHeaderCell>
@@ -128,8 +90,21 @@ export function Example() {
             ))}
           </TableBody>
         </Table>
-      </Card>
     </>
   );
-}
-```
+};
+
+# React Magma Versions 
+
+On an older version? Want to see the newest unreleased updates? Switch to a different version of the docs at anytime.
+
+<Thing />
+
+## Next Version
+See what changes are in development and coming in a future release.
+
+<NextVersionTable />
+
+## Released Versions
+The most recent stable version (&nbsp;✅&nbsp;) is recommended for use in production.
+<ReleasedVersionsTable />

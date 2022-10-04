@@ -44,14 +44,39 @@ const filterNPM = ({ versions, 'dist-tags': tags, time }) => {
   };
 };
 
-const getVersionsAndTags = () => {
+export const getAllVersions = () => {
   return axios
     .get('https://registry.npmjs.org/react-magma-dom')
     .then(({ data }) => filterNPM(data));
 };
 
-export const getAll = () => {
-    getVersionsAndTags().then(versions => {
-    return versions;
+
+export async function getVersions() {
+  const allVersionsPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(getAllVersions());
+    }, 300);
   });
+
+  try {
+    const versions = await allVersionsPromise;
+    return versions;
+  } catch(err) {
+    console.error(err);
+    return err;
+  }
 };
+
+// export function getData() {
+//   const p1 = new Promise((res) => setTimeout(() => res(something()), 1000));
+//   return p1.then(function(val) {
+//     console.log('returning ', val);
+//     return val;
+//   });
+// }
+
+
+// result.map((item, j) => {return <TableCell>{item.version}</TableCell>
+// {result.length === 0 ? return (<span>emptyyy</span>) : return (<span>'something'</span>)}
+
+// {result && result.versions.length > 0 ? result.versions[0].time : 'empty'}
