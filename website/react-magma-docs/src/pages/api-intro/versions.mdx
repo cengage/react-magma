@@ -24,7 +24,7 @@ export const NextVersionTable = () => {
   }, []);
   React.useEffect(() => {
     if (tags && tags.next) {
-      setRow(<TableRow><TableCell>{tags.next.version}</TableCell><TableCell>{tags.next.date}</TableCell><TableCell><a href='https://next--upbeat-sinoussi-f675aa.netlify.app/'>Docs</a></TableCell></TableRow>);
+      setRow(<TableRow><TableCell>v{tags.next.version}</TableCell><TableCell>{tags.next.date}</TableCell><TableCell><a href='https://next--upbeat-sinoussi-f675aa.netlify.app/'>Docs</a></TableCell></TableRow>);
     } else {
       setRow(<></>);
     }
@@ -53,16 +53,15 @@ export const ReleasedVersionsTable = () => {
   React.useEffect(() => {
     const getVersionsAndTags = new Promise((res) => res(getVersions()));
     getVersionsAndTags.then(function(val) {
-      setAllVersions(val.versions);
+      setAllVersions(val.versions.reverse());
     });
   }, []);
   React.useEffect(() => {
     if (allVersions) {
-      const versions = allVersions.reverse();
-      const tableRow = versions.map((row, i) => {
+      const tableRow = allVersions.map((row, i) => {
         return (
           <TableRow key={`row${i}`}>
-            <TableCell key={`row${i}-version`}>{row.version}{i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}</TableCell>
+            <TableCell key={`row${i}-version`}>v{row.version}{i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}</TableCell>
              <TableCell key={`row${i}-date`}>{row.date}</TableCell>
              <TableCell key={`row${i}-docs`}><a href={`https://react-magma.cengage.com/version/${row.version}`}>Docs</a></TableCell>
           </TableRow>
