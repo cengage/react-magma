@@ -11,7 +11,7 @@ import {
   TableBody,
   TableCell,
 } from 'react-magma-dom';
-import { getVersions } from './getVersions';
+import { getVersions } from '../../utils';
 
 export const NextVersionTable = () => {
   const [tags, setTags] = React.useState([]);
@@ -100,4 +100,5 @@ See what changes are in development and coming in a future release.
 
 ## Released Versions
 The most recent stable version (&nbsp;✅&nbsp;) is recommended for use in production.
+
 <ReleasedVersionsTable />
