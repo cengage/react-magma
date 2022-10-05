@@ -18,7 +18,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       children,
       containerStyle,
       errorMessage,
-      hasError,
       helperMessage,
       iconPosition,
       id: defaultId,
@@ -67,7 +66,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         labelText={labelText}
         maxLength={maxLength}
         messageStyle={messageStyle}
-        testId={testId + '-formFieldContainer'}
+        testId={testId && `${testId}-formFieldContainer`}
       >
         <InputBase
           {...other}

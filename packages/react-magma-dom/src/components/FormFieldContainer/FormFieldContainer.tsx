@@ -146,7 +146,6 @@ export const FormFieldContainer = React.forwardRef<
         {typeof maxLength === 'number' && (
           <CharacterCounter
             inputLength={inputLength}
-            inputSize={inputSize}
             isInverse={isInverse}
             maxLength={maxLength}
             testId={testId && `${testId}-character-counter`}

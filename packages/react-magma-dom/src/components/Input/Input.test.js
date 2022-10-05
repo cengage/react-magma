@@ -601,44 +601,27 @@ describe('Input', () => {
         expect(onChange).toHaveBeenCalled();
         expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
       });
-
-      it('Shows the inverse label "characters over limit" as the user types over the limit', () => {
-        const onChange = jest.fn();
-        const { getByText, getByLabelText } = render(
-          <Input
-            isInverse
-            labelText={labelText}
-            maxLength={4}
-            onChange={onChange}
-          />
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'dddddd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-        expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
-      });
     });
 
-    it('Shows the label "characters left" equal to the maxLength if the user clears the input', () => {
-      const onChangeSpy = jest.fn();
-      const targetValue = '';
-      const { getByText, getByLabelText } = render(
-        <Input
-          labelText={labelText}
-          maxLength={4}
-          onChange={onChangeSpy}
-          value="dddd"
-        />
+    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input', () => {
+      const onChange = jest.fn();
+      const initialValue = 'dddd';
+      const { getByText, getByLabelText, rerender } = render(
+        <Input labelText={labelText} maxLength={4} onChange={onChange} />
       );
 
       fireEvent.change(getByLabelText(labelText), {
-        target: { value: targetValue },
+        target: { value: initialValue },
       });
 
-      expect(onChangeSpy).toHaveBeenCalledTimes(1);
+      expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: '' },
+      });
+
+      expect(getByLabelText(labelText)).toHaveAttribute('value', '');
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
 
@@ -654,29 +637,18 @@ describe('Input', () => {
         );
 
         fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'ddddd' },
+          target: { value: 'dd' },
         });
 
         expect(onChange).toHaveBeenCalled();
 
-        expect(container.querySelector('svg')).toHaveAttribute(
+        expect(container.querySelector('svg')).not.toHaveAttribute(
           'height',
           magma.iconSizes.small.toString()
         );
-      });
-      it('Shows the inverse error styling text and glyph if user exceeds maxLength prop', () => {
-        const onChange = jest.fn();
-        const { container, getByLabelText } = render(
-          <Input
-            isInverse
-            labelText={labelText}
-            maxLength={4}
-            onChange={onChange}
-          />
-        );
 
         fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'dddddd' },
+          target: { value: 'ddddd' },
         });
 
         expect(onChange).toHaveBeenCalled();

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { FormFieldContainerProps } from '../FormFieldContainer';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { InputMessage } from '../Input/InputMessage';
+import { magma } from '../../theme/magma';
 
 export interface CharacterCounterProps
   extends Omit<FormFieldContainerProps, 'fieldId'>,
@@ -21,7 +20,6 @@ export interface CharacterCounterProps
   /**
    * @internal
    */
-  theme?: ThemeInterface;
 }
 
 function buildFontWeight(props: CharacterCounterProps) {
@@ -29,10 +27,10 @@ function buildFontWeight(props: CharacterCounterProps) {
     (props.inputLength < props.maxLength && props.inputLength >= 1) ||
     props.inputLength === props.maxLength
   ) {
-    return props.theme.typographyVisualStyles.headingXSmall.fontWeight;
+    return magma.typographyVisualStyles.headingXSmall.fontWeight;
   }
+  return 'inherit';
 }
-const StyledWrapper = styled.div``;
 
 const StyledInputMessage = styled(InputMessage)<{
   inputLength?: number;
@@ -47,8 +45,6 @@ export const CharacterCounter = React.forwardRef<
 >((props, ref) => {
   const { children, inputLength, maxLength, testId, isInverse, ...rest } =
     props;
-
-  const theme = React.useContext(ThemeContext);
 
   const i18n = React.useContext(I18nContext);
 
@@ -91,17 +87,16 @@ export const CharacterCounter = React.forwardRef<
   }
 
   return (
-    <StyledWrapper data-testid={testId} aria-live="polite">
+    <div data-testid={testId} aria-live="polite">
       <StyledInputMessage
         hasError={isOverMaxLength}
         isInverse={isInverse}
         inputLength={inputLength}
         maxLength={maxLength}
-        theme={theme}
         {...rest}
       >
         {characterTitle()}
       </StyledInputMessage>
-    </StyledWrapper>
+    </div>
   );
 });

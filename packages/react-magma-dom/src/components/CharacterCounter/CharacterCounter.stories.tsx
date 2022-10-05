@@ -9,21 +9,35 @@ import { Textarea } from '../Textarea';
 import { Tooltip } from '../Tooltip';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
+const labelText = 'Character Counter';
+
 const Template: Story<CharacterCounterProps> = args => (
   <>
-    <Input
-      {...args}
-      testId="test-this-id"
-      labelText="Character Counter"
-      maxLength={4}
-    />
+    <Input {...args} testId="test-this-id" labelText={labelText} />
   </>
 );
 
 export default {
   component: CharacterCounter,
   title: 'CharacterCounter',
+  decorators: [
+    (Story, context) => (
+      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+        <Story />
+      </Container>
+    ),
+  ],
   argTypes: {
+    errorMessage: {
+      control: {
+        type: 'text',
+      },
+    },
+    helperMessage: {
+      control: {
+        type: 'text',
+      },
+    },
     isInverse: {
       control: {
         type: 'boolean',
@@ -34,38 +48,18 @@ export default {
         type: 'boolean',
       },
     },
+    maxLength: {
+      control: {
+        type: 'number',
+      },
+    },
   },
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
+  maxLength: 4,
   isInverse: false,
-};
-
-export const Inverse = Template.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
-};
-
-export const WithHelperText = args => {
-  return (
-    <Input
-      labelText="Character Counter"
-      helperMessage={'Life in a northern town'}
-      maxLength={22}
-    />
-  );
-};
-
-export const WithError = args => {
-  return (
-    <Input
-      labelText="Character Counter"
-      errorMessage={'Life in a northern town'}
-      maxLength={22}
-    />
-  );
 };
 
 export const WithChildren = args => {
@@ -75,9 +69,9 @@ export const WithChildren = args => {
   };
   return (
     <Input
-      labelText="Character Counter"
+      labelText={labelText}
       errorMessage={'Life in a northern town'}
-      maxLength={22}
+      maxLength={args.maxLength}
     >
       <Tooltip content={helpLinkLabel}>
         <IconButton
@@ -94,13 +88,15 @@ export const WithChildren = args => {
 };
 
 export const TextArea = args => {
-  return <Textarea labelText="Character Counter" maxLength={45} />;
+  return (
+    <Textarea
+      labelText={labelText}
+      errorMessage={args.errorMessage}
+      helperMessage={args.helperMessage}
+      maxLength={args.maxLength}
+    />
+  );
 };
-
-Inverse.decorators = [
-  Story => (
-    <Container isInverse style={{ padding: '20px' }}>
-      <Story />
-    </Container>
-  ),
-];
+TextArea.args = {
+  ...Default.args,
+};
