@@ -176,7 +176,7 @@ header h1 {
   width: 45%;
   border: 1px solid #D4D4D4;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -200,7 +200,7 @@ header h1 {
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 4px;
+  border-radius: 8px;
   color: #fff;
   display: inline-flex;
   font-size: 16px;
@@ -246,6 +246,19 @@ header h1 {
   opacity: 0.4;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0s ease 0s;
+}
+
+.secondary {
+  background: #ffffff;
+  border: 1px solid #8B91DA;
+  color: #3942B0;
+  border-radius: 8px;
+}
+
+.secondary:hover,
+.secondary:focus {
+  background: #E8E9F8;
+  color: #3942B0;
 }
 
 @media (max-width: 600px) {
