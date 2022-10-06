@@ -1,13 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { FormFieldContainerProps } from '../FormFieldContainer';
-import { I18nContext } from '../../i18n';
 import { InputMessage } from '../Input/InputMessage';
 import { magma } from '../../theme/magma';
+import { I18nContext } from '../../i18n';
 
 export interface CharacterCounterProps
-  extends Omit<FormFieldContainerProps, 'fieldId'>,
-    React.HTMLAttributes<HTMLDivElement> {
+  extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Total number of characters in an input.
    */
@@ -15,11 +13,15 @@ export interface CharacterCounterProps
   /**
    * Sets the maximum amount of characters allowed.
    */
+  isInverse?: boolean;
+  /**
+   * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
+   */
   maxLength?: number;
-  testId?: string;
   /**
    * @internal
    */
+  testId?: string;
 }
 
 function buildFontWeight(props: CharacterCounterProps) {
@@ -54,30 +56,25 @@ export const CharacterCounter = React.forwardRef<
   const characterLimit =
     maxLength > inputLength ? maxLength - inputLength : inputLength - maxLength;
 
-  // Changes the Character Counter title states from remaining to over the limit.
-  function characterTitleCount() {
-    if (inputLength < maxLength) {
-      if (inputLength === maxLength - 1) {
-        return `${characterLimit} ${i18n.characterCounter.characterLeft}`;
-      } else if (characterLimit > 1) {
-        return `${characterLimit} ${i18n.characterCounter.charactersLeft}`;
-      }
-    }
-    if (inputLength > maxLength) {
-      if (inputLength === maxLength + 1) {
-        return `${characterLimit} ${i18n.characterCounter.characterOver}`;
-      }
-      return `${characterLimit} ${i18n.characterCounter.charactersOver}`;
-    }
-    if (inputLength === maxLength) {
-      return `0 ${i18n.characterCounter.charactersLeft}`;
-    }
-  }
-
   // Character Counter default "allowed" title states.
   function characterTitle() {
     if (inputLength > 0) {
-      return characterTitleCount();
+      if (inputLength < maxLength) {
+        if (inputLength === maxLength - 1) {
+          return `${characterLimit} ${i18n.characterCounter.characterLeft}`;
+        } else if (characterLimit > 1) {
+          return `${characterLimit} ${i18n.characterCounter.charactersLeft}`;
+        }
+      }
+      if (inputLength > maxLength) {
+        if (inputLength === maxLength + 1) {
+          return `${characterLimit} ${i18n.characterCounter.characterOver}`;
+        }
+        return `${characterLimit} ${i18n.characterCounter.charactersOver}`;
+      }
+      if (inputLength === maxLength) {
+        return `0 ${i18n.characterCounter.charactersLeft}`;
+      }
     } else {
       if (maxLength === 1) {
         return `${maxLength} ${i18n.characterCounter.characterAllowed}`;

@@ -68,11 +68,7 @@ export const WithChildren = args => {
     alert('Help link clicked!');
   };
   return (
-    <Input
-      labelText={labelText}
-      errorMessage={'Life in a northern town'}
-      maxLength={args.maxLength}
-    >
+    <Input labelText={labelText} {...args}>
       <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}
@@ -88,15 +84,9 @@ export const WithChildren = args => {
 };
 
 export const TextArea = args => {
-  return (
-    <Textarea
-      labelText={labelText}
-      errorMessage={args.errorMessage}
-      helperMessage={args.helperMessage}
-      maxLength={args.maxLength}
-    />
-  );
+  return <Textarea labelText={labelText} {...args} />;
 };
 TextArea.args = {
   ...Default.args,
 };
+TextArea.parameters = { controls: { exclude: ['isClearable'] } };

@@ -24,7 +24,7 @@ export interface TextareaProps
   containerStyle?: React.CSSProperties;
   isInverse?: boolean;
   /**
-   * A number value which gives Character Counter the maximum length of allowable characters in an Input.
+   * A number value which gives Character Counter the maximum length of allowable characters in an Textarea.
    */
   maxLength?: number;
   /**

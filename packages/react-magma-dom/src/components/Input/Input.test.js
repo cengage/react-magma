@@ -5,7 +5,6 @@ import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { magma } from '../../theme/magma';
 import { CheckIcon, ErrorIcon } from 'react-magma-icons';
-import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 
 describe('Input', () => {
@@ -478,135 +477,14 @@ describe('Input', () => {
   });
 
   describe('Character Counter', () => {
-    const characterAllowed = defaultI18n.characterCounter.characterAllowed;
     const charactersAllowed = defaultI18n.characterCounter.charactersAllowed;
-    const characterLeft = defaultI18n.characterCounter.characterLeft;
     const charactersLeft = defaultI18n.characterCounter.charactersLeft;
-    const characterOver = defaultI18n.characterCounter.characterOver;
-    const charactersOver = defaultI18n.characterCounter.charactersOver;
     const labelText = 'Character Counter';
-
-    describe('Characters Allowed', () => {
-      it('Shows the default label of "characters allowed" if maxLength is 0', () => {
-        const { getByText } = render(
-          <I18nContext.Provider
-            value={{
-              ...defaultI18n,
-            }}
-          >
-            <Input maxLength={0} />
-          </I18nContext.Provider>
-        );
-
-        expect(getByText('0 ' + charactersAllowed)).toBeInTheDocument();
-      });
-
-      it('Shows the default label of "character allowed" if maxLength is 1', () => {
-        const { getByText } = render(
-          <I18nContext.Provider
-            value={{
-              ...defaultI18n,
-            }}
-          >
-            <Input maxLength={1} />
-          </I18nContext.Provider>
-        );
-
-        expect(getByText('1 ' + characterAllowed)).toBeInTheDocument();
-      });
-      it('Shows the default label of "characters allowed" if maxLength is greater than 1', () => {
-        const { getByText } = render(
-          <I18nContext.Provider
-            value={{
-              ...defaultI18n,
-            }}
-          >
-            <Input maxLength={2} />
-          </I18nContext.Provider>
-        );
-
-        expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
-      });
-    });
-
-    describe('Characters Left', () => {
-      it('Shows the label "characters left" as the user types', () => {
-        const onChange = jest.fn();
-        const { getByText, getByLabelText } = render(
-          <Input labelText={labelText} maxLength={4} onChange={onChange} />
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'dd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-        expect(getByText('2 ' + charactersLeft)).toBeInTheDocument();
-      });
-
-      it('Shows the label "characters left" if user types to zero', () => {
-        const onChange = jest.fn();
-        const { getByText, getByLabelText } = render(
-          <Input labelText={labelText} maxLength={4} onChange={onChange} />
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'dddd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-        expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
-      });
-
-      it('Shows the label "character left" as the user types to one remaining character', () => {
-        const onChange = jest.fn();
-        const { getByText, getByLabelText } = render(
-          <Input labelText={labelText} maxLength={4} onChange={onChange} />
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'ddd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-        expect(getByText('1 ' + characterLeft)).toBeInTheDocument();
-      });
-    });
-
-    describe('Characters Over Limit', () => {
-      it('Shows the label "character over limit" as the user types over the limit by one', () => {
-        const onChange = jest.fn();
-        const { getByText, getByLabelText } = render(
-          <Input labelText={labelText} maxLength={4} onChange={onChange} />
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'ddddd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-        expect(getByText('1 ' + characterOver)).toBeInTheDocument();
-      });
-
-      it('Shows the label "characters over limit" as the user types over the limit', () => {
-        const onChange = jest.fn();
-        const { getByText, getByLabelText } = render(
-          <Input labelText={labelText} maxLength={4} onChange={onChange} />
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'dddddd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-        expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
-      });
-    });
 
     it('Shows the label "characters allowed" equal to the maxLength if the user clears the input', () => {
       const onChange = jest.fn();
       const initialValue = 'dddd';
-      const { getByText, getByLabelText, rerender } = render(
+      const { getByText, getByLabelText } = render(
         <Input labelText={labelText} maxLength={4} onChange={onChange} />
       );
 

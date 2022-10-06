@@ -1,9 +1,23 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { CharacterCounter } from '.';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 const testId = 'test-id';
+
+const characterAllowed = defaultI18n.characterCounter.characterAllowed;
+
+const charactersAllowed = defaultI18n.characterCounter.charactersAllowed;
+
+const characterLeft = defaultI18n.characterCounter.characterLeft;
+
+const charactersLeft = defaultI18n.characterCounter.charactersLeft;
+
+const characterOver = defaultI18n.characterCounter.characterOver;
+
+const charactersOver = defaultI18n.characterCounter.charactersOver;
 
 describe('CharacterCounter', () => {
   it('should find element by testId', () => {
@@ -19,6 +33,91 @@ describe('CharacterCounter', () => {
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
+    });
+  });
+  describe('Titles', () => {
+    const labelText = 'Character Counter';
+
+    describe('Characters Allowed', () => {
+      it('Shows the default label of "characters allowed" if maxLength is 0', () => {
+        const { getByText } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+            }}
+          >
+            <CharacterCounter maxLength={0} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByText('0 ' + charactersAllowed)).toBeInTheDocument();
+      });
+
+      it('Shows the default label of "character allowed" if maxLength is 1', () => {
+        const { getByText } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+            }}
+          >
+            <CharacterCounter maxLength={1} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByText('1 ' + characterAllowed)).toBeInTheDocument();
+      });
+      it('Shows the default label of "characters allowed"', () => {
+        const { getByText } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+            }}
+          >
+            <CharacterCounter maxLength={2} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
+      });
+    });
+
+    describe('Characters Left', () => {
+      it('Shows the label "characters left" as the user types', () => {
+        const { getByText } = render(
+          <CharacterCounter inputLength={2} maxLength={4} />
+        );
+        expect(getByText('2 ' + charactersLeft)).toBeInTheDocument();
+      });
+
+      it('Shows the label "characters left" if user types to zero', () => {
+        const { getByText } = render(
+          <CharacterCounter inputLength={4} maxLength={4} />
+        );
+        expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+      });
+
+      it('Shows the label "character left" as the user types to one remaining character', () => {
+        const { getByText } = render(
+          <CharacterCounter inputLength={3} maxLength={4} />
+        );
+        expect(getByText('1 ' + characterLeft)).toBeInTheDocument();
+      });
+    });
+
+    describe('Characters Over Limit', () => {
+      it('Shows the label "character over limit" as the user types over the limit by one', () => {
+        const { getByText } = render(
+          <CharacterCounter inputLength={5} maxLength={4} />
+        );
+        expect(getByText('1 ' + characterOver)).toBeInTheDocument();
+      });
+
+      it('Shows the label "characters over limit" as the user types over the limit', () => {
+        const { getByText } = render(
+          <CharacterCounter inputLength={6} maxLength={4} />
+        );
+        expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
+      });
     });
   });
 });
