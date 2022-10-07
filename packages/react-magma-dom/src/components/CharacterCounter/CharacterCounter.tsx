@@ -9,7 +9,7 @@ export interface CharacterCounterProps
   /**
    * Total number of characters in an input.
    */
-  inputLength?: number;
+  inputLength: number;
   /**
    * Sets the maximum amount of characters allowed.
    */
@@ -17,7 +17,7 @@ export interface CharacterCounterProps
   /**
    * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
    */
-  maxLength?: number;
+  maxLength: number;
   /**
    * @internal
    */
@@ -35,8 +35,8 @@ function buildFontWeight(props: CharacterCounterProps) {
 }
 
 const StyledInputMessage = styled(InputMessage)<{
-  inputLength?: number;
-  maxLength?: number;
+  inputLength: number;
+  maxLength: number;
 }>`
   font-weight: ${buildFontWeight};
 `;

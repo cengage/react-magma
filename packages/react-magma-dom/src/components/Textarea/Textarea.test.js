@@ -132,32 +132,5 @@ describe('Textarea', () => {
       expect(textarea.value).toBe('');
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
-
-    describe('styling', () => {
-      it('Shows the error glyph if user exceeds maxLength prop', () => {
-        const icon = <ErrorIcon />;
-        const { container, getByTestId, getByText } = render(
-          <>
-            <Textarea maxLength={4} testId={testId} />
-            {icon}
-          </>
-        );
-        const textarea = getByTestId(testId);
-
-        fireEvent.change(textarea, { target: { value: 'ddd' } });
-        expect(textarea.value).toBe('ddd');
-        expect(container.querySelector('svg')).not.toHaveAttribute(
-          'height',
-          magma.iconSizes.small.toString()
-        );
-
-        fireEvent.change(textarea, { target: { value: 'ddddd' } });
-        expect(textarea.value).toBe('ddddd');
-        expect(container.querySelector('svg')).toHaveAttribute(
-          'height',
-          magma.iconSizes.small.toString()
-        );
-      });
-    });
   });
 });

@@ -82,6 +82,9 @@ export const WithChildren = args => {
     </Input>
   );
 };
+WithChildren.args = {
+  ...Default.args,
+};
 
 export const TextArea = args => {
   return <Textarea labelText={labelText} {...args} />;

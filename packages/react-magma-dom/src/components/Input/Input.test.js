@@ -502,40 +502,5 @@ describe('Input', () => {
       expect(getByLabelText(labelText)).toHaveAttribute('value', '');
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
-
-    describe('styling', () => {
-      it('Shows the error glyph if user exceeds maxLength prop', () => {
-        const onChange = jest.fn();
-        const icon = <ErrorIcon />;
-        const { container, getByLabelText } = render(
-          <>
-            <Input labelText={labelText} maxLength={4} onChange={onChange} />
-            {icon}
-          </>
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'dd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-
-        expect(container.querySelector('svg')).not.toHaveAttribute(
-          'height',
-          magma.iconSizes.small.toString()
-        );
-
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: 'ddddd' },
-        });
-
-        expect(onChange).toHaveBeenCalled();
-
-        expect(container.querySelector('svg')).toHaveAttribute(
-          'height',
-          magma.iconSizes.small.toString()
-        );
-      });
-    });
   });
 });

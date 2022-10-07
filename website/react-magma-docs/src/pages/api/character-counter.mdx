@@ -1,15 +1,19 @@
 ---
 pageTitle: CharacterCounter API
-title: CharacterCounter
+title: Character Counter
 props:
   - CharacterCounterProps
 ---
 
 <DocsHeading type="api">Character Counter</DocsHeading>
 
-A numeric counter below Input and Textarea reflecting a set limit of characters on input by the user
+A numeric counter that is used by <Link to="/api/input">Input</Link> and <Link to="/api/textarea">Textarea</Link> below either which dynamically increments or deducts a value based on a set length.
 
 ## Basic Usage
+
+The Character Counter is called when the prop of `maxLength` is set within an <Link to="/api/input">Input</Link> or a <Link to="/api/textarea">Textarea</Link>.
+
+As the user types, a counter is displayed below the Input or Textarea counting down to the allowable length. Once this is exceeded, an error message shows in place counting the overrage of characters.
 
 ```typescript
 import React from 'react';
@@ -22,8 +26,7 @@ export function Example() {
 
 ## Inverse
 
-The `isInverse` prop will render a dark background and light text. The children will
-inherit the `isInverse` prop unless specified otherwise.
+The `isInverse` prop is a boolean meant for interfaces using dark backgrounds.
 
 ```typescript
 import React from 'react';
@@ -32,7 +35,7 @@ import { Container, Input } from 'react-magma-dom';
 export function Example() {
   return (
     <Container isInverse style={{ padding: '12px' }}>
-      <Input isInverse maxLength={4} labelText="Default Character Counter" />
+      <Input isInverse maxLength={4} labelText="Character Counter" />
     </Container>
   );
 }
@@ -57,13 +60,13 @@ export function Example() {
         example: 'example i18n',
       }}
     >
-      <Input maxLength={4} labelText="Default Character Counter" />
+      <Input maxLength={4} labelText="Character Counter" />
     </I18nContext.Provider>
   );
 }
 ```
 
-# CharacterCounterProps
+### Character Counter Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 

@@ -186,6 +186,19 @@ export function Example() {
 }
 ```
 
+## Character Counter
+
+Character Counter is enabled when using the `maxLength` prop. As the user types past the allowable length, an error state appears showing the overrage.
+
+```typescript
+import React from 'react';
+import { Input } from 'react-magma-dom';
+
+export function Example() {
+  return <Input maxLength={4} labelText="Default Character Counter" />;
+}
+```
+
 ## Input With Icon
 
 An `icon` may be included with the input, by passing in the `icon` prop. An aria-label may be added using the `iconAriaLabel` prop.
@@ -465,7 +478,7 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
 ```html noCodeSandbox
-  <Input labelText="Label" testId="test-id"/>
+<input labelText="Label" testId="test-id" />
 ```
 
 ## Input Props

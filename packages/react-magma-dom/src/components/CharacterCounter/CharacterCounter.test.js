@@ -1,9 +1,11 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { CharacterCounter } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { ErrorIcon } from 'react-magma-icons';
+import { magma } from '../../theme/magma';
 
 const testId = 'test-id';
 
@@ -36,8 +38,6 @@ describe('CharacterCounter', () => {
     });
   });
   describe('Titles', () => {
-    const labelText = 'Character Counter';
-
     describe('Characters Allowed', () => {
       it('Shows the default label of "characters allowed" if maxLength is 0', () => {
         const { getByText } = render(
@@ -66,7 +66,7 @@ describe('CharacterCounter', () => {
 
         expect(getByText('1 ' + characterAllowed)).toBeInTheDocument();
       });
-      it('Shows the default label of "characters allowed"', () => {
+      it('Shows the default label of "characters allowed" if maxLength > 1', () => {
         const { getByText } = render(
           <I18nContext.Provider
             value={{
@@ -82,21 +82,21 @@ describe('CharacterCounter', () => {
     });
 
     describe('Characters Left', () => {
-      it('Shows the label "characters left" as the user types', () => {
+      it('Shows the label "characters left" when inputLength > 1', () => {
         const { getByText } = render(
           <CharacterCounter inputLength={2} maxLength={4} />
         );
         expect(getByText('2 ' + charactersLeft)).toBeInTheDocument();
       });
 
-      it('Shows the label "characters left" if user types to zero', () => {
+      it('Shows the label "characters left" when maxLength is equal to inputLength', () => {
         const { getByText } = render(
           <CharacterCounter inputLength={4} maxLength={4} />
         );
         expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
       });
 
-      it('Shows the label "character left" as the user types to one remaining character', () => {
+      it('Shows the label "character left" when inputLength < maxLength by 1', () => {
         const { getByText } = render(
           <CharacterCounter inputLength={3} maxLength={4} />
         );
@@ -117,6 +117,32 @@ describe('CharacterCounter', () => {
           <CharacterCounter inputLength={6} maxLength={4} />
         );
         expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
+      });
+    });
+
+    describe('styling', () => {
+      it('Shows the error glyph if user exceeds maxLength prop', () => {
+        const icon = <ErrorIcon />;
+        const { container, rerender } = render(
+          <>
+            <CharacterCounter inputLength={3} maxLength={4} />
+            {icon}
+          </>
+        );
+        expect(container.querySelector('svg')).not.toHaveAttribute(
+          'height',
+          magma.iconSizes.small.toString()
+        );
+        rerender(
+          <>
+            <CharacterCounter inputLength={5} maxLength={4} />
+            {icon}
+          </>
+        );
+        expect(container.querySelector('svg')).toHaveAttribute(
+          'height',
+          magma.iconSizes.small.toString()
+        );
       });
     });
   });
