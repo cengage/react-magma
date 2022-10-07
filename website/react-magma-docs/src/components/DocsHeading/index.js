@@ -10,8 +10,14 @@ import {
   magma,
   TypographyColor,
   useIsInverse,
+  TabsContainer,
+  Tab,
+  Tabs,
+  TabPanelsContainer,
+  TabPanel,
+  TabsOrientation,
 } from 'react-magma-dom';
-import { CodeIcon, PaletteIcon } from 'react-magma-icons';
+import { SubPageTabs } from '../SubPageTabs';
 
 const Container = styled.div`
   align-items: flex-start;
@@ -34,68 +40,37 @@ const Container = styled.div`
   }
 `;
 
-const ButtonContainer = styled.div`
-  margin-bottom: ${magma.spaceScale.spacing06};
-  @media (min-width: ${magma.breakpoints.small}px) {
-    margin: 0;
-  }
-`;
-
-const ButtonSpan = styled.span`
-  padding-left: ${magma.spaceScale.spacing03};
-`;
-
 export const DocsHeading = ({ children, to, type }) => {
   const isInverse = useIsInverse();
 
-  return (
-    <Container>
-      <div>
-        <Paragraph
-          color={TypographyColor.subdued}
-          noMargins
-          visualStyle={TypographyVisualStyle.heading2XSmall}
-        >
-          {type === 'api' ? 'Component API' : 'Design Guidelines'}
-        </Paragraph>
-        <Heading level={1}>{children}</Heading>
-      </div>
-      {type === 'api' && to && (
-        <ButtonContainer>
-          <Hyperlink
-            color="secondary"
-            isInverse={isInverse}
-            styledAs="Button"
-            to={to}
-          >
-            {linkProps => (
-              <Link {...linkProps}>
-                <PaletteIcon size={magma.iconSizes.medium} />
-                <ButtonSpan>View Design Guidelines</ButtonSpan>
-              </Link>
-            )}
-          </Hyperlink>
-        </ButtonContainer>
-      )}
+  const activeTabIndex = type === 'api' ? 0 : 1;
 
-      {type === 'design' && to && (
-        <ButtonContainer>
-          <Hyperlink
-            color="secondary"
-            isInverse={isInverse}
-            styledAs="Button"
-            to={to}
-          >
-            {linkProps => (
-              <Link {...linkProps}>
-                <CodeIcon size={magma.iconSizes.medium} />
-                <ButtonSpan>View Component API</ButtonSpan>
-              </Link>
-            )}
-          </Hyperlink>
-        </ButtonContainer>
-      )}
-    </Container>
+  console.log('children', children);
+
+  return (
+    <>
+      <Container style={{ background: magma.colors.neutral200 }}>
+        <Heading level={1}>{children}</Heading>
+      </Container>
+      <Container>
+        <TabsContainer activeIndex={activeTabIndex} isInverse={isInverse}>
+          <Tabs aria-label="" style={{background: magma.colors.neutral200}}>
+            <Tab>Implementation</Tab>
+            <Tab>Design</Tab>
+          </Tabs>
+          <TabPanelsContainer>
+            <TabPanel>
+              <div>Implementation</div>
+              <SubPageTabs pages={['something', 'here']} />
+            </TabPanel>
+            <TabPanel>
+              <div>Design</div>
+              <SubPageTabs pages={[]} />
+            </TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      </Container>
+    </>
   );
 };
 

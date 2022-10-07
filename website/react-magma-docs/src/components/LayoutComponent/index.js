@@ -1,11 +1,12 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import styled from '@emotion/styled';
-import { magma, Container } from 'react-magma-dom';
+import { magma, Container, Heading } from 'react-magma-dom';
 
 const ContentSection = styled.section`
   grid-area: content;
   padding: ${magma.spaceScale.spacing07} 0 0;
+  background: ${magma.colors.neutral100};
 `;
 
 export const LayoutComponent = props => (
@@ -20,7 +21,8 @@ export const LayoutComponent = props => (
       <html lang="en" />
     </Helmet>
     <main>
-      <Container gutterWidth={0}>
+      <Container gutterWidth={0} style={{background: magma.colors.neutral200}}>
+        <Heading level={1}>{props.heading || 'hiiiiiii'}</Heading>
         <ContentSection className="content">{props.children}</ContentSection>
       </Container>
     </main>
