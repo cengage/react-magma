@@ -31,10 +31,10 @@ export const NextVersionTable = () => {
   }, [tags]);
   return (
     <>
-      <Table>
+      <Table minWidth={100}>
         <TableHead>
           <TableRow>
-            <TableHeaderCell style={{width: '300px'}}>Version</TableHeaderCell>
+            <TableHeaderCell style={{width: '250px'}}>Version</TableHeaderCell>
             <TableHeaderCell>Release date</TableHeaderCell>
             <TableHeaderCell>Docs link</TableHeaderCell>
           </TableRow>
@@ -73,10 +73,10 @@ export const ReleasedVersionsTable = () => {
   }, [allVersions]);
   return(
     <>
-      <Table>
+      <Table minWidth={100}>
           <TableHead>
             <TableRow>
-              <TableHeaderCell style={{width: '300px'}}>Version</TableHeaderCell>
+              <TableHeaderCell style={{width: '250px'}}>Version</TableHeaderCell>
               <TableHeaderCell>Release date</TableHeaderCell>
               <TableHeaderCell>Docs link</TableHeaderCell>
             </TableRow>
