@@ -10,12 +10,9 @@ export interface CharacterCounterProps
    * Total number of characters in an input.
    */
   inputLength: number;
-  /**
-   * Sets the maximum amount of characters allowed.
-   */
   isInverse?: boolean;
   /**
-   * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
+   * Sets the maximum amount of characters allowed.
    */
   maxLength: number;
   /**
@@ -24,6 +21,7 @@ export interface CharacterCounterProps
   testId?: string;
 }
 
+// Changes the font weight to bold based on maxLength.
 function buildFontWeight(props: CharacterCounterProps) {
   if (
     (props.inputLength < props.maxLength && props.inputLength >= 1) ||
@@ -56,7 +54,7 @@ export const CharacterCounter = React.forwardRef<
   const characterLimit =
     maxLength > inputLength ? maxLength - inputLength : inputLength - maxLength;
 
-  // Character Counter default "allowed" title states.
+  // Character Counter title states.
   function characterTitle() {
     if (inputLength > 0) {
       if (inputLength < maxLength) {
