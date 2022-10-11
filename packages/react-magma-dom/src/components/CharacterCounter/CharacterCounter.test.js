@@ -2,9 +2,7 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { CharacterCounter } from '.';
 import { render } from '@testing-library/react';
-import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
-import { ErrorIcon } from 'react-magma-icons';
 import { magma } from '../../theme/magma';
 
 const testId = 'test-id';
@@ -24,14 +22,16 @@ const charactersOver = defaultI18n.characterCounter.charactersOver;
 describe('CharacterCounter', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
-      <CharacterCounter maxLength={231} testId={testId} />
+      <CharacterCounter inputLength={45} maxLength={231} testId={testId} />
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = render(<CharacterCounter maxLength={22} />);
+    const { container } = render(
+      <CharacterCounter inputLength={2} maxLength={22} />
+    );
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
@@ -41,13 +41,7 @@ describe('CharacterCounter', () => {
     describe('Characters Allowed', () => {
       it('Shows the default label of "characters allowed" if maxLength is 0', () => {
         const { getByText } = render(
-          <I18nContext.Provider
-            value={{
-              ...defaultI18n,
-            }}
-          >
-            <CharacterCounter maxLength={0} />
-          </I18nContext.Provider>
+          <CharacterCounter inputLength={0} maxLength={0} />
         );
 
         expect(getByText('0 ' + charactersAllowed)).toBeInTheDocument();
@@ -55,26 +49,14 @@ describe('CharacterCounter', () => {
 
       it('Shows the default label of "character allowed" if maxLength is 1', () => {
         const { getByText } = render(
-          <I18nContext.Provider
-            value={{
-              ...defaultI18n,
-            }}
-          >
-            <CharacterCounter maxLength={1} />
-          </I18nContext.Provider>
+          <CharacterCounter inputLength={0} maxLength={1} />
         );
 
         expect(getByText('1 ' + characterAllowed)).toBeInTheDocument();
       });
       it('Shows the default label of "characters allowed" if maxLength > 1', () => {
         const { getByText } = render(
-          <I18nContext.Provider
-            value={{
-              ...defaultI18n,
-            }}
-          >
-            <CharacterCounter maxLength={2} />
-          </I18nContext.Provider>
+          <CharacterCounter inputLength={0} maxLength={2} />
         );
 
         expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
@@ -112,7 +94,7 @@ describe('CharacterCounter', () => {
         expect(getByText('1 ' + characterOver)).toBeInTheDocument();
       });
 
-      it('Shows the label "characters over limit" as the user types over the limit', () => {
+      it('Shows the label "characters over limit" when inputLength > maxLength by 2', () => {
         const { getByText } = render(
           <CharacterCounter inputLength={6} maxLength={4} />
         );
