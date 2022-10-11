@@ -4,7 +4,6 @@ import { Textarea } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { defaultI18n } from '../../i18n/default';
-import { ErrorIcon } from 'react-magma-icons';
 
 const testId = 'test-id';
 
@@ -118,7 +117,6 @@ describe('Textarea', () => {
     const charactersLeft = defaultI18n.characterCounter.charactersLeft;
 
     it('Shows the label "characters allowed" equal to the maxLength if the user clears the textarea', () => {
-      const testId = 'test-id';
       const { getByTestId, getByText } = render(
         <Textarea maxLength={4} testId={testId} />
       );

@@ -26,7 +26,7 @@ export function Example() {
 
 ## Inverse
 
-The `isInverse` prop is a boolean meant for interfaces using dark backgrounds.
+`isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
 ```typescript
 import React from 'react';
@@ -57,7 +57,13 @@ export function Example() {
     <I18nContext.Provider
       value={{
         ...defaultI18n,
-        example: 'example i18n',
+        characterCounter: {
+          charactersAllowed: 'allowed in this custom string',
+          charactersLeft: 'left in this custom string',
+          characterLeft: 'left in this custom string',
+          characterOver: 'over the limit in this custom string',
+          charactersOver: 'over the limit in this custom string',
+        },
       }}
     >
       <Input maxLength={4} labelText="Character Counter" />

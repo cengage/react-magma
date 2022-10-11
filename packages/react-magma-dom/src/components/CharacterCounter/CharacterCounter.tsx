@@ -42,7 +42,7 @@ const StyledInputMessage = styled(InputMessage)<{
 export const CharacterCounter = React.forwardRef<
   HTMLDivElement,
   CharacterCounterProps
->((props, ref) => {
+>(props => {
   const { children, inputLength, maxLength, testId, isInverse, ...rest } =
     props;
 
@@ -50,11 +50,16 @@ export const CharacterCounter = React.forwardRef<
 
   const isOverMaxLength = inputLength > maxLength;
 
-  // As the user types, this shows the remaining characters set by maxLength which counts down to zero then counts up if over the limit.
+  // As the user types, this calculates the remaining characters set by maxLength which counts down to zero then counts up if over the limit.
   const characterLimit =
     maxLength > inputLength ? maxLength - inputLength : inputLength - maxLength;
 
-  // Character Counter title states.
+  /*
+   * Returns the character counter description.
+   * When there's no inputLength, returns "# character(s) allowed"
+   * When inputLength < maxLength or inputLength === maxLength, returns "# character(s) left"
+   * When inputLength > maxLength, returns "# character(s) over limit"
+   */
   function characterTitle() {
     if (inputLength > 0) {
       if (inputLength < maxLength) {
@@ -80,15 +85,13 @@ export const CharacterCounter = React.forwardRef<
       return `${maxLength} ${i18n.characterCounter.charactersAllowed}`;
     }
   }
-
   return (
-    <div data-testid={testId} aria-live="polite">
+    <div data-testid={testId} {...rest}>
       <StyledInputMessage
         hasError={isOverMaxLength}
         isInverse={isInverse}
         inputLength={inputLength}
         maxLength={maxLength}
-        {...rest}
       >
         {characterTitle()}
       </StyledInputMessage>

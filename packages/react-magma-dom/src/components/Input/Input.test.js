@@ -4,7 +4,7 @@ import { Input } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { magma } from '../../theme/magma';
-import { CheckIcon, ErrorIcon } from 'react-magma-icons';
+import { CheckIcon } from 'react-magma-icons';
 import { defaultI18n } from '../../i18n/default';
 
 describe('Input', () => {
@@ -480,10 +480,28 @@ describe('Input', () => {
     const charactersAllowed = defaultI18n.characterCounter.charactersAllowed;
     const charactersLeft = defaultI18n.characterCounter.charactersLeft;
     const labelText = 'Character Counter';
+    const initialValue = 'dddd';
 
-    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input', () => {
+    it('should render an input with a correctly styled error message', () => {
+      const { getByTestId, getByLabelText } = render(
+        <Input labelText={labelText} maxLength={2} />
+      );
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: initialValue },
+      });
+
+      const errorMessage = getByTestId('inputMessage');
+
+      expect(getByLabelText(labelText).parentElement).toHaveStyleRule(
+        'border-color',
+        magma.colors.danger
+      );
+      expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+    });
+
+    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by backspacing', () => {
       const onChange = jest.fn();
-      const initialValue = 'dddd';
       const { getByText, getByLabelText } = render(
         <Input labelText={labelText} maxLength={4} onChange={onChange} />
       );
@@ -501,6 +519,30 @@ describe('Input', () => {
 
       expect(getByLabelText(labelText)).toHaveAttribute('value', '');
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
+    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by clicking the onClear button', () => {
+      const onClear = jest.fn();
+      const { getByText, getByLabelText, getByTestId } = render(
+        <Input
+          labelText={labelText}
+          onClear={onClear}
+          isClearable
+          maxLength={4}
+        />
+      );
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: initialValue },
+      });
+
+      expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+
+      fireEvent.click(getByTestId('clear-button'));
+
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+      expect(onClear).toBeCalled();
     });
   });
 });

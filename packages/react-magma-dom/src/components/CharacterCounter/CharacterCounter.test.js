@@ -105,7 +105,7 @@ describe('CharacterCounter', () => {
     });
 
     describe('Characters Over Limit', () => {
-      it('Shows the label "character over limit" as the user types over the limit by one', () => {
+      it('Shows the label "character over limit" when inputLength > maxLength by 1', () => {
         const { getByText } = render(
           <CharacterCounter inputLength={5} maxLength={4} />
         );
@@ -121,25 +121,17 @@ describe('CharacterCounter', () => {
     });
 
     describe('styling', () => {
-      it('Shows the error glyph if user exceeds maxLength prop', () => {
-        const icon = <ErrorIcon />;
-        const { container, rerender } = render(
-          <>
-            <CharacterCounter inputLength={3} maxLength={4} />
-            {icon}
-          </>
+      it('Should render an input with a correctly styled error message', () => {
+        const testId = 'inputMessageErrror';
+        const { getByText, getByTestId } = render(
+          <CharacterCounter testId={testId} inputLength={4} maxLength={2} />
         );
-        expect(container.querySelector('svg')).not.toHaveAttribute(
-          'height',
-          magma.iconSizes.small.toString()
-        );
-        rerender(
-          <>
-            <CharacterCounter inputLength={5} maxLength={4} />
-            {icon}
-          </>
-        );
-        expect(container.querySelector('svg')).toHaveAttribute(
+
+        const errorMessage = getByTestId(testId);
+
+        expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
+
+        expect(errorMessage.querySelector('svg')).toHaveAttribute(
           'height',
           magma.iconSizes.small.toString()
         );
