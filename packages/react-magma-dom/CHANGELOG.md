@@ -1,5 +1,35 @@
 # Change Log
 
+## 3.1.2-next.4
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+
+## 3.1.2-next.3
+
+### Patch Changes
+
+- 9502d28a6: fix(Input): Fix placement of `children` inside Input component (ex: help icon).
+
+## 3.1.2-next.2
+
+### Patch Changes
+
+- ffa945119: fix(ButtonGroup): Add `flex-wrap: wrap` to ButtonGroup
+
+## 3.1.2-next.1
+
+### Patch Changes
+
+- 754c389ba: fix(GlobalStyles): Fix default `a:hover` color to match Hyperlink
+
+## 3.1.2-next.0
+
+### Patch Changes
+
+- 17ee57afe: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
 ## 3.1.1
 
 ### Patch Changes

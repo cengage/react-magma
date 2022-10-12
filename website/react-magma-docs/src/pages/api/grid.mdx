@@ -18,84 +18,131 @@ Child elements can be added as they are, or inside of `<GridItem></GridItem>`. `
 
 ```typescript
 import React from 'react';
-import { Grid, GridItem } from 'react-magma-dom';
+import styled from '@emotion/styled';
+import {
+  Grid,
+  GridItem,
+  GridJustifyContent,
+  magma,
+  useMediaQuery,
+} from 'react-magma-dom';
 
 export function Example() {
+  const isSmallerScreen = useMediaQuery(
+    `(max-width:${magma.breakpoints.small}px)`
+  );
+
   return (
     <Grid
-      gridTemplateColumns="repeat(6, 1fr)"
-      gridGap="1em"
-      gridJustifyContent="center"
-      gridAlignItems="center"
+      gridJustifyContent={GridJustifyContent.center}
+      gridTemplateAreas={
+        ('main main main main',
+        'card1 card1 card2 card3',
+        'card4 card5 card6 card7')
+      }
+      gridTemplateColumns="repeat(4, 1fr)"
+      gridGap="0.5em"
     >
       <GridItem
-        gridRow="1 / 3"
-        gridColumn="1 / 3"
-        style={{
-          border: '1px solid red',
-          textAlign: 'center',
-          padding: '1em',
-          height: '100%',
-        }}
-      >
-        gridRow='1 / 3' gridColumn='1 / 3'
-      </GridItem>
-      <GridItem
-        gridColumn="3 / 5"
-        style={{ border: '1px solid red', textAlign: 'center', padding: '1em' }}
-      >
-        gridColumn='3 / 5'
-      </GridItem>
-      <GridItem
+        gridColumn="1 / 5"
+        as="main"
         style={{
           border: '1px solid black',
           textAlign: 'center',
-          padding: '1em',
+          padding: magma.spaceScale.spacing05,
+          width: 'calc(100% - 48px)',
+          margin: '0 auto',
+        }}
+      >
+        GridColumn 1 / 5
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '1 / 3'}
+        as="card1"
+        style={{
+          border: '1px solid black',
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 0 0 25px',
+        }}
+      >
+        GridColumn {isSmallerScreen ? '1 / 5' : '1 / 3'}
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '3 / 4'}
+        as="card2"
+        style={{
+          border: '1px solid black',
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0',
+        }}
+      >
+        GridColumn {isSmallerScreen ? '1 / 5' : '3 / 4'}
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '4 / 5'}
+        as="card3"
+        style={{
+          border: '1px solid black',
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: isSmallerScreen ? 'calc(100% - 48px)' : 'auto',
+          margin: isSmallerScreen ? '0 auto' : '0 25px 0 0',
+        }}
+      >
+        GridColumn {isSmallerScreen ? '1 / 5' : '4 / 5'}
+      </GridItem>
+      <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '1'}
+        as="card4"
+        style={{
+          border: '1px solid black',
+          textAlign: 'center',
+          padding: magma.spaceScale.spacing05,
+          width: 'calc(100% - 48px)',
+          margin: '0 auto',
         }}
       >
         GridItem
       </GridItem>
       <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '2'}
+        as="card5"
         style={{
           border: '1px solid black',
           textAlign: 'center',
-          padding: '1em',
+          padding: magma.spaceScale.spacing05,
+          width: 'calc(100% - 48px)',
+          margin: '0 auto',
         }}
       >
         GridItem
       </GridItem>
       <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '3'}
+        as="card6"
         style={{
           border: '1px solid black',
           textAlign: 'center',
-          padding: '1em',
+          padding: magma.spaceScale.spacing05,
+          width: 'calc(100% - 48px)',
+          margin: '0 auto',
         }}
       >
         GridItem
       </GridItem>
       <GridItem
+        gridColumn={isSmallerScreen ? '1 / 5' : '4'}
+        as="card7"
         style={{
           border: '1px solid black',
           textAlign: 'center',
-          padding: '1em',
-        }}
-      >
-        GridItem
-      </GridItem>
-      <GridItem
-        style={{
-          border: '1px solid black',
-          textAlign: 'center',
-          padding: '1em',
-        }}
-      >
-        GridItem
-      </GridItem>
-      <GridItem
-        style={{
-          border: '1px solid black',
-          textAlign: 'center',
-          padding: '1em',
+          padding: magma.spaceScale.spacing05,
+          width: 'calc(100% - 48px)',
+          margin: '0 auto',
         }}
       >
         GridItem

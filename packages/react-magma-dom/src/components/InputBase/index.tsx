@@ -102,6 +102,10 @@ export interface InputBaseProps
    * @default InputType.text
    */
   type?: InputType;
+  /**
+   * Boolean for whether this is a Password Input or not
+   */
+  isPasswordInput?: boolean;
 }
 
 export interface InputWrapperStylesProps {
@@ -182,8 +186,7 @@ function getInputPadding(props: InputBaseStylesProps) {
         padding.left = props.theme.spaceScale.spacing10;
       }
     }
-  }
-  else if (inputSize === 'medium') {
+  } else if (inputSize === 'medium') {
     if (isClearable) {
       if (iconPosition === 'right') {
         padding.right = '68px';
@@ -321,7 +324,7 @@ const IconWrapper = styled.span<{
   ${props =>
     props.inputSize === 'large' &&
     css`
-      bottom: ${props.iconPosition === 'top' ? '56px' : 'inherit'};
+      bottom: ${props.iconPosition === 'top' ? '62px' : 'inherit'};
       left: ${props.iconPosition === 'left'
         ? props.theme.spaceScale.spacing04
         : 'auto'};
@@ -336,10 +339,68 @@ const IconWrapper = styled.span<{
     `}
 `;
 
+function getIconButtonSVGSize(props) {
+  const { isClickable, iconPosition, inputSize, theme } = props;
+
+  if (isClickable && iconPosition === InputIconPosition.top) {
+    if (inputSize === InputSize.large) {
+      return `${theme.iconSizes.medium}px`;
+    }
+    return `${theme.iconSizes.small}px`;
+  }
+  if (inputSize === InputSize.large) {
+    return `${theme.iconSizes.large}px`;
+  }
+  return `${theme.iconSizes.medium}px`;
+}
+
+function getIconButtonTransform(props) {
+  const { isClickable, iconPosition, inputSize, hasChildren, theme } = props;
+  let position = { x: '', y: '' };
+
+  if (iconPosition === InputIconPosition.top) {
+    if (inputSize === InputSize.large) {
+      position.x = '-30px';
+      position.y = '2px';
+    } else if (inputSize === InputSize.medium) {
+      position.x = '-28px';
+      position.y = '5px';
+    }
+    return position;
+  }
+
+  if (isClickable) {
+    if (inputSize === InputSize.large) {
+      if (hasChildren) {
+        position.x = '-43px';
+        position.y = '14px';
+      } else {
+        position.x = '-49px';
+        position.y = '8px';
+      }
+    } else if (inputSize === InputSize.medium) {
+      position.x = '-35px';
+      position.y = '6px';
+    }
+    return position;
+  }
+
+  if (inputSize === InputSize.large) {
+    position.x = `-${theme.spaceScale.spacing10}`;
+    position.y = theme.spaceScale.spacing03;
+  } else if (inputSize === InputSize.medium) {
+    position.x = '-24px';
+    position.y = '7px';
+  }
+  return position;
+}
+
 const IconButtonContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   theme: ThemeInterface;
+  isClickable?: boolean;
+  hasChildren?: boolean;
 }>`
   background-color: transparent;
   bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
@@ -348,21 +409,12 @@ const IconButtonContainer = styled.span<{
   position: relative;
   width: 0;
   transform: translate(
-    -${props => (props.inputSize === InputSize.large ? props.theme.spaceScale.spacing10 : '34px')},
-    ${props =>
-      props.inputSize === InputSize.large
-        ? props.theme.spaceScale.spacing03
-        : '7px'}
+    ${props => getIconButtonTransform(props).x},
+    ${props => getIconButtonTransform(props).y}
   );
   svg {
-    height: ${props =>
-      props.inputSize === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
-    width: ${props =>
-      props.inputSize === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
+    height: ${props => getIconButtonSVGSize(props)};
+    width: ${props => getIconButtonSVGSize(props)};
   }
 `;
 
@@ -380,6 +432,14 @@ const PasswordButtonContainer = styled.span<{
 `;
 
 function getClearablePosition(props) {
+  if (props.hasChildren) {
+    if (props.iconPosition === 'right') {
+      if (props.inputSize === 'large') {
+        return '92px';
+      }
+      return props.theme.spaceScale.spacing12;
+    }
+  }
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
       return '88px';
@@ -398,6 +458,7 @@ const IsClearableContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   onIconClick?: () => void;
+  hasChildren?: boolean;
 }>`
   background-color: transparent;
   margin: 0;
@@ -413,11 +474,21 @@ const IsClearableContainer = styled.span<{
   );
 `;
 
-function getIconSize(size: string, theme: ThemeInterface) {
+function getIconSize(
+  size: string,
+  theme: ThemeInterface,
+  iconPosition: InputIconPosition
+) {
   switch (size) {
     case 'large':
+      if (iconPosition === InputIconPosition.top) {
+        return theme.iconSizes.medium;
+      }
       return theme.iconSizes.large;
     default:
+      if (iconPosition === InputIconPosition.top) {
+        return theme.iconSizes.small;
+      }
       return theme.iconSizes.medium;
   }
 }
@@ -434,6 +505,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       iconAriaLabel,
       iconRef,
       isClearable,
+      isPasswordInput,
       isPredictive,
       onClear,
       onIconClick,
@@ -525,7 +597,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                 React.cloneElement(icon, {
                   size: getIconSize(
                     inputSize ? inputSize : InputSize.medium,
-                    theme
+                    theme,
+                    iconPosition
                   ),
                 })
               )}
@@ -539,6 +612,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             inputSize={inputSize}
             onIconClick={onIconClick}
             icon={icon}
+            hasChildren={!!children && !isPasswordInput}
           >
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
@@ -560,13 +634,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             />
           </IsClearableContainer>
         )}
-        {onIconClick ? (
+        {onIconClick && (
           <IconButtonContainer
             iconPosition={iconPosition}
             inputSize={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
+            isClickable={true}
           >
             <IconButton
               aria-label={iconAriaLabel}
@@ -586,7 +661,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               variant={ButtonVariant.link}
             />
           </IconButtonContainer>
-        ) : (
+        )}
+        {isPasswordInput ? (
           <PasswordButtonContainer
             size={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
@@ -595,6 +671,16 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           >
             {children}
           </PasswordButtonContainer>
+        ) : (
+          <IconButtonContainer
+            iconPosition={iconPosition}
+            inputSize={inputSize ? inputSize : InputSize.medium}
+            theme={theme}
+            isClickable={true}
+            hasChildren={true}
+          >
+            {children}
+          </IconButtonContainer>
         )}
       </InputContainer>
     );

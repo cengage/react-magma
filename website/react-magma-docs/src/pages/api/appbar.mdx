@@ -118,7 +118,10 @@ import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <AppBar isInverse>
+    <AppBar
+      isInverse
+      style={{ display: 'flex', justifyContent: 'space-between', gap: '48px' }}
+    >
       <div
         style={{
           alignItems: 'center',
@@ -130,21 +133,23 @@ export function Example() {
         <Spacer size={magma.spaceScale.spacing03} />
         <strong>LOGO</strong>
       </div>
-      <Spacer size={magma.spaceScale.spacing12} />
-      <Search onSearch={() => {}} placeholder="Search for content..." />
-      <Spacer size={magma.spaceScale.spacing06} />
-      <NavTabs
-        aria-label="Navigation"
-        backgroundColor="transparent"
-        iconPosition={TabsIconPosition.left}
-      >
-        <NavTab icon={<FavoriteIcon />} isActive to="#">
-          Favorites
-        </NavTab>
-        <NavTab icon={<WorkIcon />} to="#">
-          Workspace
-        </NavTab>
-      </NavTabs>
+      <div style={{ flex: '0 0 auto' }}>
+        <Search onSearch={() => {}} placeholder="Search for content..." />
+      </div>
+      <div style={{ flex: '1 1 auto' }}>
+        <NavTabs
+          aria-label="Navigation"
+          backgroundColor="transparent"
+          iconPosition={TabsIconPosition.left}
+        >
+          <NavTab icon={<FavoriteIcon />} isActive to="#">
+            Favorites
+          </NavTab>
+          <NavTab icon={<WorkIcon />} to="#">
+            Workspace
+          </NavTab>
+        </NavTabs>
+      </div>
     </AppBar>
   );
 }
