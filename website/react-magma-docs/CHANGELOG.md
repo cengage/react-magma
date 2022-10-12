@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4-next.11
+
+### Patch Changes
+
+- 9830302e7: docs(versions): Add React Magma Versions page
+
 ## 4.0.4-next.10
 
 ### Patch Changes
