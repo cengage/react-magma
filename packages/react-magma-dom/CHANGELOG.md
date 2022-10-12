@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.2-next.4
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+
 ## 3.1.2-next.3
 
 ### Patch Changes

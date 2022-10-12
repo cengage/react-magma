@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.0.4-next.12
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+  - @react-magma/charts@1.0.2-next.1
+  - react-magma-dom@3.1.2-next.4
+  - @react-magma/dropzone@1.0.3-next.1
+  - @cengage-patterns/header@3.0.3-next.1
+  - @react-magma/schema-renderer@1.0.3-next.1
+
 ## 4.0.4-next.11
 
 ### Patch Changes
