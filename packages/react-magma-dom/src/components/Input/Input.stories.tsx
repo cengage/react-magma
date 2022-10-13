@@ -4,6 +4,9 @@ import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<InputProps> = args => (
   <Input {...args} labelText="Example" />
@@ -35,6 +38,12 @@ export default {
         type: 'boolean',
       },
     },
+    type: {
+      control: {
+        type: 'select',
+        options: InputType
+      }
+    }
   },
   errorMessage: '',
 } as Meta;
@@ -46,6 +55,7 @@ Default.args = {
   isClearable: true,
   isInverse: false,
   placeholder: 'Placeholder text...',
+  type: InputType.text,
 };
 Default.parameters = { controls: { exclude: ['iconPosition'] } };
 
@@ -67,7 +77,7 @@ export const File = Template.bind({});
 File.args = {
   type: InputType.file,
 };
-File.parameters = { controls: { exclude: ['iconPosition'] } };
+File.parameters = { controls: { exclude: ['iconPosition', 'isClearable'] } };
 
 export const IconTop = Template.bind({});
 IconTop.args = {
@@ -142,3 +152,67 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const WithChildren = args => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+  return (
+    <>
+      <Input
+        labelText="Help link - top"
+        iconPosition={InputIconPosition.top}
+        {...args}
+      >
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+      <Input
+        labelText="Help link - right"
+        iconPosition={InputIconPosition.right}
+        {...args}
+      >
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+      <br/>
+      <hr/>
+      <Input
+        labelText="With two icons"
+        icon={<NotificationsIcon />}
+        {...args}
+      >
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+    </>
+  );
+};
+WithChildren.parameters = {
+  controls: { exclude: ['iconPosition', 'isInverse', 'type'] },
+};

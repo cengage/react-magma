@@ -1,5 +1,102 @@
 # Change Log
 
+## 4.0.4-next.12
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+  - @react-magma/charts@1.0.2-next.1
+  - react-magma-dom@3.1.2-next.4
+  - @react-magma/dropzone@1.0.3-next.1
+  - @cengage-patterns/header@3.0.3-next.1
+  - @react-magma/schema-renderer@1.0.3-next.1
+
+## 4.0.4-next.11
+
+### Patch Changes
+
+- 9830302e7: docs(versions): Add React Magma Versions page
+
+## 4.0.4-next.10
+
+### Patch Changes
+
+- 677a0adae: docs: Various a11y fixes including duplicate IDs, missing alt attributes, missing aria-labels.
+
+## 4.0.4-next.9
+
+### Patch Changes
+
+- c66969253: docs(appbar): Fix components overlapping in AppBar Tabs example.
+
+## 4.0.4-next.8
+
+### Patch Changes
+
+- e4c07d07c: Update error page.
+
+## 4.0.4-next.7
+
+### Patch Changes
+
+- Updated dependencies [9502d28a6]
+  - react-magma-dom@3.1.2-next.3
+
+## 4.0.4-next.6
+
+### Patch Changes
+
+- ab2d3e189: fix(PageTemplates): Updates to Page Templates examples, removed work in progress label
+
+## 4.0.4-next.5
+
+### Patch Changes
+
+- ffa945119: Update API pages that scroll horizontally on small screens.
+- Updated dependencies [ffa945119]
+  - react-magma-dom@3.1.2-next.2
+
+## 4.0.4-next.4
+
+### Patch Changes
+
+- Updated dependencies [754c389ba]
+  - react-magma-dom@3.1.2-next.1
+
+## 4.0.4-next.3
+
+### Patch Changes
+
+- 66c7daf7e: docs: Updating Sidebar to use our Accordion component.
+
+## 4.0.4-next.2
+
+### Patch Changes
+
+- f35c3c5de: docs(IndexPageContent): Update Home page styling for medium devices and add GitHub icon to Contribute button.
+
+## 4.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [17ee57afe]
+  - react-magma-dom@3.1.2-next.0
+  - @react-magma/charts@1.0.2-next.0
+  - @react-magma/dropzone@1.0.3-next.0
+  - @react-magma/schema-renderer@1.0.3-next.0
+  - @cengage-patterns/header@3.0.3-next.0
+
+## 4.0.4-next.0
+
+### Patch Changes
+
+- 2b099eb59: build: Resolve merge conflicts when pulling main -> dev
+
 ## 4.0.3
 
 ### Patch Changes

@@ -1,0 +1,104 @@
+---
+title: React Magma Versions
+order: 4
+---
+
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+import { getVersions } from '../../utils';
+
+export const NextVersionTable = () => {
+  const [tags, setTags] = React.useState([]);
+  const [row, setRow] = React.useState();
+  React.useEffect(() => {
+    const getVersionsAndTags = new Promise((res) => res(getVersions()));
+    getVersionsAndTags.then(function(val) {
+      setTags(val.tags);
+    });
+  }, []);
+  React.useEffect(() => {
+    if (tags && tags.next) {
+      setRow(<TableRow><TableCell>v{tags.next.version}</TableCell><TableCell>{tags.next.date}</TableCell><TableCell><a href='https://next--upbeat-sinoussi-f675aa.netlify.app/'>Docs</a></TableCell></TableRow>);
+    } else {
+      setRow(<></>);
+    }
+  }, [tags]);
+  return (
+    <>
+      <Table minWidth={100}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell style={{width: '250px'}}>Version</TableHeaderCell>
+            <TableHeaderCell>Release date</TableHeaderCell>
+            <TableHeaderCell>Docs link</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {row}
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+export const ReleasedVersionsTable = () => {
+  const [allVersions, setAllVersions] = React.useState([]);
+  const [rows, setRows] = React.useState();
+  React.useEffect(() => {
+    const getVersionsAndTags = new Promise((res) => res(getVersions()));
+    getVersionsAndTags.then(function(val) {
+      setAllVersions(val.versions.reverse());
+    });
+  }, []);
+  React.useEffect(() => {
+    if (allVersions) {
+      const tableRow = allVersions.map((row, i) => {
+        return (
+          <TableRow key={`row${i}`}>
+            <TableCell key={`row${i}-version`}>v{row.version}{i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}</TableCell>
+             <TableCell key={`row${i}-date`}>{row.date}</TableCell>
+             <TableCell key={`row${i}-docs`}><a href={`https://react-magma.cengage.com/version/${row.version}`}>Docs</a></TableCell>
+          </TableRow>
+        )});
+      setRows(tableRow);
+    } else {
+      setRows(<></>);
+    }
+  }, [allVersions]);
+  return(
+    <>
+      <Table minWidth={100}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell style={{width: '250px'}}>Version</TableHeaderCell>
+              <TableHeaderCell>Release date</TableHeaderCell>
+              <TableHeaderCell>Docs link</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows}
+          </TableBody>
+        </Table>
+    </>
+  );
+};
+
+# React Magma Versions 
+
+On an older version? Want to see the newest unreleased updates? Switch to a different version of the docs at anytime.
+
+## Next Version
+See what changes are in development and coming in a future release.
+
+<NextVersionTable />
+
+## Released Versions
+The most recent stable version (&nbsp;✅&nbsp;) is recommended for use in production.
+
+<ReleasedVersionsTable />
