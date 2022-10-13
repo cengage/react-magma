@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0-next.0
+
+### Minor Changes
+
+- 47015f38: feat(characterCounter): New Character Counter component.
+
 ## 3.1.2
 
 ### Patch Changes
