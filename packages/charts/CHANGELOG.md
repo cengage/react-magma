@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 1.0.2
+
+### Patch Changes
+
+- 0de78513: build(deps): Bump react-magma-icons to 2.3.4
+
 ## 1.0.2-next.1
 
 ### Patch Changes
