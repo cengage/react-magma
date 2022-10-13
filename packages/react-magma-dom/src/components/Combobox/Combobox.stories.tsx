@@ -105,7 +105,7 @@ LeftAlignedLabelWithContainer.decorators = [
   ),
 ];
 
-export const Typeahead = (args) => {
+export const Typeahead = args => {
   const largeListOfItems = [
     'red',
     'blue',
@@ -122,7 +122,6 @@ export const Typeahead = (args) => {
     'burnt_sienna',
   ];
 
-  //retrived from db
   const defaultItems = ['red', 'blue', 'orange'];
 
   const selectedItemsHistory = defaultItems.slice(0, 5).map(product => {
@@ -133,7 +132,6 @@ export const Typeahead = (args) => {
     React.useState(selectedItemsHistory);
 
   const [selectedItems, updateSelectedItems] = React.useState([]);
-
   const [inputQuery, setInputQuery] = React.useState('');
 
   function handleSelectedItemsChange(changes) {
@@ -141,41 +139,31 @@ export const Typeahead = (args) => {
   }
 
   function updateQuery(event) {
-    const query = event.target.value + event.key;
-    console.log('inputQuery before', inputQuery);
-    console.log('inputQuery after', query);
-    setInputQuery(query);
-  }
-
-  function findMatchingItems() {
-    console.log('heree', inputQuery);
-    
-    const matches = largeListOfItems.filter(item => {
-      return item.toLowerCase().includes(inputQuery.toLowerCase());
-    });
-    const newSuggestedItems = matches.slice(0, 5).map(item => {
-      return { label: item, value: item };
-    });
-
-    setSuggestedItems(newSuggestedItems);
+    setInputQuery(event.target.value + event.key);
   }
 
   React.useEffect(() => {
-    findMatchingItems();
+    setTimeout(() => {
+      const matches = largeListOfItems.filter(item => {
+        return item.toLowerCase().includes(inputQuery.toLowerCase());
+      });
+      const newSuggestedItems = matches.slice(0, 5).map(item => {
+        return { label: item, value: item };
+      });
+
+      setSuggestedItems(newSuggestedItems);
+    }, 250);
   }, [inputQuery]);
 
   return (
     <Combobox
       {...args}
-      labelText="Typeahead Example"
+      disableCreateItem
       items={suggestedItems}
       isMulti
       isClearable
-      disableCreateItem
-      isTypeahead={true}
-      // defaultItems={suggestedItems}
-      // selectedItems={selectedItems}
-      // onInputKeyPress={findMatchingItems}
+      isTypeahead
+      labelText="Typeahead Example"
       onInputKeyPress={updateQuery}
       onSelectedItemsChange={handleSelectedItemsChange}
     />
