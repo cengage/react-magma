@@ -1,5 +1,27 @@
 # Change Log
 
+## 3.2.0-next.0
+
+### Minor Changes
+
+- 47015f38: feat(characterCounter): New Character Counter component.
+
+## 3.1.2
+
+### Patch Changes
+
+- 754c389b: fix(GlobalStyles): Fix default `a:hover` color to match Hyperlink
+- ffa94511: fix(ButtonGroup): Add `flex-wrap: wrap` to ButtonGroup
+- 9502d28a: fix(Input): Fix placement of `children` inside Input component (ex: help icon).
+- 0de78513: build(deps): Bump react-magma-icons to 2.3.4
+- 17ee57af: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
+## 3.1.2-next.4
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+
 ## 3.1.2-next.3
 
 ### Patch Changes
