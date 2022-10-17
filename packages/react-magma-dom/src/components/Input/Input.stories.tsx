@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, InputProps } from '.';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
+import { LabelPosition } from '../FormFieldContainer';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
@@ -38,12 +39,18 @@ export default {
         type: 'boolean',
       },
     },
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
+      },
+    },
     type: {
       control: {
         type: 'select',
-        options: InputType
-      }
-    }
+        options: InputType,
+      },
+    },
   },
   errorMessage: '',
 } as Meta;
@@ -192,13 +199,9 @@ export const WithChildren = args => {
           />
         </Tooltip>
       </Input>
-      <br/>
-      <hr/>
-      <Input
-        labelText="With two icons"
-        icon={<NotificationsIcon />}
-        {...args}
-      >
+      <br />
+      <hr />
+      <Input labelText="With two icons" icon={<NotificationsIcon />} {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}

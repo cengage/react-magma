@@ -3,6 +3,7 @@ import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { NativeSelect, NativeSelectProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { LabelPosition } from '../FormFieldContainer';
 
 const Template: Story<NativeSelectProps> = args => (
   <NativeSelect {...args}>
@@ -24,6 +25,12 @@ export default {
     disabled: {
       control: {
         type: 'boolean',
+      },
+    },
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
       },
     },
   },

@@ -22,6 +22,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       id: defaultId,
       inputSize = InputSize.medium,
       isLabelVisuallyHidden,
+      labelPosition,
       labelStyle,
       labelText,
       messageStyle,
@@ -47,6 +48,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         labelStyle={labelStyle}
         labelText={labelText}
         messageStyle={messageStyle}
+        labelPosition={labelPosition}
       >
         <InputBase
           {...other}

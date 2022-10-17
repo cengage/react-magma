@@ -54,6 +54,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
+      labelPosition,
       labelStyle,
       labelText,
       messageStyle,
@@ -94,6 +95,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         isInverse={isInverse}
         labelStyle={labelStyle}
         labelText={labelText}
+        labelPosition={labelPosition}
       >
         <StyledTextArea
           {...other}

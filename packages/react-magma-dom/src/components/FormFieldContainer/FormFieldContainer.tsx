@@ -8,7 +8,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 
 /**
- * Interal use only: Wrapper for all field components
+ * Internal use only: Wrapper for all field components
  * @children required
  */
 export interface FormFieldContainerProps
@@ -67,7 +67,17 @@ export interface FormFieldContainerBaseProps {
    * @internal
    */
   testId?: string;
+  /**
+   * Position within the component for the label to appear
+   * @default LabelPosition.top
+   */
+  labelPosition?: LabelPosition;
   isInverse?: boolean;
+}
+
+export enum LabelPosition {
+  top = 'top', // default
+  left = 'left',
 }
 
 const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
@@ -75,6 +85,18 @@ const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
+`;
+
+const StyledWrapper = styled.div<{ labelPosition?: LabelPosition }>`
+  display: ${props =>
+    props.labelPosition === LabelPosition.left ? 'flex' : ''};
+  flex: ${props => (props.labelPosition === LabelPosition.left ? '1' : '')};
+  label {
+    margin: ${props =>
+      props.labelPosition === LabelPosition.left
+        ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing03} 0 0`
+        : ''};
+  }
 `;
 
 export const FormFieldContainer = React.forwardRef<
@@ -96,6 +118,7 @@ export const FormFieldContainer = React.forwardRef<
     labelText,
     messageStyle,
     testId,
+    labelPosition,
     ...rest
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -114,22 +137,24 @@ export const FormFieldContainer = React.forwardRef<
         style={containerStyle}
         theme={theme}
       >
-        {labelText && (
-          <Label
-            actionable={actionable}
-            htmlFor={fieldId}
-            iconPosition={iconPosition}
-            size={inputSize}
-            style={labelStyle}
-          >
-            {isLabelVisuallyHidden ? (
-              <VisuallyHidden>{labelText}</VisuallyHidden>
-            ) : (
-              labelText
-            )}
-          </Label>
-        )}
-        {children}
+        <StyledWrapper labelPosition={labelPosition} theme={theme}>
+          {labelText && (
+            <Label
+              actionable={actionable}
+              htmlFor={fieldId}
+              iconPosition={iconPosition}
+              size={inputSize}
+              style={labelStyle}
+            >
+              {isLabelVisuallyHidden ? (
+                <VisuallyHidden>{labelText}</VisuallyHidden>
+              ) : (
+                labelText
+              )}
+            </Label>
+          )}
+          {children}
+        </StyledWrapper>
         {(errorMessage || helperMessage) && (
           <InputMessage
             hasError={!!errorMessage}

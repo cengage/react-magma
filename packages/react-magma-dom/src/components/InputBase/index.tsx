@@ -82,6 +82,10 @@ export interface InputBaseProps
    */
   isPredictive?: boolean;
   /**
+   * A number value which gives Character Counter the maximum length of allowable characters in an Input.
+   */
+  maxLength?: number;
+  /**
    * Action that will fire when icon is clicked
    */
   onIconClick?: () => void;
@@ -507,6 +511,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       isClearable,
       isPasswordInput,
       isPredictive,
+      maxLength,
       onClear,
       onIconClick,
       onIconKeyDown,

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Textarea } from '.';
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
+import { LabelPosition } from '../FormFieldContainer';
 import { Spacer } from '../Spacer';
 
 export default {
@@ -19,6 +20,30 @@ export const Default = () => {
         onChange={e => {
           setValue(e.target.value);
         }}
+      />
+      <Spacer size="12" />
+      <Button
+        onClick={e => {
+          setValue('');
+        }}
+      >
+        Clear
+      </Button>
+    </>
+  );
+};
+
+export const LeftLabel = () => {
+  const [fieldValue, setValue] = useState('');
+  return (
+    <>
+      <Textarea
+        labelText="Textarea"
+        value={fieldValue}
+        onChange={e => {
+          setValue(e.target.value);
+        }}
+        labelPosition={LabelPosition.left}
       />
       <Spacer size="12" />
       <Button

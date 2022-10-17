@@ -85,6 +85,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       id: defaultId,
       helperMessage,
       isInverse: isInverseProp,
+      labelPosition,
       labelStyle,
       labelText,
       messageStyle,
@@ -103,6 +104,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
+        labelPosition={labelPosition}
         labelStyle={labelStyle}
         labelText={labelText}
         isInverse={isInverse}

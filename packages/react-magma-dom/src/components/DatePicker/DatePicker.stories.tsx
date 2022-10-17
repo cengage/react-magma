@@ -3,6 +3,7 @@ import { DatePicker } from '.';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
+import { LabelPosition } from '../FormFieldContainer';
 
 const today: Date = new Date();
 
@@ -18,6 +19,12 @@ export default {
     isClearable: {
       control: {
         type: 'boolean',
+      },
+    },
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
       },
     },
   },
@@ -76,7 +83,7 @@ export const NonDefaultFormats = () => {
   );
 };
 
-export const Inverse = (args) => {
+export const Inverse = args => {
   return (
     <div style={{ background: magma.colors.primary600, padding: '0 12px' }}>
       <br />
