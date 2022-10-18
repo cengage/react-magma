@@ -3,10 +3,12 @@ import { render, fireEvent } from '@testing-library/react';
 import { Combobox } from '.';
 import { magma } from '../../theme/magma';
 
+
 describe('Combobox', () => {
+  const labelText = 'Label';
+  const items = ['Red', 'Blue', 'Green'];
+
   it('should render a combobox with items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -21,7 +23,6 @@ describe('Combobox', () => {
   });
 
   it('should accept items in the default object format', () => {
-    const labelText = 'Label';
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
@@ -45,7 +46,6 @@ describe('Combobox', () => {
       return item ? item.representation : '';
     }
 
-    const labelText = 'Label';
     const items = [
       {
         id: 1,
@@ -82,8 +82,6 @@ describe('Combobox', () => {
   });
 
   it('should render an items list with the default max height', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { container, getByLabelText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -99,8 +97,6 @@ describe('Combobox', () => {
   });
 
   it('should render an items list with the passed in max height as a string', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = '100px';
     const { container, getByLabelText } = render(
       <Combobox
@@ -121,8 +117,6 @@ describe('Combobox', () => {
   });
 
   it('should render an items list with the passed in max height as a number', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = 50;
     const { container, getByLabelText } = render(
       <Combobox
@@ -143,8 +137,6 @@ describe('Combobox', () => {
   });
 
   it('should render custom item component', () => {
-    const labelText = 'Label';
-    const testId = 'test';
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
@@ -176,8 +168,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for selection of an item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -192,8 +182,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for selection of an item using keyboard navigation', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -215,8 +203,6 @@ describe('Combobox', () => {
 
   it('should call the passed in onIsOpenChange function on combobox open', () => {
     const onIsOpenChange = jest.fn();
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <Combobox
         labelText={labelText}
@@ -231,8 +217,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for a controlled combobox', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     let selectedItem = 'Red';
     const { getByLabelText, getByText, rerender } = render(
       <Combobox
@@ -266,8 +250,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for the creation of an item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} initialSelectedItem="Red" />
     );
@@ -299,7 +281,6 @@ describe('Combobox', () => {
       };
     }
 
-    const labelText = 'Label';
     const items = [
       {
         id: 1,
@@ -358,7 +339,6 @@ describe('Combobox', () => {
         representation: 'Green',
       },
     ];
-    const labelText = 'Label';
 
     function itemToString(item) {
       return item ? item.representation : '';
@@ -427,8 +407,6 @@ describe('Combobox', () => {
 
   it('should not break when passing null in for the items prop', () => {
     let items = ['Red', 'Blue', 'Green'];
-    const labelText = 'Label';
-
     const { getByLabelText, getByText, rerender } = render(
       <>
         <button onClick={() => (items = null)}>Clear items</button>
@@ -457,8 +435,6 @@ describe('Combobox', () => {
   });
 
   it('should disable the creation of an item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, queryByText } = render(
       <Combobox
         disableCreateItem
@@ -478,8 +454,6 @@ describe('Combobox', () => {
   });
 
   it('should have an initial selected item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} initialSelectedItem="Red" />
     );
@@ -492,8 +466,6 @@ describe('Combobox', () => {
   describe('isTypeahead', () => {
     describe('when isTypeahead is true,', () => {
       it('should be able to select an item that is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -507,8 +479,6 @@ describe('Combobox', () => {
       });
 
       it('should be able to use the initial selected item even if it is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -524,8 +494,6 @@ describe('Combobox', () => {
 
     describe('when isTypeahead is false,', () => {
       it('should not select an item that is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -541,8 +509,6 @@ describe('Combobox', () => {
       });
 
       it('should not use the initial selected item if it is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -560,8 +526,6 @@ describe('Combobox', () => {
   });
 
   it('should disable the combobox', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} disabled />
     );
@@ -572,8 +536,6 @@ describe('Combobox', () => {
   });
 
   it('should allow a selection to be cleared', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <Combobox
         labelText={labelText}
@@ -593,8 +555,6 @@ describe('Combobox', () => {
   });
 
   it('should select the default selected item when cleared', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByTestId } = render(
       <Combobox
         labelText={labelText}
@@ -617,8 +577,6 @@ describe('Combobox', () => {
   });
 
   it('should not select the default selected item when cleared if it is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByTestId } = render(
       <Combobox
         labelText={labelText}
@@ -641,8 +599,6 @@ describe('Combobox', () => {
   });
 
   it('should filter items based on text in the combobox', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -663,8 +619,6 @@ describe('Combobox', () => {
   });
 
   it('should highlight the first item in the list after typing', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
 
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
@@ -678,8 +632,6 @@ describe('Combobox', () => {
   });
 
   it('should select the first item highlighted in items list on enter', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
 
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} />
@@ -695,8 +647,6 @@ describe('Combobox', () => {
   });
 
   it('should not change the selected item if no item list after filter', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
 
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} selectedItem="Red" />
@@ -714,9 +664,7 @@ describe('Combobox', () => {
   });
 
   it('should show an error message', () => {
-    const labelText = 'Label';
     const errorMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <Combobox
         labelText={labelText}
@@ -729,9 +677,7 @@ describe('Combobox', () => {
   });
 
   it('should show an helper message', () => {
-    const labelText = 'Label';
     const helperMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <Combobox
         labelText={labelText}
@@ -744,8 +690,6 @@ describe('Combobox', () => {
   });
 
   it('should show a left aligned label', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Combobox labelText={labelText} items={items} labelPosition="left" />
     );
@@ -757,8 +701,6 @@ describe('Combobox', () => {
   });
 
   it('should show loading indicator', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Combobox labelText={labelText} items={items} isLoading />
     );
@@ -766,9 +708,14 @@ describe('Combobox', () => {
     expect(getByTestId('loadingIndicator')).toBeInTheDocument();
   });
 
+  it('should show loading text in items list', () => {
+    const { getByText } = render(
+      <Combobox labelText={labelText} items={items} isLoading />
+    );
+    expect(getByText(/loading.../i)).toBeInTheDocument();
+  });
+
   it('should allow you to send in your own components', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const ClearIndicator = () => (
       <button data-testid="customClearIndicator">Clear</button>
     );
@@ -795,8 +742,6 @@ describe('Combobox', () => {
 
   describe('events', () => {
     it('onBlur', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onBlur = jest.fn();
       ``;
 
@@ -814,8 +759,6 @@ describe('Combobox', () => {
     });
 
     it('onBlur should empty input if no selected item', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
 
       const { getByLabelText } = render(
         <Combobox labelText={labelText} items={items} />
@@ -832,8 +775,6 @@ describe('Combobox', () => {
     });
 
     it('onBlur should give input value of selected item  after input has been changed but nothing new selected', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
 
       const { getByLabelText, getByText } = render(
         <Combobox labelText={labelText} items={items} />
@@ -854,8 +795,6 @@ describe('Combobox', () => {
     });
 
     it('onFocus', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onFocus = jest.fn();
 
       const { getByLabelText } = render(
@@ -870,8 +809,6 @@ describe('Combobox', () => {
     });
 
     it('onKeyDown', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -890,8 +827,6 @@ describe('Combobox', () => {
     });
 
     it('onKeyUp', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
@@ -906,8 +841,6 @@ describe('Combobox', () => {
     });
 
     it('onInputValueChange', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onInputValueChange = jest.fn();
 
       const { getByLabelText } = render(
@@ -931,8 +864,6 @@ describe('Combobox', () => {
     });
 
     it('onInputChange', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onInputChange = jest.fn();
 
       const { getByLabelText } = render(

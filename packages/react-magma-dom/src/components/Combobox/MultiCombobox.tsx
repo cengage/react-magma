@@ -360,6 +360,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         disabled={disabled}
         isInverse={isInverse}
         isLoading={isLoading}
+        isTypeahead={isTypeahead}
         hasError={hasError}
         innerRef={ref}
         onInputBlur={onInputBlur}
@@ -392,6 +393,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
+        isLoading={isLoading}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />

@@ -88,6 +88,7 @@ export interface I18nInterface {
     multi: {
       clearIndicatorAriaLabel: string;
     };
+    loading: string;
   };
   datePicker: {
     startOfWeek:

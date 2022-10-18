@@ -3,10 +3,11 @@ import { render, fireEvent } from '@testing-library/react';
 import { Combobox as MultiCombobox } from '.';
 import { magma } from '../../theme/magma';
 
-describe('Combobox', () => {
+describe('MultiCombobox', () => {
+  const labelText = 'Label';
+  const items = ['Red', 'Blue', 'Green'];
+
   it('should render a multi-combobox with items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -21,7 +22,6 @@ describe('Combobox', () => {
   });
 
   it('should accept items in the default object format', () => {
-    const labelText = 'Label';
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
@@ -45,7 +45,6 @@ describe('Combobox', () => {
       return item ? item.representation : '';
     }
 
-    const labelText = 'Label';
     const items = [
       {
         id: 1,
@@ -83,8 +82,6 @@ describe('Combobox', () => {
   });
 
   it('should render an items list with the default max height', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { container, getByLabelText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -100,8 +97,6 @@ describe('Combobox', () => {
   });
 
   it('should render an items list with the passed in max height as a string', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = '100px';
     const { container, getByLabelText } = render(
       <MultiCombobox
@@ -123,8 +118,6 @@ describe('Combobox', () => {
   });
 
   it('should render an items list with the passed in max height as a number', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = 50;
     const { container, getByLabelText } = render(
       <MultiCombobox
@@ -146,8 +139,6 @@ describe('Combobox', () => {
   });
 
   it('should render custom item component', () => {
-    const labelText = 'Label';
-    const testId = 'test';
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
@@ -180,8 +171,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for selection of multiple items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -201,8 +190,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for the removal of selected items with the keyboard', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox
@@ -245,8 +232,6 @@ describe('Combobox', () => {
   });
 
   it('should change the focused selected item using arrow keys', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiCombobox
@@ -279,8 +264,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for a controlled multi-combobox', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     let [, ...selectedItems] = items;
     const { getByLabelText, getByText, queryByText, rerender } = render(
       <MultiCombobox
@@ -354,8 +337,6 @@ describe('Combobox', () => {
 
   it('should call the passed in onIsOpenChange function on multi-combobox open', () => {
     const onIsOpenChange = jest.fn();
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <MultiCombobox
         isMulti
@@ -371,8 +352,6 @@ describe('Combobox', () => {
   });
 
   it('should allow for the creation of an item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiCombobox
         isMulti
@@ -409,7 +388,6 @@ describe('Combobox', () => {
       };
     }
 
-    const labelText = 'Label';
     const items = [
       {
         id: 1,
@@ -469,7 +447,6 @@ describe('Combobox', () => {
         representation: 'Green',
       },
     ];
-    const labelText = 'Label';
 
     function itemToString(item) {
       return item ? item.representation : '';
@@ -556,8 +533,6 @@ describe('Combobox', () => {
   });
 
   it('should have an initial selected item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <MultiCombobox
         isMulti
@@ -573,8 +548,6 @@ describe('Combobox', () => {
   describe('isTypeahead', () => {
     describe('when isTypeahead is true,', () => {
       it('should be able to select an item that is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -590,8 +563,6 @@ describe('Combobox', () => {
       });
     
       it('should be able to use the initial selected item even if it is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -609,8 +580,6 @@ describe('Combobox', () => {
 
     describe('when isTypeahead is false,', () => {
       it('should not select an item that is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -626,8 +595,6 @@ describe('Combobox', () => {
       });
     
       it('should not use the initial selected item if it is not in the items list', () => {
-        const labelText = 'Label';
-        const items = ['Red', 'Blue', 'Green'];
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -645,8 +612,6 @@ describe('Combobox', () => {
   });
 
   it('should disable the combobox', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} disabled />
     );
@@ -656,9 +621,23 @@ describe('Combobox', () => {
     );
   });
 
-  it('should allow a selection to be cleared', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
+  it('should allow a selection to be cleared with isClearable prop', () => {
+    const { getByLabelText, getByText, queryByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+    fireEvent.click(getByLabelText(/reset selection/i));
+    expect(queryByText('Red', { selector: 'button' })).not.toBeInTheDocument();
+  });
+
+  it('should allow a selection to be removed by clicking on it', () => {
     const { getByText, queryByText } = render(
       <MultiCombobox
         isMulti
@@ -678,8 +657,6 @@ describe('Combobox', () => {
   });
 
   it('should filter items based on text in the combobox', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -700,8 +677,6 @@ describe('Combobox', () => {
   });
 
   it('should filter out selected items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox
         isMulti
@@ -727,9 +702,6 @@ describe('Combobox', () => {
   });
 
   it('should highlight the first item in the list after typing', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -742,9 +714,6 @@ describe('Combobox', () => {
   });
 
   it('should select the first item highlighted in items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-
     const { getByText, getByLabelText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -759,9 +728,6 @@ describe('Combobox', () => {
   });
 
   it('should not change the selected item if no item list after filter', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
-
     const { getByText, getByLabelText } = render(
       <MultiCombobox
         isMulti
@@ -783,9 +749,7 @@ describe('Combobox', () => {
   });
 
   it('should show an error message', () => {
-    const labelText = 'Label';
     const errorMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <MultiCombobox
         isMulti
@@ -799,9 +763,7 @@ describe('Combobox', () => {
   });
 
   it('should show an helper message', () => {
-    const labelText = 'Label';
     const helperMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <MultiCombobox
         isMulti
@@ -814,9 +776,19 @@ describe('Combobox', () => {
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
 
+  it('should show loading text in items list', () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        isLoading
+      />
+    );
+    expect(getByText(/loading.../i)).toBeInTheDocument();
+  });
+
   it('should allow you to send in your own components', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const LoadingIndicator = () => (
       <div data-testid="customLoadingIndicator">loading</div>
     );
@@ -840,8 +812,6 @@ describe('Combobox', () => {
 
   describe('events', () => {
     it('onBlur', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onBlur = jest.fn();
       ``;
 
@@ -864,9 +834,6 @@ describe('Combobox', () => {
     });
 
     it('onBlur should empty input if no selected item', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
-
       const { getByLabelText } = render(
         <MultiCombobox isMulti labelText={labelText} items={items} />
       );
@@ -882,8 +849,6 @@ describe('Combobox', () => {
     });
 
     it('onFocus', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onFocus = jest.fn();
 
       const { getByLabelText } = render(
@@ -903,8 +868,6 @@ describe('Combobox', () => {
     });
 
     it('onKeyDown', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -924,8 +887,6 @@ describe('Combobox', () => {
     });
 
     it('onKeyUp', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
@@ -945,8 +906,6 @@ describe('Combobox', () => {
     });
 
     it('onInputValueChange', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onInputValueChange = jest.fn();
 
       const { getByLabelText } = render(
@@ -971,8 +930,6 @@ describe('Combobox', () => {
     });
 
     it('onInputChange', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onInputChange = jest.fn();
 
       const { getByLabelText } = render(

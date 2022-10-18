@@ -92,6 +92,7 @@ export const defaultI18n: I18nInterface = {
     multi: {
       clearIndicatorAriaLabel: 'reset selection for {labelText}. {selectedItem} are selected',
     },
+    loading: 'Loading...',
   },
   datePicker: {
     startOfWeek: 'sunday',

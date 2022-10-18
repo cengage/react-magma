@@ -112,6 +112,7 @@ interface ComboboxInputProps<T> {
   disabled?: boolean;
   isInverse?: boolean;
   isLoading?: boolean;
+  isTypeahead?: boolean;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
   onInputKeyDown?: (event: React.KeyboardEvent) => void;
@@ -136,6 +137,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     disabled,
     isInverse,
     isLoading,
+    isTypeahead,
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
@@ -222,7 +224,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
           />
         </SelectedItemsWrapper>
         {children}
-        {isLoading && (
+        {isLoading && !isTypeahead  && (
           <LoadingIndicator
             style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
           />

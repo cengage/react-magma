@@ -272,6 +272,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         inputStyle={inputStyle}
         isInverse={isInverse}
         isLoading={isLoading}
+        isTypeahead={isTypeahead}
         onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
         onInputKeyDown={onInputKeyDown}
@@ -301,6 +302,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isInverse={isInverse}
         items={displayItems}
         itemToString={itemToString}
+        isLoading={isLoading}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />
