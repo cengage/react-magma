@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0-next.1
+
+### Patch Changes
+
+- 2fe13d60f: docs(table): Storybook example with adjustable number of rows
+
 ## 3.2.0-next.0
 
 ### Minor Changes
