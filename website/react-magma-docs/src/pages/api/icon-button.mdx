@@ -75,14 +75,20 @@ export function Example() {
       </ButtonGroup>
       <br />
       <ButtonGroup>
-        <IconButton aria-label="Correct" icon={<CheckIcon />} />
         <IconButton
           aria-label="Correct"
+          icon={<CheckIcon />}
+          color={ButtonColor.subtle}
+        />
+        <IconButton
+          aria-label="Correct"
+          color={ButtonColor.subtle}
           variant={ButtonVariant.solid}
           icon={<CheckIcon />}
         />
         <IconButton
           aria-label="Correct"
+          color={ButtonColor.subtle}
           variant={ButtonVariant.link}
           icon={<CheckIcon />}
         />
@@ -169,7 +175,11 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   const icon = <NotificationsIcon size={10} />;
 
-  return <IconButton aria-label="Notifications" icon={icon}>With Custom Icon Size</IconButton>;
+  return (
+    <IconButton aria-label="Notifications" icon={icon}>
+      With Custom Icon Size
+    </IconButton>
+  );
 }
 ```
 
