@@ -26,6 +26,9 @@ const Template: Story<ButtonProps> = args => (
     <Button {...args} color={ButtonColor.marketing}>
       Marketing
     </Button>
+    <Button {...args} color={ButtonColor.subtle}>
+      Subtle
+    </Button>
     <p>
       <Button variant={ButtonVariant.link} {...args}>
         Default
@@ -46,6 +49,13 @@ const Template: Story<ButtonProps> = args => (
         color={ButtonColor.marketing}
       >
         Marketing
+      </Button>
+      <Button
+        variant={ButtonVariant.link}
+        {...args}
+        color={ButtonColor.subtle}
+      >
+        Subtle
       </Button>
     </p>
   </>
@@ -228,6 +238,32 @@ export const All = () => {
               isInverse
             >
               Marketing Link
+            </Button>
+          </ButtonGroup>
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody>
+          <ButtonGroup>
+            <Button color={ButtonColor.subtle}>Subtle Solid</Button>
+            <Button color={ButtonColor.subtle} variant={ButtonVariant.link}>
+              Subtle Link
+            </Button>
+          </ButtonGroup>
+        </CardBody>
+      </Card>
+      <Card isInverse>
+        <CardBody>
+          <ButtonGroup>
+            <Button color={ButtonColor.subtle} isInverse>
+              Subtle Solid
+            </Button>
+            <Button
+              color={ButtonColor.subtle}
+              variant={ButtonVariant.link}
+              isInverse
+            >
+              Subtle Link
             </Button>
           </ButtonGroup>
         </CardBody>

@@ -79,16 +79,16 @@ export function buildButtonBackground(props) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      if (props.color === 'secondary' || props.variant === 'link') {
+      if (props.color === 'secondary' || props.color === 'subtle' ||props.variant === 'link') {
         return 'none';
       }
       return transparentize(0.7, props.theme.colors.neutral100);
     }
-    if (props.color === 'secondary') {
-      return props.theme.colors.neutral100;
-    }
     if (props.variant === 'link') {
       return 'none';
+    }
+    if (props.color === 'secondary' || props.color === 'subtle') {
+      return props.theme.colors.neutral100;
     }
     return props.theme.colors.neutral300;
   }
@@ -106,6 +106,9 @@ export function buildButtonBackground(props) {
     if (props.color === 'danger') {
       return props.theme.colors.danger;
     }
+    if (props.color === 'subtle') {
+      return 'none';
+    }
     return props.theme.colors.tertiary500;
   }
 
@@ -120,9 +123,22 @@ export function buildButtonBackground(props) {
       return props.theme.colors.secondary500;
     case 'danger':
       return props.theme.colors.danger;
+    case 'subtle':
+      return props.theme.colors.neutral100;
     default:
       return props.theme.colors.primary;
   }
+}
+
+export function buildBorderWidth(props) {
+  props = buildPropsWithDefaultButtonStyles(props);
+
+  if (props.variant !== 'link') {
+    if (props.color === 'secondary' || props.color === 'subtle') {
+      return '1px solid';
+    }
+  }
+  return 0;
 }
 
 export function buildBorderColor(props) {
@@ -142,6 +158,10 @@ export function buildBorderColor(props) {
     if (props.color === 'secondary') {
       return transparentize(0.5, props.theme.colors.tertiary500);
     }
+    if (props.color === 'subtle') {
+      return transparentize(0.8, props.theme.colors.neutral100);
+    }
+
     return props.theme.colors.neutral100;
   }
 
@@ -150,6 +170,9 @@ export function buildBorderColor(props) {
   }
   if (props.color === 'secondary') {
     return props.theme.colors.primary300;
+  }
+  if (props.color === 'subtle') {
+    return props.theme.colors.neutral300;
   }
   if (props.variant === 'solid') {
     switch (props.color) {
@@ -175,6 +198,9 @@ export function buildColor(props) {
   }
 
   if (props.isInverse) {
+    if (props.color === 'subtle') {
+      return props.theme.colors.neutral100;
+    }
     if (props.variant === 'link') {
       if (props.color === 'danger') {
         return props.theme.colors.danger200;
@@ -194,10 +220,14 @@ export function buildColor(props) {
   }
 
   if (props.variant === 'link') {
-    if (props.color === 'danger') {
-      return props.theme.colors.danger500;
+    switch (props.color) {
+      case 'danger': 
+        return props.theme.colors.danger500;
+      case 'subtle':
+        return props.theme.colors.neutral700;
+      default:
+        return props.theme.colors.primary;
     }
-    return props.theme.colors.primary;
   }
 
   switch (props.color) {
@@ -205,6 +235,8 @@ export function buildColor(props) {
       return props.theme.colors.primary;
     case 'marketing':
       return props.theme.colors.primary;
+    case 'subtle':
+      return props.theme.colors.neutral700;
     default:
       return props.theme.colors.neutral100;
   }
@@ -233,6 +265,12 @@ export function buildFocusBackground(props) {
     }
     return props.theme.colors.primary100;
   }
+  if (props.color === 'subtle') {
+    if (props.isInverse) {
+      return transparentize(0.7, props.theme.colors.neutral900);
+    }
+    return transparentize(0.95, props.theme.colors.neutral900);
+  }
   // primary
   if (props.variant === 'solid' && props.isInverse) {
     return props.theme.colors.tertiary600;
@@ -243,6 +281,7 @@ export function buildFocusBackground(props) {
   return props.theme.colors.primary600;
 }
 
+// Same styles for hover and focus
 export function buildFocusColor(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 
@@ -266,6 +305,13 @@ export function buildFocusColor(props) {
       return props.theme.colors.tertiary500;
     }
     return props.theme.colors.primary;
+  }
+
+  if (props.color === 'subtle') {
+    if (props.isInverse) {
+      return props.theme.colors.neutral100;
+    }
+    return props.theme.colors.neutral700;
   }
 
   if (props.variant === 'link' && !props.isInverse) {
@@ -337,13 +383,17 @@ export function buildActiveBackground(props) {
       return props.theme.colors.danger200;
     }
   }
-
   if (props.color === 'secondary') {
     if ((props.variant === 'link' && props.isInverse) || props.isInverse) {
       return transparentize(0.5, props.theme.colors.neutral900);
     }
   }
-
+  if (props.color === 'subtle') {
+    if (props.isInverse) {
+      return transparentize(0.5, props.theme.colors.neutral900);
+    }
+    return transparentize(0.9, props.theme.colors.neutral900);
+  }
   if (props.variant === 'solid' && props.isInverse) {
     return props.theme.colors.tertiary700;
   }
@@ -381,6 +431,12 @@ export function buildActiveColor(props) {
       return props.theme.colors.tertiary500;
     }
     return props.theme.colors.primary600;
+  }
+  if (props.color === 'subtle') {
+    if (props.isInverse) {
+      return props.theme.colors.neutral100;
+    }
+    return props.theme.colors.neutral700;
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||

@@ -123,10 +123,16 @@ function buildNoSpaceBorderColor(props) {
     if (props.color === ButtonColor.secondary) {
       return props.theme.colors.tertiary;
     }
+    if (props.color === ButtonColor.subtle) {
+      return props.theme.colors.neutral300;
+    }
     return props.theme.colors.neutral100;
   }
   if (props.color === ButtonColor.secondary) {
     return props.theme.colors.primary300;
+  }
+  if (props.color === ButtonColor.subtle) {
+    return props.theme.colors.neutral300;
   }
   return props.theme.colors.neutral100;
 }
@@ -219,7 +225,7 @@ const StyledButtonGroup = styled.div<{
           button {
             border-radius: 0;
             border-right: ${
-              props.color === ButtonColor.secondary
+              props.color === ButtonColor.secondary || props.color === ButtonColor.subtle
                 ? '0'
                 : `1px solid ${props.theme.colors.neutral100}`
             };
@@ -265,7 +271,7 @@ const StyledButtonGroup = styled.div<{
         }
         &:not(:first-child) {
           border-radius: 0;
-          border-right: ${props.color === ButtonColor.secondary
+          border-right: ${props.color === ButtonColor.secondary || props.color === ButtonColor.subtle
             ? '0'
             : `1px solid ${props.theme.colors.neutral100}`};
         }
