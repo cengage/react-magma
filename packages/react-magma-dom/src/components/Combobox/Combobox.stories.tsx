@@ -350,7 +350,7 @@ export const Typeahead = args => {
     'Common Raven',
     'Common Toad',
     'Cookiecutter Shark',
-    'Cooper\'s Hawk',
+    "Cooper's Hawk",
     'Coral',
     'Corgidor',
     'Corgipoo',
@@ -385,8 +385,8 @@ export const Typeahead = args => {
     'Dalmador',
     'Dalmatian',
     'Dapple Dachshund',
-    'Darwin\'s fox',
-    'Darwin\'s Frog',
+    "Darwin's fox",
+    "Darwin's Frog",
     'Deathwatch Beetle',
     'Deer',
     'Desert Locust',
@@ -650,7 +650,7 @@ export const Typeahead = args => {
     'Jackabee',
     'Jackal',
     'Jackdaw',
-    'Jackson\'s Chameleon',
+    "Jackson's Chameleon",
     'Jaguar',
     'Jaguarundi Cat',
     'Japanese Beetle',
@@ -1035,103 +1035,138 @@ export const Typeahead = args => {
   ];
 
   const mediumListOfItems = [
-    'Falcon',
-    'Fallow deer',
-    'False Killer Whale',
-    'False Widow Spider',
-    'Fangtooth',
-    'Feist',
-    'Fennec Fox',
-    'Ferret',
-    'Ferruginous Hawk',
-    'Fiddler Crab',
-    'Field Spaniel',
-    'Fila Brasileiro',
-    'Fin Whale',
-    'Finnish Spitz',
-    'Fire salamander',
-    'Fire-Bellied Toad',
-    'Firefly',
-    'Fisher Cat',
-    'Fishing Cat',
-    'Flamingo',
-    'Flat-Coated Retriever',
-    'Flea',
-    'Florida Gar',
-    'Florida Panther',
-    'Flounder',
-    'Flowerhorn Fish',
-    'Fly',
-    'Flying Fish',
-    'Flying Lemur',
-    'Flying Squirrel',
-    'Formosan Mountain Dog',
-    'Fossa',
-    'Fox',
-    'Fox Squirrel',
-    'Fox Terrier',
-    'French Bulldog',
-    'Frenchton',
-    'Frengle',
-    'Frigatebird',
-    'Frilled Lizard',
-    'Frilled Shark',
-    'Frog',
-    'Frogfish',
-    'Fruit Bat',
-    'Fruit Fly',
-    'Fur Seal',
+    'Aardvark',
+    'Aardwolf',
+    'Abyssinian',
+    'Addax',
+    'Adelie Penguin',
+    'Affenpinscher',
+    'Afghan Hound',
+    'African Bullfrog',
+    'African Bush Elephant',
+    'African Civet',
+    'African Clawed Frog',
+    'African Forest Elephant',
+    'African Grey Parrot',
+    'African Palm Civet',
+    'African Penguin',
+    'African Tree Toad',
+    'African Wild Dog',
+    'Aidi',
+    'Ainu',
+    'Airedale Terrier',
+    'Airedoodle',
+    'Akbash',
+    'Akita',
+    'Akita Shepherd',
+    'Alabai',
+    'Alaskan Husky',
+    'Alaskan Klee Kai',
+    'Alaskan Malamute',
+    'Alaskan Shepherd',
+    'Albacore Tuna',
+    'Albatross',
+    'Aldabra Giant Tortoise',
+    'Alligator',
+    'Alligator Gar',
+    'Alpaca',
+    'Alpine Dachsbracke',
+    'Alpine Goat',
+    'Alusky',
+    'Amazon Parrot',
+    'Amazon River Dolphin (Pink Dolphin)',
+    'Ambrosia Beetle',
+    'American Alsatian',
+    'American Bulldog',
+    'American Cocker Spaniel',
+    'American Cockroach',
+    'American Coonhound',
+    'American Eskimo Dog',
+    'American Foxhound',
+    'American Hairless Terrier',
+    'American Leopard Hound',
+    'American Pit Bull Terrier',
+    'American Pygmy Goat',
+    'American Robin',
+    'American Staffordshire Terrier',
+    'American Toad',
+    'American Water Spaniel',
+    'Amur Leopard',
+    'Anatolian Shepherd Dog',
+    'Anchovies',
+    'Angelfish',
+    'Anglerfish',
+    'Angora Goat',
+    'Ant',
+    'Antarctic scale worm',
+    'Anteater',
+    'Antelope',
+    'Appenzeller Dog',
+    'Apple Head Chihuahua',
+    'Arapaima',
+    'Arctic Fox',
+    'Arctic Hare',
+    'Arctic Wolf',
+    'Arizona Bark Scorpion',
+    'Armadillo',
+    'Armyworm',
+    'Asian Elephant',
+    'Asian Giant Hornet',
+    'Asian Palm Civet',
+    'Asiatic Black Bear',
+    'Aurochs',
+    'Aussiedoodle',
+    'Aussiedor',
+    'Australian Bulldog',
+    'Australian Cattle Dog',
+    'Australian Gecko',
+    'Australian Kelpie Dog',
+    'Australian Labradoodle',
+    'Australian Mist',
+    'Australian Retriever',
+    'Australian Shepherd',
+    'Australian Terrier',
+    'Avocet',
+    'Axolotl',
   ];
 
-  // const defaultItems = ['monkey', 'barracuda', 'snake'];
-
-  // const selectedItemsHistory = defaultItems.slice(0, 5).map(product => {
-  //   return { label: product, value: product };
-  // });
-
-  const [suggestedItems, setSuggestedItems] =
-    React.useState([]);
-
+  const [suggestedItems, setSuggestedItems] = React.useState([]);
   const [selectedItems, updateSelectedItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [inputQuery, setInputQuery] = React.useState('');
+  const dataSet = args.largeDataSet ? largeListOfItems : mediumListOfItems;
 
   function handleSelectedItemsChange(changes) {
     updateSelectedItems(changes.selectedItems);
   }
 
-  function updateQuery(event) {
+  function onInputKeyPress(event) {
     setInputQuery(event.target.value + event.key);
+  }
+
+  function onInputValueChange(event) {
+    setInputQuery(event.inputValue);
   }
 
   React.useEffect(() => {
     setTimeout(() => {
       setIsLoading(true);
     }, 100);
+
     setTimeout(() => {
-      const matches = largeListOfItems.filter(item => {
+      const matches = dataSet.filter(item => {
         return item.toLowerCase().includes(inputQuery.toLowerCase());
       });
-
-      console.log('matches', matches);
-      
       const newSuggestedItems = matches.slice(0, 5).map(item => {
         return { label: item, value: item };
       });
 
-      console.log('newSuggestedItems', newSuggestedItems.length);
-
-      setSuggestedItems(newSuggestedItems);
-      setIsLoading(false);
-    }, 5000);
+      setTimeout(() => {
+        setSuggestedItems(newSuggestedItems);
+        setIsLoading(false);
+      }, 100);
+    }, 1000);
   }, [inputQuery]);
-
-  // React.useEffect(() => {
-  //   console.log('SET SUGGESTED ITEMS', suggestedItems);
-  //   if (suggestedItems.length === 0) {
-  //     console.log('EMPTY ARRAY');
-  //   }
-  // }, [suggestedItems])
 
   return (
     <Combobox
@@ -1139,7 +1174,8 @@ export const Typeahead = args => {
       items={suggestedItems}
       isLoading={isLoading}
       labelText="Typeahead Example - Animals"
-      onInputKeyPress={updateQuery}
+      onInputKeyPress={onInputKeyPress}
+      onInputValueChange={onInputValueChange}
       onSelectedItemsChange={handleSelectedItemsChange}
     />
   );
@@ -1150,4 +1186,5 @@ Typeahead.args = {
   isClearable: true,
   isMulti: true,
   disableCreateItem: true,
+  largeDataSet: false,
 };
