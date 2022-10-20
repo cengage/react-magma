@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Textarea } from '.';
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
-import { LabelPosition } from '../FormFieldContainer';
+import { LabelPosition } from '../Label';
 import { Spacer } from '../Spacer';
 
 export default {

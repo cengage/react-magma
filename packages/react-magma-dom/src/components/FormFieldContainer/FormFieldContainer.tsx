@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { CharacterCounter } from '../CharacterCounter';
 import { InputIconPosition, InputSize } from '../InputBase';
 import { InputMessage } from '../Input/InputMessage';
-import { Label } from '../Label';
+import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -38,14 +38,30 @@ export interface FormFieldContainerBaseProps {
    */
   helperMessage?: React.ReactNode;
   /**
+   * Position within the component for the icon to appear
+   * @default InputIconPosition.right
+   */
+  iconPosition?: InputIconPosition;
+  /**
    * Total number of characters in an input.
    */
   inputLength?: number;
+  /**
+   * Relative size of the component
+   * @default InputSize.medium
+   */
+  inputSize?: InputSize;
   /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
    * @default false
    */
   isLabelVisuallyHidden?: boolean;
+  isInverse?: boolean;
+  /**
+   * Position within the component for the label to appear
+   * @default LabelPosition.top
+   */
+  labelPosition?: LabelPosition;
   /**
    * Style properties for the label element
    */
@@ -55,6 +71,10 @@ export interface FormFieldContainerBaseProps {
    */
   labelText?: React.ReactNode;
   /**
+   * If labelPosition is set to 'left' then this allows Inputs to have a specified width for the label.
+   */
+  labelWidth?: number;
+  /**
    * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
    */
   maxLength?: number;
@@ -63,50 +83,43 @@ export interface FormFieldContainerBaseProps {
    */
   messageStyle?: React.CSSProperties;
   /**
-   * Position within the component for the icon to appear
-   * @default InputIconPosition.right
-   */
-  iconPosition?: InputIconPosition;
-  /**
-   * Relative size of the component
-   * @default InputSize.medium
-   */
-  inputSize?: InputSize;
-  /**
    * @internal
    */
   testId?: string;
-  /**
-   * Position within the component for the label to appear
-   * @default LabelPosition.top
-   */
-  labelPosition?: LabelPosition;
+}
+
+const StyledFormFieldContainer = styled.div<{
   isInverse?: boolean;
-}
-
-export enum LabelPosition {
-  top = 'top', // default
-  left = 'left',
-}
-
-const StyledFormFieldContainer = styled.div<{ isInverse?: boolean }>`
+  labelPosition?: LabelPosition;
+  labelWidth?: number;
+}>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
-`;
-
-const StyledWrapper = styled.div<{ labelPosition?: LabelPosition }>`
   display: ${props =>
     props.labelPosition === LabelPosition.left ? 'flex' : ''};
-  flex: ${props => (props.labelPosition === LabelPosition.left ? '1' : '')};
   label {
-    margin: ${props =>
-      props.labelPosition === LabelPosition.left
-        ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing03} 0 0`
+    width: ${props =>
+      props.labelWidth && props.labelPosition === 'left'
+        ? `${props.labelWidth}%`
         : ''};
   }
 `;
+
+// Input and helper text <div> wrapper based on labelPosition.
+const StyledWrapper = styled.div`
+  flex-direction: column;
+  flex: 1 1 auto;
+`;
+
+// If the labelPosition is set to 'left' then a <div> wraps the Input, errorMessage, helperMessage, and CharacterCounter for proper styling alignment.
+function InputPositionWrapper(props) {
+  if (props.labelPosition === 'left') {
+    return <StyledWrapper>{props.children}</StyledWrapper>;
+  }
+  return props.children;
+}
 
 export const FormFieldContainer = React.forwardRef<
   HTMLDivElement,
@@ -124,12 +137,13 @@ export const FormFieldContainer = React.forwardRef<
     inputLength,
     isInverse: isInverseProp,
     isLabelVisuallyHidden,
+    labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     maxLength,
     messageStyle,
     testId,
-    labelPosition,
     ...rest
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -144,49 +158,55 @@ export const FormFieldContainer = React.forwardRef<
         {...rest}
         data-testid={testId}
         isInverse={isInverse}
+        labelPosition={labelPosition}
+        labelWidth={labelWidth}
         ref={ref}
         style={containerStyle}
         theme={theme}
       >
-        <StyledWrapper labelPosition={labelPosition} theme={theme}>
-          {labelText && (
-            <Label
-              actionable={actionable}
-              htmlFor={fieldId}
-              iconPosition={iconPosition}
-              size={inputSize}
-              style={labelStyle}
-            >
-              {isLabelVisuallyHidden ? (
-                <VisuallyHidden>{labelText}</VisuallyHidden>
-              ) : (
-                labelText
-              )}
-            </Label>
-          )}
-          {children}
-        </StyledWrapper>
-        {typeof maxLength === 'number' && (
-          <CharacterCounter
-            inputLength={inputLength}
-            isInverse={isInverse}
-            maxLength={maxLength}
-            testId={testId && `${testId}-character-counter`}
-          />
-        )}
-
-        {(errorMessage || helperMessage) && (
-          <InputMessage
-            hasError={!!errorMessage}
-            id={descriptionId}
-            isInverse={isInverse}
-            style={messageStyle}
+        {labelText && (
+          <Label
+            actionable={actionable}
+            htmlFor={fieldId}
+            iconPosition={iconPosition}
+            labelPosition={labelPosition}
+            size={inputSize}
+            style={labelStyle}
           >
-            {(errorMessage || helperMessage) && (
-              <>{errorMessage ? errorMessage : helperMessage}</>
+            {isLabelVisuallyHidden ? (
+              <VisuallyHidden>{labelText}</VisuallyHidden>
+            ) : (
+              labelText
             )}
-          </InputMessage>
+          </Label>
         )}
+        <InputPositionWrapper
+          labelPosition={labelPosition}
+          labelWidth={labelWidth}
+        >
+          {children}
+          {typeof maxLength === 'number' && (
+            <CharacterCounter
+              inputLength={inputLength}
+              isInverse={isInverse}
+              maxLength={maxLength}
+              testId={testId && `${testId}-character-counter`}
+            />
+          )}
+
+          {(errorMessage || helperMessage) && (
+            <InputMessage
+              hasError={!!errorMessage}
+              id={descriptionId}
+              isInverse={isInverse}
+              style={messageStyle}
+            >
+              {(errorMessage || helperMessage) && (
+                <>{errorMessage ? errorMessage : helperMessage}</>
+              )}
+            </InputMessage>
+          )}
+        </InputPositionWrapper>
       </StyledFormFieldContainer>
     </InverseContext.Provider>
   );

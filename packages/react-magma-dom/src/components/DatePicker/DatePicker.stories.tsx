@@ -3,7 +3,7 @@ import { DatePicker } from '.';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
-import { LabelPosition } from '../FormFieldContainer';
+import { LabelPosition } from '../Label';
 
 const today: Date = new Date();
 

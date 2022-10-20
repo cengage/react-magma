@@ -8,7 +8,6 @@ import { InputMessage } from '../Input/InputMessage';
 export const SelectContainerElement = styled.div<{
   labelPosition?: LabelPosition;
 }>`
-  align-items: baseline;
   display: ${props =>
     props.labelPosition == LabelPosition.left ? 'flex' : 'block'};
   position: relative;

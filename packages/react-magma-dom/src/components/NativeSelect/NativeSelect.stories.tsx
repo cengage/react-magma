@@ -3,7 +3,7 @@ import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { NativeSelect, NativeSelectProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { LabelPosition } from '../FormFieldContainer';
+import { LabelPosition } from '../Label';
 
 const Template: Story<NativeSelectProps> = args => (
   <NativeSelect {...args}>

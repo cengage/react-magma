@@ -2,6 +2,7 @@ import React from 'react';
 import { PasswordInput, PasswordInputProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { LabelPosition } from '../Label';
 
 const Template: Story<PasswordInputProps> = args => (
   <PasswordInput {...args} labelText="Password" />
@@ -23,7 +24,13 @@ export default {
         type: 'boolean',
       },
     },
-  }
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
+      },
+    },
+  },
 } as Meta;
 
 export const Default = Template.bind({});

@@ -7,6 +7,8 @@ import { magma } from '../../theme/magma';
 import { CheckIcon } from 'react-magma-icons';
 import { defaultI18n } from '../../i18n/default';
 
+const label = 'test label';
+
 describe('Input', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
@@ -16,7 +18,6 @@ describe('Input', () => {
   });
 
   it('should render a label for the input', () => {
-    const label = 'test label';
     const { getByLabelText } = render(<Input labelText={label} />);
     expect(getByLabelText(label)).toBeInTheDocument();
   });
@@ -183,6 +184,18 @@ describe('Input', () => {
 
     expect(span).toHaveStyleRule('left', magma.spaceScale.spacing03);
     expect(span).toHaveStyleRule('right', 'auto');
+  });
+
+  it('should render an input with a left-aligned label in the correct position', () => {
+    const { getByText } = render(
+      <Input labelText={label} labelPosition="left" />
+    );
+
+    expect(getByText(label)).toBeInTheDocument();
+    expect(getByText(label)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing03} 0 0`
+    );
   });
 
   it('should render a large input with a left-aligned icon in the correct position', () => {

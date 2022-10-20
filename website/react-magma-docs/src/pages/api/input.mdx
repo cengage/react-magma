@@ -314,6 +314,32 @@ export function Example() {
 }
 ```
 
+## Input Label Position
+
+When `labelPosition` is set to the value `left`, the input is moved inline with the label.
+
+If using `left`, an additional prop `labelWidth` takes a number value which sets a width for the label based in percentage. This is useful when multiple inputs are shown in a column display to give a uniform appearance.
+
+```tsx
+import React from 'react';
+import { Input } from 'react-magma-dom';
+export function Example() {
+  return (
+    <>
+      <Input labelText="Left aligned label" labelPosition="left" />
+      <br />
+      <Input labelText="Set width" labelPosition="left" labelWidth="25" />
+      <br />
+      <Input
+        labelText="Additional set width label"
+        labelPosition="left"
+        labelWidth="25"
+      />
+    </>
+  );
+}
+```
+
 ## Input With Hidden Label
 
 The `isLabelVisuallyHidden` prop can be used to visually hide the text label, while still making the text available to screen readers.
@@ -478,7 +504,7 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
 ```html noCodeSandbox
-<Input labelText="Label" testId="test-id" />
+<input labelText="Label" testId="test-id" />
 ```
 
 ## Input Props
