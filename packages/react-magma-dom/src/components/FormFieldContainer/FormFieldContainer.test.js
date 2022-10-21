@@ -110,7 +110,7 @@ describe('FormFieldContainer', () => {
         {TEXT}
       </FormFieldContainer>
     );
-    expect(getByText(labelText)).toHaveStyle('width: 20%');
+    expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
   });
 
   it('Does not violate accessibility standards', () => {
