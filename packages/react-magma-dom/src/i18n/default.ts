@@ -72,6 +72,14 @@ export const defaultI18n: I18nInterface = {
   breadcrumb: {
     navAriaLabel: 'Breadcrumb',
   },
+  characterCounter: {
+    characterAllowed: 'character allowed',
+    charactersAllowed: 'characters allowed',
+    characterLeft: 'character left',
+    charactersLeft: 'characters left',
+    characterOver: 'character over limit',
+    charactersOver: 'characters over limit',
+  },
   charts: {
     line: {
       chartTabLabel: 'Chart',
