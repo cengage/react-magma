@@ -6,6 +6,8 @@ import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
 describe('Styled Button', () => {
+  const text = 'test text';
+
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
@@ -16,7 +18,6 @@ describe('Styled Button', () => {
   });
 
   it('should render a button with the passed in text', () => {
-    const text = 'test text';
     const { getByTestId } = render(
       <StyledButton testId="button-test">{text}</StyledButton>
     );
@@ -25,7 +26,6 @@ describe('Styled Button', () => {
   });
 
   it('should autofocus a button when the passed autoFocus', () => {
-    const text = 'test text';
     const { getByTestId } = render(
       // eslint-disable-next-line jsx-a11y/no-autofocus
       <StyledButton autoFocus testId="button-test">
@@ -37,7 +37,6 @@ describe('Styled Button', () => {
   });
 
   it('should disable a button when the passed disabled', () => {
-    const text = 'test text';
     const { getByTestId } = render(
       <StyledButton disabled variant="solid" testId="button-test">
         {text}
@@ -54,7 +53,6 @@ describe('Styled Button', () => {
   describe('Button classes', () => {
     describe('Variants', () => {
       it('solid button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton variant="solid" testId="button-test">
             {text}
@@ -74,7 +72,6 @@ describe('Styled Button', () => {
       });
 
       it('link button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton variant="link" testId="button-test">
             {text}
@@ -89,7 +86,6 @@ describe('Styled Button', () => {
 
     describe('Colors', () => {
       it('primary button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton
             color="primary"
@@ -114,7 +110,6 @@ describe('Styled Button', () => {
       });
 
       it('secondary button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton
             color="secondary"
@@ -143,7 +138,6 @@ describe('Styled Button', () => {
       });
 
       it('danger button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton
             color="danger"
@@ -168,7 +162,6 @@ describe('Styled Button', () => {
       });
 
       it('marketing button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton color="marketing" testId="button-test">
             {text}
@@ -194,11 +187,34 @@ describe('Styled Button', () => {
         );
         expect(button).toHaveStyleRule('color', magma.colors.primary500);
       });
+
+      it('subtle button', () => {
+        const { getByTestId } = render(
+          <StyledButton
+            color="subtle"
+            theme="magma"
+            variant="solid"
+            testId="button-test"
+          >
+            {text}
+          </StyledButton>
+        );
+        const button = getByTestId('button-test');
+
+        expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('background', transparentize(0.95, magma.colors.neutral900), {
+          target: ':hover',
+        });
+        expect(button).toHaveStyleRule('background', transparentize(0.9, magma.colors.neutral900), {
+          target: ':active',
+        });
+        expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
+        expect(button).toHaveStyleRule('color', magma.colors.neutral700);
+      });
     });
 
     describe('Inverse', () => {
       it('primary button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton
             isInverse
@@ -218,7 +234,6 @@ describe('Styled Button', () => {
       });
 
       it('secondary button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton
             isInverse
@@ -241,7 +256,6 @@ describe('Styled Button', () => {
       });
 
       it('danger button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton
             isInverse
@@ -259,11 +273,32 @@ describe('Styled Button', () => {
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral100);
         expect(button).toHaveStyleRule('color', magma.colors.neutral100);
       });
+
+      it('subtle button', () => {
+        const { getByTestId } = render(
+          <StyledButton
+            isInverse
+            color="subtle"
+            theme="magma"
+            variant="solid"
+            testId="button-test"
+          >
+            {text}
+          </StyledButton>
+        );
+        const button = getByTestId('button-test');
+
+        expect(button).toHaveStyleRule('background', 'none');
+        expect(button).toHaveStyleRule(
+          'border-color',
+          transparentize(0.8, magma.colors.neutral100)
+        );
+        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+      });
     });
 
     describe('Sizes', () => {
       it('medium button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton size="medium" testId="button-test">
             {text}
@@ -282,7 +317,6 @@ describe('Styled Button', () => {
       });
 
       it('small button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton size="small" testId="button-test">
             {text}
@@ -301,7 +335,6 @@ describe('Styled Button', () => {
       });
 
       it('large button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton size="large" testId="button-test">
             {text}
@@ -322,7 +355,6 @@ describe('Styled Button', () => {
 
     describe('Shapes', () => {
       it('fill button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton shape="fill" testId="button-test">
             {text}
@@ -334,7 +366,6 @@ describe('Styled Button', () => {
       });
 
       it('leftCap button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton shape="leftCap" testId="button-test">
             {text}
@@ -349,7 +380,6 @@ describe('Styled Button', () => {
       });
 
       it('rightCap button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton shape="rightCap" testId="button-test">
             {text}
@@ -364,7 +394,6 @@ describe('Styled Button', () => {
       });
 
       it('round button', () => {
-        const text = 'test text';
         const { getByTestId } = render(
           <StyledButton shape="round" testId="button-test">
             {text}
@@ -377,7 +406,6 @@ describe('Styled Button', () => {
     });
 
     it('allCaps button', () => {
-      const text = 'test text';
       const { getByTestId } = render(
         <StyledButton textTransform="uppercase" testId="button-test">
           {text}
@@ -389,7 +417,6 @@ describe('Styled Button', () => {
     });
 
     it('textTransform none button', () => {
-      const text = 'test text';
       const { getByTestId } = render(
         <StyledButton textTransform="none" testId="button-test">
           {text}
@@ -403,7 +430,6 @@ describe('Styled Button', () => {
 
   describe('IconOnly', () => {
     it('icon small', () => {
-      const text = 'test text';
       const { getByTestId } = render(
         <StyledButton iconOnly testId="button-test" size="small">
           {text}
@@ -417,7 +443,6 @@ describe('Styled Button', () => {
     });
 
     it('icon medium', () => {
-      const text = 'test text';
       const { getByTestId } = render(
         <StyledButton iconOnly testId="button-test" size="medium">
           {text}
@@ -431,7 +456,6 @@ describe('Styled Button', () => {
     });
 
     it('icon large', () => {
-      const text = 'test text';
       const { getByTestId } = render(
         <StyledButton iconOnly testId="button-test" size="large">
           {text}
@@ -447,7 +471,6 @@ describe('Styled Button', () => {
 
   describe('Full Width', () => {
     it('default button', () => {
-      const text = 'test text';
       const { getByTestId } = render(
         <StyledButton testId="test-button">{text}</StyledButton>
       );
@@ -458,7 +481,6 @@ describe('Styled Button', () => {
     });
 
     it('Full Width button', () => {
-      const text = 'test text';
       const { getByTestId } = render(
         <StyledButton isFullWidth testId="button-test">
           {text}
@@ -473,7 +495,6 @@ describe('Styled Button', () => {
 
   it('should trigger the passed in function when clicked', () => {
     const onClickSpy = jest.fn();
-    const text = 'test text';
     const { getByTestId } = render(
       <StyledButton onClick={onClickSpy} testId="button-test">
         {text}
@@ -492,7 +513,6 @@ describe('Styled Button', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const text = 'test text';
     const { container } = render(<StyledButton>{text}</StyledButton>);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
