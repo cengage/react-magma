@@ -475,7 +475,9 @@ describe('Combobox', () => {
           />
         );
 
-        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual('Pink');
+        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
+          'Pink'
+        );
       });
 
       it('should be able to use the initial selected item even if it is not in the items list', () => {
@@ -488,7 +490,37 @@ describe('Combobox', () => {
           />
         );
 
-        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual('Pink');
+        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
+          'Pink'
+        );
+      });
+
+      it('and isLoading is true, list loading indicator is visible', () => {
+        const { getByText, queryByTestId } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            isTypeahead
+            isLoading
+            disableCreateItem
+          />
+        );
+        expect(getByText(/loading.../i)).toBeInTheDocument();
+        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+      });
+
+      it('and isLoading is false, no loading indicator is visible', () => {
+        const { queryByText, queryByTestId } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            isTypeahead
+            isLoading={false}
+            disableCreateItem
+          />
+        );
+        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
       });
     });
 
@@ -521,6 +553,32 @@ describe('Combobox', () => {
         expect(
           getByLabelText(labelText, { selector: 'input' }).textContent
         ).not.toEqual('Pink');
+      });
+
+      it('and isLoading is true, input loading indicator is visible', () => {
+        const { queryByText, getByTestId } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            isTypeahead={false}
+            isLoading
+          />
+        );
+        expect(getByTestId('loadingIndicator')).toBeInTheDocument();
+        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+      });
+
+      it('and isLoading is false, no loading indicator is visible', () => {
+        const { queryByText, queryByTestId } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            isTypeahead={false}
+            isLoading={false}
+          />
+        );
+        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
       });
     });
   });
@@ -619,7 +677,6 @@ describe('Combobox', () => {
   });
 
   it('should highlight the first item in the list after typing', () => {
-
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -632,7 +689,6 @@ describe('Combobox', () => {
   });
 
   it('should select the first item highlighted in items list on enter', () => {
-
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -647,7 +703,6 @@ describe('Combobox', () => {
   });
 
   it('should not change the selected item if no item list after filter', () => {
-
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} selectedItem="Red" />
     );
@@ -708,13 +763,6 @@ describe('Combobox', () => {
     expect(getByTestId('loadingIndicator')).toBeInTheDocument();
   });
 
-  it('should show loading text in items list', () => {
-    const { getByText } = render(
-      <Combobox labelText={labelText} items={items} isLoading />
-    );
-    expect(getByText(/loading.../i)).toBeInTheDocument();
-  });
-
   it('should allow you to send in your own components', () => {
     const ClearIndicator = () => (
       <button data-testid="customClearIndicator">Clear</button>
@@ -759,7 +807,6 @@ describe('Combobox', () => {
     });
 
     it('onBlur should empty input if no selected item', () => {
-
       const { getByLabelText } = render(
         <Combobox labelText={labelText} items={items} />
       );
@@ -775,7 +822,6 @@ describe('Combobox', () => {
     });
 
     it('onBlur should give input value of selected item  after input has been changed but nothing new selected', () => {
-
       const { getByLabelText, getByText } = render(
         <Combobox labelText={labelText} items={items} />
       );

@@ -204,7 +204,6 @@ export function Select<T>(props: SelectProps<T>) {
         items={items}
         itemToString={itemToString}
         menuStyle={menuStyle}
-        isLoading={true}
       />
     </SelectContainer>
   );

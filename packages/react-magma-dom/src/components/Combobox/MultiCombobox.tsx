@@ -393,7 +393,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         isOpen={isOpen}
         items={getFilteredItems(displayItems)}
         itemToString={itemToString}
-        isLoading={isLoading}
+        isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />

@@ -557,11 +557,11 @@ describe('MultiCombobox', () => {
             isTypeahead
           />
         );
-    
+
         expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
         expect(queryByText('Pink', { selector: 'button' })).toBeInTheDocument();
       });
-    
+
       it('should be able to use the initial selected item even if it is not in the items list', () => {
         const { getByText, queryByText } = render(
           <MultiCombobox
@@ -572,9 +572,38 @@ describe('MultiCombobox', () => {
             isTypeahead
           />
         );
-    
+
         expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
         expect(queryByText('Pink', { selector: 'button' })).toBeInTheDocument();
+      });
+
+      it('and isLoading is true, list loading indicator is visible', () => {
+        const { getByText, queryByTestId } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            isTypeahead
+            isLoading
+            disableCreateItem
+          />
+        );
+        expect(getByText(/loading.../i)).toBeInTheDocument();
+        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+      });
+
+      it('and isLoading is false, no loading indicator is visible', () => {
+        const { queryByText, queryByTestId } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            isTypeahead
+            isLoading={false}
+          />
+        );
+        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
       });
     });
 
@@ -589,11 +618,13 @@ describe('MultiCombobox', () => {
             isTypeahead={false}
           />
         );
-    
+
         expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-        expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
+        expect(
+          queryByText('Pink', { selector: 'button' })
+        ).not.toBeInTheDocument();
       });
-    
+
       it('should not use the initial selected item if it is not in the items list', () => {
         const { getByText, queryByText } = render(
           <MultiCombobox
@@ -604,9 +635,39 @@ describe('MultiCombobox', () => {
             isTypeahead={false}
           />
         );
-    
+
         expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-        expect(queryByText('Pink', { selector: 'button' })).not.toBeInTheDocument();
+        expect(
+          queryByText('Pink', { selector: 'button' })
+        ).not.toBeInTheDocument();
+      });
+
+      it('and isLoading is true, input loading indicator is visible', () => {
+        const { queryByText, getByTestId } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            isTypeahead={false}
+            isLoading
+          />
+        );
+        expect(getByTestId('loadingIndicator')).toBeInTheDocument();
+        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+      });
+
+      it('and isLoading is false, no loading indicator is visible', () => {
+        const { queryByText, queryByTestId } = render(
+          <MultiCombobox
+            isMulti
+            labelText={labelText}
+            items={items}
+            isTypeahead={false}
+            isLoading={false}
+          />
+        );
+        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
       });
     });
   });
@@ -774,18 +835,6 @@ describe('MultiCombobox', () => {
     );
 
     expect(getByText(helperMessage)).toBeInTheDocument();
-  });
-
-  it('should show loading text in items list', () => {
-    const { getByText } = render(
-      <MultiCombobox
-        isMulti
-        labelText={labelText}
-        items={items}
-        isLoading
-      />
-    );
-    expect(getByText(/loading.../i)).toBeInTheDocument();
   });
 
   it('should allow you to send in your own components', () => {

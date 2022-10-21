@@ -302,7 +302,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isInverse={isInverse}
         items={displayItems}
         itemToString={itemToString}
-        isLoading={isLoading}
+        isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />

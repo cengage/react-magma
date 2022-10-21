@@ -681,6 +681,8 @@ export function Example() {
 
 ## Typeahead
 
+When using Combobox for typeahead with a large items list, use the `isTypeahead` prop to allow the selected item to not be part of the original `items` list. In addition, when `isTypeahead` and `isLoading` are both true, the loading indicator will appear on the list of items instead of the input.
+
 ```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
@@ -821,6 +823,10 @@ export function Example() {
 
   return (
     <Combobox
+      isTypeahead
+      isClearable
+      isMulti
+      disableCreateItem
       items={suggestedItems}
       isLoading={isLoading}
       labelText="Typeahead Example - Animals"
