@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0-next.3
+
+### Minor Changes
+
+- 1893be731: feat(button): Subtle button
+
 ## 3.2.0-next.2
 
 ### Patch Changes
