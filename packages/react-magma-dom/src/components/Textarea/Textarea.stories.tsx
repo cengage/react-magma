@@ -1,16 +1,41 @@
 import React, { useState } from 'react';
-import { Textarea } from '.';
 import { Button } from '../Button';
-import { Card, CardBody } from '../Card';
+import { Container } from '../Container';
 import { LabelPosition } from '../Label';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { Spacer } from '../Spacer';
+import { Textarea, TextareaProps } from '.';
+
+const Template: Story<TextareaProps> = args => (
+  <Textarea {...args} labelText="Textarea label" />
+);
 
 export default {
   component: Textarea,
   title: 'Textarea',
+  decorators: [
+    (Story, context) => (
+      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+        <Story />
+      </Container>
+    ),
+  ],
+  argTypes: {
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
+      },
+    },
+  },
+} as Meta;
+
+export const Default = Template.bind({});
+Default.args = {
+  isInverse: false,
 };
 
-export const Default = () => {
+export const OnClear = () => {
   const [fieldValue, setValue] = useState('');
   return (
     <>
@@ -30,56 +55,5 @@ export const Default = () => {
         Clear
       </Button>
     </>
-  );
-};
-
-export const LeftLabel = () => {
-  const [fieldValue, setValue] = useState('');
-  return (
-    <>
-      <Textarea
-        labelText="Textarea"
-        value={fieldValue}
-        onChange={e => {
-          setValue(e.target.value);
-        }}
-        labelPosition={LabelPosition.left}
-      />
-      <Spacer size="12" />
-      <Button
-        onClick={e => {
-          setValue('');
-        }}
-      >
-        Clear
-      </Button>
-    </>
-  );
-};
-
-export const Inverse = () => {
-  const [fieldValue, setValue] = useState('');
-  return (
-    <Card isInverse>
-      <CardBody>
-        <Textarea
-          labelText="Textarea"
-          value={fieldValue}
-          onChange={e => {
-            setValue(e.target.value);
-          }}
-          isInverse
-        />
-        <Spacer size="12" />
-        <Button
-          onClick={e => {
-            setValue('');
-          }}
-          isInverse
-        >
-          Clear
-        </Button>
-      </CardBody>
-    </Card>
   );
 };

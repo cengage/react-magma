@@ -318,7 +318,7 @@ export function Example() {
 
 When `labelPosition` is set to the value `left`, the input is moved inline with the label.
 
-If using `left`, an additional prop `labelWidth` takes a number value which sets a width for the label based in percentage. This is useful when multiple inputs are shown in a column display to give a uniform appearance.
+If multiple inputs are needed in a column display, `labelWidth` can be used which takes a number value to set a width for the label based in percentage. This helps to give a uniform appearance.
 
 ```tsx
 import React from 'react';
@@ -504,7 +504,7 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
 ```html noCodeSandbox
-<input labelText="Label" testId="test-id" />
+<Input labelText="Label" testId="test-id" />
 ```
 
 ## Input Props

@@ -63,7 +63,7 @@ const StyledLabel = styled.label<{
       ? 'calc(100% - 51px)'
       : '100%'};
   text-align: ${props =>
-    props.labelPosition === LabelPosition.left ? 'right' : ''};
+    props.labelPosition === LabelPosition.left ? 'right' : 'left'};
   white-space: ${props =>
     props.iconPosition === InputIconPosition.top ||
     props.labelPosition === LabelPosition.left

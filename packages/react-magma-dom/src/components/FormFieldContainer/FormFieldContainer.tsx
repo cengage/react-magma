@@ -71,7 +71,7 @@ export interface FormFieldContainerBaseProps {
    */
   labelText?: React.ReactNode;
   /**
-   * If labelPosition is set to 'left' then this allows Inputs to have a specified width for the label.
+   * If the labelPosition value is 'left' then Input labels have a specified width in percentage, otherwise no width is set.
    */
   labelWidth?: number;
   /**
@@ -108,15 +108,14 @@ const StyledFormFieldContainer = styled.div<{
 `;
 
 // Input and helper text <div> wrapper based on labelPosition.
-const StyledWrapper = styled.div`
-  flex-direction: column;
+const StyledInputWrapper = styled.div`
   flex: 1 1 auto;
 `;
 
 // If the labelPosition is set to 'left' then a <div> wraps the Input, errorMessage, helperMessage, and CharacterCounter for proper styling alignment.
 function InputPositionWrapper(props) {
-  if (props.labelPosition === 'left') {
-    return <StyledWrapper>{props.children}</StyledWrapper>;
+  if (props.labelPosition === LabelPosition.left) {
+    return <StyledInputWrapper>{props.children}</StyledInputWrapper>;
   }
   return props.children;
 }
