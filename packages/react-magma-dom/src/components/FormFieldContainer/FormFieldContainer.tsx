@@ -100,8 +100,8 @@ const StyledFormFieldContainer = styled.div<{
   display: ${props =>
     props.labelPosition === LabelPosition.left ? 'flex' : ''};
   label {
-    width: ${props =>
-      props.labelWidth && props.labelPosition === 'left'
+    flex-basis: ${props =>
+      props.labelWidth && props.labelPosition === LabelPosition.left
         ? `${props.labelWidth}%`
         : ''};
   }

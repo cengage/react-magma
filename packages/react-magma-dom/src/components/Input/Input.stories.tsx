@@ -47,7 +47,7 @@ export default {
     },
     labelWidth: {
       control: {
-        type: 'text',
+        type: 'number',
       },
     },
     labelPosition: {

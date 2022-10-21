@@ -35,11 +35,12 @@ Default.args = {
   isInverse: false,
 };
 
-export const OnClear = () => {
+export const OnClear = args => {
   const [fieldValue, setValue] = useState('');
   return (
     <>
       <Textarea
+        {...args}
         labelText="Textarea"
         value={fieldValue}
         onChange={e => {
@@ -56,4 +57,7 @@ export const OnClear = () => {
       </Button>
     </>
   );
+};
+OnClear.args = {
+  ...Default.args,
 };
