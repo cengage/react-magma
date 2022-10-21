@@ -146,7 +146,7 @@ export function buildBorderColor(props) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      if (props.color === 'secondary') {
+      if (props.color === 'secondary' || props.color === 'subtle') {
         return transparentize(0.8, props.theme.colors.neutral100);
       }
       return 'none';
@@ -189,7 +189,7 @@ export function buildColor(props) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      if (props.color === 'secondary' || props.variant === 'link') {
+      if (props.color === 'secondary' || props.color === 'subtle' || props.variant === 'link') {
         return transparentize(0.7, props.theme.colors.neutral100);
       }
       return transparentize(0.6, props.theme.colors.neutral100);
