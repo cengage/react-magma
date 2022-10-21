@@ -12,6 +12,7 @@
   },
   "changesets": [
     "feat-characterCounter",
+    "multicombobox-clearable",
     "subtle-button",
     "table-a11y-focus",
     "table-stories"
