@@ -482,6 +482,8 @@ export function Example() {
 
 ## Multi Combobox
 
+Use `hasPersistentMenu` prop on multi comboboxes to keep the list of items open after a selection.
+
 ```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
@@ -501,6 +503,7 @@ export function Example() {
     <>
       <Combobox
         isMulti
+        hasPersistentMenu
         id="multiComboboxId"
         labelText="Multi combobox"
         initialSelectedItems={[
@@ -526,6 +529,7 @@ export function Example() {
 
       <Combobox
         isMulti
+        hasPersistentMenu
         id="multiComboboxId2"
         labelText="Multi combobox"
         initialSelectedItems={[
@@ -564,6 +568,7 @@ export function Example() {
         errorMessage="Please correct this error"
         id="multiComboboxControlledId"
         isMulti
+        hasPersistentMenu
         labelText="Multi combobox controlled"
         defaultItems={[
           { label: 'Red', value: 'red' },

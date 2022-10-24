@@ -82,28 +82,30 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     );
   };
 
+  
+  
   return (
     <StyledCard
-      hasDropShadow
-      isInverse={isInverse}
-      isOpen={isOpen}
-      style={menuStyle}
-      theme={theme}
+    hasDropShadow
+    isInverse={isInverse}
+    isOpen={isOpen}
+    style={menuStyle}
+    theme={theme}
     >
       <StyledList isOpen={isOpen} {...getMenuProps()} maxHeight={heightString}>
         {isOpen && hasItems ? (
           items.map((item, index) => {
             const itemString = instanceOfToBeCreatedItemObject(item)
-              ? item.label
-              : itemToString(item);
-
+            ? item.label
+            : itemToString(item);
+            
             const { ref, ...otherDownshiftItemProps } = getItemProps({
               item,
               index,
             });
-
+            
             const key = `${itemString}${index}`;
-
+            
             const itemProps: ItemRenderOptions<T> = {
               isFocused: highlightedIndex === index,
               isInverse,
@@ -114,7 +116,6 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               theme,
               ...otherDownshiftItemProps,
             };
-
             return <Item<T> {...itemProps} key={key} />;
           })
         ) : (

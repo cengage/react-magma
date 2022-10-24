@@ -24,6 +24,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     disableCreateItem,
     errorMessage,
     hasError,
+    hasPersistentMenu = false,
     helperMessage,
     inputStyle,
     isClearable,
@@ -197,8 +198,16 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           ...changes,
           inputValue: '',
         };
+      case useCombobox.stateChangeTypes.InputKeyDownEscape:
+        return {
+          ...changes,
+          isOpen: changes.isOpen,
+        };
       default:
-        return changes;
+        return {
+          ...changes,
+          isOpen: hasPersistentMenu || changes.isOpen, // keep the menu open after selection.
+        };
     }
   }
 
@@ -241,6 +250,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
+    // defaultHighlightedIndex: 0, // after selection, highlight the first item.
     stateReducer,
   });
 

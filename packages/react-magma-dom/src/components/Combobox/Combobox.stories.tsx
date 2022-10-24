@@ -37,6 +37,7 @@ Default.args = {
   isClearable: false,
   isMulti: false,
   isLoading: false,
+  hasPersistentMenu: false,
 };
 
 export const Multi = (props: MultiComboboxProps<SelectOptions>) => (
@@ -54,6 +55,7 @@ Multi.args = {
   isMulti: true,
   isClearable: true,
   errorMessage: '',
+  hasPersistentMenu: true,
 };
 
 export const ErrorMessage = Template.bind({});
