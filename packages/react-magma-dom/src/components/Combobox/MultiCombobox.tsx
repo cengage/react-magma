@@ -234,6 +234,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     ...comboboxProps,
     itemToString,
     items: getFilteredItems(displayItems),
+    defaultHighlightedIndex: 0, // after selection, highlight the first item
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
@@ -250,7 +251,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             ),
     onIsOpenChange: handleOnIsOpenChange,
     onSelectedItemChange: defaultOnSelectedItemChange,
-    // defaultHighlightedIndex: 0, // after selection, highlight the first item.
     stateReducer,
   });
 

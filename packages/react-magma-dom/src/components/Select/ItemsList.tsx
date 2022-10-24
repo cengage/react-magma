@@ -43,9 +43,9 @@ const NoItemsMessage = styled.span<{
 `;
 
 const LoadingWrapper = styled.span<{}>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export function ItemsList<T>(props: ItemsListProps<T>) {
@@ -76,36 +76,34 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   const LoadingIndicator = () => {
     return (
       <LoadingWrapper>
-        <Spinner testId="itemsList-loadingIndicator" style={{marginRight: theme.spaceScale.spacing02}}/>{' '}
+        <Spinner
+          testId="itemsList-loadingIndicator"
+          style={{ marginRight: theme.spaceScale.spacing02 }}
+        />{' '}
         {i18n.combobox.loading}
       </LoadingWrapper>
     );
   };
 
-  
-  
   return (
     <StyledCard
-    hasDropShadow
-    isInverse={isInverse}
-    isOpen={isOpen}
-    style={menuStyle}
-    theme={theme}
+      hasDropShadow
+      isInverse={isInverse}
+      isOpen={isOpen}
+      style={menuStyle}
+      theme={theme}
     >
       <StyledList isOpen={isOpen} {...getMenuProps()} maxHeight={heightString}>
         {isOpen && hasItems ? (
           items.map((item, index) => {
             const itemString = instanceOfToBeCreatedItemObject(item)
-            ? item.label
-            : itemToString(item);
-            
+              ? item.label
+              : itemToString(item);
             const { ref, ...otherDownshiftItemProps } = getItemProps({
               item,
               index,
             });
-            
             const key = `${itemString}${index}`;
-            
             const itemProps: ItemRenderOptions<T> = {
               isFocused: highlightedIndex === index,
               isInverse,

@@ -903,7 +903,6 @@ describe('MultiCombobox', () => {
         queryByText(items[2], { selector: 'button' })
       ).not.toBeInTheDocument();
 
-      // todo should this pass if the focus is on the combobox instead?
       selectedItem1.focus();
       fireEvent.keyDown(selectedItem1, { key: 'Backspace' });
       expect(
