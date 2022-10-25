@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0-next.5
+
+### Patch Changes
+
+- 95fc5ae72: chore(npm/node): Update versions
+
 ## 3.2.0-next.4
 
 ### Patch Changes

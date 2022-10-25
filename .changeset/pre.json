@@ -15,6 +15,10 @@
     "multicombobox-clearable",
     "subtle-button",
     "table-a11y-focus",
-    "table-stories"
+    "table-stories",
+    "update-versions-charts",
+    "update-versions-dropzone",
+    "update-versions-schema",
+    "update-versions"
   ]
 }

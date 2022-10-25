@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.0.5-next.5
+
+### Patch Changes
+
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+  - @react-magma/charts@2.0.0-next.1
+  - @react-magma/dropzone@2.0.0-next.1
+  - @react-magma/schema-renderer@2.0.0-next.1
+  - react-magma-dom@3.2.0-next.5
+
 ## 4.0.5-next.4
 
 ### Patch Changes
