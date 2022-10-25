@@ -99,11 +99,14 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
             const itemString = instanceOfToBeCreatedItemObject(item)
               ? item.label
               : itemToString(item);
+
             const { ref, ...otherDownshiftItemProps } = getItemProps({
               item,
               index,
             });
+
             const key = `${itemString}${index}`;
+
             const itemProps: ItemRenderOptions<T> = {
               isFocused: highlightedIndex === index,
               isInverse,
@@ -114,6 +117,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               theme,
               ...otherDownshiftItemProps,
             };
+
             return <Item<T> {...itemProps} key={key} />;
           })
         ) : (

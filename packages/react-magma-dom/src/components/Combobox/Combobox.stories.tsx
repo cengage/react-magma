@@ -46,6 +46,16 @@ export const Multi = (props: MultiComboboxProps<SelectOptions>) => (
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
+      { label: 'Orange', value: 'orange' },
+      { label: 'Aqua', value: 'aqua' },
+      { label: 'Gold', value: 'gold' },
+      { label: 'Periwinkle', value: 'periwinkle' },
+      { label: 'Lavender', value: 'lavender' },
+      { label: 'Marigold', value: 'marigold' },
+      { label: 'Yellow', value: 'yellow' },
+      { label: 'Purple', value: 'purple' },
+      { label: 'Dusty Rose', value: 'dusty_rose' },
+      { label: 'Burnt Sienna', value: 'burnt_sienna' },
     ]}
     {...props}
   />

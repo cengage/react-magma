@@ -95,6 +95,29 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     }),
   });
 
+  React.useEffect(() => {
+    // Support Arrow key presses to change the focus of the selected items in the input
+    const handleKeyPress = (event: KeyboardEvent) => {
+      const { key } = event;
+      if (key === 'ArrowRight') {
+        setActiveIndex(0);
+      }
+      if (key === 'ArrowLeft') {
+        setActiveIndex(selectedItems.length - 1);
+      }
+      // if (key === 'Tab') {
+      //   console.log('tab')
+      //   event.preventDefault()
+      // }
+    };
+
+    window.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [selectedItems]);
+
   function isCreatedItem(item) {
     return (
       !(typeof item === 'string') &&
@@ -234,7 +257,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     ...comboboxProps,
     itemToString,
     items: getFilteredItems(displayItems),
-    defaultHighlightedIndex: 0, // after selection, highlight the first item
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
