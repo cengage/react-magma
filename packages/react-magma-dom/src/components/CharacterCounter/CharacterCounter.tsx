@@ -7,9 +7,9 @@ import { I18nContext } from '../../i18n';
 export interface CharacterCounterProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Allows screenreaders to iterate on the default state of the title.
+   * Identifier to associate Character Counter with Input.
    */
-  id?: string;
+  id: string;
   /**
    * Total number of characters in an input.
    */
@@ -26,7 +26,7 @@ export interface CharacterCounterProps
 }
 
 // Changes the font weight to bold based on maxLength.
-function buildFontWeight(props: CharacterCounterProps) {
+function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   if (
     (props.inputLength < props.maxLength && props.inputLength >= 1) ||
     props.inputLength === props.maxLength
