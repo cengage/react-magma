@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.5-next.6
+
+### Patch Changes
+
+- 411db8440: docs(select component documentation nav link): fix broken link in select documentation
+
 ## 4.0.5-next.5
 
 ### Patch Changes
