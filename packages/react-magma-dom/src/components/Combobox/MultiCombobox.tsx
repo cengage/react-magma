@@ -95,29 +95,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     }),
   });
 
-  React.useEffect(() => {
-    // Support Arrow key presses to change the focus of the selected items in the input
-    const handleKeyPress = (event: KeyboardEvent) => {
-      const { key } = event;
-      if (key === 'ArrowRight') {
-        setActiveIndex(0);
-      }
-      if (key === 'ArrowLeft') {
-        setActiveIndex(selectedItems.length - 1);
-      }
-      // if (key === 'Tab') {
-      //   console.log('tab')
-      //   event.preventDefault()
-      // }
-    };
-
-    window.addEventListener('keydown', handleKeyPress);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [selectedItems]);
-
   function isCreatedItem(item) {
     return (
       !(typeof item === 'string') &&
@@ -208,6 +185,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             selectedItem: newSelectedItem,
           }),
           inputValue: '',
+          isOpen: changes.isOpen,
         };
       }
       case useCombobox.stateChangeTypes.ItemClick: {
@@ -222,6 +200,11 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           inputValue: '',
         };
       case useCombobox.stateChangeTypes.InputKeyDownEscape:
+        return {
+          ...changes,
+          isOpen: changes.isOpen,
+        };
+      case useCombobox.stateChangeTypes.ToggleButtonClick:
         return {
           ...changes,
           isOpen: changes.isOpen,
@@ -290,6 +273,28 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     onInputFocus && typeof onInputFocus === 'function' && onInputFocus(event);
   }
 
+  function handleInputKeyDown(event) {
+    console.log('event', event.key);
+
+    // Support Arrow key presses to change the focus of the selected items in the input
+    if (event.key === 'ArrowRight') {
+      setActiveIndex(0);
+    }
+    if (event.key === 'ArrowLeft') {
+      setActiveIndex(selectedItems.length - 1);
+    }
+    if (event.key === 'Tab') {
+      setActiveIndex(-1);
+    }
+    if (event.key === 'Escape') {
+      setActiveIndex(-1);
+    }
+
+    onInputKeyDown &&
+      typeof onInputKeyDown === 'function' &&
+      onInputKeyDown(event);
+  }
+
   const { ClearIndicator } = defaultComponents<T>({
     ...customComponents,
   });
@@ -329,33 +334,36 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     reset();
   }
 
+  //? Do we need to support different color items?
   const selectedItemsContent =
     selectedItems && selectedItems.length > 0 ? (
       <>
-        {selectedItems.map((multiSelectedItem, index) => (
-          <SelectedItemButton
-            aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel.replace(
-              /\{selectedItem\}/g,
-              itemToString(multiSelectedItem)
-            )}
-            key={`selected-item-${index}`}
-            {...getSelectedItemProps({
-              selectedItem: multiSelectedItem,
-              index,
-            })}
-            onClick={event =>
-              handleRemoveSelectedItem(event, multiSelectedItem)
-            }
-            onFocus={() => setActiveIndex(index)}
-            theme={theme}
-            isInverse={isInverse}
-          >
-            {itemToString(multiSelectedItem)}
-            <IconWrapper>
-              <CloseIcon size={theme.iconSizes.xSmall} />
-            </IconWrapper>
-          </SelectedItemButton>
-        ))}
+        {selectedItems.map((multiSelectedItem, index) => {
+          return (
+            <SelectedItemButton
+              aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel.replace(
+                /\{selectedItem\}/g,
+                itemToString(multiSelectedItem)
+              )}
+              key={`selected-item-${index}`}
+              {...getSelectedItemProps({
+                selectedItem: multiSelectedItem,
+                index,
+              })}
+              onClick={event =>
+                handleRemoveSelectedItem(event, multiSelectedItem)
+              }
+              onFocus={() => setActiveIndex(index)}
+              theme={theme}
+              isInverse={isInverse}
+            >
+              {itemToString(multiSelectedItem)}
+              <IconWrapper>
+                <CloseIcon size={theme.iconSizes.xSmall} />
+              </IconWrapper>
+            </SelectedItemButton>
+          );
+        })}
       </>
     ) : null;
 
@@ -397,10 +405,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         innerRef={ref}
         onInputBlur={onInputBlur}
         onInputFocus={handleInputFocus}
-        onInputKeyDown={onInputKeyDown}
+        onInputKeyDown={handleInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
-        placeholder={placeholder}
+        placeholder={selectedItems.length > 0 ? null : placeholder}
         selectedItems={selectedItemsContent}
         toggleButtonRef={toggleButtonRef}
       >
