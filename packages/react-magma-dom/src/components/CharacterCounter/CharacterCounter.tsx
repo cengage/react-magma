@@ -50,6 +50,20 @@ export const CharacterCounter = React.forwardRef<
 
   const isOverMaxLength = inputLength > maxLength;
 
+  // Gets percentage value of total characters within Input to let aria-live have dynamic states.
+  const getPercentage = (inputLength / maxLength) * 100;
+
+  // Returns aria-live states based on percentage of characters within Input.
+  function ariaLiveStates() {
+    if (getPercentage >= 80) {
+      if (getPercentage > 100) {
+        return 'assertive';
+      }
+      return 'polite';
+    }
+    return 'off';
+  }
+
   // As the user types, this calculates the remaining characters set by maxLength which counts down to zero then counts up if over the limit.
   const characterLimit =
     maxLength > inputLength ? maxLength - inputLength : inputLength - maxLength;
@@ -85,9 +99,11 @@ export const CharacterCounter = React.forwardRef<
       return `${maxLength} ${i18n.characterCounter.charactersAllowed}`;
     }
   }
+
   return (
     <div data-testid={testId} {...rest}>
       <StyledInputMessage
+        aria-live={ariaLiveStates()}
         hasError={isOverMaxLength}
         isInverse={isInverse}
         inputLength={inputLength}
