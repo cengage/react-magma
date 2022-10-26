@@ -7,6 +7,10 @@ import { I18nContext } from '../../i18n';
 export interface CharacterCounterProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * Allows screenreaders to iterate on the default state of the title.
+   */
+  id?: string;
+  /**
    * Total number of characters in an input.
    */
   inputLength: number;
@@ -43,7 +47,7 @@ export const CharacterCounter = React.forwardRef<
   HTMLDivElement,
   CharacterCounterProps
 >(props => {
-  const { children, inputLength, maxLength, testId, isInverse, ...rest } =
+  const { children, id, inputLength, maxLength, testId, isInverse, ...rest } =
     props;
 
   const i18n = React.useContext(I18nContext);
@@ -54,7 +58,7 @@ export const CharacterCounter = React.forwardRef<
   const getPercentage = (inputLength / maxLength) * 100;
 
   // Returns aria-live states based on percentage of characters within Input.
-  function ariaLiveStates() {
+  function getAriaLiveState() {
     if (getPercentage >= 80) {
       if (getPercentage > 100) {
         return 'assertive';
@@ -101,9 +105,9 @@ export const CharacterCounter = React.forwardRef<
   }
 
   return (
-    <div data-testid={testId} {...rest}>
+    <div data-testid={testId} id={id} {...rest}>
       <StyledInputMessage
-        aria-live={ariaLiveStates()}
+        aria-live={getAriaLiveState()}
         hasError={isOverMaxLength}
         isInverse={isInverse}
         inputLength={inputLength}
