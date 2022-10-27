@@ -97,6 +97,10 @@ export const defaultI18n: I18nInterface = {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
     createLabel: 'Create "{inputValue}"',
+    multi: {
+      clearIndicatorAriaLabel: 'reset selection for {labelText}. {selectedItem} are selected',
+    },
+    loading: 'Loading...',
   },
   datePicker: {
     startOfWeek: 'sunday',

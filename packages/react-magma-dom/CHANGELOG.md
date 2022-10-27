@@ -1,5 +1,37 @@
 # Change Log
 
+## 3.2.0-next.5
+
+### Patch Changes
+
+- 95fc5ae72: chore(npm/node): Update versions
+
+## 3.2.0-next.4
+
+### Patch Changes
+
+- 85853eae2: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
+  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+
+## 3.2.0-next.3
+
+### Minor Changes
+
+- 1893be731: feat(button): Subtle button
+
+## 3.2.0-next.2
+
+### Patch Changes
+
+- 1110043aa: fix(table): Add keyboard only focus to tables without a focusable element.
+
+## 3.2.0-next.1
+
+### Patch Changes
+
+- 2fe13d60f: docs(table): Storybook example with adjustable number of rows
+
 ## 3.2.0-next.0
 
 ### Minor Changes

@@ -11,6 +11,7 @@ import {
   buildButtonSize,
   buildButtonPadding,
   buildBorderColor,
+  buildBorderWidth,
   buildButtonBackground,
   buildColor,
   buildFocusBackground,
@@ -28,9 +29,7 @@ export interface StyledButtonProps extends ButtonProps {
 export const buttonStyles = props => css`
   align-items: center;
   background: ${buildButtonBackground(props)};
-  border: ${props.variant !== 'link' && props.color === 'secondary'
-    ? '1px solid'
-    : '0'};
+  border: ${buildBorderWidth(props)};
   border-color: ${buildBorderColor(props)};
   border-radius: ${buildButtonBorderRadius(props)};
   color: ${buildColor(props)};

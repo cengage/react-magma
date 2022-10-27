@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 2.0.0-next.1
+
+### Patch Changes
+
+- 95fc5ae72: chore(npm/node): Update versions
+
 ## 2.0.0-next.0
 
 ### Patch Changes

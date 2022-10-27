@@ -29,9 +29,10 @@ const InputContainer = styled.div<{
   theme?: any;
 }>`
   align-items: center;
-  background-color: ${props => props.isInverse
-    ? transparentize(0.8, props.theme.colors.neutral900)
-    : props.theme.colors.neutral100};
+  background-color: ${props =>
+    props.isInverse
+      ? transparentize(0.8, props.theme.colors.neutral900)
+      : props.theme.colors.neutral100};
   border: 1px solid;
   border-color: ${props =>
     props.isInverse
@@ -66,9 +67,11 @@ const InputContainer = styled.div<{
     props.disabled &&
     css`
       background: ${props.isInverse
-      ? transparentize(0.9, props.theme.colors.neutral900)
-      : props.theme.colors.neutral200};
-      border-color: ${props.isInverse ? transparentize(0.85, props.theme.colors.neutral100) : props.theme.colors.neutral300};
+        ? transparentize(0.9, props.theme.colors.neutral900)
+        : props.theme.colors.neutral200};
+      border-color: ${props.isInverse
+        ? transparentize(0.85, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
       color: ${transparentize(0.4, props.theme.colors.neutral500)};
       cursor: not-allowed;
       outline: 0;
@@ -109,6 +112,7 @@ interface ComboboxInputProps<T> {
   disabled?: boolean;
   isInverse?: boolean;
   isLoading?: boolean;
+  isTypeahead?: boolean;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
   onInputKeyDown?: (event: React.KeyboardEvent) => void;
@@ -133,6 +137,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     disabled,
     isInverse,
     isLoading,
+    isTypeahead,
     onInputBlur,
     onInputFocus,
     onInputKeyDown,
@@ -183,7 +188,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
       return theme.colors.neutral100;
     }
     return theme.colors.neutral;
-  }
+  };
 
   return (
     <ComboBoxContainer
@@ -204,6 +209,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         isInverse={isInverse}
         style={inputStyle}
         theme={theme}
+        ref={innerRef}
       >
         <SelectedItemsWrapper>
           {selectedItems}
@@ -218,7 +224,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
           />
         </SelectedItemsWrapper>
         {children}
-        {isLoading && (
+        {isLoading && !isTypeahead  && (
           <LoadingIndicator
             style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
           />

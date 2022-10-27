@@ -246,6 +246,22 @@ const SplitTemplate: Story<DropdownProps> = args => (
     </Dropdown>
     <br />
     <br />
+    <Dropdown {...args}>
+      <DropdownSplitButton
+        aria-label="Split"
+        size={ButtonSize.medium}
+        variant={ButtonVariant.solid}
+        color={ButtonColor.subtle}
+      >
+        Split Dropdown
+      </DropdownSplitButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+    <br />
+    <br />
     <Dropdown isInverse>
       <DropdownSplitButton
         aria-label="Split"
