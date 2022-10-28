@@ -74,6 +74,7 @@ export const PasswordInput = React.forwardRef<
     labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     isLabelVisuallyHidden,
     messageStyle,
     shownPasswordAnnounceText,
@@ -123,6 +124,7 @@ export const PasswordInput = React.forwardRef<
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
     >
       <InputBase
         autoCorrect="off"

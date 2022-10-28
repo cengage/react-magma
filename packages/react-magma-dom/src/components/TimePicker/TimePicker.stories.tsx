@@ -28,6 +28,11 @@ export default {
         options: LabelPosition,
       },
     },
+    labelWidth: {
+      control: {
+        type: 'number',
+      },
+    },
   },
 } as Meta;
 

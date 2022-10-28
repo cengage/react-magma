@@ -39,6 +39,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     menuStyle,
     messageStyle,
     newItemTransform,
@@ -339,6 +340,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
       messageStyle={messageStyle}
     >
       <ComboboxInput

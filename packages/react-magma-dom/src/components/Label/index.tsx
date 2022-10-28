@@ -56,7 +56,7 @@ const StyledLabel = styled.label<{
       : props.theme.typeScale.size02.lineHeight};
   margin: ${props =>
     props.labelPosition === LabelPosition.left
-      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing03} 0 0`
+      ? `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing03} 0 0`
       : `0 0 ${props.theme.spaceScale.spacing03}`};
   max-width: ${props =>
     props.iconPosition === InputIconPosition.top

@@ -3,7 +3,6 @@ import { render, fireEvent } from '@testing-library/react';
 import { Combobox } from '.';
 import { magma } from '../../theme/magma';
 
-
 describe('Combobox', () => {
   const labelText = 'Label';
   const items = ['Red', 'Blue', 'Green'];
@@ -753,6 +752,18 @@ describe('Combobox', () => {
       'display',
       'flex'
     );
+  });
+
+  it('Should have a defined width for label when labelPosition is "left"', () => {
+    const { getByText } = render(
+      <Combobox
+        items={items}
+        labelPosition="left"
+        labelText={labelText}
+        labelWidth={20}
+      />
+    );
+    expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
   });
 
   it('should show loading indicator', () => {

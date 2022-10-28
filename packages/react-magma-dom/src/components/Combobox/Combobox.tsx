@@ -38,6 +38,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     menuStyle,
     messageStyle,
     newItemTransform,
@@ -258,6 +259,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
       messageStyle={messageStyle}
     >
       <ComboboxInput

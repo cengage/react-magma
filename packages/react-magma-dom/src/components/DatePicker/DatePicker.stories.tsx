@@ -27,6 +27,11 @@ export default {
         options: LabelPosition,
       },
     },
+    labelWidth: {
+      control: {
+        type: 'number',
+      },
+    },
   },
 };
 

@@ -47,8 +47,7 @@ const StyledTextArea = styled.textarea<
   ${inputBaseStyles};
   ${inputWrapperStyles};
   height: 4.5em;
-  padding: ${props =>
-    `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`};
+  padding: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -62,6 +61,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       labelPosition,
       labelStyle,
       labelText,
+      labelWidth,
       maxLength,
       messageStyle,
       testId,
@@ -106,6 +106,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         labelStyle={labelStyle}
         labelText={labelText}
         labelPosition={labelPosition}
+        labelWidth={labelWidth}
         maxLength={maxLength}
       >
         <StyledTextArea

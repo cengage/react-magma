@@ -97,6 +97,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       labelPosition,
       labelStyle,
       labelText,
+      labelWidth,
       minutesStep,
       onChange,
       ...other
@@ -143,6 +144,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         isInverse={isInverse}
         labelText={labelText}
         labelPosition={labelPosition}
+        labelWidth={labelWidth}
       >
         <InputsContainer
           isInverse={isInverse}

@@ -194,7 +194,7 @@ describe('Input', () => {
     expect(getByText(label)).toBeInTheDocument();
     expect(getByText(label)).toHaveStyleRule(
       'margin',
-      `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing03} 0 0`
+      `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing03} 0 0`
     );
   });
 
