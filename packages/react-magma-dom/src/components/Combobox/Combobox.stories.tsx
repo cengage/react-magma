@@ -37,6 +37,7 @@ Default.args = {
   disableCreateItem: false,
   errorMessage: '',
   helperMessage: '',
+  placeholder: 'Select item',
   isClearable: false,
   isMulti: false,
   isLoading: false,
@@ -66,6 +67,7 @@ Multi.args = {
   isClearable: true,
   errorMessage: '',
   hasPersistentMenu: true,
+  placeholder: 'Select item',
 };
 
 export const ErrorMessage = Template.bind({});
@@ -1211,7 +1213,10 @@ export const FullPageExample = args => {
           { label: 'eBook', value: 'eBook' },
           { label: 'Paperback', value: 'paperback' },
           { label: 'Hardcover', value: 'hardcover' },
-          { label: 'Online Homework Platform', value: 'onlinehwplt' },
+          {
+            label: 'Online Homework Platform',
+            value: 'onlinehomeworkplatform',
+          },
         ]}
         isMulti
         hasPersistentMenu
