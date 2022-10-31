@@ -7,6 +7,10 @@ import { I18nContext } from '../../i18n';
 export interface CharacterCounterProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * Identifier to associate Character Counter with Input.
+   */
+  id: string;
+  /**
    * Total number of characters in an input.
    */
   inputLength: number;
@@ -22,7 +26,7 @@ export interface CharacterCounterProps
 }
 
 // Changes the font weight to bold based on maxLength.
-function buildFontWeight(props: CharacterCounterProps) {
+function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   if (
     (props.inputLength < props.maxLength && props.inputLength >= 1) ||
     props.inputLength === props.maxLength
@@ -43,12 +47,26 @@ export const CharacterCounter = React.forwardRef<
   HTMLDivElement,
   CharacterCounterProps
 >(props => {
-  const { children, inputLength, maxLength, testId, isInverse, ...rest } =
+  const { children, id, inputLength, maxLength, testId, isInverse, ...rest } =
     props;
 
   const i18n = React.useContext(I18nContext);
 
   const isOverMaxLength = inputLength > maxLength;
+
+  // Gets percentage value of total characters within Input to let aria-live have dynamic states.
+  const getPercentage = (inputLength / maxLength) * 100;
+
+  // Returns aria-live states based on percentage of characters within Input.
+  function getAriaLiveState() {
+    if (getPercentage >= 80) {
+      if (getPercentage > 100) {
+        return 'assertive';
+      }
+      return 'polite';
+    }
+    return 'off';
+  }
 
   // As the user types, this calculates the remaining characters set by maxLength which counts down to zero then counts up if over the limit.
   const characterLimit =
@@ -85,9 +103,11 @@ export const CharacterCounter = React.forwardRef<
       return `${maxLength} ${i18n.characterCounter.charactersAllowed}`;
     }
   }
+
   return (
-    <div data-testid={testId} {...rest}>
+    <div data-testid={testId} id={id} {...rest}>
       <StyledInputMessage
+        aria-live={getAriaLiveState()}
         hasError={isOverMaxLength}
         isInverse={isInverse}
         inputLength={inputLength}

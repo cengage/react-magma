@@ -115,7 +115,7 @@ export const FormFieldContainer = React.forwardRef<
   const isInverse = useIsInverse(isInverseProp);
 
   const descriptionId =
-    errorMessage || helperMessage ? `${fieldId}__desc` : null;
+    errorMessage || helperMessage || maxLength ? `${fieldId}__desc` : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -145,6 +145,7 @@ export const FormFieldContainer = React.forwardRef<
         {children}
         {typeof maxLength === 'number' && (
           <CharacterCounter
+            id={descriptionId}
             inputLength={inputLength}
             isInverse={isInverse}
             maxLength={maxLength}

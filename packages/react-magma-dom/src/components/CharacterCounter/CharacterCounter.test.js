@@ -120,4 +120,35 @@ describe('CharacterCounter', () => {
       });
     });
   });
+  describe('accessibility', () => {
+    it('Should have the aria-live attribute "off" until inputLength gets to 80%', () => {
+      const { getByText } = render(
+        <CharacterCounter inputLength={2} maxLength={4} />
+      );
+
+      const characterCounter = getByText('2 ' + charactersLeft).parentElement;
+
+      expect(characterCounter).toHaveAttribute('aria-live', 'off');
+    });
+
+    it('Should have the aria-live attribute "polite" when inputLength is 80% or more', () => {
+      const { getByText } = render(
+        <CharacterCounter inputLength={4} maxLength={4} />
+      );
+
+      const characterCounter = getByText('0 ' + charactersLeft).parentElement;
+
+      expect(characterCounter).toHaveAttribute('aria-live', 'polite');
+    });
+
+    it('Should have the aria-live attribute "assertive" when inputLength exceeds 100%', () => {
+      const { getByText } = render(
+        <CharacterCounter inputLength={5} maxLength={4} />
+      );
+
+      const characterCounter = getByText('1 ' + characterOver).parentElement;
+
+      expect(characterCounter).toHaveAttribute('aria-live', 'assertive');
+    });
+  });
 });
