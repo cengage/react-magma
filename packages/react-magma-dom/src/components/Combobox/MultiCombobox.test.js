@@ -859,6 +859,27 @@ describe('MultiCombobox', () => {
     expect(getByTestId('customLoadingIndicator')).toBeInTheDocument();
   });
 
+  it('should show placeholder text until an item is selected', () => {
+    const placeholder = 'Select item';
+    const { getByText, queryByText, getByLabelText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        placeholder={placeholder}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+    expect(renderedCombobox).toHaveAttribute('placeholder', placeholder);
+
+    fireEvent.click(renderedCombobox);
+    fireEvent.click(getByText(items[0]));
+
+    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+    expect(renderedCombobox).not.toHaveAttribute('placeholder');
+  });
+
   describe('hasPersistentMenu', () => {
     it('should keep the items list open', () => {
       const { getByLabelText, getByText } = render(

@@ -151,8 +151,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       addSelectedItem(changes.selectedItem);
     }
 
-    selectItem(null);
-    setInputValue('');
+    if (changes.selectedItem) {
+      selectItem(null);
+      setInputValue('');
+    }
   }
 
   const {
@@ -188,22 +190,18 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           isOpen: changes.isOpen,
         };
       }
-      case useCombobox.stateChangeTypes.ItemClick: {
+      case useCombobox.stateChangeTypes.ItemClick:
         return {
           ...changes,
           inputValue: '',
         };
-      }
       case useCombobox.stateChangeTypes.InputBlur:
         return {
           ...changes,
           inputValue: '',
+          selectedItem: state.selectedItem ? state.selectedItem : '',
         };
       case useCombobox.stateChangeTypes.InputKeyDownEscape:
-        return {
-          ...changes,
-          isOpen: changes.isOpen,
-        };
       case useCombobox.stateChangeTypes.ToggleButtonClick:
         return {
           ...changes,
@@ -212,7 +210,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       default:
         return {
           ...changes,
-          isOpen: hasPersistentMenu || changes.isOpen, // keep the menu open after selection.
+          isOpen: hasPersistentMenu || changes.isOpen,
         };
     }
   }
@@ -273,28 +271,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     onInputFocus && typeof onInputFocus === 'function' && onInputFocus(event);
   }
 
-  function handleInputKeyDown(event) {
-    console.log('event', event.key);
-
-    // Support Arrow key presses to change the focus of the selected items in the input
-    if (event.key === 'ArrowRight') {
-      setActiveIndex(0);
-    }
-    if (event.key === 'ArrowLeft') {
-      setActiveIndex(selectedItems.length - 1);
-    }
-    if (event.key === 'Tab') {
-      setActiveIndex(-1);
-    }
-    if (event.key === 'Escape') {
-      setActiveIndex(-1);
-    }
-
-    onInputKeyDown &&
-      typeof onInputKeyDown === 'function' &&
-      onInputKeyDown(event);
-  }
-
   const { ClearIndicator } = defaultComponents<T>({
     ...customComponents,
   });
@@ -334,7 +310,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     reset();
   }
 
-  //? Do we need to support different color items?
   const selectedItemsContent =
     selectedItems && selectedItems.length > 0 ? (
       <>
@@ -390,7 +365,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             ...options,
             ...getDropdownProps({
               onKeyDown: onInputKeyDown,
-              preventKeyAction: isOpen,
               ...(innerRef && { ref: innerRef }),
             }),
           }),
@@ -405,7 +379,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         innerRef={ref}
         onInputBlur={onInputBlur}
         onInputFocus={handleInputFocus}
-        onInputKeyDown={handleInputKeyDown}
+        onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={selectedItems.length > 0 ? null : placeholder}
