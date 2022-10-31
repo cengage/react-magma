@@ -12,6 +12,7 @@
   },
   "changesets": [
     "feat-characterCounter",
+    "fix-characterCounter",
     "multicombobox-clearable",
     "soft-horses-develop",
     "subtle-button",
