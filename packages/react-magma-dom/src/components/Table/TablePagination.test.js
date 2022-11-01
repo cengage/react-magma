@@ -5,9 +5,10 @@ import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
+const testId = 'test-id';
+
 describe('Table Pagination', () => {
   it('should find element by testId', () => {
-    const testId = 'test-id';
     const { getByTestId } = render(
       <TablePagination itemCount={20} testId={testId} />
     );
@@ -16,7 +17,6 @@ describe('Table Pagination', () => {
   });
 
   it('should use inverse styles', () => {
-    const testId = 'test-id';
     const { getByTestId } = render(
       <TablePagination itemCount={20} isInverse testId={testId} />
     );
@@ -28,7 +28,7 @@ describe('Table Pagination', () => {
   });
 
   it('should change the direction of the dropdown content with passed in props', () => {
-    const { getByTestId, getByText } = render(
+    const { getByTestId } = render(
       <TablePagination itemCount={20} dropdownDropDirection="down" />
     );
     const rowsSelect = getByTestId('rowPerPageDropdownButton');
@@ -203,7 +203,9 @@ describe('Table Pagination', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = render(<TablePagination itemCount={20} />);
+    const { container } = render(
+      <TablePagination itemCount={20} testId={testId} />
+    );
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

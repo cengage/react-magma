@@ -353,14 +353,84 @@ Inverse.decorators = [
   ),
 ];
 
-export const Popper = Template.bind({});
-Popper.args = {
-  ...Default.args,
-};
+export const Popper = args => {
+  const sampleDropdown = (
+    <Dropdown {...args}>
+      <DropdownButton>Basic Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two two two </DropdownMenuItem>
+        <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
 
-Popper.decorators = [
-  Story => (
+  return (
     <>
+    <br/><br/>
+      <ButtonGroup>
+        <Dropdown>
+          <DropdownButton>One</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Lorem ipsum dolor</DropdownMenuItem>
+            <DropdownMenuItem>Consectetur</DropdownMenuItem>
+            <DropdownMenuItem>Adipiscing elit</DropdownMenuItem>
+            <DropdownMenuItem>Sed non lacus a ex pellentesque</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+         <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Two</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer vestibulum sapien in elementum bibendum</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus ut elit in justo</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+       
+      </ButtonGroup>
+      <br />
+      <br />
+      <br />
       Vertical overflow
       <div
         style={{
@@ -371,7 +441,7 @@ Popper.decorators = [
         }}
       >
         <Spacer size={300} axis={SpacerAxis.vertical} />
-        <Story />
+        {sampleDropdown}
         <Spacer size={300} axis={SpacerAxis.vertical} />
       </div>
       Horizontal overflow
@@ -385,7 +455,7 @@ Popper.decorators = [
         }}
       >
         <Spacer size={900} axis={SpacerAxis.horizontal} />
-        <Story />
+        {sampleDropdown}
       </div>
       Both directions overflow
       <div
@@ -399,9 +469,13 @@ Popper.decorators = [
       >
         <Spacer size={1000} axis={SpacerAxis.horizontal} />
         <Spacer size={300} axis={SpacerAxis.vertical} />
-        <Story />
+        {sampleDropdown}
         <Spacer size={300} axis={SpacerAxis.vertical} />
       </div>
     </>
-  ),
-];
+  );
+};
+
+Popper.args = {
+  ...Default.args,
+};

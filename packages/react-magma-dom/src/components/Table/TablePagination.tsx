@@ -212,8 +212,8 @@ export const TablePagination = React.forwardRef<
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
       <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={dropdownDropDirection}
+        // alignment={DropdownAlignment.end}
+        // dropDirection={dropdownDropDirection}
         activeIndex={activeIndex}
         isInverse={isInverse}
       >
