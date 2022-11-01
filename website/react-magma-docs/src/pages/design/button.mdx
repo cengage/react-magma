@@ -208,7 +208,46 @@ _Small_ buttons can be used in scenarios where you want less emphasis on some ac
 
 Color can help reinforce the type of action that a button will perform if tapped. The default colors of the buttons are carefully chosen to both fit Cengage branding guidelines, as well as meet the accessibility requirement for color contrast ratio. If deviations to these colors are required, then you assume responsibility to meet accessibility requirements.
 
-The **primary** button should be used by default for important actions.  From there you can use **secondary** or buttons without a container for other actions, but they draw less attention than primary buttons.
+### Primary and Secondary Buttons
+
+The **primary** button should be used by default for important actions.  From there you can use **secondary** or buttons without a container for other actions, because they less emphasis than primary buttons.
+
+When you are pairing together primary and secondary actions such as "Save" and "Cancel", it is recommended you use the primary and secondary buttons.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/buttons/ex_6_1.png" alt="" />
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+### Subtle Button
+
+The **subtle** button style is intended to have even less emphasis than **secondary**. For this reason, it is recommended for ancillary actions that need to be seen as clearly actionable, but don't draw attention away from the primary and secondary actions on the page.
+
+An additional benefit of the subtle button's very neutral appearance is to help limit the amount of the primary brand color appearing on the page. Too much of this color can result in a very chaotic experience where everything looks relatively important and is distracting. The subtle button helps calm an interface that has a high number of actions that can be performed.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/buttons/subtle_button_example_1.png" alt="" />
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img src="../../images/buttons/subtle_button_example_2.png" alt="" />
+      </figure>
+    </div>
+  </div>
+</div>
+
+### Danger Button
 
 For actions that delete things, you can emphasize this action with the **danger** buttons.
 
@@ -216,31 +255,21 @@ For actions that delete things, you can emphasize this action with the **danger*
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/buttons/ex_6_1.png" alt="" />
-        <figcaption>
-          <p class="title title-correct">Correct</p>
-          <p>
-            Use the <strong>Primary</strong> button for the primary
-            action unless there is a specific reason to use something else.
-          </p>
-        </figcaption>
+        <img src="../../images/buttons/ex_6_3.png" alt="" />
       </figure>
     </div>
     <div class="col col-2">
-      <figure>
-        <img src="../../images/buttons/ex_6_3.png" alt="" />
-        <figcaption>
-          <p class="title title-correct">Correct</p>
-          <p>
-            Consider using the <strong>Danger</strong> variation for buttons
-            that will remove or destroy something to help emphasize the danger
-            that comes with clicking that button.
-          </p>
-        </figcaption>
-      </figure>
     </div>
   </div>
 </div>
+
+### Marketing Button
+
+The **marketing** button is intended to be used on product websites where the primary purpose is to market and sell our products. The button is meant to be loud and draw as much attention to it as possible. For this reason, it is not recommended for use within the platforms and applications where our customers are trying to complete relatively complex actions. We want these experiences to instill a sense of order and calm, and this button is meant to disrupt those feelings.
+
+![ ](../../images/buttons/marketing_example.png)
+
+### Inverse Colors
 
 If your button is going on a dark background, all of the buttons have an inverse appearance for optimal accessibility. They are carefully designed for use within entirely dark themes for Dark Mode.
 
@@ -269,14 +298,6 @@ Buttons have clear states to provide feedback to the user.
     </div>
   </div>
 </div>
-
-### Hover and Active
-
-The background color of the Hover and Active button states are automatically calculated based on the base color. This frees designers from having to choose multiple colors to represent the various states of a button. Additionally, if the colors of the buttons ever need to change, due to a rebranding event or the creation of a new theme, this automatic calculation will make this task much easier to complete and will reinforce consistency in what colors should be used.
-
-Here's how it works in more detail. If you have a solid button with a white text label, the background is darkened by 10% on hover, and then 20% on the active or pressed state. If you have a solid button with dark label, the background is lightened by 10% on hover, and then 20% on the active or pressed state. This ensures the button's background and text label will always have the necessary 4.5:1 contrast ratio for accessibility.
-
-Outline and link buttons are a little different since they don't have a background color or fill in their default state. On hover, the text label and/or border are darkened by 10%, and then 20% on the active or pressed state. For the background color on hover, we take the original color value of the text label and lighten it by 90%. On the active or pressed state, we change the value to 70% darkened.
 
 ### Focus
 

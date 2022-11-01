@@ -1,5 +1,286 @@
 # Change Log
 
+## 4.0.5-next.8
+
+### Patch Changes
+
+- Updated dependencies [9daf9331d]
+  - react-magma-dom@3.2.0-next.7
+
+## 4.0.5-next.7
+
+### Patch Changes
+
+- Updated dependencies [15bdd2d08]
+  - react-magma-dom@3.2.0-next.6
+
+## 4.0.5-next.6
+
+### Patch Changes
+
+- 411db8440: docs(select component documentation nav link): fix broken link in select documentation
+
+## 4.0.5-next.5
+
+### Patch Changes
+
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+  - @react-magma/charts@2.0.0-next.1
+  - @react-magma/dropzone@2.0.0-next.1
+  - @react-magma/schema-renderer@2.0.0-next.1
+  - react-magma-dom@3.2.0-next.5
+
+## 4.0.5-next.4
+
+### Patch Changes
+
+- Updated dependencies [85853eae2]
+  - react-magma-dom@3.2.0-next.4
+
+## 4.0.5-next.3
+
+### Patch Changes
+
+- Updated dependencies [1893be731]
+  - react-magma-dom@3.2.0-next.3
+
+## 4.0.5-next.2
+
+### Patch Changes
+
+- Updated dependencies [1110043aa]
+  - react-magma-dom@3.2.0-next.2
+
+## 4.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [2fe13d60f]
+  - react-magma-dom@3.2.0-next.1
+
+## 4.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [47015f38]
+  - react-magma-dom@3.2.0-next.0
+  - @react-magma/charts@2.0.0-next.0
+  - @react-magma/dropzone@2.0.0-next.0
+  - @react-magma/schema-renderer@2.0.0-next.0
+  - @cengage-patterns/header@4.0.0-next.0
+
+## 4.0.4
+
+### Patch Changes
+
+- 677a0ada: docs: Various a11y fixes including duplicate IDs, missing alt attributes, missing aria-labels.
+- c6696925: docs(appbar): Fix components overlapping in AppBar Tabs example.
+- e4c07d07: Update error page.
+- 66c7daf7: docs: Updating Sidebar to use our Accordion component.
+- 2b099eb5: build: Resolve merge conflicts when pulling main -> dev
+- f35c3c5d: docs(IndexPageContent): Update Home page styling for medium devices and add GitHub icon to Contribute button.
+- 0de78513: build(deps): Bump react-magma-icons to 2.3.4
+- ab2d3e18: fix(PageTemplates): Updates to Page Templates examples, removed work in progress label
+- ffa94511: Update API pages that scroll horizontally on small screens.
+- 9830302e: docs(versions): Add React Magma Versions page
+- Updated dependencies [754c389b]
+- Updated dependencies [ffa94511]
+- Updated dependencies [9502d28a]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [17ee57af]
+  - react-magma-dom@3.1.2
+  - @react-magma/charts@1.0.2
+  - @react-magma/dropzone@1.0.3
+  - @cengage-patterns/header@3.0.3
+  - @react-magma/schema-renderer@1.0.3
+
+## 4.0.4-next.12
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+  - @react-magma/charts@1.0.2-next.1
+  - react-magma-dom@3.1.2-next.4
+  - @react-magma/dropzone@1.0.3-next.1
+  - @cengage-patterns/header@3.0.3-next.1
+  - @react-magma/schema-renderer@1.0.3-next.1
+
+## 4.0.4-next.11
+
+### Patch Changes
+
+- 9830302e7: docs(versions): Add React Magma Versions page
+
+## 4.0.4-next.10
+
+### Patch Changes
+
+- 677a0adae: docs: Various a11y fixes including duplicate IDs, missing alt attributes, missing aria-labels.
+
+## 4.0.4-next.9
+
+### Patch Changes
+
+- c66969253: docs(appbar): Fix components overlapping in AppBar Tabs example.
+
+## 4.0.4-next.8
+
+### Patch Changes
+
+- e4c07d07c: Update error page.
+
+## 4.0.4-next.7
+
+### Patch Changes
+
+- Updated dependencies [9502d28a6]
+  - react-magma-dom@3.1.2-next.3
+
+## 4.0.4-next.6
+
+### Patch Changes
+
+- ab2d3e189: fix(PageTemplates): Updates to Page Templates examples, removed work in progress label
+
+## 4.0.4-next.5
+
+### Patch Changes
+
+- ffa945119: Update API pages that scroll horizontally on small screens.
+- Updated dependencies [ffa945119]
+  - react-magma-dom@3.1.2-next.2
+
+## 4.0.4-next.4
+
+### Patch Changes
+
+- Updated dependencies [754c389ba]
+  - react-magma-dom@3.1.2-next.1
+
+## 4.0.4-next.3
+
+### Patch Changes
+
+- 66c7daf7e: docs: Updating Sidebar to use our Accordion component.
+
+## 4.0.4-next.2
+
+### Patch Changes
+
+- f35c3c5de: docs(IndexPageContent): Update Home page styling for medium devices and add GitHub icon to Contribute button.
+
+## 4.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [17ee57afe]
+  - react-magma-dom@3.1.2-next.0
+  - @react-magma/charts@1.0.2-next.0
+  - @react-magma/dropzone@1.0.3-next.0
+  - @react-magma/schema-renderer@1.0.3-next.0
+  - @cengage-patterns/header@3.0.3-next.0
+
+## 4.0.4-next.0
+
+### Patch Changes
+
+- 2b099eb59: build: Resolve merge conflicts when pulling main -> dev
+
+## 4.0.3
+
+### Patch Changes
+
+- 663a334d: build(deps): bump gatsby-plugin-mdx from 1.10.1 to 2.14.1
+- 663a334d: docs: Updating layout of props tables
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+- Updated dependencies [663a334d]
+  - react-magma-dom@3.1.1
+  - @react-magma/charts@1.0.1
+  - @react-magma/dropzone@1.0.2
+  - @react-magma/schema-renderer@1.0.2
+  - @cengage-patterns/header@3.0.2
+
+## 4.0.3-next.17
+
+### Patch Changes
+
+- Updated dependencies [4a229b55c]
+  - react-magma-dom@3.1.1-next.15
+
+## 4.0.3-next.16
+
+### Patch Changes
+
+- Updated dependencies [6e0582249]
+  - react-magma-dom@3.1.1-next.14
+
+## 4.0.3-next.15
+
+### Patch Changes
+
+- de90d13fe: docs: Updating layout of props tables
+
+## 4.0.3-next.14
+
+### Patch Changes
+
+- Updated dependencies [101269ae7]
+  - react-magma-dom@3.1.1-next.13
+
+## 4.0.3-next.13
+
+### Patch Changes
+
+- Updated dependencies [dac39a9a5]
+  - react-magma-dom@3.1.1-next.12
+
+## 4.0.3-next.12
+
+### Patch Changes
+
+- Updated dependencies [ad190dd9d]
+  - react-magma-dom@3.1.1-next.11
+
+## 4.0.3-next.11
+
+### Patch Changes
+
+- Updated dependencies [3fbb41fa2]
+  - react-magma-dom@3.1.1-next.10
+
+## 4.0.3-next.10
+
+### Patch Changes
+
+- Updated dependencies [3016a8e3f]
+  - react-magma-dom@3.1.1-next.9
+
 ## 4.0.3-next.9
 
 ### Patch Changes

@@ -82,6 +82,10 @@ export interface InputBaseProps
    */
   isPredictive?: boolean;
   /**
+   * A number value which gives Character Counter the maximum length of allowable characters in an Input.
+   */
+  maxLength?: number;
+  /**
    * Action that will fire when icon is clicked
    */
   onIconClick?: () => void;
@@ -102,6 +106,10 @@ export interface InputBaseProps
    * @default InputType.text
    */
   type?: InputType;
+  /**
+   * Boolean for whether this is a Password Input or not
+   */
+  isPasswordInput?: boolean;
 }
 
 export interface InputWrapperStylesProps {
@@ -116,6 +124,7 @@ export interface InputWrapperStylesProps {
 }
 
 export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
+  flex: 1 1 auto;
   align-items: center;
   display: flex;
   flex-shrink: 0;
@@ -156,6 +165,54 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   `}
 `;
 
+function getInputPadding(props: InputBaseStylesProps) {
+  const { inputSize, isClearable, iconPosition } = props;
+  let padding = {
+    left: props.theme.spaceScale.spacing03,
+    right: props.theme.spaceScale.spacing03,
+  };
+  if (inputSize === 'large') {
+    if (isClearable) {
+      if (iconPosition === 'right') {
+        padding.right = '92px';
+      } else if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing11;
+        padding.right = props.theme.spaceScale.spacing11;
+      } else {
+        // icon top, no icon
+        padding.right = props.theme.spaceScale.spacing11;
+      }
+    } else {
+      if (iconPosition === 'right') {
+        padding.right = props.theme.spaceScale.spacing10;
+      }
+      if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing10;
+      }
+    }
+  } else if (inputSize === 'medium') {
+    if (isClearable) {
+      if (iconPosition === 'right') {
+        padding.right = '68px';
+      } else if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing09;
+        padding.right = props.theme.spaceScale.spacing09;
+      } else {
+        // icon top, no icon
+        padding.right = props.theme.spaceScale.spacing09;
+      }
+    } else {
+      if (iconPosition === 'right') {
+        padding.right = props.theme.spaceScale.spacing09;
+      }
+      if (iconPosition === 'left') {
+        padding.left = props.theme.spaceScale.spacing09;
+      }
+    }
+  }
+  return padding;
+}
+
 export interface InputBaseStylesProps {
   isInverse?: boolean;
   iconPosition?: InputIconPosition;
@@ -164,6 +221,7 @@ export interface InputBaseStylesProps {
   theme?: ThemeInterface;
   disabled?: boolean;
   hasError?: boolean;
+  isClearable?: boolean;
 }
 
 export const inputBaseStyles = (props: InputBaseStylesProps) => css`
@@ -182,16 +240,6 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   -webkit-appearance: none;
   width: 100%;
 
-  ${props.iconPosition === 'left' &&
-  css`
-    padding-left: ${props.theme.spaceScale.spacing09};
-  `}
-
-  ${props.iconPosition === 'right' &&
-  css`
-    padding-right: ${props.theme.spaceScale.spacing09};
-  `}
-
   ${props.inputSize === 'large' &&
   css`
     font-size: ${props.theme.typeScale.size04.fontSize};
@@ -200,17 +248,8 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
     padding: ${props.theme.spaceScale.spacing04};
   `}
 
-    ${props.iconPosition === 'left' &&
-  props.inputSize === 'large' &&
-  css`
-    padding-left: ${props.theme.spaceScale.spacing10};
-  `}
-
-      ${props.iconPosition === 'right' &&
-  props.inputSize === 'large' &&
-  css`
-    padding-right: ${props.theme.spaceScale.spacing10};
-  `}
+  padding-left: ${getInputPadding(props).left};
+  padding-right: ${getInputPadding(props).right};
 
   &::placeholder {
     color: ${props.isInverse
@@ -245,6 +284,10 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
       opacity: ${props.isInverse ? 0.4 : 0.6};
     }
   `}
+`;
+
+const InputContainer = styled.div<InputWrapperStylesProps>`
+  display: flex;
 `;
 
 export const InputWrapper = styled.div<InputWrapperStylesProps>`
@@ -285,7 +328,7 @@ const IconWrapper = styled.span<{
   ${props =>
     props.inputSize === 'large' &&
     css`
-      bottom: ${props.iconPosition === 'top' ? '56px' : 'inherit'};
+      bottom: ${props.iconPosition === 'top' ? '62px' : 'inherit'};
       left: ${props.iconPosition === 'left'
         ? props.theme.spaceScale.spacing04
         : 'auto'};
@@ -300,46 +343,117 @@ const IconWrapper = styled.span<{
     `}
 `;
 
+function getIconButtonSVGSize(props) {
+  const { isClickable, iconPosition, inputSize, theme } = props;
+
+  if (isClickable && iconPosition === InputIconPosition.top) {
+    if (inputSize === InputSize.large) {
+      return `${theme.iconSizes.medium}px`;
+    }
+    return `${theme.iconSizes.small}px`;
+  }
+  if (inputSize === InputSize.large) {
+    return `${theme.iconSizes.large}px`;
+  }
+  return `${theme.iconSizes.medium}px`;
+}
+
+function getIconButtonTransform(props) {
+  const { isClickable, iconPosition, inputSize, hasChildren, theme } = props;
+  let position = { x: '', y: '' };
+
+  if (iconPosition === InputIconPosition.top) {
+    if (inputSize === InputSize.large) {
+      position.x = '-30px';
+      position.y = '2px';
+    } else if (inputSize === InputSize.medium) {
+      position.x = '-28px';
+      position.y = '5px';
+    }
+    return position;
+  }
+
+  if (isClickable) {
+    if (inputSize === InputSize.large) {
+      if (hasChildren) {
+        position.x = '-43px';
+        position.y = '14px';
+      } else {
+        position.x = '-49px';
+        position.y = '8px';
+      }
+    } else if (inputSize === InputSize.medium) {
+      position.x = '-35px';
+      position.y = '6px';
+    }
+    return position;
+  }
+
+  if (inputSize === InputSize.large) {
+    position.x = `-${theme.spaceScale.spacing10}`;
+    position.y = theme.spaceScale.spacing03;
+  } else if (inputSize === InputSize.medium) {
+    position.x = '-24px';
+    position.y = '7px';
+  }
+  return position;
+}
+
 const IconButtonContainer = styled.span<{
   iconPosition?: InputIconPosition;
-  size?: InputSize;
+  inputSize?: InputSize;
   theme: ThemeInterface;
-  isClearable?: boolean;
-  disabled?: boolean;
+  isClickable?: boolean;
+  hasChildren?: boolean;
 }>`
   background-color: transparent;
   bottom: ${props => (props.iconPosition === 'top' ? '40px' : 'inherit')};
   height: auto;
   margin: 0;
   position: relative;
-  right: ${props =>
-    props.size === InputSize.large
-      ? props.theme.spaceScale.spacing02
-      : props.theme.spaceScale.spacing01};
-
+  width: 0;
+  transform: translate(
+    ${props => getIconButtonTransform(props).x},
+    ${props => getIconButtonTransform(props).y}
+  );
   svg {
-    height: ${props =>
-      props.size === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
-    width: ${props =>
-      props.size === InputSize.large
-        ? `${props.theme.iconSizes.large}px`
-        : `${props.theme.iconSizes.medium}px`};
+    height: ${props => getIconButtonSVGSize(props)};
+    width: ${props => getIconButtonSVGSize(props)};
   }
 `;
 
+const PasswordButtonContainer = styled.span<{
+  size?: InputSize;
+  theme: ThemeInterface;
+}>`
+  background-color: transparent;
+  width: 0;
+  transform: translate(
+    -${props => (props.size === InputSize.large ? props.theme.spaceScale.spacing10 : '60px')},
+    ${props =>
+      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '5px'}
+  );
+`;
+
 function getClearablePosition(props) {
-  if (props.iconPosition === 'right' && props.icon && !props.onIconClick) {
-    if (props.inputSize === 'large') {
-      return props.theme.spaceScale.spacing10;
+  if (props.hasChildren) {
+    if (props.iconPosition === 'right') {
+      if (props.inputSize === 'large') {
+        return '92px';
+      }
+      return props.theme.spaceScale.spacing12;
     }
-    return props.theme.spaceScale.spacing09;
+  }
+  if (props.iconPosition === 'right' && props.icon) {
+    if (props.inputSize === 'large') {
+      return '88px';
+    }
+    return props.theme.spaceScale.spacing12;
   }
   if (props.inputSize === 'large') {
-    return props.theme.spaceScale.spacing02;
+    return props.theme.spaceScale.spacing10;
   }
-  return props.theme.spaceScale.spacing01;
+  return '34px';
 }
 
 const IsClearableContainer = styled.span<{
@@ -347,20 +461,38 @@ const IsClearableContainer = styled.span<{
   icon?: React.ReactElement<IconProps>;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
-  isClearable?: boolean;
   onIconClick?: () => void;
-  disabled?: boolean;
+  hasChildren?: boolean;
 }>`
   background-color: transparent;
+  margin: 0;
   position: relative;
-  right: ${getClearablePosition};
+  height: auto;
+  width: 0;
+  transform: translate(
+    -${props => getClearablePosition(props)},
+    ${props =>
+      props.inputSize === InputSize.large
+        ? props.theme.spaceScale.spacing03
+        : '7px'}
+  );
 `;
 
-function getIconSize(size: string, theme: ThemeInterface) {
+function getIconSize(
+  size: string,
+  theme: ThemeInterface,
+  iconPosition: InputIconPosition
+) {
   switch (size) {
     case 'large':
+      if (iconPosition === InputIconPosition.top) {
+        return theme.iconSizes.medium;
+      }
       return theme.iconSizes.large;
     default:
+      if (iconPosition === InputIconPosition.top) {
+        return theme.iconSizes.small;
+      }
       return theme.iconSizes.medium;
   }
 }
@@ -377,7 +509,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       iconAriaLabel,
       iconRef,
       isClearable,
+      isPasswordInput,
       isPredictive,
+      maxLength,
       onClear,
       onIconClick,
       onIconKeyDown,
@@ -426,40 +560,64 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     }
 
     return (
-      <InputWrapper
-        disabled={disabled}
-        iconPosition={iconPosition}
-        isInverse={props.isInverse}
-        theme={theme}
-        style={containerStyle}
-        hasError={hasError}
-        isClearable={isClearable}
-      >
-        <StyledInput
-          {...other}
-          aria-invalid={hasError}
+      <InputContainer>
+        <InputWrapper
           disabled={disabled}
-          data-testid={testId}
           iconPosition={iconPosition}
-          inputSize={inputSize ? inputSize : InputSize.medium}
-          isInverse={useIsInverse(props.isInverse)}
-          isPredictive={isPredictive}
-          hasError={hasError}
-          ref={ref}
-          onChange={handleChange}
-          style={inputStyle}
+          isInverse={props.isInverse}
           theme={theme}
-          type={type ? type : InputType.text}
-          value={value}
-        />
+          style={containerStyle}
+          hasError={hasError}
+          isClearable={isClearable}
+        >
+          <StyledInput
+            {...other}
+            aria-invalid={hasError}
+            disabled={disabled}
+            data-testid={testId}
+            iconPosition={iconPosition}
+            inputSize={inputSize ? inputSize : InputSize.medium}
+            isClearable={isClearable}
+            isInverse={useIsInverse(props.isInverse)}
+            isPredictive={isPredictive}
+            hasError={hasError}
+            ref={ref}
+            onChange={handleChange}
+            style={inputStyle}
+            theme={theme}
+            type={type ? type : InputType.text}
+            value={value}
+          />
+          {icon && !onIconClick && (
+            <IconWrapper
+              aria-label={iconAriaLabel}
+              iconPosition={iconPosition}
+              inputSize={inputSize ? inputSize : InputSize.medium}
+              isInverse={props.isInverse}
+              isPredictive={isPredictive}
+              theme={theme}
+              disabled={disabled}
+            >
+              {React.Children.only(
+                React.cloneElement(icon, {
+                  size: getIconSize(
+                    inputSize ? inputSize : InputSize.medium,
+                    theme,
+                    iconPosition
+                  ),
+                })
+              )}
+            </IconWrapper>
+          )}
+        </InputWrapper>
         {isClearable && value && (
           <IsClearableContainer
             theme={theme}
-            disabled={disabled}
-            icon={icon}
             iconPosition={iconPosition}
             inputSize={inputSize}
             onIconClick={onIconClick}
+            icon={icon}
+            hasChildren={!!children && !isPasswordInput}
           >
             <IconButton
               aria-label={i18n.input.isClearableAriaLabel}
@@ -481,36 +639,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             />
           </IsClearableContainer>
         )}
-
-        {icon && !onIconClick && (
-          <IconWrapper
-            aria-label={iconAriaLabel}
-            iconPosition={iconPosition}
-            inputSize={inputSize ? inputSize : InputSize.medium}
-            isInverse={props.isInverse}
-            isPredictive={isPredictive}
-            theme={theme}
-            disabled={disabled}
-          >
-            {React.Children.only(
-              React.cloneElement(icon, {
-                size: getIconSize(
-                  inputSize ? inputSize : InputSize.medium,
-                  theme
-                ),
-              })
-            )}
-          </IconWrapper>
-        )}
-
         {onIconClick && (
           <IconButtonContainer
             iconPosition={iconPosition}
-            size={
+            inputSize={
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
-            disabled={disabled}
+            isClickable={true}
           >
             <IconButton
               aria-label={iconAriaLabel}
@@ -531,9 +667,27 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             />
           </IconButtonContainer>
         )}
-
-        {children}
-      </InputWrapper>
+        {isPasswordInput ? (
+          <PasswordButtonContainer
+            size={
+              inputSize === InputSize.large ? InputSize.large : InputSize.medium
+            }
+            theme={theme}
+          >
+            {children}
+          </PasswordButtonContainer>
+        ) : (
+          <IconButtonContainer
+            iconPosition={iconPosition}
+            inputSize={inputSize ? inputSize : InputSize.medium}
+            theme={theme}
+            isClickable={true}
+            hasChildren={true}
+          >
+            {children}
+          </IconButtonContainer>
+        )}
+      </InputContainer>
     );
   }
 );

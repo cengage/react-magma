@@ -58,6 +58,11 @@ export const Default = () => {
           </Hyperlink>
         </CardBody>
       </Card>
+      <Card>
+        <CardBody>
+          <a href="https://www.google.com">This is a link that doesn't use Hyperlink</a>
+        </CardBody>
+      </Card>
     </>
   );
 };

@@ -10,9 +10,20 @@ const Template: Story<PasswordInputProps> = args => (
 export default {
   component: PasswordInput,
   title: 'PasswordInput',
-  isInverse: false,
-  disabled: false,
-  isError: false,
+  argTypes: {
+    isInverse: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
+    disabled: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
+  }
 } as Meta;
 
 export const Default = Template.bind({});

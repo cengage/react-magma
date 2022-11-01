@@ -19,7 +19,7 @@ An accordion is a vertically stacked group of collapsible sections. An accordion
 
 ## Basic Usage
 
-An accordion is made up of four components: `Accordion`, `AccordionItem`, `AccordionButton` and `AccordionPanel`. The `Accordion` is the wrapper for all of the items. It can contain one or more `AccordionItems`, each of which should contain one `AccordionButton` and one `AccordionPanel`. An `AccordionButton` can be wrapped in an element with the role of heading (such as an h1-h6) to provided semantic structure to the document.
+An accordion is made up of four components: `Accordion`, `AccordionItem`, `AccordionButton` and `AccordionPanel`. The `Accordion` is the wrapper for all of the items. It can contain one or more `AccordionItems`, each of which should contain one `AccordionButton` and one `AccordionPanel`. An `AccordionButton` can be wrapped in an element with the role of heading (such as an h1-h6) to provide semantic structure to the document.
 
 By default, multiple items will can be expanded. The `defaultIndex` prop, which takes an array of zero-based indices, can be used to set panels open by default.
 
@@ -296,21 +296,19 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-### Controlled
-#### Single Controlled
+### Single Controlled
 
 <AccordionSingleControlledProps />
 
-#### Multiple Controlled
+### Multiple Controlled
 
 <AccordionMultipleControlledProps />
 
-### Not Controlled
-#### Single Not Controlled
+### Single Not Controlled
 
 <AccordionSingleProps />
 
-#### Multiple Not Controlled
+### Multiple Not Controlled
 
 <AccordionMultipleProps />
 

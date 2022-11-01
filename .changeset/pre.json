@@ -2,24 +2,26 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "1.0.1-next.0",
-    "@react-magma/dropzone": "1.0.2-next.0",
-    "react-magma-dom": "3.1.1-next.1",
-    "@react-magma/schema-renderer": "1.0.2-next.0",
-    "@cengage-patterns/header": "3.0.2-next.0",
-    "react-magma-docs": "4.0.3-next.2",
-    "react-magma-landing": "1.1.0"
+    "@react-magma/charts": "1.0.2",
+    "@react-magma/dropzone": "1.0.3",
+    "react-magma-dom": "3.1.2",
+    "@react-magma/schema-renderer": "1.0.3",
+    "@cengage-patterns/header": "3.0.3",
+    "react-magma-docs": "4.0.4",
+    "react-magma-landing": "1.1.1"
   },
   "changesets": [
-    "appbar-a11y",
-    "bug-native-select",
-    "bug-tabs",
-    "cool-flies-retire",
-    "datagrid_sortable",
-    "datepicker-format-support",
-    "radio-storybooka11y",
-    "skiplink-a11y",
-    "spotty-kangaroos-sniff",
-    "unlucky-boats-ring"
+    "feat-characterCounter",
+    "fix-characterCounter",
+    "hasPersistentMenu",
+    "multicombobox-clearable",
+    "soft-horses-develop",
+    "subtle-button",
+    "table-a11y-focus",
+    "table-stories",
+    "update-versions-charts",
+    "update-versions-dropzone",
+    "update-versions-schema",
+    "update-versions"
   ]
 }

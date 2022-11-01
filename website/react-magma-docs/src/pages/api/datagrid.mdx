@@ -667,7 +667,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, TableSortDirection } from 'react-magma-dom';
+import { Datagrid, TableSortDirection, Announce, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
 
@@ -829,18 +829,23 @@ const [sortConfig, setSortConfig] = React.useState({
   }
 
   return (
-    <Datagrid
-      isSelectable
-      isSortableBySelected
-      rows={sortedItems}
-      columns={productColumns}
-      onSortBySelected={() => {
-        requestSort('name');
-      }}
-      onRowSelect={handleSelectedItems}
-      onHeaderSelect={handleHeaderSelect}
-      sortDirection={selectedDirection}
-    />
+    <>
+      <Datagrid
+        isSelectable
+        isSortableBySelected
+        rows={sortedItems}
+        columns={productColumns}
+        onSortBySelected={() => {
+          requestSort('name');
+        }}
+        onRowSelect={handleSelectedItems}
+        onHeaderSelect={handleHeaderSelect}
+        sortDirection={selectedDirection}
+      />
+      <Announce>
+        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+      </Announce>
+    </>
   );
 }
 

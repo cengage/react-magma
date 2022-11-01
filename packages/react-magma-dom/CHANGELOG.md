@@ -1,5 +1,161 @@
 # Change Log
 
+## 3.2.0-next.7
+
+### Minor Changes
+
+- 9daf9331d: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
+  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+
+## 3.2.0-next.6
+
+### Minor Changes
+
+- 15bdd2d08: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
+
+## 3.2.0-next.5
+
+### Patch Changes
+
+- 95fc5ae72: chore(npm/node): Update versions
+
+## 3.2.0-next.4
+
+### Patch Changes
+
+- 85853eae2: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
+  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+
+## 3.2.0-next.3
+
+### Minor Changes
+
+- 1893be731: feat(button): Subtle button
+
+## 3.2.0-next.2
+
+### Patch Changes
+
+- 1110043aa: fix(table): Add keyboard only focus to tables without a focusable element.
+
+## 3.2.0-next.1
+
+### Patch Changes
+
+- 2fe13d60f: docs(table): Storybook example with adjustable number of rows
+
+## 3.2.0-next.0
+
+### Minor Changes
+
+- 47015f38: feat(characterCounter): New Character Counter component.
+
+## 3.1.2
+
+### Patch Changes
+
+- 754c389b: fix(GlobalStyles): Fix default `a:hover` color to match Hyperlink
+- ffa94511: fix(ButtonGroup): Add `flex-wrap: wrap` to ButtonGroup
+- 9502d28a: fix(Input): Fix placement of `children` inside Input component (ex: help icon).
+- 0de78513: build(deps): Bump react-magma-icons to 2.3.4
+- 17ee57af: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
+## 3.1.2-next.4
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+
+## 3.1.2-next.3
+
+### Patch Changes
+
+- 9502d28a6: fix(Input): Fix placement of `children` inside Input component (ex: help icon).
+
+## 3.1.2-next.2
+
+### Patch Changes
+
+- ffa945119: fix(ButtonGroup): Add `flex-wrap: wrap` to ButtonGroup
+
+## 3.1.2-next.1
+
+### Patch Changes
+
+- 754c389ba: fix(GlobalStyles): Fix default `a:hover` color to match Hyperlink
+
+## 3.1.2-next.0
+
+### Patch Changes
+
+- 17ee57afe: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
+## 3.1.1
+
+### Patch Changes
+
+- 663a334d: refactor(Input): Update Storybook example with a11y violations.
+- 663a334d: fix(accordion): Accordion Item `buttonId` will be based on the index to avoid duplicate ids.
+  refactor(accordion): Update Storybook example with a11y violations.
+- 663a334d: refactor(appbar): Update Storybook example with a11y violations.
+- 663a334d: fix(Native Select): Fixed dropdown caret which wasn't selecting the options on click.
+- 663a334d: fix(Tabs): Removing unnecessary aria-label from wrapping div
+- 663a334d: fix(datagrid): Add aria-label to sort by selectable button
+- 663a334d: feat(datagrid): Add `isSortableBySelected` prop to DataGrid, allowing tables to be sorted by the selected items.
+- 663a334d: fix(DatePicker): Fix support for non-default date formats (dd/mm/yyyy, yyyy/MM/dd, yyyy/dd/MM). Add support for MMMM d, yyyy.
+- 663a334d: fix(input): Fix double focus on all input types (search, datepicker, password). When the icon is focused, only the icon will have visible focus and not the whole input.
+- 663a334d: refactor(indeterminatecheckbox): Update Storybook example with a11y violations.
+- 663a334d: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+- 663a334d: fix(pagination): Fix Pagination a11y issue regarding `<ul>` only having `<li>` as children.
+- 663a334d: refactor(radio): Update Storybook examples with a11y violations.
+- 663a334d: refactor(skiplink): Update Storybook example with a11y violations.
+- 663a334d: build(deps): bump parse-url from 6.0.0 to 6.0.2
+- 663a334d: build(deps): bump terser from 4.8.0 to 4.8.1
+
+## 3.1.1-next.15
+
+### Patch Changes
+
+- 4a229b55c: fix(input): Fix double focus on the `isClearable` button on all input types (input, search, datepicker).
+
+## 3.1.1-next.14
+
+### Patch Changes
+
+- 6e0582249: fix(datagrid): Add aria-label to sort by selectable button
+
+## 3.1.1-next.13
+
+### Patch Changes
+
+- 101269ae7: refactor(Input): Update Storybook example with a11y violations.
+
+## 3.1.1-next.12
+
+### Patch Changes
+
+- dac39a9a5: fix(input): Fix double focus on all input types (search, datepicker, password). When the icon is focused, only the icon will have visible focus and not the whole input.
+
+## 3.1.1-next.11
+
+### Patch Changes
+
+- ad190dd9d: fix(pagination): Fix Pagination a11y issue regarding `<ul>` only having `<li>` as children.
+
+## 3.1.1-next.10
+
+### Patch Changes
+
+- 3fbb41fa2: refactor(indeterminatecheckbox): Update Storybook example with a11y violations.
+
+## 3.1.1-next.9
+
+### Patch Changes
+
+- 3016a8e3f: fix(accordion): Accordion Item `buttonId` will be based on the index to avoid duplicate ids.
+  refactor(accordion): Update Storybook example with a11y violations.
+
 ## 3.1.1-next.8
 
 ### Patch Changes

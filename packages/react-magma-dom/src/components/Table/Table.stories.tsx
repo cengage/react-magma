@@ -731,3 +731,37 @@ export const WithDropdown = args => {
 WithDropdown.args = {
   ...Default.args,
 };
+
+export const AdjustableRowNumber = args => {
+  function getTableRows() {
+    const tableRows = [];
+    for (let i = 0; i < args.numberRows; i++) {
+      tableRows.push(
+        <TableRow key={`row${i}`}>
+          <TableCell key={`cell${i}-left`}>{i}</TableCell>
+          <TableCell key={`cell${i}-middle`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</TableCell>
+          <TableCell key={`cell${i}-right`}>Nullam bibendum diam vel felis consequat lacinia.</TableCell>
+        </TableRow>
+      );
+    }
+    return tableRows;
+  };
+
+  return (
+    <Table {...args}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Number</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {getTableRows()}
+      </TableBody>
+    </Table>
+  );
+};
+AdjustableRowNumber.args = {
+  numberRows: 300,
+};
