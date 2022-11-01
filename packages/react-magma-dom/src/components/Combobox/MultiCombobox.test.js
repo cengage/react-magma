@@ -545,6 +545,19 @@ describe('MultiCombobox', () => {
     expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
   });
 
+  it('should render items with button type button', () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+      />
+    );
+
+    expect(getByText('Red', { selector: 'button' })).toHaveAttribute('type', 'button');
+  });
+
   describe('isTypeahead', () => {
     describe('when isTypeahead is true,', () => {
       it('should be able to select an item that is not in the items list', () => {
