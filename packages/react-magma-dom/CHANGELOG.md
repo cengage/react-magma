@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0-next.8
+
+### Minor Changes
+
+- eb9ed1f3c: feat(input): Added left label position capability for Combobox, DatePicker, Input, NativeSelect, PasswordInput, Textarea, and TimePicker. An additional prop of labelWidth has also been implemented for use in a column of Inputs for styling purposes.
+
 ## 3.2.0-next.7
 
 ### Minor Changes
