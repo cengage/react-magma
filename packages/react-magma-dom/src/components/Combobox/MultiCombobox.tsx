@@ -24,6 +24,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     disableCreateItem,
     errorMessage,
     hasError,
+    hasPersistentMenu = false,
     helperMessage,
     inputStyle,
     isClearable,
@@ -150,8 +151,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       addSelectedItem(changes.selectedItem);
     }
 
-    selectItem(null);
-    setInputValue('');
+    if (changes.selectedItem) {
+      selectItem(null);
+      setInputValue('');
+    }
   }
 
   const {
@@ -184,21 +187,31 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             selectedItem: newSelectedItem,
           }),
           inputValue: '',
+          isOpen: changes.isOpen,
         };
       }
-      case useCombobox.stateChangeTypes.ItemClick: {
+      case useCombobox.stateChangeTypes.ItemClick:
         return {
           ...changes,
           inputValue: '',
         };
-      }
       case useCombobox.stateChangeTypes.InputBlur:
         return {
           ...changes,
           inputValue: '',
+          selectedItem: state.selectedItem ? state.selectedItem : '',
+        };
+      case useCombobox.stateChangeTypes.InputKeyDownEscape:
+      case useCombobox.stateChangeTypes.ToggleButtonClick:
+        return {
+          ...changes,
+          isOpen: changes.isOpen,
         };
       default:
-        return changes;
+        return {
+          ...changes,
+          isOpen: hasPersistentMenu || changes.isOpen,
+        };
     }
   }
 
@@ -300,30 +313,32 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const selectedItemsContent =
     selectedItems && selectedItems.length > 0 ? (
       <>
-        {selectedItems.map((multiSelectedItem, index) => (
-          <SelectedItemButton
-            aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel.replace(
-              /\{selectedItem\}/g,
-              itemToString(multiSelectedItem)
-            )}
-            key={`selected-item-${index}`}
-            {...getSelectedItemProps({
-              selectedItem: multiSelectedItem,
-              index,
-            })}
-            onClick={event =>
-              handleRemoveSelectedItem(event, multiSelectedItem)
-            }
-            onFocus={() => setActiveIndex(index)}
-            theme={theme}
-            isInverse={isInverse}
-          >
-            {itemToString(multiSelectedItem)}
-            <IconWrapper>
-              <CloseIcon size={theme.iconSizes.xSmall} />
-            </IconWrapper>
-          </SelectedItemButton>
-        ))}
+        {selectedItems.map((multiSelectedItem, index) => {
+          return (
+            <SelectedItemButton
+              aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel.replace(
+                /\{selectedItem\}/g,
+                itemToString(multiSelectedItem)
+              )}
+              key={`selected-item-${index}`}
+              {...getSelectedItemProps({
+                selectedItem: multiSelectedItem,
+                index,
+              })}
+              onClick={event =>
+                handleRemoveSelectedItem(event, multiSelectedItem)
+              }
+              onFocus={() => setActiveIndex(index)}
+              theme={theme}
+              isInverse={isInverse}
+            >
+              {itemToString(multiSelectedItem)}
+              <IconWrapper>
+                <CloseIcon size={theme.iconSizes.xSmall} />
+              </IconWrapper>
+            </SelectedItemButton>
+          );
+        })}
       </>
     ) : null;
 
@@ -350,7 +365,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             ...options,
             ...getDropdownProps({
               onKeyDown: onInputKeyDown,
-              preventKeyAction: isOpen,
               ...(innerRef && { ref: innerRef }),
             }),
           }),
@@ -368,7 +382,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         onInputKeyDown={onInputKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
-        placeholder={placeholder}
+        placeholder={selectedItems.length > 0 ? null : placeholder}
         selectedItems={selectedItemsContent}
         toggleButtonRef={toggleButtonRef}
       >

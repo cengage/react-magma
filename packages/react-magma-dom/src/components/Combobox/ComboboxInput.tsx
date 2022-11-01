@@ -224,7 +224,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
           />
         </SelectedItemsWrapper>
         {children}
-        {isLoading && !isTypeahead  && (
+        {isLoading && !isTypeahead && (
           <LoadingIndicator
             style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
           />

@@ -859,6 +859,85 @@ describe('MultiCombobox', () => {
     expect(getByTestId('customLoadingIndicator')).toBeInTheDocument();
   });
 
+  it('should show placeholder text until an item is selected', () => {
+    const placeholder = 'Select item';
+    const { getByText, queryByText, getByLabelText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        placeholder={placeholder}
+      />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+    expect(renderedCombobox).toHaveAttribute('placeholder', placeholder);
+
+    fireEvent.click(renderedCombobox);
+    fireEvent.click(getByText(items[0]));
+
+    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+    expect(renderedCombobox).not.toHaveAttribute('placeholder');
+  });
+
+  describe('hasPersistentMenu', () => {
+    it('should keep the items list open', () => {
+      const { getByLabelText, getByText } = render(
+        <MultiCombobox
+          isMulti
+          labelText={labelText}
+          items={items}
+          hasPersistentMenu
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      fireEvent.click(renderedCombobox);
+
+      fireEvent.click(getByText(items[0]));
+      fireEvent.click(getByText(items[1]));
+
+      expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+      expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
+    });
+
+    it('should allow for the removal of selected items with the keyboard', () => {
+      const selectedItems = ['Red', 'Blue', 'Green'];
+      const { getByLabelText, getByText, queryByText } = render(
+        <MultiCombobox
+          isMulti
+          hasPersistentMenu
+          labelText={labelText}
+          items={items}
+          initialSelectedItems={selectedItems}
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+      const selectedItem1 = getByText(items[1]);
+      const selectedItem2 = getByText(items[0]);
+
+      renderedCombobox.focus();
+      fireEvent.keyDown(renderedCombobox, { key: 'Backspace' });
+      expect(
+        queryByText(items[2], { selector: 'button' })
+      ).not.toBeInTheDocument();
+
+      selectedItem1.focus();
+      fireEvent.keyDown(selectedItem1, { key: 'Backspace' });
+      expect(
+        queryByText(items[1], { selector: 'button' })
+      ).not.toBeInTheDocument();
+
+      selectedItem2.focus();
+      fireEvent.keyDown(selectedItem2, { key: 'Delete' });
+      expect(
+        queryByText(items[0], { selector: 'button' })
+      ).not.toBeInTheDocument();
+    });
+  });
+
   describe('events', () => {
     it('onBlur', () => {
       const onBlur = jest.fn();

@@ -43,9 +43,9 @@ const NoItemsMessage = styled.span<{
 `;
 
 const LoadingWrapper = styled.span<{}>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export function ItemsList<T>(props: ItemsListProps<T>) {
@@ -76,7 +76,10 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   const LoadingIndicator = () => {
     return (
       <LoadingWrapper>
-        <Spinner testId="itemsList-loadingIndicator" style={{marginRight: theme.spaceScale.spacing02}}/>{' '}
+        <Spinner
+          testId="itemsList-loadingIndicator"
+          style={{ marginRight: theme.spaceScale.spacing02 }}
+        />{' '}
         {i18n.combobox.loading}
       </LoadingWrapper>
     );
