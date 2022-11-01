@@ -45,7 +45,10 @@ const StyledNumInput = styled.input<{
   padding: 0 ${props => props.theme.spaceScale.spacing01};
   text-align: right;
   width: ${props => props.theme.spaceScale.spacing06};
-  color: ${props =>  props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   background: transparent;
 
   &::-webkit-inner-spin-button {
@@ -55,16 +58,28 @@ const StyledNumInput = styled.input<{
   -moz-appearance: textfield;
 
   &::placeholder {
-    color: ${props => props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
   }
 
   &:focus {
     outline: 0;
-    background: ${props =>  props.isInverse ? props.theme.colors.tertiary : props.theme.colors.primary};
-    color: ${props =>  props.isInverse ? props.theme.colors.neutral900 : props.theme.colors.neutral100};
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.tertiary
+        : props.theme.colors.primary};
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral900
+        : props.theme.colors.neutral100};
 
     &::placeholder {
-      color: ${props => props.isInverse ? props.theme.colors.neutral900 : props.theme.colors.neutral100};
+      color: ${props =>
+        props.isInverse
+          ? props.theme.colors.neutral900
+          : props.theme.colors.neutral100};
     }
   }
 `;
@@ -79,8 +94,10 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       errorMessage,
       helperMessage,
       inputStyle,
+      labelPosition,
       labelStyle,
       labelText,
+      labelWidth,
       minutesStep,
       onChange,
       ...other
@@ -126,6 +143,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         helperMessage={helperMessage}
         isInverse={isInverse}
         labelText={labelText}
+        labelPosition={labelPosition}
+        labelWidth={labelWidth}
       >
         <InputsContainer
           isInverse={isInverse}
@@ -133,7 +152,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           theme={theme}
         >
           <ScheduleIcon
-            color={isInverse ? theme.colors.neutral100 : theme.colors.neutral700}
+            color={
+              isInverse ? theme.colors.neutral100 : theme.colors.neutral700
+            }
             style={{ marginRight: theme.spaceScale.spacing02 }}
           />
           <StyledNumInput
@@ -146,7 +167,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             max="12"
             min="1"
             onChange={handleHourChange}
-            onKeyDown={(e) => handleHourKeyDown(e, handleHourChange)}
+            onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
             placeholder="--"
             ref={hourRef}
             theme={theme}
@@ -163,7 +184,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             max="59"
             min="0"
             onChange={handleMinuteChange}
-            onKeyDown={(e) => handleMinuteKeyDown(e, handleMinuteChange)}
+            onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
             placeholder="--"
             ref={minuteRef}
             step={minutesStep || 1}

@@ -8,6 +8,7 @@ import { Input } from '../Input';
 import { Textarea } from '../Textarea';
 import { Tooltip } from '../Tooltip';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { LabelPosition } from '../Label';
 
 const labelText = 'Character Counter';
 
@@ -46,6 +47,12 @@ export default {
     isClearable: {
       control: {
         type: 'boolean',
+      },
+    },
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
       },
     },
     maxLength: {

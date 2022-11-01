@@ -25,6 +25,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     disabled,
     isInverse,
     itemListMaxHeight,
@@ -167,6 +168,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
       isInverse={isInverse}
       messageStyle={messageStyle}
     >

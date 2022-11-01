@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, InputProps } from '.';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
+import { LabelPosition } from '../Label';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
@@ -9,7 +10,13 @@ import { IconButton } from '../IconButton';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<InputProps> = args => (
-  <Input {...args} labelText="Example" />
+  <>
+    <Input {...args} labelText="Input label" />
+    <br />
+    <Input {...args} labelText="Second Input label" />
+    <br />
+    <Input {...args} labelText="Third Input label with a long title" />
+  </>
 );
 
 export default {
@@ -38,12 +45,23 @@ export default {
         type: 'boolean',
       },
     },
+    labelWidth: {
+      control: {
+        type: 'number',
+      },
+    },
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
+      },
+    },
     type: {
       control: {
         type: 'select',
-        options: InputType
-      }
-    }
+        options: InputType,
+      },
+    },
   },
   errorMessage: '',
 } as Meta;
@@ -54,6 +72,7 @@ Default.args = {
   helperMessage: 'Helper message',
   isClearable: true,
   isInverse: false,
+  labelWidth: 20,
   placeholder: 'Placeholder text...',
   type: InputType.text,
 };
@@ -192,13 +211,9 @@ export const WithChildren = args => {
           />
         </Tooltip>
       </Input>
-      <br/>
-      <hr/>
-      <Input
-        labelText="With two icons"
-        icon={<NotificationsIcon />}
-        {...args}
-      >
+      <br />
+      <hr />
+      <Input labelText="With two icons" icon={<NotificationsIcon />} {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
