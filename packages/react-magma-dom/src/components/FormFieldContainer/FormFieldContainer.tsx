@@ -92,6 +92,7 @@ const StyledFormFieldContainer = styled.div<{
   isInverse?: boolean;
   labelPosition?: LabelPosition;
   labelWidth?: number;
+  inputSize?: InputSize;
 }>`
   color: ${props =>
     props.isInverse
@@ -104,6 +105,7 @@ const StyledFormFieldContainer = styled.div<{
       props.labelWidth && props.labelPosition === LabelPosition.left
         ? `${props.labelWidth}%`
         : ''};
+    margin-top: ${props => (props.inputSize === 'large' ? '19px' : '')};
   }
 `;
 
@@ -157,6 +159,7 @@ export const FormFieldContainer = React.forwardRef<
         {...rest}
         data-testid={testId}
         isInverse={isInverse}
+        inputSize={inputSize}
         labelPosition={labelPosition}
         labelWidth={labelWidth}
         ref={ref}
