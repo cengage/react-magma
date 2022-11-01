@@ -13,6 +13,7 @@
   "changesets": [
     "feat-characterCounter",
     "fix-characterCounter",
+    "hasPersistentMenu",
     "multicombobox-clearable",
     "soft-horses-develop",
     "subtle-button",

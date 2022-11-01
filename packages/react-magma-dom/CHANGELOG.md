@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.2.0-next.7
+
+### Minor Changes
+
+- 9daf9331d: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
+  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+
 ## 3.2.0-next.6
 
 ### Minor Changes
