@@ -35,7 +35,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const id = useGenerateId(defaultId);
 
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const descriptionId =
+      errorMessage || helperMessage || maxLength ? `${id}__desc` : null;
 
     const isInverse = useIsInverse(props.isInverse);
 

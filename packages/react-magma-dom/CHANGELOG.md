@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0-next.6
+
+### Minor Changes
+
+- 15bdd2d08: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
+
 ## 3.2.0-next.5
 
 ### Patch Changes
