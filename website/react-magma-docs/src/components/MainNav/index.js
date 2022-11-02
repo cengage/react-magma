@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
 import { Location, Router } from '@reach/router';
@@ -205,6 +205,16 @@ function isAccordionItemOpen(location, id) {
 export const MainNav = ({ ...props }) => {
   const activeStyle = activeStyleDefault;
 
+  const ref = useRef();
+
+  // Sets focus on "Introduction" for keyboarding navigation.
+  React.useEffect(() => {
+    if (ref) {
+      ref.current.focus();
+    }
+    ref.current.blur();
+  }, []);
+
   return (
     <StaticQuery
       query={graphql`
@@ -302,6 +312,7 @@ export const MainNav = ({ ...props }) => {
                   activeStyle={activeStyle}
                   aria-label="Introduction to the Magma System"
                   onClick={props.handleClick}
+                  ref={ref}
                   to="/"
                 >
                   <Heading2>Introduction</Heading2>
