@@ -274,7 +274,7 @@ describe('Input', () => {
     const labelText = 'Input Label';
     const value = 'Test Value';
     const { getByTestId, getByLabelText } = render(
-      <Input labelText={labelText} value={value} isClearable />
+      <Input labelText={labelText} value={value} onClear={onClear} isClearable />
     );
 
     fireEvent.click(getByTestId('clear-button'));

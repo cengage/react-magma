@@ -12,20 +12,11 @@ describe('Calendar Month', () => {
   });
 
   it('helper information should be visible when open', async () => {
-    const { getByText, rerender } = render(
-      <HelperInformation isOpen={false} />
+    const { getByText } = render(
+      <HelperInformation isOpen={true} />
     );
 
-    rerender(<HelperInformation isOpen={true} />);
-
     expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
-  });
-
-  it('helper information should not be visible when not open', () => {
-    const { rerender, queryByText } = render(<HelperInformation isOpen={false} />);
-
-    rerender(<HelperInformation isOpen={false} />);
-    expect(queryByText(/keyboard shortcuts/i)).not.toBeInTheDocument();
   });
 
   it('should call the onClose method when the helper information is closed', async () => {
