@@ -13,7 +13,6 @@ import { XOR } from '../../utils';
 import { useControlled } from '../../hooks/useControlled';
 import {
   Dropdown,
-  DropdownAlignment,
   DropdownDropDirection,
   DropdownButton,
   DropdownContent,
