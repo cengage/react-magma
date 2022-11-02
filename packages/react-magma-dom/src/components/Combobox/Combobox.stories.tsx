@@ -9,6 +9,7 @@ import { Input } from '../Input';
 import { Spacer } from '../Spacer';
 import { Form } from '../Form';
 import { Button, ButtonType } from '../Button';
+import { action } from '@storybook/addon-actions';
 
 const Template: Story<ComboboxProps<SelectOptions>> = args => (
   <Combobox {...args} />
@@ -1205,13 +1206,10 @@ Typeahead.args = {
 };
 
 export const FullPageExample = args => {
-  function handleSubmit() {
-    alert('Form Submitted');
-  }
   return (
     <>
       <Form
-        onSubmit={handleSubmit}
+        onSubmit={action('form submitted')}
         header="Confirm Adoption"
         description="Example of comboboxes inside a form"
         actions={<Button type={ButtonType.submit}>Submit</Button>}
