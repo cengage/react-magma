@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.0-next.9
+
+### Patch Changes
+
+- 34c2957ad: fix(combobox): Combobox items have a default `type="button"` to prevent issues when used inside a form.
+
 ## 3.2.0-next.8
 
 ### Minor Changes
