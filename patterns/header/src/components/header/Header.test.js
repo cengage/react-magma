@@ -21,7 +21,7 @@ describe('Header', () => {
   });
 
   it('should render a header with compact styles', () => {
-    const { getByTestId } = render(<Header isCompact logo={<img />} />);
+    const { getByTestId } = render(<Header isCompact logo={<img alt="" />} />);
 
     expect(getByTestId('logoWrapper')).toHaveStyleRule(
       'height',

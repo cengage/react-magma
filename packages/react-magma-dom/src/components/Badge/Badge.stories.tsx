@@ -2,11 +2,12 @@ import React from 'react';
 import { Badge, BadgeColor, BadgeVariant } from '.';
 import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Badge,
   title: 'Badge',
-};
+} as Meta;
 
 export const Default = () => {
   return (

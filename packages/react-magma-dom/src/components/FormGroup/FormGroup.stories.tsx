@@ -2,11 +2,12 @@ import React from 'react';
 import { FormGroup } from '.';
 import { Checkbox } from '../Checkbox';
 import { Toggle } from '../Toggle';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: FormGroup,
   title: 'FormGroup',
-};
+} as Meta;
 
 export const Default = () => {
   return (

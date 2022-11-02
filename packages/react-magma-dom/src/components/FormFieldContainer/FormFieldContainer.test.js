@@ -18,7 +18,7 @@ describe('FormFieldContainer', () => {
     expect(getByText(TEXT)).toBeInTheDocument();
   });
 
-  it('Should render the form field container component', () => {
+  it('Should render the form field container component with child component', () => {
     const { getByLabelText } = render(
       <FormFieldContainer fieldId="input" labelText={TEXT}>
         <input id="input" />

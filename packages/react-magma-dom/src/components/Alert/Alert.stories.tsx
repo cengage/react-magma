@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meta } from '@storybook/react/types-6-0';
 import { Alert } from './index';
 import { AlertVariant } from '../AlertBase';
 import { Card, CardBody } from '../Card';
@@ -7,7 +8,7 @@ import { Hyperlink } from '../Hyperlink';
 export default {
   title: 'Alert',
   component: Alert,
-};
+} as Meta;
 
 export const Default = () => {
   return (

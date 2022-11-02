@@ -674,7 +674,9 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    it('?', async () => {
+    // eslint-disable-next-line jest/no-disabled-tests
+    it.skip('?', async () => {
+      // TODO
       const defaultDate = new Date();
       const labelText = 'Date picker label';
       const { getByText, baseElement } = render(

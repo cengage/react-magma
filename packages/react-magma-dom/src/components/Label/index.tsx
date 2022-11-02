@@ -86,11 +86,13 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
     } = props;
     const theme = React.useContext(ThemeContext);
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return actionable ? (
       <StyledLabel
         {...other}
         data-testid={testId}
-        isInverse={useIsInverse(props.isInverse)}
+        isInverse={isInverse}
         iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
@@ -103,7 +105,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       <StyledSpan
         {...other}
         data-testid={testId}
-        isInverse={useIsInverse(props.isInverse)}
+        isInverse={isInverse}
         iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}

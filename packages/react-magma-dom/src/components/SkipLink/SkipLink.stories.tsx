@@ -4,11 +4,12 @@ import { ButtonVariant } from '../Button';
 import { Paragraph } from '../Paragraph';
 import { SkipLinkContent } from '../SkipLinkContent';
 import { TypographyVisualStyle } from '../Typography';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: SkipLink,
   title: 'SkipLink',
-};
+} as Meta;
 
 const arr = Array.apply(null, Array(56)).map(function (x, i) {
   return i;
