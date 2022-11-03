@@ -1,5 +1,91 @@
 # Change Log
 
+## 4.0.5-next.10
+
+### Patch Changes
+
+- Updated dependencies [34c2957ad]
+  - react-magma-dom@3.2.0-next.9
+
+## 4.0.5-next.9
+
+### Patch Changes
+
+- Updated dependencies [eb9ed1f3c]
+  - react-magma-dom@3.2.0-next.8
+
+## 4.0.5-next.8
+
+### Patch Changes
+
+- Updated dependencies [9daf9331d]
+  - react-magma-dom@3.2.0-next.7
+
+## 4.0.5-next.7
+
+### Patch Changes
+
+- Updated dependencies [15bdd2d08]
+  - react-magma-dom@3.2.0-next.6
+
+## 4.0.5-next.6
+
+### Patch Changes
+
+- 411db8440: docs(select component documentation nav link): fix broken link in select documentation
+
+## 4.0.5-next.5
+
+### Patch Changes
+
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+  - @react-magma/charts@2.0.0-next.1
+  - @react-magma/dropzone@2.0.0-next.1
+  - @react-magma/schema-renderer@2.0.0-next.1
+  - react-magma-dom@3.2.0-next.5
+
+## 4.0.5-next.4
+
+### Patch Changes
+
+- Updated dependencies [85853eae2]
+  - react-magma-dom@3.2.0-next.4
+
+## 4.0.5-next.3
+
+### Patch Changes
+
+- Updated dependencies [1893be731]
+  - react-magma-dom@3.2.0-next.3
+
+## 4.0.5-next.2
+
+### Patch Changes
+
+- Updated dependencies [1110043aa]
+  - react-magma-dom@3.2.0-next.2
+
+## 4.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [2fe13d60f]
+  - react-magma-dom@3.2.0-next.1
+
+## 4.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [47015f38]
+  - react-magma-dom@3.2.0-next.0
+  - @react-magma/charts@2.0.0-next.0
+  - @react-magma/dropzone@2.0.0-next.0
+  - @react-magma/schema-renderer@2.0.0-next.0
+  - @cengage-patterns/header@4.0.0-next.0
+
 ## 4.0.4
 
 ### Patch Changes

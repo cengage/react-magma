@@ -80,7 +80,7 @@ export const DropdownSplitButton = React.forwardRef<
   const i18n = React.useContext(I18nContext);
 
   function buildIconButtonStyles(props) {
-    if (props.color === ButtonColor.secondary) {
+    if (props.color === ButtonColor.secondary || props.color === ButtonColor.subtle) {
       return '0';
     }
     return theme.spaceScale.spacing01;

@@ -33,6 +33,7 @@ export function Select<T>(props: SelectProps<T>) {
     disabled,
     isInverse,
     labelPosition,
+    labelWidth,
     menuStyle,
     onBlur,
     onFocus,
@@ -60,10 +61,8 @@ export function Select<T>(props: SelectProps<T>) {
   }
 
   function handleOnIsOpenChange(changes) {
-    const {
-      isOpen: changedIsOpen,
-      selectedItem: changedSelectedItem,
-    } = changes;
+    const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
+      changes;
 
     if (changedIsOpen && changedSelectedItem) {
       setHighlightedIndex(
@@ -169,6 +168,7 @@ export function Select<T>(props: SelectProps<T>) {
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
       messageStyle={messageStyle}
     >
       <SelectTriggerButton

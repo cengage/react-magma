@@ -57,7 +57,7 @@ describe('NativeSelect', () => {
       <NativeSelect testId={testId}></NativeSelect>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
       `1px solid ${magma.colors.neutral500}`
     );
@@ -69,7 +69,7 @@ describe('NativeSelect', () => {
       <NativeSelect isInverse testId={testId}></NativeSelect>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
       `1px solid ${transparentize(0.5, magma.colors.neutral100)}`
     );
@@ -82,7 +82,7 @@ describe('NativeSelect', () => {
       <NativeSelect errorMessage={errorMessage} testId={testId}></NativeSelect>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
       `1px solid ${magma.colors.danger}`
     );
@@ -101,7 +101,7 @@ describe('NativeSelect', () => {
       ></NativeSelect>
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule(
+    expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
       `1px solid ${magma.colors.danger200}`
     );

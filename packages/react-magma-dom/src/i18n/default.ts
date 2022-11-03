@@ -72,6 +72,14 @@ export const defaultI18n: I18nInterface = {
   breadcrumb: {
     navAriaLabel: 'Breadcrumb',
   },
+  characterCounter: {
+    characterAllowed: 'character allowed',
+    charactersAllowed: 'characters allowed',
+    characterLeft: 'character left',
+    charactersLeft: 'characters left',
+    characterOver: 'character over limit',
+    charactersOver: 'characters over limit',
+  },
   charts: {
     line: {
       chartTabLabel: 'Chart',
@@ -89,6 +97,10 @@ export const defaultI18n: I18nInterface = {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
     createLabel: 'Create "{inputValue}"',
+    multi: {
+      clearIndicatorAriaLabel: 'reset selection for {labelText}. {selectedItem} are selected',
+    },
+    loading: 'Loading...',
   },
   datePicker: {
     startOfWeek: 'sunday',

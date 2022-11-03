@@ -1,5 +1,68 @@
 # Change Log
 
+## 3.2.0-next.9
+
+### Patch Changes
+
+- 34c2957ad: fix(combobox): Combobox items have a default `type="button"` to prevent issues when used inside a form.
+
+## 3.2.0-next.8
+
+### Minor Changes
+
+- eb9ed1f3c: feat(input): Added left label position capability for Combobox, DatePicker, Input, NativeSelect, PasswordInput, Textarea, and TimePicker. An additional prop of labelWidth has also been implemented for use in a column of Inputs for styling purposes.
+
+## 3.2.0-next.7
+
+### Minor Changes
+
+- 9daf9331d: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
+  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+
+## 3.2.0-next.6
+
+### Minor Changes
+
+- 15bdd2d08: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
+
+## 3.2.0-next.5
+
+### Patch Changes
+
+- 95fc5ae72: chore(npm/node): Update versions
+
+## 3.2.0-next.4
+
+### Patch Changes
+
+- 85853eae2: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
+  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+
+## 3.2.0-next.3
+
+### Minor Changes
+
+- 1893be731: feat(button): Subtle button
+
+## 3.2.0-next.2
+
+### Patch Changes
+
+- 1110043aa: fix(table): Add keyboard only focus to tables without a focusable element.
+
+## 3.2.0-next.1
+
+### Patch Changes
+
+- 2fe13d60f: docs(table): Storybook example with adjustable number of rows
+
+## 3.2.0-next.0
+
+### Minor Changes
+
+- 47015f38: feat(characterCounter): New Character Counter component.
+
 ## 3.1.2
 
 ### Patch Changes
