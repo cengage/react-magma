@@ -1,5 +1,11 @@
 # @react-magma/schema-renderer
 
+## 2.0.0
+
+### Patch Changes
+
+- 95fc5ae7: chore(npm/node): Update versions
+
 ## 2.0.0-next.1
 
 ### Patch Changes

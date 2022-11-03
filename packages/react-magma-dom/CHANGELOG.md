@@ -1,5 +1,26 @@
 # Change Log
 
+## 3.2.0
+
+### Minor Changes
+
+- 47015f38: feat(characterCounter): New Character Counter component.
+- 15bdd2d0: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
+- 9daf9331: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
+  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+- eb9ed1f3: feat(input): Added left label position capability for Combobox, DatePicker, Input, NativeSelect, PasswordInput, Textarea, and TimePicker. An additional prop of labelWidth has also been implemented for use in a column of Inputs for styling purposes.
+- 1893be73: feat(button): Subtle button
+
+### Patch Changes
+
+- 34c2957a: fix(combobox): Combobox items have a default `type="button"` to prevent issues when used inside a form.
+- 85853eae: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
+  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+- 1110043a: fix(table): Add keyboard only focus to tables without a focusable element.
+- 2fe13d60: docs(table): Storybook example with adjustable number of rows
+- 95fc5ae7: chore(npm/node): Update versions
+
 ## 3.2.0-next.9
 
 ### Patch Changes
