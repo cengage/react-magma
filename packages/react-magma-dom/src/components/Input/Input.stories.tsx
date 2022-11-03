@@ -3,7 +3,7 @@ import { Input, InputProps } from '.';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { HelpIcon, NotificationsIcon } from 'react-magma-icons';
+import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 import { Card, CardBody } from '../Card';
 import { Tooltip } from '../Tooltip';
 import { IconButton } from '../IconButton';
@@ -92,51 +92,47 @@ Large.args = {
 };
 Large.parameters = { controls: { exclude: ['iconPosition'] } };
 
+export const IconPositions = args => {
+  return (
+    <>
+      <Input
+        {...args}
+        labelText="Icon Left"
+        icon={<NotificationsIcon />}
+        iconPosition={InputIconPosition.left}
+      />
+      <br/>
+      <br/>
+      <Input
+        {...args}
+        labelText="Icon Right"
+        icon={<WorkIcon />}
+        iconPosition={InputIconPosition.right}
+      />
+        <br/>
+        <br/>
+      <Input
+        {...args}
+        labelText="Icon Top"
+        icon={<HelpIcon />}
+        iconPosition={InputIconPosition.top}
+      />
+    </>
+  );
+};
+IconPositions.args = {
+  ...Default.args,
+  placeholder:
+    'Placeholder text... This is a very long placeholder text because it is fun!',
+  helperMessage: null,
+};
+IconPositions.parameters = { controls: { exclude: ['iconPosition'] } };
+
 export const File = Template.bind({});
 File.args = {
   type: InputType.file,
 };
 File.parameters = { controls: { exclude: ['iconPosition', 'isClearable'] } };
-
-export const IconTop = Template.bind({});
-IconTop.args = {
-  ...Default.args,
-  icon: <HelpIcon />,
-  iconPosition: InputIconPosition.top,
-};
-
-export const IconTopLarge = Template.bind({});
-IconTopLarge.args = {
-  ...Default.args,
-  icon: <HelpIcon />,
-  inputSize: InputSize.large,
-  iconPosition: InputIconPosition.top,
-};
-
-export const IconLeft = Template.bind({});
-IconLeft.args = {
-  ...Default.args,
-  icon: <NotificationsIcon />,
-};
-
-export const IconLeftLarge = Template.bind({});
-IconLeftLarge.args = {
-  ...IconLeft.args,
-  inputSize: InputSize.large,
-};
-
-export const IconRight = Template.bind({});
-IconRight.args = {
-  ...Default.args,
-  icon: <NotificationsIcon />,
-  iconPosition: InputIconPosition.right,
-};
-
-export const IconRightLarge = Template.bind({});
-IconRightLarge.args = {
-  ...IconRight.args,
-  inputSize: InputSize.large,
-};
 
 export const ClickableIcon = Template.bind({});
 ClickableIcon.args = {
@@ -146,13 +142,6 @@ ClickableIcon.args = {
   onIconClick: () => {},
 };
 ClickableIcon.parameters = { controls: { exclude: ['iconPosition'] } };
-
-export const ClickableIconLarge = Template.bind({});
-ClickableIconLarge.args = {
-  ...ClickableIcon.args,
-  inputSize: InputSize.large,
-};
-ClickableIconLarge.parameters = { controls: { exclude: ['iconPosition'] } };
 
 export const Inverse = Template.bind({});
 Inverse.args = {
