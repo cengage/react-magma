@@ -5,9 +5,10 @@ import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 
 describe('Select', () => {
+  const labelText = 'Label';
+  const items = ['Red', 'Blue', 'Green'];
+
   it('should render a select with items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -22,9 +23,8 @@ describe('Select', () => {
   });
 
   it('should render a select with a passed in placeholder', () => {
-    const labelText = 'Label';
     const placeholder = 'Test';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByText } = render(
       <Select labelText={labelText} items={items} placeholder={placeholder} />
     );
@@ -33,8 +33,6 @@ describe('Select', () => {
   });
 
   it('should render a select with the default i18n placeholder', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -43,7 +41,6 @@ describe('Select', () => {
   });
 
   it('should accept items in the default object format', () => {
-    const labelText = 'Label';
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
@@ -67,7 +64,6 @@ describe('Select', () => {
       return item ? item.representation : '';
     }
 
-    const labelText = 'Label';
     const items = [
       {
         id: 1,
@@ -100,8 +96,6 @@ describe('Select', () => {
   });
 
   it('should render an items list with the default max height', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { container, getByLabelText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -117,8 +111,6 @@ describe('Select', () => {
   });
 
   it('should render an items list with the passed in max height as a string', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = '100px';
     const { container, getByLabelText } = render(
       <Select
@@ -139,8 +131,6 @@ describe('Select', () => {
   });
 
   it('should render an items list with the passed in max height as a number', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = 50;
     const { container, getByLabelText } = render(
       <Select
@@ -161,7 +151,6 @@ describe('Select', () => {
   });
 
   it('should render custom item component', () => {
-    const labelText = 'Label';
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
@@ -195,8 +184,7 @@ describe('Select', () => {
   it('should not select an item when typing and select is closed', () => {
     // Use fake timers here for downshift's debounce on input change.
     jest.useFakeTimers();
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText, getByTestId } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -215,8 +203,6 @@ describe('Select', () => {
   });
 
   it('should allow for selection of an item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, getByTestId } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -230,8 +216,7 @@ describe('Select', () => {
 
   it('should call the passed in onIsOpenChange function on select open', () => {
     const onIsOpenChange = jest.fn();
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText } = render(
       <Select
         labelText={labelText}
@@ -246,8 +231,6 @@ describe('Select', () => {
   });
 
   it('should allow for a controlled select', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     let selectedItem = 'Red';
     const { getByLabelText, getByText, getByTestId, rerender } = render(
       <Select
@@ -279,8 +262,6 @@ describe('Select', () => {
   });
 
   it('should have an initial selected item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} initialSelectedItem="Red" />
     );
@@ -289,8 +270,6 @@ describe('Select', () => {
   });
 
   it('should not select an item that is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} selectedItem="Pink" />
     );
@@ -299,8 +278,6 @@ describe('Select', () => {
   });
 
   it('should not use the initial selected item if it is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} initialSelectedItem="Pink" />
     );
@@ -309,8 +286,6 @@ describe('Select', () => {
   });
 
   it('should disable the select', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <Select labelText={labelText} items={items} disabled />
     );
@@ -321,8 +296,6 @@ describe('Select', () => {
   });
 
   it('should allow a selection to be cleared', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Select
         labelText={labelText}
@@ -342,8 +315,6 @@ describe('Select', () => {
   });
 
   it('should select the default selected item when cleared', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Select
         labelText={labelText}
@@ -362,8 +333,6 @@ describe('Select', () => {
   });
 
   it('should not select the default selected item when cleared if it is not in the items list', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Select
         labelText={labelText}
@@ -382,8 +351,6 @@ describe('Select', () => {
   });
 
   it('should open select when clicking the enter key', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -400,8 +367,6 @@ describe('Select', () => {
   });
 
   it('should open select when clicking the spacebar', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -420,8 +385,7 @@ describe('Select', () => {
   it('should not open select when clicking another key other than the enter or spacebar', () => {
     // Use fake timers here for downshift's debounce on input change.
     jest.useFakeTimers();
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText, queryByText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -442,9 +406,8 @@ describe('Select', () => {
   });
 
   it('should show an error message', () => {
-    const labelText = 'Label';
     const errorMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByText } = render(
       <Select labelText={labelText} items={items} errorMessage={errorMessage} />
     );
@@ -453,9 +416,8 @@ describe('Select', () => {
   });
 
   it('should show an helper message', () => {
-    const labelText = 'Label';
     const helperMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByText } = render(
       <Select
         labelText={labelText}
@@ -468,8 +430,6 @@ describe('Select', () => {
   });
 
   it('should show a left aligned label', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} labelPosition="left" />
     );
@@ -480,9 +440,19 @@ describe('Select', () => {
     );
   });
 
+  it('Should have a defined width for label when labelPosition is "left"', () => {
+    const { getByText } = render(
+      <Select
+        items={items}
+        labelPosition="left"
+        labelText={labelText}
+        labelWidth={20}
+      />
+    );
+    expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+  });
+
   it('should allow you to send in your own components', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const ClearIndicator = () => (
       <button data-testid="customClearIndicator">Clear</button>
     );
@@ -504,8 +474,6 @@ describe('Select', () => {
 
   describe('events', () => {
     it('onBlur', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onBlur = jest.fn();
 
       const { getByLabelText } = render(
@@ -522,8 +490,6 @@ describe('Select', () => {
     });
 
     it('onFocus', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onFocus = jest.fn();
 
       const { getByLabelText } = render(
@@ -538,8 +504,6 @@ describe('Select', () => {
     });
 
     it('onKeyDown', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -554,8 +518,6 @@ describe('Select', () => {
     });
 
     it('onKeyUp', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(

@@ -13,7 +13,7 @@ import { useForkedRef } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { MultiComboboxProps } from '.';
-import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
+import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [inputValue, setInputValue] = React.useState('');
@@ -40,6 +40,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     menuStyle,
     messageStyle,
     newItemTransform,
@@ -331,6 +332,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
               onFocus={() => setActiveIndex(index)}
               theme={theme}
               isInverse={isInverse}
+              type={ButtonType.button}
             >
               {itemToString(multiSelectedItem)}
               <IconWrapper>
@@ -354,6 +356,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
       messageStyle={messageStyle}
     >
       <ComboboxInput
