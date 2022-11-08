@@ -361,6 +361,7 @@ export const Popper = args => {
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
         <DropdownMenuItem>Menu item number two two two </DropdownMenuItem>
         <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number threeeeeeeeeeeeeeee </DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
   );
@@ -464,7 +465,7 @@ export const Popper = args => {
           height: '400px',
           border: '2px solid black',
           overflow: 'scroll',
-          paddingLeft: '200px',
+          paddingLeft: '600px',
         }}
       >
         <Spacer size={1000} axis={SpacerAxis.horizontal} />

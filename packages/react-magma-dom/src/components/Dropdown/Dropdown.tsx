@@ -10,6 +10,7 @@ export enum DropdownDropDirection {
   left = 'left',
   right = 'right',
   up = 'top',
+  auto = 'auto',
 }
 
 export enum DropdownAlignment {

@@ -118,12 +118,12 @@ export const DropdownContent = React.forwardRef<
       {
         name: 'flip',
         options: {
-          fallbackPlacements: ['top', 'bottom', 'right', 'left'],
+          fallbackPlacements: ['top', 'bottom', 'left', 'right'],
         },
       },
     ],
   });
-
+  
   return (
     <StyledCard
       {...other}
@@ -133,12 +133,12 @@ export const DropdownContent = React.forwardRef<
       isInverse={context.isInverse}
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
-      ref={ref}
       tabIndex={-1}
       testId={testId || 'dropdownContent'}
       theme={theme}
       width={context.width}
       style={styles.popper}
+      ref={ref}
       {...attributes.popper}
       >
       <StyledDiv
