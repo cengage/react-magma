@@ -207,12 +207,11 @@ export const MainNav = ({ ...props }) => {
 
   const ref = useRef();
 
-  // Sets focus on "Introduction" for keyboarding navigation.
+  // Sets focus on "Introduction" for keyboard navigation.
   React.useEffect(() => {
     if (ref) {
       ref.current.focus();
     }
-    ref.current.blur();
   }, []);
 
   return (
