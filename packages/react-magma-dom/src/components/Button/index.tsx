@@ -14,6 +14,7 @@ export enum ButtonColor {
   secondary = 'secondary',
   danger = 'danger',
   marketing = 'marketing',
+  subtle = 'subtle',
 }
 
 export enum ButtonShape {

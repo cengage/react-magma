@@ -1,0 +1,91 @@
+---
+pageTitle: Character Counter Design Guidelines
+title: Character Counter
+order: 1
+---
+
+import { Link } from 'gatsby';
+import './design-guidelines-styles.css';
+import { DocsHeading } from '../../components/DocsHeading';
+import { LeadParagraph } from '../../components/LeadParagraph';
+import { Tooltip } from 'react-magma-dom';
+
+<DocsHeading to="/api/character-counter/" type="design">
+  Character Counter
+</DocsHeading>
+<LeadParagraph>
+  Character counter helps users know how much text they can enter when there is a limit on the number of characters.
+</LeadParagraph>
+
+![ ](../../images/character-counter/intro-image.png)
+
+## Usage
+
+### When to use the character counter
+
+**Keeping it short** - When users are likely to provide more detail than is needed, and you want to force them to use fewer words. Note: this will likely increase the amount of time it takes users to submit the form because editing requires thinking.
+
+**Legal requirement** -  When there is a legal reason where an entry must be under a certain number of characters.
+
+### When to consider a different solution
+
+**Backend limitations** - If your users keep hitting the character limit imposed by the backend of your service then try to increase the limit rather than use a character count.
+
+**Already implied** - If the character length is apparent or implied by the data type (i.e. phone number or zip code).
+
+**Exceeding the character limit is highly unlikely** - If the vast majority of users are very unlikely to run into backend validation, such as an address field that has a database field limit of 250 characters.
+
+---
+
+## Component Behavior
+
+The character counter initially tells the user the maximum number of characters they are allowed to enter.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/character-counter/behavior-1.png" alt=" " />
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+As the user types, the character counter updates in real-time and informs the user how many characters they have left.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/character-counter/behavior-2.png" alt=" " />
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+When the user exceeds the maximum number of characters allowed, the character counter alerts them with an error and tells the user how many characters over the limit they are.
+
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img src="../../images/character-counter/behavior-3.png" alt=" " />
+      </figure>
+    </div>
+    <div class="col col-2">
+    </div>
+  </div>
+</div>
+
+---
+
+## Accessibility
+
+The following measures have been taken to ensure the Character Counter component is accessible.
+
+1. The character count message is associated with the input. We use `aria-describedby` on the input to allow the message to be announced to those using screen readers.
+2. We use the aria-live attribute on the character count message. We use `aria-live="polite"` so that updates to the character count message are also announced when using a screen reader.

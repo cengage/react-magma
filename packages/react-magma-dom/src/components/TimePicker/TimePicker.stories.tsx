@@ -2,6 +2,7 @@ import React from 'react';
 import { TimePicker, TimePickerProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { LabelPosition } from '../Label';
 
 const Template: Story<TimePickerProps> = args => (
   <TimePicker {...args} labelText="Time Due" />
@@ -19,6 +20,17 @@ export default {
     helperMessage: {
       control: {
         type: 'text',
+      },
+    },
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
+      },
+    },
+    labelWidth: {
+      control: {
+        type: 'number',
       },
     },
   },

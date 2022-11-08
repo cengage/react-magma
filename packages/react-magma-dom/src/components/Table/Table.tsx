@@ -111,6 +111,16 @@ export const TableContainer = styled.div<{
   border-radius: ${props =>
     props.hasSquareCorners ? 0 : props.theme.borderRadius};
   overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
+  &:focus {
+    outline: none;
+  }
+  &:focus-visible {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+  }
 `;
 
 export const StyledTable = styled.table<{
@@ -172,6 +182,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse={isInverse}
           minWidth={minWidth}
           theme={theme}
+          tabIndex={0}
         >
           <StyledTable
             {...other}

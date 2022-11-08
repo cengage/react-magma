@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import styled from '../../theme/styled';
 import {
   inputBaseStyles,
@@ -23,6 +24,10 @@ export interface TextareaProps
   containerStyle?: React.CSSProperties;
   isInverse?: boolean;
   /**
+   * A number value which gives Character Counter the maximum length of allowable characters in an Textarea.
+   */
+  maxLength?: number;
+  /**
    * @internal
    */
   testId?: string;
@@ -42,8 +47,7 @@ const StyledTextArea = styled.textarea<
   ${inputBaseStyles};
   ${inputWrapperStyles};
   height: 4.5em;
-  padding: ${props =>
-    `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`};
+  padding: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -54,8 +58,11 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
+      labelPosition,
       labelStyle,
       labelText,
+      labelWidth,
+      maxLength,
       messageStyle,
       testId,
       textareaStyle,
@@ -71,6 +78,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       string | ReadonlyArray<string> | number
     >(props.defaultValue || props.value || '');
 
+    const [characterLength, setCharacterLength] = useState(0);
+
     React.useEffect(() => {
       setValue(props.value);
     }, [props.value]);
@@ -80,6 +89,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         props.onChange(event);
 
       setValue(event.target.value);
+      setCharacterLength(event.target.value.length);
     }
 
     const isInverse = useIsInverse(props.isInverse);
@@ -92,8 +102,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         helperMessage={helperMessage}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
+        inputLength={characterLength}
         labelStyle={labelStyle}
         labelText={labelText}
+        labelPosition={labelPosition}
+        labelWidth={labelWidth}
+        maxLength={maxLength}
       >
         <StyledTextArea
           {...other}
@@ -102,7 +116,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           aria-invalid={!!errorMessage}
           data-testid={testId}
-          hasError={!!errorMessage}
+          hasError={!!errorMessage || characterLength > maxLength}
           id={id}
           isInverse={isInverse}
           onChange={handleChange}

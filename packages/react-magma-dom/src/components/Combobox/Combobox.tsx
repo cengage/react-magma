@@ -31,12 +31,14 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     isLabelVisuallyHidden,
     isLoading,
     isInverse,
+    isTypeahead = false,
     itemListMaxHeight,
     items,
     itemToString,
     labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     menuStyle,
     messageStyle,
     newItemTransform,
@@ -71,10 +73,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   function defaultOnSelectedItemChange(changes) {
     if (isCreatedItem(changes.selectedItem)) {
-      const {
-        react_magma__created_item,
-        ...createdItem
-      } = changes.selectedItem;
+      const { react_magma__created_item, ...createdItem } =
+        changes.selectedItem;
 
       const newItem =
         react_magma__created_item &&
@@ -147,14 +147,14 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
   }
 
-  const [
-    allItems,
-    displayItems,
-    setDisplayItems,
-    updateItemsRef,
-  ] = useComboboxItems(defaultItems, items);
+  const [allItems, displayItems, setDisplayItems, updateItemsRef] =
+    useComboboxItems(defaultItems, items);
 
   function getValidItem(itemToCheck: T, key: string): object {
+    // When using Typeahead, don't validate the items
+    if (isTypeahead) {
+      return allItems;
+    }
     return allItems.current.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
@@ -163,10 +163,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   }
 
   function handleOnIsOpenChange(changes) {
-    const {
-      isOpen: changedIsOpen,
-      selectedItem: changedSelectedItem,
-    } = changes;
+    const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
+      changes;
 
     if (!changedIsOpen) {
       setDisplayItems(allItems.current);
@@ -261,6 +259,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
       messageStyle={messageStyle}
     >
       <ComboboxInput
@@ -275,6 +274,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         inputStyle={inputStyle}
         isInverse={isInverse}
         isLoading={isLoading}
+        isTypeahead={isTypeahead}
         onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
         onInputKeyDown={onInputKeyDown}
@@ -287,6 +287,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}
             icon={<CloseIcon />}
+            isInverse={isInverse}
             onClick={defaultHandleClearIndicatorClick}
             shape={ButtonShape.fill}
             size={ButtonSize.small}
@@ -303,6 +304,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isInverse={isInverse}
         items={displayItems}
         itemToString={itemToString}
+        isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
       />

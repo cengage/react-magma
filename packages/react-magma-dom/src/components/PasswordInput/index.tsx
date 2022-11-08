@@ -71,8 +71,10 @@ export const PasswordInput = React.forwardRef<
     isPasswordMaskButtonHidden,
     id: defaultId,
     inputSize = InputSize.medium,
+    labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     isLabelVisuallyHidden,
     messageStyle,
     shownPasswordAnnounceText,
@@ -119,8 +121,10 @@ export const PasswordInput = React.forwardRef<
       inputSize={inputSize}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       isInverse={isInverse}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
     >
       <InputBase
         autoCorrect="off"

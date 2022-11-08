@@ -3,7 +3,12 @@ import { Locale } from 'date-fns';
 export interface I18nInterface {
   example: string;
   locale: Locale;
-  dateFormat: 'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM' | 'MMMM d, yyyy';
+  dateFormat:
+    | 'MM/dd/yyyy'
+    | 'dd/MM/yyyy'
+    | 'yyyy/MM/dd'
+    | 'yyyy/dd/MM'
+    | 'MMMM d, yyyy';
   timeFormat: '12' | '24';
   months: {
     long: {
@@ -71,6 +76,14 @@ export interface I18nInterface {
   breadcrumb: {
     navAriaLabel: string;
   };
+  characterCounter: {
+    characterAllowed: string;
+    charactersAllowed: string;
+    characterLeft: string;
+    charactersLeft: string;
+    characterOver: string;
+    charactersOver: string;
+  };
   charts: {
     line: {
       chartTabLabel: string;
@@ -85,6 +98,10 @@ export interface I18nInterface {
   combobox: {
     clearIndicatorAriaLabel: string;
     createLabel: string;
+    multi: {
+      clearIndicatorAriaLabel: string;
+    };
+    loading: string;
   };
   datePicker: {
     startOfWeek:
