@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1-next.0
+
+### Patch Changes
+
+- f5189569b: fix(tabs): Disabled tabs have the disabled cursor
+
 ## 3.2.0
 
 ### Minor Changes

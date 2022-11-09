@@ -1,5 +1,22 @@
 # Change Log
 
+## 4.0.6-next.1
+
+### Patch Changes
+
+- Updated dependencies [f5189569b]
+  - react-magma-dom@3.2.1-next.0
+  - @react-magma/charts@2.0.1-next.0
+  - @react-magma/dropzone@2.0.1-next.0
+  - @react-magma/schema-renderer@2.0.1-next.0
+  - @cengage-patterns/header@4.0.1-next.0
+
+## 4.0.6-next.0
+
+### Patch Changes
+
+- 2e2994e5f: docs(changelog): broken link to the 2.3.0 release
+
 ## 4.0.5
 
 ### Patch Changes
