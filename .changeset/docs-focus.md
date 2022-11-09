@@ -1,5 +1,5 @@
 ---
-'react-magma-docs': minor
+'react-magma-docs': patch
 ---
 
 Added initial focus to "Introduction" link for keyboard navigation.

@@ -77,7 +77,6 @@ export const NavTabs = React.forwardRef<
       orientation={orientation || TabsOrientation.horizontal}
       ref={ref}
       theme={theme}
-      tabIndex={0}
       {...rest}
     >
       <ButtonPrev
