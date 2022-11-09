@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.6-next.0
+
+### Patch Changes
+
+- 2e2994e5f: docs(changelog): broken link to the 2.3.0 release
+
 ## 4.0.5
 
 ### Patch Changes

@@ -10,5 +10,7 @@
     "react-magma-docs": "4.0.5",
     "react-magma-landing": "1.1.1"
   },
-  "changesets": []
+  "changesets": [
+    "small-jokes-hide"
+  ]
 }
