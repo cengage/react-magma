@@ -1,21 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
+import { graphql, StaticQuery } from 'gatsby';
 import {
-  Heading,
-  Hyperlink,
-  Paragraph,
-  TypographyVisualStyle,
   magma,
-  TypographyColor,
   useIsInverse,
   TabsContainer,
   Tab,
   Tabs,
   TabPanelsContainer,
   TabPanel,
-  TabsOrientation,
 } from 'react-magma-dom';
 import { SubPageTabs } from '../SubPageTabs';
 
@@ -40,37 +34,73 @@ const Container = styled.div`
   }
 `;
 
-export const DocsHeading = ({ children, to, type }) => {
+export const DocsHeading = ({ children, type }) => {
   const isInverse = useIsInverse();
-
   const activeTabIndex = type === 'api' ? 0 : 1;
 
-  console.log('children', children);
-
   return (
-    <>
-      <Container style={{ background: magma.colors.neutral200 }}>
-        <Heading level={1}>{children}</Heading>
-      </Container>
-      <Container>
-        <TabsContainer activeIndex={activeTabIndex} isInverse={isInverse}>
-          <Tabs aria-label="" style={{background: magma.colors.neutral200}}>
-            <Tab>Implementation</Tab>
-            <Tab>Design</Tab>
-          </Tabs>
-          <TabPanelsContainer>
-            <TabPanel>
-              <div>Implementation</div>
-              <SubPageTabs pages={['something', 'here']} />
-            </TabPanel>
-            <TabPanel>
-              <div>Design</div>
-              <SubPageTabs pages={[]} />
-            </TabPanel>
-          </TabPanelsContainer>
-        </TabsContainer>
-      </Container>
-    </>
+    <StaticQuery
+      query={graphql`
+        query NavQueryTest {
+          designComponentDocs: allMdx(
+            filter: {
+              fileAbsolutePath: { glob: "**/src/pages/design/**" }
+              frontmatter: { isPattern: { ne: true } }
+            }
+            sort: { order: ASC, fields: frontmatter___title }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
+          apiDocs: allMdx(
+            filter: { fileAbsolutePath: { glob: "**/src/pages/api/**" } }
+            sort: { order: ASC, fields: frontmatter___title }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
+        }
+      `}
+      render={data => {
+        const apiNode = data.apiDocs.edges.find(item => {
+          return item.node.frontmatter.title === children;
+        });
+        const designNode = data.designComponentDocs.edges.find(item => {
+          return item.node.frontmatter.title === children;
+        });
+
+        return (
+          <>
+            <Container>
+              {(apiNode || designNode) && (
+                <TabsContainer
+                  activeIndex={activeTabIndex}
+                  isInverse={isInverse}
+                >
+                  <Tabs
+                    aria-label=""
+                    style={{ background: magma.colors.neutral200, width: '100%', }}
+                  >
+                    {apiNode && <Tab>Implementation</Tab>}
+                    {designNode && <Tab>Design</Tab>}
+                  </Tabs>
+                  <TabPanelsContainer>
+                    <TabPanel>
+                      <SubPageTabs pageData={apiNode} />
+                    </TabPanel>
+                    <TabPanel>
+                      <SubPageTabs pageData={designNode} />
+                    </TabPanel>
+                  </TabPanelsContainer>
+                </TabsContainer>
+              )}
+            </Container>
+          </>
+        );
+      }}
+    />
   );
 };
 

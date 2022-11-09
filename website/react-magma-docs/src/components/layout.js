@@ -4,7 +4,6 @@ import { MDXProvider } from '@mdx-js/react';
 import {
   SkipLinkContent,
   Heading,
-  Container,
   Alert,
   magma,
 } from 'react-magma-dom';
@@ -72,13 +71,12 @@ export const Layout = ({ children, pageContext }) => {
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
       : '';
+  const heading = pageContext && pageContext.frontmatter ? pageContext.frontmatter.title : '';
 
   const properties = (pageContext && pageContext.properties) || [];
 
-  console.log('pageContext', pageContext)
-
   return (
-    <LayoutComponent title={title}>
+    <LayoutComponent title={title} heading={heading}>
       <MDXProvider
         components={{
           code: CodeBlock,

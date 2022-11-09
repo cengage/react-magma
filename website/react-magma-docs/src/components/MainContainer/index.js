@@ -10,7 +10,7 @@ const StyledContainer = styled.div`
   @media (min-width: ${magma.breakpoints.large}px) {
     display: grid;
     grid-template-columns: 240px auto;
-    grid-template-rows: 88px auto;
+    grid-template-rows: 56px auto;
     grid-template-areas:
       'masthead masthead'
       'nav content';
