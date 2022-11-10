@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRef } from 'react';
 import styled from '@emotion/styled';
 import { jsx } from '@emotion/core';
 
@@ -146,14 +147,29 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
 
   const isIconOnly = !children;
 
-  const { orientation, borderPosition, iconPosition, isInverse, isFullWidth } =
-    React.useContext(NavTabsContext);
+  const {
+    orientation,
+    borderPosition,
+    firstRef,
+    iconPosition,
+    isInverse,
+    isFullWidth,
+  } = React.useContext(NavTabsContext);
 
   const tabIconPosition = iconPosition
     ? iconPosition
     : orientation === 'vertical'
     ? TabsIconPosition.left
     : TabsIconPosition.top;
+
+  const styledTabRef = useRef<any>();
+  const styledCustomTabRef = useRef<any>();
+
+  React.useEffect(() => {
+    if (firstRef == true) {
+      styledTabRef.current.focus();
+    }
+  }, []);
 
   return (
     <StyledTabsChild
@@ -182,12 +198,13 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           isInverse={isInverse}
           isFullWidth={isFullWidth}
           orientation={orientation}
+          ref={styledCustomTabRef}
           theme={theme}
         />
       ) : (
         <StyledTab
           {...other}
-          ref={ref}
+          ref={firstRef ? styledTabRef : ref}
           data-testid={testId}
           href={to}
           isActive={isActive}
@@ -197,6 +214,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           orientation={orientation}
           theme={theme}
         >
+          {console.log(firstRef)}
           {icon && (
             <StyledIcon
               theme={theme}
@@ -212,3 +230,4 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
     </StyledTabsChild>
   );
 });
+NavTab.displayName = 'NavTab';
