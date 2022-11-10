@@ -72,7 +72,6 @@ export const Layout = ({ children, pageContext }) => {
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
       : '';
   const heading = pageContext && pageContext.frontmatter ? pageContext.frontmatter.title : '';
-
   const properties = (pageContext && pageContext.properties) || [];
 
   return (

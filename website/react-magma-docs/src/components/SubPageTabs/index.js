@@ -10,6 +10,15 @@ import {
   TabsOrientation,
 } from 'react-magma-dom';
 
+export const StyledNavTabs = styled(NavTabs)`
+  border-left: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
+  > div ul {
+    align-items: start;
+  }
+`;
+
 export const StyledTabHeading = styled.p`
   font-size: ${magma.typeScale.size01.fontSize};
   line-height: ${magma.typeScale.size01.lineHeight};
@@ -17,10 +26,14 @@ export const StyledTabHeading = styled.p`
   font-weight: 700;
   text-transform: uppercase;
   margin: 0;
-  color: ${magma.colors.neutral700};
+  color: ${props =>
+    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
+  padding: 12px 16px;
 `;
 
 export const SubPageTabs = ({ pageData }) => {
+  const [activeTab, setActiveTab] = React.useState(0);
+
   const isInverse = useIsInverse();
   const headings = pageData?.node?.headings?.map(heading => heading.value);
 
@@ -28,7 +41,9 @@ export const SubPageTabs = ({ pageData }) => {
     if (headings && headings.length > 0) {
       return (
         <>
-          <StyledTabHeading>On this page</StyledTabHeading>
+          <StyledTabHeading isInverse={isInverse}>
+            On this page
+          </StyledTabHeading>
           {headings.map((page, index) => {
             const id = convertTextToId(page);
             return (
@@ -36,6 +51,8 @@ export const SubPageTabs = ({ pageData }) => {
                 key={index}
                 to={`#${id}`}
                 isInverse={isInverse}
+                isActive={activeTab === index}
+                onClick={() => setActiveTab(index)}
               >
                 {page}
               </NavTab>
@@ -48,9 +65,12 @@ export const SubPageTabs = ({ pageData }) => {
 
   return (
     <>
-      <NavTabs isInverse={isInverse} orientation={TabsOrientation.vertical}>
+      <StyledNavTabs
+        isInverse={isInverse}
+        orientation={TabsOrientation.vertical}
+      >
         {renderPageNavTabs()}
-      </NavTabs>
+      </StyledNavTabs>
     </>
   );
 };

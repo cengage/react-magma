@@ -34,6 +34,10 @@ const Container = styled.div`
   }
 `;
 
+const StyledTabs = styled(Tabs)`
+  background: ${magma.colors.neutral200};
+`;
+
 export const DocsHeading = ({ children, type }) => {
   const isInverse = useIsInverse();
   const activeTabIndex = type === 'api' ? 0 : 1;
@@ -79,13 +83,12 @@ export const DocsHeading = ({ children, type }) => {
                   activeIndex={activeTabIndex}
                   isInverse={isInverse}
                 >
-                  <Tabs
-                    aria-label=""
-                    style={{ background: magma.colors.neutral200, width: '100%', }}
-                  >
+                  <StyledTabs aria-label="">
                     {apiNode && <Tab>Implementation</Tab>}
                     {designNode && <Tab>Design</Tab>}
-                  </Tabs>
+                  </StyledTabs>
+                  jfehgdrghd grkjgjbrghj rkejghrgjrg
+                  {children}
                   <TabPanelsContainer>
                     <TabPanel>
                       <SubPageTabs pageData={apiNode} />
