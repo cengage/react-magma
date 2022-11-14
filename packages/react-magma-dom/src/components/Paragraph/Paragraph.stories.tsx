@@ -1,11 +1,12 @@
 import React from 'react';
 import { Paragraph } from '.';
 import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Paragraph,
   title: 'Paragraph',
-};
+} as Meta;
 
 export const Default = () => {
   return (

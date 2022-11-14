@@ -6,11 +6,12 @@ import {
   TypographyVisualStyle,
 } from '../Typography';
 import { Card } from '../Card';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Heading,
   title: 'Heading',
-};
+} as Meta;
 
 export const Default = () => {
   return (

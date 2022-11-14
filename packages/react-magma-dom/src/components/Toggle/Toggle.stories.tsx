@@ -1,11 +1,12 @@
 import React from 'react';
 import { Toggle } from '.';
 import { Card } from '../Card';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Toggle,
   title: 'Toggle',
-};
+} as Meta;
 
 export const Default = () => {
   return (

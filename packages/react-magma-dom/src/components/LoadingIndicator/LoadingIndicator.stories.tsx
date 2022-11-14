@@ -1,6 +1,7 @@
 import React from 'react';
 import { LoadingIndicator, LoadingIndicatorType } from '.';
 import { Card, CardBody } from '../Card';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: LoadingIndicator,
@@ -24,7 +25,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = args => {
   return (

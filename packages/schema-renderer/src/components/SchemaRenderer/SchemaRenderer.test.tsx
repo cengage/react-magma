@@ -403,7 +403,7 @@ describe('SchemaRenderer', () => {
     };
 
     it('should render FieldArray', () => {
-      const { getByText, getAllByRole, getByLabelText, queryByText } = render(
+      const { getByText, getAllByRole, getByLabelText } = render(
         <SchemaRenderer
           schema={schema}
           onSubmit={handleSubmit}

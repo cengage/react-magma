@@ -24,13 +24,13 @@ import { TimePicker } from '../TimePicker';
 import { Toggle } from '../Toggle';
 import { Tooltip } from '../Tooltip';
 import { SettingsIcon } from 'react-magma-icons';
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react/types-6-0';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 
 export default {
   component: Form,
   title: 'Form',
-};
+} as Meta;
 
 const Template: Story<FormProps> = args => (
   <Form {...args}>{args.children}</Form>
