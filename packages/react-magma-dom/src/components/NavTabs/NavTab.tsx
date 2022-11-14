@@ -160,7 +160,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
     ? TabsIconPosition.left
     : TabsIconPosition.top;
 
-  const styledTabRef = React.useRef<any>(null);
+  const styledTabRef = React.useRef<HTMLAnchorElement>();
 
   // Sets focus on first NavTab for accessibility
   React.useEffect(() => {
@@ -196,6 +196,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           isInverse={isInverse}
           isFullWidth={isFullWidth}
           orientation={orientation}
+          ref={styledTabRef}
           theme={theme}
         />
       ) : (
