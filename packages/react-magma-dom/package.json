@@ -56,8 +56,8 @@
     "downshift": "^5.4.5",
     "framer-motion": "^4.1.11",
     "mkdirp": "^1.0.4",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
     "react-magma-icons": "^2.3.4",
     "uuid": "^8.3.0"
   }
