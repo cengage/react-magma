@@ -9,6 +9,7 @@ import {
   TabsProps,
   Orientation,
 } from '../Tabs';
+import { NavTabProps, NavTab } from './NavTab';
 import { TabsOrientation } from '../Tabs/shared';
 import { Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -20,7 +21,6 @@ export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;
-  firstRef?: boolean;
   iconPosition?: TabsIconPosition;
   isInverse?: boolean;
   isFullWidth?: boolean;
@@ -29,7 +29,6 @@ interface NavTabsContextInterface {
 
 export const NavTabsContext = React.createContext<NavTabsContextInterface>({
   borderPosition: TabsBorderPosition.bottom,
-  firstRef: false,
   iconPosition: TabsIconPosition.left,
   isInverse: false,
   isFullWidth: false,
@@ -69,14 +68,6 @@ export const NavTabs = React.forwardRef<
     tabsHandleMethods;
   const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
 
-  let firstRef = false;
-
-  React.Children.forEach(children, (child: any, i) => {
-    if (child.type.displayName === 'NavTab' && i === 0) {
-      firstRef = true;
-    }
-  });
-
   return (
     <StyledContainer
       aria-label={rest['aria-label']}
@@ -112,14 +103,21 @@ export const NavTabs = React.forwardRef<
           <NavTabsContext.Provider
             value={{
               borderPosition,
-              firstRef,
               iconPosition,
               isInverse: isInverse,
               isFullWidth,
               orientation,
             }}
           >
-            {children}
+            {React.Children.map(children, (child, i) => {
+              const item = child as React.ReactElement<
+                React.PropsWithChildren<NavTabProps>
+              >;
+              if (item.type === NavTab && i === 0) {
+                return React.cloneElement(item, { isFocused: true });
+              }
+              return child;
+            })}
           </NavTabsContext.Provider>
         </StyledTabs>
       </StyledTabsWrapper>

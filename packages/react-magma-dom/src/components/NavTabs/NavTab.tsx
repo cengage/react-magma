@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRef } from 'react';
 import styled from '@emotion/styled';
 import { jsx } from '@emotion/core';
 
@@ -31,6 +30,10 @@ export interface BaseNavTabProps
    * If true, the component will display with the active/selected state
    */
   isActive?: boolean;
+  /**
+   * If true, sets a focus on the specified NavTab
+   */
+  isFocused?: boolean;
   isInverse?: boolean;
   /**
    * Determines if the tabs are displayed vertically or horizontally
@@ -90,6 +93,7 @@ const StyledTab = styled.a<{
   isActive?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
+  isFocused?: boolean;
   orientation: TabsOrientation;
   theme: any;
 }>`
@@ -136,7 +140,7 @@ export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
 export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
   let children;
   let component;
-  const { isActive, icon, testId, to, ...other } = props;
+  const { isActive, icon, isFocused, testId, to, ...other } = props;
   const theme = React.useContext(ThemeContext);
 
   if (instanceOfNavComponentTab(props)) {
@@ -147,14 +151,8 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
 
   const isIconOnly = !children;
 
-  const {
-    orientation,
-    borderPosition,
-    firstRef,
-    iconPosition,
-    isInverse,
-    isFullWidth,
-  } = React.useContext(NavTabsContext);
+  const { orientation, borderPosition, iconPosition, isInverse, isFullWidth } =
+    React.useContext(NavTabsContext);
 
   const tabIconPosition = iconPosition
     ? iconPosition
@@ -162,11 +160,11 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
     ? TabsIconPosition.left
     : TabsIconPosition.top;
 
-  const styledTabRef = useRef<any>();
-  const styledCustomTabRef = useRef<any>();
+  const styledTabRef = React.useRef<any>(null);
 
+  // Sets focus on first NavTab for accessibility
   React.useEffect(() => {
-    if (firstRef == true) {
+    if (props.isFocused) {
       styledTabRef.current.focus();
     }
   }, []);
@@ -198,13 +196,13 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           isInverse={isInverse}
           isFullWidth={isFullWidth}
           orientation={orientation}
-          ref={styledCustomTabRef}
           theme={theme}
         />
       ) : (
         <StyledTab
           {...other}
-          ref={firstRef ? styledTabRef : ref}
+          isFocused={isFocused}
+          ref={styledTabRef}
           data-testid={testId}
           href={to}
           isActive={isActive}
@@ -214,7 +212,6 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
           orientation={orientation}
           theme={theme}
         >
-          {console.log(firstRef)}
           {icon && (
             <StyledIcon
               theme={theme}
@@ -230,4 +227,3 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
     </StyledTabsChild>
   );
 });
-NavTab.displayName = 'NavTab';
