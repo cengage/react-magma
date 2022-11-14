@@ -112,7 +112,7 @@ export interface ComboboxProps<T extends SelectOptions>
   containerStyle?: React.CSSProperties;
   /**
    * When false, the selected item gets validated to ensure it's in the original `items` list.
-   * When using Combobox for typeahead with a large `items` list, set this boolean to true to allow the selected item to not be part of the original `items` list. 
+   * When using Combobox for typeahead with a large `items` list, set this boolean to true to allow the selected item to not be part of the original `items` list.
    * In addition, when this is true and `isLoading` is used, the loading indicator will appear on the list instead of the input
    * @default false
    */
@@ -127,6 +127,11 @@ export interface MultiComboboxProps<T extends SelectOptions>
    * @internal
    */
   isMulti: true;
+  /**
+   * Keeps the list of items open after selection
+   * @default false
+   */
+  hasPersistentMenu?: boolean;
 }
 
 export function instanceOfMultiCombobox<T>(

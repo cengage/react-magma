@@ -80,6 +80,7 @@ describe('Tab', () => {
 
     expect(component).toHaveProperty('disabled', true);
     expect(component).toBeDisabled();
+    expect(getByTestId('tabContainer')).toHaveStyleRule('cursor', 'not-allowed');
 
     rerender(
       <Tabs>
@@ -91,6 +92,7 @@ describe('Tab', () => {
 
     expect(component).toHaveProperty('disabled', false);
     expect(component).not.toBeDisabled();
+    expect(getByTestId('tabContainer')).toHaveStyleRule('cursor', 'pointer');
   });
 
   it('should render icon', () => {

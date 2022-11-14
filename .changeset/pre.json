@@ -2,24 +2,16 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "1.0.2",
-    "@react-magma/dropzone": "1.0.3",
-    "react-magma-dom": "3.1.2",
-    "@react-magma/schema-renderer": "1.0.3",
-    "@cengage-patterns/header": "3.0.3",
-    "react-magma-docs": "4.0.4",
+    "@react-magma/charts": "2.0.0",
+    "@react-magma/dropzone": "2.0.0",
+    "react-magma-dom": "3.2.0",
+    "@react-magma/schema-renderer": "2.0.0",
+    "@cengage-patterns/header": "4.0.0",
+    "react-magma-docs": "4.0.5",
     "react-magma-landing": "1.1.1"
   },
   "changesets": [
-    "feat-characterCounter",
-    "multicombobox-clearable",
-    "soft-horses-develop",
-    "subtle-button",
-    "table-a11y-focus",
-    "table-stories",
-    "update-versions-charts",
-    "update-versions-dropzone",
-    "update-versions-schema",
-    "update-versions"
+    "small-jokes-hide",
+    "tabs-disabled"
   ]
 }

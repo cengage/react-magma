@@ -27,6 +27,7 @@ const ChildrenContainer = styled.div`
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
+  min-height: ${props => props.theme.spaceScale.spacing09};
 `;
 
 interface SelectTriggerButtonInterface<T> {
@@ -73,7 +74,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       theme={theme}
       tabIndex={disabled ? undefined : 0}
     >
-      <ChildrenContainer>{children}</ChildrenContainer>
+      <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
       <DropdownIndicator />
     </StyledButton>
   );

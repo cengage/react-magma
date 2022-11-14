@@ -23,8 +23,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       id: defaultId,
       inputSize = InputSize.medium,
       isLabelVisuallyHidden,
+      labelPosition,
       labelStyle,
       labelText,
+      labelWidth,
       maxLength,
       messageStyle,
       testId,
@@ -33,7 +35,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const id = useGenerateId(defaultId);
 
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const descriptionId =
+      errorMessage || helperMessage || maxLength ? `${id}__desc` : null;
 
     const isInverse = useIsInverse(props.isInverse);
 
@@ -62,8 +65,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         isInverse={isInverse}
         inputSize={inputSize}
         inputLength={characterLength}
+        labelPosition={labelPosition}
         labelStyle={labelStyle}
         labelText={labelText}
+        labelWidth={labelWidth}
         maxLength={maxLength}
         messageStyle={messageStyle}
         testId={testId && `${testId}-formFieldContainer`}

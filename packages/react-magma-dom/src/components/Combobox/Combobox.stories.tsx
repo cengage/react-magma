@@ -5,6 +5,11 @@ import { SelectOptions } from '../Select';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
+import { Input } from '../Input';
+import { Spacer } from '../Spacer';
+import { Form } from '../Form';
+import { Button, ButtonType } from '../Button';
+import { action } from '@storybook/addon-actions';
 
 const Template: Story<ComboboxProps<SelectOptions>> = args => (
   <Combobox {...args} />
@@ -18,6 +23,11 @@ export default {
       control: {
         type: 'select',
         options: LabelPosition,
+      },
+    },
+    labelWidth: {
+      control: {
+        type: 'number',
       },
     },
   },
@@ -34,26 +44,37 @@ Default.args = {
   disableCreateItem: false,
   errorMessage: '',
   helperMessage: '',
+  placeholder: 'Select item',
   isClearable: false,
   isMulti: false,
   isLoading: false,
 };
 
-export const Multi = (props: MultiComboboxProps<SelectOptions>) => (
-  <Combobox
-    defaultItems={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' },
-    ]}
-    {...props}
-  />
-);
+export const Multi = (props: MultiComboboxProps<SelectOptions>) => {
+  return (
+    <Combobox
+      defaultItems={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+        { label: 'Orange', value: 'orange' },
+        { label: 'Aqua', value: 'aqua' },
+        { label: 'Gold', value: 'gold' },
+        { label: 'Periwinkle', value: 'periwinkle' },
+        { label: 'Lavender', value: 'lavender' },
+        { label: 'Marigold', value: 'marigold' },
+      ]}
+      {...props}
+    />
+  );
+};
 Multi.args = {
   labelText: 'Multi Example',
   isMulti: true,
   isClearable: true,
   errorMessage: '',
+  hasPersistentMenu: true,
+  placeholder: 'Select item',
 };
 
 export const ErrorMessage = Template.bind({});
@@ -1188,3 +1209,68 @@ Typeahead.args = {
   disableCreateItem: true,
   largeDataSet: false,
 };
+
+export const FullPageExample = args => {
+  return (
+    <>
+      <Form
+        onSubmit={action('form submitted')}
+        header="Confirm Adoption"
+        description="Example of comboboxes inside a form"
+        actions={<Button type={ButtonType.submit}>Submit</Button>}
+      >
+        <Combobox
+          labelText="Select the format(s) for which you would like to review pricing *"
+          defaultItems={[
+            { label: 'eBook', value: 'eBook' },
+            { label: 'Paperback', value: 'paperback' },
+            { label: 'Hardcover', value: 'hardcover' },
+            {
+              label: 'Online Homework Platform',
+              value: 'onlinehomeworkplatform',
+            },
+          ]}
+          isMulti
+          hasPersistentMenu
+          placeholder="Select format(s)"
+          isClearable
+          disableCreateItem
+        />
+        <Spacer size={16} />
+        <Input
+          labelText="What is the name and number of the course you are requesting this title for? *"
+          maxLength={100}
+          placeholder="SWEN101"
+        />
+        <Spacer size={16} />
+        <Combobox
+          labelText="What term will you be teaching? *"
+          defaultItems={[
+            { label: 'Spring', value: 'Spring' },
+            { label: 'Summer', value: 'Summer' },
+            { label: 'Fall', value: 'Fall' },
+            { label: 'Winter', value: 'Winter' },
+          ]}
+          isMulti
+          hasPersistentMenu
+          placeholder="Select term"
+          disableCreateItem
+        />
+        <Spacer size={16} />
+        <Combobox
+          labelText="What is your role in selecting a title for this course?"
+          defaultItems={[
+            { label: 'One', value: 'one' },
+            { label: 'Two', value: 'two' },
+            { label: 'Three', value: 'three' },
+            { label: 'Four', value: 'four' },
+          ]}
+          placeholder="Select role"
+          disableCreateItem
+        />
+        <Spacer size={16} />
+      </Form>
+    </>
+  );
+};
+FullPageExample.parameters = { controls: { exclude: ['labelPosition'] } };

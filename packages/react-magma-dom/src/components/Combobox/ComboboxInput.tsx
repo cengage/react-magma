@@ -87,7 +87,7 @@ const StyledInput = styled.input`
   border: 0;
   display: flex;
   flex-grow: 1;
-  height: ${props => props.theme.spaceScale.spacing08};
+  height: ${props => props.theme.spaceScale.spacing09};
   min-width: ${props => props.theme.spaceScale.spacing07};
   padding-left: ${props => props.theme.spaceScale.spacing02};
   width: 0;
@@ -224,7 +224,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
           />
         </SelectedItemsWrapper>
         {children}
-        {isLoading && !isTypeahead  && (
+        {isLoading && !isTypeahead && (
           <LoadingIndicator
             style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
           />
