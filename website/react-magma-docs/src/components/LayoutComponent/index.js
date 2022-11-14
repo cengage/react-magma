@@ -5,10 +5,11 @@ import { magma, Container, Heading } from 'react-magma-dom';
 
 const ContentSection = styled.section`
   grid-area: content;
-  background: ${magma.colors.neutral100};
+  margin-top: 12px;
 `;
 
 export const LayoutComponent = props => {
+  console.log('props', props);
   return (
     <>
       <Helmet
@@ -23,15 +24,33 @@ export const LayoutComponent = props => {
       <main>
         <Container
           gutterWidth={0}
-          style={{ background: magma.colors.neutral200 }}
+          // style={props?.heading && { background: magma.colors.neutral100 }}
         >
-          <Heading
-            level={1}
-            style={{ padding: '32px 0 32px 100px', marginBottom: 0 }}
+          {props?.heading && (
+            <Heading
+              level={1}
+              style={
+                {
+                  padding: '32px 0 32px 100px',
+                  // marginBottom: '40px',
+                  marginBottom: '0',
+                  background: magma.colors.neutral200,
+                }
+              }
+            >
+              {props.heading}
+            </Heading>
+          )}
+          <ContentSection
+            className="content"
+            style={
+              props && props.heading && {
+                marginTop: '40px',
+              }
+            }
           >
-            {props.heading}
-          </Heading>
-          <ContentSection className="content">{props.children}</ContentSection>
+            {props.children}
+          </ContentSection>
         </Container>
       </main>
     </>
