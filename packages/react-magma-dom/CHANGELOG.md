@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1-next.1
+
+### Patch Changes
+
+- 0bf79d5de: style: fix linting errors and warnings
+
 ## 3.2.1-next.0
 
 ### Patch Changes
