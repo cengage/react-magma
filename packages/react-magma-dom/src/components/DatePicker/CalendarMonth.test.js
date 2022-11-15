@@ -241,7 +241,7 @@ describe('Calendar Month', () => {
     fireEvent.click(getByText(/Back to Calendar/i));
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
 
     expect(hideHelperInformation).toHaveBeenCalled();

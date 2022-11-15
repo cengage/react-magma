@@ -183,7 +183,6 @@ describe('Select', () => {
     ];
     const CustomItem = props => {
       const { itemRef, isFocused, item, itemString, ...other } = props;
-
       return (
         <li {...other} data-testid={item.id} ref={itemRef}>
           {itemString}
@@ -221,7 +220,7 @@ describe('Select', () => {
 
     fireEvent.keyDown(renderedSelect, { key: 'r' });
 
-    act(() => jest.runAllTimers());
+    act(() => jest.runOnlyPendingTimers());
 
     expect(
       queryByText(items[0], { selector: 'button' })
@@ -483,7 +482,7 @@ describe('Select', () => {
       key: 'a',
     });
 
-    act(() => jest.runAllTimers());
+    act(() => jest.runOnlyPendingTimers());
 
     expect(queryByText(items[0])).not.toBeInTheDocument();
 

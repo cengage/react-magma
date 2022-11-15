@@ -13,7 +13,7 @@ describe('Loading Indicator', () => {
 
   afterEach(async () => {
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
     jest.useRealTimers();
   });

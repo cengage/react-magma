@@ -151,7 +151,7 @@ describe('Alert', () => {
 
       fireEvent.click(dismissableIconButton);
 
-      act(jest.runAllTimers);
+      act(jest.runOnlyPendingTimers);
 
       expect(onDismiss).toHaveBeenCalled();
       jest.useRealTimers();

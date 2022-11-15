@@ -48,7 +48,7 @@ describe('Calendar Month', () => {
     fireEvent.click(getByLabelText(/close/i));
 
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
 
     expect(onCloseSpy).toHaveBeenCalled();

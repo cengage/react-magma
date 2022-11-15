@@ -17,7 +17,7 @@ describe('Utils', () => {
 
       debouncedFunc();
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
       expect(func).toHaveBeenCalled();
     });
@@ -30,7 +30,7 @@ describe('Utils', () => {
       debouncedFunc();
       debouncedFunc();
 
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
 
       expect(func).toHaveBeenCalledTimes(1);
     });

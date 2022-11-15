@@ -228,7 +228,7 @@ describe('Modal', () => {
       fireEvent.click(getByTestId('modal-closebtn'));
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
@@ -262,7 +262,7 @@ describe('Modal', () => {
       });
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
@@ -306,7 +306,7 @@ describe('Modal', () => {
       });
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onEscKeyDown).toHaveBeenCalled();
@@ -344,7 +344,7 @@ describe('Modal', () => {
       fireEvent.click(getByTestId(testId));
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
@@ -383,7 +383,7 @@ describe('Modal', () => {
       fireEvent.click(getByTestId(testId));
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
@@ -414,7 +414,7 @@ describe('Modal', () => {
       fireEvent.click(getByTestId('modal-content'));
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
@@ -441,7 +441,7 @@ describe('Modal', () => {
       );
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
@@ -485,7 +485,7 @@ describe('Modal', () => {
       });
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
@@ -526,7 +526,7 @@ describe('Modal', () => {
       fireEvent.click(getByTestId('modal-backdrop'));
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
@@ -567,7 +567,7 @@ describe('Modal', () => {
       fireEvent.mouseDown(getByTestId('modal-backdrop'));
 
       await act(async () => {
-        jest.runAllTimers();
+        jest.runOnlyPendingTimers();
       });
 
       expect(getByTestId('modal-content')).toBeInTheDocument();

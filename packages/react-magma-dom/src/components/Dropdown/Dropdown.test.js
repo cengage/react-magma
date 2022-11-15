@@ -385,7 +385,7 @@ describe('Dropdown', () => {
 
     userEvent.click(document.body);
 
-    act(jest.runAllTimers);
+    act(jest.runOnlyPendingTimers);
 
     expect(onClose).toHaveBeenCalled();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');

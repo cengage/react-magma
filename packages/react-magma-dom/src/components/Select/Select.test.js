@@ -195,7 +195,7 @@ describe('Select', () => {
 
     fireEvent.keyDown(renderedSelect, { key: 'r' });
 
-    act(() => jest.runAllTimers());
+    act(() => jest.runOnlyPendingTimers());
 
     expect(getByTestId('selectedItemText').textContent).not.toEqual(items[0]);
 
@@ -398,7 +398,7 @@ describe('Select', () => {
       key: 'a',
     });
 
-    act(() => jest.runAllTimers());
+    act(() => jest.runOnlyPendingTimers());
 
     expect(queryByText(items[0])).not.toBeInTheDocument();
 
