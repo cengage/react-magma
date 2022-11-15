@@ -93,7 +93,6 @@ const StyledTab = styled.a<{
   isActive?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
-  isFocused?: boolean;
   orientation: TabsOrientation;
   theme: any;
 }>`
@@ -162,7 +161,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
 
   const styledTabRef = React.useRef<HTMLAnchorElement>();
 
-  // Sets focus on first NavTab for accessibility
+  // Sets focus on NavTab for accessibility
   React.useEffect(() => {
     if (props.isFocused) {
       styledTabRef.current.focus();
@@ -202,7 +201,6 @@ export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
       ) : (
         <StyledTab
           {...other}
-          isFocused={isFocused}
           ref={styledTabRef}
           data-testid={testId}
           href={to}
