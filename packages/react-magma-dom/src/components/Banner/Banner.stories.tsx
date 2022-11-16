@@ -2,7 +2,7 @@ import React from 'react';
 import { Banner, BannerProps } from '.';
 import { AlertVariant } from '../AlertBase';
 import { Card, CardBody } from '../Card';
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react/types-6-0';
 import { Hyperlink } from '../Hyperlink';
 
 function handleActionButtonClick() {
@@ -78,7 +78,7 @@ const Template: Story<BannerProps> = args => (
 export default {
   component: Banner,
   title: 'Banner',
-};
+} as Meta;
 
 export const Default = Template.bind({});
 Default.args = {};

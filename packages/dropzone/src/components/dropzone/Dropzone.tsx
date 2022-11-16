@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 /**
  * HELPFUL NOTE!
  * SINCE THIS PACKAGE USES `FILE` WE MUST USE `Object.assign` IN LIEU OF SPREADING
@@ -191,6 +192,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       accept,
       containerStyle,
       disabled,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       dropzoneOptions = {
         multiple: true,
       },

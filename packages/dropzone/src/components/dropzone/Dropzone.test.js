@@ -11,8 +11,6 @@ import {
 import { I18nContext, defaultI18n, magma } from 'react-magma-dom';
 import userEvent from '@testing-library/user-event';
 
-const TEXT = 'Test Text';
-
 describe('File Uploader', () => {
   let files;
   let images;
@@ -35,7 +33,7 @@ describe('File Uploader', () => {
   });
 
   it('should render the file uploader component', () => {
-    const { container, getByText } = render(<Dropzone />);
+    const { getByText } = render(<Dropzone />);
 
     expect(getByText('Browse Files')).toBeInTheDocument();
 
@@ -45,7 +43,7 @@ describe('File Uploader', () => {
   });
 
   it('should render the file uploader component without drag', () => {
-    const { container, queryByText } = render(<Dropzone noDrag />);
+    const { queryByText } = render(<Dropzone noDrag />);
 
     expect(queryByText('Browse Files')).toBeInTheDocument();
     expect(
@@ -102,18 +100,6 @@ describe('File Uploader', () => {
 
     const input = container.querySelector('input');
     expect(input).toHaveAttribute('multiple');
-  });
-
-  it('allows adding files via drop', () => {
-    const { container } = render(<Dropzone />);
-
-    const dropzone = container.querySelector('div');
-
-    const dropEvt = new Event('drop', { bubbles: true });
-    const dropEvtPreventDefaultSpy = jest.spyOn(dropEvt, 'preventDefault');
-
-    fireEvent(dropzone, dropEvt);
-    expect(dropEvtPreventDefaultSpy).toHaveBeenCalled();
   });
 
   it('allows adding files via drop', () => {
@@ -398,7 +384,7 @@ describe('File Uploader', () => {
 
     const ui = <Dropzone minSize={10000} testId={testId} />;
 
-    const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
+    const { getByTestId, getByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     fireDrop(dropzone, data);
@@ -527,7 +513,7 @@ describe('File Uploader', () => {
       />
     );
 
-    const { getByTestId, getByLabelText, getByText, queryByText, rerender } =
+    const { getByTestId, getByLabelText, getByText, rerender } =
       render(ui);
 
     const dropzone = getByTestId(testId);
@@ -573,7 +559,7 @@ describe('File Uploader', () => {
 
     const ui = <Dropzone onRemoveFile={onRemoveFileSpy} testId={testId} />;
 
-    const { getByTestId, getByLabelText, queryByText, rerender } = render(ui);
+    const { getByTestId, getByLabelText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     fireDrop(dropzone, data);
@@ -611,13 +597,13 @@ function fireDragEnter(node, data) {
   dispatchEvt(node, 'dragenter', data);
 }
 
-function fireDragOver(node, data) {
-  dispatchEvt(node, 'dragover', data);
-}
+// function fireDragOver(node, data) {
+//   dispatchEvt(node, 'dragover', data);
+// }
 
-function fireDragLeave(node, data) {
-  dispatchEvt(node, 'dragleave', data);
-}
+// function fireDragLeave(node, data) {
+//   dispatchEvt(node, 'dragleave', data);
+// }
 
 function fireDrop(node, data) {
   dispatchEvt(node, 'drop', data);

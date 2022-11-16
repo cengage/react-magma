@@ -2,11 +2,12 @@ import React from 'react';
 import { Card, CardBody } from '../Card';
 import { Hyperlink } from '.';
 import { ButtonColor, ButtonTextTransform } from '../Button';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Hyperlink,
   title: 'Hyperlink',
-};
+} as Meta;
 
 export const Default = () => {
   return (
@@ -60,7 +61,7 @@ export const Default = () => {
       </Card>
       <Card>
         <CardBody>
-          <a href="https://www.google.com">This is a link that doesn't use Hyperlink</a>
+          <a href="https://www.google.com">This is a link that does not use Hyperlink</a>
         </CardBody>
       </Card>
     </>

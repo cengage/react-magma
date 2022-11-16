@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.2.1-next.2
+
+### Patch Changes
+
+- 6a01a5325: fix(input): Inputs with long placeholders && `isClearable` have appropriate padding
+
+## 3.2.1-next.1
+
+### Patch Changes
+
+- 0bf79d5de: style: fix linting errors and warnings
+
 ## 3.2.1-next.0
 
 ### Patch Changes

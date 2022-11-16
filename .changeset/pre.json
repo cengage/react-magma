@@ -11,6 +11,8 @@
     "react-magma-landing": "1.1.1"
   },
   "changesets": [
+    "linting",
+    "placeholder-spacing",
     "small-jokes-hide",
     "tabs-disabled"
   ]
