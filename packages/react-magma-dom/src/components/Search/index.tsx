@@ -75,6 +75,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
       labelText,
       placeholder,
       onSearch,
+      onClear,
       ...other
     } = props;
 
@@ -109,6 +110,11 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
       onSearch(value);
     }
 
+    function handleClear() {
+      onClear && typeof onClear === 'function' && onClear();
+      setCharacterLength(0);
+    }
+
     return (
       <InputBase
         {...other}
@@ -121,6 +127,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
         isInverse={useIsInverse(props.isInverse)}
         inputLength={characterLength}
         onChange={handleChange}
+        onClear={handleClear}
         onIconClick={
           props.isPredictive ? null : isLoading ? null : handleSearch
         }
