@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1-next.3
+
+### Patch Changes
+
+- fafe31580: fix(search): Search components with long placeholders && `isClearable` have appropriate padding
+
 ## 3.2.1-next.2
 
 ### Patch Changes

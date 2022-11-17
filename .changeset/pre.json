@@ -13,6 +13,7 @@
   "changesets": [
     "linting",
     "placeholder-spacing",
+    "search-placeholder",
     "small-jokes-hide",
     "tabs-disabled"
   ]
