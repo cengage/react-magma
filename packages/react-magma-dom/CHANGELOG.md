@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1-next.4
+
+### Patch Changes
+
+- 962253d56: fix(navtabs) Added focus state on first NavTab for accessibility fix.
+
 ## 3.2.1-next.3
 
 ### Patch Changes

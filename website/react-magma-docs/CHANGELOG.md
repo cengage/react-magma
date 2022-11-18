@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.6-next.5
+
+### Patch Changes
+
+- b7f8f39fb: Added initial focus to "Introduction" link for keyboard navigation.
+- Updated dependencies [962253d56]
+  - react-magma-dom@3.2.1-next.4
+
 ## 4.0.6-next.4
 
 ### Patch Changes
