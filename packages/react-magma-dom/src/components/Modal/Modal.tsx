@@ -215,7 +215,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     const focusTrapElement = useFocusLock(
       isModalOpen,
-      props.header ? headingRef : lastFocus,
+      props.header ? headingRef : null,
       bodyRef
     );
 

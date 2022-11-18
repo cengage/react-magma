@@ -68,6 +68,30 @@ export const NavTabs = React.forwardRef<
     tabsHandleMethods;
   const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
 
+  const navTabChildren = React.Children.toArray(children);
+
+  const hasChildFocus = () => {
+    return navTabChildren.some(child => {
+      if (React.isValidElement(child)) {
+        return Object.keys(child.props).includes('isFocused');
+      }
+    });
+  };
+
+  const navTabsChildren = React.Children.map(children, (child, i) => {
+    const item = child as React.ReactElement<
+      React.PropsWithChildren<NavTabProps>
+    >;
+    if (hasChildFocus) {
+      if (item.type === NavTab && i === 0) {
+        return React.cloneElement(item, { isFocused: true });
+      }
+    }
+    return child;
+  });
+
+  console.log(navTabChildren);
+
   return (
     <StyledContainer
       aria-label={rest['aria-label']}
@@ -109,15 +133,7 @@ export const NavTabs = React.forwardRef<
               orientation,
             }}
           >
-            {React.Children.map(children, (child, i) => {
-              const item = child as React.ReactElement<
-                React.PropsWithChildren<NavTabProps>
-              >;
-              if (item.type === NavTab && i === 0) {
-                return React.cloneElement(item, { isFocused: true });
-              }
-              return child;
-            })}
+            {navTabsChildren}
           </NavTabsContext.Provider>
         </StyledTabs>
       </StyledTabsWrapper>

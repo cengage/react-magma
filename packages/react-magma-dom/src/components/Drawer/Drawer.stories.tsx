@@ -5,7 +5,6 @@ import { VisuallyHidden } from '../VisuallyHidden';
 import { DrawerPosition } from './Drawer';
 import { NavTab, NavTabs } from '../NavTabs';
 import { TabsOrientation } from '../Tabs';
-import { useEffect } from '@storybook/addons';
 
 const info = {
   component: Drawer,
@@ -48,7 +47,7 @@ export const Default = args => {
 
 export const SiteNavigation = args => {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const thisRef = React.useRef<any>();
+
   return (
     <>
       <Drawer
@@ -58,23 +57,12 @@ export const SiteNavigation = args => {
       >
         <NavTabs orientation={TabsOrientation.vertical}>
           <NavTab to="#">One</NavTab>
-          <NavTab
-            ref={thisRef}
-            style={{ backgroundColor: 'green', color: 'white' }}
-            to="#"
-          >
-            Two
-          </NavTab>
+          <NavTab to="#">Two</NavTab>
           <NavTab to="#">Three</NavTab>
           <NavTab to="#">Four</NavTab>
         </NavTabs>
       </Drawer>
-      <Button
-        onClick={() => {
-          setShowDrawer(true);
-          thisRef.current.style.backgroundColor = 'gray';
-        }}
-      >
+      <Button onClick={() => setShowDrawer(true)}>
         Show Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
