@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.6-next.6
+
+### Patch Changes
+
+- 74b65c60c: docs: update design docs
+
 ## 4.0.6-next.5
 
 ### Patch Changes
