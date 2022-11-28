@@ -5,15 +5,15 @@ import { magma, Container, Heading } from 'react-magma-dom';
 
 const ContentSection = styled.section`
   grid-area: content;
-  margin-top: 12px;
 `;
 
 export const LayoutComponent = props => {
-  console.log('props', props);
+  const { children, heading, title } = props;
+
   return (
     <>
       <Helmet
-        title={props.title ? `${props.title} - React Magma` : 'React Magma'}
+        title={title ? `${title} - React Magma` : 'React Magma'}
         meta={[
           { name: 'description', content: 'Sample' },
           { name: 'keywords', content: 'sample, something' },
@@ -22,36 +22,31 @@ export const LayoutComponent = props => {
         <html lang="en" />
       </Helmet>
       <main>
-        <Container
-          gutterWidth={0}
-          // style={props?.heading && { background: magma.colors.neutral100 }}
-        >
-          {props?.heading && (
+        {/* component */}
+        {heading ? (
+          <Container
+            gutterWidth={0}
+            style={{ background: magma.colors.neutral100 }}
+          >
             <Heading
               level={1}
-              style={
-                {
-                  padding: '32px 0 32px 100px',
-                  // marginBottom: '40px',
-                  marginBottom: '0',
-                  background: magma.colors.neutral200,
-                }
-              }
+              style={{
+                padding: '32px 0 32px 100px',
+                marginBottom: '0',
+                background: magma.colors.neutral200,
+              }}
             >
-              {props.heading}
+              {heading}
             </Heading>
-          )}
-          <ContentSection
-            className="content"
-            style={
-              props && props.heading && {
-                marginTop: '40px',
-              }
-            }
-          >
-            {props.children}
-          </ContentSection>
-        </Container>
+            <div>{children}</div>
+          </Container>
+        ) : (
+          <Container gutterWidth={0}>
+            <ContentSection className="content" style={{ marginTop: '40px' }}>
+              {children}
+            </ContentSection>
+          </Container>
+        )}
       </main>
     </>
   );

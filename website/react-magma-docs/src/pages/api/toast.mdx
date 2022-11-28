@@ -6,9 +6,7 @@ props:
   - ToastsContainerProps
 ---
 
-<DocsHeading to="/design/alerts/" type="api">
-  Toast
-</DocsHeading>
+<PageContent componentName="toast" type="api">
 
 `Toast` components use the <Link to="/api/alert">Alert component</Link> internally for its content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
 
@@ -604,3 +602,5 @@ Passing in the `testId` prop will pass the `testId` to the internal `Alert` elem
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <ToastProps />
+
+</PageContent>

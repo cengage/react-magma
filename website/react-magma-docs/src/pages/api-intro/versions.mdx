@@ -13,6 +13,8 @@ import {
 } from 'react-magma-dom';
 import { getVersions } from '../../utils';
 
+<PageContent componentName="versions">
+
 export const NextVersionTable = () => {
   const [tags, setTags] = React.useState([]);
   const [row, setRow] = React.useState();
@@ -89,8 +91,6 @@ export const ReleasedVersionsTable = () => {
   );
 };
 
-# React Magma Versions 
-
 On an older version? Want to see the newest unreleased updates? Switch to a different version of the docs at anytime.
 
 ## Next Version
@@ -102,3 +102,5 @@ See what changes are in development and coming in a future release.
 The most recent stable version (&nbsp;✅&nbsp;) is recommended for use in production.
 
 <ReleasedVersionsTable />
+
+</PageContent>

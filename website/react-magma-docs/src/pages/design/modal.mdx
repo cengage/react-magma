@@ -11,9 +11,8 @@ import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 import { Button, Modal } from 'react-magma-dom';
 
-<DocsHeading to="/api/modal/" type="design">
-  Modal
-</DocsHeading>
+<PageContent componentName="modal" type="design">
+
 <LeadParagraph>
   Modals inform users about a task and can contain critical information, require
   decisions, or involve multiple tasks.
@@ -96,3 +95,5 @@ When a modal is opened, the focus is automatically put on the title of the modal
 Always validate a user's input entries before a modal is closed. If there are any errors, an inline error alert should be displayed above the form, as well as error messages on any specific inputs that failed validation. The error messages should provide clear instructions on how to resolve the errors and complete the action.
 
 <img src="../../images/modals/modal-validation.png" alt=" " />
+
+</PageContent>

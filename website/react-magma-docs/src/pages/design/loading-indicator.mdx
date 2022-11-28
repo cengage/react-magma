@@ -9,9 +9,8 @@ import './design-guidelines-styles.css';
 import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/loading-indicator/" type="design">
-  Loading Indicator
-</DocsHeading>
+<PageContent componentName="loading_indicator" type="design">
+
 <LeadParagraph>
   Loading indicators communicate to the user that the action they requested is
   working, or the content they're going to see is not quite ready.
@@ -145,3 +144,5 @@ This component also allows for three messages, although at different intervals t
 1. **1-15 seconds -** The first message is used to simply tell the user what is happening. This could be as simple as "Loading..." or slightly more descriptive if necessary.
 1. **15-30 seconds -** The second message is used to tell the user that the data is still loading.
 1. **Greater than 30 seconds -** The third message is used to either comfort the user because everything is still loading but OK, or to prepare the user for a possible problem.
+
+</PageContent>

@@ -11,9 +11,7 @@ props:
   - AccordionPanelProps
 ---
 
-<DocsHeading to="/design/accordion/" type="api">
-  Accordion
-</DocsHeading>
+<PageContent componentName="accordion" type="api">
 
 An accordion is a vertically stacked group of collapsible sections. An accordion is composed of grouped buttons and panels. When a user clicks an accordion button, its respective panel will hide or show.
 
@@ -269,7 +267,7 @@ import {
   AccordionButton,
   AccordionPanel,
   Card,
-  CardBody
+  CardBody,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -329,3 +327,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <AccordionPanelProps />
+
+</PageContent>

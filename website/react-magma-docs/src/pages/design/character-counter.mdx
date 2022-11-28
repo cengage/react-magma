@@ -10,9 +10,8 @@ import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 import { Tooltip } from 'react-magma-dom';
 
-<DocsHeading to="/api/character-counter/" type="design">
-  Character Counter
-</DocsHeading>
+<PageContent componentName="character_counter" type="design">
+
 <LeadParagraph>
   Character counter helps users know how much text they can enter when there is a limit on the number of characters.
 </LeadParagraph>
@@ -89,3 +88,5 @@ The following measures have been taken to ensure the Character Counter component
 
 1. The character count message is associated with the input. We use `aria-describedby` on the input to allow the message to be announced to those using screen readers.
 2. We use the aria-live attribute on the character count message. We use `aria-live="polite"` so that updates to the character count message are also announced when using a screen reader.
+
+</PageContent>

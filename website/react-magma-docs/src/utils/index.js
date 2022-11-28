@@ -71,3 +71,9 @@ export const convertTextToId = text => {
     ? text.toLowerCase().replace(/\s/g, '_')
     : null;
 };
+
+export const convertTextToIdHyphen = text => {
+  return typeof text === 'string'
+    ? text.toLowerCase().replace(/\s/g, '-')
+    : null;
+};

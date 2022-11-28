@@ -10,9 +10,8 @@ import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 import { Tooltip } from 'react-magma-dom';
 
-<DocsHeading to="/api/tooltip/" type="design">
-  Tooltip
-</DocsHeading>
+<PageContent componentName="tooltip" type="design">
+
 <LeadParagraph>
   Tooltips display informative text when users hover over, or focus on an
   element.
@@ -58,3 +57,5 @@ Tooltips can be positioned below, above, to the right of, or to the left of the 
 ## Accessibility
 
 Tooltips are displayed when hovering over or focusing on an element, but they are also announced to screen readers for the visually impaired. Users navigating the page with a keyboard will see the tooltip when they move focus to the element, and may dismiss the tooltip by pressing the `Escape` key.
+
+</PageContent>

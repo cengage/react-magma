@@ -10,9 +10,7 @@ import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 import { Alert } from 'react-magma-dom';
 
-<DocsHeading to="/api/alert/" type="design">
-  Alert
-</DocsHeading>
+<PageContent componentName="alert" type="design">
 <LeadParagraph>
   Alerts display a short, important message in a way that attracts a user's
   attention.
@@ -249,3 +247,5 @@ The auto-dismissing toasts have some additional features for accessibility inclu
 
 - Hovering over or moving focus to the toast pauses the timer to give the user ample time to read and understand the message.
 - There is a white border around the toast to ensure the boundaries of the toast are visible no matter what is displayed in the background.
+
+</PageContent>

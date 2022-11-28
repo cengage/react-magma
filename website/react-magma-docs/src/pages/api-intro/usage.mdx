@@ -3,6 +3,8 @@ title: Usage
 order: 2
 ---
 
+<PageContent componentName="usage">
+
 # Using React Magma
 
 How to use React Magma components. The examples here use the <Link to="/api/button">Button</Link> component. More information about each of the components can be found in the Component API section.
@@ -87,3 +89,5 @@ We recommend using [jest](https://jestjs.io/) with [`@testing-library/react`](ht
 Wherever possible selecting elements should be handled using visible text or aria-labels with the `@testing-library/react` queries for `text` and `labelText`. If there are multiple elements that are returned from a query you can refine the results using the [`SelectorMatcherOptions`](https://github.com/testing-library/dom-testing-library/blob/19901e13b6acd11df580ddf6dd35540a39c5eaaf/types/query-helpers.d.ts#L4) in your query.
 
 If that is not sufficient, each of our components accept a `testId` that is passed to the primary element as a `data-testid` attribute that can be found with the `getByTestId` helper function from `@testing-library/react`.
+
+</PageContent>

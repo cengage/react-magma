@@ -5,9 +5,7 @@ props:
   - IndeterminateCheckboxProps
 ---
 
-<DocsHeading to="/design/selection-controls" type="api">
-  Indeterminate
-</DocsHeading>
+<PageContent componentName="indeterminate_checkbox" type="api">
 
 The `IndeterminateCheckbox` component is similar to the <Link to="/api/checkboxes">Checkbox component</Link>, except that instead of accepting a boolean `checked` value,
 it takes the `status` prop, with three possible statuses: `indeterminate`, `checked` and `unchecked`. The default status is `unchecked`.
@@ -112,3 +110,5 @@ export function Example() {
 **Any other props supplied will be provided to the `Checkbox` Component, except for the `checked` prop.**
 
 <IndeterminateCheckboxProps />
+
+</PageContent>
