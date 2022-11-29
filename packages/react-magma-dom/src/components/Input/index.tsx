@@ -83,6 +83,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
+          inputLength={characterLength}
           isInverse={isInverse}
           onChange={handleChange}
           onClear={handleClear}

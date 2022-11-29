@@ -4,6 +4,7 @@ import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { LabelPosition } from '../Label';
+import { Meta } from '@storybook/react/types-6-0';
 
 const today: Date = new Date();
 
@@ -33,7 +34,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = args => {
   return <DatePicker {...args} />;

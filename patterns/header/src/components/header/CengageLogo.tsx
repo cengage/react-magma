@@ -5,7 +5,7 @@ export const CengageLogo = () => (
     <defs>
       <path id="a" d="M24.391 49.537H.084V.097H24.39z" />
     </defs>
-    <g fill="none" fill-rule="evenodd">
+    <g fill="none" fillRule="evenodd">
       <g transform="translate(0 11.342)">
         <path
           d="M13.548.211l9.139 3.152-1.46 7.449-12.67-4.367 3.116-5.48c.463-.813 1.078-1.029 1.875-.754"

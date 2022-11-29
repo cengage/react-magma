@@ -88,7 +88,7 @@ export function useFocusLock(
         if (
           shiftKey &&
           (document.activeElement === firstItem ||
-            document.activeElement === header.current)
+            document.activeElement === header?.current)
         ) {
           event.preventDefault();
           lastItem.focus();

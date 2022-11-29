@@ -3,11 +3,12 @@ import { NavTabs } from '.';
 import { NavTab } from './NavTab';
 import { Card } from '../Card';
 import { magma } from '../../theme/magma';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: NavTabs,
   title: 'NavTabs',
-};
+} as Meta;
 
 export const Default = () => {
   return (
