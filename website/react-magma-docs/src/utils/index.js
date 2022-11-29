@@ -72,8 +72,8 @@ export const convertTextToId = text => {
     : null;
 };
 
-export const convertTextToIdHyphen = text => {
+export const convertUnderscoreToHyphen = text => {
   return typeof text === 'string'
-    ? text.toLowerCase().replace(/\s/g, '-')
+    ? text.toLowerCase().replace('_', '-')
     : null;
 };

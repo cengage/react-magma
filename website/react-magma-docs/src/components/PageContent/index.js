@@ -1,9 +1,10 @@
+/* eslint-disable complexity */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql, StaticQuery } from 'gatsby';
 import { SubPageTabs } from '../SubPageTabs';
-import { convertTextToId, convertTextToIdHyphen } from '../../utils';
+import { convertTextToId, convertUnderscoreToHyphen } from '../../utils';
 import {
   TabPanelsContainer,
   TabPanel,
@@ -17,6 +18,7 @@ import {
 const NAV_TABS = {
   API: 'api',
   DESIGN: 'design',
+  PATTERNS: 'patterns',
 };
 
 const StyledTabs = styled(NavTabs)`
@@ -53,8 +55,14 @@ export const PageContent = ({ children, componentName, type }) => {
   const isInverse = useIsInverse();
 
   const designLink =
-    componentName && type && `/${NAV_TABS.DESIGN}/${convertTextToId(componentName)}/`;
-  const apiLink = componentName && type && `/${NAV_TABS.API}/${convertTextToId(componentName)}/`;
+    componentName &&
+    `/${NAV_TABS.DESIGN}/${convertUnderscoreToHyphen(componentName)}/`;
+  const apiLink =
+    componentName &&
+    `/${NAV_TABS.API}/${convertUnderscoreToHyphen(componentName)}/`;
+  const patternsLink =
+    componentName &&
+    `/${NAV_TABS.PATTERNS}/${convertUnderscoreToHyphen(componentName)}/`;
 
   return (
     <StaticQuery
@@ -71,8 +79,27 @@ export const PageContent = ({ children, componentName, type }) => {
               ...navFields
             }
           }
+          designPatternDocs: allMdx(
+            filter: {
+              fileAbsolutePath: { glob: "**/src/pages/design/**" }
+              frontmatter: { isPattern: { eq: true } }
+            }
+            sort: { order: ASC, fields: frontmatter___title }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
           apiDocs: allMdx(
             filter: { fileAbsolutePath: { glob: "**/src/pages/api/**" } }
+            sort: { order: ASC, fields: frontmatter___title }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
+          patternsDocs: allMdx(
+            filter: { fileAbsolutePath: { glob: "**/src/pages/patterns/**" } }
             sort: { order: ASC, fields: frontmatter___title }
           ) {
             edges {
@@ -97,50 +124,95 @@ export const PageContent = ({ children, componentName, type }) => {
               ...navFields
             }
           }
+          patternsIntro: allMdx(
+            filter: {
+              fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" }
+            }
+            sort: { order: ASC, fields: frontmatter___order }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
         }
       `}
       render={data => {
-        const apiNode = getDataNode(data.apiDocs, componentName);
-        const designNode = getDataNode(data.designComponentDocs, componentName);
+        const apiDocs = getDataNode(data.apiDocs, componentName);
+        const designDocs = getDataNode(data.designComponentDocs, componentName);
+        const patternsDocs = getDataNode(data.patternsDocs, componentName);
+        const designPatternDocs = getDataNode(
+          data.designPatternDocs,
+          componentName
+        );
+
         const designIntro = getDataNode(data.designIntro, componentName);
         const apiIntro = getDataNode(data.apiIntro, componentName);
+        const patternsIntro = getDataNode(data.patternsIntro, componentName);
+
+        const hasDocs = !!(
+          apiDocs ||
+          designDocs ||
+          patternsDocs ||
+          designPatternDocs
+        );
+
+        const apiNavTabToLink = patternsDocs ? patternsLink : apiLink;
+
+        const getPageData = () => {
+          if (apiDocs || designDocs) {
+            if (type === NAV_TABS.API) {
+              return apiDocs;
+            }
+            if (type === NAV_TABS.DESIGN) {
+              return designDocs;
+            }
+          }
+          if (designIntro || patternsIntro || apiIntro) {
+            if (type === NAV_TABS.API) {
+              return apiIntro;
+            }
+            if (type === NAV_TABS.DESIGN) {
+              return designIntro;
+            }
+            return patternsIntro;
+          }
+        };
 
         return (
           <>
-            {apiNode || designNode ? (
+            {hasDocs ? (
               <>
                 <TabsContainer isInverse={isInverse}>
                   <StyledTabs aria-label="" style={{ paddingLeft: '80px' }}>
-                    {apiNode && (
-                      <NavTab to={apiLink} isActive={type === NAV_TABS.API}>
+                    {apiDocs || patternsDocs ? (
+                      <NavTab
+                        to={apiNavTabToLink}
+                        isActive={type === NAV_TABS.API}
+                      >
                         Implementation
                       </NavTab>
+                    ) : (
+                      <></>
                     )}
-                    {designNode && (
+                    {designDocs || designPatternDocs ? (
                       <NavTab
                         to={designLink}
                         isActive={type === NAV_TABS.DESIGN}
                       >
                         Design
                       </NavTab>
+                    ) : (
+                      <></>
                     )}
                   </StyledTabs>
+
                   <TabPanelsContainer>
-                    {type === NAV_TABS.API ? (
-                      <StyledTabPanel>
-                        <Content>{children}</Content>
-                        <PageNavigation>
-                          <SubPageTabs pageData={apiNode} />
-                        </PageNavigation>
-                      </StyledTabPanel>
-                    ) : (
-                      <StyledTabPanel>
-                        <Content>{children}</Content>
-                        <PageNavigation>
-                          <SubPageTabs pageData={designNode} />
-                        </PageNavigation>
-                      </StyledTabPanel>
-                    )}
+                    <StyledTabPanel>
+                      <Content>{children}</Content>
+                      <PageNavigation>
+                        <SubPageTabs pageData={getPageData()} />
+                      </PageNavigation>
+                    </StyledTabPanel>
                   </TabPanelsContainer>
                 </TabsContainer>
               </>
@@ -148,7 +220,9 @@ export const PageContent = ({ children, componentName, type }) => {
               <div style={{ display: 'flex' }}>
                 <Content>{children}</Content>
                 <PageNavigation>
-                  <SubPageTabs pageData={designIntro || apiIntro} />
+                  <SubPageTabs
+                    pageData={getPageData()}
+                  />
                 </PageNavigation>
               </div>
             )}

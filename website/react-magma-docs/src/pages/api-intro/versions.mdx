@@ -12,6 +12,7 @@ import {
   TableCell,
 } from 'react-magma-dom';
 import { getVersions } from '../../utils';
+import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="versions">
 
@@ -91,7 +92,9 @@ export const ReleasedVersionsTable = () => {
   );
 };
 
+<LeadParagraph>
 On an older version? Want to see the newest unreleased updates? Switch to a different version of the docs at anytime.
+</LeadParagraph>
 
 ## Next Version
 See what changes are in development and coming in a future release.

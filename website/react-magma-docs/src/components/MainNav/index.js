@@ -69,7 +69,7 @@ const LinkStyles = () => `
   text-decoration: none;
   &:focus{
     color: ${magma.colors.neutral700};
-    outline: 2px solid ${magma.colors.info500};
+    outline: 2px solid ${magma.colors.focus};
     outline-offset: 0;
   }
 `;
