@@ -17,8 +17,11 @@ import {
 
 const NAV_TABS = {
   API: 'api',
+  API_INTRO: 'api_intro',
   DESIGN: 'design',
+  DESIGN_INTRO: 'design_intro',
   PATTERNS: 'patterns',
+  PATTERNS_INTRO: 'patterns_intro',
 };
 
 const StyledTabs = styled(NavTabs)`
@@ -168,13 +171,15 @@ export const PageContent = ({ children, componentName, type }) => {
             }
           }
           if (designIntro || patternsIntro || apiIntro) {
-            if (type === NAV_TABS.API) {
+            if (type === NAV_TABS.API_INTRO) {
               return apiIntro;
             }
-            if (type === NAV_TABS.DESIGN) {
+            if (type === NAV_TABS.DESIGN_INTRO) {
               return designIntro;
             }
-            return patternsIntro;
+            if (type === NAV_TABS.PATTERNS_INTRO) {
+              return patternsIntro;
+            }
           }
         };
 
@@ -220,9 +225,7 @@ export const PageContent = ({ children, componentName, type }) => {
               <div style={{ display: 'flex' }}>
                 <Content>{children}</Content>
                 <PageNavigation>
-                  <SubPageTabs
-                    pageData={getPageData()}
-                  />
+                  <SubPageTabs pageData={getPageData()} />
                 </PageNavigation>
               </div>
             )}

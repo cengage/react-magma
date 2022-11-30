@@ -355,13 +355,7 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
+                            
                           </ListItem>
                         ))}
                       </List>
@@ -376,13 +370,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -397,13 +384,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -428,13 +408,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -449,13 +422,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -480,13 +446,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -501,13 +460,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
