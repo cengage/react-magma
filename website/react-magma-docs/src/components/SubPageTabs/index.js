@@ -82,6 +82,7 @@ export const SubPageTabs = ({ pageData }) => {
                 isInverse={isInverse}
                 isActive={activeTab === index}
                 onClick={(e) => handleAnchorLinkClick(id, index, e)}
+                style={{textTransform: 'none'}}
               >
                 {page}
               </NavTab>

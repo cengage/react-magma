@@ -5,10 +5,14 @@ props:
   - AnnounceProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="announce" type="api">
 
+<LeadParagraph>
 When dynamically changing content on a page, it is important that all users become aware of these changes. While changes may be visually apparent to users who cans see the page,
 they may not be clear to users of assistive technology. The `Announce` component uses the `aria-live` attribute to to expose dynamic content to those using screen readers.
+</LeadParagraph>
 
 ## Basic Usage
 

@@ -6,12 +6,19 @@ props:
   - NavTabComponentProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="nav_tabs" type="api">
 
-## Basic Usage
+<LeadParagraph>
+  The NavTabs component is a navigation element that is styled similarly to the{' '}
+  <Link to="/api/tabs">Tabs</Link> component. While they appear visually
+  similar, the NavTabs component is used for navigation between pages (or parts
+  of a page), while the Tabs component is used to toggle the display of
+  different tab panels on a single page.
+</LeadParagraph>
 
-The `NavTabs` component is a navigation element that is styled similarly to the <Link to="/api/tabs">Tabs</Link> component. While they appear visually similar,
-the `NavTabs` component is used for navigation between pages (or parts of a page), while the `Tabs` component is used to toggle the display of different tab panels on a single page.
+## Basic Usage
 
 The `NavTabs` component represents the navigation container, and the `NavTab` component represents each individual navigation link. The `isActive` prop can be used to indicate the current page.
 

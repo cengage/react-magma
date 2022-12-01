@@ -5,11 +5,15 @@ props:
   - AlertProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="alert" type="api">
 
-## Basic Usage
-
+<LeadParagraph>
 Alerts are available for any length of text, and may contain HTML markup. They may also have an optional dismiss button.
+</LeadParagraph>
+
+## Basic Usage
 
 Alerts render where ever they are placed contextually in the DOM. The `Toast` component is similar but renders with a fixed position and has auto dismiss functionality.
 See the <Link to="/api/toast/">Toasts documentation</Link> for more information.

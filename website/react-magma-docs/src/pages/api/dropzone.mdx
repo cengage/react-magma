@@ -3,14 +3,19 @@ pageTitle: Dropzone API
 title: Dropzone
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="dropzone" type="api">
 
-Upload files
+<LeadParagraph>
+  File upload component that allow users to upload their own content. They are
+  commonly used within forms but may also exist on their own.
+</LeadParagraph>
 
 <Alert variant="warning">
   <strong>Important!</strong> Dropzone is imported from{' '}
-  <inlineCode>@react-magma/dropzone</inlineCode>{' '}
-  which must be installed as a peer dependency.
+  <inlineCode>@react-magma/dropzone</inlineCode> which must be installed as a
+  peer dependency.
 </Alert>
 
 ## Basic Usage
@@ -437,7 +442,7 @@ export function Example() {
       required: false,
       description: 'Show thumbnails for images in lieu of the file icon.',
       defaultValue: 'true',
-    }
+    },
   }}
 />
 

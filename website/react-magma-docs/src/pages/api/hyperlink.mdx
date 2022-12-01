@@ -5,7 +5,14 @@ props:
   - HyperlinkProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="hyperlink" type="api">
+
+<LeadParagraph>
+  Links are used as navigational elements and can be used on their own or inline
+  with text.
+</LeadParagraph>
 
 ## Usage Guidelines
 
@@ -25,7 +32,7 @@ See <Link to="/api/button">button docs</Link> for further information.
 
 ## Basic Usage
 
-Links are used as navigational elements and can be used on their own or inline with text. They provide a lightweight option for navigation but like other interactive elements, too many links will clutter a page and make it difficult for users to identify their next steps. This is especially true for inline links, which should be used sparingly.
+Links provide a lightweight option for navigation but like other interactive elements, too many links will clutter a page and make it difficult for users to identify their next steps. This is especially true for inline links, which should be used sparingly.
 
 ```tsx
 import React from 'react';
@@ -46,7 +53,13 @@ Sometimes links can be styled as buttons in order to give them more weight on th
 
 ```tsx
 import React from 'react';
-import { ButtonColor, ButtonTextTransform, Hyperlink, Spacer, SpacerAxis } from 'react-magma-dom';
+import {
+  ButtonColor,
+  ButtonTextTransform,
+  Hyperlink,
+  Spacer,
+  SpacerAxis,
+} from 'react-magma-dom';
 
 export function Example() {
   return (

@@ -3,9 +3,14 @@ pageTitle: Input API
 title: Input
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="input" type="api">
 
-Input fields are used in a number of ways for both collecting and displaying data from the user.
+<LeadParagraph>
+  Input fields are used in a number of ways for both collecting and displaying
+  data from the user.
+</LeadParagraph>
 
 See also: <Link to='/api/password-input'>Password Input</Link>, <Link to='/api/search'>Search</Link> and <Link to='/api/textarea'>Textarea</Link>.
 
@@ -502,7 +507,7 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
 ```html noCodeSandbox
-<Input labelText="Label" testId="test-id" />
+<input labelText="Label" testId="test-id" />
 ```
 
 ## Input Props

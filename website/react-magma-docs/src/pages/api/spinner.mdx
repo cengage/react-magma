@@ -5,9 +5,15 @@ props:
   - SpinnerProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="spinner" type="api">
 
-Spinners indicate the loading state of a component or page. Spinners are used within the <Link to="/api/loading-indicator">Loading Indicator</Link> component.
+<LeadParagraph>
+  Spinners indicate the loading state of a component or page. Spinners are used
+  within the <Link to="/api/loading-indicator">Loading Indicator</Link>{' '}
+  component.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -75,7 +81,7 @@ import { Spinner, Spacer, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <div style={{background: magma.colors.primary600, padding: '12px'}}>
+    <div style={{ background: magma.colors.primary600, padding: '12px' }}>
       <Spacer size={magma.spaceScale.spacing04} />
       <Spinner size={30} isInverse />
       <Spacer size={magma.spaceScale.spacing04} />

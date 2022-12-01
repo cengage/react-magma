@@ -5,9 +5,16 @@ props:
   - ButtonGroupProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="buttongroup" type="api">
 
-A ButtonGroup is a layout component for <Link to="/api/button">Buttons</Link>, <Link to="/api/icon-button">Icon Buttons</Link> and <Link to="/api/dropdown">Dropdown Buttons</Link>. It's a helper for aligning 2 or more buttons together with appropriate spacing.
+<LeadParagraph>
+  A ButtonGroup is a layout component for <Link to="/api/button">Buttons</Link>,{' '}
+  <Link to="/api/icon-button">Icon Buttons</Link> and{' '}
+  <Link to="/api/dropdown">Dropdown Buttons</Link>. It's a helper for aligning 2
+  or more buttons together with appropriate spacing.
+</LeadParagraph>
 
 ## Default
 
@@ -38,18 +45,14 @@ import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
 export function Example() {
   return (
     <>
-      <ButtonGroup
-        orientation={ButtonGroupOrientation.horizontal}
-      >
+      <ButtonGroup orientation={ButtonGroupOrientation.horizontal}>
         <Button>1</Button>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
-      <br/>
-      <br/>
-      <ButtonGroup
-        orientation={ButtonGroupOrientation.vertical}
-      >
+      <br />
+      <br />
+      <ButtonGroup orientation={ButtonGroupOrientation.vertical}>
         <Button>4</Button>
         <Button>5</Button>
         <Button>6</Button>
@@ -61,13 +64,22 @@ export function Example() {
 
 ## Alignment
 
-The `alignment` prop can be used to display buttons in different positions. The `alignment` prop accepts: `left` (default), `right`, `center`, `apart` and `fill`. 
+The `alignment` prop can be used to display buttons in different positions. The `alignment` prop accepts: `left` (default), `right`, `center`, `apart` and `fill`.
 
 The `apart` prop should only be used with the `horizontal` orientation.
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonGroupOrientation, ButtonGroupAlignment, Dropdown, DropdownButton, DropdownContent, DropdownMenuItem } from 'react-magma-dom';
+import {
+  ButtonGroup,
+  Button,
+  ButtonGroupOrientation,
+  ButtonGroupAlignment,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -85,8 +97,9 @@ export function Example() {
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
-      <br/><br/>
-       <ButtonGroup
+      <br />
+      <br />
+      <ButtonGroup
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.center}
       >
@@ -99,7 +112,8 @@ export function Example() {
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
-      <br/><br/>
+      <br />
+      <br />
       <ButtonGroup
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.apart}
@@ -113,7 +127,8 @@ export function Example() {
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
-      <br/><br/>
+      <br />
+      <br />
       <ButtonGroup
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.fill}
@@ -132,24 +147,33 @@ export function Example() {
 }
 ```
 
-
 ## No Space
 
 The `noSpace` prop should only be used with the `horizontal` orientation.
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonGroupOrientation, ButtonColor } from 'react-magma-dom';
+import {
+  ButtonGroup,
+  Button,
+  ButtonGroupOrientation,
+  ButtonColor,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
-      <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace color={ButtonColor.secondary}>
+      <ButtonGroup
+        orientation={ButtonGroupOrientation.horizontal}
+        noSpace
+        color={ButtonColor.secondary}
+      >
         <Button>1</Button>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
-      <br/><br/>
+      <br />
+      <br />
       <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace>
         <Dropdown>
           <DropdownButton>1</DropdownButton>
@@ -177,16 +201,28 @@ export function Example() {
 
 ## Color, Variant, Size, isInverse
 
-The `color`, `variant` and `size` props can be used on the ButtonGroup to set the default value for all the buttons inside it. If a Button in the group also sets that prop, the one in the Button will be visible. 
+The `color`, `variant` and `size` props can be used on the ButtonGroup to set the default value for all the buttons inside it. If a Button in the group also sets that prop, the one in the Button will be visible.
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonColor, ButtonVariant, ButtonSize, Container } from 'react-magma-dom';
+import {
+  ButtonGroup,
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  ButtonSize,
+  Container,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Container isInverse style={{padding: '12px'}}>
-      <ButtonGroup color={ButtonColor.primary} variant={ButtonVariant.solid} size={ButtonSize.large} isInverse>
+    <Container isInverse style={{ padding: '12px' }}>
+      <ButtonGroup
+        color={ButtonColor.primary}
+        variant={ButtonVariant.solid}
+        size={ButtonSize.large}
+        isInverse
+      >
         <Button>1</Button>
         <Button color={ButtonColor.danger}>2</Button>
         <Button>3</Button>
@@ -204,19 +240,26 @@ This is an example of how to handle changing the orientation of the `ButtonGroup
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonGroupOrientation, BreakpointsContainer, Breakpoint, BreakpointScreenSize } from 'react-magma-dom';
+import {
+  ButtonGroup,
+  Button,
+  ButtonGroupOrientation,
+  BreakpointsContainer,
+  Breakpoint,
+  BreakpointScreenSize,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
     <BreakpointsContainer>
       <Breakpoint screenSize={BreakpointScreenSize.xs}>
         <ButtonGroup orientation={ButtonGroupOrientation.vertical}>
-            <Button>1</Button>
-            <Button>2</Button>
-            <Button>3</Button>
-            <Button>4</Button>
-            <Button>5</Button>
-          </ButtonGroup>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>3</Button>
+          <Button>4</Button>
+          <Button>5</Button>
+        </ButtonGroup>
       </Breakpoint>
 
       <Breakpoint screenSize={BreakpointScreenSize.small}>

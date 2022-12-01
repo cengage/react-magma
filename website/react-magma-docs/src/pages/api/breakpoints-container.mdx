@@ -6,17 +6,23 @@ props:
   - BreakpointsContainerProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="breakpoints_container" type="api">
 
-The `BreakpointsContainer` component can be used to hide/show content at different screen sizes. Breakpoint values are defined in the theme, and can be overridden at the component level.
+<LeadParagraph>
+  The BreakpointsContainer component can be used to hide/show content at
+  different screen sizes. Breakpoint values are defined in the theme, and can be
+  overridden at the component level.
+</LeadParagraph>
+
+## Basic Usage
 
 By placing multiple `Breakpoint` components inside the container, you can define multiple versions of the content to be displayed.
 
 Content will be shown for the specified breakpoint, up to the next largest breakpoint.
 
 This component uses the <Link to="/api/hide-at-breakpoint/">Hide at Breakpoint</Link> component.
-
-## Basic Usage
 
 ```tsx
 import React from 'react';

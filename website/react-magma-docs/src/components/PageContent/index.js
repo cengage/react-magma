@@ -163,6 +163,7 @@ export const PageContent = ({ children, componentName, type }) => {
 
         const getPageData = () => {
           if (apiDocs || designDocs) {
+            //   TODO: handle patternsDocs
             if (type === NAV_TABS.API) {
               return apiDocs;
             }

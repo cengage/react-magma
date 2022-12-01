@@ -6,11 +6,18 @@ props:
   - RadioGroupProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="radio_button" type="api">
+
+<LeadParagraph>
+  Radio buttons are form elements used to select one item from a set of mutually
+  exclusive options.
+</LeadParagraph>
 
 ## Basic Usage
 
-Radio buttons are form elements used to select one item from a set of mutually exclusive options. The `RadioGroup` component is used as the container for the set of options. The `Radio` component is used for each of the options themselves.
+The `RadioGroup` component is used as the container for the set of options. The `Radio` component is used for each of the options themselves.
 
 See also: <Link to="/api/checkboxes">Checkboxes</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
@@ -166,7 +173,13 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```tsx
 import React from 'react';
-import { RadioGroup, Radio, Button, ButtonColor, ButtonGroup } from 'react-magma-dom';
+import {
+  RadioGroup,
+  Radio,
+  Button,
+  ButtonColor,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
@@ -458,7 +471,13 @@ Using React's `forwardRef` feature you can gain access to the reference of the i
 
 ```tsx
 import React from 'react';
-import { RadioGroup, Radio, Button, ButtonColor, ButtonGroup } from 'react-magma-dom';
+import {
+  RadioGroup,
+  Radio,
+  Button,
+  ButtonColor,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   const radioRef = React.useRef();
@@ -507,7 +526,11 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for `RadioGroup` and the input element for `Radio` for easier querying in tests.
 
 ```html noCodeSandbox
-<RadioGroup labelText="Labelled by label" name="labelledByProp" testId="radiogroup-id">
+<RadioGroup
+  labelText="Labelled by label"
+  name="labelledByProp"
+  testId="radiogroup-id"
+>
   <Radio value="1" labelText="Label" testId="radio-1" />
   <Radio value="2" labelText="Label" testId="radio-2" />
 </RadioGroup>

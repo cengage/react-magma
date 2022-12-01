@@ -12,7 +12,14 @@ props:
   - DropdownSplitButtonProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="dropdown" type="api">
+
+<LeadParagraph>
+  Dropdowns provide a portable way to display menus or lighter versions of other
+  components. The dropdown is shown by clicking on a button or other control.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -766,6 +773,7 @@ export function Example() {
 ```
 
 ## Inverse
+
 ```tsx
 import React from 'react';
 import {
@@ -774,7 +782,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
   Card,
-  CardBody
+  CardBody,
 } from 'react-magma-dom';
 
 export function Example() {

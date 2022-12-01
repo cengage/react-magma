@@ -5,12 +5,18 @@ props:
   - ComboboxProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="combobox" type="api">
 
-## Basic Usage
+<LeadParagraph>
+  A Combobox is similar to a Select component, in that it is used for collecting
+  user provided information from a list of options. However, a combobox also
+  allows users to type in the field, either to create their own option or to see
+  typeahead suggestions.
+</LeadParagraph>
 
-A Combobox is similar to a Select component, in that it is used for collecting user provided information from a list of options.
-However, a combobox also allows users to type in the field, either to create their own option or to see typeahead suggestions.
+## Basic Usage
 
 For simple Select functionality, please see the <Link to="/api/select">Select component</Link>.
 

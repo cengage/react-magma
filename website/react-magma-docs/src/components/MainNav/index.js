@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
-import { Location, Router } from '@reach/router';
+import { Link, StaticQuery, graphql } from 'gatsby';
+import { Location } from '@reach/router';
 import { LaunchIcon } from 'react-magma-icons';
-import { SubMenu2 } from './SubMenu';
 import {
   Accordion,
   AccordionButton,

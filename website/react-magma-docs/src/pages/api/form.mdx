@@ -5,9 +5,14 @@ props:
   - FormProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="form" type="api">
 
-The `Form` component is a relatively simple container. It is used to contain interactive controls and submit information to a web server.
+<LeadParagraph>
+  The Form component is a relatively simple container. It is used to contain
+  interactive controls and submit information to a web server.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -37,7 +42,7 @@ export function Example() {
         </ButtonGroup>
       }
     >
-     <>
+      <>
         <Input labelText="Name" />
         <Spacer size="12" />
         <Input labelText="Email" />

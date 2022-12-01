@@ -6,13 +6,19 @@ props:
   - ToastsContainerProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="toast" type="api">
 
-`Toast` components use the <Link to="/api/alert">Alert component</Link> internally for its content and styles. Any props that can be passed to an `Alert` can be passed to a `Toast` component.
-
-**Toasts are used to display non-critical information to users.** For critical messages, designers should consider a different way of presenting the information, such as using the <Link to="/api/alert">Alert component</Link> within the context of the UI.
+<LeadParagraph>
+  Toast components use the <Link to="/api/alert">Alert component</Link>{' '}
+  internally for its content and styles. Any props that can be passed to an
+  Alert can be passed to a Toast component.
+</LeadParagraph>
 
 ## Basic Usage
+
+**Toasts are used to display non-critical information to users.** For critical messages, designers should consider a different way of presenting the information, such as using the <Link to="/api/alert">Alert component</Link> within the context of the UI.
 
 ```tsx
 import React from 'react';
@@ -95,67 +101,59 @@ export function Example() {
   }
 
   return (
-      <ToastsContainer>
-        <Announce>
-          <ButtonGroup>
-            <Button onClick={handleClick}>
-              Show Success Toast
-            </Button>
-            {showToast && (
-              <Toast
-                id="toast1"
-                onDismiss={handleDismiss}
-                variant={AlertVariant.success}
-              >
-                This is a success toast
-              </Toast>
-            )}
+    <ToastsContainer>
+      <Announce>
+        <ButtonGroup>
+          <Button onClick={handleClick}>Show Success Toast</Button>
+          {showToast && (
+            <Toast
+              id="toast1"
+              onDismiss={handleDismiss}
+              variant={AlertVariant.success}
+            >
+              This is a success toast
+            </Toast>
+          )}
 
-            <Button onClick={handleClick2}>
-              Show Warning Toast
-            </Button>
-            {showToast2 && (
-              <Toast
-                id="toast2"
-                variant={AlertVariant.warning}
-                onDismiss={handleDismiss2}
-                disableAutoDismiss
-              >
-                This is is a warning toast
-              </Toast>
-            )}
-            </ButtonGroup>
-            <br />
-            <ButtonGroup>
-            <Button onClick={handleClick3}>
-              Show Danger Toast
-            </Button>
-            {showToast3 && (
-              <Toast
-                id="toast3"
-                variant={AlertVariant.danger}
-                onDismiss={handleDismiss3}
-                disableAutoDismiss
-              >
-                This is a danger toast
-              </Toast>
-            )}
+          <Button onClick={handleClick2}>Show Warning Toast</Button>
+          {showToast2 && (
+            <Toast
+              id="toast2"
+              variant={AlertVariant.warning}
+              onDismiss={handleDismiss2}
+              disableAutoDismiss
+            >
+              This is is a warning toast
+            </Toast>
+          )}
+        </ButtonGroup>
+        <br />
+        <ButtonGroup>
+          <Button onClick={handleClick3}>Show Danger Toast</Button>
+          {showToast3 && (
+            <Toast
+              id="toast3"
+              variant={AlertVariant.danger}
+              onDismiss={handleDismiss3}
+              disableAutoDismiss
+            >
+              This is a danger toast
+            </Toast>
+          )}
 
-              <Button onClick={handleClick4}>
-                Show Info Toast
-              </Button>
-              {showToast4 && (
-                <Toast
-                  id="toast4"
-                  variant={AlertVariant.info}
-                  onDismiss={handleDismiss4}
-                >
-                  This is an info toast
-                </Toast>
-            )}
-          </ButtonGroup>
-        </Announce>
-      </ToastsContainer>
+          <Button onClick={handleClick4}>Show Info Toast</Button>
+          {showToast4 && (
+            <Toast
+              id="toast4"
+              variant={AlertVariant.info}
+              onDismiss={handleDismiss4}
+            >
+              This is an info toast
+            </Toast>
+          )}
+        </ButtonGroup>
+      </Announce>
+    </ToastsContainer>
   );
 }
 ```
@@ -248,40 +246,40 @@ export function Example() {
     <ToastsContainer>
       <Announce>
         <ButtonGroup>
-        <Button onClick={handleClick}>Show Toast</Button>
-        {showToast && (
-          <Toast
-            id="toast1"
-            onDismiss={handleDismiss}
-            variant={AlertVariant.success}
-          >
-            Toast 1
-          </Toast>
-        )}
+          <Button onClick={handleClick}>Show Toast</Button>
+          {showToast && (
+            <Toast
+              id="toast1"
+              onDismiss={handleDismiss}
+              variant={AlertVariant.success}
+            >
+              Toast 1
+            </Toast>
+          )}
 
-        <Button onClick={handleClick2} color={ButtonColor.secondary}>
-          Show Toast 2
-        </Button>
-        {showToast2 && (
-          <Toast id="toast2" onDismiss={handleDismiss2}>
-            This is the second toast which is longer than either toast one or
-            three
-          </Toast>
-        )}
+          <Button onClick={handleClick2} color={ButtonColor.secondary}>
+            Show Toast 2
+          </Button>
+          {showToast2 && (
+            <Toast id="toast2" onDismiss={handleDismiss2}>
+              This is the second toast which is longer than either toast one or
+              three
+            </Toast>
+          )}
 
-        <Button onClick={handleClick3} color={ButtonColor.danger}>
-          Show Toast 3
-        </Button>
-        {showToast3 && (
-          <Toast
-            disableAutoDismiss
-            id="toast3"
-            variant={AlertVariant.danger}
-            onDismiss={handleDismiss3}
-          >
-            Toast three
-          </Toast>
-        )}
+          <Button onClick={handleClick3} color={ButtonColor.danger}>
+            Show Toast 3
+          </Button>
+          {showToast3 && (
+            <Toast
+              disableAutoDismiss
+              id="toast3"
+              variant={AlertVariant.danger}
+              onDismiss={handleDismiss3}
+            >
+              Toast three
+            </Toast>
+          )}
         </ButtonGroup>
       </Announce>
     </ToastsContainer>
@@ -514,7 +512,7 @@ export function Example() {
   }
 
   return (
-    <Card isInverse style={{padding: '8px'}}>
+    <Card isInverse style={{ padding: '8px' }}>
       <ToastsContainer>
         <Announce>
           <ButtonGroup>
@@ -545,9 +543,9 @@ export function Example() {
                 This is is a warning toast
               </Toast>
             )}
-            </ButtonGroup>
-            <br />
-            <ButtonGroup>
+          </ButtonGroup>
+          <br />
+          <ButtonGroup>
             <Button onClick={handleClick3} isInverse>
               Show Danger Toast Inverse
             </Button>
@@ -562,18 +560,18 @@ export function Example() {
               </Toast>
             )}
 
-              <Button onClick={handleClick4} isInverse>
-                Show Info Toast Inverse
-              </Button>
-              {showToast4 && (
-                <Toast
-                  id="toast4"
-                  variant={AlertVariant.info}
-                  onDismiss={handleDismiss4}
-                  isInverse
-                >
-                  This is an info toast
-                </Toast>
+            <Button onClick={handleClick4} isInverse>
+              Show Info Toast Inverse
+            </Button>
+            {showToast4 && (
+              <Toast
+                id="toast4"
+                variant={AlertVariant.info}
+                onDismiss={handleDismiss4}
+                isInverse
+              >
+                This is an info toast
+              </Toast>
             )}
           </ButtonGroup>
         </Announce>

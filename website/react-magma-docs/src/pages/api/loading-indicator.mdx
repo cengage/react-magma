@@ -5,9 +5,14 @@ props:
   - LoadingIndicatorProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="loading_indicator" type="api">
 
-When content is loading, the `LoadingIndicator` component can be used to communicate to users that the wait is expected and everything is normal.
+<LeadParagraph>
+  When content is loading, the LoadingIndicator component can be used to
+  communicate to users that the wait is expected and everything is normal.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -118,7 +123,12 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
 
 ```tsx
 import React from 'react';
-import { Announce, Button, LoadingIndicator, ButtonGroup } from 'react-magma-dom';
+import {
+  Announce,
+  Button,
+  LoadingIndicator,
+  ButtonGroup,
+} from 'react-magma-dom';
 export function Example() {
   const [showLoader, setShowLoader] = React.useState(false);
 
@@ -132,7 +142,7 @@ export function Example() {
           Hide Loading Indicator
         </Button>
       </ButtonGroup>
-      <br/>
+      <br />
       <Announce>{showLoader && <LoadingIndicator />}</Announce>
     </>
   );

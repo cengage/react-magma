@@ -5,11 +5,16 @@ props:
   - HeadingProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="heading" type="api">
 
-## Basic Usage
+<LeadParagraph>
+  The Heading component can be used with the `level` prop to render the HTML
+  heading elements, levels 1-6.
+</LeadParagraph>
 
-The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
+## Basic Usage
 
 ```tsx
 import React from 'react';

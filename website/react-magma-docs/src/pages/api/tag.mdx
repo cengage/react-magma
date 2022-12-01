@@ -6,9 +6,13 @@ props:
   - ClickableTagProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="tag" type="api">
 
-Styled displays of a category via search filters, metadata and other results
+<LeadParagraph>
+  Styled displays of a category via search filters, metadata and other results
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -194,7 +198,9 @@ export function Example() {
   return (
     <>
       {isTag1Visible ? (
-        <Tag icon={<AccountCircleIcon />} onDelete={deleteTag1}>Deletable Tag</Tag>
+        <Tag icon={<AccountCircleIcon />} onDelete={deleteTag1}>
+          Deletable Tag
+        </Tag>
       ) : (
         <Button
           color={ButtonColor.secondary}
@@ -312,7 +318,14 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, Spacer, Tag, SpacerAxis, magma } from 'react-magma-dom';
+import {
+  Card,
+  CardBody,
+  Spacer,
+  Tag,
+  SpacerAxis,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (

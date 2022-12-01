@@ -3,10 +3,17 @@ pageTitle: Global Styles API
 title: Global Styles
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="global_styles" type="api">
 
-The `GlobalStyles` component should be included at the top of your application to provide global css, including the required fonts,
-body styles, and some generic styles for links and headings.
+<LeadParagraph>
+  The GlobalStyles component should be included at the top of your application
+  to provide global css, including the required fonts, body styles, and some
+  generic styles for links and headings.
+</LeadParagraph>
+
+## Usage
 
 The `GlobalStyles` component can be nested inside the <Link to="/api/theme">ThemeContext.Provider</Link> to inherit styles from the theme.
 

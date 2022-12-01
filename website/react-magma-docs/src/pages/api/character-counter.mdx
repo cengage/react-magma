@@ -5,9 +5,15 @@ props:
   - CharacterCounterProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="character_counter" type="api">
 
-A numeric counter that is used by <Link to="/api/input">Input</Link> and <Link to="/api/textarea">Textarea</Link> to help users know how much text they can enter when there is a limit on the number of characters.
+<LeadParagraph>
+  A numeric counter that is used by <Link to="/api/input">Input</Link> and{' '}
+  <Link to="/api/textarea">Textarea</Link> to help users know how much text they
+  can enter when there is a limit on the number of characters.
+</LeadParagraph>
 
 ## Basic Usage
 

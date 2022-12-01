@@ -5,15 +5,20 @@ props:
   - SelectProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="select" type="api">
 
-## Basic Usage
-
-Select components are used for collecting user provided information from a list of options.
+<LeadParagraph>
+  Select components are used for collecting user provided information from a
+  list of options.
+</LeadParagraph>
 
 For combobox/autocomplete functionality, please see the <Link to="/api/combobox">Combobox component</Link>.
 
 If you are migrating from the Legacy Select, please see the <Link to="/select-migration">Select Migration docs</Link> for details on how to make the transition.
+
+## Basic Usage
 
 By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
 `itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function

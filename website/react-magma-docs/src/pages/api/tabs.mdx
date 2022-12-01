@@ -9,7 +9,14 @@ props:
   - TabsContainerProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="tabs" type="api">
+
+<LeadParagraph>
+  Tabs allow navigation between different sets of related content or can be used
+  to navigate an entire application.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -844,7 +851,15 @@ It can also be applied to the `TabPanelsContainer` or the individual `TabPanel`.
 
 ```tsx
 import React from 'react';
-import { Card, CardBody, TabsContainer, Tabs, Tab, TabPanelsContainer, TabPanel } from 'react-magma-dom';
+import {
+  Card,
+  CardBody,
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -878,11 +893,18 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { TabsContainer, Tabs, Tab, Card, CardBody, magma } from 'react-magma-dom';
+import {
+  TabsContainer,
+  Tabs,
+  Tab,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Card style={{background: magma.colors.neutral800}}>
+    <Card style={{ background: magma.colors.neutral800 }}>
       <CardBody>
         <TabsContainer>
           <Tabs

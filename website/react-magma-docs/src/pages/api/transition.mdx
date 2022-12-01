@@ -5,14 +5,19 @@ props:
   - TransitionProps
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="transition" type="api">
 
-Smart wrappers using framer-motion to add transitions to child components.
+<LeadParagraph>
+  Smart wrappers using framer-motion to add transitions to child components.
+</LeadParagraph>
+
+## Basic Usage
+
 The theme defines several preconfigured transitions that will apply the base styles and the exit and enter variants.
 Changing the value of `isOpen` results in the transition animating. Going from `isOpen={true}` to `isOpen={false}` will results
 in the transition animating to the `exit` variant. Going from `isOpen={false}` to `isOpen={true}` will result in animating to the `enter` variant.
-
-## Basic Usage
 
 ### Collapse
 

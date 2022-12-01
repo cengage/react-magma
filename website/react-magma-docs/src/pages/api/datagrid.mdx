@@ -11,9 +11,14 @@ props:
   - UseDataPaginationUncontrolled
 ---
 
+import { LeadParagraph } from '../../components/LeadParagraph';
+
 <PageContent componentName="datagrid" type="api">
 
-Similar to the `Table` component, the `Datagrid` takes in data in a set of props and renders rows and columns accordingly.
+<LeadParagraph>
+  Similar to the Table component, the Datagrid takes in data in a set of props
+  and renders rows and columns accordingly.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -256,9 +261,7 @@ export function Example() {
     },
   ];
 
-  return (
-    <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />
-  );
+  return <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />;
 }
 ```
 
@@ -667,11 +670,15 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, TableSortDirection, Announce, VisuallyHidden } from 'react-magma-dom';
+import {
+  Datagrid,
+  TableSortDirection,
+  Announce,
+  VisuallyHidden,
+} from 'react-magma-dom';
 
 export function Example() {
-
-const [sortConfig, setSortConfig] = React.useState({
+  const [sortConfig, setSortConfig] = React.useState({
     key: '',
     message: '',
   });
@@ -698,7 +705,7 @@ const [sortConfig, setSortConfig] = React.useState({
       setSelectedDirection(direction);
       setPriceDirection(TableSortDirection.none);
       setStockDirection(TableSortDirection.none);
-    } else if (key === 'price'){
+    } else if (key === 'price') {
       if (
         sortConfig?.key === key &&
         priceDirection === TableSortDirection.ascending
@@ -708,7 +715,7 @@ const [sortConfig, setSortConfig] = React.useState({
       setPriceDirection(direction);
       setSelectedDirection(TableSortDirection.none);
       setStockDirection(TableSortDirection.none);
-    } else if (key === 'stock'){
+    } else if (key === 'stock') {
       if (
         sortConfig?.key === key &&
         stockDirection === TableSortDirection.ascending
@@ -791,7 +798,8 @@ const [sortConfig, setSortConfig] = React.useState({
       }
     } else {
       let sortableItems = [...products];
-      const direction = sortConfig.key === 'price' ? priceDirection : stockDirection;
+      const direction =
+        sortConfig.key === 'price' ? priceDirection : stockDirection;
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
           return direction === TableSortDirection.ascending ? -1 : 1;
@@ -848,9 +856,7 @@ const [sortConfig, setSortConfig] = React.useState({
     </>
   );
 }
-
 ```
-
 
 ## Controlled Selectable Column
 
@@ -1706,7 +1712,15 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Button, usePagination, ButtonGroup, Spacer, SpacerAxis, magma } from 'react-magma-dom';
+import {
+  Datagrid,
+  Button,
+  usePagination,
+  ButtonGroup,
+  Spacer,
+  SpacerAxis,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -1915,7 +1929,10 @@ export function Example() {
         }}
       >
         You are on page {page}
-        <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing05} />
+        <Spacer
+          axis={SpacerAxis.horizontal}
+          size={magma.spaceScale.spacing05}
+        />
         <ButtonGroup>
           <Button
             disabled={previousButton.disabled}
