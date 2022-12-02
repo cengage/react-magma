@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql, StaticQuery } from 'gatsby';
 import { SubPageTabs } from '../SubPageTabs';
-import { convertTextToId, convertUnderscoreToHyphen } from '../../utils';
+import { convertTextToId } from '../../utils';
 import {
   TabPanelsContainer,
   TabPanel,
@@ -26,24 +26,55 @@ const NAV_TABS = {
 
 const StyledTabs = styled(NavTabs)`
   background: ${magma.colors.neutral200};
+  margin: 0 auto;
+  max-width: 1112px;
+  @media (max-width: ${magma.breakpoints.large}px) {
+    padding-left: 24px;
+  }
+  @media (max-width: ${magma.breakpoints.medium}px) {
+    padding-left: 16px;
+  }
 `;
 
 const StyledTabPanel = styled(TabPanel)`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  padding: 0;
+  &::before {
+    content: '';
+    visibility: hidden;
+  }
+`;
+
+const StyledTabPanelsContainer = styled(TabPanelsContainer)`
+  background: ${magma.colors.neutral100};
+  @media (max-width: 1024px) {
+    max-width: 100%;
+  }
 `;
 
 const Content = styled.div`
   flex: 1 1 auto;
-  margin: 48px 100px;
+  margin: 48px auto;
+  max-width: 868px;
+  padding: 0 24px;
   @media (max-width: ${magma.breakpoints.medium}px) {
-    margin: 24px 50px;
+    margin: 40px 24px;
+    min-width: 0;
+    padding: 0;
+  }
+  @media (max-width: ${magma.breakpoints.small}px) {
+    margin: 32px 16px;
+    min-width: 0;
+    // max-width: ${magma.breakpoints.small}px;
+    padding: 0;
   }
 `;
 
 const PageNavigation = styled.div`
   flex: 0 0 auto;
-  @media (max-width: ${magma.breakpoints.medium}px) {
+  @media (max-width: ${magma.breakpoints.large}px) {
     display: none;
   }
 `;
@@ -56,16 +87,6 @@ function getDataNode(data, name) {
 
 export const PageContent = ({ children, componentName, type }) => {
   const isInverse = useIsInverse();
-
-  const designLink =
-    componentName &&
-    `/${NAV_TABS.DESIGN}/${convertUnderscoreToHyphen(componentName)}/`;
-  const apiLink =
-    componentName &&
-    `/${NAV_TABS.API}/${convertUnderscoreToHyphen(componentName)}/`;
-  const patternsLink =
-    componentName &&
-    `/${NAV_TABS.PATTERNS}/${convertUnderscoreToHyphen(componentName)}/`;
 
   return (
     <StaticQuery
@@ -152,6 +173,11 @@ export const PageContent = ({ children, componentName, type }) => {
         const apiIntro = getDataNode(data.apiIntro, componentName);
         const patternsIntro = getDataNode(data.patternsIntro, componentName);
 
+        const designLink = designDocs?.node.fields.slug;
+        const apiLink = apiDocs?.node.fields.slug;
+        const patternsLink = patternsDocs?.node.fields.slug;
+        const designPatternsLink = designPatternDocs?.node.fields.slug;
+
         const hasDocs = !!(
           apiDocs ||
           designDocs ||
@@ -160,6 +186,9 @@ export const PageContent = ({ children, componentName, type }) => {
         );
 
         const apiNavTabToLink = patternsDocs ? patternsLink : apiLink;
+        const designNavTabToLink = designPatternDocs
+          ? designPatternsLink
+          : designLink;
 
         const getPageData = () => {
           if (apiDocs || designDocs) {
@@ -188,8 +217,11 @@ export const PageContent = ({ children, componentName, type }) => {
           <>
             {hasDocs ? (
               <>
-                <TabsContainer isInverse={isInverse}>
-                  <StyledTabs aria-label="" style={{ paddingLeft: '80px' }}>
+                <TabsContainer
+                  isInverse={isInverse}
+                  style={{ maxWidth: '100%' }}
+                >
+                  <StyledTabs aria-label="">
                     {apiDocs || patternsDocs ? (
                       <NavTab
                         to={apiNavTabToLink}
@@ -202,7 +234,7 @@ export const PageContent = ({ children, componentName, type }) => {
                     )}
                     {designDocs || designPatternDocs ? (
                       <NavTab
-                        to={designLink}
+                        to={designNavTabToLink}
                         isActive={type === NAV_TABS.DESIGN}
                       >
                         Design
@@ -212,14 +244,14 @@ export const PageContent = ({ children, componentName, type }) => {
                     )}
                   </StyledTabs>
 
-                  <TabPanelsContainer>
+                  <StyledTabPanelsContainer>
                     <StyledTabPanel>
                       <Content>{children}</Content>
                       <PageNavigation>
                         <SubPageTabs pageData={getPageData()} />
                       </PageNavigation>
                     </StyledTabPanel>
-                  </TabPanelsContainer>
+                  </StyledTabPanelsContainer>
                 </TabsContainer>
               </>
             ) : (

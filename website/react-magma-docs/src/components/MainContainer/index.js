@@ -44,7 +44,7 @@ export const MainContainer = ({ children }) => {
       <Container
         gutterWidth={0}
         isInverse={isDarkMode}
-        className={isDarkMode && 'isInverse'}
+        className={isDarkMode}
       >
         <GlobalStyles />
         <StyledSkipLink positionLeft={220} positionTop={3} variant="solid" />

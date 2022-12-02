@@ -12,9 +12,15 @@ import {
 } from 'react-magma-dom';
 
 export const StyledNavTabs = styled(NavTabs)`
+  width: 272px;
+  margin-right: 24px;
   > div ul {
     align-items: start;
   }
+`;
+
+export const StyledNavTab = styled(NavTab)`
+  text-transform: none;
 `;
 
 export const StyledNavTabWrapper = styled.div`
@@ -76,16 +82,15 @@ export const SubPageTabs = ({ pageData }) => {
           {headings.map((page, index) => {
             const id = convertTextToId(page);
             return (
-              <NavTab
+              <StyledNavTab
                 key={index}
                 to={`#${id}`}
                 isInverse={isInverse}
                 isActive={activeTab === index}
                 onClick={(e) => handleAnchorLinkClick(id, index, e)}
-                style={{textTransform: 'none'}}
               >
                 {page}
-              </NavTab>
+              </StyledNavTab>
             );
           })}
         </StyledNavTabWrapper>

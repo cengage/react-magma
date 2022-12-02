@@ -16,14 +16,15 @@ import { IconButtonProps } from '../components/IconButtonProps';
 import { ButtonProps } from '../components/ButtonProps';
 
 const ContentArticle = styled.article`
-  // margin: 0 auto ${magma.spaceScale.spacing10};
-  // max-width: 900px;
-  // width: 80%;
+  @media (max-width: ${magma.breakpoints.large}px) {
+    margin: 0 auto;
+    // max-width: 900px;
+    // width: 80%;
+  }
 
-  // @media (max-width: 600px) {
-  //   padding: 0 ${magma.spaceScale.spacing05};
-  //   width: 100%;
-  // }
+  @media (max-width: ${magma.breakpoints.small}px) {
+    width: 100%;
+  }
 `;
 
 const Table = props => <table {...props} />;

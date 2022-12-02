@@ -7,6 +7,19 @@ const ContentSection = styled.section`
   grid-area: content;
 `;
 
+const HeadingWrapper = styled.div`
+  padding: 34px 0;
+  margin: 0 auto;
+  max-width: 1112px;
+
+  @media (max-width: ${magma.breakpoints.large}px) {
+    padding: 34px 24px;
+  }
+  @media (max-width: ${magma.breakpoints.medium}px) {
+    padding: 32px 16px;
+  }
+`;
+
 export const LayoutComponent = props => {
   const { children, heading, title } = props;
 
@@ -26,18 +39,11 @@ export const LayoutComponent = props => {
         {heading ? (
           <Container
             gutterWidth={0}
-            style={{ background: magma.colors.neutral100 }}
+            style={{ background: magma.colors.neutral200 }}
           >
-            <Heading
-              level={1}
-              style={{
-                padding: '32px 0 32px 100px',
-                marginBottom: '0',
-                background: magma.colors.neutral200,
-              }}
-            >
-              {heading}
-            </Heading>
+            <HeadingWrapper>
+              <Heading level={1}>{heading}</Heading>
+            </HeadingWrapper>
             <div>{children}</div>
           </Container>
         ) : (
