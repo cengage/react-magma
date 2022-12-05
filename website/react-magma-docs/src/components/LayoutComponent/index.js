@@ -17,6 +17,7 @@ const StyledContainer = styled(Container)`
 `;
 
 const HeadingWrapper = styled.div`
+  background: ${magma.colors.neutral200};
   padding: 34px 0;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;

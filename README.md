@@ -166,13 +166,6 @@ The heading for the docs page can be created by using markdown with the followin
 
 The URL following the name of the component is the link to respective Designs Docs page, and is optional. The `api` string indicates that the page is in the `Component API`.
 
-Alternatively, you can also import the `DocsHeading` component and use the component with the appropriate props.
-
-```
-import { DocsHeading } from '../../components/DocsHeading;
-
-<DocsHeading to="/design/{component}/" type="api">
-```
 
 #### CodeSandbox Examples
 
