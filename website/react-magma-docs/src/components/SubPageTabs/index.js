@@ -10,11 +10,12 @@ import {
   TabsOrientation,
 } from 'react-magma-dom';
 
+// Side navigation
 export const StyledNavTabs = styled(NavTabs)`
   width: 272px;
   margin-right: 24px;
   position: sticky;
-  top: 48px;
+  top: 92px;
   height: calc(100vh - 200px);
   > div ul {
     align-items: start;

@@ -27,10 +27,22 @@ const NAV_TABS = {
   PATTERNS_INTRO: 'patterns_intro',
 };
 
+const TabsWrapper = styled.div`
+  position: sticky;
+  top: 56px;
+  z-index: 10;
+  background: ${magma.colors.neutral200};
+`;
+
+// Implementation & Design tabs
 const StyledTabs = styled(NavTabs)`
   background: ${magma.colors.neutral200};
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
+  position: sticky;
+  top: 56px;
+  z-index: 10;
+
   @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH}px) {
     padding-left: 24px;
   }
@@ -224,31 +236,31 @@ export const PageContent = ({ children, componentName, type }) => {
           <>
             {hasDocs ? (
               <>
-                <StyledTabsContainer
-                  isInverse={isInverse}
-                >
-                  <StyledTabs aria-label="">
-                    {apiDocs || patternsDocs ? (
-                      <NavTab
-                        to={apiNavTabToLink}
-                        isActive={type === NAV_TABS.API}
-                      >
-                        Implementation
-                      </NavTab>
-                    ) : (
-                      <></>
-                    )}
-                    {designDocs || designPatternDocs ? (
-                      <NavTab
-                        to={designNavTabToLink}
-                        isActive={type === NAV_TABS.DESIGN}
-                      >
-                        Design
-                      </NavTab>
-                    ) : (
-                      <></>
-                    )}
-                  </StyledTabs>
+                <StyledTabsContainer isInverse={isInverse}>
+                  <TabsWrapper>
+                    <StyledTabs aria-label="">
+                      {apiDocs || patternsDocs ? (
+                        <NavTab
+                          to={apiNavTabToLink}
+                          isActive={type === NAV_TABS.API}
+                        >
+                          Implementation
+                        </NavTab>
+                      ) : (
+                        <></>
+                      )}
+                      {designDocs || designPatternDocs ? (
+                        <NavTab
+                          to={designNavTabToLink}
+                          isActive={type === NAV_TABS.DESIGN}
+                        >
+                          Design
+                        </NavTab>
+                      ) : (
+                        <></>
+                      )}
+                    </StyledTabs>
+                  </TabsWrapper>
 
                   <StyledTabPanelsContainer>
                     <StyledTabPanel>
