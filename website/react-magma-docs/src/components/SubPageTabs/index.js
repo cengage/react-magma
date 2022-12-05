@@ -10,18 +10,6 @@ import {
   TabsOrientation,
 } from 'react-magma-dom';
 
-// Side navigation
-export const StyledNavTabs = styled(NavTabs)`
-  width: 272px;
-  margin-right: 24px;
-  position: sticky;
-  top: 92px;
-  height: calc(100vh - 200px);
-  > div ul {
-    align-items: start;
-  }
-`;
-
 export const StyledNavTab = styled(NavTab)`
   text-transform: none;
 `;
@@ -45,7 +33,20 @@ export const StyledTabHeading = styled.p`
   padding: 12px 16px;
 `;
 
-export const SubPageTabs = ({ pageData }) => {
+export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
+  
+  // Side navigation
+  const StyledNavTabs = styled(NavTabs)`
+  width: 272px;
+  margin-right: 24px;
+  position: sticky;
+  top: ${hasHorizontalNav ? '92px' : '48px'};
+  height: calc(100vh - 200px);
+  > div ul {
+    align-items: start;
+  }
+`;
+
   const [activeTab, setActiveTab] = React.useState(0);
 
   const isInverse = useIsInverse();
@@ -58,12 +59,13 @@ export const SubPageTabs = ({ pageData }) => {
     const targetAnchor = document.getElementById(id);
     if (!targetAnchor) return;
     const originalTop = distanceToTop(targetAnchor);
-  
+
     window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
-  
+
     const checkIfDone = setInterval(function () {
       const atBottom =
-        window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 2;
+        window.innerHeight + window.pageYOffset >=
+        document.body.offsetHeight - 2;
       if (distanceToTop(targetAnchor) === 0 || atBottom) {
         targetAnchor.tabIndex = '-1';
         targetAnchor.focus();
@@ -71,7 +73,7 @@ export const SubPageTabs = ({ pageData }) => {
         clearInterval(checkIfDone);
       }
     }, 100);
-  
+
     setActiveTab(index);
   };
 
@@ -90,7 +92,7 @@ export const SubPageTabs = ({ pageData }) => {
                 to={`#${id}`}
                 isInverse={isInverse}
                 isActive={activeTab === index}
-                onClick={(e) => handleAnchorLinkClick(id, index, e)}
+                onClick={e => handleAnchorLinkClick(id, index, e)}
               >
                 {page}
               </StyledNavTab>
@@ -106,6 +108,7 @@ export const SubPageTabs = ({ pageData }) => {
       <StyledNavTabs
         isInverse={isInverse}
         orientation={TabsOrientation.vertical}
+        hasHorizontalNav={hasHorizontalNav}
       >
         {renderPageNavTabs()}
       </StyledNavTabs>
@@ -115,4 +118,5 @@ export const SubPageTabs = ({ pageData }) => {
 
 SubPageTabs.propTypes = {
   pageData: PropTypes.object,
+  hasHorizontalNav: PropTypes.bool,
 };

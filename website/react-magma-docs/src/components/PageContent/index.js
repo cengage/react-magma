@@ -210,8 +210,15 @@ export const PageContent = ({ children, componentName, type }) => {
           : designLink;
 
         const getPageData = () => {
+          if (designPatternDocs || patternsDocs) {
+            if (type === NAV_TABS.DESIGN) {
+              return designPatternDocs;
+            }
+            if (type === NAV_TABS.API) {
+              return patternsDocs;
+            }
+          }
           if (apiDocs || designDocs) {
-            //   TODO: handle patternsDocs
             if (type === NAV_TABS.API) {
               return apiDocs;
             }
@@ -266,17 +273,19 @@ export const PageContent = ({ children, componentName, type }) => {
                     <StyledTabPanel>
                       <Content>{children}</Content>
                       <PageNavigation>
-                        <SubPageTabs pageData={getPageData()} />
+                        <SubPageTabs pageData={getPageData()} hasHorizontalNav={hasDocs} />
                       </PageNavigation>
                     </StyledTabPanel>
                   </StyledTabPanelsContainer>
                 </StyledTabsContainer>
               </>
             ) : (
-              <div style={{ display: 'flex' }}>
+              <div
+                style={{ display: 'flex', background: magma.colors.neutral100 }}
+              >
                 <Content>{children}</Content>
                 <PageNavigation>
-                  <SubPageTabs pageData={getPageData()} />
+                  <SubPageTabs pageData={getPageData()} hasHorizontalNav={hasDocs} />
                 </PageNavigation>
               </div>
             )}
@@ -290,5 +299,5 @@ export const PageContent = ({ children, componentName, type }) => {
 PageContent.propTypes = {
   children: PropTypes.node,
   componentName: PropTypes.string,
-  type: PropTypes.oneOf(['api', 'design']),
+  type: PropTypes.oneOf(['api', 'api_intro', 'design', 'design_intro', 'patterns', 'patterns_intro']),
 };
