@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { Router, Location } from '@reach/router';
 import styled from '@emotion/styled';
 import { convertTextToId } from '../../utils';
 import {
@@ -14,6 +13,9 @@ import {
 export const StyledNavTabs = styled(NavTabs)`
   width: 272px;
   margin-right: 24px;
+  position: sticky;
+  top: 48px;
+  height: calc(100vh - 200px);
   > div ul {
     align-items: start;
   }

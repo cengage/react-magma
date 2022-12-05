@@ -14,6 +14,9 @@ import {
   NavTab,
   useIsInverse,
 } from 'react-magma-dom';
+import { PANEL_WIDTH } from '../SlidingDrawer';
+
+export const CONTENT_MAX_WIDTH = 1112;
 
 const NAV_TABS = {
   API: 'api',
@@ -27,8 +30,8 @@ const NAV_TABS = {
 const StyledTabs = styled(NavTabs)`
   background: ${magma.colors.neutral200};
   margin: 0 auto;
-  max-width: 1112px;
-  @media (max-width: ${magma.breakpoints.large}px) {
+  max-width: ${CONTENT_MAX_WIDTH}px;
+  @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH}px) {
     padding-left: 24px;
   }
   @media (max-width: ${magma.breakpoints.medium}px) {
@@ -45,6 +48,11 @@ const StyledTabPanel = styled(TabPanel)`
     content: '';
     visibility: hidden;
   }
+`;
+
+const StyledTabsContainer = styled(TabsContainer)`
+  max-width: 100%;
+  flex-direction: column;
 `;
 
 const StyledTabPanelsContainer = styled(TabPanelsContainer)`
@@ -67,7 +75,6 @@ const Content = styled.div`
   @media (max-width: ${magma.breakpoints.small}px) {
     margin: 32px 16px;
     min-width: 0;
-    // max-width: ${magma.breakpoints.small}px;
     padding: 0;
   }
 `;
@@ -217,9 +224,8 @@ export const PageContent = ({ children, componentName, type }) => {
           <>
             {hasDocs ? (
               <>
-                <TabsContainer
+                <StyledTabsContainer
                   isInverse={isInverse}
-                  style={{ maxWidth: '100%' }}
                 >
                   <StyledTabs aria-label="">
                     {apiDocs || patternsDocs ? (
@@ -252,7 +258,7 @@ export const PageContent = ({ children, componentName, type }) => {
                       </PageNavigation>
                     </StyledTabPanel>
                   </StyledTabPanelsContainer>
-                </TabsContainer>
+                </StyledTabsContainer>
               </>
             ) : (
               <div style={{ display: 'flex' }}>

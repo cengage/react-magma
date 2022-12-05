@@ -7,6 +7,8 @@ import { MenuIcon, CloseIcon } from 'react-magma-icons';
 import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
 import { MainNav } from '../MainNav';
 
+export const PANEL_WIDTH = 240;
+
 export class SlidingDrawer extends React.Component {
   constructor(props) {
     super(props);
@@ -86,7 +88,7 @@ export class SlidingDrawer extends React.Component {
       position: fixed;
       top: 0;
       transform: translateX(-300px);
-      width: 240px;
+      width: ${PANEL_WIDTH}px;
 
       ${props =>
         props.isActivated &&
