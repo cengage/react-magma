@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo, memo } from 'react';
 import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import {
   FormGroup as MagmaFormGroup,
@@ -13,7 +13,7 @@ export interface FormGroupProps extends MagmaFormGroupProps {
 const FormGroupMapping = (props: FormGroupProps) => {
   const { renderForm } = useFormApi();
 
-  const subfields = React.useMemo(() => {
+  const subfields = useMemo(() => {
     return props.fields.map((field: any) => ({
       ...field,
       showError: props.showError,
@@ -23,4 +23,4 @@ const FormGroupMapping = (props: FormGroupProps) => {
   return <MagmaFormGroup {...props}>{renderForm(subfields)}</MagmaFormGroup>;
 };
 
-export const FormGroup = React.memo(FormGroupMapping);
+export const FormGroup = memo(FormGroupMapping);

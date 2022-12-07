@@ -5,7 +5,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import React from 'react';
+import { forwardRef, useState, useContext, useCallback, useEffect } from 'react';
 import {
   useDropzone,
   DropzoneOptions,
@@ -186,7 +186,7 @@ const Wrapper = styled.div<{ isInverse?: boolean }>`
   font-weight: 500;
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
-export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
+export const Dropzone = forwardRef<HTMLInputElement, DropzoneProps>(
   (props, ref) => {
     const {
       accept,
@@ -218,15 +218,15 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       ...rest
     } = props;
 
-    const [files, setFiles] = React.useState<FilePreview[]>([]);
-    const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+    const [files, setFiles] = useState<FilePreview[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const isInverse = useIsInverse(isInverseProp);
-    const theme: ThemeInterface = React.useContext(ThemeContext);
-    const i18n: I18nInterface = React.useContext(I18nContext);
+    const theme: ThemeInterface = useContext(ThemeContext);
+    const i18n: I18nInterface = useContext(I18nContext);
     const id = useGenerateId(defaultId);
 
-    const onDrop = React.useCallback(
+    const onDrop = useCallback(
       (acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
         setFiles((files: FilePreview[]) => [
           ...files,
@@ -349,7 +349,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       }
     };
 
-    React.useEffect(
+    useEffect(
       () => () => {
         files.forEach(
           file => file.preview && URL.revokeObjectURL(file.preview)
@@ -358,7 +358,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       [files]
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
       const minFileError = minFiles && files.length < minFiles;
       const maxFileError = maxFiles && files.length > maxFiles;
 

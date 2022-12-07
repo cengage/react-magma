@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 import { v4 as uuidv4 } from 'uuid';
@@ -34,4 +34,4 @@ const InputMapping = (props: InputProps) => {
   );
 };
 
-export const Input = React.memo(InputMapping);
+export const Input = memo(InputMapping);

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Transition } from '.';
 import { Button } from '../Button';
 
@@ -82,7 +82,7 @@ const info = {
 export default info;
 
 export const Default = args => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
       <Transition

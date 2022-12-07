@@ -1,4 +1,3 @@
-import React from 'react';
 import { IndeterminateCheckbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';

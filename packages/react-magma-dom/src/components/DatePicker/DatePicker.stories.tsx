@@ -1,4 +1,3 @@
-import React from 'react';
 import { DatePicker } from '.';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';

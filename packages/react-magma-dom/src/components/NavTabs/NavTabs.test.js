@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { CheckIcon } from 'react-magma-icons';
 import { NavTabs } from '.';

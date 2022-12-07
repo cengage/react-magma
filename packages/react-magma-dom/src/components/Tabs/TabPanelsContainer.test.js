@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { Tab } from './Tab';
 import { Tabs } from '.';

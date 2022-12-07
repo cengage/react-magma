@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Chart, ChartProps } from './index';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import {

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
 import { SelectOptions } from '../Select';
@@ -1151,10 +1151,10 @@ export const Typeahead = args => {
     'Axolotl',
   ];
 
-  const [suggestedItems, setSuggestedItems] = React.useState([]);
-  const [selectedItems, updateSelectedItems] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [inputQuery, setInputQuery] = React.useState('');
+  const [suggestedItems, setSuggestedItems] = useState([]);
+  const [selectedItems, updateSelectedItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [inputQuery, setInputQuery] = useState('');
   const dataSet = args.largeDataSet ? largeListOfItems : mediumListOfItems;
 
   function handleSelectedItemsChange(changes) {
@@ -1169,7 +1169,7 @@ export const Typeahead = args => {
     setInputQuery(event.inputValue);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => {
       setIsLoading(true);
     }, 100);

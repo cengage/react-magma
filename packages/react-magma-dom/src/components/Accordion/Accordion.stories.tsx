@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import {
   Accordion,
   AccordionProps,
@@ -97,9 +97,9 @@ ControlledNoMulti.args = {
 };
 
 export const ExpandCollapseAll = args => {
-  const [expandedIndex, setExpandedIndex] = React.useState([]);
-  const [disableExpandAll, setDisableExpandAll] = React.useState(false);
-  const [disableCollapseAll, setDisableCollapseAll] = React.useState(true);
+  const [expandedIndex, setExpandedIndex] = useState([]);
+  const [disableExpandAll, setDisableExpandAll] = useState(false);
+  const [disableCollapseAll, setDisableCollapseAll] = useState(true);
 
   const handleExpandAll = () => {
     setExpandedIndex([0, 1, 2]);
@@ -117,7 +117,7 @@ export const ExpandCollapseAll = args => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (expandedIndex.length === 0) {
       setDisableCollapseAll(true);
       setDisableExpandAll(false);
@@ -176,7 +176,7 @@ Inverse.decorators = [
   ),
 ];
 export const WithDropdown = args => {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>

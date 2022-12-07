@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Schema, SchemaRenderer, SchemaRendererProps } from './SchemaRenderer';
 
 import { componentTypes } from '../ComponentMapper';
@@ -364,7 +364,7 @@ Array.args = {
 };
 
 export function Example() {
-  const [values, setValues] = React.useState();
+  const [values, setValues] = useState();
 
   const schema: Schema = {
     title: 'File Uploader',

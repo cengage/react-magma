@@ -1,9 +1,9 @@
-import React from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 export function useComboboxItems(defaultItems, items) {
-  const afterInitialRender = React.useRef(false);
-  const allItems = React.useRef(defaultItems || items);
-  const [displayItems, setDisplayItems] = React.useState(defaultItems || items);
+  const afterInitialRender = useRef(false);
+  const allItems = useRef(defaultItems || items);
+  const [displayItems, setDisplayItems] = useState(defaultItems || items);
 
   function updateItemsRef(newItem) {
     const newItems = [...allItems.current, newItem];
@@ -11,7 +11,7 @@ export function useComboboxItems(defaultItems, items) {
     setDisplayItems(newItems);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!afterInitialRender.current) {
       afterInitialRender.current = true;
       return;

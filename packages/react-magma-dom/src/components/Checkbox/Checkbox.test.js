@@ -1,4 +1,3 @@
-import React from 'react';
 import { Checkbox } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';

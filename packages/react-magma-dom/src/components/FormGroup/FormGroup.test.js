@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { axe } from '../../../axe-helper';
 import { FormGroup } from '.';
 import { Checkbox } from '../Checkbox';

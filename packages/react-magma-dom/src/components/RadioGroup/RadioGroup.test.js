@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { axe } from '../../../axe-helper';
 import { RadioGroup } from '.';
 import { Radio } from '../Radio';

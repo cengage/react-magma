@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { CengageLogo, Header, HeaderProps } from './';
 import { PersonIcon, SettingsIcon, NotificationsIcon } from 'react-magma-icons';

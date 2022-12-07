@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { act, render, fireEvent } from '@testing-library/react';
 import {

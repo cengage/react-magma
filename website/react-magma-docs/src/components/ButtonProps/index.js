@@ -1,4 +1,3 @@
-import React from 'react';
 import { SimplePropsTable } from '../SimplePropsTable';
 
 export const ButtonProps = () => (

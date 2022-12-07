@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tab } from './Tab';
 import { CheckIcon } from 'react-magma-icons';
 import { render, fireEvent } from '@testing-library/react';

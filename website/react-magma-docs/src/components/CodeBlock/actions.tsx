@@ -6,7 +6,7 @@ import {
   useIsInverse,
   magma,
 } from 'react-magma-dom';
-import React, { HTMLAttributes, useEffect, useState } from 'react';
+import { useRef, HTMLAttributes, useEffect, useState } from 'react';
 import CodeSandboxer from 'react-codesandboxer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
@@ -15,7 +15,7 @@ import styled from '@emotion/styled';
 const pkg = require('../../../package.json');
 
 function usePrevious<T>(value: T) {
-  const ref = React.useRef<T>();
+  const ref = useRef<T>();
 
   useEffect(() => {
     ref.current = value;

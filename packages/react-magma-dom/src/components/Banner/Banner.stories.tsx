@@ -1,4 +1,3 @@
-import React from 'react';
 import { Banner, BannerProps } from '.';
 import { AlertVariant } from '../AlertBase';
 import { Card, CardBody } from '../Card';

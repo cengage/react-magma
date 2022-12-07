@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { ButtonGroup, ButtonGroupOrientation, ButtonGroupAlignment } from '.';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Toggle } from '.';
 import { FormGroup } from '../FormGroup';
 import { magma } from '../../theme/magma';

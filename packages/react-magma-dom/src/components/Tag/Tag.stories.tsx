@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Card, CardBody } from '../Card';
 import { AccountCircleIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
@@ -146,7 +146,7 @@ InverseDisabled.decorators = [
 ];
 
 export const OnClick = args => {
-  const [counter, setCounter] = React.useState<number>(0);
+  const [counter, setCounter] = useState<number>(0);
   function updateCounter() {
     setCounter(count => count + 1);
   }
@@ -164,7 +164,7 @@ export const OnClick = args => {
 OnClick.args = {};
 
 export const WithDelete = args => {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isVisible, setIsVisible] = useState(true);
 
   function deleteMe() {
     setIsVisible(false);

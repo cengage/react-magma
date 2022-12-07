@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useRef } from 'react';
 import { Modal, ModalSize } from '.';
 import { Button, ButtonColor } from '../Button';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -17,8 +17,8 @@ const info = {
 export default info;
 
 export const Default = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const [showModal, setShowModal] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>();
 
   return (
     <>
@@ -45,8 +45,8 @@ export const Default = () => {
 };
 
 export const LongContentWithScrolling = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const [showModal, setShowModal] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -106,8 +106,8 @@ export const LongContentWithScrolling = () => {
 };
 
 export const RadioInModal = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const [showModal, setShowModal] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -133,11 +133,11 @@ export const RadioInModal = () => {
 };
 
 export const ModalContentUpdate = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const [page, setPage] = React.useState(1);
-  const [showHidden, setShowHidden] = React.useState(false);
-  const [goToNextPageEnabled, setGoToNextPageEnabled] = React.useState(true);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const [showModal, setShowModal] = useState(false);
+  const [page, setPage] = useState(1);
+  const [showHidden, setShowHidden] = useState(false);
+  const [goToNextPageEnabled, setGoToNextPageEnabled] = useState(true);
+  const buttonRef = useRef<HTMLButtonElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -212,8 +212,8 @@ export const ModalContentUpdate = () => {
 };
 
 export const NoHeaderOrFocusableContent = () => {
-  const [showModalNoFocus, setShowModalNoFocus] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const [showModalNoFocus, setShowModalNoFocus] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>();
 
   const onModalNoFocusShow = () => {
     setShowModalNoFocus(true);
@@ -246,9 +246,9 @@ export const NoHeaderOrFocusableContent = () => {
 };
 
 export const ModalInAModal = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const [showModal2, setShowModal2] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>();
 
   return (
     <>
@@ -292,8 +292,8 @@ export const ModalInAModal = () => {
 };
 
 export const Inverse = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const [showModal, setShowModal] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>();
 
   return (
     <>

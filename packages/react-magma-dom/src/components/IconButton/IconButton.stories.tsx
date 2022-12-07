@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { IconButton, IconButtonProps } from '.';
 import { Global, css } from '@emotion/core';
 import { SettingsIcon, NotificationsIcon, ExpandMoreIcon } from 'react-magma-icons';
@@ -117,7 +117,7 @@ IconOnly.args = {
 };
 
 const AnimatedIconTemplate: Story<IconButtonProps> = (props) => {
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <>

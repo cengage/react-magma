@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, navigate } from 'gatsby';
 import {
   Button,

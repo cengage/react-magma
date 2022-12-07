@@ -1,5 +1,5 @@
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import React, { useContext, MouseEvent } from 'react';
+import { useContext, MouseEvent } from 'react';
 import styled from '@emotion/styled';
 import { CodeBlockContext } from './context';
 import { magma, useIsInverse } from 'react-magma-dom';

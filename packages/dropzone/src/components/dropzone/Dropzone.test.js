@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper.js';
 import { Dropzone } from '.';
 import {

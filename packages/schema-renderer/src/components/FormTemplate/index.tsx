@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo } from 'react';
 import {
   Button,
   ButtonColor,
@@ -42,7 +42,7 @@ export const FormTemplate = ({
     </ButtonGroup>
   );
 
-  const actionsVisible = React.useMemo(() => {
+  const actionsVisible = useMemo(() => {
     return true;
   }, []);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';

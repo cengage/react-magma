@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Datagrid } from '.';
 import { TableRowColor } from '../Table';

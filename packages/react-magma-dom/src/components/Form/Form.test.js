@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Form } from '.';
 import { Input } from '../Input';

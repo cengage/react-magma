@@ -1,4 +1,4 @@
-import React from 'react';
+import { createRef, Component } from 'react';
 import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
@@ -7,14 +7,14 @@ import { MenuIcon, CloseIcon } from 'react-magma-icons';
 import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
 import { MainNav } from '../MainNav';
 
-export class SlidingDrawer extends React.Component {
+export class SlidingDrawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isOpen: false,
       isActivated: false,
     };
-    this.toggleButtonRef = React.createRef();
+    this.toggleButtonRef = createRef();
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);

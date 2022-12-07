@@ -1,4 +1,3 @@
-import React from 'react';
 import { Badge, BadgeColor, BadgeVariant } from '.';
 import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';

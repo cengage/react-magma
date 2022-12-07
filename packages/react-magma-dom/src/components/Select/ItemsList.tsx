@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { StyledCard, StyledList, StyledItem } from './shared';

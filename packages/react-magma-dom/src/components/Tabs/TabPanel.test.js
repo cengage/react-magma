@@ -1,4 +1,3 @@
-import React from 'react';
 import { TabPanel } from './TabPanel';
 import { TabsContainerContext } from './TabsContainer';
 import { render } from '@testing-library/react';

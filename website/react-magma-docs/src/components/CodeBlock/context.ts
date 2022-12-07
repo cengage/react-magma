@@ -1,4 +1,4 @@
-import React from 'react';
+import { createContext } from 'react';
 import { Language } from 'prism-react-renderer';
 
 interface CodeBlockContextValue {
@@ -12,7 +12,7 @@ interface CodeBlockContextValue {
   themeNameOverride?: string;
   title: string;
 }
-export const CodeBlockContext = React.createContext<CodeBlockContextValue>({
+export const CodeBlockContext = createContext<CodeBlockContextValue>({
   language: 'typescript',
   title: 'Code Example',
   noBorder: false,

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { convertTextToId } from '../../utils';
 import styled from '@emotion/styled';

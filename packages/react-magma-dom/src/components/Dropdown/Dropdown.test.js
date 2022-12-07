@@ -1,4 +1,3 @@
-import React from 'react';
 import { AsteriskIcon } from 'react-magma-icons';
 import { Dropdown } from '.';
 import { DropdownContent } from './DropdownContent';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tab } from './Tab';
 import { Tabs } from '.';
 import { TabsContainer, TabsContainerContext } from './TabsContainer';

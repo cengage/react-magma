@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Toast } from '.';
 import { magma } from '../../theme/magma';
 import { AlertVariant } from '../AlertBase';
@@ -35,7 +35,7 @@ export default {
 } as Meta;
 
 export const Default = args => {
-  const [showToast, setShowToast] = React.useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   function handleClick() {
     setShowToast(true);
@@ -72,7 +72,7 @@ Default.args = {
 };
 
 export const TwoLine = args => {
-  const [showToast, setShowToast] = React.useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   function handleClick() {
     setShowToast(true);
@@ -107,7 +107,7 @@ TwoLine.args = {
 };
 
 export const MultiLine = args => {
-  const [showToast, setShowToast] = React.useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   function handleClick() {
     setShowToast(true);

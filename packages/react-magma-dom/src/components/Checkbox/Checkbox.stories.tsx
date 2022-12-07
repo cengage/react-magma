@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Card, CardBody } from '../Card';
 import { Checkbox } from '.';
 import { FormGroup } from '../FormGroup';
@@ -11,7 +11,7 @@ export default {
 } as Meta;
 
 export const Default = () => {
-  const [checked, updateChecked] = React.useState(false);
+  const [checked, updateChecked] = useState(false);
   return (
     <>
       <FormGroup labelText="Choose one or more">
@@ -87,7 +87,7 @@ export const Default = () => {
 };
 
 export const Inverse = () => {
-  const [checked, updateChecked] = React.useState(false);
+  const [checked, updateChecked] = useState(false);
   return (
     <Card isInverse>
       <CardBody>

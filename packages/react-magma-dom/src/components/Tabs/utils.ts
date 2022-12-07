@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { TabsOrientation } from './shared';
 import {
   animate,
@@ -21,14 +21,14 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
     ? backgroundColor
     : 'transparent';
 
-  const [displayScroll, setDisplayScroll] = React.useState({
+  const [displayScroll, setDisplayScroll] = useState({
     start: false,
     end: false,
   });
 
-  const tabsWrapperRef = React.useRef<HTMLDivElement>();
-  const prevButtonRef = React.useRef<HTMLButtonElement>();
-  const nextButtonRef = React.useRef<HTMLButtonElement>();
+  const tabsWrapperRef = useRef<HTMLDivElement>();
+  const prevButtonRef = useRef<HTMLButtonElement>();
+  const nextButtonRef = useRef<HTMLButtonElement>();
 
   function scroll(scrollValue) {
     animate(scrollStart, tabsWrapperRef.current, scrollValue);
@@ -92,7 +92,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
     }
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = debounce(updateScrollButtonState, 100);
 
     window.addEventListener('resize', handleResize);
@@ -102,18 +102,18 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
     };
   }, [updateScrollButtonState]);
 
-  const handleTabsScroll = React.useCallback(
+  const handleTabsScroll = useCallback(
     debounce(updateScrollButtonState, 100),
     [updateScrollButtonState]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       handleTabsScroll.clear();
     };
   }, [handleTabsScroll]);
 
-  React.useEffect(updateScrollButtonState);
+  useEffect(updateScrollButtonState);
 
   return [
     { vertical, background, displayScroll, scrollStart },

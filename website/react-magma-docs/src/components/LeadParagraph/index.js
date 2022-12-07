@@ -1,4 +1,3 @@
-import React from 'react';
 import { Paragraph } from 'react-magma-dom';
 import styled from '@emotion/styled';
 

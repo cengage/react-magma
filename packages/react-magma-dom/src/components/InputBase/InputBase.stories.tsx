@@ -1,4 +1,3 @@
-import React from 'react';
 import { InputBase } from '../InputBase';
 import { Input } from '../Input';
 import { PasswordInput } from '../PasswordInput';

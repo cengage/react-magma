@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 export function generateId(id?: string) {
@@ -6,13 +6,13 @@ export function generateId(id?: string) {
 }
 
 export function useGenerateId(newId?: string) {
-  const [id, updateId] = React.useState<string>(newId);
+  const [id, updateId] = useState<string>(newId);
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateId(generateId(newId));
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     newId && updateId(generateId(newId));
   }, [newId]);
 
@@ -35,8 +35,8 @@ export type XOR<T, U> = T | U extends object
   : T | U;
 
 export function usePrevious(value) {
-  const ref = React.useRef();
-  React.useEffect(() => {
+  const ref = useRef();
+  useEffect(() => {
     ref.current = value;
   });
   return ref.current;
@@ -178,7 +178,7 @@ export function assignRef(ref, value) {
 }
 
 export function useForkedRef(...refs) {
-  return React.useMemo(() => {
+  return useMemo(() => {
     if (refs.every(ref => ref === null)) {
       return null;
     }

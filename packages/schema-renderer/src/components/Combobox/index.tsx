@@ -1,4 +1,4 @@
-import React from 'react';
+import { useRef, useState, memo } from 'react';
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 import { v4 as uuidv4 } from 'uuid';
@@ -34,9 +34,9 @@ const ComboboxMapping = (props: ComboboxProps) => {
   const name = input.name || uuidv4();
   const errorMessage =
     ((validateOnMount || submitFailed || showError) && error) || '';
-  const innerRef = React.useRef<HTMLInputElement>(null);
+  const innerRef = useRef<HTMLInputElement>(null);
 
-  const [items, updateItems] = React.useState(
+  const [items, updateItems] = useState(
     options.map(({ labelText, ...rest }: { labelText: string }) => {
       return { label: labelText, ...rest };
     })
@@ -85,4 +85,4 @@ const ComboboxMapping = (props: ComboboxProps) => {
   );
 };
 
-export const Combobox = React.memo(ComboboxMapping);
+export const Combobox = memo(ComboboxMapping);

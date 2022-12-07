@@ -1,6 +1,6 @@
 import { transform } from '@babel/core';
 import { Language } from 'prism-react-renderer';
-import React, { HTMLAttributes, useContext } from 'react';
+import { HTMLAttributes, useContext } from 'react';
 import { LiveError, LiveProvider, LivePreview } from 'react-live';
 
 import * as SCHEMA from '@react-magma/schema-renderer';

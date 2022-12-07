@@ -1,4 +1,4 @@
-import React from 'react';
+import { useContext } from 'react';
 import {
   IconButton,
   Tooltip,
@@ -9,7 +9,7 @@ import { BrightnessHighIcon, BrightnessMediumIcon } from 'react-magma-icons';
 import { DarkModeContext } from './DarkModeContext';
 
 export const DarkModeButton = () => {
-  const { isDarkMode, setIsDarkMode } = React.useContext(DarkModeContext);
+  const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
 
   function handleDarkModeClick() {
     localStorage.setItem('isRMDarkMode', !isDarkMode);

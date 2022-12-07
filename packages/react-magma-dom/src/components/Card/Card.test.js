@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Card } from '.';
 import { CardBody } from './CardBody';

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useMemo } from 'react';
 import { Card } from '../Card';
 import {
   Table,
@@ -282,8 +282,8 @@ const rowsLong = [
 ];
 
 export const ControlledPagination = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [pageIndex, setPageIndex] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
   function handleRowsPerPageChange(numberOfRows) {
     setRowsPerPage(numberOfRows);
@@ -336,8 +336,8 @@ ControlledPagination.args = {
 };
 
 export const UncontrolledPagination = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [pageIndex, setPageIndex] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
   function handlePageChange(_, page) {
     setPageIndex(page);
@@ -383,8 +383,8 @@ export const UncontrolledPagination = args => {
 };
 
 export const PaginationInverse = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [pageIndex, setPageIndex] = useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
   function handlePageChange(_, page) {
     setPageIndex(page);
@@ -552,13 +552,13 @@ export const Sortable = args => {
     { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
   ];
 
-  const [sortConfig, setSortConfig] = React.useState({
+  const [sortConfig, setSortConfig] = useState({
     key: 'name',
     direction: TableSortDirection.ascending,
     message: '',
   });
 
-  const sortedItems = React.useMemo(() => {
+  const sortedItems = useMemo(() => {
     let sortableItems = [...products];
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {

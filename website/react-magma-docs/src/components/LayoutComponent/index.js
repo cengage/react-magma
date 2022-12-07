@@ -1,4 +1,3 @@
-import React from 'react';
 import Helmet from 'react-helmet';
 import styled from '@emotion/styled';
 import { magma, Container } from 'react-magma-dom';

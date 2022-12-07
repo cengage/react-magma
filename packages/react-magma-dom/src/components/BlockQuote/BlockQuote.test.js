@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { BlockQuote, BlockQuoteItem } from '.';
 import { magma } from '../../theme/magma';

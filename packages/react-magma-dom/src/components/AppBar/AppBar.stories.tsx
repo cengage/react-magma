@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppBar, AppBarProps, AppBarPosition } from './index';
 import { NavTabs, NavTab } from '../NavTabs';
 import { Search } from '../Search';

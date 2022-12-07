@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import {
   Tooltip,
   TooltipProps,
@@ -87,7 +87,7 @@ Open.args = {
 };
 
 export const Complex = () => {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false);
   const longContent = (
     <>
       This is too much content for a tooltip but I need it to test, you know?

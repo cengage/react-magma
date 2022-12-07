@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Search } from '.';
 import { I18nContext } from '../../i18n';

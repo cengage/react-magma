@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '.';
 import { Button } from '../Button';

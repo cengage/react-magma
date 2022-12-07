@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const CengageLogo = () => (
   <svg viewBox="0 0 265 61" height="40">
     <defs>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Search, SearchProps } from '.';
 import { InputSize } from '../InputBase';
 import { Story, Meta } from '@storybook/react/types-6-0';

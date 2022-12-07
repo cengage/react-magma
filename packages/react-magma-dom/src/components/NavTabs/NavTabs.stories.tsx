@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavTabs } from '.';
 import { NavTab } from './NavTab';
 import { Card } from '../Card';

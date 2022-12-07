@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Drawer } from '.';
 import { Button } from '../Button';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -20,7 +20,7 @@ const info = {
 export default info;
 
 export const Default = args => {
-  const [showDrawer, setShowDrawer] = React.useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
 
   return (
     <>

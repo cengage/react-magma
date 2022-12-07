@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from 'jest-axe';
 import { Header } from '.';
 import { magma } from 'react-magma-dom';

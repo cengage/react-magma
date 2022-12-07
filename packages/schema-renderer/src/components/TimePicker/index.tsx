@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
 import { v4 as uuidv4 } from 'uuid';
@@ -33,4 +33,4 @@ const TimePickerMapping = (props: TimePickerProps) => {
   );
 };
 
-export const TimePicker = React.memo(TimePickerMapping);
+export const TimePicker = memo(TimePickerMapping);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { BreakpointsContainer, Breakpoint } from '.';
 import { magma } from '../../theme/magma';

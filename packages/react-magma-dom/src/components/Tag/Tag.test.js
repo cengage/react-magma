@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Tag, TagColor, TagSize } from '.';

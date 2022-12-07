@@ -1,4 +1,3 @@
-import React from 'react';
 import { PasswordInput, PasswordInputProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';

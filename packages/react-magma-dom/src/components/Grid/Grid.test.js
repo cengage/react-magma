@@ -1,4 +1,3 @@
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Grid, GridItem } from '.';
 import { render } from '@testing-library/react';

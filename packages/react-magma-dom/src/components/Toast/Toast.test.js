@@ -1,4 +1,3 @@
-import React from 'react';
 import { magma } from '../../theme/magma';
 import { Toast } from '.';
 import { ToastsContainer } from './ToastsContainer';

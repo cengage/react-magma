@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 export function useMediaQuery(queryInput) {
   const query = queryInput.replace(/^@media( ?)/m, '');
@@ -8,7 +8,7 @@ export function useMediaQuery(queryInput) {
 
   const matchMedia = supportMatchMedia ? window.matchMedia : null;
 
-  const [match, setMatch] = React.useState(() => {
+  const [match, setMatch] = useState(() => {
     if (supportMatchMedia) {
       return matchMedia(query).matches;
     }
@@ -16,7 +16,7 @@ export function useMediaQuery(queryInput) {
     return false;
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     let active = true;
 
     if (!supportMatchMedia) {

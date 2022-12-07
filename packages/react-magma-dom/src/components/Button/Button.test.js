@@ -1,5 +1,4 @@
 // <reference types="jest-dom/extend-expect"/>
-import React from 'react';
 import { axe } from '../../../axe-helper';
 import {
   Button,

@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import { HTMLAttributes } from 'react';
 import { Language } from 'prism-react-renderer';
 import { CodeBlockContext } from './context';
 import { Example } from './examples';

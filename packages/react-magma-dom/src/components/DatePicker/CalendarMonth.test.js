@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CalendarContext } from './CalendarContext';

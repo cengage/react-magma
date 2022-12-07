@@ -1,4 +1,3 @@
-import React from 'react';
 import { LoadingIndicator } from '.';
 import { render, act } from '@testing-library/react';
 import { I18nContext } from '../../i18n';

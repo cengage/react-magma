@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import { Masthead } from '../Masthead';
 import { SlidingDrawer } from '../SlidingDrawer';
@@ -30,10 +30,10 @@ const StyledSlidingDrawer = styled(SlidingDrawer)`
 `;
 
 export const MainContainer = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const value = { isDarkMode, setIsDarkMode };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (localStorage.getItem('isRMDarkMode') === 'true') {
       setIsDarkMode(true);
     }

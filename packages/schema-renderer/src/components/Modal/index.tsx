@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo, memo } from 'react';
 import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 
 import {
@@ -14,7 +14,7 @@ export interface ModalProps extends MagmaModalProps {
 const ModalMapping = (props: ModalProps) => {
   const { renderForm } = useFormApi();
 
-  const subfields = React.useMemo(() => {
+  const subfields = useMemo(() => {
     return props.fields.map((field: any) => ({
       ...field,
       showError: props.showError,
@@ -24,4 +24,4 @@ const ModalMapping = (props: ModalProps) => {
   return <MagmaModal {...props}>{renderForm(subfields)}</MagmaModal>;
 };
 
-export const Modal = React.memo(ModalMapping);
+export const Modal = memo(ModalMapping);
