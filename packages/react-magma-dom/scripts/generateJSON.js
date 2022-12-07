@@ -12,7 +12,7 @@ const tsconfig = typescript.findConfigFile(
   typescript.sys.fileExists
 );
 const outPath = './dist/properties.json';
-const inPath = ['./src/components', './src/hooks'];
+const inPath = ['src/components', 'src/hooks'];
 
 const defaultDescriptions = {
   children: 'The content of the component',
@@ -31,16 +31,18 @@ const generateJson = () => {
   app.options.addReader(new TypeDoc.TSConfigReader());
   app.options.addReader(new TypeDoc.TypeDocReader());
 
+  
   app.bootstrap({
-    tsconfig,
-    mode: 'modules',
-    includeDeclarations: true,
-    excludeExternals: true,
-    stripInternal: true,
-    ignoreCompilerErrors: true,
+    // tsconfig,
+    entryPoints: ["src/index.ts"],
+    // mode: 'modules',
+    // includeDeclarations: true,
+    // excludeExternals: true,
+    // stripInternal: true,
+    // ignoreCompilerErrors: true,
   });
 
-  const project = app.convert(app.expandInputFiles(inPath));
+  const project = app.convert();
 
   if (project) {
     // Project may not have converted correctly

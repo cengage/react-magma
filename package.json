@@ -62,7 +62,7 @@
     "@babel/plugin-proposal-throw-expressions": "^7.0.0",
     "@babel/plugin-syntax-import-meta": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.1.0",
     "@changesets/changelog-github": "^0.4.0",
     "@changesets/cli": "^2.16.0",
