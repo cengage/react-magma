@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconButton, IconButtonProps } from '.';
 import { Global, css } from '@emotion/core';
-import { SettingsIcon, NotificationsIcon, ExpandMoreIcon } from 'react-magma-icons';
+import { SettingsIcon, NotificationsIcon, ExpandMoreIcon, BooksWfIcon, DirectionsRailwayIcon } from 'react-magma-icons';
 import {
   ButtonColor,
   ButtonShape,
@@ -16,9 +16,13 @@ import { CardBody } from '../Card/CardBody';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<IconButtonProps> = args => (
-  <IconButton icon={<SettingsIcon />} {...args}>
+  <><IconButton icon={<BooksWfIcon />} {...args}>
     Button
   </IconButton>
+    <IconButton icon={<DirectionsRailwayIcon />} {...args}>
+    Button
+  </IconButton>
+  </>
 );
 
 export default {
