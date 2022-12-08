@@ -211,7 +211,7 @@ export function buildColor(props) {
       return props.theme.colors.tertiary500;
     }
     if (props.color === 'marketing') {
-      return props.theme.colors.primary500;
+      return props.theme.colors.neutral700;
     }
     if (props.color === 'danger') {
       return props.theme.colors.neutral100;
@@ -234,7 +234,7 @@ export function buildColor(props) {
     case 'secondary':
       return props.theme.colors.primary;
     case 'marketing':
-      return props.theme.colors.primary;
+      return props.theme.colors.neutral700;
     case 'subtle':
       return props.theme.colors.neutral700;
     default:
@@ -287,7 +287,7 @@ export function buildFocusColor(props) {
 
   if (props.color === 'marketing') {
     if (!props.isInverse || props.variant === 'solid') {
-      return props.theme.colors.primary;
+      return props.theme.colors.neutral700;
     }
   }
 
@@ -445,6 +445,8 @@ export function buildActiveColor(props) {
     switch (props.color) {
       case 'danger':
         return props.theme.colors.neutral100;
+      case 'marketing':
+        return props.theme.colors.neutral800;
       default:
         return props.theme.colors.primary600;
     }
@@ -457,14 +459,13 @@ export function buildActiveColor(props) {
         return props.theme.colors.tertiary500;
       case 'marketing':
         return props.theme.colors.tertiary500;
-
       default:
         return props.theme.colors.neutral100;
     }
   }
 
   if (props.color === 'marketing' && !props.isInverse) {
-    return props.theme.colors.primary600;
+    return props.theme.colors.neutral800;
   }
   return props.theme.colors.neutral100;
 }

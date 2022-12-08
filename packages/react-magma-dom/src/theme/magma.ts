@@ -383,9 +383,9 @@ const primaryColors = {
 };
 
 const secondaryColors = {
-  secondary500: '#FEE449',
-  secondary600: '#FEDA0D',
-  secondary700: '#ECC901',
+  secondary500: '#FFCC00',
+  secondary600: '#E3B500',
+  secondary700: '#C69F00',
 };
 
 const tertiaryColors = {
