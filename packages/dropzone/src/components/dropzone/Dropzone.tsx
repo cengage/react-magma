@@ -5,7 +5,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import { forwardRef, useState, useContext, useCallback, useEffect } from 'react';
+import React, { forwardRef, useState, useContext, useCallback, useEffect } from 'react';
 import {
   useDropzone,
   DropzoneOptions,

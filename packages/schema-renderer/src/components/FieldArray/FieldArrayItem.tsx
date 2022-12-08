@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useContext, useMemo } from 'react';
 import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import { v4 as uuidv4 } from 'uuid';
 import { IconButton, ButtonVariant, ThemeContext } from 'react-magma-dom';
@@ -14,9 +14,9 @@ export const FieldArrayItem = ({
   removeLabel,
 }: any) => {
   const { renderForm } = useFormApi();
-  const theme = React.useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
-  const editedFields = React.useMemo(() => {
+  const editedFields = useMemo(() => {
     return fields.map((field: any) => {
       const computedName = field.name ? `${name}.${field.name}` : uuidv4();
       return {

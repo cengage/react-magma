@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Tooltip,
   TooltipProps,
@@ -223,7 +223,9 @@ export const Complex = () => {
               <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
             </Button>
             <p>
-              Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some contenthere. 
+              Some content here. Some content here. Some content here. Some
+              content here. Some content here. Some content here. Some content
+              here. Some content here. Some contenthere.
             </p>
           </CardBody>
         </Card>

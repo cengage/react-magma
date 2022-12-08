@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
 import { SelectOptions } from '../Select';
@@ -1156,6 +1156,8 @@ export const Typeahead = args => {
   const [isLoading, setIsLoading] = useState(true);
   const [inputQuery, setInputQuery] = useState('');
   const dataSet = args.largeDataSet ? largeListOfItems : mediumListOfItems;
+
+  console.log(selectedItems);
 
   function handleSelectedItemsChange(changes) {
     updateSelectedItems(changes.selectedItems);

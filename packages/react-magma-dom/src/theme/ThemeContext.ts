@@ -1,6 +1,6 @@
-import * as React from 'react';
+import { createContext } from 'react';
 import { magma } from './magma';
 
-export const ThemeContext = React.createContext(
+export const ThemeContext = createContext(
   magma // default value
 );

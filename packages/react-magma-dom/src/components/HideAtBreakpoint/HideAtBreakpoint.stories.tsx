@@ -1,3 +1,4 @@
+import React from 'react';
 import { HideAtBreakpoint } from '.';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';

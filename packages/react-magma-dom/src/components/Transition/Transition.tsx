@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
 import { MotionVariants } from '../../theme/components/transition';
 
@@ -100,9 +100,9 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
   rotate180?: boolean;
 }
 
-export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
+export const Transition = forwardRef<HTMLDivElement, TransitionProps>(
   (props, ref) => {
-    const theme: ThemeInterface = React.useContext(ThemeContext);
+    const theme: ThemeInterface = useContext(ThemeContext);
 
     const {
       style,

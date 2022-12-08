@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { IconButton, IconButtonProps } from '.';
 import { Global, css } from '@emotion/core';
 import { SettingsIcon, NotificationsIcon, ExpandMoreIcon } from 'react-magma-icons';

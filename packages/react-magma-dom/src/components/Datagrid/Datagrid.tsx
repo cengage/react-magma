@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react';
 import { useControlled } from '../../hooks/useControlled';
 import { useDataPagination } from '../../hooks/useDataPagination';
 import { XOR } from '../../utils';

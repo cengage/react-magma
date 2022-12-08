@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { createContext, forwardRef, useContext } from 'react';
 import {
   StyledContainer,
   StyledTabsWrapper,
@@ -26,7 +26,7 @@ interface NavTabsContextInterface {
   orientation?: TabsOrientation;
 }
 
-export const NavTabsContext = React.createContext<NavTabsContextInterface>({
+export const NavTabsContext = createContext<NavTabsContextInterface>({
   borderPosition: TabsBorderPosition.bottom,
   iconPosition: TabsIconPosition.left,
   isInverse: false,
@@ -34,7 +34,7 @@ export const NavTabsContext = React.createContext<NavTabsContextInterface>({
   orientation: TabsOrientation.horizontal,
 });
 
-export const NavTabs = React.forwardRef<
+export const NavTabs = forwardRef<
   HTMLDivElement,
   NavTabsProps & Orientation
 >((props, ref) => {
@@ -49,7 +49,7 @@ export const NavTabs = React.forwardRef<
     testId,
     ...rest
   } = props;
-  const theme = React.useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const isInverse = useIsInverse(props.isInverse);
 

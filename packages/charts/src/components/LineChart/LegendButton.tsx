@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { ThemeContext, Checkbox } from 'react-magma-dom';
 
 export interface DataTableProps {
@@ -6,7 +6,7 @@ export interface DataTableProps {
   color?: string;
 }
 
-export const LegendButton = React.forwardRef<HTMLButtonElement, any>(
+export const LegendButton = forwardRef<HTMLButtonElement, any>(
   (props, ref) => {
     const {
       children,
@@ -38,7 +38,7 @@ export const LegendButton = React.forwardRef<HTMLButtonElement, any>(
       }
     }
 
-    const theme = React.useContext(ThemeContext);
+    const theme = useContext(ThemeContext);
 
     return (
       <div

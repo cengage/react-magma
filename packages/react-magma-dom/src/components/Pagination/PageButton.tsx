@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { Button, ButtonColor, ButtonProps, ButtonVariant } from '../Button';
 import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -44,10 +44,10 @@ const StyledPageButton = styled(Button)`
   }
 `;
 
-export const PageButton = React.forwardRef<HTMLButtonElement, PageButtonProps>(
+export const PageButton = forwardRef<HTMLButtonElement, PageButtonProps>(
   (props, ref) => {
     const { children, isInverse, isSelected, ...other } = props;
-    const theme = React.useContext(ThemeContext);
+    const theme = useContext(ThemeContext);
 
     return (
       <StyledPageButton

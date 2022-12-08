@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useRef, useContext, useEffect } from 'react';
 import { Announce } from '../Announce';
 import { CalendarContext } from './CalendarContext';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
@@ -53,24 +53,24 @@ const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
           : props.theme.colors.focus};
 `;
 
-export const CalendarHeader = React.forwardRef<
+export const CalendarHeader = forwardRef<
   HTMLDivElement,
   CalendarHeaderProps
 >((props, forwardedRef) => {
-  const calendarHeader = React.useRef<HTMLDivElement>();
+  const calendarHeader = useRef<HTMLDivElement>();
   const { focusedDate, onPrevMonthClick, onNextMonthClick } =
-    React.useContext(CalendarContext);
+    useContext(CalendarContext);
   const prevFocusHeader = usePrevious(props.focusHeader);
   const ref = useForkedRef(forwardedRef, calendarHeader);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!prevFocusHeader && props.focusHeader) {
       calendarHeader.current.focus();
     }
   }, [props.focusHeader]);
 
-  const theme = React.useContext(ThemeContext);
-  const i18n = React.useContext(I18nContext);
+  const theme = useContext(ThemeContext);
+  const i18n = useContext(I18nContext);
 
   const locale = i18n.locale || enUS;
 

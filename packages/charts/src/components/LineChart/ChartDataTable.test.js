@@ -1,3 +1,4 @@
+import React from 'react';
 import { render } from '@testing-library/react';
 import { basicData, explicitData } from './test/exampleChartData';
 import { ChartDataTable } from './ChartDataTable';

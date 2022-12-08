@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Modal, ModalSize } from '.';
 import { Button, ButtonColor } from '../Button';
 import { VisuallyHidden } from '../VisuallyHidden';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card, CardBody } from '../Card';
 import { ProgressBar, ProgressBarProps, ProgressBarColor } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';

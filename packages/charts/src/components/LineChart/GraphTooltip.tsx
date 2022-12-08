@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
 import {
   StyledTooltip,
   ThemeContext,
@@ -42,7 +42,7 @@ const TooltipColorSwatch = styled.span`
 export const GraphTooltip = (props: any) => {
   const { datum, index, showTooltip, x, y } = props;
 
-  const theme: ThemeInterface = React.useContext(ThemeContext);
+  const theme: ThemeInterface = useContext(ThemeContext);
   const linePointIndex = `${index}-${datum.index}`;
 
   return showTooltip === linePointIndex ? (
@@ -72,7 +72,7 @@ export const AxisTooltip = (props: any) => {
     (_, i) => i + 0
   ).filter(i => !hiddenData.includes(i));
 
-  const theme: ThemeInterface = React.useContext(ThemeContext);
+  const theme: ThemeInterface = useContext(ThemeContext);
 
   return (
     <g style={{ pointerEvents: 'none' }}>

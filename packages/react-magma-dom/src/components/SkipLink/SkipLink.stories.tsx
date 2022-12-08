@@ -1,3 +1,4 @@
+import React from 'react';
 import { SkipLink } from '.';
 import { ButtonVariant } from '../Button';
 import { Paragraph } from '../Paragraph';

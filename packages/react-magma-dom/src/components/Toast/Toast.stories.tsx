@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Toast } from '.';
 import { magma } from '../../theme/magma';
 import { AlertVariant } from '../AlertBase';

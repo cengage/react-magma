@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Point, PointProps } from 'victory';
 import { useForceUpdate } from 'react-magma-dom';
 

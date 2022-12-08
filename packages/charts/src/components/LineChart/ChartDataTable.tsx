@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { VictoryAxisProps } from 'victory';
 
 import { Card, Datagrid, Spinner } from 'react-magma-dom';
@@ -38,12 +38,12 @@ export const ChartDataTable = (props: DataTableProps) => {
     },
     yData: { keyValue: yKeyValue, tickFormat: yTickFormat },
   } = props;
-  const [dataForTable, setDataForTable] = React.useState({
+  const [dataForTable, setDataForTable] = useState({
     columns: [],
     rows: [],
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setDataForTable(convertData());
   }, [data]);
 

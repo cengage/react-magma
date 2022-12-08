@@ -1,3 +1,4 @@
+import React from 'react';
 import { Card } from '.';
 import { CardBody } from './CardBody';
 import { CardHeading } from './CardHeading';

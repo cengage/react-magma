@@ -1,15 +1,15 @@
-import * as React from 'react';
+import { createContext, useContext } from 'react';
 
 interface InverseInterface {
   isInverse?: boolean;
 }
 
-export const InverseContext = React.createContext<InverseInterface>({
+export const InverseContext = createContext<InverseInterface>({
   isInverse: false,
 });
 
 export function useIsInverse(inverseProp?: boolean) {
-  const inverseContext = React.useContext(InverseContext);
+  const inverseContext = useContext(InverseContext);
 
   return typeof inverseProp !== 'undefined'
     ? Boolean(inverseProp)

@@ -1,7 +1,7 @@
+import React from 'react';
 import { BlockQuote, BlockQuoteItem, BlockQuoteItemProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { magma } from '../../theme/magma';
 import {
   TypographyColor,
   TypographyContextVariant,

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Card, CardBody } from '../Card';
 import { Checkbox } from '../Checkbox';
 import { FormGroup } from '../FormGroup';

@@ -52,6 +52,9 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "resolutions": {
+    "@types/react": "^17.0.52"
+  },
   "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
@@ -91,7 +94,7 @@
     "@types/jest": "^26.0.9",
     "@types/lodash": "^4.14.168",
     "@types/node": "^12.6.8",
-    "@types/react": "^17.0.19",
+    "@types/react": "^17.0.52",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",

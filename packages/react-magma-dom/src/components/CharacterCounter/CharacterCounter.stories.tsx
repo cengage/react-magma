@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container } from '../Container';
 import { CharacterCounter, CharacterCounterProps } from '.';
 import { HelpIcon } from 'react-magma-icons';

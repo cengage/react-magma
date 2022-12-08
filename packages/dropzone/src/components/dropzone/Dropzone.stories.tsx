@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
 import { Textarea, Datagrid, magma } from 'react-magma-dom';
 

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useContext } from 'react';
 import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { AlertProps } from '../Alert';
@@ -182,7 +182,7 @@ function getButtonColor(variant: AlertVariant) {
   }
 }
 
-export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
+export const Banner = forwardRef<HTMLDivElement, BannerProps>(
   (props, ref) => {
     const {
       actionButtonText,
@@ -196,8 +196,8 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       ...other
     } = props;
 
-    const theme = React.useContext(ThemeContext);
-    const i18n = React.useContext(I18nContext);
+    const theme = useContext(ThemeContext);
+    const i18n = useContext(I18nContext);
     const isInverse = useIsInverse(props.isInverse);
 
     return (

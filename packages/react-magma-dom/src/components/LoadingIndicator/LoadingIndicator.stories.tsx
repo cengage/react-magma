@@ -1,3 +1,4 @@
+import React from 'react';
 import { LoadingIndicator, LoadingIndicatorType } from '.';
 import { Card, CardBody } from '../Card';
 import { Meta } from '@storybook/react/types-6-0';

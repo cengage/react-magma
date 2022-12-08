@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
@@ -38,11 +38,11 @@ export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
   visualStyle?: TypographyVisualStyle;
 }
 
-export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
+export const Heading = forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
     const { level, testId, visualStyle, children, contextVariant, ...other } =
       props;
-    const theme = React.useContext(ThemeContext);
+    const theme = useContext(ThemeContext);
 
     const stylesFromLevel = {
       1: TypographyVisualStyle.headingXLarge,

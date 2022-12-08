@@ -1,3 +1,4 @@
+import React from 'react';
 import { Input, InputProps } from '.';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';

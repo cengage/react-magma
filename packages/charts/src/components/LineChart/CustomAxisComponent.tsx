@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { LineSegment, LineSegmentProps } from 'victory';
 
 export const CustomAxisComponent: React.FunctionComponent<LineSegmentProps> = ({

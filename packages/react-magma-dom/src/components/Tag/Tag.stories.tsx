@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Card, CardBody } from '../Card';
 import { AccountCircleIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Schema, SchemaRenderer, SchemaRendererProps } from './SchemaRenderer';
 
 import { componentTypes } from '../ComponentMapper';

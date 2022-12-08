@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import React, { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { basicData, explicitData } from './test/exampleChartData';
 import { Chart } from '.';

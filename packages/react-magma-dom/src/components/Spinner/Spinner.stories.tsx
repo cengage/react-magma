@@ -1,3 +1,4 @@
+import React from 'react';
 import { Spinner, SpinnerProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { magma } from '../../theme/magma';

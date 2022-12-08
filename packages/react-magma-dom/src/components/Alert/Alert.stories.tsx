@@ -1,3 +1,4 @@
+import React from 'react';
 import { Meta } from '@storybook/react/types-6-0';
 import { Alert } from './index';
 import { AlertVariant } from '../AlertBase';
@@ -13,9 +14,15 @@ export const Default = () => {
   return (
     <>
       <Alert>Default</Alert>
-      <Alert variant={AlertVariant.success}>Success <Hyperlink to="#">hyperlink</Hyperlink></Alert>
-      <Alert variant={AlertVariant.warning}>Warning <Hyperlink to="#">hyperlink</Hyperlink></Alert>
-      <Alert variant={AlertVariant.danger}>Danger <Hyperlink to="#">hyperlink</Hyperlink></Alert>
+      <Alert variant={AlertVariant.success}>
+        Success <Hyperlink to="#">hyperlink</Hyperlink>
+      </Alert>
+      <Alert variant={AlertVariant.warning}>
+        Warning <Hyperlink to="#">hyperlink</Hyperlink>
+      </Alert>
+      <Alert variant={AlertVariant.danger}>
+        Danger <Hyperlink to="#">hyperlink</Hyperlink>
+      </Alert>
       <Alert isDismissible>
         Default dismissible with <Hyperlink to="#">hyperlink</Hyperlink>
       </Alert>

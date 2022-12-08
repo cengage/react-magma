@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { forwardRef, useContext } from 'react';
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import {
@@ -134,7 +134,7 @@ const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
   align-items: center;
 `;
 
-export const StyledButton = React.forwardRef<
+export const StyledButton = forwardRef<
   HTMLButtonElement,
   StyledButtonProps
 >((props, ref) => {
@@ -147,7 +147,7 @@ export const StyledButton = React.forwardRef<
     testId,
     isLoading,
   } = props;
-  const theme = React.useContext(ThemeContext);
+  const theme = useContext(ThemeContext);
 
   const spinnerColor =
     isInverse && variant === ButtonVariant.link

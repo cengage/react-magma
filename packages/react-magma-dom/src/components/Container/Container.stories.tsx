@@ -1,3 +1,4 @@
+import React from 'react';
 import { Container, ContainerProps } from './';
 import { Alert } from '../Alert';
 import { AlertVariant } from '../AlertBase';

@@ -1,8 +1,5 @@
-import {
-  // IconAlignment,
-  // IconSizes,
-  List,
-} from './List';
+import React from 'react';
+import { List } from './List';
 import { ListItem } from './ListItem';
 import { EmailIcon } from 'react-magma-icons';
 import { TypographyVisualStyle } from '../Typography';
@@ -43,31 +40,31 @@ export const Default = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
-      <List {...args}>
-        <ListItem>Sample text</ListItem>
-        <ListItem>Sample text again</ListItem>
-        <ListItem>
-          Sample text again and a{' '}
-          <ListItem description>Check this out</ListItem>
-        </ListItem>
-        <ListItem>Sample text again</ListItem>
-        <ListItem>Sample text again</ListItem>
-        <ListItem>Sample text again</ListItem>
-        <ListItem>Sample text again</ListItem>
-      </List>
-      <br />
-      <List {...args} iconSize="small">
-        <ListItem icon={<EmailIcon />} iconBackground="danger">
-          Sample text
-        </ListItem>
-        <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
-        <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
-        <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
-        <ListItem icon={<EmailIcon />}>
-          Sample text again
-          <ListItem description>This is a description</ListItem>
-        </ListItem>
-      </List>
+        <List {...args}>
+          <ListItem>Sample text</ListItem>
+          <ListItem>Sample text again</ListItem>
+          <ListItem>
+            Sample text again and a{' '}
+            <ListItem description>Check this out</ListItem>
+          </ListItem>
+          <ListItem>Sample text again</ListItem>
+          <ListItem>Sample text again</ListItem>
+          <ListItem>Sample text again</ListItem>
+          <ListItem>Sample text again</ListItem>
+        </List>
+        <br />
+        <List {...args} iconSize="small">
+          <ListItem icon={<EmailIcon />} iconBackground="danger">
+            Sample text
+          </ListItem>
+          <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
+          <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
+          <ListItem icon={<EmailIcon />}>Sample text again</ListItem>
+          <ListItem icon={<EmailIcon />}>
+            Sample text again
+            <ListItem description>This is a description</ListItem>
+          </ListItem>
+        </List>
       </CardBody>
     </Card>
   );
