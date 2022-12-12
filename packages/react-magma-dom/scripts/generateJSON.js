@@ -11,7 +11,7 @@ const tsconfig = typescript.findConfigFile(
   '../tsconfig.js',
   typescript.sys.fileExists
 );
-const outPath = './dist/properties.json';
+const outPath = 'dist/properties.json';
 const inPath = ['src/components', 'src/hooks'];
 
 const defaultDescriptions = {
