@@ -264,6 +264,9 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       noDrag,
     });
 
+    console.log('getInputProps', getInputProps);
+    
+
     const dragState: DragState = errorMessage
       ? 'error'
       : isDragAccept
@@ -420,7 +423,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             testId={testId}
             tabIndex={-1}
           >
-            <input ref={ref} {...getInputProps({ id })} />
+            <input ref={ref}  />
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>
                 <Button
