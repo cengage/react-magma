@@ -11,7 +11,7 @@ import {
 import { I18nContext, defaultI18n, magma } from 'react-magma-dom';
 import userEvent from '@testing-library/user-event';
 
-describe.skip('File Uploader', () => {
+describe('File Uploader', () => {
   let files;
   let images;
   window.URL.createObjectURL = jest.fn();
@@ -510,8 +510,7 @@ describe.skip('File Uploader', () => {
       />
     );
 
-    const { getByTestId, getByLabelText, getByText, rerender } =
-      render(ui);
+    const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     act(() => fireDrop(dropzone, data));
