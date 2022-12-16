@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.2.1-next.6
+
+### Patch Changes
+
+- 0d3e008bf: fix: Update hex of secondaryColors (secondary500, secondary600 & secondary700)
+
+## 3.2.1-next.5
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+
 ## 3.2.1-next.4
 
 ### Patch Changes
