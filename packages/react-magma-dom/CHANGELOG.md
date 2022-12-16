@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1-next.6
+
+### Patch Changes
+
+- 0d3e008bf: fix: Update hex of secondaryColors (secondary500, secondary600 & secondary700)
+
 ## 3.2.1-next.5
 
 ### Patch Changes
