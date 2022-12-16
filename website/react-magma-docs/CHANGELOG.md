@@ -1,5 +1,21 @@
 # Change Log
 
+## 4.0.6-next.7
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+  - @react-magma/charts@2.0.1-next.1
+  - react-magma-dom@3.2.1-next.5
+  - @react-magma/dropzone@2.0.1-next.1
+  - @cengage-patterns/header@4.0.1-next.1
+  - @react-magma/schema-renderer@2.0.1-next.1
+
 ## 4.0.6-next.6
 
 ### Patch Changes

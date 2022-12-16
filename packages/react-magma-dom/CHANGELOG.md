@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1-next.5
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+
 ## 3.2.1-next.4
 
 ### Patch Changes

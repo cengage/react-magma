@@ -13,6 +13,12 @@
   "changesets": [
     "docs-focus",
     "linting",
+    "magma-icons-charts",
+    "magma-icons-docs",
+    "magma-icons-dom",
+    "magma-icons-dropzone",
+    "magma-icons-header",
+    "magma-icons-schema",
     "navtabs-focus",
     "placeholder-spacing",
     "search-placeholder",
