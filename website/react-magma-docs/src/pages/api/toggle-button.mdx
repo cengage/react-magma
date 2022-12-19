@@ -1,0 +1,41 @@
+---
+pageTitle: ToggleButton API
+title: ToggleButton
+props:
+  - ToggleButtonProps
+---
+
+<DocsHeading type="api">ToggleButton</DocsHeading>
+
+A button element which has active states, one or many
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { ToggleButton } from 'react-magma-dom';
+
+export function Example() {
+  return <ToggleButton>ToggleButton content</ToggleButton>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { ToggleButton } from 'react-magma-dom';
+
+export function Example() {
+  return <ToggleButton isInverse>ToggleButton content</ToggleButton>;
+}
+```
+
+# ToggleButton Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<ToggleButtonProps />

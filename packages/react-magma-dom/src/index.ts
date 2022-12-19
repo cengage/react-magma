@@ -244,3 +244,4 @@ export * from './components/BlockQuote';
 export * from './components/ButtonGroup';
 
 export * from './components/CharacterCounter';
+export * from './components/ToggleButton';
