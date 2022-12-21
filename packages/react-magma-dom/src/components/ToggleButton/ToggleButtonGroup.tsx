@@ -67,6 +67,7 @@ const SingleSelectWrapper = styled.div<{
   isChecked?: boolean;
   singleSelect?: boolean;
   size?: ButtonSize;
+  value?: any;
 }>`
   button {
     ${ToggleButtonStyles};
@@ -88,7 +89,7 @@ export const ToggleButtonGroup = React.forwardRef<
   } = props;
   const theme = React.useContext(ThemeContext);
 
-  const [isSingleSelect, setSingleSelect] = React.useState(null);
+  const [isSelected, setSelected] = React.useState(null);
 
   const [isDefault, setDefault] = React.useState(null);
 
@@ -99,13 +100,15 @@ export const ToggleButtonGroup = React.forwardRef<
 
     const disabledButton = item.props.disabled;
 
+    // const checkedButton = item.props.isChecked;
+
     const handleClick = () => {
-      if (requiredSelect && !disabledButton) {
-        //Retains at least one selection
-        setSingleSelect(s => (s === index ? index : index));
+      if (requiredSelect && !disabledButton && singleSelect) {
+        //Retains at least one selection for single select
+        setSelected(s => (s === index ? index : index));
       } else if (!disabledButton) {
-        //Allows single selection to be deselected
-        setSingleSelect(s => (s === index ? null : index));
+        //Allows single select to be deselected
+        setSelected(s => (s === index ? null : index));
       }
       if (handleClick && !disabledButton) {
         //Removes a default selection state on click
@@ -120,8 +123,8 @@ export const ToggleButtonGroup = React.forwardRef<
           onClick={handleClick}
           isDefault={isDefault}
           isInverse={isInverse}
-          requiredSelect={isSingleSelect === index}
-          isChecked={isSingleSelect === index}
+          requiredSelect={singleSelect ? isSelected === index : null}
+          isChecked={isSelected === index}
           singleSelect={singleSelect}
           size={size}
           theme={theme}

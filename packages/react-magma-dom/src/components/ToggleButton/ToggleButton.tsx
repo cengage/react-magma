@@ -157,10 +157,12 @@ export const ToggleButton = React.forwardRef<
     defaultChecked,
     disabled,
     icon,
+    isInverse,
     testId,
   } = props;
-  const { isDefault, isInverse, requiredSelect, singleSelect } =
-    React.useContext(ToggleButtonGroupContext);
+  const { isDefault, requiredSelect, singleSelect } = React.useContext(
+    ToggleButtonGroupContext
+  );
 
   const context = React.useContext(ToggleButtonGroupContext);
 
@@ -191,7 +193,7 @@ export const ToggleButton = React.forwardRef<
           icon={icon}
           isChecked={singleSelect ? null : isChecked}
           isDefault={isDefault}
-          isInverse={isInverse}
+          isInverse={context.isInverse || isInverse}
           onClick={handleClick}
           ref={ref}
           requiredSelect={requiredSelect}
@@ -212,7 +214,7 @@ export const ToggleButton = React.forwardRef<
           theme={theme}
           isChecked={singleSelect ? null : isChecked}
           isDefault={isDefault}
-          isInverse={isInverse}
+          isInverse={context.isInverse || isInverse}
           onClick={handleClick}
           ref={ref}
           requiredSelect={requiredSelect}

@@ -14,8 +14,8 @@ import { ButtonSize } from '../Button';
 
 const Template: Story<ToggleButtonGroupProps> = args => (
   <ToggleButtonGroup {...args}>
-    <ToggleButton disabled aria-label="Check icon" icon={<CheckIcon />} />
-    <ToggleButton disabled aria-label="Check icon" icon={<CheckIcon />} />
+    <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
     <ToggleButton aria-label="Check icon" defaultChecked icon={<CheckIcon />} />
     <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
   </ToggleButtonGroup>
