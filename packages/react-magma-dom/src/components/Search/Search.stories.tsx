@@ -50,9 +50,11 @@ export default {
       control: {
         type: 'boolean',
       },
-    },
+    }
   },
 } as Meta;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  placeholder: 'Search'
+};

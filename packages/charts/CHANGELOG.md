@@ -1,5 +1,18 @@
 # @react-magma/charts
 
+## 2.0.1-next.1
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+
+## 2.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [f5189569b]
+  - react-magma-dom@3.2.1-next.0
+
 ## 2.0.0
 
 ### Patch Changes

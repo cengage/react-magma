@@ -1,0 +1,30 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@react-magma/charts": "2.0.0",
+    "@react-magma/dropzone": "2.0.0",
+    "react-magma-dom": "3.2.0",
+    "@react-magma/schema-renderer": "2.0.0",
+    "@cengage-patterns/header": "4.0.0",
+    "react-magma-docs": "4.0.5",
+    "react-magma-landing": "1.1.1"
+  },
+  "changesets": [
+    "docs-focus",
+    "linting",
+    "magma-icons-charts",
+    "magma-icons-docs",
+    "magma-icons-dom",
+    "magma-icons-dropzone",
+    "magma-icons-header",
+    "magma-icons-schema",
+    "marketing-color",
+    "navtabs-focus",
+    "placeholder-spacing",
+    "search-placeholder",
+    "small-jokes-hide",
+    "spicy-hotels-teach",
+    "tabs-disabled"
+  ]
+}

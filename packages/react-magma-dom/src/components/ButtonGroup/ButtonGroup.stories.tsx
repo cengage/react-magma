@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react/types-6-0';
 import {
   ButtonGroup,
   ButtonGroupOrientation,
@@ -117,7 +117,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = Template.bind({});
 Default.args = {

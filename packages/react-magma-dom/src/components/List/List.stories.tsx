@@ -9,6 +9,7 @@ import { EmailIcon } from 'react-magma-icons';
 import { TypographyVisualStyle } from '../Typography';
 import { magma } from '../..';
 import { Card, CardBody } from '../Card';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: List,
@@ -37,7 +38,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = args => {
   return (

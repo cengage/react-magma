@@ -68,6 +68,10 @@ export interface InputBaseProps
    */
   inputStyle?: React.CSSProperties;
   /**
+   * Total number of characters in an input.
+   */
+  inputLength?: number;
+  /**
    * Clear contents of input by clicking a clear button
    * @default false
    */
@@ -515,6 +519,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       onClear,
       onIconClick,
       onIconKeyDown,
+      inputLength,
       inputSize,
       inputStyle,
       testId,
@@ -577,7 +582,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             data-testid={testId}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
-            isClearable={isClearable}
+            isClearable={isClearable && inputLength > 0}
             isInverse={useIsInverse(props.isInverse)}
             isPredictive={isPredictive}
             hasError={hasError}

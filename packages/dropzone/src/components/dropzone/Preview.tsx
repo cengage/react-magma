@@ -169,6 +169,7 @@ const formatError = (
 };
 
 export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
+  // eslint-disable-next-line complexity
   (props, ref) => {
     const {
       accept,

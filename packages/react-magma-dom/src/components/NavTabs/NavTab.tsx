@@ -11,7 +11,7 @@ import {
 } from '../Tabs';
 import { TabsOrientation } from '../Tabs/shared';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, XOR } from '../../utils';
+import { omit, useForkedRef, XOR } from '../../utils';
 
 /**
  * @children required
@@ -30,6 +30,10 @@ export interface BaseNavTabProps
    * If true, the component will display with the active/selected state
    */
   isActive?: boolean;
+  /**
+   * If true, sets a focus on the specified NavTab
+   */
+  isFocused?: boolean;
   isInverse?: boolean;
   /**
    * Determines if the tabs are displayed vertically or horizontally
@@ -132,83 +136,102 @@ export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
 );
 
 // Using any type because we do not know the element type of a custom tab
-export const NavTab = React.forwardRef<any, NavTabProps>((props, ref) => {
-  let children;
-  let component;
-  const { isActive, icon, testId, to, ...other } = props;
-  const theme = React.useContext(ThemeContext);
+export const NavTab = React.forwardRef<any, NavTabProps>(
+  (props, forwardRef) => {
+    let children;
+    let component;
+    const { isActive, icon, isFocused, testId, to, ...other } = props;
+    const theme = React.useContext(ThemeContext);
 
-  if (instanceOfNavComponentTab(props)) {
-    component = props.component;
-  } else if (instanceOfNavChildrenTab(props)) {
-    children = props.children;
-  }
+    if (instanceOfNavComponentTab(props)) {
+      component = props.component;
+    } else if (instanceOfNavChildrenTab(props)) {
+      children = props.children;
+    }
 
-  const isIconOnly = !children;
+    const isIconOnly = !children;
 
-  const { orientation, borderPosition, iconPosition, isInverse, isFullWidth } =
-    React.useContext(NavTabsContext);
+    const {
+      orientation,
+      borderPosition,
+      iconPosition,
+      isInverse,
+      isFullWidth,
+    } = React.useContext(NavTabsContext);
 
-  const tabIconPosition = iconPosition
-    ? iconPosition
-    : orientation === 'vertical'
-    ? TabsIconPosition.left
-    : TabsIconPosition.top;
+    const tabIconPosition = iconPosition
+      ? iconPosition
+      : orientation === 'vertical'
+      ? TabsIconPosition.left
+      : TabsIconPosition.top;
 
-  return (
-    <StyledTabsChild
-      borderPosition={borderPosition}
-      data-testid="tabContainer"
-      isActive={isActive}
-      isFullWidth={isFullWidth}
-      isInverse={isInverse}
-      orientation={orientation}
-      theme={theme}
-    >
-      {component ? (
-        <StyledCustomTab
-          {...other}
-          component={component}
-          data-testid={testId}
-          iconPosition={tabIconPosition}
-          icon={
-            icon && (
-              <StyledIcon theme={theme} iconPosition={tabIconPosition}>
+    const styledTabRef = React.useRef<HTMLAnchorElement>();
+
+    const ref = useForkedRef(forwardRef, styledTabRef);
+
+    // Sets focus on NavTab for accessibility
+    React.useEffect(() => {
+      if (isFocused) {
+        styledTabRef.current.focus();
+      }
+    }, []);
+
+    return (
+      <StyledTabsChild
+        borderPosition={borderPosition}
+        data-testid="tabContainer"
+        isActive={isActive}
+        isFullWidth={isFullWidth}
+        isInverse={isInverse}
+        orientation={orientation}
+        theme={theme}
+      >
+        {component ? (
+          <StyledCustomTab
+            {...other}
+            component={component}
+            data-testid={testId}
+            iconPosition={tabIconPosition}
+            icon={
+              icon && (
+                <StyledIcon theme={theme} iconPosition={tabIconPosition}>
+                  {icon}
+                </StyledIcon>
+              )
+            }
+            isActive={isActive}
+            isInverse={isInverse}
+            isFullWidth={isFullWidth}
+            orientation={orientation}
+            ref={ref}
+            theme={theme}
+          />
+        ) : (
+          <StyledTab
+            {...other}
+            ref={ref}
+            data-testid={testId}
+            href={to}
+            isActive={isActive}
+            isFullWidth={isFullWidth}
+            iconPosition={tabIconPosition}
+            isInverse={isInverse}
+            orientation={orientation}
+            theme={theme}
+          >
+            {icon && (
+              <StyledIcon
+                theme={theme}
+                iconPosition={tabIconPosition}
+                isIconOnly={isIconOnly}
+              >
                 {icon}
               </StyledIcon>
-            )
-          }
-          isActive={isActive}
-          isInverse={isInverse}
-          isFullWidth={isFullWidth}
-          orientation={orientation}
-          theme={theme}
-        />
-      ) : (
-        <StyledTab
-          {...other}
-          ref={ref}
-          data-testid={testId}
-          href={to}
-          isActive={isActive}
-          isFullWidth={isFullWidth}
-          iconPosition={tabIconPosition}
-          isInverse={isInverse}
-          orientation={orientation}
-          theme={theme}
-        >
-          {icon && (
-            <StyledIcon
-              theme={theme}
-              iconPosition={tabIconPosition}
-              isIconOnly={isIconOnly}
-            >
-              {icon}
-            </StyledIcon>
-          )}
-          {children}
-        </StyledTab>
-      )}
-    </StyledTabsChild>
-  );
-});
+            )}
+            {children}
+          </StyledTab>
+        )}
+      </StyledTabsChild>
+    );
+  }
+);

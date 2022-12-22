@@ -2,6 +2,7 @@ import React from 'react';
 import { Card } from '.';
 import { CardBody } from './CardBody';
 import { CardHeading } from './CardHeading';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Card,
@@ -18,7 +19,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = (args) => {
   return (

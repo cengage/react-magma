@@ -1,5 +1,80 @@
 # Change Log
 
+## 4.0.6-next.8
+
+### Patch Changes
+
+- Updated dependencies [0d3e008bf]
+  - react-magma-dom@3.2.1-next.6
+
+## 4.0.6-next.7
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+- Updated dependencies [7b4549726]
+  - @react-magma/charts@2.0.1-next.1
+  - react-magma-dom@3.2.1-next.5
+  - @react-magma/dropzone@2.0.1-next.1
+  - @cengage-patterns/header@4.0.1-next.1
+  - @react-magma/schema-renderer@2.0.1-next.1
+
+## 4.0.6-next.6
+
+### Patch Changes
+
+- 74b65c60c: docs: update design docs
+
+## 4.0.6-next.5
+
+### Patch Changes
+
+- b7f8f39fb: Added initial focus to "Introduction" link for keyboard navigation.
+- Updated dependencies [962253d56]
+  - react-magma-dom@3.2.1-next.4
+
+## 4.0.6-next.4
+
+### Patch Changes
+
+- Updated dependencies [fafe31580]
+  - react-magma-dom@3.2.1-next.3
+
+## 4.0.6-next.3
+
+### Patch Changes
+
+- Updated dependencies [6a01a5325]
+  - react-magma-dom@3.2.1-next.2
+
+## 4.0.6-next.2
+
+### Patch Changes
+
+- Updated dependencies [0bf79d5de]
+  - react-magma-dom@3.2.1-next.1
+
+## 4.0.6-next.1
+
+### Patch Changes
+
+- Updated dependencies [f5189569b]
+  - react-magma-dom@3.2.1-next.0
+  - @react-magma/charts@2.0.1-next.0
+  - @react-magma/dropzone@2.0.1-next.0
+  - @react-magma/schema-renderer@2.0.1-next.0
+  - @cengage-patterns/header@4.0.1-next.0
+
+## 4.0.6-next.0
+
+### Patch Changes
+
+- 2e2994e5f: docs(changelog): broken link to the 2.3.0 release
+
 ## 4.0.5
 
 ### Patch Changes

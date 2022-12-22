@@ -270,33 +270,17 @@ describe('Input', () => {
   });
 
   it('should clear the input when the clear input button is clicked', () => {
-    const labelText = 'Input Label';
-    const value = 'Test Value';
-    const { getByTestId, getByLabelText } = render(
-      <Input labelText={labelText} value={value} isClearable />
-    );
-
-    fireEvent.click(getByTestId('clear-button'));
-
-    expect(getByLabelText(labelText)).toHaveAttribute('value', '');
-  });
-
-  it('should clear the input when the clear input button is clicked', () => {
     const onClear = jest.fn();
     const labelText = 'Input Label';
     const value = 'Test Value';
     const { getByTestId, getByLabelText } = render(
-      <Input
-        labelText={labelText}
-        value={value}
-        onClear={onClear}
-        isClearable
-      />
+      <Input labelText={labelText} value={value} onClear={onClear} isClearable />
     );
 
     fireEvent.click(getByTestId('clear-button'));
 
     expect(onClear).toBeCalled();
+    expect(getByLabelText(labelText)).toHaveAttribute('value', '');
   });
 
   it('should disable the clear button when the input is disabled', () => {

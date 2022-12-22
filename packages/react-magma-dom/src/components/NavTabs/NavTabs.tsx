@@ -9,6 +9,7 @@ import {
   TabsProps,
   Orientation,
 } from '../Tabs';
+import { NavTabProps, NavTab } from './NavTab';
 import { TabsOrientation } from '../Tabs/shared';
 import { Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -67,6 +68,27 @@ export const NavTabs = React.forwardRef<
     tabsHandleMethods;
   const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
 
+  const navTabChildren = React.Children.toArray(children);
+
+  const hasChildFocus = navTabChildren.some(child => {
+    if (React.isValidElement(child)) {
+      return Object.keys(child.props).includes('isFocused');
+    }
+  });
+
+  const navTabsChildren = React.Children.map(children, (child, i) => {
+    const item = child as React.ReactElement<
+      React.PropsWithChildren<NavTabProps>
+    >;
+
+    if (item.type === NavTab) {
+      if (!hasChildFocus && i === 0) {
+        return React.cloneElement(item, { isFocused: true });
+      }
+    }
+    return child;
+  });
+
   return (
     <StyledContainer
       aria-label={rest['aria-label']}
@@ -108,7 +130,7 @@ export const NavTabs = React.forwardRef<
               orientation,
             }}
           >
-            {children}
+            {navTabsChildren}
           </NavTabsContext.Provider>
         </StyledTabs>
       </StyledTabsWrapper>
