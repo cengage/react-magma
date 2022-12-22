@@ -7,7 +7,7 @@ import {
   FormatAlignRightIcon,
   SettingsIcon,
 } from 'react-magma-icons';
-import { Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { ToggleButtonGroup, ToggleButton, ToggleButtonGroupProps } from '.';
 import { Container } from '../Container';
 import { ButtonSize } from '../Button';
@@ -15,7 +15,7 @@ import { ButtonSize } from '../Button';
 const Template: Story<ToggleButtonGroupProps> = args => (
   <ToggleButtonGroup {...args}>
     <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-    <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    <ToggleButton disabled aria-label="Check icon" icon={<CheckIcon />} />
     <ToggleButton aria-label="Check icon" defaultChecked icon={<CheckIcon />} />
     <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
   </ToggleButtonGroup>
@@ -59,7 +59,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -82,7 +82,7 @@ SingleButton.args = {
 
 export const SingleTextButton = args => {
   return (
-    <ToggleButton {...args} aria-label="Settings icon" size={ButtonSize.small}>
+    <ToggleButton {...args} size={ButtonSize.small}>
       Hello
     </ToggleButton>
   );
@@ -93,7 +93,7 @@ SingleTextButton.args = {
 
 export const AlignmentExample = args => {
   return (
-    <ToggleButtonGroup noSpace requiredSelect {...args}>
+    <ToggleButtonGroup {...args}>
       <ToggleButton aria-label="Left align" icon={<FormatAlignLeftIcon />} />
       <ToggleButton
         aria-label="Center align"
@@ -108,21 +108,22 @@ export const AlignmentExample = args => {
   );
 };
 AlignmentExample.args = {
-  ...Default.args,
+  noSpace: true,
+  requiredSelect: true,
   singleSelect: true,
+  ...Default.args,
 };
 
 export const DifferentToggleButtons = args => {
   return (
-    <ToggleButtonGroup noSpace {...args}>
+    <ToggleButtonGroup {...args}>
       <ToggleButton aria-label="Settings icon" icon={<SettingsIcon />} />
       <ToggleButton>Text</ToggleButton>
-      <ToggleButton aria-label="Settings icon" icon={<SettingsIcon />}>
-        Icon and Text
-      </ToggleButton>
+      <ToggleButton icon={<SettingsIcon />}>Icon and Text</ToggleButton>
     </ToggleButtonGroup>
   );
 };
 DifferentToggleButtons.args = {
+  noSpace: true,
   ...Default.args,
 };

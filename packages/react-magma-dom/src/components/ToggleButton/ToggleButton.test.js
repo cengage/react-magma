@@ -125,25 +125,6 @@ describe('ToggleButton', () => {
     });
   });
 
-  describe('Grouping', () => {
-    it('Has a container for multiple buttons', () => {
-      const { getByTestId } = render(
-        <ToggleButtonGroup testId={testId}>
-          <ToggleButton>{TEXT}</ToggleButton>
-          <ToggleButton testId={`${testId}-1`}>{TEXT}</ToggleButton>
-          <ToggleButton>{TEXT}</ToggleButton>
-        </ToggleButtonGroup>
-      );
-      const wrapper = getByTestId(testId);
-
-      expect(wrapper).toHaveStyleRule('row-gap', magma.spaceScale.spacing03);
-      expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
-        'padding',
-        `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
-      );
-    });
-  });
-
   describe('States', () => {
     it('Should have a toggled state', () => {
       const { getByTestId } = render(

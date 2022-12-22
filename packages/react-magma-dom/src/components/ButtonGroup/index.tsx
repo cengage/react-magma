@@ -10,6 +10,7 @@ import {
   ButtonVariant,
   ButtonTextTransform,
 } from '../Button';
+import { transparentize } from 'polished';
 
 export enum ButtonGroupAlignment {
   left = 'left', // default
@@ -124,7 +125,7 @@ function buildNoSpaceBorderColor(props) {
       return props.theme.colors.tertiary;
     }
     if (props.color === ButtonColor.subtle) {
-      return props.theme.colors.neutral300;
+      return transparentize(0.8, props.theme.colors.neutral300);
     }
     return props.theme.colors.neutral100;
   }
@@ -225,7 +226,8 @@ const StyledButtonGroup = styled.div<{
           button {
             border-radius: 0;
             border-right: ${
-              props.color === ButtonColor.secondary || props.color === ButtonColor.subtle
+              props.color === ButtonColor.secondary ||
+              props.color === ButtonColor.subtle
                 ? '0'
                 : `1px solid ${props.theme.colors.neutral100}`
             };
@@ -271,7 +273,8 @@ const StyledButtonGroup = styled.div<{
         }
         &:not(:first-child) {
           border-radius: 0;
-          border-right: ${props.color === ButtonColor.secondary || props.color === ButtonColor.subtle
+          border-right: ${props.color === ButtonColor.secondary ||
+          props.color === ButtonColor.subtle
             ? '0'
             : `1px solid ${props.theme.colors.neutral100}`};
         }

@@ -23,11 +23,12 @@ export function Example() {
 
 ## Toggle Button Group
 
-The `ToggleGroup` enables styling with an optional `noSpace` prop, and different selection states `singleSelect` and `requiredSelect`.
+The ToggleButtonGroup enables styling with an optional `noSpace` prop, and different selection states `singleSelect` and `requiredSelect`.
 
 ```typescript
 import React from 'react';
-import { CheckIcon, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -47,7 +48,8 @@ Toggle Buttons come in three formats. Icon only, text only, or text with an icon
 
 ```typescript
 import React from 'react';
-import { SettingsIcon, ToggleButton } from 'react-magma-dom';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { SettingsIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -66,7 +68,8 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { CheckIcon, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -90,17 +93,8 @@ If the prop `singleSelect` is used, then toggles will behave like a radio select
 
 ```typescript
 import React from 'react';
-import {
-  ButtonSize,
-  FormatAlignLeftIcon,
-  FormatAlignCenterIcon,
-  FormatAlignRightIcon,
-  FormatAlignJustifyIcon
-  SettingsIcon,
-  ToggleButton,
-  ToggleButtonGroup
-
-} from 'react-magma-dom';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -120,21 +114,18 @@ When `requiredSelect` is enabled, it ensures a radio style ToggleButtonGroup has
 
 ```typescript
 import React from 'react';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
 import {
-  ButtonSize,
   FormatAlignLeftIcon,
   FormatAlignCenterIcon,
   FormatAlignRightIcon,
-  FormatAlignJustifyIcon
+  FormatAlignJustifyIcon,
   SettingsIcon,
-  ToggleButton,
-  ToggleButtonGroup
-
-} from 'react-magma-dom';
+} from 'react-magma-icons';
 
 export function Example() {
   return (
-    <ToggleButtonGroup noSpace requiredSelect>
+    <ToggleButtonGroup noSpace requiredSelect singleSelect>
       <ToggleButton aria-label="Left align" icon={<FormatAlignLeftIcon />} />
       <ToggleButton
         aria-label="Center align"
