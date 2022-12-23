@@ -1,11 +1,10 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
-import { ButtonSize } from '../Button';
-import { ToggleButton, ToggleButtonGroup } from '.';
+import { ToggleButtonGroup } from '.';
+import { ToggleButton } from '../ToggleButton';
 import { fireEvent, render } from '@testing-library/react';
 import { SettingsIcon } from 'react-magma-icons';
 import { magma } from '../../theme/magma';
-import { transparentize } from 'polished';
 
 const TEXT = 'Test Text';
 
@@ -51,41 +50,6 @@ describe('ToggleButtonGroup', () => {
   });
 
   describe('States', () => {
-    it('Should have a toggled state', () => {
-      const { getByTestId } = render(
-        <ToggleButton testId={testId} icon={icon} />
-      );
-      const button = getByTestId(testId);
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
-      fireEvent.click(getByTestId(testId));
-
-      expect(button).toHaveStyleRule(
-        'background',
-        transparentize(0.5, magma.colors.neutral300)
-      );
-    });
-
-    it('Should have an untoggled state', () => {
-      const { getByTestId } = render(
-        <ToggleButton testId={testId} icon={icon} />
-      );
-      const button = getByTestId(testId);
-
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
-    });
-
-    it('Should have a default toggled state', () => {
-      const { getByTestId } = render(
-        <ToggleButton defaultChecked testId={testId} icon={icon} />
-      );
-      const button = getByTestId(testId);
-
-      expect(button).toHaveStyleRule(
-        'background',
-        transparentize(0.5, magma.colors.neutral300)
-      );
-    });
-
     it('Should require at least one toggled state', () => {});
 
     it('Should allow just one selected button at a time', () => {});

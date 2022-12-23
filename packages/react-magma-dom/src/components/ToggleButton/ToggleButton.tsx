@@ -13,7 +13,7 @@ import {
   ToggleButtonGroupContext,
   setButtonStyles,
   setIconWidth,
-} from './ToggleButtonGroup';
+} from '../ToggleButtonGroup/ToggleButtonGroup';
 
 export interface ToggleButtonTextProps extends ButtonProps {
   /**
@@ -105,7 +105,11 @@ export const ToggleButton = React.forwardRef<
 
   const [isChecked, setChecked] = React.useState(false);
 
-  const handleClick = () => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    props.onClick &&
+      typeof props.onClick === 'function' &&
+      props.onClick(event);
+
     if (!context.singleSelect) {
       if (isChecked) {
         setChecked(false);

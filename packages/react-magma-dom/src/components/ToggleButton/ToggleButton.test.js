@@ -160,12 +160,6 @@ describe('ToggleButton', () => {
         transparentize(0.5, magma.colors.neutral300)
       );
     });
-
-    it('Should require at least one toggled state', () => {});
-
-    it('Should allow just one selected button at a time', () => {});
-
-    it('Should allow multiple selected buttons at a time', () => {});
   });
 
   describe('Variants', () => {

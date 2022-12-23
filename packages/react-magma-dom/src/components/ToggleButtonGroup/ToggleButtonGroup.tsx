@@ -6,7 +6,7 @@ import { ButtonColor, ButtonSize } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { ToggleButton, ToggleButtonProps } from './ToggleButton';
+import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
 import { transparentize } from 'polished';
 
 /**
@@ -68,12 +68,14 @@ export function setIconWidth(props: ToggleButtonProps) {
 
 //Sets the background colors for the Toggle Buttons.
 function setBackgroundColor(props) {
+  //Removes active background color.
   if (
     (props.isChecked && props.defaultChecked) ||
     (!props.isChecked && props.isDefault)
   ) {
     return '';
   }
+  //Sets active background color.
   if (props.isChecked || props.defaultChecked || props.isDefault) {
     if (props.isInverse) {
       return transparentize(0.5, props.theme.colors.neutral900);
@@ -89,6 +91,7 @@ export const setButtonStyles = props => css`
   }
   &:not(:disabled):focus {
     background: ${setBackgroundColor(props)};
+    outline-offset: -2px;
   }
   &:hover {
     background: ${setBackgroundColor(props)};
@@ -122,8 +125,10 @@ export const ToggleButtonGroup = React.forwardRef<
   } = props;
   const theme = React.useContext(ThemeContext);
 
+  // Sets the active state for the Toggle Button
   const [isChecked, setChecked] = React.useState(null);
 
+  // Checks if defaultChecked is active then toggles it off based on clicking other Toggle Buttons or the one with defaultChecked set.
   const [isDefault, setDefault] = React.useState(null);
 
   const ToggleButtons = React.Children.map(children, (child, index) => {

@@ -1,0 +1,166 @@
+---
+pageTitle: Toggle ButtonGroup API
+title: Toggle ButtonGroup
+props:
+  - ToggleButtonGroupProps
+---
+
+<DocsHeading type="api">ToggleButtonGroup</DocsHeading>
+
+The Toggle Button Group is a container for multiple Toggle Buttons and enables controlled behaviors throughout the grouping.
+
+## Basic Usage
+
+The ToggleButtonGroup enables styling with an optional `noSpace` prop, and different selection states `singleSelect` and `requiredSelect`.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup>
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Default Selection
+
+`defaultChecked` lets a specific button be selected in a ToggleButtonGroup. Once clicked it will deselect and behave like the other buttons accordingly.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup>
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton
+        defaultChecked
+        aria-label="Check icon"
+        icon={<CheckIcon />}
+      />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Single Selection
+
+If the prop `singleSelect` is used, then toggles will behave like a radio selection.
+
+```typescript
+import React from 'react';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup noSpace singleSelect>
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Required Selection
+
+When `requiredSelect` is enabled, it ensures a radio style ToggleButtonGroup has at least one selected state.
+
+```typescript
+import React from 'react';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  FormatAlignLeftIcon,
+  FormatAlignCenterIcon,
+  FormatAlignRightIcon,
+  FormatAlignJustifyIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup noSpace requiredSelect singleSelect>
+      <ToggleButton aria-label="Left align" icon={<FormatAlignLeftIcon />} />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+      />
+      <ToggleButton aria-label="Right align" icon={<FormatAlignRightIcon />} />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+      />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Size
+
+Three sizes are configurable with the `ButtonSize` prop between `small`, `medium` (default), and `large` across the group.
+
+```typescript
+import React from 'react';
+import {
+  ButtonSize,
+  Container,
+  ToggleButton,
+  ToggleButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container style={{ padding: '12px' }}>
+      <ToggleButtonGroup>
+        <ToggleButton size={ButtonSize.small}>Toggle 1</ToggleButton>
+        <ToggleButton size={ButtonSize.medium}>Toggle 2</ToggleButton>
+        <ToggleButton size={ButtonSize.large}>Toggle 3</ToggleButton>
+      </ToggleButtonGroup>
+    </Container>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import {
+  ButtonSize,
+  Container,
+  ToggleButton,
+  ToggleButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse style={{ padding: '12px' }}>
+      <ToggleButtonGroup isInverse>
+        <ToggleButton>Toggle 1</ToggleButton>
+        <ToggleButton>Toggle 2</ToggleButton>
+        <ToggleButton>Toggle 3</ToggleButton>
+      </ToggleButtonGroup>
+    </Container>
+  );
+}
+```
+
+## ToggleButtonGroup Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<ToggleButtonGroupProps />
