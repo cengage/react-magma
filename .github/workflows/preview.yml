@@ -23,13 +23,13 @@ jobs:
       - name: Update NPM version
         run: npm install -g "npm@^7.6.3"
       - name: Install
-        run:  npm ci
+        run: npm ci && npm run clean && npm ci
       - name: Test
         run: npm test
       - name: Coverage
         uses: codecov/codecov-action@v1
       - name: Build Docs
-        run: npm run clean && npm run build:docs
+        run: npm run build:docs
       - name: Build Storybook
         run: npm run build:storybook
       - name: Deploy Doc Preview to Netlify
