@@ -23,7 +23,7 @@ jobs:
       - name: Update NPM version
         run: npm install -g "npm@^7.6.3"
       - name: Install
-        run: npm ci
+        run: npm run clean && npm ci
       - name: Test
         run: npm test
       - name: Coverage
