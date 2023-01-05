@@ -1,4 +1,3 @@
-const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const propertiesJson = require('react-magma-dom/dist/properties.json');
 
@@ -9,6 +8,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
     resolve: {
       extensions: ['*', '.mjs', '.js', '.json'],
+      alias: {
+        path: require.resolve('path-browserify'),
+      },
     },
     module: {
       rules: [
