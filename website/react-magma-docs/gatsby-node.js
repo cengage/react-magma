@@ -22,7 +22,7 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
       ],
     },
     plugins: [
-      plugins.provide({ process: 'process/browser' })
+      plugins.provide({ process: 'process' })
     ]
   });
 };
