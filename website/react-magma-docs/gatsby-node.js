@@ -22,7 +22,7 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
       ],
     },
     plugins: [
-      plugins.provide({ process: 'process', buffer: 'buffer' })
+      plugins.provide({ process: 'process', buffer: 'Buffer' })
     ]
   });
 };
