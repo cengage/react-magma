@@ -21,6 +21,7 @@
     "@react-magma/dropzone": "2.0.1",
     "@react-magma/schema-renderer": "^2.0.1",
     "buble": "0.19.4",
+    "buffer": "^6.0.3",
     "core-js": "^3.1.4",
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
