@@ -22,8 +22,8 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
       ],
     },
     plugins: [
-      plugins.provide({ process: 'process', buffer: 'Buffer' })
-    ]
+      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] })
+    ],
   });
 };
 
