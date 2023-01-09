@@ -109,6 +109,65 @@ export function Example() {
 }
 ```
 
+## Controlled Selection
+
+To require at least one active selection throughout a group, use the `onChange` property on `ToggleButtonGroup`.
+
+```typescript
+import React from 'react';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  FormatAlignLeftIcon,
+  FormatAlignCenterIcon,
+  FormatAlignRightIcon,
+  FormatAlignJustifyIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  const [alignment, setAlignment] = React.useState(() => ['left']);
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    newAlignment: string[]
+  ) => {
+    if (newAlignment.length) {
+      setAlignment(newAlignment);
+    }
+  };
+
+  return (
+    <ToggleButtonGroup
+      requiredSelect
+      onChange={handleChange}
+      noSpace
+      value={alignment}
+    >
+      <ToggleButton
+        aria-label="Left align"
+        icon={<FormatAlignLeftIcon />}
+        value="left"
+      />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+        value="center"
+      />
+      <ToggleButton
+        aria-label="Right align"
+        icon={<FormatAlignRightIcon />}
+        value="right"
+      />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+        value="justify"
+      />
+    </ToggleButtonGroup>
+  );
+}
+```
+
 ## Size
 
 Three sizes are configurable with the `ButtonSize` prop between `small`, `medium` (default), and `large` across the group.

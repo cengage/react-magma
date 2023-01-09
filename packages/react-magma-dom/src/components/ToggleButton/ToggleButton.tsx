@@ -128,6 +128,7 @@ export const ToggleButton = React.forwardRef<
           color={ButtonColor.subtle}
           defaultChecked={defaultChecked}
           disabled={disabled}
+          enforcedSelect={context.enforcedSelect}
           theme={theme}
           hasLabel={children ? true : null}
           icon={icon}
@@ -142,7 +143,10 @@ export const ToggleButton = React.forwardRef<
           size={context.size || props.size}
           testId={testId}
         >
-          <>{children}</>
+          <>
+            {children}
+            {console.log(context.enforcedSelect)}
+          </>
         </StyledToggleButtonIcon>
       ) : (
         <StyledToggleButtonText
@@ -150,6 +154,7 @@ export const ToggleButton = React.forwardRef<
           color={ButtonColor.subtle}
           defaultChecked={defaultChecked}
           disabled={disabled}
+          enforcedSelect={context.enforcedSelect}
           theme={theme}
           isChecked={isChecked}
           isDefault={context.isDefault}

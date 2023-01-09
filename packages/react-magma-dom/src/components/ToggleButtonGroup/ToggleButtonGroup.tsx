@@ -13,6 +13,7 @@ import { transparentize } from 'polished';
  * @children required
  */
 export interface ToggleButtonGroupProps {
+  enforcedSelect?: number;
   isInverse?: boolean;
   /**
    * Removes margins between buttons and applies a uniform border around the group.
@@ -42,6 +43,7 @@ export interface ToggleButtonGroupProps {
 }
 
 export interface ToggleButtonGroupContextInterface {
+  enforcedSelect?: number;
   isDefault?: boolean;
   isInverse?: boolean;
   requiredSelect?: boolean;
@@ -99,6 +101,7 @@ export const setButtonStyles = props => css`
 `;
 
 const SingleSelectWrapper = styled.div<{
+  enforcedSelect?: number;
   isInverse?: boolean;
   requiredSelect?: boolean;
   isChecked?: boolean;
@@ -116,6 +119,7 @@ export const ToggleButtonGroup = React.forwardRef<
 >((props, ref) => {
   const {
     children,
+    enforcedSelect,
     isInverse,
     testId,
     noSpace,
@@ -124,6 +128,14 @@ export const ToggleButtonGroup = React.forwardRef<
     size,
   } = props;
   const theme = React.useContext(ThemeContext);
+
+  const toggleButtonChildren = React.Children.toArray(children);
+
+  const hasChildToggle = toggleButtonChildren.some(child => {
+    if (React.isValidElement(child)) {
+      return Object.keys(child.props).includes('isChecked');
+    }
+  });
 
   // Sets the active state for the Toggle Button
   const [isChecked, setChecked] = React.useState(null);
@@ -137,6 +149,8 @@ export const ToggleButtonGroup = React.forwardRef<
     >;
 
     const disabledButton = item.props.disabled;
+
+    const childChecked = item.props.isChecked;
 
     const handleClick = () => {
       if (requiredSelect && !disabledButton && singleSelect) {
@@ -167,6 +181,19 @@ export const ToggleButtonGroup = React.forwardRef<
           {item}
         </SingleSelectWrapper>
       );
+    } else if (item.type === ToggleButton && props.enforcedSelect) {
+      return (
+        <SingleSelectWrapper
+          enforcedSelect={enforcedSelect}
+          key={index}
+          onClick={handleClick}
+          isInverse={isInverse}
+          size={size}
+          theme={theme}
+        >
+          {item}
+        </SingleSelectWrapper>
+      );
     }
     return child;
   });
@@ -185,6 +212,7 @@ export const ToggleButtonGroup = React.forwardRef<
     >
       <ToggleButtonGroupContext.Provider
         value={{
+          enforcedSelect,
           isDefault,
           isInverse,
           requiredSelect,

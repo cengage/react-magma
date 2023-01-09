@@ -90,6 +90,55 @@ AlignmentExample.args = {
   ...Default.args,
 };
 
+export const ControlledExample = args => {
+  const [alignment, setAlignment] = React.useState(() => ['center']);
+
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string[]
+  ) => {
+    if (newAlignment.length) {
+      setAlignment(newAlignment);
+    }
+  };
+
+  return (
+    <ToggleButtonGroup
+      enforcedSelect={2}
+      onChange={handleChange}
+      noSpace
+      value={alignment}
+      {...args}
+    >
+      <ToggleButton
+        aria-label="Left align"
+        icon={<FormatAlignLeftIcon />}
+        value="left"
+      />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+        value="center"
+      />
+      <ToggleButton
+        aria-label="Right align"
+        icon={<FormatAlignRightIcon />}
+        value="right"
+      />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+        value="justify"
+      />
+    </ToggleButtonGroup>
+  );
+};
+
+ControlledExample.args = {
+  noSpace: true,
+  ...Default.args,
+};
+
 export const DifferentToggleButtons = args => {
   return (
     <ToggleButtonGroup {...args}>
