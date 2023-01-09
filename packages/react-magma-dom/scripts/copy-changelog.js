@@ -12,11 +12,11 @@ fs.copyFile(
 
     const data = fs.readFileSync(file);
     const fd = fs.openSync(file, 'w+');
-    const buffer = Buffer.from('---\ntitle: Changelog\norder: 4\n---\n\n');
+    const buffer = window.Buffer.from('---\ntitle: Changelog\norder: 4\n---\n\n');
 
     let textData = data.toString();
 
-    const newBufferData = Buffer.from(textData);
+    const newBufferData = window.Buffer.from(textData);
 
     fs.writeSync(fd, buffer, 0, buffer.length, 0);
     fs.writeSync(fd, newBufferData, 0, newBufferData.length, buffer.length);
