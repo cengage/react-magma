@@ -16,10 +16,8 @@ import { IconButtonProps } from '../components/IconButtonProps';
 import { ButtonProps } from '../components/ButtonProps';
 
 const ContentArticle = styled.article`
-  @media (max-width: ${magma.breakpoints.large}px) {
+  @media (max-width: 1025px) {
     margin: 0 auto;
-    // max-width: 900px;
-    // width: 80%;
   }
 
   @media (max-width: ${magma.breakpoints.small}px) {

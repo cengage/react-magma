@@ -30,7 +30,7 @@ const NAV_TABS = {
 const TabsWrapper = styled.div`
   position: sticky;
   top: 56px;
-  z-index: 10;
+  z-index: 8;
   background: ${magma.colors.neutral200};
 `;
 
@@ -41,7 +41,7 @@ const StyledTabs = styled(NavTabs)`
   max-width: ${CONTENT_MAX_WIDTH}px;
   position: sticky;
   top: 56px;
-  z-index: 10;
+  z-index: 8;
 
   @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH}px) {
     padding-left: 24px;
@@ -273,7 +273,10 @@ export const PageContent = ({ children, componentName, type }) => {
                     <StyledTabPanel>
                       <Content>{children}</Content>
                       <PageNavigation>
-                        <SubPageTabs pageData={getPageData()} hasHorizontalNav={hasDocs} />
+                        <SubPageTabs
+                          pageData={getPageData()}
+                          hasHorizontalNav={hasDocs}
+                        />
                       </PageNavigation>
                     </StyledTabPanel>
                   </StyledTabPanelsContainer>
@@ -285,7 +288,10 @@ export const PageContent = ({ children, componentName, type }) => {
               >
                 <Content>{children}</Content>
                 <PageNavigation>
-                  <SubPageTabs pageData={getPageData()} hasHorizontalNav={hasDocs} />
+                  <SubPageTabs
+                    pageData={getPageData()}
+                    hasHorizontalNav={hasDocs}
+                  />
                 </PageNavigation>
               </div>
             )}
@@ -299,5 +305,12 @@ export const PageContent = ({ children, componentName, type }) => {
 PageContent.propTypes = {
   children: PropTypes.node,
   componentName: PropTypes.string,
-  type: PropTypes.oneOf(['api', 'api_intro', 'design', 'design_intro', 'patterns', 'patterns_intro']),
+  type: PropTypes.oneOf([
+    'api',
+    'api_intro',
+    'design',
+    'design_intro',
+    'patterns',
+    'patterns_intro',
+  ]),
 };

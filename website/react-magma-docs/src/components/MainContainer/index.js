@@ -7,13 +7,16 @@ import { DarkModeContext } from '../DarkMode/DarkModeContext';
 import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 
 const StyledContainer = styled.div`
-  @media (min-width: ${magma.breakpoints.large}px) {
+  @media (min-width: 1025px) {
     display: grid;
     grid-template-columns: 240px auto;
     grid-template-rows: 56px auto;
     grid-template-areas:
       'masthead masthead'
       'nav content';
+  }
+  @media (max-width: 1024px) {
+    display: hidden
   }
 `;
 

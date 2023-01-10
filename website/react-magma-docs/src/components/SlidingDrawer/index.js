@@ -104,20 +104,20 @@ export class SlidingDrawer extends React.Component {
           z-index: 11;
         `};
 
-      @media (min-width: 1024px) {
+      @media (min-width: 1025px) {
         animation: none;
         background: ${magma.colors.neutral200};
         top: 56px;
         transform: translateX(0);
       }
-      @media (max-width: 1024px) {
+      @media (max-width: ${magma.breakpoints.large}px) {
         width: 300px;
       }
     `;
 
     const PanelInner = styled.div`
       display: ${props => (props.isOpen ? 'block' : 'none')};
-      @media (min-width: 1024px) {
+      @media (min-width: 1025px) {
         display: block;
       }
     `;
@@ -137,7 +137,7 @@ export class SlidingDrawer extends React.Component {
       top: 4px;
       left: 6px;
       z-index: 11;
-      @media (min-width: 1024px) {
+      @media (min-width: 1025px) {
         display: none;
       }
     `;
@@ -154,7 +154,7 @@ export class SlidingDrawer extends React.Component {
       svg {
         height: 24px;
       }
-      @media (min-width: 1024px) {
+      @media (min-width: ${magma.breakpoints.large}px) {
         display: none;
       }
     `;
@@ -166,7 +166,7 @@ export class SlidingDrawer extends React.Component {
       button {
         bottom: 4px;
       }
-      @media (min-width: 1024px) {
+      @media (min-width: ${magma.breakpoints.large}px) {
         display: none;
       }
     `;
@@ -178,19 +178,17 @@ export class SlidingDrawer extends React.Component {
       <FocusLock disabled={!isOpen}>
         <Container gutterWidth={0}>
           <nav aria-label="Main site navigation">
-            {true && (
-              <MenuButton>
-                <IconButton
-                  aria-label="Open navigation menu"
-                  aria-expanded={isOpen}
-                  color="secondary"
-                  icon={<MenuIcon />}
-                  onClick={this.openMenu}
-                  ref={this.toggleButtonRef}
-                  variant="link"
-                />
-              </MenuButton>
-            )}
+            <MenuButton>
+              <IconButton
+                aria-label="Open navigation menu"
+                aria-expanded={isOpen}
+                color="secondary"
+                icon={<MenuIcon />}
+                onClick={this.openMenu}
+                ref={this.toggleButtonRef}
+                variant="link"
+              />
+            </MenuButton>
             <Panel
               isOpen={isOpen}
               isActivated={isActivated}

@@ -18,7 +18,6 @@ export const StyledNavTabWrapper = styled.div`
   border-left: 1px solid
     ${props =>
       props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
-  margin-top: 32px;
 `;
 
 export const StyledTabHeading = styled.p`
@@ -28,29 +27,38 @@ export const StyledTabHeading = styled.p`
   font-weight: 700;
   text-transform: uppercase;
   margin: 0;
+  margin-top: 44px;
   color: ${props =>
     props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
   padding: 12px 16px;
 `;
 
-export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
-  
-  // Side navigation
-  const StyledNavTabs = styled(NavTabs)`
+// Side navigation
+export const StyledNavTabs = styled(NavTabs)`
   width: 272px;
+  height: calc(100vh - 150px);
   margin-right: 24px;
-  position: sticky;
-  top: ${hasHorizontalNav ? '92px' : '48px'};
-  height: calc(100vh - 200px);
   > div ul {
     align-items: start;
+    width: 100%;
+    > div {
+      width: 100%;
+    }
   }
 `;
+
+export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
+  const Wrapper = styled.div`
+    position: sticky;
+    top: ${hasHorizontalNav ? '102px' : '80px'};
+    height: calc(100vh - 200px);
+  `;
 
   const [activeTab, setActiveTab] = React.useState(0);
 
   const isInverse = useIsInverse();
   const headings = pageData?.node?.headings?.map(heading => heading.value);
+  const hasHeadings = headings?.length > 0;
 
   const handleAnchorLinkClick = (id, index, e) => {
     const distanceToTop = el => Math.floor(el.getBoundingClientRect().top);
@@ -58,7 +66,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     const targetID = id;
     const targetAnchor = document.getElementById(id);
     if (!targetAnchor) return;
-    const originalTop = distanceToTop(targetAnchor);
+    const originalTop = distanceToTop(targetAnchor) - 25;
 
     window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
 
@@ -78,12 +86,9 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   };
 
   function renderPageNavTabs() {
-    if (headings && headings.length > 0) {
+    if (hasHeadings) {
       return (
         <StyledNavTabWrapper>
-          <StyledTabHeading isInverse={isInverse}>
-            On this page
-          </StyledTabHeading>
           {headings.map((page, index) => {
             const id = convertTextToId(page);
             return (
@@ -105,13 +110,22 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
 
   return (
     <>
-      <StyledNavTabs
-        isInverse={isInverse}
-        orientation={TabsOrientation.vertical}
-        hasHorizontalNav={hasHorizontalNav}
-      >
-        {renderPageNavTabs()}
-      </StyledNavTabs>
+      {hasHeadings ? (
+        <Wrapper hasHorizontalNav={hasHorizontalNav}>
+          <StyledTabHeading isInverse={isInverse}>
+            On this page
+          </StyledTabHeading>
+
+          <StyledNavTabs
+            isInverse={isInverse}
+            orientation={TabsOrientation.vertical}
+          >
+            {renderPageNavTabs()}
+          </StyledNavTabs>
+        </Wrapper>
+      ) : (
+        <></>
+      )}
     </>
   );
 };
