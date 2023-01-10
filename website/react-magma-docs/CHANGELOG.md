@@ -1,5 +1,25 @@
 # Change Log
 
+## 5.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2. Update Gatsby to 3.15.0.
+
+### Patch Changes
+
+- Updated dependencies [adba671f3]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+  - react-magma-dom@4.0.0-next.0
+  - @react-magma/charts@3.0.0-next.0
+  - @react-magma/dropzone@3.0.0-next.0
+  - @cengage-patterns/header@5.0.0-next.0
+  - @react-magma/schema-renderer@3.0.0-next.0
+
 ## 4.0.6
 
 ### Patch Changes

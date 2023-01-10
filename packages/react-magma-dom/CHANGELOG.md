@@ -1,5 +1,15 @@
 # Change Log
 
+## 4.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Patch Changes
+
+- adba671f3: chore: Fix broken build
+
 ## 3.2.1
 
 ### Patch Changes
