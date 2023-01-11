@@ -10,16 +10,6 @@ import {
   TabsOrientation,
 } from 'react-magma-dom';
 
-export const StyledNavTab = styled(NavTab)`
-  text-transform: none;
-`;
-
-export const StyledNavTabWrapper = styled.div`
-  border-left: 1px solid
-    ${props =>
-      props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
-`;
-
 export const StyledTabHeading = styled.p`
   font-size: ${magma.typeScale.size01.fontSize};
   line-height: ${magma.typeScale.size01.lineHeight};
@@ -45,6 +35,16 @@ export const StyledNavTabs = styled(NavTabs)`
       width: 100%;
     }
   }
+`;
+
+export const StyledNavTab = styled(NavTab)`
+  text-transform: none;
+`;
+
+export const StyledNavTabWrapper = styled.div`
+  border-left: 1px solid
+    ${props =>
+      props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
 `;
 
 export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
@@ -89,20 +89,20 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     if (hasHeadings) {
       return (
         <StyledNavTabWrapper>
-          {headings.map((page, index) => {
-            const id = convertTextToId(page);
-            return (
-              <StyledNavTab
-                key={index}
-                to={`#${id}`}
-                isInverse={isInverse}
-                isActive={activeTab === index}
-                onClick={e => handleAnchorLinkClick(id, index, e)}
-              >
-                {page}
-              </StyledNavTab>
-            );
-          })}
+            {headings.map((page, index) => {
+              const id = convertTextToId(page);
+              return (
+                <StyledNavTab
+                  key={index}
+                  to={`#${id}`}
+                  isInverse={isInverse}
+                  isActive={activeTab === index}
+                  onClick={e => handleAnchorLinkClick(id, index, e)}
+                >
+                  {page}
+                </StyledNavTab>
+              );
+            })}
         </StyledNavTabWrapper>
       );
     }

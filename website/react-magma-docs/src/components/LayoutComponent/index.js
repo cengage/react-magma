@@ -49,6 +49,7 @@ export const LayoutComponent = props => {
         {heading ? (
           <StyledContainer
             gutterWidth={0}
+            style={{background: magma.colors.neutral200}}
           >
             <HeadingWrapper>
               <Heading level={1}>{heading}</Heading>
