@@ -1,5 +1,111 @@
 # Change Log
 
+## 3.2.1-next.0
+
+### Patch Changes
+
+- f5189569b: fix(tabs): Disabled tabs have the disabled cursor
+
+## 3.2.0
+
+### Minor Changes
+
+- 47015f38: feat(characterCounter): New Character Counter component.
+- 15bdd2d0: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
+- 9daf9331: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
+  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+- eb9ed1f3: feat(input): Added left label position capability for Combobox, DatePicker, Input, NativeSelect, PasswordInput, Textarea, and TimePicker. An additional prop of labelWidth has also been implemented for use in a column of Inputs for styling purposes.
+- 1893be73: feat(button): Subtle button
+
+### Patch Changes
+
+- 34c2957a: fix(combobox): Combobox items have a default `type="button"` to prevent issues when used inside a form.
+- 85853eae: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
+  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+- 1110043a: fix(table): Add keyboard only focus to tables without a focusable element.
+- 2fe13d60: docs(table): Storybook example with adjustable number of rows
+- 95fc5ae7: chore(npm/node): Update versions
+
+## 3.2.0-next.9
+
+### Patch Changes
+
+- 34c2957ad: fix(combobox): Combobox items have a default `type="button"` to prevent issues when used inside a form.
+
+## 3.2.0-next.8
+
+### Minor Changes
+
+- eb9ed1f3c: feat(input): Added left label position capability for Combobox, DatePicker, Input, NativeSelect, PasswordInput, Textarea, and TimePicker. An additional prop of labelWidth has also been implemented for use in a column of Inputs for styling purposes.
+
+## 3.2.0-next.7
+
+### Minor Changes
+
+- 9daf9331d: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
+  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+
+## 3.2.0-next.6
+
+### Minor Changes
+
+- 15bdd2d08: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
+
+## 3.2.0-next.5
+
+### Patch Changes
+
+- 95fc5ae72: chore(npm/node): Update versions
+
+## 3.2.0-next.4
+
+### Patch Changes
+
+- 85853eae2: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
+  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+
+## 3.2.0-next.3
+
+### Minor Changes
+
+- 1893be731: feat(button): Subtle button
+
+## 3.2.0-next.2
+
+### Patch Changes
+
+- 1110043aa: fix(table): Add keyboard only focus to tables without a focusable element.
+
+## 3.2.0-next.1
+
+### Patch Changes
+
+- 2fe13d60f: docs(table): Storybook example with adjustable number of rows
+
+## 3.2.0-next.0
+
+### Minor Changes
+
+- 47015f38: feat(characterCounter): New Character Counter component.
+
+## 3.1.2
+
+### Patch Changes
+
+- 754c389b: fix(GlobalStyles): Fix default `a:hover` color to match Hyperlink
+- ffa94511: fix(ButtonGroup): Add `flex-wrap: wrap` to ButtonGroup
+- 9502d28a: fix(Input): Fix placement of `children` inside Input component (ex: help icon).
+- 0de78513: build(deps): Bump react-magma-icons to 2.3.4
+- 17ee57af: build: Update storybook packages to latest (6.4.12 -> 6.5.10)
+
+## 3.1.2-next.4
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+
 ## 3.1.2-next.3
 
 ### Patch Changes

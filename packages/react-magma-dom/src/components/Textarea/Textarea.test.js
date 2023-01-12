@@ -3,17 +3,18 @@ import { axe } from '../../../axe-helper';
 import { Textarea } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { defaultI18n } from '../../i18n/default';
+
+const testId = 'test-id';
 
 describe('Textarea', () => {
   it('should find element by testId', () => {
-    const testId = 'test-id';
     const { getByTestId } = render(<Textarea testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('should render a textarea with desired attributes', () => {
-    const testId = 'test-id';
     const id = 'abc123';
     const placeholder = 'holding a place';
     const value = 'abcdefg';
@@ -54,7 +55,7 @@ describe('Textarea', () => {
     const { getByTestId } = render(<Textarea value="hello" testId={testId} />);
     const textarea = getByTestId(testId);
 
-    fireEvent.change(textarea, {target: {value: ''}})
+    fireEvent.change(textarea, { target: { value: '' } });
     expect(textarea.value).toBe('');
   });
 
@@ -108,6 +109,26 @@ describe('Textarea', () => {
     const { container } = render(<Textarea labelText="test label" />);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
+    });
+  });
+
+  describe('Character Counter', () => {
+    const charactersAllowed = defaultI18n.characterCounter.charactersAllowed;
+    const charactersLeft = defaultI18n.characterCounter.charactersLeft;
+
+    it('Shows the label "characters allowed" equal to the maxLength if the user clears the textarea', () => {
+      const { getByTestId, getByText } = render(
+        <Textarea maxLength={4} testId={testId} />
+      );
+      const textarea = getByTestId(testId);
+
+      fireEvent.change(textarea, { target: { value: 'dddd' } });
+      expect(textarea.value).toBe('dddd');
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+
+      fireEvent.change(textarea, { target: { value: '' } });
+      expect(textarea.value).toBe('');
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
   });
 });

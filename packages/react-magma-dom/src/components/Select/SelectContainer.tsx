@@ -7,11 +7,17 @@ import { InputMessage } from '../Input/InputMessage';
 
 export const SelectContainerElement = styled.div<{
   labelPosition?: LabelPosition;
+  labelWidth?: number;
 }>`
-  align-items: baseline;
   display: ${props =>
     props.labelPosition == LabelPosition.left ? 'flex' : 'block'};
   position: relative;
+  label {
+    flex-basis: ${props =>
+      props.labelWidth && props.labelPosition === LabelPosition.left
+        ? `${props.labelWidth}%`
+        : ''};
+  }
 `;
 
 const InputMessageContainer = styled.div`
@@ -31,6 +37,7 @@ interface SelectContainerInterface<T> {
   labelPosition?: LabelPosition;
   labelStyle?: React.CSSProperties;
   labelText: string;
+  labelWidth?: number;
   messageStyle?: React.CSSProperties;
 }
 
@@ -46,6 +53,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
     labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     messageStyle,
   } = props;
 
@@ -54,6 +62,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   return (
     <SelectContainerElement
       labelPosition={labelPosition}
+      labelWidth={labelWidth}
       data-testid="selectContainerElement"
     >
       <Label

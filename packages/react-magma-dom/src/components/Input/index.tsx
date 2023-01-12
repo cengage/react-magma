@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
@@ -22,17 +23,36 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       id: defaultId,
       inputSize = InputSize.medium,
       isLabelVisuallyHidden,
+      labelPosition,
       labelStyle,
       labelText,
+      labelWidth,
+      maxLength,
       messageStyle,
+      testId,
       ...other
     } = props;
 
     const id = useGenerateId(defaultId);
 
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const descriptionId =
+      errorMessage || helperMessage || maxLength ? `${id}__desc` : null;
 
     const isInverse = useIsInverse(props.isInverse);
+
+    const [characterLength, setCharacterLength] = useState(0);
+
+    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+      props.onChange &&
+        typeof props.onChange === 'function' &&
+        props.onChange(event);
+      setCharacterLength(event.target.value.length);
+    }
+
+    function handleClear() {
+      props.onClear && typeof props.onClear === 'function' && props.onClear();
+      setCharacterLength(0);
+    }
 
     return (
       <FormFieldContainer
@@ -44,9 +64,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
         inputSize={inputSize}
+        inputLength={characterLength}
+        labelPosition={labelPosition}
         labelStyle={labelStyle}
         labelText={labelText}
+        labelWidth={labelWidth}
+        maxLength={maxLength}
         messageStyle={messageStyle}
+        testId={testId && `${testId}-formFieldContainer`}
       >
         <InputBase
           {...other}
@@ -54,12 +79,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          hasError={!!errorMessage}
+          hasError={!!errorMessage || characterLength > maxLength}
           iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
           isInverse={isInverse}
+          onChange={handleChange}
+          onClear={handleClear}
           ref={ref}
+          testId={testId}
         >
           {children}
         </InputBase>

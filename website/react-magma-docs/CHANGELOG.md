@@ -1,5 +1,183 @@
 # Change Log
 
+## 4.0.6-next.1
+
+### Patch Changes
+
+- Updated dependencies [f5189569b]
+  - react-magma-dom@3.2.1-next.0
+  - @react-magma/charts@2.0.1-next.0
+  - @react-magma/dropzone@2.0.1-next.0
+  - @react-magma/schema-renderer@2.0.1-next.0
+  - @cengage-patterns/header@4.0.1-next.0
+
+## 4.0.6-next.0
+
+### Patch Changes
+
+- 2e2994e5f: docs(changelog): broken link to the 2.3.0 release
+
+## 4.0.5
+
+### Patch Changes
+
+- 411db844: docs(select component documentation nav link): fix broken link in select documentation
+- Updated dependencies [34c2957a]
+- Updated dependencies [47015f38]
+- Updated dependencies [15bdd2d0]
+- Updated dependencies [9daf9331]
+- Updated dependencies [eb9ed1f3]
+- Updated dependencies [85853eae]
+- Updated dependencies [1893be73]
+- Updated dependencies [1110043a]
+- Updated dependencies [2fe13d60]
+- Updated dependencies [95fc5ae7]
+- Updated dependencies [95fc5ae7]
+- Updated dependencies [95fc5ae7]
+- Updated dependencies [95fc5ae7]
+  - react-magma-dom@3.2.0
+  - @react-magma/charts@2.0.0
+  - @react-magma/dropzone@2.0.0
+  - @react-magma/schema-renderer@2.0.0
+  - @cengage-patterns/header@4.0.0
+
+## 4.0.5-next.10
+
+### Patch Changes
+
+- Updated dependencies [34c2957ad]
+  - react-magma-dom@3.2.0-next.9
+
+## 4.0.5-next.9
+
+### Patch Changes
+
+- Updated dependencies [eb9ed1f3c]
+  - react-magma-dom@3.2.0-next.8
+
+## 4.0.5-next.8
+
+### Patch Changes
+
+- Updated dependencies [9daf9331d]
+  - react-magma-dom@3.2.0-next.7
+
+## 4.0.5-next.7
+
+### Patch Changes
+
+- Updated dependencies [15bdd2d08]
+  - react-magma-dom@3.2.0-next.6
+
+## 4.0.5-next.6
+
+### Patch Changes
+
+- 411db8440: docs(select component documentation nav link): fix broken link in select documentation
+
+## 4.0.5-next.5
+
+### Patch Changes
+
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+- Updated dependencies [95fc5ae72]
+  - @react-magma/charts@2.0.0-next.1
+  - @react-magma/dropzone@2.0.0-next.1
+  - @react-magma/schema-renderer@2.0.0-next.1
+  - react-magma-dom@3.2.0-next.5
+
+## 4.0.5-next.4
+
+### Patch Changes
+
+- Updated dependencies [85853eae2]
+  - react-magma-dom@3.2.0-next.4
+
+## 4.0.5-next.3
+
+### Patch Changes
+
+- Updated dependencies [1893be731]
+  - react-magma-dom@3.2.0-next.3
+
+## 4.0.5-next.2
+
+### Patch Changes
+
+- Updated dependencies [1110043aa]
+  - react-magma-dom@3.2.0-next.2
+
+## 4.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [2fe13d60f]
+  - react-magma-dom@3.2.0-next.1
+
+## 4.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [47015f38]
+  - react-magma-dom@3.2.0-next.0
+  - @react-magma/charts@2.0.0-next.0
+  - @react-magma/dropzone@2.0.0-next.0
+  - @react-magma/schema-renderer@2.0.0-next.0
+  - @cengage-patterns/header@4.0.0-next.0
+
+## 4.0.4
+
+### Patch Changes
+
+- 677a0ada: docs: Various a11y fixes including duplicate IDs, missing alt attributes, missing aria-labels.
+- c6696925: docs(appbar): Fix components overlapping in AppBar Tabs example.
+- e4c07d07: Update error page.
+- 66c7daf7: docs: Updating Sidebar to use our Accordion component.
+- 2b099eb5: build: Resolve merge conflicts when pulling main -> dev
+- f35c3c5d: docs(IndexPageContent): Update Home page styling for medium devices and add GitHub icon to Contribute button.
+- 0de78513: build(deps): Bump react-magma-icons to 2.3.4
+- ab2d3e18: fix(PageTemplates): Updates to Page Templates examples, removed work in progress label
+- ffa94511: Update API pages that scroll horizontally on small screens.
+- 9830302e: docs(versions): Add React Magma Versions page
+- Updated dependencies [754c389b]
+- Updated dependencies [ffa94511]
+- Updated dependencies [9502d28a]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [0de78513]
+- Updated dependencies [17ee57af]
+  - react-magma-dom@3.1.2
+  - @react-magma/charts@1.0.2
+  - @react-magma/dropzone@1.0.3
+  - @cengage-patterns/header@3.0.3
+  - @react-magma/schema-renderer@1.0.3
+
+## 4.0.4-next.12
+
+### Patch Changes
+
+- 0de78513c: build(deps): Bump react-magma-icons to 2.3.4
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+- Updated dependencies [0de78513c]
+  - @react-magma/charts@1.0.2-next.1
+  - react-magma-dom@3.1.2-next.4
+  - @react-magma/dropzone@1.0.3-next.1
+  - @cengage-patterns/header@3.0.3-next.1
+  - @react-magma/schema-renderer@1.0.3-next.1
+
+## 4.0.4-next.11
+
+### Patch Changes
+
+- 9830302e7: docs(versions): Add React Magma Versions page
+
 ## 4.0.4-next.10
 
 ### Patch Changes

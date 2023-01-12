@@ -33,7 +33,7 @@ const StyledNativeSelectWrapper = styled.div<{
   theme: ThemeInterface;
 }>`
   ${inputWrapperStyles}
-  border:0;
+  border: 1px solid ${borderColors};
   svg {
     color: ${props =>
       props.isInverse && props.disabled
@@ -66,7 +66,6 @@ const StyledNativeSelect = styled.select<{
   theme: ThemeInterface;
 }>`
   ${inputBaseStyles};
-  border: 1px solid ${borderColors};
   // Required for Windows && Chrome support
   background: inherit;
   > option {
@@ -85,8 +84,10 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       id: defaultId,
       helperMessage,
       isInverse: isInverseProp,
+      labelPosition,
       labelStyle,
       labelText,
+      labelWidth,
       messageStyle,
       testId,
       ...other
@@ -103,8 +104,10 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
+        labelPosition={labelPosition}
         labelStyle={labelStyle}
         labelText={labelText}
+        labelWidth={labelWidth}
         isInverse={isInverse}
         helperMessage={helperMessage}
         messageStyle={messageStyle}

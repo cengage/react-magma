@@ -2,9 +2,12 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Input } from '.';
 import { render, fireEvent } from '@testing-library/react';
+import { transparentize } from 'polished';
 import { magma } from '../../theme/magma';
 import { CheckIcon } from 'react-magma-icons';
-import { transparentize } from 'polished';
+import { defaultI18n } from '../../i18n/default';
+
+const label = 'test label';
 
 describe('Input', () => {
   it('should find element by testId', () => {
@@ -15,7 +18,6 @@ describe('Input', () => {
   });
 
   it('should render a label for the input', () => {
-    const label = 'test label';
     const { getByLabelText } = render(<Input labelText={label} />);
     expect(getByLabelText(label)).toBeInTheDocument();
   });
@@ -101,7 +103,10 @@ describe('Input', () => {
 
     const helperMessage = getByTestId('inputMessage');
 
-    expect(helperMessage).toHaveStyleRule('color', transparentize(0.3, magma.colors.neutral100));
+    expect(helperMessage).toHaveStyleRule(
+      'color',
+      transparentize(0.3, magma.colors.neutral100)
+    );
   });
 
   it('should render an input with a correctly styled error message', () => {
@@ -179,6 +184,18 @@ describe('Input', () => {
 
     expect(span).toHaveStyleRule('left', magma.spaceScale.spacing03);
     expect(span).toHaveStyleRule('right', 'auto');
+  });
+
+  it('should render an input with a left-aligned label in the correct position', () => {
+    const { getByText } = render(
+      <Input labelText={label} labelPosition="left" />
+    );
+
+    expect(getByText(label)).toBeInTheDocument();
+    expect(getByText(label)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing03} 0 0`
+    );
   });
 
   it('should render a large input with a left-aligned icon in the correct position', () => {
@@ -408,10 +425,7 @@ describe('Input', () => {
         magma.typeScale.size04.fontSize
       );
       expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
-      expect(input).toHaveStyleRule(
-        'padding',
-        `${magma.spaceScale.spacing04}`
-      );
+      expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
     });
 
     describe('events', () => {
@@ -472,6 +486,76 @@ describe('Input', () => {
       return axe(container.innerHTML).then(result => {
         return expect(result).toHaveNoViolations();
       });
+    });
+  });
+
+  describe('Character Counter', () => {
+    const charactersAllowed = defaultI18n.characterCounter.charactersAllowed;
+    const charactersLeft = defaultI18n.characterCounter.charactersLeft;
+    const labelText = 'Character Counter';
+    const initialValue = 'dddd';
+
+    it('should render an input with a correctly styled error message', () => {
+      const { getByTestId, getByLabelText } = render(
+        <Input labelText={labelText} maxLength={2} />
+      );
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: initialValue },
+      });
+
+      const errorMessage = getByTestId('inputMessage');
+
+      expect(getByLabelText(labelText).parentElement).toHaveStyleRule(
+        'border-color',
+        magma.colors.danger
+      );
+      expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+    });
+
+    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by backspacing', () => {
+      const onChange = jest.fn();
+      const { getByText, getByLabelText } = render(
+        <Input labelText={labelText} maxLength={4} onChange={onChange} />
+      );
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: initialValue },
+      });
+
+      expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: '' },
+      });
+
+      expect(getByLabelText(labelText)).toHaveAttribute('value', '');
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
+    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by clicking the onClear button', () => {
+      const onClear = jest.fn();
+      const { getByText, getByLabelText, getByTestId } = render(
+        <Input
+          labelText={labelText}
+          onClear={onClear}
+          isClearable
+          maxLength={4}
+        />
+      );
+
+      fireEvent.change(getByLabelText(labelText), {
+        target: { value: initialValue },
+      });
+
+      expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+
+      fireEvent.click(getByTestId('clear-button'));
+
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+      expect(onClear).toBeCalled();
     });
   });
 });
