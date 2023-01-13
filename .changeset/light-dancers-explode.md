@@ -1,5 +1,7 @@
 ---
-'react-magma-dom': major
+'react-magma-dom': minor
 ---
 
-Breaking Change: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+(TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+Deprecations: `dropdownDropDirection` prop is now deprecated
