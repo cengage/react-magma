@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { TablePagination } from '.';
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, getAllByRole } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
@@ -24,21 +24,6 @@ describe('Table Pagination', () => {
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-top',
       `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
-    );
-  });
-
-  it('should change the direction of the dropdown content with passed in props', () => {
-    const { getByTestId, getByText } = render(
-      <TablePagination itemCount={20} dropdownDropDirection="down" />
-    );
-    const rowsSelect = getByTestId('rowPerPageDropdownButton');
-
-    fireEvent.click(rowsSelect);
-
-    expect(getByTestId('dropdownContent')).not.toHaveStyleRule('top', 'auto');
-    expect(getByTestId('dropdownContent')).not.toHaveStyleRule(
-      'bottom',
-      '100%'
     );
   });
 
@@ -90,13 +75,12 @@ describe('Table Pagination', () => {
           onRowsPerPageChange={handleRowsPerPageChange}
         />
       );
-      const rowsSelect = getByTestId('rowPerPageDropdownButton');
+      const rowsSelect = getByTestId('rowPerPageSelect');
 
-      fireEvent.click(rowsSelect);
-      fireEvent.click(getByText('20'));
+      fireEvent.change(rowsSelect, { target: { value: 20 }});
 
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 1);
-      expect(handleRowsPerPageChange).toHaveBeenCalledWith(20);
+      expect(handleRowsPerPageChange).toHaveBeenCalledWith('20');
       expect(getByText(/1-20/i)).toBeInTheDocument();
     });
   });
@@ -181,7 +165,7 @@ describe('Table Pagination', () => {
           rowsPerPage={rowsPerPage}
         />
       );
-      const rowsSelect = getByTestId('rowPerPageDropdownButton');
+      const rowsSelect = getByTestId('rowPerPageSelect');
 
       fireEvent.click(rowsSelect);
       fireEvent.click(getByText('20'));
