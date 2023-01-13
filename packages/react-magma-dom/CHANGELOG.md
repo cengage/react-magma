@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.0-next.1
+
+### Minor Changes
+
+- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
 ## 4.0.0-next.0
 
 ### Major Changes
