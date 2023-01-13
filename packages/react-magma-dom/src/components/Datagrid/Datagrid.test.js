@@ -682,7 +682,7 @@ describe('Datagrid', () => {
       );
 
       expect(
-        getByText(pagination.rowsPerPage.toString(), { selector: 'div' })
+        getByText(pagination.rowsPerPage.toString(), { selector: 'option' })
       ).toBeInTheDocument();
       expect(
         getByText(
@@ -714,7 +714,7 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onRowsPerPageChange,
       };
-      const { getByText, getByLabelText } = render(
+      const { getByText, getByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -722,12 +722,10 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByText('Rows per page:', { selector: 'span' }));
-
-      fireEvent.click(getByText(pagination.rowsPerPageValues[1].toString()));
+      fireEvent.change(getByTestId('rowPerPageSelect'), { target: { value: 20 }});
 
       expect(onRowsPerPageChange).toBeCalledWith(
-        pagination.rowsPerPageValues[1]
+        pagination.rowsPerPageValues[1].toString()
       );
     });
 
