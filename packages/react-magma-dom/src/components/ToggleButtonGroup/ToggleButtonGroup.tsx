@@ -1,115 +1,78 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { css } from '@emotion/core';
 
 import { ButtonColor, ButtonSize } from '../Button';
-import { ButtonGroup } from '../ButtonGroup';
+import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
-import { transparentize } from 'polished';
+import {
+  setBackgroundColor,
+  ToggleButton,
+  ToggleButtonProps,
+} from '../ToggleButton/ToggleButton';
 
 /**
  * @children required
  */
-export interface ToggleButtonGroupProps {
-  enforcedSelect?: number;
+export interface ToggleButtonGroupProps extends ButtonGroupProps {
   isInverse?: boolean;
-  /**
-   * Removes margins between buttons and applies a uniform border around the group.
-   */
-  noSpace?: boolean;
   /**
    * Enables a radio configuration throughout the group retaining an active selection at all times.
    */
-
-  requiredSelect?: boolean;
+  enforced?: boolean;
   /**
    * Sets the Toggle Button group to have only one active selection.
    */
-  singleSelect?: boolean;
-  /**
-   * Changes the button sizes throughout the group between 'small', 'medium', and 'large'.
-   */
-  size?: ButtonSize;
+  exclusive?: boolean;
   /**
    * @internal
    */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   testId?: string;
   /**
    * @internal
    */
   theme?: ThemeInterface;
+
+  value?: string;
 }
 
 export interface ToggleButtonGroupContextInterface {
-  enforcedSelect?: number;
-  isDefault?: boolean;
+  selectedValue?: string;
   isInverse?: boolean;
-  requiredSelect?: boolean;
-  singleSelect?: boolean;
+  enforced?: boolean;
+  exclusive?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   size?: ButtonSize;
 }
 
 export const ToggleButtonGroupContext =
   React.createContext<ToggleButtonGroupContextInterface>({});
 
-//Sets the icon width for icon only Toggle Buttons.
-export function setIconWidth(props: ToggleButtonProps) {
-  if (props.size === ButtonSize.small) {
-    return props.theme.spaceScale.spacing07;
-  }
-  if (props.size === ButtonSize.medium) {
-    return props.theme.spaceScale.spacing09;
-  }
-  if (props.size === ButtonSize.large) {
-    return props.theme.spaceScale.spacing11;
-  }
-  return props.theme.spaceScale.spacing09;
-}
+export const StyledToggleButtonGroup = styled(ButtonGroup)<{
+  onChange?: (event: React.ChangeEvent<HTMLDivElement>) => void;
+}>``;
 
-//Sets the background colors for the Toggle Buttons.
-function setBackgroundColor(props) {
-  //Removes active background color.
-  if (
-    (props.isChecked && props.defaultChecked) ||
-    (!props.isChecked && props.isDefault)
-  ) {
-    return '';
-  }
-  //Sets active background color.
-  if (props.isChecked || props.defaultChecked || props.isDefault) {
-    if (props.isInverse) {
-      return transparentize(0.5, props.theme.colors.neutral900);
-    }
-    return transparentize(0.5, props.theme.colors.neutral300);
-  }
-}
-
-export const setButtonStyles = props => css`
-  background: ${setBackgroundColor(props)};
-  &:not(:disabled):hover {
-    background: ${setBackgroundColor(props)};
-  }
-  &:not(:disabled):focus {
-    background: ${setBackgroundColor(props)};
-    outline-offset: -2px;
-  }
-  &:hover {
-    background: ${setBackgroundColor(props)};
-  }
-`;
-
-const SingleSelectWrapper = styled.div<{
-  enforcedSelect?: number;
+const StyledWrapper = styled.div<{
   isInverse?: boolean;
-  requiredSelect?: boolean;
-  isChecked?: boolean;
-  singleSelect?: boolean;
+  enforced?: boolean;
+  selected?: boolean;
+  exclusive?: boolean;
   size?: ButtonSize;
+  value?: string;
 }>`
   button {
-    ${setButtonStyles};
+    background: ${props => (props.selected ? setBackgroundColor : '')};
+    &:not(:disabled):hover {
+      background: ${props => (props.selected ? setBackgroundColor : '')};
+    }
+    &:not(:disabled):focus {
+      background: ${props => (props.selected ? setBackgroundColor : '')};
+      outline-offset: -2px;
+    }
+    &:hover {
+      background: ${setBackgroundColor};
+    }
   }
 `;
 
@@ -119,29 +82,33 @@ export const ToggleButtonGroup = React.forwardRef<
 >((props, ref) => {
   const {
     children,
-    enforcedSelect,
+    enforced,
+    exclusive,
     isInverse,
-    testId,
     noSpace,
-    requiredSelect,
-    singleSelect,
     size,
+    value,
+    testId,
   } = props;
   const theme = React.useContext(ThemeContext);
 
-  const toggleButtonChildren = React.Children.toArray(children);
-
-  const hasChildToggle = toggleButtonChildren.some(child => {
-    if (React.isValidElement(child)) {
-      return Object.keys(child.props).includes('isChecked');
-    }
-  });
-
   // Sets the active state for the Toggle Button
-  const [isChecked, setChecked] = React.useState(null);
+  const [selected, setSelected] = React.useState(null);
 
-  // Checks if defaultChecked is active then toggles it off based on clicking other Toggle Buttons or the one with defaultChecked set.
-  const [isDefault, setDefault] = React.useState(null);
+  // Sets a specific selected state with the value prop.
+  const [selectedValue, setSelectedValue] = React.useState<string>(props.value);
+
+  React.useEffect(() => {
+    setSelectedValue(props.value);
+  }, [props.value]);
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { value: newSelectedValue } = event.target;
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event);
+    setSelectedValue(newSelectedValue);
+  }
 
   const ToggleButtons = React.Children.map(children, (child, index) => {
     const item = child as React.ReactElement<
@@ -150,78 +117,66 @@ export const ToggleButtonGroup = React.forwardRef<
 
     const disabledButton = item.props.disabled;
 
-    const childChecked = item.props.isChecked;
-
     const handleClick = () => {
-      if (requiredSelect && !disabledButton && singleSelect) {
+      if (enforced && !disabledButton && exclusive) {
         //Retains at least one selection for single select
-        setChecked(s => (s === index ? index : index));
+        setSelected(s => (s === index ? index : index));
       } else if (!disabledButton) {
         //Allows single select to be deselected
-        setChecked(s => (s === index ? null : index));
+        setSelected(s => (s === index ? null : index));
       }
       if (!disabledButton) {
-        //Removes a default selection state on click
-        setDefault(true);
+        //Removes the specific selected state
+        setSelectedValue(null);
       }
     };
 
-    if (item.type === ToggleButton && props.singleSelect) {
+    if (item.type === ToggleButton && props.exclusive) {
       return (
-        <SingleSelectWrapper
+        <StyledWrapper
           key={index}
+          onChange={handleChange}
           onClick={handleClick}
           isInverse={isInverse}
-          requiredSelect={singleSelect ? isChecked === index : null}
-          isChecked={isChecked === index}
-          singleSelect={singleSelect}
+          enforced={exclusive ? selected === index : null}
+          selected={selected === index}
+          exclusive={exclusive}
           size={size}
           theme={theme}
+          value={value}
         >
           {item}
-        </SingleSelectWrapper>
-      );
-    } else if (item.type === ToggleButton && props.enforcedSelect) {
-      return (
-        <SingleSelectWrapper
-          enforcedSelect={enforcedSelect}
-          key={index}
-          onClick={handleClick}
-          isInverse={isInverse}
-          size={size}
-          theme={theme}
-        >
-          {item}
-        </SingleSelectWrapper>
+        </StyledWrapper>
       );
     }
     return child;
   });
 
   return (
-    <ButtonGroup
+    <StyledToggleButtonGroup
       aria-describedby="Toggle button group"
       color={ButtonColor.subtle}
-      noSpace={noSpace}
-      testId={testId}
       isInverse={isInverse}
-      theme={theme}
+      noSpace={noSpace}
+      onChange={handleChange}
       ref={ref}
       role="group"
       size={size}
+      testId={testId}
+      theme={theme}
     >
       <ToggleButtonGroupContext.Provider
         value={{
-          enforcedSelect,
-          isDefault,
+          selectedValue,
           isInverse,
-          requiredSelect,
-          singleSelect,
+          enforced,
+          exclusive,
+          onChange: handleChange,
           size,
         }}
       >
         {ToggleButtons}
       </ToggleButtonGroupContext.Provider>
-    </ButtonGroup>
+    </StyledToggleButtonGroup>
   );
 });

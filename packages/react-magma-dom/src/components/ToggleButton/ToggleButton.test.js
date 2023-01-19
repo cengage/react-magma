@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { ButtonSize } from '../Button';
-import { ToggleButton, ToggleButtonGroup } from '.';
+import { ToggleButton } from '.';
 import { fireEvent, render } from '@testing-library/react';
 import { SettingsIcon } from 'react-magma-icons';
 import { magma } from '../../theme/magma';

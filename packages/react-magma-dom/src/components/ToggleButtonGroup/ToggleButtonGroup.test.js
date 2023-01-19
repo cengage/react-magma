@@ -5,6 +5,7 @@ import { ToggleButton } from '../ToggleButton';
 import { fireEvent, render } from '@testing-library/react';
 import { SettingsIcon } from 'react-magma-icons';
 import { magma } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 const TEXT = 'Test Text';
 
@@ -15,19 +16,17 @@ const icon = <SettingsIcon />;
 describe('ToggleButtonGroup', () => {
   it('Should find element by testId', () => {
     const { getByTestId } = render(
-      <ToggleButton testId={testId}>{TEXT}</ToggleButton>
+      <ToggleButtonGroup testId={testId}></ToggleButtonGroup>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('Icon only buttons are compliant with accessibility', () => {
-    // const { container } = render(
-    //   <ToggleButton icon={icon} aria-label="Icon Button" />
-    // );
-    // return axe(container.innerHTML).then(result => {
-    //   return expect(result).toHaveNoViolations();
-    // });
+    const { container } = render(<ToggleButtonGroup></ToggleButtonGroup>);
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
   });
 
   describe('Grouping', () => {
@@ -50,18 +49,26 @@ describe('ToggleButtonGroup', () => {
   });
 
   describe('States', () => {
-    it('Should require at least one toggled state', () => {});
+    it('Should allow just one selected button at a time', () => {
+      const { getByTestId } = render(
+        <ToggleButtonGroup singleSelect requiredSelect>
+          <ToggleButton testId={testId}>{TEXT}</ToggleButton>
+          <ToggleButton testId={`${testId}-1`}>{TEXT}</ToggleButton>
+        </ToggleButtonGroup>
+      );
 
-    it('Should allow just one selected button at a time', () => {});
+      fireEvent.click(getByTestId(testId));
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral300)
+      );
+
+      fireEvent.click(getByTestId(`${testId}-1`));
+
+      expect(getByTestId(testId)).toHaveStyleRule('background', 'none');
+    });
 
     it('Should allow multiple selected buttons at a time', () => {});
-  });
-
-  describe('Variants', () => {
-    it('Should have an icon button', () => {});
-
-    it('Should have a text button', () => {});
-
-    it('Should have a text button with an icon', () => {});
   });
 });

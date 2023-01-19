@@ -11,7 +11,7 @@ The Toggle Button Group is a container for multiple Toggle Buttons and enables c
 
 ## Basic Usage
 
-The ToggleButtonGroup enables styling with an optional `noSpace` prop, and different selection states `singleSelect` and `requiredSelect`.
+The ToggleButtonGroup enables styling and selection states across a group of ToggleButtons.
 
 ```typescript
 import React from 'react';
@@ -21,6 +21,69 @@ import { CheckIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <ToggleButtonGroup>
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## No Space
+
+Removes margins and border radius on each button then applies the border-radius around the container.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup noSpace>
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Single Select
+
+Allows just one toggled button across the group in behavior like a radio.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup singleSelect>
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Single Select
+
+Enforces one toggled state across a single select.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup singleSelect exclusive>
       <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
       <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
       <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
@@ -76,9 +139,9 @@ export function Example() {
 }
 ```
 
-## Required Selection
+## Exclusive Selection
 
-When `requiredSelect` is enabled, it ensures a radio style ToggleButtonGroup has at least one selected state.
+When `exclusive` is enabled, it ensures a radio style ToggleButtonGroup has at least one selected state.
 
 ```typescript
 import React from 'react';
@@ -93,7 +156,7 @@ import {
 
 export function Example() {
   return (
-    <ToggleButtonGroup noSpace requiredSelect singleSelect>
+    <ToggleButtonGroup noSpace exclusive singleSelect>
       <ToggleButton aria-label="Left align" icon={<FormatAlignLeftIcon />} />
       <ToggleButton
         aria-label="Center align"
@@ -103,65 +166,6 @@ export function Example() {
       <ToggleButton
         aria-label="Justify align"
         icon={<FormatAlignJustifyIcon />}
-      />
-    </ToggleButtonGroup>
-  );
-}
-```
-
-## Controlled Selection
-
-To require at least one active selection throughout a group, use the `onChange` property on `ToggleButtonGroup`.
-
-```typescript
-import React from 'react';
-import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
-import {
-  FormatAlignLeftIcon,
-  FormatAlignCenterIcon,
-  FormatAlignRightIcon,
-  FormatAlignJustifyIcon,
-  SettingsIcon,
-} from 'react-magma-icons';
-
-export function Example() {
-  const [alignment, setAlignment] = React.useState(() => ['left']);
-
-  const handleChange = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    newAlignment: string[]
-  ) => {
-    if (newAlignment.length) {
-      setAlignment(newAlignment);
-    }
-  };
-
-  return (
-    <ToggleButtonGroup
-      requiredSelect
-      onChange={handleChange}
-      noSpace
-      value={alignment}
-    >
-      <ToggleButton
-        aria-label="Left align"
-        icon={<FormatAlignLeftIcon />}
-        value="left"
-      />
-      <ToggleButton
-        aria-label="Center align"
-        icon={<FormatAlignCenterIcon />}
-        value="center"
-      />
-      <ToggleButton
-        aria-label="Right align"
-        icon={<FormatAlignRightIcon />}
-        value="right"
-      />
-      <ToggleButton
-        aria-label="Justify align"
-        icon={<FormatAlignJustifyIcon />}
-        value="justify"
       />
     </ToggleButtonGroup>
   );

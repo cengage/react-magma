@@ -39,7 +39,6 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default ButtonColor.primary
    */
   color?: ButtonColor;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /**
    * Determines if the buttons are displayed vertically or horizontally
    * @default ButtonGroupOrientation.horizontal
@@ -308,18 +307,11 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
     const context = { variant, color, size, textTransform, isInverse };
     const theme = React.useContext(ThemeContext);
 
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-      props.onChange &&
-        typeof props.onChange === 'function' &&
-        props.onChange(event);
-    }
-
     return (
       <StyledButtonGroup
         alignment={alignment || ButtonGroupAlignment.left}
         color={color || ButtonColor.primary}
         isInverse={isInverse}
-        onChange={handleChange}
         orientation={orientation || ButtonGroupOrientation.horizontal}
         noSpace={noSpace}
         variant={variant || ButtonVariant.solid}

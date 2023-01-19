@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { css } from '@emotion/core';
 import { XOR } from '../../utils';
+import { css } from '@emotion/core';
+import { transparentize } from 'polished';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -9,24 +10,19 @@ import { Button, ButtonProps, ButtonSize } from '../Button';
 import { ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { IconProps } from 'react-magma-icons';
-import {
-  ToggleButtonGroupContext,
-  setButtonStyles,
-  setIconWidth,
-} from '../ToggleButtonGroup/ToggleButtonGroup';
+import { ToggleButtonGroupContext } from '../ToggleButtonGroup/ToggleButtonGroup';
 
 export interface ToggleButtonTextProps extends ButtonProps {
-  /**
-   * Enables a specified button to be active.
-   */
-  defaultChecked?: boolean;
   /**
    * Sets a disabled state for a button.
    */
   disabled?: boolean;
   isChecked?: boolean;
   isInverse?: boolean;
-
+  /**
+   * Shows the button in an active state.
+   */
+  selected?: boolean;
   /**
    * Changes the button size throughout the group between 'small', 'medium', and 'large'.
    */
@@ -43,10 +39,6 @@ export interface ToggleButtonIconProps extends ButtonProps {
    */
   'aria-label'?: string;
   /**
-   * Enables a specified button to be active.
-   */
-  defaultChecked?: boolean;
-  /**
    * Sets a disabled state for a button.
    */
   disabled?: boolean;
@@ -58,6 +50,10 @@ export interface ToggleButtonIconProps extends ButtonProps {
   isChecked?: boolean;
   isInverse?: boolean;
   /**
+   * Shows the button in an active state.
+   */
+  selected?: boolean;
+  /**
    * Changes the button size throughout the group between 'small', 'medium', and 'large'.
    */
   size?: ButtonSize;
@@ -68,10 +64,45 @@ export type ToggleButtonProps = XOR<
   ToggleButtonIconProps
 >;
 
-//Background colors for the different button states.
+//Sets the icon width for icon only Toggle Buttons.
+export function setIconWidth(props: ToggleButtonProps) {
+  if (props.size === ButtonSize.small) {
+    return props.theme.spaceScale.spacing07;
+  }
+  if (props.size === ButtonSize.large) {
+    return props.theme.spaceScale.spacing11;
+  }
+  return props.theme.spaceScale.spacing09;
+}
+
+//Sets the background colors for the Toggle Buttons.
+export function setBackgroundColor(props) {
+  //Active background color.
+  if (props.selected && props.isChecked) {
+    return '';
+  }
+  if (props.selected || props.isChecked) {
+    if (props.isInverse) {
+      return transparentize(0.5, props.theme.colors.neutral900);
+    }
+    return transparentize(0.5, props.theme.colors.neutral300);
+  }
+}
+
 export const ToggleButtonStyles = props => css`
-  ${setButtonStyles(props)};
+  background: ${setBackgroundColor(props)};
+  &:not(:disabled):hover {
+    background: ${setBackgroundColor(props)};
+  }
+  &:not(:disabled):focus {
+    background: ${setBackgroundColor(props)};
+    outline-offset: -2px;
+  }
+  &:hover {
+    background: ${setBackgroundColor(props)};
+  }
 `;
+
 const StyledToggleButtonIcon = styled(IconButton)`
   ${ToggleButtonStyles}
   min-width: auto;
@@ -92,80 +123,77 @@ export const ToggleButton = React.forwardRef<
   const {
     'aria-label': ariaLabel,
     children,
-    defaultChecked,
     disabled,
     icon,
     isInverse,
+    onClick,
     testId,
+    value,
   } = props;
 
   const context = React.useContext(ToggleButtonGroupContext);
 
   const theme = React.useContext(ThemeContext);
 
-  const [isChecked, setChecked] = React.useState(false);
+  const [selected, setSelected] = React.useState(false);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    props.onClick &&
-      typeof props.onClick === 'function' &&
-      props.onClick(event);
-
-    if (!context.singleSelect) {
-      if (isChecked) {
-        setChecked(false);
-      } else if (!isChecked) {
-        setChecked(true);
+    if (!context.exclusive) {
+      if (selected || props.isChecked) {
+        setSelected(false);
+      } else if (!selected) {
+        setSelected(true);
       }
     }
+    onClick && typeof onClick === 'function' && onClick(event);
   };
 
   return (
     <>
       {icon ? (
         <StyledToggleButtonIcon
-          aria-checked={isChecked}
+          aria-checked={selected}
           aria-label={ariaLabel}
           color={ButtonColor.subtle}
-          defaultChecked={defaultChecked}
           disabled={disabled}
-          enforcedSelect={context.enforcedSelect}
           theme={theme}
-          hasLabel={children ? true : null}
+          hasLabel={children ? true : false}
           icon={icon}
-          isChecked={isChecked}
-          isDefault={context.isDefault}
+          isChecked={
+            context.selectedValue ? context.selectedValue === value : null
+          }
           isInverse={context.isInverse || isInverse}
           onClick={handleClick}
           ref={ref}
-          requiredSelect={context.requiredSelect}
+          enforced={context.enforced}
           role="switch"
-          singleSelect={context.singleSelect}
+          selected={selected}
+          exclusive={context.exclusive}
           size={context.size || props.size}
           testId={testId}
+          value={value}
         >
-          <>
-            {children}
-            {console.log(context.enforcedSelect)}
-          </>
+          <>{children}</>
         </StyledToggleButtonIcon>
       ) : (
         <StyledToggleButtonText
-          aria-checked={isChecked}
+          aria-checked={selected}
           color={ButtonColor.subtle}
-          defaultChecked={defaultChecked}
           disabled={disabled}
-          enforcedSelect={context.enforcedSelect}
           theme={theme}
-          isChecked={isChecked}
-          isDefault={context.isDefault}
+          isChecked={
+            context.selectedValue ? context.selectedValue === value : null
+          }
           isInverse={context.isInverse || isInverse}
           onClick={handleClick}
           ref={ref}
-          requiredSelect={context.requiredSelect}
+          enforced={context.enforced}
           role="switch"
-          singleSelect={context.singleSelect}
+          selected={selected}
+          exclusive={context.exclusive}
           size={context.size || props.size}
           testId={testId}
+          value={value}
         >
           {children}
         </StyledToggleButtonText>

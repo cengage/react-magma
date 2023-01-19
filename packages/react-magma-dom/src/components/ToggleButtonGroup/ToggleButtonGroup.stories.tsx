@@ -14,11 +14,11 @@ import { Container } from '../Container';
 import { ButtonSize } from '../Button';
 
 const Template: Story<ToggleButtonGroupProps> = args => (
-  <ToggleButtonGroup {...args}>
-    <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-    <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-    <ToggleButton aria-label="Check icon" defaultChecked icon={<CheckIcon />} />
-    <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+  <ToggleButtonGroup value="two" {...args}>
+    <ToggleButton aria-label="Check icon" value="one" icon={<CheckIcon />} />
+    <ToggleButton aria-label="Check icon" value="two" icon={<CheckIcon />} />
+    <ToggleButton aria-label="Check icon" value="three" icon={<CheckIcon />} />
+    <ToggleButton aria-label="Check icon" value="four" icon={<CheckIcon />} />
   </ToggleButtonGroup>
 );
 
@@ -43,12 +43,12 @@ export default {
         type: 'boolean',
       },
     },
-    requiredSelect: {
+    enforced: {
       control: {
         type: 'boolean',
       },
     },
-    singleSelect: {
+    exclusive: {
       control: {
         type: 'boolean',
       },
@@ -85,57 +85,8 @@ export const AlignmentExample = args => {
 };
 AlignmentExample.args = {
   noSpace: true,
-  requiredSelect: true,
-  singleSelect: true,
-  ...Default.args,
-};
-
-export const ControlledExample = args => {
-  const [alignment, setAlignment] = React.useState(() => ['center']);
-
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newAlignment: string[]
-  ) => {
-    if (newAlignment.length) {
-      setAlignment(newAlignment);
-    }
-  };
-
-  return (
-    <ToggleButtonGroup
-      enforcedSelect={2}
-      onChange={handleChange}
-      noSpace
-      value={alignment}
-      {...args}
-    >
-      <ToggleButton
-        aria-label="Left align"
-        icon={<FormatAlignLeftIcon />}
-        value="left"
-      />
-      <ToggleButton
-        aria-label="Center align"
-        icon={<FormatAlignCenterIcon />}
-        value="center"
-      />
-      <ToggleButton
-        aria-label="Right align"
-        icon={<FormatAlignRightIcon />}
-        value="right"
-      />
-      <ToggleButton
-        aria-label="Justify align"
-        icon={<FormatAlignJustifyIcon />}
-        value="justify"
-      />
-    </ToggleButtonGroup>
-  );
-};
-
-ControlledExample.args = {
-  noSpace: true,
+  enforced: true,
+  exclusive: true,
   ...Default.args,
 };
 
