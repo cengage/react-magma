@@ -303,6 +303,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       testId,
       textTransform,
       variant,
+      ...rest
     } = props;
     const context = { variant, color, size, textTransform, isInverse };
     const theme = React.useContext(ThemeContext);
@@ -318,6 +319,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
         theme={theme}
         ref={ref}
         data-testid={testId}
+        {...rest}
       >
         <ButtonGroupContext.Provider value={context}>
           {children}

@@ -17,14 +17,13 @@ export interface ToggleButtonTextProps extends ButtonProps {
    * Sets a disabled state for a button.
    */
   disabled?: boolean;
+  /**
+   * @internal
+   */
   isChecked?: boolean;
   isInverse?: boolean;
   /**
-   * Shows the button in an active state.
-   */
-  selected?: boolean;
-  /**
-   * Changes the button size throughout the group between 'small', 'medium', and 'large'.
+   * Changes the button size: 'small', 'medium', and 'large'.
    */
   size?: ButtonSize;
   /**
@@ -47,14 +46,13 @@ export interface ToggleButtonIconProps extends ButtonProps {
    * Icon which displays alongside text.
    */
   icon: React.ReactElement<IconProps>;
+  /**
+   * @internal
+   */
   isChecked?: boolean;
   isInverse?: boolean;
   /**
-   * Shows the button in an active state.
-   */
-  selected?: boolean;
-  /**
-   * Changes the button size throughout the group between 'small', 'medium', and 'large'.
+   * Changes the button size: 'small', 'medium', and 'large'.
    */
   size?: ButtonSize;
 }
@@ -65,7 +63,7 @@ export type ToggleButtonProps = XOR<
 >;
 
 //Sets the icon width for icon only Toggle Buttons.
-export function setIconWidth(props: ToggleButtonProps) {
+export function setIconWidth(props: ToggleButtonIconProps) {
   if (props.size === ButtonSize.small) {
     return props.theme.spaceScale.spacing07;
   }
@@ -79,7 +77,7 @@ export function setIconWidth(props: ToggleButtonProps) {
 export function setBackgroundColor(props) {
   //Active background color.
   if (props.selected && props.isChecked) {
-    return '';
+    return 'none';
   }
   if (props.selected || props.isChecked) {
     if (props.isInverse) {
@@ -159,6 +157,7 @@ export const ToggleButton = React.forwardRef<
           theme={theme}
           hasLabel={children ? true : false}
           icon={icon}
+          id={context.descriptionId}
           isChecked={
             context.selectedValue ? context.selectedValue === value : null
           }
@@ -181,6 +180,7 @@ export const ToggleButton = React.forwardRef<
           color={ButtonColor.subtle}
           disabled={disabled}
           theme={theme}
+          id={context.descriptionId}
           isChecked={
             context.selectedValue ? context.selectedValue === value : null
           }

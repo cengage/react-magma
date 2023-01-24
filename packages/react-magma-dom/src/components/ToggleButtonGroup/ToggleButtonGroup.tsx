@@ -10,11 +10,13 @@ import {
   ToggleButton,
   ToggleButtonProps,
 } from '../ToggleButton/ToggleButton';
+import { useGenerateId } from '../../utils';
 
 /**
  * @children required
  */
 export interface ToggleButtonGroupProps extends ButtonGroupProps {
+  descriptionId?: string;
   isInverse?: boolean;
   /**
    * Enables a radio configuration throughout the group retaining an active selection at all times.
@@ -25,7 +27,7 @@ export interface ToggleButtonGroupProps extends ButtonGroupProps {
    */
   exclusive?: boolean;
   /**
-   * @internal
+   * The onChange handler for managing state of toggle buttons by your custom logic.
    */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   testId?: string;
@@ -33,11 +35,14 @@ export interface ToggleButtonGroupProps extends ButtonGroupProps {
    * @internal
    */
   theme?: ThemeInterface;
-
+  /**
+   * Value of the toggle button that is the default selected value for the group
+   */
   value?: string;
 }
 
 export interface ToggleButtonGroupContextInterface {
+  descriptionId?: string;
   selectedValue?: string;
   isInverse?: boolean;
   enforced?: boolean;
@@ -50,6 +55,7 @@ export const ToggleButtonGroupContext =
   React.createContext<ToggleButtonGroupContextInterface>({});
 
 export const StyledToggleButtonGroup = styled(ButtonGroup)<{
+  descriptionId?: string;
   onChange?: (event: React.ChangeEvent<HTMLDivElement>) => void;
 }>``;
 
@@ -84,11 +90,13 @@ export const ToggleButtonGroup = React.forwardRef<
     children,
     enforced,
     exclusive,
+    id: defaultId,
     isInverse,
     noSpace,
     size,
     value,
     testId,
+    ...rest
   } = props;
   const theme = React.useContext(ThemeContext);
 
@@ -96,18 +104,18 @@ export const ToggleButtonGroup = React.forwardRef<
   const [selected, setSelected] = React.useState(null);
 
   // Sets a specific selected state with the value prop.
-  const [selectedValue, setSelectedValue] = React.useState<string>(props.value);
+  const [selectedValue, setSelectedValue] = React.useState<string>(value);
 
   React.useEffect(() => {
-    setSelectedValue(props.value);
-  }, [props.value]);
+    setSelectedValue(value);
+  }, [value]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: newSelectedValue } = event.target;
+    setSelectedValue(newSelectedValue);
     props.onChange &&
       typeof props.onChange === 'function' &&
       props.onChange(event);
-    setSelectedValue(newSelectedValue);
   }
 
   const ToggleButtons = React.Children.map(children, (child, index) => {
@@ -152,9 +160,15 @@ export const ToggleButtonGroup = React.forwardRef<
     return child;
   });
 
+  const id = useGenerateId(defaultId);
+
+  const descriptionId = props.descriptionId
+    ? props.descriptionId
+    : `${id}__desc`;
+
   return (
     <StyledToggleButtonGroup
-      aria-describedby="Toggle button group"
+      aria-describedby={descriptionId}
       color={ButtonColor.subtle}
       isInverse={isInverse}
       noSpace={noSpace}
@@ -164,9 +178,11 @@ export const ToggleButtonGroup = React.forwardRef<
       size={size}
       testId={testId}
       theme={theme}
+      {...rest}
     >
       <ToggleButtonGroupContext.Provider
         value={{
+          descriptionId,
           selectedValue,
           isInverse,
           enforced,
@@ -175,6 +191,7 @@ export const ToggleButtonGroup = React.forwardRef<
           size,
         }}
       >
+        {console.log(descriptionId)}
         {ToggleButtons}
       </ToggleButtonGroupContext.Provider>
     </StyledToggleButtonGroup>

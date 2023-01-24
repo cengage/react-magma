@@ -23,12 +23,12 @@ describe('ToggleButton', () => {
   });
 
   it('Icon only buttons are compliant with accessibility', () => {
-    // const { container } = render(
-    //   <ToggleButton icon={icon} aria-label="Icon Button" />
-    // );
-    // return axe(container.innerHTML).then(result => {
-    //   return expect(result).toHaveNoViolations();
-    // });
+    const { container } = render(
+      <ToggleButton icon={icon} aria-label="Icon Button" />
+    );
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
   });
 
   describe('Styles', () => {
@@ -149,24 +149,37 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('background', magma.colors.neutral100);
     });
 
-    it('Should have a default toggled state', () => {
+    it('Should have an inverse toggled state', () => {
       const { getByTestId } = render(
-        <ToggleButton defaultChecked testId={testId} icon={icon} />
+        <ToggleButton isInverse testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
+      expect(button).toHaveStyleRule('background', 'none');
+      fireEvent.click(getByTestId(testId));
+
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral900)
+      );
+    });
+
+    it('Should have an untoggled state after being toggled', () => {
+      const { getByTestId } = render(
+        <ToggleButton testId={testId} icon={icon} />
+      );
+      const button = getByTestId(testId);
+
+      fireEvent.click(button);
 
       expect(button).toHaveStyleRule(
         'background',
         transparentize(0.5, magma.colors.neutral300)
       );
+      fireEvent.click(button);
+
+      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+
+      expect(button).toHaveAttribute('aria-checked', 'false');
     });
-  });
-
-  describe('Variants', () => {
-    it('Should have an icon button', () => {});
-
-    it('Should have a text button', () => {});
-
-    it('Should have a text button with an icon', () => {});
   });
 });
