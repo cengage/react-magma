@@ -42,11 +42,13 @@ export interface ToggleButtonGroupProps extends ButtonGroupProps {
 }
 
 export interface ToggleButtonGroupContextInterface {
+  ariaChecked?: boolean;
   descriptionId?: string;
   selectedValue?: string;
   isInverse?: boolean;
   enforced?: boolean;
   exclusive?: boolean;
+  selected?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   size?: ButtonSize;
 }
@@ -60,6 +62,7 @@ export const StyledToggleButtonGroup = styled(ButtonGroup)<{
 }>``;
 
 const StyledWrapper = styled.div<{
+  ariaChecked?: boolean;
   isInverse?: boolean;
   enforced?: boolean;
   selected?: boolean;
@@ -93,6 +96,7 @@ export const ToggleButtonGroup = React.forwardRef<
     id: defaultId,
     isInverse,
     noSpace,
+    onChange,
     size,
     value,
     testId,
@@ -113,9 +117,7 @@ export const ToggleButtonGroup = React.forwardRef<
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: newSelectedValue } = event.target;
     setSelectedValue(newSelectedValue);
-    props.onChange &&
-      typeof props.onChange === 'function' &&
-      props.onChange(event);
+    onChange && typeof onChange === 'function' && onChange(event);
   }
 
   const ToggleButtons = React.Children.map(children, (child, index) => {
@@ -139,15 +141,18 @@ export const ToggleButtonGroup = React.forwardRef<
       }
     };
 
+    const activeIndex = selected === index;
+
     if (item.type === ToggleButton && props.exclusive) {
       return (
         <StyledWrapper
+          aria-checked={activeIndex}
           key={index}
           onChange={handleChange}
           onClick={handleClick}
           isInverse={isInverse}
-          enforced={exclusive ? selected === index : null}
-          selected={selected === index}
+          enforced={exclusive ? activeIndex : false}
+          selected={activeIndex}
           exclusive={exclusive}
           size={size}
           theme={theme}
@@ -191,7 +196,6 @@ export const ToggleButtonGroup = React.forwardRef<
           size,
         }}
       >
-        {console.log(descriptionId)}
         {ToggleButtons}
       </ToggleButtonGroupContext.Provider>
     </StyledToggleButtonGroup>

@@ -51,30 +51,9 @@ export function Example() {
 }
 ```
 
-## Single Select
+## Defined Selection
 
-Allows just one toggled button across the group in behavior like a radio.
-
-```typescript
-import React from 'react';
-import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
-import { CheckIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <ToggleButtonGroup singleSelect>
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-    </ToggleButtonGroup>
-  );
-}
-```
-
-## Single Select
-
-Enforces one toggled state across a single select.
+Using the same `value` between `ToggleButtonGroup` and `ToggleButton` allows a user to define preselected buttons.
 
 ```typescript
 import React from 'react';
@@ -83,57 +62,11 @@ import { CheckIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <ToggleButtonGroup singleSelect exclusive>
+    <ToggleButtonGroup value="two">
       <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
       <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
       <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-    </ToggleButtonGroup>
-  );
-}
-```
-
-## Default Selection
-
-`defaultChecked` lets a specific button be selected in a ToggleButtonGroup. Once clicked it will deselect and behave like the other buttons accordingly.
-
-```typescript
-import React from 'react';
-import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
-import { CheckIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <ToggleButtonGroup>
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton
-        defaultChecked
-        aria-label="Check icon"
-        icon={<CheckIcon />}
-      />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-    </ToggleButtonGroup>
-  );
-}
-```
-
-## Single Selection
-
-If the prop `singleSelect` is used, then toggles will behave like a radio selection.
-
-```typescript
-import React from 'react';
-import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
-import { CheckIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <ToggleButtonGroup noSpace singleSelect>
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
-      <ToggleButton aria-label="Check icon" icon={<CheckIcon />} />
+      <ToggleButton aria-label="Check icon" value="two" icon={<CheckIcon />} />
     </ToggleButtonGroup>
   );
 }
@@ -156,7 +89,40 @@ import {
 
 export function Example() {
   return (
-    <ToggleButtonGroup noSpace exclusive singleSelect>
+    <ToggleButtonGroup noSpace exclusive>
+      <ToggleButton aria-label="Left align" icon={<FormatAlignLeftIcon />} />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+      />
+      <ToggleButton aria-label="Right align" icon={<FormatAlignRightIcon />} />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+      />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Enforced Selection
+
+The `enforced` prop in conjunction with `exclusive` allows just one toggled button across the group like a radio.
+
+```typescript
+import React from 'react';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  FormatAlignLeftIcon,
+  FormatAlignCenterIcon,
+  FormatAlignRightIcon,
+  FormatAlignJustifyIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup noSpace exclusive enforced>
       <ToggleButton aria-label="Left align" icon={<FormatAlignLeftIcon />} />
       <ToggleButton
         aria-label="Center align"
@@ -188,9 +154,9 @@ import {
 export function Example() {
   return (
     <Container style={{ padding: '12px' }}>
-      <ToggleButtonGroup>
-        <ToggleButton size={ButtonSize.small}>Toggle 1</ToggleButton>
-        <ToggleButton size={ButtonSize.medium}>Toggle 2</ToggleButton>
+      <ToggleButtonGroup size={ButtonSize.small}>
+        <ToggleButton>Toggle 1</ToggleButton>
+        <ToggleButton>Toggle 2</ToggleButton>
         <ToggleButton size={ButtonSize.large}>Toggle 3</ToggleButton>
       </ToggleButtonGroup>
     </Container>

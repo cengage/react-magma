@@ -31,6 +31,13 @@ describe('ToggleButton', () => {
     });
   });
 
+  it('Text only buttons are compliant with accessibility', () => {
+    const { container } = render(<ToggleButton>Text Only Button</ToggleButton>);
+    return axe(container.innerHTML).then(result => {
+      return expect(result).toHaveNoViolations();
+    });
+  });
+
   describe('Styles', () => {
     it('Icon only styling', () => {
       const { getByTestId } = render(
@@ -123,6 +130,15 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('width', magma.spaceScale.spacing11);
       expect(button).toHaveStyleRule('height', magma.spaceScale.spacing11);
     });
+
+    it('Has a disabled state', () => {
+      const { getByTestId } = render(
+        <ToggleButton disabled icon={icon} testId={testId} />
+      );
+      const button = getByTestId(testId);
+
+      expect(button).toHaveStyleRule('cursor', 'not-allowed');
+    });
   });
 
   describe('States', () => {
@@ -180,6 +196,18 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('background', magma.colors.neutral100);
 
       expect(button).toHaveAttribute('aria-checked', 'false');
+    });
+
+    it('Should have a pre-selected toggled state', () => {
+      const { getByTestId } = render(
+        <ToggleButton isChecked testId={testId} icon={icon} />
+      );
+      const button = getByTestId(testId);
+
+      expect(button).toHaveStyleRule(
+        'background',
+        transparentize(0.5, magma.colors.neutral300)
+      );
     });
   });
 });

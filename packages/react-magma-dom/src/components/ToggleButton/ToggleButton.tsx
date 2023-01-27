@@ -18,7 +18,7 @@ export interface ToggleButtonTextProps extends ButtonProps {
    */
   disabled?: boolean;
   /**
-   * @internal
+   * Sets an active button state for a single button.
    */
   isChecked?: boolean;
   isInverse?: boolean;
@@ -41,13 +41,12 @@ export interface ToggleButtonIconProps extends ButtonProps {
    * Sets a disabled state for a button.
    */
   disabled?: boolean;
-  hasLabel?: boolean;
   /**
    * Icon which displays alongside text.
    */
   icon: React.ReactElement<IconProps>;
   /**
-   * @internal
+   * Sets an active button state for a single button.
    */
   isChecked?: boolean;
   isInverse?: boolean;
@@ -142,15 +141,38 @@ export const ToggleButton = React.forwardRef<
       } else if (!selected) {
         setSelected(true);
       }
+      // For when an individual Toggle Button requires a manually set active state.
+      if (props.isChecked) {
+        if (props.isChecked && !selected) {
+          setSelected(true);
+        } else {
+          setSelected(false);
+        }
+      }
     }
     onClick && typeof onClick === 'function' && onClick(event);
   };
+
+  const ariaCheck = context.exclusive ? context.ariaChecked : selected;
+
+  const isChecked = context.selectedValue
+    ? context.selectedValue === value
+    : props.isChecked;
+
+  const inverseCheck = context.isInverse || isInverse;
+
+  const roleCheck = context.exclusive ? 'radio' : 'switch';
+
+  if (context.selectedValue) {
+    +context.selectedValue;
+    console.log(+context.selectedValue);
+  }
 
   return (
     <>
       {icon ? (
         <StyledToggleButtonIcon
-          aria-checked={selected}
+          aria-checked={ariaCheck}
           aria-label={ariaLabel}
           color={ButtonColor.subtle}
           disabled={disabled}
@@ -158,14 +180,13 @@ export const ToggleButton = React.forwardRef<
           hasLabel={children ? true : false}
           icon={icon}
           id={context.descriptionId}
-          isChecked={
-            context.selectedValue ? context.selectedValue === value : null
-          }
-          isInverse={context.isInverse || isInverse}
+          isChecked={isChecked}
+          isInverse={inverseCheck}
+          onChange={context.onChange}
           onClick={handleClick}
           ref={ref}
           enforced={context.enforced}
-          role="switch"
+          role={roleCheck}
           selected={selected}
           exclusive={context.exclusive}
           size={context.size || props.size}
@@ -176,19 +197,18 @@ export const ToggleButton = React.forwardRef<
         </StyledToggleButtonIcon>
       ) : (
         <StyledToggleButtonText
-          aria-checked={selected}
+          aria-checked={ariaCheck}
           color={ButtonColor.subtle}
           disabled={disabled}
           theme={theme}
           id={context.descriptionId}
-          isChecked={
-            context.selectedValue ? context.selectedValue === value : null
-          }
-          isInverse={context.isInverse || isInverse}
+          isChecked={isChecked}
+          isInverse={inverseCheck}
+          onChange={context.onChange}
           onClick={handleClick}
           ref={ref}
           enforced={context.enforced}
-          role="switch"
+          role={roleCheck}
           selected={selected}
           exclusive={context.exclusive}
           size={context.size || props.size}
