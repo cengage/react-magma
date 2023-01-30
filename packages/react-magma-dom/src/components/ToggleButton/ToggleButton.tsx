@@ -128,13 +128,15 @@ export const ToggleButton = React.forwardRef<
     value,
   } = props;
 
+  // console.log('>>>>>>>>>>>>>>>>', value);
+  
   const context = React.useContext(ToggleButtonGroupContext);
 
   const theme = React.useContext(ThemeContext);
 
   const [selected, setSelected] = React.useState(false);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: any) => {
     if (!context.exclusive) {
       if (selected || props.isChecked) {
         setSelected(false);
@@ -149,10 +151,17 @@ export const ToggleButton = React.forwardRef<
           setSelected(false);
         }
       }
+      
+      onClick && typeof onClick === 'function' && onClick(event);
     }
-    onClick && typeof onClick === 'function' && onClick(event);
+
+    if (context.onChange) {
+      context.onChange(event);
+    }
   };
 
+  // console.log('context.ariaChecked', context.ariaChecked, 'selected', selected);
+  
   const ariaCheck = context.exclusive ? context.ariaChecked : selected;
 
   const isChecked = context.selectedValue
@@ -162,11 +171,6 @@ export const ToggleButton = React.forwardRef<
   const inverseCheck = context.isInverse || isInverse;
 
   const roleCheck = context.exclusive ? 'radio' : 'switch';
-
-  if (context.selectedValue) {
-    +context.selectedValue;
-    console.log(+context.selectedValue);
-  }
 
   return (
     <>
@@ -182,7 +186,6 @@ export const ToggleButton = React.forwardRef<
           id={context.descriptionId}
           isChecked={isChecked}
           isInverse={inverseCheck}
-          onChange={context.onChange}
           onClick={handleClick}
           ref={ref}
           enforced={context.enforced}
@@ -204,7 +207,6 @@ export const ToggleButton = React.forwardRef<
           id={context.descriptionId}
           isChecked={isChecked}
           isInverse={inverseCheck}
-          onChange={context.onChange}
           onClick={handleClick}
           ref={ref}
           enforced={context.enforced}

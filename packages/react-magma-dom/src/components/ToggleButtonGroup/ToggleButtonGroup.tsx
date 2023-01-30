@@ -29,7 +29,10 @@ export interface ToggleButtonGroupProps extends ButtonGroupProps {
   /**
    * The onChange handler for managing state of toggle buttons by your custom logic.
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value?: string
+  ) => void;
   testId?: string;
   /**
    * @internal
@@ -49,7 +52,10 @@ export interface ToggleButtonGroupContextInterface {
   enforced?: boolean;
   exclusive?: boolean;
   selected?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    value?: string
+  ) => void;
   size?: ButtonSize;
 }
 
@@ -110,14 +116,22 @@ export const ToggleButtonGroup = React.forwardRef<
   // Sets a specific selected state with the value prop.
   const [selectedValue, setSelectedValue] = React.useState<string>(value);
 
+  // const [checkedActiveIndex, setCheckedActiveIndex] = React.useState(false);
+  let checkedActiveIndex;
+
   React.useEffect(() => {
+    console.log('.... selectedValue changed', selectedValue);
     setSelectedValue(value);
   }, [value]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: newSelectedValue } = event.target;
-    setSelectedValue(newSelectedValue);
-    onChange && typeof onChange === 'function' && onChange(event);
+    console.log('value from handle change', newSelectedValue);
+
+    // setSelectedValue(newSelectedValue);
+    props.onChange &&
+      typeof props.onChange === 'function' &&
+      props.onChange(event, newSelectedValue);
   }
 
   const ToggleButtons = React.Children.map(children, (child, index) => {
@@ -127,13 +141,20 @@ export const ToggleButtonGroup = React.forwardRef<
 
     const disabledButton = item.props.disabled;
 
-    const handleClick = () => {
+    const handleClickExclusive = () => {
+      console.log('selected', selected);
+      console.log('selectedValue', selectedValue);
+
       if (enforced && !disabledButton && exclusive) {
         //Retains at least one selection for single select
-        setSelected(s => (s === index ? index : index));
+        setSelected(prevSelection => (prevSelection === index && index));
       } else if (!disabledButton) {
         //Allows single select to be deselected
-        setSelected(s => (s === index ? null : index));
+        setSelected(prevSelection => {
+          console.log('!!!!!!', prevSelection, index);
+
+          return prevSelection === index ? null : index;
+        });
       }
       if (!disabledButton) {
         //Removes the specific selected state
@@ -141,22 +162,21 @@ export const ToggleButtonGroup = React.forwardRef<
       }
     };
 
-    const activeIndex = selected === index;
+    // const activeIndex = selected === index;
+    checkedActiveIndex = selected === index;
 
-    if (item.type === ToggleButton && props.exclusive) {
+    if (item.type === ToggleButton && exclusive) {
       return (
         <StyledWrapper
-          aria-checked={activeIndex}
+          // aria-checked={activeIndex}
           key={index}
-          onChange={handleChange}
-          onClick={handleClick}
+          onClick={handleClickExclusive}
           isInverse={isInverse}
-          enforced={exclusive ? activeIndex : false}
-          selected={activeIndex}
+          enforced={exclusive ? checkedActiveIndex : false}
+          selected={checkedActiveIndex}
           exclusive={exclusive}
           size={size}
           theme={theme}
-          value={value}
         >
           {item}
         </StyledWrapper>
@@ -171,13 +191,14 @@ export const ToggleButtonGroup = React.forwardRef<
     ? props.descriptionId
     : `${id}__desc`;
 
+    // TODO: fix aria checked
+
   return (
     <StyledToggleButtonGroup
       aria-describedby={descriptionId}
       color={ButtonColor.subtle}
       isInverse={isInverse}
       noSpace={noSpace}
-      onChange={handleChange}
       ref={ref}
       role="group"
       size={size}
@@ -187,6 +208,7 @@ export const ToggleButtonGroup = React.forwardRef<
     >
       <ToggleButtonGroupContext.Provider
         value={{
+          ariaChecked: checkedActiveIndex,
           descriptionId,
           selectedValue,
           isInverse,

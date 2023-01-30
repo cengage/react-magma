@@ -14,11 +14,11 @@ import { Container } from '../Container';
 import { ButtonSize } from '../Button';
 
 const Template: Story<ToggleButtonGroupProps> = args => (
-  <ToggleButtonGroup value="two" {...args}>
-    <ToggleButton aria-label="Check icon" value="one" icon={<CheckIcon />} />
-    <ToggleButton aria-label="Check icon" value="two" icon={<CheckIcon />} />
-    <ToggleButton aria-label="Check icon" value="three" icon={<CheckIcon />} />
-    <ToggleButton aria-label="Check icon" value="four" icon={<CheckIcon />} />
+  <ToggleButtonGroup value="two" onChange={(event, value) => console.log('on change is called', value)} {...args}>
+    <ToggleButton aria-label="Check icon" value="one" icon={<CheckIcon />} onClick={() => console.log('onclick: button 1')} />
+    <ToggleButton aria-label="Check icon" value="two" icon={<CheckIcon />} onClick={() => console.log('onclick: button 2')} />
+    <ToggleButton aria-label="Check icon" value="three" icon={<CheckIcon />} onClick={() => console.log('onclick: button 3')} disabled />
+    <ToggleButton aria-label="Check icon" value="four" icon={<CheckIcon />} onClick={() => console.log('onclick: button 4')} />
   </ToggleButtonGroup>
 );
 
