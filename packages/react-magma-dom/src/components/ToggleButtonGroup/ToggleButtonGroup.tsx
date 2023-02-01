@@ -1,31 +1,31 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 
 import { ButtonColor, ButtonSize } from '../Button';
 import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import {
-  setBackgroundColor,
-  ToggleButton,
-  ToggleButtonProps,
-} from '../ToggleButton/ToggleButton';
+import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
 import { useGenerateId } from '../../utils';
 
 /**
  * @children required
  */
 export interface ToggleButtonGroupProps extends ButtonGroupProps {
+  /**
+   * Description for aria-describedby
+   */
   descriptionId?: string;
-  isInverse?: boolean;
   /**
    * Enables a radio configuration throughout the group retaining an active selection at all times.
+   * @default false
    */
   enforced?: boolean;
   /**
    * Sets the Toggle Button group to have only one active selection.
+   * @default false
    */
   exclusive?: boolean;
+  isInverse?: boolean;
   /**
    * The onChange handler for managing state of toggle buttons by your custom logic.
    */
@@ -33,6 +33,9 @@ export interface ToggleButtonGroupProps extends ButtonGroupProps {
     event: React.ChangeEvent<HTMLInputElement>,
     value?: string
   ) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -47,7 +50,7 @@ export interface ToggleButtonGroupProps extends ButtonGroupProps {
 export interface ToggleButtonGroupContextInterface {
   ariaChecked?: boolean;
   descriptionId?: string;
-  selectedValue?: string;
+  selectedValues?: string[];
   isInverse?: boolean;
   enforced?: boolean;
   exclusive?: boolean;
@@ -61,35 +64,6 @@ export interface ToggleButtonGroupContextInterface {
 
 export const ToggleButtonGroupContext =
   React.createContext<ToggleButtonGroupContextInterface>({});
-
-export const StyledToggleButtonGroup = styled(ButtonGroup)<{
-  descriptionId?: string;
-  onChange?: (event: React.ChangeEvent<HTMLDivElement>) => void;
-}>``;
-
-const StyledWrapper = styled.div<{
-  ariaChecked?: boolean;
-  isInverse?: boolean;
-  enforced?: boolean;
-  selected?: boolean;
-  exclusive?: boolean;
-  size?: ButtonSize;
-  value?: string;
-}>`
-  button {
-    background: ${props => (props.selected ? setBackgroundColor : '')};
-    &:not(:disabled):hover {
-      background: ${props => (props.selected ? setBackgroundColor : '')};
-    }
-    &:not(:disabled):focus {
-      background: ${props => (props.selected ? setBackgroundColor : '')};
-      outline-offset: -2px;
-    }
-    &:hover {
-      background: ${setBackgroundColor};
-    }
-  }
-`;
 
 export const ToggleButtonGroup = React.forwardRef<
   HTMLDivElement,
@@ -110,25 +84,64 @@ export const ToggleButtonGroup = React.forwardRef<
   } = props;
   const theme = React.useContext(ThemeContext);
 
-  // Sets the active state for the Toggle Button
-  const [selected, setSelected] = React.useState(null);
+  const defaultSelectedValues = value ? [value] : [];
 
-  // Sets a specific selected state with the value prop.
-  const [selectedValue, setSelectedValue] = React.useState<string>(value);
-
-  // const [checkedActiveIndex, setCheckedActiveIndex] = React.useState(false);
-  let checkedActiveIndex;
+  // Array of currently selected items
+  const [selectedValues, setSelectedValues] = React.useState<string[]>(
+    defaultSelectedValues
+  );
 
   React.useEffect(() => {
-    console.log('.... selectedValue changed', selectedValue);
-    setSelectedValue(value);
+    if (typeof value === 'string') {
+      setSelectedValues([value]);
+    }
   }, [value]);
+
+  React.useEffect(() => {
+    // TODO: remove
+    console.log('SELECTED VALUE CHANGED', selectedValues);
+  }, [selectedValues]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: newSelectedValue } = event.target;
-    console.log('value from handle change', newSelectedValue);
 
-    // setSelectedValue(newSelectedValue);
+    const oneBtnSelected = selectedValues.length === 1;
+    const newValueAlreadySelected = selectedValues.includes(newSelectedValue);
+
+    if (enforced) {
+      if (exclusive) {
+        // enforced and exclusive
+        if (!newValueAlreadySelected) {
+          setSelectedValues([newSelectedValue]);
+        }
+      } else {
+        // enforced, not exclusive
+        if (newValueAlreadySelected && !oneBtnSelected) {
+          setSelectedValues(selectedValues.filter(i => i !== newSelectedValue));
+        } else if (newValueAlreadySelected && oneBtnSelected) {
+          setSelectedValues([newSelectedValue]);
+        } else {
+          setSelectedValues([...selectedValues, newSelectedValue]);
+        }
+      }
+    } else if (exclusive) {
+      // exclusive, not enfoced - can have 0 or 1 selected
+      if (selectedValues.length === 0) {
+        setSelectedValues([newSelectedValue]);
+      } else if (newValueAlreadySelected && oneBtnSelected) {
+        setSelectedValues(selectedValues.filter(i => i !== newSelectedValue));
+      } else if (!newValueAlreadySelected && oneBtnSelected) {
+        setSelectedValues([newSelectedValue]);
+      }
+    } else {
+      // not enforced, not exclusive
+      if (selectedValues.includes(newSelectedValue)) {
+        setSelectedValues(selectedValues.filter(i => i !== newSelectedValue));
+      } else {
+        setSelectedValues([...selectedValues, newSelectedValue]);
+      }
+    }
+
     props.onChange &&
       typeof props.onChange === 'function' &&
       props.onChange(event, newSelectedValue);
@@ -138,63 +151,22 @@ export const ToggleButtonGroup = React.forwardRef<
     const item = child as React.ReactElement<
       React.PropsWithChildren<ToggleButtonProps>
     >;
-
-    const disabledButton = item.props.disabled;
-
-    const handleClickExclusive = () => {
-      console.log('selected', selected);
-      console.log('selectedValue', selectedValue);
-
-      if (enforced && !disabledButton && exclusive) {
-        //Retains at least one selection for single select
-        setSelected(prevSelection => (prevSelection === index && index));
-      } else if (!disabledButton) {
-        //Allows single select to be deselected
-        setSelected(prevSelection => {
-          console.log('!!!!!!', prevSelection, index);
-
-          return prevSelection === index ? null : index;
-        });
-      }
-      if (!disabledButton) {
-        //Removes the specific selected state
-        setSelectedValue(null);
-      }
-    };
-
-    // const activeIndex = selected === index;
-    checkedActiveIndex = selected === index;
-
     if (item.type === ToggleButton && exclusive) {
-      return (
-        <StyledWrapper
-          // aria-checked={activeIndex}
-          key={index}
-          onClick={handleClickExclusive}
-          isInverse={isInverse}
-          enforced={exclusive ? checkedActiveIndex : false}
-          selected={checkedActiveIndex}
-          exclusive={exclusive}
-          size={size}
-          theme={theme}
-        >
-          {item}
-        </StyledWrapper>
-      );
+      return React.cloneElement(item, {
+        key: index,
+        isChecked: selectedValues.includes(item.props.value?.toString()),
+      });
     }
     return child;
   });
 
   const id = useGenerateId(defaultId);
-
   const descriptionId = props.descriptionId
     ? props.descriptionId
     : `${id}__desc`;
 
-    // TODO: fix aria checked
-
   return (
-    <StyledToggleButtonGroup
+    <ButtonGroup
       aria-describedby={descriptionId}
       color={ButtonColor.subtle}
       isInverse={isInverse}
@@ -208,9 +180,8 @@ export const ToggleButtonGroup = React.forwardRef<
     >
       <ToggleButtonGroupContext.Provider
         value={{
-          ariaChecked: checkedActiveIndex,
           descriptionId,
-          selectedValue,
+          selectedValues,
           isInverse,
           enforced,
           exclusive,
@@ -220,6 +191,6 @@ export const ToggleButtonGroup = React.forwardRef<
       >
         {ToggleButtons}
       </ToggleButtonGroupContext.Provider>
-    </StyledToggleButtonGroup>
+    </ButtonGroup>
   );
 });

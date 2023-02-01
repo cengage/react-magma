@@ -114,6 +114,7 @@ export interface InputBaseProps
    * Boolean for whether this is a Password Input or not
    */
   isPasswordInput?: boolean;
+  width?: string;
 }
 
 export interface InputWrapperStylesProps {
@@ -127,6 +128,7 @@ export interface InputWrapperStylesProps {
   disabled?: boolean;
 }
 
+
 export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex: 1 1 auto;
   align-items: center;
@@ -134,6 +136,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex-shrink: 0;
   position: relative;
   width: ${props.width || 'auto'};
+  // width: ${props.width || '100%'};
   background-color: ${props.isInverse
     ? transparentize(0.8, props.theme.colors.neutral900)
     : props.theme.colors.neutral100};
@@ -524,10 +527,13 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       inputStyle,
       testId,
       type,
+      width,
       ...other
     } = props;
 
     const i18n = React.useContext(I18nContext);
+
+    console.log('props.width', props.width);
 
     const theme = React.useContext(ThemeContext);
     const iconPosition =
@@ -574,6 +580,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           style={containerStyle}
           hasError={hasError}
           isClearable={isClearable}
+          width={width}
         >
           <StyledInput
             {...other}

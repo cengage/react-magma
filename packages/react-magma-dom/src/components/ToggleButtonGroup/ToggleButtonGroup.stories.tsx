@@ -14,11 +14,48 @@ import { Container } from '../Container';
 import { ButtonSize } from '../Button';
 
 const Template: Story<ToggleButtonGroupProps> = args => (
-  <ToggleButtonGroup value="two" onChange={(event, value) => console.log('on change is called', value)} {...args}>
-    <ToggleButton aria-label="Check icon" value="one" icon={<CheckIcon />} onClick={() => console.log('onclick: button 1')} />
-    <ToggleButton aria-label="Check icon" value="two" icon={<CheckIcon />} onClick={() => console.log('onclick: button 2')} />
-    <ToggleButton aria-label="Check icon" value="three" icon={<CheckIcon />} onClick={() => console.log('onclick: button 3')} disabled />
-    <ToggleButton aria-label="Check icon" value="four" icon={<CheckIcon />} onClick={() => console.log('onclick: button 4')} />
+  <ToggleButtonGroup
+    onChange={(event, value) => console.log('on change is called', value)}
+    value="two"
+    {...args}
+  >
+    <ToggleButton
+      aria-label="Check icon"
+      value="one"
+      icon={<CheckIcon />}
+      // onClick={e => console.log('onclick: button 1')}
+    />
+    <ToggleButton
+      aria-label="Check icon"
+      value="two"
+      icon={<CheckIcon />}
+      // onClick={e => console.log('onclick: button 2')}
+    />
+    <ToggleButton
+      aria-label="Check icon"
+      value="three"
+      icon={<CheckIcon />}
+      // onClick={e => console.log('onclick: button 3')}
+      disabled
+    />
+    <ToggleButton
+      aria-label="Check icon"
+      value="four"
+      icon={<CheckIcon />}
+      // onClick={e => console.log('onclick: button 4')}
+    />
+    <ToggleButton
+      aria-label="Check icon"
+      value="five"
+      icon={<CheckIcon />}
+      // onClick={e => console.log('onclick: button 5')}
+    />
+    <ToggleButton
+      aria-label="Check icon"
+      value="six"
+      icon={<CheckIcon />}
+      // onClick={e => console.log('onclick: button 6')}
+    />
   </ToggleButtonGroup>
 );
 
@@ -70,15 +107,25 @@ Default.args = {
 export const AlignmentExample = args => {
   return (
     <ToggleButtonGroup {...args}>
-      <ToggleButton aria-label="Left align" icon={<FormatAlignLeftIcon />} />
+      <ToggleButton
+        aria-label="Left align"
+        icon={<FormatAlignLeftIcon />}
+        value="left"
+      />
       <ToggleButton
         aria-label="Center align"
         icon={<FormatAlignCenterIcon />}
+        value="center"
       />
-      <ToggleButton aria-label="Right align" icon={<FormatAlignRightIcon />} />
+      <ToggleButton
+        aria-label="Right align"
+        icon={<FormatAlignRightIcon />}
+        value="right"
+      />
       <ToggleButton
         aria-label="Justify align"
         icon={<FormatAlignJustifyIcon />}
+        value="justify"
       />
     </ToggleButtonGroup>
   );
@@ -93,9 +140,15 @@ AlignmentExample.args = {
 export const DifferentToggleButtons = args => {
   return (
     <ToggleButtonGroup {...args}>
-      <ToggleButton aria-label="Settings icon" icon={<SettingsIcon />} />
-      <ToggleButton>Text</ToggleButton>
-      <ToggleButton icon={<SettingsIcon />}>Icon and Text</ToggleButton>
+      <ToggleButton
+        aria-label="Settings icon"
+        icon={<SettingsIcon />}
+        value="settings"
+      />
+      <ToggleButton value="text">Text</ToggleButton>
+      <ToggleButton icon={<SettingsIcon />} value="iconAndText">
+        Icon and Text
+      </ToggleButton>
     </ToggleButtonGroup>
   );
 };
