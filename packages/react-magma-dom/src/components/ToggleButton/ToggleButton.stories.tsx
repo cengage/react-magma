@@ -6,7 +6,12 @@ import { Container } from '../Container';
 import { ButtonSize } from '../Button';
 
 const Template: Story<ToggleButtonProps> = args => (
-  <ToggleButton {...args} isChecked={args.isChecked} aria-label="Check icon" icon={<CheckIcon />} />
+  <ToggleButton
+    {...args}
+    isChecked={args.isChecked}
+    aria-label="Check icon"
+    icon={<CheckIcon />}
+  />
 );
 
 export default {
@@ -39,7 +44,35 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
+export const Icon = Template.bind({});
+Icon.args = {
   isInverse: false,
+};
+
+export const Text = args => {
+  return (
+    <ToggleButton value="1" isChecked={args.isChecked} {...args}>
+      Toggle
+    </ToggleButton>
+  );
+};
+Text.args = {
+  ...Icon.args,
+};
+
+export const TextAndIcon = args => {
+  return (
+    <ToggleButton
+      value="1"
+      isChecked={args.isChecked}
+      aria-label="Check icon"
+      icon={<CheckIcon />}
+      {...args}
+    >
+      Toggle
+    </ToggleButton>
+  );
+};
+TextAndIcon.args = {
+  ...Icon.args,
 };

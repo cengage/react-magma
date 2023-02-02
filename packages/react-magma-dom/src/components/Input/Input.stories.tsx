@@ -11,7 +11,11 @@ import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<InputProps> = args => (
   <>
-    <Input {...args} labelText="Input label" width="100%"/>
+    <Input {...args} labelText="Input label" />
+    <br />
+    <Input {...args} labelText="Second Input label" />
+    <br />
+    <Input {...args} labelText="Third Input label with a long title" />
   </>
 );
 
