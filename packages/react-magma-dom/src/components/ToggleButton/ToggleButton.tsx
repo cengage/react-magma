@@ -27,6 +27,10 @@ export interface ToggleButtonTextProps extends ButtonProps {
    */
   size?: ButtonSize;
   /**
+   * Value of the button element
+   */
+  value: string;
+  /**
    * @internal
    */
   theme?: ThemeInterface;
@@ -54,6 +58,14 @@ export interface ToggleButtonIconProps extends ButtonProps {
    * Changes the button size: 'small', 'medium', and 'large'.
    */
   size?: ButtonSize;
+  /**
+   * Value of the button element
+   */
+  value: string;
+  /**
+   * @internal
+   */
+  theme?: ThemeInterface;
 }
 
 export type ToggleButtonProps = XOR<
@@ -61,7 +73,7 @@ export type ToggleButtonProps = XOR<
   ToggleButtonIconProps
 >;
 
-//Sets the icon width for icon only Toggle Buttons.
+//Sets the icon width for icon only Toggle Buttons
 export function setIconWidth(props: ToggleButtonIconProps) {
   if (props.size === ButtonSize.small) {
     return props.theme.spaceScale.spacing07;
@@ -72,13 +84,9 @@ export function setIconWidth(props: ToggleButtonIconProps) {
   return props.theme.spaceScale.spacing09;
 }
 
-//Sets the background colors for the Toggle Buttons.
+//Sets the background color for the Toggle Button
 export function setBackgroundColor(props) {
-  //Active background color.
-  if (props.selected && props.isChecked) {
-    return 'none';
-  }
-  if (props.selected || props.isChecked) {
+  if (props.isSelected) {
     if (props.isInverse) {
       return transparentize(0.5, props.theme.colors.neutral900);
     }
@@ -122,6 +130,7 @@ export const ToggleButton = React.forwardRef<
     children,
     disabled,
     icon,
+    isChecked = false,
     isInverse,
     onClick,
     testId,
@@ -129,50 +138,59 @@ export const ToggleButton = React.forwardRef<
   } = props;
 
   const context = React.useContext(ToggleButtonGroupContext);
-
   const theme = React.useContext(ThemeContext);
 
-  const [selected, setSelected] = React.useState(false);
+  const isDefaultChecked =
+    (context.selectedValues &&
+      value &&
+      context.selectedValues?.includes(value.toString())) ||
+    isChecked;
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!context.exclusive) {
-      if (selected || props.isChecked) {
-        setSelected(false);
-      } else if (!selected) {
-        setSelected(true);
-      }
-      // For when an individual Toggle Button requires a manually set active state.
-      if (props.isChecked) {
-        if (props.isChecked && !selected) {
-          setSelected(true);
-        } else {
-          setSelected(false);
-        }
-      }
-    }
-    onClick && typeof onClick === 'function' && onClick(event);
-  };
+  const [isSelected, setIsSelected] = React.useState(isDefaultChecked);
 
-  const ariaCheck = context.exclusive ? context.ariaChecked : selected;
-
-  const isChecked = context.selectedValue
-    ? context.selectedValue === value
-    : props.isChecked;
+  React.useEffect(() => {
+    setIsSelected(isDefaultChecked);
+  }, [isChecked]);
 
   const inverseCheck = context.isInverse || isInverse;
-
   const roleCheck = context.exclusive ? 'radio' : 'switch';
 
-  if (context.selectedValue) {
-    +context.selectedValue;
-    console.log(+context.selectedValue);
-  }
+  const handleClick = (event: any) => {
+    if (
+      context.enforced &&
+      context.selectedValues.length === 1 &&
+      context.selectedValues.includes(value.toString())
+    ) {
+      setIsSelected(isSelected);
+    } else {
+      // flip the value of isSelected
+      setIsSelected(!isSelected);
+    }
+
+    onClick && typeof onClick === 'function' && onClick(event);
+    context.onChange &&
+      typeof context.onChange === 'function' &&
+      context.onChange(event);
+  };
+
+  const handleClickExclusive = (event: any) => {
+    if (context.selectedValues.includes(value.toString())) {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+
+    onClick && typeof onClick === 'function' && onClick(event);
+    context.onChange &&
+      typeof context.onChange === 'function' &&
+      context.onChange(event);
+  };
 
   return (
     <>
       {icon ? (
         <StyledToggleButtonIcon
-          aria-checked={ariaCheck}
+          aria-checked={isSelected}
           aria-label={ariaLabel}
           color={ButtonColor.subtle}
           disabled={disabled}
@@ -180,14 +198,12 @@ export const ToggleButton = React.forwardRef<
           hasLabel={children ? true : false}
           icon={icon}
           id={context.descriptionId}
-          isChecked={isChecked}
           isInverse={inverseCheck}
-          onChange={context.onChange}
-          onClick={handleClick}
+          onClick={context.exclusive ? handleClickExclusive : handleClick}
           ref={ref}
           enforced={context.enforced}
           role={roleCheck}
-          selected={selected}
+          isSelected={isSelected}
           exclusive={context.exclusive}
           size={context.size || props.size}
           testId={testId}
@@ -197,19 +213,17 @@ export const ToggleButton = React.forwardRef<
         </StyledToggleButtonIcon>
       ) : (
         <StyledToggleButtonText
-          aria-checked={ariaCheck}
+          aria-checked={isSelected}
           color={ButtonColor.subtle}
           disabled={disabled}
           theme={theme}
           id={context.descriptionId}
-          isChecked={isChecked}
           isInverse={inverseCheck}
-          onChange={context.onChange}
-          onClick={handleClick}
+          onClick={context.exclusive ? handleClickExclusive : handleClick}
           ref={ref}
           enforced={context.enforced}
           role={roleCheck}
-          selected={selected}
+          isSelected={isSelected}
           exclusive={context.exclusive}
           size={context.size || props.size}
           testId={testId}

@@ -6,7 +6,7 @@ import { Container } from '../Container';
 import { ButtonSize } from '../Button';
 
 const Template: Story<ToggleButtonProps> = args => (
-  <ToggleButton {...args} aria-label="Check icon" icon={<CheckIcon />} />
+  <ToggleButton {...args} isChecked={args.isChecked} aria-label="Check icon" icon={<CheckIcon />} />
 );
 
 export default {
