@@ -144,7 +144,7 @@ The `enforced` prop in conjunction with `exclusive` allows just one toggled butt
 
 ```typescript
 import React from 'react';
-import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { ButtonSize, ToggleButton, ToggleButtonGroup, Spacing } from 'react-magma-dom';
 import {
   FormatAlignLeftIcon,
   FormatAlignCenterIcon,
@@ -155,28 +155,53 @@ import {
 
 export function Example() {
   return (
-    <ToggleButtonGroup noSpace enforced>
-      <ToggleButton
-        aria-label="Left align"
-        icon={<FormatAlignLeftIcon />}
-        value="left"
-      />
-      <ToggleButton
-        aria-label="Center align"
-        icon={<FormatAlignCenterIcon />}
-        value="center"
-      />
-      <ToggleButton
-        aria-label="Right align"
-        icon={<FormatAlignRightIcon />}
-        value="right"
-      />
-      <ToggleButton
-        aria-label="Justify align"
-        icon={<FormatAlignJustifyIcon />}
-        value="justify"
-      />
-    </ToggleButtonGroup>
+    <>
+      <ToggleButtonGroup noSpace enforced>
+        <ToggleButton
+          aria-label="Left align"
+          icon={<FormatAlignLeftIcon />}
+          value="left"
+        />
+        <ToggleButton
+          aria-label="Center align"
+          icon={<FormatAlignCenterIcon />}
+          value="center"
+        />
+        <ToggleButton
+          aria-label="Right align"
+          icon={<FormatAlignRightIcon />}
+          value="right"
+        />
+        <ToggleButton
+          aria-label="Justify align"
+          icon={<FormatAlignJustifyIcon />}
+          value="justify"
+        />
+      </ToggleButtonGroup>
+      <Spacing size="12" />
+      <ToggleButtonGroup noSpace enforced exclusive>
+        <ToggleButton
+          aria-label="Left align"
+          icon={<FormatAlignLeftIcon />}
+          value="left"
+        />
+        <ToggleButton
+          aria-label="Center align"
+          icon={<FormatAlignCenterIcon />}
+          value="center"
+        />
+        <ToggleButton
+          aria-label="Right align"
+          icon={<FormatAlignRightIcon />}
+          value="right"
+        />
+        <ToggleButton
+          aria-label="Justify align"
+          icon={<FormatAlignJustifyIcon />}
+          value="justify"
+        />
+      </ToggleButtonGroup>
+    </>
   );
 }
 ```

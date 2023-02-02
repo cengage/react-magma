@@ -205,7 +205,7 @@ export const ToggleButton = React.forwardRef<
           role={roleCheck}
           isSelected={isSelected}
           exclusive={context.exclusive}
-          size={context.size || props.size}
+          size={props.size || context.size}
           testId={testId}
           value={value}
         >
@@ -225,7 +225,7 @@ export const ToggleButton = React.forwardRef<
           role={roleCheck}
           isSelected={isSelected}
           exclusive={context.exclusive}
-          size={context.size || props.size}
+          size={props.size || context.size}
           testId={testId}
           value={value}
         >

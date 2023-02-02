@@ -139,20 +139,20 @@ AlignmentExample.args = {
 
 export const DifferentToggleButtons = args => {
   return (
-    <ToggleButtonGroup {...args}>
+    <ToggleButtonGroup size={ButtonSize.medium} {...args}>
       <ToggleButton
         aria-label="Settings icon"
         icon={<SettingsIcon />}
         value="settings"
       />
       <ToggleButton value="text">Text</ToggleButton>
-      <ToggleButton icon={<SettingsIcon />} value="iconAndText">
+      <ToggleButton icon={<SettingsIcon />} value="iconAndText" size={ButtonSize.small}>
         Icon and Text
       </ToggleButton>
     </ToggleButtonGroup>
   );
 };
 DifferentToggleButtons.args = {
-  noSpace: true,
+  noSpace: false,
   ...Default.args,
 };
