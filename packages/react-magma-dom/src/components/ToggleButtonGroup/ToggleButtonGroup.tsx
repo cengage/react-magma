@@ -97,11 +97,6 @@ export const ToggleButtonGroup = React.forwardRef<
     }
   }, [value]);
 
-  React.useEffect(() => {
-    // TODO: remove
-    console.log('SELECTED VALUE CHANGED', selectedValues);
-  }, [selectedValues]);
-
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value: newSelectedValue } = event.target;
 

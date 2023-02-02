@@ -23,38 +23,38 @@ const Template: Story<ToggleButtonGroupProps> = args => (
       aria-label="Check icon"
       value="one"
       icon={<CheckIcon />}
-      // onClick={e => console.log('onclick: button 1')}
+      onClick={e => console.log('onclick: button 1')}
     />
     <ToggleButton
       aria-label="Check icon"
       value="two"
       icon={<CheckIcon />}
-      // onClick={e => console.log('onclick: button 2')}
+      onClick={e => console.log('onclick: button 2')}
     />
     <ToggleButton
       aria-label="Check icon"
       value="three"
       icon={<CheckIcon />}
-      // onClick={e => console.log('onclick: button 3')}
+      onClick={e => console.log('onclick: button 3')}
       disabled
     />
     <ToggleButton
       aria-label="Check icon"
       value="four"
       icon={<CheckIcon />}
-      // onClick={e => console.log('onclick: button 4')}
+      onClick={e => console.log('onclick: button 4')}
     />
     <ToggleButton
       aria-label="Check icon"
       value="five"
       icon={<CheckIcon />}
-      // onClick={e => console.log('onclick: button 5')}
+      onClick={e => console.log('onclick: button 5')}
     />
     <ToggleButton
       aria-label="Check icon"
       value="six"
       icon={<CheckIcon />}
-      // onClick={e => console.log('onclick: button 6')}
+      onClick={e => console.log('onclick: button 6')}
     />
   </ToggleButtonGroup>
 );

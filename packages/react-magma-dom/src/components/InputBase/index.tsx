@@ -114,7 +114,6 @@ export interface InputBaseProps
    * Boolean for whether this is a Password Input or not
    */
   isPasswordInput?: boolean;
-  width?: string;
 }
 
 export interface InputWrapperStylesProps {

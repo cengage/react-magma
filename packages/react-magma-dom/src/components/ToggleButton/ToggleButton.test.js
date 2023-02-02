@@ -8,15 +8,16 @@ import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
 const TEXT = 'Test Text';
-
 const testId = 'test-id';
-
 const icon = <SettingsIcon />;
+const value = '1';
 
 describe('ToggleButton', () => {
   it('Should find element by testId', () => {
     const { getByTestId } = render(
-      <ToggleButton testId={testId}>{TEXT}</ToggleButton>
+      <ToggleButton value={value} testId={testId}>
+        {TEXT}
+      </ToggleButton>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -24,7 +25,7 @@ describe('ToggleButton', () => {
 
   it('Icon only buttons are compliant with accessibility', () => {
     const { container } = render(
-      <ToggleButton icon={icon} aria-label="Icon Button" />
+      <ToggleButton value={value} icon={icon} aria-label="Icon Button" />
     );
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
@@ -32,7 +33,9 @@ describe('ToggleButton', () => {
   });
 
   it('Text only buttons are compliant with accessibility', () => {
-    const { container } = render(<ToggleButton>Text Only Button</ToggleButton>);
+    const { container } = render(
+      <ToggleButton value={value}>Text Only Button</ToggleButton>
+    );
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
@@ -41,7 +44,7 @@ describe('ToggleButton', () => {
   describe('Styles', () => {
     it('Icon only styling', () => {
       const { getByTestId } = render(
-        <ToggleButton icon={icon} testId={testId} />
+        <ToggleButton value={value} icon={icon} testId={testId} />
       );
       const button = getByTestId(testId);
 
@@ -57,7 +60,9 @@ describe('ToggleButton', () => {
 
     it('Text only styling', () => {
       const { getByTestId } = render(
-        <ToggleButton testId={testId}>{TEXT}</ToggleButton>
+        <ToggleButton value={value} testId={testId}>
+          {TEXT}
+        </ToggleButton>
       );
       const button = getByTestId(testId);
 
@@ -68,7 +73,7 @@ describe('ToggleButton', () => {
 
     it('Text and icon styling', () => {
       const { getByTestId, getByText } = render(
-        <ToggleButton icon={icon} testId={testId}>
+        <ToggleButton value={value} icon={icon} testId={testId}>
           {TEXT}
         </ToggleButton>
       );
@@ -84,7 +89,9 @@ describe('ToggleButton', () => {
 
     it('Consistent border styling on disabled', () => {
       const { getByTestId, rerender } = render(
-        <ToggleButton testId={testId}>{TEXT}</ToggleButton>
+        <ToggleButton value={value} testId={testId}>
+          {TEXT}
+        </ToggleButton>
       );
       const button = getByTestId(testId);
 
@@ -92,7 +99,7 @@ describe('ToggleButton', () => {
       expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
 
       rerender(
-        <ToggleButton testId={testId} disabled>
+        <ToggleButton value={value} testId={testId} disabled>
           {TEXT}
         </ToggleButton>
       );
@@ -103,7 +110,12 @@ describe('ToggleButton', () => {
 
     it('Supports small icon sizes', () => {
       const { getByTestId } = render(
-        <ToggleButton size={ButtonSize.small} icon={icon} testId={testId} />
+        <ToggleButton
+          value={value}
+          size={ButtonSize.small}
+          icon={icon}
+          testId={testId}
+        />
       );
       const button = getByTestId(testId);
 
@@ -113,7 +125,12 @@ describe('ToggleButton', () => {
 
     it('Supports medium icon sizes', () => {
       const { getByTestId } = render(
-        <ToggleButton size={ButtonSize.medium} icon={icon} testId={testId} />
+        <ToggleButton
+          value={value}
+          size={ButtonSize.medium}
+          icon={icon}
+          testId={testId}
+        />
       );
       const button = getByTestId(testId);
 
@@ -123,7 +140,12 @@ describe('ToggleButton', () => {
 
     it('Supports large icon sizes', () => {
       const { getByTestId } = render(
-        <ToggleButton size={ButtonSize.large} icon={icon} testId={testId} />
+        <ToggleButton
+          value={value}
+          size={ButtonSize.large}
+          icon={icon}
+          testId={testId}
+        />
       );
       const button = getByTestId(testId);
 
@@ -133,7 +155,7 @@ describe('ToggleButton', () => {
 
     it('Has a disabled state', () => {
       const { getByTestId } = render(
-        <ToggleButton disabled icon={icon} testId={testId} />
+        <ToggleButton value={value} disabled icon={icon} testId={testId} />
       );
       const button = getByTestId(testId);
 
@@ -144,7 +166,7 @@ describe('ToggleButton', () => {
   describe('States', () => {
     it('Should have a toggled state', () => {
       const { getByTestId } = render(
-        <ToggleButton testId={testId} icon={icon} />
+        <ToggleButton value={value} testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
       expect(button).toHaveStyleRule('background', magma.colors.neutral100);
@@ -154,20 +176,22 @@ describe('ToggleButton', () => {
         'background',
         transparentize(0.5, magma.colors.neutral300)
       );
+      expect(button).toHaveAttribute('aria-checked', 'true');
     });
 
     it('Should have an untoggled state', () => {
       const { getByTestId } = render(
-        <ToggleButton testId={testId} icon={icon} />
+        <ToggleButton value={value} testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
 
       expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(button).toHaveAttribute('aria-checked', 'false');
     });
 
     it('Should have an inverse toggled state', () => {
       const { getByTestId } = render(
-        <ToggleButton isInverse testId={testId} icon={icon} />
+        <ToggleButton value={value} isInverse testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
       expect(button).toHaveStyleRule('background', 'none');
@@ -181,7 +205,7 @@ describe('ToggleButton', () => {
 
     it('Should have an untoggled state after being toggled', () => {
       const { getByTestId } = render(
-        <ToggleButton testId={testId} icon={icon} />
+        <ToggleButton value={value} testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
 
@@ -200,7 +224,7 @@ describe('ToggleButton', () => {
 
     it('Should have a pre-selected toggled state', () => {
       const { getByTestId } = render(
-        <ToggleButton isChecked testId={testId} icon={icon} />
+        <ToggleButton value={value} isChecked testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
 
@@ -208,6 +232,19 @@ describe('ToggleButton', () => {
         'background',
         transparentize(0.5, magma.colors.neutral300)
       );
+      expect(button).toHaveAttribute('aria-checked', 'true');
+    });
+  });
+
+  describe('Callback', () => {
+    it('Should call the onClick function when a button is clicked', () => {
+      const onClickMock = jest.fn();
+      const { getByTestId } = render(
+        <ToggleButton value={value} testId={testId} onClick={onClickMock} />
+      );
+      const button = getByTestId(testId);
+      fireEvent.click(button);
+      expect(onClickMock).toHaveBeenCalled();
     });
   });
 });

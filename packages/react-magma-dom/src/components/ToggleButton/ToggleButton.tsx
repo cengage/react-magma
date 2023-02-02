@@ -141,20 +141,31 @@ export const ToggleButton = React.forwardRef<
   const theme = React.useContext(ThemeContext);
 
   const isDefaultChecked =
-    value && context.selectedValues.includes(value.toString()) || isChecked;
+    (context.selectedValues &&
+      value &&
+      context.selectedValues?.includes(value.toString())) ||
+    isChecked;
 
   const [isSelected, setIsSelected] = React.useState(isDefaultChecked);
 
   React.useEffect(() => {
     setIsSelected(isDefaultChecked);
-  }, [isSelected, isChecked]);
+  }, [isChecked]);
 
   const inverseCheck = context.isInverse || isInverse;
   const roleCheck = context.exclusive ? 'radio' : 'switch';
 
   const handleClick = (event: any) => {
-    // flip the value of isSelected
-    setIsSelected(!isSelected);
+    if (
+      context.enforced &&
+      context.selectedValues.length === 1 &&
+      context.selectedValues.includes(value.toString())
+    ) {
+      setIsSelected(isSelected);
+    } else {
+      // flip the value of isSelected
+      setIsSelected(!isSelected);
+    }
 
     onClick && typeof onClick === 'function' && onClick(event);
     context.onChange &&
