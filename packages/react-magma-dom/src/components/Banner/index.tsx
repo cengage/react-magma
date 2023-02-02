@@ -3,6 +3,7 @@ import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { AlertProps } from '../Alert';
 import {
+  AdditionalContentWrapper,
   AlertVariant,
   buildAlertBackground,
   buildAlertBorder,
@@ -57,7 +58,10 @@ const StyledBanner = styled.div<AlertProps>`
 `;
 
 const BannerContents = styled.div<{
+  additionalContent?: React.ReactNode;
   variant?: AlertVariant;
+  isDismissible?: boolean;
+
   isInverse?: boolean;
 }>`
   align-items: center;
@@ -65,7 +69,10 @@ const BannerContents = styled.div<{
   display: flex;
   flex-grow: 1;
   justify-content: flex-start;
-  padding: ${props => props.theme.spaceScale.spacing04};
+  padding: ${props =>
+    props.additionalContent && props.isDismissible
+      ? `${props.theme.spaceScale.spacing04} 0 ${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing04}`
+      : props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     justify-content: flex-start;
@@ -187,6 +194,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     const {
       actionButtonText,
       actionButtonOnClick,
+      additionalContent,
       children,
       closeAriaLabel,
       isDismissible,
@@ -208,7 +216,13 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
         theme={theme}
         variant={variant}
       >
-        <BannerContents theme={theme} variant={variant} isInverse={isInverse}>
+        <BannerContents
+          additionalContent={additionalContent}
+          isDismissible={isDismissible}
+          theme={theme}
+          variant={variant}
+          isInverse={isInverse}
+        >
           {renderIcon(variant, theme)}
           {children}
           {actionButtonText && actionButtonOnClick && (
@@ -221,6 +235,11 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
             >
               {actionButtonText}
             </Button>
+          )}
+          {additionalContent && (
+            <AdditionalContentWrapper theme={theme}>
+              {additionalContent}
+            </AdditionalContentWrapper>
           )}
         </BannerContents>
 

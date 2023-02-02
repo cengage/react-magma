@@ -5,6 +5,7 @@ import { AlertBase, AlertVariant } from '../AlertBase';
  * @children required
  */
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  additionalContent?: React.ReactNode;
   /**
    * The text read by screen readers for the close button
    * @default "Close this message"
