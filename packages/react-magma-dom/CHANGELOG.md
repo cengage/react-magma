@@ -1,5 +1,47 @@
 # Change Log
 
+## 4.0.0-next.1
+
+### Minor Changes
+
+- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
+## 4.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Patch Changes
+
+- adba671f3: chore: Fix broken build
+
+## 3.2.1
+
+### Patch Changes
+
+- 0bf79d5de: style: fix linting errors and warnings
+- 7b4549726: Update react-magma-icons version to 2.3.6
+- 0d3e008bf: fix: Update hex of secondaryColors (secondary500, secondary600 & secondary700)
+- 962253d56: fix(navtabs) Added focus state on first NavTab for accessibility fix.
+- 6a01a5325: fix(input): Inputs with long placeholders && `isClearable` have appropriate padding
+- fafe31580: fix(search): Search components with long placeholders && `isClearable` have appropriate padding
+- f5189569b: fix(tabs): Disabled tabs have the disabled cursor
+
+## 3.2.1-next.6
+
+### Patch Changes
+
+- 0d3e008bf: fix: Update hex of secondaryColors (secondary500, secondary600 & secondary700)
+
+## 3.2.1-next.5
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+
 ## 3.2.1-next.4
 
 ### Patch Changes

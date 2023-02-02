@@ -1,5 +1,29 @@
 # @react-magma/schema-renderer
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Patch Changes
+
+- Updated dependencies [adba671f3]
+- Updated dependencies [c01c53838]
+  - react-magma-dom@4.0.0-next.0
+
+## 2.0.1
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+
+## 2.0.1-next.1
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+
 ## 2.0.1-next.0
 
 ### Patch Changes

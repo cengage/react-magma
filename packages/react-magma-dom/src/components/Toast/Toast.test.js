@@ -11,7 +11,7 @@ describe('Toast', () => {
 
   afterEach(async () => {
     await act(async () => {
-      jest.runAllTimers();
+      jest.runOnlyPendingTimers();
     });
     jest.useRealTimers();
   });
