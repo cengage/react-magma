@@ -25,7 +25,7 @@ export const Default = () => {
     <>
       <Alert>Default</Alert>
       <Alert variant={AlertVariant.success} additionalContent={AdditionalBadge}>
-        Success
+        Success&nbsp;
         <Hyperlink to="#">hyperlink</Hyperlink>
       </Alert>
       <Alert

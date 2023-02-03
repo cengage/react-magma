@@ -475,7 +475,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
               isDismissible={isDismissible}
               theme={theme}
             >
-              {children}
+              <span>{children}</span>
               {additionalContent && (
                 <AdditionalContentWrapper theme={theme}>
                   {additionalContent}

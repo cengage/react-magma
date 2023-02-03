@@ -228,7 +228,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
           isInverse={isInverse}
         >
           {renderIcon(variant, theme)}
-          {children}
+          <span>{children}</span>
           {actionButtonText && actionButtonOnClick && (
             <Button
               color={getButtonColor(variant)}
