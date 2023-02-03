@@ -32,6 +32,10 @@ export interface BannerProps extends AlertProps {
    */
   actionButtonOnClick?: () => void;
   /**
+   * Enables additional right aligned children within the Banner.
+   */
+  additionalContent?: React.ReactNode;
+  /**
    * If true, the component will be able to be dismissed and will include a close button
    * @default false
    */

@@ -5,6 +5,9 @@ import { AlertBase, AlertVariant } from '../AlertBase';
  * @children required
  */
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Enables additional right aligned children within the Alert.
+   */
   additionalContent?: React.ReactNode;
   /**
    * The text read by screen readers for the close button

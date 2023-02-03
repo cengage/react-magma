@@ -289,10 +289,6 @@ const AlertContents = styled.div<{
     props.additionalContent && !props.isDismissible
       ? props.theme.spaceScale.spacing03
       : ''};
-  * {
-    margin-left: ${props => (props.additionalContent ? '7px' : '')};
-  }
-
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 0;
   }
@@ -302,11 +298,6 @@ export const AdditionalContentWrapper = styled.div`
   flex: 1;
   justify-content: flex-end;
   display: flex;
-  * {
-    display: table-cell;
-    margin: 0;
-    margin-left: ${props => props.theme.spaceScale.spacing03};
-  }
 `;
 
 const IconWrapperStyles = css`
@@ -471,7 +462,6 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         theme={theme}
         variant={variant}
       >
-        {console.log(additionalContent)}
         <InverseContext.Provider value={{ isInverse }}>
           <StyledAlertInner
             isInverse={isInverse}
