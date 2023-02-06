@@ -1101,6 +1101,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1144,6 +1145,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
@@ -1436,6 +1438,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1479,6 +1482,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
@@ -1915,6 +1919,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1958,6 +1963,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
@@ -2257,6 +2263,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2300,6 +2307,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
@@ -2775,6 +2783,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2818,6 +2827,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
@@ -3156,6 +3166,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
   color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3199,6 +3210,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   display: -ms-flexbox;
   display: flex;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
