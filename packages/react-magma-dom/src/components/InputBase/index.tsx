@@ -114,6 +114,11 @@ export interface InputBaseProps
    * Boolean for whether this is a Password Input or not
    */
   isPasswordInput?: boolean;
+  /**
+   * String to determine width of input, must be suffixed with "px", "rem", or "%""
+   * @default "auto"
+   */
+  width?: string;
 }
 
 export interface InputWrapperStylesProps {
@@ -574,6 +579,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           style={containerStyle}
           hasError={hasError}
           isClearable={isClearable}
+          width={props.width}
         >
           <StyledInput
             {...other}
