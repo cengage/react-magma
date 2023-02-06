@@ -44,6 +44,7 @@ const StyledBanner = styled.div<AlertProps>`
   color: ${props => buildAlertColor(props)};
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   position: relative;
   text-align: left;
@@ -74,6 +75,7 @@ const BannerContents = styled.div<{
   a {
     color: ${props => buildLinkColor(props)};
     font-weight: 400;
+    font-family: ${props => props.theme.bodyFont};
     text-decoration: underline;
     &:not([disabled]) {
       &:focus,

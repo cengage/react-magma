@@ -78,7 +78,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       string | ReadonlyArray<string> | number
     >(props.defaultValue || props.value || '');
 
-    const [characterLength, setCharacterLength] = useState(0);
+    const initialValueLength = value ? value.toString().length : 0;
+    const [characterLength, setCharacterLength] = useState(initialValueLength);
 
     React.useEffect(() => {
       setValue(props.value);

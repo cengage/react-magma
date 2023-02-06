@@ -125,6 +125,7 @@ export const baseBadgeStyles = props => css`
   font-size: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.fontSize
     : props.theme.typeScale.size01.fontSize};
+  font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.variant === BadgeVariant.counter
     ? props.theme.typeScale.size02.letterSpacing
     : props.theme.typeScale.size01.letterSpacing};

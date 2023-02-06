@@ -27,6 +27,7 @@ const InputsContainer = styled.div<{
   height: ${props => props.theme.spaceScale.spacing09};
   padding: ${props => props.theme.spaceScale.spacing03};
   width: 144px;
+  font-family: ${props => props.theme.bodyFont};
 `;
 
 const Divider = styled.span`

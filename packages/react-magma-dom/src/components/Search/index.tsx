@@ -82,7 +82,8 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
     const i18n = React.useContext(I18nContext);
 
     const [value, setValue] = React.useState<string>(props.value);
-    const [characterLength, setCharacterLength] = React.useState<number>(0);
+    const initialValueLength = value ? value.toString().length : 0;
+    const [characterLength, setCharacterLength] = React.useState<number>(initialValueLength);
 
     const icon = isLoading ? <Spinner isInverse={isInverse} /> : <SearchIcon />;
 

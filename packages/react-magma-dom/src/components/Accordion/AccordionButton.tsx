@@ -43,6 +43,7 @@ const StyledButton = styled.button<{
   cursor: pointer;
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   font-weight: 500;
   padding: 12px 16px;
