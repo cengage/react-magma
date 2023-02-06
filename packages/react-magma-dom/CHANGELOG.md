@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.2
+
+### Patch Changes
+
+- 9cb534ce8: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+
 ## 4.0.0-next.1
 
 ### Minor Changes

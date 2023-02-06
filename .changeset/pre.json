@@ -12,6 +12,7 @@
   },
   "changesets": [
     "fix-build",
+    "fix-inputwrapper",
     "light-dancers-explode",
     "update-react-charts",
     "update-react-dropzone",
