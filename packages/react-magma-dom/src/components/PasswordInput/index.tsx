@@ -48,6 +48,11 @@ export interface PasswordInputProps
    * @internal
    */
   testId?: string;
+  /**
+   * String to determine width of input, must be suffixed with "px", "rem", or "%""
+   * @default "auto"
+   */
+  width?: string;
 }
 
 export const PasswordInput = React.forwardRef<
@@ -143,6 +148,7 @@ export const PasswordInput = React.forwardRef<
         ref={ref}
         type={passwordShown ? InputType.text : InputType.password}
         isPasswordInput={true}
+        width={props.width}
       >
         {!isPasswordMaskButtonHidden && (
           <>
