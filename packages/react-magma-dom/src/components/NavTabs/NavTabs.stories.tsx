@@ -23,7 +23,7 @@ export const Default = () => {
 
 export const BackgroundColor = () => {
   return (
-    <NavTabs aria-label="Nav Tabs" backgroundColor={magma.colors.secondary700}>
+    <NavTabs aria-label="Nav Tabs" backgroundColor={magma.colors.neutral200}>
       <NavTab isActive to="#">
         Current Page
       </NavTab>
