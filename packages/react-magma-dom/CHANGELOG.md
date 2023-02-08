@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.4
+
+### Patch Changes
+
+- 4301b98c1: fix(heading): Fix error that `"Property 'css' is missing"`
+
 ## 4.0.0-next.3
 
 ### Patch Changes
