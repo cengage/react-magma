@@ -11,6 +11,7 @@
     "react-magma-landing": "1.1.1"
   },
   "changesets": [
+    "bodyFont",
     "fix-build",
     "fix-inputwrapper",
     "light-dancers-explode",

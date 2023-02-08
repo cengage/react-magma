@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.3
+
+### Patch Changes
+
+- b276664cd: Set fallback `font-family` for all components.
+
 ## 4.0.0-next.2
 
 ### Patch Changes
