@@ -185,7 +185,7 @@ describe('Styled Button', () => {
           'border-color',
           magma.colors.secondary500
         );
-        expect(button).toHaveStyleRule('color', magma.colors.neutral700);
+        expect(button).toHaveStyleRule('color', magma.colors.primary500);
       });
 
       it('subtle button', () => {
