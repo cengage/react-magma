@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.5
+
+### Patch Changes
+
+- 0a4f2f8ce: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+
 ## 4.0.0-next.4
 
 ### Patch Changes
