@@ -98,6 +98,7 @@ const StyledFormFieldContainer = styled.div<{
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
+  font-family: ${props => props.theme.bodyFont};
   display: ${props =>
     props.labelPosition === LabelPosition.left ? 'flex' : ''};
   label {

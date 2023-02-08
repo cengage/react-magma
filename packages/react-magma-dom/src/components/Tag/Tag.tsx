@@ -258,6 +258,7 @@ const TagStyling = props => css`
   background: ${buildButtonBackground(props)};
   color: ${buildButtonTextColor(props)};
   box-shadow: ${buildBoxShadow(props)};
+  font-family: ${props.theme.bodyFont};
   display: ${props.theme.tag.display};
   align-items: ${props.theme.tag.alignItems};
   justify-content: ${props.theme.tag.justifyContent};

@@ -45,6 +45,7 @@ const StyledLabel = styled.label<{
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   font-weight: 500;
   letter-spacing: ${props =>
     props.size === InputSize.large

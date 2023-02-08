@@ -62,6 +62,7 @@ const StyledHeader = styled.header<{
       ? props.theme.appBar.inverse.textColor
       : props.theme.appBar.textColor};
   display: flex;
+  font-family: ${props => props.theme.bodyFont};
   height: ${props =>
     props.isCompact
       ? props.theme.appBar.compact.height

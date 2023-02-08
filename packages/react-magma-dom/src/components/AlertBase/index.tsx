@@ -173,6 +173,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
   display: flex;
   flex-direction: column;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   margin-bottom: ${props => props.theme.spaceScale.spacing06};
   max-width: 100%;
@@ -278,6 +279,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
 const AlertContents = styled.div`
   align-self: center;
   flex-grow: 1;
+  font-family: ${props => props.theme.bodyFont};
   padding: ${props => props.theme.spaceScale.spacing04} 0;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {

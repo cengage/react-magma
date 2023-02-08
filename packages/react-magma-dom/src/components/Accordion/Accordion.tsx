@@ -108,6 +108,7 @@ const StyledAccordion = styled.div<AccordionProps>`
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
+  font-family: ${props => props.theme.bodyFont};
 `;
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
