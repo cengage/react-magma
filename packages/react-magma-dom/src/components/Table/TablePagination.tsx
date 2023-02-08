@@ -119,6 +119,7 @@ const RowsPerPageLabel = styled.span<{
   theme: ThemeInterface;
 }>`
   font-weight: 600;
+  font-family: ${props => props.theme.bodyFont};
   line-height: 20px;
   margin: 0 16px 0 0;
   text-align: left;

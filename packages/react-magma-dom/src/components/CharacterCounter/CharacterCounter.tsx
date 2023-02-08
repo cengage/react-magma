@@ -41,6 +41,7 @@ const StyledInputMessage = styled(InputMessage)<{
   maxLength: number;
 }>`
   font-weight: ${buildFontWeight};
+  font-family: ${props => props.theme.bodyFont};
 `;
 
 export const CharacterCounter = React.forwardRef<

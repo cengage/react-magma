@@ -17,6 +17,7 @@ export interface CardBodyProps
 const StyledCardBody = styled.div<CardProps>`
   padding: ${props => props.theme.spaceScale.spacing05};
   text-align: ${props => props.align};
+  font-family: ${props => props.theme.bodyFont};
 
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     padding: ${props => props.theme.spaceScale.spacing06};

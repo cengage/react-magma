@@ -361,6 +361,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -385,6 +386,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -465,6 +467,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -489,6 +492,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -587,6 +591,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -667,6 +672,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -691,6 +697,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -771,6 +778,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -851,6 +859,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -875,6 +884,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -955,6 +965,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -979,6 +990,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -1077,6 +1089,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -1157,6 +1170,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -1181,6 +1195,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -1261,6 +1276,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
