@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.7
+
+### Minor Changes
+
+- f311f81e9: feat(toggleButton): New Toggle Button component.
+
 ## 4.0.0-next.6
 
 ### Patch Changes
