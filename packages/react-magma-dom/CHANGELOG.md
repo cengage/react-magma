@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.6
+
+### Patch Changes
+
+- f708b20dc: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+
 ## 4.0.0-next.5
 
 ### Patch Changes

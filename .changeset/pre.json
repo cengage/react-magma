@@ -12,6 +12,7 @@
   },
   "changesets": [
     "bodyFont",
+    "character-counter-value",
     "fix-build",
     "fix-inputwrapper",
     "heading-css",
