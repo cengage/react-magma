@@ -144,7 +144,12 @@ The `enforced` prop in conjunction with `exclusive` allows just one toggled butt
 
 ```typescript
 import React from 'react';
-import { ButtonSize, ToggleButton, ToggleButtonGroup, Spacing } from 'react-magma-dom';
+import {
+  ButtonSize,
+  ToggleButton,
+  ToggleButtonGroup,
+  Spacer,
+} from 'react-magma-dom';
 import {
   FormatAlignLeftIcon,
   FormatAlignCenterIcon,
@@ -178,7 +183,7 @@ export function Example() {
           value="justify"
         />
       </ToggleButtonGroup>
-      <Spacing size="12" />
+      <Spacer size="12" />
       <ToggleButtonGroup noSpace enforced exclusive>
         <ToggleButton
           aria-label="Left align"
