@@ -298,7 +298,7 @@ export const AdditionalContentWrapper = styled.div`
   flex: 1 0 auto;
   justify-content: flex-end;
   display: flex;
-  margin-left: ${props => props.theme.spaceScale.spacing04};
+  margin-left: ${props => props.theme.spaceScale.spacing05};
 `;
 
 const IconWrapperStyles = css`
