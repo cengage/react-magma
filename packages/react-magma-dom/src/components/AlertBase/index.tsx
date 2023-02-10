@@ -295,9 +295,10 @@ const AlertContents = styled.div<{
 `;
 
 export const AdditionalContentWrapper = styled.div`
-  flex: 1;
+  flex: 1 0 auto;
   justify-content: flex-end;
   display: flex;
+  margin-left: ${props => props.theme.spaceScale.spacing04};
 `;
 
 const IconWrapperStyles = css`
