@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.9
+
+### Patch Changes
+
+- 354a62232: fix(toggleButton): Fix hover states
+
 ## 4.0.0-next.8
 
 ### Minor Changes
