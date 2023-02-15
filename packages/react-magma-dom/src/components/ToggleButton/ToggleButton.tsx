@@ -96,9 +96,6 @@ export function setBackgroundColor(props) {
 
 export const ToggleButtonStyles = props => css`
   background: ${setBackgroundColor(props)};
-  &:not(:disabled):hover {
-    background: ${setBackgroundColor(props)};
-  }
   &:not(:disabled):focus {
     background: ${setBackgroundColor(props)};
     outline-offset: -2px;
