@@ -36,6 +36,7 @@ export enum AlertVariant {
 }
 
 export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+  additionalContent?: React.ReactNode;
   closeAriaLabel?: string;
   forceDismiss?: () => void;
   hasTimerRing?: boolean;
@@ -276,15 +277,30 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
     `}
 `;
 
-const AlertContents = styled.div`
+const AlertContents = styled.div<{
+  additionalContent?: React.ReactNode;
+  isDismissible?: boolean;
+}>`
+  align-items: ${props => (props.additionalContent ? 'center' : '')};
   align-self: center;
   flex-grow: 1;
   font-family: ${props => props.theme.bodyFont};
   padding: ${props => props.theme.spaceScale.spacing04} 0;
-
+  display: ${props => (props.additionalContent ? 'flex' : '')};
+  margin-right: ${props =>
+    props.additionalContent && !props.isDismissible
+      ? props.theme.spaceScale.spacing03
+      : ''};
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 0;
   }
+`;
+
+export const AdditionalContentWrapper = styled.div`
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  display: flex;
+  margin-left: ${props => props.theme.spaceScale.spacing05};
 `;
 
 const IconWrapperStyles = css`
@@ -316,6 +332,8 @@ const ProgressRingWrapper = styled.div`
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
   ${IconWrapperStyles}
+  margin-left: ${props =>
+    props.additionalContent ? props.theme.spaceScale.spacing03 : ''};
 `;
 
 const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
@@ -373,6 +391,7 @@ function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
 export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
   (props, ref) => {
     const {
+      additionalContent,
       children,
       closeAriaLabel,
       forceDismiss,
@@ -454,7 +473,18 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
             variant={variant}
           >
             {renderIcon(variant, isToast, theme)}
-            <AlertContents theme={theme}>{children}</AlertContents>
+            <AlertContents
+              additionalContent={additionalContent}
+              isDismissible={isDismissible}
+              theme={theme}
+            >
+              <span>{children}</span>
+              {additionalContent && (
+                <AdditionalContentWrapper theme={theme}>
+                  {additionalContent}
+                </AdditionalContentWrapper>
+              )}
+            </AlertContents>
             {isDismissible && (
               <DismissibleIconWrapper
                 isInverse={isInverse}

@@ -568,7 +568,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>
@@ -817,7 +819,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>
@@ -1066,7 +1070,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>
@@ -1315,7 +1321,9 @@ exports[`Alert should render an alert with default variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>
