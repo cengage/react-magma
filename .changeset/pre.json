@@ -13,6 +13,7 @@
   "changesets": [
     "bodyFont",
     "character-counter-value",
+    "feat-alertChildren",
     "feat-toggleButton",
     "fix-build",
     "fix-inputwrapper",

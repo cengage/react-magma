@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.8
+
+### Minor Changes
+
+- 39ef67ade: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+
 ## 4.0.0-next.7
 
 ### Minor Changes
