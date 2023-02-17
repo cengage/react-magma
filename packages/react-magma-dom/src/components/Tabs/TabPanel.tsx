@@ -13,6 +13,7 @@ const StyledTabPanel = styled.div<{
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
+  font-family: ${props => props.theme.bodyFont};
   flex: 1;
   height: 100%;
   padding: 20px;

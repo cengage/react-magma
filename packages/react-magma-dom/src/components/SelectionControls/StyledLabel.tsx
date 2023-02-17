@@ -15,6 +15,7 @@ const StyledLabelComponent = styled.label<StyledLabelProps>`
     props.isInverse ? props.theme.colors.neutral100 : 'inherit'};
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   margin: 0;
   padding: ${props => props.theme.spaceScale.spacing03} 0;

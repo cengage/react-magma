@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { PasswordInput } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
@@ -117,8 +117,9 @@ it('should trigger the passed in onChange when value of the input is changed', (
   fireEvent.change(getByLabelText(labelText), {
     target: { value: targetValue },
   });
-
-  expect(onChangeSpy).toHaveBeenCalledTimes(1);
+  act(() => {
+    expect(onChangeSpy).toHaveBeenCalledTimes(1);
+  });
 });
 
 it('should render an input with a correctly styled helper message', () => {

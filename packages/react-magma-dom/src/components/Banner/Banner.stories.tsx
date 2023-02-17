@@ -1,6 +1,7 @@
 import React from 'react';
 import { Banner, BannerProps } from '.';
 import { AlertVariant } from '../AlertBase';
+import { Badge } from '../Badge';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Hyperlink } from '../Hyperlink';
@@ -9,9 +10,16 @@ function handleActionButtonClick() {
   alert('action button clicked!');
 }
 
+const AdditionalBadge = (
+  <>
+    <Badge>Badgery</Badge>
+    <Badge>More Badgery</Badge>
+  </>
+);
+
 const Template: Story<BannerProps> = args => (
   <>
-    <Banner {...args}>
+    <Banner {...args} additionalContent={AdditionalBadge}>
       Default (info) banner with&nbsp;
       <Hyperlink to="#" isInverse={args.isInverse}>
         hyperlink
@@ -64,6 +72,7 @@ const Template: Story<BannerProps> = args => (
       Dismissible (warning) banner
     </Banner>
     <Banner
+      additionalContent={AdditionalBadge}
       isDismissible
       actionButtonText="Action"
       actionButtonOnClick={handleActionButtonClick}

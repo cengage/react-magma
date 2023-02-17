@@ -52,6 +52,7 @@ const StyledTitle = styled.span`
   color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size04.fontSize};
   font-weight: 600;
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size04.lineHeight};
   margin: 0 0 12px 0;
 `;

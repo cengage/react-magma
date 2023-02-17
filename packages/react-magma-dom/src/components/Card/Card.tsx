@@ -107,6 +107,7 @@ const StyledCard = styled.div<CardProps>`
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
+  font-family: ${props => props.theme.bodyFont};
   display: flex;
   flex-direction: column;
   overflow: visible;

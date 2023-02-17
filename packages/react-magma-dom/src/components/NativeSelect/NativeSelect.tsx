@@ -41,7 +41,7 @@ const StyledNativeSelectWrapper = styled.div<{
         : props.disabled
         ? transparentize(0.4, props.theme.colors.neutral500)
         : 'inherit'};
-    margin: 0 0 0 -${props => props.theme.spaceScale.spacing08};
+    margin: 0 0 0 -${props => props.theme.spaceScale.spacing06};
     pointer-events: none;
     z-index: 1;
   }

@@ -157,10 +157,10 @@ describe('Select', () => {
       { id: '2', label: 'Green', value: 'green' },
     ];
     const CustomItem = props => {
-      const { itemRef, isFocused, item, itemString, ...other } = props;
+      const { itemRef, item, itemString } = props;
 
       return (
-        <li {...other} data-testid={item.id} ref={itemRef}>
+        <li data-testid={item.id} ref={itemRef}>
           {itemString}
         </li>
       );

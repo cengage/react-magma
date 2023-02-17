@@ -1,5 +1,102 @@
 # Change Log
 
+## 5.0.0-next.11
+
+### Patch Changes
+
+- Updated dependencies [e91c72c88]
+  - react-magma-dom@4.0.0-next.11
+
+## 5.0.0-next.10
+
+### Patch Changes
+
+- Updated dependencies [d2956b5f1]
+  - react-magma-dom@4.0.0-next.10
+
+## 5.0.0-next.9
+
+### Patch Changes
+
+- Updated dependencies [354a62232]
+  - react-magma-dom@4.0.0-next.9
+
+## 5.0.0-next.8
+
+### Patch Changes
+
+- Updated dependencies [39ef67ade]
+  - react-magma-dom@4.0.0-next.8
+
+## 5.0.0-next.7
+
+### Patch Changes
+
+- Updated dependencies [f311f81e9]
+  - react-magma-dom@4.0.0-next.7
+
+## 5.0.0-next.6
+
+### Patch Changes
+
+- Updated dependencies [f708b20dc]
+  - react-magma-dom@4.0.0-next.6
+
+## 5.0.0-next.5
+
+### Patch Changes
+
+- Updated dependencies [0a4f2f8ce]
+  - react-magma-dom@4.0.0-next.5
+
+## 5.0.0-next.4
+
+### Patch Changes
+
+- Updated dependencies [4301b98c1]
+  - react-magma-dom@4.0.0-next.4
+
+## 5.0.0-next.3
+
+### Patch Changes
+
+- Updated dependencies [b276664cd]
+  - react-magma-dom@4.0.0-next.3
+
+## 5.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies [9cb534ce8]
+  - react-magma-dom@4.0.0-next.2
+
+## 5.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [ccacca490]
+  - react-magma-dom@4.0.0-next.1
+
+## 5.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2. Update Gatsby to 3.15.0.
+
+### Patch Changes
+
+- Updated dependencies [adba671f3]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+- Updated dependencies [c01c53838]
+  - react-magma-dom@4.0.0-next.0
+  - @react-magma/charts@3.0.0-next.0
+  - @react-magma/dropzone@3.0.0-next.0
+  - @cengage-patterns/header@5.0.0-next.0
+  - @react-magma/schema-renderer@3.0.0-next.0
+
 ## 4.0.6
 
 ### Patch Changes

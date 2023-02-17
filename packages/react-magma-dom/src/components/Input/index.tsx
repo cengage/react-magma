@@ -30,6 +30,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       maxLength,
       messageStyle,
       testId,
+      value,
       ...other
     } = props;
 
@@ -40,7 +41,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const [characterLength, setCharacterLength] = useState(0);
+    const initialValueLength = value ? value.toString().length : 0;
+
+    const [characterLength, setCharacterLength] = useState(initialValueLength);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       props.onChange &&
@@ -89,6 +92,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onClear={handleClear}
           ref={ref}
           testId={testId}
+          value={value}
         >
           {children}
         </InputBase>

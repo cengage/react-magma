@@ -474,9 +474,7 @@ export function Example() {
       <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
         <TableHead>
           <TableRow>
-            <TableHeaderCell
-              sortDirection={TableSortDirection.descending}
-            >
+            <TableHeaderCell sortDirection={TableSortDirection.descending}>
               Column
             </TableHeaderCell>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -1064,20 +1062,20 @@ All of the [standard td attributes](https://developer.mozilla.org/en-US/docs/Web
 
 ## Table Pagination Props
 
-**This component uses `forwardRef`. The ref is applied to the Alert container `div` element.**
+**This component uses `forwardRef`. The ref is applied to the container.**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
-### Common Props
+## Common Props
 
 <BaseTablePaginationProps />
 
-### Controlled Props
+## Controlled Props
 
 <ControlledPageProps />
 <ControlledRowsPerPageProps />
 
-### Uncontrolled Props
+## Uncontrolled Props
 
 <UncontrolledPageProps />
 <UncontrolledRowsPerPageProps />

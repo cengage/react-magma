@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { StyledButton } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
@@ -185,7 +185,7 @@ describe('Styled Button', () => {
           'border-color',
           magma.colors.secondary500
         );
-        expect(button).toHaveStyleRule('color', magma.colors.neutral700);
+        expect(button).toHaveStyleRule('color', magma.colors.primary500);
       });
 
       it('subtle button', () => {
@@ -202,12 +202,20 @@ describe('Styled Button', () => {
         const button = getByTestId('button-test');
 
         expect(button).toHaveStyleRule('background', magma.colors.neutral100);
-        expect(button).toHaveStyleRule('background', transparentize(0.95, magma.colors.neutral900), {
-          target: ':hover',
-        });
-        expect(button).toHaveStyleRule('background', transparentize(0.9, magma.colors.neutral900), {
-          target: ':active',
-        });
+        expect(button).toHaveStyleRule(
+          'background',
+          transparentize(0.95, magma.colors.neutral900),
+          {
+            target: ':hover',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          transparentize(0.9, magma.colors.neutral900),
+          {
+            target: ':active',
+          }
+        );
         expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
         expect(button).toHaveStyleRule('color', magma.colors.neutral700);
       });
@@ -508,8 +516,9 @@ describe('Styled Button', () => {
         cancelable: true,
       })
     );
-
-    expect(onClickSpy).toHaveBeenCalledTimes(1);
+    act(() => {
+      expect(onClickSpy).toHaveBeenCalledTimes(1);
+    });
   });
 
   it('Does not violate accessibility standards', () => {

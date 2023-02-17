@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Patch Changes
+
+- Updated dependencies [adba671f3]
+- Updated dependencies [c01c53838]
+  - react-magma-dom@4.0.0-next.0
+
 ## 2.0.1
 
 ### Patch Changes

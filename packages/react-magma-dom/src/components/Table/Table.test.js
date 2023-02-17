@@ -10,7 +10,7 @@ import {
 
 import { magma } from '../../theme/magma';
 
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 describe('Table', () => {
@@ -344,11 +344,15 @@ describe('Table', () => {
       getByTestId('header3').querySelector('button')
     ).not.toBeInTheDocument();
 
-    expect(onSortSpy).not.toHaveBeenCalled();
+    act(() => {
+      expect(onSortSpy).not.toHaveBeenCalled();
+    });
 
     fireEvent.click(getByText('heading 1'));
 
-    expect(onSortSpy).toHaveBeenCalled();
+    act(() => {
+      expect(onSortSpy).toHaveBeenCalled();
+    });
   });
 
   it('should render sortable table header cells with inverse styles', () => {
