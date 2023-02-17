@@ -154,7 +154,9 @@ describe('Alert', () => {
       act(jest.runAllTimers);
 
       expect(onDismiss).toHaveBeenCalled();
-      jest.useRealTimers();
+      act(() => {
+        jest.useRealTimers();
+      });
     });
   });
 
