@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.0-next.11
+
+### Patch Changes
+
+- e91c72c88: chore: Fixed warnings in the console.
+
 ## 4.0.0-next.10
 
 ### Patch Changes

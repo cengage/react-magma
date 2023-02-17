@@ -16,6 +16,7 @@
     "feat-alertChildren",
     "feat-toggleButton",
     "fix-build",
+    "fix-console-warnings",
     "fix-inputwrapper",
     "heading-css",
     "icons",
