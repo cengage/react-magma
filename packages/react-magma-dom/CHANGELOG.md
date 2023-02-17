@@ -1,5 +1,31 @@
 # Change Log
 
+## 4.0.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Minor Changes
+
+- 39ef67ade: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- f311f81e9: feat(toggleButton): New Toggle Button component.
+- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
+### Patch Changes
+
+- b276664cd: Set fallback `font-family` for all components.
+- f708b20dc: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- adba671f3: chore: Fix broken build
+- e91c72c88: chore: Fixed warnings in the console.
+- 9cb534ce8: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 4301b98c1: fix(heading): Fix error that `"Property 'css' is missing"`
+- d2956b5f1: chore: Update react-magma-icons to v3.0.0
+- 0a4f2f8ce: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 354a62232: fix(toggleButton): Fix hover states
+
 ## 4.0.0-next.11
 
 ### Patch Changes

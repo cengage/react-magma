@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 3.0.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
 ## 3.0.0-next.0
 
 ### Major Changes
