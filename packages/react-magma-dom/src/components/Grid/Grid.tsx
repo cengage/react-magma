@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { css } from '@emotion/core';
 import * as CSS from 'csstype';
 
 export enum GridDisplay {
@@ -137,28 +136,22 @@ export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Grid = styled.div<GridProps>`
-  ${props =>
-    css({
-      display: props.gridDisplay || GridDisplay.grid,
-      'grid-template-rows': props.gridTemplateRows,
-      'grid-template-columns': props.gridTemplateColumns,
-      'grid-areas': props.gridTemplateAreas,
-      'grid-gap': props.gridGap,
-      'justify-items': props.gridJustifyItems,
-      'justify-content': props.gridJustifyContent,
-      'align-items': props.gridAlignItems,
-      'align-content': props.gridAlignContent,
-      'grid-auto-flow': props.gridAutoFlow,
-    })}
+  display: ${props => props.gridDisplay || GridDisplay.grid};
+  grid-template-rows: ${props => props.gridTemplateRows};
+  grid-template-columns: ${props => props.gridTemplateColumns};
+  grid-area: ${props => props.gridTemplateAreas};
+  grid-gap: ${props => props.gridGap};
+  justify-items: ${props => props.gridJustifyItems};
+  justify-content: ${props => props.gridJustifyContent};
+  align-items: ${props => props.gridAlignItems};
+  align-content: ${props => props.gridAlignContent};
+  grid-auto-flow: ${props => props.gridAutoFlow};
 `;
 
 export const GridItem = styled.div<GridItemProps>`
-  ${props =>
-    css({
-      'grid-column': props.gridColumn,
-      'grid-row': props.gridRow,
-      'grid-area': props.gridArea,
-      'justify-self': props.gridItemJustifySelf,
-      'align-self': props.gridItemAlignSelf,
-    })}
+  grid-column: ${props => props.gridColumn};
+  grid-row: ${props => props.gridRow};
+  grid-area: ${props => props.gridArea};
+  justify-self: ${props => props.gridItemJustifySelf};
+  align-self: ${props => props.gridItemAlignSelf};
 `;
