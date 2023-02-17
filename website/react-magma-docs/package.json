@@ -50,7 +50,7 @@
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
     "react-magma-dom": "4.0.0-next.9",
-    "react-magma-icons": "^2.4.1",
+    "react-magma-icons": "^3.0.0",
     "react-spring": "6.1.9",
     "semver": "^7.3.4",
     "url-loader": "^1.1.2",
