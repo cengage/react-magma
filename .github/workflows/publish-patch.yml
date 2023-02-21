@@ -2,7 +2,7 @@ name: Publish Patch
 on:
   push:
     branches:
-      - patch
+      - 'patch-*'
 jobs:
   build:
     runs-on: macos-latest
