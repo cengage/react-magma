@@ -14,6 +14,10 @@ import {
  */
 export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
   /**
+   * @internal
+   */
+  css?: any; // Adding css prop to fix emotion error
+  /**
    * The color of the component, that helps to convey meaning or relative emphasis
    * @default TypographyColor.default
    */

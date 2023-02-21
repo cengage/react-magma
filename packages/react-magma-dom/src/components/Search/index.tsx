@@ -82,7 +82,6 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
     const i18n = React.useContext(I18nContext);
 
     const [value, setValue] = React.useState<string>(props.value);
-    const [characterLength, setCharacterLength] = React.useState<number>(0);
 
     const icon = isLoading ? <Spinner isInverse={isInverse} /> : <SearchIcon />;
 
@@ -95,7 +94,6 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
         typeof props.onChange === 'function' &&
         props.onChange(event);
       setValue(event.target.value);
-      setCharacterLength(event.target.value.length);
     }
 
     // handle search on enter
@@ -112,7 +110,6 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
 
     function handleClear() {
       onClear && typeof onClear === 'function' && onClear();
-      setCharacterLength(0);
     }
 
     return (
@@ -125,7 +122,6 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
         }
         isClearable={isClearable}
         isInverse={useIsInverse(props.isInverse)}
-        inputLength={characterLength}
         onChange={handleChange}
         onClear={handleClear}
         onIconClick={

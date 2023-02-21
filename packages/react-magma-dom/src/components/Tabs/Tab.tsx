@@ -138,6 +138,7 @@ export const TabStyles = props => css`
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
   font-weight: 500;
   font-size: ${props.theme.typeScale.size02.fontSize};
+  font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
   height: 100%;

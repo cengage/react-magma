@@ -3,7 +3,7 @@ import { axe } from '../../../axe-helper';
 import { Banner } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
-import { Button } from '../Button';
+import { Badge } from '../Badge';
 
 describe('Banner', () => {
   it('should find element by testId', () => {
@@ -284,5 +284,15 @@ describe('Banner', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should render right aligned children passed in by the additionalContent prop', () => {
+    const { getByText } = render(
+      <Banner additionalContent={<Badge>Test Component</Badge>}>
+        Alert with additional right aligned children
+      </Banner>
+    );
+
+    expect(getByText('Test Component')).toBeInTheDocument();
   });
 });

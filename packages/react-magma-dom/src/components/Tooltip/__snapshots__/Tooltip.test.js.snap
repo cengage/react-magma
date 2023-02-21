@@ -6,6 +6,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 12px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   -webkit-letter-spacing: .32px;
   -moz-letter-spacing: .32px;
   -ms-letter-spacing: .32px;
@@ -72,6 +73,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 12px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   -webkit-letter-spacing: .32px;
   -moz-letter-spacing: .32px;
   -ms-letter-spacing: .32px;

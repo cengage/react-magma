@@ -14,7 +14,12 @@ const labelText = 'Character Counter';
 
 const Template: Story<CharacterCounterProps> = args => (
   <>
-    <Input {...args} testId="test-this-id" labelText={labelText} />
+    <Input
+      {...args}
+      testId="test-this-id"
+      labelText={labelText}
+      value="Default"
+    />
   </>
 );
 

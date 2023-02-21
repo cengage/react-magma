@@ -36,6 +36,7 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
     props.isInverse
       ? props.theme.colors.primary500
       : props.theme.colors.neutral100};
+  font-family: ${props => props.theme.bodyFont};
   text-align: center;
   user-select: none;
   vertical-align: top;

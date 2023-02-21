@@ -274,7 +274,12 @@ describe('Input', () => {
     const labelText = 'Input Label';
     const value = 'Test Value';
     const { getByTestId, getByLabelText } = render(
-      <Input labelText={labelText} value={value} onClear={onClear} isClearable />
+      <Input
+        labelText={labelText}
+        value={value}
+        onClear={onClear}
+        isClearable
+      />
     );
 
     fireEvent.click(getByTestId('clear-button'));
@@ -495,6 +500,11 @@ describe('Input', () => {
         magma.colors.danger
       );
       expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
+    });
+
+    it('should render an input with an initial value set by the user', () => {
+      const { getByText } = render(<Input maxLength={2} value="hi" />);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
     it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by backspacing', () => {

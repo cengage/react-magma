@@ -135,6 +135,7 @@ export const StyledTable = styled.table<{
       : props.theme.colors.neutral700};
   display: table;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   min-width: ${props => props.minWidth}px;
   width: 100%;
