@@ -1,5 +1,26 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- 17fc12212: feat(toggleButton): New Toggle Button component.
+- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
+### Patch Changes
+
+- 17fc12212: Set fallback `font-family` for all components.
+- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- 17fc12212: chore: Fix broken build
+- 17fc12212: chore: Fixed warnings in the console.
+- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 17fc12212: fix(heading): Fix error that `"Property 'css' is missing"`
+- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 17fc12212: fix(toggleButton): Fix hover states
+
 ## 3.2.1
 
 ### Patch Changes

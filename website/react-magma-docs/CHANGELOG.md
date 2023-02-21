@@ -1,5 +1,22 @@
 # Change Log
 
+## 4.0.7
+
+### Patch Changes
+
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+  - react-magma-dom@3.3.0
+
 ## 4.0.6
 
 ### Patch Changes
