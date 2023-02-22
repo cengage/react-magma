@@ -30,6 +30,25 @@ export function Example() {
 }
 ```
 
+## Initial Value
+
+When an intial value is needed, the `value` prop may be used. The Character Counter then shows the remainder against the value accordingly.
+
+```typescript
+import React from 'react';
+import { Input } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Input
+      maxLength={4}
+      value="hi"
+      labelText="Inital Value Character Counter"
+    />
+  );
+}
+```
+
 ## Inverse
 
 `isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.

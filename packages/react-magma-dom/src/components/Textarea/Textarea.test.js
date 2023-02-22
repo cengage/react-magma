@@ -130,5 +130,10 @@ describe('Textarea', () => {
       expect(textarea.value).toBe('');
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
+
+    it('should render a textarea with an initial value set by the user', () => {
+      const { getByText } = render(<Textarea maxLength={2} value="hi" />);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+    });
   });
 });

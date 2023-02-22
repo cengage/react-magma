@@ -35,6 +35,7 @@ const linkStyles = props => css`
     ? props.theme.colors.tertiary
     : props.theme.colors.primary};
   text-decoration: underline;
+  font-family: ${props.theme.bodyFont};
   &:not([disabled]) {
     &:hover,
     &:focus {

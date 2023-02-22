@@ -145,10 +145,10 @@ describe('MultiCombobox', () => {
       { id: '2', label: 'Green', value: 'green' },
     ];
     const CustomItem = props => {
-      const { itemRef, isFocused, item, itemString, ...other } = props;
+      const { itemRef, item, itemString } = props;
 
       return (
-        <li {...other} data-testid={item.id} ref={itemRef}>
+        <li data-testid={item.id} ref={itemRef}>
           {itemString}
         </li>
       );
@@ -555,7 +555,10 @@ describe('MultiCombobox', () => {
       />
     );
 
-    expect(getByText('Red', { selector: 'button' })).toHaveAttribute('type', 'button');
+    expect(getByText('Red', { selector: 'button' })).toHaveAttribute(
+      'type',
+      'button'
+    );
   });
 
   describe('isTypeahead', () => {

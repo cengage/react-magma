@@ -2,6 +2,7 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Alert } from '.';
 import { AlertVariant } from '../AlertBase';
+import { Badge } from '../Badge';
 import { act, render, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
@@ -154,7 +155,9 @@ describe('Alert', () => {
       act(jest.runAllTimers);
 
       expect(onDismiss).toHaveBeenCalled();
-      jest.useRealTimers();
+      act(() => {
+        jest.useRealTimers();
+      });
     });
   });
 
@@ -192,5 +195,15 @@ describe('Alert', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should render right aligned children passed in by the additionalContent prop', () => {
+    const { getByText } = render(
+      <Alert additionalContent={<Badge>Test Component</Badge>}>
+        Alert with additional right aligned children
+      </Alert>
+    );
+
+    expect(getByText('Test Component')).toBeInTheDocument();
   });
 });

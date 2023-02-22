@@ -59,6 +59,7 @@ const CalendarDayCell = styled.td<{
   color: ${props =>
     props.isInverse ? props.theme.colors.danger : props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size03.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   height: ${props => props.theme.spaceScale.spacing09};
   padding: 0;
