@@ -44,13 +44,10 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main>
+      <main style={{ background: magma.colors.neutral200 }}>
         {/* component */}
         {heading ? (
-          <StyledContainer
-            gutterWidth={0}
-            style={{background: magma.colors.neutral200}}
-          >
+          <StyledContainer gutterWidth={0}>
             <HeadingWrapper>
               <Heading level={1}>{heading}</Heading>
             </HeadingWrapper>
