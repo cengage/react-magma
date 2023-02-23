@@ -27,7 +27,7 @@ export const NextVersionTable = () => {
   }, []);
   React.useEffect(() => {
     if (tags && tags.next) {
-      setRow(<TableRow><TableCell>v{tags.next.version}</TableCell><TableCell>{tags.next.date}</TableCell><TableCell><a href='https://next--upbeat-sinoussi-f675aa.netlify.app/'>Docs</a></TableCell></TableRow>);
+      setRow(<TableRow><TableCell>v{tags.next.version}</TableCell><TableCell>{tags.next.date}</TableCell><TableCell><a href='https://next--upbeat-sinoussi-f675aa.netlify.app/'>Docs</a></TableCell><TableCell>{tags.next.version >= '4' ? '^17.0.2' : '^16.10.0'}</TableCell></TableRow>);
     } else {
       setRow(<></>);
     }
@@ -40,6 +40,7 @@ export const NextVersionTable = () => {
             <TableHeaderCell style={{width: '250px'}}>Version</TableHeaderCell>
             <TableHeaderCell>Release date</TableHeaderCell>
             <TableHeaderCell>Docs link</TableHeaderCell>
+            <TableHeaderCell>Supported React Version</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -68,7 +69,7 @@ export const ReleasedVersionsTable = () => {
             <TableCell key={`row${i}-version`}>v{row.version}{i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}</TableCell>
              <TableCell key={`row${i}-date`}>{row.date}</TableCell>
              <TableCell key={`row${i}-docs`}><a href={`https://react-magma.cengage.com/version/${row.version}`}>Docs</a></TableCell>
-             <TableCell key={`row${i}-react`}>{row.version >= 4 ? '^17.0.2' : '^16.10.0'}</TableCell>
+             <TableCell key={`row${i}-react`}>{row.version >= '4' ? '^17.0.2' : '^16.10.0'}</TableCell>
           </TableRow>
         )});
       setRows(tableRow);
