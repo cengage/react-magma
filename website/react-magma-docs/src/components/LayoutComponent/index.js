@@ -9,8 +9,12 @@ const ContentSection = styled.section`
   grid-area: content;
 `;
 
-const StyledContainer = styled(Container)`
+const StyledContainer = styled.div`
   background: ${magma.colors.neutral200};
+  color: ${magma.colors.neutral700};
+  display: flow-root;
+  margin: 0 auto;
+  padding: 0;
   h1 {
     margin: 0;
   }
@@ -44,10 +48,10 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main style={{ background: magma.colors.neutral200 }}>
+      <main>
         {/* component */}
         {heading ? (
-          <StyledContainer gutterWidth={0}>
+          <StyledContainer>
             <HeadingWrapper>
               <Heading level={1}>{heading}</Heading>
             </HeadingWrapper>
