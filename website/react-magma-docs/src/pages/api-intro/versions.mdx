@@ -59,6 +59,7 @@ export const ReleasedVersionsTable = () => {
       setAllVersions(val.versions.reverse());
     });
   }, []);
+  
   React.useEffect(() => {
     if (allVersions) {
       const tableRow = allVersions.map((row, i) => {
@@ -67,6 +68,7 @@ export const ReleasedVersionsTable = () => {
             <TableCell key={`row${i}-version`}>v{row.version}{i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}</TableCell>
              <TableCell key={`row${i}-date`}>{row.date}</TableCell>
              <TableCell key={`row${i}-docs`}><a href={`https://react-magma.cengage.com/version/${row.version}`}>Docs</a></TableCell>
+             <TableCell key={`row${i}-react`}>{row.version >= 4 ? '^17.0.2' : '^16.10.0'}</TableCell>
           </TableRow>
         )});
       setRows(tableRow);
@@ -82,6 +84,7 @@ export const ReleasedVersionsTable = () => {
               <TableHeaderCell style={{width: '250px'}}>Version</TableHeaderCell>
               <TableHeaderCell>Release date</TableHeaderCell>
               <TableHeaderCell>Docs link</TableHeaderCell>
+              <TableHeaderCell>Supported React Version</TableHeaderCell>
             </TableRow>
           </TableHead>
           <TableBody>
