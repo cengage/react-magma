@@ -9,8 +9,8 @@ const ContentSection = styled.section`
   grid-area: content;
 `;
 
-const StyledContainer = styled.div`
-  background: ${magma.colors.danger};
+const StyledContainerTest = styled.div`
+  background: ${magma.colors.danger} !important;
   // color: ${magma.colors.neutral700};
   // display: flow-root;
   // margin: 0 auto;
@@ -21,7 +21,7 @@ const StyledContainer = styled.div`
 `;
 
 const HeadingWrapper = styled.div`
-  background: ${magma.colors.danger600};
+  background: ${magma.colors.danger600} !important;
   padding: 34px 0;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
@@ -48,15 +48,15 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main>
-        {/* component */}
+      <main style={{background: 'pink'}}>
+        {/* component or main page */}
         {heading ? (
-          <StyledContainer>
+          <StyledContainerTest style={{background: 'green !important'}}>
             <HeadingWrapper>
               <Heading level={1}>{heading}</Heading>
             </HeadingWrapper>
-            <div>{children}</div>
-          </StyledContainer>
+            <>{children}</>
+          </StyledContainerTest>
         ) : (
           <Container gutterWidth={0}>
             <ContentSection className="content" style={{ marginTop: '40px' }}>
