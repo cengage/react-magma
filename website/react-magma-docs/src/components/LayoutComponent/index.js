@@ -10,18 +10,18 @@ const ContentSection = styled.section`
 `;
 
 const StyledContainer = styled.div`
-  background: ${magma.colors.neutral200};
-  color: ${magma.colors.neutral700};
-  display: flow-root;
-  margin: 0 auto;
-  padding: 0;
+  background: ${magma.colors.danger};
+  // color: ${magma.colors.neutral700};
+  // display: flow-root;
+  // margin: 0 auto;
+  // padding: 0;
   h1 {
     margin: 0;
   }
 `;
 
 const HeadingWrapper = styled.div`
-  background: ${magma.colors.neutral200};
+  background: ${magma.colors.danger600};
   padding: 34px 0;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
