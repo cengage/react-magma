@@ -7,6 +7,7 @@ import { DarkModeContext } from '../DarkMode/DarkModeContext';
 import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 
 const StyledContainer = styled.div`
+  background: ${magma.colors.neutral200};
   @media (min-width: 1025px) {
     display: grid;
     grid-template-columns: 240px auto;

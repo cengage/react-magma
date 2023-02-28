@@ -91,6 +91,10 @@ const Content = styled.div`
   }
 `;
 
+const ContentOutsideDocs = styled(Content)`
+  max-width: 1164px;
+`;
+
 const PageNavigation = styled.div`
   flex: 0 0 auto;
   @media (max-width: ${magma.breakpoints.large}px) {
@@ -286,7 +290,7 @@ export const PageContent = ({ children, componentName, type }) => {
               <div
                 style={{ display: 'flex', background: magma.colors.neutral100 }}
               >
-                <Content>{children}</Content>
+                <ContentOutsideDocs>{children}</ContentOutsideDocs>
                 <PageNavigation>
                   <SubPageTabs
                     pageData={getPageData()}

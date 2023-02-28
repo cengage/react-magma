@@ -9,19 +9,19 @@ const ContentSection = styled.section`
   grid-area: content;
 `;
 
-const StyledContainerTest = styled.div`
-  background: ${magma.colors.danger} !important;
-  // color: ${magma.colors.neutral700};
-  // display: flow-root;
-  // margin: 0 auto;
-  // padding: 0;
+const StyledContainerTest = styled(Container)`
+  background: ${magma.colors.neutral200} !important;
+  color: ${magma.colors.neutral700};
+  display: flow-root;
+  margin: 0 auto;
+  padding: 0;
   h1 {
     margin: 0;
   }
 `;
 
 const HeadingWrapper = styled.div`
-  background: ${magma.colors.danger600} !important;
+  background: ${magma.colors.neutral200};
   padding: 34px 0;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
@@ -48,10 +48,10 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main style={{background: 'pink'}}>
-        {/* component or main page */}
+      <main>
+        {/* component's have headings, or main page */}
         {heading ? (
-          <StyledContainerTest style={{background: 'green !important'}}>
+          <StyledContainerTest>
             <HeadingWrapper>
               <Heading level={1}>{heading}</Heading>
             </HeadingWrapper>
