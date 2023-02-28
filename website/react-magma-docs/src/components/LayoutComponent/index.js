@@ -9,16 +9,13 @@ const ContentSection = styled.section`
   grid-area: content;
 `;
 
-const StyledContainerTest = styled(Container)`
-  background: ${magma.colors.neutral200} !important;
-  color: ${magma.colors.neutral700};
-  display: flow-root;
-  margin: 0 auto;
-  padding: 0;
-  h1 {
-    margin: 0;
-  }
-`;
+// const StyledContainerTest = styled(Container)`
+//   background: ${magma.colors.neutral200} !important;
+//   padding: 0;
+//   h1 {
+//     margin: 0;
+//   }
+// `;
 
 const HeadingWrapper = styled.div`
   background: ${magma.colors.neutral200};
@@ -48,15 +45,15 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main>
-        {/* component's have headings, or main page */}
+      <main style={{ background: magma.colors.neutral200 }}>
+        {/* components have headings, or main page */}
         {heading ? (
-          <StyledContainerTest>
+          <>
             <HeadingWrapper>
               <Heading level={1}>{heading}</Heading>
             </HeadingWrapper>
             <>{children}</>
-          </StyledContainerTest>
+          </>
         ) : (
           <Container gutterWidth={0}>
             <ContentSection className="content" style={{ marginTop: '40px' }}>
