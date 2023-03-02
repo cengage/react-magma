@@ -49,7 +49,7 @@ export const LayoutComponent = props => {
         {/* components have headings, main page doesn't */}
         {heading ? (
           <>
-            <StyledHeadingContainer>
+            <StyledHeadingContainer style={{background: magma.colors.neutral200}}>
               <HeadingWrapper>
                 <Heading level={1}>{heading}</Heading>
               </HeadingWrapper>
