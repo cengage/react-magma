@@ -89,20 +89,20 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     if (hasHeadings) {
       return (
         <StyledNavTabWrapper>
-            {headings.map((page, index) => {
-              const id = convertTextToId(page);
-              return (
-                <StyledNavTab
-                  key={index}
-                  to={`#${id}`}
-                  isInverse={isInverse}
-                  isActive={activeTab === index}
-                  onClick={e => handleAnchorLinkClick(id, index, e)}
-                >
-                  {page}
-                </StyledNavTab>
-              );
-            })}
+          {headings.map((page, index) => {
+            const id = convertTextToId(page);
+            return (
+              <StyledNavTab
+                key={index}
+                to={`#${id}`}
+                isInverse={isInverse}
+                isActive={activeTab === index}
+                onClick={e => handleAnchorLinkClick(id, index, e)}
+              >
+                {page}
+              </StyledNavTab>
+            );
+          })}
         </StyledNavTabWrapper>
       );
     }

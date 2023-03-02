@@ -35,7 +35,7 @@ const StyledContainer = styled.div<{
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary600
-      : props.theme.colors.neutral100};
+      : 'none'};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
