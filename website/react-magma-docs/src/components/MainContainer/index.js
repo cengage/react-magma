@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
       'nav content';
   }
   @media (max-width: 1024px) {
-    display: hidden
+    display: hidden;
   }
 `;
 
@@ -45,11 +45,7 @@ export const MainContainer = ({ children }) => {
 
   return (
     <DarkModeContext.Provider value={value}>
-      <Container
-        gutterWidth={0}
-        isInverse={isDarkMode}
-        className={isDarkMode}
-      >
+      <Container gutterWidth={0} isInverse={isDarkMode} className={isDarkMode}>
         <GlobalStyles />
         <StyledSkipLink positionLeft={220} positionTop={3} variant="solid" />
         <StyledContainer>

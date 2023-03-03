@@ -10,7 +10,7 @@ const ContentSection = styled.section`
 `;
 
 const StyledHeadingContainer = styled(Container)`
-  background: ${magma.colors.neutral200} !important;
+  background: ${magma.colors.neutral200};
   padding: 0;
   h1 {
     margin: 0;
@@ -45,16 +45,12 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main style={{ background: magma.colors.neutral200 }}>
+      <main>
         {/* components have headings, main page doesn't */}
         {heading ? (
           <>
-            <StyledHeadingContainer
-              style={{ background: magma.colors.neutral200 }}
-            >
-              <div
-                style={{ background: magma.colors.neutral200, width: '100%' }}
-              >
+            <StyledHeadingContainer>
+              <div style={{ background: magma.colors.neutral200 }}>
                 <HeadingWrapper>
                   <Heading level={1}>{heading}</Heading>
                 </HeadingWrapper>
