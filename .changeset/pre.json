@@ -10,5 +10,7 @@
     "react-magma-docs": "5.0.0",
     "react-magma-landing": "1.1.1"
   },
-  "changesets": []
+  "changesets": [
+    "fix-toaststack"
+  ]
 }

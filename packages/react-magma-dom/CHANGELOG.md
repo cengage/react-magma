@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.1-next.0
+
+### Patch Changes
+
+- f487b936f: fix(alertbase): Update height for toasts in AlertBase
+
 ## 4.0.0
 
 ### Major Changes
