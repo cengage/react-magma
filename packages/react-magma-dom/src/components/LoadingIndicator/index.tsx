@@ -32,12 +32,16 @@ export interface LoadingIndicatorProps
    * @default 0
    */
   percentage?: number;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Type of loading indictor to display, can be progress bar or spinner
    * @default LoadingIndicatorType.spinner
    */
   type?: LoadingIndicatorType;
+  isInverse?: boolean;
 }
 
 export enum LoadingIndicatorType {

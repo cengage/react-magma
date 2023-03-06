@@ -52,6 +52,7 @@ export interface LineChartComponentProps {
   yAxis?: VictoryAxisProps;
 }
 
+// NOTE: These props are manually copied to line-chart.mdx
 export interface LineChartProps<T extends ChartDataOptions> {
   /**
    * Props passed to each component that makes up the line chart. See `victory` for accepted props.
@@ -325,7 +326,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
         if (focusedPointIndex !== undefined) {
           focusedPointIndex === pointRefArray.current.length - 1
-            ? (pointRefArray.current[0].current as HTMLButtonElement).focus()
+            ? (pointRefArray.current[0]?.current as HTMLButtonElement)?.focus()
             : (
                 pointRefArray.current[focusedPointIndex + 1]
                   .current as HTMLButtonElement

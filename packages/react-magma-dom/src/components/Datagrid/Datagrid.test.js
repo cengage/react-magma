@@ -583,6 +583,88 @@ describe('Datagrid', () => {
     });
   });
 
+  describe('selectable AND sortable', () => {
+    it('should allow for selectable rows', () => {
+      const { container } = render(
+        <Datagrid
+          columns={columns}
+          rows={rows}
+          isSelectable
+          isSortableBySelected
+        />
+      );
+
+      const selectableRowCheckbox = container
+        .querySelector('tbody')
+        .firstChild.querySelector('input');
+
+      expect(selectableRowCheckbox).toBeInTheDocument();
+    });
+
+    it('should call passed in onHeaderSelect function when header checkbox is clicked', () => {
+      const onHeaderSelect = jest.fn();
+      const { container } = render(
+        <Datagrid
+          columns={columns}
+          rows={rows}
+          isSelectable
+          isSortableBySelected
+          onHeaderSelect={onHeaderSelect}
+        />
+      );
+
+      const headerCheckbox = container
+        .querySelector('thead')
+        .firstChild.querySelector('input');
+
+      headerCheckbox.click();
+
+      expect(onHeaderSelect).toHaveBeenCalled();
+    });
+
+    it('should call passed in onRowSelect function with the row id when a row checkbox is clicked', () => {
+      const onRowSelect = jest.fn();
+      const { container } = render(
+        <Datagrid
+          columns={columns}
+          rows={rows}
+          isSelectable
+          isSortableBySelected
+          onRowSelect={onRowSelect}
+        />
+      );
+
+      const selectableRowCheckbox = container
+        .querySelector('tbody')
+        .firstChild.querySelector('input');
+
+      selectableRowCheckbox.click();
+
+      expect(onRowSelect).toHaveBeenCalledWith(rows[0].id, expect.any(Object));
+    });
+
+    it('should call handleRowSort when the sort button is clicked', () => {
+      const onSortBySelected = jest.fn();
+      const onSelectedRowsChange = jest.fn();
+      const { getByTestId } = render(
+        <Datagrid
+          columns={columns}
+          rows={[rows[0]]}
+          isSelectable
+          isSortableBySelected
+          selectedRows={[rows[0].id]}
+          onSelectedRowsChange={onSelectedRowsChange}
+          onSortBySelected={onSortBySelected}
+        />
+      );
+
+      const sortButton = getByTestId('-sort-button');
+      sortButton.click();
+
+      expect(onSortBySelected).toHaveBeenCalled();
+    });
+  });
+
   describe('pagination', () => {
     it('should render pagination controls', () => {
       const pagination = {
@@ -600,7 +682,7 @@ describe('Datagrid', () => {
       );
 
       expect(
-        getByText(pagination.rowsPerPage.toString(), { selector: 'div' })
+        getByText(pagination.rowsPerPage.toString(), { selector: 'option' })
       ).toBeInTheDocument();
       expect(
         getByText(
@@ -632,7 +714,7 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onRowsPerPageChange,
       };
-      const { getByText, getByLabelText } = render(
+      const { getByText, getByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -640,12 +722,10 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByText('Rows per page:', { selector: 'span' }));
-
-      fireEvent.click(getByText(pagination.rowsPerPageValues[1].toString()));
+      fireEvent.change(getByTestId('rowPerPageSelect'), { target: { value: 20 }});
 
       expect(onRowsPerPageChange).toBeCalledWith(
-        pagination.rowsPerPageValues[1]
+        pagination.rowsPerPageValues[1].toString()
       );
     });
 

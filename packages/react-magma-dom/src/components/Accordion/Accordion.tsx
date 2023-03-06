@@ -9,6 +9,7 @@ import {
   useAccordion,
 } from './useAccordion';
 import { ThemeInterface } from '../../theme/magma';
+import { transparentize } from 'polished';
 
 /**
  * @children required
@@ -16,6 +17,9 @@ import { ThemeInterface } from '../../theme/magma';
 interface BaseAccordionProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -25,7 +29,7 @@ interface BaseAccordionProps
 
 export interface AccordionMultipleProps extends BaseAccordionProps {
   /**
-   * Zero-based indices of item to expanded initially.  When isMulti is true this is an array of numbers.
+   * Zero-based indices of item to expanded initially. When isMulti is true this is an array of numbers.
    * @default []
    */
   defaultIndex?: number[];
@@ -43,7 +47,7 @@ export interface AccordionSingleProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Zero-based index of item to expanded initially.  When isMulti is a false this is a number.
+   * Zero-based index of item to expanded initially. When isMulti is false this is a number.
    * @default null
    */
   defaultIndex?: number;
@@ -95,11 +99,16 @@ export type AccordionProps =
 
 const StyledAccordion = styled.div<AccordionProps>`
   background: transparent;
-  border-bottom: 1px solid ${props => props.theme.colors.neutral300};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
+  font-family: ${props => props.theme.bodyFont};
 `;
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(

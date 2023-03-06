@@ -5,9 +5,11 @@ props:
   - ButtonGroupProps
 ---
 
-<DocsHeading type="api">ButtonGroup</DocsHeading>
+<DocsHeading to="/design/button-group/" type="api">
+  ButtonGroup
+</DocsHeading>
 
-A ButtonGroup is a layout component for <Link to="/api/button">Buttons</Link> and <Link to="/api/icon-button">Icon Buttons</Link>. It's a helper for aligning 2 or more buttons together with appropriate spacing.
+A ButtonGroup is a layout component for <Link to="/api/button">Buttons</Link>, <Link to="/api/icon-button">Icon Buttons</Link> and <Link to="/api/dropdown">Dropdown Buttons</Link>. It's a helper for aligning 2 or more buttons together with appropriate spacing.
 
 ## Default
 
@@ -67,7 +69,7 @@ The `apart` prop should only be used with the `horizontal` orientation.
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonGroupOrientation, ButtonGroupAlignment } from 'react-magma-dom';
+import { ButtonGroup, Button, ButtonGroupOrientation, ButtonGroupAlignment, Dropdown, DropdownButton, DropdownContent, DropdownMenuItem } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -76,7 +78,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.right}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -85,7 +92,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.center}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -94,7 +106,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.apart}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -103,7 +120,12 @@ export function Example() {
         orientation={ButtonGroupOrientation.horizontal}
         alignment={ButtonGroupAlignment.fill}
       >
-        <Button>1</Button>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
         <Button>2</Button>
         <Button>3</Button>
       </ButtonGroup>
@@ -123,11 +145,34 @@ import { ButtonGroup, Button, ButtonGroupOrientation, ButtonColor } from 'react-
 
 export function Example() {
   return (
-    <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace color={ButtonColor.secondary}>
-      <Button>1</Button>
-      <Button>2</Button>
-      <Button>3</Button>
-    </ButtonGroup>
+    <>
+      <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace color={ButtonColor.secondary}>
+        <Button>1</Button>
+        <Button>2</Button>
+        <Button>3</Button>
+      </ButtonGroup>
+      <br/><br/>
+      <ButtonGroup orientation={ButtonGroupOrientation.horizontal} noSpace>
+        <Dropdown>
+          <DropdownButton>1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>2</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>3</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
+    </>
   );
 }
 ```
@@ -138,11 +183,11 @@ The `color`, `variant` and `size` props can be used on the ButtonGroup to set th
 
 ```typescript
 import React from 'react';
-import { ButtonGroup, Button, ButtonColor, ButtonVariant, ButtonSize, magma } from 'react-magma-dom';
+import { ButtonGroup, Button, ButtonColor, ButtonVariant, ButtonSize, Container } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <div style={{background: magma.colors.primary600}}>
+    <Container isInverse style={{padding: '12px'}}>
       <ButtonGroup color={ButtonColor.primary} variant={ButtonVariant.solid} size={ButtonSize.large} isInverse>
         <Button>1</Button>
         <Button color={ButtonColor.danger}>2</Button>
@@ -150,7 +195,7 @@ export function Example() {
         <Button>4</Button>
         <Button variant={ButtonVariant.link}>5</Button>
       </ButtonGroup>
-    </div>
+    </Container>
   );
 }
 ```

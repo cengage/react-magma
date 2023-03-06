@@ -14,6 +14,7 @@ import {
 } from './components';
 import styled from '../../theme/styled';
 import { convertStyleValueToString } from '../../utils';
+import { Spinner } from '../Spinner';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
@@ -26,6 +27,7 @@ interface ItemsListProps<T> {
   itemToString: (item: T) => string;
   maxHeight?: number | string;
   menuStyle?: React.CSSProperties;
+  isLoading?: boolean;
 }
 
 const NoItemsMessage = styled.span<{
@@ -35,9 +37,16 @@ const NoItemsMessage = styled.span<{
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral400};
+  font-family: ${props => props.theme.bodyFont};
   display: block;
   padding-top: ${props => props.theme.spaceScale.spacing03};
   text-align: center;
+`;
+
+const LoadingWrapper = styled.span<{}>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export function ItemsList<T>(props: ItemsListProps<T>) {
@@ -46,6 +55,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     isOpen,
     isInverse,
     getMenuProps,
+    isLoading,
     items,
     itemToString,
     highlightedIndex,
@@ -63,6 +73,18 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   const { Item } = defaultComponents<T>({
     ...customComponents,
   });
+
+  const LoadingIndicator = () => {
+    return (
+      <LoadingWrapper>
+        <Spinner
+          testId="itemsList-loadingIndicator"
+          style={{ marginRight: theme.spaceScale.spacing02 }}
+        />{' '}
+        {i18n.combobox.loading}
+      </LoadingWrapper>
+    );
+  };
 
   return (
     <StyledCard
@@ -102,7 +124,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
         ) : (
           <StyledItem isInverse={isInverse} theme={theme} tabIndex={-1}>
             <NoItemsMessage theme={theme} isInverse={isInverse}>
-              {i18n.emptyItemsListText}
+              {isLoading ? <LoadingIndicator /> : i18n.emptyItemsListText}
             </NoItemsMessage>
           </StyledItem>
         )}

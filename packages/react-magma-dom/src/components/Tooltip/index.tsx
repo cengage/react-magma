@@ -38,8 +38,12 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;
   /**
    * Position the tooltip appears in relation to its trigger
+   * @default TooltipPosition.top
    */
   position?: TooltipPosition;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Style properties for the inner tooltip content
@@ -96,6 +100,7 @@ export const StyledTooltip = styled.div<{
       ? props.theme.tooltip.inverse.textColor
       : props.theme.tooltip.textColor};
   font-size: ${props => props.theme.tooltip.typeScale.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   letter-spacing: ${props => props.theme.tooltip.typeScale.letterSpacing};
   line-height: ${props => props.theme.tooltip.typeScale.lineHeight};
   font-weight: ${props => props.theme.tooltip.fontWeight};

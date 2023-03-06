@@ -39,6 +39,9 @@ export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   minSize?: number;
   onDeleteFile?: (file: FilePreview) => void;
   onRemoveFile?: (file: FilePreview) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   thumbnails: boolean;
 }
@@ -166,6 +169,7 @@ const formatError = (
 };
 
 export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
+  // eslint-disable-next-line complexity
   (props, ref) => {
     const {
       accept,

@@ -3,11 +3,12 @@ import { Card, CardBody } from '../Card';
 import { Checkbox } from '.';
 import { FormGroup } from '../FormGroup';
 import { magma } from '../../theme/magma';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Checkbox,
   title: 'Checkbox',
-};
+} as Meta;
 
 export const Default = () => {
   const [checked, updateChecked] = React.useState(false);

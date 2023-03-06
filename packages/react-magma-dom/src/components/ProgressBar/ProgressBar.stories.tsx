@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 import { ProgressBar, ProgressBarProps, ProgressBarColor } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
@@ -58,7 +57,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.primary} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

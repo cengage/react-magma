@@ -36,6 +36,7 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
     props.isInverse
       ? props.theme.colors.primary500
       : props.theme.colors.neutral100};
+  font-family: ${props => props.theme.bodyFont};
   text-align: center;
   user-select: none;
   vertical-align: top;
@@ -61,6 +62,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
 `;
 
 const HelperButton = styled.span<{ theme?: any }>`
+  margin: ${props => props.theme.spaceScale.spacing02};
   top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
   left: ${props => props.theme.spaceScale.spacing01};
@@ -72,6 +74,7 @@ const CloseButton = styled.span<{ theme?: any }>`
   right: ${props => props.theme.spaceScale.spacing01};
   top: ${props => props.theme.spaceScale.spacing01};
   z-index: 1;
+  margin: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (

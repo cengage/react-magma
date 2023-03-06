@@ -88,6 +88,31 @@ export function Example() {
 }
 ```
 
+## Additional Content
+
+Using the `additionalContent` prop will let you include right aligned children within Banners.
+
+```tsx
+import React from 'react';
+import { Banner, Badge, Button } from 'react-magma-dom';
+
+const AdditionalBadge = <Badge>Badge</Badge>;
+const AdditionalButton = <Button>Button</Button>;
+
+export function Example() {
+  return (
+    <>
+      <Banner additionalContent={AdditionalBadge}>
+        Banner with additional Badge.
+      </Banner>
+      <Banner additionalContent={AdditionalButton}>
+        Banner with additional Button.
+      </Banner>
+    </>
+  );
+}
+```
+
 ## Action Button
 
 A single button can be added to a Banner Alert to provide the user with an action to take. The `actionButtonText` prop is a string that sets the text of the button.
@@ -109,6 +134,54 @@ export function Example() {
     >
       Default banner
     </Banner>
+  );
+}
+```
+
+## Inverse
+
+```tsx
+import React from 'react';
+import { Banner, AlertVariant, Container } from 'react-magma-dom';
+
+export function Example() {
+  function handleActionButtonClick() {
+    alert('action button clicked!');
+  }
+  return (
+    <Container isInverse style={{ padding: '12px' }}>
+      <Banner
+        actionButtonText="Action"
+        actionButtonOnClick={handleActionButtonClick}
+        isInverse
+      >
+        Default (info) banner
+      </Banner>
+      <Banner
+        variant={AlertVariant.success}
+        actionButtonText="Action"
+        actionButtonOnClick={handleActionButtonClick}
+        isInverse
+      >
+        Success banner
+      </Banner>
+      <Banner
+        variant={AlertVariant.warning}
+        actionButtonText="Action"
+        actionButtonOnClick={handleActionButtonClick}
+        isInverse
+      >
+        Warning banner
+      </Banner>
+      <Banner
+        variant={AlertVariant.danger}
+        actionButtonText="Action"
+        actionButtonOnClick={handleActionButtonClick}
+        isInverse
+      >
+        Danger banner
+      </Banner>
+    </Container>
   );
 }
 ```

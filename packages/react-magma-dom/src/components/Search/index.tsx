@@ -32,9 +32,13 @@ export interface SearchProps extends InputBaseProps {
    */
   inputStyle?: React.CSSProperties;
   /**
-   * Clear contents of input by clicking a clear button
+   * Position within the component for the icon to appear
+   * @default InputIconPosition.right
    */
   iconPosition?: InputIconPosition;
+  /**
+   * Clear contents of input by clicking a clear button
+   */
   isClearable?: boolean;
   /**
    * If true, the component will show a loading animation instead of a search button
@@ -51,6 +55,9 @@ export interface SearchProps extends InputBaseProps {
    * Action that will fire when search icon button is clicked
    */
   onSearch: (term: string) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Value of the input element
@@ -68,6 +75,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
       labelText,
       placeholder,
       onSearch,
+      onClear,
       ...other
     } = props;
 
@@ -100,6 +108,10 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
       onSearch(value);
     }
 
+    function handleClear() {
+      onClear && typeof onClear === 'function' && onClear();
+    }
+
     return (
       <InputBase
         {...other}
@@ -111,6 +123,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
         isClearable={isClearable}
         isInverse={useIsInverse(props.isInverse)}
         onChange={handleChange}
+        onClear={handleClear}
         onIconClick={
           props.isPredictive ? null : isLoading ? null : handleSearch
         }

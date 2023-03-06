@@ -8,6 +8,8 @@ import { ListItem } from './ListItem';
 import { EmailIcon } from 'react-magma-icons';
 import { TypographyVisualStyle } from '../Typography';
 import { magma } from '../..';
+import { Card, CardBody } from '../Card';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: List,
@@ -36,11 +38,12 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = args => {
   return (
-    <>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
       <List {...args}>
         <ListItem>Sample text</ListItem>
         <ListItem>Sample text again</ListItem>
@@ -66,6 +69,7 @@ export const Default = args => {
           <ListItem description>This is a description</ListItem>
         </ListItem>
       </List>
-    </>
+      </CardBody>
+    </Card>
   );
 };

@@ -10,6 +10,7 @@ import {
   ButtonVariant,
   ButtonTextTransform,
 } from '../Button';
+import { transparentize } from 'polished';
 
 export enum ButtonGroupAlignment {
   left = 'left', // default
@@ -20,7 +21,7 @@ export enum ButtonGroupAlignment {
 }
 
 export enum ButtonGroupOrientation {
-  horizontal = 'horizontal',
+  horizontal = 'horizontal', // default
   vertical = 'vertical',
 }
 
@@ -30,7 +31,7 @@ export enum ButtonGroupOrientation {
 export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Alignment of the dropdown content
-   * @default `ButtonGroupAlignment.left`
+   * @default ButtonGroupAlignment.left
    */
   alignment?: ButtonGroupAlignment;
   /**
@@ -59,6 +60,9 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   noSpace?: boolean;
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Determines whether all the buttons in the group appear in all-caps
@@ -90,7 +94,7 @@ function buildButtonMargin(props) {
     return `0 ${props.theme.spaceScale.spacing02}`;
   }
   if (props.orientation === ButtonGroupOrientation.vertical) {
-    return `${props.theme.spaceScale.spacing02} 0`;
+    return `0 0 ${props.theme.spaceScale.spacing03}`;
   }
 
   return `0 ${props.theme.spaceScale.spacing02}`;
@@ -120,10 +124,16 @@ function buildNoSpaceBorderColor(props) {
     if (props.color === ButtonColor.secondary) {
       return props.theme.colors.tertiary;
     }
+    if (props.color === ButtonColor.subtle) {
+      return transparentize(0.8, props.theme.colors.neutral300);
+    }
     return props.theme.colors.neutral100;
   }
   if (props.color === ButtonColor.secondary) {
     return props.theme.colors.primary300;
+  }
+  if (props.color === ButtonColor.subtle) {
+    return props.theme.colors.neutral300;
   }
   return props.theme.colors.neutral100;
 }
@@ -140,6 +150,7 @@ const StyledButtonGroup = styled.div<{
   justify-content: ${props => buildButtonAlignment(props)};
   flex-direction: ${props =>
     props.orientation === ButtonGroupOrientation.vertical ? 'column' : 'row'};
+  flex-wrap: wrap;
 
   ${props =>
     props.orientation === ButtonGroupOrientation.vertical &&
@@ -147,18 +158,17 @@ const StyledButtonGroup = styled.div<{
       align-items: ${buildButtonAlignment(props)};
     `}
 
-  > button {
-    margin: ${props => buildButtonMargin(props)};
-    flex: ${props =>
-      props.alignment === ButtonGroupAlignment.fill &&
-      props.orientation === ButtonGroupOrientation.horizontal
-        ? '1'
-        : 'none'};
+  ${props =>
+    props.orientation === ButtonGroupOrientation.horizontal &&
+    css`
+      row-gap: ${props.theme.spaceScale.spacing03};
+    `}
 
+  > button, > div {
     ${props =>
       props.orientation === ButtonGroupOrientation.horizontal &&
       css`
-        &:first-of-type {
+        &:first-child {
           margin-left: 0;
         }
         &:last-child {
@@ -169,13 +179,30 @@ const StyledButtonGroup = styled.div<{
     ${props =>
       props.orientation === ButtonGroupOrientation.vertical &&
       css`
-        &:first-of-type {
+        &:first-child {
           margin-top: 0;
         }
         &:last-child {
           margin-bottom: 0;
         }
       `}
+  }
+
+  > div {
+    margin: ${props => buildButtonMargin(props)};
+    flex: ${props =>
+      props.alignment === ButtonGroupAlignment.fill &&
+      props.orientation === ButtonGroupOrientation.horizontal
+        ? '1'
+        : 'none'};
+    button {
+      // Split buttons
+      &:nth-child(2) {
+        width: 40px;
+      }
+      width: ${props =>
+        props.alignment === ButtonGroupAlignment.fill ? '100%' : ''};
+    }
 
     ${props =>
       props.noSpace &&
@@ -183,24 +210,78 @@ const StyledButtonGroup = styled.div<{
       props.variant == ButtonVariant.solid &&
       props.alignment !== ButtonGroupAlignment.apart &&
       css`
-        &:first-of-type:not(:only-of-type) {
+        &:first-child:not(:only-child) {
+          button {
+            border-radius: ${props.theme.borderRadius} 0 0
+              ${props.theme.borderRadius};
+            border-right: 0;
+          }
+        }
+        &:nth-child(2) {
+          button {
+            border-left: 1px solid ${buildNoSpaceBorderColor(props)};
+          }
+        }
+        &:not(:first-child) {
+          button {
+            border-radius: 0;
+            border-right: ${
+              props.color === ButtonColor.secondary ||
+              props.color === ButtonColor.subtle
+                ? '0'
+                : `1px solid ${props.theme.colors.neutral100}`
+            };
+          }
+        }
+        &:not(:first-child)&:not(:last-child) {
+          button {
+            border-right: 0;
+          }
+        }
+        &:last-child:not(:only-child) {
+          button {
+            border-radius: 0 ${props.theme.borderRadius}
+              ${props.theme.borderRadius} 0;
+            border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+          }
+        }
+      }
+    `};
+  }
+
+  > button {
+    margin: ${props => buildButtonMargin(props)};
+    flex: ${props =>
+      props.alignment === ButtonGroupAlignment.fill &&
+      props.orientation === ButtonGroupOrientation.horizontal
+        ? '1'
+        : 'none'};
+
+    ${props =>
+      props.noSpace &&
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      props.variant == ButtonVariant.solid &&
+      props.alignment !== ButtonGroupAlignment.apart &&
+      css`
+        &:first-child:not(:only-child) {
           border-radius: ${props.theme.borderRadius} 0 0
             ${props.theme.borderRadius};
           border-right: 0;
         }
-        &:nth-of-type(2) {
+        &:nth-child(2) {
           border-left: 1px solid ${buildNoSpaceBorderColor(props)};
         }
-        &:not(:first-of-type) {
+        &:not(:first-child) {
           border-radius: 0;
-          border-right: ${props.color === ButtonColor.secondary
+          border-right: ${props.color === ButtonColor.secondary ||
+          props.color === ButtonColor.subtle
             ? '0'
             : `1px solid ${props.theme.colors.neutral100}`};
         }
-        &:not(:first-of-type)&:not(:last-child) {
+        &:not(:first-child)&:not(:last-child) {
           border-right: 0;
         }
-        &:last-child:not(:only-of-type) {
+        &:last-child:not(:only-child) {
           border-radius: 0 ${props.theme.borderRadius}
             ${props.theme.borderRadius} 0;
           border-right: 1px solid ${buildNoSpaceBorderColor(props)};
@@ -222,6 +303,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       testId,
       textTransform,
       variant,
+      ...rest
     } = props;
     const context = { variant, color, size, textTransform, isInverse };
     const theme = React.useContext(ThemeContext);
@@ -237,6 +319,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
         theme={theme}
         ref={ref}
         data-testid={testId}
+        {...rest}
       >
         <ButtonGroupContext.Provider value={context}>
           {children}

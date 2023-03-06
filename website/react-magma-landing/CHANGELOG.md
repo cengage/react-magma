@@ -1,5 +1,30 @@
 # Change Log
 
+## 1.1.1
+
+### Patch Changes
+
+- 754c389b: Update anchor stylings.
+- e4c07d07: Update 404 / error page.
+
+## 1.1.1-next.1
+
+### Patch Changes
+
+- e4c07d07c: Update 404 / error page.
+
+## 1.1.1-next.0
+
+### Patch Changes
+
+- 754c389ba: Update anchor stylings.
+
+## 1.1.0
+
+### Minor Changes
+
+- 41c9d8b17: update react magma logo and colors
+
 ## 1.1.0-next.0
 
 ### Minor Changes

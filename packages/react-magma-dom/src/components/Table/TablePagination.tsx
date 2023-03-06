@@ -11,22 +11,17 @@ import { useIsInverse } from '../../inverse';
 import { usePagination } from '../Pagination/usePagination';
 import { XOR } from '../../utils';
 import { useControlled } from '../../hooks/useControlled';
-import {
-  Dropdown,
-  DropdownAlignment,
-  DropdownDropDirection,
-  DropdownButton,
-  DropdownContent,
-  DropdownMenuItem,
-} from '../Dropdown';
 import { transparentize } from 'polished';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+import { NativeSelect } from '../NativeSelect';
+import { Dropdown, DropdownAlignment, DropdownButton, DropdownContent, DropdownDropDirection, DropdownMenuItem } from '../Dropdown';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Position of the dropdown content
-   * @default `DropdownDropDirection.up`
+   * @default DropdownDropDirection.up
+   * @deprecated true
    */
   dropdownDropDirection?: DropdownDropDirection;
   /**
@@ -46,6 +41,9 @@ export interface BaseTablePaginationProps
    * Values added to the rows per page select
    */
   rowsPerPageValues?: number[];
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -99,26 +97,33 @@ const StyledContainer = styled.div<{
 }>`
   align-items: center;
   background: ${props =>
-    props.isInverse ? transparentize(0.9, props.theme.colors.neutral100) : props.theme.colors.neutral200};
+    props.isInverse
+      ? transparentize(0.9, props.theme.colors.neutral100)
+      : props.theme.colors.neutral200};
   border-top: 1px solid
     ${props =>
-      props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+    props.isInverse
+      ? transparentize(0.6, props.theme.colors.neutral100)
+      : props.theme.colors.neutral300};
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
 `;
 
-const PageCount = styled(Label)<{ theme: ThemeInterface }>`
+const PageCount = styled(Label) <{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
 `;
 
-const RowsPerPageLabel = styled.span`
+const RowsPerPageLabel = styled.span<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
   font-weight: 600;
+  font-family: ${props => props.theme.bodyFont};
   line-height: 20px;
   margin: 0 16px 0 0;
   text-align: left;
+  color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
 `;
 
 export const TablePagination = React.forwardRef<
@@ -126,10 +131,10 @@ export const TablePagination = React.forwardRef<
   TablePaginationProps
 >((props, ref) => {
   const {
+    dropdownDropDirection,
     testId,
     defaultPage,
     defaultRowsPerPage = 10,
-    dropdownDropDirection = DropdownDropDirection.up,
     itemCount,
     onPageChange,
     onRowsPerPageChange,
@@ -169,7 +174,7 @@ export const TablePagination = React.forwardRef<
     value,
   }));
 
-  function handleRowsPerPageChange(value: number) {
+  function handleRowsPerPageChange(event) {
     if (!pageProp) {
       setPageState(1);
 
@@ -179,13 +184,15 @@ export const TablePagination = React.forwardRef<
     }
 
     if (!rowsPerPageProp) {
-      setRowsPerPageState(value);
+      setRowsPerPageState(event.target.value);
     }
 
     onRowsPerPageChange &&
       typeof onRowsPerPageChange === 'function' &&
-      onRowsPerPageChange(value);
-    setActiveIndex(rowsPerPage);
+      onRowsPerPageChange(event.target.value);
+      if(dropdownDropDirection) {
+        setActiveIndex(rowsPerPage);
+      }
   }
 
   const previousButton = pageButtons[0];
@@ -199,39 +206,59 @@ export const TablePagination = React.forwardRef<
       ref={ref}
       theme={theme}
     >
-      <RowsPerPageLabel>
+      <RowsPerPageLabel isInverse={isInverse} theme={theme}>
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
-      <Dropdown
-        alignment={DropdownAlignment.end}
-        dropDirection={dropdownDropDirection}
-        activeIndex={activeIndex}
-      >
-        <DropdownButton
-          aria-label={i18n.table.pagination.rowsPerPageLabel}
-          color={ButtonColor.secondary}
-          style={{ minWidth: 0 }}
-          testId="rowPerPageDropdownButton"
+      {dropdownDropDirection ? 
+        <Dropdown
+          alignment={DropdownAlignment.end}
+          dropDirection={dropdownDropDirection}
+          activeIndex={activeIndex}
+          isInverse={isInverse}
         >
-          {rowsPerPageItems.find(item => item.value === rowsPerPage).label}
-        </DropdownButton>
-        <DropdownContent>
+          <DropdownButton
+            aria-label={i18n.table.pagination.rowsPerPageLabel}
+            color={ButtonColor.secondary}
+            style={{ minWidth: 0 }}
+            testId="rowPerPageDropdownButton"
+          >
+            {rowsPerPageItems.find(item => item.value === rowsPerPage).label}
+          </DropdownButton>
+          <DropdownContent>
+            {rowsPerPageItems.map((row, index) => (
+              <DropdownMenuItem
+                key={index}
+                onClick={handleRowsPerPageChange}
+                value={row.value}
+              >
+                {row.label}
+              </DropdownMenuItem>
+            ))}
+          </DropdownContent>
+        </Dropdown> : 
+        <NativeSelect
+          onChange={handleRowsPerPageChange}
+          aria-label={i18n.table.pagination.rowsPerPageLabel}
+          style={{minWidth: 80}}
+          testId="rowPerPageSelect" 
+          fieldId={''}
+        >
           {rowsPerPageItems.map((row, index) => (
-            <DropdownMenuItem
+            <option
               key={index}
-              onClick={handleRowsPerPageChange}
               value={row.value}
             >
               {row.label}
-            </DropdownMenuItem>
+            </option>
           ))}
-        </DropdownContent>
-      </Dropdown>
+        </NativeSelect> 
+      }
+      
 
       <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
-      
+
       <ButtonGroup alignment={ButtonGroupAlignment.center}>
         <IconButton
           aria-label={i18n.table.pagination.previousAriaLabel}

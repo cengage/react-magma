@@ -1,0 +1,100 @@
+---
+pageTitle: CharacterCounter API
+title: Character Counter
+props:
+  - CharacterCounterProps
+---
+
+<DocsHeading to="/design/character-counter/" type="api">
+  Character Counter
+</DocsHeading>
+
+A numeric counter that is used by <Link to="/api/input">Input</Link> and <Link to="/api/textarea">Textarea</Link> to help users know how much text they can enter when there is a limit on the number of characters.
+
+## Basic Usage
+
+The Character Counter is called when the prop of `maxLength` is set within an <Link to="/api/input">Input</Link> or a <Link to="/api/textarea">Textarea</Link>.
+
+As the user types, a counter is displayed below the Input or Textarea counting down to the allowable length. Once this is exceeded, an error message shows in place counting the overrage of characters.
+
+```typescript
+import React from 'react';
+import { Input } from 'react-magma-dom';
+
+export function Example() {
+  return <Input maxLength={4} labelText="Default Character Counter" />;
+}
+```
+
+## Initial Value
+
+When an intial value is needed, the `value` prop may be used. The Character Counter then shows the remainder against the value accordingly.
+
+```typescript
+import React from 'react';
+import { Input } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Input
+      maxLength={4}
+      value="hi"
+      labelText="Inital Value Character Counter"
+    />
+  );
+}
+```
+
+## Inverse
+
+`isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
+
+```typescript
+import React from 'react';
+import { Container, Input } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse style={{ padding: '12px' }}>
+      <Input isInverse maxLength={4} labelText="Character Counter" />
+    </Container>
+  );
+}
+```
+
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { Input, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        characterCounter: {
+          charactersAllowed: 'allowed in this custom string',
+          charactersLeft: 'left in this custom string',
+          characterLeft: 'left in this custom string',
+          characterOver: 'over the limit in this custom string',
+          charactersOver: 'over the limit in this custom string',
+        },
+      }}
+    >
+      <Input maxLength={4} labelText="Character Counter" />
+    </I18nContext.Provider>
+  );
+}
+```
+
+### Character Counter Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<CharacterCounterProps />

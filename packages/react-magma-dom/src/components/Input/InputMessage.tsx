@@ -10,14 +10,20 @@ export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
   hasError?: boolean;
   id?: string;
+  /**
+   * @default InputSize.medium
+   */
   inputSize?: InputSize;
   isInverse?: boolean;
+  maxLength?: number;
 }
 
 function BuildMessageColor(props) {
   const { isInverse, hasError, theme } = props;
   if (isInverse) {
-    return hasError ? theme.colors.danger200 : transparentize(0.3, props.theme.colors.neutral100);
+    return hasError
+      ? theme.colors.danger200
+      : transparentize(0.3, props.theme.colors.neutral100);
   }
   return hasError ? theme.colors.danger : theme.colors.neutral500;
 }
@@ -28,6 +34,7 @@ const Message = styled.div<InputMessageProps>`
   color: ${props => BuildMessageColor(props)};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-top: ${props =>
@@ -48,12 +55,21 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   id,
   isInverse,
   hasError,
+  maxLength,
   ...other
 }: InputMessageProps) => {
   const theme = React.useContext(ThemeContext);
 
+  //Conditional wrapper based on maxLength, allows Character Counter to render without the Announce component for accessibility purposes.
+  function AnnounceWrapper(props) {
+    if (maxLength) {
+      return props.children;
+    }
+    return <Announce>{props.children}</Announce>;
+  }
+
   return (
-    <Announce>
+    <AnnounceWrapper>
       <Message
         {...other}
         data-testid="inputMessage"
@@ -69,6 +85,6 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
         )}
         <div>{children}</div>
       </Message>
-    </Announce>
+    </AnnounceWrapper>
   );
 };

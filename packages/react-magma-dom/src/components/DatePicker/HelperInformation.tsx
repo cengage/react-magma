@@ -85,6 +85,11 @@ const StyledContent = styled.div<{
   }
 `;
 
+const StyledDescription = styled.p`
+  font-family: ${props => props.theme.bodyFont};
+  margin: 0;
+`;
+
 export const HelperInformation: React.FunctionComponent<
   HelperInformationProps
 > = (props: HelperInformationProps) => {
@@ -112,7 +117,7 @@ export const HelperInformation: React.FunctionComponent<
           icon={<CloseIcon />}
           isInverse={isInverse}
           size={ButtonSize.medium}
-          style={{ left: '16px' }}
+          style={{ left: '16px', margin: '4px' }}
           type={ButtonType.button}
           onClick={props.onClose}
           variant={ButtonVariant.link}
@@ -136,7 +141,9 @@ export const HelperInformation: React.FunctionComponent<
             >
               ↵
             </KeyboardShortcutButtonWrapper>
-            <div>{i18n.datePicker.helpModal.enter.explanation}</div>
+            <StyledDescription theme={theme}>
+              {i18n.datePicker.helpModal.enter.explanation}
+            </StyledDescription>
           </Item>
           <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
@@ -149,9 +156,9 @@ export const HelperInformation: React.FunctionComponent<
             >
               ←/→
             </KeyboardShortcutButtonWrapper>
-            <div>
+            <StyledDescription theme={theme}>
               {i18n.datePicker.helpModal.rightAndLeftArrowKeys.explanation}
-            </div>
+            </StyledDescription>
           </Item>
           <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
@@ -164,9 +171,9 @@ export const HelperInformation: React.FunctionComponent<
             >
               ↑/↓
             </KeyboardShortcutButtonWrapper>
-            <div>
+            <StyledDescription theme={theme}>
               {i18n.datePicker.helpModal.upAndDownArrowKeys.explanation}
-            </div>
+            </StyledDescription>
           </Item>
           <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
@@ -179,9 +186,9 @@ export const HelperInformation: React.FunctionComponent<
             >
               {i18n.datePicker.helpModal.pageUpAndPageDownKeys.displayValue}
             </KeyboardShortcutButtonWrapper>
-            <div>
+            <StyledDescription theme={theme}>
               {i18n.datePicker.helpModal.pageUpAndPageDownKeys.explanation}
-            </div>
+            </StyledDescription>
           </Item>
           <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
@@ -192,7 +199,9 @@ export const HelperInformation: React.FunctionComponent<
             >
               {i18n.datePicker.helpModal.homeAndEndKeys.displayValue}
             </KeyboardShortcutButtonWrapper>
-            <div>{i18n.datePicker.helpModal.homeAndEndKeys.explanation}</div>
+            <StyledDescription theme={theme}>
+              {i18n.datePicker.helpModal.homeAndEndKeys.explanation}
+            </StyledDescription>
           </Item>
           <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
@@ -203,7 +212,9 @@ export const HelperInformation: React.FunctionComponent<
             >
               {i18n.datePicker.helpModal.escape.displayValue}
             </KeyboardShortcutButtonWrapper>
-            <div>{i18n.datePicker.helpModal.escape.explanation}</div>
+            <StyledDescription theme={theme}>
+              {i18n.datePicker.helpModal.escape.explanation}
+            </StyledDescription>
           </Item>
           <Item theme={theme}>
             <KeyboardShortcutButtonWrapper
@@ -214,7 +225,9 @@ export const HelperInformation: React.FunctionComponent<
             >
               ?
             </KeyboardShortcutButtonWrapper>
-            <div>{i18n.datePicker.helpModal.questionMark.explanation}</div>
+            <StyledDescription theme={theme}>
+              {i18n.datePicker.helpModal.questionMark.explanation}
+            </StyledDescription>
           </Item>
         </List>
       </StyledContent>

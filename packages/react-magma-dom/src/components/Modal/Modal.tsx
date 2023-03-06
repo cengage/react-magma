@@ -87,6 +87,9 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default ModalSize.medium
    */
   size?: ModalSize;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -326,7 +329,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             <Global
               styles={css`
                 html {
-                  overflow: ${isOpen} ? hidden : auto;
+                  overflow: ${isOpen ? 'hidden' : 'auto'};
                 }
               `}
             />

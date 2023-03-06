@@ -9,6 +9,9 @@ import { transparentize } from 'polished';
  */
 export interface DropdownHeaderProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -20,6 +23,7 @@ const StyledDiv = styled.div<{ isInverse?: boolean }>`
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   font-weight: ${props =>
     props.theme.typographyVisualStyles.heading2XSmall.fontWeight};
+  font-family: ${props => props.theme.bodyFont};
   letter-spacing: ${props => props.theme.typeScale.size01.letterSpacing};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};
   margin: 0;

@@ -36,6 +36,7 @@ export enum AlertVariant {
 }
 
 export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+  additionalContent?: React.ReactNode;
   closeAriaLabel?: string;
   forceDismiss?: () => void;
   hasTimerRing?: boolean;
@@ -47,6 +48,9 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   isPaused?: boolean;
   isToast?: boolean;
   onDismiss?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   toastDuration?: number;
   variant?: AlertVariant;
@@ -120,6 +124,47 @@ export function buildAlertColor(props) {
   }
 }
 
+export function buildLinkColor(props) {
+  if (props.isInverse) {
+    switch (props.variant) {
+      case 'success':
+        return props.theme.colors.success200;
+      case 'warning':
+        return props.theme.colors.warning200;
+      case 'danger':
+        return props.theme.colors.danger200;
+      default:
+        return props.theme.colors.info200;
+    }
+  }
+  switch (props.variant) {
+    case 'success':
+      return props.theme.colors.success700;
+    case 'warning':
+      return props.theme.colors.warning700;
+    case 'danger':
+      return props.theme.colors.danger700;
+    default:
+      return props.theme.colors.info700;
+  }
+}
+
+export function buildLinkHoverColor(props) {
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+  switch (props.variant) {
+    case 'success':
+      return props.theme.colors.success;
+    case 'warning':
+      return props.theme.colors.warning;
+    case 'danger':
+      return props.theme.colors.danger;
+    default:
+      return props.theme.colors.info;
+  }
+}
+
 const StyledAlert = styled.div<AlertBaseProps>`
   align-items: stretch;
   animation: ${props =>
@@ -129,6 +174,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
   display: flex;
   flex-direction: column;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   margin-bottom: ${props => props.theme.spaceScale.spacing06};
   max-width: 100%;
@@ -201,9 +247,15 @@ const StyledAlert = styled.div<AlertBaseProps>`
   }
 
   a {
-    color: inherit;
-    font-weight: 600;
+    color: ${props => buildLinkColor(props)};
+    font-weight: 400;
     text-decoration: underline;
+    &:not([disabled]) {
+      &:focus,
+      &:hover {
+        color: ${props => buildLinkHoverColor(props)};
+      }
+    }
   }
 `;
 
@@ -225,14 +277,30 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
     `}
 `;
 
-const AlertContents = styled.div`
+const AlertContents = styled.div<{
+  additionalContent?: React.ReactNode;
+  isDismissible?: boolean;
+}>`
+  align-items: ${props => (props.additionalContent ? 'center' : '')};
   align-self: center;
   flex-grow: 1;
+  font-family: ${props => props.theme.bodyFont};
   padding: ${props => props.theme.spaceScale.spacing04} 0;
-
+  display: ${props => (props.additionalContent ? 'flex' : '')};
+  margin-right: ${props =>
+    props.additionalContent && !props.isDismissible
+      ? props.theme.spaceScale.spacing03
+      : ''};
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 0;
   }
+`;
+
+export const AdditionalContentWrapper = styled.div`
+  flex: 1 0 auto;
+  justify-content: flex-end;
+  display: flex;
+  margin-left: ${props => props.theme.spaceScale.spacing05};
 `;
 
 const IconWrapperStyles = css`
@@ -264,6 +332,8 @@ const ProgressRingWrapper = styled.div`
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
   ${IconWrapperStyles}
+  margin-left: ${props =>
+    props.additionalContent ? props.theme.spaceScale.spacing03 : ''};
 `;
 
 const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
@@ -321,6 +391,7 @@ function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
 export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
   (props, ref) => {
     const {
+      additionalContent,
       children,
       closeAriaLabel,
       forceDismiss,
@@ -366,6 +437,9 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const i18n = React.useContext(I18nContext);
 
     function progressRingColor() {
+      if (isInverse) {
+        return theme.colors.neutral100;
+      }
       switch (props.variant) {
         case 'success':
           return theme.colors.success500;
@@ -391,11 +465,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
         theme={theme}
         variant={variant}
       >
-        <InverseContext.Provider
-          value={{
-            isInverse: variant !== AlertVariant.warning,
-          }}
-        >
+        <InverseContext.Provider value={{ isInverse }}>
           <StyledAlertInner
             isInverse={isInverse}
             isToast={isToast}
@@ -403,7 +473,18 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
             variant={variant}
           >
             {renderIcon(variant, isToast, theme)}
-            <AlertContents theme={theme}>{children}</AlertContents>
+            <AlertContents
+              additionalContent={additionalContent}
+              isDismissible={isDismissible}
+              theme={theme}
+            >
+              <span>{children}</span>
+              {additionalContent && (
+                <AdditionalContentWrapper theme={theme}>
+                  {additionalContent}
+                </AdditionalContentWrapper>
+              )}
+            </AlertContents>
             {isDismissible && (
               <DismissibleIconWrapper
                 isInverse={isInverse}

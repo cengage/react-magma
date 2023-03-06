@@ -45,7 +45,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   headingVisualStyle?: TypographyVisualStyle;
   isInverse?: boolean;
   /**
-   * Handler for form submission
+   * @internal
    */
   testId?: string;
 }
@@ -59,6 +59,7 @@ const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
+  font-family: ${props => props.theme.bodyFont};
 `;
 
 const FormActions = styled.div`

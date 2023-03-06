@@ -417,7 +417,7 @@ const infoColors = {
 };
 
 const dangerColors = {
-  danger100: '#FCEBEA',
+  danger100: '#FDEFEE',
   danger200: '#FAAEB0',
   danger300: '#E8716D',
   danger400: '#E24943',

@@ -1,0 +1,305 @@
+---
+pageTitle: Toggle ButtonGroup API
+title: Toggle ButtonGroup
+props:
+  - ToggleButtonGroupProps
+---
+
+<DocsHeading type="api">ToggleButtonGroup</DocsHeading>
+
+The Toggle Button Group is a container for multiple Toggle Buttons and enables controlled behaviors throughout the grouping.
+
+## Basic Usage
+
+The ToggleButtonGroup enables styling and selection states across a group of ToggleButtons.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  FormatAlignCenterIcon,
+  FormatAlignJustifyIcon,
+  FormatAlignLeftIcon,
+  FormatAlignRightIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup>
+      <ToggleButton
+        aria-label="Left align"
+        icon={<FormatAlignLeftIcon />}
+        value="left"
+      />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+        value="center"
+      />
+      <ToggleButton
+        aria-label="Right align"
+        icon={<FormatAlignRightIcon />}
+        value="right"
+      />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+        value="justify"
+      />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Defined Selection
+
+Using the same `value` between `ToggleButtonGroup` and `ToggleButton` allows a user to define preselected buttons.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  FormatAlignCenterIcon,
+  FormatAlignJustifyIcon,
+  FormatAlignLeftIcon,
+  FormatAlignRightIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup value="center">
+      <ToggleButton
+        aria-label="Left align"
+        icon={<FormatAlignLeftIcon />}
+        value="left"
+      />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+        value="center"
+      />
+      <ToggleButton
+        aria-label="Right align"
+        icon={<FormatAlignRightIcon />}
+        value="right"
+      />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+        value="justify"
+      />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Exclusive Selection
+
+When `exclusive` is enabled, it ensures a radio style ToggleButtonGroup has at least one selected state.
+
+```typescript
+import React from 'react';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  FormatAlignLeftIcon,
+  FormatAlignCenterIcon,
+  FormatAlignRightIcon,
+  FormatAlignJustifyIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup noSpace exclusive>
+      <ToggleButton
+        aria-label="Left align"
+        icon={<FormatAlignLeftIcon />}
+        value="left"
+      />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+        value="center"
+      />
+      <ToggleButton
+        aria-label="Right align"
+        icon={<FormatAlignRightIcon />}
+        value="right"
+      />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+        value="justify"
+      />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Enforced Selection
+
+The `enforced` prop requires that at least one button be selected (after first selection).
+
+The `enforced` prop in conjunction with `exclusive` allows just one toggled button across the group like a radio.
+
+```typescript
+import React from 'react';
+import {
+  ButtonSize,
+  ToggleButton,
+  ToggleButtonGroup,
+  Spacer,
+} from 'react-magma-dom';
+import {
+  FormatAlignLeftIcon,
+  FormatAlignCenterIcon,
+  FormatAlignRightIcon,
+  FormatAlignJustifyIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <ToggleButtonGroup noSpace enforced>
+        <ToggleButton
+          aria-label="Left align"
+          icon={<FormatAlignLeftIcon />}
+          value="left"
+        />
+        <ToggleButton
+          aria-label="Center align"
+          icon={<FormatAlignCenterIcon />}
+          value="center"
+        />
+        <ToggleButton
+          aria-label="Right align"
+          icon={<FormatAlignRightIcon />}
+          value="right"
+        />
+        <ToggleButton
+          aria-label="Justify align"
+          icon={<FormatAlignJustifyIcon />}
+          value="justify"
+        />
+      </ToggleButtonGroup>
+      <Spacer size="12" />
+      <ToggleButtonGroup noSpace enforced exclusive>
+        <ToggleButton
+          aria-label="Left align"
+          icon={<FormatAlignLeftIcon />}
+          value="left"
+        />
+        <ToggleButton
+          aria-label="Center align"
+          icon={<FormatAlignCenterIcon />}
+          value="center"
+        />
+        <ToggleButton
+          aria-label="Right align"
+          icon={<FormatAlignRightIcon />}
+          value="right"
+        />
+        <ToggleButton
+          aria-label="Justify align"
+          icon={<FormatAlignJustifyIcon />}
+          value="justify"
+        />
+      </ToggleButtonGroup>
+    </>
+  );
+}
+```
+
+## No Space
+
+Removes margins and border radius on each button then applies the border-radius around the container.
+
+```typescript
+import React from 'react';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import {
+  FormatAlignCenterIcon,
+  FormatAlignJustifyIcon,
+  FormatAlignLeftIcon,
+  FormatAlignRightIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup noSpace>
+      <ToggleButton
+        aria-label="Left align"
+        icon={<FormatAlignLeftIcon />}
+        value="left"
+      />
+      <ToggleButton
+        aria-label="Center align"
+        icon={<FormatAlignCenterIcon />}
+        value="center"
+      />
+      <ToggleButton
+        aria-label="Right align"
+        icon={<FormatAlignRightIcon />}
+        value="right"
+      />
+      <ToggleButton
+        aria-label="Justify align"
+        icon={<FormatAlignJustifyIcon />}
+        value="justify"
+      />
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Size
+
+Three sizes are configurable with the `ButtonSize` prop between `small`, `medium` (default), and `large` across the group.
+
+```typescript
+import React from 'react';
+import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup size={ButtonSize.small}>
+      <ToggleButton value="1">Toggle 1</ToggleButton>
+      <ToggleButton value="2">Toggle 2</ToggleButton>
+      <ToggleButton value="3" size={ButtonSize.large}>
+        Toggle 3
+      </ToggleButton>
+    </ToggleButtonGroup>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import {
+  ButtonSize,
+  Container,
+  ToggleButton,
+  ToggleButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse style={{ padding: '12px' }}>
+      <ToggleButtonGroup isInverse>
+        <ToggleButton value="1">Toggle 1</ToggleButton>
+        <ToggleButton value="2">Toggle 2</ToggleButton>
+        <ToggleButton value="3">Toggle 3</ToggleButton>
+      </ToggleButtonGroup>
+    </Container>
+  );
+}
+```
+
+## ToggleButtonGroup Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<ToggleButtonGroupProps />

@@ -1,20 +1,85 @@
 import React from 'react';
 import { Banner, BannerProps } from '.';
 import { AlertVariant } from '../AlertBase';
+import { Badge } from '../Badge';
 import { Card, CardBody } from '../Card';
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Hyperlink } from '../Hyperlink';
+
+function handleActionButtonClick() {
+  alert('action button clicked!');
+}
+
+const AdditionalBadge = (
+  <>
+    <Badge>Badgery</Badge>
+    <Badge>More Badgery</Badge>
+  </>
+);
 
 const Template: Story<BannerProps> = args => (
   <>
-    <Banner {...args}>Default (info) banner</Banner>
+    <Banner {...args} additionalContent={AdditionalBadge}>
+      Default (info) banner with&nbsp;
+      <Hyperlink to="#" isInverse={args.isInverse}>
+        hyperlink
+      </Hyperlink>
+    </Banner>
     <Banner {...args} variant={AlertVariant.success}>
-      Default (success) banner
+      Default (success) banner with&nbsp;
+      <Hyperlink to="#" isInverse={args.isInverse}>
+        hyperlink
+      </Hyperlink>
     </Banner>
     <Banner {...args} variant={AlertVariant.warning}>
-      Default (waning) banner
+      Default (warning) banner with&nbsp;
+      <Hyperlink to="#" isInverse={args.isInverse}>
+        hyperlink
+      </Hyperlink>
     </Banner>
     <Banner {...args} variant={AlertVariant.danger}>
-      Default (danger) banner
+      Default (danger) banner with&nbsp;
+      <Hyperlink to="#" isInverse={args.isInverse}>
+        hyperlink
+      </Hyperlink>
+    </Banner>
+    <br />
+    <br />
+    <Banner
+      isDismissible
+      actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick}
+      {...args}
+    >
+      Dismissible (info) banner
+    </Banner>
+    <Banner
+      isDismissible
+      actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick}
+      variant={AlertVariant.success}
+      {...args}
+    >
+      Dismissible (success) banner
+    </Banner>
+    <Banner
+      isDismissible
+      actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick}
+      variant={AlertVariant.warning}
+      {...args}
+    >
+      Dismissible (warning) banner
+    </Banner>
+    <Banner
+      additionalContent={AdditionalBadge}
+      isDismissible
+      actionButtonText="Action"
+      actionButtonOnClick={handleActionButtonClick}
+      variant={AlertVariant.danger}
+      {...args}
+    >
+      Dismissible (danger) banner
     </Banner>
   </>
 );
@@ -22,7 +87,7 @@ const Template: Story<BannerProps> = args => (
 export default {
   component: Banner,
   title: 'Banner',
-};
+} as Meta;
 
 export const Default = Template.bind({});
 Default.args = {};

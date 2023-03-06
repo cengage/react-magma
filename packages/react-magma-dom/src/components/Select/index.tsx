@@ -69,6 +69,10 @@ export interface InternalSelectProps<T> {
    */
   labelPosition?: LabelPosition;
   /**
+   * If the labelPosition value is 'left' then Input labels have a specified width in percentage, otherwise no width is set.
+   */
+  labelWidth?: number;
+  /**
    * Style properties for the label
    */
   labelStyle?: React.CSSProperties;
@@ -88,6 +92,9 @@ export interface InternalSelectProps<T> {
    * Text for select trigger button or combobox input placeholder
    */
   placeholder?: string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -166,9 +173,7 @@ export function instanceOfDefaultItemObject(
   return object && 'label' in object;
 }
 
-export function instanceOfToBeCreatedItemObject(
-  object: any
-): object is {
+export function instanceOfToBeCreatedItemObject(object: any): object is {
   label: string;
   value: string;
   react_magma__created_item: boolean;
@@ -192,6 +197,7 @@ export function Select<T>(props: XORSelectProps<T>) {
     id: defaultId,
     isMulti,
     labelPosition,
+    labelWidth,
     errorMessage,
     messageStyle,
     helperMessage,
@@ -222,6 +228,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           id={id}
           isInverse={isInverse}
           labelPosition={labelPosition || LabelPosition.top}
+          labelWidth={labelWidth}
           itemToString={itemToString}
           {...(props as MultiSelectProps<T>)}
           hasError={hasError}
@@ -234,6 +241,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
+          labelWidth={labelWidth}
           hasError={hasError}
           helperMessage={helperMessage}
           messageStyle={messageStyle}

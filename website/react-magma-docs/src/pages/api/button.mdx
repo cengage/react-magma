@@ -13,6 +13,8 @@ props:
 
 Buttons are clickable items used to perform an action. See the <Link to="/design/button/">Button Design Guidelines</Link> for more information on when to use the different kinds of buttons.
 
+When using multiple buttons, they should be wrapped in a <Link to="/api/button-group">ButtonGroup</Link>.
+
 When used with icons, the Button component takes a slightly different set of props. For information on how to use this component with icons, please see documentation on <Link to="/api/icon-button">Icon Buttons</Link>.
 
 ## Sizes
@@ -36,7 +38,7 @@ export function Example() {
 
 ## Colors
 
-Colors for buttons include `primary`, `secondary`, `danger`, and `marketing` with `primary` being the default value.
+Colors for buttons include `primary`, `secondary`, `subtle`, `danger`, and `marketing` with `primary` being the default value.
 
 ```tsx
 import React from 'react';
@@ -47,6 +49,7 @@ export function Example() {
     <ButtonGroup>
       <Button color={ButtonColor.primary}>Primary (default)</Button>
       <Button color={ButtonColor.secondary}>Secondary</Button>
+      <Button color={ButtonColor.subtle}>Subtle</Button>
       <Button color={ButtonColor.danger}>Danger</Button>
       <Button color={ButtonColor.marketing}>Marketing</Button>
     </ButtonGroup>
@@ -58,7 +61,7 @@ export function Example() {
 
 Variants for buttons include `solid` and `link`, with `solid` being the default value.
 
-The `marketing` buttons do not have a `link` variant, and will render as solid buttons.
+The `marketing` buttons can only use the `solid` variant.
 
 ```tsx
 import React from 'react';
@@ -166,6 +169,9 @@ export function Example() {
           <Button color={ButtonColor.secondary} isInverse>
             Solid inverse
           </Button>
+          <Button color={ButtonColor.subtle} isInverse>
+            Solid inverse
+          </Button>
           <Button color={ButtonColor.danger} isInverse>
             Solid inverse
           </Button>
@@ -204,7 +210,7 @@ import { Button, ButtonTextTransform, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <Button>All caps</Button>
+      <Button>All caps (default)</Button>
       <Button textTransform={ButtonTextTransform.none}>
         No Text Transform
       </Button>
@@ -246,12 +252,12 @@ import { Button, ButtonVariant, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <Button disabled>Disabled</Button>
+      <Button disabled>Disabled (default)</Button>
       <Button disabled variant={ButtonVariant.solid}>
-        Disabled
+        Disabled Solid
       </Button>
       <Button disabled variant={ButtonVariant.link}>
-        Disabled
+        Disabled Link
       </Button>
     </ButtonGroup>
   );
@@ -354,7 +360,7 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the button element for easier querying in tests.
 
 ```html noCodeSandbox
-<Button data-testid="test-id">Default</Button>
+<Button testId="test-id">Default</Button>
 ```
 
 ## Button Props

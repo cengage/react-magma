@@ -10,6 +10,9 @@ import { usePagination } from './usePagination';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   isInverse?: boolean;
   page?: number;
@@ -49,6 +52,7 @@ export interface BasePaginationProps
   onPageChange?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
    * Size toggles between default and large variant buttons.
+   * @default PageButtonSize.medium
    */
   size?: PageButtonSize;
   /**
@@ -121,7 +125,7 @@ const NavButton = styled(IconButton)`
   width: ${BuildButtonSize};
 `;
 
-const StyledEllipsis = styled.div`
+const StyledEllipsis = styled.li`
   align-items: center;
   display: flex;
   font-size: ${pageButtonTypeSize};
@@ -177,6 +181,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
               if (type === 'start-ellipsis' || type === 'end-ellipsis') {
                 return (
                   <StyledEllipsis
+                    aria-current={Boolean(ariaCurrent)}
                     key={index}
                     isInverse={isInverse}
                     size={size}

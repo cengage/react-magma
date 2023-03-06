@@ -20,6 +20,9 @@ const Template: Story<ButtonProps> = args => (
     <Button {...args} color={ButtonColor.secondary}>
       Secondary
     </Button>
+    <Button {...args} color={ButtonColor.subtle}>
+      Subtle
+    </Button>
     <Button {...args} color={ButtonColor.danger}>
       Danger
     </Button>
@@ -36,6 +39,13 @@ const Template: Story<ButtonProps> = args => (
         color={ButtonColor.secondary}
       >
         Secondary
+      </Button>
+      <Button
+        variant={ButtonVariant.link}
+        {...args}
+        color={ButtonColor.subtle}
+      >
+        Subtle
       </Button>
       <Button variant={ButtonVariant.link} {...args} color={ButtonColor.danger}>
         Danger
@@ -96,6 +106,7 @@ export default {
         type: 'boolean',
       },
     },
+    onClick: { action: 'clicked' },
   },
 } as Meta;
 
@@ -104,7 +115,6 @@ Default.args = {
   isInverse: false,
   isFullWidth: false,
   disabled: false,
-  onClick: () => {},
 };
 
 export const Disabled = Template.bind({});
@@ -112,7 +122,6 @@ Disabled.args = {
   isInverse: false,
   isFullWidth: false,
   disabled: true,
-  onClick: () => {},
 };
 
 export const Inverse = Template.bind({});
@@ -187,6 +196,33 @@ export const All = () => {
               isInverse
             >
               Secondary Link
+            </Button>
+          </ButtonGroup>
+        </CardBody>
+      </Card>
+      <br />
+      <Card>
+        <CardBody>
+          <ButtonGroup>
+            <Button color={ButtonColor.subtle}>Subtle Solid</Button>
+            <Button color={ButtonColor.subtle} variant={ButtonVariant.link}>
+              Subtle Link
+            </Button>
+          </ButtonGroup>
+        </CardBody>
+      </Card>
+      <Card isInverse>
+        <CardBody>
+          <ButtonGroup>
+            <Button color={ButtonColor.subtle} isInverse>
+              Subtle Solid
+            </Button>
+            <Button
+              color={ButtonColor.subtle}
+              variant={ButtonVariant.link}
+              isInverse
+            >
+              Subtle Link
             </Button>
           </ButtonGroup>
         </CardBody>

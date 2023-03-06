@@ -1,23 +1,63 @@
 import React, { useState } from 'react';
-import { Textarea } from '.';
 import { Button } from '../Button';
+import { Container } from '../Container';
+import { LabelPosition } from '../Label';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import { Spacer } from '../Spacer';
+import { Textarea, TextareaProps } from '.';
+
+const Template: Story<TextareaProps> = args => (
+  <Textarea
+    value="how many of these things"
+    {...args}
+    labelText="Textarea label"
+  />
+);
 
 export default {
   component: Textarea,
   title: 'Textarea',
+  decorators: [
+    (Story, context) => (
+      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+        <Story />
+      </Container>
+    ),
+  ],
+  argTypes: {
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
+      },
+    },
+    labelWidth: {
+      control: {
+        type: 'number',
+      },
+    },
+  },
+} as Meta;
+
+export const Default = Template.bind({});
+Default.args = {
+  isInverse: false,
+  maxLength: 4,
 };
 
-export const Default = () => {
+export const OnClear = args => {
   const [fieldValue, setValue] = useState('');
   return (
     <>
       <Textarea
+        {...args}
         labelText="Textarea"
         value={fieldValue}
         onChange={e => {
           setValue(e.target.value);
         }}
       />
+      <Spacer size="12" />
       <Button
         onClick={e => {
           setValue('');
@@ -27,4 +67,7 @@ export const Default = () => {
       </Button>
     </>
   );
+};
+OnClear.args = {
+  ...Default.args,
 };

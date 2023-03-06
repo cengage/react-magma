@@ -21,12 +21,12 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   /**
    * Aligns the icon at the top, or center of each list item.
+   * @default IconAlignment.center
    */
   iconAlign?: IconAlignment;
   /**
    * Sizes the icon between small, medium, and large.
-   * @default 'medium'
-   *
+   * @default IconSizes.medium
    */
   iconSize?: IconSizes;
   isInverse?: boolean;
@@ -47,6 +47,9 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
    * Adds a bottom margin to each list item with the Magma space scale.
    */
   spacingStyle?: keyof typeof magma.spaceScale;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -120,7 +123,7 @@ const ListStyles = props => css`
   list-style-type: ${props.listType};
   color: ${props.isInverse
     ? props.theme.colors.neutral100
-    : props.theme.colors.neutral};
+    : props.theme.colors.neutral700};
   li {
     align-items: ${getListAlignment(props)};
     margin-bottom: ${props.spacingStyle};

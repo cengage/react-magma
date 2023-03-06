@@ -44,7 +44,15 @@ export interface PasswordInputProps
    * @default "Show"
    */
   showPasswordButtonText?: string;
+  /**
+   * @internal
+   */
   testId?: string;
+  /**
+   * String to determine width of input, must be suffixed with "px", "rem", or "%""
+   * @default "auto"
+   */
+  width?: string;
 }
 
 export const PasswordInput = React.forwardRef<
@@ -59,6 +67,7 @@ export const PasswordInput = React.forwardRef<
 
   const {
     containerStyle,
+    disabled,
     errorMessage,
     helperMessage,
     hiddenPasswordAnnounceText,
@@ -67,8 +76,10 @@ export const PasswordInput = React.forwardRef<
     isPasswordMaskButtonHidden,
     id: defaultId,
     inputSize = InputSize.medium,
+    labelPosition,
     labelStyle,
     labelText,
+    labelWidth,
     isLabelVisuallyHidden,
     messageStyle,
     shownPasswordAnnounceText,
@@ -115,8 +126,10 @@ export const PasswordInput = React.forwardRef<
       inputSize={inputSize}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       isInverse={isInverse}
+      labelPosition={labelPosition}
       labelStyle={labelStyle}
       labelText={labelText}
+      labelWidth={labelWidth}
     >
       <InputBase
         autoCorrect="off"
@@ -126,12 +139,16 @@ export const PasswordInput = React.forwardRef<
           descriptionId ? descriptionId : props['aria-describedby']
         }
         aria-invalid={!!errorMessage}
+        disabled={disabled}
         hasError={!!errorMessage}
         id={id}
         inputSize={inputSize}
+        inputStyle={{ width: 'calc(100% - 52px)' }}
         isInverse={isInverse}
         ref={ref}
         type={passwordShown ? InputType.text : InputType.password}
+        isPasswordInput={true}
+        width={props.width}
       >
         {!isPasswordMaskButtonHidden && (
           <>
@@ -141,6 +158,7 @@ export const PasswordInput = React.forwardRef<
                   ? HIDE_PASSWORD_BUTTON_ARIA_LABEL
                   : SHOW_PASSWORD_BUTTON_ARIA_LABEL
               }
+              disabled={disabled}
               isInverse={isInverse}
               onClick={togglePasswordShown}
               size={ButtonSize.small}

@@ -22,8 +22,9 @@ import { Combobox } from '../Combobox';
 import { Modal } from '../Modal';
 import { magma } from '../../theme/magma';
 
-import { Story } from '@storybook/react/types-6-0';
+import { Story, Meta } from '@storybook/react/types-6-0';
 import { ButtonGroup } from '../ButtonGroup';
+
 
 export default {
   component: Accordion,
@@ -46,7 +47,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 const Template: Story<AccordionProps> = args => (
   <Accordion {...args}>
@@ -169,7 +170,7 @@ Inverse.args = {
 
 Inverse.decorators = [
   Story => (
-    <div style={{ background: magma.colors.primary600 }}>
+    <div style={{ background: magma.colors.primary600, padding: '12px' }}>
       <Story />
     </div>
   ),

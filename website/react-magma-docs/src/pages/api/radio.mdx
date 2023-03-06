@@ -308,6 +308,7 @@ export function Example() {
       name="custom"
     >
       <Radio
+        id="custom1"
         containerStyle={{ border: '1px dotted purple' }}
         inputStyle={{ boxShadow: '3px 3px 3px rgba(0, 0 , 0, .6)' }}
         labelStyle={{ color: 'brown', fontStyle: 'italic' }}
@@ -508,21 +509,10 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for `RadioGroup` and the input element for `Radio` for easier querying in tests.
 
 ```html noCodeSandbox
-<div aria-labelledby="basicGroup" data-testid="group-test=id" role="radiogroup">
-  <label id="basicGroup">Basic usage</label>
-  <div>
-    <input
-      id="radio1"
-      data-testid="radio-test-id"
-      name="basic"
-      type="radio"
-      value="1"
-    />
-    <label for="radio1">
-      <span> <span color=""></span> </span> Option one label
-    </label>
-  </div>
-</div>
+<RadioGroup labelText="Labelled by label" name="labelledByProp" testId="radiogroup-id">
+  <Radio value="1" labelText="Label" testId="radio-1" />
+  <Radio value="2" labelText="Label" testId="radio-2" />
+</RadioGroup>
 ```
 
 ## Radio Group Props

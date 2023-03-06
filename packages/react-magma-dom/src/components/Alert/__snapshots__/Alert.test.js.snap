@@ -87,8 +87,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #E8E9F8;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
@@ -111,8 +111,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #BABDE9;
+  color: #292F7C;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -234,8 +234,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #ebecf7;
-  color: #2d3489;
+  background: #E8E9F8;
+  color: #3942B0;
 }
 
 .emotion-2:not(:disabled):after {
@@ -258,8 +258,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-2:not(:disabled):active {
-  background: #c3c6e7;
-  color: #202563;
+  background: #BABDE9;
+  color: #292F7C;
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -327,50 +327,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 `;
 
 exports[`Alert Variants should render an alert with danger variant 1`] = `
-.emotion-3 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  -webkit-animation: fadein 500ms;
-  animation: fadein 500ms;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
-  max-width: 100%;
-  padding: 0;
-  position: relative;
-}
-
-@media (max-width:600px) {
-  .emotion-3 {
-    font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
-    letter-spacing: .16px;
-    line-height: 20px;
-  }
-}
-
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-3 a {
-  color: inherit;
-  font-weight: 600;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -405,6 +361,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -414,8 +371,58 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   }
 }
 
+.emotion-3 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  line-height: 24px;
+  margin-bottom: 24px;
+  max-width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+    -webkit-letter-spacing: .16px;
+    -moz-letter-spacing: .16px;
+    -ms-letter-spacing: .16px;
+    letter-spacing: .16px;
+    line-height: 20px;
+  }
+}
+
+.emotion-3:focus {
+  outline: 2px solid #0074B7;
+}
+
+.emotion-3 a {
+  color: #7F1714;
+  font-weight: 400;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #D32821;
+}
+
 .emotion-2 {
-  background: #FCEBEA;
+  background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
   color: #D32821;
@@ -426,50 +433,6 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   position: relative;
 }
 
-.emotion-3 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  -webkit-animation: fadein 500ms;
-  animation: fadein 500ms;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
-  max-width: 100%;
-  padding: 0;
-  position: relative;
-}
-
-@media (max-width:600px) {
-  .emotion-3 {
-    font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
-    letter-spacing: .16px;
-    line-height: 20px;
-  }
-}
-
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-3 a {
-  color: inherit;
-  font-weight: 600;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -504,6 +467,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -513,8 +477,58 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   }
 }
 
+.emotion-3 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  line-height: 24px;
+  margin-bottom: 24px;
+  max-width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+    -webkit-letter-spacing: .16px;
+    -moz-letter-spacing: .16px;
+    -ms-letter-spacing: .16px;
+    letter-spacing: .16px;
+    line-height: 20px;
+  }
+}
+
+.emotion-3:focus {
+  outline: 2px solid #0074B7;
+}
+
+.emotion-3 a {
+  color: #7F1714;
+  font-weight: 400;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #D32821;
+}
+
 .emotion-2 {
-  background: #FCEBEA;
+  background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
   color: #D32821;
@@ -554,7 +568,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>
@@ -577,6 +593,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -600,10 +617,15 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-3 a {
-  color: inherit;
-  font-weight: 600;
+  color: #004A75;
+  font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #0074B7;
 }
 
 .emotion-2 {
@@ -652,6 +674,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -676,6 +699,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -699,10 +723,15 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-3 a {
-  color: inherit;
-  font-weight: 600;
+  color: #004A75;
+  font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #0074B7;
 }
 
 .emotion-2 {
@@ -751,6 +780,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -789,7 +819,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>
@@ -797,50 +829,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 `;
 
 exports[`Alert Variants should render an alert with warning variant 1`] = `
-.emotion-3 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  -webkit-animation: fadein 500ms;
-  animation: fadein 500ms;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
-  max-width: 100%;
-  padding: 0;
-  position: relative;
-}
-
-@media (max-width:600px) {
-  .emotion-3 {
-    font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
-    letter-spacing: .16px;
-    line-height: 20px;
-  }
-}
-
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-3 a {
-  color: inherit;
-  font-weight: 600;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -875,6 +863,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -882,6 +871,56 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   .emotion-1 {
     padding-left: 0;
   }
+}
+
+.emotion-3 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  line-height: 24px;
+  margin-bottom: 24px;
+  max-width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+    -webkit-letter-spacing: .16px;
+    -moz-letter-spacing: .16px;
+    -ms-letter-spacing: .16px;
+    letter-spacing: .16px;
+    line-height: 20px;
+  }
+}
+
+.emotion-3:focus {
+  outline: 2px solid #0074B7;
+}
+
+.emotion-3 a {
+  color: #6E340E;
+  font-weight: 400;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #AD5115;
 }
 
 .emotion-2 {
@@ -896,50 +935,6 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   position: relative;
 }
 
-.emotion-3 {
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-  -webkit-animation: fadein 500ms;
-  animation: fadein 500ms;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  font-size: 16px;
-  line-height: 24px;
-  margin-bottom: 24px;
-  max-width: 100%;
-  padding: 0;
-  position: relative;
-}
-
-@media (max-width:600px) {
-  .emotion-3 {
-    font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
-    letter-spacing: .16px;
-    line-height: 20px;
-  }
-}
-
-.emotion-3:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-3 a {
-  color: inherit;
-  font-weight: 600;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
 .emotion-0 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -974,6 +969,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -981,6 +977,56 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   .emotion-1 {
     padding-left: 0;
   }
+}
+
+.emotion-3 {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  -webkit-animation: fadein 500ms;
+  animation: fadein 500ms;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  line-height: 24px;
+  margin-bottom: 24px;
+  max-width: 100%;
+  padding: 0;
+  position: relative;
+}
+
+@media (max-width:600px) {
+  .emotion-3 {
+    font-size: 14px;
+    -webkit-letter-spacing: .16px;
+    -moz-letter-spacing: .16px;
+    -ms-letter-spacing: .16px;
+    letter-spacing: .16px;
+    line-height: 20px;
+  }
+}
+
+.emotion-3:focus {
+  outline: 2px solid #0074B7;
+}
+
+.emotion-3 a {
+  color: #6E340E;
+  font-weight: 400;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #AD5115;
 }
 
 .emotion-2 {
@@ -1024,7 +1070,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>
@@ -1047,6 +1095,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -1070,10 +1119,15 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-3 a {
-  color: inherit;
-  font-weight: 600;
+  color: #004A75;
+  font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #0074B7;
 }
 
 .emotion-2 {
@@ -1122,6 +1176,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -1146,6 +1201,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   line-height: 24px;
   margin-bottom: 24px;
   max-width: 100%;
@@ -1169,10 +1225,15 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-3 a {
-  color: inherit;
-  font-weight: 600;
+  color: #004A75;
+  font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
+  color: #0074B7;
 }
 
 .emotion-2 {
@@ -1221,6 +1282,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
 }
 
@@ -1259,7 +1321,9 @@ exports[`Alert should render an alert with default variant 1`] = `
       <div
         class="emotion-1"
       >
-        Test Alert Text
+        <span>
+          Test Alert Text
+        </span>
       </div>
     </div>
   </div>

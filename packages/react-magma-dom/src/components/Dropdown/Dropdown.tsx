@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { useDescendants } from '../../hooks/useDescendants';
-import { useForkedRef } from '../../utils';
+import { resolveProps, useForkedRef } from '../../utils';
 import { useIsInverse } from '../../inverse';
+import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -24,12 +25,12 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   activeIndex?: number;
   /**
    * Alignment of the dropdown content
-   * @default `DropdownAlignment.start`
+   * @default DropdownAlignment.start
    */
   alignment?: DropdownAlignment;
   /**
    * Position of the dropdown content
-   * @default `DropdownDropDirection.down`
+   * @default DropdownDropDirection.down
    */
   dropDirection?: DropdownDropDirection;
   isInverse?: boolean;
@@ -40,11 +41,6 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
 
   maxHeight?: string | number;
   /**
-   * Function called on dropdown close before focusing the toggle button
-   * @deprecated true
-   */
-  onBeforeShiftFocus?: (event: React.SyntheticEvent) => void;
-  /**
    * Function called when closing the dropdown menu
    */
   onClose?: (event: React.SyntheticEvent) => void;
@@ -52,6 +48,9 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * Function called when opening the dropdown menu
    */
   onOpen?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Width of menu
@@ -99,19 +98,21 @@ export const useDropdownContext = () => React.useContext(DropdownContext);
 
 export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
   (props, forwardedRef) => {
+    const contextProps = React.useContext(ButtonGroupContext);
+    const resolvedProps = resolveProps(contextProps, props);
+    
     const {
       activeIndex,
       alignment,
       children,
       dropDirection,
       maxHeight,
-      onBeforeShiftFocus,
       onClose,
       onOpen,
       testId,
       width,
       ...other
-    } = props;
+    } = resolvedProps;
 
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
@@ -151,10 +152,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     function closeDropdown(event) {
       setIsOpen(false);
 
-      if (onBeforeShiftFocus && typeof onBeforeShiftFocus === 'function') {
-        event.preventMagmaFocus = handlePreventMagmaFocus;
-        onBeforeShiftFocus(event);
-      }
+      toggleRef.current.focus();
 
       onClose && typeof onClose === 'function' && onClose(event);
     }
@@ -222,14 +220,12 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }
 
-    function handlePreventMagmaFocus() {}
-
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
 
     const widthString = typeof width === 'number' ? `${width}px` : width;
 
-    const isInverse = useIsInverse(props.isInverse);
+    const isInverse = useIsInverse(resolvedProps.isInverse);
 
     return (
       <DropdownContext.Provider

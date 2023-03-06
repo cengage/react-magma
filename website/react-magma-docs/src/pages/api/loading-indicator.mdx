@@ -141,6 +141,22 @@ export function Example() {
 }
 ```
 
+## Inverse
+
+```tsx
+import React from 'react';
+import { LoadingIndicator, Card, CardBody } from 'react-magma-dom';
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <LoadingIndicator isInverse />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Loading Indicator Props
 
 **All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props will be applied to the internal element. The internal element will be either a `div` when using the `ProgressBar` or a `span` when using the `Spinner`. Additionally, depending on which component is used internally, you can provide any props that the <Link to="/api/spinner#spinner_props">Spinner</Link> or the <Link to="/api/progress-bar#progress_bar_props">ProgressBar</Link> accepts. This is controlled by the passed in `type` prop.**

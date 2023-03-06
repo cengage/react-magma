@@ -3,11 +3,12 @@ import { HideAtBreakpoint } from '.';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { magma } from '../../theme/magma';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: HideAtBreakpoint,
   title: 'HideAtBreakpoint',
-};
+} as Meta;
 
 export const Default = () => {
   return (

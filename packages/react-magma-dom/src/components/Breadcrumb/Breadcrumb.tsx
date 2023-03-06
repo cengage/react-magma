@@ -10,6 +10,13 @@ import { InverseContext, useIsInverse } from '../../inverse';
  */
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
+  /**
+   * The text the screen reader will announce that describes your breadcrumb.
+   */
+  'aria-label'?: string;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -19,6 +26,7 @@ const StyledList = styled('ol', {
   display: flex;
   flex-wrap: wrap;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   list-style: none;

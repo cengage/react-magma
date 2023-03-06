@@ -3,6 +3,8 @@ import { Toast } from '.';
 import { magma } from '../../theme/magma';
 import { AlertVariant } from '../AlertBase';
 import { Button, ButtonSize } from '../Button';
+import { Hyperlink } from '../Hyperlink';
+import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: Toast,
@@ -30,7 +32,7 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
 export const Default = args => {
   const [showToast, setShowToast] = React.useState(false);
@@ -94,7 +96,7 @@ export const TwoLine = args => {
       {showToast ? (
         <Toast onDismiss={handleDismiss} {...args}>
           Toast with a breaking line of content which will appear exactly right
-          now!
+          now! Oh, and here is a <Hyperlink to="#">hyperlink</Hyperlink> for fun.
         </Toast>
       ) : null}
     </div>
@@ -129,7 +131,7 @@ export const MultiLine = args => {
       {showToast ? (
         <Toast onDismiss={handleDismiss} {...args}>
           Toast with breaking lines of content which will appear right now! Also
-          it's going to go all the way down here! I mean it! I really do!
+          it is going to go all the way down here! I mean it! I really do!
         </Toast>
       ) : null}
     </div>

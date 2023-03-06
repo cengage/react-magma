@@ -26,6 +26,7 @@ const StyledPanel = styled.div<AccordionPanelProps>`
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
+  font-family: ${props => props.theme.bodyFont};
   padding: ${props =>
     `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing04}`};
 `;
@@ -38,14 +39,13 @@ export const AccordionPanel = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
-  const { buttonId, isExpanded, panelId } =
+  const { isExpanded, panelId } =
     React.useContext(AccordionItemContext);
 
   return (
     <Transition isOpen={isExpanded} collapse unmountOnExit>
       <StyledPanel
         {...rest}
-        aria-labelledby={buttonId}
         aria-hidden={!isExpanded}
         data-testid={testId}
         id={panelId}

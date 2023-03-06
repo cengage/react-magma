@@ -10,7 +10,7 @@ import {
 
 import { magma } from '../../theme/magma';
 
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 describe('Table', () => {
@@ -19,6 +19,54 @@ describe('Table', () => {
     const { getByTestId } = render(<Table testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('should render table with a border radius', () => {
+    const { getByTestId } = render(
+      <Table isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+      'border-radius',
+      magma.spaceScale.spacing03
+    );
+  });
+
+  it('should render table without a border radius', () => {
+    const { getByTestId } = render(
+      <Table hasSquareCorners isInverse testId="test-id">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+      'border-radius',
+      '0'
+    );
   });
 
   it('should render table with vertical borders', () => {
@@ -296,11 +344,15 @@ describe('Table', () => {
       getByTestId('header3').querySelector('button')
     ).not.toBeInTheDocument();
 
-    expect(onSortSpy).not.toHaveBeenCalled();
+    act(() => {
+      expect(onSortSpy).not.toHaveBeenCalled();
+    });
 
     fireEvent.click(getByText('heading 1'));
 
-    expect(onSortSpy).toHaveBeenCalled();
+    act(() => {
+      expect(onSortSpy).toHaveBeenCalled();
+    });
   });
 
   it('should render sortable table header cells with inverse styles', () => {

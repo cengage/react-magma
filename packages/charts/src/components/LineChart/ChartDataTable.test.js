@@ -29,7 +29,7 @@ describe('Chart Data Table', () => {
 
     it('should render chart data with x tick values and an x tick format function', () => {
       const label = '2019 Annual Sales Figures';
-      const { getByText, getAllByText } = render(
+      const { getByText } = render(
         <ChartDataTable
           data={basicData}
           xData={{
@@ -97,8 +97,7 @@ describe('Chart Data Table', () => {
     });
 
     it('should render column header for x values using the x key value when no label is provided', () => {
-      const label = '2019 Annual Sales Figures';
-      const { getByText, getAllByText } = render(
+      const { getByText } = render(
         <ChartDataTable
           data={explicitData}
           xData={{
@@ -117,7 +116,7 @@ describe('Chart Data Table', () => {
 
     it('should render chart data with x tick values and an x tick format function', () => {
       const label = '2019 Annual Sales Figures';
-      const { getByText, getAllByText } = render(
+      const { getByText } = render(
         <ChartDataTable
           data={explicitData}
           xData={{

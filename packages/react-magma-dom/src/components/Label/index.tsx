@@ -14,9 +14,18 @@ export interface LabelProps
   actionable?: boolean;
   iconPosition?: InputIconPosition;
   isInverse?: boolean;
+  /**
+   * @default LabelPosition.top
+   */
   labelPosition?: LabelPosition;
+  /**
+   * @default InputSize.medium
+   */
   size?: InputSize;
   theme?: any;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -36,6 +45,7 @@ const StyledLabel = styled.label<{
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   font-weight: 500;
   letter-spacing: ${props =>
     props.size === InputSize.large
@@ -47,15 +57,19 @@ const StyledLabel = styled.label<{
       : props.theme.typeScale.size02.lineHeight};
   margin: ${props =>
     props.labelPosition === LabelPosition.left
-      ? `0 ${props.theme.spaceScale.spacing05} 0 0`
+      ? `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing03} 0 0`
       : `0 0 ${props.theme.spaceScale.spacing03}`};
   max-width: ${props =>
     props.iconPosition === InputIconPosition.top
       ? 'calc(100% - 51px)'
       : '100%'};
-  text-align: left;
+  text-align: ${props =>
+    props.labelPosition === LabelPosition.left ? 'right' : 'left'};
   white-space: ${props =>
-    props.iconPosition === InputIconPosition.top ? 'inherit' : 'nowrap'};
+    props.iconPosition === InputIconPosition.top ||
+    props.labelPosition === LabelPosition.left
+      ? 'inherit'
+      : 'nowrap'};
 `;
 
 const StyledSpan = StyledLabel.withComponent('span');
@@ -73,11 +87,13 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
     } = props;
     const theme = React.useContext(ThemeContext);
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return actionable ? (
       <StyledLabel
         {...other}
         data-testid={testId}
-        isInverse={useIsInverse(props.isInverse)}
+        isInverse={isInverse}
         iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
@@ -90,7 +106,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       <StyledSpan
         {...other}
         data-testid={testId}
-        isInverse={useIsInverse(props.isInverse)}
+        isInverse={isInverse}
         iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}

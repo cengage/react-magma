@@ -24,7 +24,7 @@ export interface ToastProps extends AlertBaseProps {
   disableAutoDismiss?: boolean;
   /**
    * The variant of the toast, indicating its function in the UI
-   * @default `AlertVariant.info`
+   * @default AlertVariant.info
    */
   variant?: AlertVariant;
   /**

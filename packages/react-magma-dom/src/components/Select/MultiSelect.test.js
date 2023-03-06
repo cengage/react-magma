@@ -5,9 +5,10 @@ import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 
 describe('Select', () => {
+  const items = ['Red', 'Blue', 'Green'];
+  const labelText = 'Label';
+
   it('should render a multi-select with items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -22,9 +23,8 @@ describe('Select', () => {
   });
 
   it('should render a select with a passed in placeholder', () => {
-    const labelText = 'Label';
     const placeholder = 'Test';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByText } = render(
       <MultiSelect
         isMulti
@@ -38,8 +38,6 @@ describe('Select', () => {
   });
 
   it('should render a select with the default i18n placeholder', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -48,7 +46,6 @@ describe('Select', () => {
   });
 
   it('should accept items in the default object format', () => {
-    const labelText = 'Label';
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
@@ -72,7 +69,6 @@ describe('Select', () => {
       return item ? item.representation : '';
     }
 
-    const labelText = 'Label';
     const items = [
       {
         id: 1,
@@ -110,8 +106,6 @@ describe('Select', () => {
   });
 
   it('should render an items list with the default max height', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { container, getByLabelText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -127,8 +121,6 @@ describe('Select', () => {
   });
 
   it('should render an items list with the passed in max height as a string', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = '100px';
     const { container, getByLabelText } = render(
       <MultiSelect
@@ -149,9 +141,20 @@ describe('Select', () => {
     );
   });
 
+  it('Should have a defined width for label when labelPosition is "left"', () => {
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        items={items}
+        labelPosition="left"
+        labelText={labelText}
+        labelWidth={20}
+      />
+    );
+    expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+  });
+
   it('should render an items list with the passed in max height as a number', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const maxHeight = 50;
     const { container, getByLabelText } = render(
       <MultiSelect
@@ -173,17 +176,16 @@ describe('Select', () => {
   });
 
   it('should render custom item component', () => {
-    const labelText = 'Label';
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
       { id: '2', label: 'Green', value: 'green' },
     ];
     const CustomItem = props => {
-      const { itemRef, isFocused, item, itemString, ...other } = props;
+      const { itemRef, item, itemString } = props;
 
       return (
-        <li {...other} data-testid={item.id} ref={itemRef}>
+        <li data-testid={item.id} ref={itemRef}>
           {itemString}
         </li>
       );
@@ -208,8 +210,7 @@ describe('Select', () => {
   it('should not select an item when typing and select is closed', () => {
     // Use fake timers here for downshift's debounce on input change.
     jest.useFakeTimers();
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText, queryByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -230,8 +231,6 @@ describe('Select', () => {
   });
 
   it('should allow for selection of multiple items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -253,8 +252,6 @@ describe('Select', () => {
   });
 
   it('should allow for the removal of a selected item', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -271,8 +268,6 @@ describe('Select', () => {
   });
 
   it('should allow for the removal of selected items with the keyboard', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
       <MultiSelect
@@ -315,8 +310,6 @@ describe('Select', () => {
   });
 
   it('should change the focused selected item using arrow keys', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiSelect
@@ -349,8 +342,6 @@ describe('Select', () => {
   });
 
   it('should allow for a controlled multi-select', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     let selectedItems = ['Red', 'Blue'];
     const { getByLabelText, getByText, queryByText, rerender } = render(
       <MultiSelect
@@ -420,8 +411,6 @@ describe('Select', () => {
   });
 
   it('should have an initial selected items', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByText } = render(
       <MultiSelect
         isMulti
@@ -437,8 +426,6 @@ describe('Select', () => {
   });
 
   it('should disable the multi-select', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} disabled />
     );
@@ -449,8 +436,6 @@ describe('Select', () => {
   });
 
   it('should open select when clicking the enter key', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -467,8 +452,6 @@ describe('Select', () => {
   });
 
   it('should open select when clicking the spacebar', () => {
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -487,8 +470,7 @@ describe('Select', () => {
   it('should not open select when clicking another key other than the enter or spacebar', () => {
     // Use fake timers here for downshift's debounce on input change.
     jest.useFakeTimers();
-    const labelText = 'Label';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText, queryByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -509,9 +491,8 @@ describe('Select', () => {
   });
 
   it('should show an error message', () => {
-    const labelText = 'Label';
     const errorMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByText } = render(
       <MultiSelect
         isMulti
@@ -525,9 +506,8 @@ describe('Select', () => {
   });
 
   it('should show an helper message', () => {
-    const labelText = 'Label';
     const helperMessage = 'This is an error';
-    const items = ['Red', 'Blue', 'Green'];
+
     const { getByText } = render(
       <MultiSelect
         isMulti
@@ -542,8 +522,6 @@ describe('Select', () => {
 
   describe('events', () => {
     it('onBlur', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onBlur = jest.fn();
 
       const { getByLabelText } = render(
@@ -565,8 +543,6 @@ describe('Select', () => {
     });
 
     it('onFocus', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onFocus = jest.fn();
 
       const { getByLabelText } = render(
@@ -586,8 +562,6 @@ describe('Select', () => {
     });
 
     it('onKeyDown', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -607,8 +581,6 @@ describe('Select', () => {
     });
 
     it('onKeyUp', () => {
-      const labelText = 'Label';
-      const items = ['Red', 'Blue', 'Green'];
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(

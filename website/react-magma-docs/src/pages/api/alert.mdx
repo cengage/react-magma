@@ -96,30 +96,55 @@ export function Example() {
 }
 ```
 
-## Testing
+## Additional Content
 
-Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for easier querying in tests.
+Using the `additionalContent` prop will let you include right aligned children within Alerts.
 
-```html noCodeSandbox
-<div data-testid="test-id">
-  <span>
-    <svg
-      aria-hidden="true"
-      class="icon"
-      height="20"
-      width="20"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 27.3 27.3"
-    >
-      <path
-        d="M12.65,9.9V7.14h2.7V9.9ZM14,25A11,11,0,1,0,3,14,11,11,0,0,0,14,25ZM14,.35A13.65,13.65,0,1,1,.35,14,13.62,13.62,0,0,1,14,.35ZM12.65,20.86V12.65h2.7v8.21Z"
-        transform="translate(-0.35 -0.35)"
-      />
-    </svg>
-  </span>
-  <div>Default Alert</div>
-</div>
+```tsx
+import React from 'react';
+import { Alert, Badge, Button } from 'react-magma-dom';
+
+const AdditionalBadge = <Badge>Badge</Badge>;
+const AdditionalButton = <Button>Button</Button>;
+
+export function Example() {
+  return (
+    <>
+      <Alert additionalContent={AdditionalBadge}>
+        Alert with additional Badge.
+      </Alert>
+      <Alert additionalContent={AdditionalButton}>
+        Alert with additional Button.
+      </Alert>
+    </>
+  );
+}
+```
+
+## Inverse
+
+```tsx
+import React from 'react';
+import { Alert, AlertVariant, Container } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Container isInverse style={{ padding: '12px 12px 0' }}>
+      <Alert variant={AlertVariant.info} isInverse>
+        Inverse Info Alert
+      </Alert>
+      <Alert variant={AlertVariant.success} isInverse>
+        Inverse Success Alert
+      </Alert>
+      <Alert variant={AlertVariant.warning} isInverse>
+        Inverse Warning Alert with <a href="#">linked text</a>
+      </Alert>
+      <Alert variant={AlertVariant.danger} isInverse>
+        Inverse Danger Alert
+      </Alert>
+    </Container>
+  );
+}
 ```
 
 ## Alert Props

@@ -13,7 +13,6 @@ import {
 
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 const Template: Story<IconButtonProps> = args => (
@@ -61,6 +60,7 @@ export default {
         type: 'boolean',
       },
     },
+    onClick: { action: 'clicked' },
   },
 } as Meta;
 
@@ -78,7 +78,6 @@ Default.args = {
   isInverse: false,
   isFullWidth: false,
   disabled: false,
-  onClick: () => {},
 };
 
 export const Inverse = Template.bind({});
@@ -97,7 +96,7 @@ Inverse.args = {
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.primary} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>

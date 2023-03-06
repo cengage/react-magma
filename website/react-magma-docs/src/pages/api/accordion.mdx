@@ -19,7 +19,7 @@ An accordion is a vertically stacked group of collapsible sections. An accordion
 
 ## Basic Usage
 
-An accordion is made up of four components: `Accordion`, `AccordionItem`, `AccordionButton` and `AccordionPanel`. The `Accordion` is the wrapper for all of the items. It can contain one or more `AccordionItems`, each of which should contain one `AccordionButton` and one `AccordionPanel`. An `AccordionButton` can be wrapped in an element with the role of heading (such as an h1-h6) to provided semantic structure to the document.
+An accordion is made up of four components: `Accordion`, `AccordionItem`, `AccordionButton` and `AccordionPanel`. The `Accordion` is the wrapper for all of the items. It can contain one or more `AccordionItems`, each of which should contain one `AccordionButton` and one `AccordionPanel`. An `AccordionButton` can be wrapped in an element with the role of heading (such as an h1-h6) to provide semantic structure to the document.
 
 By default, multiple items will can be expanded. The `defaultIndex` prop, which takes an array of zero-based indices, can be used to set panels open by default.
 
@@ -115,6 +115,8 @@ import {
   Button,
   ButtonSize,
   ButtonVariant,
+  ButtonGroup,
+  Spacer,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -153,23 +155,25 @@ export function Example() {
 
   return (
     <>
-      <Button
-        disabled={disableExpandAll}
-        onClick={handleExpandAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Expand All
-      </Button>
-      <Button
-        disabled={disableCollapseAll}
-        onClick={handleCollapseAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-      >
-        Collapse All
-      </Button>
-
+      <ButtonGroup>
+        <Button
+          disabled={disableExpandAll}
+          onClick={handleExpandAll}
+          size={ButtonSize.small}
+          variant={ButtonVariant.solid}
+        >
+          Expand All
+        </Button>
+        <Button
+          disabled={disableCollapseAll}
+          onClick={handleCollapseAll}
+          size={ButtonSize.small}
+          variant={ButtonVariant.solid}
+        >
+          Collapse All
+        </Button>
+      </ButtonGroup>
+      <Spacer size="12" />
       <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
         <AccordionItem>
           <AccordionButton>Section 1</AccordionButton>
@@ -252,7 +256,7 @@ export function Example() {
 }
 ```
 
-## InverseContext
+## Inverse
 
 The `isInverse` prop will render light text, to be used on a dark background. The children will
 inherit the `isInverse` prop unless specified otherwise.
@@ -264,23 +268,26 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  magma,
+  Card,
+  CardBody
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <div style={{background: magma.colors.primary600}}>
-      <Accordion isInverse>
-        <AccordionItem>
-          <AccordionButton>Section 1</AccordionButton>
-          <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
-        </AccordionItem>
-        <AccordionItem>
-          <AccordionButton>Section 2</AccordionButton>
-          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
-        </AccordionItem>
-      </Accordion>
-    </div>
+    <Card isInverse>
+      <CardBody>
+        <Accordion isInverse>
+          <AccordionItem>
+            <AccordionButton>Section 1</AccordionButton>
+            <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+          </AccordionItem>
+          <AccordionItem>
+            <AccordionButton>Section 2</AccordionButton>
+            <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+          </AccordionItem>
+        </Accordion>
+      </CardBody>
+    </Card>
   );
 }
 ```
@@ -289,14 +296,6 @@ export function Example() {
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
-### Single Not Controlled
-
-<AccordionSingleProps />
-
-### Multiple Not Controlled
-
-<AccordionMultipleProps />
-
 ### Single Controlled
 
 <AccordionSingleControlledProps />
@@ -304,6 +303,14 @@ export function Example() {
 ### Multiple Controlled
 
 <AccordionMultipleControlledProps />
+
+### Single Not Controlled
+
+<AccordionSingleProps />
+
+### Multiple Not Controlled
+
+<AccordionMultipleProps />
 
 ## AccordionItem Props
 

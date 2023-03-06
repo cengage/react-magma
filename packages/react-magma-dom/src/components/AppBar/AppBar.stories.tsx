@@ -33,8 +33,11 @@ Default.args = {
 };
 
 const TabsTemplate: Story<AppBarProps> = args => (
-  <AppBar {...args}>
-    <strong
+  <AppBar
+    style={{ display: 'flex', justifyContent: 'space-between', gap: '48px' }}
+    {...args}
+  >
+    <div
       style={{
         alignItems: 'center',
         display: 'flex',
@@ -43,23 +46,25 @@ const TabsTemplate: Story<AppBarProps> = args => (
     >
       <ImageIcon size={args.isCompact ? 24 : 40} />
       <Spacer size={magma.spaceScale.spacing03} />
-      LOGO
-    </strong>
-    <Spacer size={magma.spaceScale.spacing12} />
-    <Search onSearch={() => {}} placeholder="Search for content..." />
-    <Spacer size={magma.spaceScale.spacing06} />
-    <NavTabs
-      aria-label="Navigation"
-      backgroundColor="transparent"
-      iconPosition={TabsIconPosition.left}
-    >
-      <NavTab icon={<FavoriteIcon />} isActive to="#">
-        Favorites
-      </NavTab>
-      <NavTab icon={<WorkIcon />} to="#">
-        Workspace
-      </NavTab>
-    </NavTabs>
+      <strong>LOGO</strong>
+    </div>
+    <div style={{ flex: '0 0 auto' }}>
+      <Search onSearch={() => {}} placeholder="Search for content..." />
+    </div>
+    <div style={{ flex: '1 1 auto' }}>
+      <NavTabs
+        aria-label="Navigation"
+        backgroundColor="transparent"
+        iconPosition={TabsIconPosition.left}
+      >
+        <NavTab icon={<FavoriteIcon />} isActive to="#">
+          Favorites
+        </NavTab>
+        <NavTab icon={<WorkIcon />} to="#">
+          Workspace
+        </NavTab>
+      </NavTabs>
+    </div>
   </AppBar>
 );
 

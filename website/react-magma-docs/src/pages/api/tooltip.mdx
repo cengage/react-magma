@@ -213,17 +213,18 @@ The values of some style properties are set in the Magma theme.
 
 ```js noCodeSandbox
     tooltip: {
-        arrowSize: '6px',
-        backgroundColor: magma.colors.neutral,
-        fontWeight: 600,
-        maxWidth: '300px',
-        textColor: magma.colors.neutral100,
-        typeScale: magma.typeScale.size01,
-        zIndex: 999,
-        inverse: { backgroundColor:
-        magma.colors.neutral100,
-        textColor: magma.colors.neutral,
-      }
+      arrowSize: '4px',
+      arrowSizeDoubled: '8px',
+      backgroundColor: colors.neutral700,
+      fontWeight: 500,
+      maxWidth: '300px',
+      textColor: colors.neutral100,
+      typeScale: typeScale.size01,
+      zIndex: 999,
+      inverse: {
+        backgroundColor: colors.neutral100,
+        textColor: colors.neutral700,
+      },
     }
 ```
 
@@ -248,7 +249,7 @@ export function Example() {
     tooltip: Object.assign({}, magma.tooltip, {
       arrowSize: '10px',
       arrowSizeDoubled: '20px',
-      backgroundColor: magma.colors.primary,
+      backgroundColor: magma.colors.danger,
       fontWeight: 'normal',
       typeScale: magma.typeScale.size03,
     }),

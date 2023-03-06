@@ -39,6 +39,7 @@ export interface ComboboxProps<T extends SelectOptions>
   hasError?: boolean;
   /**
    * Position of text label relative to form field
+   * @default LabelPosition.top
    */
   labelPosition?: LabelPosition;
   /**
@@ -46,13 +47,13 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   innerRef?: React.Ref<HTMLInputElement>;
   /**
-   * If true, the loading component is shown
-   * @default false
-   */
-  /**
    * @internal
    */
   isMulti?: false;
+  /**
+   * If true, the loading component is shown
+   * @default false
+   */
   isLoading?: boolean;
   /**
    * Default selectable options. Can be an array of strings or objects
@@ -101,6 +102,21 @@ export interface ComboboxProps<T extends SelectOptions>
    * Reference to the toggle button element wrapping the input in the combobox
    */
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
+  /**
+   * @internal
+   */
+  testId?: string;
+  /**
+   * Style properties for the component container element
+   */
+  containerStyle?: React.CSSProperties;
+  /**
+   * When false, the selected item gets validated to ensure it's in the original `items` list.
+   * When using Combobox for typeahead with a large `items` list, set this boolean to true to allow the selected item to not be part of the original `items` list.
+   * In addition, when this is true and `isLoading` is used, the loading indicator will appear on the list instead of the input
+   * @default false
+   */
+  isTypeahead?: boolean;
 }
 
 export interface MultiComboboxProps<T extends SelectOptions>
@@ -111,6 +127,11 @@ export interface MultiComboboxProps<T extends SelectOptions>
    * @internal
    */
   isMulti: true;
+  /**
+   * Keeps the list of items open after selection
+   * @default false
+   */
+  hasPersistentMenu?: boolean;
 }
 
 export function instanceOfMultiCombobox<T>(

@@ -11,14 +11,14 @@ import { Omit, XOR, getNodeText } from '../../utils';
 import { I18nContext } from '../../i18n';
 
 export enum TagColor {
-  default = 'default',
+  default = 'default', // default
   primary = 'primary',
   lowContrast = 'lowContrast',
   highContrast = 'highContrast',
 }
 
 export enum TagSize {
-  medium = 'medium',
+  medium = 'medium', // default
   small = 'small',
 }
 
@@ -30,11 +30,13 @@ export interface BaseTagProps
   extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
   /**
    * Color changes between 'primary', 'low contrast', and 'high contrast' style variants between each Tag.
+   * @default TagColor.default
    */
   color?: TagColor;
 
   /**
    * Size toggles between a default, and a small size Tag.
+   * @default TagSize.medium
    */
   size?: TagSize;
 
@@ -256,6 +258,7 @@ const TagStyling = props => css`
   background: ${buildButtonBackground(props)};
   color: ${buildButtonTextColor(props)};
   box-shadow: ${buildBoxShadow(props)};
+  font-family: ${props.theme.bodyFont};
   display: ${props.theme.tag.display};
   align-items: ${props.theme.tag.alignItems};
   justify-content: ${props.theme.tag.justifyContent};

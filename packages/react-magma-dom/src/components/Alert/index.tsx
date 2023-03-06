@@ -6,6 +6,10 @@ import { AlertBase, AlertVariant } from '../AlertBase';
  */
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * Enables additional right aligned children within the Alert.
+   */
+  additionalContent?: React.ReactNode;
+  /**
    * The text read by screen readers for the close button
    * @default "Close this message"
    */
@@ -20,10 +24,13 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
    * Action that fires when the close button is clicked (required when isDismissible is true)
    */
   onDismiss?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * The variant of the alert, indicating its function in the UI
-   * @default `AlertVariant.info`
+   * @default AlertVariant.info
    */
   variant?: AlertVariant;
 }

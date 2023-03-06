@@ -219,7 +219,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card, TableRowColor } from 'react-magma-dom';
+import { Datagrid, TableRowColor } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -256,11 +256,7 @@ export function Example() {
     },
   ];
 
-  return (
-    <Card>
-      <Datagrid columns={columns} rows={coloredRows} />
-    </Card>
-  );
+  return <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />;
 }
 ```
 
@@ -661,6 +657,198 @@ export function Example() {
     <Card>
       <Datagrid columns={columns} rows={rows} isSelectable />
     </Card>
+  );
+}
+```
+
+## Selectable and Sortable
+
+```typescript
+import React from 'react';
+import {
+  Datagrid,
+  TableSortDirection,
+  Announce,
+  VisuallyHidden,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [sortConfig, setSortConfig] = React.useState({
+    key: '',
+    message: '',
+  });
+  const [selectedDirection, setSelectedDirection] = React.useState(
+    TableSortDirection.none
+  );
+  const [priceDirection, setPriceDirection] = React.useState(
+    TableSortDirection.none
+  );
+  const [stockDirection, setStockDirection] = React.useState(
+    TableSortDirection.none
+  );
+
+  const requestSort = (key: string) => {
+    let direction = TableSortDirection.ascending;
+
+    if (key === 'name') {
+      if (
+        sortConfig?.key === key &&
+        selectedDirection === TableSortDirection.ascending
+      ) {
+        direction = TableSortDirection.descending;
+      }
+      setSelectedDirection(direction);
+      setPriceDirection(TableSortDirection.none);
+      setStockDirection(TableSortDirection.none);
+    } else if (key === 'price') {
+      if (
+        sortConfig?.key === key &&
+        priceDirection === TableSortDirection.ascending
+      ) {
+        direction = TableSortDirection.descending;
+      }
+      setPriceDirection(direction);
+      setSelectedDirection(TableSortDirection.none);
+      setStockDirection(TableSortDirection.none);
+    } else if (key === 'stock') {
+      if (
+        sortConfig?.key === key &&
+        stockDirection === TableSortDirection.ascending
+      ) {
+        direction = TableSortDirection.descending;
+      }
+      setStockDirection(direction);
+      setPriceDirection(TableSortDirection.none);
+      setSelectedDirection(TableSortDirection.none);
+    }
+
+    const message = `Table is sorted by ${key}, ${direction}`;
+    setSortConfig({ key, message });
+  };
+
+  const productColumns = [
+    { field: 'name', header: 'Name' },
+    {
+      field: 'price',
+      header: 'Price',
+      isSortable: true,
+      onSort: () => {
+        requestSort('price');
+      },
+      sortDirection: priceDirection,
+    },
+    {
+      field: 'stock',
+      header: 'Stock',
+      isSortable: true,
+      onSort: () => {
+        requestSort('stock');
+      },
+      sortDirection: stockDirection,
+    },
+  ];
+  const products = [
+    { id: 1, name: 'Cheese', price: 5, stock: 20 },
+    { id: 2, name: 'Milk', price: 5, stock: 32 },
+    { id: 3, name: 'Yogurt', price: 3, stock: 12 },
+    { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
+    { id: 5, name: 'Butter', price: 2, stock: 99 },
+    { id: 6, name: 'Sour Cream ', price: 4, stock: 86 },
+  ];
+
+  const [selectedItems, setSelectedItems] = React.useState([]);
+
+  const sortedItems = React.useMemo(() => {
+    if (sortConfig.key === 'name') {
+      const selectedItemsToSort = products.filter(product =>
+        selectedItems.includes(product.id)
+      );
+      const nonSelectedItems = products.filter(
+        product => !selectedItems.includes(product.id)
+      );
+      let sortOrder = 0;
+      if (sortConfig !== null) {
+        if (selectedItemsToSort.length < 2) {
+          sortOrder =
+            selectedDirection === TableSortDirection.ascending ? -1 : 1;
+        }
+        selectedItemsToSort.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            sortOrder =
+              selectedDirection === TableSortDirection.ascending ? -1 : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            sortOrder =
+              selectedDirection === TableSortDirection.ascending ? 1 : -1;
+          }
+          return sortOrder;
+        });
+      }
+      if (selectedItemsToSort.length === 0) {
+        return products;
+      } else if (sortOrder === 1) {
+        return selectedItemsToSort.concat(nonSelectedItems);
+      } else {
+        return nonSelectedItems.concat(selectedItemsToSort);
+      }
+    } else {
+      let sortableItems = [...products];
+      const direction =
+        sortConfig.key === 'price' ? priceDirection : stockDirection;
+      sortableItems.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return direction === TableSortDirection.ascending ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return direction === TableSortDirection.ascending ? 1 : -1;
+        }
+        return 0;
+      });
+      return sortableItems;
+    }
+  }, [sortConfig]);
+
+  function handleSelectedItems(
+    id: string | number,
+    ev: React.ChangeEvent<HTMLInputElement>
+  ) {
+    if (ev.target.checked) {
+      if (!selectedItems.includes(id)) {
+        setSelectedItems([...selectedItems, id]);
+      }
+    } else if (!ev.target.checked) {
+      setSelectedItems(selectedItems.filter(i => i !== id));
+    }
+  }
+
+  function handleHeaderSelect(ev: React.ChangeEvent<HTMLInputElement>) {
+    if (ev.target.checked && selectedItems.length === 0) {
+      const checkedIds = [];
+      products.filter(prod => checkedIds.push(prod.id));
+      setSelectedItems(checkedIds);
+    } else {
+      setSelectedItems([]);
+    }
+  }
+
+  return (
+    <>
+      <Datagrid
+        isSelectable
+        isSortableBySelected
+        rows={sortedItems}
+        columns={productColumns}
+        onSortBySelected={() => {
+          requestSort('name');
+        }}
+        onRowSelect={handleSelectedItems}
+        onHeaderSelect={handleHeaderSelect}
+        sortDirection={selectedDirection}
+      />
+      <Announce>
+        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+      </Announce>
+    </>
   );
 }
 ```
@@ -1311,215 +1499,19 @@ export function Example() {
 }
 ```
 
-## Custom Pagination Component Props
-
-```typescript
-import React from 'react';
-import { Datagrid, DropdownDropDirection } from 'react-magma-dom';
-
-export function Example() {
-  const columns = [
-    { field: 'col1', header: 'Col 1' },
-    { field: 'col2', header: 'Col 2' },
-    { field: 'col3', header: 'Col 3' },
-    { field: 'col4', header: 'Col 4' },
-  ];
-
-  const rows = [
-    {
-      id: 1,
-      col1: '1 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 2,
-      col1: '2 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 3,
-      col1: '3 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 4,
-      col1: '4 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 5,
-      col1: '5 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 6,
-      col1: '6 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 7,
-      col1: '7  Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 8,
-      col1: '8 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 9,
-      col1: '9 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 10,
-      col1: '10 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 11,
-      col1: '11 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 12,
-      col1: '12 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 13,
-      col1: '13 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 14,
-      col1: '14 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 15,
-      col1: '15 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 16,
-      col1: '16 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 17,
-      col1: '17 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 18,
-      col1: '18 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 19,
-      col1: '19 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 20,
-      col1: '20 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 21,
-      col1: '21 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 22,
-      col1: '22 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 23,
-      col1: '23 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 24,
-      col1: '24 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 25,
-      col1: '25 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-  ];
-
-  return (
-    <Datagrid
-      columns={columns}
-      rows={rows}
-      componentsProps={{
-        pagination: { dropdownDropDirection: DropdownDropDirection.down },
-      }}
-    />
-  );
-}
-```
-
 ## Custom Pagination Components
 
 ```typescript
 import React from 'react';
-import { Datagrid, Button, usePagination } from 'react-magma-dom';
+import {
+  Datagrid,
+  Button,
+  usePagination,
+  ButtonGroup,
+  Spacer,
+  SpacerAxis,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -1728,15 +1720,21 @@ export function Example() {
         }}
       >
         You are on page {page}
-        <Button
-          disabled={previousButton.disabled}
-          onClick={previousButton.onClick}
-        >
-          Previous Page
-        </Button>
-        <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
-          Next Page
-        </Button>
+        <Spacer
+          axis={SpacerAxis.horizontal}
+          size={magma.spaceScale.spacing05}
+        />
+        <ButtonGroup>
+          <Button
+            disabled={previousButton.disabled}
+            onClick={previousButton.onClick}
+          >
+            Previous Page
+          </Button>
+          <Button disabled={nextButton.disabled} onClick={nextButton.onClick}>
+            Next Page
+          </Button>
+        </ButtonGroup>
       </div>
     );
   };
@@ -1949,7 +1947,7 @@ export function Example() {
 }
 ```
 
-## InverseContext
+## Inverse
 
 The `isInverse` prop will render a dark background and light text. The children will
 inherit the `isInverse` prop unless specified otherwise.

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
 import { Textarea, Datagrid, magma } from 'react-magma-dom';
+import React from 'react';
 
 function csvJSON(csv: string) {
   const lines = csv.split('\n');
@@ -28,7 +29,7 @@ function csvJSON(csv: string) {
 }
 
 const onSendFile = (props: OnSendFileProps) => {
-  const { onProgress, onError, onFinish, file } = props;
+  const { onProgress, onFinish, file } = props;
   let percent: number = 1;
 
   const interval = setInterval(() => {
@@ -47,6 +48,7 @@ const onSendFile = (props: OnSendFileProps) => {
   }, 100 * Math.random());
 };
 
+/* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
   component: Dropzone,
   title: 'Dropzone',
@@ -156,7 +158,7 @@ export const Image = (args: DropzoneProps) => {
         sendFiles
         onDeleteFile={onDeleteFile}
       />
-      {file && <img src={file} />}
+      {file && <img src={file} alt="" />}
     </div>
   );
 };

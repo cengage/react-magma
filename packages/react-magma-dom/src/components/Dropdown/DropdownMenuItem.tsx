@@ -39,6 +39,9 @@ export interface DropdownMenuItemProps
 
 export function menuColors(props) {
   if (props.disabled) {
+    if (props.isInverse) {
+      return transparentize(0.6, props.theme.colors.neutral100);
+    }
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {
@@ -64,6 +67,7 @@ export const MenuItemStyles = props => {
     cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
     display: flex;
     font-size: ${props.theme.typeScale.size03.fontSize};
+    font-family: ${props.theme.bodyFont};
     line-height: ${props.theme.typeScale.size03.lineHeight};
     margin: 0;
     padding: ${props.isInactive

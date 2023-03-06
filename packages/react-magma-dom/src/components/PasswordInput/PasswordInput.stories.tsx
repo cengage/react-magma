@@ -1,8 +1,8 @@
 import React from 'react';
 import { PasswordInput, PasswordInputProps } from '.';
 import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { LabelPosition } from '../Label';
 
 const Template: Story<PasswordInputProps> = args => (
   <PasswordInput {...args} labelText="Password" />
@@ -11,9 +11,31 @@ const Template: Story<PasswordInputProps> = args => (
 export default {
   component: PasswordInput,
   title: 'PasswordInput',
-  isInverse: false,
-  disabled: false,
-  isError: false,
+  argTypes: {
+    isInverse: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
+    disabled: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
+    labelPosition: {
+      control: {
+        type: 'select',
+        options: LabelPosition,
+      },
+    },
+    labelWidth: {
+      control: {
+        type: 'number',
+      },
+    },
+  },
 } as Meta;
 
 export const Default = Template.bind({});
@@ -30,7 +52,7 @@ Inverse.args = {
 };
 Inverse.decorators = [
   Story => (
-    <Card background={magma.colors.primary} isInverse>
+    <Card isInverse>
       <CardBody>
         <Story />
       </CardBody>
