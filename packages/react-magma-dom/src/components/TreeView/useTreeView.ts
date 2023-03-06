@@ -1,14 +1,24 @@
-import * as React from "react"
+import * as React from 'react';
 
 export enum ExpandInitialOptions {
-  all = "all",
-  first = "first",
-  none = "none",
+  all = 'all',
+  first = 'first',
+  none = 'none',
 }
 export interface UseTreeViewProps {
+  /**
+   * Initial expand state
+   * @default none
+   */
   expandInitial?: ExpandInitialOptions;
   isInverse?: boolean;
+  /**
+   * Whether or not the Tree View has checkboxes
+   */
   isSelectable?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
 }
 
@@ -40,4 +50,4 @@ export function useTreeView(props: UseTreeViewProps) {
   return { contextValue };
 }
 
-export type UseTreeViewReturn = ReturnType<typeof useTreeView>
+export type UseTreeViewReturn = ReturnType<typeof useTreeView>;

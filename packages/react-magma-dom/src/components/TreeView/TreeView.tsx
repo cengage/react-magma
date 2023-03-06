@@ -10,10 +10,6 @@ import { InverseContext, useIsInverse } from '../../inverse';
 export interface TreeViewProps extends UseTreeViewProps, React.HTMLAttributes<HTMLUListElement>{}
 
 const StyledTreeView = styled.ul<TreeViewProps>`
-  background: ${props =>
-  props.isInverse
-  ? props.theme.colors.primary600
-  : props.theme.colors.neutral100};
   color: ${props =>
   props.isInverse
   ? props.theme.colors.neutral100

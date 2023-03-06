@@ -12,6 +12,7 @@ import { ExpandLessIcon, ExpandMoreIcon } from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
 import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
+import { Button, ButtonVariant, ButtonColor } from '../Button';
 
 
 export interface TreeItemProps extends UseTreeItemProps{}
@@ -26,14 +27,10 @@ const addPxStyleStrings = (
 }
 
 const StyledTreeItem = styled.li<{ theme?: ThemeInterface, isInverse?: boolean, hasOwnTreeItems: boolean}>`
-  background: ${props =>
-    props.isInverse
-    ? props.theme.colors.primary600
-    : props.theme.colors.neutral100};
   color: ${props =>
     props.isInverse
     ? props.theme.colors.neutral100
-    : props.theme.colors.neutral};
+    : props.theme.colors.neutral700};
   list-style-type: none;
   margin-left: ${props =>
     props.hasOwnTreeItems
@@ -58,13 +55,10 @@ const IconWrapper = styled.span<{ theme?: ThemeInterface, isInverse?: boolean, i
   }
 `;
 
-const StyledButton = styled.button<{ theme?: ThemeInterface }>`
-  border: none;
-  color: inherit;
-  background: inherit;
-  padding: 0;
-  margin-right: ${props => props.theme.spaceScale.spacing05};
-  vertical-align: middle;
+const StyledButton = styled(Button)<{ theme?: ThemeInterface }>`
+  width: ${props => props.theme.spaceScale.spacing06};
+  min-width: ${props => props.theme.spaceScale.spacing06};
+  margin-right: ${props => props.theme.spaceScale.spacing06};
 `;
 
 const StyledCheckbox = styled.div<{ theme?: ThemeInterface }>`
@@ -110,7 +104,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         {...rest}
       >
         {hasOwnTreeItems &&
-          <StyledButton theme={theme} onClick={() => setExpanded(state => !state)}>
+          <StyledButton theme={theme} variant={ButtonVariant.link} color={ButtonColor.subtle} onClick={() => setExpanded(state => !state)}>
             {
               expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />
             }
