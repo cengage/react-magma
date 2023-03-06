@@ -266,6 +266,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
   color: ${buildAlertColor};
   display: flex;
   position: relative;
+  height: 56px;
 
   ${props =>
     props.isToast &&
