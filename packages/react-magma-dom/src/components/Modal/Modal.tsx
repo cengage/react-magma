@@ -40,6 +40,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * Style for the modal container
    */
   containerStyle?: React.CSSProperties;
+  bodyStyle?: React.CSSProperties;
   /**
    * The content of the modal header
    */
@@ -303,7 +304,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       isCloseButtonHidden,
       isOpen,
       unmountOnExit = true,
-      testId,
+      testId,bodyStyle,
       ...rest
     } = props;
 
@@ -376,7 +377,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     )}
                   </ModalHeader>
                 )}
-                <ModalBody ref={bodyRef} theme={theme}>
+                <ModalBody ref={bodyRef} theme={theme} style={bodyStyle}>
                   {children}
                 </ModalBody>
                 {!isCloseButtonHidden && (

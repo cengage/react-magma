@@ -100,7 +100,116 @@ export const LongContentWithScrolling = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
+    </>
+  );
+};
+
+export const ModalStickyFooter = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  const onModalShow = () => {
+    setShowModal(true);
+  };
+
+  const onModalClose = () => {
+    setShowModal(false);
+    buttonRef.current.focus();
+  };
+
+  return (
+    <>
+      <Modal
+        header="Activity Settings"
+        onClose={onModalClose}
+        isOpen={showModal}
+        style={{ height: 'calc(100vh - 80px', overflowY: 'scroll' }}
+        bodyStyle={{paddingBottom: '0'}}
+      >
+        <p>
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things.{' '}
+        </p>
+        <p>
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things. This is a modal, doing modal things. This
+          is a modal, doing modal things. This is a modal, doing modal things.
+          This is a modal, doing modal things. This is a modal, doing modal
+          things. This is a modal, doing modal things. This is a modal, doing
+          modal things. This is a modal, doing modal things. This is a modal,
+          doing modal things. This is a modal, doing modal things. This is a
+          modal, doing modal things.{' '}
+        </p>
+        <div
+          style={{
+            background: 'white',
+            position: 'sticky',
+            bottom: '0',
+            padding: '12px',
+            borderTop: '1px solid gray',
+          }}
+        >
+          <ButtonGroup>
+            <Button color={ButtonColor.secondary}>Cancel</Button>
+            <Button>Apply Settings</Button>
+          </ButtonGroup>
+        </div>
+      </Modal>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
     </>
   );
 };
@@ -127,7 +236,9 @@ export const RadioInModal = () => {
           <Radio labelText="Option two label" value="2" />
         </RadioGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -206,7 +317,9 @@ export const ModalContentUpdate = () => {
           )}
         </div>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -286,7 +399,9 @@ export const ModalInAModal = () => {
           <p>This is modal 2</p>
         </Modal>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
