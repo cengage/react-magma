@@ -23,7 +23,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
-    "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",
+    "storybook": "NODE_OPTIONS='--openssl-legacy-provider --max-old-space-size=4096' start-storybook -p 6006",
     "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --stream --no-progress",
     "build": "lerna run build --stream --no-progress",

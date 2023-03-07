@@ -186,7 +186,7 @@ function getInputPadding(props: InputBaseStylesProps) {
         padding.right = '92px';
       } else if (iconPosition === 'left') {
         padding.left = props.theme.spaceScale.spacing11;
-        padding.right = props.theme.spaceScale.spacing11;
+        padding.right = '92px';
       } else {
         // icon top, no icon
         padding.right = props.theme.spaceScale.spacing11;
@@ -205,7 +205,7 @@ function getInputPadding(props: InputBaseStylesProps) {
         padding.right = '68px';
       } else if (iconPosition === 'left') {
         padding.left = props.theme.spaceScale.spacing09;
-        padding.right = props.theme.spaceScale.spacing09;
+        padding.right = props.theme.spaceScale.spacing12;
       } else {
         // icon top, no icon
         padding.right = props.theme.spaceScale.spacing09;
@@ -449,6 +449,12 @@ function getClearablePosition(props) {
     if (props.iconPosition === 'right') {
       if (props.inputSize === 'large') {
         return '92px';
+      }
+      return props.theme.spaceScale.spacing12;
+    }
+    if (props.iconPosition === 'left' && props.icon) {
+      if (props.inputSize === 'large') {
+        return '88px';
       }
       return props.theme.spaceScale.spacing12;
     }
