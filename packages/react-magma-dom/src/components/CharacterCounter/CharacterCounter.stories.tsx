@@ -80,7 +80,7 @@ export const WithChildren = args => {
     alert('Help link clicked!');
   };
   return (
-    <Input labelText={labelText} iconPosition="right" {...args}>
+    <Input labelText={labelText} {...args}>
       <Tooltip content={helpLinkLabel}>
         <IconButton
           aria-label={helpLinkLabel}

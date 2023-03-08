@@ -199,26 +199,28 @@ function getInputPadding(props: InputBaseStylesProps) {
         padding.left = props.theme.spaceScale.spacing10;
       }
     }
-  } else if (inputSize === 'medium') {
-    if (isClearable) {
-      if (iconPosition === 'right') {
-        padding.right = '68px';
-      } else if (iconPosition === 'left') {
-        padding.left = props.theme.spaceScale.spacing09;
-        padding.right = props.theme.spaceScale.spacing12;
+  } if (inputSize === 'medium') {
+      if (isClearable) {
+        if (iconPosition === 'right') {
+          padding.right = '68px';
+        } 
+        if (iconPosition === 'left') {
+          padding.left = props.theme.spaceScale.spacing09;
+          padding.right = props.theme.spaceScale.spacing12;
+        }
+        else {
+          // icon top, no icon
+          padding.right = props.theme.spaceScale.spacing09;
+        }
       } else {
-        // icon top, no icon
-        padding.right = props.theme.spaceScale.spacing09;
-      }
-    } else {
-      if (iconPosition === 'right') {
-        padding.right = props.theme.spaceScale.spacing09;
-      }
-      if (iconPosition === 'left') {
-        padding.left = props.theme.spaceScale.spacing09;
+        if (iconPosition === 'right') {
+          padding.right = props.theme.spaceScale.spacing09;
+        }
+        if (iconPosition === 'left') {
+          padding.left = props.theme.spaceScale.spacing09;
+        }
       }
     }
-  }
   return padding;
 }
 
@@ -458,6 +460,13 @@ function getClearablePosition(props) {
       }
       return props.theme.spaceScale.spacing12;
     }
+    if (props.iconPosition === 'top') {
+      if (props.inputSize === 'large') {
+        return props.theme.spaceScale.spacing10;
+      }
+      return '34px';
+    }
+    return props.theme.spaceScale.spacing12;
   }
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
