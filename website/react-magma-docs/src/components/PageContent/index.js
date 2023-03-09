@@ -27,6 +27,9 @@ const NAV_TABS = {
   PATTERNS_INTRO: 'patterns_intro',
 };
 
+// Special case pages that don't have secondary navigation.
+const PAGES_NO_NAV = ['contribution_guidelines', 'getting_started_patterns'];
+
 const TabsWrapper = styled.div`
   position: sticky;
   top: 56px;
@@ -208,6 +211,8 @@ export const PageContent = ({ children, componentName, type }) => {
           designPatternDocs
         );
 
+        console.log(apiDocs, designDocs, patternsDocs, designPatternDocs);
+
         const apiNavTabToLink = patternsDocs ? patternsLink : apiLink;
         const designNavTabToLink = designPatternDocs
           ? designPatternsLink
@@ -290,7 +295,12 @@ export const PageContent = ({ children, componentName, type }) => {
               <div
                 style={{ display: 'flex', background: magma.colors.neutral100 }}
               >
-                <ContentOutsideDocs>{children}</ContentOutsideDocs>
+                {PAGES_NO_NAV.includes(componentName) ? (
+                  <ContentOutsideDocs>{children}</ContentOutsideDocs>
+                ) : (
+                  <Content>{children}</Content>
+                )}
+
                 <PageNavigation>
                   <SubPageTabs
                     pageData={getPageData()}
