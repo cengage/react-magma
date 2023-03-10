@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card } from '../Card';
-import { CardBody } from '../Card/CardBody';
+import { Container } from '../Container';
 import { Pagination, PageButtonSize } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { PaginationProps } from './Pagination';
@@ -10,11 +9,33 @@ const Template: Story<PaginationProps> = args => <Pagination {...args} />;
 export default {
   title: 'Pagination',
   component: Pagination,
+  decorators: [
+    (Story, context) => (
+      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+        <Story />
+      </Container>
+    ),
+  ],
   argTypes: {
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+    },
     size: {
       control: {
         type: 'select',
         options: PageButtonSize,
+      },
+    },
+    hidePreviousButton: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    hideNextButton: {
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -54,18 +75,9 @@ Size.args = {
   size: PageButtonSize.large,
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
+export const SimplePagination = Template.bind({});
+SimplePagination.args = {
   ...Default.args,
-  isInverse: true,
+  simple: true,
+  defaultPage: 4,
 };
-
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
