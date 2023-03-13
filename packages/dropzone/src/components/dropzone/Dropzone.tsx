@@ -1,3 +1,4 @@
+/* eslint-disable no-empty-pattern */
 /**
  * HELPFUL NOTE!
  * SINCE THIS PACKAGE USES `FILE` WE MUST USE `Object.assign` IN LIEU OF SPREADING
@@ -191,6 +192,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       accept,
       containerStyle,
       disabled,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       dropzoneOptions = {
         multiple: true,
       },
@@ -261,6 +263,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       onDrop,
       noDrag,
     });
+
+    const inputProps = getInputProps({ id });
 
     const dragState: DragState = errorMessage
       ? 'error'
@@ -418,7 +422,18 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             testId={testId}
             tabIndex={-1}
           >
-            <input ref={ref} {...getInputProps({ id })} />
+            <input
+              ref={ref}
+              type={inputProps.type}
+              accept={inputProps.accept}
+              autoComplete={inputProps.autoComplete}
+              id={inputProps.id}
+              multiple={inputProps.multiple}
+              onChange={inputProps.onChange}
+              onClick={inputProps.onClick}
+              style={inputProps.style}
+              tabIndex={inputProps.tabIndex}
+            />
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>
                 <Button

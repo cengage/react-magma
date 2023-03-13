@@ -332,13 +332,10 @@ describe('Radio', () => {
       </RadioContext.Provider>
     );
 
-    fireEvent(
-      getByLabelText('blue'),
-      new MouseEvent('blur', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    const radio = getByLabelText('blue');
+
+    radio.focus();
+    radio.blur();
 
     expect(onBlur).toHaveBeenCalledTimes(1);
   });
@@ -358,13 +355,7 @@ describe('Radio', () => {
       </RadioContext.Provider>
     );
 
-    fireEvent(
-      getByLabelText('blue'),
-      new MouseEvent('focus', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    getByLabelText('blue').focus();
 
     expect(onFocus).toHaveBeenCalledTimes(1);
   });

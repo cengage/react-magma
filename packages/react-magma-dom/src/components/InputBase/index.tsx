@@ -68,6 +68,10 @@ export interface InputBaseProps
    */
   inputStyle?: React.CSSProperties;
   /**
+   * Total number of characters in an input.
+   */
+  inputLength?: number;
+  /**
    * Clear contents of input by clicking a clear button
    * @default false
    */
@@ -110,6 +114,11 @@ export interface InputBaseProps
    * Boolean for whether this is a Password Input or not
    */
   isPasswordInput?: boolean;
+  /**
+   * String to determine width of input, must be suffixed with "px", "rem", or "%""
+   * @default "auto"
+   */
+  width?: string;
 }
 
 export interface InputWrapperStylesProps {
@@ -515,6 +524,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       onClear,
       onIconClick,
       onIconKeyDown,
+      inputLength,
       inputSize,
       inputStyle,
       testId,
@@ -569,6 +579,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           style={containerStyle}
           hasError={hasError}
           isClearable={isClearable}
+          width={props.width}
         >
           <StyledInput
             {...other}
@@ -577,7 +588,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             data-testid={testId}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
-            isClearable={isClearable}
+            isClearable={isClearable && inputLength > 0}
             isInverse={useIsInverse(props.isInverse)}
             isPredictive={isPredictive}
             hasError={hasError}

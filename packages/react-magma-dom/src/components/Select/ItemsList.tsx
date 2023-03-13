@@ -37,6 +37,7 @@ const NoItemsMessage = styled.span<{
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral400};
+  font-family: ${props => props.theme.bodyFont};
   display: block;
   padding-top: ${props => props.theme.spaceScale.spacing03};
   text-align: center;

@@ -67,6 +67,7 @@ export const MenuItemStyles = props => {
     cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
     display: flex;
     font-size: ${props.theme.typeScale.size03.fontSize};
+    font-family: ${props.theme.bodyFont};
     line-height: ${props.theme.typeScale.size03.lineHeight};
     margin: 0;
     padding: ${props.isInactive

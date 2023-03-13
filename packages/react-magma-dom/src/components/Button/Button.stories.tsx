@@ -106,6 +106,7 @@ export default {
         type: 'boolean',
       },
     },
+    onClick: { action: 'clicked' },
   },
 } as Meta;
 
@@ -114,7 +115,6 @@ Default.args = {
   isInverse: false,
   isFullWidth: false,
   disabled: false,
-  onClick: () => {},
 };
 
 export const Disabled = Template.bind({});
@@ -122,7 +122,6 @@ Disabled.args = {
   isInverse: false,
   isFullWidth: false,
   disabled: true,
-  onClick: () => {},
 };
 
 export const Inverse = Template.bind({});

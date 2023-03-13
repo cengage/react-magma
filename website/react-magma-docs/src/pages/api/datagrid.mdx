@@ -256,9 +256,7 @@ export function Example() {
     },
   ];
 
-  return (
-    <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />
-  );
+  return <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />;
 }
 ```
 
@@ -667,11 +665,15 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Datagrid, TableSortDirection, Announce, VisuallyHidden } from 'react-magma-dom';
+import {
+  Datagrid,
+  TableSortDirection,
+  Announce,
+  VisuallyHidden,
+} from 'react-magma-dom';
 
 export function Example() {
-
-const [sortConfig, setSortConfig] = React.useState({
+  const [sortConfig, setSortConfig] = React.useState({
     key: '',
     message: '',
   });
@@ -698,7 +700,7 @@ const [sortConfig, setSortConfig] = React.useState({
       setSelectedDirection(direction);
       setPriceDirection(TableSortDirection.none);
       setStockDirection(TableSortDirection.none);
-    } else if (key === 'price'){
+    } else if (key === 'price') {
       if (
         sortConfig?.key === key &&
         priceDirection === TableSortDirection.ascending
@@ -708,7 +710,7 @@ const [sortConfig, setSortConfig] = React.useState({
       setPriceDirection(direction);
       setSelectedDirection(TableSortDirection.none);
       setStockDirection(TableSortDirection.none);
-    } else if (key === 'stock'){
+    } else if (key === 'stock') {
       if (
         sortConfig?.key === key &&
         stockDirection === TableSortDirection.ascending
@@ -791,7 +793,8 @@ const [sortConfig, setSortConfig] = React.useState({
       }
     } else {
       let sortableItems = [...products];
-      const direction = sortConfig.key === 'price' ? priceDirection : stockDirection;
+      const direction =
+        sortConfig.key === 'price' ? priceDirection : stockDirection;
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
           return direction === TableSortDirection.ascending ? -1 : 1;
@@ -848,9 +851,7 @@ const [sortConfig, setSortConfig] = React.useState({
     </>
   );
 }
-
 ```
-
 
 ## Controlled Selectable Column
 
@@ -1498,215 +1499,19 @@ export function Example() {
 }
 ```
 
-## Custom Pagination Component Props
-
-```typescript
-import React from 'react';
-import { Datagrid, DropdownDropDirection } from 'react-magma-dom';
-
-export function Example() {
-  const columns = [
-    { field: 'col1', header: 'Col 1' },
-    { field: 'col2', header: 'Col 2' },
-    { field: 'col3', header: 'Col 3' },
-    { field: 'col4', header: 'Col 4' },
-  ];
-
-  const rows = [
-    {
-      id: 1,
-      col1: '1 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 2,
-      col1: '2 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 3,
-      col1: '3 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 4,
-      col1: '4 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 5,
-      col1: '5 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 6,
-      col1: '6 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 7,
-      col1: '7  Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 8,
-      col1: '8 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 9,
-      col1: '9 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 10,
-      col1: '10 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 11,
-      col1: '11 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 12,
-      col1: '12 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 13,
-      col1: '13 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 14,
-      col1: '14 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 15,
-      col1: '15 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 16,
-      col1: '16 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 17,
-      col1: '17 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 18,
-      col1: '18 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 19,
-      col1: '19 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 20,
-      col1: '20 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 21,
-      col1: '21 Lorem ipsum dolor sit amet consectetur',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 22,
-      col1: '22 Lorem ipsum dolor sit amet',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 23,
-      col1: '23 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 24,
-      col1: '24 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-    {
-      id: 25,
-      col1: '25 Lorem ipsum dolor',
-      col2: 'Lorem ipsum dolor',
-      col3: 'Lorem ipsum dolor',
-      col4: 'Lorem ipsum',
-    },
-  ];
-
-  return (
-    <Datagrid
-      columns={columns}
-      rows={rows}
-      componentsProps={{
-        pagination: { dropdownDropDirection: DropdownDropDirection.down },
-      }}
-    />
-  );
-}
-```
-
 ## Custom Pagination Components
 
 ```typescript
 import React from 'react';
-import { Datagrid, Button, usePagination, ButtonGroup, Spacer, SpacerAxis, magma } from 'react-magma-dom';
+import {
+  Datagrid,
+  Button,
+  usePagination,
+  ButtonGroup,
+  Spacer,
+  SpacerAxis,
+  magma,
+} from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -1915,7 +1720,10 @@ export function Example() {
         }}
       >
         You are on page {page}
-        <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing05} />
+        <Spacer
+          axis={SpacerAxis.horizontal}
+          size={magma.spaceScale.spacing05}
+        />
         <ButtonGroup>
           <Button
             disabled={previousButton.disabled}

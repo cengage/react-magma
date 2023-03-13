@@ -37,12 +37,14 @@ export const StyledTabsChild = styled('li', {
   shouldForwardProp: isPropValid,
 })<{
   borderPosition?: TabsBorderPosition;
+  disabled?: boolean;
   isActive?: boolean;
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientation;
   theme: ThemeInterface;
 }>`
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
   flex-grow: 0;
   flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
   height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
@@ -136,6 +138,7 @@ export const TabStyles = props => css`
   flex-shrink: ${props.isFullWidth ? '1' : '0'};
   font-weight: 500;
   font-size: ${props.theme.typeScale.size02.fontSize};
+  font-family: ${props.theme.bodyFont};
   letter-spacing: ${props.theme.typeScale.size02.letterSpacing};
   line-height: ${props.theme.typeScale.size02.lineHeight};
   height: 100%;
@@ -283,6 +286,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       <StyledTabsChild
         borderPosition={borderPosition}
         data-testid="tabContainer"
+        disabled={disabled}
         isActive={isActive}
         isFullWidth={isFullWidth}
         isInverse={isInverse}

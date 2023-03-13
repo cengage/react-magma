@@ -96,6 +96,31 @@ export function Example() {
 }
 ```
 
+## Additional Content
+
+Using the `additionalContent` prop will let you include right aligned children within Alerts.
+
+```tsx
+import React from 'react';
+import { Alert, Badge, Button } from 'react-magma-dom';
+
+const AdditionalBadge = <Badge>Badge</Badge>;
+const AdditionalButton = <Button>Button</Button>;
+
+export function Example() {
+  return (
+    <>
+      <Alert additionalContent={AdditionalBadge}>
+        Alert with additional Badge.
+      </Alert>
+      <Alert additionalContent={AdditionalButton}>
+        Alert with additional Button.
+      </Alert>
+    </>
+  );
+}
+```
+
 ## Inverse
 
 ```tsx
@@ -104,7 +129,7 @@ import { Alert, AlertVariant, Container } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Container isInverse style={{padding: '12px 12px 0'}}>
+    <Container isInverse style={{ padding: '12px 12px 0' }}>
       <Alert variant={AlertVariant.info} isInverse>
         Inverse Info Alert
       </Alert>

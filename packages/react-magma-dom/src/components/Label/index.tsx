@@ -45,6 +45,7 @@ const StyledLabel = styled.label<{
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize
       : props.theme.typeScale.size02.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   font-weight: 500;
   letter-spacing: ${props =>
     props.size === InputSize.large
@@ -86,11 +87,13 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
     } = props;
     const theme = React.useContext(ThemeContext);
 
+    const isInverse = useIsInverse(props.isInverse);
+
     return actionable ? (
       <StyledLabel
         {...other}
         data-testid={testId}
-        isInverse={useIsInverse(props.isInverse)}
+        isInverse={isInverse}
         iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}
@@ -103,7 +106,7 @@ export const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       <StyledSpan
         {...other}
         data-testid={testId}
-        isInverse={useIsInverse(props.isInverse)}
+        isInverse={isInverse}
         iconPosition={iconPosition}
         labelPosition={labelPosition || LabelPosition.top}
         ref={ref}

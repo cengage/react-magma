@@ -26,6 +26,7 @@ const StyledList = styled('ol', {
   display: flex;
   flex-wrap: wrap;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   list-style: none;

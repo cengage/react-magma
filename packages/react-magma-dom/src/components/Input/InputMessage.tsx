@@ -34,6 +34,7 @@ const Message = styled.div<InputMessageProps>`
   color: ${props => BuildMessageColor(props)};
   display: flex;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
+  font-family: ${props => props.theme.bodyFont};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-top: ${props =>

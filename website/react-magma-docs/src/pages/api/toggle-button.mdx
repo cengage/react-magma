@@ -1,0 +1,161 @@
+---
+pageTitle: ToggleButton API
+title: Toggle Button
+props:
+  - ToggleButtonTextProps
+  - ToggleButtonIconProps
+---
+
+<DocsHeading type="api">ToggleButton</DocsHeading>
+
+ToggleButton uses both the Button and IconButton components to enable active states.
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { ToggleButton } from 'react-magma-dom';
+
+export function Example() {
+  return <ToggleButton value="1">Toggle</ToggleButton>;
+}
+```
+
+## Default Selected Value
+
+When a pre-selected state is needed, `isChecked` enables an active selected state on render.
+
+```typescript
+import React from 'react';
+import { ToggleButton } from 'react-magma-dom';
+
+export function Example() {
+  return <ToggleButton value="1" isChecked>Toggle</ToggleButton>;
+}
+```
+
+## Types
+
+Toggle Buttons come in three formats. Icon only, text only, or text with an icon.
+
+```typescript
+import React from 'react';
+import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
+import { SettingsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <Flex behavior={FlexBehavior.container} spacing={1}>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="1" icon={<SettingsIcon />} />
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="2">Text only</ToggleButton>
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="3" icon={<SettingsIcon />}>Text and icon</ToggleButton>
+        </Flex>
+      </Flex>
+    </>
+  );
+}
+```
+
+## Size
+
+Three sizes are configurable with the `ButtonSize` prop between `small`, `medium` (default), and `large`.
+
+```typescript
+import React from 'react';
+import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
+import { SettingsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <Flex behavior={FlexBehavior.container} spacing={1}>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="1" size={ButtonSize.small} icon={<SettingsIcon />} />
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="2" size={ButtonSize.medium}>Text only</ToggleButton>
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="3" size={ButtonSize.large} icon={<SettingsIcon />}>
+            Text and icon
+          </ToggleButton>
+        </Flex>
+      </Flex>
+    </>
+  );
+}
+```
+
+## Disabled
+
+```typescript
+import React from 'react';
+import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
+import { SettingsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <Flex behavior={FlexBehavior.container} spacing={1}>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="1" disabled icon={<SettingsIcon />} />
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="2" disabled>Text only</ToggleButton>
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="3" disabled icon={<SettingsIcon />}>
+            Text and icon
+          </ToggleButton>
+        </Flex>
+      </Flex>
+    </>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import { Container, Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
+import { SettingsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Container isInverse style={{ padding: '12px' }}>
+      <Flex behavior={FlexBehavior.container} spacing={1}>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="1" isInverse icon={<SettingsIcon />} />
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="2" isInverse>Text only</ToggleButton>
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ToggleButton value="3" isInverse icon={<SettingsIcon />}>
+            Text and icon
+          </ToggleButton>
+        </Flex>
+      </Flex>
+    </Container>
+  );
+}
+```
+
+## ToggleButton Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+### ToggleButtonText Props
+
+<ToggleButtonTextProps />
+
+### ToggleButtonIcon Props
+
+<ToggleButtonIconProps />

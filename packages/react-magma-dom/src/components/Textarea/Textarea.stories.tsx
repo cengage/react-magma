@@ -7,7 +7,11 @@ import { Spacer } from '../Spacer';
 import { Textarea, TextareaProps } from '.';
 
 const Template: Story<TextareaProps> = args => (
-  <Textarea {...args} labelText="Textarea label" />
+  <Textarea
+    value="how many of these things"
+    {...args}
+    labelText="Textarea label"
+  />
 );
 
 export default {
@@ -38,6 +42,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   isInverse: false,
+  maxLength: 4,
 };
 
 export const OnClear = args => {

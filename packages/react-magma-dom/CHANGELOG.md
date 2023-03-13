@@ -1,5 +1,169 @@
 # Change Log
 
+## 4.0.1-next.0
+
+### Patch Changes
+
+- f487b936f: fix(alertbase): Update height for toasts in AlertBase
+
+## 4.0.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Minor Changes
+
+- 39ef67ade: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- f311f81e9: feat(toggleButton): New Toggle Button component.
+- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
+### Patch Changes
+
+- b276664cd: Set fallback `font-family` for all components.
+- f708b20dc: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- adba671f3: chore: Fix broken build
+- e91c72c88: chore: Fixed warnings in the console.
+- 9cb534ce8: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 4301b98c1: fix(heading): Fix error that `"Property 'css' is missing"`
+- d2956b5f1: chore: Update react-magma-icons to v3.0.0
+- 0a4f2f8ce: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 354a62232: fix(toggleButton): Fix hover states
+
+## 4.0.0-next.11
+
+### Patch Changes
+
+- e91c72c88: chore: Fixed warnings in the console.
+
+## 4.0.0-next.10
+
+### Patch Changes
+
+- d2956b5f1: chore: Update react-magma-icons to v3.0.0
+
+## 4.0.0-next.9
+
+### Patch Changes
+
+- 354a62232: fix(toggleButton): Fix hover states
+
+## 4.0.0-next.8
+
+### Minor Changes
+
+- 39ef67ade: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+
+## 4.0.0-next.7
+
+### Minor Changes
+
+- f311f81e9: feat(toggleButton): New Toggle Button component.
+
+## 4.0.0-next.6
+
+### Patch Changes
+
+- f708b20dc: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+
+## 4.0.0-next.5
+
+### Patch Changes
+
+- 0a4f2f8ce: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+
+## 4.0.0-next.4
+
+### Patch Changes
+
+- 4301b98c1: fix(heading): Fix error that `"Property 'css' is missing"`
+
+## 4.0.0-next.3
+
+### Patch Changes
+
+- b276664cd: Set fallback `font-family` for all components.
+
+## 4.0.0-next.2
+
+### Patch Changes
+
+- 9cb534ce8: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+
+## 4.0.0-next.1
+
+### Minor Changes
+
+- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
+## 4.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Patch Changes
+
+- adba671f3: chore: Fix broken build
+
+## 3.2.1
+
+### Patch Changes
+
+- 0bf79d5de: style: fix linting errors and warnings
+- 7b4549726: Update react-magma-icons version to 2.3.6
+- 0d3e008bf: fix: Update hex of secondaryColors (secondary500, secondary600 & secondary700)
+- 962253d56: fix(navtabs) Added focus state on first NavTab for accessibility fix.
+- 6a01a5325: fix(input): Inputs with long placeholders && `isClearable` have appropriate padding
+- fafe31580: fix(search): Search components with long placeholders && `isClearable` have appropriate padding
+- f5189569b: fix(tabs): Disabled tabs have the disabled cursor
+
+## 3.2.1-next.6
+
+### Patch Changes
+
+- 0d3e008bf: fix: Update hex of secondaryColors (secondary500, secondary600 & secondary700)
+
+## 3.2.1-next.5
+
+### Patch Changes
+
+- 7b4549726: Update react-magma-icons version to 2.3.6
+
+## 3.2.1-next.4
+
+### Patch Changes
+
+- 962253d56: fix(navtabs) Added focus state on first NavTab for accessibility fix.
+
+## 3.2.1-next.3
+
+### Patch Changes
+
+- fafe31580: fix(search): Search components with long placeholders && `isClearable` have appropriate padding
+
+## 3.2.1-next.2
+
+### Patch Changes
+
+- 6a01a5325: fix(input): Inputs with long placeholders && `isClearable` have appropriate padding
+
+## 3.2.1-next.1
+
+### Patch Changes
+
+- 0bf79d5de: style: fix linting errors and warnings
+
+## 3.2.1-next.0
+
+### Patch Changes
+
+- f5189569b: fix(tabs): Disabled tabs have the disabled cursor
+
 ## 3.2.0
 
 ### Minor Changes

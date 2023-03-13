@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { basicData, explicitData } from './test/exampleChartData';
 import { Chart } from '.';
@@ -398,9 +398,11 @@ describe('Line Chart', () => {
         />
       );
 
-      userEvent.click(getByText(/team 1/i));
-      userEvent.click(getByText(/team 1/i));
-      userEvent.tab({ shift: true });
+      userEvent.click(getByText(/chart/i, { selector: 'button' }));
+      userEvent.tab();
+      userEvent.tab();
+      userEvent.keyboard('{arrowdown}');
+      userEvent.keyboard('{arrowright}');
 
       expect(getByLabelText(data[1].data[1].label)).toHaveFocus();
 
