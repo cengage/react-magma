@@ -12,9 +12,14 @@ props:
   - DropdownSplitButtonProps
 ---
 
-<DocsHeading to="/design/dropdown/" type="api">
-  Dropdown
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="dropdown" type="api">
+
+<LeadParagraph>
+  Dropdowns provide a portable way to display menus or lighter versions of other
+  components. The dropdown is shown by clicking on a button or other control.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -768,6 +773,7 @@ export function Example() {
 ```
 
 ## Inverse
+
 ```tsx
 import React from 'react';
 import {
@@ -776,7 +782,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
   Card,
-  CardBody
+  CardBody,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -843,3 +849,5 @@ The DropdownButton can also accept an `icon` property, as in the <Link to="/api/
 **Any other props supplied will be provided to the wrapping `a` element.**
 
 <DropdownMenuNavItemProps />
+
+</PageContent>

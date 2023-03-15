@@ -5,11 +5,15 @@ props:
   - CharacterCounterProps
 ---
 
-<DocsHeading to="/design/character-counter/" type="api">
-  Character Counter
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-A numeric counter that is used by <Link to="/api/input">Input</Link> and <Link to="/api/textarea">Textarea</Link> to help users know how much text they can enter when there is a limit on the number of characters.
+<PageContent componentName="character_counter" type="api">
+
+<LeadParagraph>
+  A numeric counter that is used by <Link to="/api/input">Input</Link> and{' '}
+  <Link to="/api/textarea">Textarea</Link> to help users know how much text they
+  can enter when there is a limit on the number of characters.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -98,3 +102,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <CharacterCounterProps />
+
+</PageContent>

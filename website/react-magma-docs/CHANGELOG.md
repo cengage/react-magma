@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.1
+
+### Patch Changes
+
+- 108637df1: Update page layout. Move secondary navigation to the page.
+
 ## 5.0.1-next.0
 
 ### Patch Changes

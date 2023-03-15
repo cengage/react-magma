@@ -6,14 +6,13 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/list/" type="design">
-  List
-</DocsHeading>
+<PageContent componentName="list" type="design">
+
 <LeadParagraph>
-  Lists are vertical groupings of related content. Lists come either ordered or unordered.
+  Lists are vertical groupings of related content. Lists come either ordered or
+  unordered.
 </LeadParagraph>
 
 ![ ](../../images/lists/list-intro-example.png)
@@ -30,14 +29,20 @@ Use ordered (numbered) lists when you need to convey a sequence or hierarchy bet
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/lists/unordered-list.png" alt=" " />
-        <figcaption>The list in this image shows a list of grocery items in no particular order.</figcaption>
+        <img src="../../images/lists/unordered-list.png" alt="" />
+        <figcaption>
+          The list in this image shows a list of grocery items in no particular
+          order.
+        </figcaption>
       </figure>
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/lists/ordered-list.png" alt=" " />
-        <figcaption>The list in this image shows a list of the top 7 best-selling car brands.</figcaption>
+        <img src="../../images/lists/ordered-list.png" alt="" />
+        <figcaption>
+          The list in this image shows a list of the top 7 best-selling car
+          brands.
+        </figcaption>
       </figure>
     </div>
   </div>
@@ -48,12 +53,15 @@ Use ordered (numbered) lists when you need to convey a sequence or hierarchy bet
 ## Content
 
 ### Length
+
 Generally, lists should be used to present simple pieces of information. For more complex sets of data, consider using a data table.
 
 ### Order
+
 Arrange list items in a logical way. For example, if the list is about item sales, the default order might be the highest sold item to the lowest. Grouping items in categories into smaller, more specific lists might be more meaningful in some contexts. You can also organize lists in alphabetical or numeric order.
 
 ### Text
+
 Use list items that are grammatically parallel. For example, try not to mix passive voice with active voice.
 
 ---
@@ -70,12 +78,12 @@ You can use the spacing tokens in React Magma to increase the vertical space bet
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/lists/small-spacing.png" alt=" " />
+        <img src="../../images/lists/small-spacing.png" alt="" />
       </figure>
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/lists/larger-spacing.png" alt=" " />
+        <img src="../../images/lists/larger-spacing.png" alt="" />
       </figure>
     </div>
   </div>
@@ -89,11 +97,10 @@ The icon list is really just a variant of the Unordered List, but instead of bul
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/lists/icon-list.png" alt=" " />
+        <img src="../../images/lists/icon-list.png" alt="" />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
@@ -105,29 +112,28 @@ There are three icon size choices, including small, medium, and large. These siz
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/lists/icon-sizes.png" alt=" " />
+        <img src="../../images/lists/icon-sizes.png" alt="" />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
-
 #### Icon Alignment
 
-You can align the icon with the center or top of the associated content. This largely depends on the layout of the associated content.  For example, top-aligning the icon with single lines of content creates a very undesirable appearance. Also center-aligning the icon with content consisting of several lines may also create an odd-looking result.
+You can align the icon with the center or top of the associated content. This largely depends on the layout of the associated content. For example, top-aligning the icon with single lines of content creates a very undesirable appearance. Also center-aligning the icon with content consisting of several lines may also create an odd-looking result.
 
 <div class="two-col">
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/lists/icon-alignment.png" alt=" " />
+        <img src="../../images/lists/icon-alignment.png" alt="" />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div class="col col-2"></div>
   </div>
 </div>
 
 <span class="horizontal-spacer"></span>
+
+</PageContent>

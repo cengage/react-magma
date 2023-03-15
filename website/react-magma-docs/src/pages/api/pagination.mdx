@@ -7,11 +7,13 @@ props:
   - UncontrolledPaginationProps
 ---
 
-<DocsHeading type="api">
-  Pagination
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-The `Pagination` component is an interactive indexed navigation element.
+<PageContent componentName="pagination" type="api">
+
+<LeadParagraph>
+  The Pagination component is an interactive indexed navigation element.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -104,3 +106,5 @@ In order to manage the state and have more control as the developer, use the fol
 If there isn't a need for that level of control, let the component manage all of the state using the following props:
 
 <UncontrolledPaginationProps />
+
+</PageContent>

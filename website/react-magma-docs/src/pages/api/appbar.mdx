@@ -5,13 +5,15 @@ props:
   - AppBarProps
 ---
 
-<DocsHeading to="/design/header/" type="api">
-  AppBar
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-The `AppBar` component is a relatively simple container, rendering a `header` element, used to display information and actions relating to the current screen.
+<PageContent componentName="appbar" type="api">
 
+<LeadParagraph>
+The AppBar component is a relatively simple container, rendering a header element, used to display information and actions relating to the current screen.
+<br/><br/>
 It is the foundation for the <Link to="/patterns/header">Header Pattern</Link>, a more robust, more opinionated component that also handles the rendering of several components inside of it.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -160,3 +162,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `header` element.**
 
 <AppBarProps />
+
+</PageContent>

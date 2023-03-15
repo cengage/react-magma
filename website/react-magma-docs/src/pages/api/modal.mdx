@@ -5,9 +5,14 @@ props:
   - ModalProps
 ---
 
-<DocsHeading to="/design/modals/" type="api">
-  Modal
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="modal" type="api">
+
+<LeadParagraph>
+  Modals inform users about a task and can contain critical information, require
+  decisions, or involve multiple tasks.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -336,3 +341,5 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that wraps the modal content.
 
 <ModalProps />
+
+</PageContent>
