@@ -6,14 +6,22 @@ order: 2
 
 import { Link } from 'gatsby';
 import '../design/design-guidelines-styles.css';
-import { DocsHeading } from '../../components/DocsHeading';
 import { Button, Paragraph, Heading } from 'react-magma-dom';
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading type="design">Typography</DocsHeading>
+<PageContent componentName="typography" type="design_intro">
 
-Cengage applications need clear and consistent headings, highly legible body paragraphs, and clear labels. Our typefaces are chosen for legibility and maximum support for mathematical characters.
+<LeadParagraph>
+  Cengage applications need clear and consistent headings, highly legible body
+  paragraphs, and clear labels. Our typefaces are chosen for legibility and
+  maximum support for mathematical characters.
+</LeadParagraph>
 
-By consistently tying typographic styles to appropriate functions in the interface, we create a clear visual pattern for students and faculty to follow while they’re interacting with our products.
+<LeadParagraph>
+  By consistently tying typographic styles to appropriate functions in the
+  interface, we create a clear visual pattern for students and faculty to follow
+  while they’re interacting with our products.
+</LeadParagraph>
 
 ---
 
@@ -791,7 +799,7 @@ The headings presets above are assigned by default to H1 through H6 in the <Link
 One example of this is in the <Link to="/api/modal/">Modal component</Link>. For optimal accessibility the title of the modal needs to be an H1, but we definitely don't want it to be styled with text that large. So we use an H1, but apply the Productive Heading Small style to it. This flexibility allows consumers of Magma to design using the styles that work best for the UI, but still have a clear informational hierarchy for assistive technologies.
 
 <figure>
-  <img src="../../images/typography/modal-title-style.png" alt=" " />
+  <img src="../../images/typography/modal-title-style.png" alt="" />
 </figure>
 
 #### Consistency is Key
@@ -803,7 +811,7 @@ Continuing from above, there isn't just one way an H1 or and H3 should be styled
 Another advantage to using the presets above is that Responsive behavior is already built into each style so you don't have to figure out and include it yourself. This means a number of the larger sizes will automatically reduce in size at 600px wide. This ensures we have appropriate text sizes on smaller devices. The breakpoint can be overridden if you want this change to happen earlier or later.
 
 <figure>
-  <img src="../../images/typography/responsive-example.png" alt=" " />
+  <img src="../../images/typography/responsive-example.png" alt="" />
 </figure>
 
 ---
@@ -821,11 +829,19 @@ Our primary typface is Work Sans. It’s clear and approachable and is great for
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/work-sans-characters.png" alt=" " />
+        <img src="../../images/typography/work-sans-characters.png" alt="" />
       </figure>
     </div>
     <div class="col col-2">
-      Work Sans is a typeface family based loosely on early Grotesques, such as those by Stephenson Blake, Miller & Richard and Bauerschen Giesserei. The Regular weight and others in the middle of the family are optimised for on-screen text usage at medium-sizes (14px-48px) and can also be used in print design. The fonts closer to the extreme weights are designed more for display use both on the web and in print. Overall, features are simplified and optimised for screen resolutions; for example, diacritic marks are larger than how they would be in print. A version optimised for desktop applications is available from the Work Sans github project page.
+      Work Sans is a typeface family based loosely on early Grotesques, such as
+      those by Stephenson Blake, Miller & Richard and Bauerschen Giesserei. The
+      Regular weight and others in the middle of the family are optimised for
+      on-screen text usage at medium-sizes (14px-48px) and can also be used in
+      print design. The fonts closer to the extreme weights are designed more
+      for display use both on the web and in print. Overall, features are
+      simplified and optimised for screen resolutions; for example, diacritic
+      marks are larger than how they would be in print. A version optimised for
+      desktop applications is available from the Work Sans github project page.
     </div>
   </div>
 </div>
@@ -841,7 +857,7 @@ Noto Serif is a beautiful serif font. It's easy to read, provides a nice contras
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/noto-serif-characters.png" alt=" " />
+        <img src="../../images/typography/noto-serif-characters.png" alt="" />
       </figure>
     </div>
     <div class="col col-2">
@@ -875,7 +891,7 @@ Line-heights are also defined at this level to adhere to an 8px spacing system, 
 If you have a need to use a font size outside of the pre-made sets above, you may only choose from this list.
 
 <figure>
-  <img src="../../images/typography/type-scale.png" alt=" " />
+  <img src="../../images/typography/type-scale.png" alt="" />
 </figure>
 
 ---
@@ -890,7 +906,7 @@ Font weight is an important typographic variable that can add emphasis and diffe
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/font-weights.png" alt=" " />
+        <img src="../../images/typography/font-weights.png" alt="" />
       </figure>
     </div>
     <div class="col col-2"></div>
@@ -905,7 +921,7 @@ Each weight has an italic style, which should only be used when you need to emph
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/font-italic.png" alt=" " />
+        <img src="../../images/typography/font-italic.png" alt="" />
       </figure>
     </div>
     <div class="col col-2"></div>
@@ -920,7 +936,7 @@ Type color should be carefully considered, with legibility and accessibility as 
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/text-color-neutral-1.png" alt=" " />
+        <img src="../../images/typography/text-color-neutral-1.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>
@@ -932,7 +948,7 @@ Type color should be carefully considered, with legibility and accessibility as 
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/typography/text-color-neutral-2.png" alt=" " />
+        <img src="../../images/typography/text-color-neutral-2.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>On dark backgrounds, neutral text appears as white.</p>
@@ -943,7 +959,7 @@ Type color should be carefully considered, with legibility and accessibility as 
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/text-color-decoration.png" alt=" " />
+        <img src="../../images/typography/text-color-decoration.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
           <p>Don't use color as decoration.</p>
@@ -952,7 +968,7 @@ Type color should be carefully considered, with legibility and accessibility as 
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/typography/text-color-contrast.png" alt=" " />
+        <img src="../../images/typography/text-color-contrast.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
           <p>
@@ -966,7 +982,7 @@ Type color should be carefully considered, with legibility and accessibility as 
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/text-color-meaning.png" alt=" " />
+        <img src="../../images/typography/text-color-meaning.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>
@@ -979,7 +995,7 @@ Type color should be carefully considered, with legibility and accessibility as 
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/typography/text-color-meaning-2.png" alt=" " />
+        <img src="../../images/typography/text-color-meaning-2.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>
@@ -1000,12 +1016,12 @@ It is common to lighten certain pieces of text in order to create more contrast.
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/typography/subdued-example-1.png" alt=" " />
+        <img src="../../images/typography/subdued-example-1.png" alt="" />
       </figure>
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/typography/subdued-example-2.png" alt=" " />
+        <img src="../../images/typography/subdued-example-2.png" alt="" />
       </figure>
     </div>
   </div>
@@ -1018,5 +1034,7 @@ It is common to lighten certain pieces of text in order to create more contrast.
 Headings and paragraphs have margins built into them by default. These margins provide the desired rhythm created by spacing when they are used together in a traditional narrative context. These margins can be easily modified using the spacing scale or completely removed when using headings or paragraphs in other contexts.
 
 <figure>
-  <img src="../../images/typography/margins-illustration.png" alt=" " />
+  <img src="../../images/typography/margins-illustration.png" alt="" />
 </figure>
+
+</PageContent>

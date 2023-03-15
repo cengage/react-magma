@@ -5,9 +5,11 @@ props:
   - TextareaProps
 ---
 
-<DocsHeading to="/design/inputs/" type="api">
-  Textarea
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="textarea" type="api">
+
+<LeadParagraph>A Textarea is an input field for long content.</LeadParagraph>
 
 ## Basic Usage
 
@@ -114,3 +116,5 @@ export function Example() {
 All of the [standard textarea attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) can be provided as props and will be applied to the `textarea` element that gets rendered.
 
 <TextareaProps />
+
+</PageContent>

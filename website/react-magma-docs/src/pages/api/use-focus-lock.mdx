@@ -3,9 +3,14 @@ pageTitle: useFocusLock Hook API
 title: useFocusLock Hook
 ---
 
-<DocsHeading type="api">useFocusLock Hook</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-The `useFocusLock` custom hook can be used to lock the browsers focus in a given container by putting the returned `ref` on to the container element.
+<PageContent componentName="usefocuslock_hook" type="api">
+
+<LeadParagraph>
+  The useFocusLock custom hook can be used to lock the browsers focus in a given
+  container by putting the returned ref on to the container element.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -40,7 +45,14 @@ If your container has a header that describes the section you are locking the fo
 
 ```tsx codesandbox=magma
 import React from 'react';
-import { useFocusLock, Toggle, Input, Button, Heading, Spacer } from 'react-magma-dom';
+import {
+  useFocusLock,
+  Toggle,
+  Input,
+  Button,
+  Heading,
+  Spacer,
+} from 'react-magma-dom';
 
 export function Example() {
   const headingRef = React.useRef<HTMLHeadingElement>();
@@ -97,3 +109,5 @@ export function Example() {
   );
 }
 ```
+
+</PageContent>

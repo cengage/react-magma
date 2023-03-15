@@ -5,9 +5,14 @@ props:
   - ContainerProps
 ---
 
-<DocsHeading type="api">Container</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-The `Container` component centers your content horizontally. It is the most basic layout element.
+<PageContent componentName="container" type="api">
+
+<LeadParagraph>
+  The Container component centers your content horizontally. It is the most
+  basic layout element.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -94,3 +99,5 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <ContainerProps />
+
+</PageContent>
