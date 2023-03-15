@@ -211,8 +211,6 @@ export const PageContent = ({ children, componentName, type }) => {
           designPatternDocs
         );
 
-        console.log(apiDocs, designDocs, patternsDocs, designPatternDocs);
-
         const apiNavTabToLink = patternsDocs ? patternsLink : apiLink;
         const designNavTabToLink = designPatternDocs
           ? designPatternsLink

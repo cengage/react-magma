@@ -70,7 +70,6 @@ export const ReleasedVersionsTable = () => {
   React.useEffect(() => {
     if (allVersions) {
       const tableRow = allVersions.map((row, i) => {
-        console.log(row);
         return (
           <TableRow key={`row${i}`}>
             <TableCell key={`row${i}-version`}>
@@ -131,9 +130,6 @@ export const IconsTable = () => {
   React.useEffect(() => {
     if (allVersions) {
       const tableRow = allVersions.map((row, i) => {
-        {
-          /* console.log(row); */
-        }
         return (
           <TableRow key={`row${i}`}>
             <TableCell key={`row${i}-version`}>
