@@ -5,9 +5,15 @@ props:
   - SpinnerProps
 ---
 
-<DocsHeading type="api">Spinner</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-Spinners indicate the loading state of a component or page. Spinners are used within the <Link to="/api/loading-indicator">Loading Indicator</Link> component.
+<PageContent componentName="spinner" type="api">
+
+<LeadParagraph>
+  Spinners indicate the loading state of a component or page. Spinners are used
+  within the <Link to="/api/loading-indicator">Loading Indicator</Link>{' '}
+  component.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -75,7 +81,7 @@ import { Spinner, Spacer, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <div style={{background: magma.colors.primary600, padding: '12px'}}>
+    <div style={{ background: magma.colors.primary600, padding: '12px' }}>
       <Spacer size={magma.spaceScale.spacing04} />
       <Spinner size={30} isInverse />
       <Spacer size={magma.spaceScale.spacing04} />
@@ -91,3 +97,5 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `span` element that gets rendered.
 
 <SpinnerProps />
+
+</PageContent>

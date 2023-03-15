@@ -5,11 +5,16 @@ props:
   - HeadingProps
 ---
 
-<DocsHeading type="api">Heading</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="heading" type="api">
+
+<LeadParagraph>
+  The Heading component can be used with the `level` prop to render the HTML
+  heading elements, levels 1-6.
+</LeadParagraph>
 
 ## Basic Usage
-
-The `Heading` component can be used with the `level` prop to render the HTML heading elements, levels 1-6.
 
 ```tsx
 import React from 'react';
@@ -277,3 +282,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the heading
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the heading (h1-6) element that gets rendered.
 
 <HeadingProps />
+
+</PageContent>
