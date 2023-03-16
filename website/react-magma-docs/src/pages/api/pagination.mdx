@@ -7,9 +7,7 @@ props:
   - UncontrolledPaginationProps
 ---
 
-<DocsHeading type="api">
-  Pagination
-</DocsHeading>
+<DocsHeading type="api">Pagination</DocsHeading>
 
 The `Pagination` component is an interactive indexed navigation element.
 
@@ -23,6 +21,19 @@ import { Pagination } from 'react-magma-dom';
 
 export function Example() {
   return <Pagination count={4} />;
+}
+```
+
+## Simple Pagination
+
+An alternative presentation of `Pagination` is availble with the `simple` prop. This converts the existing structure into a dropdown format, while still utilizing previous and next navigation buttons.
+
+```typescript
+import React from 'react';
+import { Pagination } from 'react-magma-dom';
+
+export function Example() {
+  return <Pagination count={4} type="simple" />;
 }
 ```
 

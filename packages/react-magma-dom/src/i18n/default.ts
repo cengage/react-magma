@@ -98,7 +98,8 @@ export const defaultI18n: I18nInterface = {
       'reset selection for {labelText}. {selectedItem} is selected',
     createLabel: 'Create "{inputValue}"',
     multi: {
-      clearIndicatorAriaLabel: 'reset selection for {labelText}. {selectedItem} are selected',
+      clearIndicatorAriaLabel:
+        'reset selection for {labelText}. {selectedItem} are selected',
     },
     loading: 'Loading...',
   },
@@ -261,6 +262,11 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+  },
+  simplePagination: {
+    ofLabel: 'of',
+    pageLabel: 'page',
+    pagesLabel: 'pages',
   },
   skipLink: {
     buttonText: 'Skip Navigation',

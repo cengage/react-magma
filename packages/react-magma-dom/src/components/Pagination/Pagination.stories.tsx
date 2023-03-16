@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '../Container';
 import { Pagination, PageButtonSize } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { PaginationProps } from './Pagination';
+import { PaginationProps, PaginationType } from './Pagination';
 
 const Template: Story<PaginationProps> = args => <Pagination {...args} />;
 
@@ -22,6 +22,12 @@ export default {
         type: 'boolean',
       },
     },
+    type: {
+      control: {
+        type: 'select',
+        options: PaginationType,
+      },
+    },
     size: {
       control: {
         type: 'select',
@@ -38,12 +44,24 @@ export default {
         type: 'boolean',
       },
     },
+    showFirstButton: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    showLastButton: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
   count: 10,
+  hidePreviousButton: false,
+  hideNextButton: false,
   isInverse: false,
 };
 
@@ -78,6 +96,6 @@ Size.args = {
 export const SimplePagination = Template.bind({});
 SimplePagination.args = {
   ...Default.args,
-  simple: true,
-  defaultPage: 4,
+  type: PaginationType.simple,
+  defaultPage: 2,
 };
