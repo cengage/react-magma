@@ -5,14 +5,18 @@ props:
   - ToggleProps
 ---
 
-<DocsHeading to="/design/selection-controls" type="api">
-  Toggle
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="toggle" type="api">
+
+<LeadParagraph>
+  Toggles (also called Switches) are form elements used to set a single item
+  either an on or off value.
+</LeadParagraph>
+
+See also: <Link to="/api/checkboxes">Checkboxes</Link>, <Link to="/api/radio">Radio Buttons</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 ## Basic Usage
-
-Toggles (also called Switches) are form elements used to set a single item either an on or off value.
-See also: <Link to="/api/checkboxes">Checkboxes</Link>, <Link to="/api/radio">Radio Buttons</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
 
 The label/toggle association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
@@ -189,3 +193,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <ToggleProps />
+
+</PageContent>

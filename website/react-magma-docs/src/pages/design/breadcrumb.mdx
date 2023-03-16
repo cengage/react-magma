@@ -6,18 +6,21 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { DocsHeading } from '../../components/DocsHeading';
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/breadcrumb/" type="design">
-  Breadcrumb
-</DocsHeading>
+<PageContent componentName="breadcrumb" type="design">
+
+<LeadParagraph>
+  Indicate the current page's location within a navigational hierarchy that
+  automatically adds separators.
+</LeadParagraph>
 
 ## Usage
 
-Indicate the current page’s location within a navigational hierarchy that automatically adds separators. The default breadcrumb component is styled for use on backgrounds **neutral100** or **neutral200**. For dark backgrounds you can use the inverse version.
+The default breadcrumb component is styled for use on backgrounds **neutral100** or **neutral200**. For dark backgrounds you can use the inverse version.
 
 <figure>
-  <img src="../../images/breadcrumbs/example-breadcrumbs.png" alt=" " />
+  <img src="../../images/breadcrumbs/example-breadcrumbs.png" alt="" />
 </figure>
 
 ---
@@ -30,9 +33,11 @@ As the viewport gets smaller, the breadcrumb component will simply wrap to as ma
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/breadcrumbs/breadcrumbs-wrap.png" alt=" " />
+        <img src="../../images/breadcrumbs/breadcrumbs-wrap.png" alt="" />
       </figure>
     </div>
     <div class="col col-2"></div>
   </div>
 </div>
+
+</PageContent>

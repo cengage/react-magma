@@ -1,5 +1,22 @@
 # Change Log
 
+## 5.0.1-next.1
+
+### Patch Changes
+
+- 108637df1: Update page layout. Move secondary navigation to the page.
+
+## 5.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [f487b936f]
+  - react-magma-dom@4.0.1-next.0
+  - @react-magma/charts@3.0.1-next.0
+  - @react-magma/dropzone@3.0.1-next.0
+  - @react-magma/schema-renderer@3.0.1-next.0
+  - @cengage-patterns/header@5.0.1-next.0
+
 ## 5.0.0
 
 ### Major Changes

@@ -2,9 +2,12 @@
 title: 'Select Migration Guide'
 ---
 
+import { LeadParagraph } from '../components/LeadParagraph';
 import { Link } from 'gatsby';
 
-# Select Migration
+<PageContent componentName="select_migration">
+
+<LeadParagraph>
 
 The `Select` component has been upgraded!
 
@@ -14,6 +17,8 @@ The components `Select`, `AsyncSelect`, `CreatableSelect`, and `AsyncCreatableSe
 The new version includes both the <Link to="/api/select">Select</Link> (replacing the old `Select` and `AsyncSelect`) and <Link to="/api/Combobox">Combobox</Link> (replacing `CreateableSelect` and `AsyncCreatableSelect`) components, built upon [Downshift](https://www.downshift-js.com/).
 
 We recommend migrating to the new components as soon as possible. The major differences in the new version are outlined here.
+
+</LeadParagraph>
 
 ## Installing Downshift
 
@@ -59,3 +64,5 @@ The `getA11ySelectionMessage` prop is used to indicate when an item has been sel
 ## Custom Styles
 
 New to the upgraded `Select` and `Combobox` components, is the ability to add <Link to="/api/select/#custom_styles">custom styles</Link> by passing CSS properties.
+
+</PageContent>

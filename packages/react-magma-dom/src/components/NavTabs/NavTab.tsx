@@ -172,7 +172,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
     // Sets focus on NavTab for accessibility
     React.useEffect(() => {
       if (isFocused) {
-        styledTabRef.current.focus();
+        styledTabRef.current?.focus();
       }
     }, []);
 

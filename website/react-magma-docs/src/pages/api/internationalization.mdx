@@ -3,14 +3,20 @@ pageTitle: Internationalization API
 title: Internationalization
 ---
 
-<DocsHeading type="api">Internationalization</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-React Magma exposes an `I18nContext` object and an object named `defaultI18n` that contains the default
-values used by the context provider. You can supply your own object or override specific keys in the object
-to provide translations for strings in the components.
+<PageContent componentName="internationalization" type="api">
 
-There are some values in the context that are used to localize date and time. These are `locale`, `dateFormat`, `timeFormat`,
-and `datePicker.startOfWeek`. These keys have specific types listed below, while the rest are `strings`:
+<LeadParagraph>
+  React Magma exposes an I18nContext object and an object named defaultI18n that
+  contains the default values used by the context provider.
+</LeadParagraph>
+
+## Usage
+
+You can supply your own object or override specific keys in the object to provide translations for strings in the components.
+
+There are some values in the context that are used to localize date and time. These are `locale`, `dateFormat`, `timeFormat`, and `datePicker.startOfWeek`. These keys have specific types listed below, while the rest are `strings`:
 
 - `locale` is a `date-fns` locale object. You can [see the available objects here](https://github.com/date-fns/date-fns/tree/master/src/locale).
   Example of a locale import: `import { es } from 'date-fns/locale'`.
@@ -122,3 +128,5 @@ export function Example() {
   );
 }
 ```
+
+</PageContent>

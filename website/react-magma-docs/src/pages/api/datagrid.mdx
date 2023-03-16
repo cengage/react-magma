@@ -11,9 +11,14 @@ props:
   - UseDataPaginationUncontrolled
 ---
 
-<DocsHeading type="api">Datagrid</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-Similar to the `Table` component, the `Datagrid` takes in data in a set of props and renders rows and columns accordingly.
+<PageContent componentName="datagrid" type="api">
+
+<LeadParagraph>
+  Similar to the Table component, the Datagrid takes in data in a set of props
+  and renders rows and columns accordingly.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -2023,3 +2028,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `tr` element.**
 
 <DatagridRow />
+
+</PageContent>

@@ -6,15 +6,15 @@ props:
   - IndeterminateCheckboxProps
 ---
 
-import { DocsHeading } from '../../components/DocsHeading';
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/design/selection-controls" type="api">
-  Checkbox
-</DocsHeading>
+<PageContent componentName="checkbox" type="api">
+
+<LeadParagraph>
+  Checkboxes are form elements used to select one or multiple items from a list.
+</LeadParagraph>
 
 ## Basic Usage
-
-Checkboxes are form elements used to select one or multiple items from a list.
 
 Related checkboxes should be grouped within the <Link to="/api/formgroup">Form Group</Link> control.
 
@@ -450,12 +450,12 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
 ```html noCodeSandbox
-  <Checkbox
-    defaultChecked={true}
-    id="customId"
-    labelText="Checkbox"
-    testId="checkbox-id"
-  />
+<Checkbox
+  defaultChecked="{true}"
+  id="customId"
+  labelText="Checkbox"
+  testId="checkbox-id"
+/>
 ```
 
 ## Checkbox Props
@@ -465,3 +465,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the input e
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
 
 <CheckboxProps />
+
+</PageContent>

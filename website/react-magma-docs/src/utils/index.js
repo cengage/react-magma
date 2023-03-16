@@ -2,6 +2,11 @@ const axios = require('axios');
 const semver = require('semver');
 const english = new Intl.DateTimeFormat('en');
 
+const REPOS = {
+  dom: 'https://registry.npmjs.org/react-magma-dom',
+  icons: 'https://registry.npmjs.org/react-magma-icons',
+};
+
 const cleanVersions = ({ versions, time, tags }) => {
   return semver
     .sort(Object.keys(versions))
@@ -9,6 +14,8 @@ const cleanVersions = ({ versions, time, tags }) => {
     .map(version => {
       return {
         version,
+        deprecated: versions[version].deprecated,
+        peerDependencies: versions[version].peerDependencies,
         time: time[version],
         date: english.format(new Date(time[version])),
         alias: version.replace(/\./g, '-'),
@@ -44,16 +51,16 @@ const filterNPM = ({ versions, 'dist-tags': tags, time }) => {
   };
 };
 
-export const getAllVersions = () => {
-  return axios
-    .get('https://registry.npmjs.org/react-magma-dom')
-    .then(({ data }) => filterNPM(data));
+export const getAllVersions = (repo = 'dom') => {
+  return axios.get(REPOS[repo]).then(({ data }) => {
+    return filterNPM(data);
+  });
 };
 
-export async function getVersions() {
+export async function getVersions(repo = 'dom') {
   const allVersionsPromise = new Promise(resolve => {
     setTimeout(() => {
-      resolve(getAllVersions());
+      resolve(getAllVersions(repo));
     }, 300);
   });
 

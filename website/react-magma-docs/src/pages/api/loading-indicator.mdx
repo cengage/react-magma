@@ -5,11 +5,14 @@ props:
   - LoadingIndicatorProps
 ---
 
-<DocsHeading to="/design/loading-indicators/" type="api">
-  Loading Indicator
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-When content is loading, the `LoadingIndicator` component can be used to communicate to users that the wait is expected and everything is normal.
+<PageContent componentName="loading_indicator" type="api">
+
+<LeadParagraph>
+  When content is loading, the LoadingIndicator component can be used to
+  communicate to users that the wait is expected and everything is normal.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -120,7 +123,12 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
 
 ```tsx
 import React from 'react';
-import { Announce, Button, LoadingIndicator, ButtonGroup } from 'react-magma-dom';
+import {
+  Announce,
+  Button,
+  LoadingIndicator,
+  ButtonGroup,
+} from 'react-magma-dom';
 export function Example() {
   const [showLoader, setShowLoader] = React.useState(false);
 
@@ -134,7 +142,7 @@ export function Example() {
           Hide Loading Indicator
         </Button>
       </ButtonGroup>
-      <br/>
+      <br />
       <Announce>{showLoader && <LoadingIndicator />}</Announce>
     </>
   );
@@ -162,3 +170,5 @@ export function Example() {
 **All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props will be applied to the internal element. The internal element will be either a `div` when using the `ProgressBar` or a `span` when using the `Spinner`. Additionally, depending on which component is used internally, you can provide any props that the <Link to="/api/spinner#spinner_props">Spinner</Link> or the <Link to="/api/progress-bar#progress_bar_props">ProgressBar</Link> accepts. This is controlled by the passed in `type` prop.**
 
 <LoadingIndicatorProps />
+
+</PageContent>

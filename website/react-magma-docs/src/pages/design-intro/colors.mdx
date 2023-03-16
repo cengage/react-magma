@@ -10,13 +10,18 @@ import { ColorSwatch } from '../../components/ColorSwatch';
 import { magma } from 'react-magma-dom';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading type="design">Color</DocsHeading>
+<PageContent componentName="color" type="design_intro">
 
-Color helps express hierarchy, establish brand presence, give meaning, and indicate element states.
+<LeadParagraph>
+  Color helps express hierarchy, establish brand presence, give meaning, and
+  indicate element states.
+</LeadParagraph>
+
+---
 
 ## Introduction
 
-Application of the color palette brings a unified and recognizable consistency to Cengage’s array of digital products and interfaces. We are committed to complying with the [Web Content Accessibility Guidelines AA standard contrast ratios](https://www.w3.org/TR/WCAG/). 
+Application of the color palette brings a unified and recognizable consistency to Cengage’s array of digital products and interfaces. We are committed to complying with the [Web Content Accessibility Guidelines AA standard contrast ratios](https://www.w3.org/TR/WCAG/).
 
 All text should be legible and meet accessibility standards. The WCAG 2.1 guidelines require a 4.5:1 color contrast between text and background for normal text, and 3:1 for large text. **At Cengage we strive to always hit 4.5:1 to avoid any possible issues or questions about whether a piece of text is accessible.** Additionally, any non-text visual information provided that is necessary for a user to identify that a control is present and how to operate it must have a minimum 3:1 contrast ratio with the adjacent colors.
 
@@ -27,7 +32,11 @@ The primary colors are based on our main brand color. These colors are used in l
 We use primary-500 to indicate primary actions, buttons, text links, etc.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.primary700} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.primary700}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -46,7 +55,11 @@ We use primary-500 to indicate primary actions, buttons, text links, etc.
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.primary600} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.primary600}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -65,7 +78,11 @@ We use primary-500 to indicate primary actions, buttons, text links, etc.
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.primary500} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.primary500}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -84,7 +101,11 @@ We use primary-500 to indicate primary actions, buttons, text links, etc.
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.primary400} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.primary400}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -103,7 +124,11 @@ We use primary-500 to indicate primary actions, buttons, text links, etc.
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.primary300} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.primary300}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -122,7 +147,11 @@ We use primary-500 to indicate primary actions, buttons, text links, etc.
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.primary200} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.primary200}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -141,7 +170,11 @@ We use primary-500 to indicate primary actions, buttons, text links, etc.
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.primary100} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.primary100}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -167,7 +200,11 @@ We use primary-500 to indicate primary actions, buttons, text links, etc.
 The secondary colors are based off secondary-500 from the Cengage Higher Ed branding guidelines. It is commonly used for important calls to action on pages where purchases are made.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.secondary700} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.secondary700}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -186,7 +223,11 @@ The secondary colors are based off secondary-500 from the Cengage Higher Ed bran
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.secondary600} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.secondary600}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -205,7 +246,11 @@ The secondary colors are based off secondary-500 from the Cengage Higher Ed bran
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.secondary500} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.secondary500}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -231,7 +276,11 @@ The secondary colors are based off secondary-500 from the Cengage Higher Ed bran
 The tertiary colors are based off tertiary-500 from the Cengage Higher Ed branding guidelines. It is commonly used in place of the primary colors on dark backgrounds.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.tertiary700} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.tertiary700}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -250,7 +299,11 @@ The tertiary colors are based off tertiary-500 from the Cengage Higher Ed brandi
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.tertiary600} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.tertiary600}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -269,7 +322,11 @@ The tertiary colors are based off tertiary-500 from the Cengage Higher Ed brandi
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.tertiary500} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.tertiary500}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -295,7 +352,11 @@ The tertiary colors are based off tertiary-500 from the Cengage Higher Ed brandi
 The neutrals come in varying levels of saturation to create the right level of contrast. Dark neutrals are the primary colors we use for typography. We commonly use light neutrals for type set on a dark background, or for subtle backgrounds that don’t take away from the cleanliness of a page.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.neutral900} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.neutral900}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -314,7 +375,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral800} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.neutral800}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -333,7 +398,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral700} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.neutral700}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -352,7 +421,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral600} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.neutral600}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -371,7 +444,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral500} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.neutral500}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -390,7 +467,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral400} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.neutral400}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -409,7 +490,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral300} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.neutral300}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -428,7 +513,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral200} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.neutral200}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -447,7 +536,11 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.neutral100} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.neutral100}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -466,7 +559,6 @@ The neutrals come in varying levels of saturation to create the right level of c
       </div>
     </div>
   </ColorSwatch>
-  
 </div>
 
 ## Info
@@ -474,7 +566,11 @@ The neutrals come in varying levels of saturation to create the right level of c
 The info colors are used to provide users with neutral, informational feedback. They are primarily used within alerts, and to indicate when an interactive element is in the focused state.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.info700} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.info700}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -493,7 +589,11 @@ The info colors are used to provide users with neutral, informational feedback. 
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.info600} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.info600}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -512,7 +612,11 @@ The info colors are used to provide users with neutral, informational feedback. 
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.info500} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.info500}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -531,7 +635,11 @@ The info colors are used to provide users with neutral, informational feedback. 
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.info400} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.info400}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -550,7 +658,11 @@ The info colors are used to provide users with neutral, informational feedback. 
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.info300} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.info300}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -569,7 +681,11 @@ The info colors are used to provide users with neutral, informational feedback. 
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.info200} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.info200}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -588,7 +704,11 @@ The info colors are used to provide users with neutral, informational feedback. 
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.info100} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.info100}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -614,7 +734,11 @@ The info colors are used to provide users with neutral, informational feedback. 
 The danger colors are mainly used for backgrounds in messages and in error states to draw attention to important information or actions that are destructive or block workflow. You'll find red used in components such as alerts, buttons, and typography.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.danger700} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.danger700}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -633,7 +757,11 @@ The danger colors are mainly used for backgrounds in messages and in error state
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.danger600} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.danger600}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -652,7 +780,11 @@ The danger colors are mainly used for backgrounds in messages and in error state
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.danger500} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.danger500}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -671,7 +803,11 @@ The danger colors are mainly used for backgrounds in messages and in error state
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.danger400} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.danger400}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -690,7 +826,11 @@ The danger colors are mainly used for backgrounds in messages and in error state
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.danger300} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.danger300}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -709,7 +849,11 @@ The danger colors are mainly used for backgrounds in messages and in error state
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.danger200} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.danger200}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -728,7 +872,11 @@ The danger colors are mainly used for backgrounds in messages and in error state
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.danger100} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.danger100}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -754,7 +902,11 @@ The danger colors are mainly used for backgrounds in messages and in error state
 The warning colors are used to indicate a warning or that progress is impeded. It is primarily used within the alert components.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.warning700} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.warning700}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -773,7 +925,11 @@ The warning colors are used to indicate a warning or that progress is impeded. I
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.warning600} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.warning600}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -792,7 +948,11 @@ The warning colors are used to indicate a warning or that progress is impeded. I
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.warning500} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.warning500}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -811,7 +971,11 @@ The warning colors are used to indicate a warning or that progress is impeded. I
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.warning400} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.warning400}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -830,7 +994,11 @@ The warning colors are used to indicate a warning or that progress is impeded. I
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.warning300} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.warning300}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -849,7 +1017,11 @@ The warning colors are used to indicate a warning or that progress is impeded. I
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.warning200} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.warning200}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -868,7 +1040,11 @@ The warning colors are used to indicate a warning or that progress is impeded. I
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.warning100} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.warning100}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -894,7 +1070,11 @@ The warning colors are used to indicate a warning or that progress is impeded. I
 We use green to celebrate success. The success colors are commonly used in the alerts and through typography.
 
 <div class="swatch-rows">
-  <ColorSwatch color={magma.colors.success700} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.success700}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -913,7 +1093,11 @@ We use green to celebrate success. The success colors are commonly used in the a
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.success600} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.success600}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -932,7 +1116,11 @@ We use green to celebrate success. The success colors are commonly used in the a
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.success500} passesDarkTest={false} passesLightTest={true}>
+  <ColorSwatch
+    color={magma.colors.success500}
+    passesDarkTest={false}
+    passesLightTest={true}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -951,7 +1139,11 @@ We use green to celebrate success. The success colors are commonly used in the a
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.success400} passesDarkTest={false} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.success400}
+    passesDarkTest={false}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -970,7 +1162,11 @@ We use green to celebrate success. The success colors are commonly used in the a
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.success300} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.success300}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -989,7 +1185,11 @@ We use green to celebrate success. The success colors are commonly used in the a
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.success200} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.success200}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -1008,7 +1208,11 @@ We use green to celebrate success. The success colors are commonly used in the a
       </div>
     </div>
   </ColorSwatch>
-  <ColorSwatch color={magma.colors.success100} passesDarkTest={true} passesLightTest={false}>
+  <ColorSwatch
+    color={magma.colors.success100}
+    passesDarkTest={true}
+    passesLightTest={false}
+  >
     <div class="color-detail-container">
       <div class="color-detail">
         <p class="detail-label">Name</p>
@@ -1028,3 +1232,5 @@ We use green to celebrate success. The success colors are commonly used in the a
     </div>
   </ColorSwatch>
 </div>
+
+</PageContent>

@@ -6,11 +6,14 @@ props:
   - ListItemProps
 ---
 
-<DocsHeading to="/design/list/" type="api">
-  List
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-Lists are vertical groupings of related content. Lists come either ordered or unordered.
+<PageContent componentName="list" type="api">
+
+<LeadParagraph>
+  Lists are vertical groupings of related content. Lists come either ordered or
+  unordered.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -242,7 +245,6 @@ export function Example() {
 }
 ```
 
-
 ## List Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
@@ -252,3 +254,5 @@ export function Example() {
 ## List Item Props
 
 <ListItemProps />
+
+</PageContent>

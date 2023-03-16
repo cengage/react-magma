@@ -6,12 +6,10 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/progress-bar/" type="design">
-  Progress Bar
-</DocsHeading>
+<PageContent componentName="progress_bar" type="design">
+
 <LeadParagraph>
   Progress bars communicate the percentage of a whole, which can be used in
   multiple contexts.
@@ -27,7 +25,7 @@ To see how progress bars are used as loading indicators, view the [loading indic
 
 <figure>
   <div class="image-container">
-    <img src="../../images/progress-bars/Progress-bar-intro.png" alt=" " />
+    <img src="../../images/progress-bars/Progress-bar-intro.png" alt="" />
   </div>
 </figure>
 
@@ -37,7 +35,7 @@ To see how progress bars are used as loading indicators, view the [loading indic
 
 <figure>
   <div class="image-container">
-    <img src="../../images/progress-bars/Progress-bar-anatomy.png" alt=" " />
+    <img src="../../images/progress-bars/Progress-bar-anatomy.png" alt="" />
   </div>
 </figure>
 
@@ -47,7 +45,7 @@ To see how progress bars are used as loading indicators, view the [loading indic
 
 ### Size
 
-The default height of the progress bar is 8px.  Technically the height of the progress bar can be changed to any value, but officially we only want to use the default height. If absolutely necessary, heights of 4px or 16px will also be considered.
+The default height of the progress bar is 8px. Technically the height of the progress bar can be changed to any value, but officially we only want to use the default height. If absolutely necessary, heights of 4px or 16px will also be considered.
 
 The width of the progress bar is controlled by the container it is within. For maximum responsive behavior, you should avoid setting a specific width on the progress bar, and you should instead manipulate the container.
 
@@ -60,7 +58,7 @@ The width of the progress bar is controlled by the container it is within. For m
 When a static progress bar is used, it represents the progress of something at that point in time and does not change until an explicit action is performed that updates the progress bar.
 
 <figure>
-  <img src="../../images/progress-bars/Progress-bar-static.png" alt=" " />
+  <img src="../../images/progress-bars/Progress-bar-static.png" alt="" />
   <figcaption>
     <p>
       Example of using progress bar to help communicate that the user is on step
@@ -69,7 +67,7 @@ When a static progress bar is used, it represents the progress of something at t
   </figcaption>
 </figure>
 <figure>
-  <img src="../../images/progress-bars/Progress-bar-compare.png" alt=" " />
+  <img src="../../images/progress-bars/Progress-bar-compare.png" alt="" />
   <figcaption>
     <p>
       Progress bars can be used to visually display the same data point for
@@ -84,7 +82,7 @@ When a static progress bar is used, it represents the progress of something at t
 When a dynamic progress bar is used, it means it's updating in real-time while you wait for a series of processes outside of your control to complete.
 
 <figure>
-  <img src="../../images/progress-bars/Progress-bar-dynamic.png" alt=" " />
+  <img src="../../images/progress-bars/Progress-bar-dynamic.png" alt="" />
   <figcaption>
     <p>
       Example of using progress bar to help communicate that the data is loading
@@ -109,7 +107,7 @@ The track on the dark/inverse progress bar has a black background at 25% opacity
 
 <figure>
   <div class="image-container">
-    <img src="../../images/progress-bars/Progress-bar-colors1.png" alt=" " />
+    <img src="../../images/progress-bars/Progress-bar-colors1.png" alt="" />
   </div>
 </figure>
 
@@ -123,3 +121,5 @@ The indicator's color by default is **primary** and the inverse default color is
     alt="Illustration of progress bars in other colors"
   />
 </figure>
+
+</PageContent>
