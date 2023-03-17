@@ -452,7 +452,7 @@ function getClearablePosition(props) {
       }
       return props.theme.spaceScale.spacing12;
     }
-    if (props.iconPosition === 'left' && props.icon) {
+    if (props.iconPosition === 'left') {
       if (props.inputSize === 'large') {
         return '88px';
       }
