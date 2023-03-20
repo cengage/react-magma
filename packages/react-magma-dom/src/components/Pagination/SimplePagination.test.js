@@ -3,7 +3,7 @@ import { ButtonSize } from '../Button';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Pagination, PaginationType } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 const testId = 'test-id';
@@ -127,10 +127,7 @@ describe('Simple Pagination', () => {
       );
       const previousButton = getByLabelText('Previous Page');
 
-      expect(previousButton).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
+      expect(previousButton).toBeDisabled();
     });
 
     it('Should disable the next button on the last page', () => {
@@ -139,51 +136,51 @@ describe('Simple Pagination', () => {
       );
       const nextButton = getByLabelText('Next Page');
 
-      expect(nextButton).toHaveStyleRule(
-        'color',
-        transparentize(0.4, magma.colors.neutral500)
-      );
+      expect(nextButton).toBeDisabled();
     });
   });
 
   describe('Active', () => {
     it('Should change the active page when an option is selected', () => {
-      const { getByTestId, getAllByTestId } = render(
-        <Pagination type={PaginationType.simple} count={4} testId={testId} />
+      const { getByTestId } = render(
+        <Pagination type={PaginationType.simple} count={3} testId={testId} />
       );
       fireEvent.change(getByTestId(`${testId}-select`), {
-        target: { value: 2 },
+        target: { value: '2' },
       });
-      let options = getAllByTestId(`${testId}-option`);
-      expect(options[0].selected).toBe(false);
-      expect(options[1].selected).toBe(true);
-      expect(options[2].selected).toBe(false);
+      let option1 = getByTestId(`${testId}-option-0`);
+      let option2 = getByTestId(`${testId}-option-1`);
+      let option3 = getByTestId(`${testId}-option-2`);
+      expect(option1.selected).toBe(false);
+      expect(option2.selected).toBe(true);
+      expect(option3.selected).toBe(false);
     });
 
     it('Should change the active page when clicking the previous button', () => {
-      const { getByLabelText, getAllByTestId } = render(
+      const { getByLabelText, getByTestId } = render(
         <Pagination
           type={PaginationType.simple}
-          count={4}
-          defaultPage={4}
+          count={3}
+          defaultPage={3}
           testId={testId}
         />
       );
       let previousButton = getByLabelText('Previous Page');
 
       fireEvent.click(previousButton);
-      let options = getAllByTestId(`${testId}-option`);
-      expect(options[0].selected).toBe(false);
-      expect(options[1].selected).toBe(false);
-      expect(options[2].selected).toBe(true);
-      expect(options[3].selected).toBe(false);
+      let option1 = getByTestId(`${testId}-option-0`);
+      let option2 = getByTestId(`${testId}-option-1`);
+      let option3 = getByTestId(`${testId}-option-2`);
+      expect(option1.selected).toBe(false);
+      expect(option2.selected).toBe(true);
+      expect(option3.selected).toBe(false);
     });
 
     it('Should change the active page when clicking the next button', () => {
-      const { getByLabelText, getAllByTestId } = render(
+      const { getByLabelText, getByTestId } = render(
         <Pagination
           type={PaginationType.simple}
-          count={4}
+          count={3}
           defaultPage={2}
           testId={testId}
         />
@@ -191,17 +188,40 @@ describe('Simple Pagination', () => {
       let nextButton = getByLabelText('Next Page');
 
       fireEvent.click(nextButton);
-      let options = getAllByTestId(`${testId}-option`);
-      expect(options[0].selected).toBe(false);
-      expect(options[1].selected).toBe(false);
-      expect(options[2].selected).toBe(true);
-      expect(options[3].selected).toBe(false);
+      let option1 = getByTestId(`${testId}-option-0`);
+      let option2 = getByTestId(`${testId}-option-1`);
+      let option3 = getByTestId(`${testId}-option-2`);
+      expect(option1.selected).toBe(false);
+      expect(option2.selected).toBe(false);
+      expect(option3.selected).toBe(true);
+    });
+  });
+
+  describe('Different labels', () => {
+    it('Should show the label "of 1 page" when count is 1', () => {
+      const { getByText } = render(
+        <Pagination type={PaginationType.simple} count={1} />
+      );
+
+      const labelText = getByText('of 1 page');
+
+      expect(labelText.toBeInTheDocument);
+    });
+
+    it('Should show the label "of 2 pages" when count is 2', () => {
+      const { getByText } = render(
+        <Pagination type={PaginationType.simple} count={2} />
+      );
+
+      const labelText = getByText('of 2 pages');
+
+      expect(labelText.toBeInTheDocument);
     });
   });
 
   describe('Unused props', () => {
     it('Should remain unaffected by the numberOfAdjacentPages prop', () => {
-      const { getAllByTestId } = render(
+      const { getByTestId } = render(
         <Pagination
           type={PaginationType.simple}
           count={4}
@@ -210,13 +230,13 @@ describe('Simple Pagination', () => {
         />
       );
 
-      let options = getAllByTestId(`${testId}-option`);
+      let selecOptions = getByTestId(`${testId}-select`);
 
-      expect(options).toHaveLength(4);
+      expect(selecOptions).toHaveLength(4);
     });
 
     it('Should remain unaffected by the numberOfEdgePages prop', () => {
-      const { getAllByTestId } = render(
+      const { getByTestId } = render(
         <Pagination
           type={PaginationType.simple}
           count={4}
@@ -225,9 +245,9 @@ describe('Simple Pagination', () => {
         />
       );
 
-      let options = getAllByTestId(`${testId}-option`);
+      let selectOptions = getByTestId(`${testId}-select`);
 
-      expect(options).toHaveLength(4);
+      expect(selectOptions).toHaveLength(4);
     });
 
     it('Should remain unaffected by the size prop', () => {
@@ -276,6 +296,100 @@ describe('Simple Pagination', () => {
 
       expect(nextButton).toBeInTheDocument();
     });
+  });
+
+  describe('Edge cases', () => {
+    it('Should default to 1 if count is set to 1', () => {
+      const { getByText } = render(
+        <Pagination count={1} type={PaginationType.simple} />
+      );
+
+      const selected = getByText('1').parentElement.parentElement;
+
+      expect(selected).toBeInTheDocument();
+    });
+
+    it('Should default to 1 if defaultPage is set to 1', () => {
+      const { getByText } = render(
+        <Pagination count={1} defaultPage={1} type={PaginationType.simple} />
+      );
+
+      const selected = getByText('1').parentElement.parentElement;
+
+      expect(selected).toBeInTheDocument();
+    });
+
+    it('Should default to 1 if count is set to 0', () => {
+      const { getByText } = render(
+        <Pagination count={0} type={PaginationType.simple} />
+      );
+
+      const selected = getByText('1').parentElement.parentElement;
+
+      expect(selected).toBeInTheDocument();
+    });
+
+    it('Should default to 1 if defaultPage is set to 0', () => {
+      const { getByText } = render(
+        <Pagination count={0} defaultPage={0} type={PaginationType.simple} />
+      );
+
+      const selected = getByText('1').parentElement.parentElement;
+
+      expect(selected).toBeInTheDocument();
+    });
+  });
+
+  it('Should call the onPageChange function when the previous button is clicked', () => {
+    const onClickMock = jest.fn();
+    const { getByLabelText } = render(
+      <Pagination
+        type={PaginationType.simple}
+        count={4}
+        defaultPage={2}
+        testId={testId}
+        onPageChange={onClickMock}
+      />
+    );
+
+    const previousButton = getByLabelText('Previous Page');
+
+    fireEvent.click(previousButton);
+    expect(onClickMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should call the onPageChange function when the next button is clicked', () => {
+    const onClickMock = jest.fn();
+    const { getByLabelText } = render(
+      <Pagination
+        type={PaginationType.simple}
+        count={4}
+        defaultPage={2}
+        testId={testId}
+        onPageChange={onClickMock}
+      />
+    );
+
+    const previousButton = getByLabelText('Next Page');
+
+    fireEvent.click(previousButton);
+    expect(onClickMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('Should call the onPageChange function when a select option is clicked', () => {
+    const onClickMock = jest.fn();
+    const { getByTestId } = render(
+      <Pagination
+        type={PaginationType.simple}
+        count={3}
+        testId={testId}
+        onPageChange={onClickMock}
+      />
+    );
+    fireEvent.change(getByTestId(`${testId}-select`), {
+      target: { value: '2' },
+    });
+    expect(onClickMock).toHaveBeenCalledTimes(1);
   });
 
   it('Does not violate accessibility standards', () => {

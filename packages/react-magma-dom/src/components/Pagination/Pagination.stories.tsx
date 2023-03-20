@@ -97,5 +97,5 @@ export const SimplePagination = Template.bind({});
 SimplePagination.args = {
   ...Default.args,
   type: PaginationType.simple,
-  defaultPage: 2,
+  count: 4,
 };

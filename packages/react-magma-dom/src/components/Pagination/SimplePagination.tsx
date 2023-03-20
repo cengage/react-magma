@@ -37,6 +37,7 @@ const StyledWrapper = styled.div<{
   }
   label {
     color: ${buildLabelColor};
+    font-family: ${props => props.theme.bodyFont};
     font-size: ${props => props.theme.typeScale.size02.fontSize};
     font-weight: 500;
   }
@@ -55,6 +56,8 @@ export const SimplePagination = React.forwardRef<
     id: defaultId,
     isInverse,
     testId,
+    onClick,
+    onChange,
     onPageChange,
     ...other
   } = props;
@@ -70,38 +73,42 @@ export const SimplePagination = React.forwardRef<
 
   function handleChange(event) {
     setSelectedPage(event.target.value);
-    props.onChange &&
-      typeof props.onChange === 'function' &&
-      props.onChange(event);
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange(event, count);
   }
 
   //Decreases number by one on previous button click
-  function handlePrev() {
+  function handlePrev(event) {
     if (selectedPage > 1) {
       setSelectedPage(selectedPage - 1);
     }
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange(event, count);
   }
 
   //Increases number by one on next button click
-  function handleNext() {
+  function handleNext(event) {
     if (selectedPage < count) {
       setSelectedPage(++selectedPage);
     }
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange(event, count);
   }
 
   function paginationLabel() {
-    if (count <= 1) {
-      return `${i18n.simplePagination.ofLabel}
+    return `${i18n.simplePagination.ofLabel}
         ${count}
-        ${i18n.simplePagination.pageLabel}`;
-    } else {
-      return `${i18n.simplePagination.ofLabel}
-        ${count}
-        ${i18n.simplePagination.pagesLabel}`;
-    }
+        ${
+          count <= 1
+            ? i18n.simplePagination.pageLabel
+            : i18n.simplePagination.pagesLabel
+        }`;
   }
 
-  const disabledPrevTooltip = disabled || selectedPage < 2;
+  const disabledPrevTooltip = disabled || selectedPage <= 1;
 
   const disabledNextTooltip = disabled || selectedPage >= count;
 
@@ -126,25 +133,27 @@ export const SimplePagination = React.forwardRef<
       ref={ref}
     >
       {!hidePreviousButton && (
-        <StyledPrevTooltip content={i18n.pagination.previousButtonLabel}>
-          <NavButton
-            aria-label={i18n.pagination.previousButtonLabel}
-            variant={ButtonVariant.link}
-            color={ButtonColor.secondary}
-            disabled={selectedPage < 2 ? true : disabled}
-            icon={<ArrowBackIcon />}
-            isInverse={isInverse}
-            theme={theme}
-            onClick={handlePrev}
-            shape={ButtonShape.fill}
-          />
-        </StyledPrevTooltip>
+        <>
+          <StyledPrevTooltip content={i18n.pagination.previousButtonLabel}>
+            <NavButton
+              aria-label={i18n.pagination.previousButtonLabel}
+              variant={ButtonVariant.link}
+              color={ButtonColor.secondary}
+              disabled={disabledPrevTooltip}
+              icon={<ArrowBackIcon />}
+              isInverse={isInverse}
+              theme={theme}
+              onClick={handlePrev}
+              shape={ButtonShape.fill}
+            />
+          </StyledPrevTooltip>
+          <Spacer size={14} />
+        </>
       )}
-      <Spacer size={14} />
 
       <NativeSelect
         aria-label={i18n.select.placeholder}
-        data-testid={`${testId}-select`}
+        data-testid={testId ? `${testId}-select` : null}
         disabled={disabled}
         fieldId={id}
         isInverse={isInverse}
@@ -153,7 +162,7 @@ export const SimplePagination = React.forwardRef<
       >
         {Array.from({ length: count }, (_, i) => (
           <option
-            data-testid={`${testId}-option`}
+            data-testid={testId ? `${testId}-option-${i}` : null}
             key={i}
             onChange={handleChange}
             value={i + 1}
@@ -169,21 +178,23 @@ export const SimplePagination = React.forwardRef<
         {paginationLabel()}
       </VisuallyHidden>
 
-      <Spacer size={14} />
       {!hideNextButton && (
-        <StyledNextTooltip content={i18n.pagination.nextButtonLabel}>
-          <NavButton
-            aria-label={i18n.pagination.nextButtonLabel}
-            variant={ButtonVariant.link}
-            color={ButtonColor.secondary}
-            disabled={selectedPage >= count ? true : disabled}
-            icon={<ArrowForwardIcon />}
-            isInverse={isInverse}
-            onClick={handleNext}
-            theme={theme}
-            shape={ButtonShape.fill}
-          />
-        </StyledNextTooltip>
+        <>
+          <Spacer size={14} />
+          <StyledNextTooltip content={i18n.pagination.nextButtonLabel}>
+            <NavButton
+              aria-label={i18n.pagination.nextButtonLabel}
+              variant={ButtonVariant.link}
+              color={ButtonColor.secondary}
+              disabled={disabledNextTooltip}
+              icon={<ArrowForwardIcon />}
+              isInverse={isInverse}
+              onClick={handleNext}
+              theme={theme}
+              shape={ButtonShape.fill}
+            />
+          </StyledNextTooltip>
+        </>
       )}
     </StyledWrapper>
   );
