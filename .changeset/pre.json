@@ -12,6 +12,7 @@
   },
   "changesets": [
     "docs",
-    "fix-toaststack"
+    "fix-toaststack",
+    "toast-docs"
   ]
 }

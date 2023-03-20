@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.2
+
+### Patch Changes
+
+- 0ddda514c: Update Toast docs to include that messages should be 1-2 lines long.
+
 ## 5.0.1-next.1
 
 ### Patch Changes
