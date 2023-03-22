@@ -71,6 +71,10 @@ export const SimplePagination = React.forwardRef<
     defaultPage ? defaultPage : 1
   );
 
+  React.useEffect(() => {
+    setSelectedPage(defaultPage || selectedPage);
+  }, [count]);
+
   function handleChange(event) {
     setSelectedPage(event.target.value);
     onPageChange &&
@@ -108,9 +112,11 @@ export const SimplePagination = React.forwardRef<
         }`;
   }
 
-  const disabledPrevTooltip = disabled || selectedPage <= 1;
+  const disabledPrevTooltip =
+    disabled || selectedPage <= 1 || count <= 0 || count == null;
 
-  const disabledNextTooltip = disabled || selectedPage >= count;
+  const disabledNextTooltip =
+    disabled || selectedPage >= count || count == null;
 
   const StyledPrevTooltip = styled(Tooltip)`
     > div {
@@ -150,33 +156,41 @@ export const SimplePagination = React.forwardRef<
           <Spacer size={14} />
         </>
       )}
-
-      <NativeSelect
-        aria-label={i18n.select.placeholder}
-        data-testid={testId ? `${testId}-select` : null}
-        disabled={disabled}
-        fieldId={id}
-        isInverse={isInverse}
-        onChange={handleChange}
-        value={selectedPage}
-      >
-        {Array.from({ length: count }, (_, i) => (
-          <option
-            data-testid={testId ? `${testId}-option-${i}` : null}
-            key={i}
+      {count > 0 && (
+        <>
+          <NativeSelect
+            aria-label={i18n.select.placeholder}
+            data-testid={testId ? `${testId}-select` : `pagination-select`}
+            disabled={disabled}
+            fieldId={id}
+            isInverse={isInverse}
             onChange={handleChange}
-            value={i + 1}
+            value={selectedPage}
           >
-            {i + 1}
-          </option>
-        ))}
-      </NativeSelect>
-      <Spacer size={8} />
-      <label aria-hidden="true">{paginationLabel()}</label>
-      <VisuallyHidden>
-        {selectedPage}
-        {paginationLabel()}
-      </VisuallyHidden>
+            {Array.from({ length: count }, (_, i) => (
+              <option
+                data-testid={testId ? `${testId}-option-${i}` : `option-${i}`}
+                key={i}
+                onChange={handleChange}
+                value={i + 1}
+              >
+                {i + 1}
+              </option>
+            ))}
+          </NativeSelect>
+          <Spacer size={8} />
+          <label
+            aria-hidden="true"
+            data-testid={testId ? `${testId}-label` : `label`}
+          >
+            {paginationLabel()}
+          </label>
+          <VisuallyHidden>
+            {selectedPage}
+            {paginationLabel()}
+          </VisuallyHidden>
+        </>
+      )}
 
       {!hideNextButton && (
         <>

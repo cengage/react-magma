@@ -98,4 +98,5 @@ SimplePagination.args = {
   ...Default.args,
   type: PaginationType.simple,
   count: 4,
+  defaultPage: 2,
 };

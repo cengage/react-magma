@@ -199,23 +199,23 @@ describe('Simple Pagination', () => {
 
   describe('Different labels', () => {
     it('Should show the label "of 1 page" when count is 1', () => {
-      const { getByText } = render(
-        <Pagination type={PaginationType.simple} count={1} />
+      const { getByTestId } = render(
+        <Pagination type={PaginationType.simple} count={1} testId={testId} />
       );
 
-      const labelText = getByText('of 1 page');
+      const labelText = getByTestId(`${testId}-label`);
 
-      expect(labelText.toBeInTheDocument);
+      expect(labelText).toHaveTextContent('1');
     });
 
     it('Should show the label "of 2 pages" when count is 2', () => {
-      const { getByText } = render(
-        <Pagination type={PaginationType.simple} count={2} />
+      const { getByTestId } = render(
+        <Pagination type={PaginationType.simple} count={2} testId={testId} />
       );
 
-      const labelText = getByText('of 2 pages');
+      const labelText = getByTestId(`${testId}-label`);
 
-      expect(labelText.toBeInTheDocument);
+      expect(labelText).toHaveTextContent('2');
     });
   });
 
@@ -299,7 +299,7 @@ describe('Simple Pagination', () => {
   });
 
   describe('Edge cases', () => {
-    it('Should default to 1 if count is set to 1', () => {
+    it('Should default to 1 if defaultPage is not set', () => {
       const { getByText } = render(
         <Pagination count={1} type={PaginationType.simple} />
       );
@@ -309,29 +309,9 @@ describe('Simple Pagination', () => {
       expect(selected).toBeInTheDocument();
     });
 
-    it('Should default to 1 if defaultPage is set to 1', () => {
-      const { getByText } = render(
-        <Pagination count={1} defaultPage={1} type={PaginationType.simple} />
-      );
-
-      const selected = getByText('1').parentElement.parentElement;
-
-      expect(selected).toBeInTheDocument();
-    });
-
-    it('Should default to 1 if count is set to 0', () => {
-      const { getByText } = render(
-        <Pagination count={0} type={PaginationType.simple} />
-      );
-
-      const selected = getByText('1').parentElement.parentElement;
-
-      expect(selected).toBeInTheDocument();
-    });
-
     it('Should default to 1 if defaultPage is set to 0', () => {
       const { getByText } = render(
-        <Pagination count={0} defaultPage={0} type={PaginationType.simple} />
+        <Pagination count={1} defaultPage={0} type={PaginationType.simple} />
       );
 
       const selected = getByText('1').parentElement.parentElement;

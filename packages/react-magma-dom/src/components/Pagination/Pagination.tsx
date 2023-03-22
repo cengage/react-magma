@@ -67,14 +67,14 @@ export interface BasePaginationProps
    */
   showLastButton?: boolean;
   /**
-   * If true, shows the Pagination pages in a dropdown style.
+   * Enum which changes Pagination into a dropdown when using 'simple'.
    * @default PaginationType.classic
    */
   type?: PaginationType;
 }
 
 export enum PaginationType {
-  default = 'classic',
+  classic = 'classic',
   simple = 'simple',
 }
 
@@ -189,7 +189,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       <>
         {type === PaginationType.simple ? (
           <SimplePagination
-            count={count < 1 ? 1 : count}
+            count={count}
             defaultPage={defaultPage < 1 ? 1 : defaultPage}
             disabled={disabled}
             hideNextButton={hideNextButton}
