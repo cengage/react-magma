@@ -35,6 +35,7 @@ import {
   ButtonGroup,
   Spacer,
 } from 'react-magma-dom';
+import { ceslV2 } from './magmaOther';
 
 const magmaDark = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
@@ -98,6 +99,10 @@ export function Example() {
             value: magmaDark,
             label: 'Magma Dark',
           },
+          {
+            value: ceslV2,
+            label: 'Other',
+          },
         ]}
       />
       <Spacer size="24" />
@@ -112,6 +117,7 @@ export function Example() {
 ## Setting up a Theme
 
 To implement theming in your project, we recommend a theme file that contains a theme object that matches React Magma's existing theme structure.
+The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/dev/packages/react-magma-dom/src/theme/magma.ts).
 You'll have to wrap your entire app - or individual components, for more specific theme changes - in the ThemeContext provider from React Magma. Any descendants of the context provider will receive the theme that is passed in. Individual
 theme elements can be accessed using context.
 
