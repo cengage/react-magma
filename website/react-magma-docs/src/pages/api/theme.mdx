@@ -112,7 +112,7 @@ export function Example() {
 ## Setting up a Theme
 
 To implement theming in your project, we recommend a theme file that contains a theme object that matches React Magma's existing theme structure.
-You'll have to wrap your entire app - or individual components, for more specific theme changes - in the ThemeContext provider from React Magma. Individual
+You'll have to wrap your entire app - or individual components, for more specific theme changes - in the ThemeContext provider from React Magma. Any descendants of the context provider will receive the theme that is passed in. Individual
 theme elements can be accessed using context.
 
 A project can have multiple theme files that are triggered conditionally by the Theme Provider.
