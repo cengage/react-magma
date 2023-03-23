@@ -8,9 +8,11 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 <PageContent componentName="custom_styles" type="api_intro">
 
 <LeadParagraph>
-The React Magma component library has been intentionally designed for use across multiple platforms.
-It is recommended to use the default styles that come with any component whenever possible.
-However, there may be occasions where overriding the default styles is required, and this can be accomplished in a number of ways.
+  The React Magma component library has been intentionally designed for use
+  across multiple platforms. It is recommended to use the default styles that
+  come with any component whenever possible. However, there may be occasions
+  where overriding the default styles is required, and this can be accomplished
+  in a number of ways.
 </LeadParagraph>
 
 ## Style Prop
@@ -92,39 +94,5 @@ export function Example() {
   return <StyledButton>Demo button</StyledButton>;
 }
 ```
-
-## Creating Custom Themes
-
-Custom themes can be created by extending the Magma theme with your own values.
-The complete Magma theme can be found in the [Github repository](https://github.com/cengage/react-magma/blob/acc469c1499da986248c312009951a9d74ed8f16/packages/react-magma-dom/src/theme/magma.ts).
-
-To apply the custom theme, use the <Link to="/api/theme/">ThemeContext.Provider</Link>, passing in your custom theme as the value property.
-Any descendants of the context provider will receive the theme that is passed in.
-
-```typescript
-import { Heading, Paragraph, ThemeContext, magma } from 'react-magma-dom';
-
-const theme = {
-  ...magma,
-  headingFont: 'Papyrus, sans-serif',
-
-  colors: {
-    ...magma.colors,
-  },
-};
-
-export function Example() {
-  return (
-    <ThemeContext.Provider value={theme}>
-      <Heading level={1}>Custom Theme</Heading>
-      <Paragraph>
-        Custom themes are fun for all! But you must use them carefully... or
-        they can change your life.
-      </Paragraph>
-    </ThemeContext.Provider>
-  );
-}
-```
-
 
 </PageContent>
