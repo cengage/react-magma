@@ -123,19 +123,7 @@ theme elements can be accessed using context.
 
 A project can have multiple theme files that are triggered conditionally by the Theme Provider.
 
-Custom theming can be applied in the theme file for the following individual components:
-
-- AppBar
-- Combobox
-- Modal
-- Drawer
-- Dropdown
-- Tabs
-- Select
-- Tag
-- Tooltip
-
-The code below is an example of a theme file, including a themes for all valid individual components.
+The code below is an example of a theme file (applying to all components), including a themes for all valid individual components (only applies to those components - see subsection below for more information).
 
 ```js noCodeSandbox
 import { magma } from 'react-magma-dom';
@@ -594,6 +582,40 @@ export const ceslV2 = Object.assign({}, magma, {
     },
   },
 });
+```
+
+### Setting Themes for Individual Components
+
+To apply component-specific theming, theme objects can be included in the theme file for the following individual components:
+
+- AppBar
+- Combobox
+- Modal
+- Drawer
+- Dropdown
+- Tabs
+- Select
+- Tag
+- Tooltip
+
+These individual theme objects will be applied globally to **only those components.**
+The theme object for each above component can be found on its documentation page. See below for an example of an individual component's theme object:
+
+```js noCodeSandbox
+tooltip: {
+  arrowSize: '4px',
+  arrowSizeDoubled: '8px',
+  backgroundColor: colors.neutral,
+  fontWeight: 600,
+  maxWidth: '300px',
+  textColor: colors.neutral100,
+  typeScale: typeScale.size01,
+  zIndex: 999,
+  inverse: {
+    backgroundColor: colors.neutral100,
+    textColor: colors.neutral,
+  }
+}
 ```
 
 ## Typography Scale
