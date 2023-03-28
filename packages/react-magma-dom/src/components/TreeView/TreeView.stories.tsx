@@ -2,7 +2,7 @@ import React from 'react';
 import { TreeView, TreeItem } from '.';
 
 import { AssignmentIcon, FolderIcon } from 'react-magma-icons';
-import { ExpandInitialOptions } from './useTreeView';
+import { ExpandInitialOptions, TreeViewSelectable } from './useTreeView';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
 
@@ -16,11 +16,12 @@ export default {
       },
       defaultValue: false,
     },
-    isSelectable: {
+    selectable: {
       control: {
-        type: 'boolean',
+        type: 'select',
+        options: TreeViewSelectable,
       },
-      defaultValue: true,
+      defaultValue: TreeViewSelectable.off,
     },
     expandInitial: {
       control: {
@@ -36,101 +37,168 @@ export const Default = args => {
   return (
     <Card isInverse={args.isInverse}>
       <TreeView {...args}>
-        <TreeItem icon={<FolderIcon />}>
-          Part 1: Introduction
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 1: Lorem ipsum dolor sit amet
+        <TreeItem icon={<FolderIcon />} label={<>Part 1: Introduction</>}>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 1: Lorem ipsum dolor sit amet</>}
+          >
+            <TreeItem
+              icon={<AssignmentIcon />}
+              label={<>Chapter 1 child: Lorem ipsum dolor sit amet</>}
+            ></TreeItem>
           </TreeItem>
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 2: Lorem ipsum dolor sit amet
-          </TreeItem>
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 3: Lorem ipsum dolor sit amet
-            <TreeItem icon={<AssignmentIcon />}>
-              Section 1: Lorem ipsum dolor sit amet
-            </TreeItem>
-            <TreeItem icon={<AssignmentIcon />}>
-              Section 2: Lorem ipsum dolor sit amet
-            </TreeItem>
-            <TreeItem icon={<AssignmentIcon />}>
-              Section 3: Lorem ipsum dolor sit amet
-            </TreeItem>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 2: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 3: Lorem ipsum dolor sit amet</>}
+          >
+            <TreeItem
+              icon={<AssignmentIcon />}
+              label={<>Section 1: Lorem ipsum dolor sit amet</>}
+            ></TreeItem>
+            <TreeItem
+              icon={<AssignmentIcon />}
+              label={<>Section 2: Lorem ipsum dolor sit amet</>}
+            ></TreeItem>
+            <TreeItem
+              icon={<AssignmentIcon />}
+              label={<>Section 3: Lorem ipsum dolor sit amet</>}
+            ></TreeItem>
           </TreeItem>
         </TreeItem>
-        <TreeItem icon={<FolderIcon />}>
-          Part 2: Lorem ipsum dolor sit amet
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 4: Lorem ipsum dolor sit amet
-          </TreeItem>
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 5: Lorem ipsum dolor sit amet
-          </TreeItem>
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 6: Lorem ipsum dolor sit amet
-          </TreeItem>
+        <TreeItem
+          icon={<FolderIcon />}
+          label={<>Part 2: Lorem ipsum dolor sit amet</>}
+        >
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 4: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 5: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 6: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
         </TreeItem>
-        <TreeItem icon={<FolderIcon />}>
-          Part 3: Lorem ipsum dolor sit amet
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 7: Lorem ipsum dolor sit amet
-          </TreeItem>
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 8: Lorem ipsum dolor sit amet
-          </TreeItem>
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 9: Lorem ipsum dolor sit amet
-          </TreeItem>
-          <TreeItem icon={<AssignmentIcon />}>
-            Chapter 10: Lorem ipsum dolor sit amet
-          </TreeItem>
+        <TreeItem
+          icon={<FolderIcon />}
+          label={<>Part 3: Lorem ipsum dolor sit amet</>}
+        >
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 7: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 8: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 9: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
+          <TreeItem
+            icon={<AssignmentIcon />}
+            label={<>Chapter 10: Lorem ipsum dolor sit amet</>}
+          ></TreeItem>
         </TreeItem>
       </TreeView>
     </Card>
   );
 };
 
-export const DefaultCollapsed = args => {
+// export const DefaultCollapsed = args => {
+//   return (
+//     <Card isInverse={args.isInverse}>
+//       <TreeView {...args}>
+//         <TreeItem>
+//           Home
+//           <TreeItem>
+//             Bath
+//             <TreeItem>
+//               Bathroom Storage
+//               <TreeItem>Item 1</TreeItem>
+//               <TreeItem>Item 2</TreeItem>
+//             </TreeItem>
+//             <TreeItem>Shower Curtains & Accessories</TreeItem>
+//             <TreeItem>
+//               Bath Towels
+//               <TreeItem>Item 1</TreeItem>
+//               <TreeItem>Item 2</TreeItem>
+//             </TreeItem>
+//           </TreeItem>
+//           <TreeItem>
+//             Bedding
+//             <TreeItem>Item 1</TreeItem>
+//             <TreeItem>Item 2</TreeItem>
+//           </TreeItem>
+//           <TreeItem>Arts & Crafts</TreeItem>
+//           <TreeItem>
+//             Storage & Organization
+//             <TreeItem>Item 1</TreeItem>
+//             <TreeItem>Item 2</TreeItem>
+//           </TreeItem>
+//         </TreeItem>
+//         <TreeItem>
+//           Furniture
+//           <TreeItem>Item 1</TreeItem>
+//           <TreeItem>Item 2</TreeItem>
+//         </TreeItem>
+//         <TreeItem>Kitchen & Dining</TreeItem>
+//         <TreeItem>
+//           Patio & Garden
+//           <TreeItem>Item 1</TreeItem>
+//           <TreeItem>Item 2</TreeItem>
+//         </TreeItem>
+//       </TreeView>
+//     </Card>
+//   );
+// };
+
+export const Textbook = args => {
   return (
     <Card isInverse={args.isInverse}>
       <TreeView {...args}>
-        <TreeItem>
-          Home
-          <TreeItem>
-            Bath
-            <TreeItem>
-              Bathroom Storage
-              <TreeItem>Item 1</TreeItem>
-              <TreeItem>Item 2</TreeItem>
+        <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}>
+          <TreeItem label={<>Art History in the 21st Century</>}>
+            <TreeItem label={<>The Questions Art Historians Ask</>} />
+            <TreeItem label={<>The Words Art Historians Use</>}>
+              <TreeItem label={<>Something deeper</>} />
             </TreeItem>
-            <TreeItem>Shower Curtains & Accessories</TreeItem>
-            <TreeItem>
-              Bath Towels
-              <TreeItem>Item 1</TreeItem>
-              <TreeItem>Item 2</TreeItem>
-            </TreeItem>
+            <TreeItem label={<>Art History and Other Disciplines</>} />
           </TreeItem>
-          <TreeItem>
-            Bedding
-            <TreeItem>Item 1</TreeItem>
-            <TreeItem>Item 2</TreeItem>
+          <TreeItem label={<>Different Ways of Seeing</>} />
+        </TreeItem>
+        <TreeItem label={<>1. ART IN THE STONE AGE</>}>
+          <TreeItem label={<>Paleolithic Art</>}>
+            <TreeItem label={<>Section Content</>} />
+            <TreeItem label={<>Africa</>} />
+            <TreeItem label={<>Europe</>} />
           </TreeItem>
-          <TreeItem>Arts & Crafts</TreeItem>
-          <TreeItem>
-            Storage & Organization
-            <TreeItem>Item 1</TreeItem>
-            <TreeItem>Item 2</TreeItem>
+          <TreeItem label={<>Neolithic Art</>}>
+            <TreeItem label={<>Anatolia and Mesopotamia</>} />
+            <TreeItem label={<>Europe</>} />
           </TreeItem>
         </TreeItem>
-        <TreeItem>
-          Furniture
-          <TreeItem>Item 1</TreeItem>
-          <TreeItem>Item 2</TreeItem>
-        </TreeItem>
-        <TreeItem>Kitchen & Dining</TreeItem>
-        <TreeItem>
-          Patio & Garden
-          <TreeItem>Item 1</TreeItem>
-          <TreeItem>Item 2</TreeItem>
+        <TreeItem label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}>
+          <TreeItem label={<>Mesopotamia</>}>
+            <TreeItem label={<>Sumer</>} />
+            <TreeItem label={<>Akkad</>} />
+            <TreeItem label={<>Third Dynasty of Ur</>} />
+            <TreeItem label={<>Babylon</>} />
+            <TreeItem label={<>Elam</>} />
+            <TreeItem label={<>Assyria</>} />
+            <TreeItem label={<>Neo-Babylonia</>} />
+          </TreeItem>
+          <TreeItem label={<>Persia</>}>
+            <TreeItem label={<>Achaemenid Empire</>} />
+            <TreeItem label={<>Sasanian Empire</>} />
+          </TreeItem>
         </TreeItem>
       </TreeView>
     </Card>

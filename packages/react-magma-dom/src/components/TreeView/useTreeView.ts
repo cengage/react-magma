@@ -5,6 +5,13 @@ export enum ExpandInitialOptions {
   first = 'first',
   none = 'none',
 }
+
+export enum TreeViewSelectable {
+  off = 'off',
+  single = 'single',
+  multi = 'multi',
+}
+
 export interface UseTreeViewProps {
   /**
    * Initial expand state
@@ -13,36 +20,42 @@ export interface UseTreeViewProps {
   expandInitial?: ExpandInitialOptions;
   isInverse?: boolean;
   /**
-   * Whether or not the Tree View has checkboxes
+   * Type of selectable for the tree view: off, single, multi
+   * @default TreeViewSelectable.off
    */
-  isSelectable?: boolean;
+  selectable?: TreeViewSelectable;
+  // /**
+  //  * Whether or not the TreeView and the TreeItems have icons
+  //  */
+  // hasIcons?: boolean;
   /**
    * @internal
    */
   testId?: string;
+  label: React.ReactNode;
 }
 
 export interface TreeViewContextInterface {
   expandInitial?: ExpandInitialOptions;
-  isSelectable: boolean;
+  selectable: TreeViewSelectable;
   hasIcons: boolean;
   setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
-  isSelectable: false,
+  selectable: TreeViewSelectable.off,
   hasIcons: false,
   setHasIcons: () => {},
 });
 
 export function useTreeView(props: UseTreeViewProps) {
-  const { isSelectable, expandInitial } = props;
+  const { selectable, expandInitial,  } = props;
 
   const [hasIcons, setHasIcons] = React.useState(false);
 
   const contextValue = {
     expandInitial,
-    isSelectable,
+    selectable,
     hasIcons,
     setHasIcons,
   };

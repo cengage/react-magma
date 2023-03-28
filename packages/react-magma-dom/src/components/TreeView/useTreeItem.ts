@@ -11,7 +11,9 @@ import { useGenerateId } from '../../utils';
 // TODO: add descriptions for all props
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   index?: number;
+  label: React.ReactNode;
   treeItemIndex?: number;
+  itemDepth?: number;
   testId?: string;
   /**
    * Icon for the tree item
@@ -39,6 +41,7 @@ interface TreeItemContextInterface {
     index: number,
     status: IndeterminateCheckboxStatus
   ) => void;
+  itemDepth: number;
 }
 
 export const TreeItemContext = React.createContext<TreeItemContextInterface>({
@@ -48,6 +51,7 @@ export const TreeItemContext = React.createContext<TreeItemContextInterface>({
   checkboxChangeHandler: () => {},
   hasOwnTreeItems: false,
   updateCheckedStatusFromChild: () => {},
+  itemDepth: 0,
 });
 
 const enum StatusUpdatedByOptions {
@@ -67,6 +71,7 @@ export function useTreeItem(props: UseTreeItemProps) {
     icon,
     parentCheckedStatus,
     updateParentCheckStatus,
+    itemDepth,
   } = props;
 
   const { expandInitial, hasIcons, setHasIcons } =
@@ -87,6 +92,7 @@ export function useTreeItem(props: UseTreeItemProps) {
   const numberOfTreeItemChildren = React.Children.toArray(children).filter(
     (child: React.ReactElement<any>) => child.type === TreeItem
   ).length;
+  
 
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
 
@@ -179,6 +185,7 @@ export function useTreeItem(props: UseTreeItemProps) {
     checkboxChangeHandler,
     hasOwnTreeItems,
     updateCheckedStatusFromChild,
+    itemDepth,
   };
 
   return { contextValue };
