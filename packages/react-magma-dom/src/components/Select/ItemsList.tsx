@@ -98,8 +98,10 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
         {isOpen && hasItems ? (
           items.map((item, index) => {
             const itemString = instanceOfToBeCreatedItemObject(item)
-              ? item.label
-              : itemToString(item);
+            ? item.label
+            : itemToString(item);
+            
+            console.log('item', item, itemString)
 
             const { ref, ...otherDownshiftItemProps } = getItemProps({
               item,
@@ -107,6 +109,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
             });
 
             const key = `${itemString}${index}`;
+            console.log(key)
 
             const itemProps: ItemRenderOptions<T> = {
               isFocused: highlightedIndex === index,
