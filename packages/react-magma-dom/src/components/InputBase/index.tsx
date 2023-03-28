@@ -452,6 +452,19 @@ function getClearablePosition(props) {
       }
       return props.theme.spaceScale.spacing12;
     }
+    if (props.iconPosition === 'left') {
+      if (props.inputSize === 'large') {
+        return '88px';
+      }
+      return props.theme.spaceScale.spacing12;
+    }
+    if (props.iconPosition === 'top') {
+      if (props.inputSize === 'large') {
+        return props.theme.spaceScale.spacing10;
+      }
+      return '34px';
+    }
+    return props.theme.spaceScale.spacing12;
   }
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
