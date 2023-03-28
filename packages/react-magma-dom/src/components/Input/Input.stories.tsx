@@ -217,6 +217,10 @@ export const WithChildren = args => {
     </>
   );
 };
+WithChildren.args = {
+  ...Default.args,
+  iconPosition: InputIconPosition.right,
+};
 WithChildren.parameters = {
-  controls: { exclude: ['iconPosition', 'isInverse', 'type'] },
+  controls: { exclude: ['isInverse', 'type'] },
 };
