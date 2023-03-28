@@ -20,9 +20,8 @@ If you are migrating from the Legacy Select, please see the <Link to="/select-mi
 
 ## Basic Usage
 
-By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
-`itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function
-is able to be used for `items` that are either `strings` or an object with the shape `{label: string; value: string;}`.
+By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the `itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function is able to be used for `items` that are either `strings` or an object with the shape `{label: string; value: string;}`.
+
 If you are using a custom items format see the [Custom Items example](/api/select/#custom_items).
 
 ```tsx
@@ -116,6 +115,7 @@ export function Example() {
 ## Label Position
 
 The `labelPosition` prop can be used to set the position of the text label relative to the form field. It accepts either `top` or `left`, with `top` as the default.
+
 Left-aligned lables are not recommended for use in standard forms; instead they are designed for smaller spaces where vertical space is limited, such as in a toolbar.
 
 ```tsx
@@ -125,7 +125,7 @@ import { Select, LabelPosition } from 'react-magma-dom';
 export function Example() {
   return (
     <Select
-      labelPosition={LabelPosition.top}
+      labelPosition={LabelPosition.left}
       labelText="Left-aligned label"
       items={[
         { label: 'Red', value: 'red' },
@@ -276,44 +276,6 @@ export function Example() {
       ]}
       placeholder="Choose a color"
     />
-  );
-}
-```
-
-## Accessibility
-
-The `getA11yStatusMessage` prop is a passed in function that allows for customization of the screen-reader accessible message whenever the following props
-are changed: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
-
-The `getA11ySelectionMessage` prop is a passed in function that allows for customization of the screen-reader accessible message
-whenever an item has been selected.
-
-For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
-[object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <>
-      <Select
-        id="newA11yStatusMessageId"
-        labelText="New accessibility status message"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        getA11yStatusMessage={({ highlightedItem }) =>
-          `custom message saying that ${highlightedItem} is highlighted`
-        }
-        getA11ySelectionMessage={({ selectedItem }) =>
-          `custom message saying that ${selectedItem} is now selected`
-        }
-      />
-    </>
   );
 }
 ```
@@ -641,6 +603,100 @@ export function Example() {
 }
 ```
 
+## Accessibility
+
+The `getA11yStatusMessage` prop is a passed in function that allows for customization of the screen-reader accessible message whenever the following props
+are changed: `items`, `highlightedIndex`, `inputValue` or `isOpen`.
+
+The `getA11ySelectionMessage` prop is a passed in function that allows for customization of the screen-reader accessible message
+whenever an item has been selected.
+
+For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions there is an
+[object passed with internal state data](https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#geta11yselectionmessage).
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="newA11yStatusMessageId"
+        labelText="New accessibility status message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        getA11yStatusMessage={({ highlightedItem }) =>
+          `custom message saying that ${highlightedItem} is highlighted`
+        }
+        getA11ySelectionMessage={({ selectedItem }) =>
+          `custom message saying that ${selectedItem} is now selected`
+        }
+      />
+    </>
+  );
+}
+```
+
+## Internationalization
+
+Some of the internationalization overrides use placeholders to insert selected values in to the message.
+Placeholders are specific keywords surrounded by curly braces.
+
+- `{labelText}` will be replaced with the comboboxes `labelText`.
+- `{selectedItem}` will be replaced by the current `itemToString` representation of the `selectedItem` of the `select`.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { Select, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        select: {
+          placeholder: 'Custom Select Placeholder...',
+          clearIndicatorAriaLabel:
+            'Click to reset selection for {labelText}. {selectedItem} is currently selected',
+        },
+        multiSelect: {
+          selectedItemButtonAriaLabel:
+            'Click to reset the selected item {selectedItem}',
+        },
+      }}
+    >
+      <Select
+        labelText="Internationalization"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        initialSelectedItem={{ label: 'Red', value: 'red' }}
+        isClearable
+      />
+
+      <Select
+        labelText="Multi internationalization"
+        isMulti
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+      />
+    </I18nContext.Provider>
+  );
+}
+```
+
 ## Events
 
 ```tsx
@@ -705,110 +761,6 @@ export function Example() {
       ]}
       itemListMaxHeight="50px"
     />
-  );
-}
-```
-
-## Custom Styles
-
-Custom styles can be passed into the Select component. The `containerStyle` property will apply to the container.
-Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
-Please use discretion when adding custom styles.
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  const [selectedItem, updateSelectedItem] = React.useState('');
-
-  function onSelectedItemChange(changes) {
-    updateSelectedItem(changes.selectedItem);
-  }
-
-  return (
-    <>
-      <Select
-        containerStyle={{ marginBottom: '32px' }}
-        helperMessage="Helper message"
-        inputStyle={{ border: '2px dotted green', width: '200px' }}
-        items={['Red', 'Blue', 'Green']}
-        labelStyle={{ fontStyle: 'italic' }}
-        labelText="Basic with custom styles"
-        messageStyle={{ border: '1px solid blue' }}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-
-      <Select
-        containerStyle={{ marginBottom: '32px' }}
-        helperMessage="Helper message"
-        inputStyle={{ border: '2px dotted green', width: '200px' }}
-        isMulti
-        items={['Red', 'Blue', 'Green']}
-        labelStyle={{ fontStyle: 'italic' }}
-        labelText="Multi with custom styles"
-        messageStyle={{ border: '1px solid blue' }}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-    </>
-  );
-}
-```
-
-## Internationalization
-
-Some of the internationalization overrides use placeholders to insert selected values in to the message.
-Placeholders are specific keywords surrounded by curly braces.
-
-- `{labelText}` will be replaced with the comboboxes `labelText`.
-- `{selectedItem}` will be replaced by the current `itemToString` representation of the `selectedItem` of the `select`.
-
-Full example of <Link to="/api/internationalization">internationalization override options</Link>
-
-```tsx
-import React from 'react';
-import { Select, I18nContext, defaultI18n } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <I18nContext.Provider
-      value={{
-        ...defaultI18n,
-        select: {
-          placeholder: 'Custom Select Placeholder...',
-          clearIndicatorAriaLabel:
-            'Click to reset selection for {labelText}. {selectedItem} is currently selected',
-        },
-        multiSelect: {
-          selectedItemButtonAriaLabel:
-            'Click to reset the selected item {selectedItem}',
-        },
-      }}
-    >
-      <Select
-        labelText="Internationalization"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        initialSelectedItem={{ label: 'Red', value: 'red' }}
-        isClearable
-      />
-
-      <Select
-        labelText="Multi internationalization"
-        isMulti
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        initialSelectedItems={[{ label: 'Red', value: 'red' }]}
-      />
-    </I18nContext.Provider>
   );
 }
 ```
@@ -923,12 +875,55 @@ export function Example() {
 }
 ```
 
-## Custom Components
+## Custom Styles
 
-Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection and the caret for the dropdown.
-However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator` and a `DropdownIndicator`.
+Custom styles can be passed into the Select component. The `containerStyle` property will apply to the container.
+Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
+Please use discretion when adding custom styles.
 
-### Custom Item Component
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  const [selectedItem, updateSelectedItem] = React.useState('');
+
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
+  }
+
+  return (
+    <>
+      <Select
+        containerStyle={{ marginBottom: '32px' }}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px' }}
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Basic with custom styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <Select
+        containerStyle={{ marginBottom: '32px' }}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px' }}
+        isMulti
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Multi with custom styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  );
+}
+```
+
+## Custom Item Component
 
 By default each item will be rendered with the `itemToString` value in a styled `li`. If you would like to add more information or
 would just like to be able to fully customize the look of your items you can pass in an `Item` component that uses the `props` that
@@ -1024,7 +1019,10 @@ export function Example() {
 }
 ```
 
-### Other Custom Components
+## Custom Components
+
+Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection and the caret for the dropdown.
+However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator` and a `DropdownIndicator`.
 
 ```tsx
 import React from 'react';
