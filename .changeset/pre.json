@@ -12,6 +12,7 @@
   },
   "changesets": [
     "docs",
+    "fix-iconbuttonstack",
     "fix-toaststack",
     "toast-docs"
   ]

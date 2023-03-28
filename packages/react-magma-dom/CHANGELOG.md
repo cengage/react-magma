@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.1-next.1
+
+### Patch Changes
+
+- d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
+
 ## 4.0.1-next.0
 
 ### Patch Changes
