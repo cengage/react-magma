@@ -100,7 +100,9 @@ export const LongContentWithScrolling = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -127,7 +129,9 @@ export const RadioInModal = () => {
           <Radio labelText="Option two label" value="2" />
         </RadioGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -206,7 +210,9 @@ export const ModalContentUpdate = () => {
           )}
         </div>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -259,6 +265,7 @@ export const ModalInAModal = () => {
           buttonRef.current.focus();
         }}
         isOpen={showModal}
+        id={'outer'}
       >
         <p>This is a modal, doing modal things.</p>
         <p>
@@ -279,6 +286,7 @@ export const ModalInAModal = () => {
 
         <Modal
           size={ModalSize.small}
+          id={'inner'}
           header="Modal 2 Title"
           onClose={() => setShowModal2(false)}
           isOpen={showModal2}
@@ -286,7 +294,9 @@ export const ModalInAModal = () => {
           <p>This is modal 2</p>
         </Modal>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };

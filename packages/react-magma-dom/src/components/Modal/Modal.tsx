@@ -222,6 +222,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const prevOpen = usePrevious(props.isOpen);
 
     React.useEffect(() => {
+      console.log(id);
+    }, []);
+
+    React.useEffect(() => {
       if (!prevOpen && props.isOpen) {
         setIsModalOpen(true);
       } else if (prevOpen && !props.isOpen && isModalOpen) {
@@ -264,12 +268,17 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       if (event.key === 'Escape') {
         event.preventDefault();
         event.stopPropagation();
-
         props.onEscKeyDown &&
           typeof props.onEscKeyDown === 'function' &&
           props.onEscKeyDown(event);
-
-        handleClose(event);
+        if (
+          document.getElementById(id).contains(event.target as HTMLDivElement)
+        ) {
+          handleClose(event);
+        }
+        if (lastFocus.current) {
+          lastFocus.current.focus();
+        }
       }
     }
 
