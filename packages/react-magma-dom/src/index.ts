@@ -123,7 +123,7 @@ export {
 export { NativeSelect, NativeSelectProps } from './components/NativeSelect';
 export { NavTabs } from './components/NavTabs';
 export { NavTab } from './components/NavTabs/NavTab';
-export { Pagination } from './components/Pagination';
+export { Pagination, PaginationType } from './components/Pagination';
 export { Paragraph, ParagraphProps } from './components/Paragraph';
 export { PasswordInput, PasswordInputProps } from './components/PasswordInput';
 export {

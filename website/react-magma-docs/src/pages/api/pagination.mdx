@@ -28,6 +28,21 @@ export function Example() {
 }
 ```
 
+## Simple Pagination
+
+An alternative presentation of `Pagination` is available with the `type` prop when configured as `PaginationType.simple`. This converts the existing structure into a dropdown format, while still utilizing previous and next navigation buttons.
+
+Please note that the `Pagination` props of `numberOfAdjacentPages`, `numberOfEdgePages`, `size`, `showFirstButton`, and `showLastButton` are not applicable to this type.
+
+```typescript
+import React from 'react';
+import { Pagination, PaginationType } from 'react-magma-dom';
+
+export function Example() {
+  return <Pagination count={4} type={PaginationType.simple} />;
+}
+```
+
 ## Inverse
 
 The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
