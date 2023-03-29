@@ -13,7 +13,8 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   index?: number;
   label: React.ReactNode;
   treeItemIndex?: number;
-  itemDepth?: number;
+  // itemDepth?: number;
+  parentDepth?: number;
   testId?: string;
   /**
    * Icon for the tree item
@@ -24,6 +25,7 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
     index: number,
     status: IndeterminateCheckboxStatus
   ) => void;
+  singleSelectItemId?: string;
 }
 
 interface TreeItemContextInterface {
@@ -36,12 +38,14 @@ interface TreeItemContextInterface {
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
   checkedStatus: IndeterminateCheckboxStatus;
   checkboxChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  numberOfDirectChildren: number;
   hasOwnTreeItems: boolean;
   updateCheckedStatusFromChild: (
     index: number,
     status: IndeterminateCheckboxStatus
   ) => void;
   itemDepth: number;
+  // parentDepth: number;
 }
 
 export const TreeItemContext = React.createContext<TreeItemContextInterface>({
@@ -52,6 +56,7 @@ export const TreeItemContext = React.createContext<TreeItemContextInterface>({
   hasOwnTreeItems: false,
   updateCheckedStatusFromChild: () => {},
   itemDepth: 0,
+  numberOfDirectChildren: 0,
 });
 
 const enum StatusUpdatedByOptions {
@@ -71,7 +76,8 @@ export function useTreeItem(props: UseTreeItemProps) {
     icon,
     parentCheckedStatus,
     updateParentCheckStatus,
-    itemDepth,
+    // itemDepth,
+    parentDepth,
   } = props;
 
   const { expandInitial, hasIcons, setHasIcons } =
@@ -93,9 +99,13 @@ export function useTreeItem(props: UseTreeItemProps) {
     (child: React.ReactElement<any>) => child.type === TreeItem
   ).length;
   
-
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
-
+  
+  const numberOfDirectChildren = React.Children.toArray(children).length;
+  
+  // TODO: prob needs tweaks
+  const itemDepth = typeof parentDepth === 'number' ? parentDepth : 1;
+    
   const [childrenCheckedStatus, setChildrenCheckedStatus] = React.useState<
     IndeterminateCheckboxStatus[]
   >(
@@ -177,6 +187,9 @@ export function useTreeItem(props: UseTreeItemProps) {
     }
   };
 
+  // TODO
+  const singleSelectItemId = '';
+
   const contextValue = {
     itemId,
     expanded,
@@ -186,6 +199,9 @@ export function useTreeItem(props: UseTreeItemProps) {
     hasOwnTreeItems,
     updateCheckedStatusFromChild,
     itemDepth,
+    // parentDepth,
+    numberOfDirectChildren,
+    singleSelectItemId,
   };
 
   return { contextValue };

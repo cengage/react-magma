@@ -1,7 +1,7 @@
 import React from 'react';
 import { TreeView, TreeItem } from '.';
 
-import { AssignmentIcon, FolderIcon } from 'react-magma-icons';
+import { ArticleIcon, FolderIcon } from 'react-magma-icons';
 import { ExpandInitialOptions, TreeViewSelectable } from './useTreeView';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
@@ -39,34 +39,34 @@ export const Default = args => {
       <TreeView {...args}>
         <TreeItem icon={<FolderIcon />} label={<>Part 1: Introduction</>}>
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 1: Lorem ipsum dolor sit amet</>}
           >
             <TreeItem
-              icon={<AssignmentIcon />}
+              icon={<ArticleIcon />}
               label={<>Chapter 1 child: Lorem ipsum dolor sit amet</>}
-            ></TreeItem>
+            />
           </TreeItem>
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 2: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          />
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<FolderIcon />}
             label={<>Chapter 3: Lorem ipsum dolor sit amet</>}
           >
             <TreeItem
-              icon={<AssignmentIcon />}
-              label={<>Section 1: Lorem ipsum dolor sit amet</>}
-            ></TreeItem>
+              icon={<ArticleIcon />}
+              label={<>Section 3.1: Lorem ipsum dolor sit amet</>}
+            />
             <TreeItem
-              icon={<AssignmentIcon />}
-              label={<>Section 2: Lorem ipsum dolor sit amet</>}
-            ></TreeItem>
+              icon={<ArticleIcon />}
+              label={<>Section 3.2: Lorem ipsum dolor sit amet</>}
+            />
             <TreeItem
-              icon={<AssignmentIcon />}
-              label={<>Section 3: Lorem ipsum dolor sit amet</>}
-            ></TreeItem>
+              icon={<ArticleIcon />}
+              label={<>Section 3.3: Lorem ipsum dolor sit amet</>}
+            />
           </TreeItem>
         </TreeItem>
         <TreeItem
@@ -74,91 +74,109 @@ export const Default = args => {
           label={<>Part 2: Lorem ipsum dolor sit amet</>}
         >
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 4: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          />
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<FolderIcon />}
             label={<>Chapter 5: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          >
+            <TreeItem
+              icon={<ArticleIcon />}
+              label={<>Section 5.1: Lorem ipsum dolor sit amet</>}
+            />
+            <TreeItem
+              icon={<ArticleIcon />}
+              label={<>Section 5.2: Lorem ipsum dolor sit amet</>}
+            />
+            <TreeItem
+              icon={<ArticleIcon />}
+              label={<>Section 5.3: Lorem ipsum dolor sit amet</>}
+            />
+            </TreeItem>
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 6: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          />
         </TreeItem>
         <TreeItem
           icon={<FolderIcon />}
           label={<>Part 3: Lorem ipsum dolor sit amet</>}
         >
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 7: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          />
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 8: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          />
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 9: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          />
           <TreeItem
-            icon={<AssignmentIcon />}
+            icon={<ArticleIcon />}
             label={<>Chapter 10: Lorem ipsum dolor sit amet</>}
-          ></TreeItem>
+          />
         </TreeItem>
       </TreeView>
     </Card>
   );
 };
 
-// export const DefaultCollapsed = args => {
-//   return (
-//     <Card isInverse={args.isInverse}>
-//       <TreeView {...args}>
-//         <TreeItem>
-//           Home
-//           <TreeItem>
-//             Bath
-//             <TreeItem>
-//               Bathroom Storage
-//               <TreeItem>Item 1</TreeItem>
-//               <TreeItem>Item 2</TreeItem>
-//             </TreeItem>
-//             <TreeItem>Shower Curtains & Accessories</TreeItem>
-//             <TreeItem>
-//               Bath Towels
-//               <TreeItem>Item 1</TreeItem>
-//               <TreeItem>Item 2</TreeItem>
-//             </TreeItem>
-//           </TreeItem>
-//           <TreeItem>
-//             Bedding
-//             <TreeItem>Item 1</TreeItem>
-//             <TreeItem>Item 2</TreeItem>
-//           </TreeItem>
-//           <TreeItem>Arts & Crafts</TreeItem>
-//           <TreeItem>
-//             Storage & Organization
-//             <TreeItem>Item 1</TreeItem>
-//             <TreeItem>Item 2</TreeItem>
-//           </TreeItem>
-//         </TreeItem>
-//         <TreeItem>
-//           Furniture
-//           <TreeItem>Item 1</TreeItem>
-//           <TreeItem>Item 2</TreeItem>
-//         </TreeItem>
-//         <TreeItem>Kitchen & Dining</TreeItem>
-//         <TreeItem>
-//           Patio & Garden
-//           <TreeItem>Item 1</TreeItem>
-//           <TreeItem>Item 2</TreeItem>
-//         </TreeItem>
-//       </TreeView>
-//     </Card>
-//   );
-// };
+
+export const DefaultCollapsed = args => {
+  return (
+    <Card isInverse={args.isInverse}>
+      <TreeView {...args}>
+        <TreeItem label={<>Home</>}>
+          <TreeItem label={<>Bath</>}>
+            
+            <TreeItem label={<>Bathroom Storage</>}>
+              
+              <TreeItem label={<>Item 1</>} />
+              <TreeItem label={<>Item 2</>} />
+            </TreeItem>
+            <TreeItem label={<>Shower Curtains & Accessories</>} />
+            <TreeItem label={<>Bath Towels</>}>
+              
+              <TreeItem label={<>Item 1</>} />
+              <TreeItem label={<>Item 2</>} />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem label={<>Bedding</>}>
+            
+                          <TreeItem label={<>Item 1</>} />
+              <TreeItem label={<>Item 2</>} />
+          </TreeItem>
+          <TreeItem label={<>Arts & Crafts</>}></TreeItem>
+          <TreeItem label={<>Storage & Organization</>}>
+            
+                         <TreeItem label={<>Item 1</>} />
+              <TreeItem label={<>Item 2</>} />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label={<>Furniture</>}>
+          
+                        <TreeItem label={<>Item 1</>} />
+              <TreeItem label={<>Item 2</>} />
+        </TreeItem>
+        <TreeItem label={<>Kitchen & Dining</>}/>
+        <TreeItem label={<>Patio & Garden</>}>
+          
+              <TreeItem label={<>Item 1</>} />
+              <TreeItem label={<>Item 2</>} />
+        </TreeItem>
+      </TreeView>
+    </Card>
+  );
+};
+
+ 
+
+
+
 
 export const Textbook = args => {
   return (
@@ -202,5 +220,25 @@ export const Textbook = args => {
         </TreeItem>
       </TreeView>
     </Card>
+  );
+};
+
+export const Simple = args => {
+  return (
+    <TreeView {...args}>
+      <TreeItem label={<>0.0</>}>
+        <TreeItem label={<>1.1</>}>
+          {/* <TreeItem label={<>The Questions Art Historians Ask</>} />
+          <TreeItem label={<>The Words Art Historians Use</>}>
+            <TreeItem label={<>Something deeper</>} />
+          </TreeItem> */}
+          <TreeItem label={<>1.1.1</>}>
+            <TreeItem label={<>1.1.1.1</>} />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label={<>1.2</>} />
+      </TreeItem>
+      <TreeItem label={<>0.1</>} />
+    </TreeView>
   );
 };

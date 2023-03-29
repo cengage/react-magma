@@ -17,19 +17,11 @@ import { ExpandLessIcon, ExpandMoreIcon } from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
 import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
-import { Button, ButtonVariant, ButtonColor } from '../Button';
 
 import { calculateLeftPadding } from './utils';
 import { transparentize } from 'polished';
 
 export interface TreeItemProps extends UseTreeItemProps {}
-
-const addPxStyleStrings = (styleStrings: (string | number)[]): string => {
-  const pxValues: number[] = styleStrings.map(styleString => {
-    return parseInt(styleString.toString().replace(/\s*px$/, ''));
-  });
-  return pxValues.reduce((total, value) => total + value).toString() + 'px';
-};
 
 const StyledTreeItem = styled.li<{
   theme?: ThemeInterface;
@@ -44,13 +36,8 @@ const StyledTreeItem = styled.li<{
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   list-style-type: none;
-  margin-left: ${props => calculateLeftPadding(props.type, props.depth)};
-  :hover {
-    background: ${props =>
-      props.isSelectable
-        ? transparentize(0.95, props.theme.colors.neutral900)
-        : 'transparent'};
-  }
+  // border: 1px solid orange;
+  // background: pink;
 `;
 // margin-left: ${props =>
 //   props.hasOwnTreeItems
@@ -81,6 +68,7 @@ const IconWrapper = styled.span<{
 const StyledExpandWrapper = styled.div<{ theme?: ThemeInterface }>`
   display: inline-block;
   vertical-align: middle;
+  // background: green;
   // width: ${props => props.theme.spaceScale.spacing06};
   // min-width: ${props => props.theme.spaceScale.spacing06};
   margin-right: ${props => props.theme.spaceScale.spacing03};
@@ -94,9 +82,21 @@ const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
 
 const StyledLabelWrapper = styled.div<{
   theme?: ThemeInterface;
-
+  isSelectable?: boolean;
+  type: string;
+  depth: number;
+  selected: boolean;
 }>`
-
+  padding-left: ${props => calculateLeftPadding(props.type, props.depth)};
+  // margin-left: ${props => calculateLeftPadding(props.type, props.depth)};
+  // cursor: pointer;
+  background: ${props => props.selected ? transparentize(0.92, props.theme.colors.neutral900) : 'none'};
+  :hover {
+    background: ${props =>
+      props.isSelectable && !props.selected
+        ? transparentize(0.95, props.theme.colors.neutral900)
+        : 'none'};
+  }
 `;
 
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
@@ -126,17 +126,24 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       checkboxChangeHandler,
       hasOwnTreeItems,
       updateCheckedStatusFromChild,
+      itemDepth,
+      numberOfDirectChildren,
+      singleSelectItemId,
     } = contextValue;
 
     // Number of children an item has
     let childTreeItemIndex = 0;
 
     // React.useEffect(() => {
-    // console.log(label.props.children, hasOwnTreeItems)
+    // console.log(label.props.children, numberOfDirectChildren)
     // }, [hasOwnTreeItems]);
 
-    const nodeType = hasOwnTreeItems ? 'leaf' : 'branch';
-    const depth = 0;
+    const nodeType = hasOwnTreeItems ? 'branch' : 'leaf';
+
+    // console.log(label.props.children, nodeType, itemDepth)
+
+
+    // TODO expanded is a lil broken
 
     return (
       <TreeItemContext.Provider value={contextValue}>
@@ -147,14 +154,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           ref={ref}
           data-testid={testId}
           type={nodeType}
-          depth={depth}
+          depth={itemDepth}
           isSelectable={selectable === TreeViewSelectable.single}
           {...rest}
         >
           <StyledLabelWrapper
             theme={theme}
             onClick={() => setExpanded(state => !state)}
-            
+            isSelectable={selectable === TreeViewSelectable.single}
+            type={nodeType}
+            depth={itemDepth}
+            selected={selectable === TreeViewSelectable.single && singleSelectItemId === itemId}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper theme={theme}>

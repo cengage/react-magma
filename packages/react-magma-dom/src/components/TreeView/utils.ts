@@ -20,3 +20,11 @@ export function calculateLeftPadding(type: string, depth: number) {
 
   return `${padding}px`;
 }
+
+
+export const addPxStyleStrings = (styleStrings: (string | number)[]): string => {
+  const pxValues: number[] = styleStrings.map(styleString => {
+    return parseInt(styleString.toString().replace(/\s*px$/, ''));
+  });
+  return pxValues.reduce((total, value) => total + value).toString() + 'px';
+};
