@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.2
+
+### Minor Changes
+
+- 3d00dcc7e: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
+
 ## 4.0.1-next.1
 
 ### Patch Changes

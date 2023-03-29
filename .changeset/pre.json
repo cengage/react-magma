@@ -12,6 +12,7 @@
   },
   "changesets": [
     "docs",
+    "feat-simplePagination",
     "fix-iconbuttonstack",
     "fix-toaststack",
     "toast-docs"
