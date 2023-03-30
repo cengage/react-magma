@@ -271,8 +271,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           document.getElementById(id).contains(event.target as HTMLDivElement)
         ) {
           handleClose(event);
+        } else if (contentId === contentId) {
+          headingRef.current.focus();
         }
-        bodyRef.current.focus();
       }
     }
 
