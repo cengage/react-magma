@@ -265,7 +265,6 @@ export const ModalInAModal = () => {
           buttonRef.current.focus();
         }}
         isOpen={showModal}
-        id={'outer'}
       >
         <p>This is a modal, doing modal things.</p>
         <p>
@@ -286,7 +285,6 @@ export const ModalInAModal = () => {
 
         <Modal
           size={ModalSize.small}
-          id={'inner'}
           header="Modal 2 Title"
           onClose={() => setShowModal2(false)}
           isOpen={showModal2}

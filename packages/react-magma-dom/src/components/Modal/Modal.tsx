@@ -204,6 +204,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const lastFocus = React.useRef<any>();
     const headingRef = React.useRef<any>();
     const bodyRef = React.useRef<any>();
+    const containerRef = React.useRef<any>();
 
     const id = useGenerateId(props.id);
     const headingId = `${id}_heading`;
@@ -220,10 +221,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     );
 
     const prevOpen = usePrevious(props.isOpen);
-
-    React.useEffect(() => {
-      console.log(id);
-    }, []);
 
     React.useEffect(() => {
       if (!prevOpen && props.isOpen) {
@@ -276,9 +273,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         ) {
           handleClose(event);
         }
-        if (lastFocus.current) {
-          lastFocus.current.focus();
-        }
+        containerRef.current.focus();
       }
     }
 
@@ -353,6 +348,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               onMouseDown={
                 isBackgroundClickDisabled ? null : handleModalOnMouseDown
               }
+              ref={containerRef}
               role="dialog"
               style={containerStyle}
               theme={theme}
