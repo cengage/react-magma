@@ -204,7 +204,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const lastFocus = React.useRef<any>();
     const headingRef = React.useRef<any>();
     const bodyRef = React.useRef<any>();
-    const containerRef = React.useRef<any>();
 
     const id = useGenerateId(props.id);
     const headingId = `${id}_heading`;
@@ -273,7 +272,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         ) {
           handleClose(event);
         }
-        containerRef.current.focus();
+        bodyRef.current.focus();
       }
     }
 
@@ -348,7 +347,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               onMouseDown={
                 isBackgroundClickDisabled ? null : handleModalOnMouseDown
               }
-              ref={containerRef}
               role="dialog"
               style={containerStyle}
               theme={theme}
