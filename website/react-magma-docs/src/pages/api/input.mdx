@@ -44,9 +44,9 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input, InputType } from 'react-magma-dom';
 export function Example() {
-  return <Input labelText="Number" type="number" />;
+  return <Input labelText="Number" type={InputType.number} />;
 }
 ```
 
@@ -212,7 +212,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
 
 ```tsx
 import React from 'react';
-import { Input, Spinner } from 'react-magma-dom';
+import { Input, InputType, Spinner } from 'react-magma-dom';
 import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 export function Example() {
   return (
@@ -220,7 +220,7 @@ export function Example() {
       <Input
         labelText="Input with icon on left"
         icon={<MailOutlineIcon />}
-        type="email"
+        type={InputType.email}
       />
 
       <Input
@@ -249,7 +249,7 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 
 ```tsx
 import React from 'react';
-import { Input } from 'react-magma-dom';
+import { Input, InputType } from 'react-magma-dom';
 import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 export function Example() {
   return (
@@ -258,7 +258,7 @@ export function Example() {
         labelText="Large input with icon on left"
         inputSize="large"
         icon={<MailOutlineIcon />}
-        type="email"
+        type={InputType.email}
       />
 
       <Input
@@ -373,7 +373,7 @@ will appear to the right of the field.
 
 ```tsx
 import React from 'react';
-import { IconButton, Input, Tooltip } from 'react-magma-dom';
+import { IconButton, Input, Tooltip, InputType } from 'react-magma-dom';
 import { HelpIcon } from 'react-magma-icons';
 export function Example() {
   const helpLinkLabel = 'Learn more';
@@ -388,7 +388,7 @@ export function Example() {
           aria-label={helpLinkLabel}
           icon={<HelpIcon />}
           onClick={onHelpLinkClick}
-          type="button"
+          type={InputType.button}
           size="small"
           variant="link"
         />
