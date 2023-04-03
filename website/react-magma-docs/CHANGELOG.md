@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.5
+
+### Patch Changes
+
+- 0b581a8cb: Update Tooltip docs to remove reference to old `trigger` prop.
+
 ## 5.0.1-next.4
 
 ### Patch Changes

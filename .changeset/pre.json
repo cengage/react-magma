@@ -15,6 +15,7 @@
     "feat-simplePagination",
     "fix-iconbuttonstack",
     "fix-toaststack",
-    "toast-docs"
+    "toast-docs",
+    "tooltip-docs"
   ]
 }
