@@ -459,6 +459,7 @@ import {
   DropdownDivider,
   DropdownHeader,
   Input,
+  InputType,
   magma,
   PasswordInput,
   ButtonGroup,
@@ -471,7 +472,7 @@ export function Example() {
         <DropdownButton>Dropdown with Login Form</DropdownButton>
         <DropdownContent>
           <form style={{ margin: 0, padding: magma.spaceScale.spacing05 }}>
-            <Input type="email" labelText="Email Address" />
+            <Input type={InputType.email} labelText="Email Address" />
             <PasswordInput labelText="Password" />
             <div style={{ textAlign: 'center' }}>
               <p>
