@@ -11,10 +11,12 @@
     "react-magma-landing": "1.1.1"
   },
   "changesets": [
+    "docs-select",
     "docs",
     "feat-simplePagination",
     "fix-iconbuttonstack",
     "fix-toaststack",
+    "multiselect-align",
     "toast-docs",
     "tooltip-docs"
   ]

@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.1-next.6
+
+### Patch Changes
+
+- 4a10f8905: Reorganize Select docs
+- Updated dependencies [4a10f8905]
+  - react-magma-dom@4.1.0-next.3
+
 ## 5.0.1-next.5
 
 ### Patch Changes

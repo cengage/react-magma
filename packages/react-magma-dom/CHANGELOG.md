@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.3
+
+### Patch Changes
+
+- 4a10f8905: fix(select): Fix Multi Select placeholder text alignment
+
 ## 4.1.0-next.2
 
 ### Minor Changes
