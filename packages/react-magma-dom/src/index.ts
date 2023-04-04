@@ -246,3 +246,5 @@ export * from './components/ButtonGroup';
 export * from './components/CharacterCounter';
 export * from './components/ToggleButton';
 export * from './components/ToggleButtonGroup';
+
+export * from './components/Popover'

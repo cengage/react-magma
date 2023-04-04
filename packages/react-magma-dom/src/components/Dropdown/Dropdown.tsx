@@ -140,11 +140,16 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
       setIsOpen(true);
 
-      setTimeout(() => {
-        filteredItems.length > 0 &&
-          filteredItems[0].current &&
-          filteredItems[0].current.focus();
-      }, 0);
+      if (filteredItems.length > 0) {
+        setTimeout(() => {
+            filteredItems[0].current &&
+            filteredItems[0].current.focus();
+        }, 0);
+      } else {
+        setTimeout(() => {
+          menuRef.current.focus();
+        }, 0);
+      }
 
       onOpen && typeof onOpen === 'function' && onOpen();
     }
@@ -177,6 +182,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
+          menuRef.current.focus();
           return;
         }
 
@@ -196,6 +202,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
+          menuRef.current.focus();
           return;
         }
 

@@ -703,4 +703,84 @@ describe('Dropdown', () => {
 
     expect(getByText('Google').querySelector('svg')).toBeInTheDocument();
   });
+
+  describe('dropdown without items', () => {
+    it('should focus the entire container when button is clicked', () => {
+      const { getByText, getByTestId } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton>Toggle me</DropdownButton>
+          <DropdownContent>
+            <p>test content</p>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByText('Toggle me'));
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+      fireEvent.keyDown(getByTestId('dropdown'), {
+        key: 'ArrowDown',
+        code: 40,
+      });
+      expect(getByTestId('dropdownContent')).toHaveFocus();
+    });
+
+    it('should close the menu on blur', () => {
+      jest.useFakeTimers();
+
+      const onClose = jest.fn();
+      const { getByText, getByTestId } = render(
+        <Dropdown testId="dropdown" onClose={onClose}>
+          <DropdownButton>Toggle me</DropdownButton>
+          <DropdownContent>
+            <p>test</p>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      userEvent.click(getByText('Toggle me'));
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      userEvent.click(document.body);
+      act(jest.runAllTimers);
+
+      expect(onClose).toHaveBeenCalled();
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      jest.useRealTimers();
+    });
+
+    it('should close the menu when escape key is pressed', () => {
+      const { getByText, getByTestId } = render(
+        <Dropdown testId="dropdown">
+          <DropdownButton>Toggle me</DropdownButton>
+          <DropdownContent>
+            <p>test</p>
+          </DropdownContent>
+        </Dropdown>
+      );
+  
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+  
+      fireEvent.click(getByText('Toggle me'));
+  
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+  
+      fireEvent.keyDown(getByTestId('dropdown'), {
+        key: 'ArrowDown',
+      });
+  
+      fireEvent.keyDown(getByTestId('dropdown'), {
+        key: 'Escape',
+        code: 27,
+      });
+  
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+    });
+  });
 });
