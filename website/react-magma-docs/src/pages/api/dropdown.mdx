@@ -442,8 +442,7 @@ export function Example() {
 
 ## Dropdown without Menu Items
 
-Dropdowns can contain elements other than `DropdownMenuItem` components.
-The following examples include form elements, styled with inline styles including variables from the Magma theme.
+Dropdowns can contain elements other than `DropdownMenuItem` components. They can be used to wrap a form, filters, or informational content.
 
 While users may navigate between `DropdownMenuItem` components using up and down arrow keys,
 browser default keyboard behavior applies to other content.
@@ -507,15 +506,26 @@ import {
   Dropdown,
   DropdownButton,
   DropdownContent,
-  DropdownDivider,
   DropdownHeader,
   magma,
 } from 'react-magma-dom';
 
 export function Example() {
+  const [checkedItems, setCheckedItems] = React.useState([]);
+
+  function updateCheckedItems(e) {
+    if (e.target.checked) {
+      if (!checkedItems.includes(e.target.value)) {
+        setCheckedItems([...checkedItems, e.target.value]);
+      }
+    } else if (!e.target.checked) {
+      setCheckedItems(checkedItems.filter(i => i !== e.target.value));
+    }
+  }
+
   return (
     <Dropdown width="300px">
-      <DropdownButton>Filter Dropdown</DropdownButton>
+      <DropdownButton>Filter Dropdown ({checkedItems.length})</DropdownButton>
       <DropdownContent>
         <DropdownHeader id="checkboxGroup">Checkbox Group Label</DropdownHeader>
         <form
@@ -527,15 +537,28 @@ export function Example() {
           }}
         >
           <div role="group" aria-labelledby="checkboxGroup">
-            <Checkbox labelText="Option 1" />
-            <Checkbox labelText="Option 2" />
-            <Checkbox labelText="Option 3" />
+            <Checkbox
+              value="1"
+              labelText="Option 1"
+              onClick={updateCheckedItems}
+            />
+            <Checkbox
+              value="2"
+              labelText="Option 2"
+              onClick={updateCheckedItems}
+            />
+            <Checkbox
+              value="3"
+              labelText="Option 3"
+              onClick={updateCheckedItems}
+            />
           </div>
         </form>
       </DropdownContent>
     </Dropdown>
   );
 }
+
 ```
 
 ### Dropdown with Informational Content
@@ -555,8 +578,10 @@ export function Example() {
   return (
     <Dropdown width="300px">
       <DropdownButton>Informational Dropdown</DropdownButton>
-      <DropdownContent style={{padding: magma.spaceScale.spacing05}}>
-        <Paragraph noMargins>In this activity you must achieve 80% or higher to receive credit</Paragraph>
+      <DropdownContent style={{ padding: magma.spaceScale.spacing05 }}>
+        <Paragraph noMargins>
+          In this activity you must achieve 80% or higher to receive credit
+        </Paragraph>
       </DropdownContent>
     </Dropdown>
   );
