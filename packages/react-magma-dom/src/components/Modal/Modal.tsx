@@ -272,6 +272,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           typeof props.onEscKeyDown === 'function' &&
           props.onEscKeyDown(event);
 
+        //Supports nested modals
         const modalsInDom = document.querySelectorAll(
           '[aria-modal="true"]'
         ).length;
