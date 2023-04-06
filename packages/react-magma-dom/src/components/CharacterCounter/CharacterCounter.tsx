@@ -47,7 +47,7 @@ const StyledInputMessage = styled(InputMessage)<{
 export const CharacterCounter = React.forwardRef<
   HTMLDivElement,
   CharacterCounterProps
->(props => {
+>((props, ref) => {
   const { children, id, inputLength, maxLength, testId, isInverse, ...rest } =
     props;
 
@@ -106,7 +106,7 @@ export const CharacterCounter = React.forwardRef<
   }
 
   return (
-    <div data-testid={testId} id={id} {...rest}>
+    <div data-testid={testId} id={id} ref={ref} {...rest}>
       <StyledInputMessage
         aria-live={getAriaLiveState()}
         hasError={isOverMaxLength}
