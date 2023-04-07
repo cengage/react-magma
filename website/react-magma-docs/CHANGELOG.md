@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.7
+
+### Patch Changes
+
+- 0894b08eb: Update ToggleButton and ToggleButtonGroup docs.
+
 ## 5.0.1-next.6
 
 ### Patch Changes

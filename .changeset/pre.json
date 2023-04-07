@@ -12,6 +12,7 @@
   },
   "changesets": [
     "docs-select",
+    "docs-toggle",
     "docs",
     "feat-simplePagination",
     "fix-iconbuttonstack",
