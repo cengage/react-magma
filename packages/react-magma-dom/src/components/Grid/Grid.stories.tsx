@@ -15,7 +15,7 @@ const Template: Story<GridProps> = args => (
     gridGap="1em"
     {...args}
   >
-    <GridItem gridColumn="1 / 4">
+    <GridItem gridColumn="1 / 4" as="section">
       Test Section
     </GridItem>
     <GridItem>Test</GridItem>
