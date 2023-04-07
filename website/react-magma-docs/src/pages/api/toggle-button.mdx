@@ -6,9 +6,14 @@ props:
   - ToggleButtonIconProps
 ---
 
-<DocsHeading type="api">ToggleButton</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-ToggleButton uses both the Button and IconButton components to enable active states.
+<PageContent componentName="toggle_button" type="api">
+
+<LeadParagraph>
+  ToggleButton uses both the Button and IconButton components to enable active
+  states.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -30,7 +35,11 @@ import React from 'react';
 import { ToggleButton } from 'react-magma-dom';
 
 export function Example() {
-  return <ToggleButton value="1" isChecked>Toggle</ToggleButton>;
+  return (
+    <ToggleButton value="1" isChecked>
+      Toggle
+    </ToggleButton>
+  );
 }
 ```
 
@@ -54,7 +63,9 @@ export function Example() {
           <ToggleButton value="2">Text only</ToggleButton>
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="3" icon={<SettingsIcon />}>Text and icon</ToggleButton>
+          <ToggleButton value="3" icon={<SettingsIcon />}>
+            Text and icon
+          </ToggleButton>
         </Flex>
       </Flex>
     </>
@@ -76,13 +87,23 @@ export function Example() {
     <>
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="1" size={ButtonSize.small} icon={<SettingsIcon />} />
+          <ToggleButton
+            value="1"
+            size={ButtonSize.small}
+            icon={<SettingsIcon />}
+          />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="2" size={ButtonSize.medium}>Text only</ToggleButton>
+          <ToggleButton value="2" size={ButtonSize.medium}>
+            Text only
+          </ToggleButton>
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="3" size={ButtonSize.large} icon={<SettingsIcon />}>
+          <ToggleButton
+            value="3"
+            size={ButtonSize.large}
+            icon={<SettingsIcon />}
+          >
             Text and icon
           </ToggleButton>
         </Flex>
@@ -107,7 +128,9 @@ export function Example() {
           <ToggleButton value="1" disabled icon={<SettingsIcon />} />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="2" disabled>Text only</ToggleButton>
+          <ToggleButton value="2" disabled>
+            Text only
+          </ToggleButton>
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="3" disabled icon={<SettingsIcon />}>
@@ -135,7 +158,9 @@ export function Example() {
           <ToggleButton value="1" isInverse icon={<SettingsIcon />} />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="2" isInverse>Text only</ToggleButton>
+          <ToggleButton value="2" isInverse>
+            Text only
+          </ToggleButton>
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="3" isInverse icon={<SettingsIcon />}>
@@ -159,3 +184,5 @@ export function Example() {
 ### ToggleButtonIcon Props
 
 <ToggleButtonIconProps />
+
+</PageContent>
