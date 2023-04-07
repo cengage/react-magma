@@ -35,7 +35,6 @@ import {
   ButtonGroup,
   Spacer,
 } from 'react-magma-dom';
-import { ceslV2 } from './magmaOther';
 
 const magmaDark = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
@@ -54,6 +53,287 @@ const magmaDark = Object.assign({}, magma, {
     neutral700: '#ffffff',
     border: magma.colors.secondary600,
   }),
+});
+
+const ceslV2 = Object.assign({}, magma, {
+  bodyFont: '"Open Sans",Helvetica,sans-serif',
+  bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
+  borderRadius: '4px',
+  colors: Object.assign({}, magma.colors),
+  headingFont: '"Open Sans",Helvetica,sans-serif',
+  headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
+  headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
+  direction: 'ltr',
+  spacingMultiplier: 8,
+  breakpoints: {
+    xs: 0,
+    small: 600,
+    medium: 768,
+    large: 1024,
+    xl: 1200,
+  },
+
+  spaceScale: magma.spaceScale,
+
+  iconSizes: {
+    xSmall: 16,
+    small: 20,
+    medium: 24,
+    large: 32,
+    xLarge: 54,
+  },
+
+  // Typography
+  typeScale: magma.typeScale,
+  typographyVisualStyles: {
+    headingXLarge: {
+      mobile: magma.typeScale.size07,
+      desktop: magma.typeScale.size09,
+      fontWeight: 600,
+    },
+    headingLarge: {
+      mobile: magma.typeScale.size06,
+      desktop: magma.typeScale.size07,
+      fontWeight: 600,
+    },
+    headingMedium: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+      fontWeight: 600,
+    },
+    headingSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+      fontWeight: 600,
+    },
+    headingXSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size04,
+      fontWeight: 600,
+    },
+    heading2XSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+      fontWeight: 700,
+    },
+    bodyLarge: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+    },
+    bodyMedium: {
+      mobile: magma.typeScale.size03,
+      desktop: magma.typeScale.size03,
+    },
+    bodySmall: {
+      mobile: magma.typeScale.size02,
+      desktop: magma.typeScale.size02,
+    },
+    bodyXSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+    },
+  },
+  typographyExpressiveVisualStyles: {
+    headingXLarge: {
+      mobile: magma.typeScale.size08,
+      desktop: magma.typeScale.size11,
+      fontWeight: 600,
+    },
+    headingLarge: {
+      mobile: magma.typeScale.size07,
+      desktop: magma.typeScale.size09,
+      fontWeight: 300,
+    },
+    headingMedium: {
+      mobile: magma.typeScale.size06,
+      desktop: magma.typeScale.size07,
+      fontWeight: 300,
+    },
+    headingSmall: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+      fontWeight: 300,
+    },
+    headingXSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+      fontWeight: 300,
+    },
+    heading2XSmall: {
+      mobile: magma.typeScale.size03,
+      desktop: magma.typeScale.size03,
+      fontWeight: 700,
+    },
+    bodyLarge: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+    },
+    bodyMedium: {
+      mobile: magma.typeScale.size03,
+      desktop: magma.typeScale.size03,
+    },
+    bodySmall: {
+      mobile: magma.typeScale.size02,
+      desktop: magma.typeScale.size02,
+    },
+    bodyXSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+    },
+  },
+  typographyNarrativeVisualStyles: {
+    headingXLarge: {
+      mobile: magma.typeScale.size07,
+      desktop: magma.typeScale.size08,
+      fontWeight: 700,
+    },
+    headingLarge: {
+      mobile: magma.typeScale.size06,
+      desktop: magma.typeScale.size07,
+      fontWeight: 700,
+    },
+    headingMedium: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+      fontWeight: 700,
+    },
+    headingSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+      fontWeight: 700,
+    },
+    headingXSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size04,
+      fontWeight: 700,
+    },
+    heading2XSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+      fontWeight: 700,
+    },
+    bodyLarge: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+    },
+    bodyMedium: {
+      mobile: magma.typeScale.size03,
+      desktop: magma.typeScale.size03,
+    },
+    bodySmall: {
+      mobile: magma.typeScale.size02,
+      desktop: magma.typeScale.size02,
+    },
+    bodyXSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+    },
+  },
+
+  appBar: {
+    backgroundColor: magma.colors.neutral100,
+    height: '56px',
+    padding: `${magma.spaceScale.spacing06} ${magma.spaceScale.spacing05}`,
+    textColor: magma.colors.neutral,
+    compact: {
+      height: '56px',
+      padding: `${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing06}`,
+    },
+    inverse: {
+      backgroundColor: magma.colors.primary600,
+      textColor: magma.colors.neutral100,
+    },
+  },
+
+  combobox: {
+    menu: {
+      maxHeight: '250px',
+    },
+  },
+
+  modal: {
+    width: {
+      small: '300px',
+      medium: '600px',
+      large: '900px',
+    },
+  },
+
+  drawer: {
+    default: {
+      maxWidth: '100%',
+      minHeight: '300px',
+      margin: '0',
+      borderRadius: '0',
+      top: '0',
+      right: '0',
+      bottom: '0',
+      left: '0',
+      position: 'relative',
+    },
+    right: {
+      left: 'auto',
+      height: '100%',
+      width: '300px',
+      position: 'fixed',
+    },
+    left: {
+      right: 'auto',
+      height: '100%',
+      width: '300px',
+    },
+    top: {
+      bottom: 'auto',
+      height: '300px',
+    },
+    bottom: {
+      top: 'auto',
+      height: '300px',
+      position: 'fixed',
+    },
+  },
+
+  dropdown: {
+    content: {
+      maxHeight: '250px',
+    },
+  },
+
+  tabs: {
+    approxTabSize: {
+      horizontal: 120,
+      vertical: 80,
+    },
+  },
+
+  select: {
+    menu: {
+      maxHeight: '250px',
+    },
+  },
+
+  tag: {
+    border: '0',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+
+  tooltip: {
+    arrowSize: '4px',
+    arrowSizeDoubled: '8px',
+    backgroundColor: magma.colors.neutral,
+    fontWeight: 600,
+    maxWidth: '300px',
+    textColor: magma.colors.neutral100,
+    typeScale: magma.typeScale.size01,
+    zIndex: 999,
+    inverse: {
+      backgroundColor: magma.colors.neutral100,
+      textColor: magma.colors.neutral,
+    },
+  },
 });
 
 function DemoComponent() {
@@ -110,6 +390,408 @@ export function Example() {
         <DemoComponent />
       </ThemeContext.Provider>
     </div>
+  );
+}
+```
+
+## Springfield Donut
+
+Who doesn't like a good one?
+
+```tsx
+import React from 'react';
+import {
+  AppBar,
+  Button,
+  ButtonColor,
+  ButtonGroup,
+  Card,
+  CardBody,
+  CardHeading,
+  Combobox,
+  Drawer,
+  magma,
+  Radio,
+  RadioGroup,
+  Spacer,
+} from 'react-magma-dom';
+
+import styled from '../../theme/styled';
+
+const springfieldDonut = Object.assign({}, magma, {
+  colors: Object.assign({}, magma.colors, {
+    danger: '#f3772b',
+    danger600: '#b94d1c',
+    marketing: '#1a85e0',
+    primary: '#3493f1',
+    primary600: '#215fb3',
+    neutral: '#7b361e',
+    secondary500: '#42e093',
+    secondary600: '#43fd94',
+  }),
+
+  appBar: {
+    backgroundColor: '#d792cb',
+    textColor: '#ebf88b',
+    height: '60px',
+    padding: '0 30px',
+  },
+});
+
+const StyledCardHeading = styled.h1`
+  color: #939c55;
+  text-shadow: 0 0 2px rgb(0 0 0 / 40%), 0 0px 1px rgb(0 0 0 / 40%);
+  font-size: 40px;
+`;
+
+const StyledDonut = styled.div`
+  height: 120px;
+  left: 190px;
+  position: relative;
+  top: -30px;
+  &:before {
+    content: '';
+    width: 60%;
+    height: 180px;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    border-radius: 50% 50% 72% 72%;
+    z-index: 0;
+    background: linear-gradient(
+      0deg,
+      rgba(141, 70, 37, 1) 0%,
+      rgba(190, 114, 78, 1) 62%,
+      rgba(210, 139, 105, 1) 91%
+    );
+    box-shadow: 0 12px 13px -14px black;
+  }
+  &:after {
+    content: '';
+    background: #ce8b97;
+    box-shadow: inset 0 -24px 2px rgb(255 255 255 / 12%), 0 22px 13px rgb(0 0
+            0 / 16%), inset 0 -10px 12px 2px rgb(255 255 255 / 17%), inset 0 0,
+      inset 0 -12px 23px 22px rgb(255 255 255 / 36%), inset 0 30px 21px 20px
+        pink, inset 0 -20px 21px 20px pink, inset 0 -110px 0px -27px pink,
+      inset 0 -10px 0 10px white;
+    position: absolute;
+    top: -23px;
+    left: 6%;
+    width: calc(58%);
+    height: 127px;
+    border-radius: 50%;
+  }
+`;
+
+const StyledColors = [
+  { id: 'red', background: '#e82f33' },
+  { id: 'blue', background: '#2a7ded' },
+  { id: 'green', background: '#199662' },
+  { id: 'orange', background: '#fa7831' },
+  { id: 'yellow', background: '#f2c532' },
+  { id: 'white', background: '#e9e9e9' },
+  { id: 'pink', background: '#cc7bbf' },
+];
+
+const StyledSprinkle = styled.div`
+  width: 25px;
+  height: 5px;
+  border-radius: 4px;
+  position: absolute;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 1px;
+    width: 88%;
+    height: 2px;
+    background: white;
+    filter: blur(2px);
+    left: 6%;
+  }
+`;
+
+export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
+
+  return (
+    <ThemeContext.Provider value={springfieldDonut}>
+      <Card>
+        <StyledDonut>
+          <StyledSprinkle
+            style={{
+              background: StyledColors[0].background,
+              top: '40px',
+              left: '90px',
+              transform: 'rotate(-15deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[6].background,
+              top: '67px',
+              left: '131px',
+              transform: 'rotate(4deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[1].background,
+              top: '57px',
+              left: '186px',
+              transform: 'rotate(354deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[5].background,
+              top: '30px',
+              left: '280px',
+              transform: 'rotate(21deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[3].background,
+              top: '-3px',
+              left: '120px',
+              transform: 'rotate(10deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[1].background,
+              top: '30px',
+              left: '80px',
+              transform: 'rotate(15deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[2].background,
+              top: '67px',
+              left: '151px',
+              transform: 'rotate(-4deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[3].background,
+              top: '57px',
+              left: '146px',
+              transform: 'rotate(154deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[4].background,
+              top: '30px',
+              left: '240px',
+              transform: 'rotate(121deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[5].background,
+              top: '-3px',
+              left: '100px',
+              transform: 'rotate(10deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[2].background,
+              top: '57px',
+              left: '144px',
+              transform: 'rotate(3deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              left: ' 129px',
+              background: StyledColors[3].background,
+              top: ' 31px',
+              transform: ' rotate(14deg)',
+              zIndex: ' 2',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[0].background,
+              top: '48px',
+              left: '145px',
+              transform: 'rotate(343deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[5].background,
+              top: '47px',
+              left: '165px',
+              transform: 'rotate(300deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[4].background,
+              top: '37px',
+              left: '245px',
+              transform: 'rotate(143deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[4].background,
+              top: '-3px',
+              left: '195px',
+              transform: 'rotate(34eg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[4].background,
+              top: '50px',
+              left: '300px',
+              transform: 'rotate(-15deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[5].background,
+              top: '49px',
+              left: '231px',
+              transform: 'rotate(8deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[6].background,
+              top: '46px',
+              left: '286px',
+              transform: 'rotate(354deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[6].background,
+              top: '20px',
+              left: '353px',
+              transform: 'rotate(14deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[1].background,
+              top: '29px',
+              left: '58px',
+              transform: 'rotate(33deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[0].background,
+              top: '68px',
+              left: '204px',
+              transform: 'rotate(3deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[5].background,
+              top: ' -9px',
+              left: '228px',
+              transform: ' rotate(14deg)',
+              zIndex: ' 2',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[6].background,
+              top: '47px',
+              left: '245px',
+              transform: 'rotate(30deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[2].background,
+              top: '47px',
+              left: '265px',
+              transform: 'rotate(300deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[0].background,
+              top: '37px',
+              left: '145px',
+              transform: 'rotate(143deg)',
+            }}
+          />
+          <StyledSprinkle
+            style={{
+              background: StyledColors[3].background,
+              top: '-3px',
+              left: '295px',
+              transform: 'rotate(34eg)',
+            }}
+          />
+        </StyledDonut>
+        <CardBody>
+          <StyledCardHeading>Doh</StyledCardHeading>
+          <AppBar style={{ borderRadius: '6px' }}>
+            This is an application's AppBar!
+          </AppBar>
+
+          <Spacer size={50} />
+
+          <Combobox
+            id="comboboxId"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+            ]}
+            placeholder="Hello"
+          />
+
+          <Spacer size={50} />
+
+          <>
+            <Drawer
+              header="Drawer Title"
+              onClose={() => setShowDrawer(false)}
+              isOpen={showDrawer}
+              position="bottom"
+            >
+              <p>This is a Drawer, doing Drawer things.</p>
+              <p>
+                <Button>This is a button</Button>
+              </p>
+            </Drawer>
+            <Button onClick={() => setShowDrawer(true)}>
+              Show Drawer
+              <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+            </Button>
+          </>
+          <Spacer size={50} />
+          <RadioGroup labelText="Radio Group" name="radio">
+            <Radio labelText="Radio 1" value="1" />
+            <Radio labelText="Radio 2" value="2" />
+          </RadioGroup>
+          <Spacer size={50} />
+          <ButtonGroup>
+            <Button color={ButtonColor.primary}>Primary</Button>
+            <Button color={ButtonColor.secondary}>Secondary</Button>
+            <Button color={ButtonColor.danger}>Danger</Button>
+            <Button color={ButtonColor.marketing}>Marketing</Button>
+            <Button color={ButtonColor.subtle}>Subtle</Button>
+          </ButtonGroup>
+        </CardBody>
+      </Card>
+    </ThemeContext.Provider>
   );
 }
 ```
@@ -301,287 +983,6 @@ const spaceScale = {
   spacing13: '96px',
   spacing14: '160px',
 };
-
-export const ceslV2 = Object.assign({}, magma, {
-  bodyFont: '"Open Sans",Helvetica,sans-serif',
-  bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
-  bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
-  borderRadius: '4px',
-  colors: Object.assign({}, magma.colors, colors),
-  headingFont: '"Open Sans",Helvetica,sans-serif',
-  headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
-  headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
-  direction: 'ltr',
-  spacingMultiplier: 8,
-  breakpoints: {
-    xs: 0,
-    small: 600,
-    medium: 768,
-    large: 1024,
-    xl: 1200,
-  },
-
-  spaceScale: spaceScale,
-
-  iconSizes: {
-    xSmall: 16,
-    small: 20,
-    medium: 24,
-    large: 32,
-    xLarge: 54,
-  },
-
-  // Typography
-  typeScale: typeScale,
-  typographyVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size07,
-      desktop: typeScale.size09,
-      fontWeight: 600,
-    },
-    headingLarge: {
-      mobile: typeScale.size06,
-      desktop: typeScale.size07,
-      fontWeight: 600,
-    },
-    headingMedium: {
-      mobile: typeScale.size05,
-      desktop: typeScale.size06,
-      fontWeight: 600,
-    },
-    headingSmall: {
-      mobile: typeScale.size04,
-      desktop: typeScale.size05,
-      fontWeight: 600,
-    },
-    headingXSmall: {
-      mobile: typeScale.size04,
-      desktop: typeScale.size04,
-      fontWeight: 600,
-    },
-    heading2XSmall: {
-      mobile: typeScale.size01,
-      desktop: typeScale.size01,
-      fontWeight: 700,
-    },
-    bodyLarge: {
-      mobile: typeScale.size04,
-      desktop: typeScale.size05,
-    },
-    bodyMedium: {
-      mobile: typeScale.size03,
-      desktop: typeScale.size03,
-    },
-    bodySmall: {
-      mobile: typeScale.size02,
-      desktop: typeScale.size02,
-    },
-    bodyXSmall: {
-      mobile: typeScale.size01,
-      desktop: typeScale.size01,
-    },
-  },
-  typographyExpressiveVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size08,
-      desktop: typeScale.size11,
-      fontWeight: 600,
-    },
-    headingLarge: {
-      mobile: typeScale.size07,
-      desktop: typeScale.size09,
-      fontWeight: 300,
-    },
-    headingMedium: {
-      mobile: typeScale.size06,
-      desktop: typeScale.size07,
-      fontWeight: 300,
-    },
-    headingSmall: {
-      mobile: typeScale.size05,
-      desktop: typeScale.size06,
-      fontWeight: 300,
-    },
-    headingXSmall: {
-      mobile: typeScale.size04,
-      desktop: typeScale.size05,
-      fontWeight: 300,
-    },
-    heading2XSmall: {
-      mobile: typeScale.size03,
-      desktop: typeScale.size03,
-      fontWeight: 700,
-    },
-    bodyLarge: {
-      mobile: typeScale.size05,
-      desktop: typeScale.size06,
-    },
-    bodyMedium: {
-      mobile: typeScale.size03,
-      desktop: typeScale.size03,
-    },
-    bodySmall: {
-      mobile: typeScale.size02,
-      desktop: typeScale.size02,
-    },
-    bodyXSmall: {
-      mobile: typeScale.size01,
-      desktop: typeScale.size01,
-    },
-  },
-  typographyNarrativeVisualStyles: {
-    headingXLarge: {
-      mobile: typeScale.size07,
-      desktop: typeScale.size08,
-      fontWeight: 700,
-    },
-    headingLarge: {
-      mobile: typeScale.size06,
-      desktop: typeScale.size07,
-      fontWeight: 700,
-    },
-    headingMedium: {
-      mobile: typeScale.size05,
-      desktop: typeScale.size06,
-      fontWeight: 700,
-    },
-    headingSmall: {
-      mobile: typeScale.size04,
-      desktop: typeScale.size05,
-      fontWeight: 700,
-    },
-    headingXSmall: {
-      mobile: typeScale.size04,
-      desktop: typeScale.size04,
-      fontWeight: 700,
-    },
-    heading2XSmall: {
-      mobile: typeScale.size01,
-      desktop: typeScale.size01,
-      fontWeight: 700,
-    },
-    bodyLarge: {
-      mobile: typeScale.size04,
-      desktop: typeScale.size05,
-    },
-    bodyMedium: {
-      mobile: typeScale.size03,
-      desktop: typeScale.size03,
-    },
-    bodySmall: {
-      mobile: typeScale.size02,
-      desktop: typeScale.size02,
-    },
-    bodyXSmall: {
-      mobile: typeScale.size01,
-      desktop: typeScale.size01,
-    },
-  },
-
-  appBar: {
-    backgroundColor: colors.neutral100,
-    height: '56px',
-    padding: `${spaceScale.spacing06} ${spaceScale.spacing05}`,
-    textColor: colors.neutral,
-    compact: {
-      height: '56px',
-      padding: `${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing05} ${spaceScale.spacing06}`,
-    },
-    inverse: {
-      backgroundColor: colors.primary600,
-      textColor: colors.neutral100,
-    },
-  },
-
-  combobox: {
-    menu: {
-      maxHeight: '250px',
-    },
-  },
-
-  modal: {
-    width: {
-      small: '300px',
-      medium: '600px',
-      large: '900px',
-    },
-  },
-
-  drawer: {
-    default: {
-      maxWidth: '100%',
-      minHeight: '300px',
-      margin: '0',
-      borderRadius: '0',
-      top: '0',
-      right: '0',
-      bottom: '0',
-      left: '0',
-      position: 'relative',
-    },
-    right: {
-      left: 'auto',
-      height: '100%',
-      width: '300px',
-      position: 'fixed',
-    },
-    left: {
-      right: 'auto',
-      height: '100%',
-      width: '300px',
-    },
-    top: {
-      bottom: 'auto',
-      height: '300px',
-    },
-    bottom: {
-      top: 'auto',
-      height: '300px',
-      position: 'fixed',
-    },
-  },
-
-  dropdown: {
-    content: {
-      maxHeight: '250px',
-    },
-  },
-
-  tabs: {
-    approxTabSize: {
-      horizontal: 120,
-      vertical: 80,
-    },
-  },
-
-  select: {
-    menu: {
-      maxHeight: '250px',
-    },
-  },
-
-  tag: {
-    border: '0',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-
-  tooltip: {
-    arrowSize: '4px',
-    arrowSizeDoubled: '8px',
-    backgroundColor: colors.neutral,
-    fontWeight: 600,
-    maxWidth: '300px',
-    textColor: colors.neutral100,
-    typeScale: typeScale.size01,
-    zIndex: 999,
-    inverse: {
-      backgroundColor: colors.neutral100,
-      textColor: colors.neutral,
-    },
-  },
-});
 ```
 
 ### Setting Themes for Individual Components
