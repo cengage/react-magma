@@ -37,11 +37,6 @@ export function Example() {
   return (
     <Grid
       gridJustifyContent={GridJustifyContent.center}
-      gridTemplateAreas={
-        ('main main main main',
-        'card1 card1 card2 card3',
-        'card4 card5 card6 card7')
-      }
       gridTemplateColumns="repeat(4, 1fr)"
       gridGap="0.5em"
     >
@@ -60,7 +55,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '1 / 3'}
-        as="card1"
         style={{
           border: '1px solid black',
           textAlign: 'center',
@@ -73,7 +67,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '3 / 4'}
-        as="card2"
         style={{
           border: '1px solid black',
           textAlign: 'center',
@@ -86,7 +79,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '4 / 5'}
-        as="card3"
         style={{
           border: '1px solid black',
           textAlign: 'center',
@@ -99,7 +91,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '1'}
-        as="card4"
         style={{
           border: '1px solid black',
           textAlign: 'center',
@@ -112,7 +103,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '2'}
-        as="card5"
         style={{
           border: '1px solid black',
           textAlign: 'center',
@@ -125,7 +115,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '3'}
-        as="card6"
         style={{
           border: '1px solid black',
           textAlign: 'center',
@@ -138,7 +127,6 @@ export function Example() {
       </GridItem>
       <GridItem
         gridColumn={isSmallerScreen ? '1 / 5' : '4'}
-        as="card7"
         style={{
           border: '1px solid black',
           textAlign: 'center',
@@ -154,10 +142,9 @@ export function Example() {
 }
 ```
 
-## Accessibility
+## Semantic HTML
 
-While CSS Grid allows the re-ordering of elements visually, it does _not_ change the tab order or how elements are read via screen reader.
-The correct way is to order elements in the DOM in the way they should be read. `<Grid />` and `<GridItem />` both accept the `as` prop to allow for semantic HTML.
+`<Grid />` and `<GridItem />` both accept the `as` prop to allow for semantic HTML.
 
 ```typescript
 import React from 'react';
@@ -233,6 +220,11 @@ export function Example() {
   );
 }
 ```
+
+## Accessibility
+
+While CSS Grid allows the re-ordering of elements visually, it does _not_ change the tab order or how elements are read via screen reader.
+The correct way is to order elements in the DOM in the way they should be read.
 
 ## Responsiveness
 
