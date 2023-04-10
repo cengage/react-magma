@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.8
+
+### Patch Changes
+
+- 504763bd6: Update Grid docs. Add explanation for `as` prop.
+
 ## 5.0.1-next.7
 
 ### Patch Changes
