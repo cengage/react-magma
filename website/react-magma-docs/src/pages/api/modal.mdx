@@ -275,6 +275,47 @@ export function Example() {
 }
 ```
 
+## Nested Modals
+
+Although we don't recommend using nested modals, the ability for one nested modal is supported. Take note of the DOM layout as two `Modal`'s need to be siblings, otherwise mouse behavior will break.
+
+```tsx
+import React from 'react';
+import { Button, Modal, ModalSize, VisuallyHidden } from 'react-magma-dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+  const [showModal2, setShowModal2] = React.useState(false);
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        onClose={() => {
+          setShowModal(false);
+        }}
+        isOpen={showModal}
+      >
+        <p>This is a modal, doing modal things.</p>
+
+        <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+      </Modal>
+      <Button onClick={() => setShowModal(true)}>
+        Show Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+      <Modal
+        size={ModalSize.small}
+        header="Modal 2 Title"
+        onClose={() => setShowModal2(false)}
+        isOpen={showModal2}
+      >
+        <p>This is modal 2</p>
+      </Modal>
+    </>
+  );
+}
+```
+
 ## isInverse
 
 ```tsx
