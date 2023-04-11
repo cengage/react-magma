@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.4
+
+### Patch Changes
+
+- 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
+
 ## 4.1.0-next.3
 
 ### Patch Changes
