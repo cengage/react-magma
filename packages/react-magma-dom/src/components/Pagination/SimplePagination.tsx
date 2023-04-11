@@ -32,16 +32,20 @@ const StyledWrapper = styled.div<{
   display: flex;
   align-items: center;
   max-width: 360px;
-  select {
-    min-width: 87px;
-  }
   label {
     color: ${buildLabelColor};
     font-family: ${props => props.theme.bodyFont};
     font-size: ${props => props.theme.typeScale.size02.fontSize};
     font-weight: 500;
+    white-space: nowrap;
   }
 `;
+
+const nativeSelectStyles = {
+  minWidth: '68px',
+  maxWidth: '168px',
+  flex: '1',
+};
 
 export const SimplePagination = React.forwardRef<
   HTMLDivElement,
@@ -49,6 +53,7 @@ export const SimplePagination = React.forwardRef<
 >((props, ref) => {
   const {
     count,
+    children,
     defaultPage,
     disabled,
     hideNextButton,
@@ -67,12 +72,15 @@ export const SimplePagination = React.forwardRef<
 
   const id = useGenerateId(defaultId);
 
+  const prevRef = React.useRef<HTMLButtonElement>(null);
+  const nextRef = React.useRef<HTMLButtonElement>(null);
+
   let [selectedPage, setSelectedPage] = React.useState(
     defaultPage ? defaultPage : 1
   );
 
   React.useEffect(() => {
-    setSelectedPage(defaultPage || selectedPage);
+    setSelectedPage(defaultPage ? defaultPage : selectedPage);
   }, [count]);
 
   function handleChange(event) {
@@ -118,16 +126,44 @@ export const SimplePagination = React.forwardRef<
   const disabledNextTooltip =
     disabled || selectedPage >= count || count == null;
 
-  const StyledPrevTooltip = styled(Tooltip)`
-    > div {
-      opacity: ${disabledPrevTooltip ? '0' : ''};
-    }
-  `;
-  const StyledNextTooltip = styled(Tooltip)`
-    > div {
-      opacity: ${disabledNextTooltip ? '0' : ''};
-    }
-  `;
+  const prevTooltipContent = i18n.pagination.previousButtonLabel;
+  const nextTooltipContent = i18n.pagination.nextButtonLabel;
+
+  const PrevButton = () => {
+    return (
+      <NavButton
+        aria-label={i18n.pagination.previousButtonLabel}
+        variant={ButtonVariant.link}
+        color={ButtonColor.secondary}
+        disabled={disabledPrevTooltip}
+        icon={<ArrowBackIcon />}
+        isInverse={isInverse}
+        testId={testId ? `${testId}-previous-button` : null}
+        theme={theme}
+        onClick={handlePrev}
+        ref={prevRef}
+        shape={ButtonShape.fill}
+      />
+    );
+  };
+
+  const NextButton = () => {
+    return (
+      <NavButton
+        aria-label={nextTooltipContent}
+        variant={ButtonVariant.link}
+        color={ButtonColor.secondary}
+        disabled={disabledNextTooltip}
+        icon={<ArrowForwardIcon />}
+        isInverse={isInverse}
+        onClick={handleNext}
+        ref={nextRef}
+        testId={testId ? `${testId}-next-button` : null}
+        theme={theme}
+        shape={ButtonShape.fill}
+      />
+    );
+  };
 
   return (
     <StyledWrapper
@@ -140,19 +176,14 @@ export const SimplePagination = React.forwardRef<
     >
       {!hidePreviousButton && (
         <>
-          <StyledPrevTooltip content={i18n.pagination.previousButtonLabel}>
-            <NavButton
-              aria-label={i18n.pagination.previousButtonLabel}
-              variant={ButtonVariant.link}
-              color={ButtonColor.secondary}
-              disabled={disabledPrevTooltip}
-              icon={<ArrowBackIcon />}
-              isInverse={isInverse}
-              theme={theme}
-              onClick={handlePrev}
-              shape={ButtonShape.fill}
-            />
-          </StyledPrevTooltip>
+          {disabledPrevTooltip ? (
+            <PrevButton />
+          ) : (
+            <Tooltip content={prevTooltipContent}>
+              <PrevButton />
+            </Tooltip>
+          )}
+
           <Spacer size={14} />
         </>
       )}
@@ -161,6 +192,7 @@ export const SimplePagination = React.forwardRef<
           <NativeSelect
             aria-label={i18n.select.placeholder}
             data-testid={testId ? `${testId}-select` : `pagination-select`}
+            containerStyle={nativeSelectStyles}
             disabled={disabled}
             fieldId={id}
             isInverse={isInverse}
@@ -186,8 +218,9 @@ export const SimplePagination = React.forwardRef<
             {paginationLabel()}
           </label>
           <VisuallyHidden>
-            {selectedPage}
-            {paginationLabel()}
+            {`Page number
+            ${selectedPage}
+            ${paginationLabel()}`}
           </VisuallyHidden>
         </>
       )}
@@ -195,19 +228,13 @@ export const SimplePagination = React.forwardRef<
       {!hideNextButton && (
         <>
           <Spacer size={14} />
-          <StyledNextTooltip content={i18n.pagination.nextButtonLabel}>
-            <NavButton
-              aria-label={i18n.pagination.nextButtonLabel}
-              variant={ButtonVariant.link}
-              color={ButtonColor.secondary}
-              disabled={disabledNextTooltip}
-              icon={<ArrowForwardIcon />}
-              isInverse={isInverse}
-              onClick={handleNext}
-              theme={theme}
-              shape={ButtonShape.fill}
-            />
-          </StyledNextTooltip>
+          {disabledNextTooltip ? (
+            <NextButton />
+          ) : (
+            <Tooltip content={nextTooltipContent}>
+              <NextButton />
+            </Tooltip>
+          )}
         </>
       )}
     </StyledWrapper>

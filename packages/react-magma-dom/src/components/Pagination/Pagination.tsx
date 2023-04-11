@@ -23,6 +23,10 @@ export interface BasePaginationProps
    */
   count?: number;
   /**
+   * Page selected by default when the component is uncontrolled
+   */
+  defaultPage?: number;
+  /**
    * If true, disables all of the Pagination buttons
    * @default false
    */
@@ -79,17 +83,15 @@ export enum PaginationType {
 }
 
 export interface ControlledPaginationProps extends BasePaginationProps {
-  defaultPage: never;
   /**
-   * Current page number
+   * Current page number when used with onPageChange.
    */
   page?: number;
 }
 export interface UncontrolledPaginationProps extends BasePaginationProps {
   /**
-   * Page selected by default when the component is uncontrolled
+   * Current page number when used with onPageChange.
    */
-  defaultPage?: number;
   page: number;
 }
 export type PaginationProps =
@@ -198,6 +200,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             onPageChange={onPageChange}
             page={page}
             testId={testId}
+            {...other}
           />
         ) : (
           <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
