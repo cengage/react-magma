@@ -182,7 +182,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
-          menuRef.current.focus();
           return;
         }
 
@@ -202,7 +201,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         const [filteredItems, filteredItemIndex] = getFilteredItem();
 
         if (filteredItems.length === 0) {
-          menuRef.current.focus();
           return;
         }
 

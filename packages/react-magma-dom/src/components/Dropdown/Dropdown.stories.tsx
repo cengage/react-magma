@@ -354,41 +354,40 @@ Inverse.decorators = [
 export const Content = args => {
   return (
     <div style={{ margin: '150px auto', textAlign: 'center' }}>
-      <Dropdown width="500px" {...args} onClose={() => console.log('closee')}>
-        <DropdownButton>Dropdown with Content, no items</DropdownButton>
+      <Dropdown width="500px" {...args}>
+        <DropdownButton>Dropdown without items</DropdownButton>
         <DropdownContent style={{ padding: '12px' }}>
-          <span
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}
-          >
-            <span style={{ flex: '1 1 auto' }}>
-              <Paragraph noMargins isInverse={args.isInverse}>
-                Current take: 1 of 3
-              </Paragraph>
+          <>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span style={{ flex: '1 1 auto' }}>
+                <Paragraph noMargins isInverse={args.isInverse}>
+                  Current take: 1 of 3
+                </Paragraph>
+              </span>
+              <span style={{ flex: '0 0 auto' }}>
+                <Paragraph noMargins isInverse={args.isInverse}>
+                  Points possible: 10
+                </Paragraph>
+              </span>
             </span>
-            <span style={{ flex: '0 0 auto' }}>
-              <Paragraph noMargins isInverse={args.isInverse}>
-                Points possible: 10
-              </Paragraph>
-            </span>
-          </span>
-          <Paragraph noMargins isInverse={args.isInverse}>
-            Grade uses: Best attempt
-          </Paragraph>
-          <Spacer size={12} />
-          <DropdownDivider />
-          <Spacer size={12} />
-          <Paragraph noMargins isInverse={args.isInverse}>
-            Credit/No Credit Activity
-          </Paragraph>
-          In this activity you must achieve 80% or higher to receive credit
-          <Spacer size={12} />
-          <Button onClick={() => {}} size={ButtonSize.small}>
-            this does nothing
-          </Button>
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Grade uses: Best attempt
+            </Paragraph>
+            <Spacer size={12} />
+            <DropdownDivider />
+            <Spacer size={12} />
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Credit/No Credit Activity
+            </Paragraph>
+            In this activity you must achieve 80% or higher to receive credit
+            <Spacer size={12} />
+          </>
         </DropdownContent>
       </Dropdown>
     </div>

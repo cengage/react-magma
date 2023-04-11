@@ -115,6 +115,18 @@ export const DropdownContent = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const ref = useForkedRef(forwardedRef, context.menuRef);
 
+  let hasItemChildren = false;
+
+  React.Children.forEach(children, (child: any) => {
+    if (
+      child.type?.displayName === 'DropdownMenuItem' ||
+      child.type?.displayName === 'DropdownMenuGroup'
+    ) {
+      hasItemChildren = true;
+      return;
+    }
+  });
+
   return (
     <StyledCard
       {...other}
@@ -132,7 +144,7 @@ export const DropdownContent = React.forwardRef<
     >
       <StyledDiv
         aria-labelledby={context.dropdownButtonId.current}
-        role="menu"
+        role={hasItemChildren ? 'menu' : null}
         theme={theme}
       >
         {children}
