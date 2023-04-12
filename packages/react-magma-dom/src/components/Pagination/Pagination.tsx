@@ -22,10 +22,7 @@ export interface BasePaginationProps
    * @default 1
    */
   count?: number;
-  /**
-   * Page selected by default when the component is uncontrolled
-   */
-  defaultPage?: number;
+
   /**
    * If true, disables all of the Pagination buttons
    * @default false
@@ -83,12 +80,17 @@ export enum PaginationType {
 }
 
 export interface ControlledPaginationProps extends BasePaginationProps {
+  defaultPage: never;
   /**
    * Current page number when used with onPageChange.
    */
   page?: number;
 }
 export interface UncontrolledPaginationProps extends BasePaginationProps {
+  /**
+   * Page selected by default when the component is uncontrolled
+   */
+  defaultPage?: number;
   /**
    * Current page number when used with onPageChange.
    */

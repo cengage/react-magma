@@ -72,9 +72,6 @@ export const SimplePagination = React.forwardRef<
 
   const id = useGenerateId(defaultId);
 
-  const prevRef = React.useRef<HTMLButtonElement>(null);
-  const nextRef = React.useRef<HTMLButtonElement>(null);
-
   let [selectedPage, setSelectedPage] = React.useState(
     defaultPage ? defaultPage : 1
   );
@@ -87,7 +84,7 @@ export const SimplePagination = React.forwardRef<
     setSelectedPage(event.target.value);
     onPageChange &&
       typeof onPageChange === 'function' &&
-      onPageChange(event, count);
+      onPageChange(event, event.target.value);
   }
 
   //Decreases number by one on previous button click
@@ -97,7 +94,7 @@ export const SimplePagination = React.forwardRef<
     }
     onPageChange &&
       typeof onPageChange === 'function' &&
-      onPageChange(event, count);
+      onPageChange(event, selectedPage - 1);
   }
 
   //Increases number by one on next button click
@@ -107,7 +104,7 @@ export const SimplePagination = React.forwardRef<
     }
     onPageChange &&
       typeof onPageChange === 'function' &&
-      onPageChange(event, count);
+      onPageChange(event, selectedPage);
   }
 
   function paginationLabel() {
@@ -129,41 +126,35 @@ export const SimplePagination = React.forwardRef<
   const prevTooltipContent = i18n.pagination.previousButtonLabel;
   const nextTooltipContent = i18n.pagination.nextButtonLabel;
 
-  const PrevButton = () => {
-    return (
-      <NavButton
-        aria-label={i18n.pagination.previousButtonLabel}
-        variant={ButtonVariant.link}
-        color={ButtonColor.secondary}
-        disabled={disabledPrevTooltip}
-        icon={<ArrowBackIcon />}
-        isInverse={isInverse}
-        testId={testId ? `${testId}-previous-button` : null}
-        theme={theme}
-        onClick={handlePrev}
-        ref={prevRef}
-        shape={ButtonShape.fill}
-      />
-    );
-  };
+  const PrevButton = (
+    <NavButton
+      aria-label={i18n.pagination.previousButtonLabel}
+      variant={ButtonVariant.link}
+      color={ButtonColor.secondary}
+      disabled={disabledPrevTooltip}
+      icon={<ArrowBackIcon />}
+      isInverse={isInverse}
+      testId={testId ? `${testId}-previous-button` : null}
+      theme={theme}
+      onClick={handlePrev}
+      shape={ButtonShape.fill}
+    />
+  );
 
-  const NextButton = () => {
-    return (
-      <NavButton
-        aria-label={nextTooltipContent}
-        variant={ButtonVariant.link}
-        color={ButtonColor.secondary}
-        disabled={disabledNextTooltip}
-        icon={<ArrowForwardIcon />}
-        isInverse={isInverse}
-        onClick={handleNext}
-        ref={nextRef}
-        testId={testId ? `${testId}-next-button` : null}
-        theme={theme}
-        shape={ButtonShape.fill}
-      />
-    );
-  };
+  const NextButton = (
+    <NavButton
+      aria-label={nextTooltipContent}
+      variant={ButtonVariant.link}
+      color={ButtonColor.secondary}
+      disabled={disabledNextTooltip}
+      icon={<ArrowForwardIcon />}
+      isInverse={isInverse}
+      onClick={handleNext}
+      testId={testId ? `${testId}-next-button` : null}
+      theme={theme}
+      shape={ButtonShape.fill}
+    />
+  );
 
   return (
     <StyledWrapper
@@ -177,11 +168,9 @@ export const SimplePagination = React.forwardRef<
       {!hidePreviousButton && (
         <>
           {disabledPrevTooltip ? (
-            <PrevButton />
+            <>{PrevButton}</>
           ) : (
-            <Tooltip content={prevTooltipContent}>
-              <PrevButton />
-            </Tooltip>
+            <Tooltip content={prevTooltipContent}>{PrevButton}</Tooltip>
           )}
 
           <Spacer size={14} />
@@ -229,11 +218,9 @@ export const SimplePagination = React.forwardRef<
         <>
           <Spacer size={14} />
           {disabledNextTooltip ? (
-            <NextButton />
+            <>{NextButton}</>
           ) : (
-            <Tooltip content={nextTooltipContent}>
-              <NextButton />
-            </Tooltip>
+            <Tooltip content={nextTooltipContent}>{NextButton}</Tooltip>
           )}
         </>
       )}
