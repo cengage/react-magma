@@ -1,9 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Link, StaticQuery, graphql, withPrefix } from 'gatsby';
-import { Location, Router } from '@reach/router';
+import { Link, StaticQuery, graphql } from 'gatsby';
+import { Location } from '@reach/router';
 import { LaunchIcon } from 'react-magma-icons';
-import { SubMenu2 } from './SubMenu';
 import {
   Accordion,
   AccordionButton,
@@ -69,7 +68,7 @@ const LinkStyles = () => `
   text-decoration: none;
   &:focus{
     color: ${magma.colors.neutral700};
-    outline: 2px solid ${magma.colors.info500};
+    outline: 2px solid ${magma.colors.focus};
     outline-offset: 0;
   }
 `;
@@ -355,13 +354,7 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
+                            
                           </ListItem>
                         ))}
                       </List>
@@ -376,13 +369,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -397,13 +383,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -428,13 +407,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -449,13 +421,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -480,13 +445,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>
@@ -501,13 +459,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            <Router>
-                              <SubMenu2
-                                path={withPrefix(node.fields.slug)}
-                                headings={node.headings}
-                                handleClick={props.handleClick}
-                              />
-                            </Router>
                           </ListItem>
                         ))}
                       </List>

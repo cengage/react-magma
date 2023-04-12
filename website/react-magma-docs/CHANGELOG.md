@@ -1,5 +1,68 @@
 # Change Log
 
+## 5.0.1-next.9
+
+### Patch Changes
+
+- Updated dependencies [6f53d1891]
+  - react-magma-dom@4.1.0-next.4
+
+## 5.0.1-next.8
+
+### Patch Changes
+
+- 504763bd6: Update Grid docs. Add explanation for `as` prop.
+
+## 5.0.1-next.7
+
+### Patch Changes
+
+- 0894b08eb: Update ToggleButton and ToggleButtonGroup docs.
+
+## 5.0.1-next.6
+
+### Patch Changes
+
+- 4a10f8905: Reorganize Select docs
+- Updated dependencies [4a10f8905]
+  - react-magma-dom@4.1.0-next.3
+
+## 5.0.1-next.5
+
+### Patch Changes
+
+- 0b581a8cb: Update Tooltip docs to remove reference to old `trigger` prop.
+
+## 5.0.1-next.4
+
+### Patch Changes
+
+- Updated dependencies [3d00dcc7e]
+  - react-magma-dom@4.1.0-next.2
+  - @react-magma/charts@4.0.0-next.1
+  - @react-magma/dropzone@4.0.0-next.1
+  - @react-magma/schema-renderer@4.0.0-next.1
+  - @cengage-patterns/header@6.0.0-next.1
+
+## 5.0.1-next.3
+
+### Patch Changes
+
+- Updated dependencies [d0c69155a]
+  - react-magma-dom@4.0.1-next.1
+
+## 5.0.1-next.2
+
+### Patch Changes
+
+- 0ddda514c: Update Toast docs to include that messages should be 1-2 lines long.
+
+## 5.0.1-next.1
+
+### Patch Changes
+
+- 108637df1: Update page layout. Move secondary navigation to the page.
+
 ## 5.0.1-next.0
 
 ### Patch Changes

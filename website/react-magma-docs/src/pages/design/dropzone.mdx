@@ -6,12 +6,10 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/dropzone/" type="design">
-  Dropzone
-</DocsHeading>
+<PageContent componentName="dropzone" type="design">
+
 <LeadParagraph>
   Dropzones allow users to upload their own content. They are commonly used
   within forms but may also exist on their own.
@@ -93,3 +91,5 @@ If the error is with the uploader itself and not a specific file, then a validat
 ![ ](../../images/dropzone/uploader-validation.png)
 
 <span class="horizontal-spacer"></span>
+
+</PageContent>

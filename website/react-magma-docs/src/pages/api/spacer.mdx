@@ -5,9 +5,14 @@ props:
   - SpacerProps
 ---
 
-<DocsHeading type="api">Spacer</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-The `Spacer` component is used to create horiztonal or vertical space between other elements or components.
+<PageContent componentName="spacer" type="api">
+
+<LeadParagraph>
+  The Spacer component is used to create horiztonal or vertical space between
+  other elements or components.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -64,3 +69,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `span` element.**
 
 <SpacerProps />
+
+</PageContent>

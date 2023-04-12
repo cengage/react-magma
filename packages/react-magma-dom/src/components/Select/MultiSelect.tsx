@@ -5,7 +5,7 @@ import { CloseIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
-import { SelectedItemButton, IconWrapper } from './shared';
+import { SelectText, SelectedItemButton, IconWrapper } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -180,37 +180,39 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         isInverse={isInverse}
         style={inputStyle}
       >
-        {selectedItems && selectedItems.length > 0
-          ? selectedItems.map((multiSelectedItem, index) => {
-              const multiSelectedItemString = itemToString(multiSelectedItem);
-              return (
-                <SelectedItemButton
-                  aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
-                    /\{selectedItem\}/g,
-                    multiSelectedItemString
-                  )}
-                  key={`selected-item-${index}`}
-                  {...getSelectedItemProps({
-                    selectedItem: multiSelectedItem,
-                    index,
-                  })}
-                  onClick={event =>
-                    handleRemoveSelectedItem(event, multiSelectedItem)
-                  }
-                  onFocus={() => setActiveIndex(index)}
-                  theme={theme}
-                  isInverse={isInverse}
-                >
-                  {multiSelectedItemString}
-                  <IconWrapper>
-                    <CloseIcon size={theme.iconSizes.xSmall} />
-                  </IconWrapper>
-                </SelectedItemButton>
-              );
-            })
-          : typeof placeholder === 'string'
-          ? placeholder
-          : i18n.multiSelect.placeholder}
+        {selectedItems && selectedItems.length > 0 ? (
+          selectedItems.map((multiSelectedItem, index) => {
+            const multiSelectedItemString = itemToString(multiSelectedItem);
+            return (
+              <SelectedItemButton
+                aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
+                  /\{selectedItem\}/g,
+                  multiSelectedItemString
+                )}
+                key={`selected-item-${index}`}
+                {...getSelectedItemProps({
+                  selectedItem: multiSelectedItem,
+                  index,
+                })}
+                onClick={event =>
+                  handleRemoveSelectedItem(event, multiSelectedItem)
+                }
+                onFocus={() => setActiveIndex(index)}
+                theme={theme}
+                isInverse={isInverse}
+              >
+                {multiSelectedItemString}
+                <IconWrapper>
+                  <CloseIcon size={theme.iconSizes.xSmall} />
+                </IconWrapper>
+              </SelectedItemButton>
+            );
+          })
+        ) : typeof placeholder === 'string' ? (
+          <SelectText>{placeholder}</SelectText>
+        ) : (
+          <SelectText>{i18n.multiSelect.placeholder}</SelectText>
+        )}
       </SelectTriggerButton>
       <ItemsList
         customComponents={customComponents}

@@ -6,12 +6,19 @@ props:
   - NavTabComponentProps
 ---
 
-<DocsHeading type="api">Nav Tabs</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="nav_tabs" type="api">
+
+<LeadParagraph>
+  The NavTabs component is a navigation element that is styled similarly to the{' '}
+  <Link to="/api/tabs">Tabs</Link> component. While they appear visually
+  similar, the NavTabs component is used for navigation between pages (or parts
+  of a page), while the Tabs component is used to toggle the display of
+  different tab panels on a single page.
+</LeadParagraph>
 
 ## Basic Usage
-
-The `NavTabs` component is a navigation element that is styled similarly to the <Link to="/api/tabs">Tabs</Link> component. While they appear visually similar,
-the `NavTabs` component is used for navigation between pages (or parts of a page), while the `Tabs` component is used to toggle the display of different tab panels on a single page.
 
 The `NavTabs` component represents the navigation container, and the `NavTab` component represents each individual navigation link. The `isActive` prop can be used to indicate the current page.
 
@@ -504,3 +511,5 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 ### NavTab With Passed in Component
 
 <NavTabComponentProps />
+
+</PageContent>

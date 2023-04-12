@@ -5,15 +5,19 @@ props:
   - TooltipProps
 ---
 
-<DocsHeading to="/design/tooltips/" type="api">
-  Tooltip
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="tooltip" type="api">
+
+<LeadParagraph>
+  Tooltips display informative text when users hover over, or focus on an
+  element.
+</LeadParagraph>
 
 ## Basic Usage
 
-The children of the tooltip, determines the content inside of the tooltip bubble.
+The Tooltip component should wrap the triggerring element. This trigger should be a focusable element for accessibility, such as a button.
 
-The `trigger` prop must take a react element (not just a string), and determines the content that triggers the tooltip on hover or on focus. Note: in order to trigger the content on focus (a requirement for accessibility), the `trigger` should be a focusable element.
 
 ```tsx
 import React from 'react';
@@ -273,8 +277,10 @@ export function Example() {
 
 ## Tooltip Props
 
-**This component uses `forwardRef`. The ref is applied to the tooltip trigger element element.**
+**This component uses `forwardRef`. The ref is applied to the tooltip trigger element (the children).**
 
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the outer-most `div` element that gets rendered.
 
 <TooltipProps />
+
+</PageContent>

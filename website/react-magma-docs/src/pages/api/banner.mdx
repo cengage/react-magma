@@ -5,11 +5,13 @@ props:
   - BannerProps
 ---
 
-<DocsHeading to="/design/alerts/" type="api">
-  Banner
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
+<PageContent componentName="banner" type="api">
+
+<LeadParagraph>
 Banners are typically used for system or application level alerts. They fill the full width of their container and are intended to be used without margins.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -193,3 +195,5 @@ export function Example() {
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `div` element that gets rendered.
 
 <BannerProps />
+
+</PageContent>

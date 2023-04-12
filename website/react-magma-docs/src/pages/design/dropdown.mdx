@@ -6,19 +6,19 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { DocsHeading } from '../../components/DocsHeading';
-import { Button } from 'react-magma-dom';
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/dropdown/" type="design">
-  Dropdown
-</DocsHeading>
+<PageContent componentName="dropdown" type="design">
+
+<LeadParagraph>
+  Dropdowns provide a portable way to display menus or lighter versions of other
+  components. The dropdown is shown by clicking on a button or other control.
+</LeadParagraph>
 
 ## Usage
 
-Dropdowns provide a portable way to display menus or lighter versions of other components. The dropdown is shown by clicking on a button or other control.
-
 <figure>
-  <img src="../../images/dropdowns/dropdown-intro-example.png" alt=" " />
+  <img src="../../images/dropdowns/dropdown-intro-example.png" alt="" />
 </figure>
 
 ---
@@ -33,7 +33,7 @@ Dropdown menus typically contain a list of text-only menu items.
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/anatomy-text-list.png" alt=" " />
+        <img src="../../images/dropdowns/anatomy-text-list.png" alt="" />
         <figcaption>
           <p>
             There is 8px of space above the first item in the dropdown, and
@@ -61,7 +61,7 @@ Dropdown menu items may also use an icon on the left side to help clarify the me
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/anatomy-icon-and-text.png" alt=" " />
+        <img src="../../images/dropdowns/anatomy-icon-and-text.png" alt="" />
       </figure>
     </div>
     <div class="col col-2">
@@ -85,7 +85,7 @@ Dropdown menus may use a selection state by placing a checkmark next to the curr
       <figure>
         <img
           src="../../images/dropdowns/anatomy-selection-state-list.png"
-          alt=" "
+          alt=""
         />
       </figure>
     </div>
@@ -107,7 +107,7 @@ Some dropdowns benefit from organizing the choices or options into groups, and t
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/dropdown-groups.png" alt=" " />
+        <img src="../../images/dropdowns/dropdown-groups.png" alt="" />
       </figure>
     </div>
     <div class="col col-2"></div>
@@ -124,7 +124,7 @@ A dropdown will stretch horizontally by default to fit the longest item in the l
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/menu-too-wide.png" alt=" " />
+        <img src="../../images/dropdowns/menu-too-wide.png" alt="" />
         <figcaption>
           <p class="title title-incorrect">Incorrect</p>
           <p>
@@ -136,7 +136,7 @@ A dropdown will stretch horizontally by default to fit the longest item in the l
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/dropdowns/menu-item-wrapped.png" alt=" " />
+        <img src="../../images/dropdowns/menu-item-wrapped.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>
@@ -150,7 +150,7 @@ A dropdown will stretch horizontally by default to fit the longest item in the l
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/menu-adjust-placement.png" alt=" " />
+        <img src="../../images/dropdowns/menu-adjust-placement.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>
@@ -172,7 +172,7 @@ Dropdowns have a default max-height of 250px and will scroll if necessary. This 
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/menu-max-height.png" alt=" " />
+        <img src="../../images/dropdowns/menu-max-height.png" alt="" />
         <figcaption>
           <p class="title title-correct">Correct</p>
           <p>
@@ -184,7 +184,7 @@ Dropdowns have a default max-height of 250px and will scroll if necessary. This 
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/dropdowns/menu-too-long.png" alt=" " />
+        <img src="../../images/dropdowns/menu-too-long.png" alt="" />
         <figcaption>
           <p class="title title-caution">Caution</p>
           <p>
@@ -209,7 +209,7 @@ The standard dropdown button is the most common element used to trigger a dropdo
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/simple-dropdown-button.png" alt=" " />
+        <img src="../../images/dropdowns/simple-dropdown-button.png" alt="" />
         <figcaption>
           <p>Example of single dropdown button.</p>
         </figcaption>
@@ -227,7 +227,7 @@ Split buttons combine a single action button with a menu of related choices into
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/split-dropdown-button.png" alt=" " />
+        <img src="../../images/dropdowns/split-dropdown-button.png" alt="" />
         <figcaption>
           <p>Example of split-dropdown button.</p>
         </figcaption>
@@ -247,7 +247,7 @@ Other button variants may be used as a trigger for a dropdown menu. Caution shou
       <figure>
         <img
           src="../../images/dropdowns/custom-dropdown-button-1.png"
-          alt=" "
+          alt=""
         />
         <figcaption>
           <p>
@@ -261,7 +261,7 @@ Other button variants may be used as a trigger for a dropdown menu. Caution shou
       <figure>
         <img
           src="../../images/dropdowns/custom-dropdown-button-2.png"
-          alt=" "
+          alt=""
         />
         <figcaption>
           <p>Example of a "more options" dropdown menu.</p>
@@ -280,14 +280,14 @@ Dropdowns are positioned relative to the trigger element that is clicked on to o
 A dropdown is typically displayed below the trigger element, and the left edge of the dropdown is aligned with the left edge of the trigger element. To make sure dropdowns don’t become obscured by running off the edge of the browser, you may position the dropdown to the left, right, or above the trigger element. You may also change the alignment to the right, top, or bottom edges.
 
 <figure>
-  <img src="../../images/dropdowns/dropdown-alignment-1.png" alt=" " />
+  <img src="../../images/dropdowns/dropdown-alignment-1.png" alt="" />
   <figcaption>
     <p>Dropdowns can be left or right aligned.</p>
   </figcaption>
 </figure>
 <span class="horizontal-spacer"></span>
 <figure>
-  <img src="../../images/dropdowns/dropdown-alignment-2.png" alt=" " />
+  <img src="../../images/dropdowns/dropdown-alignment-2.png" alt="" />
   <figcaption>
     <p>
       Dropdowns can be positioned above the trigger element. If using a button,
@@ -297,7 +297,7 @@ A dropdown is typically displayed below the trigger element, and the left edge o
 </figure>
 <span class="horizontal-spacer"></span>
 <figure>
-  <img src="../../images/dropdowns/dropdown-alignment-3.png" alt=" " />
+  <img src="../../images/dropdowns/dropdown-alignment-3.png" alt="" />
   <figcaption>
     <p>
       Dropdowns can be positioned to the left or right of the trigger element.
@@ -315,7 +315,7 @@ Dropdowns are capable of displaying any kind of content, but great care should b
   <div class="row">
     <div class="col col-1">
       <figure>
-        <img src="../../images/dropdowns/dropdown-signin-form.png" alt=" " />
+        <img src="../../images/dropdowns/dropdown-signin-form.png" alt="" />
         <figcaption>
           <p>
             Small forms can be shown inside a dropdown instead of going to a new
@@ -326,7 +326,7 @@ Dropdowns are capable of displaying any kind of content, but great care should b
     </div>
     <div class="col col-2">
       <figure>
-        <img src="../../images/dropdowns/dropdown-custom-content.png" alt=" " />
+        <img src="../../images/dropdowns/dropdown-custom-content.png" alt="" />
         <figcaption>
           <p>Menu items can be combined with custom content.</p>
         </figcaption>
@@ -334,3 +334,5 @@ Dropdowns are capable of displaying any kind of content, but great care should b
     </div>
   </div>
 </div>
+
+</PageContent>

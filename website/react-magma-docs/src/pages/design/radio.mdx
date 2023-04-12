@@ -1,0 +1,113 @@
+---
+pageTitle: Radio Button Design Guidelines
+title: Radio Button
+order: 1
+---
+
+import './design-guidelines-styles.css';
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="radio_button" type="design">
+
+<LeadParagraph>Radio buttons allow the user to select options.</LeadParagraph>
+
+## Usage
+
+Use radio buttons to select a single option from a list. Radio buttons should be used instead of checkboxes if only one item can be selected from a list.
+
+<figure>
+  <div class="image-container">
+    <img
+      src="../../images/selection-controls/Radio-buttons-example.png"
+      alt=""
+    />
+  </div>
+  <figcaption>
+    <p>Radio buttons</p>
+  </figcaption>
+</figure>
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img
+          src="../../images/selection-controls/Radio-select-only-one.png"
+          alt=""
+        />
+        <figcaption>
+          <p class="title title-correct">Correct</p>
+          <p>
+            Use radio buttons when only one item can be selected from a list.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img
+          src="../../images/selection-controls/Radio-select-only-one-incorrect.png"
+          alt=""
+        />
+        <figcaption>
+          <p class="title title-incorrect">Incorrect</p>
+          <p>
+            Don’t use checkboxes when only one item can be selected from a list.
+            Use radio buttons instead.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Radio-example-2.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Radio buttons - only one option can be selected at a time.</p>
+  </figcaption>
+</figure>
+
+## States
+
+Radio buttons can be off or on. Radio buttons have enabled, focused and pressed states.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Radio-states.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Radio states</p>
+  </figcaption>
+</figure>
+
+## Colors
+
+The default color used for radio buttons is the "primary" color in the Magma palette, but sometimes a special scenario or specific UI can benefit from using one of the other colors from the palette. Colors like Success Green, Danger Red, or just one of the "Pop" colors, when used responsibly and consistently, can help add context to your radio button or just add some visual interest.
+
+<figure>
+  <div class="image-container">
+    <img
+      src="../../images/selection-controls/Radio-alternate-colors.png"
+      alt=""
+    />
+  </div>
+  <figcaption>
+    <p>Alternate colors</p>
+  </figcaption>
+</figure>
+
+## Inverse Radio Buttons
+
+Sometimes you have to put those radio buttons on a dark background, and that's when you'll want to use the inverse version. You can also still use alternate colors like Success Green and Danger Red if you wish.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Radio-inverse.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Inverse colors</p>
+  </figcaption>
+</figure>
+
+</PageContent>

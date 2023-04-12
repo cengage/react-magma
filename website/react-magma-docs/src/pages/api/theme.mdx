@@ -3,12 +3,18 @@ pageTitle: Theming API
 title: Theming
 ---
 
-<DocsHeading type="api">Theming</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="theming" type="api">
+
+<LeadParagraph>
+  By default, all components in the React Magma library use the Magma theme. You
+  can use the ThemeContext to pass in a custom theme.
+</LeadParagraph>
 
 ## Using Themes
 
-By default, all components in the React Magma library use the Magma theme. However, you can pass in an alternative theme using the `<ThemeContext.Provider>`
-and pass in your custom theme as the `value` property. Any descendants of the context provider will receive the theme that is passed in.
+Use the `<ThemeContext.Provider>` to pass in an alternative theme using the `value` property. Any descendants of the context provider will receive the theme that is passed in.
 
 Use the dropdown to change the theme for the demo component.
 
@@ -268,3 +274,5 @@ spaceScale: {
   spacing14: '160px'
 }
 ```
+
+</PageContent>
