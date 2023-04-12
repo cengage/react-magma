@@ -100,7 +100,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
   (props, forwardedRef) => {
     const contextProps = React.useContext(ButtonGroupContext);
     const resolvedProps = resolveProps(contextProps, props);
-    
+
     const {
       activeIndex,
       alignment,
@@ -142,8 +142,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
       if (filteredItems.length > 0) {
         setTimeout(() => {
-            filteredItems[0].current &&
-            filteredItems[0].current.focus();
+          filteredItems[0].current && filteredItems[0].current.focus();
         }, 0);
       } else {
         setTimeout(() => {

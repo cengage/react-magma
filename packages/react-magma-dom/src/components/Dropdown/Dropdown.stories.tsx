@@ -20,6 +20,7 @@ import { PasswordInput } from '../PasswordInput';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Paragraph, Spacer } from '../..';
+import { ButtonGroup } from '../ButtonGroup';
 
 const Template: Story<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
@@ -351,10 +352,10 @@ Inverse.decorators = [
   ),
 ];
 
-export const Content = args => {
+export const NoItems = args => {
   return (
-    <div style={{ margin: '150px auto', textAlign: 'center' }}>
-      <Dropdown width="500px" {...args}>
+    <ButtonGroup>
+      <Dropdown width="500px" {...args} testId="dropdown">
         <DropdownButton>Dropdown without items</DropdownButton>
         <DropdownContent style={{ padding: '12px' }}>
           <>
@@ -390,6 +391,19 @@ export const Content = args => {
           </>
         </DropdownContent>
       </Dropdown>
-    </div>
+      <Dropdown width="500px" {...args}>
+        <DropdownButton>Dropdown without items, with button</DropdownButton>
+        <DropdownContent style={{ padding: '12px' }}>
+          <>
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Bacon ipsum dolor amet capicola turkey chicken cupim pastrami pork
+              spare ribs shankle ball tip. Shank doner burgdoggen tri-tip corned
+              beef meatloaf pig ground round. Ball tip t-bone cow chicken.{' '}
+            </Paragraph>
+            <Button isInverse={args.isInverse}>Foo</Button>
+          </>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
   );
 };
