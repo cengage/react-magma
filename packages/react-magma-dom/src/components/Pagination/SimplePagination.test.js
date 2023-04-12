@@ -335,7 +335,9 @@ describe('Simple Pagination', () => {
     const previousButton = getByLabelText('Previous Page');
 
     fireEvent.click(previousButton);
+
     expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), 1);
+    
   });
 
   it('Should call the onPageChange function when the next button is clicked', () => {

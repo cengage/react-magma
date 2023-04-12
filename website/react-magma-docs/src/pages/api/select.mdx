@@ -20,9 +20,8 @@ If you are migrating from the Legacy Select, please see the <Link to="/select-mi
 
 ## Basic Usage
 
-By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the
-`itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function
-is able to be used for `items` that are either `strings` or an object with the shape `{item: string; label: string;}`.
+By default when passing in a `selectedItem` it will be checked to make sure it is in your `items` array. The check will use the `itemToString` function on both the `selectedItem` and each `item` in the array. The default `itemToString` function is able to be used for `items` that are either `strings` or an object with the shape `{label: string; value: string;}`.
+
 If you are using a custom items format see the [Custom Items example](/api/select/#custom_items).
 
 ```tsx
@@ -40,7 +39,6 @@ export function Example() {
     <>
       <Select
         id="basicSelectId"
-        name="basic"
         labelText="Basic"
         items={[
           { label: 'Red', value: 'red' },
@@ -53,7 +51,6 @@ export function Example() {
 
       <Select
         id="badSelectedItemId"
-        name="badSelectedItem"
         labelText="Bad selected item"
         items={[
           { label: 'Red', value: 'red' },
@@ -91,7 +88,6 @@ export function Example() {
     <>
       <Select
         id="initialSelectedByItemSelectId"
-        name="initialSelectedByItem"
         labelText="Initial selected by item"
         items={[
           { label: 'Red', value: 'red' },
@@ -103,7 +99,6 @@ export function Example() {
 
       <Select
         id="initialHighlightedIndexSelectId"
-        name="initialHighlightedIndex"
         labelText="Initial highlighted index"
         items={[
           { label: 'Red', value: 'red' },
@@ -113,6 +108,303 @@ export function Example() {
         initialHighlightedIndex={1}
       />
     </>
+  );
+}
+```
+
+## Label Position
+
+The `labelPosition` prop can be used to set the position of the text label relative to the form field. It accepts either `top` or `left`, with `top` as the default.
+
+Left-aligned lables are not recommended for use in standard forms; instead they are designed for smaller spaces where vertical space is limited, such as in a toolbar.
+
+```tsx
+import React from 'react';
+import { Select, LabelPosition } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      labelPosition={LabelPosition.left}
+      labelText="Left-aligned label"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+    />
+  );
+}
+```
+
+## Disabled
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      id="disabledSelectId"
+      disabled
+      labelText="Disabled"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+    />
+  );
+}
+```
+
+## Clearable
+
+The optional `isClearable` prop allows the user to clear the field once a selection has been made.
+
+When using the `isClearable` prop you can choose a default selected item to be set once the `select` is cleared
+using the `defaultSelectedItem` prop.
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="clearableSelectId"
+        labelText="Clearable"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        initialSelectedItem={{ label: 'Green', value: 'green' }}
+        isClearable
+      />
+
+      <Select
+        id="clearableWithDefaultsId"
+        labelText="Clearable with defaults"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        isClearable
+        defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
+      />
+    </>
+  );
+}
+```
+
+## Error Message
+
+If a select has an `errorMessage`, the select will be styled to highlight its error state and the error message will appear below the field.
+If an error message is present, it will replace the helper text. Can be a node or a string.
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="errorMessage"
+        labelText="Error message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        errorMessage="Please select a color"
+      />
+    </>
+  );
+}
+```
+
+## Helper Message
+
+The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="helperMessage"
+        labelText="Helper message"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        helperMessage="Helper text goes here"
+      />
+    </>
+  );
+}
+```
+
+## Placeholder
+
+The `placeholder` prop can be used to replace the default text shown before an item is chosen.
+Placeholder text should be used to provide supplemental information about the input field. It should not be
+relied upon to take the place of the label text.
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      id="placeholderSelect"
+      labelText="Placeholder example"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+      placeholder="Choose a color"
+    />
+  );
+}
+```
+
+## Multi Select
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  const [selectedItems, updateSelectedItems] = React.useState([]);
+
+  function handleSelectedItemsChange(changes) {
+    updateSelectedItems(changes.selectedItems);
+  }
+
+  function handleRemoveSelectedItem(removedItem) {
+    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
+  }
+
+  return (
+    <>
+      <Select
+        id="multiSelectId"
+        isMulti
+        labelText="Multi select"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+          { label: 'Orange', value: 'orange' },
+          { label: 'Aqua', value: 'aqua' },
+          { label: 'Gold', value: 'gold' },
+          { label: 'Periwinkle', value: 'periwinkle' },
+          { label: 'Lavender', value: 'lavender' },
+          { label: 'Marigold', value: 'marigold' },
+          { label: 'Yellow', value: 'yellow' },
+          { label: 'Purple', value: 'purple' },
+          { label: 'Dusty Rose', value: 'dusty_rose' },
+          { label: 'Burnt Sienna', value: 'burnt_sienna' },
+        ]}
+        initialSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Blah', value: 'blah' },
+        ]}
+      />
+
+      <Select
+        id="multiSelectControlledId"
+        isMulti
+        labelText="Multi select controlled"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+          { label: 'Orange', value: 'orange' },
+          { label: 'Aqua', value: 'aqua' },
+          { label: 'Gold', value: 'gold' },
+          { label: 'Periwinkle', value: 'periwinkle' },
+          { label: 'Lavender', value: 'lavender' },
+          { label: 'Marigold', value: 'marigold' },
+          { label: 'Yellow', value: 'yellow' },
+          { label: 'Purple', value: 'purple' },
+          { label: 'Dusty Rose', value: 'dusty_rose' },
+          { label: 'Burnt Sienna', value: 'burnt_sienna' },
+        ]}
+        selectedItems={selectedItems}
+        onSelectedItemsChange={handleSelectedItemsChange}
+        onRemoveSelectedItem={handleRemoveSelectedItem}
+      />
+    </>
+  );
+}
+```
+
+## Inverse
+
+```tsx
+import React from 'react';
+import { Select, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  const [selectedItem, updateSelectedItem] = React.useState('');
+
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
+  }
+
+  const [selectedItems, updateSelectedItems] = React.useState([]);
+
+  function handleSelectedItemsChange(changes) {
+    updateSelectedItems(changes.selectedItems);
+  }
+
+  function handleRemoveSelectedItem(removedItem) {
+    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
+  }
+
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Select
+          id="basicSelectInverseId"
+          isInverse
+          labelText="Basic"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          selectedItem={selectedItem}
+          onSelectedItemChange={onSelectedItemChange}
+        />
+
+        <Select
+          id="multiSelectInverseId"
+          isInverse
+          isMulti
+          labelText="Multi select"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+        />
+      </CardBody>
+    </Card>
   );
 }
 ```
@@ -160,7 +452,6 @@ export function Example() {
 
       <Select
         id="stateChangesId1"
-        name="stateChanges"
         labelText="State changes"
         items={[
           { label: 'Red', value: 'red' },
@@ -236,7 +527,6 @@ export function Example() {
 
       <Select
         id="stateChangesId2"
-        name="stateChanges"
         labelText="State changes"
         items={[
           { label: 'Red', value: 'red' },
@@ -295,7 +585,6 @@ export function Example() {
 
       <Select
         id="controlledId"
-        name="controlled"
         labelText="Controlled"
         items={[
           { label: 'Red', value: 'red' },
@@ -310,154 +599,6 @@ export function Example() {
         onSelectedItemChange={onSelectedItemChange}
       />
     </>
-  );
-}
-```
-
-## Disabled
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Select
-      id="disabledSelectId"
-      disabled
-      name="disabled"
-      labelText="Disabled"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
-      ]}
-    />
-  );
-}
-```
-
-## Clearable
-
-The optional `isClearable` prop allows the user to clear the field once a selection has been made.
-
-When using the `isClearable` prop you can choose a default selected item to be set once the `select` is cleared
-using the `defaultSelectedItem` prop.
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <>
-      <Select
-        id="clearableSelectId"
-        name="clearable"
-        labelText="Clearable"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        initialSelectedItem={{ label: 'Green', value: 'green' }}
-        isClearable
-      />
-
-      <Select
-        id="clearableWithDefaultsId"
-        name="clearableWithDefaults"
-        labelText="Clearable with defaults"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        isClearable
-        defaultSelectedItem={{ label: 'Blue', value: 'blue' }}
-      />
-    </>
-  );
-}
-```
-
-## Error Message
-
-If a select has an `errorMessage`, the select will be styled to highlight it's error state and the error message will appear below the field.
-If an error message is present, it will replace the helper text. Can be a node or a string.
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <>
-      <Select
-        id="errorMessage"
-        name="error"
-        labelText="Error message"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        errorMessage="Please select a color"
-      />
-    </>
-  );
-}
-```
-
-## Helper Message
-
-The `helperMessage` appears underneath the select field. It will not appear if an error message is present. Can be a node or a string.
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <>
-      <Select
-        id="helperMessage"
-        name="helper"
-        labelText="Helper message"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        helperMessage="Helper text goes here"
-      />
-    </>
-  );
-}
-```
-
-## Placeholder
-
-The `placeholder` prop can be used to replace the default text shown before an item is chosen.
-Placeholder text should be used to provide supplemental information about the input field. It should not be
-relied upon to take the place of the label text.
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Select
-      id="placeholderSelect"
-      labelText="Placeholder example"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
-      ]}
-      placeholder="Choose a color"
-    />
   );
 }
 ```
@@ -482,7 +623,6 @@ export function Example() {
     <>
       <Select
         id="newA11yStatusMessageId"
-        name="newA11yStatusMessage"
         labelText="New accessibility status message"
         items={[
           { label: 'Red', value: 'red' },
@@ -495,280 +635,6 @@ export function Example() {
         getA11ySelectionMessage={({ selectedItem }) =>
           `custom message saying that ${selectedItem} is now selected`
         }
-      />
-    </>
-  );
-}
-```
-
-## Multi Select
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  const [selectedItems, updateSelectedItems] = React.useState([]);
-
-  function handleSelectedItemsChange(changes) {
-    updateSelectedItems(changes.selectedItems);
-  }
-
-  function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
-  }
-
-  return (
-    <>
-      <Select
-        id="multiSelectId"
-        isMulti
-        name="multiSelect"
-        labelText="Multi select"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-          { label: 'Orange', value: 'orange' },
-          { label: 'Aqua', value: 'aqua' },
-          { label: 'Gold', value: 'gold' },
-          { label: 'Periwinkle', value: 'periwinkle' },
-          { label: 'Lavender', value: 'lavender' },
-          { label: 'Marigold', value: 'marigold' },
-          { label: 'Yellow', value: 'yellow' },
-          { label: 'Purple', value: 'purple' },
-          { label: 'Dusty Rose', value: 'dusty_rose' },
-          { label: 'Burnt Sienna', value: 'burnt_sienna' },
-        ]}
-        initialSelectedItems={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Blah', value: 'blah' },
-        ]}
-      />
-
-      <Select
-        id="multiSelectControlledId"
-        isMulti
-        name="multiSelectControlled"
-        labelText="Multi select controlled"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-          { label: 'Orange', value: 'orange' },
-          { label: 'Aqua', value: 'aqua' },
-          { label: 'Gold', value: 'gold' },
-          { label: 'Periwinkle', value: 'periwinkle' },
-          { label: 'Lavender', value: 'lavender' },
-          { label: 'Marigold', value: 'marigold' },
-          { label: 'Yellow', value: 'yellow' },
-          { label: 'Purple', value: 'purple' },
-          { label: 'Dusty Rose', value: 'dusty_rose' },
-          { label: 'Burnt Sienna', value: 'burnt_sienna' },
-        ]}
-        selectedItems={selectedItems}
-        onSelectedItemsChange={handleSelectedItemsChange}
-        onRemoveSelectedItem={handleRemoveSelectedItem}
-      />
-    </>
-  );
-}
-```
-
-## Events
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  const [currentSelectEvent, updateCurrentSelectEvent] =
-    React.useState(undefined);
-
-  function handleSelectBlur(event) {
-    updateCurrentSelectEvent('Blur');
-  }
-
-  function handleSelectFocus(event) {
-    updateCurrentSelectEvent('Focus');
-  }
-
-  function handleSelectKeyPress(event) {
-    updateCurrentSelectEvent('KeyPress');
-  }
-
-  return (
-    <>
-      <p>
-        <strong>{currentSelectEvent || 'No'} event was triggered</strong>
-      </p>
-
-      <Select
-        id="selectFocusEventId"
-        name="selectFocusEvent"
-        labelText="Select focus events"
-        items={[
-          { label: 'Red', value: 'red' },
-          { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
-        ]}
-        onBlur={handleSelectBlur}
-        onFocus={handleSelectFocus}
-        onKeyPress={handleSelectKeyPress}
-      />
-    </>
-  );
-}
-```
-
-## Inverse
-
-```tsx
-import React from 'react';
-import { Select, Card, CardBody } from 'react-magma-dom';
-
-export function Example() {
-  const [selectedItem, updateSelectedItem] = React.useState('');
-
-  function onSelectedItemChange(changes) {
-    updateSelectedItem(changes.selectedItem);
-  }
-
-  const [selectedItems, updateSelectedItems] = React.useState([]);
-
-  function handleSelectedItemsChange(changes) {
-    updateSelectedItems(changes.selectedItems);
-  }
-
-  function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
-  }
-
-  return (
-    <Card isInverse>
-      <CardBody>
-        <Select
-          id="basicSelectInverseId"
-          isInverse
-          name="basic"
-          labelText="Basic"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-          selectedItem={selectedItem}
-          onSelectedItemChange={onSelectedItemChange}
-        />
-
-        <Select
-          id="multiSelectInverseId"
-          isInverse
-          isMulti
-          name="multiSelect"
-          labelText="Multi select"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-        />
-      </CardBody>
-    </Card>
-  );
-}
-```
-
-## Custom Items List Height
-
-The items list menu has a default max height that can be changed in the theme or using the `itemListMaxHeight` prop.
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Select
-      labelText="Select small item list menu"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
-      ]}
-      itemListMaxHeight="50px"
-    />
-  );
-}
-```
-
-## Label Position
-
-The `labelPosition` prop can be used to set the position of the text label relative to the form field. It accepts either `top` or `left`, with `top` as the default.
-Left-aligned lables are not recommended for use in standard forms; instead they are designed for smaller spaces where vertical space is limited, such as in a toolbar.
-
-```tsx
-import React from 'react';
-import { Select, LabelPosition } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Select
-      labelPosition={LabelPosition.top}
-      labelText="Left-aligned label"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
-      ]}
-    />
-  );
-}
-```
-
-## Custom Styles
-
-Custom styles can be passed into the Select component. The `containerStyle` property will apply to the container.
-Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
-Please use discretion when adding custom styles.
-
-```tsx
-import React from 'react';
-import { Select } from 'react-magma-dom';
-
-export function Example() {
-  const [selectedItem, updateSelectedItem] = React.useState('');
-
-  function onSelectedItemChange(changes) {
-    updateSelectedItem(changes.selectedItem);
-  }
-
-  return (
-    <>
-      <Select
-        containerStyle={{ marginBottom: '32px' }}
-        helperMessage="Helper message"
-        inputStyle={{ border: '2px dotted green', width: '200px' }}
-        items={['Red', 'Blue', 'Green']}
-        labelStyle={{ fontStyle: 'italic' }}
-        labelText="Basic with custom styles"
-        messageStyle={{ border: '1px solid blue' }}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
-      />
-
-      <Select
-        containerStyle={{ marginBottom: '32px' }}
-        helperMessage="Helper message"
-        inputStyle={{ border: '2px dotted green', width: '200px' }}
-        isMulti
-        items={['Red', 'Blue', 'Green']}
-        labelStyle={{ fontStyle: 'italic' }}
-        labelText="Multi with custom styles"
-        messageStyle={{ border: '1px solid blue' }}
-        selectedItem={selectedItem}
-        onSelectedItemChange={onSelectedItemChange}
       />
     </>
   );
@@ -831,6 +697,74 @@ export function Example() {
 }
 ```
 
+## Events
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  const [currentSelectEvent, updateCurrentSelectEvent] =
+    React.useState(undefined);
+
+  function handleSelectBlur(event) {
+    updateCurrentSelectEvent('Blur');
+  }
+
+  function handleSelectFocus(event) {
+    updateCurrentSelectEvent('Focus');
+  }
+
+  function handleSelectKeyPress(event) {
+    updateCurrentSelectEvent('KeyPress');
+  }
+
+  return (
+    <>
+      <p>
+        <strong>{currentSelectEvent || 'No'} event was triggered</strong>
+      </p>
+
+      <Select
+        id="selectFocusEventId"
+        labelText="Select focus events"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        onBlur={handleSelectBlur}
+        onFocus={handleSelectFocus}
+        onKeyPress={handleSelectKeyPress}
+      />
+    </>
+  );
+}
+```
+
+## Custom Items List Height
+
+The items list menu has a default max height that can be changed in the theme or using the `itemListMaxHeight` prop.
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      labelText="Select small item list menu"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+      itemListMaxHeight="50px"
+    />
+  );
+}
+```
+
 ## Custom Items
 
 By default each component accepts an array of `items` with either a `string` or an `object` with the shape `{item: string; label: string;}`
@@ -858,7 +792,6 @@ export function Example() {
     <>
       <Select
         id="itemToStringId"
-        name="itemToString"
         labelText="Item to string"
         items={[
           {
@@ -942,12 +875,55 @@ export function Example() {
 }
 ```
 
-## Custom Components
+## Custom Styles
 
-Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection and the caret for the dropdown.
-However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator` and a `DropdownIndicator`.
+Custom styles can be passed into the Select component. The `containerStyle` property will apply to the container.
+Additional `labelStyle`, `inputStyle` and `messageStyle` properties are available to style the respective elements.
+Please use discretion when adding custom styles.
 
-### Custom Item Component
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  const [selectedItem, updateSelectedItem] = React.useState('');
+
+  function onSelectedItemChange(changes) {
+    updateSelectedItem(changes.selectedItem);
+  }
+
+  return (
+    <>
+      <Select
+        containerStyle={{ marginBottom: '32px' }}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px' }}
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Basic with custom styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+
+      <Select
+        containerStyle={{ marginBottom: '32px' }}
+        helperMessage="Helper message"
+        inputStyle={{ border: '2px dotted green', width: '200px' }}
+        isMulti
+        items={['Red', 'Blue', 'Green']}
+        labelStyle={{ fontStyle: 'italic' }}
+        labelText="Multi with custom styles"
+        messageStyle={{ border: '1px solid blue' }}
+        selectedItem={selectedItem}
+        onSelectedItemChange={onSelectedItemChange}
+      />
+    </>
+  );
+}
+```
+
+## Custom Item Component
 
 By default each item will be rendered with the `itemToString` value in a styled `li`. If you would like to add more information or
 would just like to be able to fully customize the look of your items you can pass in an `Item` component that uses the `props` that
@@ -1043,7 +1019,10 @@ export function Example() {
 }
 ```
 
-## Other Custom Components
+## Custom Components
+
+Out of the box, the `Select` component uses React Magma-styled iconography for the button used to clear the selection and the caret for the dropdown.
+However, these can be overridden by providing custom components to the `components` prop, in an object containing a `ClearIndicator` and a `DropdownIndicator`.
 
 ```tsx
 import React from 'react';
@@ -1053,7 +1032,6 @@ export function Example() {
   return (
     <Select
       id="customComponentsId"
-      name="customComponents"
       labelText="Custom components"
       items={[
         { label: 'Red', value: 'red' },

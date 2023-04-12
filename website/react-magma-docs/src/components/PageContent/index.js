@@ -28,7 +28,7 @@ const NAV_TABS = {
 };
 
 // Special case pages that don't have secondary navigation.
-const PAGES_NO_NAV = ['contribution_guidelines', 'getting_started_patterns'];
+const PAGES_NO_NAV = ['contribution_guidelines', 'getting_started_patterns', 'select_migration'];
 
 const TabsWrapper = styled.div`
   position: sticky;

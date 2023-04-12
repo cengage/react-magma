@@ -47,6 +47,7 @@ const nativeSelectStyles = {
   flex: '1',
 };
 
+
 export const SimplePagination = React.forwardRef<
   HTMLDivElement,
   PaginationProps
@@ -105,6 +106,7 @@ export const SimplePagination = React.forwardRef<
     onPageChange &&
       typeof onPageChange === 'function' &&
       onPageChange(event, selectedPage);
+
   }
 
   function paginationLabel() {
@@ -172,7 +174,6 @@ export const SimplePagination = React.forwardRef<
           ) : (
             <Tooltip content={prevTooltipContent}>{PrevButton}</Tooltip>
           )}
-
           <Spacer size={14} />
         </>
       )}
@@ -181,6 +182,7 @@ export const SimplePagination = React.forwardRef<
           <NativeSelect
             aria-label={i18n.select.placeholder}
             data-testid={testId ? `${testId}-select` : `pagination-select`}
+
             containerStyle={nativeSelectStyles}
             disabled={disabled}
             fieldId={id}
@@ -208,8 +210,8 @@ export const SimplePagination = React.forwardRef<
           </label>
           <VisuallyHidden>
             {`Page number
-            ${selectedPage}
-            ${paginationLabel()}`}
+            {selectedPage}
+            {paginationLabel()}`}
           </VisuallyHidden>
         </>
       )}
@@ -217,6 +219,7 @@ export const SimplePagination = React.forwardRef<
       {!hideNextButton && (
         <>
           <Spacer size={14} />
+
           {disabledNextTooltip ? (
             <>{NextButton}</>
           ) : (
