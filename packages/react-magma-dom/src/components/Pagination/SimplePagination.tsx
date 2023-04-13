@@ -182,7 +182,6 @@ export const SimplePagination = React.forwardRef<
           <NativeSelect
             aria-label={i18n.select.placeholder}
             data-testid={testId ? `${testId}-select` : `pagination-select`}
-
             containerStyle={nativeSelectStyles}
             disabled={disabled}
             fieldId={id}
@@ -210,8 +209,8 @@ export const SimplePagination = React.forwardRef<
           </label>
           <VisuallyHidden>
             {`Page number
-            {selectedPage}
-            {paginationLabel()}`}
+            ${selectedPage}
+            ${paginationLabel()}`}
           </VisuallyHidden>
         </>
       )}
