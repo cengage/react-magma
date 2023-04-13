@@ -46,6 +46,14 @@ const StyledCard = styled(Card)<{
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  &:focus {
+    outline: 2px solid ${props =>
+      props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus};
+    }
+    outline-offset: 0;
+  }
 
   ${props =>
     props.width &&
@@ -86,12 +94,12 @@ const StyledCard = styled(Card)<{
     `}
 
  ${props =>
-    props.alignment === 'end' &&
-    (props.dropDirection === 'left' || props.dropDirection === 'right') &&
-    css`
-      bottom: ${props.theme.spaceScale.spacing02};
-      top: auto;
-    `}
+   props.alignment === 'end' &&
+   (props.dropDirection === 'left' || props.dropDirection === 'right') &&
+   css`
+     bottom: ${props.theme.spaceScale.spacing02};
+     top: auto;
+   `}
 `;
 
 const StyledDiv = styled.div`
@@ -106,6 +114,18 @@ export const DropdownContent = React.forwardRef<
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
   const ref = useForkedRef(forwardedRef, context.menuRef);
+
+  let hasItemChildren = false;
+
+  React.Children.forEach(children, (child: any) => {
+    if (
+      child.type?.displayName === 'DropdownMenuItem' ||
+      child.type?.displayName === 'DropdownMenuGroup'
+    ) {
+      hasItemChildren = true;
+      return;
+    }
+  });
 
   return (
     <StyledCard
@@ -124,7 +144,7 @@ export const DropdownContent = React.forwardRef<
     >
       <StyledDiv
         aria-labelledby={context.dropdownButtonId.current}
-        role="menu"
+        role={hasItemChildren ? 'menu' : null}
         theme={theme}
       >
         {children}
