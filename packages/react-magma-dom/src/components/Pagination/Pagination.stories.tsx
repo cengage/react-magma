@@ -100,3 +100,21 @@ SimplePagination.args = {
   count: 4,
   defaultPage: 2,
 };
+
+export const SimplePaginationOnPageChange = () => {
+  const [page, setPage] = React.useState(1);
+  function handleChange(_, pageNumber) {
+    setPage(pageNumber);
+  }
+  return (
+    <>
+      <p>onPageChange result: {page}</p>
+      <Pagination
+        onPageChange={handleChange}
+        page={page}
+        count={4}
+        type={PaginationType.simple}
+      />
+    </>
+  );
+};
