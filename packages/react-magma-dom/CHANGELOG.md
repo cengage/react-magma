@@ -1,5 +1,18 @@
 # Change Log
 
+## 4.1.0-next.6
+
+### Patch Changes
+
+- 6b6e0de20: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+
+## 4.1.0-next.5
+
+### Patch Changes
+
+- cca876b3a: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
+  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+
 ## 4.1.0-next.4
 
 ### Patch Changes

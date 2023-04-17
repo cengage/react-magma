@@ -1127,6 +1127,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -1464,6 +1469,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -1947,6 +1957,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -2291,6 +2306,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -2813,6 +2833,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -3196,6 +3221,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {

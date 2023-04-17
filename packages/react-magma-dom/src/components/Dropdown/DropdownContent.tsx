@@ -47,6 +47,14 @@ const StyledCard = styled(Card)<{
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  &:focus {
+    outline: 2px solid ${props =>
+      props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus};
+    }
+    outline-offset: 0;
+  }
 
   ${props =>
     props.width &&
@@ -106,7 +114,7 @@ export const DropdownContent = React.forwardRef<
   const ref = useForkedRef(forwardedRef, context.menuRef);
 
   const { styles, attributes } = usePopper(context.toggleRef.current, context.menuRef.current, {
-    placement: context.dropDirection,
+    placement: 'auto',
     modifiers: [
       {
         name: "offset",
@@ -124,6 +132,18 @@ export const DropdownContent = React.forwardRef<
     ],
   });
   
+  let hasItemChildren = false;
+
+  React.Children.forEach(children, (child: any) => {
+    if (
+      child.type?.displayName === 'DropdownMenuItem' ||
+      child.type?.displayName === 'DropdownMenuGroup'
+    ) {
+      hasItemChildren = true;
+      return;
+    }
+  });
+
   return (
     <StyledCard
       {...other}
@@ -143,7 +163,7 @@ export const DropdownContent = React.forwardRef<
       >
       <StyledDiv
         aria-labelledby={context.dropdownButtonId.current}
-        role="menu"
+        role={hasItemChildren ? 'menu' : null}
         theme={theme}
         style={styles.flip}
       >

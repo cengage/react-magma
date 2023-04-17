@@ -19,7 +19,7 @@ import { Checkbox } from '../Checkbox';
 import { PasswordInput } from '../PasswordInput';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Spacer, SpacerAxis } from '../Spacer';
+import { Paragraph, Spacer, SpacerAxis } from '../..';
 import { ButtonGroup } from '../ButtonGroup';
 
 const Template: Story<DropdownProps> = args => (
@@ -352,6 +352,62 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const NoItems = args => {
+  return (
+    <ButtonGroup>
+      <Dropdown width="500px" {...args} testId="dropdown">
+        <DropdownButton>Dropdown without items</DropdownButton>
+        <DropdownContent style={{ padding: '12px' }}>
+          <>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span style={{ flex: '1 1 auto' }}>
+                <Paragraph noMargins isInverse={args.isInverse}>
+                  Current take: 1 of 3
+                </Paragraph>
+              </span>
+              <span style={{ flex: '0 0 auto' }}>
+                <Paragraph noMargins isInverse={args.isInverse}>
+                  Points possible: 10
+                </Paragraph>
+              </span>
+            </span>
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Grade uses: Best attempt
+            </Paragraph>
+            <Spacer size={12} />
+            <DropdownDivider />
+            <Spacer size={12} />
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Credit/No Credit Activity
+            </Paragraph>
+            In this activity you must achieve 80% or higher to receive credit
+            <Spacer size={12} />
+          </>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown width="500px" {...args}>
+        <DropdownButton>Dropdown without items, with button</DropdownButton>
+        <DropdownContent style={{ padding: '12px' }}>
+          <>
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Bacon ipsum dolor amet capicola turkey chicken cupim pastrami pork
+              spare ribs shankle ball tip. Shank doner burgdoggen tri-tip corned
+              beef meatloaf pig ground round. Ball tip t-bone cow chicken.{' '}
+            </Paragraph>
+            <Button isInverse={args.isInverse}>Foo</Button>
+          </>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
+  );
+};
 
 export const Popper = args => {
   const sampleDropdown = (
