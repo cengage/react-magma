@@ -439,24 +439,36 @@ const springfieldDonut = Object.assign({}, magma, {
 });
 
 const StyledCardHeading = styled.h1`
-  color: #939c55;
+  color: #a15936;
   text-shadow: 0 0 2px rgb(0 0 0 / 40%), 0 0px 1px rgb(0 0 0 / 40%);
   font-size: 40px;
+  position: relative;
+  &:before {
+    content: 'Doh';
+    position: absolute;
+    top: -0.9px;
+    left: 0.8px;
+    color: #ebf3c0;
+    z-index: 9999;
+    filter: blur(1px);
+    text-shadow: 1px 1px 0px #00000066;
+  }
 `;
 
 const StyledDonut = styled.div`
-  height: 120px;
-  left: 190px;
+  width: 288px;
+  left: calc(100% - 252px);
   position: relative;
-  top: -30px;
+  top: -100px;
+  transform: rotate(6deg);
   &:before {
     content: '';
-    width: 60%;
-    height: 180px;
+    width: 100%;
+    height: 206px;
     position: absolute;
-    top: 0;
-    left: 5%;
-    border-radius: 50% 50% 72% 72%;
+    top: -10px;
+    left: 0;
+    border-radius: 80%;
     z-index: 0;
     background: linear-gradient(
       0deg,
@@ -464,22 +476,62 @@ const StyledDonut = styled.div`
       rgba(190, 114, 78, 1) 62%,
       rgba(210, 139, 105, 1) 91%
     );
-    box-shadow: 0 12px 13px -14px black;
+    box-shadow: -5px 15px 4px -14px rgb(0 0 0 / 35%), -70px 50px 11px -30px rgb(0
+            0 0 / 6%), inset 0 -42px 30px -5px #00000014;
   }
   &:after {
     content: '';
-    background: #ce8b97;
-    box-shadow: inset 0 -24px 2px rgb(255 255 255 / 12%), 0 22px 13px rgb(0 0
-            0 / 16%), inset 0 -10px 12px 2px rgb(255 255 255 / 17%), inset 0 0,
-      inset 0 -12px 23px 22px rgb(255 255 255 / 36%), inset 0 30px 21px 20px
-        pink, inset 0 -20px 21px 20px pink, inset 0 -110px 0px -27px pink,
-      inset 0 -10px 0 10px white;
+    background: pink;
+    box-shadow: inset 0 -10px 2px #ffffff33, inset 0 36px 20px -20px #ffffff69,
+      inset 0 -50px 30px -20px #0000001c, inset 0 -10px 30px 50px #ffffff66,
+      inset 0 -4px 5px #00000070;
     position: absolute;
-    top: -23px;
-    left: 6%;
-    width: calc(58%);
+    top: -11px;
+    left: 5%;
+    width: 90%;
     height: 127px;
     border-radius: 50%;
+  }
+  @media screen and (max-width: 1120px) {
+    zoom: 0.7;
+  }
+`;
+
+const StyledLight = styled.div`
+  width: 120px;
+  height: 75px;
+  position: absolute;
+  top: -20px;
+  left: 86px;
+  z-index: 1;
+  border-radius: 50%;
+  background: linear-gradient(0deg, rgb(0 0 0 / 14%) 0%, rgba(0, 0, 0, 0) 40%);
+  border-bottom: 3px solid #ffffff59;
+  &:before {
+    content: '\\\ ||/ /';
+    position: absolute;
+    top: 51px;
+    left: 40px;
+    width: 100%;
+    height: 100%;
+    filter: blur(3px);
+    letter-spacing: 2px;
+    color: #00000045;
+  }
+  &:after {
+    content: '\ ||/ /';
+    position: absolute;
+    top: 51px;
+    left: 42px;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    -webkit-letter-spacing: 2px;
+    -moz-letter-spacing: 2px;
+    -ms-letter-spacing: 2px;
+    letter-spacing: 2px;
+    color: #f7f7f7;
   }
 `;
 
@@ -498,7 +550,7 @@ const StyledSprinkle = styled.div`
   height: 5px;
   border-radius: 4px;
   position: absolute;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   z-index: 2;
   &:before {
     content: '';
@@ -519,6 +571,7 @@ export function Example() {
     <ThemeContext.Provider value={springfieldDonut}>
       <Card>
         <StyledDonut>
+          <StyledLight />
           <StyledSprinkle
             style={{
               background: StyledColors[0].background,
@@ -531,8 +584,8 @@ export function Example() {
             style={{
               background: StyledColors[6].background,
               top: '67px',
-              left: '131px',
-              transform: 'rotate(4deg)',
+              left: '63px',
+              transform: 'rotate(34deg)',
             }}
           />
           <StyledSprinkle
@@ -546,8 +599,8 @@ export function Example() {
           <StyledSprinkle
             style={{
               background: StyledColors[5].background,
-              top: '30px',
-              left: '280px',
+              top: '5px',
+              left: '220px',
               transform: 'rotate(21deg)',
             }}
           />
@@ -588,7 +641,7 @@ export function Example() {
               background: StyledColors[4].background,
               top: '30px',
               left: '240px',
-              transform: 'rotate(121deg)',
+              transform: 'rotate(21deg)',
             }}
           />
           <StyledSprinkle
@@ -603,24 +656,24 @@ export function Example() {
             style={{
               background: StyledColors[2].background,
               top: '57px',
-              left: '144px',
+              left: '94px',
               transform: 'rotate(3deg)',
             }}
           />
           <StyledSprinkle
             style={{
-              left: ' 129px',
+              left: ' 99px',
               background: StyledColors[3].background,
-              top: ' 31px',
-              transform: ' rotate(14deg)',
+              top: ' 13px',
+              transform: ' rotate(347deg)',
               zIndex: ' 2',
             }}
           />
           <StyledSprinkle
             style={{
               background: StyledColors[0].background,
-              top: '48px',
-              left: '145px',
+              top: '88px',
+              left: '133px',
               transform: 'rotate(343deg)',
             }}
           />
@@ -635,9 +688,9 @@ export function Example() {
           <StyledSprinkle
             style={{
               background: StyledColors[4].background,
-              top: '37px',
-              left: '245px',
-              transform: 'rotate(143deg)',
+              top: '8x',
+              left: '164px',
+              transform: 'rotate(32deg)',
             }}
           />
           <StyledSprinkle
@@ -652,7 +705,7 @@ export function Example() {
             style={{
               background: StyledColors[4].background,
               top: '50px',
-              left: '300px',
+              left: '34px',
               transform: 'rotate(-15deg)',
             }}
           />
@@ -668,7 +721,7 @@ export function Example() {
             style={{
               background: StyledColors[6].background,
               top: '46px',
-              left: '286px',
+              left: '86px',
               transform: 'rotate(354deg)',
             }}
           />
@@ -676,7 +729,7 @@ export function Example() {
             style={{
               background: StyledColors[6].background,
               top: '20px',
-              left: '353px',
+              left: '188px',
               transform: 'rotate(14deg)',
             }}
           />
@@ -699,9 +752,9 @@ export function Example() {
           <StyledSprinkle
             style={{
               background: StyledColors[5].background,
-              top: ' -9px',
-              left: '228px',
-              transform: ' rotate(14deg)',
+              top: ' 13px',
+              left: '33px',
+              transform: ' rotate(352deg)',
               zIndex: ' 2',
             }}
           />
@@ -716,15 +769,15 @@ export function Example() {
           <StyledSprinkle
             style={{
               background: StyledColors[2].background,
-              top: '47px',
-              left: '265px',
+              top: '34px',
+              left: '210px',
               transform: 'rotate(300deg)',
             }}
           />
           <StyledSprinkle
             style={{
               background: StyledColors[0].background,
-              top: '37px',
+              top: '10px',
               left: '145px',
               transform: 'rotate(143deg)',
             }}
@@ -732,8 +785,8 @@ export function Example() {
           <StyledSprinkle
             style={{
               background: StyledColors[3].background,
-              top: '-3px',
-              left: '295px',
+              top: '26px',
+              left: '51px',
               transform: 'rotate(34eg)',
             }}
           />
