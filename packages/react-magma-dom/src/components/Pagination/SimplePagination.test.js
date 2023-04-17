@@ -335,7 +335,9 @@ describe('Simple Pagination', () => {
     const previousButton = getByLabelText('Previous Page');
 
     fireEvent.click(previousButton);
-    expect(onClickMock).toHaveBeenCalledTimes(1);
+
+    expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), 1);
+    
   });
 
   it('Should call the onPageChange function when the next button is clicked', () => {
@@ -350,10 +352,10 @@ describe('Simple Pagination', () => {
       />
     );
 
-    const previousButton = getByLabelText('Next Page');
+    const nextButton = getByLabelText('Next Page');
 
-    fireEvent.click(previousButton);
-    expect(onClickMock).toHaveBeenCalledTimes(1);
+    fireEvent.click(nextButton);
+    expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), 3);
   });
 
   it('Should call the onPageChange function when a select option is clicked', () => {
@@ -369,7 +371,7 @@ describe('Simple Pagination', () => {
     fireEvent.change(getByTestId(`${testId}-select`), {
       target: { value: '2' },
     });
-    expect(onClickMock).toHaveBeenCalledTimes(1);
+    expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), '2');
   });
 
   it('Does not violate accessibility standards', () => {
