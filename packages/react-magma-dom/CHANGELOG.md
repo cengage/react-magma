@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.6
+
+### Patch Changes
+
+- 6b6e0de20: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+
 ## 4.1.0-next.5
 
 ### Patch Changes

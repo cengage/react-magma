@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ButtonColor, ButtonShape, ButtonVariant } from '../Button';
+import { Announce } from '../Announce';
 import { I18nContext } from '../../i18n';
 import { Tooltip } from '../Tooltip';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
@@ -117,6 +118,8 @@ export const SimplePagination = React.forwardRef<
         }`;
   }
 
+  const pageAriaLabel = `Page number ${selectedPage} ${paginationLabel()} selected`;
+
   const disabledPrevTooltip =
     disabled || selectedPage <= 1 || count <= 0 || count == null;
 
@@ -170,10 +173,11 @@ export const SimplePagination = React.forwardRef<
           {disabledPrevTooltip ? (
             <>{PrevButton}</>
           ) : (
-            <Tooltip content={prevTooltipContent}>{PrevButton}</Tooltip>
+            <Tooltip isInverse={isInverse} content={prevTooltipContent}>
+              {PrevButton}
+            </Tooltip>
           )}
-
-          <Spacer size={14} />
+          <Spacer size={16} />
         </>
       )}
       {count > 0 && (
@@ -190,6 +194,7 @@ export const SimplePagination = React.forwardRef<
           >
             {Array.from({ length: count }, (_, i) => (
               <option
+                aria-label={pageAriaLabel}
                 data-testid={testId ? `${testId}-option-${i}` : `option-${i}`}
                 key={i}
                 onChange={handleChange}
@@ -207,20 +212,20 @@ export const SimplePagination = React.forwardRef<
             {paginationLabel()}
           </label>
           <VisuallyHidden>
-            {`Page number
-            ${selectedPage}
-            ${paginationLabel()}`}
+            <Announce>{pageAriaLabel}</Announce>
           </VisuallyHidden>
         </>
       )}
 
       {!hideNextButton && (
         <>
-          <Spacer size={14} />
+          <Spacer size={16} />
           {disabledNextTooltip ? (
             <>{NextButton}</>
           ) : (
-            <Tooltip content={nextTooltipContent}>{NextButton}</Tooltip>
+            <Tooltip isInverse={isInverse} content={nextTooltipContent}>
+              {NextButton}
+            </Tooltip>
           )}
         </>
       )}
