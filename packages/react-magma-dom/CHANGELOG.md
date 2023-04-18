@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.7
+
+### Patch Changes
+
+- 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
+
 ## 4.1.0-next.6
 
 ### Patch Changes
