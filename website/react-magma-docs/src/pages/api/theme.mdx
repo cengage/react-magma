@@ -439,19 +439,21 @@ const springfieldDonut = Object.assign({}, magma, {
 });
 
 const StyledCardHeading = styled.h1`
-  color: #a15936;
-  text-shadow: 0 0 2px rgb(0 0 0 / 40%), 0 0px 1px rgb(0 0 0 / 40%);
+  color: #f7db7f;
   font-size: 40px;
   position: relative;
+  -webkit-text-stroke-width: 4px;
+  text-shadow: -5px 1px #a15936, -5px -1px #a15936, -5px 0px 2px #a15936;
   &:before {
+    color: white;
     content: 'Doh';
     position: absolute;
-    top: -0.9px;
-    left: 0.8px;
-    color: #ebf3c0;
-    z-index: 9999;
-    filter: blur(1px);
-    text-shadow: 1px 1px 0px #00000066;
+    top: 0;
+    left: 5px;
+    font-size: 0.7em;
+    letter-spacing: 8px;
+    filter: blur(3px);
+    opacity: 0.3;
   }
 `;
 
