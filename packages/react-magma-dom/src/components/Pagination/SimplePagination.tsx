@@ -118,7 +118,10 @@ export const SimplePagination = React.forwardRef<
         }`;
   }
 
-  const pageAriaLabel = `Page number ${selectedPage} ${paginationLabel()} selected`;
+  const pageAriaLabel = `${i18n.simplePagination.pageNumberLabel}
+    ${selectedPage}
+    ${paginationLabel()}
+    ${i18n.simplePagination.selectedLabel}`;
 
   const disabledPrevTooltip =
     disabled || selectedPage <= 1 || count <= 0 || count == null;
