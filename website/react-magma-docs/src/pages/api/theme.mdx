@@ -64,273 +64,25 @@ const ceslV2 = Object.assign({}, magma, {
   headingFont: '"Open Sans",Helvetica,sans-serif',
   headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
   headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
-  direction: 'ltr',
-  spacingMultiplier: 8,
-  breakpoints: {
-    xs: 0,
-    small: 600,
-    medium: 768,
-    large: 1024,
-    xl: 1200,
-  },
-
-  spaceScale: magma.spaceScale,
-
-  iconSizes: {
-    xSmall: 16,
-    small: 20,
-    medium: 24,
-    large: 32,
-    xLarge: 54,
-  },
 
   // Typography
   typeScale: magma.typeScale,
-  typographyVisualStyles: {
-    headingXLarge: {
-      mobile: magma.typeScale.size07,
-      desktop: magma.typeScale.size09,
-      fontWeight: 600,
-    },
-    headingLarge: {
-      mobile: magma.typeScale.size06,
-      desktop: magma.typeScale.size07,
-      fontWeight: 600,
-    },
-    headingMedium: {
-      mobile: magma.typeScale.size05,
-      desktop: magma.typeScale.size06,
-      fontWeight: 600,
-    },
-    headingSmall: {
-      mobile: magma.typeScale.size04,
-      desktop: magma.typeScale.size05,
-      fontWeight: 600,
-    },
-    headingXSmall: {
-      mobile: magma.typeScale.size04,
-      desktop: magma.typeScale.size04,
-      fontWeight: 600,
-    },
-    heading2XSmall: {
-      mobile: magma.typeScale.size01,
-      desktop: magma.typeScale.size01,
-      fontWeight: 700,
-    },
-    bodyLarge: {
-      mobile: magma.typeScale.size04,
-      desktop: magma.typeScale.size05,
-    },
-    bodyMedium: {
-      mobile: magma.typeScale.size03,
-      desktop: magma.typeScale.size03,
-    },
-    bodySmall: {
-      mobile: magma.typeScale.size02,
-      desktop: magma.typeScale.size02,
-    },
-    bodyXSmall: {
-      mobile: magma.typeScale.size01,
-      desktop: magma.typeScale.size01,
-    },
-  },
   typographyExpressiveVisualStyles: {
     headingXLarge: {
       mobile: magma.typeScale.size08,
       desktop: magma.typeScale.size11,
       fontWeight: 600,
     },
-    headingLarge: {
-      mobile: magma.typeScale.size07,
-      desktop: magma.typeScale.size09,
-      fontWeight: 300,
-    },
-    headingMedium: {
-      mobile: magma.typeScale.size06,
-      desktop: magma.typeScale.size07,
-      fontWeight: 300,
-    },
-    headingSmall: {
-      mobile: magma.typeScale.size05,
-      desktop: magma.typeScale.size06,
-      fontWeight: 300,
-    },
-    headingXSmall: {
-      mobile: magma.typeScale.size04,
-      desktop: magma.typeScale.size05,
-      fontWeight: 300,
-    },
-    heading2XSmall: {
-      mobile: magma.typeScale.size03,
-      desktop: magma.typeScale.size03,
-      fontWeight: 700,
-    },
-    bodyLarge: {
-      mobile: magma.typeScale.size05,
-      desktop: magma.typeScale.size06,
-    },
-    bodyMedium: {
-      mobile: magma.typeScale.size03,
-      desktop: magma.typeScale.size03,
-    },
-    bodySmall: {
-      mobile: magma.typeScale.size02,
-      desktop: magma.typeScale.size02,
-    },
-    bodyXSmall: {
-      mobile: magma.typeScale.size01,
-      desktop: magma.typeScale.size01,
-    },
-  },
-  typographyNarrativeVisualStyles: {
-    headingXLarge: {
-      mobile: magma.typeScale.size07,
-      desktop: magma.typeScale.size08,
-      fontWeight: 700,
-    },
-    headingLarge: {
-      mobile: magma.typeScale.size06,
-      desktop: magma.typeScale.size07,
-      fontWeight: 700,
-    },
-    headingMedium: {
-      mobile: magma.typeScale.size05,
-      desktop: magma.typeScale.size06,
-      fontWeight: 700,
-    },
-    headingSmall: {
-      mobile: magma.typeScale.size04,
-      desktop: magma.typeScale.size05,
-      fontWeight: 700,
-    },
-    headingXSmall: {
-      mobile: magma.typeScale.size04,
-      desktop: magma.typeScale.size04,
-      fontWeight: 700,
-    },
-    heading2XSmall: {
-      mobile: magma.typeScale.size01,
-      desktop: magma.typeScale.size01,
-      fontWeight: 700,
-    },
-    bodyLarge: {
-      mobile: magma.typeScale.size04,
-      desktop: magma.typeScale.size05,
-    },
-    bodyMedium: {
-      mobile: magma.typeScale.size03,
-      desktop: magma.typeScale.size03,
-    },
-    bodySmall: {
-      mobile: magma.typeScale.size02,
-      desktop: magma.typeScale.size02,
-    },
-    bodyXSmall: {
-      mobile: magma.typeScale.size01,
-      desktop: magma.typeScale.size01,
-    },
   },
 
   appBar: {
-    backgroundColor: magma.colors.neutral100,
     height: '56px',
-    padding: `${magma.spaceScale.spacing06} ${magma.spaceScale.spacing05}`,
-    textColor: magma.colors.neutral,
-    compact: {
-      height: '56px',
-      padding: `${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing06}`,
-    },
-    inverse: {
-      backgroundColor: magma.colors.primary600,
-      textColor: magma.colors.neutral100,
-    },
-  },
-
-  combobox: {
-    menu: {
-      maxHeight: '250px',
-    },
-  },
-
-  modal: {
-    width: {
-      small: '300px',
-      medium: '600px',
-      large: '900px',
-    },
-  },
-
-  drawer: {
-    default: {
-      maxWidth: '100%',
-      minHeight: '300px',
-      margin: '0',
-      borderRadius: '0',
-      top: '0',
-      right: '0',
-      bottom: '0',
-      left: '0',
-      position: 'relative',
-    },
-    right: {
-      left: 'auto',
-      height: '100%',
-      width: '300px',
-      position: 'fixed',
-    },
-    left: {
-      right: 'auto',
-      height: '100%',
-      width: '300px',
-    },
-    top: {
-      bottom: 'auto',
-      height: '300px',
-    },
-    bottom: {
-      top: 'auto',
-      height: '300px',
-      position: 'fixed',
-    },
-  },
-
-  dropdown: {
-    content: {
-      maxHeight: '250px',
-    },
-  },
-
-  tabs: {
-    approxTabSize: {
-      horizontal: 120,
-      vertical: 80,
-    },
-  },
-
-  select: {
-    menu: {
-      maxHeight: '250px',
-    },
-  },
-
-  tag: {
-    border: '0',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
   },
 
   tooltip: {
-    arrowSize: '4px',
-    arrowSizeDoubled: '8px',
     backgroundColor: magma.colors.neutral,
     fontWeight: 600,
-    maxWidth: '300px',
-    textColor: magma.colors.neutral100,
-    typeScale: magma.typeScale.size01,
-    zIndex: 999,
     inverse: {
-      backgroundColor: magma.colors.neutral100,
       textColor: magma.colors.neutral,
     },
   },
@@ -430,20 +182,38 @@ const springfieldDonut = Object.assign({}, magma, {
     secondary600: '#43fd94',
   }),
 
+  bodyFont: '"Varela Round", sans-serif',
+
+  typeScale: Object.assign({}, magma.typeScale, {
+    size02: {
+      fontSize: '16px',
+      letterSpacing: '-1px',
+    },
+    size03: {
+      fontSize: '20px',
+      letterSpacing: '-1px',
+    },
+  }),
+
   appBar: {
     backgroundColor: '#d792cb',
     textColor: '#ebf88b',
-    height: '60px',
+    height: '80px',
     padding: '0 30px',
   },
 });
+
+const StyledCard = styled(Card)`
+  background: #f3f3f3;
+`;
 
 const StyledCardHeading = styled.h1`
   color: #f7db7f;
   font-size: 40px;
   position: relative;
   -webkit-text-stroke-width: 4px;
-  text-shadow: -5px 1px #a15936, -5px -1px #a15936, -5px 0px 2px #a15936;
+  text-shadow: -5px 1px #a15936, -5px -1px #a15936, -5px 0px 2px #a15936, -5px
+      4px 2px #a15936, 1px 4px 2px #a15936;
   &:before {
     color: white;
     content: 'Doh';
@@ -537,6 +307,44 @@ const StyledLight = styled.div`
   }
 `;
 
+const StyledShadow = styled.div`
+  width: 100%;
+  height: 206px;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  border-radius: 80%;
+  overflow: hidden;
+  &:before {
+    content: '\\||//';
+    position: absolute;
+    top: 159px;
+    left: 35px;
+    width: 100%;
+    height: 150px;
+    font-size: 50px;
+    letter-spacing: 35px;
+    filter: blur(7px);
+    color: #43200f;
+    -webkit-text-stroke-width: 14px;
+    opacity: 0.1;
+  }
+  &:after {
+    content: '\\||//';
+    position: absolute;
+    top: 169px;
+    left: 53px;
+    width: 100%;
+    height: 150px;
+    font-size: 50px;
+    letter-spacing: 35px;
+    filter: blur(7px);
+    color: #ffffff;
+    -webkit-text-stroke-width: 14px;
+    opacity: 0.03;
+  }
+`;
+
 const StyledColors = [
   { id: 'red', background: '#e82f33' },
   { id: 'blue', background: '#2a7ded' },
@@ -571,9 +379,15 @@ export function Example() {
 
   return (
     <ThemeContext.Provider value={springfieldDonut}>
-      <Card>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+      </style>
+
+      <StyledCard>
         <StyledDonut>
           <StyledLight />
+          <StyledShadow />
           <StyledSprinkle
             style={{
               background: StyledColors[0].background,
@@ -795,9 +609,7 @@ export function Example() {
         </StyledDonut>
         <CardBody>
           <StyledCardHeading>Doh</StyledCardHeading>
-          <AppBar style={{ borderRadius: '6px' }}>
-            This is an application's AppBar!
-          </AppBar>
+          <AppBar style={{ borderRadius: '6px' }}>AppBar</AppBar>
 
           <Spacer size={50} />
 
@@ -845,7 +657,7 @@ export function Example() {
             <Button color={ButtonColor.subtle}>Subtle</Button>
           </ButtonGroup>
         </CardBody>
-      </Card>
+      </StyledCard>
     </ThemeContext.Provider>
   );
 }
