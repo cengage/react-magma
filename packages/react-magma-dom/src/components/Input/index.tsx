@@ -41,9 +41,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const initialValueLength = value ? value.toString().length : 0;
+    const [characterLength, setCharacterLength] = useState(
+      value?.toString().length
+    );
 
-    const [characterLength, setCharacterLength] = useState(initialValueLength);
+    React.useEffect(() => {
+      setCharacterLength(value?.toString().length);
+    }, [value]);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       props.onChange &&

@@ -78,13 +78,15 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       string | ReadonlyArray<string> | number
     >(props.defaultValue || props.value || '');
 
-    const initialValueLength = value ? value.toString().length : 0;
-
-    const [characterLength, setCharacterLength] = useState(initialValueLength);
+    const [characterLength, setCharacterLength] = useState(
+      props.value?.toString().length
+    );
 
     React.useEffect(() => {
       setValue(props.value);
+      setCharacterLength(props.value?.toString().length);
     }, [props.value]);
+
     function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       props.onChange &&
         typeof props.onChange === 'function' &&
