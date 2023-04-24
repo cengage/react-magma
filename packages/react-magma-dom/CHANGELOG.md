@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.8
+
+### Patch Changes
+
+- caee2a755: fix(CharCounter): Update calculation for character length on rerender.
+
 ## 4.1.0-next.7
 
 ### Patch Changes

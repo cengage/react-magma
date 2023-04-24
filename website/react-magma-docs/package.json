@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs",
-  "version": "5.0.1-next.12",
+  "version": "5.0.1-next.13",
   "private": true,
   "repository": {
     "type": "git",
@@ -49,7 +49,7 @@
     "react-focus-lock": "^2.9.2",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "4.1.0-next.7",
+    "react-magma-dom": "4.1.0-next.8",
     "react-magma-icons": "^3.0.0",
     "react-spring": "6.1.9",
     "semver": "^7.3.4",
