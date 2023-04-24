@@ -498,6 +498,15 @@ describe('Input', () => {
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
+    it('should update the character length on rerender', () => {
+      const { getByText, rerender } = render(
+        <Input maxLength={5} value="hi" />
+      );
+      expect(getByText('3 ' + charactersLeft)).toBeInTheDocument();
+      rerender(<Input maxLength={5} value="hello" />);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+    });
+
     it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by backspacing', () => {
       const onChange = jest.fn();
       const { getByText, getByLabelText } = render(

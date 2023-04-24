@@ -18,7 +18,6 @@ const Template: Story<CharacterCounterProps> = args => (
       {...args}
       testId="test-this-id"
       labelText={labelText}
-      value="Default"
     />
   </>
 );
@@ -65,6 +64,11 @@ export default {
         type: 'number',
       },
     },
+    value: {
+      control: {
+        type: 'text'
+      }
+    }
   },
 } as Meta;
 
