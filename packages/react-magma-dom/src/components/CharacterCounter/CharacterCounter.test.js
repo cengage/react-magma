@@ -37,6 +37,7 @@ describe('CharacterCounter', () => {
       return expect(result).toHaveNoViolations();
     });
   });
+
   describe('Titles', () => {
     describe('Characters Allowed', () => {
       it('Shows the default label of "characters allowed" if maxLength is 0', () => {
@@ -120,6 +121,7 @@ describe('CharacterCounter', () => {
       });
     });
   });
+  
   describe('accessibility', () => {
     it('Should have the aria-live attribute "off" until inputLength gets to 80%', () => {
       const { getByText } = render(

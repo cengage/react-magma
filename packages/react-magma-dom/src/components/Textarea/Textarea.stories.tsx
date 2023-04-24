@@ -8,7 +8,6 @@ import { Textarea, TextareaProps } from '.';
 
 const Template: Story<TextareaProps> = args => (
   <Textarea
-    value="how many of these things"
     {...args}
     labelText="Textarea label"
   />
@@ -36,6 +35,11 @@ export default {
         type: 'number',
       },
     },
+    value: {
+      control: {
+        type: 'text'
+      }
+    }
   },
 } as Meta;
 
