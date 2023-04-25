@@ -42,6 +42,10 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-magma-dom": "^4.1.0-next.2",
-    "react-magma-icons": "^3.0.0"
+    "react-magma-icons": "^3.0.0",
+    "@carbon/charts": "1.7.1",
+    "@carbon/charts-react": "1.7.1",
+    "d3": "^7.0.0",
+    "dom-to-image-more": "3.1.4"
   }
 }
