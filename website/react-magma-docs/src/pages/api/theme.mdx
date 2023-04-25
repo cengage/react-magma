@@ -4,6 +4,7 @@ title: Theming
 ---
 
 import { LeadParagraph } from '../../components/LeadParagraph';
+import { Donut } from '../../components/Donut';
 
 <PageContent componentName="theming" type="api">
 
@@ -55,39 +56,6 @@ const magmaDark = Object.assign({}, magma, {
   }),
 });
 
-const ceslV2 = Object.assign({}, magma, {
-  bodyFont: '"Open Sans",Helvetica,sans-serif',
-  bodyExpressiveFont: '"Open Sans",Helvetica,sans-serif',
-  bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
-  borderRadius: '4px',
-  colors: Object.assign({}, magma.colors),
-  headingFont: '"Open Sans",Helvetica,sans-serif',
-  headingExpressiveFont: '"Open Sans",Helvetica,sans-serif',
-  headingNarrativeFont: "'Noto Serif',Times New Roman,serif",
-
-  // Typography
-  typeScale: magma.typeScale,
-  typographyExpressiveVisualStyles: {
-    headingXLarge: {
-      mobile: magma.typeScale.size08,
-      desktop: magma.typeScale.size11,
-      fontWeight: 600,
-    },
-  },
-
-  appBar: {
-    height: '56px',
-  },
-
-  tooltip: {
-    backgroundColor: magma.colors.neutral,
-    fontWeight: 600,
-    inverse: {
-      textColor: magma.colors.neutral,
-    },
-  },
-});
-
 function DemoComponent() {
   return (
     <Card>
@@ -131,10 +99,6 @@ export function Example() {
             value: magmaDark,
             label: 'Magma Dark',
           },
-          {
-            value: ceslV2,
-            label: 'Other',
-          },
         ]}
       />
       <Spacer size="24" />
@@ -142,523 +106,6 @@ export function Example() {
         <DemoComponent />
       </ThemeContext.Provider>
     </div>
-  );
-}
-```
-
-## Springfield Donut
-
-Who doesn't like a good one?
-
-```tsx
-import React from 'react';
-import {
-  AppBar,
-  Button,
-  ButtonColor,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardHeading,
-  Combobox,
-  Drawer,
-  magma,
-  Radio,
-  RadioGroup,
-  Spacer,
-} from 'react-magma-dom';
-
-import styled from '../../theme/styled';
-
-const springfieldDonut = Object.assign({}, magma, {
-  colors: Object.assign({}, magma.colors, {
-    danger: '#f3772b',
-    danger600: '#b94d1c',
-    marketing: '#1a85e0',
-    primary: '#3493f1',
-    primary600: '#215fb3',
-    neutral: '#7b361e',
-    secondary500: '#42e093',
-    secondary600: '#43fd94',
-  }),
-
-  bodyFont: '"Varela Round", sans-serif',
-
-  typeScale: Object.assign({}, magma.typeScale, {
-    size02: {
-      fontSize: '16px',
-      letterSpacing: '-1px',
-    },
-    size03: {
-      fontSize: '20px',
-      letterSpacing: '-1px',
-    },
-  }),
-
-  appBar: {
-    backgroundColor: '#d792cb',
-    textColor: '#ebf88b',
-    height: '80px',
-    padding: '0 30px',
-  },
-});
-
-const StyledCard = styled(Card)`
-  background: #f3f3f3;
-`;
-
-const StyledCardHeading = styled.h1`
-  color: #f7db7f;
-  font-size: 40px;
-  position: relative;
-  -webkit-text-stroke-width: 4px;
-  text-shadow: -5px 1px #a15936, -5px -1px #a15936, -5px 0px 2px #a15936, -5px
-      4px 2px #a15936, 1px 4px 2px #a15936;
-  &:before {
-    color: white;
-    content: 'Doh';
-    position: absolute;
-    top: 0;
-    left: 5px;
-    font-size: 0.7em;
-    letter-spacing: 8px;
-    filter: blur(3px);
-    opacity: 0.3;
-  }
-`;
-
-const StyledDonut = styled.div`
-  width: 288px;
-  left: calc(100% - 252px);
-  position: relative;
-  top: -100px;
-  transform: rotate(6deg);
-  &:before {
-    content: '';
-    width: 100%;
-    height: 206px;
-    position: absolute;
-    top: -10px;
-    left: 0;
-    border-radius: 80%;
-    z-index: 0;
-    background: linear-gradient(
-      0deg,
-      rgba(141, 70, 37, 1) 0%,
-      rgba(190, 114, 78, 1) 62%,
-      rgba(210, 139, 105, 1) 91%
-    );
-    box-shadow: -5px 15px 4px -14px rgb(0 0 0 / 35%), -70px 50px 11px -30px rgb(0
-            0 0 / 6%), inset 0 -42px 30px -5px #00000014;
-  }
-  &:after {
-    content: '';
-    background: pink;
-    box-shadow: inset 0 -10px 2px #ffffff33, inset 0 36px 20px -20px #ffffff69,
-      inset 0 -50px 30px -20px #0000001c, inset 0 -10px 30px 50px #ffffff66,
-      inset 0 -4px 5px #00000070;
-    position: absolute;
-    top: -11px;
-    left: 5%;
-    width: 90%;
-    height: 127px;
-    border-radius: 50%;
-  }
-  @media screen and (max-width: 1120px) {
-    zoom: 0.7;
-  }
-`;
-
-const StyledLight = styled.div`
-  width: 120px;
-  height: 75px;
-  position: absolute;
-  top: -20px;
-  left: 86px;
-  z-index: 1;
-  border-radius: 50%;
-  background: linear-gradient(0deg, rgb(0 0 0 / 14%) 0%, rgba(0, 0, 0, 0) 40%);
-  border-bottom: 3px solid #ffffff59;
-  &:before {
-    content: '\\\ ||/ /';
-    position: absolute;
-    top: 51px;
-    left: 40px;
-    width: 100%;
-    height: 100%;
-    filter: blur(3px);
-    letter-spacing: 2px;
-    color: #00000045;
-  }
-  &:after {
-    content: '\ ||/ /';
-    position: absolute;
-    top: 51px;
-    left: 42px;
-    width: 100%;
-    height: 100%;
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-    -webkit-letter-spacing: 2px;
-    -moz-letter-spacing: 2px;
-    -ms-letter-spacing: 2px;
-    letter-spacing: 2px;
-    color: #f7f7f7;
-  }
-`;
-
-const StyledShadow = styled.div`
-  width: 100%;
-  height: 206px;
-  position: absolute;
-  top: -10px;
-  left: 0;
-  border-radius: 80%;
-  overflow: hidden;
-  &:before {
-    content: '\\||//';
-    position: absolute;
-    top: 159px;
-    left: 35px;
-    width: 100%;
-    height: 150px;
-    font-size: 50px;
-    letter-spacing: 35px;
-    filter: blur(7px);
-    color: #43200f;
-    -webkit-text-stroke-width: 14px;
-    opacity: 0.1;
-  }
-  &:after {
-    content: '\\||//';
-    position: absolute;
-    top: 169px;
-    left: 53px;
-    width: 100%;
-    height: 150px;
-    font-size: 50px;
-    letter-spacing: 35px;
-    filter: blur(7px);
-    color: #ffffff;
-    -webkit-text-stroke-width: 14px;
-    opacity: 0.03;
-  }
-`;
-
-const StyledColors = [
-  { id: 'red', background: '#e82f33' },
-  { id: 'blue', background: '#2a7ded' },
-  { id: 'green', background: '#199662' },
-  { id: 'orange', background: '#fa7831' },
-  { id: 'yellow', background: '#f2c532' },
-  { id: 'white', background: '#e9e9e9' },
-  { id: 'pink', background: '#cc7bbf' },
-];
-
-const StyledSprinkle = styled.div`
-  width: 25px;
-  height: 5px;
-  border-radius: 4px;
-  position: absolute;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-  z-index: 2;
-  &:before {
-    content: '';
-    position: absolute;
-    top: 1px;
-    width: 88%;
-    height: 2px;
-    background: white;
-    filter: blur(2px);
-    left: 6%;
-  }
-`;
-
-export function Example() {
-  const [showDrawer, setShowDrawer] = React.useState(false);
-
-  return (
-    <ThemeContext.Provider value={springfieldDonut}>
-      <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-      </style>
-
-      <StyledCard>
-        <StyledDonut>
-          <StyledLight />
-          <StyledShadow />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[0].background,
-              top: '40px',
-              left: '90px',
-              transform: 'rotate(-15deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[6].background,
-              top: '67px',
-              left: '63px',
-              transform: 'rotate(34deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[1].background,
-              top: '57px',
-              left: '186px',
-              transform: 'rotate(354deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[5].background,
-              top: '5px',
-              left: '220px',
-              transform: 'rotate(21deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[3].background,
-              top: '-3px',
-              left: '120px',
-              transform: 'rotate(10deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[1].background,
-              top: '30px',
-              left: '80px',
-              transform: 'rotate(15deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[2].background,
-              top: '67px',
-              left: '151px',
-              transform: 'rotate(-4deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[3].background,
-              top: '57px',
-              left: '146px',
-              transform: 'rotate(154deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[4].background,
-              top: '30px',
-              left: '240px',
-              transform: 'rotate(21deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[5].background,
-              top: '-3px',
-              left: '100px',
-              transform: 'rotate(10deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[2].background,
-              top: '57px',
-              left: '94px',
-              transform: 'rotate(3deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              left: ' 99px',
-              background: StyledColors[3].background,
-              top: ' 13px',
-              transform: ' rotate(347deg)',
-              zIndex: ' 2',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[0].background,
-              top: '88px',
-              left: '133px',
-              transform: 'rotate(343deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[5].background,
-              top: '47px',
-              left: '165px',
-              transform: 'rotate(300deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[4].background,
-              top: '8x',
-              left: '164px',
-              transform: 'rotate(32deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[4].background,
-              top: '-3px',
-              left: '195px',
-              transform: 'rotate(34eg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[4].background,
-              top: '50px',
-              left: '34px',
-              transform: 'rotate(-15deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[5].background,
-              top: '49px',
-              left: '231px',
-              transform: 'rotate(8deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[6].background,
-              top: '46px',
-              left: '86px',
-              transform: 'rotate(354deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[6].background,
-              top: '20px',
-              left: '188px',
-              transform: 'rotate(14deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[1].background,
-              top: '29px',
-              left: '58px',
-              transform: 'rotate(33deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[0].background,
-              top: '68px',
-              left: '204px',
-              transform: 'rotate(3deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[5].background,
-              top: ' 13px',
-              left: '33px',
-              transform: ' rotate(352deg)',
-              zIndex: ' 2',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[6].background,
-              top: '47px',
-              left: '245px',
-              transform: 'rotate(30deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[2].background,
-              top: '34px',
-              left: '210px',
-              transform: 'rotate(300deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[0].background,
-              top: '10px',
-              left: '145px',
-              transform: 'rotate(143deg)',
-            }}
-          />
-          <StyledSprinkle
-            style={{
-              background: StyledColors[3].background,
-              top: '26px',
-              left: '51px',
-              transform: 'rotate(34eg)',
-            }}
-          />
-        </StyledDonut>
-        <CardBody>
-          <StyledCardHeading>Doh</StyledCardHeading>
-          <AppBar style={{ borderRadius: '6px' }}>AppBar</AppBar>
-
-          <Spacer size={50} />
-
-          <Combobox
-            id="comboboxId"
-            labelText="Combobox"
-            defaultItems={[
-              { label: 'Red', value: 'red' },
-              { label: 'Blue', value: 'blue' },
-              { label: 'Green', value: 'green' },
-            ]}
-            placeholder="Hello"
-          />
-
-          <Spacer size={50} />
-
-          <>
-            <Drawer
-              header="Drawer Title"
-              onClose={() => setShowDrawer(false)}
-              isOpen={showDrawer}
-              position="bottom"
-            >
-              <p>This is a Drawer, doing Drawer things.</p>
-              <p>
-                <Button>This is a button</Button>
-              </p>
-            </Drawer>
-            <Button onClick={() => setShowDrawer(true)}>
-              Show Drawer
-              <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
-            </Button>
-          </>
-          <Spacer size={50} />
-          <RadioGroup labelText="Radio Group" name="radio">
-            <Radio labelText="Radio 1" value="1" />
-            <Radio labelText="Radio 2" value="2" />
-          </RadioGroup>
-          <Spacer size={50} />
-          <ButtonGroup>
-            <Button color={ButtonColor.primary}>Primary</Button>
-            <Button color={ButtonColor.secondary}>Secondary</Button>
-            <Button color={ButtonColor.danger}>Danger</Button>
-            <Button color={ButtonColor.marketing}>Marketing</Button>
-            <Button color={ButtonColor.subtle}>Subtle</Button>
-          </ButtonGroup>
-        </CardBody>
-      </StyledCard>
-    </ThemeContext.Provider>
   );
 }
 ```
@@ -1049,6 +496,643 @@ spaceScale: {
   spacing12: '64px',
   spacing13: '96px',
   spacing14: '160px'
+}
+```
+
+## Customization
+
+This isn't a recommended usage of the Magma components, however it showcases a potential for modification where applicable in varying scenarios.
+
+<Donut />
+
+```tsx
+import React from 'react';
+import {
+  AppBar,
+  Button,
+  ButtonGroupAlignment,
+  ButtonColor,
+  ButtonGroup,
+  ButtonVariant,
+  Card,
+  CardBody,
+  CardHeading,
+  Combobox,
+  Drawer,
+  Flex,
+  FlexBehavior,
+  Heading,
+  HyperLink,
+  IconButton,
+  magma,
+  Radio,
+  RadioGroup,
+  Spacer,
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+  TabsContainer,
+  Tabs,
+  Tab,
+  TabPanelsContainer,
+  TabPanel,
+  Tag,
+  Tooltip,
+} from 'react-magma-dom';
+
+import { InfoIcon } from 'react-magma-icons';
+
+import styled from '../../theme/styled';
+
+const springfieldDonut = Object.assign({}, magma, {
+  colors: Object.assign({}, magma.colors, {
+    danger: '#f3772b',
+    danger600: '#b94d1c',
+    marketing: '#1a85e0',
+    neutral500: '#893013',
+    primary: '#3493f1',
+    primary600: '#215fb3',
+    neutral: '#7b361e',
+    neutral100: '#ebf88b',
+    secondary500: '#42e093',
+    secondary600: '#43fd94',
+  }),
+
+  bodyFont: '"Varela Round", sans-serif',
+  bodyExpressiveFont: '"Varela Round", sans-serif',
+  bodyNarrativeFont: '"Varela Round", sans-serif',
+  borderRadius: '18px',
+  borderRadiusSmall: '14px',
+  headingFont: '"Varela Round", sans-serif',
+  headingExpressiveFont: '"Varela Round", sans-serif',
+  headingNarrativeFont: '"Varela Round", sans-serif',
+  direction: 'ltr',
+  spacingMultiplier: 8,
+
+  // breakpoints
+  breakpoints: {
+    xs: 60,
+    small: 800,
+    medium: 900,
+    large: 2000,
+    xl: 5000,
+  },
+
+  spaceScale: magma.spaceScale,
+
+  iconSizes: {
+    xSmall: 10,
+    small: 14,
+    medium: 18,
+    large: 22,
+    xLarge: 26,
+  },
+
+  // Typography
+  typeScale: magma.typeScale,
+  typographyVisualStyles: {
+    // Productive
+    headingXLarge: {
+      mobile: magma.typeScale.size07,
+      desktop: magma.typeScale.size09,
+      fontWeight: 900,
+    },
+    headingLarge: {
+      mobile: magma.typeScale.size06,
+      desktop: magma.typeScale.size07,
+      fontWeight: 900,
+    },
+    headingMedium: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+      fontWeight: 900,
+    },
+    headingSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+      fontWeight: 900,
+    },
+    headingXSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size04,
+      fontWeight: 900,
+    },
+    heading2XSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+      fontWeight: 900,
+    },
+    bodyLarge: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+    },
+    bodyMedium: {
+      mobile: magma.typeScale.size06,
+      desktop: magma.typeScale.size06,
+    },
+    bodySmall: {
+      mobile: magma.typeScale.size02,
+      desktop: magma.typeScale.size02,
+    },
+    bodyXSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+    },
+  },
+  typographyExpressiveVisualStyles: {
+    heading2XLarge: {
+      mobile: magma.typeScale.size13,
+      desktop: magma.typeScale.size15,
+      fontWeight: 900,
+    },
+    headingXLarge: {
+      mobile: magma.typeScale.size10,
+      desktop: magma.typeScale.size12,
+      fontWeight: 900,
+    },
+    headingLarge: {
+      mobile: magma.typeScale.size07,
+      desktop: magma.typeScale.size09,
+      fontWeight: 900,
+    },
+    headingMedium: {
+      mobile: magma.typeScale.size06,
+      desktop: magma.typeScale.size07,
+      fontWeight: 900,
+    },
+    headingSmall: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+      fontWeight: 900,
+    },
+    headingXSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+      fontWeight: 900,
+    },
+    heading2XSmall: {
+      mobile: magma.typeScale.size03,
+      desktop: magma.typeScale.size03,
+      fontWeight: 900,
+    },
+    bodyLarge: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+    },
+    bodyMedium: {
+      mobile: magma.typeScale.size03,
+      desktop: magma.typeScale.size03,
+    },
+    bodySmall: {
+      mobile: magma.typeScale.size02,
+      desktop: magma.typeScale.size02,
+    },
+    bodyXSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+    },
+  },
+  typographyNarrativeVisualStyles: {
+    headingXLarge: {
+      mobile: magma.typeScale.size07,
+      desktop: magma.typeScale.size08,
+      fontWeight: 900,
+    },
+    headingLarge: {
+      mobile: magma.typeScale.size06,
+      desktop: magma.typeScale.size07,
+      fontWeight: 900,
+    },
+    headingMedium: {
+      mobile: magma.typeScale.size05,
+      desktop: magma.typeScale.size06,
+      fontWeight: 900,
+    },
+    headingSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+      fontWeight: 900,
+    },
+    headingXSmall: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size04,
+      fontWeight: 900,
+    },
+    heading2XSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+      fontWeight: 900,
+    },
+    bodyLarge: {
+      mobile: magma.typeScale.size04,
+      desktop: magma.typeScale.size05,
+    },
+    bodyMedium: {
+      mobile: magma.typeScale.size03,
+      desktop: magma.typeScale.size03,
+    },
+    bodySmall: {
+      mobile: magma.typeScale.size02,
+      desktop: magma.typeScale.size02,
+    },
+    bodyXSmall: {
+      mobile: magma.typeScale.size01,
+      desktop: magma.typeScale.size01,
+    },
+  },
+
+  appBar: {
+    backgroundColor: '#d792cb',
+    textColor: '#ebf88b',
+    height: '80px',
+    padding: '0 30px',
+    compact: {
+      height: '56px',
+      padding: `${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing06}`,
+    },
+    inverse: {
+      backgroundColor: magma.colors.primary600,
+      textColor: magma.colors.neutral100,
+    },
+  },
+
+  combobox: {
+    menu: {
+      maxHeight: '250px',
+    },
+  },
+
+  modal: {
+    width: {
+      small: '300px',
+      medium: '600px',
+      large: '900px',
+    },
+  },
+
+  drawer: {
+    default: {
+      maxWidth: '50%',
+      minHeight: '500px',
+      margin: '0',
+      borderRadius: '0',
+      top: '0',
+      right: 'calc(50% - 25%)',
+      bottom: '0',
+      left: 'calc(50% - 25%)',
+      position: 'relative',
+    },
+    right: {
+      left: 'calc(50% - 25%)',
+      height: '50%',
+      width: '500px',
+      position: 'fixed',
+    },
+    left: {
+      right: 'auto',
+      height: '50%',
+      width: '500px',
+    },
+    top: {
+      bottom: 'auto',
+      height: '500px',
+    },
+    bottom: {
+      top: 'auto',
+      height: '500px',
+      position: 'fixed',
+    },
+  },
+
+  dropdown: {
+    content: {
+      maxHeight: '250px',
+    },
+  },
+
+  tabs: {
+    approxTabSize: {
+      horizontal: 120,
+      vertical: 80,
+    },
+  },
+
+  select: {
+    menu: {
+      maxHeight: '420px',
+    },
+  },
+
+  tag: {
+    border: '0',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+
+  tooltip: {
+    arrowSize: '4px',
+    arrowSizeDoubled: '8px',
+    backgroundColor: '#15397c',
+    fontWeight: 900,
+    maxWidth: '300px',
+    textColor: '#f7db7f',
+    typeScale: magma.typeScale.size02,
+    zIndex: 999,
+    inverse: {
+      backgroundColor: magma.colors.neutral,
+      textColor: '#f7db7f',
+    },
+  },
+});
+
+const StyledCardHeading = styled.h1`
+  color: #f7db7f;
+  font-size: 40px;
+  position: relative;
+  -webkit-text-stroke-width: 4px;
+  text-shadow: -5px 1px #a15936, -5px -1px #a15936, -5px 0px 2px #a15936, -5px
+      4px 2px #a15936, 1px 4px 2px #a15936;
+  &:before {
+    color: white;
+    content: 'Doh';
+    position: absolute;
+    top: 0;
+    left: 5px;
+    font-size: 0.7em;
+    letter-spacing: 8px;
+    filter: blur(3px);
+    opacity: 0.3;
+  }
+`;
+
+export function Example() {
+  //Shows / hides the appropriate step on click.
+  const [eachIndex, setEachIndex] = React.useState(0);
+
+  function handleChange(eachIndex) {
+    setEachIndex(eachIndex);
+  }
+
+  return (
+    <ThemeContext.Provider value={springfieldDonut}>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+      </style>
+
+      <Card isInverse>
+        <CardBody>
+          <AppBar style={{ borderRadius: '6px' }}>
+            <StyledCardHeading>Doh</StyledCardHeading>
+          </AppBar>
+          <Spacer size={20} />
+
+          <TabsContainer isInverse activeIndex={eachIndex}>
+            <Tabs isInverse onChange={handleChange}>
+              <Tab>Donuts</Tab>
+              {eachIndex === 0 ? (
+                <Tab disabled>Shipping</Tab>
+              ) : (
+                <Tab>Shipping</Tab>
+              )}
+              {eachIndex === 0 || eachIndex === 1 ? (
+                <Tab disabled>Summary</Tab>
+              ) : (
+                <Tab>Summary</Tab>
+              )}
+            </Tabs>
+            <Spacer size={20} />
+            <TabPanelsContainer>
+              <TabPanel>
+                <Heading
+                  isInverse
+                  contextVariant={TypographyContextVariant.expressive}
+                  level={4}
+                >
+                  Donut selecta
+                </Heading>
+
+                <Combobox
+                  isInverse
+                  id="comboboxId"
+                  labelText="Variety"
+                  defaultItems={[
+                    { label: 'Glazed', value: 'glazed' },
+                    { label: 'Chocolate', value: 'chocolate' },
+                    { label: 'Sprinkles', value: 'sprinkles' },
+                    { label: 'Remix!', value: 'remix' },
+                  ]}
+                  placeholder="Choose.."
+                />
+                <Spacer size={40} />
+                <Flex behavior={FlexBehavior.container}>
+                  <Flex behavior={FlexBehavior.item} md={5}>
+                    <Card isInverse>
+                      <CardBody>
+                        <RadioGroup
+                          isInverse
+                          labelText="Donuts per box"
+                          name="donuts"
+                        >
+                          <Tooltip content="How many of these are you planning to indulge?">
+                            <IconButton
+                              aria-label="Right"
+                              icon={<InfoIcon />}
+                              isInverse
+                              variant={ButtonVariant.link}
+                            />
+                          </Tooltip>
+                          <Radio labelText="5" value="5" />
+                          <Radio labelText="10" value="10" />
+                          <Radio labelText="20" value="20" />
+                          <Radio labelText="40" value="40" />
+                        </RadioGroup>
+                      </CardBody>
+                    </Card>
+                  </Flex>
+                  <Spacer size={20} />
+
+                  <Flex behavior={FlexBehavior.item} md={5}>
+                    <Card isInverse>
+                      <CardBody>
+                        <RadioGroup isInverse labelText="Boxes" name="boxes">
+                          <Tooltip content="I hope you'll be distributing these along your street.">
+                            <IconButton
+                              aria-label="Right"
+                              icon={<InfoIcon />}
+                              isInverse
+                              variant={ButtonVariant.link}
+                            />
+                          </Tooltip>
+                          <Radio labelText="1" value="1" />
+                          <Radio labelText="2" value="2" />
+                          <Radio labelText="3" value="3" />
+                          <Radio labelText="4" value="4" />
+                        </RadioGroup>
+                      </CardBody>
+                    </Card>
+                  </Flex>
+                </Flex>
+                <Spacer size={40} />
+                <ButtonGroup alignment={ButtonGroupAlignment.right}>
+                  <Button
+                    onClick={() => setEachIndex(1)}
+                    color={ButtonColor.secondary}
+                  >
+                    Continue
+                  </Button>
+                </ButtonGroup>
+              </TabPanel>
+
+              <TabPanel>
+                <Heading
+                  isInverse
+                  contextVariant={TypographyContextVariant.expressive}
+                  level={4}
+                >
+                  How quickly in need are we?
+                </Heading>
+                <RadioGroup
+                  isInverse
+                  labelText="Select your patience level"
+                  name="donuts"
+                  value="selectedOption"
+                >
+                  <Tooltip content="An expanse of time during which you'll potentially contend with a donut free lifestyle.">
+                    <IconButton
+                      aria-label="Right"
+                      icon={<InfoIcon />}
+                      isInverse
+                      variant={ButtonVariant.link}
+                    />
+                  </Tooltip>
+                  <Card isInverse>
+                    <CardBody>
+                      <Flex behavior={FlexBehavior.container}>
+                        <Flex behavior={FlexBehavior.item} md={2}>
+                          <Tag color="primary" isInverse size="medium">
+                            Free!
+                          </Tag>
+                        </Flex>
+                        <Spacer size={20} />
+                        <Flex behavior={FlexBehavior.item} md={8}>
+                          <Radio
+                            labelText="A standard and deliberately slowed shipping duration due to your thriftiness."
+                            value="selectedOption"
+                          />
+                        </Flex>
+                      </Flex>
+                    </CardBody>
+                  </Card>
+                  <Spacer size={20} />
+
+                  <Card isInverse>
+                    <CardBody>
+                      <Flex behavior={FlexBehavior.container}>
+                        <Flex behavior={FlexBehavior.item} md={2}>
+                          <Tag color="primary" isInverse size="medium">
+                            $20
+                          </Tag>
+                        </Flex>
+                        <Spacer size={20} />
+                        <Flex behavior={FlexBehavior.item} md={8}>
+                          <Radio
+                            labelText="Upgraded and moderately expedited."
+                            value="middling"
+                          />
+                        </Flex>
+                      </Flex>
+                    </CardBody>
+                  </Card>
+                  <Spacer size={20} />
+
+                  <Card isInverse>
+                    <CardBody>
+                      <Flex behavior={FlexBehavior.container}>
+                        <Flex behavior={FlexBehavior.item} md={2}>
+                          <Tag color="primary" isInverse size="medium">
+                            $30
+                          </Tag>
+                        </Flex>
+                        <Spacer size={20} />
+                        <Flex behavior={FlexBehavior.item} md={8}>
+                          <Radio
+                            labelText="Teleportation-like response time."
+                            value="fancy"
+                          />
+                        </Flex>
+                      </Flex>
+                    </CardBody>
+                  </Card>
+                </RadioGroup>
+
+                <Spacer size={40} />
+                <ButtonGroup alignment={ButtonGroupAlignment.right}>
+                  <Button
+                    onClick={() => setEachIndex(0)}
+                    color={ButtonColor.primary}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    onClick={() => setEachIndex(2)}
+                    color={ButtonColor.secondary}
+                  >
+                    Continue
+                  </Button>
+                </ButtonGroup>
+              </TabPanel>
+
+              <TabPanel>
+                <Heading
+                  isInverse
+                  contextVariant={TypographyContextVariant.expressive}
+                  level={4}
+                >
+                  Order summary
+                </Heading>
+                <Table isInverse hasVerticalBorders>
+                  <TableHead>
+                    <TableRow>
+                      <TableHeaderCell>Variety</TableHeaderCell>
+                      <TableHeaderCell>Donuts per box</TableHeaderCell>
+                      <TableHeaderCell>Boxes</TableHeaderCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell>Remix!</TableCell>
+                      <TableCell>40</TableCell>
+                      <TableCell>3</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+                <Spacer size={40} />
+                <ButtonGroup alignment={ButtonGroupAlignment.right}>
+                  <Button
+                    onClick={() => setEachIndex(1)}
+                    color={ButtonColor.primary}
+                  >
+                    Back
+                  </Button>
+                  <Button
+                    onClick={() => setEachIndex(0)}
+                    color={ButtonColor.secondary}
+                  >
+                    Place Order
+                  </Button>
+                </ButtonGroup>
+              </TabPanel>
+            </TabPanelsContainer>
+          </TabsContainer>
+        </CardBody>
+      </Card>
+    </ThemeContext.Provider>
+  );
 }
 ```
 
