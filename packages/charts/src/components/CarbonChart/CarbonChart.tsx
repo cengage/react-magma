@@ -9,7 +9,12 @@ import {
 
 import '@carbon/styles/css/styles.css';
 import '@carbon/charts/styles.css';
-import { AreaChart, SimpleBarChart, BubbleChart, WordCloudChart } from '@carbon/charts-react';
+import {
+  AreaChart,
+  SimpleBarChart,
+  BubbleChart,
+  WordCloudChart,
+} from '@carbon/charts-react';
 
 export enum CarbonChartType {
   area = 'area',
@@ -32,12 +37,17 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
-  theme: ThemeInterface
+  theme: ThemeInterface;
 }>`
+
   p, div, text, .cds--cc--axes g.axis .axis-title,
   .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
     font-family: 'Work Sans', Helvetica, sans-serif !important;
+  }
+
+  .cds--cc--axes {
+    overflow: visible;
   }
 
   div.cds--cc--legend div.legend-item p {
@@ -45,7 +55,10 @@ const CarbonChartWrapper = styled.div<{
   }
 
   .cds--btn--primary {
-    background: ${props => props.isInverse ? props.theme.colors.primary600 : props.theme.colors.primary}
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary600
+        : props.theme.colors.primary}
   }
 
   :focus {
@@ -97,7 +110,6 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
-
     const allCharts = {
       area: AreaChart,
       bar: SimpleBarChart,
@@ -129,7 +141,13 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const ChartType = allCharts[type];
 
     return (
-      <CarbonChartWrapper data-testid={testId} ref={ref} isInverse={isInverse} theme={theme} {...rest}>
+      <CarbonChartWrapper
+        data-testid={testId}
+        ref={ref}
+        isInverse={isInverse}
+        theme={theme}
+        {...rest}
+      >
         <ChartType data={dataSet} options={newOptions} />
       </CarbonChartWrapper>
     );
