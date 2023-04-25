@@ -96,6 +96,13 @@ const CarbonChartWrapper = styled.div<{
   }
 `;
 
+enum ChartTheme {
+  WHITE = 'white',
+  G100 = 'g100',
+  G90 = 'g90',
+  G10 = 'g10',
+}
+
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
   (props, ref) => {
     const {
@@ -119,10 +126,15 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     function buildColors() {
       let scaleColorsObj: Object = {};
-      const allGroups = [...new Set<string>(dataSet.map(item => item.group))];
-      allGroups.forEach((key, i) => {
-        if (allGroups.length <= theme.iterableColors.length) {
-          return (scaleColorsObj[key] = theme.iterableColors[i]);
+
+      const groups = dataSet.map(item => item['group']);
+      const uniqueGroup = groups.filter(
+        (x, index) => groups.indexOf(x) === index
+      );
+
+      uniqueGroup.forEach((group, i) => {
+        if (uniqueGroup.length <= theme.iterableColors.length) {
+          return (scaleColorsObj[group] = theme.iterableColors[i]);
         }
         return {};
       });
@@ -132,7 +144,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const newOptions = {
       ...options,
-      theme: isInverse ? 'g100' : 'white',
+      theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
       color: {
         scale: buildColors(),
       },

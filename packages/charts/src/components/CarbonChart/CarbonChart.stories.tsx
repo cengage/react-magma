@@ -12,6 +12,12 @@ export default {
         type: 'boolean',
       },
     },
+    type: {
+      control: {
+        type: 'select',
+        options: CarbonChartType,
+      }
+    }
   },
 } as Meta;
 
