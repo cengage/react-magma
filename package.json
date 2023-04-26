@@ -52,6 +52,10 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
+  "devDependencies": {
+    "@carbon/charts": "1.7.1",
+    "@carbon/charts-react": "1.7.1"
+  },
   "dependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
