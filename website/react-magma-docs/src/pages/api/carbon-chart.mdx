@@ -1,48 +1,39 @@
 ---
 pageTitle: CarbonChart API
 title: CarbonChart
-props:
-- CarbonChartProps
 ---
 
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<PageContent componentName=CarbonChart type="api">
+<PageContent componentName="carbonchart" type="api">
 
-<LeadParagraph>
-  
-</LeadParagraph>
+<LeadParagraph>CarbonChart</LeadParagraph>
 
 ## Basic Usage
 
 ```typescript
 import React from 'react';
-import { CarbonChart } from 'react-magma-dom';
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
 
 export function Example() {
-return <CarbonChart>CarbonChart content</CarbonChart>;
+  const dataSet = [
+    {
+      group: 'Dataset 1',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 0,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 47263,
+    },
+  ];
+  return (
+    <CarbonChart dataSet={dataSet} type={CarbonChartType.area}>
+      CarbonChart content
+    </CarbonChart>
+  );
 }
 ```
-
-## InverseContext
-
-The `isInverse` prop will render a dark background and light text. The children will
-inherit the `isInverse` prop unless specified otherwise.
-
-```typescript
-import React from 'react';
-import { CarbonChart } from 'react-magma-dom';
-
-export function Example() {
-return <CarbonChart isInverse>CarbonChart content</CarbonChart>;
-}
-```
-
-
-# CarbonChart Props
-
-**Any other props supplied will be provided to the wrapping `div` element.**
-
-<CarbonChartProps />
 
 </PageContent>
