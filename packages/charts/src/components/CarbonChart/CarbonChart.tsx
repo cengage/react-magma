@@ -7,14 +7,14 @@ import {
   styled,
 } from 'react-magma-dom';
 
-import '@carbon/styles/css/styles.css';
-import '@carbon/charts/styles.css';
 import {
   AreaChart,
   SimpleBarChart,
   BubbleChart,
   WordCloudChart,
 } from '@carbon/charts-react';
+import '@carbon/styles/css/styles.css';
+import '@carbon/charts/styles.css';
 
 export enum CarbonChartType {
   area = 'area',
@@ -96,11 +96,16 @@ const CarbonChartWrapper = styled.div<{
   }
 `;
 
+// Carbon themes (https://github.com/carbon-design-system/carbon-charts/blob/master/packages/core/src/interfaces/enums.ts#L12)
 enum ChartTheme {
   WHITE = 'white',
   G100 = 'g100',
   G90 = 'g90',
   G10 = 'g10',
+}
+
+interface ColorsObject {
+  [key: string]: string;
 }
 
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
@@ -125,16 +130,18 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     };
 
     function buildColors() {
-      let scaleColorsObj: Object = {};
+      let scaleColorsObj: ColorsObject = {};
 
-      const groups = dataSet.map(item => item['group']);
-      const uniqueGroup = groups.filter(
-        (x, index) => groups.indexOf(x) === index
+      const allGroups = dataSet.map(item => {
+        return 'group' in item ? item['group'] : null;
+      });
+      const uniqueGroups = allGroups.filter(
+        (g, index) => allGroups.indexOf(g) === index
       );
 
-      uniqueGroup.forEach((group, i) => {
-        if (uniqueGroup.length <= theme.iterableColors.length) {
-          return (scaleColorsObj[group] = theme.iterableColors[i]);
+      uniqueGroups.forEach((group, i) => {
+        if (uniqueGroups.length <= theme.iterableColors.length) {
+          return (scaleColorsObj[group || 'null'] = theme.iterableColors[i]);
         }
         return {};
       });
