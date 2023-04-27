@@ -32,19 +32,19 @@ jobs:
       #   run: npm run build:docs
       - name: Build Storybook
         run: npm run build:storybook
-      - name: Deploy Doc Preview to Netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './website/react-magma-docs/public'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: false
-          alias: docs-preview-${{ github.event.number }}
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      # - name: Deploy Doc Preview to Netlify
+      #   uses: nwtgck/actions-netlify@v1.1
+      #   with:
+      #     publish-dir: './website/react-magma-docs/public'
+      #     production-branch: main
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     enable-pull-request-comment: true
+      #     enable-commit-comment: true
+      #     overwrites-pull-request-comment: false
+      #     alias: docs-preview-${{ github.event.number }}
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Deploy Storybook to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
