@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.14
+
+### Patch Changes
+
+- fbc4b655f: Update the Theme page to include more details about theming, and remove theme section in the Custom Styles page.
+
 ## 5.0.1-next.13
 
 ### Patch Changes
