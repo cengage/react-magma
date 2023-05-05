@@ -27,6 +27,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       labelStyle,
       labelText,
       labelWidth,
+      maxCount,
+      maxlength,
       maxLength,
       messageStyle,
       testId,
@@ -37,7 +39,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const id = useGenerateId(defaultId);
 
     const descriptionId =
-      errorMessage || helperMessage || maxLength ? `${id}__desc` : null;
+      errorMessage || helperMessage || maxLength || maxCount
+        ? `${id}__desc`
+        : null;
 
     const isInverse = useIsInverse(props.isInverse);
 
@@ -77,6 +81,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         labelText={labelText}
         labelWidth={labelWidth}
         maxLength={maxLength}
+        maxCount={maxCount}
         messageStyle={messageStyle}
         testId={testId && `${testId}-formFieldContainer`}
       >
@@ -86,12 +91,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          hasError={!!errorMessage || characterLength > maxLength}
+          hasError={
+            !!errorMessage ||
+            characterLength > maxCount ||
+            characterLength > maxLength
+          }
           iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
           inputLength={characterLength}
           isInverse={isInverse}
+          maxlength={maxlength}
           onChange={handleChange}
           onClear={handleClear}
           ref={ref}

@@ -14,11 +14,7 @@ const labelText = 'Character Counter';
 
 const Template: Story<CharacterCounterProps> = args => (
   <>
-    <Input
-      {...args}
-      testId="test-this-id"
-      labelText={labelText}
-    />
+    <Input {...args} testId="test-this-id" labelText={labelText} />
   </>
 );
 
@@ -59,6 +55,11 @@ export default {
         options: LabelPosition,
       },
     },
+    maxlength: {
+      control: {
+        type: 'text',
+      },
+    },
     maxLength: {
       control: {
         type: 'number',
@@ -66,9 +67,9 @@ export default {
     },
     value: {
       control: {
-        type: 'text'
-      }
-    }
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 

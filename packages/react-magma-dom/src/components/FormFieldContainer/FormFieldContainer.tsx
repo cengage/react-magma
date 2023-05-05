@@ -77,6 +77,11 @@ export interface FormFieldContainerBaseProps {
   /**
    * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
    */
+  maxCount?: number;
+  /**
+   * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
+   * @deprecated true
+   */
   maxLength?: number;
   /**
    * Style properties for the helper or error message
@@ -143,6 +148,7 @@ export const FormFieldContainer = React.forwardRef<
     labelStyle,
     labelText,
     labelWidth,
+    maxCount,
     maxLength,
     messageStyle,
     testId,
@@ -152,7 +158,9 @@ export const FormFieldContainer = React.forwardRef<
   const isInverse = useIsInverse(isInverseProp);
 
   const descriptionId =
-    errorMessage || helperMessage || maxLength ? `${fieldId}__desc` : null;
+    errorMessage || helperMessage || maxLength || maxCount
+      ? `${fieldId}__desc`
+      : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -188,15 +196,17 @@ export const FormFieldContainer = React.forwardRef<
           labelWidth={labelWidth}
         >
           {children}
-          {typeof maxLength === 'number' && (
-            <CharacterCounter
-              id={descriptionId}
-              inputLength={inputLength}
-              isInverse={isInverse}
-              maxLength={maxLength}
-              testId={testId && `${testId}-character-counter`}
-            />
-          )}
+          {typeof maxCount === 'number' ||
+            (typeof maxLength === 'number' && (
+              <CharacterCounter
+                id={descriptionId}
+                inputLength={inputLength}
+                isInverse={isInverse}
+                maxCount={maxCount}
+                maxLength={maxLength}
+                testId={testId && `${testId}-character-counter`}
+              />
+            ))}
 
           {(errorMessage || helperMessage) && (
             <InputMessage
