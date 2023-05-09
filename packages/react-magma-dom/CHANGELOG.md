@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.9
+
+### Patch Changes
+
+- 35a33a7ae: fix(combobox): Disabled Multi Combobox disables the buttons inside it
+
 ## 4.1.0-next.8
 
 ### Patch Changes

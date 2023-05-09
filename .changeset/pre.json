@@ -12,6 +12,7 @@
   },
   "changesets": [
     "charcounter-initialvalue",
+    "disabled-multiCombo",
     "docs-select",
     "docs-toggle",
     "docs",
