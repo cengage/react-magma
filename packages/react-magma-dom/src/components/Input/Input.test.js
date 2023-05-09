@@ -477,7 +477,7 @@ describe('Input', () => {
 
     it('should render an input with a correctly styled error message', () => {
       const { getByTestId, getByLabelText } = render(
-        <Input labelText={labelText} maxLength={2} />
+        <Input labelText={labelText} maxCount={2} />
       );
 
       fireEvent.change(getByLabelText(labelText), {
@@ -494,23 +494,21 @@ describe('Input', () => {
     });
 
     it('should render an input with an initial value set by the user', () => {
-      const { getByText } = render(<Input maxLength={2} value="hi" />);
+      const { getByText } = render(<Input maxCount={2} value="hi" />);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
     it('should update the character length on rerender', () => {
-      const { getByText, rerender } = render(
-        <Input maxLength={5} value="hi" />
-      );
+      const { getByText, rerender } = render(<Input maxCount={5} value="hi" />);
       expect(getByText('3 ' + charactersLeft)).toBeInTheDocument();
-      rerender(<Input maxLength={5} value="hello" />);
+      rerender(<Input maxCount={5} value="hello" />);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by backspacing', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by backspacing', () => {
       const onChange = jest.fn();
       const { getByText, getByLabelText } = render(
-        <Input labelText={labelText} maxLength={4} onChange={onChange} />
+        <Input labelText={labelText} maxCount={4} onChange={onChange} />
       );
 
       fireEvent.change(getByLabelText(labelText), {
@@ -528,14 +526,14 @@ describe('Input', () => {
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by clicking the onClear button', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by clicking the onClear button', () => {
       const onClear = jest.fn();
       const { getByText, getByLabelText, getByTestId } = render(
         <Input
           labelText={labelText}
           onClear={onClear}
           isClearable
-          maxLength={4}
+          maxCount={4}
         />
       );
 

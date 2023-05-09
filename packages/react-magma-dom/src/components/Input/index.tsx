@@ -18,6 +18,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       children,
       containerStyle,
       errorMessage,
+      hasCharacterCounter = true,
       helperMessage,
       iconPosition,
       id: defaultId,
@@ -28,7 +29,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       labelText,
       labelWidth,
       maxCount,
-      maxlength,
       maxLength,
       messageStyle,
       testId,
@@ -39,9 +39,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const id = useGenerateId(defaultId);
 
     const descriptionId =
-      errorMessage || helperMessage || maxLength || maxCount
-        ? `${id}__desc`
-        : null;
+      errorMessage || helperMessage || maxCount ? `${id}__desc` : null;
 
     const isInverse = useIsInverse(props.isInverse);
 
@@ -70,6 +68,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
+        hasCharacterCounter={hasCharacterCounter}
         helperMessage={helperMessage}
         iconPosition={iconPosition}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
@@ -91,17 +90,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          hasError={
-            !!errorMessage ||
-            characterLength > maxCount ||
-            characterLength > maxLength
-          }
+          hasError={!!errorMessage || characterLength > maxCount}
           iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
           inputLength={characterLength}
           isInverse={isInverse}
-          maxlength={maxlength}
+          maxLength={maxLength}
           onChange={handleChange}
           onClear={handleClear}
           ref={ref}

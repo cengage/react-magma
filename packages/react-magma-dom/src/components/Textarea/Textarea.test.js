@@ -116,9 +116,9 @@ describe('Textarea', () => {
     const charactersAllowed = defaultI18n.characterCounter.charactersAllowed;
     const charactersLeft = defaultI18n.characterCounter.charactersLeft;
 
-    it('Shows the label "characters allowed" equal to the maxLength if the user clears the textarea', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the textarea', () => {
       const { getByTestId, getByText } = render(
-        <Textarea maxLength={4} testId={testId} />
+        <Textarea maxCount={4} testId={testId} />
       );
       const textarea = getByTestId(testId);
 
@@ -132,16 +132,16 @@ describe('Textarea', () => {
     });
 
     it('should render a textarea with an initial value set by the user', () => {
-      const { getByText } = render(<Textarea maxLength={2} value="hi" />);
+      const { getByText } = render(<Textarea maxCount={2} value="hi" />);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
     it('should update the character length on rerender', () => {
       const { getByText, rerender } = render(
-        <Textarea maxLength={5} value="hi" />
+        <Textarea maxCount={5} value="hi" />
       );
       expect(getByText('3 ' + charactersLeft)).toBeInTheDocument();
-      rerender(<Textarea maxLength={5} value="hello" />);
+      rerender(<Textarea maxCount={5} value="hello" />);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
   });

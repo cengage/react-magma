@@ -20,23 +20,20 @@ export interface CharacterCounterProps
    */
   maxCount: number;
   /**
-   * Sets the maximum amount of characters allowed.
-   * @deprecated true
+   * Limits the amount of characters in an input.
    */
-  maxLength: number;
+  maxLength?: number;
   /**
    * @internal
    */
   testId?: string;
 }
 
-// Changes the font weight to bold based on maxLength.
+// Changes the font weight to bold based on maxCount.
 function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   if (
-    props.inputLength < props.maxLength ||
-    (props.maxCount && props.inputLength >= 1) ||
-    props.inputLength === props.maxLength ||
-    props.maxCount
+    (props.inputLength < props.maxCount && props.inputLength >= 1) ||
+    props.inputLength === props.maxCount
   ) {
     return magma.typographyVisualStyles.headingXSmall.fontWeight;
   }
@@ -44,9 +41,9 @@ function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
 }
 
 const StyledInputMessage = styled(InputMessage)<{
+  hasCharacterCounter?: boolean;
   inputLength: number;
   maxCount: number;
-  maxLength: number;
 }>`
   font-weight: ${buildFontWeight};
   font-family: ${props => props.theme.bodyFont};
@@ -56,23 +53,15 @@ export const CharacterCounter = React.forwardRef<
   HTMLDivElement,
   CharacterCounterProps
 >((props, ref) => {
-  const {
-    children,
-    id,
-    inputLength,
-    maxCount,
-    maxLength,
-    testId,
-    isInverse,
-    ...rest
-  } = props;
+  const { children, id, inputLength, maxCount, testId, isInverse, ...rest } =
+    props;
 
   const i18n = React.useContext(I18nContext);
 
-  const isOverMaxLength = inputLength > maxLength || inputLength > maxCount;
+  const isOverMaxCount = inputLength > maxCount;
 
   // Gets percentage value of total characters within Input to let aria-live have dynamic states.
-  const getPercentage = (inputLength / maxLength || maxCount) * 100;
+  const getPercentage = (inputLength / maxCount) * 100;
 
   // Returns aria-live states based on percentage of characters within Input.
   function getAriaLiveState() {
@@ -85,45 +74,39 @@ export const CharacterCounter = React.forwardRef<
     return 'off';
   }
 
-  // As the user types, this calculates the remaining characters set by maxLength or maxCount which counts down to zero then counts up if over the limit.
+  // As the user types, this calculates the remaining characters set by maxCount which counts down to zero then counts up if over the limit.
   const characterLimit =
-    maxLength > inputLength || maxCount > inputLength
-      ? maxLength - inputLength || maxCount - inputLength
-      : inputLength - maxLength || inputLength - maxCount;
+    maxCount > inputLength ? maxCount - inputLength : inputLength - maxCount;
 
   /*
    * Returns the character counter description.
    * When there's no inputLength, returns "# character(s) allowed"
-   * When inputLength < maxLength or maxCount or inputLength === maxLength or maxCount, returns "# character(s) left"
-   * When inputLength > maxLength or maxCount, returns "# character(s) over limit"
+   * When inputLength < maxCount or inputLength === maxCount, returns "# character(s) left"
+   * When inputLength > maxCount, returns "# character(s) over limit"
    */
   function characterTitle() {
     if (inputLength > 0) {
-      if (inputLength < maxLength || inputLength < maxCount) {
-        if (inputLength === maxLength - 1 || inputLength === maxCount - 1) {
+      if (inputLength < maxCount) {
+        if (inputLength === maxCount - 1) {
           return `${characterLimit} ${i18n.characterCounter.characterLeft}`;
         } else if (characterLimit > 1) {
           return `${characterLimit} ${i18n.characterCounter.charactersLeft}`;
         }
       }
-      if (inputLength > maxLength || inputLength > maxCount) {
-        if (inputLength === maxLength + 1 || inputLength === maxCount + 1) {
+      if (inputLength > maxCount) {
+        if (inputLength === maxCount + 1) {
           return `${characterLimit} ${i18n.characterCounter.characterOver}`;
         }
         return `${characterLimit} ${i18n.characterCounter.charactersOver}`;
       }
-      if (inputLength === maxLength || inputLength === maxCount) {
+      if (inputLength === maxCount) {
         return `0 ${i18n.characterCounter.charactersLeft}`;
       }
     } else {
-      if (maxLength === 1 || maxCount === 1) {
-        return `${maxLength || maxCount} ${
-          i18n.characterCounter.characterAllowed
-        }`;
+      if (maxCount === 1) {
+        return `${maxCount} ${i18n.characterCounter.characterAllowed}`;
       }
-      return `${maxLength || maxCount} ${
-        i18n.characterCounter.charactersAllowed
-      }`;
+      return `${maxCount} ${i18n.characterCounter.charactersAllowed}`;
     }
   }
 
@@ -131,11 +114,10 @@ export const CharacterCounter = React.forwardRef<
     <div data-testid={testId} id={id} ref={ref} {...rest}>
       <StyledInputMessage
         aria-live={getAriaLiveState()}
-        hasError={isOverMaxLength}
+        hasError={isOverMaxCount}
         isInverse={isInverse}
         inputLength={inputLength}
         maxCount={maxCount}
-        maxLength={maxLength}
       >
         {characterTitle()}
       </StyledInputMessage>

@@ -55,12 +55,7 @@ export default {
         options: LabelPosition,
       },
     },
-    maxlength: {
-      control: {
-        type: 'text',
-      },
-    },
-    maxLength: {
+    maxCount: {
       control: {
         type: 'number',
       },
@@ -75,7 +70,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-  maxLength: 4,
+  maxCount: 4,
   isInverse: false,
 };
 

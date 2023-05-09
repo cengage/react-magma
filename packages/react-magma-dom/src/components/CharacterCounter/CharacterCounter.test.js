@@ -22,7 +22,7 @@ const charactersOver = defaultI18n.characterCounter.charactersOver;
 describe('CharacterCounter', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
-      <CharacterCounter inputLength={45} maxLength={231} testId={testId} />
+      <CharacterCounter inputLength={45} maxCount={231} testId={testId} />
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -30,7 +30,7 @@ describe('CharacterCounter', () => {
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <CharacterCounter inputLength={2} maxLength={22} />
+      <CharacterCounter inputLength={2} maxCount={22} />
     );
 
     return axe(container.innerHTML).then(result => {
@@ -40,24 +40,24 @@ describe('CharacterCounter', () => {
 
   describe('Titles', () => {
     describe('Characters Allowed', () => {
-      it('Shows the default label of "characters allowed" if maxLength is 0', () => {
+      it('Shows the default label of "characters allowed" if maxCount is 0', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={0} maxLength={0} />
+          <CharacterCounter inputLength={0} maxCount={0} />
         );
 
         expect(getByText('0 ' + charactersAllowed)).toBeInTheDocument();
       });
 
-      it('Shows the default label of "character allowed" if maxLength is 1', () => {
+      it('Shows the default label of "character allowed" if maxCount is 1', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={0} maxLength={1} />
+          <CharacterCounter inputLength={0} maxCount={1} />
         );
 
         expect(getByText('1 ' + characterAllowed)).toBeInTheDocument();
       });
-      it('Shows the default label of "characters allowed" if maxLength > 1', () => {
+      it('Shows the default label of "characters allowed" if maxCount > 1', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={0} maxLength={2} />
+          <CharacterCounter inputLength={0} maxCount={2} />
         );
 
         expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
@@ -67,37 +67,37 @@ describe('CharacterCounter', () => {
     describe('Characters Left', () => {
       it('Shows the label "characters left" when inputLength > 1', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={2} maxLength={4} />
+          <CharacterCounter inputLength={2} maxCount={4} />
         );
         expect(getByText('2 ' + charactersLeft)).toBeInTheDocument();
       });
 
-      it('Shows the label "characters left" when maxLength is equal to inputLength', () => {
+      it('Shows the label "characters left" when maxCount is equal to inputLength', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={4} maxLength={4} />
+          <CharacterCounter inputLength={4} maxCount={4} />
         );
         expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
       });
 
-      it('Shows the label "character left" when inputLength < maxLength by 1', () => {
+      it('Shows the label "character left" when inputLength < maxCount by 1', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={3} maxLength={4} />
+          <CharacterCounter inputLength={3} maxCount={4} />
         );
         expect(getByText('1 ' + characterLeft)).toBeInTheDocument();
       });
     });
 
     describe('Characters Over Limit', () => {
-      it('Shows the label "character over limit" when inputLength > maxLength by 1', () => {
+      it('Shows the label "character over limit" when inputLength > maxCount by 1', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={5} maxLength={4} />
+          <CharacterCounter inputLength={5} maxCount={4} />
         );
         expect(getByText('1 ' + characterOver)).toBeInTheDocument();
       });
 
-      it('Shows the label "characters over limit" when inputLength > maxLength by 2', () => {
+      it('Shows the label "characters over limit" when inputLength > maxCount by 2', () => {
         const { getByText } = render(
-          <CharacterCounter inputLength={6} maxLength={4} />
+          <CharacterCounter inputLength={6} maxCount={4} />
         );
         expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
       });
@@ -107,7 +107,7 @@ describe('CharacterCounter', () => {
       it('Should render an input with a correctly styled error message', () => {
         const testId = 'inputMessageErrror';
         const { getByText, getByTestId } = render(
-          <CharacterCounter testId={testId} inputLength={4} maxLength={2} />
+          <CharacterCounter testId={testId} inputLength={4} maxCount={2} />
         );
 
         const errorMessage = getByTestId(testId);
@@ -121,11 +121,11 @@ describe('CharacterCounter', () => {
       });
     });
   });
-  
+
   describe('accessibility', () => {
     it('Should have the aria-live attribute "off" until inputLength gets to 80%', () => {
       const { getByText } = render(
-        <CharacterCounter inputLength={2} maxLength={4} />
+        <CharacterCounter inputLength={2} maxCount={4} />
       );
 
       const characterCounter = getByText('2 ' + charactersLeft).parentElement;
@@ -135,7 +135,7 @@ describe('CharacterCounter', () => {
 
     it('Should have the aria-live attribute "polite" when inputLength is 80% or more', () => {
       const { getByText } = render(
-        <CharacterCounter inputLength={4} maxLength={4} />
+        <CharacterCounter inputLength={4} maxCount={4} />
       );
 
       const characterCounter = getByText('0 ' + charactersLeft).parentElement;
@@ -145,7 +145,7 @@ describe('CharacterCounter', () => {
 
     it('Should have the aria-live attribute "assertive" when inputLength exceeds 100%', () => {
       const { getByText } = render(
-        <CharacterCounter inputLength={5} maxLength={4} />
+        <CharacterCounter inputLength={5} maxCount={4} />
       );
 
       const characterCounter = getByText('1 ' + characterOver).parentElement;

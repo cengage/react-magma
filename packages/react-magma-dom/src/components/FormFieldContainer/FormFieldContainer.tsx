@@ -33,6 +33,12 @@ export interface FormFieldContainerBaseProps {
    * ID of the form field.  Also used in the descrption ID.
    */
   fieldId: string;
+  /** 
+   * Enables Character Counter by default. When set to false, the default HTML attribute of 'maxlength' will work. 
+   * Note: This is a temporary prop and will be removed in future releases.
+    @default true 
+  */
+  hasCharacterCounter?: boolean;
   /**
    * Content of the helper message.
    */
@@ -79,8 +85,7 @@ export interface FormFieldContainerBaseProps {
    */
   maxCount?: number;
   /**
-   * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
-   * @deprecated true
+   * Limits the amount of characters in an input.
    */
   maxLength?: number;
   /**
@@ -138,6 +143,7 @@ export const FormFieldContainer = React.forwardRef<
     containerStyle,
     errorMessage,
     fieldId,
+    hasCharacterCounter = true,
     helperMessage,
     iconPosition,
     inputSize,
@@ -158,9 +164,7 @@ export const FormFieldContainer = React.forwardRef<
   const isInverse = useIsInverse(isInverseProp);
 
   const descriptionId =
-    errorMessage || helperMessage || maxLength || maxCount
-      ? `${fieldId}__desc`
-      : null;
+    errorMessage || helperMessage || maxCount ? `${fieldId}__desc` : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -196,17 +200,16 @@ export const FormFieldContainer = React.forwardRef<
           labelWidth={labelWidth}
         >
           {children}
-          {typeof maxCount === 'number' ||
-            (typeof maxLength === 'number' && (
-              <CharacterCounter
-                id={descriptionId}
-                inputLength={inputLength}
-                isInverse={isInverse}
-                maxCount={maxCount}
-                maxLength={maxLength}
-                testId={testId && `${testId}-character-counter`}
-              />
-            ))}
+          {typeof maxCount === 'number' && hasCharacterCounter && (
+            <CharacterCounter
+              id={descriptionId}
+              inputLength={inputLength}
+              isInverse={isInverse}
+              maxCount={maxCount}
+              maxLength={!hasCharacterCounter && maxLength}
+              testId={testId && `${testId}-character-counter`}
+            />
+          )}
 
           {(errorMessage || helperMessage) && (
             <InputMessage

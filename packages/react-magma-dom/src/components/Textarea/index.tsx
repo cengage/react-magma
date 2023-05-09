@@ -26,7 +26,7 @@ export interface TextareaProps
   /**
    * A number value which gives Character Counter the maximum length of allowable characters in an Textarea.
    */
-  maxLength?: number;
+  maxCount?: number;
   /**
    * @internal
    */
@@ -62,7 +62,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       labelStyle,
       labelText,
       labelWidth,
-      maxLength,
+      maxCount,
       messageStyle,
       testId,
       textareaStyle,
@@ -111,7 +111,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         labelText={labelText}
         labelPosition={labelPosition}
         labelWidth={labelWidth}
-        maxLength={maxLength}
+        maxCount={maxCount}
       >
         <StyledTextArea
           {...other}
@@ -120,7 +120,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           aria-invalid={!!errorMessage}
           data-testid={testId}
-          hasError={!!errorMessage || characterLength > maxLength}
+          hasError={!!errorMessage || characterLength > maxCount}
           id={id}
           isInverse={isInverse}
           onChange={handleChange}
