@@ -1,5 +1,5 @@
 ---
-"react-magma-docs": major
+"react-magma-docs": patch
 ---
 
 docs: updated docs
