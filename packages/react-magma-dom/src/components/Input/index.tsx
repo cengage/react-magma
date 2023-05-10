@@ -39,7 +39,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const id = useGenerateId(defaultId);
 
     const descriptionId =
-      errorMessage || helperMessage || maxCount ? `${id}__desc` : null;
+      errorMessage || helperMessage || maxCount || maxLength
+        ? `${id}__desc`
+        : null;
 
     const isInverse = useIsInverse(props.isInverse);
 
@@ -90,13 +92,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          hasError={!!errorMessage || characterLength > maxCount}
+          hasError={
+            !!errorMessage ||
+            characterLength > maxCount ||
+            characterLength > maxLength
+          }
           iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
           inputLength={characterLength}
           isInverse={isInverse}
-          maxLength={maxLength}
+          maxLength={!hasCharacterCounter && maxLength}
           onChange={handleChange}
           onClear={handleClear}
           ref={ref}

@@ -493,6 +493,15 @@ describe('Input', () => {
       expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
     });
 
+    it('should disable the Character Counter and allow for the native HTML attribute `maxlength` when `hasCharacterCounter` is set to false', () => {
+      const testId = 'test-id';
+
+      const { getByTestId } = render(
+        <Input testId={testId} hasCharacterCounter={false} maxLength={2} />
+      );
+      expect(getByTestId(testId)).toHaveAttribute('maxlength', '2');
+    });
+
     it('should render an input with an initial value set by the user', () => {
       const { getByText } = render(<Input maxCount={2} value="hi" />);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();

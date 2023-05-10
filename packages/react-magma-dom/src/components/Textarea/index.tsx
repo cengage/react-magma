@@ -55,6 +55,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const {
       containerStyle,
       errorMessage,
+      hasCharacterCounter,
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
@@ -63,6 +64,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       labelText,
       labelWidth,
       maxCount,
+      maxLength,
       messageStyle,
       testId,
       textareaStyle,
@@ -103,6 +105,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
+        hasCharacterCounter={hasCharacterCounter}
         helperMessage={helperMessage}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
@@ -112,6 +115,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         labelPosition={labelPosition}
         labelWidth={labelWidth}
         maxCount={maxCount}
+        maxLength={maxLength}
       >
         <StyledTextArea
           {...other}
@@ -122,6 +126,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           data-testid={testId}
           hasError={!!errorMessage || characterLength > maxCount}
           id={id}
+          maxLength={!hasCharacterCounter && maxLength}
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}

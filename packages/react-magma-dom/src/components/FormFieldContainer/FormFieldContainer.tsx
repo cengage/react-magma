@@ -85,7 +85,8 @@ export interface FormFieldContainerBaseProps {
    */
   maxCount?: number;
   /**
-   * Limits the amount of characters in an input.
+   * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
+   * @deprecated = true
    */
   maxLength?: number;
   /**
@@ -163,8 +164,10 @@ export const FormFieldContainer = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
+  const countProps = maxCount || maxLength;
+
   const descriptionId =
-    errorMessage || helperMessage || maxCount ? `${fieldId}__desc` : null;
+    errorMessage || helperMessage || countProps ? `${fieldId}__desc` : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -200,13 +203,14 @@ export const FormFieldContainer = React.forwardRef<
           labelWidth={labelWidth}
         >
           {children}
-          {typeof maxCount === 'number' && hasCharacterCounter && (
+          {typeof countProps === 'number' && hasCharacterCounter && (
             <CharacterCounter
+              hasCharacterCounter={hasCharacterCounter}
               id={descriptionId}
               inputLength={inputLength}
               isInverse={isInverse}
-              maxCount={maxCount}
-              maxLength={!hasCharacterCounter && maxLength}
+              maxCount={countProps}
+              maxLength={countProps}
               testId={testId && `${testId}-character-counter`}
             />
           )}

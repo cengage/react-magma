@@ -34,6 +34,11 @@ export default {
         type: 'text',
       },
     },
+    hasCharacterCounter: {
+      control: {
+        type: 'boolean',
+      },
+    },
     helperMessage: {
       control: {
         type: 'text',
@@ -55,6 +60,11 @@ export default {
         options: LabelPosition,
       },
     },
+    maxLength: {
+      control: {
+        type: 'number',
+      },
+    },
     maxCount: {
       control: {
         type: 'number',
@@ -70,8 +80,8 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-  maxCount: 4,
   isInverse: false,
+  maxLength: 4,
 };
 
 export const WithChildren = args => {

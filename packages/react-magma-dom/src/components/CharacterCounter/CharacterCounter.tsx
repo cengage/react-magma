@@ -6,6 +6,12 @@ import { I18nContext } from '../../i18n';
 
 export interface CharacterCounterProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /** 
+   * Enables Character Counter by default. When set to false, the default HTML attribute of 'maxlength' will work. 
+   * Note: This is a temporary prop and will be removed in future releases.
+    @default true 
+  */
+  hasCharacterCounter?: boolean;
   /**
    * Identifier to associate Character Counter with Input.
    */
@@ -20,9 +26,10 @@ export interface CharacterCounterProps
    */
   maxCount: number;
   /**
-   * Limits the amount of characters in an input.
+   * Sets the maximum amount of characters allowed.
+   * @deprecated = true
    */
-  maxLength?: number;
+  maxLength: number;
   /**
    * @internal
    */
@@ -43,6 +50,7 @@ function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
 const StyledInputMessage = styled(InputMessage)<{
   hasCharacterCounter?: boolean;
   inputLength: number;
+  maxLength: number;
   maxCount: number;
 }>`
   font-weight: ${buildFontWeight};
@@ -53,8 +61,17 @@ export const CharacterCounter = React.forwardRef<
   HTMLDivElement,
   CharacterCounterProps
 >((props, ref) => {
-  const { children, id, inputLength, maxCount, testId, isInverse, ...rest } =
-    props;
+  const {
+    children,
+    hasCharacterCounter,
+    id,
+    inputLength,
+    maxCount,
+    maxLength,
+    testId,
+    isInverse,
+    ...rest
+  } = props;
 
   const i18n = React.useContext(I18nContext);
 
@@ -114,10 +131,12 @@ export const CharacterCounter = React.forwardRef<
     <div data-testid={testId} id={id} ref={ref} {...rest}>
       <StyledInputMessage
         aria-live={getAriaLiveState()}
+        hasCharacterCounter={hasCharacterCounter}
         hasError={isOverMaxCount}
         isInverse={isInverse}
         inputLength={inputLength}
         maxCount={maxCount}
+        maxLength={maxLength}
       >
         {characterTitle()}
       </StyledInputMessage>

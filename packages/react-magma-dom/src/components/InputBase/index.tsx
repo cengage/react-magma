@@ -96,8 +96,10 @@ export interface InputBaseProps
    */
   maxCount?: number;
   /**
-   * Please continue to use this maxLength prop only for HTML native behavior moving forward, and maxCount for character counter functionality.
+   * A number value which gives Character Counter the maximum length of allowable characters in an Input.
+   * @deprecated = true
    */
+
   maxLength?: number;
   /**
    * Action that will fire when icon is clicked
@@ -620,7 +622,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             isPredictive={isPredictive}
             hasError={hasError}
             ref={ref}
-            maxLength={maxLength}
+            maxLength={!hasCharacterCounter && maxLength}
             onChange={handleChange}
             style={inputStyle}
             theme={theme}

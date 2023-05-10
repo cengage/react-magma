@@ -102,23 +102,23 @@ describe('CharacterCounter', () => {
         expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
       });
     });
+  });
 
-    describe('styling', () => {
-      it('Should render an input with a correctly styled error message', () => {
-        const testId = 'inputMessageErrror';
-        const { getByText, getByTestId } = render(
-          <CharacterCounter testId={testId} inputLength={4} maxCount={2} />
-        );
+  describe('styling', () => {
+    it('Should render an input with a correctly styled error message', () => {
+      const testId = 'inputMessageErrror';
+      const { getByText, getByTestId } = render(
+        <CharacterCounter testId={testId} inputLength={4} maxCount={2} />
+      );
 
-        const errorMessage = getByTestId(testId);
+      const errorMessage = getByTestId(testId);
 
-        expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
+      expect(getByText('2 ' + charactersOver)).toBeInTheDocument();
 
-        expect(errorMessage.querySelector('svg')).toHaveAttribute(
-          'height',
-          magma.iconSizes.small.toString()
-        );
-      });
+      expect(errorMessage.querySelector('svg')).toHaveAttribute(
+        'height',
+        magma.iconSizes.small.toString()
+      );
     });
   });
 
