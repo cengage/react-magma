@@ -30,7 +30,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The content of the tooltip
    */
-  content: any;
+  content: React.ReactNode;
   isInverse?: boolean;
   /**
    * Override the default opening of the tooltip on hover/focus to remain open
