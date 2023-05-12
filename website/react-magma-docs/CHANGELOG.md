@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.16
+
+### Patch Changes
+
+- 33548e7e5: docs: updated docs
+
 ## 5.0.1-next.15
 
 ### Patch Changes
