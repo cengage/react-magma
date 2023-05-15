@@ -45,6 +45,23 @@ export function Example() {
 }
 ```
 
+## New Character Counter props
+
+Two new props have been added. The `hasCharacterCounter` prop which defaults to `true` and the `maxCount` prop which replaces `maxLength` and enables the Character Counter.
+
+In the interim if an input needs a native `maxlength` and not a Character Counter, set `hasCharacterCounter={false}` and then use `maxLength`.
+
+Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
+
+```typescript
+import React from 'react';
+import { Input } from 'react-magma-dom';
+
+export function Example() {
+  return <Input maxCount={4} labelText="Default Character Counter" />;
+}
+```
+
 ## Inverse
 
 `isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
