@@ -300,7 +300,7 @@ export const ControlledPagination = args => {
   );
 
   return (
-    <Card isInverse={args.isInverse}>
+    <Card>
       <Table {...args}>
         <TableHead>
           <TableRow>
