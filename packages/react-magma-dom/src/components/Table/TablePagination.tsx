@@ -108,6 +108,7 @@ const StyledContainer = styled.div<{
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
+  border-radius: 0 0 ${props => props.theme.borderRadius} ${props => props.theme.borderRadius};
 `;
 
 const PageCount = styled(Label) <{ theme: ThemeInterface }>`
