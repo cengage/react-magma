@@ -145,6 +145,29 @@ describe('Textarea', () => {
       expect(getByTestId(testId)).toHaveAttribute('maxlength', '2');
     });
 
+    it('should show the Character Counter with the deprecated prop of `maxLength`', () => {
+      const testId = 'test-id';
+
+      const { getByText } = render(
+        <Textarea testId={testId} hasCharacterCounter={true} maxLength={2} />
+      );
+      expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
+    it('should show the Character Counter with the deprecated prop of `maxLength` but give the priority to `maxCount` if both used simultaneously', () => {
+      const testId = 'test-id';
+
+      const { getByText } = render(
+        <Textarea
+          testId={testId}
+          hasCharacterCounter={true}
+          maxLength={2}
+          maxCount={4}
+        />
+      );
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
     it('should update the character length on rerender', () => {
       const { getByText, rerender } = render(
         <Textarea maxCount={5} value="hi" />

@@ -502,6 +502,29 @@ describe('Input', () => {
       expect(getByTestId(testId)).toHaveAttribute('maxlength', '2');
     });
 
+    it('should show the Character Counter with the deprecated prop of `maxLength`', () => {
+      const testId = 'test-id';
+
+      const { getByText } = render(
+        <Input testId={testId} hasCharacterCounter={true} maxLength={2} />
+      );
+      expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
+    it('should show the Character Counter with the deprecated prop of `maxLength` but give the priority to `maxCount` if both used simultaneously', () => {
+      const testId = 'test-id';
+
+      const { getByText } = render(
+        <Input
+          testId={testId}
+          hasCharacterCounter={true}
+          maxLength={2}
+          maxCount={4}
+        />
+      );
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
     it('should render an input with an initial value set by the user', () => {
       const { getByText } = render(<Input maxCount={2} value="hi" />);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();

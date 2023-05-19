@@ -7,7 +7,8 @@ import { I18nContext } from '../../i18n';
 export interface CharacterCounterProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /** 
-   * Enables Character Counter by default. When set to false, the default HTML attribute of 'maxlength' will work. 
+   * Enables Character Counter by default. 
+   * When set to false, the default HTML attribute of 'maxlength' will work. 
    * Note: This is a temporary prop and will be removed in future releases.
     @default true 
   */

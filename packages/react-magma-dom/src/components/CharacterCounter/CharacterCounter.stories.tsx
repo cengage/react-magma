@@ -81,7 +81,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   isInverse: false,
-  maxLength: 4,
+  maxCount: 4,
 };
 
 export const WithChildren = args => {
