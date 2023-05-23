@@ -17,7 +17,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-The Character Counter is called when the prop of `maxLength` is set within an <Link to="/api/input">Input</Link> or a <Link to="/api/textarea">Textarea</Link>.
+The Character Counter is called when the prop of `maxCount` is set within an <Link to="/api/input">Input</Link> or a <Link to="/api/textarea">Textarea</Link>.
 
 As the user types, a counter is displayed below the Input or Textarea counting down to the allowable length. Once this is exceeded, an error message shows in place counting the overrage of characters.
 
@@ -26,7 +26,7 @@ import React from 'react';
 import { Input } from 'react-magma-dom';
 
 export function Example() {
-  return <Input maxLength={4} labelText="Default Character Counter" />;
+  return <Input maxCount={4} labelText="Default Character Counter" />;
 }
 ```
 
@@ -40,12 +40,23 @@ import { Input } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Input
-      maxLength={4}
-      value="hi"
-      labelText="Inital Value Character Counter"
-    />
+    <Input maxCount={4} value="hi" labelText="Inital Value Character Counter" />
   );
+}
+```
+
+## maxLength vs maxCount
+
+The `maxLength` prop temporarily controlled the Character Counter, but moving forward it should exclusively be used for the HTML native behavior of preventing users from typing beyond the set maximum length.
+
+To enable the Character Counter, use `maxCount` (preferred) or **both** `maxLength` and `hasCharacterCounter` (to be deprecated in future versions).
+
+```typescript
+import React from 'react';
+import { Input } from 'react-magma-dom';
+
+export function Example() {
+  return <Input maxCount={4} labelText="Default Character Counter" />;
 }
 ```
 
@@ -60,7 +71,7 @@ import { Container, Input } from 'react-magma-dom';
 export function Example() {
   return (
     <Container isInverse style={{ padding: '12px' }}>
-      <Input isInverse maxLength={4} labelText="Character Counter" />
+      <Input isInverse maxCount={4} labelText="Character Counter" />
     </Container>
   );
 }
@@ -91,7 +102,7 @@ export function Example() {
         },
       }}
     >
-      <Input maxLength={4} labelText="Character Counter" />
+      <Input maxCount={4} labelText="Character Counter" />
     </I18nContext.Provider>
   );
 }
