@@ -382,6 +382,63 @@ export const UncontrolledPagination = args => {
   );
 };
 
+export const PaginationWithSquareCorners = args => {
+  const [pageIndex, setPageIndex] = React.useState<number>(1);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+
+  function handlePageChange(_, page) {
+    setPageIndex(page);
+  }
+
+  function handleRowsPerPageChange(newNumberOfRows) {
+    setRowsPerPage(newNumberOfRows);
+  }
+
+  const rowsToShow = rowsLong.slice(
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
+  );
+
+  return (
+    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+      <Table style={{ background: magma.colors.neutral100 }} {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowsToShow.map((row, i) => (
+            <TableRow key={`row${i}`}>
+              {row.map((cell, j) => (
+                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <TablePagination
+        itemCount={rowsLong.length}
+        onRowsPerPageChange={handleRowsPerPageChange}
+        onPageChange={handlePageChange}
+        page={pageIndex}
+        rowsPerPage={rowsPerPage}
+        isInverse={args.isInverse}
+        hasSquareCorners={args.hasSquareCorners}
+      />
+    </div>
+  );
+};
+PaginationWithSquareCorners.args = {
+  hasSquareCorners: true,
+  hasHoverStyles: false,
+  hasVerticalBorders: false,
+  hasZebraStripes: false,
+};
+
 export const PaginationInverse = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
