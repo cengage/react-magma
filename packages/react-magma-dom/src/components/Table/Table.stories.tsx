@@ -327,6 +327,7 @@ export const ControlledPagination = args => {
         page={pageIndex}
         rowsPerPage={rowsPerPage}
         isInverse={args.isInverse}
+        hasSquareCorners={args.hasSquareCorners}
       />
     </Card>
   );
