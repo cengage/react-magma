@@ -76,10 +76,13 @@ export const CharacterCounter = React.forwardRef<
 
   const i18n = React.useContext(I18nContext);
 
-  const isOverMaxCount = inputLength > maxCount;
+  // Temporary while both 'maxLength' and 'maxCount' are supported. To be removed in future iterations.
+  const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
+
+  const isOverMaxCount = inputLength > maxCharacters;
 
   // Gets percentage value of total characters within Input to let aria-live have dynamic states.
-  const getPercentage = (inputLength / maxCount) * 100;
+  const getPercentage = (inputLength / maxCharacters) * 100;
 
   // Returns aria-live states based on percentage of characters within Input.
   function getAriaLiveState() {
@@ -94,7 +97,9 @@ export const CharacterCounter = React.forwardRef<
 
   // As the user types, this calculates the remaining characters set by maxCount which counts down to zero then counts up if over the limit.
   const characterLimit =
-    maxCount > inputLength ? maxCount - inputLength : inputLength - maxCount;
+    maxCharacters > inputLength
+      ? maxCharacters - inputLength
+      : inputLength - maxCharacters;
 
   /*
    * Returns the character counter description.
@@ -104,27 +109,27 @@ export const CharacterCounter = React.forwardRef<
    */
   function characterTitle() {
     if (inputLength > 0) {
-      if (inputLength < maxCount) {
-        if (inputLength === maxCount - 1) {
+      if (inputLength < maxCharacters) {
+        if (inputLength === maxCharacters - 1) {
           return `${characterLimit} ${i18n.characterCounter.characterLeft}`;
         } else if (characterLimit > 1) {
           return `${characterLimit} ${i18n.characterCounter.charactersLeft}`;
         }
       }
-      if (inputLength > maxCount) {
-        if (inputLength === maxCount + 1) {
+      if (inputLength > maxCharacters) {
+        if (inputLength === maxCharacters + 1) {
           return `${characterLimit} ${i18n.characterCounter.characterOver}`;
         }
         return `${characterLimit} ${i18n.characterCounter.charactersOver}`;
       }
-      if (inputLength === maxCount) {
+      if (inputLength === maxCharacters) {
         return `0 ${i18n.characterCounter.charactersLeft}`;
       }
     } else {
-      if (maxCount === 1) {
-        return `${maxCount} ${i18n.characterCounter.characterAllowed}`;
+      if (maxCharacters === 1) {
+        return `${maxCharacters} ${i18n.characterCounter.characterAllowed}`;
       }
-      return `${maxCount} ${i18n.characterCounter.charactersAllowed}`;
+      return `${maxCharacters} ${i18n.characterCounter.charactersAllowed}`;
     }
   }
 

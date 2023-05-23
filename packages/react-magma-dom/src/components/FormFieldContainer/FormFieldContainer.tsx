@@ -210,8 +210,8 @@ export const FormFieldContainer = React.forwardRef<
               id={descriptionId}
               inputLength={inputLength}
               isInverse={isInverse}
-              maxCount={countProps}
-              maxLength={countProps}
+              maxCount={maxCount}
+              maxLength={maxLength}
               testId={testId && `${testId}-character-counter`}
             />
           )}
