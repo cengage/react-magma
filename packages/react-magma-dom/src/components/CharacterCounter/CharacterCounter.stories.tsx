@@ -14,11 +14,7 @@ const labelText = 'Character Counter';
 
 const Template: Story<CharacterCounterProps> = args => (
   <>
-    <Input
-      {...args}
-      testId="test-this-id"
-      labelText={labelText}
-    />
+    <Input {...args} testId="test-this-id" labelText={labelText} />
   </>
 );
 
@@ -36,6 +32,11 @@ export default {
     errorMessage: {
       control: {
         type: 'text',
+      },
+    },
+    hasCharacterCounter: {
+      control: {
+        type: 'boolean',
       },
     },
     helperMessage: {
@@ -64,18 +65,23 @@ export default {
         type: 'number',
       },
     },
+    maxCount: {
+      control: {
+        type: 'number',
+      },
+    },
     value: {
       control: {
-        type: 'text'
-      }
-    }
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
-  maxLength: 4,
   isInverse: false,
+  maxCount: 4,
 };
 
 export const WithChildren = args => {
