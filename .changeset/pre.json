@@ -18,6 +18,7 @@
     "docs",
     "dropdown-noitems",
     "feat-simplePagination",
+    "fix-characterCounterProp",
     "fix-iconbuttonstack",
     "fix-modals",
     "fix-pagination",
