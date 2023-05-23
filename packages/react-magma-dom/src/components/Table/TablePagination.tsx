@@ -116,8 +116,8 @@ const StyledContainer = styled.div<{
   padding: ${props => props.theme.spaceScale.spacing02};
   border-radius: ${props => 
     props.hasSquareCorners 
-    ? "0;"
-    : `0 0 ${props.theme.borderRadius} ${props.theme.borderRadius};`}
+    ? "0"
+    : `0 0 ${props.theme.borderRadius} ${props.theme.borderRadius}`};
 `;
 
 const PageCount = styled(Label) <{ theme: ThemeInterface }>`
