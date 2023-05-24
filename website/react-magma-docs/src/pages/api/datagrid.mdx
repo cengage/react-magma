@@ -697,7 +697,7 @@ export function Example() {
 
     if (key === 'name') {
       if (
-        sortConfig?.key === key &&
+        sortConfig.key === key &&
         selectedDirection === TableSortDirection.ascending
       ) {
         direction = TableSortDirection.descending;
@@ -707,7 +707,7 @@ export function Example() {
       setStockDirection(TableSortDirection.none);
     } else if (key === 'price') {
       if (
-        sortConfig?.key === key &&
+        sortConfig.key === key &&
         priceDirection === TableSortDirection.ascending
       ) {
         direction = TableSortDirection.descending;
@@ -717,7 +717,7 @@ export function Example() {
       setStockDirection(TableSortDirection.none);
     } else if (key === 'stock') {
       if (
-        sortConfig?.key === key &&
+        sortConfig.key === key &&
         stockDirection === TableSortDirection.ascending
       ) {
         direction = TableSortDirection.descending;
