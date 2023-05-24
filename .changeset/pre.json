@@ -24,6 +24,7 @@
     "fix-modals",
     "fix-pagination",
     "fix-simplePagination",
+    "fix-tablePaginationBorderRadius",
     "fix-toaststack",
     "great-donuts-build",
     "grid-docs",

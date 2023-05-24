@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.11
+
+### Patch Changes
+
+- 7066b5c84: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
+
 ## 4.1.0-next.10
 
 ### Patch Changes
