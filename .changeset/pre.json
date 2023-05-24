@@ -19,6 +19,7 @@
     "dropdown-noitems",
     "feat-simplePagination",
     "fix-characterCounterProp",
+    "fix-docsDatagrid",
     "fix-iconbuttonstack",
     "fix-modals",
     "fix-pagination",

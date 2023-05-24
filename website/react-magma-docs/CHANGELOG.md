@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.1-next.18
+
+### Patch Changes
+
+- 54e6ea1d8: fix(docs - datagrid): This resolves the missing example under "Selectable and Sortable" within the Datagrid API documentation.
+
 ## 5.0.1-next.17
 
 ### Patch Changes
