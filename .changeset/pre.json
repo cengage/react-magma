@@ -10,5 +10,27 @@
     "react-magma-docs": "4.0.6",
     "react-magma-landing": "1.1.1"
   },
-  "changesets": []
+  "changesets": [
+    "charcounter-initialvalue",
+    "disabled-multiCombo",
+    "docs-select",
+    "docs-toggle",
+    "docs",
+    "dropdown-noitems",
+    "feat-simplePagination",
+    "fix-characterCounterProp",
+    "fix-docsDatagrid",
+    "fix-iconbuttonstack",
+    "fix-modals",
+    "fix-pagination",
+    "fix-simplePagination",
+    "fix-tablePaginationBorderRadius",
+    "fix-toaststack",
+    "great-donuts-build",
+    "grid-docs",
+    "multiselect-align",
+    "theme-docs",
+    "toast-docs",
+    "tooltip-docs"
+  ]
 }
