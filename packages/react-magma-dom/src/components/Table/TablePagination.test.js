@@ -5,9 +5,10 @@ import { act, render, fireEvent, getAllByRole } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
+const testId = 'test-id';
+
 describe('Table Pagination', () => {
   it('should find element by testId', () => {
-    const testId = 'test-id';
     const { getByTestId } = render(
       <TablePagination itemCount={20} testId={testId} />
     );
@@ -16,7 +17,6 @@ describe('Table Pagination', () => {
   });
 
   it('should use inverse styles', () => {
-    const testId = 'test-id';
     const { getByTestId } = render(
       <TablePagination itemCount={20} isInverse testId={testId} />
     );
@@ -24,6 +24,22 @@ describe('Table Pagination', () => {
     expect(getByTestId(testId)).toHaveStyleRule(
       'border-top',
       `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+    );
+  });
+
+  // TODO
+  it.skip('should change the direction of the dropdown content with passed in props', () => {
+    const { getByTestId } = render(
+      <TablePagination itemCount={20} dropdownDropDirection="down" />
+    );
+    const rowsSelect = getByTestId('rowPerPageDropdownButton');
+
+    fireEvent.click(rowsSelect);
+
+    expect(getByTestId('dropdownContent')).not.toHaveStyleRule('top', 'auto');
+    expect(getByTestId('dropdownContent')).not.toHaveStyleRule(
+      'bottom',
+      '100%'
     );
   });
 
@@ -187,7 +203,9 @@ describe('Table Pagination', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = render(<TablePagination itemCount={20} />);
+    const { container } = render(
+      <TablePagination itemCount={20} testId={testId} />
+    );
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

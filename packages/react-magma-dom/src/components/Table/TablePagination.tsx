@@ -11,10 +11,17 @@ import { useIsInverse } from '../../inverse';
 import { usePagination } from '../Pagination/usePagination';
 import { XOR } from '../../utils';
 import { useControlled } from '../../hooks/useControlled';
+import {
+  Dropdown,
+  DropdownDropDirection,
+  DropdownButton,
+  DropdownAlignment,
+  DropdownMenuItem,
+  DropdownContent,
+} from '../Dropdown';
 import { transparentize } from 'polished';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { NativeSelect } from '../NativeSelect';
-import { Dropdown, DropdownAlignment, DropdownButton, DropdownContent, DropdownDropDirection, DropdownMenuItem } from '../Dropdown';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -108,9 +115,9 @@ const StyledContainer = styled.div<{
       : props.theme.colors.neutral200};
   border-top: 1px solid
     ${props =>
-    props.isInverse
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
+      props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
@@ -120,7 +127,7 @@ const StyledContainer = styled.div<{
     : `0 0 ${props.theme.borderRadius} ${props.theme.borderRadius}`};
 `;
 
-const PageCount = styled(Label) <{ theme: ThemeInterface }>`
+const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
 `;
 
@@ -201,9 +208,9 @@ export const TablePagination = React.forwardRef<
     onRowsPerPageChange &&
       typeof onRowsPerPageChange === 'function' &&
       onRowsPerPageChange(event.target.value);
-      if(dropdownDropDirection) {
-        setActiveIndex(rowsPerPage);
-      }
+    if (dropdownDropDirection) {
+      setActiveIndex(rowsPerPage);
+    }
   }
 
   const previousButton = pageButtons[0];
@@ -221,7 +228,7 @@ export const TablePagination = React.forwardRef<
       <RowsPerPageLabel isInverse={isInverse} theme={theme}>
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
-      {dropdownDropDirection ? 
+      {dropdownDropDirection ? (
         <Dropdown
           alignment={DropdownAlignment.end}
           dropDirection={dropdownDropDirection}
@@ -247,25 +254,22 @@ export const TablePagination = React.forwardRef<
               </DropdownMenuItem>
             ))}
           </DropdownContent>
-        </Dropdown> : 
+        </Dropdown>
+      ) : (
         <NativeSelect
           onChange={handleRowsPerPageChange}
           aria-label={i18n.table.pagination.rowsPerPageLabel}
-          style={{minWidth: 80}}
-          testId="rowPerPageSelect" 
+          style={{ minWidth: 80 }}
+          testId="rowPerPageSelect"
           fieldId={''}
         >
           {rowsPerPageItems.map((row, index) => (
-            <option
-              key={index}
-              value={row.value}
-            >
+            <option key={index} value={row.value}>
               {row.label}
             </option>
           ))}
-        </NativeSelect> 
-      }
-      
+        </NativeSelect>
+      )}
 
       <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}

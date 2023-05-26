@@ -19,16 +19,16 @@ import { Checkbox } from '../Checkbox';
 import { PasswordInput } from '../PasswordInput';
 import { SettingsIcon, MenuIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Paragraph, Spacer } from '../..';
+import { Paragraph, Spacer, SpacerAxis } from '../..';
 import { ButtonGroup } from '../ButtonGroup';
 
 const Template: Story<DropdownProps> = args => (
-  <div style={{ margin: '150px auto', textAlign: 'center' }}>
+  <div style={{ textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton>Basic Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two two two </DropdownMenuItem>
         <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
@@ -77,9 +77,6 @@ export default {
         options: DropdownAlignment,
       },
     },
-    onClose: {
-      action: 'onClose',
-    },
     isInverse: {
       control: {
         type: 'boolean',
@@ -100,40 +97,44 @@ OnClickOutside.args = {
 };
 
 const AlignmentTemplate: Story<DropdownProps> = args => (
-  <div style={{ margin: '150px auto', textAlign: 'center' }}>
-    <Dropdown
-      {...args}
-      dropDirection={DropdownDropDirection.right}
-      activeIndex={1}
-    >
-      <DropdownButton>Right Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <Dropdown {...args} dropDirection={DropdownDropDirection.left}>
-      <DropdownButton>Left Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
+  <div style={{ margin: '150px' }}>
+    <ButtonGroup>
+      <Dropdown
+        {...args}
+        dropDirection={DropdownDropDirection.right}
+        activeIndex={1}
+      >
+        <DropdownButton>Right Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args} dropDirection={DropdownDropDirection.left}>
+        <DropdownButton>Left Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
     <br />
-    <Dropdown {...args} dropDirection={DropdownDropDirection.up}>
-      <DropdownButton>Top Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <Dropdown {...args} dropDirection={DropdownDropDirection.down}>
-      <DropdownButton>Bottom Aligned Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
+    <ButtonGroup>
+      <Dropdown {...args} dropDirection={DropdownDropDirection.up}>
+        <DropdownButton>Top Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args} dropDirection={DropdownDropDirection.down}>
+        <DropdownButton>Bottom Aligned Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
   </div>
 );
 
@@ -406,4 +407,132 @@ export const NoItems = args => {
       </Dropdown>
     </ButtonGroup>
   );
+};
+
+export const Popper = args => {
+  const sampleDropdown = (
+    <Dropdown {...args}>
+      <DropdownButton>Basic Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two two two </DropdownMenuItem>
+        <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number threeeeeeeeeeeeeeee </DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+
+  return (
+    <>
+    <br/><br/>
+      <ButtonGroup>
+        <Dropdown>
+          <DropdownButton>One</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Lorem ipsum dolor</DropdownMenuItem>
+            <DropdownMenuItem>Consectetur</DropdownMenuItem>
+            <DropdownMenuItem>Adipiscing elit</DropdownMenuItem>
+            <DropdownMenuItem>Sed non lacus a ex pellentesque</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+         <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Three</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown>
+          <DropdownButton>Two</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Integer vestibulum sapien in elementum bibendum</DropdownMenuItem>
+            <DropdownMenuItem>Euismod</DropdownMenuItem>
+            <DropdownMenuItem>Vivamus ut elit in justo</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+       
+      </ButtonGroup>
+      <br />
+      <br />
+      <br />
+      Vertical overflow
+      <div
+        style={{
+          width: '400px',
+          height: '400px',
+          border: '2px solid black',
+          overflowY: 'scroll',
+        }}
+      >
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+        {sampleDropdown}
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+      </div>
+      Horizontal overflow
+      <div
+        style={{
+          width: '800px',
+          height: '200px',
+          border: '2px solid black',
+          overflowX: 'scroll',
+          paddingLeft: '250px',
+        }}
+      >
+        <Spacer size={900} axis={SpacerAxis.horizontal} />
+        {sampleDropdown}
+      </div>
+      Both directions overflow
+      <div
+        style={{
+          width: '800px',
+          height: '400px',
+          border: '2px solid black',
+          overflow: 'scroll',
+          paddingLeft: '600px',
+        }}
+      >
+        <Spacer size={1000} axis={SpacerAxis.horizontal} />
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+        {sampleDropdown}
+        <Spacer size={300} axis={SpacerAxis.vertical} />
+      </div>
+    </>
+  );
+};
+
+Popper.args = {
+  ...Default.args,
 };
