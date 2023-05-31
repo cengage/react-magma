@@ -8,6 +8,16 @@ import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Container } from '../Container';
+import { NativeSelect } from '../NativeSelect';
+import { Spacer } from '../Spacer';
+import { Combobox } from '../Combobox';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Select } from '../Select';
 
 const info = {
   component: Modal,
@@ -293,6 +303,68 @@ export const ModalInAModal = () => {
         isOpen={showModal2}
       >
         <p>This is modal 2</p>
+        <NativeSelect fieldId="">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </NativeSelect>
+        <Spacer size={10} />
+        <Dropdown>
+          <DropdownButton>Basic Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Spacer size={10} />
+        <Combobox
+          id="comboboxId"
+          labelText="Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          placeholder="Hello"
+        />
+        <Spacer size={10} />
+        <Select
+          id="basicSelectId"
+          labelText="Basic"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+        />
+        <Spacer size={10} />
+        <Select
+          id="multiSelectId"
+          isMulti
+          labelText="Multi select"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+            { label: 'Orange', value: 'orange' },
+            { label: 'Aqua', value: 'aqua' },
+            { label: 'Gold', value: 'gold' },
+            { label: 'Periwinkle', value: 'periwinkle' },
+            { label: 'Lavender', value: 'lavender' },
+            { label: 'Marigold', value: 'marigold' },
+            { label: 'Yellow', value: 'yellow' },
+            { label: 'Purple', value: 'purple' },
+            { label: 'Dusty Rose', value: 'dusty_rose' },
+            { label: 'Burnt Sienna', value: 'burnt_sienna' },
+          ]}
+          initialSelectedItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Blah', value: 'blah' },
+          ]}
+        />
+        <Spacer size={10} />
       </Modal>
     </>
   );

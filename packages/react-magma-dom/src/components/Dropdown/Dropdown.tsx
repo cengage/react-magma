@@ -1,7 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 import { useDescendants } from '../../hooks/useDescendants';
-import { resolveProps, useForkedRef } from '../../utils';
+import {
+  stopPropagationOnEscape,
+  resolveProps,
+  useForkedRef,
+} from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
 
@@ -173,9 +177,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     }
 
     function handleKeyDown(event: React.KeyboardEvent) {
-      if (event.key === 'Escape') {
-        closeDropdown(event);
-      }
+      stopPropagationOnEscape(event, closeDropdown(event));
 
       if (event.key === 'ArrowDown') {
         const [filteredItems, filteredItemIndex] = getFilteredItem();
