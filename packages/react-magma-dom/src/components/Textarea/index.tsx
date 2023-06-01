@@ -55,7 +55,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const {
       containerStyle,
       errorMessage,
-      hasCharacterCounter,
+      hasCharacterCounter = true,
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
@@ -124,9 +124,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           aria-invalid={!!errorMessage}
           data-testid={testId}
-          hasError={!!errorMessage || characterLength > maxCount}
+          hasCharacterCounter={hasCharacterCounter}
+          hasError={
+            !!errorMessage ||
+            (characterLength > maxCount && hasCharacterCounter) ||
+            characterLength > maxLength
+          }
           id={id}
-          maxLength={!hasCharacterCounter && maxLength}
+          maxLength={
+            hasCharacterCounter && maxLength ? props.maxCount : maxLength
+          }
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}

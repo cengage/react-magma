@@ -141,8 +141,8 @@ export const CharacterCounter = React.forwardRef<
         hasError={isOverMaxCount}
         isInverse={isInverse}
         inputLength={inputLength}
-        maxCount={maxCount}
-        maxLength={maxLength}
+        maxCount={maxCount || maxLength}
+        maxLength={maxLength || maxCount}
       >
         {characterTitle()}
       </StyledInputMessage>
