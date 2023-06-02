@@ -124,7 +124,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           aria-invalid={!!errorMessage}
           data-testid={testId}
-          hasCharacterCounter={hasCharacterCounter}
           hasError={
             !!errorMessage ||
             (characterLength > maxCount && hasCharacterCounter) ||

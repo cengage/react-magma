@@ -21,6 +21,11 @@ export default {
     ),
   ],
   argTypes: {
+    hasCharacterCounter: {
+      control: {
+        type: 'boolean',
+      },
+    },
     labelPosition: {
       control: {
         type: 'select',
@@ -28,6 +33,16 @@ export default {
       },
     },
     labelWidth: {
+      control: {
+        type: 'number',
+      },
+    },
+    maxCount: {
+      control: {
+        type: 'number',
+      },
+    },
+    maxLength: {
       control: {
         type: 'number',
       },
@@ -43,7 +58,6 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
   isInverse: false,
-  maxCount: 4,
 };
 
 export const OnClear = args => {
