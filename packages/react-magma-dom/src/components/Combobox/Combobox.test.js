@@ -2,6 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { Combobox } from '.';
 import { magma } from '../../theme/magma';
+import { Modal } from '../Modal';
 
 describe('Combobox', () => {
   const labelText = 'Label';
@@ -940,6 +941,39 @@ describe('Combobox', () => {
           inputValue: 'Red',
         })
       );
+    });
+    it('should close the menu when escape key is pressed, and retain the active modal', () => {
+      const items = [
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ];
+      const { getByLabelText, queryByText, getByText, getByTestId } = render(
+        <Modal testId="modal" isOpen>
+          <Combobox labelText={labelText} items={items} />
+        </Modal>
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
+      });
+
+      expect(renderedCombobox).toBeInTheDocument();
+
+      fireEvent.click(renderedCombobox);
+
+      expect(getByText(items[0].label)).toBeInTheDocument();
+
+      fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
+        key: 'Escape',
+        code: 27,
+      });
+
+      expect(
+        queryByText(items[2], { selector: 'Red' })
+      ).not.toBeInTheDocument();
+
+      expect(getByTestId('modal')).toBeInTheDocument();
     });
   });
 });

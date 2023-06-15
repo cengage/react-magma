@@ -190,17 +190,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     return theme.colors.neutral;
   };
 
-  function handleEscape(event: React.KeyboardEvent) {
-    const count = document.querySelectorAll('[aria-modal="true"]').length;
-
-    if (event.key === 'Escape' && isFocused) {
-      event.nativeEvent.stopImmediatePropagation();
-      if (count >= 1) {
-        setIsFocused(false);
-      }
-    }
-  }
-
   return (
     <ComboBoxContainer
       {...getComboboxProps()}
@@ -222,7 +211,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         theme={theme}
         ref={innerRef}
       >
-        <SelectedItemsWrapper onKeyDown={handleEscape}>
+        <SelectedItemsWrapper>
           {selectedItems}
           <StyledInput
             {...inputProps}

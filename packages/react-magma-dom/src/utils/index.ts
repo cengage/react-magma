@@ -1,20 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-//Prevents event bubbling. Useful for child components in a modal that use escape for closing menu items.
-export function stopPropagationOnEscape(
-  event: React.KeyboardEvent,
-  customFunction?
-) {
-  if (event.key === 'Escape') {
-    event.nativeEvent.stopImmediatePropagation();
-    // Custom function if needed
-  }
-  if (customFunction) {
-    return customFunction;
-  }
-}
-
 export function generateId(id?: string) {
   return id ? id : uuidv4();
 }

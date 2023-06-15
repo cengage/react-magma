@@ -329,6 +329,18 @@ export const ModalInAModal = () => {
           placeholder="Hello"
         />
         <Spacer size={10} />
+        <Combobox
+          id="comboboxId"
+          isMulti
+          labelText="Multi Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          placeholder="Hello"
+        />
+        <Spacer size={10} />
         <Select
           id="basicSelectId"
           labelText="Basic"

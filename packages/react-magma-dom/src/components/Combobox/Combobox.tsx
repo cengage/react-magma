@@ -237,7 +237,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     event.stopPropagation();
 
     if (inputRef.current) {
-      inputRef.current.focus();
+      onInputFocus;
     }
 
     reset();
@@ -246,6 +246,17 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const clearIndicatorAriaLabel = i18n.combobox.clearIndicatorAriaLabel
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemToString(selectedItem));
+
+  function handleEscape(event: React.KeyboardEvent) {
+    const count = document.querySelectorAll('[aria-modal="true"]').length;
+
+    if (event.key === 'Escape') {
+      event.nativeEvent.stopImmediatePropagation();
+      if (count >= 1 && inputRef.current) {
+        inputRef.current.focus();
+      }
+    }
+  }
 
   return (
     <SelectContainer
@@ -267,7 +278,15 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         customComponents={customComponents}
         disabled={disabled}
         getComboboxProps={getComboboxProps}
-        getInputProps={getInputProps}
+        getInputProps={options => ({
+          ...getInputProps({
+            ...options,
+            ...getComboboxProps({
+              onKeyDown: onInputKeyDown ? onInputKeyDown : handleEscape,
+              ...innerRef,
+            }),
+          }),
+        })}
         getToggleButtonProps={getToggleButtonProps}
         hasError={hasError}
         innerRef={ref}

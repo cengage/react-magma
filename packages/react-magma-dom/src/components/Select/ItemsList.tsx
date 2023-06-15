@@ -13,7 +13,7 @@ import {
   ItemRenderOptions,
 } from './components';
 import styled from '../../theme/styled';
-import { convertStyleValueToString, localEscape } from '../../utils';
+import { convertStyleValueToString } from '../../utils';
 import { Spinner } from '../Spinner';
 
 interface ItemsListProps<T> {
@@ -86,12 +86,18 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     );
   };
 
+  function handleEscape(event: React.KeyboardEvent) {
+    if (event.key === 'Escape') {
+      event.nativeEvent.stopImmediatePropagation();
+    }
+  }
+
   return (
     <StyledCard
       hasDropShadow
       isInverse={isInverse}
       isOpen={isOpen}
-      onKeyDown={localEscape}
+      onKeyDown={handleEscape}
       style={menuStyle}
       theme={theme}
     >
