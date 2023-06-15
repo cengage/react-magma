@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.12
+
+### Patch Changes
+
+- 8ffdf899b: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+
 ## 4.1.0-next.11
 
 ### Patch Changes
