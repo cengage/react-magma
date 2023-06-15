@@ -55,7 +55,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const {
       containerStyle,
       errorMessage,
-      hasCharacterCounter,
+      hasCharacterCounter = true,
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
@@ -100,6 +100,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
+    function maxLengthSwitch() {
+      if (
+        (typeof maxLength === 'number' && hasCharacterCounter) ||
+        (typeof maxCount === 'number' && hasCharacterCounter)
+      ) {
+        return;
+      }
+      return maxLength;
+    }
+
     return (
       <FormFieldContainer
         containerStyle={containerStyle}
@@ -124,9 +134,13 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           aria-invalid={!!errorMessage}
           data-testid={testId}
-          hasError={!!errorMessage || characterLength > maxCount}
+          hasError={
+            !!errorMessage ||
+            (characterLength > maxCount && hasCharacterCounter) ||
+            (characterLength > maxLength && hasCharacterCounter)
+          }
           id={id}
-          maxLength={!hasCharacterCounter && maxLength}
+          maxLength={maxLengthSwitch()}
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}

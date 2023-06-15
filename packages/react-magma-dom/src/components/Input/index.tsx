@@ -94,7 +94,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           aria-invalid={!!errorMessage}
           hasError={
             !!errorMessage ||
-            characterLength > maxCount ||
+            (characterLength > maxCount && hasCharacterCounter) ||
             characterLength > maxLength
           }
           iconPosition={iconPosition}
