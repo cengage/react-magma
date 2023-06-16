@@ -43,6 +43,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         ? `${id}__desc`
         : null;
 
+    const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
+
     const isInverse = useIsInverse(props.isInverse);
 
     const [characterLength, setCharacterLength] = useState(
@@ -94,8 +96,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           aria-invalid={!!errorMessage}
           hasError={
             !!errorMessage ||
-            (characterLength > maxCount && hasCharacterCounter) ||
-            characterLength > maxLength
+            (hasCharacterCounter && characterLength > maxCharacters)
           }
           iconPosition={iconPosition}
           id={id}
