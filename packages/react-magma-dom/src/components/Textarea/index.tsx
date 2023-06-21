@@ -75,6 +75,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
@@ -99,16 +100,6 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     }
 
     const isInverse = useIsInverse(props.isInverse);
-
-    function maxLengthSwitch() {
-      if (
-        (typeof maxLength === 'number' && hasCharacterCounter) ||
-        (typeof maxCount === 'number' && hasCharacterCounter)
-      ) {
-        return;
-      }
-      return maxLength;
-    }
 
     return (
       <FormFieldContainer
@@ -136,11 +127,10 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           data-testid={testId}
           hasError={
             !!errorMessage ||
-            (characterLength > maxCount && hasCharacterCounter) ||
-            (characterLength > maxLength && hasCharacterCounter)
+            (hasCharacterCounter && characterLength > maxCharacters)
           }
           id={id}
-          maxLength={maxLengthSwitch()}
+          maxLength={!hasCharacterCounter && maxLength}
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}
