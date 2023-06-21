@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.13
+
+### Patch Changes
+
+- 155f2de2c: fix(CharCounter): Update maxLength/maxCount logic.
+
 ## 4.1.0-next.12
 
 ### Patch Changes
