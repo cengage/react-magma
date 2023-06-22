@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.15
+
+### Patch Changes
+
+- 92569a238: chore: Revert Input outline commits
+
 ## 4.1.0-next.14
 
 ### Patch Changes
