@@ -167,7 +167,6 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
     outline-offset: 2px;
-    z-index: 1;
   }
 
   ${props.hasError &&
