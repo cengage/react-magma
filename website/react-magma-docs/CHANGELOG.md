@@ -1,5 +1,174 @@
 # Change Log
 
+## 5.0.1-next.23
+
+### Patch Changes
+
+- Updated dependencies [92569a238]
+  - react-magma-dom@4.1.0-next.15
+
+## 5.0.1-next.22
+
+### Patch Changes
+
+- Updated dependencies [c0a658b5a]
+  - react-magma-dom@4.1.0-next.14
+
+## 5.0.1-next.21
+
+### Patch Changes
+
+- Updated dependencies [155f2de2c]
+  - react-magma-dom@4.1.0-next.13
+
+## 5.0.1-next.20
+
+### Patch Changes
+
+- Updated dependencies [8ffdf899b]
+  - react-magma-dom@4.1.0-next.12
+
+## 5.0.1-next.19
+
+### Patch Changes
+
+- Updated dependencies [7066b5c84]
+  - react-magma-dom@4.1.0-next.11
+
+## 5.0.1-next.18
+
+### Patch Changes
+
+- 54e6ea1d8: fix(docs - datagrid): This resolves the missing example under "Selectable and Sortable" within the Datagrid API documentation.
+
+## 5.0.1-next.17
+
+### Patch Changes
+
+- Updated dependencies [630bb5ab3]
+  - react-magma-dom@4.1.0-next.10
+
+## 5.0.1-next.16
+
+### Patch Changes
+
+- 33548e7e5: docs: updated docs
+
+## 5.0.1-next.15
+
+### Patch Changes
+
+- Updated dependencies [35a33a7ae]
+  - react-magma-dom@4.1.0-next.9
+
+## 5.0.1-next.14
+
+### Patch Changes
+
+- fbc4b655f: Update the Theme page to include more details about theming, and remove theme section in the Custom Styles page.
+
+## 5.0.1-next.13
+
+### Patch Changes
+
+- Updated dependencies [caee2a755]
+  - react-magma-dom@4.1.0-next.8
+
+## 5.0.1-next.12
+
+### Patch Changes
+
+- Updated dependencies [395aea21c]
+  - react-magma-dom@4.1.0-next.7
+
+## 5.0.1-next.11
+
+### Patch Changes
+
+- Updated dependencies [6b6e0de20]
+  - react-magma-dom@4.1.0-next.6
+
+## 5.0.1-next.10
+
+### Patch Changes
+
+- Updated dependencies [cca876b3a]
+  - react-magma-dom@4.1.0-next.5
+
+## 5.0.1-next.9
+
+### Patch Changes
+
+- Updated dependencies [6f53d1891]
+  - react-magma-dom@4.1.0-next.4
+
+## 5.0.1-next.8
+
+### Patch Changes
+
+- 504763bd6: Update Grid docs. Add explanation for `as` prop.
+
+## 5.0.1-next.7
+
+### Patch Changes
+
+- 0894b08eb: Update ToggleButton and ToggleButtonGroup docs.
+
+## 5.0.1-next.6
+
+### Patch Changes
+
+- 4a10f8905: Reorganize Select docs
+- Updated dependencies [4a10f8905]
+  - react-magma-dom@4.1.0-next.3
+
+## 5.0.1-next.5
+
+### Patch Changes
+
+- 0b581a8cb: Update Tooltip docs to remove reference to old `trigger` prop.
+
+## 5.0.1-next.4
+
+### Patch Changes
+
+- Updated dependencies [3d00dcc7e]
+  - react-magma-dom@4.1.0-next.2
+  - @react-magma/charts@4.0.0-next.1
+  - @react-magma/dropzone@4.0.0-next.1
+  - @react-magma/schema-renderer@4.0.0-next.1
+  - @cengage-patterns/header@6.0.0-next.1
+
+## 5.0.1-next.3
+
+### Patch Changes
+
+- Updated dependencies [d0c69155a]
+  - react-magma-dom@4.0.1-next.1
+
+## 5.0.1-next.2
+
+### Patch Changes
+
+- 0ddda514c: Update Toast docs to include that messages should be 1-2 lines long.
+
+## 5.0.1-next.1
+
+### Patch Changes
+
+- 108637df1: Update page layout. Move secondary navigation to the page.
+
+## 5.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [f487b936f]
+  - react-magma-dom@4.0.1-next.0
+  - @react-magma/charts@3.0.1-next.0
+  - @react-magma/dropzone@3.0.1-next.0
+  - @react-magma/schema-renderer@3.0.1-next.0
+  - @cengage-patterns/header@5.0.1-next.0
+
 ## 5.0.0
 
 ### Major Changes

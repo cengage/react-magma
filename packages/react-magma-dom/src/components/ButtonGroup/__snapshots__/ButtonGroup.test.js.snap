@@ -52,6 +52,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -255,6 +256,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -509,6 +511,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -669,6 +672,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -880,6 +884,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1043,6 +1048,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -1127,6 +1133,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -1217,6 +1228,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1380,6 +1392,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -1464,6 +1477,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -1691,6 +1709,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1861,6 +1880,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -1945,6 +1965,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -2035,6 +2060,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -2205,6 +2231,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -2289,6 +2316,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -2516,6 +2548,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -2725,6 +2758,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -2809,6 +2843,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {
@@ -2899,6 +2938,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -3108,6 +3148,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -3192,6 +3233,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
+}
+
+.emotion-11:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-10 {

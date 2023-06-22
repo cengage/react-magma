@@ -12,10 +12,14 @@ import {
   TableBody,
   TableCell,
 } from 'react-magma-dom';
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading type="design">Spacing</DocsHeading>
+<PageContent componentName="spacing" type="design_intro">
 
-Spacing is a powerful visual design tool for creating clearly organized and harmonious interfaces.
+<LeadParagraph>
+  Spacing is a powerful visual design tool for creating clearly organized and
+  harmonious interfaces.
+</LeadParagraph>
 
 ## Spacing Scale
 
@@ -151,7 +155,7 @@ The spacing scale helps us determine how much space to put between or inside of 
 <span class="horizontal-spacer"></span>
 
 <figure>
-  <img src="../../images/spacing/icon-text-balance-correct.png" alt=" " />
+  <img src="../../images/spacing/icon-text-balance-correct.png" alt="" />
   <figcaption>
     Example of using spacing properties to add padding inside a card, as well as
     the margins between the content within the card.
@@ -161,7 +165,7 @@ The spacing scale helps us determine how much space to put between or inside of 
 <span class="horizontal-spacer"></span>
 
 <figure>
-  <img src="../../images/spacing/spacing-example.png" alt=" " />
+  <img src="../../images/spacing/spacing-example.png" alt="" />
   <figcaption>
     Example of using spacing properties to create the space between cards in a
     grid.
@@ -204,3 +208,5 @@ No, the spacing properties themselves do not change values based on the screen s
 Example: At 1440px `padding-right: spacing05` but at breakpoint 768px `padding-right: spacing03`.
 
 <span class="horizontal-spacer"></span>
+
+</PageContent>

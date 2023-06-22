@@ -30,6 +30,11 @@ export default {
         type: 'number',
       },
     },
+    disabled: {
+      control: {
+        type: 'boolean'
+      }
+    }
   },
 } as Meta;
 
@@ -48,6 +53,7 @@ Default.args = {
   isClearable: false,
   isMulti: false,
   isLoading: false,
+  disabled: false,
 };
 
 export const Multi = (props: MultiComboboxProps<SelectOptions>) => {
@@ -1239,7 +1245,7 @@ export const FullPageExample = args => {
         <Spacer size={16} />
         <Input
           labelText="What is the name and number of the course you are requesting this title for? *"
-          maxLength={100}
+          maxCount={100}
           placeholder="SWEN101"
         />
         <Spacer size={16} />

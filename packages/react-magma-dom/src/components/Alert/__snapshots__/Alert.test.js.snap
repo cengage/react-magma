@@ -83,6 +83,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -230,6 +231,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,

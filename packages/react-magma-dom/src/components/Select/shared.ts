@@ -4,7 +4,7 @@ import { inputBaseStyles } from '../InputBase';
 import { Card } from '../Card';
 import { transparentize } from 'polished';
 
-function buildListHoverColor (props) {
+function buildListHoverColor(props) {
   if (props.isFocused) {
     if (props.isInverse) {
       return props.theme.colors.primary600;
@@ -14,7 +14,7 @@ function buildListHoverColor (props) {
   return 'transparent';
 }
 
-function buildListFocusColor (props) {
+function buildListFocusColor(props) {
   if (props.isFocused) {
     if (props.isInverse) {
       return props.theme.colors.focusInverse;
@@ -45,9 +45,15 @@ export const StyledCard = styled(Card)<{
   isInverse?: boolean;
 }>`
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  background: ${props => props.isInverse ? props.theme.colors.primary500 : props.theme.colors.neutral100};
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary500
+      : props.theme.colors.neutral100};
   border: 1x solid;
-  border-color: ${props => props.isInverse ? transparentize(0.5, props.theme.colors.tertiary) : props.theme.colors.neutral300};
+  border-color: ${props =>
+    props.isInverse
+      ? transparentize(0.5, props.theme.colors.tertiary)
+      : props.theme.colors.neutral300};
   left: 4px;
   margin-top: 4px;
   padding: 4px 0 0;
@@ -67,13 +73,19 @@ export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
   overflow-y: auto;
 `;
 
-export const StyledItem = styled('li')<{ isInverse?: boolean; isFocused?: boolean }>`
+export const StyledItem = styled('li')<{
+  isInverse?: boolean;
+  isFocused?: boolean;
+}>`
   align-self: center;
   background: ${props => buildListHoverColor(props)};
   border: 2px solid;
   border-color: ${props => buildListFocusColor(props)};
   cursor: default;
-  color: ${props => props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.neutral700};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
@@ -90,13 +102,45 @@ export const SelectedItemsWrapper = styled.span`
   padding: 0 0 0 4px;
 `;
 
-export const SelectedItemButton = styled.button<{ isInverse?: boolean }>`
+function buildSelectedItemButtonBackground(props) {
+  const { isInverse, disabled } = props;
+  if (disabled) {
+    if (isInverse) {
+      return transparentize(0.7, props.theme.colors.neutral100);
+    }
+    return props.theme.colors.neutral300;
+  }
+  if (isInverse) {
+    return props.theme.colors.tertiary;
+  }
+  return props.theme.colors.primary;
+}
+
+function buildSelectedItemButtonColor(props) {
+  const { isInverse, disabled } = props;
+  if (disabled) {
+    if (isInverse) {
+      return transparentize(0.6, props.theme.colors.neutral100);
+    }
+    return transparentize(0.4, props.theme.colors.neutral500);
+  }
+  if (isInverse) {
+    return props.theme.colors.primary600;
+  }
+  return props.theme.colors.neutral100;
+}
+
+export const SelectedItemButton = styled.button<{
+  isInverse?: boolean;
+  disabled?: boolean;
+}>`
   align-self: center;
-  background: ${props => props.isInverse ? props.theme.colors.tertiary : props.theme.colors.primary};
+  background: ${props => buildSelectedItemButtonBackground(props)};
   border-radius: 4px;
   border: 0;
   box-shadow: 0 0 0;
-  color: ${props => props.isInverse ? props.theme.colors.primary600 : props.theme.colors.neutral100};
+  color: ${props => buildSelectedItemButtonColor(props)};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
   font-size: 12px;
   line-height: 16px;

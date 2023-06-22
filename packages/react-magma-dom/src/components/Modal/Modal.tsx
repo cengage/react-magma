@@ -212,6 +212,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
     const [isExiting, setIsExiting] = React.useState<boolean>(false);
     const [currentTarget, setCurrentTarget] = React.useState(null);
+    const [modalCount, setModalCount] = React.useState<number>(0);
 
     const focusTrapElement = useFocusLock(
       isModalOpen,
@@ -232,6 +233,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     React.useEffect(() => {
       if (isModalOpen) {
         lastFocus.current = document.activeElement;
+        const count = document.querySelectorAll('[aria-modal="true"]').length;
+        setModalCount(count);
 
         if (!props.isEscKeyDownDisabled) {
           document.body.addEventListener('keydown', handleEscapeKeyDown, false);
@@ -269,7 +272,21 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           typeof props.onEscKeyDown === 'function' &&
           props.onEscKeyDown(event);
 
-        handleClose(event);
+        //Supports nested modals
+        const modalsInDom = document.querySelectorAll(
+          '[aria-modal="true"]'
+        ).length;
+        if (modalCount <= 1 && modalsInDom !== 1) {
+          if (
+            document.getElementById(id).contains(event.target as HTMLDivElement)
+          ) {
+            handleClose(event);
+          } else {
+            headingRef.current.focus();
+          }
+        } else {
+          handleClose(event);
+        }
       }
     }
 

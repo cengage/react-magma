@@ -1,5 +1,106 @@
 # Change Log
 
+## 4.1.0-next.15
+
+### Patch Changes
+
+- 92569a238: chore: Revert Input outline commits
+
+## 4.1.0-next.14
+
+### Patch Changes
+
+- c0a658b5a: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
+
+## 4.1.0-next.13
+
+### Patch Changes
+
+- 155f2de2c: fix(CharCounter): Update maxLength/maxCount logic.
+
+## 4.1.0-next.12
+
+### Patch Changes
+
+- 8ffdf899b: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+
+## 4.1.0-next.11
+
+### Patch Changes
+
+- 7066b5c84: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
+
+## 4.1.0-next.10
+
+### Patch Changes
+
+- 630bb5ab3: fix(Character Counter): Two new props have been added. The `hasCharacterCounter` prop which defaults to `true` and the `maxCount` prop which replaces `maxLength` and enables the Character Counter.
+
+  In the interim if an input needs a native `maxlength` and not a Character Counter, set `hasCharacterCounter={false}` and then use `maxLength`.
+
+  Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
+
+## 4.1.0-next.9
+
+### Patch Changes
+
+- 35a33a7ae: fix(combobox): Disabled Multi Combobox disables the buttons inside it
+
+## 4.1.0-next.8
+
+### Patch Changes
+
+- caee2a755: fix(CharCounter): Update calculation for character length on rerender.
+
+## 4.1.0-next.7
+
+### Patch Changes
+
+- 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
+
+## 4.1.0-next.6
+
+### Patch Changes
+
+- 6b6e0de20: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+
+## 4.1.0-next.5
+
+### Patch Changes
+
+- cca876b3a: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
+  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+
+## 4.1.0-next.4
+
+### Patch Changes
+
+- 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
+
+## 4.1.0-next.3
+
+### Patch Changes
+
+- 4a10f8905: fix(select): Fix Multi Select placeholder text alignment
+
+## 4.1.0-next.2
+
+### Minor Changes
+
+- 3d00dcc7e: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
+
+## 4.0.1-next.1
+
+### Patch Changes
+
+- d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
+
+## 4.0.1-next.0
+
+### Patch Changes
+
+- f487b936f: fix(alertbase): Update height for toasts in AlertBase
+
 ## 4.0.0
 
 ### Major Changes

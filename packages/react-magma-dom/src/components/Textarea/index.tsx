@@ -26,7 +26,7 @@ export interface TextareaProps
   /**
    * A number value which gives Character Counter the maximum length of allowable characters in an Textarea.
    */
-  maxLength?: number;
+  maxCount?: number;
   /**
    * @internal
    */
@@ -55,6 +55,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const {
       containerStyle,
       errorMessage,
+      hasCharacterCounter = true,
       helperMessage,
       id: defaultId,
       isLabelVisuallyHidden,
@@ -62,6 +63,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       labelStyle,
       labelText,
       labelWidth,
+      maxCount,
       maxLength,
       messageStyle,
       testId,
@@ -73,18 +75,21 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     const id = useGenerateId(defaultId);
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
     >(props.defaultValue || props.value || '');
 
-    const initialValueLength = value ? value.toString().length : 0;
-
-    const [characterLength, setCharacterLength] = useState(initialValueLength);
+    const [characterLength, setCharacterLength] = useState(
+      props.value?.toString().length
+    );
 
     React.useEffect(() => {
       setValue(props.value);
+      setCharacterLength(props.value?.toString().length);
     }, [props.value]);
+
     function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
       props.onChange &&
         typeof props.onChange === 'function' &&
@@ -101,6 +106,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
+        hasCharacterCounter={hasCharacterCounter}
         helperMessage={helperMessage}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
         isInverse={isInverse}
@@ -109,6 +115,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         labelText={labelText}
         labelPosition={labelPosition}
         labelWidth={labelWidth}
+        maxCount={maxCount}
         maxLength={maxLength}
       >
         <StyledTextArea
@@ -118,8 +125,12 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           }
           aria-invalid={!!errorMessage}
           data-testid={testId}
-          hasError={!!errorMessage || characterLength > maxLength}
+          hasError={
+            !!errorMessage ||
+            (hasCharacterCounter && characterLength > maxCharacters)
+          }
           id={id}
+          maxLength={!hasCharacterCounter && maxLength}
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}

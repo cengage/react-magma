@@ -3,12 +3,16 @@ pageTitle: LineChart API
 title: LineChart
 ---
 
-<DocsHeading type="api">LineChart</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="linechart" type="api">
+
+<LeadParagraph>A line chart component</LeadParagraph>
 
 <Alert variant="warning">
   <strong>Important!</strong> LineChart is imported from{' '}
-  <inlineCode>@react-magma/charts</inlineCode>{' '}
-  which must be installed as a peer dependency.
+  <inlineCode>@react-magma/charts</inlineCode> which must be installed as a peer
+  dependency.
 </Alert>
 
 ## Basic Usage
@@ -97,10 +101,17 @@ export function Example() {
     componentProps: {
       type: {
         name: 'enum',
-        options: ['LineChartComponentProps.chart', 'LineChartComponentProps.line', 'LineChartComponentProps.scatter', 'LineChartComponentProps.xAxis', 'LineChartComponentProps.yAxis'],
+        options: [
+          'LineChartComponentProps.chart',
+          'LineChartComponentProps.line',
+          'LineChartComponentProps.scatter',
+          'LineChartComponentProps.xAxis',
+          'LineChartComponentProps.yAxis',
+        ],
       },
       required: false,
-      description: 'Props passed to each component that makes up the line chart. See `victory` for accepted props.',
+      description:
+        'Props passed to each component that makes up the line chart. See `victory` for accepted props.',
       defaultValue: '{}',
     },
     data: {
@@ -138,3 +149,4 @@ export function Example() {
   }}
 />
 
+</PageContent>

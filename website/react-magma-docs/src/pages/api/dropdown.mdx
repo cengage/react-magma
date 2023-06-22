@@ -12,9 +12,14 @@ props:
   - DropdownSplitButtonProps
 ---
 
-<DocsHeading to="/design/dropdown/" type="api">
-  Dropdown
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="dropdown" type="api">
+
+<LeadParagraph>
+  Dropdowns provide a portable way to display menus or lighter versions of other
+  components. The dropdown is shown by clicking on a button or other control.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -435,84 +440,150 @@ export function Example() {
 }
 ```
 
-## Dropdown with Form
+## Dropdown without Menu Items
 
-Dropdowns can contain elements other than `DropdownMenuItem` components.
-The following examples include form elements, styled with inline styles including variables from the Magma theme.
+Dropdowns can contain elements other than `DropdownMenuItem` components. They can be used to wrap a form, filters, or informational content.
 
 While users may navigate between `DropdownMenuItem` components using up and down arrow keys,
 browser default keyboard behavior applies to other content.
+
+### Dropdown with Form
 
 ```tsx
 import React from 'react';
 import {
   Button,
-  Checkbox,
   Dropdown,
   DropdownButton,
   DropdownContent,
   DropdownDivider,
-  DropdownHeader,
   Input,
+  InputType,
   magma,
   PasswordInput,
-  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <ButtonGroup>
-      <Dropdown width="300px">
-        <DropdownButton>Dropdown with Login Form</DropdownButton>
-        <DropdownContent>
-          <form style={{ margin: 0, padding: magma.spaceScale.spacing05 }}>
-            <Input type="email" labelText="Email Address" />
-            <PasswordInput labelText="Password" />
-            <div style={{ textAlign: 'center' }}>
-              <p>
-                By signing in, you agree to our <a href="#">Terms of use</a>.
-              </p>
-              <Button isFullWidth>Sign In</Button>
-              <p>
-                <a>Forgot password?</a>
-              </p>
-            </div>
-          </form>
-          <DropdownDivider />
-          <div
-            style={{ textAlign: 'center', padding: magma.spaceScale.spacing05 }}
-          >
+    <Dropdown width="300px">
+      <DropdownButton>Dropdown with Login Form</DropdownButton>
+      <DropdownContent>
+        <form style={{ margin: 0, padding: magma.spaceScale.spacing05 }}>
+          <Input type={InputType.email} labelText="Email Address" />
+          <PasswordInput labelText="Password" />
+          <div style={{ textAlign: 'center' }}>
             <p>
-              Don't have an account?
-              <br />
-              <a href="#">Register today!</a>
+              By signing in, you agree to our <a href="#">Terms of use</a>.
+            </p>
+            <Button isFullWidth>Sign In</Button>
+            <p>
+              <a>Forgot password?</a>
             </p>
           </div>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown width="300px">
-        <DropdownButton>Dropdown with Form 2</DropdownButton>
-        <DropdownContent>
-          <DropdownHeader id="checkboxGroup">
-            Checkbox Group Label
-          </DropdownHeader>
-          <form
-            style={{
-              color: magma.colors.neutral,
-              margin: 0,
-              paddingLeft: magma.spaceScale.spacing05,
-              paddingRight: magma.spaceScale.spacing05,
-            }}
-          >
-            <div role="group" aria-labelledby="checkboxGroup">
-              <Checkbox labelText="Option 1" />
-              <Checkbox labelText="Option 2" />
-              <Checkbox labelText="Option 3" />
-            </div>
-          </form>
-        </DropdownContent>
-      </Dropdown>
-    </ButtonGroup>
+        </form>
+        <DropdownDivider />
+        <div
+          style={{ textAlign: 'center', padding: magma.spaceScale.spacing05 }}
+        >
+          <p>
+            Don't have an account?
+            <br />
+            <a href="#">Register today!</a>
+          </p>
+        </div>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
+### Dropdown with Filter
+
+```tsx
+import React from 'react';
+import {
+  Checkbox,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownHeader,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [checkedItems, setCheckedItems] = React.useState([]);
+
+  function updateCheckedItems(e) {
+    if (e.target.checked) {
+      if (!checkedItems.includes(e.target.value)) {
+        setCheckedItems([...checkedItems, e.target.value]);
+      }
+    } else if (!e.target.checked) {
+      setCheckedItems(checkedItems.filter(i => i !== e.target.value));
+    }
+  }
+
+  return (
+    <Dropdown width="300px">
+      <DropdownButton>Filter Dropdown ({checkedItems.length})</DropdownButton>
+      <DropdownContent>
+        <DropdownHeader id="checkboxGroup">Checkbox Group Label</DropdownHeader>
+        <form
+          style={{
+            color: magma.colors.neutral,
+            margin: 0,
+            paddingLeft: magma.spaceScale.spacing05,
+            paddingRight: magma.spaceScale.spacing05,
+          }}
+        >
+          <div role="group" aria-labelledby="checkboxGroup">
+            <Checkbox
+              value="1"
+              labelText="Option 1"
+              onClick={updateCheckedItems}
+            />
+            <Checkbox
+              value="2"
+              labelText="Option 2"
+              onClick={updateCheckedItems}
+            />
+            <Checkbox
+              value="3"
+              labelText="Option 3"
+              onClick={updateCheckedItems}
+            />
+          </div>
+        </form>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+
+```
+
+### Dropdown with Informational Content
+
+```tsx
+import React from 'react';
+import {
+  Checkbox,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  Paragraph,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Dropdown width="300px">
+      <DropdownButton>Informational Dropdown</DropdownButton>
+      <DropdownContent style={{ padding: magma.spaceScale.spacing05 }}>
+        <Paragraph noMargins>
+          In this activity you must achieve 80% or higher to receive credit
+        </Paragraph>
+      </DropdownContent>
+    </Dropdown>
   );
 }
 ```
@@ -768,6 +839,7 @@ export function Example() {
 ```
 
 ## Inverse
+
 ```tsx
 import React from 'react';
 import {
@@ -776,7 +848,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
   Card,
-  CardBody
+  CardBody,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -843,3 +915,5 @@ The DropdownButton can also accept an `icon` property, as in the <Link to="/api/
 **Any other props supplied will be provided to the wrapping `a` element.**
 
 <DropdownMenuNavItemProps />
+
+</PageContent>

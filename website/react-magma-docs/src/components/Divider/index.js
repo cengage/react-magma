@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { magma, useIsInverse } from 'react-magma-dom';
 
-const HR = styled.hr`
+const StyledHr = styled.hr`
   background: ${props =>
     props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border: none;
@@ -14,5 +14,5 @@ const HR = styled.hr`
 export const Divider = () => {
   const isInverse = useIsInverse();
 
-  return <HR isInverse={isInverse} />;
+  return <StyledHr isInverse={isInverse} />;
 };
