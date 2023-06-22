@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.15
+
+### Patch Changes
+
+- 33b70552d: fix(Input): Update input z-index when it's in focus to bring the focus outline to the front.
+
 ## 4.1.0-next.14
 
 ### Patch Changes
