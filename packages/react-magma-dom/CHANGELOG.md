@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0-next.14
+
+### Patch Changes
+
+- c0a658b5a: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
+
 ## 4.1.0-next.13
 
 ### Patch Changes
