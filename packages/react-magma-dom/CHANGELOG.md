@@ -1,5 +1,23 @@
 # Change Log
 
+## 4.1.0-next.14
+
+### Patch Changes
+
+- c0a658b5a: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
+
+## 4.1.0-next.13
+
+### Patch Changes
+
+- 155f2de2c: fix(CharCounter): Update maxLength/maxCount logic.
+
+## 4.1.0-next.12
+
+### Patch Changes
+
+- 8ffdf899b: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+
 ## 4.1.0-next.11
 
 ### Patch Changes

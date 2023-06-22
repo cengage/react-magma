@@ -1,7 +1,26 @@
 # Change Log
 
-<<<<<<< HEAD
-=======
+## 5.0.1-next.22
+
+### Patch Changes
+
+- Updated dependencies [c0a658b5a]
+  - react-magma-dom@4.1.0-next.14
+
+## 5.0.1-next.21
+
+### Patch Changes
+
+- Updated dependencies [155f2de2c]
+  - react-magma-dom@4.1.0-next.13
+
+## 5.0.1-next.20
+
+### Patch Changes
+
+- Updated dependencies [8ffdf899b]
+  - react-magma-dom@4.1.0-next.12
+
 ## 5.0.1-next.19
 
 ### Patch Changes
