@@ -1,5 +1,40 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- 4a10f8905: Reorganize Select docs
+- 0894b08eb: Update ToggleButton and ToggleButtonGroup docs.
+- 108637df1: Update page layout. Move secondary navigation to the page.
+- 54e6ea1d8: fix(docs - datagrid): This resolves the missing example under "Selectable and Sortable" within the Datagrid API documentation.
+- 33548e7e5: docs: updated docs
+- 504763bd6: Update Grid docs. Add explanation for `as` prop.
+- fbc4b655f: Update the Theme page to include more details about theming, and remove theme section in the Custom Styles page.
+- 0ddda514c: Update Toast docs to include that messages should be 1-2 lines long.
+- 0b581a8cb: Update Tooltip docs to remove reference to old `trigger` prop.
+- Updated dependencies [c0a658b5a]
+- Updated dependencies [155f2de2c]
+- Updated dependencies [caee2a755]
+- Updated dependencies [35a33a7ae]
+- Updated dependencies [cca876b3a]
+- Updated dependencies [3d00dcc7e]
+- Updated dependencies [630bb5ab3]
+- Updated dependencies [8ffdf899b]
+- Updated dependencies [d0c69155a]
+- Updated dependencies [6f53d1891]
+- Updated dependencies [395aea21c]
+- Updated dependencies [6b6e0de20]
+- Updated dependencies [7066b5c84]
+- Updated dependencies [f487b936f]
+- Updated dependencies [92569a238]
+- Updated dependencies [4a10f8905]
+  - react-magma-dom@4.1.0
+  - @react-magma/charts@4.0.0
+  - @react-magma/dropzone@4.0.0
+  - @react-magma/schema-renderer@4.0.0
+  - @cengage-patterns/header@6.0.0
+
 ## 5.0.1-next.23
 
 ### Patch Changes

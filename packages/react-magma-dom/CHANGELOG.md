@@ -1,5 +1,35 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- 3d00dcc7e: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
+
+### Patch Changes
+
+- c0a658b5a: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
+- 155f2de2c: fix(CharCounter): Update maxLength/maxCount logic.
+- caee2a755: fix(CharCounter): Update calculation for character length on rerender.
+- 35a33a7ae: fix(combobox): Disabled Multi Combobox disables the buttons inside it
+- cca876b3a: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
+  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+- 630bb5ab3: fix(Character Counter): Two new props have been added. The `hasCharacterCounter` prop which defaults to `true` and the `maxCount` prop which replaces `maxLength` and enables the Character Counter.
+
+  In the interim if an input needs a native `maxlength` and not a Character Counter, set `hasCharacterCounter={false}` and then use `maxLength`.
+
+  Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
+
+- 8ffdf899b: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+- d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
+- 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
+- 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
+- 6b6e0de20: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+- 7066b5c84: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
+- f487b936f: fix(alertbase): Update height for toasts in AlertBase
+- 92569a238: chore: Revert Input outline commits
+- 4a10f8905: fix(select): Fix Multi Select placeholder text alignment
+
 ## 4.1.0-next.15
 
 ### Patch Changes
