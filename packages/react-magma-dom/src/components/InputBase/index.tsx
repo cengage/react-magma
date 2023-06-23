@@ -37,6 +37,13 @@ export interface InputBaseProps
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
+  /** 
+   * Enables Character Counter by default. 
+   * When set to false, the default HTML attribute of 'maxlength' will work. 
+   * Note: This is a temporary prop and will be removed in future releases.
+    @default true 
+  */
+  hasCharacterCounter?: boolean;
   /**
    * @internal
    */
@@ -88,6 +95,12 @@ export interface InputBaseProps
   /**
    * A number value which gives Character Counter the maximum length of allowable characters in an Input.
    */
+  maxCount?: number;
+  /**
+   * A number value which gives Character Counter the maximum length of allowable characters in an Input.
+   * @deprecated = true
+   */
+
   maxLength?: number;
   /**
    * Action that will fire when icon is clicked
@@ -223,6 +236,7 @@ function getInputPadding(props: InputBaseStylesProps) {
 }
 
 export interface InputBaseStylesProps {
+  hasCharacterCounter?: boolean;
   isInverse?: boolean;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
@@ -452,6 +466,19 @@ function getClearablePosition(props) {
       }
       return props.theme.spaceScale.spacing12;
     }
+    if (props.iconPosition === 'left') {
+      if (props.inputSize === 'large') {
+        return '88px';
+      }
+      return props.theme.spaceScale.spacing12;
+    }
+    if (props.iconPosition === 'top') {
+      if (props.inputSize === 'large') {
+        return props.theme.spaceScale.spacing10;
+      }
+      return '34px';
+    }
+    return props.theme.spaceScale.spacing12;
   }
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
@@ -513,6 +540,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       containerStyle,
       defaultValue,
       disabled,
+      hasCharacterCounter,
       hasError,
       icon,
       iconAriaLabel,
@@ -520,6 +548,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       isClearable,
       isPasswordInput,
       isPredictive,
+      maxCount,
       maxLength,
       onClear,
       onIconClick,
@@ -586,6 +615,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             aria-invalid={hasError}
             disabled={disabled}
             data-testid={testId}
+            hasCharacterCounter={hasCharacterCounter}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
             isClearable={isClearable && inputLength > 0}
@@ -593,6 +623,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             isPredictive={isPredictive}
             hasError={hasError}
             ref={ref}
+            maxLength={!hasCharacterCounter && maxLength}
             onChange={handleChange}
             style={inputStyle}
             theme={theme}

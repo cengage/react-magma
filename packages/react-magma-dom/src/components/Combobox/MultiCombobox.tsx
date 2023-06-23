@@ -326,6 +326,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
                 selectedItem: multiSelectedItem,
                 index,
               })}
+              disabled={disabled}
               onClick={event =>
                 handleRemoveSelectedItem(event, multiSelectedItem)
               }
@@ -398,6 +399,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
             shape={ButtonShape.fill}
             size={ButtonSize.small}
             variant={ButtonVariant.link}
+            disabled={disabled}
           />
         )}
       </ComboboxInput>

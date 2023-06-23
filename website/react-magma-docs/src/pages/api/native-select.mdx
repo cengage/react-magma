@@ -5,11 +5,16 @@ props:
   - NativeSelectProps
 ---
 
-<DocsHeading type="api">NativeSelect</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="native_select" type="api">
+
+<LeadParagraph>
+  Native Select uses the magma <Link to="/api/select">Select</Link> styling with
+  a browser default option menu for compatibility purposes.
+</LeadParagraph>
 
 ## Basic Usage
-
-`Native Select` uses the magma <Link to="/api/select">`Select`</Link> styling with a browser default option menu for compatibility purposes.
 
 ```typescript
 import React from 'react';
@@ -224,3 +229,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `select` element.**
 
 <NativeSelectProps />
+
+</PageContent>

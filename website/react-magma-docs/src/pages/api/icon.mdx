@@ -3,9 +3,16 @@ pageTitle: Icon API
 title: Icon
 ---
 
-<DocsHeading to="/design-intro/icons/" type="api">
-  Icon
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="icon" type="api">
+
+<LeadParagraph>
+  Icons are visual symbols used to represent objects or actions. They
+  communicate messages at a glance, clarify the nature of an interactive
+  element, and draw attention to important information.
+</LeadParagraph>
+
 <Alert variant="warning">
   <strong>Important!</strong> Icons are now imported from{' '}
   <inlineCode>react-magma-icons</inlineCode>
@@ -13,8 +20,6 @@ title: Icon
 </Alert>
 
 ## Basic Usage
-
-Icons are imported from a separate `react-magma-icons` package.
 
 ```tsx
 import React from 'react';
@@ -178,3 +183,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the svg ele
     },
   }}
 />
+
+</PageContent>

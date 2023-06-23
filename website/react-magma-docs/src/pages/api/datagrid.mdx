@@ -11,9 +11,14 @@ props:
   - UseDataPaginationUncontrolled
 ---
 
-<DocsHeading type="api">Datagrid</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-Similar to the `Table` component, the `Datagrid` takes in data in a set of props and renders rows and columns accordingly.
+<PageContent componentName="datagrid" type="api">
+
+<LeadParagraph>
+  Similar to the Table component, the Datagrid takes in data in a set of props
+  and renders rows and columns accordingly.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -692,7 +697,7 @@ export function Example() {
 
     if (key === 'name') {
       if (
-        sortConfig?.key === key &&
+        sortConfig.key === key &&
         selectedDirection === TableSortDirection.ascending
       ) {
         direction = TableSortDirection.descending;
@@ -702,7 +707,7 @@ export function Example() {
       setStockDirection(TableSortDirection.none);
     } else if (key === 'price') {
       if (
-        sortConfig?.key === key &&
+        sortConfig.key === key &&
         priceDirection === TableSortDirection.ascending
       ) {
         direction = TableSortDirection.descending;
@@ -712,7 +717,7 @@ export function Example() {
       setStockDirection(TableSortDirection.none);
     } else if (key === 'stock') {
       if (
-        sortConfig?.key === key &&
+        sortConfig.key === key &&
         stockDirection === TableSortDirection.ascending
       ) {
         direction = TableSortDirection.descending;
@@ -2023,3 +2028,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `tr` element.**
 
 <DatagridRow />
+
+</PageContent>

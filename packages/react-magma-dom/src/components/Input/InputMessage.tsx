@@ -15,7 +15,7 @@ export interface InputMessageProps
    */
   inputSize?: InputSize;
   isInverse?: boolean;
-  maxLength?: number;
+  maxCount?: number;
 }
 
 function BuildMessageColor(props) {
@@ -55,14 +55,14 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   id,
   isInverse,
   hasError,
-  maxLength,
+  maxCount,
   ...other
 }: InputMessageProps) => {
   const theme = React.useContext(ThemeContext);
 
-  //Conditional wrapper based on maxLength, allows Character Counter to render without the Announce component for accessibility purposes.
+  //Conditional wrapper based on maxCount, allows Character Counter to render without the Announce component for accessibility purposes.
   function AnnounceWrapper(props) {
-    if (maxLength) {
+    if (maxCount) {
       return props.children;
     }
     return <Announce>{props.children}</Announce>;

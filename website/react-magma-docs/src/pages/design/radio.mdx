@@ -1,0 +1,99 @@
+---
+pageTitle: Radio Button Design Guidelines
+title: Radio Button
+order: 1
+---
+
+import './design-guidelines-styles.css';
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="radio_button" type="design">
+
+<LeadParagraph>The Radio button allows the user to select one option from a set.</LeadParagraph>
+
+## Usage
+
+Use radio buttons when the user needs to see all available options. If available options can be collapsed, consider using a Select component because it uses less space.
+
+Radio buttons should have the most commonly used option selected by default.
+
+<figure>
+  <div class="image-container">
+    <img
+      src="../../images/selection-controls/Radio-buttons-example.png"
+      alt=""
+    />
+  </div>
+  <figcaption>
+    <p>Radio buttons</p>
+  </figcaption>
+</figure>
+<div class="two-col">
+  <div class="row">
+    <div class="col col-1">
+      <figure>
+        <img
+          src="../../images/selection-controls/Radio-select-only-one.png"
+          alt=""
+        />
+        <figcaption>
+          <p class="title title-correct">Correct</p>
+          <p>
+            Use radio buttons when only one item can be selected from a list.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="col col-2">
+      <figure>
+        <img
+          src="../../images/selection-controls/Radio-select-only-one-incorrect.png"
+          alt=""
+        />
+        <figcaption>
+          <p class="title title-incorrect">Incorrect</p>
+          <p>
+            Don’t use checkboxes when only one item can be selected from a list.
+            Use radio buttons instead.
+          </p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Radio-example-2.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Radio buttons - only one option can be selected at a time.</p>
+  </figcaption>
+</figure>
+
+## States
+
+Radio buttons can be off or on. Radio buttons have enabled, focused and pressed states.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Radio-states.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Radio states</p>
+  </figcaption>
+</figure>
+
+## Inverse
+
+Use the inverse version when using the radio buttons on a dark background.
+
+<figure>
+  <div class="image-container">
+    <img src="../../images/selection-controls/Radio-inverse.png" alt="" />
+  </div>
+  <figcaption>
+    <p>Inverse colors</p>
+  </figcaption>
+</figure>
+
+</PageContent>
