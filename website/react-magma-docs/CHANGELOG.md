@@ -372,7 +372,8 @@
   - @cengage-patterns/header@5.0.0-next.0
   - @react-magma/schema-renderer@3.0.0-next.0
 
-> > > > > > > 2daef3b51 (chore: enter prerelease mode)
+2daef3b51 (chore: enter prerelease mode)
+30026b18d (Release v3.4.0 (#1075))
 
 ## 4.0.6
 
