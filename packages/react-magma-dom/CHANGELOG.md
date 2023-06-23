@@ -115,6 +115,48 @@
 - 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
 - 17fc12212: fix(toggleButton): Fix hover states
 
+## 3.5.0
+
+### Minor Changes
+
+- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- 30026b18d: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
+- 17fc12212: feat(toggleButton): New Toggle Button component.
+- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
+### Patch Changes
+
+- 17fc12212: Set fallback `font-family` for all components.
+- 30026b18d: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
+- 30026b18d: fix(CharCounter): Update maxLength/maxCount logic.
+- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- 30026b18d: fix(CharCounter): Update calculation for character length on rerender.
+- 30026b18d: fix(CharacterCounter): Add `ref` to Character Counter. Removes related test console warning.
+- 30026b18d: fix(combobox): Disabled Multi Combobox disables the buttons inside it
+- 17fc12212: chore: Fix broken build
+- 30026b18d: fix(Character Counter): Two new props have been added. The `hasCharacterCounter` prop which defaults to `true` and the `maxCount` prop which replaces `maxLength` and enables the Character Counter.
+
+  In the interim if an input needs a native `maxlength` and not a Character Counter, set `hasCharacterCounter={false}` and then use `maxLength`.
+
+  Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
+
+- 30026b18d: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+- 17fc12212: chore: Fixed warnings in the console.
+- 30026b18d: fix(inputbase): Update icon/button position for inputs with two icons.
+- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 30026b18d: fix(Modal): Added support for closing individual nested modals with escape key.
+- 30026b18d: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
+- 30026b18d: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+- 30026b18d: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
+- 30026b18d: fix(alertbase): Update height for toasts in AlertBase
+- 30026b18d: chore: Revert Input outline commits
+- 17fc12212: fix(heading): Fix error that `"Property 'css' is missing"`
+- 30026b18d: fix(select): Fix Multi Select placeholder text alignment
+- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 17fc12212: fix(toggleButton): Fix hover states
+
 ## 3.4.0
 
 ## Minor Changes
