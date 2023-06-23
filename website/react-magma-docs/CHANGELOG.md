@@ -1,5 +1,47 @@
 # Change Log
 
+## 5.0.2
+
+### Patch Changes
+
+- 30026b18d: Reorganize Select docs
+- 30026b18d: Update ToggleButton and ToggleButtonGroup docs.
+- 30026b18d: Update page layout. Move secondary navigation to the page.
+- 30026b18d: fix(docs - datagrid): This resolves the missing example under "Selectable and Sortable" within the Datagrid API documentation.
+- 30026b18d: docs: updated docs
+- 30026b18d: Update Grid docs. Add explanation for `as` prop.
+- 30026b18d: Update the Theme page to include more details about theming, and remove theme section in the Custom Styles page.
+- 30026b18d: Update Toast docs to include that messages should be 1-2 lines long.
+- 30026b18d: Update Tooltip docs to remove reference to old `trigger` prop.
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+  - react-magma-dom@3.5.0
+
 ## 5.0.1-next.22
 
 ### Patch Changes
@@ -290,7 +332,8 @@
   - @cengage-patterns/header@5.0.0-next.0
   - @react-magma/schema-renderer@3.0.0-next.0
 
->>>>>>> 2daef3b51 (chore: enter prerelease mode)
+> > > > > > > 2daef3b51 (chore: enter prerelease mode)
+
 ## 4.0.6
 
 ### Patch Changes
