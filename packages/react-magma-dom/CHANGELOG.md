@@ -1,203 +1,50 @@
 # Change Log
 
-## 4.1.0-next.14
+## 3.4.0
+
+## Minor Changes
+
+- 3d00dcc7e: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
 
 ### Patch Changes
 
 - c0a658b5a: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
-
-## 4.1.0-next.13
-
-### Patch Changes
-
 - 155f2de2c: fix(CharCounter): Update maxLength/maxCount logic.
-
-## 4.1.0-next.12
-
-### Patch Changes
-
-- 8ffdf899b: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
-
-## 4.1.0-next.11
-
-### Patch Changes
-
-- 7066b5c84: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
-
-## 4.1.0-next.10
-
-### Patch Changes
-
-- 630bb5ab3: fix(Character Counter): Two new props have been added. The `hasCharacterCounter` prop which defaults to `true` and the `maxCount` prop which replaces `maxLength` and enables the Character Counter.
-
-  In the interim if an input needs a native `maxlength` and not a Character Counter, set `hasCharacterCounter={false}` and then use `maxLength`.
-
-  Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
-
-## 4.1.0-next.9
-
-### Patch Changes
-
-- 35a33a7ae: fix(combobox): Disabled Multi Combobox disables the buttons inside it
-
-## 4.1.0-next.8
-
-### Patch Changes
-
 - caee2a755: fix(CharCounter): Update calculation for character length on rerender.
-
-## 4.1.0-next.7
-
-### Patch Changes
-
-- 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
-
-## 4.1.0-next.6
-
-### Patch Changes
-
-- 6b6e0de20: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
-
-## 4.1.0-next.5
-
-### Patch Changes
-
-- cca876b3a: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
-  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
-
-## 4.1.0-next.4
-
-### Patch Changes
-
+- 35a33a7ae: fix(combobox): Disabled Multi Combobox disables the buttons inside it
+- cca876b3a: fix(dropdown): Dropdowns without DropdownMenuItem will get focused on open. Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+- 630bb5ab3: fix(Character Counter): Two new props have been added. The hasCharacterCounter prop which defaults to true and the maxCount prop which replaces maxLength and enables the Character Counter.
+  In the interim if an input needs a native maxlength and not a Character Counter, set hasCharacterCounter={false} and then use maxLength.
+  Please note that in the meantime, maxLength is still supported but will need to be changed to maxCount as future releases will remove maxLength and hasCharacterCounter.
+- 8ffdf899b: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+- d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
 - 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
-
-## 4.1.0-next.3
-
-### Patch Changes
-
+- 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
+- 6b6e0de20: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+- 7066b5c84: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
+- f487b936f: fix(alertbase): Update height for toasts in AlertBase
+- 92569a238: chore: Revert Input outline commits
 - 4a10f8905: fix(select): Fix Multi Select placeholder text alignment
 
-## 4.1.0-next.2
+## 3.3.0
 
-### Minor Changes
+## Minor Changes
 
-- 3d00dcc7e: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
+- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- 17fc12212: feat(toggleButton): New Toggle Button component.
+- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+  Deprecations: dropdownDropDirection prop is now deprecated
 
-## 4.0.1-next.1
+## Patch Changes
 
-### Patch Changes
-
-- d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
-
-## 4.0.1-next.0
-
-### Patch Changes
-
-- f487b936f: fix(alertbase): Update height for toasts in AlertBase
-
-## 4.0.0
-
-### Major Changes
-
-- c01c53838: chore: Update to React v17.0.2
-
-### Minor Changes
-
-- 39ef67ade: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
-- f311f81e9: feat(toggleButton): New Toggle Button component.
-- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
-
-  Deprecations: `dropdownDropDirection` prop is now deprecated
-
-### Patch Changes
-
-- b276664cd: Set fallback `font-family` for all components.
-- f708b20dc: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
-- adba671f3: chore: Fix broken build
-- e91c72c88: chore: Fixed warnings in the console.
-- 9cb534ce8: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
-- 4301b98c1: fix(heading): Fix error that `"Property 'css' is missing"`
-- d2956b5f1: chore: Update react-magma-icons to v3.0.0
-- 0a4f2f8ce: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
-- 354a62232: fix(toggleButton): Fix hover states
-
-## 4.0.0-next.11
-
-### Patch Changes
-
-- e91c72c88: chore: Fixed warnings in the console.
-
-## 4.0.0-next.10
-
-### Patch Changes
-
-- d2956b5f1: chore: Update react-magma-icons to v3.0.0
-
-## 4.0.0-next.9
-
-### Patch Changes
-
-- 354a62232: fix(toggleButton): Fix hover states
-
-## 4.0.0-next.8
-
-### Minor Changes
-
-- 39ef67ade: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
-
-## 4.0.0-next.7
-
-### Minor Changes
-
-- f311f81e9: feat(toggleButton): New Toggle Button component.
-
-## 4.0.0-next.6
-
-### Patch Changes
-
-- f708b20dc: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
-
-## 4.0.0-next.5
-
-### Patch Changes
-
-- 0a4f2f8ce: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
-
-## 4.0.0-next.4
-
-### Patch Changes
-
-- 4301b98c1: fix(heading): Fix error that `"Property 'css' is missing"`
-
-## 4.0.0-next.3
-
-### Patch Changes
-
-- b276664cd: Set fallback `font-family` for all components.
-
-## 4.0.0-next.2
-
-### Patch Changes
-
-- 9cb534ce8: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
-
-## 4.0.0-next.1
-
-### Minor Changes
-
-- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
-
-  Deprecations: `dropdownDropDirection` prop is now deprecated
-
-## 4.0.0-next.0
-
-### Major Changes
-
-- c01c53838: chore: Update to React v17.0.2
-
-### Patch Changes
-
-- adba671f3: chore: Fix broken build
+- 17fc12212: Set fallback font-family for all components.
+- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- 17fc12212: chore: Fix broken build
+- 17fc12212: chore: Fixed warnings in the console.
+- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 17fc12212: fix(heading): Fix error that "Property 'css' is missing"
+- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 17fc12212: fix(toggleButton): Fix hover states
 
 ## 3.2.1
 

@@ -4,7 +4,7 @@
   "initialVersions": {
     "@react-magma/charts": "2.0.1",
     "@react-magma/dropzone": "2.0.1",
-    "react-magma-dom": "3.2.1",
+    "react-magma-dom": "3.3.0",
     "@react-magma/schema-renderer": "2.0.1",
     "@cengage-patterns/header": "4.0.1",
     "react-magma-docs": "4.0.6",
