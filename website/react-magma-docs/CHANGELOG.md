@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.2-next.0
+
+### Patch Changes
+
+- d2dc9c154: Update CHANGELOG
+
 ## 5.0.1
 
 ### Patch Changes
