@@ -5,6 +5,7 @@ import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import styled from '../../theme/styled';
+import { SimplePagination } from '../Pagination/SimplePagination';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { usePagination } from './usePagination';
 
@@ -21,6 +22,7 @@ export interface BasePaginationProps
    * @default 1
    */
   count?: number;
+
   /**
    * If true, disables all of the Pagination buttons
    * @default false
@@ -65,12 +67,22 @@ export interface BasePaginationProps
    * @default false
    */
   showLastButton?: boolean;
+  /**
+   * Enum which changes Pagination into a dropdown when using 'simple'.
+   * @default PaginationType.classic
+   */
+  type?: PaginationType;
+}
+
+export enum PaginationType {
+  classic = 'classic',
+  simple = 'simple',
 }
 
 export interface ControlledPaginationProps extends BasePaginationProps {
   defaultPage: never;
   /**
-   * Current page number
+   * Current page number when used with onPageChange.
    */
   page?: number;
 }
@@ -79,6 +91,9 @@ export interface UncontrolledPaginationProps extends BasePaginationProps {
    * Page selected by default when the component is uncontrolled
    */
   defaultPage?: number;
+  /**
+   * Current page number when used with onPageChange.
+   */
   page: number;
 }
 export type PaginationProps =
@@ -118,7 +133,7 @@ function BuildButtonSize(props) {
   }
 }
 
-const NavButton = styled(IconButton)`
+export const NavButton = styled(IconButton)`
   height: ${BuildButtonSize};
   margin: 0;
   padding: 0;
@@ -149,6 +164,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
       size = PageButtonSize.medium,
       showFirstButton,
       showLastButton,
+      type,
       testId,
       onPageChange,
       ...other
@@ -174,68 +190,88 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     const i18n = React.useContext(I18nContext);
 
     return (
-      <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
-        <StyledList>
-          {pageButtons.map(
-            ({ 'aria-current': ariaCurrent, page, type, ...other }, index) => {
-              if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-                return (
-                  <StyledEllipsis
-                    aria-current={Boolean(ariaCurrent)}
-                    key={index}
-                    isInverse={isInverse}
-                    size={size}
-                    theme={theme}
-                  >
-                    ...
-                  </StyledEllipsis>
-                );
-              } else if (type === 'page') {
-                return (
-                  <StyledListItem
-                    aria-current={Boolean(ariaCurrent)}
-                    key={index}
-                  >
-                    <PageButton
-                      isInverse={isInverse}
-                      size={buttonSize}
-                      {...other}
-                    >
-                      {page}
-                    </PageButton>
-                  </StyledListItem>
-                );
-              } else if (type === 'previous' || type === 'next') {
-                return (
-                  <StyledListItem key={index}>
-                    <NavButton
-                      variant={ButtonVariant.solid}
-                      color={ButtonColor.secondary}
-                      aria-label={i18n.pagination[`${type}ButtonLabel`]}
-                      icon={
-                        type === 'previous' ? (
-                          <ArrowBackIcon />
-                        ) : (
-                          <ArrowForwardIcon />
-                        )
-                      }
-                      isInverse={isInverse}
-                      theme={theme}
-                      shape={
-                        type === 'previous'
-                          ? ButtonShape.leftCap
-                          : ButtonShape.rightCap
-                      }
-                      size={buttonSize}
-                      {...other}
-                    />
-                  </StyledListItem>
-                );
-              }
-            }
-          )}
-        </StyledList>
-      </StyledNav>
+      <>
+        {type === PaginationType.simple ? (
+          <SimplePagination
+            count={count}
+            defaultPage={defaultPage < 1 ? 1 : defaultPage}
+            disabled={disabled}
+            hideNextButton={hideNextButton}
+            hidePreviousButton={hidePreviousButton}
+            isInverse={isInverse}
+            onPageChange={onPageChange}
+            page={page}
+            testId={testId}
+            {...other}
+          />
+        ) : (
+          <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
+            <StyledList>
+              {pageButtons.map(
+                (
+                  { 'aria-current': ariaCurrent, page, type, ...other },
+                  index
+                ) => {
+                  if (type === 'start-ellipsis' || type === 'end-ellipsis') {
+                    return (
+                      <StyledEllipsis
+                        aria-current={Boolean(ariaCurrent)}
+                        key={index}
+                        isInverse={isInverse}
+                        size={size}
+                        theme={theme}
+                      >
+                        ...
+                      </StyledEllipsis>
+                    );
+                  } else if (type === 'page') {
+                    return (
+                      <StyledListItem
+                        aria-current={Boolean(ariaCurrent)}
+                        key={index}
+                      >
+                        <PageButton
+                          isInverse={isInverse}
+                          size={buttonSize}
+                          {...other}
+                        >
+                          {page}
+                        </PageButton>
+                      </StyledListItem>
+                    );
+                  } else if (type === 'previous' || type === 'next') {
+                    return (
+                      <StyledListItem key={index}>
+                        <NavButton
+                          variant={ButtonVariant.solid}
+                          color={ButtonColor.secondary}
+                          aria-label={i18n.pagination[`${type}ButtonLabel`]}
+                          icon={
+                            type === 'previous' ? (
+                              <ArrowBackIcon />
+                            ) : (
+                              <ArrowForwardIcon />
+                            )
+                          }
+                          isInverse={isInverse}
+                          theme={theme}
+                          shape={
+                            type === 'previous'
+                              ? ButtonShape.leftCap
+                              : ButtonShape.rightCap
+                          }
+                          size={buttonSize}
+                          {...other}
+                        />
+                      </StyledListItem>
+                    );
+                  }
+                }
+              )}
+            </StyledList>
+          </StyledNav>
+        )}
+      </>
     );
   }
 );

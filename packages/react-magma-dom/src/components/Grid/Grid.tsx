@@ -107,6 +107,12 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * If you have grid items that you don’t explicitly place on the grid, the auto-placement algorithm kicks in to automatically place the items.
    */
   gridAutoFlow?: GridAutoFlow;
+  /**
+   * Semantic HTML tag to be used for the Grid
+   * Examples: `nav`, `footer`, `main`, `figure`, `aside`, etc.
+   * @default `div`
+   */
+  as?: string;
 }
 
 /**
@@ -133,6 +139,12 @@ export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
    * Aligns the grid item within the cell along the block (column) axis. Applies to a grid item inside a single cell.
    */
   gridItemAlignSelf?: GridItemAlignSelf;
+  /**
+   * Semantic HTML tag to be used for the GridItem
+   * Examples: `nav`, `footer`, `main`, `figure`, `aside`, etc.
+   * @default `div`
+   */
+  as?: string;
 }
 
 export const Grid = styled.div<GridProps>`

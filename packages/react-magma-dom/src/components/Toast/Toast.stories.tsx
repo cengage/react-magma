@@ -105,38 +105,3 @@ export const TwoLine = args => {
 TwoLine.args = {
   ...Default.args,
 };
-
-export const MultiLine = args => {
-  const [showToast, setShowToast] = React.useState(false);
-
-  function handleClick() {
-    setShowToast(true);
-  }
-
-  function handleDismiss() {
-    setShowToast(false);
-  }
-
-  return (
-    <div
-      style={{ background: args.isInverse ? magma.colors.primary600 : 'none' }}
-    >
-      <Button
-        size={ButtonSize.small}
-        onClick={handleClick}
-        isInverse={args.isInverse}
-      >
-        Show multiple line Toast
-      </Button>
-      {showToast ? (
-        <Toast onDismiss={handleDismiss} {...args}>
-          Toast with breaking lines of content which will appear right now! Also
-          it is going to go all the way down here! I mean it! I really do!
-        </Toast>
-      ) : null}
-    </div>
-  );
-};
-MultiLine.args = {
-  ...Default.args,
-};

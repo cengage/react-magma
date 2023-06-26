@@ -7,13 +7,17 @@ import { DarkModeContext } from '../DarkMode/DarkModeContext';
 import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 
 const StyledContainer = styled.div`
-  @media (min-width: ${magma.breakpoints.large}px) {
+  background: ${magma.colors.neutral200};
+  @media (min-width: 1025px) {
     display: grid;
     grid-template-columns: 240px auto;
-    grid-template-rows: 88px auto;
+    grid-template-rows: 56px auto;
     grid-template-areas:
       'masthead masthead'
       'nav content';
+  }
+  @media (max-width: 1024px) {
+    display: hidden;
   }
 `;
 
@@ -41,11 +45,7 @@ export const MainContainer = ({ children }) => {
 
   return (
     <DarkModeContext.Provider value={value}>
-      <Container
-        gutterWidth={0}
-        isInverse={isDarkMode}
-        className={isDarkMode && 'isInverse'}
-      >
+      <Container gutterWidth={0} isInverse={isDarkMode} className={isDarkMode}>
         <GlobalStyles />
         <StyledSkipLink positionLeft={220} positionTop={3} variant="solid" />
         <StyledContainer>

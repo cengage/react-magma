@@ -5,11 +5,13 @@ props:
 - {{capitalize componentName}}Props
 ---
 
-<DocsHeading type="api">
-  {{capitalize componentName}}
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-{{description}}
+<PageContent componentName={{capitalize componentName}} type="api">
+
+<LeadParagraph>
+  {{description}}
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -70,3 +72,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <{{capitalize componentName}}Props />
+
+</PageContent>

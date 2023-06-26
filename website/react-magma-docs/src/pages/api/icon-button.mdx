@@ -3,11 +3,15 @@ pageTitle: Icon Button API
 title: Icon Button
 ---
 
-<DocsHeading type="api">Icon Button</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="icon_button" type="api">
+
+<LeadParagraph>Icon buttons have an icon included in them.</LeadParagraph>
 
 ## Basic Usage
 
-Icon buttons have an icon included in them. If children are included with these buttons (usually text), then they render in a style similar to the non-icon buttons.
+If children are included with these buttons (usually text), then they render in a style similar to the non-icon buttons.
 If no children are included, then they render in the icon-only style.
 
 <Alert>
@@ -476,3 +480,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
 
 <IconButtonProps />
+
+</PageContent>
