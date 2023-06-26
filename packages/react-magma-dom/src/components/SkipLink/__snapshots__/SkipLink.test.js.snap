@@ -55,6 +55,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 .emotion-0:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
@@ -163,6 +164,7 @@ exports[`SkipLink should render the skip link component 1`] = `
 .emotion-0:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,

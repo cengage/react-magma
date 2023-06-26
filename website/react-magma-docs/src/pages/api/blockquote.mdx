@@ -6,11 +6,17 @@ props:
   - BlockQuoteItemProps
 ---
 
-<DocsHeading type="api">Block Quote</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-`BlockQuote` is an element which enables the styling of a quotation. An optional prop of `hasAttribution` may be added for attribution purposes. Both lines can be uniquely customized with font family and color options.
+<PageContent componentName="block_quote" type="api">
+
+<LeadParagraph>
+  BlockQuote is an element which enables the styling of a quotation.
+</LeadParagraph>
 
 ## Basic Usage
+
+An optional prop of `hasAttribution` may be added for attribution purposes. Both lines can be uniquely customized with font family and color options.
 
 ```typescript
 import React from 'react';
@@ -175,3 +181,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <BlockQuoteItemProps />
+
+</PageContent>

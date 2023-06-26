@@ -45,6 +45,11 @@ export interface BaseTablePaginationProps
    * @internal
    */
   testId?: string;
+  /**
+   * If true, the table paginator will have square edges
+   * @default true
+   */
+  hasSquareCorners?: boolean;
 }
 
 export interface ControlledPageProps {
@@ -94,6 +99,7 @@ export type TablePaginationProps = BaseTablePaginationProps &
 const StyledContainer = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
+  hasSquareCorners?: boolean;
 }>`
   align-items: center;
   background: ${props =>
@@ -108,6 +114,10 @@ const StyledContainer = styled.div<{
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
+  border-radius: ${props => 
+    props.hasSquareCorners 
+    ? "0"
+    : `0 0 ${props.theme.borderRadius} ${props.theme.borderRadius}`};
 `;
 
 const PageCount = styled(Label) <{ theme: ThemeInterface }>`
@@ -141,6 +151,7 @@ export const TablePagination = React.forwardRef<
     page: pageProp,
     rowsPerPage: rowsPerPageProp,
     rowsPerPageValues = [10, 20, 50, 100],
+    hasSquareCorners = true,
     ...other
   } = props;
 
@@ -203,6 +214,7 @@ export const TablePagination = React.forwardRef<
       {...other}
       data-testid={testId}
       isInverse={isInverse}
+      hasSquareCorners={hasSquareCorners}
       ref={ref}
       theme={theme}
     >

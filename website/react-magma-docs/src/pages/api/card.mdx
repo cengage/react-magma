@@ -7,12 +7,15 @@ props:
   - CardBodyProps
 ---
 
-<DocsHeading to="/design/card/" type="api">
-  Card
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-The `Card` component is a relatively simple container. It does not have any margin or padding.
-The `CardBody` component can be placed inside, and will give the content padding.
+<PageContent componentName="card" type="api">
+
+<LeadParagraph>
+  The Card component is a relatively simple container. It does not have any
+  margin or padding. The CardBody component can be placed inside, and will give
+  the content padding.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -192,7 +195,12 @@ import { Card, CardBody } from 'react-magma-dom';
 export function Example() {
   return (
     <Card width="250px">
-      <img height="125" width="250" src="https://placekitten.com/250/125" alt="Image of a cat" />
+      <img
+        height="125"
+        width="250"
+        src="https://placekitten.com/250/125"
+        alt="Image of a cat"
+      />
       <CardBody>Some content</CardBody>
     </Card>
   );
@@ -262,3 +270,5 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <CardBodyProps />
+
+</PageContent>

@@ -100,7 +100,9 @@ export const LongContentWithScrolling = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -127,7 +129,9 @@ export const RadioInModal = () => {
           <Radio labelText="Option two label" value="2" />
         </RadioGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -206,7 +210,9 @@ export const ModalContentUpdate = () => {
           )}
         </div>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -235,7 +241,7 @@ export const NoHeaderOrFocusableContent = () => {
         <p>This modal has no header and nothing focusable.</p>
         <p>
           Consider the usability implications before implementing a modal like
-          this this. A modal should have something actionable inside it.
+          this. A modal should have something actionable inside it.
         </p>
       </Modal>
       <Button onClick={onModalNoFocusShow} ref={buttonRef}>
@@ -276,17 +282,18 @@ export const ModalInAModal = () => {
         <p>
           <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
         </p>
-
-        <Modal
-          size={ModalSize.small}
-          header="Modal 2 Title"
-          onClose={() => setShowModal2(false)}
-          isOpen={showModal2}
-        >
-          <p>This is modal 2</p>
-        </Modal>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+        Show Modal
+      </Button>
+      <Modal
+        size={ModalSize.small}
+        header="Modal 2 Title"
+        onClose={() => setShowModal2(false)}
+        isOpen={showModal2}
+      >
+        <p>This is modal 2</p>
+      </Modal>
     </>
   );
 };

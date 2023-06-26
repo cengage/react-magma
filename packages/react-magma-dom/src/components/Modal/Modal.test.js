@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from '.';
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, queryByText } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
@@ -571,6 +571,110 @@ describe('Modal', () => {
       });
 
       expect(getByTestId('modal-content')).toBeInTheDocument();
+    });
+
+    it('should permit a nested modal to only close one at a time when escape is pressed', async () => {
+      const onEscKeyDown = jest.fn();
+      const { rerender, getByText, queryByText } = render(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Content
+          </Modal>
+
+          <button>Open Modal Two</button>
+          <Modal
+            header="Hello again"
+            isOpen={false}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Two Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Content
+          </Modal>
+
+          <button>Open Modal Two</button>
+          <Modal
+            header="Hello again"
+            isOpen={false}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Two Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open Modal Two'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Content
+          </Modal>
+
+          <button>Open Modal Two</button>
+          <Modal
+            header="Hello again"
+            isOpen={true}
+            onEscKeyDown={onEscKeyDown}
+            onClose={jest.fn()}
+          >
+            Modal Two Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByText('Modal Two Content'), {
+        key: 'Escape',
+        keyCode: 27,
+      });
+
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onEscKeyDown).toHaveBeenCalled();
+      expect(queryByText('Modal Two Content')).not.toBeInTheDocument();
+      expect(getByText('Modal Content')).toBeInTheDocument();
+
+      fireEvent.keyDown(getByText('Modal Content'), {
+        key: 'Escape',
+        keyCode: 27,
+      });
+
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onEscKeyDown).toHaveBeenCalled();
+      expect(queryByText('Modal Content')).not.toBeInTheDocument();
     });
   });
 

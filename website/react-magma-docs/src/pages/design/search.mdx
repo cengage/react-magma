@@ -3,14 +3,11 @@ title: Search
 order: 1
 ---
 
-import { DocsHeading } from '../../components/DocsHeading';
-import { Input, PasswordInput, Textarea } from 'react-magma-dom';
 import { Link } from 'gatsby';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/search/" type="design">
-  Search
-</DocsHeading>
+<PageContent componentName="search" type="design">
+
 <LeadParagraph>
   Search enables users to specify a word or a phrase to find relevant pieces of
   content without the use of navigation.
@@ -56,3 +53,5 @@ Set the user’s context for the search with helpful placeholder text within the
 - Highlight the search term in the results, where appropriate.
 
 <span class="horizontal-spacer"></span>
+
+</PageContent>

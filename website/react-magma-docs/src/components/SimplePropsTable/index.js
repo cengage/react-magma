@@ -19,7 +19,7 @@ import styled from '@emotion/styled';
 export const SimplePropsTable = ({ propertyValues }) => {
   const isInverse = useIsInverse();
 
-  const HR = styled.hr`
+  const StyledHr = styled.hr`
     background: ${isInverse ? magma.colors.borderInverse : magma.colors.border};
     border: none;
     height: 1px;
@@ -208,7 +208,7 @@ const StyledFlexRight = styled(Flex)`
                   </Paragraph>
                 </StyledFlexRight>
               </Flex>
-              <HR />
+              <StyledHr />
             </div>
           );
         })}

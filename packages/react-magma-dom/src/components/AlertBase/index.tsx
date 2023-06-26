@@ -274,6 +274,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
         ? `0 2px 8px 0 ${transparentize(0.3, props.theme.colors.neutral900)}`
         : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`};
       padding-right: 0;
+      height: ${props.theme.spaceScale.spacing11};
     `}
 `;
 

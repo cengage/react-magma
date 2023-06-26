@@ -6,9 +6,14 @@ props:
   - BreadcrumbItemProps
 ---
 
-<DocsHeading to="/design/breadcrumb/" type="api">
-  Breadcrumb
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="breadcrumb" type="api">
+
+<LeadParagraph>
+  Indicate the current page's location within a navigational hierarchy that
+  automatically adds separators.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -88,3 +93,5 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 All of the [standard li attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li) can be provided as props and will be applied to the wrapping `li` element that gets rendered.
 
 <BreadcrumbItemProps />
+
+</PageContent>
