@@ -148,7 +148,7 @@ header h1 {
 
 .container {
   margin: 0 auto;
-  max-width: 700px;
+  max-width: 800px;
   padding: 10px 20px;
   text-align: center;
 }
@@ -173,7 +173,8 @@ header h1 {
 
 .box {
   padding: 20px;
-  width: 45%;
+  margin: 4px;
+  width: 31%;
   border: 1px solid #D4D4D4;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.15);
   border-radius: 8px;
@@ -184,6 +185,7 @@ header h1 {
 
 .box-icon {
   width: 80px;
+  margin-top: 12px;
   margin-bottom: 24px;
 }
 
@@ -191,7 +193,6 @@ header h1 {
   color: #707070;
   font-size: 14px;
   line-height: 20px;
-
   margin: 4px 0;
 }
 
