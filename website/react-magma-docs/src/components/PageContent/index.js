@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { graphql, StaticQuery } from 'gatsby';
+import { Link } from 'gatsby';
 import { SubPageTabs } from '../SubPageTabs';
 import { convertTextToId } from '../../utils';
 import {
@@ -28,7 +29,11 @@ const NAV_TABS = {
 };
 
 // Special case pages that don't have secondary navigation.
-const PAGES_NO_NAV = ['contribution_guidelines', 'getting_started_patterns', 'select_migration'];
+const PAGES_NO_NAV = [
+  'contribution_guidelines',
+  'getting_started_patterns',
+  'select_migration',
+];
 
 const TabsWrapper = styled.div`
   position: sticky;
@@ -255,21 +260,21 @@ export const PageContent = ({ children, componentName, type }) => {
                     <StyledTabs aria-label="">
                       {apiDocs || patternsDocs ? (
                         <NavTab
-                          to={apiNavTabToLink}
+                          component={
+                            <Link to={apiNavTabToLink}>Implementation</Link>
+                          }
                           isActive={type === NAV_TABS.API}
-                        >
-                          Implementation
-                        </NavTab>
+                        />
                       ) : (
                         <></>
                       )}
                       {designDocs || designPatternDocs ? (
                         <NavTab
-                          to={designNavTabToLink}
+                          component={
+                            <Link to={designNavTabToLink}>Design</Link>
+                          }
                           isActive={type === NAV_TABS.DESIGN}
-                        >
-                          Design
-                        </NavTab>
+                        />
                       ) : (
                         <></>
                       )}
