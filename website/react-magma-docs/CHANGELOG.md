@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.0.2
+
+### Patch Changes
+
+- 1238e8d: Update CHANGELOG
+- 1238e8d: Fix routing in implementation and design component tabs
+- Updated dependencies [1238e8d]
+  - @react-magma/charts@4.0.1
+
 ## 5.0.2-next.1
 
 ### Patch Changes
