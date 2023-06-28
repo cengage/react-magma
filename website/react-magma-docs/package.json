@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs",
-  "version": "5.0.1",
+  "version": "5.0.2-next.1",
   "private": true,
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
     "@emotion/styled": "^10.0.27",
     "@mdx-js/mdx": "^1.5.5",
     "@mdx-js/react": "^1.5.5",
-    "@react-magma/charts": "^4.0.0",
+    "@react-magma/charts": "^4.0.1-next.0",
     "@react-magma/dropzone": "4.0.0",
     "@react-magma/schema-renderer": "^4.0.0",
     "buble": "0.19.4",
