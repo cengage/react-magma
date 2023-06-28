@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/charts",
-  "version": "4.0.1-next.0",
+  "version": "4.0.1",
   "publishConfig": {
     "access": "public"
   },
