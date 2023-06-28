@@ -699,6 +699,46 @@ describe('MultiCombobox', () => {
     );
   });
 
+  it('when disabled, selected items should not be removable', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        disabled
+        initialSelectedItems={['Red']}
+      />
+    );
+
+    expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
+      'disabled'
+    );
+    const selectedItem = getByText('Red', { selector: 'button' });
+    expect(selectedItem).toBeInTheDocument();
+    fireEvent.click(selectedItem);
+
+    expect(selectedItem).toBeInTheDocument();
+  });
+
+  it('when disabled, isClearable button should not be clickable', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        disabled
+        isClearable
+        initialSelectedItems={['Red']}
+      />
+    );
+
+    expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
+      'disabled'
+    );
+    fireEvent.click(getByLabelText(/reset selection/i));
+    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+  });
+
   it('should allow a selection to be cleared with isClearable prop', () => {
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox

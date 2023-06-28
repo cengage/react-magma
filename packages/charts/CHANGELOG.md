@@ -1,5 +1,19 @@
 # @react-magma/charts
 
+## 4.0.1
+
+### Patch Changes
+
+- 1238e8d: Fix handleKeyboardInstructionsButtonKeydown type error
+
+## 4.0.1-next.0
+
+### Patch Changes
+
+- a81b0728b: Fix handleKeyboardInstructionsButtonKeydown type error
+
+## 4.0.0
+
 ## 4.0.0-next.1
 
 ### Patch Changes

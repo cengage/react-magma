@@ -64,6 +64,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -175,6 +176,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -304,6 +306,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -415,6 +418,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -544,6 +548,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -655,6 +660,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -784,6 +790,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -895,6 +902,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1024,6 +1032,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1135,6 +1144,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1252,6 +1262,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1363,6 +1374,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,

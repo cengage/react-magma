@@ -477,7 +477,7 @@ describe('Input', () => {
 
     it('should render an input with a correctly styled error message', () => {
       const { getByTestId, getByLabelText } = render(
-        <Input labelText={labelText} maxLength={2} />
+        <Input labelText={labelText} maxCount={2} />
       );
 
       fireEvent.change(getByLabelText(labelText), {
@@ -493,15 +493,54 @@ describe('Input', () => {
       expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
     });
 
+    it('should disable the Character Counter and allow for the native HTML attribute `maxlength` when `hasCharacterCounter` is set to false', () => {
+      const testId = 'test-id';
+
+      const { getByTestId } = render(
+        <Input testId={testId} hasCharacterCounter={false} maxLength={2} />
+      );
+      expect(getByTestId(testId)).toHaveAttribute('maxlength', '2');
+    });
+
+    it('should show the Character Counter with the deprecated prop of `maxLength`', () => {
+      const testId = 'test-id';
+
+      const { getByText } = render(
+        <Input testId={testId} hasCharacterCounter={true} maxLength={2} />
+      );
+      expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
+    it('should show the Character Counter with the deprecated prop of `maxLength` but give the priority to `maxCount` if both used simultaneously', () => {
+      const testId = 'test-id';
+
+      const { getByText } = render(
+        <Input
+          testId={testId}
+          hasCharacterCounter={true}
+          maxLength={2}
+          maxCount={4}
+        />
+      );
+      expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
+    });
+
     it('should render an input with an initial value set by the user', () => {
-      const { getByText } = render(<Input maxLength={2} value="hi" />);
+      const { getByText } = render(<Input maxCount={2} value="hi" />);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by backspacing', () => {
+    it('should update the character length on rerender', () => {
+      const { getByText, rerender } = render(<Input maxCount={5} value="hi" />);
+      expect(getByText('3 ' + charactersLeft)).toBeInTheDocument();
+      rerender(<Input maxCount={5} value="hello" />);
+      expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
+    });
+
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by backspacing', () => {
       const onChange = jest.fn();
       const { getByText, getByLabelText } = render(
-        <Input labelText={labelText} maxLength={4} onChange={onChange} />
+        <Input labelText={labelText} maxCount={4} onChange={onChange} />
       );
 
       fireEvent.change(getByLabelText(labelText), {
@@ -519,14 +558,14 @@ describe('Input', () => {
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxLength if the user clears the input by clicking the onClear button', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by clicking the onClear button', () => {
       const onClear = jest.fn();
       const { getByText, getByLabelText, getByTestId } = render(
         <Input
           labelText={labelText}
           onClear={onClear}
           isClearable
-          maxLength={4}
+          maxCount={4}
         />
       );
 

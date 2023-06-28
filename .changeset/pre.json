@@ -2,28 +2,18 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "3.0.0",
-    "@react-magma/dropzone": "3.0.0",
-    "react-magma-dom": "4.0.0",
-    "@react-magma/schema-renderer": "3.0.0",
-    "@cengage-patterns/header": "5.0.0",
-    "react-magma-docs": "5.0.0",
+    "@react-magma/charts": "4.0.0",
+    "@react-magma/dropzone": "4.0.0",
+    "react-magma-dom": "4.1.0",
+    "@react-magma/schema-renderer": "4.0.0",
+    "@cengage-patterns/header": "6.0.0",
+    "react-magma-docs": "5.0.1",
     "react-magma-landing": "1.1.1"
   },
   "changesets": [
-    "docs-select",
-    "docs-toggle",
-    "docs",
-    "dropdown-noitems",
-    "feat-simplePagination",
-    "fix-iconbuttonstack",
-    "fix-modals",
-    "fix-pagination",
-    "fix-simplePagination",
-    "fix-toaststack",
-    "grid-docs",
-    "multiselect-align",
-    "toast-docs",
-    "tooltip-docs"
+    "changelog-updates",
+    "chart-keyboardevent",
+    "docs-route",
+    "landing"
   ]
 }
