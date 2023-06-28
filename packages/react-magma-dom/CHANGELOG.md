@@ -162,7 +162,10 @@
 
   Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
 
+<<<<<<< HEAD
 - caee2a755: fix(CharCounter): Update calculation for character length on rerender.
+=======
+>>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
 - d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
 - 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
 - 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
@@ -265,6 +268,17 @@
 
 ## 3.1.0
 
+<<<<<<< HEAD
+=======
+### Minor Changes
+
+- 04e0a5a8: Release 3.1.0
+
+## 3.0.0
+
+**NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above**
+
+>>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
 ### Major Changes
 
 - 732f5c908: fix(button): Remove margin from buttons
@@ -321,10 +335,13 @@
 - 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
 - 3a27353aa: fix(textarea): Textarea can now be cleared
 
+<<<<<<< HEAD
 ## 3.0.0
 
 **NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above**
 
+=======
+>>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
 ## 2.5.11
 
 ### Patch Changes
@@ -333,6 +350,17 @@
 - 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
 - a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
 
+<<<<<<< HEAD
+=======
+## 2.5.10
+
+### Patch Changes
+
+- fdc6b27f: fix: adding in reference for list props within the index
+- fdc6b27f: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
+- fdc6b27f: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
+
+>>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
 ## 2.5.10
 
 ### Patch Changes
@@ -361,7 +389,11 @@
 
 ### Patch Changes
 
+<<<<<<< HEAD
 This was an accidental release. Please skip this version and upgrade to 2.5.10.
+=======
+This was an accidental release. Please skip this version and upgrade to to 2.5.10.
+>>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
 
 ## 2.5.8
 
@@ -425,9 +457,16 @@ This was an accidental release. Please skip this version and upgrade to 2.5.10.
 
 - 4980c87a: disable the clear and action buttons when the input is disabled
 - ebdacccc: refactor(Dropdown): renamed handleMenuBlur to handleDropdownBlur
+<<<<<<< HEAD
 - 8ee194d4: extend TypographyProps for HeadingProps. Use Generic for TypographyProps
 - aea1e089: fix(datepicker): keep close button below the helper information
 - fix(datepicker): return focus to the previous element after closing helper information
+=======
+- 8ee194d4: - extend TypographyProps for HeadingProps
+  - use Generic for TypographyProps
+- aea1e089: - fix(datepicker): keep close button below the helper information
+  - fix(datepicker): return focus to the previous element after closing helper information
+>>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
 - 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
 - 12380623: fix(input): add onClear function to be called when the input is cleared by clicking the clear button
 
@@ -490,7 +529,11 @@ This was an accidental release. Please skip this version and upgrade to 2.5.10.
 
 - d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
+<<<<<<< HEAD
 ### 2.3.9
+=======
+### 2.3.9 (2021-03-24)
+>>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
 
 - chore: update to node 14, npm 7
 - fix(checkbox): switch to icon for unchecked state
