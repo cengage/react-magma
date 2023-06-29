@@ -103,6 +103,12 @@
 
 ## 4.1.0
 
+## 4.1.1-next.0
+
+### Patch Changes
+
+- 871820e8d: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. use `activeIndex` on the `TabsContainer` to indicate the active tab.
+
 ### Minor Changes
 
 - 3d00dcc7e: feat(SimplePagination): New PaginationType `simple` which changes the pages in Pagination from a series of individual buttons to a dropdown.
