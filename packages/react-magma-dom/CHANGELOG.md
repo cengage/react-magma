@@ -1,4 +1,3 @@
-## 3.5.0
 
 ## 3.5.1-next.0
 
@@ -7,6 +6,8 @@
 - e8c968bb8: fix(CharacterCounter): Add `ref` to Character Counter. Removes related test console warning.
 - 1c91ac394: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
   Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+
+## 3.5.0
 
 ### Minor Changes
 
