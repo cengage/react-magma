@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.2-next.0
+
+### Patch Changes
+
+- 4f4598514: - Display latest version based on React compatibility
+  - Remove old versions from list that don't have docs sites
+
 ## 1.1.1
 
 ### Patch Changes

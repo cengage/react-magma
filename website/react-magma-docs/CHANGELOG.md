@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.0.3-next.0
+
+### Patch Changes
+
+- 4f4598514: Fix routing in implementation and design component tabs
+- Updated dependencies [e8c968bb8]
+- Updated dependencies [4f4598514]
+- Updated dependencies [1c91ac394]
+  - react-magma-dom@3.5.1-next.0
+  - @react-magma/charts@2.0.2-next.0
+  - @react-magma/dropzone@2.0.2-next.0
+  - @react-magma/schema-renderer@2.0.2-next.0
+  - @cengage-patterns/header@4.0.2-next.0
+
 ## 5.0.2
 
 ### Patch Changes
