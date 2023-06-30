@@ -74,6 +74,8 @@
 - 1c91ac394: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
   Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
 
+## 3.5.0
+
 ### Minor Changes
 
 - 3d00dcc7e: feat(SimplePagination): New PaginationType `simple` which changes the pages in Pagination from a series of individual buttons to a dropdown.
