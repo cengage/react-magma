@@ -141,6 +141,9 @@ interface RowsPerPageControllerProps {
    * Event that fires when the number of rows per page changes
    */
   handleRowsPerPageChange?: (value: any) => void;
+    /**
+   * Values added to the rows per page select
+   */
   rowsPerPageValues: number[];
   isInverse?: boolean;
 }
