@@ -345,13 +345,34 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </>
     ) : null;
 
-  function handleEscape(event: React.KeyboardEvent) {
+  function handleOnKeyDown(event: React.KeyboardEvent) {
+    const count = document.querySelectorAll('[aria-modal="true"]').length;
+    // console.log('hereeee', event.key);
+    
+    // issue if tab is pressed after escape
+    if (event.key === 'Tab') {
+      console.log('TAB PRESSED');
+      
+      // inputRef.current.focus();
+      // console.log('TAB inputRef.current', inputRef.current);
+      // debugger
+      return
+    }
     if (event.key === 'Escape') {
+      if (count >= 1 && inputRef.current) {
+        console.log('Escape PRESSED');
+        // console.log('inputRef.current', inputRef.current);
+        
+        inputRef.current.focus();
+      }
+      // console.log(inputRef.current);
+      // debugger
       event.nativeEvent.stopImmediatePropagation();
     }
+    
     onInputKeyDown &&
-      typeof onInputKeyDown === 'function' &&
-      onInputKeyDown(event);
+    typeof onInputKeyDown === 'function' &&
+    onInputKeyDown(event);
   }
 
   return (
@@ -377,7 +398,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           ...getInputProps({
             ...options,
             ...getDropdownProps({
-              onKeyDown: handleEscape,
+              onKeyDown: handleOnKeyDown,
               ...(innerRef && { ref: innerRef }),
             }),
           }),
@@ -392,7 +413,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         innerRef={ref}
         onInputBlur={onInputBlur}
         onInputFocus={handleInputFocus}
-        onInputKeyDown={onInputKeyDown}
+        onInputKeyDown={handleOnKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={selectedItems.length > 0 ? null : placeholder}

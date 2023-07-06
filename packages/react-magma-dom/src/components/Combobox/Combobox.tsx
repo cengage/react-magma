@@ -237,7 +237,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     event.stopPropagation();
 
     if (inputRef.current) {
-      onInputFocus;
+      inputRef.current.focus();
     }
 
     reset();
@@ -247,15 +247,19 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemToString(selectedItem));
 
-  function handleEscape(event: React.KeyboardEvent) {
+  function handleOnKeyDown(event: React.KeyboardEvent) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
     if (event.key === 'Escape') {
-      event.nativeEvent.stopImmediatePropagation();
       if (count >= 1 && inputRef.current) {
         inputRef.current.focus();
       }
+      event.nativeEvent.stopImmediatePropagation();
     }
+
+    onInputKeyDown &&
+    typeof onInputKeyDown === 'function' &&
+    onInputKeyDown(event);
   }
 
   return (
@@ -282,7 +286,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
           ...getInputProps({
             ...options,
             ...getComboboxProps({
-              onKeyDown: onInputKeyDown ? onInputKeyDown : handleEscape,
+              onKeyDown: handleOnKeyDown,
               ...innerRef,
             }),
           }),
@@ -296,7 +300,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isTypeahead={isTypeahead}
         onInputBlur={onInputBlur}
         onInputFocus={onInputFocus}
-        onInputKeyDown={onInputKeyDown}
+        onInputKeyDown={handleOnKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}

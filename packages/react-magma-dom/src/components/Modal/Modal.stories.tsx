@@ -289,6 +289,19 @@ export const ModalInAModal = () => {
         <div>
           <DatePicker labelText="Pick a date" />
         </div>
+        <Combobox
+          id="comboboxId"
+          isMulti
+          labelText="Multi Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          // placeholder="Hello"
+          // onInputKeyDown={() => {console.log('sup')}}
+          isClearable
+        />
         <p>
           <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
         </p>
@@ -326,7 +339,8 @@ export const ModalInAModal = () => {
             { label: 'Blue', value: 'blue' },
             { label: 'Green', value: 'green' },
           ]}
-          placeholder="Hello"
+          // isClearable
+          // placeholder="Hello"
         />
         <Spacer size={10} />
         <Combobox
@@ -339,6 +353,8 @@ export const ModalInAModal = () => {
             { label: 'Green', value: 'green' },
           ]}
           placeholder="Hello"
+          // onInputKeyDown={() => {console.log('sup')}}
+          // isClearable
         />
         <Spacer size={10} />
         <Select
