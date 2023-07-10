@@ -62,6 +62,12 @@
 
 ## 4.1.0
 
+## 4.1.1-next.1
+
+### Patch Changes
+
+- df2934692: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
+
 ## 4.1.1-next.0
 
 ### Patch Changes
