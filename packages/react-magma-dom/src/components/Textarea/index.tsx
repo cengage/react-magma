@@ -77,6 +77,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
+    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
+
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
     >(props.defaultValue || props.value || '');
@@ -130,7 +132,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             (hasCharacterCounter && characterLength > maxCharacters)
           }
           id={id}
-          maxLength={!hasCharacterCounter && maxLength}
+          maxLength={maxLengthNum}
           isInverse={isInverse}
           onChange={handleChange}
           ref={ref}
