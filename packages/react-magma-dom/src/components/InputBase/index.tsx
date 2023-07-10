@@ -575,6 +575,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       string | ReadonlyArray<string> | number
     >(props.defaultValue || props.value || '');
 
+    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
+
     React.useEffect(() => {
       if (props.value !== undefined && props.value !== null) {
         setValue(props.value);
@@ -623,7 +625,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             isPredictive={isPredictive}
             hasError={hasError}
             ref={ref}
-            maxLength={!hasCharacterCounter && maxLength}
+            maxLength={maxLengthNum}
             onChange={handleChange}
             style={inputStyle}
             theme={theme}
