@@ -62,6 +62,12 @@
 
 ## 4.1.0
 
+## 4.1.1-next.2
+
+### Patch Changes
+
+- f21d2ac2e: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
+
 ## 4.1.1-next.1
 
 ### Patch Changes
