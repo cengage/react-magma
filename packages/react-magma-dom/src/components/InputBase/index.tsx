@@ -606,8 +606,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const maxLengthNum =
       !hasCharacterCounter && maxLength ? maxLength : undefined;
 
-    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
-
     React.useEffect(() => {
       if (props.value !== undefined && props.value !== null) {
         setValue(props.value);
@@ -630,7 +628,12 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         props.onChange(event);
 
       setValue(event.target.value);
-      if (!event.target.value && onDateChange && typeof onDateChange === 'function') onDateChange(null);
+      if (
+        !event.target.value &&
+        onDateChange &&
+        typeof onDateChange === 'function'
+      )
+        onDateChange(null);
     }
 
     const passwordBtnWidth = () => {
