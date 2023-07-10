@@ -46,6 +46,11 @@ export const Default = args => {
           labelText="Input"
           isClearable
         />
+        <Input
+          defaultValue={0}
+          labelText="Default value `0`"
+          isClearable
+        />
         <PasswordInput
           errorMessage="danger will robinson."
           labelText="PasswordInput"
@@ -138,6 +143,12 @@ export const Inverse = args => {
         <Input
           errorMessage="danger will robinson."
           labelText="Input"
+          isClearable
+          isInverse
+        />
+        <Input
+          defaultValue={0}
+          labelText="Default value `0`"
           isClearable
           isInverse
         />

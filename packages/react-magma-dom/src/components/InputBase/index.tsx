@@ -573,7 +573,12 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
-    >(props.defaultValue || props.value || '');
+    >(
+      props.defaultValue !== undefined &&
+        props.defaultValue !== null 
+        ? props.defaultValue
+        : props.value || ''
+    );
 
     const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
 
@@ -654,7 +659,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             </IconWrapper>
           )}
         </InputWrapper>
-        {isClearable && value && (
+        {isClearable && value !== '' && (
           <IsClearableContainer
             theme={theme}
             iconPosition={iconPosition}
