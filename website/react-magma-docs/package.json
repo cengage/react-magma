@@ -1,7 +1,11 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs",
+<<<<<<< HEAD
   "version": "5.0.7",
+=======
+  "version": "5.0.3-next.1",
+>>>>>>> e6fdcb61a (chore: enter prerelease mode)
   "private": true,
   "repository": {
     "type": "git",
