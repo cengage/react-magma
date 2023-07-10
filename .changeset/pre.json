@@ -2,21 +2,18 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "2.0.1",
-    "@react-magma/dropzone": "2.0.1",
-    "react-magma-dom": "3.5.0",
-    "@react-magma/schema-renderer": "2.0.1",
-    "@cengage-patterns/header": "4.0.1",
-    "react-magma-docs": "5.0.2",
-    "react-magma-landing": "1.1.1"
+    "@react-magma/charts": "2.0.2-next.0",
+    "@react-magma/dropzone": "2.0.2-next.0",
+    "react-magma-dom": "3.5.1-next.0",
+    "@react-magma/schema-renderer": "2.0.2-next.0",
+    "@cengage-patterns/header": "4.0.2-next.0",
+    "react-magma-docs": "5.0.3-next.1",
+    "react-magma-landing": "1.1.2-next.0"
   },
   "changesets": [
-    "charcounter-ref",
-    "chart-keyboardevent",
-    "docs-route",
     "dropdown-noitems",
-    "landing",
     "maxLength-warnings",
-    "update-changelog"
+    "update-changelog",
+    "tabprops"
   ]
 }
