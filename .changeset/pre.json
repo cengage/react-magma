@@ -16,6 +16,7 @@
     "docs-route",
     "dropdown-noitems",
     "landing",
+    "maxLength-warnings",
     "update-changelog"
   ]
 }
