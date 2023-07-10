@@ -10,5 +10,10 @@
     "react-magma-docs": "5.0.3-next.1",
     "react-magma-landing": "1.1.2-next.0"
   },
-  "changesets": []
+  "changesets": [
+    "dropdown-noitems",
+    "maxLength-warnings",
+    "update-changelog",
+    "tabprops"
+  ]
 }
