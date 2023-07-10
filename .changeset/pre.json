@@ -13,7 +13,7 @@
   "changesets": [
     "dropdown-noitems",
     "maxLength-warnings",
-    "update-changelog",
-    "tabprops"
+    "tabprops",
+    "update-changelog"
   ]
 }
