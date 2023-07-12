@@ -17,11 +17,6 @@ export interface TabProps
    * Icon to display within the component
    */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
-  /**
-   * If true, the component will display with the active/selected state
-   * @default false
-   */
-  isActive?: boolean;
   isInverse?: boolean;
   /**
    * @internal

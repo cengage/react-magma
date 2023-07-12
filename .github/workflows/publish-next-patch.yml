@@ -1,4 +1,4 @@
-name: Publish Next Patch
+name: Publish Next Patch (dev-patch)
 on:
   push:
     branches:

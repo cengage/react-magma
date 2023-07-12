@@ -1,3 +1,8 @@
+## 3.5.1-next.1
+
+### Patch Changes
+
+- 1fa916be0: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
 
 ## 3.5.1-next.0
 

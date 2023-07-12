@@ -1,4 +1,4 @@
-name: Publish Next
+name: Publish Next (dev)
 on:
   push:
     branches:
