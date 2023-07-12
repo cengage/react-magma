@@ -12,6 +12,7 @@
   },
   "changesets": [
     "dropdown-noitems",
+    "fix-inputBase",
     "maxLength-warnings",
     "tabprops",
     "update-changelog"
