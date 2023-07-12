@@ -1,5 +1,11 @@
 ## 3.5.1-next.1
 
+## 3.5.1-next.2
+
+### Patch Changes
+
+- 7c8a9f5ad: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
+
 ### Patch Changes
 
 - 1fa916be0: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
