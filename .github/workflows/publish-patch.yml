@@ -1,4 +1,4 @@
-name: Publish Patch
+name: Publish Patch (patch-*)
 on:
   push:
     branches:

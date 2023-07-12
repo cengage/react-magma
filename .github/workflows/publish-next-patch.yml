@@ -1,8 +1,8 @@
-name: Publish Next (dev)
+name: Publish Next Patch (dev-patch)
 on:
   push:
     branches:
-      - dev
+      - dev-patch
 jobs:
   build:
     runs-on: macos-latest
@@ -63,7 +63,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: next
+          alias: next-patch
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -71,12 +71,12 @@ jobs:
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
-          production-branch: main
+          production-branch: patch-3.x.x
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-dev
+          alias: storybook-preview-dev-patch
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
