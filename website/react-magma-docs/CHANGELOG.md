@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.3-next.3
+
+### Patch Changes
+
+- c7f957b3f: Update typos
+
 ## 5.0.3-next.2
 
 ### Patch Changes
