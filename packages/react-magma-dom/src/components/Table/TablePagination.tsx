@@ -34,7 +34,8 @@ export interface BaseTablePaginationProps
    */
   onPageChange?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
-   * Event that fires when the number of rows per page changes
+   * Event that fires when the number of rows per page changes.
+   * If no function is passed, the rows per page select will be hidden
    */
   onRowsPerPageChange?: (newRowsPerPage: number) => void;
   /**
@@ -141,7 +142,7 @@ interface RowsPerPageControllerProps {
    * Event that fires when the number of rows per page changes
    */
   handleRowsPerPageChange?: (value: any) => void;
-    /**
+  /**
    * Values added to the rows per page select
    */
   rowsPerPageValues: number[];
