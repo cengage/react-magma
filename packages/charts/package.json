@@ -1,6 +1,10 @@
 {
   "name": "@react-magma/charts",
+<<<<<<< HEAD
   "version": "6.1.0-next.0",
+=======
+  "version": "2.0.2-next.0",
+>>>>>>> 82bf61bae (Release v3.5.1 (#1113))
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +34,11 @@
     "@emotion/styled": "^10.0.27",
     "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
     "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0",
+<<<<<<< HEAD
     "react-magma-dom": "^3.7.0-next.0",
+=======
+    "react-magma-dom": "^3.5.1-next.0",
+>>>>>>> 82bf61bae (Release v3.5.1 (#1113))
     "react-magma-icons": "2.3.6"
   },
   "dependencies": {
@@ -41,7 +49,11 @@
     "@emotion/styled": "^10.0.27",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
+<<<<<<< HEAD
     "react-magma-dom": "^3.7.0-next.1",
+=======
+    "react-magma-dom": "^3.5.1-next.0",
+>>>>>>> 82bf61bae (Release v3.5.1 (#1113))
     "react-magma-icons": "2.3.6"
   }
 }
