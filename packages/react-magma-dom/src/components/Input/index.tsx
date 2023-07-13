@@ -45,6 +45,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
+    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
+
     const isInverse = useIsInverse(props.isInverse);
 
     const [characterLength, setCharacterLength] = useState(
@@ -103,7 +105,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           inputSize={inputSize}
           inputLength={characterLength}
           isInverse={isInverse}
-          maxLength={!hasCharacterCounter && maxLength}
+          maxLength={maxLengthNum}
           onChange={handleChange}
           onClear={handleClear}
           ref={ref}
