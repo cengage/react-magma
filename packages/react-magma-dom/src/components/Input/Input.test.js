@@ -244,6 +244,26 @@ describe('Input', () => {
     expect(getByLabelText(iconAriaLabel)).toBeDisabled();
   });
 
+  it('should initially render with value of `defaultValue` if no `value` provided', () => {
+    const labelText = 'test label';
+    const defaultValue = 'defaultValue';
+    const { getByLabelText } = render(
+      <Input labelText={labelText} defaultValue={defaultValue} />
+    );
+
+    expect(getByLabelText(labelText)).toHaveAttribute('value', defaultValue);
+  });
+
+  it('should render with value "0" when `defaultValue` is 0', () => {
+    const labelText = 'test label';
+    const defaultValue = 0;
+    const { getByLabelText } = render(
+      <Input labelText={labelText} defaultValue={defaultValue} />
+    );
+
+    expect(getByLabelText(labelText)).toHaveAttribute('value', '0');
+  });
+
   it('should render an input with a value passed through', () => {
     const labelText = 'test label';
     const value = 'Test Value';
