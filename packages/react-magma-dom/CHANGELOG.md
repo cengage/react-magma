@@ -163,9 +163,13 @@
   Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 - caee2a755: fix(CharCounter): Update calculation for character length on rerender.
 =======
 >>>>>>> 1238e8d51 (Build/docs routing fix (#1097))
+=======
+- caee2a755: fix(CharCounter): Update calculation for character length on rerender.
+>>>>>>> 0d718be80 (Release v4.1.1 (#1112))
 - d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
 - 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
 - 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
