@@ -1,10 +1,6 @@
 {
   "name": "@react-magma/dropzone",
-<<<<<<< HEAD
   "version": "8.0.0-next.3",
-=======
-  "version": "4.0.1-next.0",
->>>>>>> 0d718be80 (Release v4.1.1 (#1112))
   "publishConfig": {
     "access": "public"
   },
@@ -34,12 +30,7 @@
     "@emotion/styled": "^11.13.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
     "react-magma-dom": "^4.5.0-next.7",
-=======
-    "react-magma-dom": "^4.1.1-next.0",
->>>>>>> 0d718be80 (Release v4.1.1 (#1112))
-    "react-magma-icons": "^3.0.0"
   },
   "dependencies": {
     "polished": "^3.2.0",
@@ -50,11 +41,7 @@
     "@emotion/styled": "^11.13.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
     "react-magma-dom": "^4.5.0-next.10",
-=======
-    "react-magma-dom": "^4.1.1-next.0",
->>>>>>> 0d718be80 (Release v4.1.1 (#1112))
     "react-magma-icons": "^3.0.0"
   }
 }
