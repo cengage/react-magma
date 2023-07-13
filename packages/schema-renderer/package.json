@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/schema-renderer",
-  "version": "4.0.0",
+  "version": "2.0.2-next.0",
   "publishConfig": {
     "access": "public"
   },
