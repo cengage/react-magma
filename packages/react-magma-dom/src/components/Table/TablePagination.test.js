@@ -193,4 +193,20 @@ describe('Table Pagination', () => {
       return expect(result).toHaveNoViolations();
     });
   });
+
+  it('should hide rows per page component when no onRowsPerPageChanged function passed', () => {
+    const { queryByText } = render(
+      <TablePagination itemCount={20}/>
+    );
+
+    expect(queryByText('Rows per page:')).not.toBeInTheDocument();
+  });
+
+  it('should show rows per page component when onRowsPerPageChanged function passed', () => {
+    const { queryByText } = render(
+      <TablePagination itemCount={20} onRowsPerPageChange={() => {}} />
+    );
+
+    expect(queryByText('Rows per page:')).toBeInTheDocument();
+  });
 });
