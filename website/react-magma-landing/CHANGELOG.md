@@ -2,6 +2,8 @@
 
 ## 1.1.2
 
+## 1.1.2
+
 ### Patch Changes
 
 - b0654937e: - Display latest version based on React compatibility

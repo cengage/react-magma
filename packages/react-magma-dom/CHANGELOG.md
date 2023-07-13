@@ -1,5 +1,15 @@
 ## 3.5.1-next.1
 
+## 3.5.1
+
+### Patch Changes
+
+- 82bf61bae: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
+  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+- 82bf61bae: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
+- 82bf61bae: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
+- 82bf61bae: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. use `activeIndex` on the `TabsContainer` to indicate the active tab.
+
 ## 3.5.1-next.2
 
 ### Patch Changes
