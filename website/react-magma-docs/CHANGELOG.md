@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.0.3
+
+### Patch Changes
+
+- 0d718be80: Update typos
+- Updated dependencies [0d718be80]
+- Updated dependencies [0d718be80]
+- Updated dependencies [0d718be80]
+  - react-magma-dom@4.1.1
+  - @react-magma/charts@4.0.2
+  - @react-magma/dropzone@4.0.1
+  - @react-magma/schema-renderer@4.0.1
+  - @cengage-patterns/header@6.0.1
+
 ## 5.0.3-next.3
 
 ### Patch Changes
