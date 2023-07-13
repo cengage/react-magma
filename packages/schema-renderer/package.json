@@ -1,6 +1,10 @@
 {
   "name": "@react-magma/schema-renderer",
+<<<<<<< HEAD
   "version": "4.0.0-next.0",
+=======
+  "version": "2.0.2",
+>>>>>>> 0b9ee65a5 (chore: exit prerelease mode)
   "publishConfig": {
     "access": "public"
   },
@@ -41,7 +45,11 @@
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
     "react-dropzone": "11.3.2",
+<<<<<<< HEAD
     "react-magma-dom": "^3.7.0-next.0",
+=======
+    "react-magma-dom": "^3.5.1",
+>>>>>>> 0b9ee65a5 (chore: exit prerelease mode)
     "react-magma-icons": "2.3.6",
     "tsdx": "^0.14.1",
     "uuid": "^8.3.0"

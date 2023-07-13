@@ -1,6 +1,10 @@
 {
   "name": "@react-magma/dropzone",
+<<<<<<< HEAD
   "version": "4.0.0-next.0",
+=======
+  "version": "2.0.2",
+>>>>>>> 0b9ee65a5 (chore: exit prerelease mode)
   "publishConfig": {
     "access": "public"
   },
@@ -42,7 +46,11 @@
     "@emotion/styled": "^10.0.27",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
+<<<<<<< HEAD
     "react-magma-dom": "^3.7.0-next.0",
+=======
+    "react-magma-dom": "^3.5.1",
+>>>>>>> 0b9ee65a5 (chore: exit prerelease mode)
     "react-magma-icons": "2.3.6"
   }
 }
