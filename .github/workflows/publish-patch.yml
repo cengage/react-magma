@@ -1,4 +1,4 @@
-name: Publish Patch
+name: Publish Patch (patch-*)
 on:
   push:
     branches:
@@ -71,3 +71,10 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Sync patch-* -> dev-patch
+        uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-branch: 'patch-*'
+          target-branch: dev-patch
+  
