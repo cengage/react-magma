@@ -2,6 +2,8 @@
 
 ## 2.0.2-next.0
 
+## 2.0.2
+
 ### Patch Changes
 
 - 4f4598514: Fix handleKeyboardInstructionsButtonKeydown type error

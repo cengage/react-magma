@@ -2,6 +2,8 @@
 
 ## 1.1.2-next.0
 
+## 1.1.2
+
 ### Patch Changes
 
 - 4f4598514: - Display latest version based on React compatibility
