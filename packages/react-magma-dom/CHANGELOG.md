@@ -1,22 +1,3 @@
-## 4.5.0
-
-### Minor Changes
-
-- 5f16d2018: Updating emotion to v11
-- 5f16d2018: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
-
-### Patch Changes
-
-- 5f16d2018: fix(datePicker): Remove date picker calendar table role
-- 5f16d2018: fix(datePicker): Fix date picker clearing functionality
-- 5f16d2018: fix(Hyperlink): Support Icons and toggling underline styling
-- 5f16d2018: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
-- 5f16d2018: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
-- 5f16d2018: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
-- 5f16d2018: fix(Modal): Background overlay issue on nested modals
-- 5f16d2018: build(deps): bump express from 4.18.1 to 4.19.2
-- 5f16d2018: fix(ProgressBar): Add support for custom colors
-- 5f16d2018: build(deps): bump tar from 6.1.11 to 6.2.1
 
 ## 4.5.0
 
@@ -100,24 +81,6 @@
 - 0d718be80: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. Use `activeIndex` on the `TabsContainer` to indicate the active tab
 
 ## 4.1.0
-
-## 4.1.1-next.2
-
-### Patch Changes
-
-- f21d2ac2e: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
-
-## 4.1.1-next.1
-
-### Patch Changes
-
-- df2934692: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
-
-## 4.1.1-next.0
-
-### Patch Changes
-
-- 871820e8d: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. use `activeIndex` on the `TabsContainer` to indicate the active tab.
 
 ### Minor Changes
 
