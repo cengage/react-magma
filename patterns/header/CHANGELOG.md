@@ -1,5 +1,7 @@
 # Change Log
 
+## 6.0.1
+
 ## 6.0.1-next.0
 
 ### Patch Changes

@@ -1,22 +1,12 @@
+## 4.1.1
+
+### Patch Changes
+
+- 0d718be80: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
+- 0d718be80: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
+- 0d718be80: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. use `activeIndex` on the `TabsContainer` to indicate the active tab.
+
 ## 4.1.0
-
-## 4.1.1-next.2
-
-### Patch Changes
-
-- f21d2ac2e: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
-
-## 4.1.1-next.1
-
-### Patch Changes
-
-- df2934692: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
-
-## 4.1.1-next.0
-
-### Patch Changes
-
-- 871820e8d: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. use `activeIndex` on the `TabsContainer` to indicate the active tab.
 
 ### Minor Changes
 
