@@ -74,6 +74,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.0
+
+### Minor Changes
+
+- 9a09b8b55: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
+
 ### Patch Changes
 
 - 0d718be80: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field
