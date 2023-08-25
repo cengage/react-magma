@@ -1,5 +1,50 @@
 # Change Log
 
+## 5.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [9a09b8b55]
+  - react-magma-dom@4.2.0-next.0
+  - @react-magma/charts@5.0.0-next.0
+  - @react-magma/dropzone@5.0.0-next.0
+  - @react-magma/schema-renderer@5.0.0-next.0
+  - @cengage-patterns/header@7.0.0-next.0
+
+## 5.0.3
+
+### Patch Changes
+
+- 0d718be80: Update typos
+- Updated dependencies [0d718be80]
+- Updated dependencies [0d718be80]
+- Updated dependencies [0d718be80]
+  - react-magma-dom@4.1.1
+  - @react-magma/charts@4.0.2
+  - @react-magma/dropzone@4.0.1
+  - @react-magma/schema-renderer@4.0.1
+  - @cengage-patterns/header@6.0.1
+
+## 5.0.3-next.3
+
+### Patch Changes
+
+- c7f957b3f: Update typos
+
+## 5.0.3-next.2
+
+### Patch Changes
+
+- Updated dependencies [f21d2ac2e]
+  - react-magma-dom@4.1.1-next.2
+
+## 5.0.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [df2934692]
+  - react-magma-dom@4.1.1-next.1
+
 ## 5.0.3-next.0
 
 ### Patch Changes

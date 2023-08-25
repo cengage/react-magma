@@ -1,4 +1,4 @@
-name: Publish Latest
+name: Publish Latest (main)
 on:
   push:
     branches:
