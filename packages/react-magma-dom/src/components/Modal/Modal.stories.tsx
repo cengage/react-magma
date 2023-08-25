@@ -286,6 +286,19 @@ export const ModalInAModal = () => {
         <p>
           This is <a href="/"> some more linked text</a> in the modal
         </p>
+        <Combobox
+          id="comboboxId3"
+          isMulti
+          labelText="Multi Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          placeholder="Hello"
+          // onInputKeyDown={() => {console.log('sup')}}
+          // isClearable
+        />
         <div>
           <DatePicker labelText="Pick a date" />
         </div>
@@ -332,7 +345,7 @@ export const ModalInAModal = () => {
         </Dropdown>
         <Spacer size={10} />
         <Combobox
-          id="comboboxId"
+          id="comboboxId2"
           labelText="Combobox"
           defaultItems={[
             { label: 'Red', value: 'red' },
@@ -344,7 +357,7 @@ export const ModalInAModal = () => {
         />
         <Spacer size={10} />
         <Combobox
-          id="comboboxId"
+          id="comboboxId3"
           isMulti
           labelText="Multi Combobox"
           defaultItems={[

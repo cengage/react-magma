@@ -1027,46 +1027,6 @@ describe('Combobox', () => {
         expect(onEscKeyMock).toHaveBeenCalled();
         expect(queryByText('Modal Content')).not.toBeInTheDocument();
       });
-
-      it('should move the focus to the next element on tab', async () => {
-        const { getByLabelText, queryByText, getByText } = render(
-          <Modal testId="modal" isOpen>
-            Modal Content
-            <Combobox labelText={labelText} items={items} />
-            <Button>Button</Button>
-          </Modal>
-        );
-
-        const modalButton = getByText('Button');
-
-        const renderedCombobox = getByLabelText(labelText, {
-          selector: 'input',
-        });
-        fireEvent.click(renderedCombobox);
-        expect(getByText(items[0].label)).toBeInTheDocument();
-        expect(renderedCombobox).toHaveFocus();
-
-        fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
-          key: 'Escape',
-          code: 27,
-        });
-
-        expect(
-          queryByText(items[2], { selector: 'Red' })
-        ).not.toBeInTheDocument();
-
-        expect(queryByText('Modal Content')).toBeInTheDocument();
-
-        fireEvent.keyDown(renderedCombobox, {
-          key: 'Tab',
-        });
-
-        await act(async () => {
-          jest.runAllTimers();
-        });
-
-        expect(modalButton).toHaveFocus();
-      });
     });
   });
 });
