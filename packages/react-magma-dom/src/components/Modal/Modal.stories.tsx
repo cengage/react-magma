@@ -296,8 +296,6 @@ export const ModalInAModal = () => {
             { label: 'Green', value: 'green' },
           ]}
           placeholder="Hello"
-          // onInputKeyDown={() => {console.log('sup')}}
-          // isClearable
         />
         <div>
           <DatePicker labelText="Pick a date" />
@@ -311,8 +309,6 @@ export const ModalInAModal = () => {
             { label: 'Blue', value: 'blue' },
             { label: 'Green', value: 'green' },
           ]}
-          // placeholder="Hello"
-          // onInputKeyDown={() => {console.log('sup')}}
           isClearable
         />
         <p>
@@ -352,8 +348,6 @@ export const ModalInAModal = () => {
             { label: 'Blue', value: 'blue' },
             { label: 'Green', value: 'green' },
           ]}
-          // isClearable
-          // placeholder="Hello"
         />
         <Spacer size={10} />
         <Combobox
@@ -366,8 +360,6 @@ export const ModalInAModal = () => {
             { label: 'Green', value: 'green' },
           ]}
           placeholder="Hello"
-          // onInputKeyDown={() => {console.log('sup')}}
-          // isClearable
         />
         <Spacer size={10} />
         <Select
