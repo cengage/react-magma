@@ -74,6 +74,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.1
+
+### Patch Changes
+
+- b5f6189fa: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
+
 ## 4.2.0-next.0
 
 ### Minor Changes
