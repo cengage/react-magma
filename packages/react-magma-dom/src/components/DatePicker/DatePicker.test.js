@@ -1,6 +1,5 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { act, render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import {
   format,
   subWeeks,
@@ -17,6 +16,7 @@ import {
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
+import { Modal } from '../Modal';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 
@@ -398,6 +398,31 @@ describe('Date Picker', () => {
     });
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+  });
+
+  it('should close the calendar month when the escape key is pressed, and retain the active modal', () => {
+    const defaultDate = new Date();
+    const { getByTestId } = render(
+      <Modal testId="modal" isOpen>
+        <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
+      </Modal>
+    );
+
+    const labelText = 'Date picker label';
+
+    const { container } = render(
+      <DatePicker defaultDate={defaultDate} labelText={labelText} />
+    );
+
+    fireEvent.focus(container.querySelector('input'));
+    fireEvent.keyDown(container.querySelector('table'), {
+      key: 'Escape',
+      code: 27,
+    });
+
+    expect(container.querySelector('table')).not.toBeVisible();
+
+    expect(getByTestId('modal')).toBeInTheDocument();
   });
 
   it('should default to the min date when it is later than today', () => {

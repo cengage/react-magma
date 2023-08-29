@@ -9,6 +9,7 @@ import { DropdownMenuGroup } from './DropdownMenuGroup';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { DropdownButton } from './DropdownButton';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
+import { Modal } from '../Modal';
 import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
@@ -761,6 +762,41 @@ describe('Dropdown', () => {
       });
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+    });
+
+    //For Dropdowns in Modals
+    it('should close the menu when escape key is pressed, and retain the active modal', () => {
+      const { getByText, getByTestId } = render(
+        <Modal testId="modal" isOpen>
+          <Dropdown testId="dropdown">
+            <DropdownButton>Toggle me</DropdownButton>
+            <DropdownContent>
+              <p>test</p>
+            </DropdownContent>
+          </Dropdown>
+        </Modal>
+      );
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+      fireEvent.click(getByText('Toggle me'));
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'display',
+        'block'
+      );
+
+      fireEvent.keyDown(getByTestId('dropdown'), {
+        key: 'ArrowDown',
+      });
+
+      fireEvent.keyDown(getByTestId('dropdown'), {
+        key: 'Escape',
+        code: 27,
+      });
+
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('modal')).toBeInTheDocument();
     });
 
     it('should close the menu on blur', () => {
