@@ -803,6 +803,7 @@ describe('Dropdown', () => {
         code: 27,
       });
 
+<<<<<<< HEAD
       setTimeout(() => {
         expect(getByTestId('dropdownContent')).toHaveStyleRule(
           'display',
@@ -810,6 +811,9 @@ describe('Dropdown', () => {
         );
       }, 500);
       
+=======
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+>>>>>>> f245022f6 (fix(Select / Combobox / Dropdown / DatePicker): Menu closing support with escape key in Modals. (#1082))
       expect(getByTestId('modal')).toBeInTheDocument();
     });
 
