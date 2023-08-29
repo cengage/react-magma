@@ -261,4 +261,4 @@ export function resolveProps(
   });
 
   return output;
-};
+}

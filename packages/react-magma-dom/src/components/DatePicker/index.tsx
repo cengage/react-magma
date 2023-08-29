@@ -344,6 +344,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         }
       } else {
         if (event.key === 'Escape') {
+          event.nativeEvent.stopImmediatePropagation();
           setCalendarOpened(false);
           iconRef.current.focus();
         }
