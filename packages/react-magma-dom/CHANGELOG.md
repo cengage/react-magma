@@ -95,6 +95,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.2
+
+### Patch Changes
+
+- 9f2aa435d: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
+
 ## 4.2.0-next.1
 
 ### Patch Changes

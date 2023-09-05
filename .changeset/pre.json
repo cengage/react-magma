@@ -12,6 +12,7 @@
   },
   "changesets": [
     "feat-optionalPerPageSelect",
-    "fix-modalEscape"
+    "fix-modalEscape",
+    "sortArrows"
   ]
 }
