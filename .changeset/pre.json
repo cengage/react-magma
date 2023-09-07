@@ -12,6 +12,7 @@
   },
   "changesets": [
     "feat-optionalPerPageSelect",
+    "fix-datePickerEscape",
     "fix-modalEscape",
     "sortArrows"
   ]
