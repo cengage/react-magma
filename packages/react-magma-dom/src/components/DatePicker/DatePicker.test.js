@@ -400,28 +400,53 @@ describe('Date Picker', () => {
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
   });
 
-  it('should close the calendar month when the escape key is pressed, and retain the active modal', () => {
-    const defaultDate = new Date();
-    const { getByTestId } = render(
+  it('inside a modal, should close the calendar month when no date is selected and the escape key is pressed, and retain the active modal', () => {
+    const { getByTestId, getByLabelText } = render(
       <Modal testId="modal" isOpen>
-        <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
+        <DatePicker labelText="Date Picker inside a modal" />
       </Modal>
     );
 
-    const labelText = 'Date picker label';
+    const calendarButton = getByLabelText('Toggle Calendar Widget');
 
-    const { container } = render(
-      <DatePicker defaultDate={defaultDate} labelText={labelText} />
+    fireEvent.click(calendarButton);
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
     );
-
-    fireEvent.focus(container.querySelector('input'));
-    fireEvent.keyDown(container.querySelector('table'), {
+    fireEvent.keyDown(calendarButton, {
       key: 'Escape',
       code: 27,
     });
 
-    expect(container.querySelector('table')).not.toBeVisible();
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('modal')).toBeInTheDocument();
+  });
 
+  it('inside a modal, should close the calendar month when date is selected and the escape key is pressed, and retain the active modal', () => {
+    const { getByTestId, getByLabelText } = render(
+      <Modal testId="modal" isOpen>
+        <DatePicker labelText="Date Picker inside a modal" />
+      </Modal>
+    );
+
+    const calendarButton = getByLabelText('Toggle Calendar Widget');
+
+    fireEvent.click(calendarButton);
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
+    );
+    fireEvent.change(getByLabelText('Date Picker inside a modal'), {
+      target: { value: '12' },
+    });
+    fireEvent.click(calendarButton);
+    fireEvent.keyDown(calendarButton, {
+      key: 'Escape',
+      code: 27,
+    });
+
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
