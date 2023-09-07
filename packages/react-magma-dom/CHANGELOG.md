@@ -74,6 +74,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.3
+
+### Patch Changes
+
+- 8f1bcbe31: fix(DatePicker): Escape key only closes the panel
+
 ## 4.2.0-next.2
 
 ### Patch Changes
