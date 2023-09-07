@@ -451,12 +451,16 @@ describe('Date Picker', () => {
       code: 27,
     });
 
+<<<<<<< HEAD
     setTimeout(() => {
       expect(getByTestId('calendarContainer')).toHaveStyleRule(
         'display',
         'none'
       );
     }, 500);
+=======
+    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+>>>>>>> b851a6614 (fix(DatePicker): Escape key only closes the panel (#1125))
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
