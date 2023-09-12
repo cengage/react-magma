@@ -11,6 +11,9 @@
     "react-magma-landing": "1.1.2"
   },
   "changesets": [
-    "feat-optionalPerPageSelect"
+    "feat-optionalPerPageSelect",
+    "fix-datePickerEscape",
+    "fix-modalEscape",
+    "sortArrows"
   ]
 }

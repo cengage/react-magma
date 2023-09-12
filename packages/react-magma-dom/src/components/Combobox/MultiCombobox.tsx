@@ -345,6 +345,21 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </>
     ) : null;
 
+  function handleOnKeyDown(event: React.KeyboardEvent) {
+    const count = document.querySelectorAll('[aria-modal="true"]').length;
+
+    if (event.key === 'Escape') {
+      if (count >= 1 && inputRef.current) {
+        inputRef.current.focus();
+      }
+      event.nativeEvent.stopImmediatePropagation();
+    }
+
+    onInputKeyDown &&
+      typeof onInputKeyDown === 'function' &&
+      onInputKeyDown(event);
+  }
+
   return (
     <SelectContainer
       descriptionId={ariaDescribedBy}
@@ -368,7 +383,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           ...getInputProps({
             ...options,
             ...getDropdownProps({
-              onKeyDown: onInputKeyDown,
+              onKeyDown: handleOnKeyDown,
               ...(innerRef && { ref: innerRef }),
             }),
           }),
@@ -383,7 +398,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         innerRef={ref}
         onInputBlur={onInputBlur}
         onInputFocus={handleInputFocus}
-        onInputKeyDown={onInputKeyDown}
+        onInputKeyDown={handleOnKeyDown}
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={selectedItems.length > 0 ? null : placeholder}

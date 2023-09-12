@@ -1,5 +1,23 @@
 ## 4.1.1
 
+## 4.2.0-next.3
+
+### Patch Changes
+
+- 8f1bcbe31: fix(DatePicker): Escape key only closes the panel
+
+## 4.2.0-next.2
+
+### Patch Changes
+
+- 9f2aa435d: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
+
+## 4.2.0-next.1
+
+### Patch Changes
+
+- b5f6189fa: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
+
 ## 4.2.0-next.0
 
 ### Minor Changes

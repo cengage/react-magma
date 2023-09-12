@@ -239,7 +239,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
 
     const SortIcon =
       sortDirection === TableSortDirection.ascending ? (
-        <SouthIcon
+        <NorthIcon
           color={
             tableContext.isInverse
               ? theme.colors.neutral100
@@ -249,7 +249,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
           testId="sort-ascending"
         />
       ) : sortDirection === TableSortDirection.descending ? (
-        <NorthIcon
+        <SouthIcon
           color={
             tableContext.isInverse
               ? theme.colors.neutral100
