@@ -9,6 +9,10 @@ import {
 } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
+import {
+  DropdownExpandableMenuGroup,
+  DropdownExpandableMenuGroupProps,
+} from './DropdownExpandableMenuGroup';
 
 /**
  * @children required
@@ -127,6 +131,19 @@ export const DropdownContent = React.forwardRef<
     }
   });
 
+  // For Expandable Dropdowns that don't require a max-height
+  let hasExpandable = false;
+
+  React.Children.map(children, child => {
+    const item = child as React.ReactElement<
+      React.PropsWithChildren<DropdownExpandableMenuGroupProps>
+    >;
+
+    if (item.type === DropdownExpandableMenuGroup) {
+      hasExpandable = true;
+    }
+  });
+
   return (
     <StyledCard
       {...other}
@@ -137,6 +154,9 @@ export const DropdownContent = React.forwardRef<
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
       ref={ref}
+      style={
+        hasExpandable ? { maxHeight: 'inherit', overflow: 'hidden' } : null
+      }
       tabIndex={-1}
       testId={testId || 'dropdownContent'}
       theme={theme}

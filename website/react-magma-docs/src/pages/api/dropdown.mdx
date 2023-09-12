@@ -85,6 +85,66 @@ export function Example() {
 }
 ```
 
+## Expandable Menu Items
+
+If a nested menu layout is needed within the `Dropdown`, the `DropdownExpandableMenuGroup` adds an expandable / collapsible menu structure.
+
+The components of `DropdownExpandableMenuGroup`, `DropdownExpandableMenuItem`, `DropdownExpandableMenuButton`, `DropdownExpandableMenuPanel`, and `DropdownMenuItem` necessitate the proper structure of this menu list.
+
+Please note that only one child panel is supported from a styling standpoint.
+
+```tsx
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownExpandableMenuGroup,
+  DropdownExpandableMenuItem,
+  DropdownExpandableMenuButton,
+  DropdownExpandableMenuPanel,
+  DropdownMenuItem,
+} from 'react-magma-dom';
+
+import {
+  RestaurantMenuIcon,
+  LunchDiningIcon,
+  LocalPizzaIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Dropdown width={240}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+              Pasta
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Fresh</DropdownMenuItem>
+              <DropdownMenuItem>Processed</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Domestic</DropdownMenuItem>
+              <DropdownMenuItem>Speck</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
 ## Drop Direction
 
 Using the `dropDirection` prop will change where the menu appears. Options are `down` and `up`, with `down` being default.
@@ -558,7 +618,6 @@ export function Example() {
     </Dropdown>
   );
 }
-
 ```
 
 ### Dropdown with Informational Content

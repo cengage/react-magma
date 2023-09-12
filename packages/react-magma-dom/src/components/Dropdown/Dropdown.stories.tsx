@@ -17,10 +17,20 @@ import { Card, CardBody } from '../Card';
 import { Input } from '../Input';
 import { Checkbox } from '../Checkbox';
 import { PasswordInput } from '../PasswordInput';
-import { SettingsIcon, MenuIcon } from 'react-magma-icons';
+import {
+  LocalPizzaIcon,
+  LunchDiningIcon,
+  MenuIcon,
+  RestaurantMenuIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Paragraph, Spacer } from '../..';
 import { ButtonGroup } from '../ButtonGroup';
+import { DropdownExpandableMenuButton } from './DropdownExpandableMenuButton';
+import { DropdownExpandableMenuItem } from './DropdownExpandableMenuItem';
+import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
+import { DropdownExpandableMenuPanel } from './DropdownExpandableMenuPanel';
 
 const Template: Story<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
@@ -405,5 +415,65 @@ export const NoItems = args => {
         </DropdownContent>
       </Dropdown>
     </ButtonGroup>
+  );
+};
+
+export const ExpandableItems = args => {
+  return (
+    <Dropdown {...args}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Fresh</DropdownMenuItem>
+              <DropdownMenuItem>Processed</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Domestic</DropdownMenuItem>
+              <DropdownMenuItem>Speck</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+      </DropdownContent>
+    </Dropdown>
+  );
+};
+
+export const ExpandableItemsWithIcons = args => {
+  return (
+    <Dropdown {...args} width={240}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+              Pasta
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Fresh</DropdownMenuItem>
+              <DropdownMenuItem>Processed</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Domestic</DropdownMenuItem>
+              <DropdownMenuItem>Speck</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
   );
 };

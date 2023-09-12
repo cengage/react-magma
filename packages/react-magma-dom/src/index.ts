@@ -53,39 +53,32 @@ export {
   DropdownAlignment,
   DropdownDropDirection,
   DropdownProps,
-} from './components/Dropdown';
-export {
   DropdownContent,
   DropdownContentProps,
-} from './components/Dropdown/DropdownContent';
-export {
   DropdownDivider,
   DropdownDividerProps,
-} from './components/Dropdown/DropdownDivider';
-export {
   DropdownHeader,
   DropdownHeaderProps,
-} from './components/Dropdown/DropdownHeader';
-export {
   DropdownMenuGroup,
   DropdownMenuGroupProps,
-} from './components/Dropdown/DropdownMenuGroup';
-export {
   DropdownMenuItem,
   DropdownMenuItemProps,
-} from './components/Dropdown/DropdownMenuItem';
-export {
   DropdownMenuNavItem,
   DropdownMenuNavItemProps,
-} from './components/Dropdown/DropdownMenuNavItem';
-export {
   DropdownSplitButton,
   DropdownSplitButtonProps,
-} from './components/Dropdown/DropdownSplitButton';
-export {
   DropdownButton,
   DropdownButtonProps,
-} from './components/Dropdown/DropdownButton';
+  DropdownExpandableMenuGroup,
+  DropdownExpandableMenuGroupProps,
+  DropdownExpandableMenuItem,
+  DropdownExpandableMenuItemProps,
+  DropdownExpandableMenuButton,
+  DropdownExpandableMenuButtonProps,
+  DropdownExpandableMenuPanel,
+  DropdownExpandableMenuPanelProps,
+} from './components/Dropdown';
+
 export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';

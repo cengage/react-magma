@@ -7,6 +7,7 @@ import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 import { Omit, useForkedRef } from '../../utils';
+import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -60,6 +61,21 @@ export function menuBackground(props) {
   return props.theme.colors.neutral200;
 }
 
+function menuItemPadding(props) {
+  //For DropdownExpandableMenu styling with an icon
+  if (props.hasIcon && props.isExpandablePanel) {
+    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} 72px`;
+  }
+  //For DropdownExpandableMenu styling without an icon
+  else if (props.isExpandablePanel) {
+    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing08}`;
+  } else if (props.isInactive) {
+    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`;
+  } else {
+    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`;
+  }
+}
+
 export const MenuItemStyles = props => {
   return css`
     align-items: center;
@@ -70,9 +86,7 @@ export const MenuItemStyles = props => {
     font-family: ${props.theme.bodyFont};
     line-height: ${props.theme.typeScale.size03.lineHeight};
     margin: 0;
-    padding: ${props.isInactive
-      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
-      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
+    padding: ${menuItemPadding(props)};
     white-space: ${props.isFixedWidth ? 'normal' : 'nowrap'};
 
     &:hover,
@@ -97,6 +111,9 @@ export const MenuItemStyles = props => {
 const StyledItem = styled.div<{
   as?: string;
   disabled?: boolean;
+  hasIcon?: boolean;
+  isExpandablePanel?: boolean;
+
   isFixedWidth?: boolean;
   isInactive?: boolean;
   isInverse?: boolean;
@@ -128,6 +145,10 @@ export const DropdownMenuItem = React.forwardRef<
   const ownRef = React.useRef<HTMLDivElement>();
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
+
+  const dropdownExpandableContext = React.useContext(
+    DropdownExpandableMenuItemContext
+  );
 
   const ref = useForkedRef(forwardedRef, ownRef);
 
@@ -176,6 +197,8 @@ export const DropdownMenuItem = React.forwardRef<
       {...other}
       aria-disabled={disabled}
       disabled={disabled}
+      hasIcon={dropdownExpandableContext.hasIcon}
+      isExpandablePanel={dropdownExpandableContext.isExpandablePanel}
       isFixedWidth={context.isFixedWidth}
       isInactive={isInactive}
       isInverse={context.isInverse}
