@@ -143,6 +143,7 @@ export interface InputWrapperStylesProps {
   theme?: ThemeInterface;
   hasError?: boolean;
   disabled?: boolean;
+  inputSize?: InputSize;
 }
 
 export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
@@ -160,6 +161,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     ${props.isInverse
       ? transparentize(0.5, props.theme.colors.neutral100)
       : props.theme.colors.neutral500};
+  height: ${props.theme.spaceScale.spacing09};
 
   &:focus-within {
     outline: 2px solid
@@ -184,6 +186,11 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     background-color: ${props.isInverse
       ? transparentize(0.9, props.theme.colors.neutral900)
       : props.theme.colors.neutral200};
+  `}
+
+  ${props.inputSize === 'large' &&
+  css`
+    height: ${props.theme.spaceScale.spacing11};
   `}
 `;
 
@@ -611,6 +618,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           disabled={disabled}
           iconPosition={iconPosition}
           isInverse={props.isInverse}
+          inputSize={inputSize ? inputSize : InputSize.medium}
           theme={theme}
           style={containerStyle}
           hasError={hasError}
