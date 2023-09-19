@@ -15,6 +15,7 @@
     "fix-datePickerEscape",
     "fix-modalEscape",
     "inputHeight",
+    "nativeSelectHeight",
     "sortArrows"
   ]
 }
