@@ -66,6 +66,7 @@ const StyledNativeSelect = styled.select<{
   theme: ThemeInterface;
 }>`
   ${inputBaseStyles};
+  height: 38px;
   // Required for Windows && Chrome support
   background: inherit;
   > option {
