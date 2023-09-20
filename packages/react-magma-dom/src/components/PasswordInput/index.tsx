@@ -27,6 +27,11 @@ export interface PasswordInputProps
    * @default "Hide"
    */
   hidePasswordButtonText?: string;
+  /**
+   * Relative size of the component
+   * @default InputSize.medium
+   */
+    inputSize?: InputSize;
   isInverse?: boolean;
   /**
    * If true, label text will be hidden visually, but will still be read by assistive technology

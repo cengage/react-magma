@@ -459,9 +459,8 @@ const PasswordButtonContainer = styled.span<{
   background-color: transparent;
   width: 0;
   transform: translate(
-    -${props => (props.size === InputSize.large ? props.theme.spaceScale.spacing10 : '60px')},
-    ${props =>
-      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '5px'}
+    -${props => (props.size === InputSize.large ? '58px' : '60px')},
+    ${props => props.theme.spaceScale.spacing02}
   );
 `;
 
@@ -581,13 +580,13 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
     >(
-      props.defaultValue !== undefined &&
-        props.defaultValue !== null 
+      props.defaultValue !== undefined && props.defaultValue !== null
         ? props.defaultValue
         : props.value || ''
     );
 
-    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
+    const maxLengthNum =
+      !hasCharacterCounter && maxLength ? maxLength : undefined;
 
     React.useEffect(() => {
       if (props.value !== undefined && props.value !== null) {
