@@ -7,7 +7,7 @@ import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 import { Omit, useForkedRef } from '../../utils';
-import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
+import { DropdownExpandableContext } from './DropdownExpandableMenuGroup';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -146,9 +146,7 @@ export const DropdownMenuItem = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
 
-  const dropdownExpandableContext = React.useContext(
-    DropdownExpandableMenuItemContext
-  );
+  const expandableContext = React.useContext(DropdownExpandableContext);
 
   const ref = useForkedRef(forwardedRef, ownRef);
 
@@ -197,8 +195,8 @@ export const DropdownMenuItem = React.forwardRef<
       {...other}
       aria-disabled={disabled}
       disabled={disabled}
-      hasIcon={dropdownExpandableContext.hasIcon}
-      isExpandablePanel={dropdownExpandableContext.isExpandablePanel}
+      hasIcon={expandableContext.hasIcon}
+      isExpandablePanel={expandableContext.isExpandablePanel}
       isFixedWidth={context.isFixedWidth}
       isInactive={isInactive}
       isInverse={context.isInverse}

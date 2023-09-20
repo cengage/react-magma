@@ -5,6 +5,8 @@ import { IconWrapper, menuBackground } from './DropdownMenuItem';
 import { IconProps } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
+import { DropdownExpandableContext } from './DropdownExpandableMenuGroup';
+import { useForkedRef } from '../../utils';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
@@ -13,10 +15,14 @@ export interface DropdownExpandableMenuButtonProps
 }
 
 const StyledAccordionButton = styled(AccordionButton)<{
+  hasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
 }>`
   font-weight: 400;
-  padding: 8px 16px;
+  padding: ${props =>
+    !props.icon && props.hasIcon
+      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
+      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
   margin: 0;
   border-top: 0;
   &:hover,
@@ -30,26 +36,33 @@ const StyledAccordionButton = styled(AccordionButton)<{
 
 const StyledIconWrapper = styled(IconWrapper)`
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 export const DropdownExpandableMenuButton = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuButtonProps
->(props => {
-  const { children, icon, testId } = props;
+>((props, forwardedRef) => {
+  const { children, icon, testId, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
+  const expandableContext = React.useContext(DropdownExpandableContext);
 
-  const ref = React.useRef();
+  const ownRef = React.useRef<HTMLDivElement>();
+  const ref = useForkedRef(forwardedRef, ownRef);
 
-  // const i18n = React.useContext(I18nContext);
+  React.useEffect(() => {
+    context.registerDropdownMenuItem(context.itemRefArray, ownRef);
+  }, []);
 
   return (
     <StyledAccordionButton
+      {...other}
       ref={ref}
+      icon={props.icon}
       theme={theme}
+      hasIcon={expandableContext.hasIcon}
       isInverse={context.isInverse}
       testId={testId}
     >
@@ -62,3 +75,5 @@ export const DropdownExpandableMenuButton = React.forwardRef<
     </StyledAccordionButton>
   );
 });
+
+DropdownExpandableMenuButton.displayName = 'DropdownExpandableMenuButton';

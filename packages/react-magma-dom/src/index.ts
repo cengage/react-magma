@@ -49,36 +49,55 @@ export { Container, ContainerProps } from './components/Container';
 export { Datagrid, DatagridProps } from './components/Datagrid';
 export { DatePicker, DatePickerProps } from './components/DatePicker';
 export {
-  Dropdown,
   DropdownAlignment,
   DropdownDropDirection,
   DropdownProps,
+} from './components/Dropdown';
+export {
   DropdownContent,
   DropdownContentProps,
+} from './components/Dropdown/DropdownContent';
+export {
   DropdownDivider,
   DropdownDividerProps,
+} from './components/Dropdown/DropdownDivider';
+export {
   DropdownHeader,
   DropdownHeaderProps,
+} from './components/Dropdown/DropdownHeader';
+export {
   DropdownMenuGroup,
   DropdownMenuGroupProps,
+} from './components/Dropdown/DropdownMenuGroup';
+export {
   DropdownMenuItem,
   DropdownMenuItemProps,
+} from './components/Dropdown/DropdownMenuItem';
+export {
   DropdownMenuNavItem,
   DropdownMenuNavItemProps,
+} from './components/Dropdown/DropdownMenuNavItem';
+export {
   DropdownSplitButton,
   DropdownSplitButtonProps,
+} from './components/Dropdown/DropdownSplitButton';
+export {
   DropdownButton,
   DropdownButtonProps,
-  DropdownExpandableMenuGroup,
-  DropdownExpandableMenuGroupProps,
+} from './components/Dropdown/DropdownButton';
+export { DropdownExpandableMenuGroup } from './components/Dropdown/DropdownExpandableMenuGroup';
+export {
   DropdownExpandableMenuItem,
   DropdownExpandableMenuItemProps,
+} from './components/Dropdown/DropdownExpandableMenuItem';
+export {
   DropdownExpandableMenuButton,
   DropdownExpandableMenuButtonProps,
+} from './components/Dropdown/DropdownExpandableMenuButton';
+export {
   DropdownExpandableMenuPanel,
   DropdownExpandableMenuPanelProps,
-} from './components/Dropdown';
-
+} from './components/Dropdown/DropdownExpandableMenuPanel';
 export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';

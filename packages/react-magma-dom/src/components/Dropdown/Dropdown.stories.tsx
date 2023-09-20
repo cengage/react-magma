@@ -448,13 +448,14 @@ export const ExpandableItems = args => {
 
 export const ExpandableItemsWithIcons = args => {
   return (
-    <Dropdown {...args} width={240}>
+    <Dropdown {...args}>
       <DropdownButton>Expandable Items Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
-          <DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem disabled>
             <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
-              Pasta
+              Pasta antidisestablishmentarianism Pasta Pasta Pasta Pasta Pasta
+              Pasta Pasta Pasta Pasta Pasta Pasta
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
               <DropdownMenuItem>Fresh</DropdownMenuItem>
@@ -468,6 +469,56 @@ export const ExpandableItemsWithIcons = args => {
             <DropdownExpandableMenuPanel>
               <DropdownMenuItem>Domestic</DropdownMenuItem>
               <DropdownMenuItem>Speck</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+};
+
+export const ExpandableItemsWithIconsAndConsoleWarning = args => {
+  return (
+    <Dropdown {...args} width={240}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Fresh</DropdownMenuItem>
+              <DropdownMenuItem>Processed</DropdownMenuItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownMenuItem>Domestic</DropdownMenuItem>
+              <DropdownMenuItem>Speck</DropdownMenuItem>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownMenuItem>Fresh</DropdownMenuItem>
+                    <DropdownMenuItem>Processed</DropdownMenuItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+                    Prosciutto
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownMenuItem>Domestic</DropdownMenuItem>
+                    <DropdownMenuItem>Speck</DropdownMenuItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>

@@ -1,48 +1,61 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { useGenerateId } from '../../utils';
 import { Accordion, AccordionProps } from '../Accordion';
 import { DropdownContext } from './Dropdown';
 
-/**
- * @children required
- */
-export interface DropdownExpandableMenuGroupProps
-  extends React.HTMLAttributes<HTMLDivElement> {
-  isInverse?: boolean;
+const StyledAccordion = styled(Accordion)<{
   testId?: string;
-}
-
-const StyledAccordion = styled(Accordion)`
+}>`
   border: none;
 `;
+
+export interface DropdownExpandableContext {
+  hasIcon?: boolean;
+  isExpandablePanel?: boolean;
+}
+
+export const DropdownExpandableContext =
+  React.createContext<DropdownExpandableContext>({});
 
 export const DropdownExpandableMenuGroup = React.forwardRef<
   HTMLDivElement,
   AccordionProps
 >(props => {
-  const { children, id: defaultId, testId, ...other } = props;
-
-  const id = useGenerateId(defaultId);
+  const { children, testId, ...other } = props;
 
   const context = React.useContext(DropdownContext);
 
-  const countEachGroup = document.querySelectorAll('[role="group"]').length;
-  if (countEachGroup > 1) {
-    console.log(
-      `Only one group level is supported, anything nested two levels or more isn't accounted for in the styling`
-    );
-  }
+  let hasIcon = false;
+  let isExpandablePanel = false;
+
+  React.Children.forEach(children, (child: any) => {
+    if (child.type?.displayName === 'DropdownExpandableMenuItem') {
+      React.Children.forEach(child.props.children, (c: any) => {
+        if (c.type?.displayName === 'DropdownExpandableMenuButton') {
+          if (c.props.icon) {
+            hasIcon = true;
+            return;
+          }
+        }
+      });
+      if (React.isValidElement(child)) {
+        isExpandablePanel = true;
+      }
+    }
+  });
 
   return (
-    <StyledAccordion
-      {...other}
-      aria-labelledby={id}
-      isInverse={context.isInverse}
-      role="group"
-      testId={testId}
-    >
-      {children}
-    </StyledAccordion>
+    <DropdownExpandableContext.Provider value={{ hasIcon, isExpandablePanel }}>
+      <StyledAccordion
+        {...other}
+        isInverse={context.isInverse}
+        role="expandable group"
+        testId={testId}
+      >
+        {children}
+      </StyledAccordion>
+    </DropdownExpandableContext.Provider>
   );
 });
+
+DropdownExpandableMenuGroup.displayName = 'DropdownExpandableMenuGroup';
