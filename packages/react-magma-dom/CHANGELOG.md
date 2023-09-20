@@ -1,5 +1,17 @@
 ## 4.1.1
 
+## 4.2.0-next.5
+
+### Patch Changes
+
+- ab9229c81: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
+
+## 4.2.0-next.4
+
+### Patch Changes
+
+- 101f514b1: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
+
 ## 4.2.0-next.3
 
 ### Patch Changes
