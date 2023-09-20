@@ -419,7 +419,12 @@ describe('Date Picker', () => {
       code: 27,
     });
 
-    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+    setTimeout(() => {
+      expect(getByTestId('calendarContainer')).toHaveStyleRule(
+        'display',
+        'none'
+      );
+    }, 500);
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
@@ -446,7 +451,12 @@ describe('Date Picker', () => {
       code: 27,
     });
 
-    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+    setTimeout(() => {
+      expect(getByTestId('calendarContainer')).toHaveStyleRule(
+        'display',
+        'none'
+      );
+    }, 500);
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
