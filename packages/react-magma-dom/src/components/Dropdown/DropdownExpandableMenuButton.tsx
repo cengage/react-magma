@@ -5,7 +5,7 @@ import { IconWrapper, menuBackground } from './DropdownMenuItem';
 import { IconProps } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
-import { DropdownExpandableContext } from './DropdownExpandableMenuGroup';
+import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { useForkedRef } from '../../utils';
 
 export interface DropdownExpandableMenuButtonProps
@@ -15,12 +15,13 @@ export interface DropdownExpandableMenuButtonProps
 }
 
 const StyledAccordionButton = styled(AccordionButton)<{
-  hasIcon?: boolean;
+  hasCustomArray?: boolean;
+  expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
 }>`
   font-weight: 400;
   padding: ${props =>
-    !props.icon && props.hasIcon
+    !props.icon && props.expandableMenuButtonHasIcon
       ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
       : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
   margin: 0;
@@ -36,18 +37,19 @@ const StyledAccordionButton = styled(AccordionButton)<{
 
 const StyledIconWrapper = styled(IconWrapper)`
   justify-content: center;
-  /* align-items: center; */
 `;
 
 export const DropdownExpandableMenuButton = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuButtonProps
 >((props, forwardedRef) => {
-  const { children, icon, testId, ...other } = props;
+  const { children, hasCustomArray, icon, testId, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
-  const expandableContext = React.useContext(DropdownExpandableContext);
+  const expandableContext = React.useContext(
+    DropdownExpandableMenuGroupContext
+  );
 
   const ownRef = React.useRef<HTMLDivElement>();
   const ref = useForkedRef(forwardedRef, ownRef);
@@ -60,9 +62,12 @@ export const DropdownExpandableMenuButton = React.forwardRef<
     <StyledAccordionButton
       {...other}
       ref={ref}
-      icon={props.icon}
+      hasCustomArray
+      icon={icon}
       theme={theme}
-      hasIcon={expandableContext.hasIcon}
+      expandableMenuButtonHasIcon={
+        expandableContext.expandableMenuButtonHasIcon
+      }
       isInverse={context.isInverse}
       testId={testId}
     >

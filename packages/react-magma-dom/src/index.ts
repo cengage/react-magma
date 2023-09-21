@@ -49,6 +49,7 @@ export { Container, ContainerProps } from './components/Container';
 export { Datagrid, DatagridProps } from './components/Datagrid';
 export { DatePicker, DatePickerProps } from './components/DatePicker';
 export {
+  Dropdown,
   DropdownAlignment,
   DropdownDropDirection,
   DropdownProps,

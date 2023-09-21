@@ -12,7 +12,7 @@ const StyledAccordionPanel = styled(AccordionPanel)`
 export const DropdownExpandableMenuPanel = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuPanelProps
->(props => {
+>((props, ref) => {
   const { children, testId, ...other } = props;
 
   React.Children.map(children, child => {
@@ -22,7 +22,7 @@ export const DropdownExpandableMenuPanel = React.forwardRef<
       console.warn(
         `
       --------------------------------------------------------------------------------------------------------
-      Only one group level is supported, anything nested two levels or more isn't accounted for in the styling
+      React Magma Warning: Only one group level is supported for Expandable Dropdowns, anything nested two levels or more isn't accounted for in the styling
       --------------------------------------------------------------------------------------------------------
       `
       );
@@ -30,7 +30,7 @@ export const DropdownExpandableMenuPanel = React.forwardRef<
   });
 
   return (
-    <StyledAccordionPanel testId={testId} {...other}>
+    <StyledAccordionPanel testId={testId} {...other} ref={ref}>
       {children}
     </StyledAccordionPanel>
   );

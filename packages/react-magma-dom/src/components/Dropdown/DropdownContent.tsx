@@ -117,7 +117,7 @@ export const DropdownContent = React.forwardRef<
 
   let hasItemChildren = false;
 
-  // Default styling for Expandable Menus to override the max-height used for regular dropdowns
+  // For Expandable Dropdowns that don't require a max-height
   let hasExpandableItems = false;
 
   React.Children.forEach(children, (child: any) => {
@@ -144,7 +144,9 @@ export const DropdownContent = React.forwardRef<
       maxHeight={context.maxHeight}
       ref={ref}
       style={
-        hasExpandableItems ? { maxHeight: 'inherit', overflow: 'hidden' } : null
+        hasExpandableItems
+          ? { maxHeight: 'inherit', overflow: 'hidden' }
+          : props.style
       }
       tabIndex={-1}
       testId={testId || 'dropdownContent'}

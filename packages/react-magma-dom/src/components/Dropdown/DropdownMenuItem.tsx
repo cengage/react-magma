@@ -7,7 +7,7 @@ import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 import { Omit, useForkedRef } from '../../utils';
-import { DropdownExpandableContext } from './DropdownExpandableMenuGroup';
+import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -63,7 +63,7 @@ export function menuBackground(props) {
 
 function menuItemPadding(props) {
   //For DropdownExpandableMenu styling with an icon
-  if (props.hasIcon && props.isExpandablePanel) {
+  if (props.expandableMenuButtonHasIcon && props.isExpandablePanel) {
     return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} 72px`;
   }
   //For DropdownExpandableMenu styling without an icon
@@ -111,7 +111,7 @@ export const MenuItemStyles = props => {
 const StyledItem = styled.div<{
   as?: string;
   disabled?: boolean;
-  hasIcon?: boolean;
+  expandableMenuButtonHasIcon?: boolean;
   isExpandablePanel?: boolean;
 
   isFixedWidth?: boolean;
@@ -146,7 +146,7 @@ export const DropdownMenuItem = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
 
-  const expandableContext = React.useContext(DropdownExpandableContext);
+  const menuGroupContext = React.useContext(DropdownExpandableMenuGroupContext);
 
   const ref = useForkedRef(forwardedRef, ownRef);
 
@@ -195,8 +195,8 @@ export const DropdownMenuItem = React.forwardRef<
       {...other}
       aria-disabled={disabled}
       disabled={disabled}
-      hasIcon={expandableContext.hasIcon}
-      isExpandablePanel={expandableContext.isExpandablePanel}
+      expandableMenuButtonHasIcon={menuGroupContext.expandableMenuButtonHasIcon}
+      isExpandablePanel={menuGroupContext.isExpandablePanel}
       isFixedWidth={context.isFixedWidth}
       isInactive={isInactive}
       isInverse={context.isInverse}

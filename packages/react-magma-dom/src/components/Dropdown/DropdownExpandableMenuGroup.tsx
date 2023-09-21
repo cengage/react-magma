@@ -3,19 +3,17 @@ import styled from '../../theme/styled';
 import { Accordion, AccordionProps } from '../Accordion';
 import { DropdownContext } from './Dropdown';
 
-const StyledAccordion = styled(Accordion)<{
-  testId?: string;
-}>`
+const StyledAccordion = styled(Accordion)<{}>`
   border: none;
 `;
 
-export interface DropdownExpandableContext {
-  hasIcon?: boolean;
+export interface DropdownExpandableMenuGroupContextInterface {
+  expandableMenuButtonHasIcon?: boolean;
   isExpandablePanel?: boolean;
 }
 
-export const DropdownExpandableContext =
-  React.createContext<DropdownExpandableContext>({});
+export const DropdownExpandableMenuGroupContext =
+  React.createContext<DropdownExpandableMenuGroupContextInterface>({});
 
 export const DropdownExpandableMenuGroup = React.forwardRef<
   HTMLDivElement,
@@ -25,7 +23,7 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
 
   const context = React.useContext(DropdownContext);
 
-  let hasIcon = false;
+  let expandableMenuButtonHasIcon = false;
   let isExpandablePanel = false;
 
   React.Children.forEach(children, (child: any) => {
@@ -33,7 +31,7 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
       React.Children.forEach(child.props.children, (c: any) => {
         if (c.type?.displayName === 'DropdownExpandableMenuButton') {
           if (c.props.icon) {
-            hasIcon = true;
+            expandableMenuButtonHasIcon = true;
             return;
           }
         }
@@ -45,16 +43,18 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
   });
 
   return (
-    <DropdownExpandableContext.Provider value={{ hasIcon, isExpandablePanel }}>
+    <DropdownExpandableMenuGroupContext.Provider
+      value={{ expandableMenuButtonHasIcon, isExpandablePanel }}
+    >
       <StyledAccordion
         {...other}
         isInverse={context.isInverse}
-        role="expandable group"
+        role="group"
         testId={testId}
       >
         {children}
       </StyledAccordion>
-    </DropdownExpandableContext.Provider>
+    </DropdownExpandableMenuGroupContext.Provider>
   );
 });
 

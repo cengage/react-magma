@@ -448,7 +448,7 @@ export const ExpandableItems = args => {
 
 export const ExpandableItemsWithIcons = args => {
   return (
-    <Dropdown {...args}>
+    <Dropdown {...args} width={120}>
       <DropdownButton>Expandable Items Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>

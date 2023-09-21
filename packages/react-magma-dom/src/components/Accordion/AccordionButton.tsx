@@ -23,10 +23,12 @@ export interface AccordionButtonProps
   /**
    * @internal
    */
+  hasCustomArray?: boolean;
   theme?: ThemeInterface;
 }
 
 const StyledButton = styled.button<{
+  hasCustomArray?: boolean;
   isInverse?: boolean;
   isExpanded?: boolean;
 }>`
@@ -90,7 +92,13 @@ export const AccordionButton = React.forwardRef<
   HTMLButtonElement,
   AccordionButtonProps
 >((props, forwardedRef) => {
-  const { children, testId, isInverse: isInverseProp, ...rest } = props;
+  const {
+    children,
+    testId,
+    hasCustomArray,
+    isInverse: isInverseProp,
+    ...rest
+  } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
@@ -122,11 +130,12 @@ export const AccordionButton = React.forwardRef<
       aria-expanded={Boolean(isExpanded)}
       data-testid={testId}
       disabled={isDisabled}
+      hasCustomArray={hasCustomArray}
       id={buttonId}
       isExpanded={isExpanded}
       isInverse={isInverse}
       onClick={handleClick}
-      onKeyDown={handleKeyDown}
+      onKeyDown={hasCustomArray ? null : handleKeyDown}
       ref={ref}
       theme={theme}
     >

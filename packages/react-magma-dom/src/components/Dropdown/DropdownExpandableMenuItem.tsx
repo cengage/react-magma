@@ -21,11 +21,11 @@ export interface DropdownExpandableMenuItemProps extends AccordionItemProps {
 export const DropdownExpandableMenuItem = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuItemProps
->(props => {
+>((props, ref) => {
   const { children, disabled, testId, ...other } = props;
 
   return (
-    <AccordionItem isDisabled={disabled} {...other} testId={testId}>
+    <AccordionItem {...other} isDisabled={disabled} ref={ref} testId={testId}>
       {children}
     </AccordionItem>
   );
