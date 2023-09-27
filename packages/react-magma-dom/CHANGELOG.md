@@ -95,6 +95,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.6
+
+### Patch Changes
+
+- 3001a5e35: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
+
 ## 4.2.0-next.5
 
 ### Patch Changes
