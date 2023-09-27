@@ -16,6 +16,7 @@
     "fix-modalEscape",
     "inputHeight",
     "nativeSelectHeight",
-    "sortArrows"
+    "sortArrows",
+    "update-modalPadding"
   ]
 }
