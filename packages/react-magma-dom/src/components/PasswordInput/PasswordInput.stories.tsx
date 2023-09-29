@@ -41,7 +41,13 @@ export default {
         type: 'select',
         options: InputSize,
       }
-    }
+    },
+    isPasswordMaskButtonHidden: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -66,3 +72,9 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const CustomText = Template.bind({});
+CustomText.args = {
+  showPasswordButtonText: 'Mostrar',
+  hidePasswordButtonText: 'Esconder'
+};

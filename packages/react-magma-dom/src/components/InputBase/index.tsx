@@ -34,6 +34,10 @@ export enum InputIconPosition {
 export interface InputBaseProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
+   * @internal
+   */
+  children: any;
+  /**
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
@@ -455,12 +459,14 @@ const IconButtonContainer = styled.span<{
 const PasswordButtonContainer = styled.span<{
   size?: InputSize;
   theme: ThemeInterface;
+  buttonWidth: string;
 }>`
   background-color: transparent;
   width: 0;
   transform: translate(
-    -${props => (props.size === InputSize.large ? '58px' : '60px')},
-    ${props => props.theme.spaceScale.spacing02}
+    -${props => props.buttonWidth},
+    ${props =>
+      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '6px'}
   );
 `;
 
@@ -729,6 +735,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
+            buttonWidth={
+              children?.props?.children[0].ref?.current?.offsetWidth + 6 + 'px'
+            }
           >
             {children}
           </PasswordButtonContainer>
