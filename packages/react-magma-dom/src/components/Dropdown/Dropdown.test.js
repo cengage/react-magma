@@ -827,4 +827,20 @@ describe('Dropdown', () => {
       jest.useRealTimers();
     });
   });
+
+  it('should not render the false child', () => {
+    const visible = false;
+    const { queryByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownMenuGroup header="header">
+          {visible && <DropdownMenuItem>Menu Item 1</DropdownMenuItem>}
+          <DropdownMenuItem>Menu Item 2</DropdownMenuItem>
+        </DropdownMenuGroup>
+      </Dropdown>
+    );
+
+    expect(queryByText('Menu Item 1')).not.toBeInTheDocument();
+    expect(queryByText('Menu Item 2')).toBeInTheDocument();
+  });
 });
