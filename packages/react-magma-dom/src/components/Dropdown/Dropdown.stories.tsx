@@ -448,11 +448,11 @@ export const ExpandableItems = args => {
 
 export const ExpandableItemsWithIcons = args => {
   return (
-    <Dropdown {...args} width={120}>
+    <Dropdown {...args} width={220}>
       <DropdownButton>Expandable Items Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
-          <DropdownExpandableMenuItem disabled>
+          <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
               Pasta antidisestablishmentarianism Pasta Pasta Pasta Pasta Pasta
               Pasta Pasta Pasta Pasta Pasta Pasta
@@ -462,7 +462,7 @@ export const ExpandableItemsWithIcons = args => {
               <DropdownMenuItem>Processed</DropdownMenuItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
-          <DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem disabled>
             <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
               Prosciutto
             </DropdownExpandableMenuButton>
@@ -481,7 +481,7 @@ export const ExpandableItemsWithIcons = args => {
 
 export const ExpandableItemsWithIconsAndConsoleWarning = args => {
   return (
-    <Dropdown {...args} width={240}>
+    <Dropdown {...args} width={220}>
       <DropdownButton>Expandable Items Dropdown</DropdownButton>
       <DropdownContent>
         <DropdownExpandableMenuGroup>

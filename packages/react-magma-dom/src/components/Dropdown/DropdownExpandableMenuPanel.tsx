@@ -21,9 +21,7 @@ export const DropdownExpandableMenuPanel = React.forwardRef<
     if (item.type === DropdownExpandableMenuGroup) {
       console.warn(
         `
-      --------------------------------------------------------------------------------------------------------
       React Magma Warning: Only one group level is supported for Expandable Dropdowns, anything nested two levels or more isn't accounted for in the styling
-      --------------------------------------------------------------------------------------------------------
       `
       );
     }

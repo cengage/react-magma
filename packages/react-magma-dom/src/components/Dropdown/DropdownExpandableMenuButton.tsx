@@ -10,16 +10,18 @@ import { useForkedRef } from '../../utils';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
+  disabled?: boolean;
   icon?: React.ReactElement<IconProps>;
   testId?: string;
 }
 
 const StyledAccordionButton = styled(AccordionButton)<{
-  hasCustomArray?: boolean;
+  disabled?: boolean;
   expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
 }>`
   font-weight: 400;
+  overflow-wrap: anywhere;
   padding: ${props =>
     !props.icon && props.expandableMenuButtonHasIcon
       ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
@@ -43,7 +45,8 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuButtonProps
 >((props, forwardedRef) => {
-  const { children, hasCustomArray, icon, testId, ...other } = props;
+  const { children, disabled, hasCustomOnKeyDown, icon, testId, ...other } =
+    props;
 
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
@@ -55,14 +58,17 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   const ref = useForkedRef(forwardedRef, ownRef);
 
   React.useEffect(() => {
-    context.registerDropdownMenuItem(context.itemRefArray, ownRef);
+    if (!disabled) {
+      context.registerDropdownMenuItem(context.itemRefArray, ownRef);
+    }
   }, []);
 
   return (
     <StyledAccordionButton
       {...other}
+      disabled={disabled}
       ref={ref}
-      hasCustomArray
+      hasCustomOnKeyDown
       icon={icon}
       theme={theme}
       expandableMenuButtonHasIcon={

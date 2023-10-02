@@ -21,14 +21,16 @@ export interface AccordionButtonProps
   extends UseAccordionButtonProps,
     React.HTMLAttributes<HTMLButtonElement> {
   /**
+   * For use in components repurposing Accordion with custom keyboard navigation with it's elements.
+   */
+  hasCustomOnKeyDown?: boolean;
+  /**
    * @internal
    */
-  hasCustomArray?: boolean;
   theme?: ThemeInterface;
 }
 
 const StyledButton = styled.button<{
-  hasCustomArray?: boolean;
   isInverse?: boolean;
   isExpanded?: boolean;
 }>`
@@ -95,7 +97,7 @@ export const AccordionButton = React.forwardRef<
   const {
     children,
     testId,
-    hasCustomArray,
+    hasCustomOnKeyDown,
     isInverse: isInverseProp,
     ...rest
   } = props;
@@ -130,12 +132,11 @@ export const AccordionButton = React.forwardRef<
       aria-expanded={Boolean(isExpanded)}
       data-testid={testId}
       disabled={isDisabled}
-      hasCustomArray={hasCustomArray}
       id={buttonId}
       isExpanded={isExpanded}
       isInverse={isInverse}
       onClick={handleClick}
-      onKeyDown={hasCustomArray ? null : handleKeyDown}
+      onKeyDown={hasCustomOnKeyDown ? null : handleKeyDown}
       ref={ref}
       theme={theme}
     >
