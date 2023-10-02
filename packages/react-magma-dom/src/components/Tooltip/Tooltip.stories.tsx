@@ -231,3 +231,21 @@ export const Complex = () => {
     </>
   );
 };
+
+export const DisabledButton = () => {
+  return (
+    <div style={{margin: '200px'}}>
+    <Tooltip content="Lorem ipsum dolar">
+      <Button size={ButtonSize.small} disabled>
+        Tooltip Trigger 1
+      </Button>
+    </Tooltip>
+    <Tooltip content="Vel molestie no, ut vim.">
+      <Button size={ButtonSize.small} disabled>
+        Tooltip Trigger 2
+      </Button>
+    </Tooltip>
+    </div>
+  )
+};
+
