@@ -74,6 +74,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.7
+
+### Patch Changes
+
+- caa2c7b6a: fix(DropdownContent): Handle `false` as child
+
 ## 4.2.0-next.6
 
 ### Patch Changes
