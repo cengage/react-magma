@@ -36,7 +36,7 @@ export interface InputBaseProps
   /**
    * @internal
    */
-  children: any;
+  children?: any;
   /**
    * Style properties for the component container element
    */
