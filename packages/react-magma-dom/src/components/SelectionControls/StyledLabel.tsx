@@ -12,7 +12,9 @@ export interface StyledLabelProps {
 const StyledLabelComponent = styled.label<StyledLabelProps>`
   align-items: flex-start;
   color: ${props =>
-    props.isInverse ? props.theme.colors.neutral100 : 'inherit'};
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
   display: flex;
   font-size: ${props => props.theme.typeScale.size03.fontSize};
   font-family: ${props => props.theme.bodyFont};
