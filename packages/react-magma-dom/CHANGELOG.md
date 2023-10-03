@@ -74,6 +74,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.8
+
+### Patch Changes
+
+- bc4104600: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
+
 ## 4.2.0-next.7
 
 ### Patch Changes
