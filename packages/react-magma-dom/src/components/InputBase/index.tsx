@@ -620,9 +620,19 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       setValue(event.target.value);
     }
 
-    const passwordBtnWidth = Number(
-      children?.props?.children[0]?.ref?.current?.offsetWidth
-    );
+    const passwordBtnWidth = () => {
+      const btnWidth = Number(
+        children?.props?.children?.[0]?.ref?.current?.offsetWidth
+      );
+      if (typeof btnWidth === Number) {
+        return btnWidth;
+      } else {
+        if (props.inputSize === InputSize.large) {
+          return 64;
+        }
+        return 54;
+      }
+    };
 
     return (
       <InputContainer>
@@ -742,7 +752,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
-            buttonWidth={passwordBtnWidth}
+            buttonWidth={passwordBtnWidth()}
           >
             {children}
           </PasswordButtonContainer>
