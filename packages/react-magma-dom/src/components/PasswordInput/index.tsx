@@ -127,6 +127,17 @@ export const PasswordInput = React.forwardRef<
     HIDE_PASSWORD_BUTTON_TEXT === i18n.password.hidden.buttonText;
 
   const buttonRef = React.useRef<HTMLButtonElement>();
+  
+  const getButtonWidth = () => {
+    if (usesDefaultText) {
+      if (inputSize === InputSize.large) {
+        return '64px';
+      }
+      return '54px';
+    } else {
+      return `${buttonRef?.current?.offsetWidth}px`;
+    }
+  }
 
   const getInputStyle = () => {
     if (isPasswordMaskButtonHidden) {
@@ -134,7 +145,7 @@ export const PasswordInput = React.forwardRef<
     } else if (inputSize === InputSize.medium && usesDefaultText) {
       return { width: 'calc(100% - 52px)' };
     } else if (inputSize === InputSize.large && usesDefaultText) {
-      return { width: 'calc(100% - 56px)' };
+      return { width: 'calc(100% - 64px)' };
     } else {
       return { width: `calc(100% - ${buttonRef?.current?.offsetWidth}px)` };
     }
@@ -190,11 +201,11 @@ export const PasswordInput = React.forwardRef<
                   : ButtonSize.medium
               }
               style={{
-                borderRadius: theme.borderRadius,
+                borderRadius: theme.borderRadiusSmall,
                 margin: '0 3px 0 0',
-                width: usesDefaultText ? '54px' : null,
+                width: getButtonWidth(),
                 minWidth: 0,
-                maxWidth: `${buttonRef?.current?.offsetWidth}px`,
+                maxWidth: getButtonWidth(),
               }}
               type={ButtonType.button}
               variant={ButtonVariant.link}

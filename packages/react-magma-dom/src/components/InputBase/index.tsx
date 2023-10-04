@@ -459,12 +459,15 @@ const IconButtonContainer = styled.span<{
 const PasswordButtonContainer = styled.span<{
   size?: InputSize;
   theme: ThemeInterface;
-  buttonWidth: string;
+  buttonWidth: number;
 }>`
   background-color: transparent;
   width: 0;
   transform: translate(
-    -${props => props.buttonWidth},
+    ${props =>
+      props.size === InputSize.large
+        ? `${-props.buttonWidth - 8}px`
+        : `${-props.buttonWidth - 6}px`},
     ${props =>
       props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '6px'}
   );
@@ -617,6 +620,10 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       setValue(event.target.value);
     }
 
+    const passwordBtnWidth = Number(
+      children?.props?.children[0].ref?.current?.offsetWidth
+    );
+
     return (
       <InputContainer>
         <InputWrapper
@@ -735,9 +742,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
-            buttonWidth={
-              children?.props?.children[0].ref?.current?.offsetWidth + 6 + 'px'
-            }
+            buttonWidth={passwordBtnWidth}
           >
             {children}
           </PasswordButtonContainer>
