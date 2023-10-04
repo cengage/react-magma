@@ -74,6 +74,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.9
+
+### Patch Changes
+
+- 1cf3809cc: fix(RadioGroup): Radio Group label is now a span to improve a11y
+
 ## 4.2.0-next.8
 
 ### Patch Changes
