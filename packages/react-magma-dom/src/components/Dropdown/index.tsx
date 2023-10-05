@@ -11,3 +11,4 @@ export * from './DropdownExpandableMenuButton';
 export * from './DropdownExpandableMenuGroup';
 export * from './DropdownExpandableMenuPanel';
 export * from './DropdownExpandableMenuItem';
+export * from './DropdownExpandableMenuListItem';

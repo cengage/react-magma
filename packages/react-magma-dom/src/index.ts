@@ -92,6 +92,10 @@ export {
   DropdownExpandableMenuItemProps,
 } from './components/Dropdown/DropdownExpandableMenuItem';
 export {
+  DropdownExpandableMenuListItem,
+  DropdownExpandableMenuListItemProps,
+} from './components/Dropdown/DropdownExpandableMenuListItem';
+export {
   DropdownExpandableMenuButton,
   DropdownExpandableMenuButtonProps,
 } from './components/Dropdown/DropdownExpandableMenuButton';

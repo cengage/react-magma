@@ -62,10 +62,10 @@ export const DropdownExpandableMenuButton = React.forwardRef<
     }
   }, []);
 
-  //Allows a custom function to be called when a key is pressed, if no function is needed, this overrides the default AccordionButton onKeyDown event.
+  //Allows a custom function to be called when a key is pressed that overrides the default AccordionButton onKeyDown event.
   function handleCustomOnKeyDown() {
-    if (props.customOnKeyDown && typeof props.customOnKeyDown === 'function') {
-      return props.customOnKeyDown();
+    if (customOnKeyDown && typeof customOnKeyDown === 'function') {
+      return customOnKeyDown();
     }
   }
 

@@ -12,6 +12,7 @@ import {
   DropdownMenuNavItem,
   DropdownExpandableMenuGroup,
   DropdownExpandableMenuItem,
+  DropdownExpandableMenuListItem,
   DropdownExpandableMenuButton,
   DropdownExpandableMenuPanel,
 } from './';
@@ -907,8 +908,12 @@ describe('Dropdown', () => {
                   Pasta
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
             </DropdownExpandableMenuGroup>
@@ -932,8 +937,12 @@ describe('Dropdown', () => {
                   Pasta
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
             </DropdownExpandableMenuGroup>
@@ -961,8 +970,12 @@ describe('Dropdown', () => {
                   Pasta
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
 
@@ -971,8 +984,12 @@ describe('Dropdown', () => {
                   Bacon
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
             </DropdownExpandableMenuGroup>
@@ -998,8 +1015,12 @@ describe('Dropdown', () => {
                   Pasta
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed Stuff</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed Stuff
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
 
@@ -1008,8 +1029,12 @@ describe('Dropdown', () => {
                   Bacon
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
             </DropdownExpandableMenuGroup>
@@ -1029,7 +1054,7 @@ describe('Dropdown', () => {
       expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
     });
 
-    it('should have only allow one open menu item when isMulti is false', () => {
+    it('should only allow one open menu item when isMulti is false', () => {
       const { getByTestId, getByText, queryByTestId } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1040,8 +1065,12 @@ describe('Dropdown', () => {
                   Pasta
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed Stuff</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed Stuff
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
 
@@ -1050,8 +1079,12 @@ describe('Dropdown', () => {
                   Bacon
                 </DropdownExpandableMenuButton>
                 <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
-                  <DropdownMenuItem>Fresh</DropdownMenuItem>
-                  <DropdownMenuItem>Processed</DropdownMenuItem>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
                 </DropdownExpandableMenuPanel>
               </DropdownExpandableMenuItem>
             </DropdownExpandableMenuGroup>
@@ -1086,8 +1119,12 @@ describe('Dropdown', () => {
                     Pasta
                   </DropdownExpandableMenuButton>
                   <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                    <DropdownMenuItem>Fresh</DropdownMenuItem>
-                    <DropdownMenuItem>Processed</DropdownMenuItem>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
                   </DropdownExpandableMenuPanel>
                 </DropdownExpandableMenuItem>
               </DropdownExpandableMenuGroup>
@@ -1113,8 +1150,12 @@ describe('Dropdown', () => {
                     Pasta
                   </DropdownExpandableMenuButton>
                   <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                    <DropdownMenuItem>Fresh</DropdownMenuItem>
-                    <DropdownMenuItem>Processed</DropdownMenuItem>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
                   </DropdownExpandableMenuPanel>
                 </DropdownExpandableMenuItem>
               </DropdownExpandableMenuGroup>
@@ -1140,8 +1181,12 @@ describe('Dropdown', () => {
                     Pasta
                   </DropdownExpandableMenuButton>
                   <DropdownExpandableMenuPanel>
-                    <DropdownMenuItem>Fresh</DropdownMenuItem>
-                    <DropdownMenuItem>Processed</DropdownMenuItem>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
                   </DropdownExpandableMenuPanel>
                 </DropdownExpandableMenuItem>
                 <DropdownExpandableMenuItem>
@@ -1152,8 +1197,12 @@ describe('Dropdown', () => {
                     Prosciutto
                   </DropdownExpandableMenuButton>
                   <DropdownExpandableMenuPanel>
-                    <DropdownMenuItem>Domestic</DropdownMenuItem>
-                    <DropdownMenuItem>Speck</DropdownMenuItem>
+                    <DropdownExpandableMenuListItem>
+                      Domestic
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Speck
+                    </DropdownExpandableMenuListItem>
                   </DropdownExpandableMenuPanel>
                 </DropdownExpandableMenuItem>
               </DropdownExpandableMenuGroup>
@@ -1198,8 +1247,12 @@ describe('Dropdown', () => {
                     Pasta
                   </DropdownExpandableMenuButton>
                   <DropdownExpandableMenuPanel testId={expandablePanelId}>
-                    <DropdownMenuItem>Fresh</DropdownMenuItem>
-                    <DropdownMenuItem>Processed</DropdownMenuItem>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
                   </DropdownExpandableMenuPanel>
                 </DropdownExpandableMenuItem>
               </DropdownExpandableMenuGroup>

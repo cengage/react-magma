@@ -7,7 +7,6 @@ import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 import { Omit, useForkedRef } from '../../utils';
-import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -62,14 +61,7 @@ export function menuBackground(props) {
 }
 
 function menuItemPadding(props) {
-  //For DropdownExpandableMenu styling with an icon
-  if (props.expandableMenuButtonHasIcon && props.isExpandablePanel) {
-    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} 72px`;
-  }
-  //For DropdownExpandableMenu styling without an icon
-  else if (props.isExpandablePanel) {
-    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing08}`;
-  } else if (props.isInactive) {
+  if (props.isInactive) {
     return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`;
   } else {
     return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`;
@@ -111,9 +103,6 @@ export const MenuItemStyles = props => {
 const StyledItem = styled.div<{
   as?: string;
   disabled?: boolean;
-  expandableMenuButtonHasIcon?: boolean;
-  isExpandablePanel?: boolean;
-
   isFixedWidth?: boolean;
   isInactive?: boolean;
   isInverse?: boolean;
@@ -145,8 +134,6 @@ export const DropdownMenuItem = React.forwardRef<
   const ownRef = React.useRef<HTMLDivElement>();
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
-
-  const menuGroupContext = React.useContext(DropdownExpandableMenuGroupContext);
 
   const ref = useForkedRef(forwardedRef, ownRef);
 
@@ -195,8 +182,6 @@ export const DropdownMenuItem = React.forwardRef<
       {...other}
       aria-disabled={disabled}
       disabled={disabled}
-      expandableMenuButtonHasIcon={menuGroupContext.expandableMenuButtonHasIcon}
-      isExpandablePanel={menuGroupContext.isExpandablePanel}
       isFixedWidth={context.isFixedWidth}
       isInactive={isInactive}
       isInverse={context.isInverse}

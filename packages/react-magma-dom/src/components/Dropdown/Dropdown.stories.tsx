@@ -29,6 +29,7 @@ import { Paragraph, Spacer } from '../..';
 import { ButtonGroup } from '../ButtonGroup';
 import { DropdownExpandableMenuButton } from './DropdownExpandableMenuButton';
 import { DropdownExpandableMenuItem } from './DropdownExpandableMenuItem';
+import { DropdownExpandableMenuListItem } from './DropdownExpandableMenuListItem';
 import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
 import { DropdownExpandableMenuPanel } from './DropdownExpandableMenuPanel';
 
@@ -427,8 +428,12 @@ export const ExpandableItems = args => {
           <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Fresh</DropdownMenuItem>
-              <DropdownMenuItem>Processed</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
           <DropdownExpandableMenuItem>
@@ -436,8 +441,12 @@ export const ExpandableItems = args => {
               Prosciutto
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Domestic</DropdownMenuItem>
-              <DropdownMenuItem>Speck</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>
@@ -458,8 +467,12 @@ export const ExpandableItemsWithIcons = args => {
               DropdownExpandableMenuButton component
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Fresh</DropdownMenuItem>
-              <DropdownMenuItem>Processed</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
           <DropdownExpandableMenuItem disabled>
@@ -467,8 +480,12 @@ export const ExpandableItemsWithIcons = args => {
               Prosciutto
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Domestic</DropdownMenuItem>
-              <DropdownMenuItem>Speck</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>
@@ -488,8 +505,12 @@ export const ExpandableItemsWithIconsAndConsoleWarning = args => {
           <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Fresh</DropdownMenuItem>
-              <DropdownMenuItem>Processed</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
           <DropdownExpandableMenuItem>
@@ -497,16 +518,24 @@ export const ExpandableItemsWithIconsAndConsoleWarning = args => {
               Prosciutto
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Domestic</DropdownMenuItem>
-              <DropdownMenuItem>Speck</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
               <DropdownExpandableMenuGroup>
                 <DropdownExpandableMenuItem>
                   <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
                     Pasta
                   </DropdownExpandableMenuButton>
                   <DropdownExpandableMenuPanel>
-                    <DropdownMenuItem>Fresh</DropdownMenuItem>
-                    <DropdownMenuItem>Processed</DropdownMenuItem>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
                   </DropdownExpandableMenuPanel>
                 </DropdownExpandableMenuItem>
                 <DropdownExpandableMenuItem>
@@ -514,8 +543,12 @@ export const ExpandableItemsWithIconsAndConsoleWarning = args => {
                     Prosciutto
                   </DropdownExpandableMenuButton>
                   <DropdownExpandableMenuPanel>
-                    <DropdownMenuItem>Domestic</DropdownMenuItem>
-                    <DropdownMenuItem>Speck</DropdownMenuItem>
+                    <DropdownExpandableMenuListItem>
+                      Domestic
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Speck
+                    </DropdownExpandableMenuListItem>
                   </DropdownExpandableMenuPanel>
                 </DropdownExpandableMenuItem>
               </DropdownExpandableMenuGroup>

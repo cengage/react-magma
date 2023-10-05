@@ -11,6 +11,7 @@ props:
   - DropdownButtonProps
   - DropdownSplitButtonProps
   - DropdownExpandableMenuItemProps
+  - DropdownExpandableMenuListItemProps
   - DropdownExpandableMenuButtonProps
   - DropdownExpandableMenuPanelProps
 ---
@@ -360,7 +361,7 @@ export function Example() {
 
 If a nested menu layout is needed within the `Dropdown`, the `DropdownExpandableMenuGroup` adds an expandable / collapsible menu structure.
 
-The components of `DropdownExpandableMenuGroup`, `DropdownExpandableMenuItem`, `DropdownExpandableMenuButton`, `DropdownExpandableMenuPanel`, and `DropdownMenuItem` necessitate the proper structure of this menu list.
+The components of `DropdownExpandableMenuGroup`, `DropdownExpandableMenuItem`, `DropdownExpandableMenuButton`, `DropdownExpandableMenuPanel`, and `DropdownExpandableMenuListItem` necessitate the proper structure of this menu list.
 
 Please note that only one child panel is supported from a styling standpoint.
 
@@ -374,7 +375,7 @@ import {
   DropdownExpandableMenuItem,
   DropdownExpandableMenuButton,
   DropdownExpandableMenuPanel,
-  DropdownMenuItem,
+  DropdownExpandableMenuListItem,
 } from 'react-magma-dom';
 
 import {
@@ -394,8 +395,12 @@ export function Example() {
               Pasta
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Fresh</DropdownMenuItem>
-              <DropdownMenuItem>Processed</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
           <DropdownExpandableMenuItem>
@@ -403,13 +408,19 @@ export function Example() {
               Prosciutto
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Domestic</DropdownMenuItem>
-              <DropdownMenuItem>Speck</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>
         <DropdownDivider />
-        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+          Pizza
+        </DropdownExpandableMenuListItem>
       </DropdownContent>
     </Dropdown>
   );
@@ -428,7 +439,7 @@ import {
   DropdownExpandableMenuItem,
   DropdownExpandableMenuButton,
   DropdownExpandableMenuPanel,
-  DropdownMenuItem,
+  DropdownExpandableMenuListItem,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -440,8 +451,12 @@ export function Example() {
           <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Fresh</DropdownMenuItem>
-              <DropdownMenuItem>Processed</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
           <DropdownExpandableMenuItem>
@@ -449,13 +464,17 @@ export function Example() {
               Prosciutto
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownMenuItem>Domestic</DropdownMenuItem>
-              <DropdownMenuItem>Speck</DropdownMenuItem>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>
         <DropdownDivider />
-        <DropdownMenuItem>Pizza</DropdownMenuItem>
+        <DropdownExpandableMenuListItem>Pizza</DropdownExpandableMenuListItem>
       </DropdownContent>
     </Dropdown>
   );
@@ -1041,5 +1060,11 @@ The DropdownButton can also accept an `icon` property, as in the <Link to="/api/
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <DropdownExpandableMenuItemProps />
+
+## Dropdown Expandable Menu List Item Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<DropdownExpandableMenuListItemProps />
 
 </PageContent>
