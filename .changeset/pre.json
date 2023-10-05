@@ -11,11 +11,15 @@
     "react-magma-landing": "1.1.2"
   },
   "changesets": [
+    "dropdownContent-falseChild",
     "feat-optionalPerPageSelect",
     "fix-datePickerEscape",
+    "fix-labelsColors",
     "fix-modalEscape",
+    "fix-radioGroup",
     "inputHeight",
     "nativeSelectHeight",
-    "sortArrows"
+    "sortArrows",
+    "update-modalPadding"
   ]
 }

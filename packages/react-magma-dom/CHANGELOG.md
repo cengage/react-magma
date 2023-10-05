@@ -1,5 +1,29 @@
 ## 4.1.1
 
+## 4.2.0-next.9
+
+### Patch Changes
+
+- 1cf3809cc: fix(RadioGroup): Radio Group label is now a span to improve a11y
+
+## 4.2.0-next.8
+
+### Patch Changes
+
+- bc4104600: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
+
+## 4.2.0-next.7
+
+### Patch Changes
+
+- caa2c7b6a: fix(DropdownContent): Handle `false` as child
+
+## 4.2.0-next.6
+
+### Patch Changes
+
+- 3001a5e35: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
+
 ## 4.2.0-next.5
 
 ### Patch Changes
