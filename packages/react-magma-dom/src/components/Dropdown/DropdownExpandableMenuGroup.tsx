@@ -3,7 +3,7 @@ import styled from '../../theme/styled';
 import { Accordion, AccordionProps } from '../Accordion';
 import { DropdownContext } from './Dropdown';
 
-const StyledAccordion = styled(Accordion)<{}>`
+const StyledAccordion = styled(Accordion)`
   border: none;
 `;
 
@@ -18,7 +18,7 @@ export const DropdownExpandableMenuGroupContext =
 export const DropdownExpandableMenuGroup = React.forwardRef<
   HTMLDivElement,
   AccordionProps
->(props => {
+>((props, ref) => {
   const { children, testId, ...other } = props;
 
   const context = React.useContext(DropdownContext);
@@ -49,6 +49,7 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
       <StyledAccordion
         {...other}
         isInverse={context.isInverse}
+        ref={ref}
         role="group"
         testId={testId}
       >

@@ -18,7 +18,6 @@ export interface DropdownExpandableMenuItemProps extends AccordionItemProps {
   /**
    * @internal
    */
-  index?: number;
   testId?: string;
 }
 

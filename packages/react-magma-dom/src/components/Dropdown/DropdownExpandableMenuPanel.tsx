@@ -28,7 +28,7 @@ export const DropdownExpandableMenuPanel = React.forwardRef<
   });
 
   return (
-    <StyledAccordionPanel testId={testId} {...other} ref={ref}>
+    <StyledAccordionPanel {...other} ref={ref} testId={testId}>
       {children}
     </StyledAccordionPanel>
   );

@@ -454,8 +454,8 @@ export const ExpandableItemsWithIcons = args => {
         <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
           <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
-              Pasta antidisestablishmentarianism Pasta Pasta Pasta Pasta Pasta
-              Pasta Pasta Pasta Pasta Pasta Pasta
+              Longer title area breaking lines within the
+              DropdownExpandableMenuButton component
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
               <DropdownMenuItem>Fresh</DropdownMenuItem>

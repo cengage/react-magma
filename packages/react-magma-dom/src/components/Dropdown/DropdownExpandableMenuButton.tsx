@@ -45,12 +45,11 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuButtonProps
 >((props, forwardedRef) => {
-  const { children, disabled, hasCustomOnKeyDown, icon, testId, ...other } =
-    props;
+  const { children, disabled, customOnKeyDown, icon, testId, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
-  const expandableContext = React.useContext(
+  const expandableMenuGroupContext = React.useContext(
     DropdownExpandableMenuGroupContext
   );
 
@@ -63,16 +62,23 @@ export const DropdownExpandableMenuButton = React.forwardRef<
     }
   }, []);
 
+  //Allows a custom function to be called when a key is pressed, if no function is needed, this overrides the default AccordionButton onKeyDown event.
+  function handleCustomOnKeyDown() {
+    if (props.customOnKeyDown && typeof props.customOnKeyDown === 'function') {
+      return props.customOnKeyDown();
+    }
+  }
+
   return (
     <StyledAccordionButton
       {...other}
       disabled={disabled}
       ref={ref}
-      hasCustomOnKeyDown
+      customOnKeyDown={handleCustomOnKeyDown}
       icon={icon}
       theme={theme}
       expandableMenuButtonHasIcon={
-        expandableContext.expandableMenuButtonHasIcon
+        expandableMenuGroupContext.expandableMenuButtonHasIcon
       }
       isInverse={context.isInverse}
       testId={testId}

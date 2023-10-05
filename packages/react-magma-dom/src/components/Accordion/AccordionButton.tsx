@@ -22,8 +22,9 @@ export interface AccordionButtonProps
     React.HTMLAttributes<HTMLButtonElement> {
   /**
    * For use in components repurposing Accordion with custom keyboard navigation with it's elements.
+   * @internal
    */
-  hasCustomOnKeyDown?: boolean;
+  customOnKeyDown?: () => void;
   /**
    * @internal
    */
@@ -97,7 +98,7 @@ export const AccordionButton = React.forwardRef<
   const {
     children,
     testId,
-    hasCustomOnKeyDown,
+    customOnKeyDown,
     isInverse: isInverseProp,
     ...rest
   } = props;
@@ -136,7 +137,7 @@ export const AccordionButton = React.forwardRef<
       isExpanded={isExpanded}
       isInverse={isInverse}
       onClick={handleClick}
-      onKeyDown={hasCustomOnKeyDown ? null : handleKeyDown}
+      onKeyDown={customOnKeyDown ? customOnKeyDown : handleKeyDown}
       ref={ref}
       theme={theme}
     >
