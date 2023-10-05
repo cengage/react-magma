@@ -34,6 +34,10 @@ export enum InputIconPosition {
 export interface InputBaseProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
+   * @internal
+   */
+  children?: any;
+  /**
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
@@ -455,13 +459,17 @@ const IconButtonContainer = styled.span<{
 const PasswordButtonContainer = styled.span<{
   size?: InputSize;
   theme: ThemeInterface;
+  buttonWidth: number;
 }>`
   background-color: transparent;
   width: 0;
   transform: translate(
-    -${props => (props.size === InputSize.large ? props.theme.spaceScale.spacing10 : '60px')},
     ${props =>
-      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '5px'}
+      props.size === InputSize.large
+        ? `${-props.buttonWidth - 8}px`
+        : `${-props.buttonWidth - 6}px`},
+    ${props =>
+      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '6px'}
   );
 `;
 
@@ -581,13 +589,13 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
     >(
-      props.defaultValue !== undefined &&
-        props.defaultValue !== null 
+      props.defaultValue !== undefined && props.defaultValue !== null
         ? props.defaultValue
         : props.value || ''
     );
 
-    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
+    const maxLengthNum =
+      !hasCharacterCounter && maxLength ? maxLength : undefined;
 
     React.useEffect(() => {
       if (props.value !== undefined && props.value !== null) {
@@ -611,6 +619,20 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
       setValue(event.target.value);
     }
+
+    const passwordBtnWidth = () => {
+      const btnWidth = children?.props?.children?.[0]?.ref?.current?.offsetWidth;
+      if (typeof btnWidth === 'number') {
+        return btnWidth;
+      } else {
+        // When PasswordButton is used inside SchemaRenderer, it doesn't have children.
+        // We'll use the default button sizes.
+        if (props.inputSize === InputSize.large) {
+          return 64;
+        }
+        return 54;
+      }
+    };
 
     return (
       <InputContainer>
@@ -730,6 +752,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
+            buttonWidth={passwordBtnWidth()}
           >
             {children}
           </PasswordButtonContainer>

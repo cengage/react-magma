@@ -3,6 +3,7 @@ import { PasswordInput, PasswordInputProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { LabelPosition } from '../Label';
+import { InputSize } from '../InputBase';
 
 const Template: Story<PasswordInputProps> = args => (
   <PasswordInput {...args} labelText="Password" />
@@ -35,6 +36,18 @@ export default {
         type: 'number',
       },
     },
+    inputSize: {
+      control: {
+        type: 'select',
+        options: InputSize,
+      }
+    },
+    isPasswordMaskButtonHidden: {
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -59,3 +72,9 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const CustomText = Template.bind({});
+CustomText.args = {
+  showPasswordButtonText: 'Mostrar',
+  hidePasswordButtonText: 'Esconder'
+};
