@@ -1,5 +1,11 @@
 ## 4.1.1
 
+## 4.2.0-next.10
+
+### Patch Changes
+
+- 1c446c209: fix(PasswordInput): Update placement of Show/Hide button on Large input size
+
 ## 4.2.0-next.9
 
 ### Patch Changes
