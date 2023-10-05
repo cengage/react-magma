@@ -16,6 +16,7 @@
     "fix-datePickerEscape",
     "fix-labelsColors",
     "fix-modalEscape",
+    "fix-passInputLarge",
     "fix-radioGroup",
     "inputHeight",
     "nativeSelectHeight",
