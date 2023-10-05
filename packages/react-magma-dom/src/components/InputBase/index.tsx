@@ -621,12 +621,12 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     }
 
     const passwordBtnWidth = () => {
-      const btnWidth = Number(
-        children?.props?.children?.[0]?.ref?.current?.offsetWidth
-      );
-      if (typeof btnWidth === Number) {
+      const btnWidth = children?.props?.children?.[0]?.ref?.current?.offsetWidth;
+      if (typeof btnWidth === 'number') {
         return btnWidth;
       } else {
+        // When PasswordButton is used inside SchemaRenderer, it doesn't have children.
+        // We'll use the default button sizes.
         if (props.inputSize === InputSize.large) {
           return 64;
         }
