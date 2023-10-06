@@ -21,11 +21,8 @@ function menuItemPadding(props) {
 }
 
 const StyledDropdownMenuItem = styled(DropdownMenuItem)<{
-  disabled?: boolean;
   expandableMenuButtonHasIcon?: boolean;
   isExpandablePanel?: boolean;
-  isFixedWidth?: boolean;
-  isInverse?: boolean;
 }>`
   padding: ${menuItemPadding};
 `;
