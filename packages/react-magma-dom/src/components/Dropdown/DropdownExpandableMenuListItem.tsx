@@ -4,22 +4,18 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
 import { Omit, useForkedRef } from '../../utils';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
-import {
-  DropdownMenuItem,
-  DropdownMenuItemProps,
-  menuBackground,
-} from './DropdownMenuItem';
+import { DropdownMenuItem, DropdownMenuItemProps } from './DropdownMenuItem';
 
 export interface DropdownExpandableMenuListItemProps
-  extends Omit<DropdownMenuItemProps, 'icon'> {}
+  extends Omit<DropdownMenuItemProps, 'icon'> {
+  testId?: string;
+}
 
 function menuItemPadding(props) {
-  //For DropdownExpandableMenu styling with an icon
-  if (props.expandableMenuButtonHasIcon && props.isExpandablePanel) {
-    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} 72px`;
-  }
-  //For DropdownExpandableMenu styling without an icon
-  else if (props.isExpandablePanel) {
+  if (props.isExpandablePanel) {
+    if (props.expandableMenuButtonHasIcon) {
+      return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} 72px`;
+    }
     return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing08}`;
   }
 }
@@ -32,10 +28,6 @@ const StyledDropdownMenuItem = styled(DropdownMenuItem)<{
   isInverse?: boolean;
 }>`
   padding: ${menuItemPadding};
-  &:hover,
-  &:focus {
-    background: ${menuBackground};
-  }
 `;
 
 export const DropdownExpandableMenuListItem = React.forwardRef<
@@ -62,10 +54,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
       {...other}
       expandableMenuButtonHasIcon={menuGroupContext.expandableMenuButtonHasIcon}
       isExpandablePanel={menuGroupContext.isExpandablePanel}
-      isFixedWidth={context.isFixedWidth}
-      isInverse={context.isInverse}
       ref={disabled ? null : ref}
-      role="menuitem"
       theme={theme}
     >
       {children}
