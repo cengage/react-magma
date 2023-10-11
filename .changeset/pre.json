@@ -12,6 +12,7 @@
   },
   "changesets": [
     "dropdownContent-falseChild",
+    "feat-dropdownExpandableMenu",
     "feat-optionalPerPageSelect",
     "fix-datePickerEscape",
     "fix-labelsColors",
