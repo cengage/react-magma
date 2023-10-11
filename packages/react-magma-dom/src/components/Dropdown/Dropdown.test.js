@@ -1,19 +1,27 @@
 import React from 'react';
 import { AsteriskIcon } from 'react-magma-icons';
 import { Dropdown } from '.';
-import { DropdownContent } from './DropdownContent';
-import { DropdownDivider } from './DropdownDivider';
-import { DropdownHeader } from './DropdownHeader';
-import { DropdownMenuItem } from './DropdownMenuItem';
-import { DropdownMenuGroup } from './DropdownMenuGroup';
-import { DropdownSplitButton } from './DropdownSplitButton';
-import { DropdownButton } from './DropdownButton';
-import { DropdownMenuNavItem } from './DropdownMenuNavItem';
+import {
+  DropdownContent,
+  DropdownDivider,
+  DropdownHeader,
+  DropdownMenuItem,
+  DropdownMenuGroup,
+  DropdownSplitButton,
+  DropdownButton,
+  DropdownMenuNavItem,
+  DropdownExpandableMenuGroup,
+  DropdownExpandableMenuItem,
+  DropdownExpandableMenuListItem,
+  DropdownExpandableMenuButton,
+  DropdownExpandableMenuPanel,
+} from './';
 import { Modal } from '../Modal';
 import { magma } from '../../theme/magma';
+import { RestaurantMenuIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, getByTestId } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('Dropdown', () => {
@@ -848,5 +856,444 @@ describe('Dropdown', () => {
 
     expect(queryByText('Menu Item 1')).not.toBeInTheDocument();
     expect(queryByText('Menu Item 2')).toBeInTheDocument();
+  });
+
+  describe('dropdown with expandable menu', () => {
+    const expandableGroupId = 'expandable group';
+    const expandableItemId = 'expandable item';
+    const expandableButtonId = 'expandable button';
+    const expandablePanelId = 'expandable panel';
+    const expandablePanelTwoId = 'expandable panel two';
+
+    it('should render an expandable menu group', () => {
+      const { getByTestId } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup testId={expandableGroupId}>
+              <DropdownExpandableMenuItem testId={expandableItemId}>
+                <DropdownExpandableMenuButton testId={expandableButtonId}>
+                  Pasta
+                </DropdownExpandableMenuButton>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+      expect(getByTestId(expandableGroupId)).toBeInTheDocument();
+      expect(getByTestId(expandableItemId)).toBeInTheDocument();
+      expect(getByTestId(expandableButtonId)).toBeInTheDocument();
+    });
+
+    it('should render an expandable menu group with icons', () => {
+      const { getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                  Pasta
+                </DropdownExpandableMenuButton>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+      expect(getByText('Pasta').querySelector('svg')).toBeInTheDocument();
+    });
+
+    it('should render an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+    });
+
+    it('should close an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+
+      fireEvent.click(getByText('Pasta'));
+
+      expect(getByText('Fresh')).not.toBeVisible();
+    });
+
+    it('should have a default expanded item set by the user with defaultIndex', () => {
+      const { getByTestId, getByText, queryByTestId } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup defaultIndex={[0]}>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Bacon
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByText('Expandable Items Dropdown'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+
+      expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
+    });
+
+    it('should have multiple open menu items when isMulti is true', () => {
+      const { getByTestId, getByText } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup isMulti={true}>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed Stuff
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Bacon
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByText('Expandable Items Dropdown'));
+
+      fireEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+
+      fireEvent.click(getByText('Bacon'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+      expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
+    });
+
+    it('should only allow one open menu item when isMulti is false', () => {
+      const { getByTestId, getByText, queryByTestId } = render(
+        <Dropdown>
+          <DropdownButton>Expandable Items Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownExpandableMenuGroup isMulti={false}>
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Pasta
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed Stuff
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+
+              <DropdownExpandableMenuItem>
+                <DropdownExpandableMenuButton>
+                  Bacon
+                </DropdownExpandableMenuButton>
+                <DropdownExpandableMenuPanel testId={expandablePanelTwoId}>
+                  <DropdownExpandableMenuListItem>
+                    Fresh
+                  </DropdownExpandableMenuListItem>
+                  <DropdownExpandableMenuListItem>
+                    Processed
+                  </DropdownExpandableMenuListItem>
+                </DropdownExpandableMenuPanel>
+              </DropdownExpandableMenuItem>
+            </DropdownExpandableMenuGroup>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      fireEvent.click(getByText('Expandable Items Dropdown'));
+
+      fireEvent.click(getByText('Pasta'));
+
+      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+
+      expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
+
+      fireEvent.click(getByText('Bacon'));
+
+      expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
+
+      expect(queryByTestId(expandablePanelId)).not.toBeVisible();
+    });
+
+    describe('dropdown with expandable menu styling', () => {
+      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon`, () => {
+        const { getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+        fireEvent.click(getByText('Pasta'));
+
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 72px`
+        );
+      });
+
+      it(`DropdownExpandableMenuPanel items should have standard padding if DropdownExpandableMenuButton doesn't have an icon`, () => {
+        const { getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+        fireEvent.click(getByText('Pasta'));
+
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing08}`
+        );
+      });
+
+      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon and a text only menu item`, () => {
+        const { getByTestId, getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton testId={expandableButtonId}>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton
+                    icon={<RestaurantMenuIcon />}
+                    testId={`${expandableButtonId}-2`}
+                  >
+                    Prosciutto
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem>
+                      Domestic
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Speck
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+        fireEvent.click(getByText('Pasta'));
+        fireEvent.click(getByText('Prosciutto'));
+
+        expect(getByTestId(expandableButtonId)).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11}`
+        );
+
+        expect(getByTestId(`${expandableButtonId}-2`)).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`
+        );
+
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 72px`
+        );
+        expect(getByText('Domestic')).toHaveStyleRule(
+          'padding',
+          `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 72px`
+        );
+      });
+
+      it('should fire the customOnKeyDown function if used', () => {
+        const onChangeMock = jest.fn();
+        const { getByTestId } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton
+                    testId={expandableButtonId}
+                    customOnKeyDown={onChangeMock}
+                  >
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        const dropdownExpandableButton = getByTestId(expandableButtonId);
+
+        fireEvent.keyDown(dropdownExpandableButton, { key: 'Enter' });
+
+        expect(onChangeMock).toHaveBeenCalledTimes(1);
+      });
+
+      it(`should support isInverse mode`, () => {
+        const { getByTestId } = render(
+          <Dropdown isInverse>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup
+                testId={expandableGroupId}
+              ></DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+
+        expect(getByTestId(expandableGroupId)).toHaveStyleRule(
+          'background',
+          'transparent'
+        );
+        expect(getByTestId(expandableGroupId)).toHaveStyleRule(
+          'color',
+          magma.colors.neutral100
+        );
+      });
+    });
   });
 });

@@ -117,14 +117,20 @@ export const DropdownContent = React.forwardRef<
 
   let hasItemChildren = false;
 
+  // For Expandable Dropdowns that don't require a max-height
+  let hasExpandableItems = false;
+
   React.Children.forEach(children, (child: any) => {
     if (
       child?.type?.displayName === 'DropdownMenuItem' ||
       child?.type?.displayName === 'DropdownMenuGroup'
     ) {
       hasItemChildren = true;
-      return;
     }
+    if (child.type?.displayName === 'DropdownExpandableMenuGroup') {
+      hasExpandableItems = true;
+    }
+    return;
   });
 
   return (
@@ -137,6 +143,11 @@ export const DropdownContent = React.forwardRef<
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
       ref={ref}
+      style={
+        hasExpandableItems
+          ? { maxHeight: 'inherit', overflow: 'hidden' }
+          : props.style
+      }
       tabIndex={-1}
       testId={testId || 'dropdownContent'}
       theme={theme}

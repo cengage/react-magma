@@ -60,6 +60,14 @@ export function menuBackground(props) {
   return props.theme.colors.neutral200;
 }
 
+function menuItemPadding(props) {
+  if (props.isInactive) {
+    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`;
+  } else {
+    return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`;
+  }
+}
+
 export const MenuItemStyles = props => {
   return css`
     align-items: center;
@@ -70,9 +78,7 @@ export const MenuItemStyles = props => {
     font-family: ${props.theme.bodyFont};
     line-height: ${props.theme.typeScale.size03.lineHeight};
     margin: 0;
-    padding: ${props.isInactive
-      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
-      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
+    padding: ${menuItemPadding(props)};
     white-space: ${props.isFixedWidth ? 'normal' : 'nowrap'};
 
     &:hover,
