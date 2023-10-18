@@ -7,13 +7,13 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { useForkedRef } from '../../utils';
+import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
   /**
    * @internal
    */
-  disabled?: boolean;
   icon?: React.ReactElement<IconProps>;
   testId?: string;
 }
@@ -50,7 +50,7 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuButtonProps
 >((props, forwardedRef) => {
-  const { children, disabled, customOnKeyDown, icon, testId, ...other } = props;
+  const { children, customOnKeyDown, icon, testId, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
@@ -58,11 +58,15 @@ export const DropdownExpandableMenuButton = React.forwardRef<
     DropdownExpandableMenuGroupContext
   );
 
+  const expandableMenuItemContext = React.useContext(
+    DropdownExpandableMenuItemContext
+  );
+
   const ownRef = React.useRef<HTMLDivElement>();
   const ref = useForkedRef(forwardedRef, ownRef);
 
   React.useEffect(() => {
-    if (!disabled) {
+    if (!expandableMenuItemContext.disabled) {
       context.registerDropdownMenuItem(context.itemRefArray, ownRef);
     }
   }, []);
