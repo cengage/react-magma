@@ -969,7 +969,7 @@ describe('Dropdown', () => {
                 <DropdownExpandableMenuButton>
                   Pasta
                 </DropdownExpandableMenuButton>
-                <DropdownExpandableMenuPanel testId={expandablePanelId}>
+                <DropdownExpandableMenuPanel testId="pancakes">
                   <DropdownExpandableMenuListItem>
                     Fresh
                   </DropdownExpandableMenuListItem>
@@ -999,7 +999,7 @@ describe('Dropdown', () => {
 
       fireEvent.click(getByText('Expandable Items Dropdown'));
 
-      expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+      expect(getByTestId('pancakes')).toBeInTheDocument();
 
       expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
     });

@@ -427,7 +427,75 @@ export function Example() {
 }
 ```
 
-### Text only Expandable Menu Item
+## Expandable Menu Items Default Index
+
+The `defaultIndex` prop uses an array of zero based indices to enable an expandable group to be automatically opened.
+
+If the `isMulti` prop is set to `false`, the `defaultIndex` prop will take a single number, instead of an array.
+
+```tsx
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownExpandableMenuGroup,
+  DropdownExpandableMenuItem,
+  DropdownExpandableMenuButton,
+  DropdownExpandableMenuPanel,
+  DropdownExpandableMenuListItem,
+} from 'react-magma-dom';
+
+import {
+  RestaurantMenuIcon,
+  LunchDiningIcon,
+  LocalPizzaIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Dropdown width={240}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup defaultIndex={[0]}>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+              Pasta
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+          Pizza
+        </DropdownExpandableMenuListItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
+## Text only Expandable Menu Item
 
 ```tsx
 import React from 'react';

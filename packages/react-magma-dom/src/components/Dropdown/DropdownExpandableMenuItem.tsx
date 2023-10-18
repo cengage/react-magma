@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { IconProps } from 'react-magma-icons';
 import { AccordionItem, AccordionItemProps } from '../Accordion';
 import {
   DropdownExpandableMenuButton,
@@ -11,10 +10,6 @@ export interface DropdownExpandableMenuItemProps extends AccordionItemProps {
    * @default false
    */
   disabled?: boolean;
-  /**
-   * Leading icon for the menu item
-   */
-  icon?: React.ReactElement<IconProps>;
   /**
    * @internal
    */

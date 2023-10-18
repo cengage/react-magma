@@ -10,13 +10,15 @@ import { useForkedRef } from '../../utils';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
+  /**
+   * @internal
+   */
   disabled?: boolean;
   icon?: React.ReactElement<IconProps>;
   testId?: string;
 }
 
 const StyledAccordionButton = styled(AccordionButton)<{
-  disabled?: boolean;
   expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
 }>`
@@ -28,6 +30,9 @@ const StyledAccordionButton = styled(AccordionButton)<{
       : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
   margin: 0;
   border-top: 0;
+  &:focus {
+    outline-offset: -2px;
+  }
   &:hover,
   &:focus {
     background: ${menuBackground};
@@ -72,7 +77,6 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   return (
     <StyledAccordionButton
       {...other}
-      disabled={disabled}
       ref={ref}
       customOnKeyDown={handleCustomOnKeyDown}
       icon={icon}
