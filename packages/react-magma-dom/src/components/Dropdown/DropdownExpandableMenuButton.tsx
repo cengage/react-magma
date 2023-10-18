@@ -11,9 +11,6 @@ import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem'
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
-  /**
-   * @internal
-   */
   icon?: React.ReactElement<IconProps>;
   testId?: string;
 }
