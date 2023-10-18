@@ -428,11 +428,13 @@ export function Example() {
 }
 ```
 
-## Expandable Menu Items Default Index
+### Expandable Menu with item auto expanded
 
-The `defaultIndex` prop uses an array of zero based indices to enable an expandable group to be automatically opened.
+By default, the `isMulti` prop is true on `DropdownExpandableMenuGroup`, which means that the expandable dropdown will allow multiple items to be expanded at once. If you wish to limit the number of items open at once, you can set the `isMulti` prop to false.
 
-If the `isMulti` prop is set to `false`, the `defaultIndex` prop will take a single number, instead of an array.
+The `defaultIndex` prop on `DropdownExpandableMenuGroup` uses an array of zero based indices to enable expandable groups to be automatically opened.
+
+When the `isMulti` prop is false, the `defaultIndex` prop will take a single number, instead of an array.
 
 ```tsx
 import React from 'react';
@@ -497,7 +499,7 @@ export function Example() {
 }
 ```
 
-## Text only Expandable Menu Item
+### Text only Expandable Menu Item
 
 ```tsx
 import React from 'react';
