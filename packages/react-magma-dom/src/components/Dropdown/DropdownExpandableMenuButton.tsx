@@ -7,16 +7,15 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { useForkedRef } from '../../utils';
+import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
-  disabled?: boolean;
   icon?: React.ReactElement<IconProps>;
   testId?: string;
 }
 
 const StyledAccordionButton = styled(AccordionButton)<{
-  disabled?: boolean;
   expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
 }>`
@@ -28,6 +27,9 @@ const StyledAccordionButton = styled(AccordionButton)<{
       : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
   margin: 0;
   border-top: 0;
+  &:focus {
+    outline-offset: -2px;
+  }
   &:hover,
   &:focus {
     background: ${menuBackground};
@@ -45,7 +47,7 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuButtonProps
 >((props, forwardedRef) => {
-  const { children, disabled, customOnKeyDown, icon, testId, ...other } = props;
+  const { children, customOnKeyDown, icon, testId, ...other } = props;
 
   const theme = React.useContext(ThemeContext);
   const context = React.useContext(DropdownContext);
@@ -53,11 +55,15 @@ export const DropdownExpandableMenuButton = React.forwardRef<
     DropdownExpandableMenuGroupContext
   );
 
+  const expandableMenuItemContext = React.useContext(
+    DropdownExpandableMenuItemContext
+  );
+
   const ownRef = React.useRef<HTMLDivElement>();
   const ref = useForkedRef(forwardedRef, ownRef);
 
   React.useEffect(() => {
-    if (!disabled) {
+    if (!expandableMenuItemContext.disabled) {
       context.registerDropdownMenuItem(context.itemRefArray, ownRef);
     }
   }, []);
@@ -72,7 +78,6 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   return (
     <StyledAccordionButton
       {...other}
-      disabled={disabled}
       ref={ref}
       customOnKeyDown={handleCustomOnKeyDown}
       icon={icon}

@@ -501,7 +501,7 @@ export const ExpandableItemsWithIconsAndConsoleWarning = args => {
     <Dropdown {...args} width={220}>
       <DropdownButton>Expandable Items Dropdown</DropdownButton>
       <DropdownContent>
-        <DropdownExpandableMenuGroup>
+        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={1}>
           <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
