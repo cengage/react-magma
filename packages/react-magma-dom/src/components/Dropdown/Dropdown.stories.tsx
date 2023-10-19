@@ -467,7 +467,7 @@ export const ExpandableItemsWithIcons = args => {
               DropdownExpandableMenuButton component
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem disabled>
                 Fresh
               </DropdownExpandableMenuListItem>
               <DropdownExpandableMenuListItem>

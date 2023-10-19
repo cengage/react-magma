@@ -1176,6 +1176,38 @@ describe('Dropdown', () => {
         );
       });
 
+      it(`DropdownExpandableMenuListItem should support disabled`, () => {
+        const { getByText } = render(
+          <Dropdown>
+            <DropdownButton>Expandable Items Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem disabled>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownContent>
+          </Dropdown>
+        );
+        fireEvent.click(getByText('Pasta'));
+
+        expect(getByText('Fresh')).toHaveStyleRule('cursor', 'not-allowed');
+        expect(getByText('Fresh')).toHaveStyleRule(
+          'color',
+          transparentize(0.4, magma.colors.neutral500)
+        );
+      });
+
       it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon and a text only menu item`, () => {
         const { getByTestId, getByText } = render(
           <Dropdown>

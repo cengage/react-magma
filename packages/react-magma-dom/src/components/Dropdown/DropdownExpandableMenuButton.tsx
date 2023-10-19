@@ -18,6 +18,7 @@ export interface DropdownExpandableMenuButtonProps
 const StyledAccordionButton = styled(AccordionButton)<{
   expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
+  isMenuItemContextDisabled?: boolean;
 }>`
   font-weight: 400;
   overflow-wrap: anywhere;
@@ -32,7 +33,8 @@ const StyledAccordionButton = styled(AccordionButton)<{
   }
   &:hover,
   &:focus {
-    background: ${menuBackground};
+    background: ${props =>
+      props.isMenuItemContextDisabled ? '' : menuBackground};
   }
   > span {
     display: flex;
@@ -86,6 +88,7 @@ export const DropdownExpandableMenuButton = React.forwardRef<
         expandableMenuGroupContext.expandableMenuButtonHasIcon
       }
       isInverse={context.isInverse}
+      isMenuItemContextDisabled={expandableMenuItemContext.disabled}
       testId={testId}
     >
       {icon && (
