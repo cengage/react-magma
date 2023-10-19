@@ -33,7 +33,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuListItemProps
 >((props, forwardedRef) => {
-  const { children, disabled, ...other } = props;
+  const { children, ...other } = props;
 
   const ownRef = React.useRef<HTMLDivElement>();
   const theme = React.useContext(ThemeContext);
