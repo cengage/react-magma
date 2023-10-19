@@ -156,6 +156,7 @@ export const DropdownContent = React.forwardRef<
       <StyledDiv
         aria-labelledby={context.dropdownButtonId.current}
         role={hasItemChildren ? 'menu' : null}
+        style={hasExpandableItems ? { padding: '0' } : {}}
         theme={theme}
       >
         {children}
