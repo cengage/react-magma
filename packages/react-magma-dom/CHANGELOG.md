@@ -95,6 +95,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.12
+
+### Patch Changes
+
+- fa88fa7c5: fix(Dropdown): Fixes from QA review of the Dropdown Expandable sub component.
+
 ## 4.2.0-next.11
 
 ### Minor Changes
