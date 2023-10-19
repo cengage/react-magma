@@ -54,6 +54,12 @@
 
 ## 4.1.1
 
+## 4.2.0-next.13
+
+### Patch Changes
+
+- 68276abaa: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
+
 ## 4.2.0-next.12
 
 ### Patch Changes
