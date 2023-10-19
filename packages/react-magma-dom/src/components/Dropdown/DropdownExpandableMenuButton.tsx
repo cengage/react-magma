@@ -15,6 +15,36 @@ export interface DropdownExpandableMenuButtonProps
   testId?: string;
 }
 
+const StyledAccordionButton = styled(AccordionButton)<{
+  expandableMenuButtonHasIcon?: boolean;
+  icon?: React.ReactElement<IconProps>;
+  isMenuItemContextDisabled?: boolean;
+}>`
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  padding: ${props =>
+    !props.icon && props.expandableMenuButtonHasIcon
+      ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
+      : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
+  margin: 0;
+  border-top: 0;
+  &:focus {
+    outline-offset: -2px;
+  }
+  &:hover,
+  &:focus {
+    background: ${props =>
+      props.isMenuItemContextDisabled ? '' : menuBackground};
+  }
+  > span {
+    display: flex;
+  }
+`;
+
+const StyledIconWrapper = styled(IconWrapper)`
+  justify-content: center;
+`;
+
 export const DropdownExpandableMenuButton = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuButtonProps
@@ -33,34 +63,6 @@ export const DropdownExpandableMenuButton = React.forwardRef<
 
   const ownRef = React.useRef<HTMLDivElement>();
   const ref = useForkedRef(forwardedRef, ownRef);
-
-  const StyledAccordionButton = styled(AccordionButton)<{
-    expandableMenuButtonHasIcon?: boolean;
-    icon?: React.ReactElement<IconProps>;
-  }>`
-    font-weight: 400;
-    overflow-wrap: anywhere;
-    padding: ${props =>
-      !props.icon && props.expandableMenuButtonHasIcon
-        ? `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing11}`
-        : `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05}`};
-    margin: 0;
-    border-top: 0;
-    &:focus {
-      outline-offset: -2px;
-    }
-    &:hover,
-    &:focus {
-      background: ${expandableMenuItemContext.disabled ? '' : menuBackground};
-    }
-    > span {
-      display: flex;
-    }
-  `;
-
-  const StyledIconWrapper = styled(IconWrapper)`
-    justify-content: center;
-  `;
 
   React.useEffect(() => {
     if (!expandableMenuItemContext.disabled) {
@@ -86,6 +88,7 @@ export const DropdownExpandableMenuButton = React.forwardRef<
         expandableMenuGroupContext.expandableMenuButtonHasIcon
       }
       isInverse={context.isInverse}
+      isMenuItemContextDisabled={expandableMenuItemContext.disabled}
       testId={testId}
     >
       {icon && (
