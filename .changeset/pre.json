@@ -16,6 +16,7 @@
     "feat-optionalPerPageSelect",
     "fix-datePickerEscape",
     "fix-expandableDropdown",
+    "fix-expandableDropdownDisabled",
     "fix-labelsColors",
     "fix-modalEscape",
     "fix-passInputLarge",
