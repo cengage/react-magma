@@ -86,6 +86,7 @@ export const DropdownExpandableMenuButton = React.forwardRef<
         expandableMenuGroupContext.expandableMenuButtonHasIcon
       }
       isInverse={context.isInverse}
+      style={expandableMenuItemContext.disabled ? { background: 'none' } : {}}
       testId={testId}
     >
       {icon && (

@@ -8,7 +8,8 @@ import { DropdownMenuItem, DropdownMenuItemProps } from './DropdownMenuItem';
 import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
 
 export interface DropdownExpandableMenuListItemProps
-  extends Omit<DropdownMenuItemProps, 'icon' | 'disabled'> {
+  extends Omit<DropdownMenuItemProps, 'icon'> {
+  disabled?: boolean;
   testId?: string;
 }
 
@@ -32,7 +33,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuListItemProps
 >((props, forwardedRef) => {
-  const { children, ...other } = props;
+  const { children, disabled, ...other } = props;
 
   const ownRef = React.useRef<HTMLDivElement>();
   const theme = React.useContext(ThemeContext);
@@ -54,6 +55,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
   return (
     <StyledDropdownMenuItem
       {...other}
+      disabled={disabled}
       expandableMenuButtonHasIcon={menuGroupContext.expandableMenuButtonHasIcon}
       isExpandablePanel={menuGroupContext.isExpandablePanel}
       ref={expandableMenuItemContext.disabled ? null : ref}
