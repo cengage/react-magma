@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-import { Accordion, AccordionProps } from '../Accordion';
+import { Accordion, AccordionIconPosition, AccordionProps } from '../Accordion';
 import { DropdownContext } from './Dropdown';
 
 const StyledAccordion = styled(Accordion)`
   border: none;
+  padding: 0;
 `;
 
 export interface DropdownExpandableMenuGroupContextInterface {
@@ -48,6 +49,7 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
     >
       <StyledAccordion
         {...other}
+        iconPosition={AccordionIconPosition.right}
         isInverse={context.isInverse}
         ref={ref}
         role="group"

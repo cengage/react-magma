@@ -102,10 +102,6 @@ const StyledCard = styled(Card)<{
    `}
 `;
 
-const StyledDiv = styled.div`
-  padding: ${props => props.theme.spaceScale.spacing02} 0;
-`;
-
 export const DropdownContent = React.forwardRef<
   HTMLDivElement,
   DropdownContentProps
@@ -153,13 +149,12 @@ export const DropdownContent = React.forwardRef<
       theme={theme}
       width={context.width}
     >
-      <StyledDiv
+      <div
         aria-labelledby={context.dropdownButtonId.current}
         role={hasItemChildren ? 'menu' : null}
-        theme={theme}
       >
         {children}
-      </StyledDiv>
+      </div>
     </StyledCard>
   );
 });

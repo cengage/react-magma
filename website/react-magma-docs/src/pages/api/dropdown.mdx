@@ -371,6 +371,7 @@ import {
   Dropdown,
   DropdownButton,
   DropdownContent,
+  DropdownDivider,
   DropdownExpandableMenuGroup,
   DropdownExpandableMenuItem,
   DropdownExpandableMenuButton,
@@ -427,6 +428,77 @@ export function Example() {
 }
 ```
 
+### Expandable Menu with item auto expanded
+
+By default, the `isMulti` prop is true on `DropdownExpandableMenuGroup`, which means that the expandable dropdown will allow multiple items to be expanded at once. If you wish to limit the number of items open at once, you can set the `isMulti` prop to false.
+
+The `defaultIndex` prop on `DropdownExpandableMenuGroup` uses an array of zero based indices to enable expandable groups to be automatically opened.
+
+When the `isMulti` prop is false, the `defaultIndex` prop will take a single number, instead of an array.
+
+```tsx
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownDivider,
+  DropdownExpandableMenuGroup,
+  DropdownExpandableMenuItem,
+  DropdownExpandableMenuButton,
+  DropdownExpandableMenuPanel,
+  DropdownExpandableMenuListItem,
+} from 'react-magma-dom';
+
+import {
+  RestaurantMenuIcon,
+  LunchDiningIcon,
+  LocalPizzaIcon,
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Dropdown width={240}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup defaultIndex={[0]}>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+              Pasta
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+          Pizza
+        </DropdownExpandableMenuListItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
 ### Text only Expandable Menu Item
 
 ```tsx
@@ -435,6 +507,7 @@ import {
   Dropdown,
   DropdownButton,
   DropdownContent,
+  DropdownDivider,
   DropdownExpandableMenuGroup,
   DropdownExpandableMenuItem,
   DropdownExpandableMenuButton,
