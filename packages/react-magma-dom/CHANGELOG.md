@@ -1,22 +1,8 @@
-## 4.2.0
 
-## Minor Changes
-
-- 77823fb11: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level
-- 9a09b8b55: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
+## 4.1.1
 
 ### Patch Changes
 
-- 1c446c209: fix(PasswordInput): Update placement of Show/Hide button on Large input size
-- 1cf3809cc: fix(RadioGroup): Radio Group label is now a span to improve a11y
-- bc4104600: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
-- caa2c7b6a: fix(DropdownContent): Handle `false` as child
-- 3001a5e35: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
-- ab9229c81: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
-- 101f514b1: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
-- 8f1bcbe31: fix(DatePicker): Escape key only closes the panel
-- 9f2aa435d: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
-- b5f6189fa: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state
 - 0d718be80: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field
 - 0d718be80: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
 - 0d718be80: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. Use `activeIndex` on the `TabsContainer` to indicate the active tab
