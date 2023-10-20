@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.4-next.14
+
+### Patch Changes
+
+- f14ff0818: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
+
 ## 5.0.4-next.13
 
 ### Patch Changes
