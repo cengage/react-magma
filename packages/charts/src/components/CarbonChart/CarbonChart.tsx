@@ -40,6 +40,15 @@ const CarbonChartWrapper = styled.div<{
   theme: ThemeInterface;
 }>`
 
+  .cds--cc--tooltip .content-box .datapoint-tooltip p{
+    font-size:14px;
+    padding:4px;
+  }
+
+  .cds--modal-container{
+    border-radius:${props => props.theme.borderRadius};
+  }
+
   p, div, text, .cds--cc--axes g.axis .axis-title,
   .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
@@ -51,7 +60,35 @@ const CarbonChartWrapper = styled.div<{
   }
 
   div.cds--cc--legend div.legend-item p {
-    font-size: 14px;
+    font-size: 16px;
+    margin: 0 8px 0 0;
+  }
+
+  .cds--cc--grid rect.chart-grid-backdrop{
+    fill:none;
+  }
+
+  .cds--btn {
+    min-height: auto;
+    display: flex;
+        flex: 0 auto;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+    line-height: 24px;
+    margin: 0;
+    min-width: 96px;
+    overflow: hidden;
+    padding: 12px 16px;
+    position: relative;
+    right: 12px;
+    text-align: center;
+    height: 40px;
+    font-family: "Work Sans",Helvetica,sans-serif;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: 500;
   }
 
   .cds--btn--primary {
@@ -94,6 +131,11 @@ const CarbonChartWrapper = styled.div<{
       border: none;
     }
   }
+
+.cds--modal-footer.cds--modal-footer {
+    display: flex;
+    align-items: center;
+}
 `;
 
 // Carbon themes (https://github.com/carbon-design-system/carbon-charts/blob/master/packages/core/src/interfaces/enums.ts#L12)
