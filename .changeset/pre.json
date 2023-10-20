@@ -12,10 +12,26 @@
   },
   "changesets": [
     "docs-typos",
+    "dropdown-menuItemRole",
     "dropdown-noitems",
+    "dropdownContent-falseChild",
+    "feat-dropdownExpandableMenu",
+    "feat-optionalPerPageSelect",
+    "fix-datePickerEscape",
+    "fix-dropdownDocsStorybook",
+    "fix-expandableDropdown",
+    "fix-expandableDropdownDisabled",
     "fix-inputBase",
+    "fix-labelsColors",
+    "fix-modalEscape",
+    "fix-passInputLarge",
+    "fix-radioGroup",
+    "inputHeight",
     "maxLength-warnings",
+    "nativeSelectHeight",
+    "sortArrows",
     "tabprops",
-    "update-changelog"
+    "update-changelog",
+    "update-modalPadding"
   ]
 }
