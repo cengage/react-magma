@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(DropdownExpandableMenuItem): Add role
+fix(DropdownExpandableMenuListItem): Add `role="menuitem"`

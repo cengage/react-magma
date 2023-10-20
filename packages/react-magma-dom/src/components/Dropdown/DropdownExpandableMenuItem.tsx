@@ -27,13 +27,7 @@ export const DropdownExpandableMenuItem = React.forwardRef<
 
   return (
     <DropdownExpandableMenuItemContext.Provider value={{ disabled }}>
-      <AccordionItem
-        {...other}
-        isDisabled={disabled}
-        ref={ref}
-        testId={testId}
-        role="menuitem"
-      >
+      <AccordionItem {...other} isDisabled={disabled} ref={ref} testId={testId}>
         {children}
       </AccordionItem>
     </DropdownExpandableMenuItemContext.Provider>

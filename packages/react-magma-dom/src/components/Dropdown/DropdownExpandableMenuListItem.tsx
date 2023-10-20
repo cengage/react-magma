@@ -58,6 +58,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
       isExpandablePanel={menuGroupContext.isExpandablePanel}
       ref={expandableMenuItemContext.disabled ? null : ref}
       theme={theme}
+      role="menuitem"
     >
       {children}
     </StyledDropdownMenuItem>
