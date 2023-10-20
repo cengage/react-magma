@@ -15,6 +15,7 @@
     "feat-dropdownExpandableMenu",
     "feat-optionalPerPageSelect",
     "fix-datePickerEscape",
+    "fix-dropdownDocsStorybook",
     "fix-expandableDropdown",
     "fix-expandableDropdownDisabled",
     "fix-labelsColors",
