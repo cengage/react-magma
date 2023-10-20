@@ -7,10 +7,7 @@ import { Spacer } from '../Spacer';
 import { Textarea, TextareaProps } from '.';
 
 const Template: Story<TextareaProps> = args => (
-  <Textarea
-    {...args}
-    labelText="Textarea label"
-  />
+  <Textarea {...args} labelText="Textarea label" />
 );
 
 export default {
@@ -24,6 +21,11 @@ export default {
     ),
   ],
   argTypes: {
+    hasCharacterCounter: {
+      control: {
+        type: 'boolean',
+      },
+    },
     labelPosition: {
       control: {
         type: 'select',
@@ -35,18 +37,27 @@ export default {
         type: 'number',
       },
     },
+    maxCount: {
+      control: {
+        type: 'number',
+      },
+    },
+    maxLength: {
+      control: {
+        type: 'number',
+      },
+    },
     value: {
       control: {
-        type: 'text'
-      }
-    }
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
   isInverse: false,
-  maxLength: 4,
 };
 
 export const OnClear = args => {

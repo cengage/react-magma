@@ -10,13 +10,15 @@ Include description of the change and type of change:
 - Other: style, refactor, performance, build, chore
 -->
 
-## Screenshots (if appropriate):
+## Screenshots:
+<!-- Include screenshot of your change -->
 
 ## Checklist 
 - [ ] changeset has been added
+- [ ] Pull request description is descriptive
 - [ ] I have made corresponding changes to the documentation
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] I have added tests that prove my fix is effective or that my feature works
 
 ## How to test
-<!-- Include testing steps, edge cases, etc. -->
+<!-- Include testing steps, all edge cases, etc. -->

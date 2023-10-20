@@ -34,9 +34,20 @@ export enum InputIconPosition {
 export interface InputBaseProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
+   * @internal
+   */
+  children?: any;
+  /**
    * Style properties for the component container element
    */
   containerStyle?: React.CSSProperties;
+  /** 
+   * Enables Character Counter by default. 
+   * When set to false, the default HTML attribute of 'maxlength' will work. 
+   * Note: This is a temporary prop and will be removed in future releases.
+    @default true 
+  */
+  hasCharacterCounter?: boolean;
   /**
    * @internal
    */
@@ -88,6 +99,12 @@ export interface InputBaseProps
   /**
    * A number value which gives Character Counter the maximum length of allowable characters in an Input.
    */
+  maxCount?: number;
+  /**
+   * A number value which gives Character Counter the maximum length of allowable characters in an Input.
+   * @deprecated = true
+   */
+
   maxLength?: number;
   /**
    * Action that will fire when icon is clicked
@@ -130,6 +147,7 @@ export interface InputWrapperStylesProps {
   theme?: ThemeInterface;
   hasError?: boolean;
   disabled?: boolean;
+  inputSize?: InputSize;
 }
 
 export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
@@ -147,6 +165,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     ${props.isInverse
       ? transparentize(0.5, props.theme.colors.neutral100)
       : props.theme.colors.neutral500};
+  height: ${props.theme.spaceScale.spacing09};
 
   &:focus-within {
     outline: 2px solid
@@ -171,6 +190,11 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
     background-color: ${props.isInverse
       ? transparentize(0.9, props.theme.colors.neutral900)
       : props.theme.colors.neutral200};
+  `}
+
+  ${props.inputSize === 'large' &&
+  css`
+    height: ${props.theme.spaceScale.spacing11};
   `}
 `;
 
@@ -223,6 +247,7 @@ function getInputPadding(props: InputBaseStylesProps) {
 }
 
 export interface InputBaseStylesProps {
+  hasCharacterCounter?: boolean;
   isInverse?: boolean;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
@@ -434,13 +459,17 @@ const IconButtonContainer = styled.span<{
 const PasswordButtonContainer = styled.span<{
   size?: InputSize;
   theme: ThemeInterface;
+  buttonWidth: number;
 }>`
   background-color: transparent;
   width: 0;
   transform: translate(
-    -${props => (props.size === InputSize.large ? props.theme.spaceScale.spacing10 : '60px')},
     ${props =>
-      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '5px'}
+      props.size === InputSize.large
+        ? `${-props.buttonWidth - 8}px`
+        : `${-props.buttonWidth - 6}px`},
+    ${props =>
+      props.size === InputSize.large ? props.theme.spaceScale.spacing03 : '6px'}
   );
 `;
 
@@ -526,6 +555,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       containerStyle,
       defaultValue,
       disabled,
+      hasCharacterCounter,
       hasError,
       icon,
       iconAriaLabel,
@@ -533,6 +563,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       isClearable,
       isPasswordInput,
       isPredictive,
+      maxCount,
       maxLength,
       onClear,
       onIconClick,
@@ -557,7 +588,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
 
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
-    >(props.defaultValue || props.value || '');
+    >(
+      props.defaultValue !== undefined && props.defaultValue !== null
+        ? props.defaultValue
+        : props.value || ''
+    );
+
+    const maxLengthNum =
+      !hasCharacterCounter && maxLength ? maxLength : undefined;
 
     React.useEffect(() => {
       if (props.value !== undefined && props.value !== null) {
@@ -582,12 +620,27 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       setValue(event.target.value);
     }
 
+    const passwordBtnWidth = () => {
+      const btnWidth = children?.props?.children?.[0]?.ref?.current?.offsetWidth;
+      if (typeof btnWidth === 'number') {
+        return btnWidth;
+      } else {
+        // When PasswordButton is used inside SchemaRenderer, it doesn't have children.
+        // We'll use the default button sizes.
+        if (props.inputSize === InputSize.large) {
+          return 64;
+        }
+        return 54;
+      }
+    };
+
     return (
       <InputContainer>
         <InputWrapper
           disabled={disabled}
           iconPosition={iconPosition}
           isInverse={props.isInverse}
+          inputSize={inputSize ? inputSize : InputSize.medium}
           theme={theme}
           style={containerStyle}
           hasError={hasError}
@@ -599,6 +652,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             aria-invalid={hasError}
             disabled={disabled}
             data-testid={testId}
+            hasCharacterCounter={hasCharacterCounter}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
             isClearable={isClearable && inputLength > 0}
@@ -606,6 +660,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             isPredictive={isPredictive}
             hasError={hasError}
             ref={ref}
+            maxLength={maxLengthNum}
             onChange={handleChange}
             style={inputStyle}
             theme={theme}
@@ -634,7 +689,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             </IconWrapper>
           )}
         </InputWrapper>
-        {isClearable && value && (
+        {isClearable && value !== '' && (
           <IsClearableContainer
             theme={theme}
             iconPosition={iconPosition}
@@ -697,6 +752,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize === InputSize.large ? InputSize.large : InputSize.medium
             }
             theme={theme}
+            buttonWidth={passwordBtnWidth()}
           >
             {children}
           </PasswordButtonContainer>

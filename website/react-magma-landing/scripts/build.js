@@ -11,6 +11,7 @@ const cleanVersions = ({ versions, time, tags }) => {
   return semver
     .sort(Object.keys(versions))
     .filter(a => a.match(/^\d+\.\d+\.\d+$/))
+    .filter(a => semver.gte(a, '2.3.2'))
     .map(version => {
       return {
         version,
@@ -22,8 +23,29 @@ const cleanVersions = ({ versions, time, tags }) => {
             return value === version ? key : null;
           })
           .filter(a => a),
+        reactDependency: versions[version]?.peerDependencies?.react,
       };
     });
+};
+
+const versionsByReactDependency = ({ versions, time, tags }) => {
+  const allVersions = cleanVersions({ versions, time, tags });
+
+  var versionsByReactDep = new Map();
+  allVersions.forEach(versionObj => {
+    if (!versionsByReactDep.has(versionObj?.reactDependency)) {
+      versionsByReactDep.set(versionObj?.reactDependency, []);
+    }
+    versionsByReactDep.get(versionObj?.reactDependency).push(versionObj);
+  });
+
+  const latestVersions = [];
+  for (let [, value] of versionsByReactDep) {
+    const latest = value.reverse()[0];
+    latestVersions.push(latest);
+  }
+
+  return latestVersions;
 };
 
 const enhanceTags = ({ tags, time }) => {
@@ -45,7 +67,8 @@ const enhanceTags = ({ tags, time }) => {
 const filterNPM = ({ versions, 'dist-tags': tags, time }) => {
   return {
     tags: enhanceTags({ tags, time }),
-    versions: cleanVersions({ versions, time, tags }),
+    versions: cleanVersions({ versions, time, tags }).reverse(),
+    reactSupport: versionsByReactDependency({ versions, time, tags }),
   };
 };
 
@@ -61,7 +84,7 @@ getAllVersions().then(versions => {
     copy(
       path.resolve(__dirname, '../static/**'),
       path.resolve(__dirname, '../dist'),
-      function(err, files) {
+      function (err, files) {
         if (err) throw err;
         Promise.resolve(files);
       }

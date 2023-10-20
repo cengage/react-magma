@@ -11,9 +11,10 @@ import { Alert } from 'react-magma-dom';
 
 <PageContent componentName="alert" type="design">
 <LeadParagraph>
-  Alerts display a short, important message in a way that attracts a user's
-  attention.
+  Alerts display a short, important message in a way that attracts a user's attention.
 </LeadParagraph>
+
+This page focuses primarily on the commonalities between the different alert types and more detail about the basic inline alert. You can also get more information about <Link to="/design/banner/">banner</Link> and <Link to="/design/toast/">toast</Link> alerts.
 
 ## Usage
 
@@ -61,11 +62,11 @@ The basic anatomy of the alert is the same across all three types (banner, inlin
 
 Alerts come in four colors depending on the severity or meaning of the message.
 
-It's important to remember that not all users will see these colors in the same way, and meaning should never be conveyed by color alone, and therefore the colors and accompanying icons are simply meant to enhance the meaning of the message at a glance for some users. The message within the alert is the most important part for all users and great care should be taken to make the message clear and understandable without the iconography or color.
+Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
 
 ### Info
 
-Provides non-urgent information related to a performed action, or used within a page to communicate completely neutral information.
+Provides non-urgent messages and information.
 
 <Alert>
   I'm just here to tell you something totally not worth stressing over.
@@ -79,7 +80,7 @@ Indicates that a system process completed successfully.
 
 ### Warning
 
-Indicates that something isn't quite right, but there wasn't an error.
+Indicates that something is not quite right, but there wasn't an error.
 
 <Alert variant="warning">Umm, something's not quite right here.</Alert>
 
@@ -89,162 +90,45 @@ Indicates that a system process has encountered an error.
 
 <Alert variant="danger">Oh no, it's all gone horribly wrong!</Alert>
 
----
+### Inverse Colors
 
-## Inverse Colors
-
-Alerts have an inverse option where we have defined colors that are optimized for use on dark backgrounds. Do not mix default colors and inverse colors in your application. These are meant specifically for if you set up a "dark mode" theme for your application.
+Alerts have an inverse option where we have defined colors that are optimized for use on dark backgrounds.
 
 ![ ](../../images/alerts/alert-inverse.png)
 
 ---
 
-## Alert Types
-
-Alerts come in three different types – Banner, inline, and toast. The choice of which one to use depends on the context of what you're trying to communicate.
-
-### Banner Alert
-
-Banner alerts appear at the very top of the browser viewport and extend all the way across. Banner alerts can be an effective way of telling the user about something that impacts the entire application such as a planned maintenance notification or an important world event that impacts all users. Banner alerts are by their nature the most disruptive type of alert so you may decide whether you want the alert to persist or allow the user to dismiss the alert themselves.
-
-View the <Link to="/api/banner/">component API</Link> for banner alerts.
-
-<figure>
-  <img src="../../images/alerts/banner-alert-example.png" alt="" />
-</figure>
-
-#### Responsive Behavior
-
-When the viewport is 600px wide and smaller, we automatically hide the icon and reduce the font size to optimize the amount of space given to the message and optional links or buttons in the alert.
-
-<figure>
-  <img src="../../images/alerts/mobile-banner-alert-example.png" alt="" />
-</figure>
-<span class="horizontal-spacer"></span>
-
-### Inline Alert
+### Basic Inline Alert
 
 Inline alerts are embedded within the content of a page. They can provide the user with helpful information regarding a specific process or part of the interface. They can also be triggered by an action the user took, like submitting a form before filling out all the required fields.
-
-View the <Link to="/api/alert/">component API</Link> for inline alerts.
 
 <figure>
   <img src="../../images/alerts/inline-alert-example.png" alt="" />
 </figure>
 
-If an inline alert is being used to communicate some general information to the user, then you can choose to allow them to dismiss the alert to get it out of their way. However, error messages are typically not dismissable by the user and persist until the issue is fixed either by the user or the system.
+If an inline alert is being used to communicate some general information to the user, then you can choose to allow them to dismiss the alert to get it out of their way. However, error messages are typically not dismissible by the user and persist until the issue is fixed either by the user or the system.
 
 <figure>
   <img src="../../images/alerts/inline-alert-example-2.png" alt="" />
 </figure>
 
-#### Responsive Behavior
+---
 
-When the viewport is 600px wide and smaller, we automatically hide the icon and reduce the font size to optimize the amount of space given to the message and optional links or buttons in the alert.
+## Responsive Behavior
+
+When the viewport is 600px wide and smaller, we automatically reduce the icon and font size to optimize the amount of space given to the message and optional links or buttons in the alert.
 
 <figure>
   <img src="../../images/alerts/mobile-inline-alert-example.png" alt="" />
 </figure>
 <span class="horizontal-spacer"></span>
 
-### Toast Alert
-
-Toast alerts are the least intrusive of the three types and are used primarily for communicating non-critical information to the user. Toasts appear in the lower-left corner of the viewport. They are always triggered by the action of a user, such as when they add or delete something, and shouldn't require additional actions from the user.
-
-View the <Link to="/api/toast/">component API</Link> for toast alerts.
-
-<figure>
-  <img src="../../images/alerts/toast-alert-example.png" alt="" />
-</figure>
-
-If multiple toasts are triggered, they will automatically stack vertically. When at all possible, try to group batch-like actions into a single toast instead of triggering multiple alerts.
-
-<figure>
-  <img src="../../images/alerts/stack-toasts-incorrect.png" alt="" />
-  <figcaption>
-    <p class="title title-incorrect">Incorrect</p>
-    <p>
-      Do not trigger multiple toasts when a single action processes multiple
-      identical results
-    </p>
-  </figcaption>
-</figure>
-<figure>
-  <img src="../../images/alerts/batch-actions-toast.png" alt="" />
-  <figcaption>
-    <p class="title title-correct">Correct</p>
-    <p>Combine the results from a single action into a single toast alert.</p>
-  </figcaption>
-</figure>
-
-#### Auto-Dismiss
-
-Because toasts are intended to be the least disruptive type of alert, you can generally allow them to dismiss themselves automatically. A timer will be displayed showing the user how long they have unless they dismiss it manually before the timer runs out. The default duration of a toast is 5 seconds (5000 milliseconds), but this may be easily extended for longer or more complex messages.
-
-Avoid displaying errors or warnings with toasts, but if you have to, then these should not auto-dismiss. Errors and warnings are generally considered critical, and you don't want the user to miss the notification. The user has to manually dismiss these messages when they are ready, or when the issue is resolved.
-
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
-      <figure>
-        <img
-          src="../../images/alerts/toast-error-manually-dismiss.png"
-          alt=""
-        />
-        <figcaption>
-          <p class="title title-correct">Correct</p>
-          <p>
-            Toasts displaying error messages or warnings should only be manually
-            dismissable.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="col col-2">
-      <figure>
-        <img
-          src="../../images/alerts/toast-successful-auto-dismiss.png"
-          alt=""
-        />
-        <figcaption>
-          <p class="title title-correct">Correct</p>
-          <p>
-            Toasts displaying general information or success messages may be set
-            to auto-dismiss.
-          </p>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</div>
-
-#### Content Considerations
-
-Unlike the other alert types, toasts will not grow vertically to accommodate long messages. They are set at a specific height, and the message is allowed to wrap to a second line without issue. The text will continue to wrap beyond 2 lines, but you will start seeing the text spill out of the toast and that is expected.
-
-Take the following guidelines into consideration when crafting your message:
-
-- Limit your message to approximately 80 characters or less to ensure your message fits when the toast is at its smallest on mobile devices.
-- The character limit may need to be less than 80 characters if you also include a link or action button.
-- If you require a longer message, then consider using a different alert type.
-
-#### Responsive Behavior
-
-When the viewport is 600px wide and smaller, we automatically hide the icon and reduce the font size to optimize the amount of space given to the message and optional links or buttons in the alert. The toast will also automatically stretch to 100% of the viewport width with spacing around it.
-
-<figure>
-  <img src="../../images/alerts/mobile-toast-alert-example.png" alt="" />
-</figure>
-
 ---
 
 ## Accessibility
 
+(WAI-ARIA: <a href="https://www.w3.org/WAI/ARIA/apg/patterns/alert/">https://www.w3.org/WAI/ARIA/apg/patterns/alert/</a>)
+
 Alerts have a number of measures built into them to improve accessibility. Starting with the colors, we make sure that text always has at least a 4.5:1 contrast ratio with the background color. All of the alerts can be navigated with a keyboard or screen reader.
-
-The auto-dismissing toasts have some additional features for accessibility including:
-
-- Hovering over or moving focus to the toast pauses the timer to give the user ample time to read and understand the message.
-- There is a white border around the toast to ensure the boundaries of the toast are visible no matter what is displayed in the background.
 
 </PageContent>

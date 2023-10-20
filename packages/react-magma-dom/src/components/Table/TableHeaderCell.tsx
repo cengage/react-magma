@@ -174,9 +174,9 @@ export const TableHeaderCell = React.forwardRef<
 
   const SortIcon =
     sortDirection === TableSortDirection.ascending ? (
-      <SouthIcon size={theme.iconSizes.small} />
-    ) : sortDirection === TableSortDirection.descending ? (
       <NorthIcon size={theme.iconSizes.small} />
+    ) : sortDirection === TableSortDirection.descending ? (
+      <SouthIcon size={theme.iconSizes.small} />
     ) : (
       <SortDoubleArrowIcon
         color={
