@@ -1,5 +1,28 @@
 ## 3.5.1-next.1
 
+## 3.6.0-next.3
+
+### Minor Changes
+
+- 9b76cb2fb: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
+- 9b76cb2fb: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
+
+### Patch Changes
+
+- 9b76cb2fb: fix(DropdownExpandableMenuListItem): Add `role="menuitem"`
+- 9b76cb2fb: fix(DropdownContent): Handle `false` as child
+- 9b76cb2fb: fix(DatePicker): Escape key only closes the panel
+- 9b76cb2fb: fix(Dropdown): Fixes from QA review of the Dropdown Expandable sub component disabled states.
+- 9b76cb2fb: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
+- 9b76cb2fb: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
+- 9b76cb2fb: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
+- 9b76cb2fb: fix(PasswordInput): Update placement of Show/Hide button on Large input size
+- 9b76cb2fb: fix(RadioGroup): Radio Group label is now a span to improve a11y
+- 9b76cb2fb: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
+- 9b76cb2fb: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
+- 9b76cb2fb: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
+- 9b76cb2fb: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
+
 ## 3.5.1-next.2
 
 ### Patch Changes

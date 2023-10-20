@@ -1,5 +1,26 @@
 # @react-magma/charts
 
+## 3.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+  - react-magma-dom@3.6.0-next.3
+
 ## 2.0.2-next.0
 
 ### Patch Changes

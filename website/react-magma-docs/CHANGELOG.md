@@ -1,5 +1,31 @@
 # Change Log
 
+## 5.0.3-next.5
+
+### Patch Changes
+
+- 9b76cb2fb: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+- Updated dependencies [9b76cb2fb]
+  - react-magma-dom@3.6.0-next.3
+  - @react-magma/charts@3.0.0-next.1
+  - @react-magma/dropzone@3.0.0-next.1
+  - @react-magma/schema-renderer@3.0.0-next.1
+  - @cengage-patterns/header@5.0.0-next.1
+
 ## 5.0.3-next.4
 
 ### Patch Changes
