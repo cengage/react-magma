@@ -1,6 +1,5 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { act, render, fireEvent } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import {
   format,
   subWeeks,
@@ -17,6 +16,7 @@ import {
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
+import { Modal } from '../Modal';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 
@@ -398,6 +398,66 @@ describe('Date Picker', () => {
     });
 
     expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+  });
+
+  it('inside a modal, should close the calendar month when no date is selected and the escape key is pressed, and retain the active modal', () => {
+    const { getByTestId, getByLabelText } = render(
+      <Modal testId="modal" isOpen>
+        <DatePicker labelText="Date Picker inside a modal" />
+      </Modal>
+    );
+
+    const calendarButton = getByLabelText('Toggle Calendar Widget');
+
+    fireEvent.click(calendarButton);
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
+    );
+    fireEvent.keyDown(calendarButton, {
+      key: 'Escape',
+      code: 27,
+    });
+
+    setTimeout(() => {
+      expect(getByTestId('calendarContainer')).toHaveStyleRule(
+        'display',
+        'none'
+      );
+    }, 500);
+    expect(getByTestId('modal')).toBeInTheDocument();
+  });
+
+  it('inside a modal, should close the calendar month when date is selected and the escape key is pressed, and retain the active modal', () => {
+    const { getByTestId, getByLabelText } = render(
+      <Modal testId="modal" isOpen>
+        <DatePicker labelText="Date Picker inside a modal" />
+      </Modal>
+    );
+
+    const calendarButton = getByLabelText('Toggle Calendar Widget');
+
+    fireEvent.click(calendarButton);
+    expect(getByTestId('calendarContainer')).toHaveStyleRule(
+      'display',
+      'block'
+    );
+    fireEvent.change(getByLabelText('Date Picker inside a modal'), {
+      target: { value: '12' },
+    });
+    fireEvent.click(calendarButton);
+    fireEvent.keyDown(calendarButton, {
+      key: 'Escape',
+      code: 27,
+    });
+
+    setTimeout(() => {
+      expect(getByTestId('calendarContainer')).toHaveStyleRule(
+        'display',
+        'none'
+      );
+    }, 500);
+    expect(getByTestId('modal')).toBeInTheDocument();
   });
 
   it('should default to the min date when it is later than today', () => {

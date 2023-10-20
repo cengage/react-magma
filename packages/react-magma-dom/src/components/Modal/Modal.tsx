@@ -160,14 +160,10 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
-const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing03}
-    ${props => props.theme.spaceScale.spacing05} 0
-    ${props => props.theme.spaceScale.spacing05};
+const ModalWrapper = styled.div<{ theme?: ThemeInterface }>`
+  padding: ${props => props.theme.spaceScale.spacing05};
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing05}
-      ${props => props.theme.spaceScale.spacing06} 0
-      ${props => props.theme.spaceScale.spacing06};
+    padding: ${props => props.theme.spaceScale.spacing06};
   }
 `;
 
@@ -190,13 +186,6 @@ const CloseBtn = styled.span<{ theme?: ThemeInterface }>`
   top: 0;
   right: 0;
   margin: ${props => props.theme.spaceScale.spacing02};
-`;
-const ModalBody = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing05};
-
-  @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing06};
-  }
 `;
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
@@ -377,7 +366,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 theme={theme}
               >
                 {header && (
-                  <ModalHeader theme={theme}>
+                  <ModalWrapper theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
@@ -391,11 +380,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                         {header}
                       </H1>
                     )}
-                  </ModalHeader>
+                  </ModalWrapper>
                 )}
-                <ModalBody ref={bodyRef} theme={theme}>
+                <ModalWrapper ref={bodyRef} theme={theme}>
                   {children}
-                </ModalBody>
+                </ModalWrapper>
                 {!isCloseButtonHidden && (
                   <CloseBtn theme={theme}>
                     <IconButton
