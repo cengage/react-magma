@@ -392,7 +392,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 theme={theme}
               >
                 {header && (
-                  <ModalHeader theme={theme}>
+                  <ModalWrapper theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
@@ -406,7 +406,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                         {header}
                       </H1>
                     )}
-                  </ModalHeader>
+                  </ModalWrapper>
                 )}
                 <ModalWrapper ref={bodyRef} theme={theme}>
                   {children}

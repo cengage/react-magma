@@ -516,7 +516,6 @@ describe('Date Picker', () => {
         'none'
       );
     }, 500);
-
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
