@@ -823,3 +823,49 @@ export const AdjustableRowNumber = args => {
 AdjustableRowNumber.args = {
   numberRows: 300,
 };
+
+export const NoRowsPerPageControl = args => {
+  const [pageIndex, setPageIndex] = React.useState<number>(1);
+  const rowsPerPage = 5;
+
+  function handlePageChange(_, page) {
+    setPageIndex(page);
+  }
+
+  const rowsToShow = rowsLong.slice(
+    (pageIndex - 1) * rowsPerPage,
+    (pageIndex - 1) * rowsPerPage + rowsPerPage
+  );
+
+  return (
+    <Card isInverse={args.isInverse}>
+      <Table {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rowsToShow.map((row, i) => (
+            <TableRow key={`row${i}`}>
+              {row.map((cell, j) => (
+                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <TablePagination
+        itemCount={rowsLong.length}
+        onPageChange={handlePageChange}
+        page={pageIndex}
+        rowsPerPage={rowsPerPage}
+        isInverse={args.isInverse}
+        hasSquareCorners={args.hasSquareCorners}
+      />
+    </Card>
+  );
+};

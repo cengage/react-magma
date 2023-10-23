@@ -86,11 +86,18 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     );
   };
 
+  function handleEscape(event: React.KeyboardEvent) {
+    if (event.key === 'Escape') {
+      event.nativeEvent.stopImmediatePropagation();
+    }
+  }
+
   return (
     <StyledCard
       hasDropShadow
       isInverse={isInverse}
       isOpen={isOpen}
+      onKeyDown={handleEscape}
       style={menuStyle}
       theme={theme}
     >

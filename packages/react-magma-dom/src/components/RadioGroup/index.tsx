@@ -165,6 +165,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
           {labelText && !isTextVisuallyHidden && (
             <Label
+              actionable={false}
               id={id}
               style={labelStyle}
               isInverse={isInverse}

@@ -27,6 +27,11 @@ export interface PasswordInputProps
    * @default "Hide"
    */
   hidePasswordButtonText?: string;
+  /**
+   * Relative size of the component
+   * @default InputSize.medium
+   */
+  inputSize?: InputSize;
   isInverse?: boolean;
   /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
@@ -117,6 +122,35 @@ export const PasswordInput = React.forwardRef<
 
   const isInverse = useIsInverse(props.isInverse);
 
+  const usesDefaultText =
+    SHOW_PASSWORD_BUTTON_TEXT === i18n.password.shown.buttonText &&
+    HIDE_PASSWORD_BUTTON_TEXT === i18n.password.hidden.buttonText;
+
+  const buttonRef = React.useRef<HTMLButtonElement>();
+  
+  const getButtonWidth = () => {
+    if (usesDefaultText) {
+      if (inputSize === InputSize.large) {
+        return '64px';
+      }
+      return '54px';
+    } else {
+      return `${buttonRef?.current?.offsetWidth}px`;
+    }
+  }
+
+  const getInputStyle = () => {
+    if (isPasswordMaskButtonHidden) {
+      return {};
+    } else if (inputSize === InputSize.medium && usesDefaultText) {
+      return { width: 'calc(100% - 52px)' };
+    } else if (inputSize === InputSize.large && usesDefaultText) {
+      return { width: 'calc(100% - 64px)' };
+    } else {
+      return { width: `calc(100% - ${buttonRef?.current?.offsetWidth}px)` };
+    }
+  };
+
   return (
     <FormFieldContainer
       containerStyle={containerStyle}
@@ -143,7 +177,7 @@ export const PasswordInput = React.forwardRef<
         hasError={!!errorMessage}
         id={id}
         inputSize={inputSize}
-        inputStyle={{ width: 'calc(100% - 52px)' }}
+        inputStyle={getInputStyle()}
         isInverse={isInverse}
         ref={ref}
         type={passwordShown ? InputType.text : InputType.password}
@@ -161,17 +195,21 @@ export const PasswordInput = React.forwardRef<
               disabled={disabled}
               isInverse={isInverse}
               onClick={togglePasswordShown}
-              size={ButtonSize.small}
+              size={
+                inputSize === InputSize.medium
+                  ? ButtonSize.small
+                  : ButtonSize.medium
+              }
               style={{
-                borderRadius: theme.borderRadius,
-                height:
-                  inputSize == InputSize.large
-                    ? theme.spaceScale.spacing10
-                    : theme.spaceScale.spacing08,
-                margin: ' 0 3px 0 0 ',
+                borderRadius: theme.borderRadiusSmall,
+                margin: '0 3px 0 0',
+                width: getButtonWidth(),
+                minWidth: 0,
+                maxWidth: getButtonWidth(),
               }}
               type={ButtonType.button}
               variant={ButtonVariant.link}
+              ref={buttonRef}
             >
               {passwordShown
                 ? HIDE_PASSWORD_BUTTON_TEXT

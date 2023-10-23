@@ -1,10 +1,11 @@
+
 ## 4.1.1
 
 ### Patch Changes
 
-- 0d718be80: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
+- 0d718be80: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field
 - 0d718be80: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
-- 0d718be80: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. use `activeIndex` on the `TabsContainer` to indicate the active tab.
+- 0d718be80: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. Use `activeIndex` on the `TabsContainer` to indicate the active tab
 
 ## 4.1.0
 
@@ -44,7 +45,9 @@
 - f311f81e9: feat(toggleButton): New Toggle Button component.
 - ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
 
-  Deprecations: `dropdownDropDirection` prop is now deprecated
+### Deprecations
+
+- `dropdownDropDirection` prop is now deprecated
 
 ### Patch Changes
 
@@ -77,7 +80,7 @@
 - 47015f38: feat(characterCounter): New Character Counter component.
 - 15bdd2d0: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
 - 9daf9331: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
-  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+- fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
 - eb9ed1f3: feat(input): Added left label position capability for Combobox, DatePicker, Input, NativeSelect, PasswordInput, Textarea, and TimePicker. An additional prop of labelWidth has also been implemented for use in a column of Inputs for styling purposes.
 - 1893be73: feat(button): Subtle button
 
@@ -85,8 +88,8 @@
 
 - 34c2957a: fix(combobox): Combobox items have a default `type="button"` to prevent issues when used inside a form.
 - 85853eae: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
-  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
-  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+- feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+- feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
 - 1110043a: fix(table): Add keyboard only focus to tables without a focusable element.
 - 2fe13d60: docs(table): Storybook example with adjustable number of rows
 - 95fc5ae7: chore(npm/node): Update versions
@@ -124,14 +127,6 @@
 - 663a334d: build(deps): bump terser from 4.8.0 to 4.8.1
 
 ## 3.1.0
-
-### Minor Changes
-
-- 04e0a5a8: Release 3.1.0
-
-## 3.0.0
-
-**NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above**
 
 ### Major Changes
 
@@ -189,6 +184,10 @@
 - 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
 - 3a27353aa: fix(textarea): Textarea can now be cleared
 
+## 3.0.0
+
+**NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above**
+
 ## 2.5.11
 
 ### Patch Changes
@@ -196,14 +195,6 @@
 - 72db207d: fix: adding in reference for list props within the index
 - 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
 - a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
-
-## 2.5.10
-
-### Patch Changes
-
-- fdc6b27f: fix: adding in reference for list props within the index
-- fdc6b27f: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
-- fdc6b27f: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
 
 ## 2.5.10
 
@@ -233,7 +224,7 @@
 
 ### Patch Changes
 
-This was an accidental release. Please skip this version and upgrade to to 2.5.10.
+This was an accidental release. Please skip this version and upgrade to 2.5.10.
 
 ## 2.5.8
 
@@ -250,10 +241,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
 - 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
 - a23e8307: Fix: Added portal back into modal
-- c9907a67: feat: Inputs update
-
-  Removed top margin from helper and error messages related to inputs.
-
+- c9907a67: feat: Inputs update: Removed top margin from helper and error messages related to inputs.
 - fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
 - 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
 - edbdda88: Release 2.5.7
@@ -298,12 +286,11 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 
 ### Patch Changes
 
-- 4980c87a: - disable the clear and action buttons when the input is disabled
+- 4980c87a: disable the clear and action buttons when the input is disabled
 - ebdacccc: refactor(Dropdown): renamed handleMenuBlur to handleDropdownBlur
-- 8ee194d4: - extend TypographyProps for HeadingProps
-  - use Generic for TypographyProps
-- aea1e089: - fix(datepicker): keep close button below the helper information
-  - fix(datepicker): return focus to the previous element after closing helper information
+- 8ee194d4: extend TypographyProps for HeadingProps. Use Generic for TypographyProps
+- aea1e089: fix(datepicker): keep close button below the helper information
+- fix(datepicker): return focus to the previous element after closing helper information
 - 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
 - 12380623: fix(input): add onClear function to be called when the input is cleared by clicking the clear button
 
@@ -319,18 +306,14 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - 3260fafb: Call onClose function when clicking outside of the dropdown menu
 - e12e00cf: fix(textarea): default width to 100%
 - 12d6d789: fix StyledButton: move creation of wrappers outside of StyledButton render function
-- 93ecc6c8: Feature/grid
-
-  CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
-
+- 93ecc6c8: Feature/grid: CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
 - c5cec3f6: Add useFocusLock hook to fix focus jumping around inside of a modal that has components re-rendered.
 
 ## 2.5.0
 
 ### Minor Changes
 
-- 8e3559c3: Refactor pagination component to use the new `usePagination` hook.
-  Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
+- 8e3559c3: Refactor pagination component to use the new `usePagination` hook. Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
 
 ### Patch Changes
 
@@ -342,19 +325,11 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 
 ### Minor Changes
 
-- f0a1882f: fix/controlled-toggle
+- f0a1882f: fix/controlled-toggle: Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
 
-  Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
+- 88e2daee: Feature/datagrid: Creating a `Datagrid` component with the options to have selectable rows and pagination. As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
 
-- 88e2daee: Feature/datagrid
-
-  Creating a `Datagrid` component with the options to have selectable rows and pagination.
-
-  As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
-
-- b7f7e431: feature/transitions: Add `Transition` component.
-
-  A reusable Transition components that allows teams to use the same standard transitions everywhere.
+- b7f7e431: feature/transitions: Add `Transition` component. A reusable Transition components that allows teams to use the same standard transitions everywhere.
 
   ```
   <Transition fade nudgeTop>
@@ -363,9 +338,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
   ```
 
 - c49cda0e: Add new transition component
-- 1ceb9951: Feature/accordion
-
-  Adding a new accordion component
+- 1ceb9951: Feature/accordion: Adding a new accordion component
 
 ### Patch Changes
 
@@ -380,7 +353,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 
 - d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
-### 2.3.9 (2021-03-24)
+### 2.3.9
 
 - chore: update to node 14, npm 7
 - fix(checkbox): switch to icon for unchecked state
@@ -391,20 +364,20 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(Button): default to ButtonType.button
 - fix(icons): update remaining v1 icons
 
-### 2.3.8 (2021-03-01)
+### 2.3.8
 
 - fix: update dependencies accross packages
 - docs(checkbox): improve stories
 
-### 2.3.7 (2021-02-22)
+### 2.3.7
 
 - feat(icons): release v2.0.0
 
-### 2.3.6 (2021-02-18)
+### 2.3.6
 
 - Note: Version bump only for package react-magma-dom
 
-### 2.3.5 (2021-02-18)
+### 2.3.5
 
 - table: duplicate exports (1583413)
 - ci(stories): add remaining stories
@@ -420,13 +393,13 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(label): add labelPosition enum
 - feature(table): add pagination
 
-### 2.3.4 (2021-01-25)
+### 2.3.4
 
 - ci(storybook): add storybook
 - chore: update contributing guide
 - fix(tooltip): improve positioning
 
-### 2.3.3 (2021-01-20)
+### 2.3.3
 
 - docs(theme): use magma theme in more places
 - feat(combobox): add isMulti XOR
@@ -436,7 +409,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(hyperlink): extend Anchor
 - fix(theme): remove jsx pragma
 
-### 2.3.2 (2020-12-30)
+### 2.3.2
 
 - ci(actions): new github Actions
 - ci(actions): deploy to Netlify
@@ -449,7 +422,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(combobox): support maxHeight
 - fix(combobox): support customComponents
 
-### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0) (2020-12-11)
+### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0)
 
 ### Bug Fixes
 
@@ -457,7 +430,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - **dropdown:** add interfaces with default props, testids ([65d15d7](https://github.com/cengage/react-magma/commit/65d15d70131cf45d40622f41e45bd96284729c10))
 - **tab:** handle click parameter names fixed ([70dc881](https://github.com/cengage/react-magma/commit/70dc881078a1823c7031eb973362eef369682dc3))
 
-## [2.3.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.0) (2020-12-08)
+## [2.3.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.0)
 
 ### Features
 

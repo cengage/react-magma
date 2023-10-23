@@ -1,5 +1,120 @@
 # Change Log
 
+## 5.0.4-next.15
+
+### Patch Changes
+
+- Updated dependencies [89e7a8f13]
+  - react-magma-dom@4.2.0-next.14
+
+## 5.0.4-next.14
+
+### Patch Changes
+
+- f14ff0818: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
+
+## 5.0.4-next.13
+
+### Patch Changes
+
+- Updated dependencies [68276abaa]
+  - react-magma-dom@4.2.0-next.13
+
+## 5.0.4-next.12
+
+### Patch Changes
+
+- Updated dependencies [fa88fa7c5]
+  - react-magma-dom@4.2.0-next.12
+
+## 5.0.4-next.11
+
+### Patch Changes
+
+- Updated dependencies [77823fb11]
+  - react-magma-dom@4.2.0-next.11
+
+## 5.0.4-next.10
+
+### Patch Changes
+
+- Updated dependencies [1c446c209]
+  - react-magma-dom@4.2.0-next.10
+
+## 5.0.4-next.9
+
+### Patch Changes
+
+- Updated dependencies [1cf3809cc]
+  - react-magma-dom@4.2.0-next.9
+
+## 5.0.4-next.8
+
+### Patch Changes
+
+- Updated dependencies [bc4104600]
+  - react-magma-dom@4.2.0-next.8
+
+## 5.0.4-next.7
+
+### Patch Changes
+
+- Updated dependencies [caa2c7b6a]
+  - react-magma-dom@4.2.0-next.7
+
+## 5.0.4-next.6
+
+### Patch Changes
+
+- Updated dependencies [3001a5e35]
+  - react-magma-dom@4.2.0-next.6
+
+## 5.0.4-next.5
+
+### Patch Changes
+
+- Updated dependencies [ab9229c81]
+  - react-magma-dom@4.2.0-next.5
+
+## 5.0.4-next.4
+
+### Patch Changes
+
+- Updated dependencies [101f514b1]
+  - react-magma-dom@4.2.0-next.4
+
+## 5.0.4-next.3
+
+### Patch Changes
+
+- Updated dependencies [8f1bcbe31]
+  - react-magma-dom@4.2.0-next.3
+
+## 5.0.4-next.2
+
+### Patch Changes
+
+- Updated dependencies [9f2aa435d]
+  - react-magma-dom@4.2.0-next.2
+
+## 5.0.4-next.1
+
+### Patch Changes
+
+- Updated dependencies [b5f6189fa]
+  - react-magma-dom@4.2.0-next.1
+
+## 5.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [9a09b8b55]
+  - react-magma-dom@4.2.0-next.0
+  - @react-magma/charts@5.0.0-next.0
+  - @react-magma/dropzone@5.0.0-next.0
+  - @react-magma/schema-renderer@5.0.0-next.0
+  - @cengage-patterns/header@7.0.0-next.0
+
 ## 5.0.3
 
 ### Patch Changes

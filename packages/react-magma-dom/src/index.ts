@@ -86,6 +86,23 @@ export {
   DropdownButton,
   DropdownButtonProps,
 } from './components/Dropdown/DropdownButton';
+export { DropdownExpandableMenuGroup } from './components/Dropdown/DropdownExpandableMenuGroup';
+export {
+  DropdownExpandableMenuItem,
+  DropdownExpandableMenuItemProps,
+} from './components/Dropdown/DropdownExpandableMenuItem';
+export {
+  DropdownExpandableMenuListItem,
+  DropdownExpandableMenuListItemProps,
+} from './components/Dropdown/DropdownExpandableMenuListItem';
+export {
+  DropdownExpandableMenuButton,
+  DropdownExpandableMenuButtonProps,
+} from './components/Dropdown/DropdownExpandableMenuButton';
+export {
+  DropdownExpandableMenuPanel,
+  DropdownExpandableMenuPanelProps,
+} from './components/Dropdown/DropdownExpandableMenuPanel';
 export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
