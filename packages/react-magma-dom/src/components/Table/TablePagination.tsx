@@ -14,7 +14,7 @@ import { useControlled } from '../../hooks/useControlled';
 import { transparentize } from 'polished';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { NativeSelect } from '../NativeSelect';
-import { Dropdown, DropdownAlignment, DropdownButton, DropdownContent, DropdownDropDirection, DropdownMenuItem } from '../Dropdown';
+import { DropdownDropDirection } from '../Dropdown';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -34,7 +34,8 @@ export interface BaseTablePaginationProps
    */
   onPageChange?: (event: React.SyntheticEvent, newPage: number) => void;
   /**
-   * Event that fires when the number of rows per page changes
+   * Event that fires when the number of rows per page changes.
+   * If no function is passed, the rows per page select will be hidden
    */
   onRowsPerPageChange?: (newRowsPerPage: number) => void;
   /**
@@ -136,6 +137,58 @@ const RowsPerPageLabel = styled.span<{
   color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
 `;
 
+interface RowsPerPageControllerProps {
+  /**
+   * Event that fires when the number of rows per page changes
+   */
+  handleRowsPerPageChange?: (value: any) => void;
+  /**
+   * Values added to the rows per page select
+   */
+  rowsPerPageValues: number[];
+  isInverse?: boolean;
+}
+
+const RowsPerPageController = ((props: RowsPerPageControllerProps) => {
+  const {
+    handleRowsPerPageChange,
+    rowsPerPageValues,
+    isInverse,
+  } = props;
+
+    const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
+
+    const rowsPerPageItems = rowsPerPageValues.map(value => ({
+      label: value.toString(),
+      value,
+    }));
+
+  return (
+    <>
+      <RowsPerPageLabel isInverse={isInverse} theme={theme}>
+          {i18n.table.pagination.rowsPerPageLabel}:
+      </RowsPerPageLabel> 
+      <NativeSelect
+        onChange={(event) => handleRowsPerPageChange(event.target.value)}
+        aria-label={i18n.table.pagination.rowsPerPageLabel}
+        style={{minWidth: 80}}
+        testId="rowPerPageSelect" 
+        fieldId={''}
+      >
+        {rowsPerPageItems.map((row, index) => (
+          <option
+            key={index}
+            value={row.value}
+          >
+            {row.label}
+          </option>
+        ))}
+      </NativeSelect> 
+    </>
+  )
+});
+
 export const TablePagination = React.forwardRef<
   HTMLDivElement,
   TablePaginationProps
@@ -147,7 +200,7 @@ export const TablePagination = React.forwardRef<
     defaultRowsPerPage = 10,
     itemCount,
     onPageChange,
-    onRowsPerPageChange,
+    onRowsPerPageChange = null,
     page: pageProp,
     rowsPerPage: rowsPerPageProp,
     rowsPerPageValues = [10, 20, 50, 100],
@@ -157,6 +210,8 @@ export const TablePagination = React.forwardRef<
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+
+  const hasRowPerPageChangeFunction = onRowsPerPageChange && typeof onRowsPerPageChange === 'function';
 
   const isInverse = useIsInverse(props.isInverse);
 
@@ -174,18 +229,12 @@ export const TablePagination = React.forwardRef<
     page: pageProp,
   });
 
-  const [activeIndex, setActiveIndex] = React.useState(rowsPerPage);
   const isLastPage = page * rowsPerPage >= itemCount;
 
   const displayPageStart = (page - 1) * rowsPerPage + 1;
   const displayPageEnd = isLastPage ? itemCount : page * rowsPerPage;
 
-  const rowsPerPageItems = rowsPerPageValues.map(value => ({
-    label: value.toString(),
-    value,
-  }));
-
-  function handleRowsPerPageChange(event) {
+  function handleRowsPerPageChange(value) {
     if (!pageProp) {
       setPageState(1);
 
@@ -195,15 +244,11 @@ export const TablePagination = React.forwardRef<
     }
 
     if (!rowsPerPageProp) {
-      setRowsPerPageState(event.target.value);
+      setRowsPerPageState(value);
     }
 
-    onRowsPerPageChange &&
-      typeof onRowsPerPageChange === 'function' &&
-      onRowsPerPageChange(event.target.value);
-      if(dropdownDropDirection) {
-        setActiveIndex(rowsPerPage);
-      }
+    hasRowPerPageChangeFunction &&
+      onRowsPerPageChange(value);
   }
 
   const previousButton = pageButtons[0];
@@ -218,55 +263,14 @@ export const TablePagination = React.forwardRef<
       ref={ref}
       theme={theme}
     >
-      <RowsPerPageLabel isInverse={isInverse} theme={theme}>
-        {i18n.table.pagination.rowsPerPageLabel}:
-      </RowsPerPageLabel>
-      {dropdownDropDirection ? 
-        <Dropdown
-          alignment={DropdownAlignment.end}
-          dropDirection={dropdownDropDirection}
-          activeIndex={activeIndex}
-          isInverse={isInverse}
-        >
-          <DropdownButton
-            aria-label={i18n.table.pagination.rowsPerPageLabel}
-            color={ButtonColor.secondary}
-            style={{ minWidth: 0 }}
-            testId="rowPerPageDropdownButton"
-          >
-            {rowsPerPageItems.find(item => item.value === rowsPerPage).label}
-          </DropdownButton>
-          <DropdownContent>
-            {rowsPerPageItems.map((row, index) => (
-              <DropdownMenuItem
-                key={index}
-                onClick={handleRowsPerPageChange}
-                value={row.value}
-              >
-                {row.label}
-              </DropdownMenuItem>
-            ))}
-          </DropdownContent>
-        </Dropdown> : 
-        <NativeSelect
-          onChange={handleRowsPerPageChange}
-          aria-label={i18n.table.pagination.rowsPerPageLabel}
-          style={{minWidth: 80}}
-          testId="rowPerPageSelect" 
-          fieldId={''}
-        >
-          {rowsPerPageItems.map((row, index) => (
-            <option
-              key={index}
-              value={row.value}
-            >
-              {row.label}
-            </option>
-          ))}
-        </NativeSelect> 
+      { hasRowPerPageChangeFunction &&
+          <RowsPerPageController
+            isInverse={isInverse}
+            handleRowsPerPageChange={handleRowsPerPageChange}
+            rowsPerPageValues={rowsPerPageValues}
+        />
       }
       
-
       <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>

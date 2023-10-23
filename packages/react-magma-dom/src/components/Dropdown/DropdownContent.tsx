@@ -102,10 +102,6 @@ const StyledCard = styled(Card)<{
    `}
 `;
 
-const StyledDiv = styled.div`
-  padding: ${props => props.theme.spaceScale.spacing02} 0;
-`;
-
 export const DropdownContent = React.forwardRef<
   HTMLDivElement,
   DropdownContentProps
@@ -117,14 +113,20 @@ export const DropdownContent = React.forwardRef<
 
   let hasItemChildren = false;
 
+  // For Expandable Dropdowns that don't require a max-height
+  let hasExpandableItems = false;
+
   React.Children.forEach(children, (child: any) => {
     if (
-      child.type?.displayName === 'DropdownMenuItem' ||
-      child.type?.displayName === 'DropdownMenuGroup'
+      child?.type?.displayName === 'DropdownMenuItem' ||
+      child?.type?.displayName === 'DropdownMenuGroup'
     ) {
       hasItemChildren = true;
-      return;
     }
+    if (child.type?.displayName === 'DropdownExpandableMenuGroup') {
+      hasExpandableItems = true;
+    }
+    return;
   });
 
   return (
@@ -137,18 +139,22 @@ export const DropdownContent = React.forwardRef<
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
       ref={ref}
+      style={
+        hasExpandableItems
+          ? { maxHeight: 'inherit', overflow: 'hidden' }
+          : props.style
+      }
       tabIndex={-1}
       testId={testId || 'dropdownContent'}
       theme={theme}
       width={context.width}
     >
-      <StyledDiv
+      <div
         aria-labelledby={context.dropdownButtonId.current}
         role={hasItemChildren ? 'menu' : null}
-        theme={theme}
       >
         {children}
-      </StyledDiv>
+      </div>
     </StyledCard>
   );
 });
