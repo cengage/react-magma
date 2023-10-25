@@ -1,5 +1,7 @@
 # Change Log
 
+## 7.0.0
+
 ## 7.0.0-next.0
 
 ### Patch Changes

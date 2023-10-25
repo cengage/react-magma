@@ -621,7 +621,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     }
 
     const passwordBtnWidth = () => {
-      const btnWidth = children?.props?.children?.[0]?.ref?.current?.offsetWidth;
+      const btnWidth =
+        children?.props?.children?.[0]?.ref?.current?.offsetWidth;
+
       if (typeof btnWidth === 'number') {
         return btnWidth;
       } else {
