@@ -1,45 +1,25 @@
-## 3.5.1-next.1
-
-## 3.6.0-next.3
+## 3.6.0
 
 ### Minor Changes
 
-- 9b76cb2fb: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-- 9b76cb2fb: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
+- 6cc99c6de: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
+- 6cc99c6de: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
 
 ### Patch Changes
 
-- 9b76cb2fb: fix(DropdownExpandableMenuListItem): Add `role="menuitem"`
-- 9b76cb2fb: fix(DropdownContent): Handle `false` as child
-- 9b76cb2fb: fix(DatePicker): Escape key only closes the panel
-- 9b76cb2fb: fix(Dropdown): Fixes from QA review of the Dropdown Expandable sub component disabled states.
-- 9b76cb2fb: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-- 9b76cb2fb: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
-- 9b76cb2fb: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
-- 9b76cb2fb: fix(PasswordInput): Update placement of Show/Hide button on Large input size
-- 9b76cb2fb: fix(RadioGroup): Radio Group label is now a span to improve a11y
-- 9b76cb2fb: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
-- 9b76cb2fb: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
-- 9b76cb2fb: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
-- 9b76cb2fb: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
-
-## 3.5.1-next.2
-
-### Patch Changes
-
-- 7c8a9f5ad: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
-
-### Patch Changes
-
-- 1fa916be0: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
-
-## 3.5.1-next.0
-
-### Patch Changes
-
-- e8c968bb8: fix(CharacterCounter): Add `ref` to Character Counter. Removes related test console warning.
-- 1c91ac394: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
-  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+- 6cc99c6de: fix(DropdownExpandableMenuListItem): Add `role="menuitem"`
+- 6cc99c6de: fix(DropdownContent): Handle `false` as child
+- 6cc99c6de: fix(DatePicker): Escape key only closes the panel
+- 6cc99c6de: fix(Dropdown): Fixes from QA review of the Dropdown Expandable sub component disabled states.
+- 6cc99c6de: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
+- 6cc99c6de: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
+- 6cc99c6de: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
+- 6cc99c6de: fix(PasswordInput): Update placement of Show/Hide button on Large input size
+- 6cc99c6de: fix(RadioGroup): Radio Group label is now a span to improve a11y
+- 6cc99c6de: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
+- 6cc99c6de: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
+- 6cc99c6de: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
+- 6cc99c6de: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
 
 ## 3.5.0
 
@@ -69,6 +49,94 @@
 ## 3.4.0
 
 **We accidentally skipped version 3.4.0. Please use 3.5.0 instead**
+
+## 3.3.0
+
+## Minor Changes
+
+- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- 17fc12212: feat(toggleButton): New Toggle Button component.
+- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+  Deprecations: dropdownDropDirection prop is now deprecated
+
+## Patch Changes
+
+- 17fc12212: Set fallback font-family for all components.
+- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- 17fc12212: chore: Fix broken build
+- 17fc12212: chore: Fixed warnings in the console.
+- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 17fc12212: fix(heading): Fix error that "Property 'css' is missing"
+- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 17fc12212: fix(toggleButton): Fix hover states
+
+## 3.5.0
+
+### Minor Changes
+
+- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- 30026b18d: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
+- 17fc12212: feat(toggleButton): New Toggle Button component.
+- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+  Deprecations: `dropdownDropDirection` prop is now deprecated
+
+### Patch Changes
+
+- 17fc12212: Set fallback `font-family` for all components.
+- 30026b18d: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
+- 30026b18d: fix(CharCounter): Update maxLength/maxCount logic.
+- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- 30026b18d: fix(CharCounter): Update calculation for character length on rerender.
+- 30026b18d: fix(CharacterCounter): Add `ref` to Character Counter. Removes related test console warning.
+- 30026b18d: fix(combobox): Disabled Multi Combobox disables the buttons inside it
+- 17fc12212: chore: Fix broken build
+- 30026b18d: fix(Character Counter): Two new props have been added. The `hasCharacterCounter` prop which defaults to `true` and the `maxCount` prop which replaces `maxLength` and enables the Character Counter.
+
+  In the interim if an input needs a native `maxlength` and not a Character Counter, set `hasCharacterCounter={false}` and then use `maxLength`.
+
+  Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
+
+- 30026b18d: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+- 17fc12212: chore: Fixed warnings in the console.
+- 30026b18d: fix(inputbase): Update icon/button position for inputs with two icons.
+- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 30026b18d: fix(Modal): Added support for closing individual nested modals with escape key.
+- 30026b18d: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
+- 30026b18d: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+- 30026b18d: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
+- 30026b18d: fix(alertbase): Update height for toasts in AlertBase
+- 30026b18d: chore: Revert Input outline commits
+- 17fc12212: fix(heading): Fix error that `"Property 'css' is missing"`
+- 30026b18d: fix(select): Fix Multi Select placeholder text alignment
+- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 17fc12212: fix(toggleButton): Fix hover states
+
+## 3.4.0
+
+## Minor Changes
+
+- 3d00dcc7e: feat(SimplePagination): New Pagination type which changes the pages in Pagination from a series of individual buttons to a dropdown.
+
+### Patch Changes
+
+- c0a658b5a: fix(Button): Update button z-index when it's in focus to bring the focus outline to the front.
+- 155f2de2c: fix(CharCounter): Update maxLength/maxCount logic.
+- caee2a755: fix(CharCounter): Update calculation for character length on rerender.
+- 35a33a7ae: fix(combobox): Disabled Multi Combobox disables the buttons inside it
+- cca876b3a: fix(dropdown): Dropdowns without DropdownMenuItem will get focused on open. Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+- 630bb5ab3: fix(Character Counter): Two new props have been added. The hasCharacterCounter prop which defaults to true and the maxCount prop which replaces maxLength and enables the Character Counter.
+  In the interim if an input needs a native maxlength and not a Character Counter, set hasCharacterCounter={false} and then use maxLength.
+  Please note that in the meantime, maxLength is still supported but will need to be changed to maxCount as future releases will remove maxLength and hasCharacterCounter.
+- 8ffdf899b: fix(Character Counter): Fixed bold text in Character Counter before user input, red error border on maxLength only Inputs and Textareas with hasCharacterCounter set to false, then removed unintentional maxLength limit on Textarea using maxLength or maxCount with hasCharacterCounter set to true.
+- d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
+- 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
+- 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
+- 6b6e0de20: fix(SimplePagination): Fixed keyboard navigation on previous and next buttons, onPageChange function now reads the current page, VoiceOver fix for current page, and responsive tweaks.
+- 7066b5c84: fix(TablePagination): TablePagination component now respects theme border radius on bottom corners
+- f487b936f: fix(alertbase): Update height for toasts in AlertBase
+- 92569a238: chore: Revert Input outline commits
+- 4a10f8905: fix(select): Fix Multi Select placeholder text alignment
 
 ## 3.3.0
 
