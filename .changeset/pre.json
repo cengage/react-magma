@@ -10,22 +10,5 @@
     "react-magma-docs": "5.0.3",
     "react-magma-landing": "1.1.2"
   },
-  "changesets": [
-    "dropdown-menuItemRole",
-    "dropdownContent-falseChild",
-    "feat-dropdownExpandableMenu",
-    "feat-optionalPerPageSelect",
-    "fix-datePickerEscape",
-    "fix-dropdownDocsStorybook",
-    "fix-expandableDropdown",
-    "fix-expandableDropdownDisabled",
-    "fix-labelsColors",
-    "fix-modalEscape",
-    "fix-passInputLarge",
-    "fix-radioGroup",
-    "inputHeight",
-    "nativeSelectHeight",
-    "sortArrows",
-    "update-modalPadding"
-  ]
+  "changesets": []
 }

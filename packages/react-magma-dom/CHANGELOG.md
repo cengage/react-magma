@@ -95,8 +95,6 @@
 
 ## 4.1.1
 
-## 4.2.0-next.14
-
 ### Patch Changes
 
 - 89e7a8f13: fix(DropdownExpandableMenuListItem): Add `role="menuitem"`
