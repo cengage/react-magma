@@ -1,5 +1,7 @@
 # @react-magma/schema-renderer
 
+## 5.0.0
+
 ## 5.0.0-next.0
 
 ### Patch Changes
