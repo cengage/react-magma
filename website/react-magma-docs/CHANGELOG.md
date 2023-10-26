@@ -1,30 +1,42 @@
 # Change Log
 
-## 5.0.3-next.5
+## 5.0.4
 
 ### Patch Changes
 
-- 9b76cb2fb: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-  - react-magma-dom@3.6.0-next.3
-  - @react-magma/charts@3.0.0-next.1
-  - @react-magma/dropzone@3.0.0-next.1
-  - @react-magma/schema-renderer@3.0.0-next.1
-  - @cengage-patterns/header@5.0.0-next.1
+- 6cc99c6de: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+  - react-magma-dom@3.6.0
+
+## 5.0.3
+
+### Patch Changes
+
+- 82bf61bae: Update typos
+- 82bf61bae: Update Changelog
+- Updated dependencies [82bf61bae]
+- Updated dependencies [82bf61bae]
+- Updated dependencies [82bf61bae]
+- Updated dependencies [82bf61bae]
+  - react-magma-dom@3.5.1
+  - @react-magma/charts@2.0.2
+  - @react-magma/dropzone@2.0.2
+  - @react-magma/schema-renderer@2.0.2
+  - @cengage-patterns/header@4.0.2
 
 ## 5.0.3-next.4
 
@@ -398,7 +410,8 @@
   - @cengage-patterns/header@5.0.0-next.0
   - @react-magma/schema-renderer@3.0.0-next.0
 
-> > > > > > > 2daef3b51 (chore: enter prerelease mode)
+2daef3b51 (chore: enter prerelease mode)
+30026b18d (Release v3.4.0 (#1075))
 
 ## 4.0.6
 
