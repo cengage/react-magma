@@ -1,25 +1,6 @@
 # Change Log
 
-## 5.0.0-next.1
-
-### Patch Changes
-
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-- Updated dependencies [9b76cb2fb]
-  - react-magma-dom@3.6.0-next.3
+## 4.0.2
 
 ## 4.0.2-next.0
 
