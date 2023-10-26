@@ -509,7 +509,6 @@ describe('Date Picker', () => {
       key: 'Escape',
       code: 27,
     });
-
     setTimeout(() => {
       expect(getByTestId('calendarContainer')).toHaveStyleRule(
         'display',
