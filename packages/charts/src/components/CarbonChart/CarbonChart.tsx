@@ -8,19 +8,17 @@ import {
 } from 'react-magma-dom';
 
 import {
-  AreaChart,
   SimpleBarChart,
-  BubbleChart,
-  WordCloudChart,
+  LollipopChart,
+  GroupedBarChart,
 } from '@carbon/charts-react';
 import '@carbon/styles/css/styles.css';
 import '@carbon/charts/styles.css';
 
 export enum CarbonChartType {
-  area = 'area',
   bar = 'bar',
-  bubble = 'bubble',
-  word = 'word',
+  lollipop = 'lollipop',
+  grouped = 'grouped',
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -41,8 +39,8 @@ const CarbonChartWrapper = styled.div<{
 }>`
 
   .cds--cc--tooltip .content-box .datapoint-tooltip p{
-    font-size:14px;
-    padding:4px;
+    font-size: ${props => props.theme.typeScale.size02.fontSize};
+    padding: ${props => props.theme.spaceScale.spacing02};
   }
 
   .cds--modal-container{
@@ -52,7 +50,7 @@ const CarbonChartWrapper = styled.div<{
   p, div, text, .cds--cc--axes g.axis .axis-title,
   .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
-    font-family: 'Work Sans', Helvetica, sans-serif !important;
+    font-family: ${props => props.theme.bodyFont} !important;
   }
 
   .cds--cc--axes {
@@ -60,8 +58,8 @@ const CarbonChartWrapper = styled.div<{
   }
 
   div.cds--cc--legend div.legend-item p {
-    font-size: 16px;
-    margin: 0 8px 0 0;
+    font-size:  ${props => props.theme.typeScale.size03.fontSize};
+    margin: 0  ${props => props.theme.spaceScale.spacing03} 0 0;
   }
 
   .cds--cc--grid rect.chart-grid-backdrop{
@@ -71,23 +69,23 @@ const CarbonChartWrapper = styled.div<{
   .cds--btn {
     min-height: auto;
     display: flex;
-        flex: 0 auto;
+    flex: 0 auto;
     align-items: center;
     text-align: center;
     padding: 20px;
     margin: 0;
-    line-height: 24px;
+    line-height:  ${props => props.theme.typeScale.size03.lineHeight};
     margin: 0;
-    min-width: 96px;
+    min-width:  ${props => props.theme.spaceScale.spacing13};
     overflow: hidden;
-    padding: 12px 16px;
+    padding: ;
     position: relative;
-    right: 12px;
+    right: ${props => props.theme.spaceScale.spacing04};
     text-align: center;
     height: 40px;
-    font-family: "Work Sans",Helvetica,sans-serif;
-    font-size: 16px;
-    border-radius: 8px;
+    font-family: ${props => props.theme.bodyFont};
+    font-size: ${props => props.theme.typeScale.size03.fontSize};
+    border-radius: ${props => props.theme.borderRadius};
     font-weight: 500;
   }
 
@@ -163,12 +161,10 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
-
     const allCharts = {
-      area: AreaChart,
       bar: SimpleBarChart,
-      bubble: BubbleChart,
-      word: WordCloudChart,
+      lollipop: LollipopChart,
+      grouped: GroupedBarChart,
     };
 
     function buildColors() {
@@ -182,8 +178,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       );
 
       uniqueGroups.forEach((group, i) => {
-        if (uniqueGroups.length <= theme.iterableColors.length) {
-          return (scaleColorsObj[group || 'null'] = theme.iterableColors[i]);
+        if (isInverse) {
+          return (scaleColorsObj[group || 'null'] =
+            theme.chartColorsInverse[i]);
+        } else if (uniqueGroups.length <= theme.chartColors.length) {
+          return (scaleColorsObj[group || 'null'] = theme.chartColors[i]);
         }
         return {};
       });

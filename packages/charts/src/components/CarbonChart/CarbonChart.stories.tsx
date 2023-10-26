@@ -16,8 +16,8 @@ export default {
       control: {
         type: 'select',
         options: CarbonChartType,
-      }
-    }
+      },
+    },
   },
 } as Meta;
 
@@ -27,82 +27,9 @@ const Template: Story<CarbonChartProps> = args => (
   </Card>
 );
 
-export const AreaChart = Template.bind({});
-AreaChart.args = {
-  isInverse: false,
-  type: CarbonChartType.area,
-  dataSet: [
-    {
-      group: 'Dataset 1',
-      date: '2019-01-01T05:00:00.000Z',
-      value: 0,
-    },
-    {
-      group: 'Dataset 1',
-      date: '2019-01-06T05:00:00.000Z',
-      value: -37312,
-    },
-    {
-      group: 'Dataset 1',
-      date: '2019-01-08T05:00:00.000Z',
-      value: -22392,
-    },
-    {
-      group: 'Dataset 1',
-      date: '2019-01-15T05:00:00.000Z',
-      value: -52576,
-    },
-    {
-      group: 'Dataset 1',
-      date: '2019-01-19T05:00:00.000Z',
-      value: 20135,
-    },
-    {
-      group: 'Dataset 2',
-      date: '2019-01-01T05:00:00.000Z',
-      value: 47263,
-    },
-    {
-      group: 'Dataset 2',
-      date: '2019-01-05T05:00:00.000Z',
-      value: 14178,
-    },
-    {
-      group: 'Dataset 2',
-      date: '2019-01-08T05:00:00.000Z',
-      value: 23094,
-    },
-    {
-      group: 'Dataset 2',
-      date: '2019-01-13T05:00:00.000Z',
-      value: 45281,
-    },
-    {
-      group: 'Dataset 2',
-      date: '2019-01-19T05:00:00.000Z',
-      value: -63954,
-    },
-  ],
-  options: {
-    title: 'Area (time series - natural curve)',
-    axes: {
-      bottom: {
-        title: '2019 Annual Sales Figures',
-        mapsTo: 'date',
-        scaleType: 'time',
-      },
-      left: {
-        mapsTo: 'value',
-        scaleType: 'linear',
-      },
-    },
-    curve: 'curveNatural',
-    height: '400px',
-  },
-};
-
-export const BarChart = Template.bind({});
-BarChart.args = {
+//Simple//
+export const VerticalSimpleBarDiscrete = Template.bind({});
+VerticalSimpleBarDiscrete.args = {
   isInverse: false,
   type: CarbonChartType.bar,
   dataSet: [
@@ -142,581 +69,1322 @@ BarChart.args = {
   },
 };
 
-export const BubbleChart = Template.bind({});
-BubbleChart.args = {
+export const VerticalSimpleBarTimeSeries = Template.bind({});
+VerticalSimpleBarTimeSeries.args = {
   isInverse: false,
-  type: CarbonChartType.bubble,
+  type: CarbonChartType.bar,
   dataSet: [
     {
-      group: 'Dataset 1',
-      sales: 10000,
-      profit: 32100,
-      surplus: 50000,
+      group: 'Qty',
+      date: new Date(2019, 0, 1),
+      value: 10000,
     },
     {
-      group: 'Dataset 1',
-      sales: 12000,
-      profit: 23500,
-      surplus: 34000,
+      group: 'More',
+      date: new Date(2019, 0, 2),
+      value: 65000,
     },
     {
-      group: 'Dataset 1',
-      sales: 14000,
-      profit: 53100,
-      surplus: 63000,
+      group: 'Sold',
+      date: new Date(2019, 0, 3),
+      value: 30000,
     },
     {
-      group: 'Dataset 1',
-      sales: 15000,
-      profit: 42300,
-      surplus: 43000,
+      group: 'Restocking',
+      date: new Date(2019, 0, 6),
+      value: 49213,
     },
     {
-      group: 'Dataset 1',
-      sales: 16000,
-      profit: 12300,
-      surplus: 55000,
-    },
-    {
-      group: 'Dataset 2',
-      sales: 11000,
-      profit: 12400,
-      surplus: 25000,
-    },
-    {
-      group: 'Dataset 2',
-      sales: 13000,
-      profit: 34500,
-      surplus: 35000,
-    },
-    {
-      group: 'Dataset 2',
-      sales: 13500,
-      profit: 23100,
-      surplus: 55000,
-    },
-    {
-      group: 'Dataset 2',
-      sales: 15500,
-      profit: 63200,
-      surplus: 35000,
-    },
-    {
-      group: 'Dataset 2',
-      sales: 15750,
-      profit: 24300,
-      surplus: 64000,
+      group: 'Misc',
+      date: new Date(2019, 0, 7),
+      value: 51213,
     },
   ],
   options: {
-    title: 'Bubble (linear)',
+    title: 'Vertical simple bar (time series)',
     axes: {
-      bottom: {
-        title: 'No. of employees',
-        mapsTo: 'sales',
-        includeZero: false,
-      },
       left: {
-        title: 'Annual sales',
-        mapsTo: 'profit',
-        includeZero: false,
+        mapsTo: 'value',
       },
-    },
-    bubble: {
-      radiusMapsTo: 'surplus',
-      radiusLabel: 'Surplus',
-    },
-    legend: {
-      additionalItems: [
-        {
-          type: 'radius',
-          name: 'Surplus',
-        },
-      ],
+      bottom: {
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
     },
     height: '400px',
   },
 };
 
-export const WordCloudChart = Template.bind({});
-WordCloudChart.args = {
+export const VerticalSimpleBarTimeSeriesDenseDataTurkish = Template.bind({});
+VerticalSimpleBarTimeSeriesDenseDataTurkish.args = {
   isInverse: false,
-  type: CarbonChartType.word,
+  type: CarbonChartType.bar,
   dataSet: [
     {
-      word: 'Lorem',
-      value: 52,
-      group: 'Second',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10000,
     },
     {
-      word: 'ipsum',
-      value: 25,
-      group: 'Second',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 20001,
     },
     {
-      word: 'dolor',
-      value: 51,
-      group: 'Second',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10002,
     },
     {
-      word: 'amet',
-      value: 40,
-      group: 'First',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10062,
     },
     {
-      word: 'consectetur',
-      value: 25,
-      group: 'Fourth',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 30003,
     },
     {
-      word: 'adipiscing',
-      value: 36,
-      group: 'Fourth',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 20004,
     },
     {
-      word: 'elit',
-      value: 40,
-      group: 'First',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10005,
     },
     {
-      word: 'Duis',
-      value: 18,
-      group: 'First',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 50006,
     },
     {
-      word: 'dapibus',
-      value: 49,
-      group: 'Third',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 20006,
     },
     {
-      word: 'urna',
-      value: 18,
-      group: 'First',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 40007,
     },
     {
-      word: 'tellus',
-      value: 54,
-      group: 'Second',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 30008,
     },
     {
-      word: 'placerat',
-      value: 57,
-      group: 'Third',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10000,
     },
     {
-      word: 'leo',
-      value: 18,
-      group: 'First',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10000,
     },
     {
-      word: 'semper',
-      value: 18,
-      group: 'Second',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 20000,
     },
     {
-      word: 'venenatis',
-      value: 43,
-      group: 'Fourth',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10000,
     },
     {
-      word: 'Vestibulum',
-      value: 50,
-      group: 'Fourth',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 30000,
     },
     {
-      word: 'imperdiet',
-      value: 30,
-      group: 'Fourth',
-    },
-    {
-      word: 'erat',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'auctor',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'purus',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'ullamcorper',
-      value: 18,
-      group: 'Fourth',
-    },
-    {
-      word: 'porta',
-      value: 52,
-      group: 'Second',
-    },
-    {
-      word: 'Pellentesque',
-      value: 40,
-      group: 'Fourth',
-    },
-    {
-      word: 'porta',
-      value: 39,
-      group: 'Second',
-    },
-    {
-      word: 'aliquam',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'est',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'bibendum',
-      value: 46,
-      group: 'Third',
-    },
-    {
-      word: 'lorem',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'Morbi',
-      value: 46,
-      group: 'Second',
-    },
-    {
-      word: 'dui',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'non',
-      value: 42,
-      group: 'First',
-    },
-    {
-      word: 'neque',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'semper',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'aliquam',
-      value: 34,
-      group: 'Third',
-    },
-    {
-      word: 'mollis',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'sapien',
-      value: 39,
-      group: 'Second',
-    },
-    {
-      word: 'Interdum',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'malesuada',
-      value: 18,
-      group: 'Fourth',
-    },
-    {
-      word: 'fames',
-      value: 41,
-      group: 'Second',
-    },
-    {
-      word: 'ante',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'ipsum',
-      value: 53,
-      group: 'Second',
-    },
-    {
-      word: 'primis',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'faucibus',
-      value: 29,
-      group: 'Third',
-    },
-    {
-      word: 'Fusce',
-      value: 20,
-      group: 'Second',
-    },
-    {
-      word: 'magna',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'quis',
-      value: 35,
-      group: 'First',
-    },
-    {
-      word: 'arcu',
-      value: 46,
-      group: 'First',
-    },
-    {
-      word: 'aliquet',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'porttitor',
-      value: 18,
-      group: 'Fourth',
-    },
-    {
-      word: 'amet',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'nisl',
-      value: 51,
-      group: 'First',
-    },
-    {
-      word: 'Praesent',
-      value: 34,
-      group: 'Third',
-    },
-    {
-      word: 'varius',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'sit',
-      value: 58,
-      group: 'First',
-    },
-    {
-      word: 'amet',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'turpis',
-      value: 24,
-      group: 'Second',
-    },
-    {
-      word: 'non',
-      value: 47,
-      group: 'First',
-    },
-    {
-      word: 'finibus',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'Pellentesque',
-      value: 48,
-      group: 'Fourth',
-    },
-    {
-      word: 'habitant',
-      value: 27,
-      group: 'Third',
-    },
-    {
-      word: 'morbi',
-      value: 19,
-      group: 'Second',
-    },
-    {
-      word: 'tristique',
-      value: 18,
-      group: 'Fourth',
-    },
-    {
-      word: 'senectus',
-      value: 43,
-      group: 'Third',
-    },
-    {
-      word: 'netus',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'malesuada',
-      value: 18,
-      group: 'Fourth',
-    },
-    {
-      word: 'fames',
-      value: 37,
-      group: 'Second',
-    },
-    {
-      word: 'turpis',
-      value: 24,
-      group: 'Second',
-    },
-    {
-      word: 'egestas',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'Aliquam',
-      value: 45,
-      group: 'Third',
-    },
-    {
-      word: 'erat',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'volutpat',
-      value: 57,
-      group: 'Third',
-    },
-    {
-      word: 'Aliquam',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'dapibus',
-      value: 42,
-      group: 'Third',
-    },
-    {
-      word: 'urna',
-      value: 36,
-      group: 'First',
-    },
-    {
-      word: 'vehicula',
-      value: 19,
-      group: 'Third',
-    },
-    {
-      word: 'Quisque',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'convallis',
-      value: 25,
-      group: 'Fourth',
-    },
-    {
-      word: 'finibus',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'felis',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'quis',
-      value: 22,
-      group: 'First',
-    },
-    {
-      word: 'aliquam',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'massa',
-      value: 55,
-      group: 'Second',
-    },
-    {
-      word: 'sagittis',
-      value: 18,
-      group: 'Third',
-    },
-    {
-      word: 'Nam',
-      value: 32,
-      group: 'First',
-    },
-    {
-      word: 'ipsum',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'orci',
-      value: 38,
-      group: 'First',
-    },
-    {
-      word: 'ornare',
-      value: 18,
-      group: 'Second',
-    },
-    {
-      word: 'non',
-      value: 18,
-      group: 'First',
-    },
-    {
-      word: 'arcu',
-      value: 32,
-      group: 'First',
-    },
-    {
-      word: 'consequat',
-      value: 55,
-      group: 'Fourth',
-    },
-    {
-      word: 'tempus',
-      value: 23,
-      group: 'Second',
-    },
-    {
-      word: 'lobortis',
-      value: 47,
-      group: 'Third',
-    },
-    {
-      word: 'magna',
-      value: 18,
-      group: 'Second',
+      group: 'data',
+      date: new Date(2019, 1, 1),
+      value: 10000,
     },
   ],
   options: {
-    title: 'Word cloud',
-    resizable: true,
-    color: {
-      pairing: {
-        option: 3,
+    title: 'Vertical simple bar (time series - dense data, Turkish)',
+    axes: {
+      left: {
+        mapsTo: 'value',
+        ticks: {
+          formatter: _ => _.toLocaleString('tr-TR'),
+        },
+      },
+      bottom: {
+        mapsTo: 'date',
+        scaleType: 'time',
+        ticks: {
+          formatter: _ =>
+            _.toLocaleDateString('tr-TR', { month: 'short', day: 'numeric' }),
+        },
+      },
+    },
+    tooltip: {
+      valueFormatter: (_, e) =>
+        'x-value' == e
+          ? _.toLocaleDateString('tr-TR', { month: 'long', day: 'numeric' })
+          : 'y-value' == e
+          ? _.toLocaleString('tr-TR')
+          : _,
+    },
+    bars: {
+      maxWidth: 200,
+    },
+    height: '400px',
+  },
+};
+
+export const VerticalSimpleBarEmptyState = Template.bind({});
+VerticalSimpleBarEmptyState.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Vertical simple bar (empty state)',
+    axes: {
+      left: {},
+      bottom: {
+        scaleType: 'labels',
       },
     },
     height: '400px',
   },
 };
+
+export const VerticalSimpleBarSkeleton = Template.bind({});
+VerticalSimpleBarSkeleton.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Vertical simple bar (skeleton)',
+    axes: {
+      left: {},
+      bottom: {
+        scaleType: 'labels',
+      },
+    },
+    data: {
+      loading: true,
+    },
+    height: '400px',
+  },
+};
+
+export const HorizontalSimpleBarTimeSeries = Template.bind({});
+HorizontalSimpleBarTimeSeries.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Qty',
+      date: new Date(2019, 0, 1),
+      value: 10000,
+    },
+    {
+      group: 'More',
+      date: new Date(2019, 0, 2),
+      value: 65000,
+    },
+    {
+      group: 'Sold',
+      date: new Date(2019, 0, 3),
+      value: 30000,
+    },
+    {
+      group: 'Restocking',
+      date: new Date(2019, 0, 6),
+      value: 49213,
+    },
+    {
+      group: 'Misc',
+      date: new Date(2019, 0, 7),
+      value: 51213,
+    },
+  ],
+  options: {
+    title: 'Horizontal simple bar (time series)',
+    axes: {
+      left: {
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
+      bottom: {
+        mapsTo: 'value',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const HorizontalSimpleBarDiscrete = Template.bind({});
+HorizontalSimpleBarDiscrete.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Qty',
+      value: 65000,
+    },
+    {
+      group: 'More',
+      value: 29123,
+    },
+    {
+      group: 'Sold',
+      value: 35213,
+    },
+    {
+      group: 'Restocking',
+      value: 51213,
+    },
+    {
+      group: 'Misc',
+      value: 16932,
+    },
+  ],
+  options: {
+    title: 'Horizontal simple bar (discrete)',
+    axes: {
+      left: {
+        mapsTo: 'group',
+        scaleType: 'labels',
+      },
+      bottom: {
+        mapsTo: 'value',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const HorizontalSimpleBarSkeleton = Template.bind({});
+HorizontalSimpleBarSkeleton.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Horizontal simple bar (skeleton)',
+    axes: {
+      left: {
+        scaleType: 'labels',
+      },
+      bottom: {},
+    },
+    data: {
+      loading: true,
+    },
+    height: '400px',
+  },
+};
+
+export const HorizontalSimpleBarEmptyState = Template.bind({});
+HorizontalSimpleBarEmptyState.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Horizontal simple bar (empty state)',
+    axes: {
+      left: {
+        scaleType: 'labels',
+      },
+      bottom: {},
+    },
+    height: '400px',
+  },
+};
+//Simple//
+
+//Floating//
+export const HorizontalFloatingBarTimeSeries = Template.bind({});
+HorizontalFloatingBarTimeSeries.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Qty',
+      date: new Date(2019, 0, 1),
+      value: [10000, 41000],
+    },
+    {
+      group: 'More',
+      date: new Date(2019, 0, 2),
+      value: 65000,
+    },
+    {
+      group: 'Sold',
+      date: new Date(2019, 0, 3),
+      value: 30000,
+    },
+    {
+      group: 'Restocking',
+      date: new Date(2019, 0, 6),
+      value: [22000, 69213],
+    },
+    {
+      group: 'Misc',
+      date: new Date(2019, 0, 7),
+      value: [3500, 71213],
+    },
+  ],
+  options: {
+    title: 'Horizontal floating bar (time series)',
+    axes: {
+      left: {
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
+      bottom: {
+        mapsTo: 'value',
+      },
+    },
+    height: '400px',
+  },
+};
+export const FloatingVerticalBarDiscrete = Template.bind({});
+FloatingVerticalBarDiscrete.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Qty',
+      value: [30000, 65000],
+    },
+    {
+      group: 'More',
+      value: [15000, 29123],
+    },
+    {
+      group: 'Sold',
+      value: [22000, 35213],
+    },
+    {
+      group: 'Restocking',
+      value: [28000, 51213],
+    },
+    {
+      group: 'Misc',
+      value: [3000, 16932],
+    },
+  ],
+  options: {
+    title: 'Floating vertical bar (discrete)',
+    axes: {
+      left: {
+        mapsTo: 'value',
+        includeZero: false,
+      },
+      bottom: {
+        mapsTo: 'group',
+        scaleType: 'labels',
+      },
+    },
+    height: '400px',
+  },
+};
+export const FloatingHorizontalBarDiscrete = Template.bind({});
+FloatingHorizontalBarDiscrete.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Qty',
+      value: [30000, 65000],
+    },
+    {
+      group: 'More',
+      value: [15000, 29123],
+    },
+    {
+      group: 'Sold',
+      value: [22000, 35213],
+    },
+    {
+      group: 'Restocking',
+      value: [28000, 51213],
+    },
+    {
+      group: 'Misc',
+      value: [3000, 36932],
+    },
+  ],
+  options: {
+    title: 'Floating horizontal bar (discrete)',
+    axes: {
+      left: {
+        mapsTo: 'group',
+        scaleType: 'labels',
+      },
+      bottom: {
+        mapsTo: 'value',
+        includeZero: false,
+      },
+    },
+    height: '400px',
+  },
+};
+//Floating//
+
+//Grouped//
+export const VerticalGroupedBarDiscrete = Template.bind({});
+VerticalGroupedBarDiscrete.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      key: 'Qty',
+      value: 65000,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'More',
+      value: -29123,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Sold',
+      value: -35213,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Restocking',
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Misc',
+      value: 16932,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Qty',
+      value: 32432,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'More',
+      value: -21312,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Sold',
+      value: -56456,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Restocking',
+      value: -21312,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Misc',
+      value: 34234,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Qty',
+      value: -12312,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'More',
+      value: 23232,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Sold',
+      value: 34232,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Restocking',
+      value: -12312,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Misc',
+      value: -34234,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Qty',
+      value: -32423,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'More',
+      value: 21313,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Sold',
+      value: 64353,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Restocking',
+      value: 24134,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Misc',
+      value: 24134,
+    },
+  ],
+  options: {
+    title: 'Vertical grouped bar (discrete)',
+    axes: {
+      left: {
+        mapsTo: 'value',
+      },
+      bottom: {
+        scaleType: 'labels',
+        mapsTo: 'key',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const VerticalGroupedBarTimeSeries = Template.bind({});
+VerticalGroupedBarTimeSeries.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 1),
+      value: 10000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 2),
+      value: 65000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 3),
+      value: 30000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 6),
+      value: 49213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 7),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 1),
+      value: 8000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 2),
+      value: 67000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 3),
+      value: 15000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 6),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 7),
+      value: 45213,
+    },
+  ],
+  options: {
+    title: 'Vertical grouped bar (time series)',
+    axes: {
+      left: {
+        mapsTo: 'value',
+      },
+      bottom: {
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const VerticalGroupedBarTimeSeriesDenseData = Template.bind({});
+VerticalGroupedBarTimeSeriesDenseData.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 1),
+      value: 10000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 2),
+      value: 65000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 3),
+      value: 30000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 6),
+      value: 49213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 7),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 8),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 9),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 10),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 11),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 12),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 13),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 14),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 15),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 16),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 17),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 18),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 19),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 20),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 21),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 22),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 23),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 24),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 25),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 26),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 27),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 28),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 29),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 30),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 31),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 1),
+      value: 8000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 2),
+      value: 67000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 3),
+      value: 15000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 6),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 7),
+      value: 45213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 8),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 9),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 10),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 11),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 12),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 13),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 14),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 15),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 16),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 17),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 18),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 19),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 20),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 21),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 22),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 23),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 24),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 25),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 26),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 27),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 28),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 29),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 30),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 31),
+      value: 51213,
+    },
+  ],
+  options: {
+    title: 'Vertical grouped bar (time series - dense data)',
+    axes: {
+      left: {
+        mapsTo: 'value',
+      },
+      bottom: {
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const VerticalGroupedBarEmptyState = Template.bind({});
+VerticalGroupedBarEmptyState.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Vertical grouped bar (empty state)',
+    axes: {
+      left: {},
+      bottom: {
+        scaleType: 'labels',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const VerticalGroupedBarSkeleton = Template.bind({});
+VerticalGroupedBarSkeleton.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Vertical grouped bar (skeleton)',
+    axes: {
+      left: {},
+      bottom: {
+        scaleType: 'labels',
+      },
+    },
+    data: {
+      loading: true,
+    },
+    height: '400px',
+  },
+};
+export const HorizontalGroupedBarDiscrete = Template.bind({});
+HorizontalGroupedBarDiscrete.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      key: 'Qty',
+      value: 65000,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'More',
+      value: -29123,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Sold',
+      value: -35213,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Restocking',
+      value: 51213,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Misc',
+      value: 16932,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Qty',
+      value: 32432,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'More',
+      value: -21312,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Sold',
+      value: -56456,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Restocking',
+      value: -21312,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Misc',
+      value: 34234,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Qty',
+      value: -12312,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'More',
+      value: 23232,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Sold',
+      value: 34232,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Restocking',
+      value: -12312,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Misc',
+      value: -34234,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Qty',
+      value: -32423,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'More',
+      value: 21313,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Sold',
+      value: 64353,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Restocking',
+      value: 24134,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Misc',
+      value: 24134,
+    },
+  ],
+  options: {
+    title: 'Horizontal grouped bar (discrete)',
+    axes: {
+      left: {
+        scaleType: 'labels',
+        mapsTo: 'key',
+      },
+      bottom: {
+        mapsTo: 'value',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const HorizontalGroupedBarTimeSeries = Template.bind({});
+HorizontalGroupedBarTimeSeries.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 1),
+      value: 10000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 2),
+      value: 65000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 3),
+      value: 30000,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 6),
+      value: 49213,
+    },
+    {
+      group: 'Dataset 1',
+      date: new Date(2019, 0, 7),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 1),
+      value: 8000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 2),
+      value: 67000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 3),
+      value: 15000,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 6),
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: new Date(2019, 0, 7),
+      value: 45213,
+    },
+  ],
+  options: {
+    title: 'Horizontal grouped bar (time series)',
+    axes: {
+      left: {
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
+      bottom: {
+        mapsTo: 'value',
+      },
+    },
+    height: '400px',
+  },
+};
+
+export const HorizontalGroupedBarEmptyState = Template.bind({});
+HorizontalGroupedBarEmptyState.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Horizontal grouped bar (empty state)',
+    axes: {
+      left: {
+        scaleType: 'labels',
+      },
+      bottom: {},
+    },
+    height: '400px',
+  },
+};
+
+export const HorizontalGroupedBarSkeleton = Template.bind({});
+HorizontalGroupedBarSkeleton.args = {
+  isInverse: false,
+  type: CarbonChartType.bar,
+  dataSet: [],
+  options: {
+    title: 'Horizontal grouped bar (skeleton)',
+    axes: {
+      left: {
+        scaleType: 'labels',
+      },
+      bottom: {},
+    },
+    data: {
+      loading: true,
+    },
+    height: '400px',
+  },
+};
+//Grouped//
+
+//Lollipop//
+export const LollipopDiscrete = Template.bind({});
+LollipopDiscrete.args = {
+  isInverse: false,
+  type: CarbonChartType.lollipop,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      key: 'Qty',
+      value: 34200,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'More',
+      value: 34200,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Sold',
+      value: 41200,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Restocking',
+      value: 22000,
+    },
+  ],
+  options: {
+    title: 'Lollipop (discrete)',
+    axes: {
+      bottom: {
+        title: '2019 Annual Sales Figures',
+        scaleType: 'labels',
+        mapsTo: 'key',
+      },
+      left: {
+        mapsTo: 'value',
+      },
+    },
+    height: '400px',
+  },
+};
+export const LollipopHorizontalPresentation = Template.bind({});
+LollipopHorizontalPresentation.args = {
+  isInverse: false,
+  type: CarbonChartType.lollipop,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      key: 'Qty',
+      value: 34200,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'More',
+      value: 34200,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Sold',
+      value: 41200,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Restocking',
+      value: 22000,
+    },
+  ],
+  options: {
+    title: 'Lollipop (horizontal) - presentation',
+    axes: {
+      left: {
+        title: '2019 Annual Sales Figures',
+        scaleType: 'labels',
+        mapsTo: 'key',
+      },
+      bottom: {
+        mapsTo: 'value',
+      },
+    },
+    points: {
+      radius: 7,
+    },
+    height: '400px',
+  },
+};
+//Lollipop//

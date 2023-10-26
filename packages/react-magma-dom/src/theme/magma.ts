@@ -291,6 +291,8 @@ export interface ThemeInterface {
   headingFont: string;
   iconSizes: IconSizes;
   iterableColors: string[];
+  chartColors?: string[];
+  chartInverseColors?: string[];
   spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
@@ -772,7 +774,7 @@ export const magma = {
     '#005249',
   ],
 
-  charColorsInverse: [
+  chartColorsInverse: [
     '#1FB0FF',
     '#FF337A',
     '#65E000',
