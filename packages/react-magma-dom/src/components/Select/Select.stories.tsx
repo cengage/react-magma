@@ -4,6 +4,11 @@ import { Select, SelectOptions, SelectProps, MultiSelectProps } from './';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
+import { InputIconPosition } from '../InputBase';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { HelpIcon } from 'react-magma-icons';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<SelectProps<SelectOptions>> = args => (
   <Select {...args} />
@@ -59,6 +64,60 @@ export const Multi = (props: MultiSelectProps<SelectOptions>) => (
       { label: 'Green', value: 'green' },
     ]}
   />
+);
+
+const helpLinkLabel = 'Learn more';
+const onHelpLinkClick = () => {
+  alert('Help link clicked!');
+};
+
+export const HasChildren = (props: SelectProps<SelectOptions>) => (
+  <Select
+    iconPosition={InputIconPosition.right}
+    labelText="Helper icon"
+    {...props}
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ]}
+  >
+    <Tooltip content={helpLinkLabel}>
+      <IconButton
+        aria-label={helpLinkLabel}
+        icon={<HelpIcon />}
+        onClick={onHelpLinkClick}
+        type={ButtonType.button}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+      />
+    </Tooltip>
+  </Select>
+);
+
+export const HasChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
+  <Select
+    iconPosition={InputIconPosition.top}
+    isMulti
+    labelText="Helper icon"
+    {...props}
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ]}
+  >
+    <Tooltip content={helpLinkLabel}>
+      <IconButton
+        aria-label={helpLinkLabel}
+        icon={<HelpIcon />}
+        onClick={onHelpLinkClick}
+        type={ButtonType.button}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+      />
+    </Tooltip>
+  </Select>
 );
 
 export const ErrorMessage = Template.bind({});

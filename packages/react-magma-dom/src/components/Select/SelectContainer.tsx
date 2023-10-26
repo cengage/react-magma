@@ -4,8 +4,10 @@ import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { UseSelectGetLabelPropsOptions } from 'downshift';
 import { InputMessage } from '../Input/InputMessage';
+import { InputIconPosition } from '../InputBase';
 
 export const SelectContainerElement = styled.div<{
+  iconPosition?: InputIconPosition;
   labelPosition?: LabelPosition;
   labelWidth?: number;
 }>`
@@ -32,6 +34,7 @@ interface SelectContainerInterface<T> {
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
   hasError?: boolean;
   helperMessage?: React.ReactNode;
+  iconPosition?: InputIconPosition;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
   labelPosition?: LabelPosition;
@@ -48,6 +51,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
     errorMessage,
     getLabelProps,
     helperMessage,
+    iconPosition,
     isInverse,
     isLabelVisuallyHidden,
     labelPosition,
@@ -61,6 +65,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
 
   return (
     <SelectContainerElement
+      iconPosition={iconPosition}
       labelPosition={labelPosition}
       labelWidth={labelWidth}
       data-testid="selectContainerElement"

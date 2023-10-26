@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from '../../theme/styled';
 import { SelectProps } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';
@@ -11,15 +12,25 @@ import { SelectTriggerButton } from './SelectTriggerButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
+import { IconButtonContainer } from '../InputBase';
+
+const StyledIconButtonContainer = styled(IconButtonContainer)`
+  transform: translate(
+    ${props => (props.iconPosition === 'right' ? '-30px' : 'inherit')},
+    0
+  );
+`;
 
 export function Select<T>(props: SelectProps<T>) {
   const {
     ariaDescribedBy,
+    children,
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
     hasError,
     helperMessage,
+    iconPosition,
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
@@ -163,6 +174,7 @@ export function Select<T>(props: SelectProps<T>) {
       descriptionId={ariaDescribedBy}
       getLabelProps={getLabelProps}
       helperMessage={helperMessage}
+      iconPosition={iconPosition}
       isInverse={isInverse}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       labelPosition={labelPosition}
@@ -181,6 +193,11 @@ export function Select<T>(props: SelectProps<T>) {
         style={inputStyle}
       >
         <SelectText data-testid="selectedItemText">{selectText}</SelectText>
+        {iconPosition && (
+          <StyledIconButtonContainer iconPosition={iconPosition} theme={theme}>
+            {children}
+          </StyledIconButtonContainer>
+        )}
         {isClearable && selectedItem && (
           <ClearIndicator
             aria-label={clearIndicatorAriaLabel}

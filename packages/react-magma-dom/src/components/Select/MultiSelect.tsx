@@ -1,4 +1,5 @@
 import * as React from 'react';
+import styled from '../../theme/styled';
 import { MultiSelectProps } from '.';
 import { useSelect, useMultipleSelection } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
@@ -9,14 +10,42 @@ import { SelectText, SelectedItemButton, IconWrapper } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
+import { IconButtonContainer, InputIconPosition } from '../InputBase';
+
+function translatePositioning(props) {
+  if (props.iconPosition === 'right') {
+    if (props.hasSelectedItems) {
+      return 'translate(-2px, 0)';
+    }
+    return 'translate(-30px, 0)';
+  }
+  if (props.iconPosition === 'top') {
+    if (props.hasSelectedItems) {
+      return 'translate(28px, 0)';
+    }
+    return 'translate(0, 0)';
+  }
+}
+
+const StyledIconButtonContainer = styled(IconButtonContainer)<{
+  hasSelectedItems?: boolean;
+  iconPosition?: InputIconPosition;
+}>`
+  transform: ${translatePositioning};
+  display: ${props => (props.hasSelectedItems ? 'flex' : '')};
+  justify-content: ${props => (props.hasSelectedItems ? 'right' : '')};
+  flex: ${props => (props.hasSelectedItems ? '1' : '')};
+`;
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     ariaDescribedBy,
+    children,
     components: customComponents,
     errorMessage,
     hasError,
     helperMessage,
+    iconPosition,
     inputStyle,
     isLabelVisuallyHidden,
     innerRef,
@@ -164,6 +193,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
       helperMessage={helperMessage}
+      iconPosition={iconPosition}
       isLabelVisuallyHidden={isLabelVisuallyHidden}
       labelPosition={labelPosition}
       labelStyle={labelStyle}
@@ -212,6 +242,15 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           <SelectText>{placeholder}</SelectText>
         ) : (
           <SelectText>{i18n.multiSelect.placeholder}</SelectText>
+        )}
+        {iconPosition && (
+          <StyledIconButtonContainer
+            hasSelectedItems={selectedItems.length > 0 ? true : false}
+            iconPosition={iconPosition}
+            theme={theme}
+          >
+            {children}
+          </StyledIconButtonContainer>
         )}
       </SelectTriggerButton>
       <ItemsList

@@ -12,6 +12,7 @@ import { SelectComponents } from './components';
 import { useGenerateId, XOR, Omit } from '../../utils';
 import { LabelPosition } from '../Label';
 import { useIsInverse } from '../../inverse';
+import { InputIconPosition } from '../InputBase';
 
 export type SelectOptions =
   | string
@@ -112,10 +113,12 @@ export interface SelectProps<T extends SelectOptions>
    * Id of the element that describes the select trigger button
    */
   ariaDescribedBy?: string;
+  children?: any;
   /**
    * @internal
    */
   hasError?: boolean;
+  iconPosition?: InputIconPosition;
   /**
    * Reference to the trigger button element in the select
    */
@@ -150,6 +153,7 @@ export interface MultiSelectProps<T extends SelectOptions>
   extends UseMultipleSelectionProps<T>,
     Omit<SelectProps<T>, 'onStateChange' | 'stateReducer' | 'isMulti'>,
     InternalMultiProps<T> {
+  children?: any;
   /**
    * @internal
    */
@@ -193,7 +197,9 @@ export const MultipleSelectionStateChangeTypes =
 
 export function Select<T>(props: XORSelectProps<T>) {
   const {
+    children,
     containerStyle,
+    iconPosition,
     id: defaultId,
     isMulti,
     labelPosition,
@@ -229,14 +235,18 @@ export function Select<T>(props: XORSelectProps<T>) {
           isInverse={isInverse}
           labelPosition={labelPosition || LabelPosition.top}
           labelWidth={labelWidth}
+          iconPosition={iconPosition}
           itemToString={itemToString}
           {...(props as MultiSelectProps<T>)}
           hasError={hasError}
-        />
+        >
+          {children}
+        </MultiSelect>
       ) : (
         <InternalSelect
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
+          iconPosition={iconPosition}
           id={id}
           isInverse={isInverse}
           itemToString={itemToString}
@@ -246,7 +256,9 @@ export function Select<T>(props: XORSelectProps<T>) {
           helperMessage={helperMessage}
           messageStyle={messageStyle}
           {...(props as SelectProps<T>)}
-        />
+        >
+          {children}
+        </InternalSelect>
       )}
     </div>
   );
