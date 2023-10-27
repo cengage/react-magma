@@ -178,11 +178,10 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       );
 
       uniqueGroups.forEach((group, i) => {
-        if (isInverse) {
-          return (scaleColorsObj[group || 'null'] =
-            theme.chartColorsInverse[i]);
-        } else if (uniqueGroups.length <= theme.chartColors.length) {
-          return (scaleColorsObj[group || 'null'] = theme.chartColors[i]);
+        if (uniqueGroups.length <= theme.chartColors.length) {
+          return (scaleColorsObj[group || 'null'] = isInverse
+            ? theme.chartColorsInverse[i]
+            : theme.chartColors[i]);
         }
         return {};
       });

@@ -2,24 +2,52 @@ import React from 'react';
 import { CarbonChart, CarbonChartType } from '.';
 import { render } from '@testing-library/react';
 
-const TEXT = 'Test Text';
+const TEXT = 'Vertical simple bar (discrete)';
 const dataSet = [
   {
-    group: 'Dataset 1',
-    date: '2019-01-01T05:00:00.000Z',
-    value: 0,
+    group: 'Qty',
+    value: 65000,
   },
   {
-    group: 'Dataset 2',
-    date: '2019-01-01T05:00:00.000Z',
-    value: 47263,
+    group: 'More',
+    value: 29123,
+  },
+  {
+    group: 'Sold',
+    value: 35213,
+  },
+  {
+    group: 'Restocking',
+    value: 51213,
+  },
+  {
+    group: 'Misc',
+    value: 16932,
   },
 ];
 
-describe.skip('CarbonChart', () => {
+const chartOptions = {
+  title: 'Vertical simple bar (discrete)',
+  axes: {
+    left: {
+      mapsTo: 'value',
+    },
+    bottom: {
+      mapsTo: 'group',
+      scaleType: 'labels',
+    },
+  },
+  height: '400px',
+};
+
+describe('CarbonChart', () => {
   it('should render the visually hidden component', () => {
     const { getByText } = render(
-      <CarbonChart dataSet={dataSet} type={CarbonChartType.area}>
+      <CarbonChart
+        dataSet={dataSet}
+        options={chartOptions}
+        type={CarbonChartType.bar}
+      >
         {TEXT}
       </CarbonChart>
     );
@@ -33,7 +61,8 @@ describe.skip('CarbonChart', () => {
       <CarbonChart
         testId={testId}
         dataSet={dataSet}
-        type={CarbonChartType.area}
+        options={chartOptions}
+        type={CarbonChartType.bar}
       >
         {TEXT}
       </CarbonChart>

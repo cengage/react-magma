@@ -292,7 +292,7 @@ export interface ThemeInterface {
   iconSizes: IconSizes;
   iterableColors: string[];
   chartColors?: string[];
-  chartInverseColors?: string[];
+  chartColorsInverse?: string[];
   spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
