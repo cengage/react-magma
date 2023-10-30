@@ -320,33 +320,6 @@ const LinkMenuTemplate: Story<DropdownProps> = args => (
 export const LinkMenu = LinkMenuTemplate.bind({});
 LinkMenu.args = { ...Default.args };
 
-const FormTemplate: Story<DropdownProps> = args => (
-  <div style={{ margin: '150px auto', textAlign: 'center' }}>
-    <Dropdown {...args}>
-      <DropdownButton>Dropdown with form</DropdownButton>
-      <DropdownContent>
-        <form style={{ margin: 0, padding: '16px' }}>
-          <Input labelText="Email Address" />
-          <PasswordInput labelText="Password" />
-          <Checkbox labelText="Remember me" />
-          <div style={{ textAlign: 'center' }}>
-            <p>
-              By signing in, you agree to our <a href="#terms">Terms of use</a>.
-            </p>
-            <Button isFullWidth>Sign In</Button>
-            <p>
-              <a href="#password">Forgot password?</a>
-            </p>
-          </div>
-        </form>
-      </DropdownContent>
-    </Dropdown>
-  </div>
-);
-
-export const Form = FormTemplate.bind({});
-Form.args = { ...Default.args };
-
 export const Inverse = HeaderIconTemplate.bind({});
 Inverse.args = {
   ...Default.args,

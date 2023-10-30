@@ -648,56 +648,6 @@ Dropdowns can contain elements other than `DropdownMenuItem` components. They ca
 While users may navigate between `DropdownMenuItem` components using up and down arrow keys,
 browser default keyboard behavior applies to other content.
 
-### Dropdown with Form
-
-```tsx
-import React from 'react';
-import {
-  Button,
-  Dropdown,
-  DropdownButton,
-  DropdownContent,
-  DropdownDivider,
-  Input,
-  InputType,
-  magma,
-  PasswordInput,
-} from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <Dropdown width="300px">
-      <DropdownButton>Dropdown with Login Form</DropdownButton>
-      <DropdownContent>
-        <form style={{ margin: 0, padding: magma.spaceScale.spacing05 }}>
-          <Input type={InputType.email} labelText="Email Address" />
-          <PasswordInput labelText="Password" />
-          <div style={{ textAlign: 'center' }}>
-            <p>
-              By signing in, you agree to our <a href="#">Terms of use</a>.
-            </p>
-            <Button isFullWidth>Sign In</Button>
-            <p>
-              <a>Forgot password?</a>
-            </p>
-          </div>
-        </form>
-        <DropdownDivider />
-        <div
-          style={{ textAlign: 'center', padding: magma.spaceScale.spacing05 }}
-        >
-          <p>
-            Don't have an account?
-            <br />
-            <a href="#">Register today!</a>
-          </p>
-        </div>
-      </DropdownContent>
-    </Dropdown>
-  );
-}
-```
-
 ### Dropdown with Filter
 
 ```tsx

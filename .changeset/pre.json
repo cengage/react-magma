@@ -11,19 +11,7 @@
     "react-magma-landing": "1.1.2"
   },
   "changesets": [
-    "dropdownContent-falseChild",
-    "feat-dropdownExpandableMenu",
-    "feat-optionalPerPageSelect",
-    "fix-datePickerEscape",
-    "fix-expandableDropdown",
-    "fix-expandableDropdownDisabled",
-    "fix-labelsColors",
-    "fix-modalEscape",
-    "fix-passInputLarge",
-    "fix-radioGroup",
-    "inputHeight",
-    "nativeSelectHeight",
-    "sortArrows",
-    "update-modalPadding"
+    "cuddly-dolphins-yell",
+    "loud-poets-eat"
   ]
 }
