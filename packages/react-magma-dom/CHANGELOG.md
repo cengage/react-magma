@@ -55,6 +55,12 @@
 
 ## 4.2.0
 
+## 4.2.1-next.0
+
+### Patch Changes
+
+- fc3098851: build(deps): bump browserify-sign from 4.2.1 to 4.2.2
+
 ### Minor Changes
 
 - de22be548: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level
