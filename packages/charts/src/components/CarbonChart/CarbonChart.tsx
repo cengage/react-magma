@@ -144,9 +144,9 @@ enum ChartTheme {
   G10 = 'g10',
 }
 
-interface ColorsObject {
-  [key: string]: string;
-}
+// interface ColorsObject {
+//   [key: string]: string;
+// }
 
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
   (props, ref) => {
@@ -167,33 +167,33 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       grouped: GroupedBarChart,
     };
 
-    function buildColors() {
-      let scaleColorsObj: ColorsObject = {};
+    // function buildColors() {
+    //   let scaleColorsObj: ColorsObject = {};
 
-      const allGroups = dataSet.map(item => {
-        return 'group' in item ? item['group'] : null;
-      });
-      const uniqueGroups = allGroups.filter(
-        (g, index) => allGroups.indexOf(g) === index
-      );
+    //   const allGroups = dataSet.map(item => {
+    //     return 'group' in item ? item['group'] : null;
+    //   });
+    //   const uniqueGroups = allGroups.filter(
+    //     (g, index) => allGroups.indexOf(g) === index
+    //   );
 
-      uniqueGroups.forEach((group, i) => {
-        if (uniqueGroups.length <= theme.chartColors.length) {
-          return (scaleColorsObj[group || 'null'] = isInverse
-            ? theme.chartColorsInverse[i]
-            : theme.chartColors[i]);
-        }
-        return {};
-      });
+    //   uniqueGroups.forEach((group, i) => {
+    //     if (uniqueGroups.length <= theme.chartColors.length) {
+    //       return (scaleColorsObj[group || 'null'] = isInverse
+    //         ? theme.chartColorsInverse[i]
+    //         : theme.chartColors[i]);
+    //     }
+    //     return {};
+    //   });
 
-      return scaleColorsObj;
-    }
+    //   return scaleColorsObj;
+    // }
 
     const newOptions = {
       ...options,
       theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
       color: {
-        scale: buildColors(),
+        // scale: buildColors(),
       },
     };
 
