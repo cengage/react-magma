@@ -10,7 +10,7 @@
   },
   "engines": {
     "npm": ">=^7.3.0",
-    "node": ">=^14.15.0"
+    "node": ">=^14.21.3"
   },
   "scripts": {
     "pkg": "manypkg run",
