@@ -149,8 +149,12 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
         onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
       },
-      onKeyPress,
-      onKeyUp,
+      onKeyPress: (event: any) => {
+        onKeyPress(event);
+      },
+      onKeyUp: (event: any) => {
+        onKeyUp(event);
+      },
       onFocus,
       preventKeyAction: isOpen,
       ...(innerRef && { ref: innerRef }),

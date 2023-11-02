@@ -120,7 +120,7 @@ export function Select<T>(props: SelectProps<T>) {
   const toggleButtonProps = getToggleButtonProps({
     disabled: disabled,
     onBlur,
-    onKeyDown: event => {
+    onKeyDown: (event: any) => {
       if (
         getToggleButtonProps().id === document.activeElement.id &&
         (event.key === 'Enter' || event.key === ' ')
@@ -131,8 +131,12 @@ export function Select<T>(props: SelectProps<T>) {
 
       onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
     },
-    onKeyPress,
-    onKeyUp,
+    onKeyPress: (event: any) => {
+      onKeyPress(event);
+    },
+    onKeyUp: (event: any) => {
+      onKeyUp(event);
+    },
     onFocus,
     ref,
   });
