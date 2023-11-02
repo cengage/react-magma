@@ -1,5 +1,11 @@
 ## 4.2.0
 
+## 4.2.1-next.1
+
+### Patch Changes
+
+- e6ca26b27: Adding in chartColors to theme.
+
 ## 4.2.1-next.0
 
 ### Patch Changes
