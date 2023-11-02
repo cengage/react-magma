@@ -69,7 +69,7 @@ export interface Colors {
 
   focus: string;
   focusInverse: string;
-  
+
   border: string;
   borderInverse: string;
 }
@@ -291,6 +291,8 @@ export interface ThemeInterface {
   headingFont: string;
   iconSizes: IconSizes;
   iterableColors: string[];
+  chartColors?: string[];
+  chartColorsInverse?: string[];
   spacingMultiplier: number;
   spaceScale: SpacingScale;
   headingExpressiveFont: string;
@@ -369,7 +371,7 @@ const typeScale = {
   size15: {
     fontSize: '72px',
     lineHeight: '84px',
-  }
+  },
 };
 
 const primaryColors = {
@@ -522,7 +524,8 @@ export const magma = {
 
   // Typography
   typeScale: typeScale,
-  typographyVisualStyles: { // Productive
+  typographyVisualStyles: {
+    // Productive
     headingXLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
@@ -572,7 +575,7 @@ export const magma = {
   },
   typographyExpressiveVisualStyles: {
     heading2XLarge: {
-      mobile: typeScale.size13, 
+      mobile: typeScale.size13,
       desktop: typeScale.size15,
       fontWeight: 600,
     },
@@ -754,6 +757,36 @@ export const magma = {
     '#255200',
     '#711E6E',
     '#005249',
+  ],
+
+  chartColors: [
+    '#009AF3',
+    '#E0004D',
+    '#1EA746',
+    '#FA6600',
+    '#B12FAD',
+    '#00A393',
+    '#005F96',
+    '#8F0033',
+    '#136A2D',
+    '#B84900',
+    '#711E6E',
+    '#005249',
+  ],
+
+  chartColorsInverse: [
+    '#1FB0FF',
+    '#FF337A',
+    '#65E000',
+    '#FF9147',
+    '#D45ED0',
+    '#00E0CA',
+    '#85D4FF',
+    '#FF99BD',
+    '#FFB685',
+    '#C7FF99',
+    '#E9AFE7',
+    '#99FFF5',
   ],
 
   tabs: {
