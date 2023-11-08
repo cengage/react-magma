@@ -7,6 +7,8 @@ import {
   styled,
 } from 'react-magma-dom';
 
+import { transparentize } from 'polished';
+
 import {
   SimpleBarChart,
   LollipopChart,
@@ -38,9 +40,18 @@ const CarbonChartWrapper = styled.div<{
   theme: ThemeInterface;
 }>`
 
+  .cds--data-table td, .cds--data-table tbody th{
+    color: ${props => props.theme.colors.neutral700};
+  }
+
   .cds--cc--tooltip .content-box .datapoint-tooltip p{
     font-size: ${props => props.theme.typeScale.size02.fontSize};
     padding: ${props => props.theme.spaceScale.spacing02};
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
+
   }
 
   .cds--modal-container{
@@ -51,20 +62,66 @@ const CarbonChartWrapper = styled.div<{
   .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
     font-family: ${props => props.theme.bodyFont} !important;
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
   }
 
   .cds--cc--axes {
     overflow: visible;
   }
 
-  div.cds--cc--legend div.legend-item p {
-    font-size:  ${props => props.theme.typeScale.size03.fontSize};
-    margin: 0  ${props => props.theme.spaceScale.spacing03} 0 0;
+  div.cds--cc--legend{
+    div.legend-item{
+      div.checkbox{
+        border: 1px solid transparent;
+        width: ${props => props.theme.spaceScale.spacing05};
+        height: ${props => props.theme.spaceScale.spacing05};
+        svg{
+          left: 2px;
+          position: relative;
+        }
+      }
+      p {
+        font-size:  ${props => props.theme.typeScale.size03.fontSize};
+        margin: 0  ${props => props.theme.spaceScale.spacing03} 0 0;
+      }
+    }
   }
+  div.cds--cc--legend.clickable div.legend-item:not(.additional):hover div.checkbox{
+    border: ${props =>
+      props.isInverse ? `1px solid ${props.theme.colors.focusInverse}` : ''};;
+  }
+  .chart-holder{
+    .cds--cc--axes g.axis g.tick text{
+      fill:${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
+    }
+    .cds--cc--axes g.axis path.domain {
+      stroke:${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
+  }
+  .cds--cc--grid g.x.grid g.tick line, .cds--cc--grid g.y.grid g.tick line{
+      stroke:${props =>
+        props.isInverse
+          ? transparentize(0.5, props.theme.colors.neutral100)
+          : ''};
+    
+  }
+  .cds--cc--grid{ 
+    rect.chart-grid-backdrop{
+      fill:none;
+    }
+  }
+  
 
-  .cds--cc--grid rect.chart-grid-backdrop{
-    fill:none;
-  }
+.cds--overflow-menu-options__btn:focus{
+  outline-color: ${props =>
+    props.isInverse ? props.theme.colors.focusInverse : ''};
+}
+  
+  /* .cds--cc--axes g.axis path.domain{
+    fill:$[props => props.isInverse ? props.theme.colors.neutral100 : ''};
+  } */
 
   .cds--btn {
     min-height: auto;
@@ -100,9 +157,23 @@ const CarbonChartWrapper = styled.div<{
     outline: 2px solid ${props =>
       props.isInverse
         ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
+        : props.theme.colors.focus} !important;
     }
     outline-offset: 0;
+  }
+  .cds--overflow-menu-options__btn:focus,
+  .cds--overflow-menu:focus, .cds--overflow-menu__trigger:focus,
+  .toolbar-control:focus{
+    outline: 2px solid ${props =>
+      props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus} !important;
+  }
+  div.cds--cc--legend.clickable div.legend-item:not(.additional):hover div.checkbox{
+    box-shadow: 0 0 0 2px ${props =>
+      props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus} !important;
   }
 
   .cds--btn--primary {
@@ -134,6 +205,8 @@ const CarbonChartWrapper = styled.div<{
     display: flex;
     align-items: center;
 }
+
+
 `;
 
 // Carbon themes (https://github.com/carbon-design-system/carbon-charts/blob/master/packages/core/src/interfaces/enums.ts#L12)
@@ -144,9 +217,9 @@ enum ChartTheme {
   G10 = 'g10',
 }
 
-// interface ColorsObject {
-//   [key: string]: string;
-// }
+interface ColorsObject {
+  [key: string]: string;
+}
 
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
   (props, ref) => {
@@ -167,33 +240,33 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       grouped: GroupedBarChart,
     };
 
-    // function buildColors() {
-    //   let scaleColorsObj: ColorsObject = {};
+    function buildColors() {
+      let scaleColorsObj: ColorsObject = {};
 
-    //   const allGroups = dataSet.map(item => {
-    //     return 'group' in item ? item['group'] : null;
-    //   });
-    //   const uniqueGroups = allGroups.filter(
-    //     (g, index) => allGroups.indexOf(g) === index
-    //   );
+      const allGroups = dataSet.map(item => {
+        return 'group' in item ? item['group'] : null;
+      });
+      const uniqueGroups = allGroups.filter(
+        (g, index) => allGroups.indexOf(g) === index
+      );
 
-    //   uniqueGroups.forEach((group, i) => {
-    //     if (uniqueGroups.length <= theme.chartColors.length) {
-    //       return (scaleColorsObj[group || 'null'] = isInverse
-    //         ? theme.chartColorsInverse[i]
-    //         : theme.chartColors[i]);
-    //     }
-    //     return {};
-    //   });
+      uniqueGroups.forEach((group, i) => {
+        if (uniqueGroups.length <= theme.chartColors.length) {
+          return (scaleColorsObj[group || 'null'] = isInverse
+            ? theme.chartColorsInverse[i]
+            : theme.chartColors[i]);
+        }
+        return {};
+      });
 
-    //   return scaleColorsObj;
-    // }
+      return scaleColorsObj;
+    }
 
     const newOptions = {
       ...options,
       theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
       color: {
-        // scale: buildColors(),
+        scale: buildColors(),
       },
     };
 
