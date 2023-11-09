@@ -43,6 +43,9 @@ const CarbonChartWrapper = styled.div<{
   .cds--data-table td, .cds--data-table tbody th{
     color: ${props => props.theme.colors.neutral700};
   }
+  .cds--data-table tbody tr, .cds--data-table tbody tr td, .cds--data-table tbody tr th{
+    color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
+  }
 
   .cds--cc--tooltip .content-box .datapoint-tooltip p{
     font-size: ${props => props.theme.typeScale.size02.fontSize};
@@ -107,10 +110,13 @@ const CarbonChartWrapper = styled.div<{
           : ''};
     
   }
-  .cds--cc--grid{ 
-    rect.chart-grid-backdrop{
+  .cds--cc--skeleton .shimmer-effect-lines{
+    filter: ${props => (props.isInverse ? 'invert(1)' : '')};
+  }
+  .chart-holder.cds--chart-holder.filled,
+  .cds--cc--skeleton rect.chart-skeleton-backdrop,
+  .cds--cc--grid rect.chart-grid-backdrop{
       fill:none;
-    }
   }
   
 
@@ -119,10 +125,6 @@ const CarbonChartWrapper = styled.div<{
     props.isInverse ? props.theme.colors.focusInverse : ''};
 }
   
-  /* .cds--cc--axes g.axis path.domain{
-    fill:$[props => props.isInverse ? props.theme.colors.neutral100 : ''};
-  } */
-
   .cds--btn {
     min-height: auto;
     display: flex;
