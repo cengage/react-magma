@@ -59,6 +59,25 @@ const CarbonChartWrapper = styled.div<{
 
   .cds--modal-container{
     border-radius:${props => props.theme.borderRadius};
+    background:${props =>
+      props.isInverse ? props.theme.colors.primary700 : ''};
+      .cds--data-table th{
+        background:${props =>
+          props.isInverse ? props.theme.colors.primary600 : ''};
+
+}
+    .cds--data-table td{
+      border-top:1px solid ${props =>
+        props.isInverse ? props.theme.colors.primary600 : 'inherit'};
+        border-bottom:1px solid ${props =>
+          props.isInverse ? props.theme.colors.primary600 : 'inherit'};
+      background:${props =>
+        props.isInverse ? props.theme.colors.primary700 : ''};
+    }
+    .cds--data-table tr:hover td{
+      background:${props =>
+        props.isInverse ? props.theme.colors.primary600 : ''};
+    }
   }
 
   p, div, text, .cds--cc--axes g.axis .axis-title,
@@ -78,7 +97,11 @@ const CarbonChartWrapper = styled.div<{
   div.cds--cc--legend{
     div.legend-item{
       div.checkbox{
-        border: 1px solid transparent;
+        background:${props =>
+          props.isInverse
+            ? props.theme.colors.neutral900
+            : props.theme.colors.neutral100};
+        border: ${props => (props.isInverse ? '1px solid transparent' : '')};
         width: ${props => props.theme.spaceScale.spacing05};
         height: ${props => props.theme.spaceScale.spacing05};
         svg{
@@ -91,10 +114,6 @@ const CarbonChartWrapper = styled.div<{
         margin: 0  ${props => props.theme.spaceScale.spacing03} 0 0;
       }
     }
-  }
-  div.cds--cc--legend.clickable div.legend-item:not(.additional):hover div.checkbox{
-    border: ${props =>
-      props.isInverse ? `1px solid ${props.theme.colors.focusInverse}` : ''};;
   }
   .chart-holder{
     .cds--cc--axes g.axis g.tick text{
@@ -147,20 +166,22 @@ const CarbonChartWrapper = styled.div<{
     border-radius: ${props => props.theme.borderRadius};
     font-weight: 500;
   }
-
+  
   .cds--btn--primary {
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.primary600
-        : props.theme.colors.primary}
+        ? props.theme.colors.tertiary500
+        : props.theme.colors.primary};
+      color: ${props =>
+        props.isInverse ? props.theme.colors.neutral900 : ''} ;
   }
 
-  :focus {
+  *:focus {
     outline: 2px solid ${props =>
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus} !important;
-    }
+    };
     outline-offset: 0;
   }
   .cds--overflow-menu-options__btn:focus,
@@ -170,6 +191,11 @@ const CarbonChartWrapper = styled.div<{
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus} !important;
+  }
+  div.cds--cc--legend.clickable div.legend-item:not(.additional):focus div.checkbox,
+  div.cds--cc--legend.clickable div.legend-item:not(.additional):hover div.checkbox{
+    border: ${props =>
+      props.isInverse ? `1px solid ${props.theme.colors.focusInverse}` : ''};;
   }
   div.cds--cc--legend.clickable div.legend-item:not(.additional):hover div.checkbox{
     box-shadow: 0 0 0 2px ${props =>
