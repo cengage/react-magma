@@ -4,6 +4,10 @@ import { CardBody } from '../Card/CardBody';
 import { NativeSelect, NativeSelectProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { LabelPosition } from '../Label';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { HelpIcon } from 'react-magma-icons';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<NativeSelectProps> = args => (
   <NativeSelect {...args}>
@@ -51,6 +55,38 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   ...Default.args,
   disabled: true,
+};
+
+const helpLinkLabel = 'Learn more';
+const onHelpLinkClick = () => {
+  alert('Help link clicked!');
+};
+
+const WithChildrenTemplate: Story<NativeSelectProps> = args => (
+  <NativeSelect
+    {...args}
+    additionalContent={
+      <Tooltip content={helpLinkLabel}>
+        <IconButton
+          aria-label={helpLinkLabel}
+          icon={<HelpIcon />}
+          onClick={onHelpLinkClick}
+          type={ButtonType.button}
+          size={ButtonSize.small}
+          variant={ButtonVariant.link}
+        />
+      </Tooltip>
+    }
+  >
+    <option>Red</option>
+    <option>Green</option>
+    <option>Blue</option>
+  </NativeSelect>
+);
+
+export const WithChildren = WithChildrenTemplate.bind({});
+WithChildren.args = {
+  ...Default.args,
 };
 
 export const HasError = Template.bind({});

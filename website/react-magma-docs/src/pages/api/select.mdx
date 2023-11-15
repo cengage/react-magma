@@ -353,6 +353,53 @@ export function Example() {
 }
 ```
 
+## Additional Children
+
+Some selects may need additional context related to the user by way of a help link. In such a case, the usage of `additionalContent` within the `Select` component enables this feature.
+
+By default, the icon will display inline with a `Select` label to the right. When `labelPosition` is set to `left`, the label, select, and icon display inline. If no label is required, use `visuallyHidden` and the same inline layout will remain.
+
+```tsx
+import React from 'react';
+import { Select } from './';
+import { LabelPosition } from '../Label';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { HelpIcon } from 'react-magma-icons';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+
+export function Example() {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+
+  return (
+    <Select
+      additionalContent={
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      }
+      labelText="Helper icon"
+      {...props}
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+    ></Select>
+  );
+}
+```
+
 ## Inverse
 
 ```tsx

@@ -109,6 +109,7 @@ export interface InternalMultiProps<T> {
 export interface SelectProps<T extends SelectOptions>
   extends UseSelectProps<T>,
     InternalSelectProps<T> {
+  additionalContent?: React.ReactNode;
   /**
    * Id of the element that describes the select trigger button
    */
@@ -233,7 +234,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           ariaDescribedBy={descriptionId}
           id={id}
           isInverse={isInverse}
-          labelPosition={labelPosition || LabelPosition.top}
+          labelPosition={labelPosition}
           labelWidth={labelWidth}
           iconPosition={iconPosition}
           itemToString={itemToString}
@@ -250,7 +251,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           id={id}
           isInverse={isInverse}
           itemToString={itemToString}
-          labelPosition={labelPosition || LabelPosition.top}
+          labelPosition={labelPosition}
           labelWidth={labelWidth}
           hasError={hasError}
           helperMessage={helperMessage}

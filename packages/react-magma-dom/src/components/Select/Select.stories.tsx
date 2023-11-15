@@ -29,6 +29,11 @@ export default {
         type: 'number',
       },
     },
+    isLabelVisuallyHidden: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -71,8 +76,20 @@ const onHelpLinkClick = () => {
   alert('Help link clicked!');
 };
 
-export const HasChildren = (props: SelectProps<SelectOptions>) => (
+export const WithChildren = (props: SelectProps<SelectOptions>) => (
   <Select
+    additionalContent={
+      <Tooltip content={helpLinkLabel}>
+        <IconButton
+          aria-label={helpLinkLabel}
+          icon={<HelpIcon />}
+          onClick={onHelpLinkClick}
+          type={ButtonType.button}
+          size={ButtonSize.small}
+          variant={ButtonVariant.link}
+        />
+      </Tooltip>
+    }
     iconPosition={InputIconPosition.right}
     labelText="Helper icon"
     {...props}
@@ -81,22 +98,23 @@ export const HasChildren = (props: SelectProps<SelectOptions>) => (
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ]}
-  >
-    <Tooltip content={helpLinkLabel}>
-      <IconButton
-        aria-label={helpLinkLabel}
-        icon={<HelpIcon />}
-        onClick={onHelpLinkClick}
-        type={ButtonType.button}
-        size={ButtonSize.small}
-        variant={ButtonVariant.link}
-      />
-    </Tooltip>
-  </Select>
+  ></Select>
 );
 
-export const HasChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
+export const WithChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
   <Select
+    additionalContent={
+      <Tooltip content={helpLinkLabel}>
+        <IconButton
+          aria-label={helpLinkLabel}
+          icon={<HelpIcon />}
+          onClick={onHelpLinkClick}
+          type={ButtonType.button}
+          size={ButtonSize.small}
+          variant={ButtonVariant.link}
+        />
+      </Tooltip>
+    }
     iconPosition={InputIconPosition.top}
     isMulti
     labelText="Helper icon"
@@ -106,18 +124,7 @@ export const HasChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ]}
-  >
-    <Tooltip content={helpLinkLabel}>
-      <IconButton
-        aria-label={helpLinkLabel}
-        icon={<HelpIcon />}
-        onClick={onHelpLinkClick}
-        type={ButtonType.button}
-        size={ButtonSize.small}
-        variant={ButtonVariant.link}
-      />
-    </Tooltip>
-  </Select>
+  ></Select>
 );
 
 export const ErrorMessage = Template.bind({});
