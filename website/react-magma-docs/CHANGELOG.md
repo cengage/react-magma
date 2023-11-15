@@ -1,5 +1,52 @@
 # Change Log
 
+## 5.0.5-next.2
+
+### Patch Changes
+
+- Updated dependencies [e6ca26b27]
+  - react-magma-dom@4.2.1-next.1
+
+## 5.0.5-next.1
+
+### Patch Changes
+
+- Updated dependencies [fc3098851]
+  - react-magma-dom@4.2.1-next.0
+  - @react-magma/charts@5.0.1-next.0
+  - @react-magma/dropzone@5.0.1-next.0
+  - @react-magma/schema-renderer@5.0.1-next.0
+  - @cengage-patterns/header@7.0.1-next.0
+
+## 5.0.5-next.0
+
+### Patch Changes
+
+- 408f3d5d0: build: Resolve merge conflicts when pulling main -> dev
+
+## 5.0.4
+
+### Patch Changes
+
+- de22be548: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
+- de22be548: fix(SubPageTabs): Fixed automatic browser scrolling from bottom of page, and fixed window.history manipulation
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+- Updated dependencies [de22be548]
+  - react-magma-dom@4.2.0
+  - @react-magma/charts@5.0.0
+  - @react-magma/dropzone@5.0.0
+  - @react-magma/schema-renderer@5.0.0
+  - @cengage-patterns/header@7.0.0
+
 ## 5.0.4-next.15
 
 ### Patch Changes
