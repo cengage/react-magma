@@ -101,7 +101,7 @@ const CarbonChartWrapper = styled.div<{
           props.isInverse
             ? props.theme.colors.neutral900
             : props.theme.colors.neutral100};
-        border: ${props => (props.isInverse ? '1px solid transparent' : '')};
+        border: none;
         width: ${props => props.theme.spaceScale.spacing05};
         height: ${props => props.theme.spaceScale.spacing05};
         svg{
@@ -112,6 +112,16 @@ const CarbonChartWrapper = styled.div<{
       p {
         font-size:  ${props => props.theme.typeScale.size03.fontSize};
         margin: 0  ${props => props.theme.spaceScale.spacing03} 0 0;
+      }
+    }
+  }
+  div.cds--cc--legend.has-deactivated-items{
+    div.legend-item{
+      div.checkbox{
+        border: 1px solid ${props =>
+          props.isInverse
+            ? props.theme.colors.neutral100
+            : props.theme.colors.neutral900}
       }
     }
   }
