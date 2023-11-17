@@ -123,6 +123,9 @@ const CarbonChartWrapper = styled.div<{
             ? props.theme.colors.neutral100
             : props.theme.colors.neutral900}
       }
+      div.checkbox.active{
+        border: 1px solid transparent;
+      }
     }
   }
   .chart-holder{
