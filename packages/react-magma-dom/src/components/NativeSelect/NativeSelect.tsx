@@ -13,7 +13,7 @@ import { useIsInverse } from '../../inverse';
 import { useGenerateId } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
-import { Label, LabelPosition } from '../Label';
+import { LabelPosition } from '../Label';
 
 /**
  * @children required
