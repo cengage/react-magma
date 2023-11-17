@@ -355,9 +355,13 @@ export function Example() {
 
 ## Additional Children
 
-Some selects may need additional context related to the user by way of a help link. In such a case, the usage of `additionalContent` within the `Select` component enables this feature.
+When a select needs additional context related to the user, `additionalContent` allows child elements to help. It is encouraged to use this prop with a `Tooltip` wrapping an `IconButton`.
 
-By default, the icon will display inline with a `Select` label to the right. When `labelPosition` is set to `left`, the label, select, and icon display inline. If no label is required, use `visuallyHidden` and the same inline layout will remain.
+By default, the child element will display inline with a `Select` label on the right.
+
+When `labelPosition` is set to `left`, the label, select, and child elements all display inline.
+
+If no label is required, use `visuallyHidden` and the same inline layout will persist.
 
 ```tsx
 import React from 'react';
@@ -375,27 +379,50 @@ export function Example() {
   };
 
   return (
-    <Select
-      additionalContent={
-        <Tooltip content={helpLinkLabel}>
-          <IconButton
-            aria-label={helpLinkLabel}
-            icon={<HelpIcon />}
-            onClick={onHelpLinkClick}
-            type={ButtonType.button}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          />
-        </Tooltip>
-      }
-      labelText="Helper icon"
-      {...props}
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
-      ]}
-    ></Select>
+    <>
+      <Select
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+        labelText="Default positioning"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+      />
+      <br />
+      <Select
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+        labelPosition="left"
+        labelText="Left positioning"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+      />
+    </>
   );
 }
 ```

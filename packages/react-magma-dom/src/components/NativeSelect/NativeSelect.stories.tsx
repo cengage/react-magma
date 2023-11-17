@@ -57,32 +57,33 @@ Disabled.args = {
   disabled: true,
 };
 
-const helpLinkLabel = 'Learn more';
-const onHelpLinkClick = () => {
-  alert('Help link clicked!');
+const WithChildrenTemplate: Story<NativeSelectProps> = args => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+  return (
+    <NativeSelect
+      {...args}
+      additionalContent={
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      }
+    >
+      <option>Red</option>
+      <option>Green</option>
+      <option>Blue</option>
+    </NativeSelect>
+  );
 };
-
-const WithChildrenTemplate: Story<NativeSelectProps> = args => (
-  <NativeSelect
-    {...args}
-    additionalContent={
-      <Tooltip content={helpLinkLabel}>
-        <IconButton
-          aria-label={helpLinkLabel}
-          icon={<HelpIcon />}
-          onClick={onHelpLinkClick}
-          type={ButtonType.button}
-          size={ButtonSize.small}
-          variant={ButtonVariant.link}
-        />
-      </Tooltip>
-    }
-  >
-    <option>Red</option>
-    <option>Green</option>
-    <option>Blue</option>
-  </NativeSelect>
-);
 
 export const WithChildren = WithChildrenTemplate.bind({});
 WithChildren.args = {

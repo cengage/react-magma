@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import styled from '../../theme/styled';
 import { SelectProps } from '.';
 import { useSelect } from 'downshift';
 import { SelectText } from './shared';

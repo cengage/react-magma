@@ -234,7 +234,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           ariaDescribedBy={descriptionId}
           id={id}
           isInverse={isInverse}
-          labelPosition={labelPosition}
+          labelPosition={labelPosition || LabelPosition.top}
           labelWidth={labelWidth}
           iconPosition={iconPosition}
           itemToString={itemToString}
@@ -251,7 +251,7 @@ export function Select<T>(props: XORSelectProps<T>) {
           id={id}
           isInverse={isInverse}
           itemToString={itemToString}
-          labelPosition={labelPosition}
+          labelPosition={labelPosition || LabelPosition.top}
           labelWidth={labelWidth}
           hasError={hasError}
           helperMessage={helperMessage}

@@ -4,6 +4,10 @@ import { Select } from '.';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { HelpIcon } from 'react-magma-icons';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 describe('Select', () => {
   const labelText = 'Label';
@@ -498,6 +502,124 @@ describe('Select', () => {
     );
 
     expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+  });
+
+  describe('additional content', () => {
+    const helpLinkLabel = 'Learn more';
+
+    const onHelpLinkClick = () => {
+      alert('Help link clicked!');
+    };
+
+    it('Should accept additional content to the right of the select label', () => {
+      const { getByTestId } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                testId={'Icon Button'}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          labelText={labelText}
+          items={items}
+        />
+      );
+
+      expect(getByTestId('Icon Button')).toBeInTheDocument();
+    });
+
+    it('Should accept additional content to the right of the multi-select label', () => {
+      const { getByTestId } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                testId={'Icon Button'}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          labelText={labelText}
+          isMulti
+          items={items}
+        />
+      );
+
+      expect(getByTestId('Icon Button')).toBeInTheDocument();
+    });
+
+    it('Should accept additional content to display inline with the label and select', () => {
+      const { getByTestId } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          labelPosition="left"
+          labelText={labelText}
+          items={items}
+          data-testid="selectContainerElement"
+        />
+      );
+
+      expect(getByTestId('selectContainerElement')).toBeInTheDocument();
+      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+        'display',
+        'flex'
+      );
+    });
+
+    it('Should accept additional content to display along select with a visually hidden label', () => {
+      const { getByTestId, getByText } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          isLabelVisuallyHidden
+          labelPosition="left"
+          labelText={labelText}
+          items={items}
+          data-testid="selectContainerElement"
+        />
+      );
+
+      expect(getByText(labelText)).toHaveStyleRule('height', '1px');
+
+      expect(getByTestId('selectContainerElement')).toBeInTheDocument();
+      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+        'display',
+        'flex'
+      );
+    });
   });
 
   describe('events', () => {

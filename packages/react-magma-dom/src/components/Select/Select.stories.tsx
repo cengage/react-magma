@@ -98,7 +98,7 @@ export const WithChildren = (props: SelectProps<SelectOptions>) => (
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ]}
-  ></Select>
+  />
 );
 
 export const WithChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
@@ -124,7 +124,7 @@ export const WithChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ]}
-  ></Select>
+  />
 );
 
 export const ErrorMessage = Template.bind({});

@@ -13,7 +13,7 @@ import { useIsInverse } from '../../inverse';
 import { useGenerateId } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
-import { LabelPosition } from '../Label';
+import { Label, LabelPosition } from '../Label';
 
 /**
  * @children required
@@ -82,13 +82,11 @@ const StyledNativeSelect = styled.select<{
 
 const StyledFormFieldContainer = styled(FormFieldContainer)<{
   additionalContent?: React.ReactNode;
-  hasAdditionalContent?: boolean;
   hasLabel?: boolean;
   labelPosition?: LabelPosition;
 }>`
-  display: ${props =>
-    props.labelPosition === 'left' || !props.hasLabel ? 'flex' : ''};
-  flex: ${props => (props.hasAdditionalContent ? '1' : '')};
+  display: ${props => (props.labelPosition === 'left' ? 'flex' : '')};
+  flex: ${props => (props.additionalContent ? '1' : '')};
   label {
     display: ${props => (props.additionalContent ? 'flex' : '')};
     justify-content: ${props =>
@@ -138,7 +136,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
     function AdditionalContentWrapper(props) {
       if (
         labelPosition === LabelPosition.left ||
-        (!labelText && labelPosition === LabelPosition.top)
+        (labelPosition === LabelPosition.top && !hasLabel)
       ) {
         return (
           <StyledAdditionalContentWrapper theme={theme}>
@@ -149,8 +147,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       return props.children;
     }
 
-    const hasAdditionalContent = additionalContent ? true : false;
-    const hasLabel = labelText ? true : false;
+    const hasLabel = !!labelText;
 
     return (
       <AdditionalContentWrapper labelPosition={labelPosition}>
@@ -159,15 +156,14 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           containerStyle={containerStyle}
           errorMessage={errorMessage}
           fieldId={id}
-          hasAdditionalContent={hasAdditionalContent}
           hasLabel={hasLabel}
           labelPosition={labelPosition}
           labelStyle={labelStyle}
           labelText={
-            labelText && labelPosition !== 'left' && additionalContent ? (
+            labelPosition !== 'left' && additionalContent ? (
               <>
                 {labelText}
-                {additionalContent}
+                {labelText && additionalContent}
               </>
             ) : (
               labelText
@@ -200,10 +196,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           </StyledNativeSelectWrapper>
         </StyledFormFieldContainer>
         {(labelPosition === 'left' && additionalContent) ||
-          (!labelText &&
-            labelPosition === 'top' &&
-            additionalContent &&
-            additionalContent)}
+          (!labelText && additionalContent)}
       </AdditionalContentWrapper>
     );
   }
