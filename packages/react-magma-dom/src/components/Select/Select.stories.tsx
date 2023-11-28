@@ -75,7 +75,7 @@ const onHelpLinkClick = () => {
   alert('Help link clicked!');
 };
 
-export const WithContent = (props: SelectProps<SelectOptions>) => (
+const WithContentTemplate: Story<SelectOptions> = args => (
   <Select
     additionalContent={
       <Tooltip content={helpLinkLabel}>
@@ -90,7 +90,7 @@ export const WithContent = (props: SelectProps<SelectOptions>) => (
       </Tooltip>
     }
     labelText="Helper icon"
-    {...props}
+    {...args}
     items={[
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
@@ -99,30 +99,10 @@ export const WithContent = (props: SelectProps<SelectOptions>) => (
   />
 );
 
-export const WithContentMulti = (props: MultiSelectProps<SelectOptions>) => (
-  <Select
-    additionalContent={
-      <Tooltip content={helpLinkLabel}>
-        <IconButton
-          aria-label={helpLinkLabel}
-          icon={<HelpIcon />}
-          onClick={onHelpLinkClick}
-          type={ButtonType.button}
-          size={ButtonSize.small}
-          variant={ButtonVariant.link}
-        />
-      </Tooltip>
-    }
-    isMulti
-    labelText="Helper icon"
-    {...props}
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
-      { label: 'Green', value: 'green' },
-    ]}
-  />
-);
+export const WithContent = WithContentTemplate.bind({});
+WithContent.args = {
+  isMulti: false,
+};
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {

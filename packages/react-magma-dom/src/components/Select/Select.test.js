@@ -8,6 +8,7 @@ import { Tooltip } from '../Tooltip';
 import { IconButton } from '../IconButton';
 import { HelpIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { LabelPosition } from '../Label';
 
 describe('Select', () => {
   const labelText = 'Label';
@@ -463,7 +464,11 @@ describe('Select', () => {
 
   it('should show a left aligned label', () => {
     const { getByTestId } = render(
-      <Select labelText={labelText} items={items} labelPosition="left" />
+      <Select
+        labelText={labelText}
+        items={items}
+        labelPosition={LabelPosition.left}
+      />
     );
 
     expect(getByTestId('selectContainerElement')).toHaveStyleRule(
@@ -476,7 +481,7 @@ describe('Select', () => {
     const { getByText } = render(
       <Select
         items={items}
-        labelPosition="left"
+        labelPosition={LabelPosition.left}
         labelText={labelText}
         labelWidth={20}
       />
@@ -511,7 +516,7 @@ describe('Select', () => {
       alert('Help link clicked!');
     };
 
-    it('Should accept additional content to the right of the select label', () => {
+    it('Should accept additional content', () => {
       const { getByTestId } = render(
         <Select
           additionalContent={
@@ -560,7 +565,7 @@ describe('Select', () => {
       expect(getByTestId('Icon Button')).toBeInTheDocument();
     });
 
-    it('Should accept additional content to display inline with the label and select', () => {
+    it('When label position is left, should accept additional content to display inline with the label and select', () => {
       const { getByTestId } = render(
         <Select
           additionalContent={
@@ -575,7 +580,7 @@ describe('Select', () => {
               />
             </Tooltip>
           }
-          labelPosition="left"
+          labelPosition={LabelPosition.left}
           labelText={labelText}
           items={items}
           data-testid="selectContainerElement"
@@ -589,7 +594,7 @@ describe('Select', () => {
       );
     });
 
-    it('Should accept additional content to display along select with a visually hidden label', () => {
+    it('When label position is left and isLabelVisuallyHidden is true, should accept additional content to display along select with a visually hidden label', () => {
       const { getByTestId, getByText } = render(
         <Select
           additionalContent={
@@ -605,7 +610,7 @@ describe('Select', () => {
             </Tooltip>
           }
           isLabelVisuallyHidden
-          labelPosition="left"
+          labelPosition={LabelPosition.left}
           labelText={labelText}
           items={items}
           data-testid="selectContainerElement"

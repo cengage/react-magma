@@ -137,6 +137,8 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
     const id = useGenerateId(defaultId);
 
+    const hasLabel = !!labelText;
+
     // If the labelPosition is set to 'left' then a <div> wraps the FormFieldContainer, NativeSelectWrapper, and NativeSelect for proper styling alignment.
     function AdditionalContentWrapper(props) {
       if (
@@ -152,14 +154,18 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       return props.children;
     }
 
-    const hasLabel = !!labelText;
+    function inlineContent() {
+      if (!labelText || labelPosition !== LabelPosition.top) {
+        return additionalContent;
+      }
+    }
 
     return (
       <AdditionalContentWrapper labelPosition={labelPosition}>
         <StyledFormFieldContainer
           additionalContent={additionalContent}
           containerStyle={containerStyle}
-          data-testId={testId ? `${testId}-form-field-container` : ''}
+          data-testId={testId && `${testId}-form-field-container`}
           errorMessage={errorMessage}
           fieldId={id}
           hasLabel={!!labelText}
@@ -201,8 +207,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             <DefaultDropdownIndicator disabled={disabled} />
           </StyledNativeSelectWrapper>
         </StyledFormFieldContainer>
-        {(labelPosition === LabelPosition.left && additionalContent) ||
-          (!labelText && additionalContent)}
+        {inlineContent()}
       </AdditionalContentWrapper>
     );
   }
