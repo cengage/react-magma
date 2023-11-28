@@ -13,7 +13,7 @@ export const SelectContainerElement = styled.div<{
   labelWidth?: number;
 }>`
   display: ${props =>
-    props.labelPosition == LabelPosition.left ||
+    props.labelPosition === LabelPosition.left ||
     (props.isLabelVisuallyHidden && LabelPosition.top)
       ? 'flex'
       : 'block'};
