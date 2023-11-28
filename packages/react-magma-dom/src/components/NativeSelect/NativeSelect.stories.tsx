@@ -57,7 +57,7 @@ Disabled.args = {
   disabled: true,
 };
 
-const WithChildrenTemplate: Story<NativeSelectProps> = args => {
+const WithContentTemplate: Story<NativeSelectProps> = args => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
@@ -85,8 +85,8 @@ const WithChildrenTemplate: Story<NativeSelectProps> = args => {
   );
 };
 
-export const WithChildren = WithChildrenTemplate.bind({});
-WithChildren.args = {
+export const WithContent = WithContentTemplate.bind({});
+WithContent.args = {
   ...Default.args,
 };
 

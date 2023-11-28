@@ -133,5 +133,31 @@ describe('NativeSelect', () => {
       expect(getByTestId(testId)).toBeInTheDocument();
       expect(getByTestId('Icon Button')).toBeInTheDocument();
     });
+
+    it(`Should display additional content inline with the native select label when labelPosition is set to 'left'`, () => {
+      const { getByTestId } = render(
+        <NativeSelect
+          labelPosition="left"
+          testId={testId}
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                testId="Icon Button"
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+        />
+      );
+      expect(getByTestId(`${testId}-form-field-container`)).toHaveStyleRule(
+        'display',
+        'flex'
+      );
+    });
   });
 });

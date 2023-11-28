@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-
+import { css } from '@emotion/core';
 import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import {
   FormFieldContainer,
@@ -85,14 +85,19 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
   hasLabel?: boolean;
   labelPosition?: LabelPosition;
 }>`
-  display: ${props => (props.labelPosition === 'left' ? 'flex' : '')};
-  flex: ${props => (props.additionalContent ? '1' : '')};
-  label {
-    display: ${props => (props.additionalContent ? 'flex' : '')};
-    justify-content: ${props =>
-      props.additionalContent ? 'space-between' : ''};
-    align-items: ${props => (props.additionalContent ? 'center' : '')};
-  }
+  display: ${props =>
+    props.labelPosition === LabelPosition.left ? 'flex' : ''};
+
+  ${props =>
+    props.additionalContent &&
+    css`
+      flex: 1;
+      label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    `}
 `;
 
 const StyledAdditionalContentWrapper = styled.div`
@@ -154,13 +159,14 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         <StyledFormFieldContainer
           additionalContent={additionalContent}
           containerStyle={containerStyle}
+          data-testId={testId ? `${testId}-form-field-container` : ''}
           errorMessage={errorMessage}
           fieldId={id}
-          hasLabel={hasLabel}
+          hasLabel={!!labelText}
           labelPosition={labelPosition}
           labelStyle={labelStyle}
           labelText={
-            labelPosition !== 'left' && additionalContent ? (
+            labelPosition !== LabelPosition.left && additionalContent ? (
               <>
                 {labelText}
                 {labelText && additionalContent}
@@ -195,7 +201,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             <DefaultDropdownIndicator disabled={disabled} />
           </StyledNativeSelectWrapper>
         </StyledFormFieldContainer>
-        {(labelPosition === 'left' && additionalContent) ||
+        {(labelPosition === LabelPosition.left && additionalContent) ||
           (!labelText && additionalContent)}
       </AdditionalContentWrapper>
     );

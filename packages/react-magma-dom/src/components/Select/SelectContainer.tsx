@@ -90,7 +90,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   // If the labelPosition is set to 'top' (default) then a <div> wraps the Label and additional content for proper styling alignment.
   function AdditionalContentWrapper(props) {
     if (
-      labelPosition !== 'left' &&
+      labelPosition !== LabelPosition.left &&
       !isLabelVisuallyHidden &&
       additionalContent
     ) {
@@ -104,10 +104,10 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
     return props.children;
   }
 
-  // If the labelPosition is set to 'left' then the label, select, and additional content display inline.
+  // If the labelPosition is set to LabelPosition.left then the label, select, and additional content display inline.
   function additionalItemRightAlign() {
     if (
-      (labelPosition === 'left' && additionalContent) ||
+      (labelPosition === LabelPosition.left && additionalContent) ||
       (labelPosition && isLabelVisuallyHidden && additionalContent)
     ) {
       return (

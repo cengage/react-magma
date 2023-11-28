@@ -4,7 +4,6 @@ import { Select, SelectOptions, SelectProps, MultiSelectProps } from './';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { InputIconPosition } from '../InputBase';
 import { Tooltip } from '../Tooltip';
 import { IconButton } from '../IconButton';
 import { HelpIcon } from 'react-magma-icons';
@@ -76,7 +75,7 @@ const onHelpLinkClick = () => {
   alert('Help link clicked!');
 };
 
-export const WithChildren = (props: SelectProps<SelectOptions>) => (
+export const WithContent = (props: SelectProps<SelectOptions>) => (
   <Select
     additionalContent={
       <Tooltip content={helpLinkLabel}>
@@ -90,7 +89,6 @@ export const WithChildren = (props: SelectProps<SelectOptions>) => (
         />
       </Tooltip>
     }
-    iconPosition={InputIconPosition.right}
     labelText="Helper icon"
     {...props}
     items={[
@@ -101,7 +99,7 @@ export const WithChildren = (props: SelectProps<SelectOptions>) => (
   />
 );
 
-export const WithChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
+export const WithContentMulti = (props: MultiSelectProps<SelectOptions>) => (
   <Select
     additionalContent={
       <Tooltip content={helpLinkLabel}>
@@ -115,7 +113,6 @@ export const WithChildrenMulti = (props: MultiSelectProps<SelectOptions>) => (
         />
       </Tooltip>
     }
-    iconPosition={InputIconPosition.top}
     isMulti
     labelText="Helper icon"
     {...props}
