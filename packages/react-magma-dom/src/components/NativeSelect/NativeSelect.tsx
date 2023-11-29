@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-
+import { css } from '@emotion/core';
 import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import {
   FormFieldContainer,
@@ -13,6 +13,7 @@ import { useIsInverse } from '../../inverse';
 import { useGenerateId } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
+import { LabelPosition } from '../Label';
 
 /**
  * @children required
@@ -20,6 +21,10 @@ import { transparentize } from 'polished';
 export interface NativeSelectProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.SelectHTMLAttributes<HTMLSelectElement> {
+  /**
+   * Content above the select. For use with Icon Buttons to relay information.
+   */
+  additionalContent?: React.ReactNode;
   /**
    * @internal
    */
@@ -75,9 +80,41 @@ const StyledNativeSelect = styled.select<{
   }
 `;
 
+const StyledFormFieldContainer = styled(FormFieldContainer)<{
+  additionalContent?: React.ReactNode;
+  hasLabel?: boolean;
+  labelPosition?: LabelPosition;
+}>`
+  display: ${props =>
+    props.labelPosition === LabelPosition.left ? 'flex' : ''};
+
+  ${props =>
+    props.additionalContent &&
+    css`
+      flex: 1;
+      label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    `}
+`;
+
+const StyledAdditionalContentWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  label {
+    margin: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
+  }
+  button {
+    margin: 0 0 0 ${props => props.theme.spaceScale.spacing03};
+  }
+`;
+
 export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
   (props, ref) => {
     const {
+      additionalContent,
       children,
       containerStyle,
       disabled,
@@ -100,40 +137,78 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
     const id = useGenerateId(defaultId);
 
+    const hasLabel = !!labelText;
+
+    // If the labelPosition is set to 'left' then a <div> wraps the FormFieldContainer, NativeSelectWrapper, and NativeSelect for proper styling alignment.
+    function AdditionalContentWrapper(props) {
+      if (
+        labelPosition === LabelPosition.left ||
+        (labelPosition === LabelPosition.top && !hasLabel)
+      ) {
+        return (
+          <StyledAdditionalContentWrapper theme={theme}>
+            {props.children}
+          </StyledAdditionalContentWrapper>
+        );
+      }
+      return props.children;
+    }
+
+    function inlineContent() {
+      if (!labelText || labelPosition !== LabelPosition.top) {
+        return additionalContent;
+      }
+    }
+
     return (
-      <FormFieldContainer
-        containerStyle={containerStyle}
-        errorMessage={errorMessage}
-        fieldId={id}
-        labelPosition={labelPosition}
-        labelStyle={labelStyle}
-        labelText={labelText}
-        labelWidth={labelWidth}
-        isInverse={isInverse}
-        helperMessage={helperMessage}
-        messageStyle={messageStyle}
-        ref={ref}
-      >
-        <StyledNativeSelectWrapper
-          disabled={disabled}
-          hasError={!!errorMessage}
+      <AdditionalContentWrapper labelPosition={labelPosition}>
+        <StyledFormFieldContainer
+          additionalContent={additionalContent}
+          containerStyle={containerStyle}
+          data-testId={testId && `${testId}-form-field-container`}
+          errorMessage={errorMessage}
+          fieldId={id}
+          hasLabel={!!labelText}
+          labelPosition={labelPosition}
+          labelStyle={labelStyle}
+          labelText={
+            labelPosition !== LabelPosition.left && additionalContent ? (
+              <>
+                {labelText}
+                {labelText && additionalContent}
+              </>
+            ) : (
+              labelText
+            )
+          }
+          labelWidth={labelWidth}
           isInverse={isInverse}
-          theme={theme}
+          helperMessage={helperMessage}
+          messageStyle={messageStyle}
+          ref={ref}
         >
-          <StyledNativeSelect
-            data-testid={testId}
-            hasError={!!errorMessage}
+          <StyledNativeSelectWrapper
             disabled={disabled}
-            id={id}
+            hasError={!!errorMessage}
             isInverse={isInverse}
             theme={theme}
-            {...other}
           >
-            {children}
-          </StyledNativeSelect>
-          <DefaultDropdownIndicator disabled={disabled} />
-        </StyledNativeSelectWrapper>
-      </FormFieldContainer>
+            <StyledNativeSelect
+              data-testid={testId}
+              hasError={!!errorMessage}
+              disabled={disabled}
+              id={id}
+              isInverse={isInverse}
+              theme={theme}
+              {...other}
+            >
+              {children}
+            </StyledNativeSelect>
+            <DefaultDropdownIndicator disabled={disabled} />
+          </StyledNativeSelectWrapper>
+        </StyledFormFieldContainer>
+        {inlineContent()}
+      </AdditionalContentWrapper>
     );
   }
 );

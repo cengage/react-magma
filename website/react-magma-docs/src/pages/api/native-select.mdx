@@ -129,6 +129,76 @@ export function Example() {
 }
 ```
 
+## Additional Content
+
+When a native select needs additional context related to the user, `additionalContent` allows child elements to help. It is encouraged to use this prop with a `Tooltip` wrapping an `IconButton`.
+
+By default, the child element will display inline with a `NativeSelect` label on the right.
+
+When `labelPosition` is set to `left`, the label, native select, and child elements all display inline.
+
+```tsx
+import React from 'react';
+import { NativeSelect } from './';
+import { LabelPosition } from '../Label';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { HelpIcon } from 'react-magma-icons';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+
+export function Example() {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+
+  return (
+    <>
+      <NativeSelect
+        labelText="Default positioning"
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+      >
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+      </NativeSelect>
+      <br />
+      <NativeSelect
+        labelText="Left positioning"
+        labelPosition={LabelPosition.left}
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+      >
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+      </NativeSelect>
+    </>
+  );
+}
+```
+
 ## Inverse
 
 The `isInverse` prop will render a dark background and light text. The children will

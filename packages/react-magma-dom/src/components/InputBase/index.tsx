@@ -433,7 +433,7 @@ function getIconButtonTransform(props) {
   return position;
 }
 
-const IconButtonContainer = styled.span<{
+export const IconButtonContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   theme: ThemeInterface;
@@ -621,7 +621,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     }
 
     const passwordBtnWidth = () => {
-      const btnWidth = children?.props?.children?.[0]?.ref?.current?.offsetWidth;
+      const btnWidth =
+        children?.props?.children?.[0]?.ref?.current?.offsetWidth;
       if (typeof btnWidth === 'number') {
         return btnWidth;
       } else {
