@@ -179,16 +179,15 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           disabled={disabled}
           hasError={!!errorMessage}
           isInverse={isInverse}
-          theme={theme}
+          helperMessage={helperMessage}
+          messageStyle={messageStyle}
+          ref={ref}
         >
-          <StyledNativeSelect
-            data-testid={testId}
-            hasError={!!errorMessage}
+          <StyledNativeSelectWrapper
             disabled={disabled}
-            id={id}
+            hasError={!!errorMessage}
             isInverse={isInverse}
             theme={theme}
-            {...other}
           >
             {children}
           </StyledNativeSelect>
