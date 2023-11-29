@@ -55,6 +55,12 @@
 
 ## 4.2.0
 
+## 4.3.0-next.2
+
+### Minor Changes
+
+- c47fc18b4: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
+
 ## 4.2.1-next.1
 
 ### Patch Changes
