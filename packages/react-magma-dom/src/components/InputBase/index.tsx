@@ -433,7 +433,7 @@ function getIconButtonTransform(props) {
   return position;
 }
 
-const IconButtonContainer = styled.span<{
+export const IconButtonContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   theme: ThemeInterface;
