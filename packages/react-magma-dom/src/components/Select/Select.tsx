@@ -14,6 +14,7 @@ import { useForkedRef } from '../../utils';
 
 export function Select<T>(props: SelectProps<T>) {
   const {
+    additionalContent,
     ariaDescribedBy,
     components: customComponents,
     defaultSelectedItem,
@@ -159,6 +160,7 @@ export function Select<T>(props: SelectProps<T>) {
 
   return (
     <SelectContainer
+      additionalContent={additionalContent}
       errorMessage={errorMessage}
       descriptionId={ariaDescribedBy}
       getLabelProps={getLabelProps}

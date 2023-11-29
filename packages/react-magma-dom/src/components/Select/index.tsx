@@ -109,6 +109,10 @@ export interface SelectProps<T extends SelectOptions>
   extends UseSelectProps<T>,
     InternalSelectProps<T> {
   /**
+   * Content above the select. For use with Icon Buttons to relay information.
+   */
+  additionalContent?: React.ReactNode;
+  /**
    * Id of the element that describes the select trigger button
    */
   ariaDescribedBy?: string;
