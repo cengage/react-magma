@@ -1,5 +1,11 @@
 ## 4.2.0
 
+## 4.3.0-next.3
+
+### Minor Changes
+
+- 5e438ab0a: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
+
 ## 4.3.0-next.2
 
 ### Minor Changes
