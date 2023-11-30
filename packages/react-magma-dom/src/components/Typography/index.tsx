@@ -238,8 +238,8 @@ export const heading2XLargeStyles = props => css`
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
         .desktop.fontSize};
-      line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
-        .desktop.lineHeight};
+      line-height: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
+        .lineHeight.lineHeight};
     }
   `};
 `;
@@ -268,7 +268,7 @@ export const headingXLargeStyles = props => css`
     font-weight: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
       .fontWeight};
     line-height: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
-      .mobile.lineHeight};
+      .lineHeight.lineHeight};
 
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
@@ -378,6 +378,8 @@ export const headingMediumStyles = props => css`
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.fontSize};
+      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingSmall
+        .fontWeight};
       line-height: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.lineHeight};
     }
