@@ -239,7 +239,7 @@ export const heading2XLargeStyles = props => css`
       font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
         .desktop.fontSize};
       line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
-        .mobile.lineHeight};
+        .desktop.lineHeight};
     }
   `};
 `;
@@ -268,7 +268,7 @@ export const headingXLargeStyles = props => css`
     font-weight: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
       .fontWeight};
     line-height: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
-      .desktop.lineHeight};
+      .mobile.lineHeight};
 
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.headingXLarge
