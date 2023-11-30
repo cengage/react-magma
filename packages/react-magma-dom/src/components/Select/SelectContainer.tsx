@@ -48,21 +48,37 @@ interface SelectContainerInterface<T> {
   messageStyle?: React.CSSProperties;
 }
 
-const StyledAdditionalContentWrapper = styled.div<{ theme?: ThemeInterface }>`
+const StyledAdditionalContentWrapper = styled.div<{
+  labelPosition?: LabelPosition;
+  theme?: ThemeInterface;
+}>`
   align-items: center;
   display: flex;
   flex: 1;
   justify-content: space-between;
   label {
-    margin: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
+    margin: ${props =>
+      props.labelPosition === LabelPosition.left
+        ? `0 ${props.theme.spaceScale.spacing03} 0 0`
+        : ''};
+  }
+  button {
+    bottom: ${props =>
+      props.labelPosition !== LabelPosition.left ? `6px` : ''};
   }
 `;
 
-const StyledAdditionalContent = styled.div<{ theme?: ThemeInterface }>`
+const StyledAdditionalContent = styled.div<{
+  labelPosition?: LabelPosition;
+  theme?: ThemeInterface;
+}>`
   display: flex;
   align-items: center;
   button {
-    margin: 0 0 0 ${props => props.theme.spaceScale.spacing03};
+    margin: ${props =>
+      props.labelPosition === LabelPosition.left
+        ? `0 0 0 ${props.theme.spaceScale.spacing03}`
+        : ''};
   }
 `;
 
@@ -95,7 +111,10 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
       additionalContent
     ) {
       return (
-        <StyledAdditionalContentWrapper theme={theme}>
+        <StyledAdditionalContentWrapper
+          labelPosition={labelPosition}
+          theme={theme}
+        >
           {props.children}
           {additionalContent}
         </StyledAdditionalContentWrapper>
@@ -111,7 +130,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
       (labelPosition && isLabelVisuallyHidden && additionalContent)
     ) {
       return (
-        <StyledAdditionalContent theme={theme}>
+        <StyledAdditionalContent labelPosition={labelPosition} theme={theme}>
           {additionalContent}
         </StyledAdditionalContent>
       );

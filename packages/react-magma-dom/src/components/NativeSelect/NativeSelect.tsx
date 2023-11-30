@@ -154,12 +154,6 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       return props.children;
     }
 
-    function inlineContent() {
-      if (!labelText || labelPosition !== LabelPosition.top) {
-        return additionalContent;
-      }
-    }
-
     return (
       <AdditionalContentWrapper labelPosition={labelPosition}>
         <StyledFormFieldContainer
@@ -207,7 +201,8 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             <DefaultDropdownIndicator disabled={disabled} />
           </StyledNativeSelectWrapper>
         </StyledFormFieldContainer>
-        {inlineContent()}
+        {(labelPosition === 'left' && additionalContent) ||
+          (!labelText && additionalContent)}
       </AdditionalContentWrapper>
     );
   }
