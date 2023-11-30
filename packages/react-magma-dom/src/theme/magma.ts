@@ -143,6 +143,7 @@ export interface TypeScale {
   size13: TypeScaleSize;
   size14: TypeScaleSize;
   size15: TypeScaleSize;
+  size16: TypeScaleSize;
 }
 
 export interface VisualStyle {
@@ -354,11 +355,11 @@ const typeScale = {
   },
   size11: {
     fontSize: '48px',
-    lineHeight: '56px',
+    lineHeight: '64px',
   },
   size12: {
     fontSize: '52px',
-    lineHeight: '68px',
+    lineHeight: '64px',
   },
   size13: {
     fontSize: '54px',
@@ -587,7 +588,6 @@ export const magma = {
       mobile: typeScale.size09,
       desktop: typeScale.size11,
       fontWeight: 600,
-      lineHeight: typeScale.size13,
     },
     headingLarge: {
       mobile: typeScale.size07,
