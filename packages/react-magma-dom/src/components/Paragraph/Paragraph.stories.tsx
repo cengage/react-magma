@@ -12,66 +12,66 @@ export const Default = () => {
   return (
     <>
       <Paragraph visualStyle={TypographyVisualStyle.bodyLarge}>
-        Body Large
+        Paragraph Body Large
       </Paragraph>
       <Paragraph visualStyle={TypographyVisualStyle.bodyMedium}>
-        Body Medium
+        Paragraph Body Medium
       </Paragraph>
       <Paragraph visualStyle={TypographyVisualStyle.bodySmall}>
-        Body Small
+        Paragraph Body Small
       </Paragraph>
       <Paragraph visualStyle={TypographyVisualStyle.bodyXSmall}>
-        Body X-Small
+        Paragraph Body X-Small
       </Paragraph>
 
       <Paragraph
         visualStyle={TypographyVisualStyle.bodyLarge}
         contextVariant={TypographyContextVariant.narrative}
       >
-        Narrative Large
+        Paragraph Narrative Large
       </Paragraph>
       <Paragraph
         visualStyle={TypographyVisualStyle.bodyMedium}
         contextVariant={TypographyContextVariant.narrative}
       >
-        Narrative Medium
+        Paragraph Narrative Medium
       </Paragraph>
       <Paragraph
         visualStyle={TypographyVisualStyle.bodySmall}
         contextVariant={TypographyContextVariant.narrative}
       >
-        Narrative Small
+        Paragraph Narrative Small
       </Paragraph>
       <Paragraph
         visualStyle={TypographyVisualStyle.bodyXSmall}
         contextVariant={TypographyContextVariant.narrative}
       >
-        Narrative X-Small
+        Paragraph Narrative X-Small
       </Paragraph>
 
       <Paragraph
         visualStyle={TypographyVisualStyle.bodyLarge}
         contextVariant={TypographyContextVariant.expressive}
       >
-        Expressive Large
+        Paragraph Expressive Large
       </Paragraph>
       <Paragraph
         visualStyle={TypographyVisualStyle.bodyMedium}
         contextVariant={TypographyContextVariant.expressive}
       >
-        Expressive Medium
+        Paragraph Expressive Medium
       </Paragraph>
       <Paragraph
         visualStyle={TypographyVisualStyle.bodySmall}
         contextVariant={TypographyContextVariant.expressive}
       >
-        Expressive Small
+        Paragraph Expressive Small
       </Paragraph>
       <Paragraph
         visualStyle={TypographyVisualStyle.bodyXSmall}
         contextVariant={TypographyContextVariant.expressive}
       >
-        Expressive X-Small
+        Paragraph Expressive X-Small
       </Paragraph>
     </>
   );

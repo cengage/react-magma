@@ -61,6 +61,8 @@ export function getBodyFontFamily(props) {
 export const colorStyles = props => css`
   color: ${props.isInverse
     ? props.theme.colors.neutral100
+    : props.contextVariant === 'expressive'
+    ? props.theme.colors.primary600
     : props.theme.colors.neutral700};
 
   ${props.color === TypographyColor.danger &&
@@ -124,6 +126,7 @@ export const paragraphLargeStyles = props => css`
 
   ${props.contextVariant === TypographyContextVariant.expressive &&
   css`
+    color: ${props.theme.colors.neutral700};
     font-size: ${props.theme.typographyExpressiveVisualStyles.bodyLarge.mobile
       .fontSize};
     line-height: ${props.theme.typographyExpressiveVisualStyles.bodyLarge.mobile
