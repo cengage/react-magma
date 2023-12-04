@@ -61,8 +61,6 @@ export function getBodyFontFamily(props) {
 export const colorStyles = props => css`
   color: ${props.isInverse
     ? props.theme.colors.neutral100
-    : props.contextVariant === 'expressive'
-    ? props.theme.colors.primary600
     : props.theme.colors.neutral700};
 
   ${props.color === TypographyColor.danger &&
@@ -378,7 +376,7 @@ export const headingMediumStyles = props => css`
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.fontSize};
-      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingSmall
+      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .fontWeight};
       line-height: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.lineHeight};
