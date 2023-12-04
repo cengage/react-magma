@@ -361,16 +361,20 @@ By default, the child element will display inline with a `Select` label on the r
 
 When `labelPosition` is set to `left`, the label, select, and child elements all display inline.
 
-If no label is required, use `visuallyHidden` and the same inline layout will persist.
+If no label is required, use `isLabelVisuallyHidden` and the same inline layout will persist.
 
 ```tsx
 import React from 'react';
-import { Select } from './';
-import { LabelPosition } from '../Label';
-import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
+import {
+  Select,
+  LabelPosition,
+  Tooltip,
+  IconButton,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from 'react-magma-dom';
 import { HelpIcon } from 'react-magma-icons';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 export function Example() {
   const helpLinkLabel = 'Learn more';
