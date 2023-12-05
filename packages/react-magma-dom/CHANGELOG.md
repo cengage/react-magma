@@ -1,5 +1,11 @@
 ## 4.2.0
 
+## 4.3.0-next.4
+
+### Patch Changes
+
+- 1fb88b6fc: fix: Updates to the expressive font styles for both desktop and mobile.
+
 ## 4.3.0-next.3
 
 ### Minor Changes
