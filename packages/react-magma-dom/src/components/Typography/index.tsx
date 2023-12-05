@@ -58,12 +58,23 @@ export function getBodyFontFamily(props) {
   }
 }
 
-export const colorStyles = props => css`
-  color: ${props.isInverse
-    ? props.theme.colors.neutral100
-    : props.contextVariant === 'expressive'
-    ? props.theme.colors.primary600
-    : props.theme.colors.neutral700};
+export function getBaseFontColor(props, isHeading = false) {
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+
+  // Expressive headings use primary color
+  if (
+    props.contextVariant === TypographyContextVariant.expressive &&
+    isHeading
+  ) {
+    return props.theme.colors.primary600;
+  }
+  return props.theme.colors.neutral700;
+}
+
+export const colorStyles = (props, isHeading: boolean) => css`
+  color: ${getBaseFontColor(props, isHeading)};
 
   ${props.color === TypographyColor.danger &&
   !props.isInverse &&
@@ -104,7 +115,7 @@ ${props.color === TypographyColor.subdued &&
 `;
 
 const baseParagraphStyles = props => css`
-  ${colorStyles(props)}
+  ${colorStyles(props, false)}
   font-family: ${getBodyFontFamily(props)};
   font-weight: normal;
 `;
@@ -220,7 +231,7 @@ const baseHeadingStyles = props => css`
     transition: border 0.1s linear;
   }
 
-  ${colorStyles(props)}
+  ${colorStyles(props, true)}
 `;
 
 export const heading2XLargeStyles = props => css`
@@ -378,6 +389,8 @@ export const headingMediumStyles = props => css`
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.fontSize};
+      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingMedium
+        .fontWeight};
       line-height: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.lineHeight};
     }
