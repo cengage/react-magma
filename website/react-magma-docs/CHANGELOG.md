@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.5-next.6
+
+### Patch Changes
+
+- 7f1d9b96c: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
+
 ## 5.0.5-next.5
 
 ### Patch Changes
