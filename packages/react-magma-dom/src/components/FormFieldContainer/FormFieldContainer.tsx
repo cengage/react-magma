@@ -30,7 +30,7 @@ export interface FormFieldContainerBaseProps {
    */
   errorMessage?: React.ReactNode;
   /**
-   * ID of the form field.  Also used in the descrption ID.
+   * ID of the form field.  Also used in the description ID.
    */
   fieldId: string;
   /** 
