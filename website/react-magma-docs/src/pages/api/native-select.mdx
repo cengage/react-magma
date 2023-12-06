@@ -22,7 +22,7 @@ import { NativeSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <NativeSelect labelText="Select this">
+    <NativeSelect labelText="Select this" fieldId="example-basic">
       <option>Red</option>
       <option>Green</option>
       <option>Blue</option>
@@ -47,7 +47,11 @@ export function Example() {
         <strong>Changed Value: </strong>{' '}
         <span id="changedValue">{message}</span>
       </p>
-      <NativeSelect labelText="Test value" onChange={handleChange}>
+      <NativeSelect
+        labelText="Test value"
+        onChange={handleChange}
+        fieldId="example-uncontrolled"
+      >
         <option>Choose Color</option>
         <option value="Red">Red</option>
         <option value="Green">Green</option>
@@ -65,7 +69,11 @@ import React from 'react';
 import { NativeSelect } from 'react-magma-dom';
 export function Example() {
   return (
-    <NativeSelect labelText="Test value" value="Green">
+    <NativeSelect
+      labelText="Test value"
+      value="Green"
+      fieldId="example-controlled"
+    >
       <option>Choose Color</option>
       <option value="Red">Red</option>
       <option value="Green">Green</option>
@@ -83,7 +91,7 @@ import { NativeSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <NativeSelect labelText="Select this" disabled>
+    <NativeSelect labelText="Select this" disabled fieldId="example-disabled">
       <option>Red</option>
       <option>Green</option>
       <option>Blue</option>
@@ -100,7 +108,11 @@ import { NativeSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <NativeSelect labelText="Select this" errorMessage="This is an error">
+    <NativeSelect
+      labelText="Select this"
+      errorMessage="This is an error"
+      fieldId="example-error"
+    >
       <option>Red</option>
       <option>Green</option>
       <option>Blue</option>
@@ -120,6 +132,7 @@ export function Example() {
     <NativeSelect
       labelText="Select this"
       helperMessage="Helper message appears here"
+      fieldId="example-helper"
     >
       <option>Red</option>
       <option>Green</option>
@@ -139,12 +152,16 @@ When `labelPosition` is set to `left`, the label, native select, and child eleme
 
 ```tsx
 import React from 'react';
-import { NativeSelect } from './';
-import { LabelPosition } from '../Label';
-import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
+import {
+  NativeSelect,
+  LabelPosition,
+  Tooltip,
+  IconButton,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from 'react-magma-dom';
 import { HelpIcon } from 'react-magma-icons';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 export function Example() {
   const helpLinkLabel = 'Learn more';
@@ -156,6 +173,7 @@ export function Example() {
     <>
       <NativeSelect
         labelText="Default positioning"
+        fieldId="example-additionalContent"
         additionalContent={
           <Tooltip content={helpLinkLabel}>
             <IconButton
@@ -212,7 +230,11 @@ export function Example() {
   return (
     <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
       <CardBody>
-        <NativeSelect labelText="Select this" isInverse>
+        <NativeSelect
+          labelText="Select this"
+          isInverse
+          fieldId="example-inverse"
+        >
           <option>Red</option>
           <option>Green</option>
           <option>Blue</option>
@@ -233,7 +255,12 @@ export function Example() {
   return (
     <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
       <CardBody>
-        <NativeSelect labelText="Select this" isInverse disabled>
+        <NativeSelect
+          labelText="Select this"
+          isInverse
+          disabled
+          fieldId="example-inverseDisabled"
+        >
           <option>Red</option>
           <option>Green</option>
           <option>Blue</option>
@@ -258,6 +285,7 @@ export function Example() {
           labelText="Select this"
           isInverse
           errorMessage="This is an error"
+          fieldId="example-inverseError"
         >
           <option>Red</option>
           <option>Green</option>
@@ -283,6 +311,7 @@ export function Example() {
           labelText="Select this"
           isInverse
           helperMessage="Helper message appears here"
+          fieldId="example-inverseHelper"
         >
           <option>Red</option>
           <option>Green</option>
