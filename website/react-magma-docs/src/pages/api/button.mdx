@@ -5,13 +5,17 @@ props:
   - ButtonProps
 ---
 
-<DocsHeading to="/design/button/" type="api">
-  Button
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="button" type="api">
+
+<LeadParagraph>
+  Buttons are clickable items used to perform an action. See the{' '}
+  <Link to="/design/button/">Button Design Guidelines</Link> for more
+  information on when to use the different kinds of buttons.
+</LeadParagraph>
 
 ## Basic Usage
-
-Buttons are clickable items used to perform an action. See the <Link to="/design/button/">Button Design Guidelines</Link> for more information on when to use the different kinds of buttons.
 
 When using multiple buttons, they should be wrapped in a <Link to="/api/button-group">ButtonGroup</Link>.
 
@@ -65,7 +69,12 @@ The `marketing` buttons can only use the `solid` variant.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonColor, ButtonVariant, ButtonGroup } from 'react-magma-dom';
+import {
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -78,13 +87,13 @@ export function Example() {
           Link
         </Button>
       </ButtonGroup>
-      <br/>
+      <br />
       <ButtonGroup>
         <Button color={ButtonColor.secondary} variant={ButtonVariant.solid}>
           Solid (default)
         </Button>
       </ButtonGroup>
-      <br/>
+      <br />
       <ButtonGroup>
         <Button color={ButtonColor.danger} variant={ButtonVariant.solid}>
           Solid (default)
@@ -144,8 +153,7 @@ export function Example() {
 The `isInverse` property is an optional boolean, that reverses the colors so that the buttons can better appear on a dark background.
 The default value is `false`.
 
-While `link isInverse buttons` still accepts the `color` property, the `color` property
-online affects `solid isInverse buttons`.
+While `link isInverse buttons` still accepts the `color` property, the `color` property only affects `solid isInverse buttons`.
 
 The `marketing` button does not have an inverse state, as it already is styled to appear well against a dark background.
 
@@ -167,16 +175,16 @@ export function Example() {
         <ButtonGroup>
           <Button isInverse>Solid inverse</Button>
           <Button color={ButtonColor.secondary} isInverse>
-            Solid inverse
+            Solid secondary inverse
           </Button>
           <Button color={ButtonColor.subtle} isInverse>
-            Solid inverse
+            Solid subtle inverse
           </Button>
           <Button color={ButtonColor.danger} isInverse>
-            Solid inverse
+            Solid danger inverse
           </Button>
           <Button color={ButtonColor.marketing} isInverse>
-            Marketing inverse
+            Solid marketing inverse
           </Button>
         </ButtonGroup>
         <ButtonGroup>
@@ -271,7 +279,13 @@ By default, buttons will have a type of `button`.
 
 ```tsx
 import React from 'react';
-import { Button, ButtonType, ButtonGroup, Input, Spacer } from 'react-magma-dom';
+import {
+  Button,
+  ButtonType,
+  ButtonGroup,
+  Input,
+  Spacer,
+} from 'react-magma-dom';
 
 export function Example() {
   const inputRef = React.useRef<HTMLInputElement>();
@@ -360,7 +374,7 @@ export function Example() {
 Passing in the `testId` prop will add the `data-testid` attribute to the button element for easier querying in tests.
 
 ```html noCodeSandbox
-<Button testId="test-id">Default</Button>
+<button testId="test-id">Default</button>
 ```
 
 ## Button Props
@@ -370,3 +384,5 @@ Passing in the `testId` prop will add the `data-testid` attribute to the button 
 All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
 
 <ButtonProps />
+
+</PageContent>

@@ -86,6 +86,23 @@ export {
   DropdownButton,
   DropdownButtonProps,
 } from './components/Dropdown/DropdownButton';
+export { DropdownExpandableMenuGroup } from './components/Dropdown/DropdownExpandableMenuGroup';
+export {
+  DropdownExpandableMenuItem,
+  DropdownExpandableMenuItemProps,
+} from './components/Dropdown/DropdownExpandableMenuItem';
+export {
+  DropdownExpandableMenuListItem,
+  DropdownExpandableMenuListItemProps,
+} from './components/Dropdown/DropdownExpandableMenuListItem';
+export {
+  DropdownExpandableMenuButton,
+  DropdownExpandableMenuButtonProps,
+} from './components/Dropdown/DropdownExpandableMenuButton';
+export {
+  DropdownExpandableMenuPanel,
+  DropdownExpandableMenuPanelProps,
+} from './components/Dropdown/DropdownExpandableMenuPanel';
 export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';
@@ -123,7 +140,11 @@ export {
 export { NativeSelect, NativeSelectProps } from './components/NativeSelect';
 export { NavTabs } from './components/NavTabs';
 export { NavTab } from './components/NavTabs/NavTab';
-export { Pagination } from './components/Pagination';
+export {
+  Pagination,
+  PageButtonSize,
+  PaginationType,
+} from './components/Pagination';
 export { Paragraph, ParagraphProps } from './components/Paragraph';
 export { PasswordInput, PasswordInputProps } from './components/PasswordInput';
 export {

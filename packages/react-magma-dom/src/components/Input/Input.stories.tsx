@@ -101,16 +101,16 @@ export const IconPositions = args => {
         icon={<NotificationsIcon />}
         iconPosition={InputIconPosition.left}
       />
-      <br/>
-      <br/>
+      <br />
+      <br />
       <Input
         {...args}
         labelText="Icon Right"
         icon={<WorkIcon />}
         iconPosition={InputIconPosition.right}
       />
-        <br/>
-        <br/>
+      <br />
+      <br />
       <Input
         {...args}
         labelText="Icon Top"
@@ -184,6 +184,7 @@ export const WithChildren = args => {
           />
         </Tooltip>
       </Input>
+      <br />
       <Input
         labelText="Help link - right"
         iconPosition={InputIconPosition.right}
@@ -200,9 +201,28 @@ export const WithChildren = args => {
           />
         </Tooltip>
       </Input>
-      <br />
-      <hr />
-      <Input labelText="With two icons" icon={<NotificationsIcon />} {...args}>
+    </>
+  );
+};
+WithChildren.args = {
+  ...Default.args,
+};
+WithChildren.parameters = {
+  controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
+};
+
+export const WithTwoIcons = args => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+  return (
+    <>
+      <Input
+        labelText="With two icons"
+        icon={<NotificationsIcon />}
+        iconPosition={InputIconPosition.left}
+      >
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -217,6 +237,9 @@ export const WithChildren = args => {
     </>
   );
 };
-WithChildren.parameters = {
-  controls: { exclude: ['iconPosition', 'isInverse', 'type'] },
+WithTwoIcons.args = {
+  ...Default.args,
+};
+WithTwoIcons.parameters = {
+  controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
 };

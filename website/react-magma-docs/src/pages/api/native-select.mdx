@@ -5,11 +5,16 @@ props:
   - NativeSelectProps
 ---
 
-<DocsHeading type="api">NativeSelect</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="native_select" type="api">
+
+<LeadParagraph>
+  Native Select uses the magma <Link to="/api/select">Select</Link> styling with
+  a browser default option menu for compatibility purposes.
+</LeadParagraph>
 
 ## Basic Usage
-
-`Native Select` uses the magma <Link to="/api/select">`Select`</Link> styling with a browser default option menu for compatibility purposes.
 
 ```typescript
 import React from 'react';
@@ -17,7 +22,7 @@ import { NativeSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <NativeSelect labelText="Select this">
+    <NativeSelect labelText="Select this" fieldId="example-basic">
       <option>Red</option>
       <option>Green</option>
       <option>Blue</option>
@@ -42,7 +47,11 @@ export function Example() {
         <strong>Changed Value: </strong>{' '}
         <span id="changedValue">{message}</span>
       </p>
-      <NativeSelect labelText="Test value" onChange={handleChange}>
+      <NativeSelect
+        labelText="Test value"
+        onChange={handleChange}
+        fieldId="example-uncontrolled"
+      >
         <option>Choose Color</option>
         <option value="Red">Red</option>
         <option value="Green">Green</option>
@@ -60,7 +69,11 @@ import React from 'react';
 import { NativeSelect } from 'react-magma-dom';
 export function Example() {
   return (
-    <NativeSelect labelText="Test value" value="Green">
+    <NativeSelect
+      labelText="Test value"
+      value="Green"
+      fieldId="example-controlled"
+    >
       <option>Choose Color</option>
       <option value="Red">Red</option>
       <option value="Green">Green</option>
@@ -78,7 +91,7 @@ import { NativeSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <NativeSelect labelText="Select this" disabled>
+    <NativeSelect labelText="Select this" disabled fieldId="example-disabled">
       <option>Red</option>
       <option>Green</option>
       <option>Blue</option>
@@ -95,7 +108,11 @@ import { NativeSelect } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <NativeSelect labelText="Select this" errorMessage="This is an error">
+    <NativeSelect
+      labelText="Select this"
+      errorMessage="This is an error"
+      fieldId="example-error"
+    >
       <option>Red</option>
       <option>Green</option>
       <option>Blue</option>
@@ -115,11 +132,87 @@ export function Example() {
     <NativeSelect
       labelText="Select this"
       helperMessage="Helper message appears here"
+      fieldId="example-helper"
     >
       <option>Red</option>
       <option>Green</option>
       <option>Blue</option>
     </NativeSelect>
+  );
+}
+```
+
+## Additional Content
+
+When a native select needs additional context related to the user, `additionalContent` allows child elements to help. It is encouraged to use this prop with a `Tooltip` wrapping an `IconButton`.
+
+By default, the child element will display inline with a `NativeSelect` label on the right.
+
+When `labelPosition` is set to `left`, the label, native select, and child elements all display inline.
+
+```tsx
+import React from 'react';
+import {
+  NativeSelect,
+  LabelPosition,
+  Tooltip,
+  IconButton,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from 'react-magma-dom';
+import { HelpIcon } from 'react-magma-icons';
+
+export function Example() {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+
+  return (
+    <>
+      <NativeSelect
+        labelText="Default positioning"
+        fieldId="example-additionalContent"
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+      >
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+      </NativeSelect>
+      <br />
+      <NativeSelect
+        labelText="Left positioning"
+        labelPosition={LabelPosition.left}
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+      >
+        <option>Red</option>
+        <option>Green</option>
+        <option>Blue</option>
+      </NativeSelect>
+    </>
   );
 }
 ```
@@ -137,7 +230,11 @@ export function Example() {
   return (
     <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
       <CardBody>
-        <NativeSelect labelText="Select this" isInverse>
+        <NativeSelect
+          labelText="Select this"
+          isInverse
+          fieldId="example-inverse"
+        >
           <option>Red</option>
           <option>Green</option>
           <option>Blue</option>
@@ -158,7 +255,12 @@ export function Example() {
   return (
     <Card isInverse style={{ marginBottom: magma.spaceScale.spacing04 }}>
       <CardBody>
-        <NativeSelect labelText="Select this" isInverse disabled>
+        <NativeSelect
+          labelText="Select this"
+          isInverse
+          disabled
+          fieldId="example-inverseDisabled"
+        >
           <option>Red</option>
           <option>Green</option>
           <option>Blue</option>
@@ -183,6 +285,7 @@ export function Example() {
           labelText="Select this"
           isInverse
           errorMessage="This is an error"
+          fieldId="example-inverseError"
         >
           <option>Red</option>
           <option>Green</option>
@@ -208,6 +311,7 @@ export function Example() {
           labelText="Select this"
           isInverse
           helperMessage="Helper message appears here"
+          fieldId="example-inverseHelper"
         >
           <option>Red</option>
           <option>Green</option>
@@ -224,3 +328,5 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `select` element.**
 
 <NativeSelectProps />
+
+</PageContent>

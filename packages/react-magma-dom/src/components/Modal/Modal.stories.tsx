@@ -8,6 +8,16 @@ import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Container } from '../Container';
+import { NativeSelect } from '../NativeSelect';
+import { Spacer } from '../Spacer';
+import { Combobox } from '../Combobox';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Select } from '../Select';
 
 const info = {
   component: Modal,
@@ -100,7 +110,9 @@ export const LongContentWithScrolling = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -127,7 +139,9 @@ export const RadioInModal = () => {
           <Radio labelText="Option two label" value="2" />
         </RadioGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -206,7 +220,9 @@ export const ModalContentUpdate = () => {
           )}
         </div>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
@@ -235,7 +251,7 @@ export const NoHeaderOrFocusableContent = () => {
         <p>This modal has no header and nothing focusable.</p>
         <p>
           Consider the usability implications before implementing a modal like
-          this this. A modal should have something actionable inside it.
+          this. A modal should have something actionable inside it.
         </p>
       </Modal>
       <Button onClick={onModalNoFocusShow} ref={buttonRef}>
@@ -270,23 +286,119 @@ export const ModalInAModal = () => {
         <p>
           This is <a href="/"> some more linked text</a> in the modal
         </p>
+        <Combobox
+          id="comboboxId3"
+          isMulti
+          labelText="Multi Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          placeholder="Hello"
+        />
         <div>
           <DatePicker labelText="Pick a date" />
         </div>
+        <Combobox
+          id="comboboxId"
+          isMulti
+          labelText="Multi Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          isClearable
+        />
         <p>
           <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
         </p>
-
-        <Modal
-          size={ModalSize.small}
-          header="Modal 2 Title"
-          onClose={() => setShowModal2(false)}
-          isOpen={showModal2}
-        >
-          <p>This is modal 2</p>
-        </Modal>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>Show Modal</Button>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+        Show Modal
+      </Button>
+      <Modal
+        size={ModalSize.small}
+        header="Modal 2 Title"
+        onClose={() => setShowModal2(false)}
+        isOpen={showModal2}
+      >
+        <p>This is modal 2</p>
+        <NativeSelect fieldId="">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </NativeSelect>
+        <Spacer size={10} />
+        <Dropdown>
+          <DropdownButton>Basic Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Spacer size={10} />
+        <Combobox
+          id="comboboxId2"
+          labelText="Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+        />
+        <Spacer size={10} />
+        <Combobox
+          id="comboboxId3"
+          isMulti
+          labelText="Multi Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          placeholder="Hello"
+        />
+        <Spacer size={10} />
+        <Select
+          id="basicSelectId"
+          labelText="Basic"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+        />
+        <Spacer size={10} />
+        <Select
+          id="multiSelectId"
+          isMulti
+          labelText="Multi select"
+          items={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+            { label: 'Orange', value: 'orange' },
+            { label: 'Aqua', value: 'aqua' },
+            { label: 'Gold', value: 'gold' },
+            { label: 'Periwinkle', value: 'periwinkle' },
+            { label: 'Lavender', value: 'lavender' },
+            { label: 'Marigold', value: 'marigold' },
+            { label: 'Yellow', value: 'yellow' },
+            { label: 'Purple', value: 'purple' },
+            { label: 'Dusty Rose', value: 'dusty_rose' },
+            { label: 'Burnt Sienna', value: 'burnt_sienna' },
+          ]}
+          initialSelectedItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Blah', value: 'blah' },
+          ]}
+        />
+        <Spacer size={10} />
+      </Modal>
     </>
   );
 };

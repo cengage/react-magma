@@ -3,6 +3,12 @@ import { render, fireEvent, act } from '@testing-library/react';
 import { Select } from '.';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
+import { Modal } from '../Modal';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { HelpIcon } from 'react-magma-icons';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { LabelPosition } from '../Label';
 
 describe('Select', () => {
   const labelText = 'Label';
@@ -382,6 +388,33 @@ describe('Select', () => {
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
+  it('should close the menu when escape key is pressed, and retain the active modal', () => {
+    const { getByLabelText, getByText, getByTestId, queryByText } = render(
+      <Modal testId="modal" isOpen>
+        <Select labelText={labelText} items={items} />
+      </Modal>
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    renderedSelect.focus();
+
+    fireEvent.keyDown(renderedSelect, {
+      key: ' ',
+    });
+
+    expect(getByText(items[0])).toBeInTheDocument();
+
+    fireEvent.keyDown(getByLabelText(labelText, { selector: 'div' }), {
+      key: 'Escape',
+      code: 27,
+    });
+
+    expect(queryByText(items[0], { selector: 'Red' })).not.toBeInTheDocument();
+
+    expect(getByTestId('modal')).toBeInTheDocument();
+  });
+
   it('should not open select when clicking another key other than the enter or spacebar', () => {
     // Use fake timers here for downshift's debounce on input change.
     jest.useFakeTimers();
@@ -431,7 +464,11 @@ describe('Select', () => {
 
   it('should show a left aligned label', () => {
     const { getByTestId } = render(
-      <Select labelText={labelText} items={items} labelPosition="left" />
+      <Select
+        labelText={labelText}
+        items={items}
+        labelPosition={LabelPosition.left}
+      />
     );
 
     expect(getByTestId('selectContainerElement')).toHaveStyleRule(
@@ -444,7 +481,7 @@ describe('Select', () => {
     const { getByText } = render(
       <Select
         items={items}
-        labelPosition="left"
+        labelPosition={LabelPosition.left}
         labelText={labelText}
         labelWidth={20}
       />
@@ -470,6 +507,124 @@ describe('Select', () => {
     );
 
     expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+  });
+
+  describe('additional content', () => {
+    const helpLinkLabel = 'Learn more';
+
+    const onHelpLinkClick = () => {
+      alert('Help link clicked!');
+    };
+
+    it('Should accept additional content', () => {
+      const { getByTestId } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                testId={'Icon Button'}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          labelText={labelText}
+          items={items}
+        />
+      );
+
+      expect(getByTestId('Icon Button')).toBeInTheDocument();
+    });
+
+    it('Should accept additional content to the right of the multi-select label', () => {
+      const { getByTestId } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                testId={'Icon Button'}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          labelText={labelText}
+          isMulti
+          items={items}
+        />
+      );
+
+      expect(getByTestId('Icon Button')).toBeInTheDocument();
+    });
+
+    it('When label position is left, should accept additional content to display inline with the label and select', () => {
+      const { getByTestId } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          labelPosition={LabelPosition.left}
+          labelText={labelText}
+          items={items}
+          data-testid="selectContainerElement"
+        />
+      );
+
+      expect(getByTestId('selectContainerElement')).toBeInTheDocument();
+      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+        'display',
+        'flex'
+      );
+    });
+
+    it('When label position is left and isLabelVisuallyHidden is true, should accept additional content to display along select with a visually hidden label', () => {
+      const { getByTestId, getByText } = render(
+        <Select
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+          isLabelVisuallyHidden
+          labelPosition={LabelPosition.left}
+          labelText={labelText}
+          items={items}
+          data-testid="selectContainerElement"
+        />
+      );
+
+      expect(getByText(labelText)).toHaveStyleRule('height', '1px');
+
+      expect(getByTestId('selectContainerElement')).toBeInTheDocument();
+      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+        'display',
+        'flex'
+      );
+    });
   });
 
   describe('events', () => {

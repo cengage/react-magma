@@ -46,6 +46,14 @@ const StyledCard = styled(Card)<{
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  &:focus {
+    outline: 2px solid ${props =>
+      props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus};
+    }
+    outline-offset: 0;
+  }
 
   ${props =>
     props.width &&
@@ -86,16 +94,12 @@ const StyledCard = styled(Card)<{
     `}
 
  ${props =>
-    props.alignment === 'end' &&
-    (props.dropDirection === 'left' || props.dropDirection === 'right') &&
-    css`
-      bottom: ${props.theme.spaceScale.spacing02};
-      top: auto;
-    `}
-`;
-
-const StyledDiv = styled.div`
-  padding: ${props => props.theme.spaceScale.spacing02} 0;
+   props.alignment === 'end' &&
+   (props.dropDirection === 'left' || props.dropDirection === 'right') &&
+   css`
+     bottom: ${props.theme.spaceScale.spacing02};
+     top: auto;
+   `}
 `;
 
 export const DropdownContent = React.forwardRef<
@@ -107,6 +111,24 @@ export const DropdownContent = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const ref = useForkedRef(forwardedRef, context.menuRef);
 
+  let hasItemChildren = false;
+
+  // For Expandable Dropdowns that don't require a max-height
+  let hasExpandableItems = false;
+
+  React.Children.forEach(children, (child: any) => {
+    if (
+      child?.type?.displayName === 'DropdownMenuItem' ||
+      child?.type?.displayName === 'DropdownMenuGroup'
+    ) {
+      hasItemChildren = true;
+    }
+    if (child.type?.displayName === 'DropdownExpandableMenuGroup') {
+      hasExpandableItems = true;
+    }
+    return;
+  });
+
   return (
     <StyledCard
       {...other}
@@ -117,18 +139,22 @@ export const DropdownContent = React.forwardRef<
       isOpen={context.isOpen}
       maxHeight={context.maxHeight}
       ref={ref}
+      style={
+        hasExpandableItems
+          ? { maxHeight: 'inherit', overflow: 'hidden' }
+          : props.style
+      }
       tabIndex={-1}
       testId={testId || 'dropdownContent'}
       theme={theme}
       width={context.width}
     >
-      <StyledDiv
+      <div
         aria-labelledby={context.dropdownButtonId.current}
-        role="menu"
-        theme={theme}
+        role={hasItemChildren ? 'menu' : null}
       >
         {children}
-      </StyledDiv>
+      </div>
     </StyledCard>
   );
 });

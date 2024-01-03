@@ -5,11 +5,13 @@ props:
   - BadgeProps
 ---
 
-<DocsHeading to="/design/badges/" type="api">
-  Badge
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-Badges are small labeling components, used to highlight key pieces of information.
+<PageContent componentName="badge" type="api">
+
+<LeadParagraph>
+  Badges are a small labeling component, used to highlight key pieces of information.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -137,3 +139,5 @@ If an `onClick` prop is provided, all of the [standard button attributes](https:
 If not, all of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the wrapping `span` element that gets rendered.
 
 <BadgeProps />
+
+</PageContent>

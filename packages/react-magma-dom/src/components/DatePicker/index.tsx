@@ -330,6 +330,11 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function handleKeyDown(event: React.KeyboardEvent) {
+      if (event.key === 'Escape') {
+        event.nativeEvent.stopImmediatePropagation();
+        setCalendarOpened(false);
+        iconRef.current.focus();
+      }
       if (dateFocused && document.activeElement.closest('table')) {
         const newChosenDate = handleKeyPress(
           event,
@@ -343,11 +348,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           setFocusedDate(newChosenDate);
         }
       } else {
-        if (event.key === 'Escape') {
-          setCalendarOpened(false);
-          iconRef.current.focus();
-        }
-
         if (event.key === '?') {
           showHelperInformation();
         }

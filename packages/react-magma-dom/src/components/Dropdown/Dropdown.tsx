@@ -100,7 +100,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
   (props, forwardedRef) => {
     const contextProps = React.useContext(ButtonGroupContext);
     const resolvedProps = resolveProps(contextProps, props);
-    
+
     const {
       activeIndex,
       alignment,
@@ -140,11 +140,15 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
       setIsOpen(true);
 
-      setTimeout(() => {
-        filteredItems.length > 0 &&
-          filteredItems[0].current &&
-          filteredItems[0].current.focus();
-      }, 0);
+      if (filteredItems.length > 0) {
+        setTimeout(() => {
+          filteredItems[0].current && filteredItems[0].current.focus();
+        }, 0);
+      } else {
+        setTimeout(() => {
+          menuRef.current.focus();
+        }, 0);
+      }
 
       onOpen && typeof onOpen === 'function' && onOpen();
     }
@@ -170,6 +174,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
+        event.nativeEvent.stopImmediatePropagation();
         closeDropdown(event);
       }
 

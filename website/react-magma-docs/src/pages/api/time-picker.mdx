@@ -5,9 +5,15 @@ props:
   - TimePickerProps
 ---
 
-<DocsHeading to="/design/inputs/" type="api">
-  Time Picker
-</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="time_picker" type="api">
+
+<LeadParagraph>
+  Use the time input when you want the user to input a time in the format you
+  choose. Enhanced keyboard navigation improves the general usability and
+  accessibility of the component.
+</LeadParagraph>
 
 ## Basic Usage
 
@@ -111,13 +117,8 @@ export function Example() {
         <Paragraph>
           <strong>Time Value:</strong> {timeValue}
         </Paragraph>
-        <Paragraph>
-          onChange called {onChangeCalledTimes} times
-        </Paragraph>
-        <TimePicker
-          labelText="Time Due"
-          onChange={handleOnChange}
-        />
+        <Paragraph>onChange called {onChangeCalledTimes} times</Paragraph>
+        <TimePicker labelText="Time Due" onChange={handleOnChange} />
       </CardBody>
     </Card>
   );
@@ -178,3 +179,5 @@ export function Example() {
 All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the hidden `input` element that gets rendered.
 
 <TimePickerProps />
+
+</PageContent>

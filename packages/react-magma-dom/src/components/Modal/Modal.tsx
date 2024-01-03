@@ -160,14 +160,10 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
-const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing03}
-    ${props => props.theme.spaceScale.spacing05} 0
-    ${props => props.theme.spaceScale.spacing05};
+const ModalWrapper = styled.div<{ theme?: ThemeInterface }>`
+  padding: ${props => props.theme.spaceScale.spacing05};
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing05}
-      ${props => props.theme.spaceScale.spacing06} 0
-      ${props => props.theme.spaceScale.spacing06};
+    padding: ${props => props.theme.spaceScale.spacing06};
   }
 `;
 
@@ -191,13 +187,6 @@ const CloseBtn = styled.span<{ theme?: ThemeInterface }>`
   right: 0;
   margin: ${props => props.theme.spaceScale.spacing02};
 `;
-const ModalBody = styled.div<{ theme?: ThemeInterface }>`
-  padding: ${props => props.theme.spaceScale.spacing05};
-
-  @media (min-width: ${props => props.theme.breakpoints.small}px) {
-    padding: ${props => props.theme.spaceScale.spacing06};
-  }
-`;
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
@@ -212,6 +201,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
     const [isExiting, setIsExiting] = React.useState<boolean>(false);
     const [currentTarget, setCurrentTarget] = React.useState(null);
+    const [modalCount, setModalCount] = React.useState<number>(0);
 
     const focusTrapElement = useFocusLock(
       isModalOpen,
@@ -232,6 +222,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     React.useEffect(() => {
       if (isModalOpen) {
         lastFocus.current = document.activeElement;
+        const count = document.querySelectorAll('[aria-modal="true"]').length;
+        setModalCount(count);
 
         if (!props.isEscKeyDownDisabled) {
           document.body.addEventListener('keydown', handleEscapeKeyDown, false);
@@ -269,7 +261,21 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           typeof props.onEscKeyDown === 'function' &&
           props.onEscKeyDown(event);
 
-        handleClose(event);
+        //Supports nested modals
+        const modalsInDom = document.querySelectorAll(
+          '[aria-modal="true"]'
+        ).length;
+        if (modalCount <= 1 && modalsInDom !== 1) {
+          if (
+            document.getElementById(id).contains(event.target as HTMLDivElement)
+          ) {
+            handleClose(event);
+          } else {
+            headingRef.current.focus();
+          }
+        } else {
+          handleClose(event);
+        }
       }
     }
 
@@ -360,7 +366,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 theme={theme}
               >
                 {header && (
-                  <ModalHeader theme={theme}>
+                  <ModalWrapper theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
@@ -374,11 +380,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                         {header}
                       </H1>
                     )}
-                  </ModalHeader>
+                  </ModalWrapper>
                 )}
-                <ModalBody ref={bodyRef} theme={theme}>
+                <ModalWrapper ref={bodyRef} theme={theme}>
                   {children}
-                </ModalBody>
+                </ModalWrapper>
                 {!isCloseButtonHidden && (
                   <CloseBtn theme={theme}>
                     <IconButton

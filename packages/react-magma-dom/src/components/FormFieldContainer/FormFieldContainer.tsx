@@ -30,9 +30,16 @@ export interface FormFieldContainerBaseProps {
    */
   errorMessage?: React.ReactNode;
   /**
-   * ID of the form field.  Also used in the descrption ID.
+   * ID of the form field.  Also used in the description ID.
    */
   fieldId: string;
+  /** 
+   * Enables Character Counter by default. 
+   * When set to false, the default HTML attribute of 'maxlength' will work. 
+   * Note: This is a temporary prop and will be removed in future releases.
+    @default true 
+  */
+  hasCharacterCounter?: boolean;
   /**
    * Content of the helper message.
    */
@@ -76,6 +83,11 @@ export interface FormFieldContainerBaseProps {
   labelWidth?: number;
   /**
    * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
+   */
+  maxCount?: number;
+  /**
+   * Enables the Character Counter and sets the maximum amount of characters allowed within the Input.
+   * @deprecated = true
    */
   maxLength?: number;
   /**
@@ -133,6 +145,7 @@ export const FormFieldContainer = React.forwardRef<
     containerStyle,
     errorMessage,
     fieldId,
+    hasCharacterCounter = true,
     helperMessage,
     iconPosition,
     inputSize,
@@ -143,6 +156,7 @@ export const FormFieldContainer = React.forwardRef<
     labelStyle,
     labelText,
     labelWidth,
+    maxCount,
     maxLength,
     messageStyle,
     testId,
@@ -151,8 +165,10 @@ export const FormFieldContainer = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
+  const countProps = maxCount || maxLength;
+
   const descriptionId =
-    errorMessage || helperMessage || maxLength ? `${fieldId}__desc` : null;
+    errorMessage || helperMessage || countProps ? `${fieldId}__desc` : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -188,11 +204,13 @@ export const FormFieldContainer = React.forwardRef<
           labelWidth={labelWidth}
         >
           {children}
-          {typeof maxLength === 'number' && (
+          {typeof countProps === 'number' && hasCharacterCounter && (
             <CharacterCounter
+              hasCharacterCounter={hasCharacterCounter}
               id={descriptionId}
               inputLength={inputLength}
               isInverse={isInverse}
+              maxCount={maxCount}
               maxLength={maxLength}
               testId={testId && `${testId}-character-counter`}
             />

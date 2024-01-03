@@ -5,12 +5,9 @@ order: 1
 ---
 
 import './design-guidelines-styles.css';
-import { DocsHeading } from '../../components/DocsHeading';
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<DocsHeading to="/api/accordion/" type="design">
-  Accordion
-</DocsHeading>
+<PageContent componentName="accordion" type="design">
 <LeadParagraph>
   An accordion is a vertically stacked list of headers that reveal or hide associated sections of content.
 </LeadParagraph>
@@ -43,49 +40,68 @@ The accordion component delivers large amounts of content in a small space by hi
 
 By default the chevron icon is placed on the right side of the header. This allows for the title on the left side to align with the content in the panel and other elements in the layout.
 
-In some scenarios, the accordion can be modified to place the chevron icon in front of the title to function more like a tree.  But this should be used with care because the content of the panel may not align with the title.
+In some scenarios, the accordion can be modified to place the chevron icon in front of the title to function more like a tree. But this should be used with care because the content of the panel may not align with the title.
 
 <div class="image-grid">
   <figure>
-    <img src="../../images/accordion/accordion-good-alignment.png" alt=" " />
+    <img src="../../images/accordion/accordion-good-alignment.png" alt="" />
     <figcaption>
       <p class="title title-correct">Correct</p>
-      <p>Use the default icon alignment to make sure accordion text content properly aligns with other text content on the page.</p>
+      <p>
+        Use the default icon alignment to make sure accordion text content
+        properly aligns with other text content on the page.
+      </p>
     </figcaption>
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-bad-alignment.png" alt=" " />
+    <img src="../../images/accordion/accordion-bad-alignment.png" alt="" />
     <figcaption>
       <p class="title title-caution">Caution</p>
-      <p>Be careful putting the icon on the left side of the accordion, because this could cause unintended alignment issues with other text content on the page.</p>
+      <p>
+        Be careful putting the icon on the left side of the accordion, because
+        this could cause unintended alignment issues with other text content on
+        the page.
+      </p>
     </figcaption>
   </figure>
 </div>
 
-If you place the chevron icon on the left side of the title, don’t be tempted to use a right-facing chevron.  While it is common to have right-facing arrows on the left side of tree, placing it on the right side completely changes the meaning of the icon.  So for the sake of consistency, we will only allow up and down chevrons for components that expand and collapse.
+If you place the chevron icon on the left side of the title, don’t be tempted to use a right-facing chevron. While it is common to have right-facing arrows on the left side of tree, placing it on the right side completely changes the meaning of the icon. So for the sake of consistency, we will only allow up and down chevrons for components that expand and collapse.
 
 <div class="image-grid">
   <figure>
-    <img src="../../images/accordion/accordion-incorrect-icon-orientation.png" alt=" " />
+    <img
+      src="../../images/accordion/accordion-incorrect-icon-orientation.png"
+      alt=""
+    />
     <figcaption>
       <p class="title title-incorrect">Incorrect</p>
-      <p>Only use up and down chevrons to indicate whether an accordion section is expanded or collapsed, even if you move the icon to the left side.</p>
+      <p>
+        Only use up and down chevrons to indicate whether an accordion section
+        is expanded or collapsed, even if you move the icon to the left side.
+      </p>
     </figcaption>
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-incorrect-icons.png" alt=" " />
+    <img src="../../images/accordion/accordion-incorrect-icons.png" alt="" />
     <figcaption>
       <p class="title title-incorrect">Incorrect</p>
-      <p>Don't change the chevron icon to something else like arrows or plus and minus icons.</p>
+      <p>
+        Don't change the chevron icon to something else like arrows or plus and
+        minus icons.
+      </p>
     </figcaption>
   </figure>
 </div>
 
 <figure>
-  <img src="../../images/accordion/accordion-crowded-icons.png" alt=" " />
+  <img src="../../images/accordion/accordion-crowded-icons.png" alt="" />
   <figcaption>
     <p class="title title-incorrect">Incorrect</p>
-    <p>Don't group additional icons with the chevron without providing some kind of separation to avoid missing the expanding functionality entirely.</p>
+    <p>
+      Don't group additional icons with the chevron without providing some kind
+      of separation to avoid missing the expanding functionality entirely.
+    </p>
   </figcaption>
 </figure>
 
@@ -95,13 +111,13 @@ Accordions can be placed within main page content or placed inside of a containe
 
 <div class="image-grid">
   <figure>
-    <img src="../../images/accordion/accordion-in-page.png" alt=" " />
+    <img src="../../images/accordion/accordion-in-page.png" alt="" />
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-sidebar.png" alt=" " />
+    <img src="../../images/accordion/accordion-sidebar.png" alt="" />
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-drawer.png" alt=" " />
+    <img src="../../images/accordion/accordion-drawer.png" alt="" />
   </figure>
 </div>
 
@@ -118,7 +134,7 @@ Each title should be wrapped in a role heading (h1-h6) that is appropriate for t
 
 #### Body Copy
 
-The content inside of a panel can be essentially anything.  It could be simple paragraphs or a more complex layout of elements.
+The content inside of a panel can be essentially anything. It could be simple paragraphs or a more complex layout of elements.
 
 ### Scrolling Content
 
@@ -134,7 +150,7 @@ The accordion component has two main states: collapsed and expanded. The chevron
 
 Any or all sections in an accordion may be open or closed in their starting state. Starting in a collapsed state gives the user a high-level overview of the available information.
 
-A user can then independently expand each section of the accordion allowing for multiple sections to be open at once.  The accordion may also be configured so that opening a section automatically closes another section so that only one is open at a time.
+A user can then independently expand each section of the accordion allowing for multiple sections to be open at once. The accordion may also be configured so that opening a section automatically closes another section so that only one is open at a time.
 
 In addition to the collapsed and expanded states, accordions also have interactive states for focus, hover, and disabled.
 
@@ -156,11 +172,10 @@ Users can navigate between accordion headers by pressing Tab or Shift-Tab.
 
 ![ ](../../images/accordion/accordion-mouse-interaction.png)
 
-
-
 ---
 
 ## Design Customization
 
-The basic accordion is designed to be used as-is but is also very flexible and the design can be customized to fit any use.  To make sure the accordion is as visually appealing, but also as accessible as possible, play with text styles, colors, icon sizes, and spacing within the guidelines provided for those attributes.
+The basic accordion is designed to be used as-is but is also very flexible and the design can be customized to fit any use. To make sure the accordion is as visually appealing, but also as accessible as possible, play with text styles, colors, icon sizes, and spacing within the guidelines provided for those attributes.
 
+</PageContent>

@@ -17,8 +17,21 @@ import { Card, CardBody } from '../Card';
 import { Input } from '../Input';
 import { Checkbox } from '../Checkbox';
 import { PasswordInput } from '../PasswordInput';
-import { SettingsIcon, MenuIcon } from 'react-magma-icons';
+import {
+  LocalPizzaIcon,
+  LunchDiningIcon,
+  MenuIcon,
+  RestaurantMenuIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { Paragraph, Spacer } from '../..';
+import { ButtonGroup } from '../ButtonGroup';
+import { DropdownExpandableMenuButton } from './DropdownExpandableMenuButton';
+import { DropdownExpandableMenuItem } from './DropdownExpandableMenuItem';
+import { DropdownExpandableMenuListItem } from './DropdownExpandableMenuListItem';
+import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
+import { DropdownExpandableMenuPanel } from './DropdownExpandableMenuPanel';
 
 const Template: Story<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
@@ -307,33 +320,6 @@ const LinkMenuTemplate: Story<DropdownProps> = args => (
 export const LinkMenu = LinkMenuTemplate.bind({});
 LinkMenu.args = { ...Default.args };
 
-const FormTemplate: Story<DropdownProps> = args => (
-  <div style={{ margin: '150px auto', textAlign: 'center' }}>
-    <Dropdown {...args}>
-      <DropdownButton>Dropdown with form</DropdownButton>
-      <DropdownContent>
-        <form style={{ margin: 0, padding: '16px' }}>
-          <Input labelText="Email Address" />
-          <PasswordInput labelText="Password" />
-          <Checkbox labelText="Remember me" />
-          <div style={{ textAlign: 'center' }}>
-            <p>
-              By signing in, you agree to our <a href="#terms">Terms of use</a>.
-            </p>
-            <Button isFullWidth>Sign In</Button>
-            <p>
-              <a href="#password">Forgot password?</a>
-            </p>
-          </div>
-        </form>
-      </DropdownContent>
-    </Dropdown>
-  </div>
-);
-
-export const Form = FormTemplate.bind({});
-Form.args = { ...Default.args };
-
 export const Inverse = HeaderIconTemplate.bind({});
 Inverse.args = {
   ...Default.args,
@@ -349,3 +335,202 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const NoItems = args => {
+  return (
+    <ButtonGroup>
+      <Dropdown width="500px" {...args} testId="dropdown">
+        <DropdownButton>Dropdown without items</DropdownButton>
+        <DropdownContent style={{ padding: '12px' }}>
+          <>
+            <span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+            >
+              <span style={{ flex: '1 1 auto' }}>
+                <Paragraph noMargins isInverse={args.isInverse}>
+                  Current take: 1 of 3
+                </Paragraph>
+              </span>
+              <span style={{ flex: '0 0 auto' }}>
+                <Paragraph noMargins isInverse={args.isInverse}>
+                  Points possible: 10
+                </Paragraph>
+              </span>
+            </span>
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Grade uses: Best attempt
+            </Paragraph>
+            <Spacer size={12} />
+            <DropdownDivider />
+            <Spacer size={12} />
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Credit/No Credit Activity
+            </Paragraph>
+            In this activity you must achieve 80% or higher to receive credit
+            <Spacer size={12} />
+          </>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown width="500px" {...args}>
+        <DropdownButton>Dropdown without items, with button</DropdownButton>
+        <DropdownContent style={{ padding: '12px' }}>
+          <>
+            <Paragraph noMargins isInverse={args.isInverse}>
+              Bacon ipsum dolor amet capicola turkey chicken cupim pastrami pork
+              spare ribs shankle ball tip. Shank doner burgdoggen tri-tip corned
+              beef meatloaf pig ground round. Ball tip t-bone cow chicken.{' '}
+            </Paragraph>
+            <Button isInverse={args.isInverse}>Foo</Button>
+          </>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
+  );
+};
+
+export const ExpandableItems = args => {
+  return (
+    <Dropdown {...args}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+      </DropdownContent>
+    </Dropdown>
+  );
+};
+
+export const ExpandableItemsWithIcons = args => {
+  return (
+    <Dropdown {...args} width={220}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+              Longer title area breaking lines within the
+              DropdownExpandableMenuButton component
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem disabled>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem disabled>
+            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+};
+
+export const ExpandableItemsWithIconsAndConsoleWarning = args => {
+  return (
+    <Dropdown {...args} width={220}>
+      <DropdownButton>Expandable Items Dropdown</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={1}>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Fresh
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Processed
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+              Prosciutto
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Domestic
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem>
+                Speck
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuGroup>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                    Pasta
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem>
+                      Fresh
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Processed
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+                <DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+                    Prosciutto
+                  </DropdownExpandableMenuButton>
+                  <DropdownExpandableMenuPanel>
+                    <DropdownExpandableMenuListItem>
+                      Domestic
+                    </DropdownExpandableMenuListItem>
+                    <DropdownExpandableMenuListItem>
+                      Speck
+                    </DropdownExpandableMenuListItem>
+                  </DropdownExpandableMenuPanel>
+                </DropdownExpandableMenuItem>
+              </DropdownExpandableMenuGroup>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+};

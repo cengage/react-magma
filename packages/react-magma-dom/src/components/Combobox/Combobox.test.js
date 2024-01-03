@@ -1,7 +1,9 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { Combobox } from '.';
 import { magma } from '../../theme/magma';
+import { Modal } from '../Modal';
+import { Button } from '../Button';
 
 describe('Combobox', () => {
   const labelText = 'Label';
@@ -940,6 +942,91 @@ describe('Combobox', () => {
           inputValue: 'Red',
         })
       );
+    });
+
+    describe('inside a modal', () => {
+      const items = [
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ];
+
+      beforeEach(() => {
+        jest.useFakeTimers();
+      });
+
+      afterEach(() => {
+        jest.useRealTimers();
+        jest.resetAllMocks();
+      });
+
+      it('should close the menu when escape key is pressed, and retain the active modal', () => {
+        const { getByLabelText, queryByText, getByText } = render(
+          <Modal testId="modal" isOpen>
+            Modal Content
+            <Combobox labelText={labelText} items={items} />
+          </Modal>
+        );
+
+        const renderedCombobox = getByLabelText(labelText, {
+          selector: 'input',
+        });
+
+        expect(renderedCombobox).toBeInTheDocument();
+
+        fireEvent.click(renderedCombobox);
+
+        expect(getByText(items[0].label)).toBeInTheDocument();
+
+        fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
+          key: 'Escape',
+          code: 27,
+        });
+
+        expect(
+          queryByText(items[2], { selector: 'Red' })
+        ).not.toBeInTheDocument();
+
+        expect(getByText('Modal Content')).toBeInTheDocument();
+      });
+
+      it('should close the modal on escape after menu is closed on escape', async () => {
+        const onEscKeyMock = jest.fn();
+        const { getByLabelText, queryByText, getByText, debug } = render(
+          <Modal testId="modal" isOpen onEscKeyDown={onEscKeyMock}>
+            Modal Content
+            <Combobox labelText={labelText} items={items} />
+          </Modal>
+        );
+        const renderedCombobox = getByLabelText(labelText, {
+          selector: 'input',
+        });
+        fireEvent.click(renderedCombobox);
+        expect(getByText(items[0].label)).toBeInTheDocument();
+
+        fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
+          key: 'Escape',
+          code: 27,
+        });
+
+        expect(
+          queryByText(items[2], { selector: 'Red' })
+        ).not.toBeInTheDocument();
+
+        expect(getByText('Modal Content')).toBeInTheDocument();
+
+        fireEvent.keyDown(getByText('Modal Content'), {
+          key: 'Escape',
+          code: 27,
+        });
+
+        await act(async () => {
+          jest.runAllTimers();
+        });
+
+        expect(onEscKeyMock).toHaveBeenCalled();
+        expect(queryByText('Modal Content')).not.toBeInTheDocument();
+      });
     });
   });
 });

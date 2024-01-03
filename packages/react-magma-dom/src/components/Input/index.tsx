@@ -18,6 +18,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       children,
       containerStyle,
       errorMessage,
+      hasCharacterCounter = true,
       helperMessage,
       iconPosition,
       id: defaultId,
@@ -27,6 +28,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       labelStyle,
       labelText,
       labelWidth,
+      maxCount,
       maxLength,
       messageStyle,
       testId,
@@ -37,13 +39,23 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const id = useGenerateId(defaultId);
 
     const descriptionId =
-      errorMessage || helperMessage || maxLength ? `${id}__desc` : null;
+      errorMessage || helperMessage || maxCount || maxLength
+        ? `${id}__desc`
+        : null;
+
+    const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
+
+    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const initialValueLength = value ? value.toString().length : 0;
+    const [characterLength, setCharacterLength] = useState(
+      value?.toString().length
+    );
 
-    const [characterLength, setCharacterLength] = useState(initialValueLength);
+    React.useEffect(() => {
+      setCharacterLength(value?.toString().length);
+    }, [value]);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       props.onChange &&
@@ -62,6 +74,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
+        hasCharacterCounter={hasCharacterCounter}
         helperMessage={helperMessage}
         iconPosition={iconPosition}
         isLabelVisuallyHidden={isLabelVisuallyHidden}
@@ -73,6 +86,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         labelText={labelText}
         labelWidth={labelWidth}
         maxLength={maxLength}
+        maxCount={maxCount}
         messageStyle={messageStyle}
         testId={testId && `${testId}-formFieldContainer`}
       >
@@ -82,12 +96,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
-          hasError={!!errorMessage || characterLength > maxLength}
+          hasError={
+            !!errorMessage ||
+            (hasCharacterCounter && characterLength > maxCharacters)
+          }
           iconPosition={iconPosition}
           id={id}
           inputSize={inputSize}
           inputLength={characterLength}
           isInverse={isInverse}
+          maxLength={maxLengthNum}
           onChange={handleChange}
           onClear={handleClear}
           ref={ref}

@@ -6,12 +6,16 @@ props:
   - SkipLinkContentProps
 ---
 
-<DocsHeading type="api">Skip Link</DocsHeading>
+import { LeadParagraph } from '../../components/LeadParagraph';
 
-Because the main content is often not the first thing on a page, it is valuable to provide a Skip Navigation link
-to allow users who navigate via keyboard and/or screen reader to jump directly to the content.
+<PageContent componentName="skip_link" type="api">
 
-Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is important that you only have one pair of these elements on a page.
+<LeadParagraph>
+  Because the main content is often not the first thing on a page, it is
+  valuable to provide a Skip Navigation link to allow users who navigate via
+  keyboard and/or screen reader to jump directly to the content. The SkipLink
+  component is the button that will jump the user to the main content area.
+</LeadParagraph>
 
 <Alert variant="info">
   Due to the nature of SkipLinks the best way to view the examples is to click
@@ -21,11 +25,12 @@ Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is import
 
 ## Basic Usage
 
-The `SkipLink` component is the button that will jump the user to the main content area. It should be the first item in your app, positioned in the DOM before the navigation and the content.
-Users will not see the component unless they are navigating by keyboard.
+SkipLink should be the first item in your app, positioned in the DOM before the navigation and the content. Users will not see the component unless they are navigating by keyboard.
 
 The `SkipLinkContent` component is the div that is the target of the `SkipLink`. It can either be used as a wrapper for your content, or as a sibling of your content.
 If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus. Otherwise, just the SkipLinkContent div itself will get focus.
+
+Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is important that you only have one pair of these elements on a page.
 
 ```tsx noRender
 import React from 'react';
@@ -210,3 +215,5 @@ All of the [standard anchor attributes](https://developer.mozilla.org/en-US/docs
 ## Skip Link Content Props
 
 <SkipLinkContentProps />
+
+</PageContent>

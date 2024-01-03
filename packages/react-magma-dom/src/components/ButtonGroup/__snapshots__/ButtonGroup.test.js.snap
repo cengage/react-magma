@@ -52,6 +52,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -255,6 +256,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -509,6 +511,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -669,6 +672,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -880,6 +884,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -940,7 +945,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   align-items: center;
 }
 
-.emotion-22 {
+.emotion-20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -958,35 +963,35 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   row-gap: 8px;
 }
 
-.emotion-22 > button:first-child,
-.emotion-22 > div:first-child {
+.emotion-20 > button:first-child,
+.emotion-20 > div:first-child {
   margin-left: 0;
 }
 
-.emotion-22 > button:last-child,
-.emotion-22 > div:last-child {
+.emotion-20 > button:last-child,
+.emotion-20 > div:last-child {
   margin-right: 0;
 }
 
-.emotion-22 > div {
+.emotion-20 > div {
   margin: 0 4px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > div button:nth-child(2) {
+.emotion-20 > div button:nth-child(2) {
   width: 40px;
 }
 
-.emotion-22 > button {
+.emotion-20 > button {
   margin: 0 4px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 {
+.emotion-11 {
   display: inline-block;
   position: relative;
 }
@@ -1043,6 +1048,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -1095,7 +1101,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding-right: 8px;
 }
 
-.emotion-11 {
+.emotion-10 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1127,10 +1133,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
 }
 
-.emotion-10 {
-  padding: 4px 0;
+.emotion-10:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-9 {
@@ -1217,6 +1224,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1277,7 +1285,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   align-items: center;
 }
 
-.emotion-22 {
+.emotion-20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1295,35 +1303,35 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   row-gap: 8px;
 }
 
-.emotion-22 > button:first-child,
-.emotion-22 > div:first-child {
+.emotion-20 > button:first-child,
+.emotion-20 > div:first-child {
   margin-left: 0;
 }
 
-.emotion-22 > button:last-child,
-.emotion-22 > div:last-child {
+.emotion-20 > button:last-child,
+.emotion-20 > div:last-child {
   margin-right: 0;
 }
 
-.emotion-22 > div {
+.emotion-20 > div {
   margin: 0 4px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > div button:nth-child(2) {
+.emotion-20 > div button:nth-child(2) {
   width: 40px;
 }
 
-.emotion-22 > button {
+.emotion-20 > button {
   margin: 0 4px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 {
+.emotion-11 {
   display: inline-block;
   position: relative;
 }
@@ -1380,6 +1388,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -1432,7 +1441,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding-right: 8px;
 }
 
-.emotion-11 {
+.emotion-10 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1464,10 +1473,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
 }
 
-.emotion-10 {
-  padding: 4px 0;
+.emotion-10:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-9 {
@@ -1505,7 +1515,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 
 <div>
   <div
-    class="emotion-22"
+    class="emotion-20"
     color="primary"
     orientation="horizontal"
   >
@@ -1522,7 +1532,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </span>
     </button>
     <div
-      class="emotion-12"
+      class="emotion-11"
     >
       <button
         aria-expanded="false"
@@ -1558,14 +1568,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         </span>
       </button>
       <div
-        class="emotion-11"
+        class="emotion-10"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
       >
         <div
           aria-labelledby="2"
-          class="emotion-10"
           role="menu"
         >
           <div
@@ -1579,7 +1588,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
     </div>
     <div
-      class="emotion-12"
+      class="emotion-11"
     >
       <button
         aria-expanded="false"
@@ -1615,14 +1624,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         </span>
       </button>
       <div
-        class="emotion-11"
+        class="emotion-10"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
       >
         <div
           aria-labelledby="3"
-          class="emotion-10"
           role="menu"
         >
           <div
@@ -1691,6 +1699,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -1751,7 +1760,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: center;
 }
 
-.emotion-22 {
+.emotion-20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1772,39 +1781,39 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: stretch;
 }
 
-.emotion-22 > button:first-child,
-.emotion-22 > div:first-child {
+.emotion-20 > button:first-child,
+.emotion-20 > div:first-child {
   margin-top: 0;
 }
 
-.emotion-22 > button:last-child,
-.emotion-22 > div:last-child {
+.emotion-20 > button:last-child,
+.emotion-20 > div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-22 > div {
+.emotion-20 > div {
   margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > div button {
+.emotion-20 > div button {
   width: 100%;
 }
 
-.emotion-22 > div button:nth-child(2) {
+.emotion-20 > div button:nth-child(2) {
   width: 40px;
 }
 
-.emotion-22 > button {
+.emotion-20 > button {
   margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 {
+.emotion-11 {
   display: inline-block;
   position: relative;
 }
@@ -1861,6 +1870,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -1913,7 +1923,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding-right: 8px;
 }
 
-.emotion-11 {
+.emotion-10 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1945,10 +1955,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
 }
 
-.emotion-10 {
-  padding: 4px 0;
+.emotion-10:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-9 {
@@ -2035,6 +2046,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -2095,7 +2107,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: center;
 }
 
-.emotion-22 {
+.emotion-20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2116,39 +2128,39 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: stretch;
 }
 
-.emotion-22 > button:first-child,
-.emotion-22 > div:first-child {
+.emotion-20 > button:first-child,
+.emotion-20 > div:first-child {
   margin-top: 0;
 }
 
-.emotion-22 > button:last-child,
-.emotion-22 > div:last-child {
+.emotion-20 > button:last-child,
+.emotion-20 > div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-22 > div {
+.emotion-20 > div {
   margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > div button {
+.emotion-20 > div button {
   width: 100%;
 }
 
-.emotion-22 > div button:nth-child(2) {
+.emotion-20 > div button:nth-child(2) {
   width: 40px;
 }
 
-.emotion-22 > button {
+.emotion-20 > button {
   margin: 0 0 8px;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 {
+.emotion-11 {
   display: inline-block;
   position: relative;
 }
@@ -2205,6 +2217,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -2257,7 +2270,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding-right: 8px;
 }
 
-.emotion-11 {
+.emotion-10 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -2289,10 +2302,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
 }
 
-.emotion-10 {
-  padding: 4px 0;
+.emotion-10:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-9 {
@@ -2330,7 +2344,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 
 <div>
   <div
-    class="emotion-22"
+    class="emotion-20"
     color="primary"
     orientation="vertical"
   >
@@ -2347,7 +2361,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </span>
     </button>
     <div
-      class="emotion-12"
+      class="emotion-11"
     >
       <button
         aria-expanded="false"
@@ -2383,14 +2397,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         </span>
       </button>
       <div
-        class="emotion-11"
+        class="emotion-10"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
       >
         <div
           aria-labelledby="2"
-          class="emotion-10"
           role="menu"
         >
           <div
@@ -2404,7 +2417,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
     </div>
     <div
-      class="emotion-12"
+      class="emotion-11"
     >
       <button
         aria-expanded="false"
@@ -2440,14 +2453,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         </span>
       </button>
       <div
-        class="emotion-11"
+        class="emotion-10"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
       >
         <div
           aria-labelledby="3"
-          class="emotion-10"
           role="menu"
         >
           <div
@@ -2516,6 +2528,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -2576,7 +2589,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   align-items: center;
 }
 
-.emotion-22 {
+.emotion-20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2594,81 +2607,81 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   row-gap: 8px;
 }
 
-.emotion-22 > button:first-child,
-.emotion-22 > div:first-child {
+.emotion-20 > button:first-child,
+.emotion-20 > div:first-child {
   margin-left: 0;
 }
 
-.emotion-22 > button:last-child,
-.emotion-22 > div:last-child {
+.emotion-20 > button:last-child,
+.emotion-20 > div:last-child {
   margin-right: 0;
 }
 
-.emotion-22 > div {
+.emotion-20 > div {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > div button:nth-child(2) {
+.emotion-20 > div button:nth-child(2) {
   width: 40px;
 }
 
-.emotion-22 > div:first-child:not(:only-child) button {
+.emotion-20 > div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-22 > div:nth-child(2) button {
+.emotion-20 > div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-22 > div:not(:first-child) button {
+.emotion-20 > div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-22 > div:not(:first-child).emotion-22 > div:not(:last-child) button {
+.emotion-20 > div:not(:first-child).emotion-20 > div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-22 > div:last-child:not(:only-child) button {
+.emotion-20 > div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-22 > button {
+.emotion-20 > button {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > button:first-child:not(:only-child) {
+.emotion-20 > button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-22 > button:nth-child(2) {
+.emotion-20 > button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-22 > button:not(:first-child) {
+.emotion-20 > button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-22 > button:not(:first-child).emotion-22 > button:not(:last-child) {
+.emotion-20 > button:not(:first-child).emotion-20 > button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-22 > button:last-child:not(:only-child) {
+.emotion-20 > button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-12 {
+.emotion-11 {
   display: inline-block;
   position: relative;
 }
@@ -2725,6 +2738,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -2777,7 +2791,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding-right: 8px;
 }
 
-.emotion-11 {
+.emotion-10 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -2809,10 +2823,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
 }
 
-.emotion-10 {
-  padding: 4px 0;
+.emotion-10:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-9 {
@@ -2899,6 +2914,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
@@ -2959,7 +2975,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   align-items: center;
 }
 
-.emotion-22 {
+.emotion-20 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2977,81 +2993,81 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   row-gap: 8px;
 }
 
-.emotion-22 > button:first-child,
-.emotion-22 > div:first-child {
+.emotion-20 > button:first-child,
+.emotion-20 > div:first-child {
   margin-left: 0;
 }
 
-.emotion-22 > button:last-child,
-.emotion-22 > div:last-child {
+.emotion-20 > button:last-child,
+.emotion-20 > div:last-child {
   margin-right: 0;
 }
 
-.emotion-22 > div {
+.emotion-20 > div {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > div button:nth-child(2) {
+.emotion-20 > div button:nth-child(2) {
   width: 40px;
 }
 
-.emotion-22 > div:first-child:not(:only-child) button {
+.emotion-20 > div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-22 > div:nth-child(2) button {
+.emotion-20 > div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-22 > div:not(:first-child) button {
+.emotion-20 > div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-22 > div:not(:first-child).emotion-22 > div:not(:last-child) button {
+.emotion-20 > div:not(:first-child).emotion-20 > div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-22 > div:last-child:not(:only-child) button {
+.emotion-20 > div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-22 > button {
+.emotion-20 > button {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-22 > button:first-child:not(:only-child) {
+.emotion-20 > button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-22 > button:nth-child(2) {
+.emotion-20 > button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-22 > button:not(:first-child) {
+.emotion-20 > button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-22 > button:not(:first-child).emotion-22 > button:not(:last-child) {
+.emotion-20 > button:not(:first-child).emotion-20 > button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-22 > button:last-child:not(:only-child) {
+.emotion-20 > button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-12 {
+.emotion-11 {
   display: inline-block;
   position: relative;
 }
@@ -3108,6 +3124,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-7:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
+  z-index: 1;
 }
 
 .emotion-7:not(:disabled):hover,
@@ -3160,7 +3177,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding-right: 8px;
 }
 
-.emotion-11 {
+.emotion-10 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -3192,10 +3209,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+  outline-offset: 0;
 }
 
-.emotion-10 {
-  padding: 4px 0;
+.emotion-10:focus {
+  outline: 2px solid #0074B7;
 }
 
 .emotion-9 {
@@ -3233,7 +3251,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 
 <div>
   <div
-    class="emotion-22"
+    class="emotion-20"
     color="primary"
     orientation="horizontal"
   >
@@ -3250,7 +3268,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </span>
     </button>
     <div
-      class="emotion-12"
+      class="emotion-11"
     >
       <button
         aria-expanded="false"
@@ -3286,14 +3304,13 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         </span>
       </button>
       <div
-        class="emotion-11"
+        class="emotion-10"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
       >
         <div
           aria-labelledby="2"
-          class="emotion-10"
           role="menu"
         >
           <div
@@ -3307,7 +3324,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
     </div>
     <div
-      class="emotion-12"
+      class="emotion-11"
     >
       <button
         aria-expanded="false"
@@ -3343,14 +3360,13 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         </span>
       </button>
       <div
-        class="emotion-11"
+        class="emotion-10"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
       >
         <div
           aria-labelledby="3"
-          class="emotion-10"
           role="menu"
         >
           <div

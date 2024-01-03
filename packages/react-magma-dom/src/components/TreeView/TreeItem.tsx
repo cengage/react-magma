@@ -135,7 +135,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     let childTreeItemIndex = 0;
 
     // React.useEffect(() => {
-    // console.log(label.props.children, numberOfDirectChildren)
+    console.log(numberOfDirectChildren, numberOfDirectChildren)
     // }, [hasOwnTreeItems]);
 
     const nodeType = hasOwnTreeItems ? 'branch' : 'leaf';
