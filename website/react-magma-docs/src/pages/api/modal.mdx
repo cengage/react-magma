@@ -46,7 +46,7 @@ export function Example() {
   return (
     <>
       <Modal header="Modal Title" onClose={handleOnClose} isOpen={showModal}>
-        <Paragraph noMargin>This is a modal, doing modal things.</Paragraph>
+        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
           This is <Hyperlink to="#">linked text</Hyperlink> in the modal
         </Paragraph>
@@ -99,7 +99,7 @@ export function Example() {
         }}
         isOpen={showSmallModal}
       >
-        <Paragraph noMargin>
+        <Paragraph noMargins>
           This is a small modal, doing small modal things.
         </Paragraph>
       </Modal>
@@ -113,7 +113,7 @@ export function Example() {
         }}
         isOpen={showLargeModal}
       >
-        <Paragraph noMargin>
+        <Paragraph noMargins>
           This is a large modal, doing large modal things.
         </Paragraph>
       </Modal>
@@ -174,7 +174,7 @@ export function Example() {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargin>This modal has no header.</Paragraph>
+        <Paragraph noMargins>This modal has no header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModal(false)}>OK</Button>
         </ButtonGroup>
@@ -188,7 +188,7 @@ export function Example() {
         }}
         isOpen={showModalHeader}
       >
-        <Paragraph noMargin>This modal has no header.</Paragraph>
+        <Paragraph noMargins>This modal has no header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModalHeader(false)}>OK</Button>
         </ButtonGroup>
@@ -230,7 +230,7 @@ export function Example() {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargin>
+        <Paragraph noMargins>
           The standard modal close button is hidden.
         </Paragraph>
         <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
@@ -275,7 +275,7 @@ export function Example() {
         Lorem ipsum dolar sit amet
         <Button onClick={customCloseModal}>Close Modal</Button>
       </Modal>
-      <Paragraph noMargin>
+      <Paragraph noMargins>
         <strong>Magma Close Called Times:</strong> {magmaCloseCalledTimes}
       </Paragraph>
       <Paragraph>
@@ -315,7 +315,7 @@ export function Example() {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargin>This is a modal, doing modal things.</Paragraph>
+        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
 
         <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
       </Modal>
@@ -364,7 +364,7 @@ export function Example() {
         isOpen={showModal}
         isInverse
       >
-        <Paragraph noMargin>This is a modal, doing modal things.</Paragraph>
+        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
           This is{' '}
           <Hyperlink to="#" isInverse>
