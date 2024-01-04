@@ -140,6 +140,86 @@ describe('Paragraph', () => {
     expect(getByText(text4)).toHaveStyleRule('margin', '0');
   });
 
+  it('should render paragraphs with no top margin', () => {
+    const text1 = 'Test Paragraph 1';
+    const text2 = 'Test Paragraph 2';
+    const text3 = 'Test Paragraph 3';
+    const text4 = 'Test Paragraph 4';
+    const { getByText } = render(
+      <>
+        <Paragraph noTopMargin visualStyle="bodyLarge">
+          {text1}
+        </Paragraph>
+        <Paragraph noTopMargin visualStyle="bodyMedium">
+          {text2}
+        </Paragraph>
+        <Paragraph noTopMargin visualStyle="bodySmall">
+          {text3}
+        </Paragraph>
+        <Paragraph noTopMargin visualStyle="bodyXSmall">
+          {text4}
+        </Paragraph>
+      </>
+    );
+
+    expect(getByText(text1)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing06} 0`
+    );
+    expect(getByText(text2)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing06} 0`
+    );
+    expect(getByText(text3)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing05} 0`
+    );
+    expect(getByText(text4)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing03} 0`
+    );
+  });
+
+  it('should render paragraphs with no bottom margin', () => {
+    const text1 = 'Test Paragraph 1';
+    const text2 = 'Test Paragraph 2';
+    const text3 = 'Test Paragraph 3';
+    const text4 = 'Test Paragraph 4';
+    const { getByText } = render(
+      <>
+        <Paragraph noBottomMargin visualStyle="bodyLarge">
+          {text1}
+        </Paragraph>
+        <Paragraph noBottomMargin visualStyle="bodyMedium">
+          {text2}
+        </Paragraph>
+        <Paragraph noBottomMargin visualStyle="bodySmall">
+          {text3}
+        </Paragraph>
+        <Paragraph noBottomMargin visualStyle="bodyXSmall">
+          {text4}
+        </Paragraph>
+      </>
+    );
+
+    expect(getByText(text1)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing06} 0 0 0`
+    );
+    expect(getByText(text2)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing06} 0 0 0`
+    );
+    expect(getByText(text3)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing05} 0 0 0`
+    );
+    expect(getByText(text4)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing03} 0 0 0`
+    );
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(<Paragraph>test text</Paragraph>);
 
