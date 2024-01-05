@@ -174,7 +174,7 @@ export function Example() {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargins>This modal has no header.</Paragraph>
+        <Paragraph noTopMargin>This modal has no header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModal(false)}>OK</Button>
         </ButtonGroup>
@@ -188,7 +188,7 @@ export function Example() {
         }}
         isOpen={showModalHeader}
       >
-        <Paragraph noMargins>This modal has no header.</Paragraph>
+        <Paragraph noTopMargin>This modal has no header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModalHeader(false)}>OK</Button>
         </ButtonGroup>
@@ -230,7 +230,7 @@ export function Example() {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargins>
+        <Paragraph noTopMargin>
           The standard modal close button is hidden.
         </Paragraph>
         <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
@@ -329,7 +329,7 @@ export function Example() {
         onClose={() => setShowModal2(false)}
         isOpen={showModal2}
       >
-        <Paragraph>This is modal 2</Paragraph>
+        <Paragraph noMargins>This is modal 2</Paragraph>
       </Modal>
     </>
   );

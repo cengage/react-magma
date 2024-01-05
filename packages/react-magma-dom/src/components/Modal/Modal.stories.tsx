@@ -41,7 +41,7 @@ export const Default = () => {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.right}>
           <Button color={ButtonColor.secondary}>Cancel</Button>
           <Button>Save</Button>
@@ -71,7 +71,7 @@ export const LongContentWithScrolling = () => {
   return (
     <>
       <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal}>
-        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
           This is <a href="/">linked text</a> in the modal
         </Paragraph>
@@ -185,7 +185,7 @@ export const ModalContentUpdate = () => {
         <div id="attachToMe">
           {page === 1 && (
             <>
-              <Paragraph noMargins>Page one</Paragraph>
+              <Paragraph noTopMargin>Page one</Paragraph>
               <Paragraph>
                 This is <a href="/">linked text</a> in the modal
               </Paragraph>
@@ -203,6 +203,7 @@ export const ModalContentUpdate = () => {
               />
 
               {showHidden && <Button>Hidden Button</Button>}
+              <Spacer size={10} />
               <Button disabled={!goToNextPageEnabled} onClick={goToPage2}>
                 Go to Page 2
               </Button>
@@ -211,7 +212,7 @@ export const ModalContentUpdate = () => {
 
           {page === 2 && (
             <>
-              <Paragraph>Page two</Paragraph>
+              <Paragraph noTopMargin>Page two</Paragraph>
               <Paragraph>
                 <Button color={ButtonColor.secondary}>Random button 1</Button>{' '}
                 <Button color={ButtonColor.secondary}>Random button 2</Button>
@@ -249,7 +250,7 @@ export const NoHeaderOrFocusableContent = () => {
         onClose={onModalNoFocusClose}
         isOpen={showModalNoFocus}
       >
-        <Paragraph noMargins>
+        <Paragraph noTopMargin>
           This modal has no header and nothing focusable.
         </Paragraph>
         <Paragraph>
@@ -279,7 +280,7 @@ export const ModalInAModal = () => {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
           This is <a href="/">linked text</a> in the modal
         </Paragraph>
@@ -327,7 +328,7 @@ export const ModalInAModal = () => {
         onClose={() => setShowModal2(false)}
         isOpen={showModal2}
       >
-        <Paragraph noMargins>This is modal 2</Paragraph>
+        <Paragraph noTopMargin>This is modal 2</Paragraph>
         <NativeSelect fieldId="">
           <option>1</option>
           <option>2</option>
@@ -421,7 +422,7 @@ export const Inverse = () => {
         isOpen={showModal}
         isInverse
       >
-        <Paragraph noMargins>
+        <Paragraph noTopMargin>
           This is an inverse modal, doing modal things.
         </Paragraph>
         <Paragraph>
