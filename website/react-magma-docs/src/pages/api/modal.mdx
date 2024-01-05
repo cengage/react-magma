@@ -315,7 +315,7 @@ export function Example() {
         }}
         isOpen={showModal}
       >
-        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
 
         <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
       </Modal>
@@ -364,18 +364,20 @@ export function Example() {
         isOpen={showModal}
         isInverse
       >
-        <Paragraph noMargins>This is a modal, doing modal things.</Paragraph>
-        <Paragraph>
+        <Paragraph isInverse noMargins>
+          This is a modal, doing modal things.
+        </Paragraph>
+        <Paragraph isInverse>
           This is{' '}
           <Hyperlink to="#" isInverse>
             linked text
           </Hyperlink>{' '}
           in the modal
         </Paragraph>
-        <Paragraph>
+        <Paragraph isInverse>
           <Button isInverse>This is a button</Button>
         </Paragraph>
-        <Paragraph>
+        <Paragraph isInverse>
           This is{' '}
           <Hyperlink to="#" isInverse>
             some more linked text
