@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(Paragraph): Adding more configuration for the Paragraph component margins. `noTopMargin` and `noBottomMargin` both allow a removal of the margin from one side.
+feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.

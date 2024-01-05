@@ -672,4 +672,5 @@ function getTypographyStyles(props) {
 
 export const TypographyComponent = styled.p<TypographyProps>`
   ${props => getTypographyStyles(props)}
+  margin: ${props => (props.noBottomMargin && props.noTopMargin ? '0' : '')};
 `;
