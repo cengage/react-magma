@@ -1,5 +1,11 @@
 ## 4.2.0
 
+## 4.3.0-next.5
+
+### Minor Changes
+
+- 8fa4252f4: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
+
 ## 4.3.0-next.4
 
 ### Patch Changes

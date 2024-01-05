@@ -13,6 +13,7 @@
   "changesets": [
     "chartColors",
     "cuddly-dolphins-yell",
+    "feat-paragraphMargins",
     "feat-selectChildren",
     "fix-additionalContent",
     "fix-additionalContentDocs",
