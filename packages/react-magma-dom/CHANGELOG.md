@@ -76,6 +76,12 @@
 
 ## 4.2.0
 
+## 4.3.0-next.6
+
+### Patch Changes
+
+- 421b9091a: fix(Modal): Fixed bottom padding on the Modal header.
+
 ## 4.3.0-next.5
 
 ### Minor Changes
