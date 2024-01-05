@@ -14,6 +14,24 @@ export default {
       },
       defaultValue: false,
     },
+    noMargins: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
+    noBottomMargin: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
+    noTopMargin: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
   },
 } as Meta;
 
