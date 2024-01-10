@@ -55,6 +55,12 @@
 
 ## 4.2.0
 
+## 4.3.0-next.7
+
+### Patch Changes
+
+- 3fc9e50ca: fix(Modal): Fixed Storybook Inverse example.
+
 ## 4.3.0-next.6
 
 ### Patch Changes
