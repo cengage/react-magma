@@ -422,7 +422,7 @@ export const Inverse = () => {
         isOpen={showModal}
         isInverse
       >
-        <Paragraph noTopMargin>
+        <Paragraph noTopMargin isInverse>
           This is an inverse modal, doing modal things.
         </Paragraph>
         <Paragraph>
