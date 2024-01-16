@@ -1,7 +1,7 @@
 import React from 'react';
 import { TreeView, TreeItem } from '.';
 
-import { ArticleIcon, FolderIcon } from 'react-magma-icons';
+import { ArticleIcon, FolderIcon, FavoriteIcon } from 'react-magma-icons';
 import { ExpandInitialOptions, TreeViewSelectable } from './useTreeView';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
@@ -37,27 +37,42 @@ export const Default = args => {
   return (
     <Card isInverse={args.isInverse}>
       <TreeView {...args}>
-        <TreeItem icon={<FolderIcon />} label={<>Part 1: Introduction</>}>
+        <TreeItem
+          // icon={<FolderIcon />}
+          label={<>Part 1: Introduction</>}
+        >
           <TreeItem
             icon={<ArticleIcon />}
             label={<>Chapter 1: Lorem ipsum dolor sit amet</>}
           >
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 1 child: Lorem ipsum dolor sit amet</>}
+              isDisabled
+              label={
+                <>
+                  Chapter 1 child: Lorem ipsum dolor sit amet dolor sit amet
+                  dolor sit amet
+                </>
+              }
             />
           </TreeItem>
           <TreeItem
-            icon={<ArticleIcon />}
+            // icon={< ArticleIcon />}
             label={<>Chapter 2: Lorem ipsum dolor sit amet</>}
           />
           <TreeItem
             icon={<FolderIcon />}
             label={<>Chapter 3: Lorem ipsum dolor sit amet</>}
+            isDisabled
           >
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Section 3.1: Lorem ipsum dolor sit amet</>}
+              label={
+                <>
+                  Section 3.1: Lorem ipsum dolor sit amet dolor sit ametdolor
+                  sit amet
+                </>
+              }
             />
             <TreeItem
               icon={<ArticleIcon />}
@@ -93,7 +108,7 @@ export const Default = args => {
               icon={<ArticleIcon />}
               label={<>Section 5.3: Lorem ipsum dolor sit amet</>}
             />
-            </TreeItem>
+          </TreeItem>
           <TreeItem
             icon={<ArticleIcon />}
             label={<>Chapter 6: Lorem ipsum dolor sit amet</>}
@@ -125,58 +140,45 @@ export const Default = args => {
   );
 };
 
-
-export const DefaultCollapsed = args => {
+export const NoIcons = args => {
   return (
     <Card isInverse={args.isInverse}>
       <TreeView {...args}>
         <TreeItem label={<>Home</>}>
           <TreeItem label={<>Bath</>}>
-            
             <TreeItem label={<>Bathroom Storage</>}>
-              
               <TreeItem label={<>Item 1</>} />
               <TreeItem label={<>Item 2</>} />
             </TreeItem>
             <TreeItem label={<>Shower Curtains & Accessories</>} />
             <TreeItem label={<>Bath Towels</>}>
-              
               <TreeItem label={<>Item 1</>} />
               <TreeItem label={<>Item 2</>} />
             </TreeItem>
           </TreeItem>
           <TreeItem label={<>Bedding</>}>
-            
-                          <TreeItem label={<>Item 1</>} />
-              <TreeItem label={<>Item 2</>} />
+            <TreeItem label={<>Item 1</>} />
+            <TreeItem label={<>Item 2</>} />
           </TreeItem>
           <TreeItem label={<>Arts & Crafts</>}></TreeItem>
           <TreeItem label={<>Storage & Organization</>}>
-            
-                         <TreeItem label={<>Item 1</>} />
-              <TreeItem label={<>Item 2</>} />
+            <TreeItem label={<>Item 1</>} />
+            <TreeItem label={<>Item 2</>} />
           </TreeItem>
         </TreeItem>
         <TreeItem label={<>Furniture</>}>
-          
-                        <TreeItem label={<>Item 1</>} />
-              <TreeItem label={<>Item 2</>} />
+          <TreeItem label={<>Item 1</>} />
+          <TreeItem label={<>Item 2</>} />
         </TreeItem>
-        <TreeItem label={<>Kitchen & Dining</>}/>
+        <TreeItem label={<>Kitchen & Dining</>} />
         <TreeItem label={<>Patio & Garden</>}>
-          
-              <TreeItem label={<>Item 1</>} />
-              <TreeItem label={<>Item 2</>} />
+          <TreeItem label={<>Item 1</>} />
+          <TreeItem label={<>Item 2</>} />
         </TreeItem>
       </TreeView>
     </Card>
   );
 };
-
- 
-
-
-
 
 export const Textbook = args => {
   return (
@@ -224,21 +226,55 @@ export const Textbook = args => {
 };
 
 export const Simple = args => {
+  const hasIcon = true;
   return (
     <TreeView {...args}>
-      <TreeItem label={<>0.0</>}>
-        <TreeItem label={<>1.1</>}>
-          {/* <TreeItem label={<>The Questions Art Historians Ask</>} />
-          <TreeItem label={<>The Words Art Historians Use</>}>
-            <TreeItem label={<>Something deeper</>} />
-          </TreeItem> */}
-          <TreeItem label={<>1.1.1</>}>
-            <TreeItem label={<>1.1.1.1</>} />
+      <TreeItem label={<>0.0</>} icon={hasIcon ? <ArticleIcon /> : null} />
+      <TreeItem label={<>0.1</>} icon={hasIcon ? <FolderIcon /> : null}>
+        <TreeItem label={<>0.1.1</>} icon={hasIcon ? <ArticleIcon /> : null} />
+        <TreeItem label={<>0.1.2</>} icon={hasIcon ? <FolderIcon /> : null}>
+          <TreeItem
+            label={<>0.1.2.1</>}
+            icon={hasIcon ? <ArticleIcon /> : null}
+          />
+          <TreeItem label={<>0.1.2.2</>} icon={hasIcon ? <FolderIcon /> : null}>
+            <TreeItem
+              label={<>0.1.2.2.1</>}
+              icon={hasIcon ? <ArticleIcon /> : null}
+            />
+            <TreeItem
+              label={<>0.1.2.2.2</>}
+              icon={hasIcon ? <FolderIcon /> : null}
+            >
+              <TreeItem
+                label={<>0.1.2.2.2.1</>}
+                icon={hasIcon ? <ArticleIcon /> : null}
+              />
+              <TreeItem
+                label={<>0.1.2.2.2.2</>}
+                icon={hasIcon ? <FolderIcon /> : null}
+              >
+                <TreeItem
+                  label={<>0.1.2.2.2.2.1</>}
+                  icon={hasIcon ? <ArticleIcon /> : null}
+                />
+              </TreeItem>
+            </TreeItem>
           </TreeItem>
         </TreeItem>
-        <TreeItem label={<>1.2</>} />
       </TreeItem>
-      <TreeItem label={<>0.1</>} />
+    </TreeView>
+  );
+};
+
+export const UseDefaultIcon = args => {
+  return (
+    <TreeView {...args}>
+      <TreeItem label={<>I have an icon</>} icon={<FavoriteIcon />} labelStyle={{color: 'navy', fontWeight: '600'}} style={{background: 'pink'}} />
+      <TreeItem label={<>Branch with no icon</>}>
+        <TreeItem label={<>I am a leaf without an icon</>} style={{background: 'pink'}} />
+        <TreeItem label={<>I have an icon too</>} icon={<FavoriteIcon />} />
+      </TreeItem>
     </TreeView>
   );
 };

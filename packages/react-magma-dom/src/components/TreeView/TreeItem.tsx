@@ -13,13 +13,19 @@ import {
   checkedStatusToBoolean,
 } from './useTreeItem';
 import { TreeViewContext, TreeViewSelectable } from './useTreeView';
-import { ExpandLessIcon, ExpandMoreIcon } from 'react-magma-icons';
+import { ExpandLessIcon, ExpandMoreIcon, FolderIcon, ArticleIcon } from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
 import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
 
-import { calculateLeftPadding } from './utils';
+import {
+  calculateLeftPadding,
+  TreeNodeType,
+  getTreeItemLabelColor,
+} from './utils';
 import { transparentize } from 'polished';
+import { IconButton } from '../IconButton';
+import { ButtonColor, ButtonSize, ButtonShape, ButtonVariant } from '../Button';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -27,7 +33,7 @@ const StyledTreeItem = styled.li<{
   theme?: ThemeInterface;
   isInverse?: boolean;
   hasOwnTreeItems: boolean;
-  type: string;
+  nodeType: TreeNodeType;
   depth: number;
   isSelectable?: boolean;
 }>`
@@ -36,9 +42,16 @@ const StyledTreeItem = styled.li<{
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   list-style-type: none;
-  // border: 1px solid orange;
-  // background: pink;
+  cursor: ${props =>
+    props.nodeType === TreeNodeType.branch ? 'pointer' : 'default'};
+  padding-left: ${props => calculateLeftPadding(props.nodeType, props.depth)};
+
+  // :hover {
+  //   background: ${props =>
+    transparentize(0.95, props.theme.colors.neutral900)};
+  // }
 `;
+
 // margin-left: ${props =>
 //   props.hasOwnTreeItems
 //     ? '0px'
@@ -49,13 +62,11 @@ const StyledTreeItem = styled.li<{
 
 const IconWrapper = styled.span<{
   theme?: ThemeInterface;
+  isDisabled?: boolean;
   isInverse?: boolean;
-  isSelectable?: boolean;
 }>`
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral500};
+    getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
   margin-right: ${props => props.theme.spaceScale.spacing03};
   margin-left: 0px;
   svg {
@@ -65,13 +76,32 @@ const IconWrapper = styled.span<{
   }
 `;
 
-const StyledExpandWrapper = styled.div<{ theme?: ThemeInterface }>`
+const StyledLabelWrapper = styled.span<{
+  theme?: ThemeInterface;
+  isDisabled?: boolean;
+  isInverse?: boolean;
+}>`
+  display: flex;
+  align-items: flex-start;
+  color: ${props =>
+    getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
+  cursor: ${props => props.isDisabled && 'not-allowed'};
+`;
+
+const StyledExpandWrapper = styled.div<{
+  theme?: ThemeInterface;
+  isDisabled?: boolean;
+  isInverse?: boolean;
+}>`
   display: inline-block;
   vertical-align: middle;
   // background: green;
   // width: ${props => props.theme.spaceScale.spacing06};
   // min-width: ${props => props.theme.spaceScale.spacing06};
   margin-right: ${props => props.theme.spaceScale.spacing03};
+  cursor: ${props => props.isDisabled && 'not-allowed'};
+  color: ${props =>
+    getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
 `;
 
 const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
@@ -80,43 +110,62 @@ const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
   display: inline-flex;
 `;
 
-const StyledLabelWrapper = styled.div<{
+const StyledItemWrapper = styled.div<{
   theme?: ThemeInterface;
-  isSelectable?: boolean;
-  type: string;
+  selectable?: TreeViewSelectable;
+  nodeType: TreeNodeType;
   depth: number;
   selected: boolean;
+  isInverse: boolean;
 }>`
-  padding-left: ${props => calculateLeftPadding(props.type, props.depth)};
-  // margin-left: ${props => calculateLeftPadding(props.type, props.depth)};
-  // cursor: pointer;
-  background: ${props => props.selected ? transparentize(0.92, props.theme.colors.neutral900) : 'none'};
-  :hover {
-    background: ${props =>
-      props.isSelectable && !props.selected
-        ? transparentize(0.95, props.theme.colors.neutral900)
-        : 'none'};
-  }
+  display: flex;
+  align-items: ${props =>
+    props.selectable === TreeViewSelectable.multi ? 'center' : 'flex-start'};
+  background: ${props =>
+    props.selected && props.isInverse
+      ? transparentize(0.7, props.theme.colors.neutral900)
+      : props.selected && transparentize(0.92, props.theme.colors.neutral900)};
+  border-left: ${props =>
+    props.selected &&
+    `4px solid ${
+      props.isInverse
+        ? props.theme.colors.tertiary500
+        : props.theme.colors.primary500
+    }`};
+
+  cursor: ${props =>
+    props.nodeType === TreeNodeType.branch ? 'pointer' : 'default'};
+  // padding-left: ${props => calculateLeftPadding(props.nodeType, props.depth)};
 `;
 
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
-  (props, ref) => {
+  (props, forwardedRef) => {
     const {
       children,
-      index,
-      testId,
+      treeItemIndex,
       icon,
       parentCheckedStatus,
       updateParentCheckStatus,
+      
+      testId,
       label,
+      isDisabled,
+      labelStyle,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse();
 
-    const { selectable, hasIcons } = React.useContext(TreeViewContext);
+    const {
+      selectable,
+      hasIcons,
+      children: treeViewChildren,
+    } = React.useContext(TreeViewContext);
 
-    const { contextValue } = useTreeItem(props);
+    const { contextValue, handleClick, handleKeyDown } = useTreeItem(
+      props,
+      forwardedRef
+    );
 
     const {
       itemId,
@@ -127,23 +176,59 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       hasOwnTreeItems,
       updateCheckedStatusFromChild,
       itemDepth,
-      numberOfDirectChildren,
-      singleSelectItemId,
+      parentDepth,
+      setParentDepth,
+      numberOfTreeItemChildren,
+      // singleSelectItemId,
+      isDirectChild,
+      selectedItems,
     } = contextValue;
 
     // Number of children an item has
     let childTreeItemIndex = 0;
 
     // React.useEffect(() => {
-    console.log(numberOfDirectChildren, numberOfDirectChildren)
+    // console.log('numberOfTreeItemChildren', numberOfTreeItemChildren)
+    // console.log('hasOwnTreeItems', hasOwnTreeItems);
+    // console.log('---');
     // }, [hasOwnTreeItems]);
 
-    const nodeType = hasOwnTreeItems ? 'branch' : 'leaf';
+    const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
 
-    // console.log(label.props.children, nodeType, itemDepth)
+    const defaultIcon = nodeType === TreeNodeType.branch ? <FolderIcon/> : <ArticleIcon/>;
 
+    const labelText = (
+      <StyledLabelWrapper
+        theme={theme}
+        isDisabled={isDisabled}
+        isInverse={isInverse}
+        style={labelStyle}
+        id={`${itemId}-label`}
+        onClick={e => {
+          if (selectable === TreeViewSelectable.single) {
+            console.log('labelText clicked - single select');
+            handleClick(e);
+          }
+          // e.preventDefault();
+        }}
+      >
+        {hasIcons && (
+        <IconWrapper
+          isInverse={isInverse}
+          theme={theme}
+          isDisabled={isDisabled}
+        >
+          {icon || defaultIcon}
+        </IconWrapper>
 
-    // TODO expanded is a lil broken
+        )}
+        {label}
+      </StyledLabelWrapper>
+    );
+
+    React.useEffect(() => {
+      isDirectChild(label);
+    }, []);
 
     return (
       <TreeItemContext.Provider value={contextValue}>
@@ -151,62 +236,94 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           theme={theme}
           isInverse={isInverse}
           hasOwnTreeItems
-          ref={ref}
+          ref={forwardedRef}
           data-testid={testId}
-          type={nodeType}
-          depth={itemDepth}
+          nodeType={nodeType}
+          depth={treeItemIndex}
           isSelectable={selectable === TreeViewSelectable.single}
+          // aria-controls={panelId}
+          // aria-expanded={Boolean(expanded)}
+          id={itemId}
+          onKeyDown={handleKeyDown}
           {...rest}
         >
-          <StyledLabelWrapper
+          <StyledItemWrapper
             theme={theme}
-            onClick={() => setExpanded(state => !state)}
-            isSelectable={selectable === TreeViewSelectable.single}
-            type={nodeType}
+            selectable={selectable}
+            nodeType={nodeType}
             depth={itemDepth}
-            selected={selectable === TreeViewSelectable.single && singleSelectItemId === itemId}
+            selected={
+              // false
+              selectable === TreeViewSelectable.single
+              && selectedItems?.[0] === `${itemId}-label`
+            }
+            isInverse={isInverse}
           >
-            {hasOwnTreeItems && (
-              <StyledExpandWrapper theme={theme}>
-                {expanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            {hasOwnTreeItems ? (
+              <StyledExpandWrapper
+                theme={theme}
+                isDisabled={isDisabled}
+                isInverse={isInverse}
+              >
+                {isDisabled || !expanded ? (
+                  // <ExpandMoreIcon />
+                  <IconButton
+                    icon={<ExpandMoreIcon />}
+                    color={ButtonColor.subtle}
+                    size={ButtonSize.small}
+                    shape={ButtonShape.fill}
+                    variant={ButtonVariant.link}
+                    aria-label="expand"
+                    onClick={() => {
+                      // console.log('expand button clicked');
+                      setExpanded(state => !state);
+                    }}
+                    disabled={isDisabled}
+                  />
+                ) : (
+                  // <ExpandLessIcon />
+                  <IconButton
+                    icon={<ExpandLessIcon />}
+                    color={ButtonColor.subtle}
+                    size={ButtonSize.small}
+                    shape={ButtonShape.fill}
+                    variant={ButtonVariant.link}
+                    aria-label="collapse"
+                    onClick={() => {
+                      // console.log('collapse button clicked');
+                      setExpanded(state => !state);
+                    }}
+                    disabled={isDisabled}
+                  />
+                )}
               </StyledExpandWrapper>
+            ) : (
+              <div style={{ width: '24px' }}></div>
             )}
 
-            {selectable === TreeViewSelectable.multi && (
+            {selectable === TreeViewSelectable.multi ? (
               <StyledCheckboxWrapper theme={theme}>
                 {hasOwnTreeItems ? (
                   <IndeterminateCheckbox
                     id={itemId}
-                    labelText="branch"
-                    isTextVisuallyHidden
+                    labelText={labelText}
                     status={checkedStatus}
                     onChange={checkboxChangeHandler}
+                    disabled={isDisabled}
                   />
                 ) : (
                   <Checkbox
-                    labelText="leaf"
-                    isTextVisuallyHidden
+                    labelText={labelText}
                     checked={checkedStatusToBoolean(checkedStatus)}
                     onChange={checkboxChangeHandler}
+                    disabled={isDisabled}
                   />
                 )}
               </StyledCheckboxWrapper>
+            ) : (
+              <>{labelText}</>
             )}
-
-            {hasIcons && (
-              <IconWrapper
-                isInverse={isInverse}
-                theme={theme}
-                isSelectable={
-                  selectable === TreeViewSelectable.multi ||
-                  selectable === TreeViewSelectable.single
-                }
-              >
-                {icon}
-              </IconWrapper>
-            )}
-            {label}
-          </StyledLabelWrapper>
+          </StyledItemWrapper>
 
           {React.Children.map(
             children,
@@ -221,6 +338,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                         key: index,
                         parentCheckedStatus: checkedStatus,
                         updateParentCheckStatus: updateCheckedStatusFromChild,
+                        parentDepth: 1,
                       })}
                     </ul>
                   </Transition>
@@ -230,6 +348,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
               if (child.type === TreeItem) {
                 childTreeItemIndex++;
               }
+
+              // hide the disabled item + the children
+              if (isDisabled) return <></>;
+
               return component;
             }
           )}

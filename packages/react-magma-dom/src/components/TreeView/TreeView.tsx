@@ -18,7 +18,6 @@ const StyledTreeView = styled.ul<TreeViewProps>`
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
-  // border: 1px solid red;
   ul {
     padding: 0;
     margin: 0;
@@ -26,7 +25,6 @@ const StyledTreeView = styled.ul<TreeViewProps>`
     // margin-left: ${props => props.theme.spaceScale.spacing03};
     li {
       margin: 0;
-      // padding: 0;
     }
   }
 `;
@@ -57,8 +55,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 const item = React.cloneElement(child, {
                   index: treeItemIndex,
                   key: treeItemIndex,
-                  parentDepth: 0,
-                });               
+                });
                 treeItemIndex++;
                 return item;
               }

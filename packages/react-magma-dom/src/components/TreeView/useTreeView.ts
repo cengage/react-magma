@@ -15,7 +15,7 @@ export enum TreeViewSelectable {
 export interface UseTreeViewProps {
   /**
    * Initial expand state
-   * @default none
+   * @default ExpandInitialOptions.none
    */
   expandInitial?: ExpandInitialOptions;
   isInverse?: boolean;
@@ -24,40 +24,61 @@ export interface UseTreeViewProps {
    * @default TreeViewSelectable.off
    */
   selectable?: TreeViewSelectable;
-  // /**
-  //  * Whether or not the TreeView and the TreeItems have icons
-  //  */
-  // hasIcons?: boolean;
   /**
    * @internal
    */
   testId?: string;
-  label: React.ReactNode;
+  /**
+   * Content of label for accessibility
+   */
+  // label: React.ReactNode;
+  /**
+   * TODO??
+   */
+  // singleSelectItemId?: string;
+  children?: React.ReactNode | React.ReactNode[];
+  /**
+   * Action that fires when an item is selected
+   */
+  onSelectedItemChange?: () => void;
 }
 
 export interface TreeViewContextInterface {
+  children?: React.ReactNode | React.ReactNode[];
   expandInitial?: ExpandInitialOptions;
-  selectable: TreeViewSelectable;
   hasIcons: boolean;
+  onSelectedItemChange?: () => void;
+  selectable: TreeViewSelectable;
   setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
+  // singleSelectItemId?: string;
+  selectedItems: Array<any>;
+  setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
+  expandInitial: ExpandInitialOptions.none,
   selectable: TreeViewSelectable.off,
   hasIcons: false,
   setHasIcons: () => {},
+  selectedItems: [],
+  setSelectedItems: () => {},
 });
 
 export function useTreeView(props: UseTreeViewProps) {
-  const { selectable, expandInitial,  } = props;
-
+  const { selectable, expandInitial, onSelectedItemChange, children } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
+  const [selectedItems, setSelectedItems] = React.useState([]);
 
   const contextValue = {
+    children,
     expandInitial,
-    selectable,
     hasIcons,
+    onSelectedItemChange,
+    selectable,
     setHasIcons,
+    selectedItems,
+    setSelectedItems,
+    // singleSelectItemId: '',
   };
 
   return { contextValue };
