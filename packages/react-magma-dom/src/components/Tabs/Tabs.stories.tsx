@@ -6,12 +6,13 @@ import {
   TabsBorderPosition,
   TabsOrientation,
   TabsProps,
+  TabsScrollFocus,
 } from '.';
 import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabPanel } from './TabPanel';
-import { Card } from '../Card';
+import { Card, CardBody, CardHeading } from '../Card';
 import {
   Dropdown,
   DropdownButton,
@@ -22,6 +23,7 @@ import { Combobox } from '../Combobox';
 import { Select } from '../Select';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { Spacer } from '../Spacer';
 
 export default {
   title: 'Tabs',
@@ -200,6 +202,76 @@ const ScrollingTemplate: Story<TabsProps> = args => (
 export const Scrolling = ScrollingTemplate.bind({});
 Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
 Scrolling.parameters = { ...Default.parameters };
+
+const ScrollSpyTemplate: Story<TabsProps> = args => (
+  <TabsScrollFocus selector="section">
+    <section id="card1" data-nav-title="Card 1" data-scrollspy>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
+        vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh
+        sit amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis
+        commodo odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc
+        sed augue. In arcu cursus euismod quis viverra nibh cras. Tincidunt
+        ornare massa eget egestas purus viverra accumsan in nisl. Porta nibh
+        venenatis cras sed felis. Felis donec et odio pellentesque diam. Aliquam
+        ut porttitor leo a diam sollicitudin. Sed sed risus pretium quam
+        vulputate dignissim suspendisse in. Fringilla ut morbi tincidunt augue
+        interdum. Vel elit scelerisque mauris pellentesque pulvinar.
+      </p>
+    </section>
+    <Spacer size={20} />
+    <section id="card2" data-nav-title="Card 2" data-scrollspy>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
+        vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh
+        sit amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis
+        commodo odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc
+        sed augue. In arcu cursus euismod quis viverra nibh cras. Tincidunt
+        ornare massa eget egestas purus viverra accumsan in nisl. Porta nibh
+        venenatis cras sed felis. Felis donec et odio pellentesque diam. Aliquam
+        ut porttitor leo a diam sollicitudin. Sed sed risus pretium quam
+        vulputate dignissim suspendisse in. Fringilla ut morbi tincidunt augue
+        interdum. Vel elit scelerisque mauris pellentesque pulvinar.
+      </p>
+    </section>
+    <Spacer size={20} />
+    <section id="card3" data-nav-title="Card 3" data-scrollspy>
+      <p>
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </p>
+      <p>
+        Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
+        vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh
+        sit amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis
+        commodo odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc
+        sed augue. In arcu cursus euismod quis viverra nibh cras. Tincidunt
+        ornare massa eget egestas purus viverra accumsan in nisl. Porta nibh
+        venenatis cras sed felis. Felis donec et odio pellentesque diam. Aliquam
+        ut porttitor leo a diam sollicitudin. Sed sed risus pretium quam
+        vulputate dignissim suspendisse in. Fringilla ut morbi tincidunt augue
+        interdum. Vel elit scelerisque mauris pellentesque pulvinar.
+      </p>
+    </section>
+  </TabsScrollFocus>
+);
+
+export const ScrollSpy = ScrollSpyTemplate.bind({});
+ScrollSpy.args = {
+  ...Default.args,
+};
+ScrollSpy.parameters = { ...Default.parameters };
 
 const InverseTemplate: Story<TabsProps> = args => (
   <Card isInverse={args.isInverse}>

@@ -206,6 +206,7 @@ export {
 export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
+export { TabsScrollFocus } from './components/Tabs/TabsScrollFocus';
 
 export { Tag, TagProps } from './components/Tag';
 
