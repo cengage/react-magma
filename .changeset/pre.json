@@ -11,7 +11,6 @@
     "react-magma-landing": "1.1.2"
   },
   "changesets": [
-    "chartColors",
     "cuddly-dolphins-yell",
     "feat-paragraphMargins",
     "feat-selectChildren",
@@ -19,7 +18,6 @@
     "fix-additionalContentDocs",
     "fix-expressiveText",
     "fix-modalPadding",
-    "fix-modalStorybook",
     "loud-poets-eat",
     "strong-fans-itch"
   ]
