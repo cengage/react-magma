@@ -353,6 +353,84 @@ export function Example() {
 }
 ```
 
+## Additional Content
+
+When a select needs additional context related to the user, `additionalContent` allows child elements to help. It is encouraged to use this prop with a `Tooltip` wrapping an `IconButton`.
+
+By default, the child element will display inline with a `Select` label on the right.
+
+When `labelPosition` is set to `left`, the label, select, and child elements all display inline.
+
+If no label is required, use `isLabelVisuallyHidden` and the same inline layout will persist.
+
+```tsx
+import React from 'react';
+import {
+  Select,
+  LabelPosition,
+  Tooltip,
+  IconButton,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from 'react-magma-dom';
+import { HelpIcon } from 'react-magma-icons';
+
+export function Example() {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+
+  return (
+    <>
+      <Select
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+        labelText="Default positioning"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+      />
+      <br />
+      <Select
+        additionalContent={
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        }
+        labelPosition={LabelPosition.left}
+        labelText="Left positioning"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+      />
+    </>
+  );
+}
+```
+
 ## Inverse
 
 ```tsx

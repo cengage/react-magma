@@ -1,16 +1,17 @@
 import React from 'react';
-import { Modal, ModalSize } from '.';
 import { Button, ButtonColor } from '../Button';
-import { VisuallyHidden } from '../VisuallyHidden';
-import { Toggle } from '../Toggle';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+import { Combobox } from '../Combobox';
+import { Container } from '../Container';
+import { DatePicker } from '../DatePicker';
+import { Modal } from '../..';
+import { NativeSelect } from '../NativeSelect';
+import { Paragraph } from '../Paragraph';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
-import { DatePicker } from '../DatePicker';
-import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
-import { Container } from '../Container';
-import { NativeSelect } from '../NativeSelect';
 import { Spacer } from '../Spacer';
-import { Combobox } from '../Combobox';
+import { Toggle } from '../Toggle';
+import { VisuallyHidden } from '../VisuallyHidden';
 import {
   Dropdown,
   DropdownButton,
@@ -40,7 +41,7 @@ export const Default = () => {
         }}
         isOpen={showModal}
       >
-        <p>This is a modal, doing modal things.</p>
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.right}>
           <Button color={ButtonColor.secondary}>Cancel</Button>
           <Button>Save</Button>
@@ -70,11 +71,11 @@ export const LongContentWithScrolling = () => {
   return (
     <>
       <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal}>
-        <p>This is a modal, doing modal things.</p>
-        <p>
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
+        <Paragraph>
           This is <a href="/">linked text</a> in the modal
-        </p>
-        <p>
+        </Paragraph>
+        <Paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -82,12 +83,12 @@ export const LongContentWithScrolling = () => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p>This is a modal, doing modal things.</p>
-        <p>
+        </Paragraph>
+        <Paragraph>This is a modal, doing modal things.</Paragraph>
+        <Paragraph>
           This is <a href="/"> some more linked text</a> in the modal
-        </p>
-        <p>
+        </Paragraph>
+        <Paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -95,12 +96,12 @@ export const LongContentWithScrolling = () => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p>This is a modal, doing modal things.</p>
-        <p>
+        </Paragraph>
+        <Paragraph>This is a modal, doing modal things.</Paragraph>
+        <Paragraph>
           <Button>This is a button</Button>
-        </p>
-        <p>
+        </Paragraph>
+        <Paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -108,7 +109,7 @@ export const LongContentWithScrolling = () => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        </Paragraph>
       </Modal>
       <Button onClick={onModalShow} ref={buttonRef}>
         Show Modal
@@ -184,10 +185,10 @@ export const ModalContentUpdate = () => {
         <div id="attachToMe">
           {page === 1 && (
             <>
-              <p>Page one</p>
-              <p>
+              <Paragraph noTopMargin>Page one</Paragraph>
+              <Paragraph>
                 This is <a href="/">linked text</a> in the modal
-              </p>
+              </Paragraph>
               <Toggle
                 checked={!goToNextPageEnabled}
                 id="goToNextPageEnabled"
@@ -202,6 +203,7 @@ export const ModalContentUpdate = () => {
               />
 
               {showHidden && <Button>Hidden Button</Button>}
+              <Spacer size={10} />
               <Button disabled={!goToNextPageEnabled} onClick={goToPage2}>
                 Go to Page 2
               </Button>
@@ -210,11 +212,11 @@ export const ModalContentUpdate = () => {
 
           {page === 2 && (
             <>
-              <p>Page two</p>
-              <p>
+              <Paragraph noTopMargin>Page two</Paragraph>
+              <Paragraph>
                 <Button color={ButtonColor.secondary}>Random button 1</Button>{' '}
                 <Button color={ButtonColor.secondary}>Random button 2</Button>
-              </p>
+              </Paragraph>
               <Button onClick={goToPage1}>Go to Page 1</Button>
             </>
           )}
@@ -248,11 +250,13 @@ export const NoHeaderOrFocusableContent = () => {
         onClose={onModalNoFocusClose}
         isOpen={showModalNoFocus}
       >
-        <p>This modal has no header and nothing focusable.</p>
-        <p>
+        <Paragraph noTopMargin>
+          This modal has no header and nothing focusable.
+        </Paragraph>
+        <Paragraph>
           Consider the usability implications before implementing a modal like
           this. A modal should have something actionable inside it.
-        </p>
+        </Paragraph>
       </Modal>
       <Button onClick={onModalNoFocusShow} ref={buttonRef}>
         Show Modal with nothing focusable
@@ -276,16 +280,16 @@ export const ModalInAModal = () => {
         }}
         isOpen={showModal}
       >
-        <p>This is a modal, doing modal things.</p>
-        <p>
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
+        <Paragraph>
           This is <a href="/">linked text</a> in the modal
-        </p>
-        <p>
+        </Paragraph>
+        <Paragraph>
           <Button>This is a button</Button>
-        </p>
-        <p>
+        </Paragraph>
+        <Paragraph>
           This is <a href="/"> some more linked text</a> in the modal
-        </p>
+        </Paragraph>
         <Combobox
           id="comboboxId3"
           isMulti
@@ -311,9 +315,9 @@ export const ModalInAModal = () => {
           ]}
           isClearable
         />
-        <p>
+        <Paragraph>
           <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
-        </p>
+        </Paragraph>
       </Modal>
       <Button onClick={() => setShowModal(true)} ref={buttonRef}>
         Show Modal
@@ -324,7 +328,7 @@ export const ModalInAModal = () => {
         onClose={() => setShowModal2(false)}
         isOpen={showModal2}
       >
-        <p>This is modal 2</p>
+        <Paragraph noTopMargin>This is modal 2</Paragraph>
         <NativeSelect fieldId="">
           <option>1</option>
           <option>2</option>
@@ -418,10 +422,12 @@ export const Inverse = () => {
         isOpen={showModal}
         isInverse
       >
-        <p>This is an inverse modal, doing modal things.</p>
-        <p>
+        <Paragraph noTopMargin isInverse>
+          This is an inverse modal, doing modal things.
+        </Paragraph>
+        <Paragraph>
           <Button isInverse>This is a button</Button>
-        </p>
+        </Paragraph>
       </Modal>
       <Container isInverse style={{ padding: '12px' }}>
         <Button onClick={() => setShowModal(true)} ref={buttonRef} isInverse>

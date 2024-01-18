@@ -254,6 +254,68 @@ export function Example() {
 }
 ```
 
+## No Top Margin
+
+When the `noTopMargin` prop is used, the element will have a top margin value of 0.
+
+```tsx
+import React from 'react';
+import { Paragraph, TypographyVisualStyle } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyLarge}>
+        Body large. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyMedium}>
+        Body medium (default). Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodySmall}>
+        Body small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
+        Body x-small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+    </>
+  );
+}
+```
+
+## No Bottom Margin
+
+When the `noBottomMargin` prop is used, the element will have a bottom margin value of 0.
+
+```tsx
+import React from 'react';
+import { Paragraph, TypographyVisualStyle } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph noBottomMargin visualStyle={TypographyVisualStyle.bodyLarge}>
+        Body large. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noBottomMargin visualStyle={TypographyVisualStyle.bodyMedium}>
+        Body medium (default). Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noBottomMargin visualStyle={TypographyVisualStyle.bodySmall}>
+        Body small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+
+      <Paragraph noBottomMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
+        Body x-small. Lorem ipsum dolar sit amet.
+      </Paragraph>
+    </>
+  );
+}
+```
+
 ## Paragraph Props
 
 **This component uses `forwardRef`. The ref is applied to the outer `p` element.**
