@@ -8,38 +8,36 @@ export enum TreeNodeType {
 
 /**
  * Leaf node - 1st level has 40px of left padding.
- * Each level after that adds 24px of left padding.
+ * Each level after that adds 56px of left padding.
  * 40, 64, 88, 112, 136, etc.
- * f(depth) = 24*depth + 40
  *
  * Branch node - 1st level has 8px of left padding.
  * Each level after that adds 24px of left padding.
  * 8, 32, 56, 80, 104, etc.
- * f(depth) = 24*depth + 8
  */
 export function calculateLeftPadding(type: TreeNodeType, depth: number = 0) {
-  // let padding = 0;
-  
-  let padding = 24 * depth;
+  let padding = 0;
 
   if (type === TreeNodeType.leaf) {
-    if (depth === 0 ) {
-      padding += 16;
+    if (depth === 0) {
+      padding += 40;
+    } else {
+      padding += 56;
     }
-    else {
-      padding += 32;
-    }
-  // } else if (type === TreeNodeType.branch && depth === 0) {
   } else if (type === TreeNodeType.branch) {
-    padding += 8;
+    if (depth === 0) {
+      padding += 8;
+    } else {
+      padding += 24;
+    }
   }
-  
-  // console.log('type', type, '>>>>>>>>>>> padding', padding);
+
   return `${padding}px`;
 }
 
-
-export const addPxStyleStrings = (styleStrings: (string | number)[]): string => {
+export const addPxStyleStrings = (
+  styleStrings: (string | number)[]
+): string => {
   const pxValues: number[] = styleStrings.map(styleString => {
     return parseInt(styleString.toString().replace(/\s*px$/, ''));
   });
@@ -62,3 +60,51 @@ export function getTreeItemLabelColor(
   }
   return theme.colors.neutral700;
 }
+
+// TODO
+const focusFirst = () => {
+  // (buttonRefArray.current[0].current as HTMLLIElement).focus();
+};
+
+const focusNext = () => {
+  // (buttonRefArray.current[index + 1].current as HTMLLIElement).focus();
+};
+
+const focusPrev = () => {
+  // (buttonRefArray.current[index - 1].current as HTMLLIElement).focus();
+};
+
+const focusLast = () => {
+  // const arrLength = buttonRefArray.current.length;
+  // (
+  //   buttonRefArray.current[arrLength - 1].current as HTMLLIElement
+  // ).focus();
+};
+
+// const handleKeyDown = (event: React.KeyboardEvent) => {
+//   // console.log('handleKeyDown');
+
+//   const arrLength = buttonRefArray.current.length;
+//   // console.log(arrLength, buttonRefArray);
+
+//   switch (event.key) {
+//     case 'ArrowDown': {
+//       index === arrLength - 1 ? focusFirst() : focusNext();
+//       break;
+//     }
+//     case 'ArrowUp': {
+//       index === 0 ? focusLast() : focusPrev();
+//       break;
+//     }
+//     case 'Home': {
+//       focusFirst();
+//       break;
+//     }
+//     case 'End': {
+//       focusLast();
+//       break;
+//     }
+//     default:
+//       return;
+//   }
+// };

@@ -13,7 +13,12 @@ import {
   checkedStatusToBoolean,
 } from './useTreeItem';
 import { TreeViewContext, TreeViewSelectable } from './useTreeView';
-import { ExpandLessIcon, ExpandMoreIcon, FolderIcon, ArticleIcon } from 'react-magma-icons';
+import {
+  ExpandLessIcon,
+  ExpandMoreIcon,
+  FolderIcon,
+  ArticleIcon,
+} from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
 import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
@@ -35,23 +40,32 @@ const StyledTreeItem = styled.li<{
   hasOwnTreeItems: boolean;
   nodeType: TreeNodeType;
   depth: number;
-  isSelectable?: boolean;
+  selected?: boolean;
+  selectableType?: TreeViewSelectable;
+  isDisabled?: boolean;
 }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   list-style-type: none;
-  cursor: ${props =>
-    props.nodeType === TreeNodeType.branch ? 'pointer' : 'default'};
+  cursor: ${props => !props.isDisabled && props.nodeType === TreeNodeType.branch && props.selectableType === TreeViewSelectable.single ? 'pointer' : 'default'};
   padding-left: ${props => calculateLeftPadding(props.nodeType, props.depth)};
-
-  // :hover {
-  //   background: ${props =>
-    transparentize(0.95, props.theme.colors.neutral900)};
-  // }
-`;
-
+  border-left: ${props =>
+    props.selected &&
+    `4px solid ${
+      props.isInverse
+        ? props.theme.colors.tertiary500
+        : props.theme.colors.primary500
+    }`};
+    background: ${props =>
+      props.selected && props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral900)
+        : props.selected && transparentize(0.92, props.theme.colors.neutral900)};
+    // :hover { background: ${props => transparentize(0.95, props.theme.colors.neutral900)};}
+        `;
+        
+    
 // margin-left: ${props =>
 //   props.hasOwnTreeItems
 //     ? '0px'
@@ -85,7 +99,7 @@ const StyledLabelWrapper = styled.span<{
   align-items: flex-start;
   color: ${props =>
     getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
-  cursor: ${props => props.isDisabled && 'not-allowed'};
+  // cursor: ${props => props.isDisabled && 'not-allowed'};
 `;
 
 const StyledExpandWrapper = styled.div<{
@@ -99,7 +113,7 @@ const StyledExpandWrapper = styled.div<{
   // width: ${props => props.theme.spaceScale.spacing06};
   // min-width: ${props => props.theme.spaceScale.spacing06};
   margin-right: ${props => props.theme.spaceScale.spacing03};
-  cursor: ${props => props.isDisabled && 'not-allowed'};
+  // cursor: ${props => props.isDisabled && 'not-allowed'};
   color: ${props =>
     getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
 `;
@@ -115,27 +129,11 @@ const StyledItemWrapper = styled.div<{
   selectable?: TreeViewSelectable;
   nodeType: TreeNodeType;
   depth: number;
-  selected: boolean;
   isInverse: boolean;
 }>`
   display: flex;
   align-items: ${props =>
     props.selectable === TreeViewSelectable.multi ? 'center' : 'flex-start'};
-  background: ${props =>
-    props.selected && props.isInverse
-      ? transparentize(0.7, props.theme.colors.neutral900)
-      : props.selected && transparentize(0.92, props.theme.colors.neutral900)};
-  border-left: ${props =>
-    props.selected &&
-    `4px solid ${
-      props.isInverse
-        ? props.theme.colors.tertiary500
-        : props.theme.colors.primary500
-    }`};
-
-  cursor: ${props =>
-    props.nodeType === TreeNodeType.branch ? 'pointer' : 'default'};
-  // padding-left: ${props => calculateLeftPadding(props.nodeType, props.depth)};
 `;
 
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
@@ -146,7 +144,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       icon,
       parentCheckedStatus,
       updateParentCheckStatus,
-      
       testId,
       label,
       isDisabled,
@@ -159,7 +156,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const {
       selectable,
       hasIcons,
-      children: treeViewChildren,
     } = React.useContext(TreeViewContext);
 
     const { contextValue, handleClick, handleKeyDown } = useTreeItem(
@@ -177,25 +173,15 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       updateCheckedStatusFromChild,
       itemDepth,
       parentDepth,
-      setParentDepth,
-      numberOfTreeItemChildren,
-      // singleSelectItemId,
-      isDirectChild,
       selectedItems,
     } = contextValue;
 
-    // Number of children an item has
     let childTreeItemIndex = 0;
-
-    // React.useEffect(() => {
-    // console.log('numberOfTreeItemChildren', numberOfTreeItemChildren)
-    // console.log('hasOwnTreeItems', hasOwnTreeItems);
-    // console.log('---');
-    // }, [hasOwnTreeItems]);
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
 
-    const defaultIcon = nodeType === TreeNodeType.branch ? <FolderIcon/> : <ArticleIcon/>;
+    const defaultIcon =
+      nodeType === TreeNodeType.branch ? <FolderIcon /> : <ArticleIcon />;
 
     const labelText = (
       <StyledLabelWrapper
@@ -206,29 +192,24 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         id={`${itemId}-label`}
         onClick={e => {
           if (selectable === TreeViewSelectable.single) {
-            console.log('labelText clicked - single select');
+            // console.log('labelText clicked - single select');
             handleClick(e);
           }
           // e.preventDefault();
         }}
       >
         {hasIcons && (
-        <IconWrapper
-          isInverse={isInverse}
-          theme={theme}
-          isDisabled={isDisabled}
-        >
-          {icon || defaultIcon}
-        </IconWrapper>
-
+          <IconWrapper
+            isInverse={isInverse}
+            theme={theme}
+            isDisabled={isDisabled}
+          >
+            {icon || defaultIcon}
+          </IconWrapper>
         )}
         {label}
       </StyledLabelWrapper>
     );
-
-    React.useEffect(() => {
-      isDirectChild(label);
-    }, []);
 
     return (
       <TreeItemContext.Provider value={contextValue}>
@@ -239,11 +220,15 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           ref={forwardedRef}
           data-testid={testId}
           nodeType={nodeType}
-          depth={treeItemIndex}
-          isSelectable={selectable === TreeViewSelectable.single}
+          depth={itemDepth}
+          isDisabled={isDisabled}
+          selected={
+            selectable === TreeViewSelectable.single &&
+            selectedItems?.[0] === `${itemId}-label`
+          }
+          selectableType={selectable}
           // aria-controls={panelId}
-          // aria-expanded={Boolean(expanded)}
-          id={itemId}
+          id={`${itemId}-wrapper`}
           onKeyDown={handleKeyDown}
           {...rest}
         >
@@ -252,18 +237,19 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             selectable={selectable}
             nodeType={nodeType}
             depth={itemDepth}
-            selected={
-              // false
-              selectable === TreeViewSelectable.single
-              && selectedItems?.[0] === `${itemId}-label`
-            }
+            // selected={
+            //   selectable === TreeViewSelectable.single &&
+            //   selectedItems?.[0] === `${itemId}-label`
+            // }
             isInverse={isInverse}
           >
-            {hasOwnTreeItems ? (
+            {hasOwnTreeItems && (
               <StyledExpandWrapper
                 theme={theme}
                 isDisabled={isDisabled}
                 isInverse={isInverse}
+                aria-expanded={Boolean(expanded)}
+                aria-hidden={Boolean(!expanded)}
               >
                 {isDisabled || !expanded ? (
                   // <ExpandMoreIcon />
@@ -297,9 +283,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   />
                 )}
               </StyledExpandWrapper>
-            ) : (
-              <div style={{ width: '24px' }}></div>
-            )}
+            )
+          }
 
             {selectable === TreeViewSelectable.multi ? (
               <StyledCheckboxWrapper theme={theme}>
@@ -330,15 +315,15 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             (child: React.ReactElement<any>, index) => {
               const component =
                 child.type === TreeItem ? (
-                  <Transition isOpen={expanded} collapse>
+                  <Transition isOpen={expanded} collapse unmountOnExit>
                     <ul>
                       {React.cloneElement(child, {
                         index,
-                        treeItemIndex: childTreeItemIndex,
                         key: index,
+                        treeItemIndex: childTreeItemIndex,
+                        parentDepth,
                         parentCheckedStatus: checkedStatus,
                         updateParentCheckStatus: updateCheckedStatusFromChild,
-                        parentDepth: 1,
                       })}
                     </ul>
                   </Transition>

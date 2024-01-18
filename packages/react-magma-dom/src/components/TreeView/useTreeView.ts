@@ -1,8 +1,9 @@
 import * as React from 'react';
 
+// TODO: do we really need 2 props for this?
 export enum ExpandInitialOptions {
   all = 'all',
-  first = 'first',
+  list = 'list',
   none = 'none',
 }
 
@@ -18,6 +19,14 @@ export interface UseTreeViewProps {
    * @default ExpandInitialOptions.none
    */
   expandInitial?: ExpandInitialOptions;
+  /**
+   * Array list of indexes of items that should be expanded by default
+   */
+  initialExpandedItems?: Array<number>;
+  /**
+   * Array list of indexes of items that should be selected by default
+   */
+  initialSelectedItems?: Array<number>;
   isInverse?: boolean;
   /**
    * Type of selectable for the tree view: off, single, multi
@@ -53,6 +62,8 @@ export interface TreeViewContextInterface {
   // singleSelectItemId?: string;
   selectedItems: Array<any>;
   setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
+  initialExpandedItems: Array<number>;
+  initialSelectedItems: Array<number>;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -62,10 +73,19 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   setHasIcons: () => {},
   selectedItems: [],
   setSelectedItems: () => {},
+  initialExpandedItems: [],
+  initialSelectedItems: [],
 });
 
 export function useTreeView(props: UseTreeViewProps) {
-  const { selectable, expandInitial, onSelectedItemChange, children } = props;
+  const {
+    selectable,
+    expandInitial,
+    onSelectedItemChange,
+    initialExpandedItems,
+    initialSelectedItems,
+    children,
+  } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState([]);
 
@@ -78,6 +98,8 @@ export function useTreeView(props: UseTreeViewProps) {
     setHasIcons,
     selectedItems,
     setSelectedItems,
+    initialExpandedItems,
+    initialSelectedItems,
     // singleSelectItemId: '',
   };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { TreeView, TreeItem } from '.';
+import { magma } from '../../theme/magma';
 
 import { ArticleIcon, FolderIcon, FavoriteIcon } from 'react-magma-icons';
 import { ExpandInitialOptions, TreeViewSelectable } from './useTreeView';
@@ -30,6 +31,10 @@ export default {
       },
       defaultValue: ExpandInitialOptions.all,
     },
+    initialExpandedItems: {
+      control: 'object',
+      defaultValue: []
+    }
   },
 } as Meta;
 
@@ -270,9 +275,9 @@ export const Simple = args => {
 export const UseDefaultIcon = args => {
   return (
     <TreeView {...args}>
-      <TreeItem label={<>I have an icon</>} icon={<FavoriteIcon />} labelStyle={{color: 'navy', fontWeight: '600'}} style={{background: 'pink'}} />
+      <TreeItem label={<>I have an icon</>} icon={<FavoriteIcon />} labelStyle={{color: magma.colors.info700, fontWeight: '600'}} style={{background: magma.colors.info100}} />
       <TreeItem label={<>Branch with no icon</>}>
-        <TreeItem label={<>I am a leaf without an icon</>} style={{background: 'pink'}} />
+        <TreeItem label={<>I am a leaf without an icon</>} style={{background: magma.colors.info200}} />
         <TreeItem label={<>I have an icon too</>} icon={<FavoriteIcon />} />
       </TreeItem>
     </TreeView>

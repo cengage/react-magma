@@ -3,7 +3,11 @@ import * as React from 'react';
 import { IconProps } from 'react-magma-icons';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
-import { TreeViewContext, ExpandInitialOptions, TreeViewSelectable } from './useTreeView';
+import {
+  TreeViewContext,
+  ExpandInitialOptions,
+  TreeViewSelectable,
+} from './useTreeView';
 import { TreeItem } from './TreeItem';
 
 import { useGenerateId } from '../../utils';
@@ -32,8 +36,7 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
     status: IndeterminateCheckboxStatus
   ) => void;
   // internal
-  // parentDepth?: number;
-  // setParentDepth: () => void;
+  parentDepth?: number;
   // singleSelectItemId?: string;
   isDisabled?: boolean;
 
@@ -41,6 +44,8 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * Style properties for the tree item label
    */
   labelStyle?: React.CSSProperties;
+
+  topLevel?: boolean;
 }
 
 interface TreeItemContextInterface {
@@ -59,9 +64,7 @@ interface TreeItemContextInterface {
     index: number,
     status: IndeterminateCheckboxStatus
   ) => void;
-  itemDepth: number;
   parentDepth: number;
-  setParentDepth: any; //fix
 }
 
 export const TreeItemContext = React.createContext<TreeItemContextInterface>({
@@ -71,10 +74,8 @@ export const TreeItemContext = React.createContext<TreeItemContextInterface>({
   checkboxChangeHandler: () => {},
   hasOwnTreeItems: false,
   updateCheckedStatusFromChild: () => {},
-  itemDepth: 0,
   numberOfTreeItemChildren: 0,
   parentDepth: 0,
-  setParentDepth: () => {}, //TODO implement this
 });
 
 const enum StatusUpdatedByOptions {
@@ -90,17 +91,25 @@ export const checkedStatusToBoolean = (
 export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const {
     children,
-    treeItemIndex,
+    parentDepth,
     index,
     parentCheckedStatus,
     updateParentCheckStatus,
     onClick,
     isDisabled = false,
-    // itemDepth,
-  } = props;
+    topLevel,
+  } = props;  
 
-  const { expandInitial, setHasIcons, onSelectedItemChange, selectable, selectedItems, setSelectedItems } =
-    React.useContext(TreeViewContext);
+  const {
+    expandInitial,
+    setHasIcons,
+    onSelectedItemChange,
+    selectable,
+    selectedItems,
+    setSelectedItems,
+    initialExpandedItems,
+    initialSelectedItems, 
+  } = React.useContext(TreeViewContext);
   const [expanded, setExpanded] = React.useState(isDisabled);
 
   const [checkedStatus, setCheckedStatus] =
@@ -114,11 +123,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const treeItemChildren = React.Children.toArray(children).filter(
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
+
   const numberOfTreeItemChildren = treeItemChildren.length;
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
 
-  const [parentDepth, setParentDepth] = React.useState(treeItemIndex || 0);
-  const itemDepth = typeof parentDepth === 'number' ? parentDepth : 1;
+  const itemDepth = parentDepth === 0 && topLevel ? 0 : parentDepth + 1;
 
   const [childrenCheckedStatus, setChildrenCheckedStatus] = React.useState<
     IndeterminateCheckboxStatus[]
@@ -130,19 +139,30 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   React.useEffect(() => {
     setTreeViewIconVisibility();
+
   }, []);
 
   React.useEffect(() => {
-    if (
-      isDisabled ||
-      expandInitial === ExpandInitialOptions.none ||
-      (expandInitial === ExpandInitialOptions.first && index !== 0)
-    ) {
+    if (isDisabled || expandInitial === ExpandInitialOptions.none) {
       setExpanded(false);
+    } else if (
+      expandInitial === ExpandInitialOptions.list &&
+      initialExpandedItems &&
+      initialExpandedItems.includes(index)
+    ) {
+      setExpanded(true);
     } else if (expandInitial === ExpandInitialOptions.all) {
       setExpanded(true);
     }
-  }, [expandInitial]);
+  }, [expandInitial, initialExpandedItems]);
+
+  React.useEffect(() => {
+    // TODO: test
+    if (initialSelectedItems?.length > 0) {
+      setSelectedItems(initialSelectedItems);
+    }
+
+  }, [initialSelectedItems]);
 
   function setTreeViewIconVisibility() {
     treeItemChildren.forEach((child: React.ReactElement<any>) => {
@@ -152,7 +172,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
     });
   }
-  
+
   const updateCheckedStatusFromChild = (
     index: number,
     status: IndeterminateCheckboxStatus
@@ -165,7 +185,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   React.useEffect(() => {
     if (statusUpdatedBy && updateParentCheckStatus) {
-      updateParentCheckStatus(treeItemIndex, checkedStatus);
+      updateParentCheckStatus(index, checkedStatus);
+      // updateParentCheckStatus(treeItemIndex, checkedStatus);
     }
     setStatusUpdatedBy(undefined);
   }, [checkedStatus]);
@@ -232,7 +253,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const multiSelectChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-      if (event.target.checked) {
+    // TODO: what if the parent gets clicked?
+    if (event.target.checked) {
       if (!selectedItems.includes(event)) {
         setSelectedItems([...selectedItems, event.target.id]);
       }
@@ -252,93 +274,25 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     forceUpdate();
   }, []);
 
-  const handleClick = (e) => {
-    console.log('handleClick')
+  const handleClick = e => {
+    // console.log('handleClick')
 
     if (selectable === TreeViewSelectable.single) {
       singleSelectChangeHandler(e);
     } else if (selectable === TreeViewSelectable.multi) {
-      multiSelectChangeHandler(e);;
-    } 
+      multiSelectChangeHandler(e);
+    }
 
     // TODO
-    onSelectedItemChange && typeof onSelectedItemChange === 'function' && onSelectedItemChange();
+    onSelectedItemChange &&
+      typeof onSelectedItemChange === 'function' &&
+      onSelectedItemChange();
 
     onClick && typeof onClick === 'function' && onClick();
   };
 
-  // TODO
-  const focusFirst = () => {
-    // (buttonRefArray.current[0].current as HTMLLIElement).focus();
-  };
+  const handleKeyDown = (event: React.KeyboardEvent) => {};
 
-  const focusNext = () => {
-    // (buttonRefArray.current[index + 1].current as HTMLLIElement).focus();
-  };
-
-  const focusPrev = () => {
-    // (buttonRefArray.current[index - 1].current as HTMLLIElement).focus();
-  };
-
-  const focusLast = () => {
-    // const arrLength = buttonRefArray.current.length;
-    // (
-    //   buttonRefArray.current[arrLength - 1].current as HTMLLIElement
-    // ).focus();
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    // console.log('handleKeyDown');
-
-    const arrLength = buttonRefArray.current.length;
-    // console.log(arrLength, buttonRefArray);
-
-    switch (event.key) {
-      case 'ArrowDown': {
-        index === arrLength - 1 ? focusFirst() : focusNext();
-        break;
-      }
-      case 'ArrowUp': {
-        index === 0 ? focusLast() : focusPrev();
-        break;
-      }
-      case 'Home': {
-        focusFirst();
-        break;
-      }
-      case 'End': {
-        focusLast();
-        break;
-      }
-      default:
-        return;
-    }
-  };
-
-  const isDirectChild = label => {
-    let isChild = false;
-
-    // console.log('***', treeItemChildren);
-    // console.log('LABEL', label.props?.children);
-
-    // console.log('-------');
-
-    treeItemChildren.forEach((child: React.ReactElement<any>) => {
-      // console.log(label, '++', child?.props.label.props?.children, '//' , label.props?.children);
-      // console.log(child);
-      // console.log(label.props?.children);
-
-      // console.log('++');
-
-      if (child?.props.label.props?.children == label.props?.children) {
-        console.log('isChild!!!!!!!!!!!!!!!!!!!!!!!');
-        isChild = true;
-        return isChild;
-      }
-    });
-
-    return isChild;
-  };
 
   const contextValue = {
     itemId,
@@ -350,10 +304,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     updateCheckedStatusFromChild,
     itemDepth,
     parentDepth,
-    setParentDepth,
     numberOfTreeItemChildren,
     // singleSelectItemId,
-    isDirectChild,
     selectedItems,
   };
 
