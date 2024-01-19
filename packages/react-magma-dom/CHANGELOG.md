@@ -1,5 +1,19 @@
 ## 4.3.0
 
+## 4.3.0
+
+### Minor Changes
+
+- cfc20a479: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
+- cfc20a479: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
+- cfc20a479: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
+
+### Patch Changes
+
+- cfc20a479: fix: Updates to the expressive font styles for both desktop and mobile.
+- cfc20a479: fix(Modal): Fixed bottom padding on the Modal header.
+- cfc20a479: build(deps): bump browserify-sign from 4.2.1 to 4.2.2
+
 ### Minor Changes
 
 - 8fa4252f4: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove

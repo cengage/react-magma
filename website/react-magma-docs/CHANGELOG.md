@@ -1,5 +1,23 @@
 # Change Log
 
+## 5.0.5
+
+### Patch Changes
+
+- cfc20a479: build: Resolve merge conflicts when pulling main -> dev
+- cfc20a479: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
+- Updated dependencies [cfc20a479]
+- Updated dependencies [cfc20a479]
+- Updated dependencies [cfc20a479]
+- Updated dependencies [cfc20a479]
+- Updated dependencies [cfc20a479]
+- Updated dependencies [cfc20a479]
+  - react-magma-dom@4.3.0
+  - @react-magma/charts@6.0.0
+  - @react-magma/dropzone@6.0.0
+  - @react-magma/schema-renderer@6.0.0
+  - @cengage-patterns/header@8.0.0
+
 ## 5.0.5-next.9
 
 ### Patch Changes
