@@ -6,7 +6,8 @@ import {
   TabsBorderPosition,
   TabsOrientation,
   TabsProps,
-  TabsScrollFocus,
+  TabsScrollSpyContainer,
+  TabScrollSpyPanel,
 } from '.';
 import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
@@ -51,6 +52,11 @@ export default {
       control: {
         type: 'select',
         options: TabsOrientation,
+      },
+    },
+    isInverse: {
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -204,67 +210,88 @@ Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
 Scrolling.parameters = { ...Default.parameters };
 
 const ScrollSpyTemplate: Story<TabsProps> = args => (
-  <TabsScrollFocus selector="section">
-    <section id="card1" data-nav-title="Card 1" data-scrollspy>
-      <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-      <p>
-        Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
-        vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh
-        sit amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis
-        commodo odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc
-        sed augue. In arcu cursus euismod quis viverra nibh cras. Tincidunt
-        ornare massa eget egestas purus viverra accumsan in nisl. Porta nibh
-        venenatis cras sed felis. Felis donec et odio pellentesque diam. Aliquam
-        ut porttitor leo a diam sollicitudin. Sed sed risus pretium quam
-        vulputate dignissim suspendisse in. Fringilla ut morbi tincidunt augue
-        interdum. Vel elit scelerisque mauris pellentesque pulvinar.
-      </p>
-    </section>
-    <Spacer size={20} />
-    <section id="card2" data-nav-title="Card 2" data-scrollspy>
-      <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-      <p>
-        Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
-        vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh
-        sit amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis
-        commodo odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc
-        sed augue. In arcu cursus euismod quis viverra nibh cras. Tincidunt
-        ornare massa eget egestas purus viverra accumsan in nisl. Porta nibh
-        venenatis cras sed felis. Felis donec et odio pellentesque diam. Aliquam
-        ut porttitor leo a diam sollicitudin. Sed sed risus pretium quam
-        vulputate dignissim suspendisse in. Fringilla ut morbi tincidunt augue
-        interdum. Vel elit scelerisque mauris pellentesque pulvinar.
-      </p>
-    </section>
-    <Spacer size={20} />
-    <section id="card3" data-nav-title="Card 3" data-scrollspy>
-      <p>
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-      <p>
-        Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
-        vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh
-        sit amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis
-        commodo odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc
-        sed augue. In arcu cursus euismod quis viverra nibh cras. Tincidunt
-        ornare massa eget egestas purus viverra accumsan in nisl. Porta nibh
-        venenatis cras sed felis. Felis donec et odio pellentesque diam. Aliquam
-        ut porttitor leo a diam sollicitudin. Sed sed risus pretium quam
-        vulputate dignissim suspendisse in. Fringilla ut morbi tincidunt augue
-        interdum. Vel elit scelerisque mauris pellentesque pulvinar.
-      </p>
-    </section>
-  </TabsScrollFocus>
+  <TabsScrollSpyContainer>
+    <TabScrollSpyPanel tabLabel="Card 1">
+      <Card>
+        <CardBody>
+          <CardHeading>Area 1</CardHeading>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+        </CardBody>
+      </Card>
+      <Spacer size={20} />
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 2">
+      <Card>
+        <CardBody>
+          <CardHeading>Area 2</CardHeading>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+        </CardBody>
+      </Card>
+      <Spacer size={20} />
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 3">
+      <Card>
+        <CardBody>
+          <CardHeading>Area 3</CardHeading>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+        </CardBody>
+      </Card>
+    </TabScrollSpyPanel>
+  </TabsScrollSpyContainer>
 );
 
 export const ScrollSpy = ScrollSpyTemplate.bind({});
