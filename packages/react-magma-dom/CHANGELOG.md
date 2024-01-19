@@ -92,37 +92,17 @@
 
 ### Minor Changes
 
-- 8fa4252f4: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
-
-## 4.3.0-next.4
-
-### Patch Changes
-
-- 1fb88b6fc: fix: Updates to the expressive font styles for both desktop and mobile.
-
-## 4.3.0-next.3
-
-### Minor Changes
-
-- 5e438ab0a: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
-
-## 4.3.0-next.2
-
-### Minor Changes
-
-- c47fc18b4: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
-
-## 4.2.1-next.1
+- cfc20a479: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
+- cfc20a479: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
+- cfc20a479: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
 
 ### Patch Changes
 
-- e6ca26b27: Adding in chartColors to theme.
-
-## 4.2.1-next.0
-
-### Patch Changes
-
+- 421b9091a: fix(Modal): Fixed bottom padding on the Modal header
+- 1fb88b6fc: fix: Updates to the expressive font styles for both desktop and mobile
 - fc3098851: build(deps): bump browserify-sign from 4.2.1 to 4.2.2
+
+## 4.2.0
 
 ### Minor Changes
 
