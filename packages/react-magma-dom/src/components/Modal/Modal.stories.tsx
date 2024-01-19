@@ -1,24 +1,24 @@
 import React from 'react';
-import { Modal, ModalSize } from '.';
 import { Button, ButtonColor } from '../Button';
-import { VisuallyHidden } from '../VisuallyHidden';
-import { Toggle } from '../Toggle';
-import { Radio } from '../Radio';
-import { RadioGroup } from '../RadioGroup';
-import { DatePicker } from '../DatePicker';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
-import { Container } from '../Container';
-import { NativeSelect } from '../NativeSelect';
-import { Paragraph } from '../Paragraph';
-import { Spacer } from '../Spacer';
 import { Combobox } from '../Combobox';
+import { Container } from '../Container';
+import { DatePicker } from '../DatePicker';
 import {
   Dropdown,
   DropdownButton,
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
+import { Modal, ModalSize } from '../..';
+import { NativeSelect } from '../NativeSelect';
+import { Paragraph } from '../Paragraph';
+import { Radio } from '../Radio';
+import { RadioGroup } from '../RadioGroup';
 import { Select } from '../Select';
+import { Spacer } from '../Spacer';
+import { Toggle } from '../Toggle';
+import { VisuallyHidden } from '../VisuallyHidden';
 import { useFocusLock } from '../..';
 
 const info = {
@@ -260,7 +260,7 @@ export const NoHeaderOrFocusableContent = () => {
           this. A modal should have something actionable inside it.
         </Paragraph>
       </Modal>
-      
+
       <Button onClick={onModalNoFocusShow} ref={buttonRef}>
         Show Modal with nothing focusable
       </Button>
