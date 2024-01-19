@@ -1,5 +1,23 @@
 ## 4.2.0
 
+## 4.3.0-next.7
+
+### Patch Changes
+
+- 3fc9e50ca: fix(Modal): Fixed Storybook Inverse example.
+
+## 4.3.0-next.6
+
+### Patch Changes
+
+- 421b9091a: fix(Modal): Fixed bottom padding on the Modal header.
+
+## 4.3.0-next.5
+
+### Minor Changes
+
+- 8fa4252f4: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
+
 ## 4.3.0-next.4
 
 ### Patch Changes

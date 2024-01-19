@@ -160,6 +160,17 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
+const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
+  padding: ${props => props.theme.spaceScale.spacing05}
+    ${props => props.theme.spaceScale.spacing05} 0
+    ${props => props.theme.spaceScale.spacing05};
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    padding: ${props => props.theme.spaceScale.spacing06}
+      ${props => props.theme.spaceScale.spacing06} 0
+      ${props => props.theme.spaceScale.spacing06};
+  }
+`;
+
 const ModalWrapper = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05};
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
@@ -366,7 +377,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 theme={theme}
               >
                 {header && (
-                  <ModalWrapper theme={theme}>
+                  <ModalHeader theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
@@ -380,7 +391,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                         {header}
                       </H1>
                     )}
-                  </ModalWrapper>
+                  </ModalHeader>
                 )}
                 <ModalWrapper ref={bodyRef} theme={theme}>
                   {children}
