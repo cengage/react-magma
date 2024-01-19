@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.6-next.0
+
+### Patch Changes
+
+- f54eb31c9: build: Resolve merge conflicts when pulling main -> dev (4.3.0)
+
 ## 5.0.5-next.9
 
 ### Patch Changes
