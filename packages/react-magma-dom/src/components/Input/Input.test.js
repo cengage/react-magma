@@ -445,13 +445,9 @@ describe('Input', () => {
           <Input labelText={labelText} onBlur={onBlurSpy} />
         );
 
-        fireEvent(
-          getByLabelText(labelText),
-          new MouseEvent('blur', {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        const input = getByLabelText(labelText);
+        input.focus();
+        input.blur();
 
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
@@ -478,13 +474,8 @@ describe('Input', () => {
           <Input labelText={labelText} onFocus={onFocusSpy} />
         );
 
-        fireEvent(
-          getByLabelText(labelText),
-          new MouseEvent('focus', {
-            bubbles: true,
-            cancelable: true,
-          })
-        );
+        const input = getByLabelText(labelText);
+        input.focus();
 
         expect(onFocusSpy).toHaveBeenCalledTimes(1);
       });

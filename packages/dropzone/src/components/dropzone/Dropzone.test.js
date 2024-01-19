@@ -510,8 +510,7 @@ describe('File Uploader', () => {
       />
     );
 
-    const { getByTestId, getByLabelText, getByText, rerender } =
-      render(ui);
+    const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     act(() => fireDrop(dropzone, data));

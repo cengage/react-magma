@@ -1,14 +1,16 @@
-const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const propertiesJson = require('react-magma-dom/dist/properties.json');
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, plugins }) => {
   actions.setWebpackConfig({
     node: {
       fs: 'empty',
     },
     resolve: {
       extensions: ['*', '.mjs', '.js', '.json'],
+      alias: {
+        path: require.resolve('path-browserify'),
+      },
     },
     module: {
       rules: [
@@ -19,6 +21,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         },
       ],
     },
+    plugins: [
+      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] })
+    ],
   });
 };
 

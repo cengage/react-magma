@@ -1,14 +1,70 @@
 # Change Log
 
-## 2.0.2
-
-## 2.0.2-next.0
+## 6.0.0-next.1
 
 ### Patch Changes
 
-- Updated dependencies [e8c968bb8]
-- Updated dependencies [1c91ac394]
-  - react-magma-dom@3.5.1-next.0
+- Updated dependencies [c47fc18b4]
+  - react-magma-dom@4.3.0-next.2
+
+## 5.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [fc3098851]
+  - react-magma-dom@4.2.1-next.0
+
+## 5.0.0
+
+## 5.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [9a09b8b55]
+  - react-magma-dom@4.2.0-next.0
+
+## 4.0.1
+
+## 4.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [871820e8d]
+  - react-magma-dom@4.1.1-next.0
+
+## 4.0.0
+
+## 4.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [3d00dcc7e]
+  - react-magma-dom@4.1.0-next.2
+
+## 3.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [f487b936f]
+  - react-magma-dom@4.0.1-next.0
+
+## 3.0.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+## 3.0.0-next.0
+
+### Major Changes
+
+- c01c53838: chore: Update to React v17.0.2
+
+### Patch Changes
+
+- Updated dependencies [adba671f3]
+- Updated dependencies [c01c53838]
+  - react-magma-dom@4.0.0-next.0
 
 ## 2.0.1
 
