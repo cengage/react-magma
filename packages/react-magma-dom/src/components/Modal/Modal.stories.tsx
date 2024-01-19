@@ -8,17 +8,8 @@ import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Container } from '../Container';
-import { NativeSelect } from '../NativeSelect';
 import { Paragraph } from '../Paragraph';
 import { Spacer } from '../Spacer';
-import { Combobox } from '../Combobox';
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownContent,
-  DropdownMenuItem,
-} from '../Dropdown';
-import { Select } from '../Select';
 
 const info = {
   component: Modal,
@@ -290,31 +281,9 @@ export const ModalInAModal = () => {
         <Paragraph>
           This is <a href="/"> some more linked text</a> in the modal
         </Paragraph>
-        <Combobox
-          id="comboboxId3"
-          isMulti
-          labelText="Multi Combobox"
-          defaultItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-          placeholder="Hello"
-        />
         <div>
           <DatePicker labelText="Pick a date" />
         </div>
-        <Combobox
-          id="comboboxId"
-          isMulti
-          labelText="Multi Combobox"
-          defaultItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-          isClearable
-        />
         <Paragraph>
           <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
         </Paragraph>
@@ -328,80 +297,7 @@ export const ModalInAModal = () => {
         onClose={() => setShowModal2(false)}
         isOpen={showModal2}
       >
-        <Paragraph noTopMargin>This is modal 2</Paragraph>
-        <NativeSelect fieldId="">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-        </NativeSelect>
-        <Spacer size={10} />
-        <Dropdown>
-          <DropdownButton>Basic Dropdown</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-            <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Spacer size={10} />
-        <Combobox
-          id="comboboxId2"
-          labelText="Combobox"
-          defaultItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-        />
-        <Spacer size={10} />
-        <Combobox
-          id="comboboxId3"
-          isMulti
-          labelText="Multi Combobox"
-          defaultItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-          placeholder="Hello"
-        />
-        <Spacer size={10} />
-        <Select
-          id="basicSelectId"
-          labelText="Basic"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-          ]}
-        />
-        <Spacer size={10} />
-        <Select
-          id="multiSelectId"
-          isMulti
-          labelText="Multi select"
-          items={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Green', value: 'green' },
-            { label: 'Orange', value: 'orange' },
-            { label: 'Aqua', value: 'aqua' },
-            { label: 'Gold', value: 'gold' },
-            { label: 'Periwinkle', value: 'periwinkle' },
-            { label: 'Lavender', value: 'lavender' },
-            { label: 'Marigold', value: 'marigold' },
-            { label: 'Yellow', value: 'yellow' },
-            { label: 'Purple', value: 'purple' },
-            { label: 'Dusty Rose', value: 'dusty_rose' },
-            { label: 'Burnt Sienna', value: 'burnt_sienna' },
-          ]}
-          initialSelectedItems={[
-            { label: 'Red', value: 'red' },
-            { label: 'Blue', value: 'blue' },
-            { label: 'Blah', value: 'blah' },
-          ]}
-        />
-        <Spacer size={10} />
+        <p>This is modal 2</p>
       </Modal>
     </>
   );
