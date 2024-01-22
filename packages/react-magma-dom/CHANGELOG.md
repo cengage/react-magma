@@ -35,6 +35,20 @@
 
 ## 3.6.0
 
+## 3.7.0
+
+### Minor Changes
+
+- 4e016ebd6: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
+- 4e016ebd6: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
+- 4e016ebd6: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
+
+### Patch Changes
+
+- 4e016ebd6: fix: Updates to the expressive font styles for both desktop and mobile.
+- 4e016ebd6: fix(Modal): Fixed bottom padding on the Modal header.
+- 4e016ebd6: fix(Modal): Fixed Storybook Inverse example.
+
 ### Minor Changes
 
 - 6cc99c6de: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
