@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.3
+
+### Patch Changes
+
+- 4e016ebd6: build(deps-dev): bump axios from 0.21.1 to 1.6.0
+
 ## 1.1.2-next.0
 
 ### Patch Changes

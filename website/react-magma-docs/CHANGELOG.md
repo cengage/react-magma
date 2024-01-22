@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.0.5
+
+### Patch Changes
+
+- 4e016ebd6: build: Resolve merge conflicts when pulling main -> dev
+- 4e016ebd6: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
+- Updated dependencies [4e016ebd6]
+- Updated dependencies [4e016ebd6]
+- Updated dependencies [4e016ebd6]
+- Updated dependencies [4e016ebd6]
+- Updated dependencies [4e016ebd6]
+- Updated dependencies [4e016ebd6]
+  - react-magma-dom@3.7.0
+
 ## 5.0.4-next.0
 
 ### Patch Changes
