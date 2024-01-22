@@ -11,67 +11,136 @@ import { Meta } from '@storybook/react/types-6-0';
 export default {
   component: Heading,
   title: 'Heading',
+  argTypes: {
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+      defaultValue: false,
+    },
+  },
 } as Meta;
 
-export const Default = () => {
+export const Default = args => {
   return (
-    <>
-      <Heading level={1}>Heading 1 (X-Large) - Productive</Heading>
-      <Heading level={2}>Heading 2 (Large) - Productive</Heading>
-      <Heading level={3}>Heading 3 (Medium) - Productive</Heading>
-      <Heading level={4}>Heading 4 (Small) - Productive</Heading>
-      <Heading level={5}>Heading 5 (X-Small) - Productive</Heading>
-      <Heading level={6}>Heading 6 (2X-Small) - Productive</Heading>
+    <Card isInverse={args.isInverse} style={{ padding: '0 24px' }}>
+      <Heading level={1} {...args}>
+        Heading 1 (X-Large) - Productive
+      </Heading>
+      <Heading level={2} {...args}>
+        Heading 2 (Large) - Productive
+      </Heading>
+      <Heading level={3} {...args}>
+        Heading 3 (Medium) - Productive
+      </Heading>
+      <Heading level={4} {...args}>
+        Heading 4 (Small) - Productive
+      </Heading>
+      <Heading level={5} {...args}>
+        Heading 5 (X-Small) - Productive
+      </Heading>
+      <Heading level={6} {...args}>
+        Heading 6 (2X-Small) - Productive
+      </Heading>
       <br />
       <Heading
         level={1}
         contextVariant={TypographyContextVariant.expressive}
         visualStyle={TypographyVisualStyle.heading2XLarge}
+        {...args}
       >
         Heading 1 (2X-Large) - Expressive
       </Heading>
-      <Heading level={1} contextVariant={TypographyContextVariant.expressive}>
+      <Heading
+        level={1}
+        contextVariant={TypographyContextVariant.expressive}
+        {...args}
+      >
         Heading 1 (X-Large) - Expressive
       </Heading>
-      <Heading level={2} contextVariant={TypographyContextVariant.expressive}>
+      <Heading
+        level={2}
+        contextVariant={TypographyContextVariant.expressive}
+        {...args}
+      >
         Heading 2 (Large) - Expressive
       </Heading>
-      <Heading level={3} contextVariant={TypographyContextVariant.expressive}>
+      <Heading
+        level={3}
+        contextVariant={TypographyContextVariant.expressive}
+        {...args}
+      >
         Heading 3 (Medium) - Expressive
       </Heading>
-      <Heading level={4} contextVariant={TypographyContextVariant.expressive}>
+      <Heading
+        level={4}
+        contextVariant={TypographyContextVariant.expressive}
+        {...args}
+      >
         Heading 4 (Small) - Expressive
       </Heading>
-      <Heading level={5} contextVariant={TypographyContextVariant.expressive}>
+      <Heading
+        level={5}
+        contextVariant={TypographyContextVariant.expressive}
+        {...args}
+      >
         Heading 5 (X-Small) - Expressive
       </Heading>
-      <Heading level={6} contextVariant={TypographyContextVariant.expressive}>
+      <Heading
+        level={6}
+        contextVariant={TypographyContextVariant.expressive}
+        {...args}
+      >
         Heading 6 (2X-Small) - Expressive
       </Heading>
       <br />
-      <Heading level={1} contextVariant={TypographyContextVariant.narrative}>
+      <Heading
+        level={1}
+        contextVariant={TypographyContextVariant.narrative}
+        {...args}
+      >
         Heading 1 (X-Large) - Narrative
       </Heading>
-      <Heading level={2} contextVariant={TypographyContextVariant.narrative}>
+      <Heading
+        level={2}
+        contextVariant={TypographyContextVariant.narrative}
+        {...args}
+      >
         Heading 2 (Large) - Narrative
       </Heading>
-      <Heading level={3} contextVariant={TypographyContextVariant.narrative}>
+      <Heading
+        level={3}
+        contextVariant={TypographyContextVariant.narrative}
+        {...args}
+      >
         Heading 3 (Medium) - Narrative
       </Heading>
-      <Heading level={4} contextVariant={TypographyContextVariant.narrative}>
+      <Heading
+        level={4}
+        contextVariant={TypographyContextVariant.narrative}
+        {...args}
+      >
         Heading 4 (Small) - Narrative
       </Heading>
-      <Heading level={5} contextVariant={TypographyContextVariant.narrative}>
+      <Heading
+        level={5}
+        contextVariant={TypographyContextVariant.narrative}
+        {...args}
+      >
         Heading 5 (X-Small) - Narrative
       </Heading>
-      <Heading level={6} contextVariant={TypographyContextVariant.narrative}>
+      <Heading
+        level={6}
+        contextVariant={TypographyContextVariant.narrative}
+        {...args}
+      >
         Heading 6 (2X-Small) - Narrative
       </Heading>
-    </>
+    </Card>
   );
 };
 
-export const Colors = () => {
+export const Colors = args => {
   return (
     <>
       <Card style={{ padding: '0 24px' }}>
@@ -104,78 +173,4 @@ export const Colors = () => {
   );
 };
 
-export const Inverse = () => {
-  return (
-    <Card isInverse style={{ padding: '0 24px' }}>
-      <Heading level={1} isInverse>
-        Heading 1 (X-Large) - Productive
-      </Heading>
-      <Heading level={2} isInverse>
-        Heading 2 (Large) - Productive
-      </Heading>
-      <Heading level={3} isInverse>
-        Heading 3 (Medium) - Productive
-      </Heading>
-      <Heading level={4} isInverse>
-        Heading 4 (Small) - Productive
-      </Heading>
-      <Heading level={5} isInverse>
-        Heading 5 (X-Small) - Productive
-      </Heading>
-      <Heading level={6} isInverse>
-        Heading 6 (2X-Small) - Productive
-      </Heading>
-      <br />
-      <Heading
-        level={1}
-        contextVariant={TypographyContextVariant.expressive}
-        visualStyle={TypographyVisualStyle.heading2XLarge}
-        isInverse
-      >
-        Heading 1 (2X-Large) - Expressive
-      </Heading>
-      <Heading
-        level={1}
-        contextVariant={TypographyContextVariant.expressive}
-        isInverse
-      >
-        Heading 1 (X-Large) - Expressive
-      </Heading>
-      <Heading
-        level={2}
-        contextVariant={TypographyContextVariant.expressive}
-        isInverse
-      >
-        Heading 2 (Large) - Expressive
-      </Heading>
-      <Heading
-        level={3}
-        contextVariant={TypographyContextVariant.expressive}
-        isInverse
-      >
-        Heading 3 (Medium) - Expressive
-      </Heading>
-      <Heading
-        level={4}
-        contextVariant={TypographyContextVariant.expressive}
-        isInverse
-      >
-        Heading 4 (Small) - Expressive
-      </Heading>
-      <Heading
-        level={5}
-        contextVariant={TypographyContextVariant.expressive}
-        isInverse
-      >
-        Heading 5 (X-Small) - Expressive
-      </Heading>
-      <Heading
-        level={6}
-        contextVariant={TypographyContextVariant.expressive}
-        isInverse
-      >
-        Heading 6 (2X-Small) - Expressive
-      </Heading>
-    </Card>
-  );
-};
+Colors.parameters = { controls: { exclude: ['isInverse'] } };

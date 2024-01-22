@@ -809,7 +809,6 @@ describe('Dropdown', () => {
           'none'
         );
       }, 500);
-      
       expect(getByTestId('modal')).toBeInTheDocument();
     });
 
