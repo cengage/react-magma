@@ -210,7 +210,7 @@ Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
 Scrolling.parameters = { ...Default.parameters };
 
 const ScrollSpyTemplate: Story<TabsProps> = args => (
-  <TabsScrollSpyContainer>
+  <TabsScrollSpyContainer setHeight="300">
     <TabScrollSpyPanel tabLabel="Card 1">
       <Card>
         <CardBody>

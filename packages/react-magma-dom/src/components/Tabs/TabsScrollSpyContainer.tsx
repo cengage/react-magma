@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled from '@emotion/styled';
 import { ScrollSpy } from './utils';
 import { Tabs, TabsOrientation } from './Tabs';
@@ -46,7 +46,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const [options, setOptions] = React.useState([]);
 
-  const [isActive, setIsActive] = React.useState(null);
+  const [isActive, setIsActive] = React.useState(0);
 
   const [activeIndex, setActiveIndex] = React.useState(0);
 
@@ -59,13 +59,16 @@ export const TabsScrollSpyContainer = React.forwardRef<
     });
   }, [isActive]);
 
-  const onScrollUpdate = (entry, isInVewPort) => {
-    const { target, boundingClientRect } = entry;
+  const onScrollUpdate = useCallback(
+    (entry, isInVewPort) => {
+      const { target, boundingClientRect } = entry;
 
-    if (boundingClientRect.y <= 0 && isInVewPort) {
-      setIsActive(target.id);
-    }
-  };
+      if (boundingClientRect.y <= 0 && isInVewPort) {
+        setIsActive(target.id);
+      }
+    },
+    [setIsActive]
+  );
 
   const NavMenu = ({ options }) => {
     // control the click event
