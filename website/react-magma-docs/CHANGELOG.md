@@ -1,5 +1,23 @@
 # Change Log
 
+## 5.0.4-next.1
+
+### Patch Changes
+
+- 5b630cc0d: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
+- Updated dependencies [498c1fd5a]
+- Updated dependencies [dc443a912]
+- Updated dependencies [ef243baf1]
+- Updated dependencies [8f09b0e45]
+- Updated dependencies [cf4ba4d4b]
+- Updated dependencies [dfbee0b3a]
+- Updated dependencies [049a124db]
+  - react-magma-dom@3.7.0-next.0
+  - @react-magma/charts@4.0.0-next.0
+  - @react-magma/dropzone@4.0.0-next.0
+  - @react-magma/schema-renderer@4.0.0-next.0
+  - @cengage-patterns/header@6.0.0-next.0
+
 ## 5.0.4-next.0
 
 ### Patch Changes
