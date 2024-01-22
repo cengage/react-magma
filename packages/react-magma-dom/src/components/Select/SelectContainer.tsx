@@ -4,13 +4,19 @@ import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { UseSelectGetLabelPropsOptions } from 'downshift';
 import { InputMessage } from '../Input/InputMessage';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
 
 export const SelectContainerElement = styled.div<{
+  isLabelVisuallyHidden?: boolean;
   labelPosition?: LabelPosition;
   labelWidth?: number;
 }>`
   display: ${props =>
-    props.labelPosition == LabelPosition.left ? 'flex' : 'block'};
+    props.labelPosition === LabelPosition.left ||
+    (props.isLabelVisuallyHidden && LabelPosition.top)
+      ? 'flex'
+      : 'block'};
   position: relative;
   label {
     flex-basis: ${props =>
@@ -25,6 +31,7 @@ const InputMessageContainer = styled.div`
 `;
 
 interface SelectContainerInterface<T> {
+  additionalContent?: React.ReactNode;
   children: React.ReactNode[];
   containerStyle?: React.CSSProperties;
   errorMessage?: React.ReactNode;
@@ -41,8 +48,43 @@ interface SelectContainerInterface<T> {
   messageStyle?: React.CSSProperties;
 }
 
+const StyledAdditionalContentWrapper = styled.div<{
+  labelPosition?: LabelPosition;
+  theme?: ThemeInterface;
+}>`
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  label {
+    margin: ${props =>
+      props.labelPosition === LabelPosition.left
+        ? `0 ${props.theme.spaceScale.spacing03} 0 0`
+        : ''};
+  }
+  button {
+    bottom: ${props =>
+      props.labelPosition !== LabelPosition.left ? `6px` : ''};
+  }
+`;
+
+const StyledAdditionalContent = styled.div<{
+  labelPosition?: LabelPosition;
+  theme?: ThemeInterface;
+}>`
+  display: flex;
+  align-items: center;
+  button {
+    margin: ${props =>
+      props.labelPosition === LabelPosition.left
+        ? `0 0 0 ${props.theme.spaceScale.spacing03}`
+        : ''};
+  }
+`;
+
 export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   const {
+    additionalContent,
     children,
     descriptionId,
     errorMessage,
@@ -59,24 +101,63 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
 
   const hasError = !!errorMessage;
 
+  const theme = React.useContext(ThemeContext);
+
+  // If the labelPosition is set to 'top' (default) then a <div> wraps the Label and additional content for proper styling alignment.
+  function AdditionalContentWrapper(props) {
+    if (
+      labelPosition !== LabelPosition.left &&
+      !isLabelVisuallyHidden &&
+      additionalContent
+    ) {
+      return (
+        <StyledAdditionalContentWrapper
+          labelPosition={labelPosition}
+          theme={theme}
+        >
+          {props.children}
+          {additionalContent}
+        </StyledAdditionalContentWrapper>
+      );
+    }
+    return props.children;
+  }
+
+  // If the labelPosition is set to LabelPosition.left then the label, select, and additional content display inline.
+  function additionalItemRightAlign() {
+    if (
+      (labelPosition === LabelPosition.left && additionalContent) ||
+      (labelPosition && isLabelVisuallyHidden && additionalContent)
+    ) {
+      return (
+        <StyledAdditionalContent labelPosition={labelPosition} theme={theme}>
+          {additionalContent}
+        </StyledAdditionalContent>
+      );
+    }
+  }
+
   return (
     <SelectContainerElement
+      isLabelVisuallyHidden={isLabelVisuallyHidden}
       labelPosition={labelPosition}
       labelWidth={labelWidth}
       data-testid="selectContainerElement"
     >
-      <Label
-        {...getLabelProps()}
-        isInverse={isInverse}
-        labelPosition={labelPosition}
-        style={labelStyle}
-      >
-        {isLabelVisuallyHidden ? (
-          <VisuallyHidden>{labelText}</VisuallyHidden>
-        ) : (
-          labelText
-        )}
-      </Label>
+      <AdditionalContentWrapper labelPosition={labelPosition}>
+        <Label
+          {...getLabelProps()}
+          isInverse={isInverse}
+          labelPosition={labelPosition}
+          style={labelStyle}
+        >
+          {isLabelVisuallyHidden ? (
+            <VisuallyHidden>{labelText}</VisuallyHidden>
+          ) : (
+            labelText
+          )}
+        </Label>
+      </AdditionalContentWrapper>
       <InputMessageContainer>
         {children}
         {!(
@@ -96,6 +177,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
             </InputMessage>
           )}
       </InputMessageContainer>
+      {additionalItemRightAlign()}
     </SelectContainerElement>
   );
 }

@@ -11,6 +11,8 @@ export interface TypographyProps<T = HTMLParagraphElement>
   element?: string;
   isInverse?: boolean;
   noMargins?: boolean;
+  noBottomMargin?: boolean;
+  noTopMargin?: boolean;
   ref?: any;
   /**
    * @internal
@@ -58,12 +60,23 @@ export function getBodyFontFamily(props) {
   }
 }
 
-export const colorStyles = props => css`
-  color: ${props.isInverse
-    ? props.theme.colors.neutral100
-    : props.contextVariant === 'expressive'
-    ? props.theme.colors.primary600
-    : props.theme.colors.neutral700};
+export function getBaseFontColor(props, isHeading = false) {
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+
+  // Expressive headings use primary color
+  if (
+    props.contextVariant === TypographyContextVariant.expressive &&
+    isHeading
+  ) {
+    return props.theme.colors.primary600;
+  }
+  return props.theme.colors.neutral700;
+}
+
+export const colorStyles = (props, isHeading: boolean) => css`
+  color: ${getBaseFontColor(props, isHeading)};
 
   ${props.color === TypographyColor.danger &&
   !props.isInverse &&
@@ -104,7 +117,7 @@ ${props.color === TypographyColor.subdued &&
 `;
 
 const baseParagraphStyles = props => css`
-  ${colorStyles(props)}
+  ${colorStyles(props, false)}
   font-family: ${getBodyFontFamily(props)};
   font-weight: normal;
 `;
@@ -112,7 +125,13 @@ const baseParagraphStyles = props => css`
 export const paragraphLargeStyles = props => css`
   ${baseParagraphStyles(props)}
 
-  margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing06} 0`};
+  margin: ${props.noMargins
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing06} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing06} 0`
+    : `${props.theme.spaceScale.spacing06} 0`};
 
   font-size: ${props.theme.typographyVisualStyles.bodyLarge.mobile.fontSize};
   line-height: ${props.theme.typographyVisualStyles.bodyLarge.mobile
@@ -146,7 +165,13 @@ export const paragraphMediumStyles = props => css`
   font-size: ${props.theme.typographyVisualStyles.bodyMedium.mobile.fontSize};
   line-height: ${props.theme.typographyVisualStyles.bodyMedium.mobile
     .lineHeight};
-  margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing06} 0`};
+  margin: ${props.noMargins
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing06} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing06} 0`
+    : `${props.theme.spaceScale.spacing06} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodyMedium.desktop
@@ -164,7 +189,13 @@ export const paragraphSmallStyles = props => css`
     .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.bodySmall.mobile
     .lineHeight};
-  margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing05} 0`};
+  margin: ${props.noMargins
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing05} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+    : `${props.theme.spaceScale.spacing05} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
@@ -183,7 +214,13 @@ export const paragraphXSmallStyles = props => css`
     .letterSpacing};
   line-height: ${props.theme.typographyVisualStyles.bodyXSmall.mobile
     .lineHeight};
-  margin: ${props.noMargins ? '0' : `${props.theme.spaceScale.spacing03} 0`};
+  margin: ${props.noMargins
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing03} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing03} 0`
+    : `${props.theme.spaceScale.spacing03} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
@@ -220,7 +257,7 @@ const baseHeadingStyles = props => css`
     transition: border 0.1s linear;
   }
 
-  ${colorStyles(props)}
+  ${colorStyles(props, true)}
 `;
 
 export const heading2XLargeStyles = props => css`
@@ -252,7 +289,13 @@ export const headingXLargeStyles = props => css`
   font-weight: ${props.theme.typographyVisualStyles.headingXLarge.fontWeight};
   line-height: ${props.theme.typographyVisualStyles.headingXLarge.mobile
     .lineHeight};
-  margin: ${props.noMargins ? 0 : `0 0 ${props.theme.spaceScale.spacing05}`};
+  margin: ${props.noMargins
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing05} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+    : `0 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.headingXLarge.desktop
@@ -302,8 +345,13 @@ export const headingLargeStyles = props => css`
   font-weight: ${props.theme.typographyVisualStyles.headingLarge.fontWeight};
   line-height: ${props.theme.typographyVisualStyles.headingLarge.mobile
     .lineHeight};
+
   margin: ${props.noMargins
-    ? 0
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing10} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
     : `${props.theme.spaceScale.spacing10} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
@@ -355,8 +403,13 @@ export const headingMediumStyles = props => css`
   font-weight: ${props.theme.typographyVisualStyles.headingMedium.fontWeight};
   line-height: ${props.theme.typographyVisualStyles.headingMedium.mobile
     .lineHeight};
+
   margin: ${props.noMargins
-    ? 0
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing09} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
     : `${props.theme.spaceScale.spacing09} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
@@ -378,6 +431,8 @@ export const headingMediumStyles = props => css`
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.fontSize};
+      font-weight: ${props.theme.typographyExpressiveVisualStyles.headingMedium
+        .fontWeight};
       line-height: ${props.theme.typographyExpressiveVisualStyles.headingMedium
         .desktop.lineHeight};
     }
@@ -407,8 +462,13 @@ export const headingSmallStyles = props => css`
   font-weight: ${props.theme.typographyVisualStyles.headingSmall.fontWeight};
   line-height: ${props.theme.typographyVisualStyles.headingSmall.mobile
     .lineHeight};
+
   margin: ${props.noMargins
-    ? 0
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing08} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
     : `${props.theme.spaceScale.spacing08} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
@@ -459,8 +519,13 @@ export const headingXSmallStyles = props => css`
   font-weight: ${props.theme.typographyVisualStyles.headingXSmall.fontWeight};
   line-height: ${props.theme.typographyVisualStyles.headingXSmall.mobile
     .lineHeight};
+
   margin: ${props.noMargins
-    ? 0
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing06} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
     : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
@@ -515,8 +580,13 @@ export const heading2XSmallStyles = props => css`
   line-height: ${props.theme.typographyVisualStyles.heading2XSmall.mobile
     .lineHeight};
   text-transform: uppercase;
+
   margin: ${props.noMargins
-    ? 0
+    ? '0'
+    : props.noBottomMargin
+    ? `${props.theme.spaceScale.spacing06} 0 0 0`
+    : props.noTopMargin
+    ? `0 0 ${props.theme.spaceScale.spacing03} 0`
     : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing03}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
@@ -602,4 +672,5 @@ function getTypographyStyles(props) {
 
 export const TypographyComponent = styled.p<TypographyProps>`
   ${props => getTypographyStyles(props)}
+  margin: ${props => (props.noBottomMargin && props.noTopMargin ? '0' : '')};
 `;
