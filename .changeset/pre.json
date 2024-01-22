@@ -11,6 +11,15 @@
     "react-magma-landing": "1.1.2"
   },
   "changesets": [
-    "cuddly-dolphins-yell"
+    "chartColors",
+    "cuddly-dolphins-yell",
+    "feat-paragraphMargins",
+    "feat-selectChildren",
+    "fix-additionalContent",
+    "fix-additionalContentDocs",
+    "fix-expressiveText",
+    "fix-modalPadding",
+    "fix-modalStorybook",
+    "strong-fans-itch"
   ]
 }
