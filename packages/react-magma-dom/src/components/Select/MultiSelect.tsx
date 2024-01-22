@@ -12,6 +12,7 @@ import { I18nContext } from '../../i18n';
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
+    additionalContent,
     ariaDescribedBy,
     components: customComponents,
     errorMessage,
@@ -160,6 +161,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   return (
     <SelectContainer
+      additionalContent={additionalContent}
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
