@@ -52,8 +52,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
           >
             {React.Children.map(children, (child: React.ReactElement<any>) => {
               if (child.type === TreeItem) {
-                // console.log('here');
-                
                 const item = React.cloneElement(child, {
                   index: treeItemIndex,
                   key: treeItemIndex,

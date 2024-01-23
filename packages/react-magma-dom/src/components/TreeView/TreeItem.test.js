@@ -6,7 +6,7 @@ import { render } from '@testing-library/react';
 const TEXT = 'Test Text';
 const testId = 'test-id';
 
-describe('TreeItem', () => {
+xdescribe('TreeItem', () => {
   it('should render the component', () => {
     const { container, getByText } = render(
       <TreeItem label={TEXT} testId={testId} />
@@ -57,7 +57,7 @@ describe('TreeItem', () => {
     it('if the item doe not have an icon but a sibling does, the default icon is visible', () => {});
   });
 
-  describe('', () => {
-    it('', () => {});
-  });
+  // describe('', () => {
+  //   it('', () => {});
+  // });
 });

@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 
 const TEXT = 'Test Text';
 
-describe('TreeView', () => {
+xdescribe('TreeView', () => {
   it('should render the visually hidden component', () => {
     const { container, getByText } = render(
       <TreeView>

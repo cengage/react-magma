@@ -45,7 +45,7 @@ export interface UseTreeViewProps {
    * TODO??
    */
   // singleSelectItemId?: string;
-  children?: React.ReactNode | React.ReactNode[];
+  // children?: React.ReactNode | React.ReactNode[];
   /**
    * Action that fires when an item is selected
    */
@@ -84,13 +84,13 @@ export function useTreeView(props: UseTreeViewProps) {
     onSelectedItemChange,
     initialExpandedItems,
     initialSelectedItems,
-    children,
+    // children,
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState([]);
 
   const contextValue = {
-    children,
+    // children,
     expandInitial,
     hasIcons,
     onSelectedItemChange,

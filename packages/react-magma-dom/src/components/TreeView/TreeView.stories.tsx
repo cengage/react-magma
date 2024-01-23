@@ -20,15 +20,15 @@ export default {
     selectable: {
       control: {
         type: 'select',
-        options: TreeViewSelectable,
       },
+      options: TreeViewSelectable,
       defaultValue: TreeViewSelectable.off,
     },
     expandInitial: {
       control: {
         type: 'select',
-        options: ExpandInitialOptions,
       },
+      options: ExpandInitialOptions,
       defaultValue: ExpandInitialOptions.all,
     },
     initialExpandedItems: {

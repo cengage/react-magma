@@ -62,24 +62,24 @@ export function getTreeItemLabelColor(
 }
 
 // TODO
-const focusFirst = () => {
+// const focusFirst = () => {
   // (buttonRefArray.current[0].current as HTMLLIElement).focus();
-};
+// };
 
-const focusNext = () => {
+// const focusNext = () => {
   // (buttonRefArray.current[index + 1].current as HTMLLIElement).focus();
-};
+// };
 
-const focusPrev = () => {
+// const focusPrev = () => {
   // (buttonRefArray.current[index - 1].current as HTMLLIElement).focus();
-};
+// };
 
-const focusLast = () => {
+// const focusLast = () => {
   // const arrLength = buttonRefArray.current.length;
   // (
   //   buttonRefArray.current[arrLength - 1].current as HTMLLIElement
   // ).focus();
-};
+// };
 
 // const handleKeyDown = (event: React.KeyboardEvent) => {
 //   // console.log('handleKeyDown');
