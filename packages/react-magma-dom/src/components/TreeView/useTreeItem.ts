@@ -1,25 +1,27 @@
 import * as React from 'react';
-
 import { IconProps } from 'react-magma-icons';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
-
-import {
-  TreeViewContext,
-  ExpandInitialOptions,
-  TreeViewSelectable,
-} from './useTreeView';
+import { TreeViewContext, TreeViewSelectable } from './useTreeView';
 import { TreeItem } from './TreeItem';
 
 import { useGenerateId } from '../../utils';
 import { useDescendants } from '../../hooks/useDescendants';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 
-// TODO: add descriptions for all props
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * Index number
+   */
   index?: number;
+  /**
+   * Item name
+   */
   label: React.ReactNode;
   // private
   treeItemIndex?: number;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * Action that fires when the item is clicked
@@ -29,22 +31,33 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * Icon for the tree item
    */
   icon?: React.ReactElement<IconProps>;
+  /**
+   * Indeterminate Checkbox status
+   */
   parentCheckedStatus?: IndeterminateCheckboxStatus;
-
+  /**
+   * @internal
+   */
   updateParentCheckStatus?: (
     index: number,
     status: IndeterminateCheckboxStatus
   ) => void;
-  // internal
+  /**
+   * @internal
+   */
   parentDepth?: number;
-  // singleSelectItemId?: string;
+  /**
+   * If true, element is disabled
+   * @default false
+   */
   isDisabled?: boolean;
-
   /**
    * Style properties for the tree item label
    */
   labelStyle?: React.CSSProperties;
-
+  /**
+   * @internal
+   */
   topLevel?: boolean;
 }
 
@@ -98,17 +111,16 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     onClick,
     isDisabled = false,
     topLevel,
-  } = props;  
+  } = props;
 
   const {
-    expandInitial,
     setHasIcons,
     onSelectedItemChange,
     selectable,
     selectedItems,
     setSelectedItems,
     initialExpandedItems,
-    initialSelectedItems, 
+    initialSelectedItems,
   } = React.useContext(TreeViewContext);
   const [expanded, setExpanded] = React.useState(isDisabled);
 
@@ -139,30 +151,29 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   React.useEffect(() => {
     setTreeViewIconVisibility();
-
   }, []);
 
   React.useEffect(() => {
-    if (isDisabled || expandInitial === ExpandInitialOptions.none) {
+    // Need to fix-- rn it opens the index of every child
+    if (isDisabled || initialExpandedItems.length === 0) {
       setExpanded(false);
-    } else if (
-      expandInitial === ExpandInitialOptions.list &&
-      initialExpandedItems &&
-      initialExpandedItems.includes(index)
-    ) {
+    } else if (initialExpandedItems && initialExpandedItems.includes(index)) {
       setExpanded(true);
-    } else if (expandInitial === ExpandInitialOptions.all) {
-      setExpanded(true);
+    } else {
+      setExpanded(false);
     }
-  }, [expandInitial, initialExpandedItems]);
+  }, [initialExpandedItems]);
 
   React.useEffect(() => {
     // TODO: test
     if (initialSelectedItems?.length > 0) {
       setSelectedItems(initialSelectedItems);
     }
-
   }, [initialSelectedItems]);
+
+  React.useEffect(() => {
+    console.log('selectedItems', selectedItems?.[0]);
+  }, [selectedItems]);
 
   function setTreeViewIconVisibility() {
     treeItemChildren.forEach((child: React.ReactElement<any>) => {
@@ -247,6 +258,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const singleSelectChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
+    console.log('[event.target.id]', [event.target.id]);
     setSelectedItems([event.target.id]);
   };
 
@@ -274,25 +286,20 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     forceUpdate();
   }, []);
 
-  const handleClick = e => {
-    // console.log('handleClick')
-
+  const handleClick = event => {
     if (selectable === TreeViewSelectable.single) {
-      singleSelectChangeHandler(e);
+      singleSelectChangeHandler(event);
+      onClick && typeof onClick === 'function' && onClick();
     } else if (selectable === TreeViewSelectable.multi) {
-      multiSelectChangeHandler(e);
+      multiSelectChangeHandler(event);
     }
 
-    // TODO
     onSelectedItemChange &&
       typeof onSelectedItemChange === 'function' &&
-      onSelectedItemChange();
-
-    onClick && typeof onClick === 'function' && onClick();
+      onSelectedItemChange(event);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {};
-
 
   const contextValue = {
     itemId,
@@ -305,7 +312,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     itemDepth,
     parentDepth,
     numberOfTreeItemChildren,
-    // singleSelectItemId,
     selectedItems,
   };
 

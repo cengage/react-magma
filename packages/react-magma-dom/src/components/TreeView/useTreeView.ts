@@ -1,12 +1,5 @@
 import * as React from 'react';
 
-// TODO: do we really need 2 props for this?
-export enum ExpandInitialOptions {
-  all = 'all',
-  list = 'list',
-  none = 'none',
-}
-
 export enum TreeViewSelectable {
   off = 'off',
   single = 'single',
@@ -15,12 +8,9 @@ export enum TreeViewSelectable {
 
 export interface UseTreeViewProps {
   /**
-   * Initial expand state
-   * @default ExpandInitialOptions.none
-   */
-  expandInitial?: ExpandInitialOptions;
-  /**
-   * Array list of indexes of items that should be expanded by default
+   * Array list of indexes of items that should be expanded by default.
+   * For all items expanded, provide an array with all the indexes
+   * @default [] (no items expanded)
    */
   initialExpandedItems?: Array<number>;
   /**
@@ -38,28 +28,34 @@ export interface UseTreeViewProps {
    */
   testId?: string;
   /**
-   * Content of label for accessibility
+   * Text for aria-label attribute for the tree.
+   * If there is no visible name for the element you can reference, use aria-label to provide the user with a recognizable accessible name.
+   * It's required to use either `ariaLabel` OR `ariaLabelledBy`.
    */
-  // label: React.ReactNode;
+  ariaLabel?: string;
   /**
-   * TODO??
+   * Text for aria-labelledby attribute for the tree.
+   * If there is visible text that labels an element, use aria-labelledby.
+   * It's required to use either `ariaLabel` OR `ariaLabelledBy`.
    */
-  // singleSelectItemId?: string;
-  // children?: React.ReactNode | React.ReactNode[];
+  ariaLabelledBy?: string;
   /**
    * Action that fires when an item is selected
    */
-  onSelectedItemChange?: () => void;
+  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  /**
+   * Action that fires when an item is expanded or collapsed
+   */
+  onExpandedChange?: (event: React.SyntheticEvent) => void;
 }
 
 export interface TreeViewContextInterface {
   children?: React.ReactNode | React.ReactNode[];
-  expandInitial?: ExpandInitialOptions;
   hasIcons: boolean;
-  onSelectedItemChange?: () => void;
+  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onExpandedChange?: (event: React.SyntheticEvent) => void;
   selectable: TreeViewSelectable;
   setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
-  // singleSelectItemId?: string;
   selectedItems: Array<any>;
   setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
   initialExpandedItems: Array<number>;
@@ -67,7 +63,6 @@ export interface TreeViewContextInterface {
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
-  expandInitial: ExpandInitialOptions.none,
   selectable: TreeViewSelectable.off,
   hasIcons: false,
   setHasIcons: () => {},
@@ -80,27 +75,24 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
 export function useTreeView(props: UseTreeViewProps) {
   const {
     selectable,
-    expandInitial,
     onSelectedItemChange,
+    onExpandedChange,
     initialExpandedItems,
     initialSelectedItems,
-    // children,
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState([]);
 
   const contextValue = {
-    // children,
-    expandInitial,
     hasIcons,
     onSelectedItemChange,
+    onExpandedChange,
     selectable,
     setHasIcons,
     selectedItems,
     setSelectedItems,
     initialExpandedItems,
     initialSelectedItems,
-    // singleSelectItemId: '',
   };
 
   return { contextValue };

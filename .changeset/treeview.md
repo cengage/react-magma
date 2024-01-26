@@ -2,4 +2,4 @@
 "react-magma-dom": minor
 ---
 
-feat(treeview): New TreeView component
+feat(TreeView): New TreeView & TreeItem components

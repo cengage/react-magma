@@ -3,9 +3,10 @@ import { TreeView, TreeItem } from '.';
 import { magma } from '../../theme/magma';
 
 import { ArticleIcon, FolderIcon, FavoriteIcon } from 'react-magma-icons';
-import { ExpandInitialOptions, TreeViewSelectable } from './useTreeView';
+import { TreeViewSelectable } from './useTreeView';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
+import { Paragraph } from '../Paragraph';
 
 export default {
   component: TreeView,
@@ -24,17 +25,13 @@ export default {
       options: TreeViewSelectable,
       defaultValue: TreeViewSelectable.off,
     },
-    expandInitial: {
-      control: {
-        type: 'select',
-      },
-      options: ExpandInitialOptions,
-      defaultValue: ExpandInitialOptions.all,
-    },
     initialExpandedItems: {
       control: 'object',
       defaultValue: []
-    }
+    },
+    onClick: { action: 'clicked' },
+    onExpandedChange: { action: 'expanded changed' },
+    onSelectedItemChange: {action: 'selected item changed'}
   },
 } as Meta;
 
@@ -145,6 +142,13 @@ export const Default = args => {
   );
 };
 
+Default.args = {
+  initialExpandedItems: [0, 1, 2],
+  selectable: TreeViewSelectable.single,
+  initialSelectedItems: [0],
+  ariaLabel: 'Textbook tree'
+}
+
 export const NoIcons = args => {
   return (
     <Card isInverse={args.isInverse}>
@@ -185,10 +189,15 @@ export const NoIcons = args => {
   );
 };
 
+NoIcons.args = {
+  initialExpandedItems: [0]
+}
+
 export const Textbook = args => {
   return (
     <Card isInverse={args.isInverse}>
-      <TreeView {...args}>
+      <Paragraph id="ah-textbook">Art History Textbook</Paragraph>
+      <TreeView {...args} ariaLabelledBy={"ah-textbook"}>
         <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}>
           <TreeItem label={<>Art History in the 21st Century</>}>
             <TreeItem label={<>The Questions Art Historians Ask</>} />
@@ -271,6 +280,10 @@ export const Simple = args => {
     </TreeView>
   );
 };
+
+Simple.args = {
+  initialExpandedItems: [1]
+}
 
 export const UseDefaultIcon = args => {
   return (

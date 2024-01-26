@@ -1,5 +1,6 @@
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
+import { TreeViewSelectable } from './useTreeView';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -15,7 +16,7 @@ export enum TreeNodeType {
  * Each level after that adds 24px of left padding.
  * 8, 32, 56, 80, 104, etc.
  */
-export function calculateLeftPadding(type: TreeNodeType, depth: number = 0) {
+export function calculateLeftPadding(type: TreeNodeType, depth: number = 0, selected: boolean) {
   let padding = 0;
 
   if (type === TreeNodeType.leaf) {
@@ -30,6 +31,11 @@ export function calculateLeftPadding(type: TreeNodeType, depth: number = 0) {
     } else {
       padding += 24;
     }
+  }
+
+  // this accounts for the border-left added when an item is selected
+  if (selected) {
+    padding -= 4;
   }
 
   return `${padding}px`;
@@ -59,6 +65,26 @@ export function getTreeItemLabelColor(
     return theme.colors.neutral100;
   }
   return theme.colors.neutral700;
+}
+
+export function getTreeItemWrapperCursor(
+  disabled: boolean,
+  selectable: TreeViewSelectable,
+  nodeType: TreeNodeType
+) {
+  if (disabled) {
+    return 'not-allowed';
+  }
+  if (nodeType === TreeNodeType.branch) {
+    if (
+      selectable === TreeViewSelectable.off ||
+      selectable === TreeViewSelectable.single
+    ) {
+      return 'pointer';
+    }
+  }
+
+  return 'default';
 }
 
 // TODO

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 
-import { UseTreeViewProps, TreeViewContext, useTreeView } from './useTreeView';
+import { UseTreeViewProps, TreeViewContext, useTreeView, TreeViewSelectable } from './useTreeView';
 import { TreeItem } from './TreeItem';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -31,14 +31,12 @@ const StyledTreeView = styled.ul<TreeViewProps>`
 
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
   (props, ref) => {
-    const { children, testId, isInverse: isInverseProp, ...rest } = props;
+    const { children, testId, ariaLabel, ariaLabelledBy, isInverse: isInverseProp, onClick, selectable, ...rest } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
     const { contextValue } = useTreeView(props);
     let treeItemIndex = 0;
-
-    // TODO: add a11y roles
 
     return (
       <InverseContext.Provider value={{ isInverse }}>
@@ -48,6 +46,10 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             isInverse={isInverse}
             ref={ref}
             data-testid={testId}
+            aria-label={ariaLabel}
+            aria-labelledby={ariaLabelledBy}
+            aria-multiselectable={selectable === TreeViewSelectable.multi}
+            role="tree"
             {...rest}
           >
             {React.Children.map(children, (child: React.ReactElement<any>) => {
