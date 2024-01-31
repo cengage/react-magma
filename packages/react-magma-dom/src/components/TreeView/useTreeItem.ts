@@ -139,8 +139,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
 
   const itemDepth = parentDepth === 0 && topLevel ? 0 : parentDepth + 1;
-  console.log('itemDepth', itemDepth);
-  
 
   const [childrenCheckedStatus, setChildrenCheckedStatus] = React.useState<
     IndeterminateCheckboxStatus[]
@@ -153,9 +151,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }, []);
 
   React.useEffect(() => {
-    if (isDisabled || initialExpandedItems.length === 0) {
+    if (isDisabled || (initialExpandedItems && initialExpandedItems?.length === 0)) {
       setExpanded(false);
-    } else if (initialExpandedItems && initialExpandedItems.includes(index)) {
+    } else if (initialExpandedItems && initialExpandedItems?.includes(index)) {
       // TODO Need to fix-- rn it opens the index of every child
       setExpanded(true);
     } else {
@@ -263,9 +261,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     // TODO: what if the parent gets clicked?
     // Indeterminate checkboxes
     if (hasOwnTreeItems) {
-      const status = event.target.checked
-        ? IndeterminateCheckboxStatus.checked
-        : IndeterminateCheckboxStatus.unchecked;
+      // const status = event.target.checked
+      //   ? IndeterminateCheckboxStatus.checked
+      //   : IndeterminateCheckboxStatus.unchecked;
 
       // console.log('INDETERMI', event.target);
       // Array(childrenCheckedStatus.length).fill(status), childrenCheckedStatus, treeItemChildren);
@@ -318,35 +316,35 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     forceUpdate();
   }, []);
 
-  const indexSomething = buttonRefArray.current.findIndex(({ current: item }) => {
-      if (!item || !ownRef.current) return false;
+  // const indexSomething = buttonRefArray.current.findIndex(({ current: item }) => {
+  //     if (!item || !ownRef.current) return false;
 
-      return item === ownRef.current;
-    }
-  );
+  //     return item === ownRef.current;
+  //   }
+  // );
 
   // console.log('indexSomething', indexSomething);
 
   // TODO
-  const focusFirst = () => {
-    (buttonRefArray.current?.[0].current as HTMLLIElement).focus();
-  };
+  // const focusFirst = () => {
+  //   (buttonRefArray.current?.[0].current as HTMLLIElement).focus();
+  // };
 
-  const focusNext = () => {
-    (buttonRefArray.current?.[index + 1].current as HTMLLIElement).focus();
-  };
+  // const focusNext = () => {
+  //   (buttonRefArray.current?.[index + 1].current as HTMLLIElement).focus();
+  // };
 
-  const focusPrev = () => {
-    (buttonRefArray.current?.[index - 1].current as HTMLLIElement).focus();
-  };
+  // const focusPrev = () => {
+  //   (buttonRefArray.current?.[index - 1].current as HTMLLIElement).focus();
+  // };
 
-  const focusLast = () => {
-    const arrLength = buttonRefArray.current.length;
-    (buttonRefArray.current[arrLength - 1].current as HTMLLIElement).focus();
-  };
+  // const focusLast = () => {
+  //   const arrLength = buttonRefArray.current.length;
+  //   (buttonRefArray.current[arrLength - 1].current as HTMLLIElement).focus();
+  // };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    const arrLength = buttonRefArray.current.length;
+    // const arrLength = buttonRefArray.current.length;
 
     // console.log(buttonRefArray, arrLength);
 

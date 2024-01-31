@@ -359,7 +359,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           {React.Children.map(
             children,
             (child: React.ReactElement<any>, index) => {
-              console.log(parentDepth);
               
               const component =
                 child.type === TreeItem ? (

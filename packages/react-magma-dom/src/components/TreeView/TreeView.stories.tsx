@@ -37,6 +37,7 @@ export default {
 
 export const Default = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
+  const [displayItems, setDisplayItems] = React.useState(null);
 
   function onSelection(event, items) {
     let list = '';
@@ -154,9 +155,7 @@ export const Default = args => {
           </TreeItem>
         </TreeView>
       </Card>
-      {args.selectable !== TreeViewSelectable.off && (
-        <Paragraph>Selected Item: {selectedItems} </Paragraph>
-      )}
+      {selectedItems}
     </>
   );
 };
