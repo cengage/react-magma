@@ -60,6 +60,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   treeItemIndex,
                   parentDepth: 0,
                   topLevel: true,
+                  'data-laura-id': treeItemIndex,
                 });
                 treeItemIndex++;
 

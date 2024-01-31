@@ -3,6 +3,7 @@ pageTitle: TreeView API
 title: TreeView
 props:
   - TreeViewProps
+  - TreeItemProps
 ---
 
 <DocsHeading type="api">TreeView</DocsHeading>
@@ -13,14 +14,56 @@ TreeView provides a hierarchical list of items that can be collapsed or expanded
 
 ```typescript
 import React from 'react';
-import { TreeView } from 'react-magma-dom';
+import { TreeView, TreeItem, Paragraph } from 'react-magma-dom';
 
 export function Example() {
-  return <TreeView>TreeView content</TreeView>;
+  return (
+    <>
+      <Paragraph id="ah-textbook">Art History Textbook</Paragraph>
+      <TreeView {...args} ariaLabelledBy={"ah-textbook"}>
+        <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}>
+          <TreeItem label={<>Art History in the 21st Century</>}>
+            <TreeItem label={<>The Questions Art Historians Ask</>} />
+            <TreeItem label={<>The Words Art Historians Use</>}>
+              <TreeItem label={<>Something deeper</>} />
+            </TreeItem>
+            <TreeItem label={<>Art History and Other Disciplines</>} />
+          </TreeItem>
+          <TreeItem label={<>Different Ways of Seeing</>} />
+        </TreeItem>
+        <TreeItem label={<>1. ART IN THE STONE AGE</>}>
+          <TreeItem label={<>Paleolithic Art</>}>
+            <TreeItem label={<>Section Content</>} />
+            <TreeItem label={<>Africa</>} />
+            <TreeItem label={<>Europe</>} />
+          </TreeItem>
+          <TreeItem label={<>Neolithic Art</>}>
+            <TreeItem label={<>Anatolia and Mesopotamia</>} />
+            <TreeItem label={<>Europe</>} />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}>
+          <TreeItem label={<>Mesopotamia</>}>
+            <TreeItem label={<>Sumer</>} />
+            <TreeItem label={<>Akkad</>} />
+            <TreeItem label={<>Third Dynasty of Ur</>} />
+            <TreeItem label={<>Babylon</>} />
+            <TreeItem label={<>Elam</>} />
+            <TreeItem label={<>Assyria</>} />
+            <TreeItem label={<>Neo-Babylonia</>} />
+          </TreeItem>
+          <TreeItem label={<>Persia</>}>
+            <TreeItem label={<>Achaemenid Empire</>} />
+            <TreeItem label={<>Sasanian Empire</>} />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
 }
 ```
 
-## InverseContext
+## Inverse
 
 The `isInverse` prop will render a dark background and light text. The children will
 inherit the `isInverse` prop unless specified otherwise.

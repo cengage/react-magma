@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useDescendants } from '../../hooks/useDescendants';
 
 export enum TreeViewSelectable {
   off = 'off',
@@ -14,9 +15,10 @@ export interface UseTreeViewProps {
    */
   initialExpandedItems?: Array<number>;
   /**
+   * TODO: this will be part of a fast follow
    * Array list of indexes of items that should be selected by default
    */
-  initialSelectedItems?: Array<number>;
+  // initialSelectedItems?: Array<number>;
   isInverse?: boolean;
   /**
    * Type of selectable for the tree view: off, single, multi
@@ -42,7 +44,7 @@ export interface UseTreeViewProps {
   /**
    * Action that fires when an item is selected
    */
-  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>, selectedItems: any) => void;
   /**
    * Action that fires when an item is expanded or collapsed
    */
@@ -52,14 +54,19 @@ export interface UseTreeViewProps {
 export interface TreeViewContextInterface {
   children?: React.ReactNode | React.ReactNode[];
   hasIcons: boolean;
-  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>, selectedItems: any) => void;
   onExpandedChange?: (event: React.SyntheticEvent) => void;
   selectable: TreeViewSelectable;
   setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
   selectedItems: Array<any>;
   setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
   initialExpandedItems: Array<number>;
-  initialSelectedItems: Array<number>;
+  // initialSelectedItems: Array<number>;
+  buttonRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
+  registerTreeItem: (
+    itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    itemRef: React.MutableRefObject<Element>
+  ) => void;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -69,7 +76,9 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   selectedItems: [],
   setSelectedItems: () => {},
   initialExpandedItems: [],
-  initialSelectedItems: [],
+  // initialSelectedItems: [],
+  registerTreeItem: (elements, element) => {},
+  
 });
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -78,10 +87,15 @@ export function useTreeView(props: UseTreeViewProps) {
     onSelectedItemChange,
     onExpandedChange,
     initialExpandedItems,
-    initialSelectedItems,
+    // initialSelectedItems,
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState([]);
+
+  const [buttonRefArray, registerTreeItem] = useDescendants();
+
+  // console.log('buttonRefArray in treeview', buttonRefArray);
+  
 
   const contextValue = {
     hasIcons,
@@ -92,7 +106,9 @@ export function useTreeView(props: UseTreeViewProps) {
     selectedItems,
     setSelectedItems,
     initialExpandedItems,
-    initialSelectedItems,
+    // initialSelectedItems,
+    buttonRefArray,
+    registerTreeItem
   };
 
   return { contextValue };
