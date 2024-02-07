@@ -122,7 +122,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
 export const ScrollSpy = ({ handleScroll }) => {
   const isInViewPort = (entry, offset = 0) => {
     const rect = entry.boundingClientRect;
-    return rect.top - 1 <= 0 + offset && rect.bottom >= 0 + offset;
+    return rect.top - 100 <= 0 + offset && rect.bottom >= 0 + offset;
   };
 
   useLayoutEffect(() => {

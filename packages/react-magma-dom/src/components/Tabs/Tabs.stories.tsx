@@ -13,7 +13,7 @@ import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabPanel } from './TabPanel';
-import { Card, CardBody, CardHeading } from '../Card';
+import { Card } from '../Card';
 import {
   Dropdown,
   DropdownButton,
@@ -24,7 +24,7 @@ import { Combobox } from '../Combobox';
 import { Select } from '../Select';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Spacer } from '../Spacer';
+import { Heading } from '../Heading';
 
 export default {
   title: 'Tabs',
@@ -209,87 +209,66 @@ export const Scrolling = ScrollingTemplate.bind({});
 Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
 Scrolling.parameters = { ...Default.parameters };
 
+const scrollContent = (
+  <>
+    <p>
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
+      vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh sit
+      amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis commodo
+      odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc sed augue.
+      In arcu cursus euismod quis viverra nibh cras. Tincidunt ornare massa eget
+      egestas purus viverra accumsan in nisl. Porta nibh venenatis cras sed
+      felis. Felis donec et odio pellentesque diam. Aliquam ut porttitor leo a
+      diam sollicitudin. Sed sed risus pretium quam vulputate dignissim
+      suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel elit
+      scelerisque mauris pellentesque pulvinar.
+    </p>
+    <p>
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
+      vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh sit
+      amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis commodo
+      odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc sed augue.
+      In arcu cursus euismod quis viverra nibh cras. Tincidunt ornare massa eget
+      egestas purus viverra accumsan in nisl. Porta nibh venenatis cras sed
+      felis. Felis donec et odio pellentesque diam. Aliquam ut porttitor leo a
+      diam sollicitudin. Sed sed risus pretium quam vulputate dignissim
+      suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel elit
+      scelerisque mauris pellentesque pulvinar.
+    </p>
+  </>
+);
+
 const ScrollSpyTemplate: Story<TabsProps> = args => (
-  <TabsScrollSpyContainer setHeight="300">
-    <TabScrollSpyPanel tabLabel="Card 1">
-      <Card>
-        <CardBody>
-          <CardHeading>Area 1</CardHeading>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-          </p>
-          <p>
-            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
-            metus vulputate eu scelerisque felis imperdiet. Tristique
-            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
-            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
-            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
-            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
-            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
-            et odio pellentesque diam. Aliquam ut porttitor leo a diam
-            sollicitudin. Sed sed risus pretium quam vulputate dignissim
-            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
-            elit scelerisque mauris pellentesque pulvinar.
-          </p>
-        </CardBody>
-      </Card>
-      <Spacer size={20} />
+  <TabsScrollSpyContainer>
+    <TabScrollSpyPanel disabled tabLabel="Card 1" icon={<AndroidIcon />}>
+      <Heading level={4}>Area 1</Heading>
+      {scrollContent}
     </TabScrollSpyPanel>
     <TabScrollSpyPanel tabLabel="Card 2">
-      <Card>
-        <CardBody>
-          <CardHeading>Area 2</CardHeading>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-          </p>
-          <p>
-            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
-            metus vulputate eu scelerisque felis imperdiet. Tristique
-            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
-            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
-            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
-            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
-            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
-            et odio pellentesque diam. Aliquam ut porttitor leo a diam
-            sollicitudin. Sed sed risus pretium quam vulputate dignissim
-            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
-            elit scelerisque mauris pellentesque pulvinar.
-          </p>
-        </CardBody>
-      </Card>
-      <Spacer size={20} />
+      <Heading level={4}>Area 2</Heading>
+      {scrollContent}
     </TabScrollSpyPanel>
     <TabScrollSpyPanel tabLabel="Card 3">
-      <Card>
-        <CardBody>
-          <CardHeading>Area 3</CardHeading>
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.
-          </p>
-          <p>
-            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
-            metus vulputate eu scelerisque felis imperdiet. Tristique
-            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
-            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
-            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
-            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
-            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
-            et odio pellentesque diam. Aliquam ut porttitor leo a diam
-            sollicitudin. Sed sed risus pretium quam vulputate dignissim
-            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
-            elit scelerisque mauris pellentesque pulvinar.
-          </p>
-        </CardBody>
-      </Card>
+      <Heading level={4}>Area 3</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 4">
+      <Heading level={4}>Area 4</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 5">
+      <Heading level={4}>Area 5</Heading>
+      {scrollContent}
     </TabScrollSpyPanel>
   </TabsScrollSpyContainer>
 );
