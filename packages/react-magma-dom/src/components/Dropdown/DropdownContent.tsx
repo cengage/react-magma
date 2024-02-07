@@ -119,7 +119,10 @@ export const DropdownContent = React.forwardRef<
   React.Children.forEach(children, (child: any) => {
     if (
       child?.type?.displayName === 'DropdownMenuItem' ||
-      child?.type?.displayName === 'DropdownMenuGroup'
+      child?.type?.displayName === 'DropdownMenuGroup' ||
+      child?.type?.displayName === 'DropdownMenuListItem' ||
+      child?.type?.displayName === 'DropdownMenuNavItem' ||
+      child?.type?.displayName === 'DropdownExpandableMenuItem'
     ) {
       hasItemChildren = true;
     }
