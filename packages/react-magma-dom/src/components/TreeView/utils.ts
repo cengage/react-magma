@@ -50,15 +50,6 @@ export function calculateLeftPadding(
   return `${negative ? '-' : ''}${padding}px`;
 }
 
-export const addPxStyleStrings = (
-  styleStrings: (string | number)[]
-): string => {
-  const pxValues: number[] = styleStrings.map(styleString => {
-    return parseInt(styleString.toString().replace(/\s*px$/, ''));
-  });
-  return pxValues.reduce((total, value) => total + value).toString() + 'px';
-};
-
 export function getTreeItemLabelColor(
   isInverse: boolean,
   disabled: boolean,
@@ -94,4 +85,12 @@ export function getTreeItemWrapperCursor(
   }
 
   return 'default';
+}
+
+export function getChildrenItemIds(children) {
+  return children.map(child => child.props.itemId);
+}
+
+export function getAllChildrenEnabled(children) {
+  return !children.some(child => child.props.isDisabled);
 }

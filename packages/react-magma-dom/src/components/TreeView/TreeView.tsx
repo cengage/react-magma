@@ -6,6 +6,7 @@ import { TreeItem } from './TreeItem';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
+import { useTreeItem } from './useTreeItem';
 
 export interface TreeViewProps
   extends UseTreeViewProps,
@@ -36,6 +37,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const isInverse = useIsInverse(isInverseProp);
 
     const { contextValue } = useTreeView(props);
+
+    const { contextValue: treeItemContextValue} = useTreeItem({label: ariaLabel}, ref);
+
     let treeItemIndex = 0;
 
     return (
@@ -60,10 +64,10 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   treeItemIndex,
                   parentDepth: 0,
                   topLevel: true,
-                  'data-laura-id': treeItemIndex,
+                  parentCheckedStatus: treeItemContextValue.checkedStatus,
+                  updateParentCheckStatus: treeItemContextValue.updateCheckedStatusFromChild
                 });
                 treeItemIndex++;
-
                 return item;
               }
             })}

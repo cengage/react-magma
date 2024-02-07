@@ -11,14 +11,14 @@ export function registerDescendant(
   ) {
     const index = itemRefArray.current.findIndex(({ current: item }) => {
       if (!item || !itemRef.current) return false;
-
+      
       return Boolean(
         item.compareDocumentPosition(itemRef.current) &
-          Node.DOCUMENT_POSITION_PRECEDING
-      );
-    });
-
-    const newItem = itemRef;
+        Node.DOCUMENT_POSITION_PRECEDING
+        );
+      });
+      
+      const newItem = itemRef;
 
     itemRefArray.current =
       index === -1

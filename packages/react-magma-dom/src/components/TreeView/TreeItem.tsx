@@ -79,7 +79,7 @@ const StyledTreeItem = styled.li<{
 
     padding-inline-start: ${props =>
       calculateLeftPadding(props.nodeType, props.depth, props.selected)};
-    margin-inline-start: ${props => calculateLeftPadding(props.nodeType, props.depth, props.selected, true)};
+    margin-inline-start: ${props => !props.selected && calculateLeftPadding(props.nodeType, props.depth, props.selected, true)};
 
     &:hover {
       background: ${props =>
@@ -198,6 +198,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       itemDepth,
       parentDepth,
       selectedItems,
+      ref,
+      // parentCheckedStatus,
     } = contextValue;
 
     let childTreeItemIndex = 0;
@@ -205,8 +207,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
     const selectedItem =
       selectable === TreeViewSelectable.single
-        ? selectedItems?.[0] === `${itemId}-label`
+        ? selectedItems?.[0] === itemId
         : null;
+        
     const checkedItem =
       selectable === TreeViewSelectable.multi
         ? checkedStatusToBoolean(checkedStatus)
@@ -225,7 +228,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         onClick={(e: any) => {
           if (selectable === TreeViewSelectable.single && !isDisabled) {
             // console.log('labelText clicked - single select');
-            handleClick(e);
+            handleClick(e, itemId);
             // e.preventDefault();
           }
         }}
@@ -245,7 +248,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
-      id: itemId,
+      id: `${itemId}-checkbox`,
       labelText: labelText,
       onChange: checkboxChangeHandler,
       disabled: isDisabled,
@@ -277,9 +280,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         }
       } else {
         // focus first item in all other cases (selectable is off, no item is selected)
-        return (
-          treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
-        );
+        // return (
+        //   treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
+        // );
       }
     };
 
@@ -289,14 +292,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           theme={theme}
           isInverse={isInverse}
           hasOwnTreeItems
-          ref={forwardedRef}
           data-testid={testId}
           nodeType={nodeType}
           depth={itemDepth}
           isDisabled={isDisabled}
           selected={selectedItem}
           selectableType={selectable}
-          id={`${itemId}-wrapper`}
+          id={itemId}
           onKeyDown={handleKeyDown}
           role="treeitem"
           aria-expanded={hasOwnTreeItems ? expanded : null}
@@ -309,11 +311,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             selectable={selectable}
             nodeType={nodeType}
             tabIndex={focusedItem() ? 0 : -1}
+            id={`${itemId}-itemwrapper`}
+            ref={ref}
             depth={itemDepth}
             isDisabled={isDisabled}
-            // selected={
-            //   selectedItem
-            // }
             isInverse={isInverse}
             onClick={event => {
               if (selectable === TreeViewSelectable.off) {
@@ -327,6 +328,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 isDisabled={isDisabled}
                 isInverse={isInverse}
                 aria-hidden={Boolean(!expanded)}
+                data-testid={`${testId}-expand`}
                 onClick={event => {
                   if (!isDisabled && selectable !== TreeViewSelectable.off) {
                     onExpandedClicked(event);
@@ -359,7 +361,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           {React.Children.map(
             children,
             (child: React.ReactElement<any>, index) => {
-              
               const component =
                 child.type === TreeItem ? (
                   <Transition isOpen={expanded} collapse unmountOnExit>
@@ -371,7 +372,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                         parentDepth,
                         parentCheckedStatus: checkedStatus,
                         updateParentCheckStatus: updateCheckedStatusFromChild,
-                        'data-laura-id': `${childTreeItemIndex}-${index}`,
                       })}
                     </ul>
                   </Transition>

@@ -30,9 +30,23 @@ xdescribe('TreeItem', () => {
   });
 
   describe('isDisabled', () => {
-    it('the label is disabled', () => {});
+    it('the label is disabled', () => {
+      const { getByTestId } = render(
+        <TreeItem label={TEXT} testId={testId} disabled/>
+      );
 
-    it('the ability to expand the item is disabled', () => {});
+      expect(getByTestId(testId)).toBeDisabled();
+    });
+
+    it('the ability to expand the item is disabled', () => {
+      const {getByTestId} = render(
+        <TreeItem label={TEXT} itemId="parent" testId={testId} disabled>
+            <TreeItem label={`${TEXT}-child`} itemId="child" />
+          </TreeItem>
+      );
+
+      expect(getByTestId(`${testId}-expand`)).toBeDisabled();
+    });
 
     it('the checkbox is disabled', () => {});
 
@@ -57,7 +71,17 @@ xdescribe('TreeItem', () => {
     it('if the item doe not have an icon but a sibling does, the default icon is visible', () => {});
   });
 
-  // describe('', () => {
-  //   it('', () => {});
-  // });
+  describe('TreeViewSelectable.off', () => {
+    it('', () => {});
+  });
+
+  describe('TreeViewSelectable.single', () => {
+    it('sets the focus to the correct element on load', () => {});
+    it('selects the correct element on load', () => {});
+    it('allows an item to be selected', () => {});
+  });
+
+  describe('TreeViewSelectable.multi', () => {
+    it('', () => {});
+  });
 });

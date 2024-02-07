@@ -4,20 +4,10 @@ import { TreeView, TreeItem } from '.';
 import { render } from '@testing-library/react';
 
 const TEXT = 'Test Text';
+const testId = 'test-id';
 
-xdescribe('TreeView', () => {
-  it('should render the visually hidden component', () => {
-    const { container, getByText } = render(
-      <TreeView>
-        <TreeItem>{TEXT}</TreeItem>
-      </TreeView>
-    );
-
-    expect(getByText(TEXT)).toBeInTheDocument();
-  });
-
+describe('TreeView', () => {
   it('should find element by testId', () => {
-    const testId = 'test-id';
     const { getByTestId } = render(
       <TreeView testId={testId}>
         <TreeItem>{TEXT}</TreeItem>
@@ -29,7 +19,7 @@ xdescribe('TreeView', () => {
 
   it('Does not violate accessibility standards', () => {
     const { container } = render(
-      <TreeView>
+      <TreeView testId={testId}>
         <TreeItem>{TEXT}</TreeItem>
       </TreeView>
     );
@@ -39,12 +29,12 @@ xdescribe('TreeView', () => {
     });
   });
 
-  describe('expandInitial', () => {
-    it('when set to ExpandInitialOptions.none, no TreeItem is expanded', () => {});
+  describe('initialExpandedItems', () => {
+    it('when set to empty, no TreeItem is expanded', () => {});
 
-    it('when set to ExpandInitialOptions.all, all TreeItems are expanded', () => {});
+    it('when set to array length 3, all 3 TreeItems are expanded', () => {});
 
-    it('when set to ExpandInitialOptions.first, the first TreeItem is expanded', () => {});
+    it('when set to array length 1, the one TreeItem is expanded', () => {});
   });
 
   describe('selectable', () => {
@@ -55,15 +45,21 @@ xdescribe('TreeView', () => {
     it('when set to TreeViewSelectable.multi, TreeItems have checkboxes', () => {});
   });
 
-  // describe('singleSelectItemId', () => {
-  //   it('', () => {
+  describe('isInverse', () => {
+    it('uses the inverse colors', () => {
 
-  //   });
-  // });
+    });
+  });
 
   describe('onSelectedItemChange', () => {
+    it('when set to TreeViewSelectable.off, function does not get called', () => {});
+
     it('when set to TreeViewSelectable.single, function gets called when an item is clicked', () => {});
 
     it("when set to TreeViewSelectable.multi, function gets called when an item's checkbox is clicked", () => {});
+  });
+
+  describe('oExpandedChange', () => {
+    it('function gets called when an item is expanded', () => {});
   });
 });

@@ -4,12 +4,19 @@ import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { TreeViewContext, TreeViewSelectable } from './useTreeView';
 import { TreeItem } from './TreeItem';
 
-import { useGenerateId } from '../../utils';
+import {
+  useGenerateId,
+  getNodeText,
+  toCamelCase,
+  useForkedRef,
+} from '../../utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
+import { getChildrenItemIds, getAllChildrenEnabled } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * Index number
+   * private
    */
   index?: number;
   /**
@@ -18,6 +25,8 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   label: React.ReactNode;
   // private
   treeItemIndex?: number;
+
+  itemId?: string;
   /**
    * @internal
    */
@@ -32,6 +41,7 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   icon?: React.ReactElement<IconProps>;
   /**
    * Indeterminate Checkbox status
+   * @internal
    */
   parentCheckedStatus?: IndeterminateCheckboxStatus;
   /**
@@ -94,6 +104,7 @@ const enum StatusUpdatedByOptions {
   checkboxChange = 'checkboxChange',
   parent = 'parent',
   children = 'children',
+  default = 'default',
 }
 
 export const checkedStatusToBoolean = (
@@ -110,6 +121,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     onClick,
     isDisabled = false,
     topLevel,
+    itemId,
   } = props;
 
   const {
@@ -119,7 +131,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectedItems,
     setSelectedItems,
     initialExpandedItems,
-    buttonRefArray,
+    initialSelectedItems,
+    treeItemRefArray,
     registerTreeItem,
   } = React.useContext(TreeViewContext);
 
@@ -142,28 +155,25 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const [childrenCheckedStatus, setChildrenCheckedStatus] = React.useState<
     IndeterminateCheckboxStatus[]
-  >(Array(numberOfTreeItemChildren).fill(IndeterminateCheckboxStatus.unchecked));
+  >(
+    Array(numberOfTreeItemChildren).fill(IndeterminateCheckboxStatus.unchecked)
+  );
 
-  const itemId = useGenerateId();
+  const ownRef = React.useRef<HTMLDivElement>();
+  const ref = useForkedRef(forwardedRef, ownRef);
+  const forceUpdate = useForceUpdate();
+
+  const generatedId = useGenerateId();
 
   React.useEffect(() => {
     setTreeViewIconVisibility();
-  }, []);
 
-  React.useEffect(() => {
-    if (isDisabled || (initialExpandedItems && initialExpandedItems?.length === 0)) {
-      setExpanded(false);
-    } else if (initialExpandedItems && initialExpandedItems?.includes(index)) {
-      // TODO Need to fix-- rn it opens the index of every child
-      setExpanded(true);
-    } else {
-      setExpanded(false);
+    if (!isDisabled && ownRef.current !== null) {
+      registerTreeItem(treeItemRefArray, ownRef);
     }
-  }, [initialExpandedItems]);
 
-  // React.useEffect(() => {
-  //   console.log('selectedItems', selectedItems);
-  // }, [selectedItems]);
+    forceUpdate();
+  }, []);
 
   function setTreeViewIconVisibility() {
     treeItemChildren.forEach((child: React.ReactElement<any>) => {
@@ -173,6 +183,45 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
     });
   }
+
+  React.useEffect(() => {
+    if (isDisabled || initialExpandedItems?.length === 0) {
+      setExpanded(false);
+    } else if (initialExpandedItems?.includes(itemId)) {
+      setExpanded(true);
+    } else {
+      setExpanded(false);
+    }
+  }, [initialExpandedItems]);
+
+  React.useEffect(() => {
+    if (selectable === TreeViewSelectable.single) {
+      if (initialSelectedItems?.[0].includes(itemId) && !isDisabled) {
+        setSelectedItems([itemId]);
+      }
+    } else if (selectable === TreeViewSelectable.multi) {
+      const childrenItemIds = getChildrenItemIds(treeItemChildren);
+
+      if (
+        !isDisabled &&
+        (initialSelectedItems?.includes(itemId) ||
+          childrenItemIds?.includes(itemId))
+      ) {
+        const status = IndeterminateCheckboxStatus.checked;
+
+        // TODO: there is a bug with initialSelectedItems where the items are selected in the UI but aren't actually behind the scenes so the indeterminate checkbox is wrong (only the last item in the list is selected)
+        setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
+        setCheckedStatus(status);
+        updateParentCheckStatus(index, IndeterminateCheckboxStatus.checked);
+
+        setChildrenCheckedStatus(
+          Array(childrenCheckedStatus.length).fill(
+            IndeterminateCheckboxStatus.checked
+          )
+        );
+      }
+    }
+  }, [initialSelectedItems]);
 
   const updateCheckedStatusFromChild = (
     index: number,
@@ -187,7 +236,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   React.useEffect(() => {
     if (statusUpdatedBy && updateParentCheckStatus) {
       updateParentCheckStatus(index, checkedStatus);
-      // updateParentCheckStatus(treeItemIndex, checkedStatus);
     }
     setStatusUpdatedBy(undefined);
   }, [checkedStatus]);
@@ -201,15 +249,25 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setStatusUpdatedBy(StatusUpdatedByOptions.parent);
       setCheckedStatus(parentCheckedStatus);
       if (hasOwnTreeItems) {
-        // TODO: this includes items that are disabled
-        setChildrenCheckedStatus(
-          Array(childrenCheckedStatus.length).fill(parentCheckedStatus)
-        );
+        // TODO: this includes items that are disabled. is this desired??
+        if (getAllChildrenEnabled(treeItemChildren)) {
+          setChildrenCheckedStatus(
+            Array(childrenCheckedStatus.length).fill(parentCheckedStatus)
+          );
+        } else {
+          console.log('ALL CHILDREN NOT ENABLED');
+          setChildrenCheckedStatus(
+            Array(childrenCheckedStatus.length).fill(
+              IndeterminateCheckboxStatus.unchecked
+            )
+          );
+        }
       }
     }
   }, [parentCheckedStatus]);
 
   React.useEffect(() => {
+    // console.log('childrenCheckedStatus', childrenCheckedStatus, itemId);
     if (statusUpdatedBy) {
       const statusFromChildren = childrenCheckedStatus.every(
         status => status === childrenCheckedStatus[0]
@@ -234,25 +292,48 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       : IndeterminateCheckboxStatus.unchecked;
 
     if (checkedStatus !== status) {
-      setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
       setCheckedStatus(status);
+      setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
+
+      // TODO: when indetermiante checkbox is clicked, the disabled items get selected too
       if (hasOwnTreeItems) {
+        // if (getAllChildrenEnabled(treeItemChildren)) {
+        setCheckedStatus(status);
         setChildrenCheckedStatus(
           Array(childrenCheckedStatus.length).fill(status)
         );
+        // }
+        // else {
+        //   let newChildrenCheckedStatus = [];
+        //   treeItemChildren.map((child, i) => {
+        //     if (!child.props.isDisabled) {
+        //       newChildrenCheckedStatus[i] = status;
+        //       setCheckedStatus(status);
+        //     } else {
+        //       newChildrenCheckedStatus[i] = 'hi';
+        //       setCheckedStatus('poooop');
+        //     }
+        //   });
+        //   console.log('newChildrenCheckedStatus', newChildrenCheckedStatus);
+
+        //   setChildrenCheckedStatus(newChildrenCheckedStatus);
+        // setChildrenCheckedStatus(
+        //   Array(childrenCheckedStatus.length).fill(IndeterminateCheckboxStatus.unchecked)
+        // );
+        // }
+        // setChildrenCheckedStatus(
+        //   Array(childrenCheckedStatus.length).fill(status)
+        // );
       }
     }
-
-    // console.log(StatusUpdatedByOptions.checkboxChange, status, Array(childrenCheckedStatus.length).fill(status));
-    // console.log('...', event.target);
-
-    handleClick(event);
+    handleClick(event, itemId);
   };
 
   const singleSelectChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
+    itemId: any
   ): void => {
-    setSelectedItems([event.target]);
+    setSelectedItems([itemId]);
   };
 
   const multiSelectChangeHandler = (
@@ -273,25 +354,23 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           // setSelectedItems([...selectedItems, item]);
         });
       } else if (!event.target.checked) {
-        // setSelectedItems(selectedItems.filter(i => i !== event.target));
+        // setSelectedItems(selectedItems.filter(i => i !== itemId));
       }
     } else {
       if (event.target.checked) {
-        if (!selectedItems.includes(event)) {
-          setSelectedItems([...selectedItems, event.target]);
+        if (!selectedItems.includes(itemId)) {
+          setSelectedItems([...selectedItems, itemId]);
         }
       } else if (!event.target.checked) {
-        setSelectedItems(selectedItems.filter(i => i !== event.target));
+        setSelectedItems(selectedItems.filter(i => i !== itemId));
       }
     }
-
-    // console.log('selectedItems', selectedItems);
   };
 
-  const handleClick = event => {
+  const handleClick = (event, itemId) => {
     if (selectable !== TreeViewSelectable.off) {
       if (selectable === TreeViewSelectable.single) {
-        singleSelectChangeHandler(event);
+        singleSelectChangeHandler(event, itemId);
 
         onClick && typeof onClick === 'function' && onClick();
       } else if (selectable === TreeViewSelectable.multi) {
@@ -304,78 +383,153 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
   };
 
-  // TODO
-  const ownRef = React.useRef<HTMLDivElement>();
-  const forceUpdate = useForceUpdate();
+  const focusIndex = treeItemRefArray?.current?.findIndex(
+    ({ current: item }) => {
+      if (!item || !ownRef.current) return false;
+      return item === ownRef.current;
+    }
+  );
 
   React.useEffect(() => {
-    if (!isDisabled) {
-      registerTreeItem(buttonRefArray, ownRef);
+    treeItemRefArray?.current.map(itemRef => {
+      if (!itemRef.current) {
+        treeItemRefArray.current = treeItemRefArray.current.filter(
+          item => itemRef.current !== item.current
+        );
+      }
+    });
+    // console.log('treeItemRefArray', treeItemRefArray?.current);
+  }, [treeItemRefArray]);
+
+  const focusFirst = () => {
+    (treeItemRefArray?.current?.[0].current as HTMLDivElement).focus();
+  };
+
+  const focusNext = () => {
+    (
+      treeItemRefArray?.current?.[focusIndex + 1].current as HTMLDivElement
+    ).focus();
+  };
+
+  const focusPrev = () => {
+    (
+      treeItemRefArray?.current?.[focusIndex - 1].current as HTMLDivElement
+    ).focus();
+  };
+
+  const focusLast = () => {
+    const arrLength = treeItemRefArray.current.length;
+    (
+      treeItemRefArray?.current?.[arrLength - 1].current as HTMLDivElement
+    ).focus();
+  };
+
+  const focusSelf = () => {
+    (treeItemRefArray?.current?.[focusIndex].current as HTMLDivElement).focus();
+  }
+
+  const expandFocusedNode = () => {
+    if (
+      selectable === TreeViewSelectable.single ||
+      selectable === TreeViewSelectable.multi
+    ) {
+      if (hasOwnTreeItems) {
+        if (expanded) {
+          focusNext();
+        } else {
+          setExpanded(true);
+          focusSelf();
+        }
+        // TODO: this affects the parent too
+      }
     }
+  };
 
-    forceUpdate();
-  }, []);
-
-  // const indexSomething = buttonRefArray.current.findIndex(({ current: item }) => {
-  //     if (!item || !ownRef.current) return false;
-
-  //     return item === ownRef.current;
-  //   }
-  // );
-
-  // console.log('indexSomething', indexSomething);
-
-  // TODO
-  // const focusFirst = () => {
-  //   (buttonRefArray.current?.[0].current as HTMLLIElement).focus();
-  // };
-
-  // const focusNext = () => {
-  //   (buttonRefArray.current?.[index + 1].current as HTMLLIElement).focus();
-  // };
-
-  // const focusPrev = () => {
-  //   (buttonRefArray.current?.[index - 1].current as HTMLLIElement).focus();
-  // };
-
-  // const focusLast = () => {
-  //   const arrLength = buttonRefArray.current.length;
-  //   (buttonRefArray.current[arrLength - 1].current as HTMLLIElement).focus();
-  // };
+  const collapseFocusedNode = () => {
+    if (
+      selectable === TreeViewSelectable.single ||
+      selectable === TreeViewSelectable.multi
+    ) {
+      if (hasOwnTreeItems) {
+        setExpanded(false);
+        focusSelf();
+        // TODO: this affects the parent too
+      }
+    }
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    // const arrLength = buttonRefArray.current.length;
-
-    // console.log(buttonRefArray, arrLength);
+    const arrLength = treeItemRefArray.current.length;
+    console.log(focusIndex, event);
 
     switch (event.key) {
       case 'ArrowDown': {
-        console.log('down', index);
-        // index === arrLength - 1 ? focusFirst() : focusNext();
+        console.log('down', focusIndex, index);
+        focusIndex === arrLength - 1 ? focusFirst() : focusNext();
         break;
       }
       case 'ArrowUp': {
-        console.log('up', index);
-        // index === 0 ? focusLast() : focusPrev();
+        console.log('up', focusIndex, index);
+        focusIndex === 0 ? focusLast() : focusPrev();
+        break;
+      }
+      case 'ArrowRight': {
+        // TODO open parent nodes
+        console.log('right');
+        expandFocusedNode();
+        break;
+      }
+      case 'ArrowLeft': {
+        // TODO close open parent nodes
+        console.log('left');
+        collapseFocusedNode();
         break;
       }
       case 'Home': {
-        console.log('home', index);
-        // focusFirst();
+        // Moves focus to the first node in the tree without opening or closing a node.
+        focusFirst();
         break;
       }
       case 'End': {
-        console.log('end', index);
-        // focusLast();
+        // Moves focus to the last node in the tree that is focusable without opening a node.
+        focusLast();
+        break;
+      }
+      case 'Enter': {
+        // Activates a node, i.e., performs its default action.
+        // In multi-select, it toggles the selection state of the focused node.
+        // In single-select it selects the focused node.
+        // TODO
+        break;
+      }
+      case ' ': {
+        console.log('space pressed');
+        // Toggles the selection state of the focused node.
+
+        // if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
+        //   setExpanded(!expanded);
+        //   // TODO: this collapses the parent
+        // } else if (selectable === TreeViewSelectable.single) {
+        //   if (hasOwnTreeItems) {
+        //     setExpanded(!expanded);
+        //     // TODO: this collapses the parent
+        //   } else {
+        //     setSelectedItems([itemId]);
+        //   }
+        // } else if (selectable === TreeViewSelectable.multi) {
+        //   setSelectedItems([...selectedItems, itemId]);
+        // }
         break;
       }
       default:
         return;
     }
+
+    event.preventDefault();
   };
 
   const contextValue = {
-    itemId,
+    itemId: itemId || generatedId,
     expanded,
     setExpanded,
     checkedStatus,
@@ -386,6 +540,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     parentDepth,
     numberOfTreeItemChildren,
     selectedItems,
+    parentCheckedStatus,
+    ref,
   };
 
   return { contextValue, handleClick, handleKeyDown };
