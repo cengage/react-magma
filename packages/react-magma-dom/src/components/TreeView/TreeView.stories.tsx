@@ -1,13 +1,11 @@
 import React from 'react';
-import { TreeView, TreeItem } from '.';
+import { TreeView, TreeItem, TreeViewSelectable } from '.';
 import { magma } from '../../theme/magma';
 
 import { ArticleIcon, FolderIcon, FavoriteIcon } from 'react-magma-icons';
-import { TreeViewSelectable } from './useTreeView';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
 import { Paragraph } from '../Paragraph';
-import { IndeterminateCheckboxStatus } from '../..';
 
 export default {
   component: TreeView,
@@ -70,22 +68,24 @@ export const Default = args => {
               />
               <TreeItem
                 icon={<ArticleIcon />}
-
                 label={
                   <>
-                    Chapter 2ish child: Lorem ipsum dolor sit amet dolor sit amet
-                    dolor sit amet
+                    Chapter 2ish child: Lorem ipsum dolor sit amet dolor sit
+                    amet dolor sit amet
                   </>
                 }
                 itemId="2.5"
               />
             </TreeItem>
-            <TreeItem label={<>Chapter 2: Lorem ipsum dolor sit amet</>} itemId="3" />
+            <TreeItem
+              label={<>Chapter 2: Lorem ipsum dolor sit amet</>}
+              itemId="3"
+            />
             <TreeItem
               icon={<FolderIcon />}
               label={<>Chapter 3: Lorem ipsum dolor sit amet</>}
               isDisabled
-              itemId="4" 
+              itemId="4"
             >
               <TreeItem
                 icon={<ArticleIcon />}
@@ -95,49 +95,49 @@ export const Default = args => {
                     sit amet
                   </>
                 }
-                itemId="5" 
+                itemId="5"
               />
               <TreeItem
                 icon={<ArticleIcon />}
                 label={<>Section 3.2: Lorem ipsum dolor sit amet</>}
-                itemId="6" 
+                itemId="6"
               />
               <TreeItem
                 icon={<ArticleIcon />}
                 label={<>Section 3.3: Lorem ipsum dolor sit amet</>}
-                itemId="7" 
+                itemId="7"
               />
             </TreeItem>
           </TreeItem>
           <TreeItem
             icon={<FolderIcon />}
             label={<>Part 2: Lorem ipsum dolor sit amet</>}
-            itemId="8" 
+            itemId="8"
           >
             <TreeItem
               icon={<ArticleIcon />}
               label={<>Chapter 4: Lorem ipsum dolor sit amet</>}
-              itemId="9" 
+              itemId="9"
             />
             <TreeItem
               icon={<FolderIcon />}
               label={<>Chapter 5: Lorem ipsum dolor sit amet</>}
-              itemId="10" 
+              itemId="10"
             >
               <TreeItem
                 icon={<ArticleIcon />}
                 label={<>Section 5.1: Lorem ipsum dolor sit amet</>}
-                itemId="11" 
+                itemId="11"
               />
               <TreeItem
                 icon={<ArticleIcon />}
                 label={<>Section 5.2: Lorem ipsum dolor sit amet</>}
-                itemId="12" 
+                itemId="12"
               />
               <TreeItem
                 icon={<ArticleIcon />}
                 label={<>Section 5.3: Lorem ipsum dolor sit amet</>}
-                itemId="13" 
+                itemId="13"
               />
             </TreeItem>
             <TreeItem
@@ -188,8 +188,8 @@ export const Default = args => {
 Default.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ["0", "1", "2", "15"],
-  initialSelectedItems: ["20", "1"],
+  initialExpandedItems: ['0', '1', '2', '15'],
+  initialSelectedItems: ['20', '1'],
   testId: 'default-example',
 };
 
@@ -352,28 +352,26 @@ export const UseDefaultIcon = args => {
 
 export const Other = args => {
   return (
-    <TreeView {...args}>
-      <TreeItem label="Node 0" itemId="item0" />
-      <TreeItem label="Node 1" itemId="item1">
-        <TreeItem label="Child 1" itemId="item2">
-          <TreeItem label="Grandchild 1" itemId="item3">
-            <TreeItem label="Great-grandchild 1" itemId="item4" />
-          </TreeItem>
-        </TreeItem>
+    <TreeView ariaLabel="course-topics">
+      <TreeItem label={<>Arts and Design</>} itemId="arts-design">
+        <TreeItem label={<>Animation</>} itemId="animation" />
+        <TreeItem label={<>Graphic Arts</>} itemId="graphic" />
+        <TreeItem label={<>Photography</>} itemId="photography" />
+        <TreeItem label={<>Web Design</>} itemId="webdesign" />
       </TreeItem>
-      <TreeItem label="Node 2" itemId="item5">
-        <TreeItem label="Child 2" itemId="item6">
-          <TreeItem label="Grandchild 2" itemId="item7">
-            <TreeItem label="Great-grandchild 2" itemId="item8" />
-          </TreeItem>
-        </TreeItem>
+      <TreeItem label={<>Business</>} itemId="business">
+        <TreeItem label={<>Accounting</>} itemId="" />
+        <TreeItem label={<>Finance</>} itemId="finance" />
       </TreeItem>
-      <TreeItem label="Node 3" itemId="item9" />
+      <TreeItem label={<>Computer Science</>} itemId="compsci">
+        <TreeItem label={<>Software Engineering</>} itemId="swe" />
+        <TreeItem label={<>Information Technology</>} itemId="it" />
+      </TreeItem>
     </TreeView>
   );
 };
 
 Other.args = {
   initialExpandedItems: ['item1', 'item5', 'item6'],
-  initialSelectedItems: ["item6"]
+  initialSelectedItems: ['item6'],
 };

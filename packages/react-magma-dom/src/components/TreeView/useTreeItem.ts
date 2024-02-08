@@ -6,8 +6,6 @@ import { TreeItem } from './TreeItem';
 
 import {
   useGenerateId,
-  getNodeText,
-  toCamelCase,
   useForkedRef,
 } from '../../utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -23,6 +21,7 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * Item name
    */
   label: React.ReactNode;
+
   // private
   treeItemIndex?: number;
 
@@ -255,7 +254,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             Array(childrenCheckedStatus.length).fill(parentCheckedStatus)
           );
         } else {
-          console.log('ALL CHILDREN NOT ENABLED');
+          // console.log('ALL CHILDREN NOT ENABLED');
           setChildrenCheckedStatus(
             Array(childrenCheckedStatus.length).fill(
               IndeterminateCheckboxStatus.unchecked

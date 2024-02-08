@@ -5,7 +5,8 @@ export enum TreeViewSelectable {
   off = 'off',
   single = 'single',
   multi = 'multi',
-}
+};
+
 
 export interface UseTreeViewProps {
   /**
