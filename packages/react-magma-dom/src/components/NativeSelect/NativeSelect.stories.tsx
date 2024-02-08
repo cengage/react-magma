@@ -49,6 +49,7 @@ export const Default = Template.bind({});
 Default.args = {
   isInverse: false,
   labelText: 'Select',
+  testId: 'native-select-example'
 };
 
 export const Disabled = Template.bind({});

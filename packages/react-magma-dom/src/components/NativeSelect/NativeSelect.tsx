@@ -159,7 +159,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         <StyledFormFieldContainer
           additionalContent={additionalContent}
           containerStyle={containerStyle}
-          data-testId={testId && `${testId}-form-field-container`}
+          testId={testId && `${testId}-form-field-container`}
           errorMessage={errorMessage}
           fieldId={id}
           hasLabel={!!labelText}
