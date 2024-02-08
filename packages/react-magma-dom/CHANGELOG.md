@@ -130,6 +130,12 @@
 
 ## 4.3.0
 
+## 4.3.1-next.0
+
+### Patch Changes
+
+- 3e14d4bd8: fix(NativeSelect): Fix issue with data-testid
+
 ### Minor Changes
 
 - cfc20a479: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
