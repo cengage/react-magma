@@ -5,39 +5,25 @@ import { Tabs, TabsOrientation } from './Tabs';
 import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
 import { toCamelCase } from '../../utils';
-import { TabScrollSpyPanelContext } from './TabScrollSpyPanel';
 
 export interface TabScrollSpyContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  disabled?: boolean;
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   isActive?: boolean;
   onChange?: () => void;
 }
 
-interface TabsScrollSpyContainerContextInterface {
-  contentRef?: React.Ref<HTMLDivElement>;
-  icon?: React.ReactElement<any> | React.ReactElement<any>[];
-}
-
-export const TabsScrollSpyContainerContext =
-  React.createContext<TabsScrollSpyContainerContextInterface>({});
-
-const StyledTabsContainer = styled(TabsContainer)<{
-  activeTab?: number;
-  icon?: React.ReactElement<any> | React.ReactElement<any>[];
-}>`
-  /* flex-wrap: nowrap; */
-`;
-
 const StyledTabs = styled(Tabs)<{
-  isActive?: boolean;
+  isClicked?: boolean;
 }>`
   flex: 0 auto;
   position: sticky;
   top: 0;
   li {
     &:after {
-      transition: none;
+      background: ${props => (props.isClicked ? 'none' : '')};
+      transition: 0.1s;
     }
   }
 `;
@@ -56,11 +42,9 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const [isActive, setIsActive] = React.useState(0);
 
-  // const [isClicked, setIsClicked] = React.useState(false);
+  const [isClicked, setIsClicked] = React.useState(false);
 
   const [activeIndex, setActiveIndex] = React.useState();
-
-  const { disabled, icon } = React.useContext(TabScrollSpyPanelContext);
 
   React.useEffect(() => {
     options.map((option: any) => {
@@ -83,22 +67,22 @@ export const TabsScrollSpyContainer = React.forwardRef<
   function onClick(e) {
     window.location.href = `#${e.hash}`;
 
-    // if (e.hash === isActive) {
-    //   console.log("it's active");
-    //   setIsClicked(false);
-    // } else {
-    //   setIsClicked(true);
-    // }
+    if (e.hash !== isActive) {
+      setIsClicked(true);
+      setTimeout(() => {
+        setIsClicked(false);
+      }, 250);
+    }
   }
 
   const ScrollSpyNav = ({ options }) => {
     return (
-      <StyledTabs orientation={TabsOrientation.vertical}>
+      <StyledTabs isClicked={isClicked} orientation={TabsOrientation.vertical}>
         {options.map(option => (
           <Tab
             disabled={option.disabled}
             icon={option.icon}
-            key={option.hash}
+            // key={option.hash}
             onClick={() => onClick(option)}
             data-scrollspy-id={option.hash}
           >
@@ -109,28 +93,33 @@ export const TabsScrollSpyContainer = React.forwardRef<
     );
   };
 
+  const tabScrollSpyPanelChildren = React.Children.map(children, child => {
+    const item = child as React.ReactElement;
+    return <React.Fragment>{item.props.icon}</React.Fragment>;
+  });
+
   React.useLayoutEffect(() => {
     const scrollSpyNavSections = document.querySelectorAll('section');
     const optionsFromSections = Array.from(scrollSpyNavSections).map(
       (section, index) => {
-        // console.log(icon);
+        console.log(tabScrollSpyPanelChildren[index]);
         return {
           index,
-          disabled: disabled,
+          // disabled: section.dataset.disabled,
           hash: toCamelCase(section.id),
-          icon: icon,
+          icon: tabScrollSpyPanelChildren[index],
           title: section.dataset.navTitle,
         };
       }
     );
     setOptions(optionsFromSections);
   }, ['section']);
-  // console.log(options);
+
   return (
-    <StyledTabsContainer activeIndex={activeIndex}>
+    <TabsContainer activeIndex={activeIndex}>
       <ScrollSpy handleScroll={onScrollUpdate} />
       <ScrollSpyNav options={options} />
       <StyledContentWrapper>{children}</StyledContentWrapper>
-    </StyledTabsContainer>
+    </TabsContainer>
   );
 });

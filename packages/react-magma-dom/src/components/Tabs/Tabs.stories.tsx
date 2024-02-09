@@ -22,7 +22,12 @@ import {
 } from '../Dropdown';
 import { Combobox } from '../Combobox';
 import { Select } from '../Select';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+import {
+  EmailIcon,
+  AndroidIcon,
+  NotificationsIcon,
+  AppleIcon,
+} from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Heading } from '../Heading';
 
@@ -250,7 +255,7 @@ const scrollContent = (
 
 const ScrollSpyTemplate: Story<TabsProps> = args => (
   <TabsScrollSpyContainer>
-    <TabScrollSpyPanel disabled tabLabel="Card 1" icon={<AndroidIcon />}>
+    <TabScrollSpyPanel tabLabel="Card 1" icon={<AndroidIcon />}>
       <Heading level={4}>Area 1</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
@@ -258,11 +263,11 @@ const ScrollSpyTemplate: Story<TabsProps> = args => (
       <Heading level={4}>Area 2</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 3">
+    <TabScrollSpyPanel tabLabel="Card 3" disabled>
       <Heading level={4}>Area 3</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 4">
+    <TabScrollSpyPanel tabLabel="Card 4" icon={<AppleIcon />}>
       <Heading level={4}>Area 4</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
