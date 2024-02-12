@@ -14,21 +14,18 @@ export interface TabScrollSpyContainerProps
   onChange?: () => void;
 }
 
-const StyledTabs = styled(Tabs)<{
-  isClicked?: boolean;
-}>`
+const StyledTabs = styled(Tabs)`
   flex: 0 auto;
   position: sticky;
   top: 0;
   li {
     &:after {
-      background: ${props => (props.isClicked ? 'none' : '')};
-      transition: 0.1s;
+      transition: none;
     }
   }
 `;
 
-const StyledContentWrapper = styled.div<{}>`
+const StyledContentWrapper = styled.div`
   flex: 1;
 `;
 
@@ -41,8 +38,6 @@ export const TabsScrollSpyContainer = React.forwardRef<
   const [options, setOptions] = React.useState([]);
 
   const [isActive, setIsActive] = React.useState(0);
-
-  const [isClicked, setIsClicked] = React.useState(false);
 
   const [activeIndex, setActiveIndex] = React.useState();
 
@@ -66,18 +61,11 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   function onClick(e) {
     window.location.href = `#${e.hash}`;
-
-    if (e.hash !== isActive) {
-      setIsClicked(true);
-      setTimeout(() => {
-        setIsClicked(false);
-      }, 250);
-    }
   }
 
   const ScrollSpyNav = ({ options }) => {
     return (
-      <StyledTabs isClicked={isClicked} orientation={TabsOrientation.vertical}>
+      <StyledTabs orientation={TabsOrientation.vertical}>
         {options.map(option => (
           <Tab
             disabled={option.disabled}
@@ -95,19 +83,22 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const tabScrollSpyPanelChildren = React.Children.map(children, child => {
     const item = child as React.ReactElement;
-    return <React.Fragment>{item.props.icon}</React.Fragment>;
+    return {
+      icon: item.props.icon,
+      disabled: item.props.disabled,
+    };
   });
 
   React.useLayoutEffect(() => {
     const scrollSpyNavSections = document.querySelectorAll('section');
     const optionsFromSections = Array.from(scrollSpyNavSections).map(
       (section, index) => {
-        console.log(tabScrollSpyPanelChildren[index]);
+        console.log(tabScrollSpyPanelChildren);
         return {
           index,
-          // disabled: section.dataset.disabled,
+          disabled: tabScrollSpyPanelChildren[index].disabled,
           hash: toCamelCase(section.id),
-          icon: tabScrollSpyPanelChildren[index],
+          icon: tabScrollSpyPanelChildren[index].icon,
           title: section.dataset.navTitle,
         };
       }
