@@ -129,6 +129,9 @@ export const ScrollSpy = ({ handleScroll }) => {
     const eachArea = document.querySelectorAll('[data-scrollspy]');
     const scrollables = [].slice.call(eachArea);
     for (let scrollable of scrollables) {
+      //Fixes Jest
+      if (!window.IntersectionObserver) return;
+
       const observer = new IntersectionObserver(
         entries => {
           entries.forEach(entry => {

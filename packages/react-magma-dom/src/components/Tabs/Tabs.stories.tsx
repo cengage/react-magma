@@ -30,10 +30,18 @@ import {
 } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Heading } from '../Heading';
+import { Container } from '../Container';
 
 export default {
   title: 'Tabs',
   component: Tabs,
+  decorators: [
+    (Story, context) => (
+      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+        <Story />
+      </Container>
+    ),
+  ],
   argTypes: {
     alignment: {
       control: {
@@ -254,8 +262,8 @@ const scrollContent = (
 );
 
 const ScrollSpyTemplate: Story<TabsProps> = args => (
-  <TabsScrollSpyContainer>
-    <TabScrollSpyPanel tabLabel="Card 1" icon={<AndroidIcon />}>
+  <TabsScrollSpyContainer isInverse={args.isInverse}>
+    <TabScrollSpyPanel tabLabel="Card 1">
       <Heading level={4}>Area 1</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
@@ -263,11 +271,11 @@ const ScrollSpyTemplate: Story<TabsProps> = args => (
       <Heading level={4}>Area 2</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 3" disabled>
+    <TabScrollSpyPanel tabLabel="Card 3">
       <Heading level={4}>Area 3</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 4" icon={<AppleIcon />}>
+    <TabScrollSpyPanel tabLabel="Card 4">
       <Heading level={4}>Area 4</Heading>
       {scrollContent}
     </TabScrollSpyPanel>
@@ -279,6 +287,37 @@ const ScrollSpyTemplate: Story<TabsProps> = args => (
 );
 
 export const ScrollSpy = ScrollSpyTemplate.bind({});
+ScrollSpy.args = {
+  ...Default.args,
+};
+ScrollSpy.parameters = { ...Default.parameters };
+
+const ScrollSpyIconsTemplate: Story<TabsProps> = args => (
+  <TabsScrollSpyContainer isInverse={args.isInverse}>
+    <TabScrollSpyPanel tabLabel="Card 1" icon={<AndroidIcon />}>
+      <Heading level={4}>Area 1</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 2" icon={<AppleIcon />}>
+      <Heading level={4}>Area 2</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 3" icon={<AndroidIcon />}>
+      <Heading level={4}>Area 3</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 4" icon={<AppleIcon />}>
+      <Heading level={4}>Area 4</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 5" icon={<AndroidIcon />}>
+      <Heading level={4}>Area 5</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+  </TabsScrollSpyContainer>
+);
+
+export const ScrollSpyIcons = ScrollSpyIconsTemplate.bind({});
 ScrollSpy.args = {
   ...Default.args,
 };

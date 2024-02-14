@@ -8,10 +8,23 @@ import { toCamelCase } from '../../utils';
 
 export interface TabScrollSpyContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /*
+   * Disables a navigation Tab.
+   */
   disabled?: boolean;
+  /*
+   * Adds an icon to the navigation Tab.
+   */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
-  isActive?: boolean;
-  onChange?: () => void;
+  isInverse?: boolean;
+  /*
+   * For custom click events.
+   */
+  onClick?: () => void;
+  /**
+   * @internal
+   */
+  testId?: string;
 }
 
 const StyledTabs = styled(Tabs)`
@@ -33,7 +46,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
   HTMLDivElement,
   TabScrollSpyContainerProps
 >((props, ref) => {
-  const { children } = props;
+  const { children, isInverse, testId, ...other } = props;
 
   const [options, setOptions] = React.useState([]);
 
@@ -41,6 +54,13 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const [activeIndex, setActiveIndex] = React.useState();
 
+  //Window scroll override
+  React.useEffect(() => {
+    const html = document.querySelector('html');
+    html.style.scrollBehavior = 'auto';
+  }, []);
+
+  //Sets the active tab state on scroll
   React.useEffect(() => {
     options.map((option: any) => {
       if (option.hash === isActive) {
@@ -59,20 +79,26 @@ export const TabsScrollSpyContainer = React.forwardRef<
     [setIsActive]
   );
 
+  //Prevents smooth page scroll on navigation click
   function onClick(e) {
+    props.onClick && typeof props.onClick === 'function' && props.onClick();
     window.location.href = `#${e.hash}`;
   }
 
   const ScrollSpyNav = ({ options }) => {
     return (
-      <StyledTabs orientation={TabsOrientation.vertical}>
+      <StyledTabs
+        orientation={TabsOrientation.vertical}
+        testId={`${testId}-Tabs`}
+      >
         {options.map(option => (
           <Tab
             disabled={option.disabled}
             icon={option.icon}
-            // key={option.hash}
+            key={option.hash}
             onClick={() => onClick(option)}
             data-scrollspy-id={option.hash}
+            testId={`${testId}-Tab`}
           >
             {option.title}
           </Tab>
@@ -83,22 +109,20 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const tabScrollSpyPanelChildren = React.Children.map(children, child => {
     const item = child as React.ReactElement;
-    return {
-      icon: item.props.icon,
-      disabled: item.props.disabled,
-    };
+    if (item.props) {
+      return { icon: item.props.icon, disabled: item.props.disabled };
+    }
   });
 
   React.useLayoutEffect(() => {
     const scrollSpyNavSections = document.querySelectorAll('section');
     const optionsFromSections = Array.from(scrollSpyNavSections).map(
       (section, index) => {
-        console.log(tabScrollSpyPanelChildren);
         return {
           index,
-          disabled: tabScrollSpyPanelChildren[index].disabled,
+          disabled: tabScrollSpyPanelChildren[index]?.disabled,
           hash: toCamelCase(section.id),
-          icon: tabScrollSpyPanelChildren[index].icon,
+          icon: tabScrollSpyPanelChildren[index]?.icon,
           title: section.dataset.navTitle,
         };
       }
@@ -107,7 +131,13 @@ export const TabsScrollSpyContainer = React.forwardRef<
   }, ['section']);
 
   return (
-    <TabsContainer activeIndex={activeIndex}>
+    <TabsContainer
+      activeIndex={activeIndex}
+      isInverse={isInverse ? true : false}
+      ref={ref}
+      testId={testId}
+      {...other}
+    >
       <ScrollSpy handleScroll={onScrollUpdate} />
       <ScrollSpyNav options={options} />
       <StyledContentWrapper>{children}</StyledContentWrapper>
