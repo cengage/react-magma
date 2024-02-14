@@ -1,6 +1,7 @@
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
 import { TreeViewSelectable } from './useTreeView';
+import React from 'react';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -19,7 +20,6 @@ export enum TreeNodeType {
 export function calculateLeftPadding(
   type: TreeNodeType,
   depth: number = 0,
-  selected: boolean,
   negative: boolean = false
 ) {
   let padding = 0;
@@ -27,9 +27,11 @@ export function calculateLeftPadding(
   if (type === TreeNodeType.leaf) {
     if (depth === 0) {
       if (negative) {
-        padding = 40;
+        // padding = 40;
+        padding = 8;
       } else {
-        padding = 54;
+        // padding = 54;
+        padding = 20;
       }
     } else {
       padding = 56;
@@ -40,11 +42,6 @@ export function calculateLeftPadding(
     } else {
       padding = 24;
     }
-  }
-
-  // this accounts for the border-left added when an item is selected
-  if (selected) {
-    padding -= 4;
   }
 
   return `${negative ? '-' : ''}${padding}px`;
@@ -87,10 +84,52 @@ export function getTreeItemWrapperCursor(
   return 'default';
 }
 
+// Return an array of all the enabled children ids recursively
 export function getChildrenItemIds(children) {
-  return children.map(child => child.props.itemId);
+  let itemIds = [];
+
+  React.Children.forEach(children, child => {
+    if (!child.props?.isDisabled) {
+      if (child.props?.itemId) {
+        itemIds.push(child.props.itemId);
+      }
+
+      if (child.props?.children) {
+        const nestedItemIds = getChildrenItemIds(child.props.children);
+        itemIds = itemIds.concat(nestedItemIds);
+      }
+    }
+  });
+
+  return itemIds;
 }
 
+// Return whether all the children are enabled
 export function getAllChildrenEnabled(children) {
   return !children.some(child => child.props.isDisabled);
+}
+
+// Return an array that filters out the childrenIds & itemId from selectedItems
+// (used for deselecting undeterminate checkboxes)
+export function filterSelectedItems(selectedItems, childrenIds, itemId) {
+  const allIds = [...childrenIds, itemId];
+  return selectedItems.filter(item => !allIds.includes(item));
+}
+
+// Return an array of childrenIds that are missing from selectedItems
+export function getMissingChildrenIds(selectedItems, childrenIds) {
+  return childrenIds.filter(itemId => !selectedItems.includes(itemId));
+}
+
+export function getChildrenCheckedStatus(childrenIds, status) {
+  return childrenIds.map(child => (child.isDisabled ? null : status));
+}
+
+export function getEnabledTreeItemChildrenLength(treeItemChildren) {
+  return treeItemChildren.reduce((count, child) => {
+    if (!child.props.isDisabled) {
+      return count + 1;
+    }
+    return count;
+  }, 0);
 }

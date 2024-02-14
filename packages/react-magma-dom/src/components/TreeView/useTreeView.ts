@@ -45,7 +45,7 @@ export interface UseTreeViewProps {
   /**
    * Action that fires when an item is selected
    */
-  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>, selectedItems: any) => void;
+  onSelectedItemChange?: (selectedItems: any) => void;
   /**
    * Action that fires when an item is expanded or collapsed
    */
@@ -55,7 +55,7 @@ export interface UseTreeViewProps {
 export interface TreeViewContextInterface {
   children?: React.ReactNode | React.ReactNode[];
   hasIcons: boolean;
-  onSelectedItemChange?: (event: React.ChangeEvent<HTMLInputElement>, selectedItems: any) => void;
+  onSelectedItemChange?: (selectedItems: any) => void;
   onExpandedChange?: (event: React.SyntheticEvent) => void;
   selectable: TreeViewSelectable;
   setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;

@@ -1,7 +1,12 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
 
-import { UseTreeViewProps, TreeViewContext, useTreeView, TreeViewSelectable } from './useTreeView';
+import {
+  UseTreeViewProps,
+  TreeViewContext,
+  useTreeView,
+  TreeViewSelectable,
+} from './useTreeView';
 import { TreeItem } from './TreeItem';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -32,13 +37,26 @@ const StyledTreeView = styled.ul<TreeViewProps>`
 
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
   (props, ref) => {
-    const { children, testId, ariaLabel, ariaLabelledBy, isInverse: isInverseProp, onClick, selectable, ...rest } = props;
+    const {
+      children,
+      testId,
+      ariaLabel,
+      ariaLabelledBy,
+      isInverse: isInverseProp,
+      selectable,
+      onSelectedItemChange,
+      onExpandedChange,
+      ...rest
+    } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
     const { contextValue } = useTreeView(props);
 
-    const { contextValue: treeItemContextValue} = useTreeItem({label: ariaLabel}, ref);
+    const { contextValue: treeItemContextValue } = useTreeItem(
+      { label: ariaLabel, itemId: '' },
+      ref
+    );
 
     let treeItemIndex = 0;
 
@@ -64,8 +82,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   treeItemIndex,
                   parentDepth: 0,
                   topLevel: true,
-                  parentCheckedStatus: treeItemContextValue.checkedStatus,
-                  updateParentCheckStatus: treeItemContextValue.updateCheckedStatusFromChild
+                  parentCheckedStatus: treeItemContextValue.checkedStatus || null,
+                  updateParentCheckStatus:
+                    treeItemContextValue.updateCheckedStatusFromChild,
                 });
                 treeItemIndex++;
                 return item;

@@ -5,7 +5,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 
 import styled from '../../theme/styled';
-
+import { css } from '@emotion/core';
 import {
   TreeItemContext,
   UseTreeItemProps,
@@ -30,6 +30,7 @@ import {
   getTreeItemWrapperCursor,
 } from './utils';
 import { transparentize } from 'polished';
+import { toCamelCase } from '../../utils';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -54,14 +55,12 @@ const StyledTreeItem = styled.li<{
       props.selectableType,
       props.nodeType
     )};
-    // height: 32px;
+  position: relative;
 
   padding-inline-start: ${props =>
-    !props.selected &&
-    calculateLeftPadding(props.nodeType, props.depth, props.selected)};
+    calculateLeftPadding(props.nodeType, props.depth)};
   margin-inline-start: ${props =>
-    !props.selected &&
-    calculateLeftPadding(props.nodeType, props.depth, props.selected, true)};
+    calculateLeftPadding(props.nodeType, props.depth, true)};
 
   > div:first-of-type {
     background: ${props =>
@@ -69,17 +68,27 @@ const StyledTreeItem = styled.li<{
         ? transparentize(0.7, props.theme.colors.neutral900)
         : props.selected &&
           transparentize(0.92, props.theme.colors.neutral900)};
-    border-left: ${props =>
-      props.selected &&
-      `4px solid ${
-        props.isInverse
-          ? props.theme.colors.tertiary500
-          : props.theme.colors.primary500
-      }`};
 
     padding-inline-start: ${props =>
-      calculateLeftPadding(props.nodeType, props.depth, props.selected)};
-    margin-inline-start: ${props => !props.selected && calculateLeftPadding(props.nodeType, props.depth, props.selected, true)};
+      calculateLeftPadding(props.nodeType, props.depth)};
+    margin-inline-start: ${props =>
+      calculateLeftPadding(props.nodeType, props.depth, true)};
+
+    ${props =>
+      props.selected &&
+      css`
+        &:before {
+          position: absolute;
+          background-color: ${props.isInverse
+            ? props.theme.colors.tertiary500
+            : props.theme.colors.primary500};
+          block-size: 100%;
+          content: '';
+          inline-size: ${props.theme.spaceScale.spacing02};
+          inset-block-start: 0;
+          inset-inline-start: 0;
+        }
+      `}
 
     &:hover {
       background: ${props =>
@@ -209,7 +218,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.single
         ? selectedItems?.[0] === itemId
         : null;
-        
+
     const checkedItem =
       selectable === TreeViewSelectable.multi
         ? checkedStatusToBoolean(checkedStatus)
@@ -225,6 +234,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         isInverse={isInverse}
         style={labelStyle}
         id={`${itemId}-label`}
+        data-testid={`${itemId}-label`}
         onClick={(e: any) => {
           if (selectable === TreeViewSelectable.single && !isDisabled) {
             // console.log('labelText clicked - single select');
@@ -238,6 +248,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             isInverse={isInverse}
             theme={theme}
             isDisabled={isDisabled}
+            data-testid={`${itemId}-icon`}
           >
             {icon || defaultIcon}
           </IconWrapper>
@@ -249,11 +260,15 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
       id: `${itemId}-checkbox`,
+      testId: `${itemId}-checkbox`,
       labelText: labelText,
       onChange: checkboxChangeHandler,
       disabled: isDisabled,
       inputStyle: { marginRight: theme.spaceScale.spacing03 },
-      labelStyle: { paddingTop: theme.spaceScale.spacing02, paddingBottom: theme.spaceScale.spacing02},
+      labelStyle: {
+        paddingTop: theme.spaceScale.spacing02,
+        paddingBottom: theme.spaceScale.spacing02,
+      },
       tabIndex: -1,
     };
 
@@ -270,19 +285,20 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         return true;
       } else if (
         selectable === TreeViewSelectable.multi &&
-        selectedItems?.[0]?.id === itemId
+        selectedItems?.[0] === itemId
       ) {
+        // TODO: the problem here is that selectedItems is not sorted...
         return true;
       } else if (selectable === TreeViewSelectable.off) {
         if (nodeType === TreeNodeType.branch) {
-          // TODO:  missing logic so that it's only the first one
+          // TODO: missing logic so that it's only the first one
           return true;
         }
       } else {
         // focus first item in all other cases (selectable is off, no item is selected)
-        // return (
-        //   treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
-        // );
+        return (
+          treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
+        );
       }
     };
 
@@ -328,7 +344,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 isDisabled={isDisabled}
                 isInverse={isInverse}
                 aria-hidden={Boolean(!expanded)}
-                data-testid={`${testId}-expand`}
+                data-testid={`${itemId}-expand`}
                 onClick={event => {
                   if (!isDisabled && selectable !== TreeViewSelectable.off) {
                     onExpandedClicked(event);
