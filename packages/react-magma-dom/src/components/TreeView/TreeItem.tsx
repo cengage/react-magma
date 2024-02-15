@@ -24,13 +24,12 @@ import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
 
 import {
-  calculateLeftPadding,
+  calculateOffset,
   TreeNodeType,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
 } from './utils';
 import { transparentize } from 'polished';
-import { toCamelCase } from '../../utils';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -58,9 +57,7 @@ const StyledTreeItem = styled.li<{
   position: relative;
 
   padding-inline-start: ${props =>
-    calculateLeftPadding(props.nodeType, props.depth)};
-  margin-inline-start: ${props =>
-    calculateLeftPadding(props.nodeType, props.depth, true)};
+    calculateOffset(props.nodeType, props.depth)};
 
   > div:first-of-type {
     background: ${props =>
@@ -68,11 +65,12 @@ const StyledTreeItem = styled.li<{
         ? transparentize(0.7, props.theme.colors.neutral900)
         : props.selected &&
           transparentize(0.92, props.theme.colors.neutral900)};
+    position: relative;
 
     padding-inline-start: ${props =>
-      calculateLeftPadding(props.nodeType, props.depth)};
-    margin-inline-start: ${props =>
-      calculateLeftPadding(props.nodeType, props.depth, true)};
+      calculateOffset(props.nodeType, props.depth, true)};
+    margin-inline-start:${props =>
+      calculateOffset(props.nodeType, props.depth, true, true)};
 
     ${props =>
       props.selected &&
@@ -92,11 +90,16 @@ const StyledTreeItem = styled.li<{
 
     &:hover {
       background: ${props =>
-        !props.isDisabled &&
+        !props.isDisabled && props.selectableType !== TreeViewSelectable.off &&
         transparentize(0.95, props.theme.colors.neutral900)};
     }
   }
 `;
+
+// padding-inline-start: ${props =>
+//   calculateOffset(props.nodeType, props.depth)};
+// margin-inline-start: ${props =>
+//   calculateOffset(props.nodeType, props.depth, true)};
 
 const IconWrapper = styled.span<{
   theme?: ThemeInterface;
@@ -105,7 +108,7 @@ const IconWrapper = styled.span<{
 }>`
   color: ${props =>
     getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
-  margin-right: ${props => props.theme.spaceScale.spacing04};
+  margin-right: ${props => props.theme.spaceScale.spacing03};
   margin-left: 0px;
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
@@ -133,7 +136,7 @@ const StyledExpandWrapper = styled.div<{
 }>`
   display: inline-block;
   vertical-align: middle;
-  margin-right: ${props => props.theme.spaceScale.spacing02};
+  margin-right: ${props => props.theme.spaceScale.spacing03};
   color: ${props =>
     getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
   border-radius: 0;

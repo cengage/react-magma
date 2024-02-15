@@ -5,8 +5,7 @@ export enum TreeViewSelectable {
   off = 'off',
   single = 'single',
   multi = 'multi',
-};
-
+}
 
 export interface UseTreeViewProps {
   /**
@@ -16,14 +15,14 @@ export interface UseTreeViewProps {
    */
   initialExpandedItems?: Array<string>;
   /**
-   * TODO: this will be part of a fast follow
    * Array list of itemIds of items that should be selected by default
+   * * @default [] (no items selected)
    */
   initialSelectedItems?: Array<string>;
   isInverse?: boolean;
   /**
-   * Type of selectable for the tree view: off, single, multi
-   * @default TreeViewSelectable.off
+   * How many items can be selected in the tree view: single, multi, off
+   * @default TreeViewSelectable.single
    */
   selectable?: TreeViewSelectable;
   /**
@@ -71,7 +70,7 @@ export interface TreeViewContextInterface {
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
-  selectable: TreeViewSelectable.off,
+  selectable: TreeViewSelectable.single,
   hasIcons: false,
   setHasIcons: () => {},
   selectedItems: [],

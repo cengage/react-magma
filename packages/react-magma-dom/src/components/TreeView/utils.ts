@@ -17,27 +17,26 @@ export enum TreeNodeType {
  * Each level after that adds 24px of left padding.
  * 8, 32, 56, 80, 104, etc.
  */
-export function calculateLeftPadding(
+export function calculateOffset(
   type: TreeNodeType,
   depth: number = 0,
+  label: boolean = false,
   negative: boolean = false
 ) {
   let padding = 0;
 
   if (type === TreeNodeType.leaf) {
-    if (depth === 0) {
-      if (negative) {
-        // padding = 40;
-        padding = 8;
-      } else {
-        // padding = 54;
-        padding = 20;
-      }
+    if (label) {
+      padding = depth * 8 + 40;
+    } else if (depth === 0) {
+      padding = 40;
     } else {
       padding = 56;
     }
   } else if (type === TreeNodeType.branch) {
-    if (depth === 0) {
+    if (label) {
+      padding = depth * 8 + 8;
+    } else if (depth === 0) {
       padding = 8;
     } else {
       padding = 24;
@@ -72,13 +71,12 @@ export function getTreeItemWrapperCursor(
   if (disabled) {
     return 'not-allowed';
   }
-  if (nodeType === TreeNodeType.branch) {
-    if (
-      selectable === TreeViewSelectable.off ||
-      selectable === TreeViewSelectable.single
-    ) {
-      return 'pointer';
-    }
+  if (
+    (nodeType === TreeNodeType.branch &&
+      selectable === TreeViewSelectable.off) ||
+    selectable === TreeViewSelectable.single
+  ) {
+    return 'pointer';
   }
 
   return 'default';

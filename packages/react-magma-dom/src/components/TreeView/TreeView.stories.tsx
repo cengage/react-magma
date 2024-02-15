@@ -6,7 +6,8 @@ import { ArticleIcon, FolderIcon, FavoriteIcon } from 'react-magma-icons';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
 import { Paragraph } from '../Paragraph';
-import { Tag, TagSize } from '../..';
+import { Tag, TagSize, Button, Flex, FlexBehavior } from '../..';
+import { ButtonSize } from '../Button';
 
 export default {
   component: TreeView,
@@ -29,7 +30,6 @@ export default {
       control: 'object',
       defaultValue: [],
     },
-    onClick: { action: 'clicked' },
     onExpandedChange: { action: 'expanded changed' },
     onSelectedItemChange: { action: 'selected item changed' },
   },
@@ -40,7 +40,11 @@ export const Default = args => {
 
   function onSelection(items) {
     const allTags = items.map((i: any, key) => {
-      return <Tag key={key} size={TagSize.small}>{i}</Tag>
+      return (
+        <Tag key={key} size={TagSize.small}>
+          {i}
+        </Tag>
+      );
     });
     setSelectedItems(allTags);
   }
@@ -180,11 +184,10 @@ export const Default = args => {
           </TreeItem>
         </TreeView>
       </Card>
-      <br/>
-      {
-      args.selectable !== TreeViewSelectable.off &&
-      (<>Selected: {selectedItems}</>)
-    }
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>Selected: {selectedItems}</>
+      )}
     </>
   );
 };
@@ -202,64 +205,69 @@ export const NoIcons = args => {
 
   function onSelection(items) {
     const allTags = items.map((i: any, key) => {
-      return <Tag key={key} size={TagSize.small}>{i}</Tag>
+      return (
+        <Tag key={key} size={TagSize.small}>
+          {i}
+        </Tag>
+      );
     });
     setSelectedItems(allTags);
   }
 
   return (
     <>
-    <Card isInverse={args.isInverse}>
-      <TreeView {...args} onSelectedItemChange={onSelection}>
-        <TreeItem label={<>Home</>} itemId="home">
-          <TreeItem label={<>Bath</>} itemId="bath">
-            <TreeItem label={<>Bathroom Storage</>} itemId="bath">
-              <TreeItem label={<>Item 1</>} itemId="bath-1" />
-              <TreeItem label={<>Item 2</>} itemId="bath-2" />
+      <Card isInverse={args.isInverse}>
+        <TreeView {...args} onSelectedItemChange={onSelection}>
+          <TreeItem label={<>Home</>} itemId="home">
+            <TreeItem label={<>Bath</>} itemId="bath">
+              <TreeItem label={<>Bathroom Storage</>} itemId="bath">
+                <TreeItem label={<>Item 1</>} itemId="bath-1" />
+                <TreeItem label={<>Item 2</>} itemId="bath-2" />
+              </TreeItem>
+              <TreeItem
+                label={<>Shower Curtains & Accessories</>}
+                itemId="shower"
+              />
+              <TreeItem label={<>Bath Towels</>} itemId="towels">
+                <TreeItem label={<>Item 1</>} itemId="towels-1" />
+                <TreeItem label={<>Item 2</>} itemId="towels-2" isDisabled />
+              </TreeItem>
             </TreeItem>
-            <TreeItem
-              label={<>Shower Curtains & Accessories</>}
-              itemId="shower"
-            />
-            <TreeItem label={<>Bath Towels</>} itemId="towels">
-              <TreeItem label={<>Item 1</>} itemId="towels-1" />
-              <TreeItem label={<>Item 2</>} itemId="towels-2" isDisabled/>
+            <TreeItem label={<>Bedding</>} itemId="bedding">
+              <TreeItem label={<>Item 1</>} itemId="bedding-1" />
+              <TreeItem label={<>Item 2</>} itemId="bedding-2" />
+            </TreeItem>
+            <TreeItem label={<>Arts & Crafts</>} itemId="arts" />
+            <TreeItem label={<>Storage & Organization</>} itemId="storage">
+              <TreeItem label={<>Item 1</>} itemId="storage-1" />
+              <TreeItem label={<>Item 2</>} itemId="storage-2" />
             </TreeItem>
           </TreeItem>
-          <TreeItem label={<>Bedding</>} itemId="bedding">
-            <TreeItem label={<>Item 1</>} itemId="bedding-1" />
-            <TreeItem label={<>Item 2</>} itemId="bedding-2" />
+          <TreeItem label={<>Furniture</>} itemId="furniture">
+            <TreeItem label={<>Item 1</>} itemId="furniture-1" />
+            <TreeItem label={<>Item 2</>} itemId="furniture-2" />
           </TreeItem>
-          <TreeItem label={<>Arts & Crafts</>} itemId="arts" />
-          <TreeItem label={<>Storage & Organization</>} itemId="storage">
-            <TreeItem label={<>Item 1</>} itemId="storage-1" />
-            <TreeItem label={<>Item 2</>} itemId="storage-2" />
+          <TreeItem label={<>Kitchen & Dining</>} itemId="kitchen" />
+          <TreeItem label={<>Patio & Garden</>} itemId="patio">
+            <TreeItem label={<>Item 1</>} itemId="patio-1" />
+            <TreeItem label={<>Item 2</>} itemId="patio2" />
           </TreeItem>
-        </TreeItem>
-        <TreeItem label={<>Furniture</>} itemId="furniture">
-          <TreeItem label={<>Item 1</>} itemId="furniture-1" />
-          <TreeItem label={<>Item 2</>} itemId="furniture-2" />
-        </TreeItem>
-        <TreeItem label={<>Kitchen & Dining</>} itemId="kitchen" />
-        <TreeItem label={<>Patio & Garden</>} itemId="patio">
-          <TreeItem label={<>Item 1</>} itemId="patio-1" />
-          <TreeItem label={<>Item 2</>} itemId="patio2" />
-        </TreeItem>
-      </TreeView>
-    </Card>
-    <br/>
-    {
-      args.selectable !== TreeViewSelectable.off &&
-      (<>Selected: {selectedItems}</>)
-    }
+        </TreeView>
+      </Card>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>Selected: {selectedItems}</>
+      )}
     </>
   );
 };
 
 export const Textbook = args => {
   return (
-    <Card isInverse={args.isInverse}>
-      <Paragraph id="ah-textbook">Art History Textbook</Paragraph>
+    <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
+      <Paragraph id="ah-textbook" isInverse={args.isInverse} noTopMargin>
+        Art History Textbook
+      </Paragraph>
       <TreeView {...args} ariaLabelledBy={'ah-textbook'}>
         <TreeItem
           label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
@@ -330,129 +338,200 @@ export const Simple = args => {
 
   function onSelection(items) {
     const allTags = items.map((i: any, key) => {
-      return <Tag key={key} size={TagSize.small}>{i}</Tag>
+      return (
+        <Tag key={key} size={TagSize.small}>
+          {i}
+        </Tag>
+      );
     });
     setSelectedItems(allTags);
   }
   return (
     <>
-    <TreeView {...args} onSelectedItemChange={onSelection}>
-      <TreeItem label="0.0" itemId="0.0" />
-      <TreeItem label="0.1" itemId="0.1">
-        <TreeItem label="0.1.1" itemId="0.1.1" />
-        <TreeItem label="0.1.2" itemId="0.1.2">
-          <TreeItem label="0.1.2.1" itemId="0.1.2.1" />
-          <TreeItem label="0.1.2.2" itemId="0.1.2.2">
-            <TreeItem label="0.1.2.2.1" itemId="0.1.2.2.1" />
-            <TreeItem label="0.1.2.2.2" itemId="0.1.2.2.2">
-              <TreeItem label="0.1.2.2.2.1" itemId="0.1.2.2.2.1" />
-              <TreeItem label="0.1.2.2.2.2" itemId="0.1.2.2.2.2">
-                <TreeItem label="0.1.2.2.2.2.1" itemId="0.1.2.2.2.2.1" />
+      <TreeView {...args} onSelectedItemChange={onSelection}>
+        <TreeItem label="0.0" itemId="0.0" />
+        <TreeItem label="0.1" itemId="0.1">
+          <TreeItem label="0.1.1" itemId="0.1.1" />
+          <TreeItem label="0.1.2" itemId="0.1.2">
+            <TreeItem label="0.1.2.1" itemId="0.1.2.1" />
+            <TreeItem label="0.1.2.2" itemId="0.1.2.2">
+              <TreeItem label="0.1.2.2.1" itemId="0.1.2.2.1" />
+              <TreeItem label="0.1.2.2.2" itemId="0.1.2.2.2">
+                <TreeItem label="0.1.2.2.2.1" itemId="0.1.2.2.2.1" />
+                <TreeItem label="0.1.2.2.2.2" itemId="0.1.2.2.2.2">
+                  <TreeItem label="0.1.2.2.2.2.1" itemId="0.1.2.2.2.2.1" />
+                </TreeItem>
               </TreeItem>
             </TreeItem>
           </TreeItem>
         </TreeItem>
-      </TreeItem>
-    </TreeView>
-    <br/>
-    {
-      args.selectable !== TreeViewSelectable.off &&
-      (<>Selected: {selectedItems}</>)
-    }
+      </TreeView>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>Selected: {selectedItems}</>
+      )}
     </>
   );
 };
 
-export const UseDefaultIcon = args => {
+Simple.parameters = { controls: { exclude: ['isInverse'] } };
+
+export const DefaultIcon = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
 
   function onSelection(items) {
     const allTags = items.map((i: any, key) => {
-      return <Tag key={key} size={TagSize.small}>{i}</Tag>
+      return (
+        <Tag key={key} size={TagSize.small}>
+          {i}
+        </Tag>
+      );
     });
     setSelectedItems(allTags);
   }
 
   return (
     <>
-    <TreeView {...args} onSelectedItemChange={onSelection}>
-      <TreeItem
-        label={<>I have an icon</>}
-        icon={<FavoriteIcon />}
-        labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
-        style={{ background: magma.colors.info100 }}
-        onClick={() => console.log('item clicked')}
-        itemId="1"
-      />
-      <TreeItem
-        label={<>Branch with no icon</>}
-        onClick={() => console.log('item clicked')}
-        itemId="2"
-      >
+      <TreeView {...args} onSelectedItemChange={onSelection}>
         <TreeItem
-          label={<>I am a leaf without an icon</>}
-          style={{ background: magma.colors.info200 }}
-          onClick={() => console.log('item clicked')}
-          itemId="3"
-        />
-        <TreeItem
-          label={<>I have an icon too</>}
+          label={<>I have an icon</>}
           icon={<FavoriteIcon />}
+          labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
+          style={{ background: magma.colors.info100 }}
           onClick={() => console.log('item clicked')}
-          itemId="4"
+          itemId="1"
         />
-      </TreeItem>
-    </TreeView>
-    <br/>
-    {
-      args.selectable !== TreeViewSelectable.off &&
-      (<>Selected: {selectedItems}</>)
-    }
-  </>
+        <TreeItem
+          label={<>Branch with no icon</>}
+          onClick={() => console.log('item clicked')}
+          itemId="2"
+        >
+          <TreeItem
+            label={<>I am a leaf without an icon</>}
+            style={{ background: magma.colors.info200 }}
+            onClick={() => console.log('item clicked')}
+            itemId="3"
+          />
+          <TreeItem
+            label={<>I have an icon too</>}
+            icon={<FavoriteIcon />}
+            onClick={() => console.log('item clicked')}
+            itemId="4"
+          />
+        </TreeItem>
+      </TreeView>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>Selected: {selectedItems}</>
+      )}
+    </>
   );
 };
 
-export const Other = args => {
+DefaultIcon.parameters = { controls: { exclude: ['isInverse'] } };
+
+export const FirstItemLeaf = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
 
   function onSelection(items) {
     const allTags = items.map((i: any, key) => {
-      return <Tag key={key} size={TagSize.small}>{i}</Tag>
+      return (
+        <Tag key={key} size={TagSize.small}>
+          {i}
+        </Tag>
+      );
     });
     setSelectedItems(allTags);
   }
 
   return (
     <>
-    <TreeView {...args} onSelectedItemChange={onSelection}>
-    <TreeItem label="Node 0" itemId="item0" testId="item0" />
-    <TreeItem label="Node 1" itemId="item1" testId="item1">
-        <TreeItem label="Child 1" itemId="item-child1">
-          <TreeItem label="Grandchild 1" itemId="item-gchild1">
-            <TreeItem label="Great-grandchild 1" itemId="item-ggchild1" />
+      <TreeView {...args} onSelectedItemChange={onSelection}>
+        <TreeItem label="Node 0" itemId="item0" testId="item0" />
+        <TreeItem label="Node 1" itemId="item1" testId="item1">
+          <TreeItem label="Child 1" itemId="item-child1">
+            <TreeItem label="Grandchild 1" itemId="item-gchild1">
+              <TreeItem label="Great-grandchild 1" itemId="item-ggchild1" />
+            </TreeItem>
           </TreeItem>
         </TreeItem>
-      </TreeItem>
-      <TreeItem label="Node 2" itemId="item2">
-        <TreeItem label="Child 2" itemId="item-child2">
-          <TreeItem label="Grandchild 2" itemId="item-gchild2">
-            <TreeItem label="Great-grandchild 2" itemId="item-ggchild2" />
-            <TreeItem label="Great-grandchild 3" itemId="item-ggchild3" />
+        <TreeItem label="Node 2" itemId="item2">
+          <TreeItem label="Child 2" itemId="item-child2">
+            <TreeItem label="Grandchild 2" itemId="item-gchild2">
+              <TreeItem label="Great-grandchild 2" itemId="item-ggchild2" />
+              <TreeItem label="Great-grandchild 3" itemId="item-ggchild3" />
+            </TreeItem>
           </TreeItem>
         </TreeItem>
-      </TreeItem>
-      <TreeItem label="Node 3" itemId="item3" />
-    </TreeView>
-    <br/>
-    {
-      args.selectable !== TreeViewSelectable.off &&
-      (<>Selected: {selectedItems}</>)
-    }
+        <TreeItem label="Node 3" itemId="item3" />
+      </TreeView>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>Selected: {selectedItems}</>
+      )}
     </>
   );
 };
 
-Other.args = {
+FirstItemLeaf.args = {
   initialExpandedItems: ['item1', 'item2', 'item-child2'],
   initialSelectedItems: ['item6'],
 };
+
+FirstItemLeaf.parameters = { controls: { exclude: ['isInverse'] } };
+
+export const Flat = args => {
+  return (
+    <TreeView {...args} style={{ width: '100%' }}>
+      <TreeItem
+        label="Node 0"
+        itemId="item0"
+        style={{ background: magma.colors.neutral200 }}
+      />
+      <TreeItem
+        label={
+          <Flex behavior={FlexBehavior.container} style={{ width: '100%' }}>
+            <span style={{ flex: '1 1 auto' }}>Node 1</span>
+            <span style={{ flex: '0 0 auto' }}>
+              <Button
+                size={ButtonSize.small}
+                onClick={() => {
+                  console.log('action button clicked');
+                }}
+              >
+                Action
+              </Button>
+            </span>
+          </Flex>
+        }
+        itemId="item1"
+      />
+      <TreeItem
+        label={
+          <Flex behavior={FlexBehavior.container} style={{ width: '100%' }}>
+            <span style={{ flex: '1 1 auto' }}>Node 2</span>
+            <span style={{ flex: '0 0 auto' }}>
+              <Button
+                size={ButtonSize.small}
+                onClick={() => {
+                  console.log('action button clicked');
+                }}
+              >
+                Action
+              </Button>
+            </span>
+          </Flex>
+        }
+        itemId="item2"
+        style={{ background: magma.colors.neutral200 }}
+      />
+      <TreeItem label="Node 3" itemId="item3" />
+    </TreeView>
+  );
+};
+
+Flat.args = {
+  selectable: TreeViewSelectable.off,
+};
+
+Flat.parameters = { controls: { exclude: ['isInverse'] } };

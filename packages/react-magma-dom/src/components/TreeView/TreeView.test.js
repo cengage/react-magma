@@ -140,7 +140,7 @@ describe('TreeView', () => {
     });
   });
 
-  describe('selectable', () => {
+  describe.skip('selectable', () => {
     it('when set to TreeViewSelectable.single, only one TreeItems is selectable', () => {});
 
     it('when set to TreeViewSelectable.multi, TreeItems have checkboxes', () => {});

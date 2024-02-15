@@ -6,7 +6,7 @@ import { render } from '@testing-library/react';
 const TEXT = 'Test Text';
 const testId = 'test-id';
 
-xdescribe('TreeItem', () => {
+describe.skip('TreeItem', () => {
   it('should render the component', () => {
     const { container, getByText } = render(
       <TreeItem label={TEXT} testId={testId} />

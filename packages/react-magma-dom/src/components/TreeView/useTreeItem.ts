@@ -201,7 +201,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   React.useEffect(() => {
     if (selectable === TreeViewSelectable.single && initialSelectedItems) {
-      if (initialSelectedItems?.[0].includes(itemId) && !isDisabled) {
+      if (initialSelectedItems?.[0]?.includes(itemId) && !isDisabled) {
         setSelectedItems([itemId]);
       }
     } else if (
@@ -304,7 +304,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           statusFromChildren === IndeterminateCheckboxStatus.checked ||
           statusFromChildren === IndeterminateCheckboxStatus.indeterminate
         ) {
-          if (itemId && !selectedItems.includes(itemId)) {
+          if (itemId && !selectedItems?.includes(itemId)) {
             setSelectedItems([...selectedItems, itemId]);
           }
         } else if (
@@ -317,7 +317,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         statusUpdatedBy !== StatusUpdatedByOptions.parent &&
         statusFromChildren === IndeterminateCheckboxStatus.indeterminate
       ) {
-        if (!selectedItems.includes(itemId)) {
+        if (!selectedItems?.includes(itemId)) {
           setSelectedItems([...selectedItems, itemId]);
         }
       }
@@ -357,9 +357,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     event: React.ChangeEvent<HTMLInputElement>,
     itemId: any
   ): void => {
-    if (selectedItems.includes(itemId)) {
-      setSelectedItems([])
-    } else {
+    if (!selectedItems?.includes(itemId)) {
       setSelectedItems([itemId]);
     }
   };
@@ -372,7 +370,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       if (event.target.checked) {
         updateParentCheckStatus(index, IndeterminateCheckboxStatus.checked);
 
-        if (!selectedItems.includes(itemId)) {
+        if (!selectedItems?.includes(itemId)) {
           setSelectedItems([...selectedItems, ...childrenIds, itemId]);
         } else {
           const missingChildren = getMissingChildrenIds(
@@ -391,7 +389,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
     } else {
       if (event.target.checked) {
-        if (!selectedItems.includes(itemId)) {
+        if (!selectedItems?.includes(itemId)) {
           setSelectedItems([...selectedItems, itemId]);
         }
       } else if (!event.target.checked) {
