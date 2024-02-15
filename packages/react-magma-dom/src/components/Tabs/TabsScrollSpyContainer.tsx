@@ -89,7 +89,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
     return (
       <StyledTabs
         orientation={TabsOrientation.vertical}
-        testId={`${testId}-Tabs`}
+        testId={testId ? `${testId}-Tabs` : null}
       >
         {options.map(option => (
           <Tab
@@ -98,7 +98,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
             key={option.hash}
             onClick={() => onClick(option)}
             data-scrollspy-id={option.hash}
-            testId={`${testId}-Tab`}
+            testId={testId ? `${testId}-Tab` : null}
           >
             {option.title}
           </Tab>

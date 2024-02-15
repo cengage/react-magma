@@ -292,37 +292,6 @@ ScrollSpy.args = {
 };
 ScrollSpy.parameters = { ...Default.parameters };
 
-const ScrollSpyIconsTemplate: Story<TabsProps> = args => (
-  <TabsScrollSpyContainer isInverse={args.isInverse}>
-    <TabScrollSpyPanel tabLabel="Card 1" icon={<AndroidIcon />}>
-      <Heading level={4}>Area 1</Heading>
-      {scrollContent}
-    </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 2" icon={<AppleIcon />}>
-      <Heading level={4}>Area 2</Heading>
-      {scrollContent}
-    </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 3" icon={<AndroidIcon />}>
-      <Heading level={4}>Area 3</Heading>
-      {scrollContent}
-    </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 4" icon={<AppleIcon />}>
-      <Heading level={4}>Area 4</Heading>
-      {scrollContent}
-    </TabScrollSpyPanel>
-    <TabScrollSpyPanel tabLabel="Card 5" icon={<AndroidIcon />}>
-      <Heading level={4}>Area 5</Heading>
-      {scrollContent}
-    </TabScrollSpyPanel>
-  </TabsScrollSpyContainer>
-);
-
-export const ScrollSpyIcons = ScrollSpyIconsTemplate.bind({});
-ScrollSpy.args = {
-  ...Default.args,
-};
-ScrollSpy.parameters = { ...Default.parameters };
-
 const InverseTemplate: Story<TabsProps> = args => (
   <Card isInverse={args.isInverse}>
     <TabsContainer>
