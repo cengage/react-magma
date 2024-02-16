@@ -17,7 +17,7 @@ import {
   FolderIcon,
   ArticleIcon,
   ExpandMoreIcon,
-  ExpandLessIcon,
+  ChevronRightIcon,
 } from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
 import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
@@ -209,7 +209,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       parentDepth,
       selectedItems,
       ref,
-      // parentCheckedStatus,
     } = contextValue;
 
     let childTreeItemIndex = 0;
@@ -351,7 +350,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   }
                 }}
               >
-                {expanded ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                {expanded ? <ExpandMoreIcon /> : <ChevronRightIcon />}
               </StyledExpandWrapper>
             )}
 
