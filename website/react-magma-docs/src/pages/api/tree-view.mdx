@@ -111,9 +111,10 @@ export function Example() {
           Off
         </ToggleButton>
       </ToggleButtonGroup>
+      <br/>
       <TreeView
         ariaLabel="course-topics"
-        selectable={TreeViewSelectable.multi}
+        selectable={selectableType}
         onSelectedItemChange={onSelection}
       >
       <TreeItem label={<>Arts and Design</>} itemId="arts-design">
@@ -258,10 +259,7 @@ export function Example() {
       <TreeItem label="Node 3" itemId="item10" />
     </TreeView>
     <br/>
-    {
-      selectableType !== TreeViewSelectable.off &&
-      (<>Selected Items: {selectedItems}</>)
-    }
+    <>Selected Items: {selectedItems}</>
     </>
   );
 }

@@ -82,7 +82,7 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
 
 export function useTreeView(props: UseTreeViewProps) {
   const {
-    selectable,
+    selectable = TreeViewSelectable.single,
     onSelectedItemChange,
     onExpandedChange,
     initialExpandedItems,

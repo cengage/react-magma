@@ -27,8 +27,6 @@ const StyledTreeView = styled.ul<TreeViewProps>`
   ul {
     padding: 0;
     margin: 0;
-    // border: 1px solid green;
-    // margin-left: ${props => props.theme.spaceScale.spacing03};
     li {
       margin: 0;
     }

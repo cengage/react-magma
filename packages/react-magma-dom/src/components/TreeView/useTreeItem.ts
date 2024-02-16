@@ -232,6 +232,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   React.useEffect(() => {
     // console.log(itemId, 'selectedItems', selectedItems);
+    // TODO: this gets called on expanded when it shouldn't
     if (selectable !== TreeViewSelectable.off) {
       onSelectedItemChange &&
         typeof onSelectedItemChange === 'function' &&
@@ -490,24 +491,24 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     switch (event.key) {
       case 'ArrowDown': {
-        console.log('down', focusIndex, index);
+        // console.log('down', focusIndex, index);
         focusIndex === arrLength - 1 ? focusFirst() : focusNext();
         break;
       }
       case 'ArrowUp': {
-        console.log('up', focusIndex, index);
+        // console.log('up', focusIndex, index);
         focusIndex === 0 ? focusLast() : focusPrev();
         break;
       }
       case 'ArrowRight': {
         // TODO open parent nodes
-        console.log('right');
+        // console.log('right');
         expandFocusedNode();
         break;
       }
       case 'ArrowLeft': {
         // TODO close open parent nodes
-        console.log('left');
+        // console.log('left');
         collapseFocusedNode();
         break;
       }
@@ -529,22 +530,22 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         break;
       }
       case ' ': {
-        console.log('space pressed');
+        // console.log('space pressed');
         // Toggles the selection state of the focused node.
 
-        // if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
-        //   setExpanded(!expanded);
-        //   // TODO: this collapses the parent
-        // } else if (selectable === TreeViewSelectable.single) {
-        //   if (hasOwnTreeItems) {
-        //     setExpanded(!expanded);
-        //     // TODO: this collapses the parent
-        //   } else {
-        //     setSelectedItems([itemId]);
-        //   }
-        // } else if (selectable === TreeViewSelectable.multi) {
-        //   setSelectedItems([...selectedItems, itemId]);
-        // }
+        if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
+          setExpanded(!expanded);
+          // TODO: this collapses the parent
+        } else if (selectable === TreeViewSelectable.single) {
+          if (hasOwnTreeItems) {
+            setExpanded(!expanded);
+            // TODO: this collapses the parent
+          } else {
+            setSelectedItems([itemId]);
+          }
+        } else if (selectable === TreeViewSelectable.multi) {
+          setSelectedItems([...selectedItems, itemId]);
+        }
         break;
       }
       default:

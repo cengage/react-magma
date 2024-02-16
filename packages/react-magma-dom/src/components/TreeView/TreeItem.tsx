@@ -55,6 +55,7 @@ const StyledTreeItem = styled.li<{
       props.nodeType
     )};
   position: relative;
+  margin-bottom: 0;
 
   padding-inline-start: ${props =>
     calculateOffset(props.nodeType, props.depth)};
@@ -69,8 +70,10 @@ const StyledTreeItem = styled.li<{
 
     padding-inline-start: ${props =>
       calculateOffset(props.nodeType, props.depth, true)};
-    margin-inline-start:${props =>
+    margin-inline-start: ${props =>
       calculateOffset(props.nodeType, props.depth, true, true)};
+    padding-block-end: ${props => props.theme.spaceScale.spacing02};
+    padding-block-start: ${props => props.theme.spaceScale.spacing02};
 
     ${props =>
       props.selected &&
@@ -90,16 +93,12 @@ const StyledTreeItem = styled.li<{
 
     &:hover {
       background: ${props =>
-        !props.isDisabled && props.selectableType !== TreeViewSelectable.off &&
+        !props.isDisabled &&
+        props.selectableType !== TreeViewSelectable.off &&
         transparentize(0.95, props.theme.colors.neutral900)};
     }
   }
 `;
-
-// padding-inline-start: ${props =>
-//   calculateOffset(props.nodeType, props.depth)};
-// margin-inline-start: ${props =>
-//   calculateOffset(props.nodeType, props.depth, true)};
 
 const IconWrapper = styled.span<{
   theme?: ThemeInterface;
@@ -169,7 +168,6 @@ const StyledItemWrapper = styled.div<{
     )};
   &:focus {
     outline-offset: 0;
-    // outline: none;
   }
 `;
 
@@ -269,8 +267,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       disabled: isDisabled,
       inputStyle: { marginRight: theme.spaceScale.spacing03 },
       labelStyle: {
-        paddingTop: theme.spaceScale.spacing02,
-        paddingBottom: theme.spaceScale.spacing02,
+        padding: 0,
       },
       tabIndex: -1,
     };
