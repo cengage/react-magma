@@ -19,6 +19,7 @@ import {
   DropdownMenuItem,
 } from '../Dropdown';
 import { Select } from '../Select';
+import { useFocusLock } from '../..';
 
 const info = {
   component: Modal,
@@ -402,6 +403,72 @@ export const ModalInAModal = () => {
           ]}
         />
         <Spacer size={10} />
+      </Modal>
+    </>
+  );
+};
+
+export const CloseModalWithConfirmation = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [showConfirmationModal, setShowConfirmationModal] =
+    React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+  const focusTrapElement = useFocusLock(!showConfirmationModal && showModal);
+
+  const closeTheModal = () => {
+    setShowConfirmationModal(true);
+  };
+
+  const closeTheConfirmationModal = () => {
+    setShowConfirmationModal(false);
+  };
+
+  const closeBothModals = () => {
+    buttonRef.current.focus();
+    setShowConfirmationModal(false);
+    setShowModal(false);
+  };
+
+  return (
+    <>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+        Show Modal
+      </Button>
+      <Modal
+        header="Modal Title"
+        isModalClosingControlledManually
+        onClose={closeTheModal}
+        isOpen={showModal}
+        ref={focusTrapElement}
+      >
+        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
+        <Paragraph>
+          This is <a href="/">linked text</a> in the modal
+        </Paragraph>
+        <Combobox
+          id="comboboxId3"
+          isMulti
+          labelText="Multi Combobox"
+          defaultItems={[
+            { label: 'Red', value: 'red' },
+            { label: 'Blue', value: 'blue' },
+            { label: 'Green', value: 'green' },
+          ]}
+          placeholder="Hello"
+        />
+      </Modal>
+      <Modal
+        size={ModalSize.small}
+        header="Confirmation Modal"
+        isModalClosingControlledManually
+        onClose={closeTheConfirmationModal}
+        isOpen={showConfirmationModal}
+      >
+        <Paragraph noTopMargin>Close the modal?</Paragraph>
+        <ButtonGroup>
+          <Button onClick={closeBothModals}>Yes, close</Button>
+          <Button onClick={closeTheConfirmationModal}>No, go back</Button>
+        </ButtonGroup>
       </Modal>
     </>
   );
