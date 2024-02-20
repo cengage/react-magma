@@ -12,6 +12,7 @@
   },
   "changesets": [
     "few-hotels-walk",
+    "modal-isModalClosingControlledManually",
     "nativeSelect-testId"
   ]
 }
