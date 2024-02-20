@@ -45,6 +45,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   header?: React.ReactNode;
   /**
+   * If true, closing the modal handled on the consumer side
+   * @default false
+   */
+  isModalClosingControlledManually?: boolean;
+  /**
    * If true, clicking the backdrop will not dismiss the modal
    * @default false
    */
@@ -223,7 +228,14 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const prevOpen = usePrevious(props.isOpen);
 
     React.useEffect(() => {
-      if (!prevOpen && props.isOpen) {
+      if (
+        props.isModalClosingControlledManually &&
+        prevOpen &&
+        !props.isOpen &&
+        isModalOpen
+      ) {
+        setIsModalOpen(false);
+      } else if (!prevOpen && props.isOpen) {
         setIsModalOpen(true);
       } else if (prevOpen && !props.isOpen && isModalOpen) {
         handleClose();
@@ -298,7 +310,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
       setTimeout(() => {
         setIsExiting(false);
-        setIsModalOpen(false);
+
+        if (!props.isModalClosingControlledManually) {
+          setIsModalOpen(false);
+        }
 
         if (lastFocus.current) {
           lastFocus.current.focus();
