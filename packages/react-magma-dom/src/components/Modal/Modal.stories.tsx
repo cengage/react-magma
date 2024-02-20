@@ -466,7 +466,7 @@ export const CloseModalWithConfirmation = () => {
       >
         <Paragraph noTopMargin>Close the modal?</Paragraph>
         <ButtonGroup>
-          <Button onClick={closeBothModals}>Yes, close</Button>
+          <Button onClick={closeBothModals}>Yes</Button>
           <Button onClick={closeTheConfirmationModal}>No, go back</Button>
         </ButtonGroup>
       </Modal>
