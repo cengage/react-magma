@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.3.1-next.1
+
+### Patch Changes
+
+- 9a536bcda: feat(modal): Added new isModalClosingControlledManually property that allows handling closing the modal on the consumer side
+
 ## 4.3.1-next.0
 
 ### Patch Changes
