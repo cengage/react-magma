@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.6-next.3
+
+### Patch Changes
+
+- 731e9c217: build(deps): bump ip from 2.0.0 to 2.0.1
+
 ## 5.0.6-next.2
 
 ### Patch Changes
