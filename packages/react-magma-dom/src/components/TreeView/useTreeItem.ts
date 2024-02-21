@@ -258,22 +258,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   React.useEffect(() => {
-    if (statusUpdatedBy && updateParentCheckStatus) {
+    if (statusUpdatedBy && updateParentCheckStatus && !topLevel) {
       updateParentCheckStatus(index, checkedStatus);
     }
     setStatusUpdatedBy(undefined);
   }, [checkedStatus]);
 
   React.useEffect(() => {
-    // TODO: there's a bug where when selecting index 0, all the items look selected. has something to do with statusUpdatedBy getting set initially
     if (
       parentCheckedStatus &&
       checkedStatus !== parentCheckedStatus &&
       parentCheckedStatus !== IndeterminateCheckboxStatus.indeterminate
+      && !topLevel
     ) {
       setStatusUpdatedBy(StatusUpdatedByOptions.parent);
       setCheckedStatus(isDisabled ? null : parentCheckedStatus);
-
       if (hasOwnTreeItems) {
         if (getAllChildrenEnabled(treeItemChildren)) {
           setChildrenCheckedStatus(
@@ -407,11 +406,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     if (selectable !== TreeViewSelectable.off) {
       if (selectable === TreeViewSelectable.single) {
         singleSelectChangeHandler(event, itemId);
-
-        onClick && typeof onClick === 'function' && onClick();
       } else if (selectable === TreeViewSelectable.multi) {
         multiSelectChangeHandler(event);
       }
+      onClick && typeof onClick === 'function' && onClick();
     }
   };
 

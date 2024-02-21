@@ -2,7 +2,6 @@ import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
 import { TreeViewSelectable } from './useTreeView';
 import React from 'react';
-import { TreeItem } from '.';
 
 export enum TreeNodeType {
   branch = 'branch',

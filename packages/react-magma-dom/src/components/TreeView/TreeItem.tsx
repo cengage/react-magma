@@ -237,9 +237,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         data-testid={`${itemId}-label`}
         onClick={(e: any) => {
           if (selectable === TreeViewSelectable.single && !isDisabled) {
-            // console.log('labelText clicked - single select');
             handleClick(e, itemId);
-            // e.preventDefault();
           }
         }}
       >
@@ -282,31 +280,27 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     };
 
     const focusedItem = () => {
-      // if (selectable === TreeViewSelectable.single && selectedItem) {
-      //   return true;
-      // } else if (
-      //   selectable === TreeViewSelectable.multi &&
-      //   selectedItems?.[0] === itemId
-      // ) {
-      //   // TODO: the problem here is that selectedItems is not sorted...
-      //   return true;
-      // } else if (selectable === TreeViewSelectable.off) {
-      //   if (nodeType === TreeNodeType.branch) {
-      //     // TODO: missing logic so that it's only the first one
-      //     return true;
-      //   }
-      // } else {
-      //   // focus first item in all other cases (selectable is off, no item is selected)
-      //   return (
-      //     treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
-      //   );
-      // }
-
-      return true;
+      // TODO: FIX
+      if (selectable === TreeViewSelectable.single && selectedItem) {
+        return true;
+      } else if (
+        selectable === TreeViewSelectable.multi &&
+        selectedItems?.[0] === itemId
+      ) {
+        // TODO: the problem here is that selectedItems is not sorted...
+        return true;
+      } else if (selectable === TreeViewSelectable.off) {
+        if (nodeType === TreeNodeType.branch) {
+          // TODO: missing logic so that it's only the first one
+          return true;
+        }
+      } else {
+        // focus first item in all other cases (selectable is off, no item is selected)
+        return (
+          treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
+        );
+      }
     };
-
-    // console.log(itemId, 'focusedItem()', focusedItem());
-    
 
     return (
       <TreeItemContext.Provider value={contextValue}>
@@ -343,7 +337,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             isDisabled={isDisabled}
             isInverse={isInverse}
             onClick={event => {
-              if (selectable === TreeViewSelectable.off) {
+              if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
                 onExpandedClicked(event);
               }
             }}

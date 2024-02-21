@@ -4,7 +4,6 @@ import { TreeView, TreeItem, TreeViewSelectable } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import userEvent from '@testing-library/user-event';
-import {FavoriteIcon} from 'react-magma-icons';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -110,6 +109,22 @@ describe('TreeView', () => {
       expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'true');
       expect(getByTestId('item3')).toHaveAttribute('aria-expanded', 'false');
     });
+
+    it('when child item is part of the array, that item is expanded', () => {
+      const { getByTestId } = render(
+        getTreeItemsMultiLevel({
+          initialExpandedItems: ['item2', 'item-child2'],
+        })
+      );
+
+      expect(getByTestId('item1')).toHaveAttribute('aria-expanded', 'false');
+      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'true');
+      expect(getByTestId('item3')).toHaveAttribute('aria-expanded', 'false');
+      expect(getByTestId('item-child2')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+    });
   });
 
   describe('onExpandedChange', () => {
@@ -140,10 +155,181 @@ describe('TreeView', () => {
     });
   });
 
-  describe.skip('selectable', () => {
-    it('when set to TreeViewSelectable.single, only one TreeItems is selectable', () => {});
+  describe('initialSelectedItems', () => {
+    describe('when set to TreeViewSelectable.off,', () => {
+      it('and initialSelectedItems is set to empty, no TreeItem is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: [],
+            selectable: TreeViewSelectable.off,
+          })
+        );
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
 
-    it('when set to TreeViewSelectable.multi, TreeItems have checkboxes', () => {});
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
+      });
+
+      it('and initialSelectedItems is set, no TreeItem is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: ['item2'],
+            selectable: TreeViewSelectable.off,
+          })
+        );
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
+      });
+    });
+
+    describe('when set to TreeViewSelectable.single,', () => {
+      it('and initialSelectedItems is set to empty, no TreeItem is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: [],
+            selectable: TreeViewSelectable.single,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item1')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item3')).toHaveAttribute('aria-selected', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
+      });
+
+      it('and initialSelectedItems is set to one item, that TreeItem is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: ['item2'],
+            selectable: TreeViewSelectable.single,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item1')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-selected', 'true');
+        expect(getByTestId('item3')).toHaveAttribute('aria-selected', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
+      });
+
+      it('and initialSelectedItems is set to multiple items, only the first TreeItem is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: ['item2', 'item0'],
+            selectable: TreeViewSelectable.single,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item1')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-selected', 'true');
+        expect(getByTestId('item3')).toHaveAttribute('aria-selected', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-checked');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
+      });
+    });
+
+    describe('when set to TreeViewSelectable.multi,', () => {
+      it('and initialSelectedItems is set to empty, no TreeItem is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: [],
+            selectable: TreeViewSelectable.multi,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+      });
+
+      it('and initialSelectedItems is set to one item, that TreeItem is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: ['item2'],
+            selectable: TreeViewSelectable.multi,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+      });
+
+      it('and initialSelectedItems is set to multiple items, all the TreeItems are selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            initialSelectedItems: ['item2', 'item0', 'item1'],
+            selectable: TreeViewSelectable.multi,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+      });
+    });
+  });
+
+  describe('selectable', () => {
+    it('by default, selectable is set to TreeViewSelectable.single, and TreeItems do not have checkboxes', () => {
+      const { queryByTestId } = render(getTreeItemsOneLevel({}));
+      expect(queryByTestId('item1-checkbox')).not.toBeInTheDocument();
+    });
+
+    it('when set to TreeViewSelectable.off, TreeItems do not have checkboxes', () => {
+      const { queryByTestId } = render(
+        getTreeItemsOneLevel({
+          selectable: TreeViewSelectable.off,
+        })
+      );
+      expect(queryByTestId('item1-checkbox')).not.toBeInTheDocument();
+    });
+
+    it('when set to TreeViewSelectable.multi, TreeItems have checkboxes', () => {
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({
+          selectable: TreeViewSelectable.multi,
+        })
+      );
+      expect(getByTestId('item1-checkbox')).toBeInTheDocument();
+    });
   });
 
   describe('onSelectedItemChange', () => {
@@ -246,6 +432,78 @@ describe('TreeView', () => {
           'item2',
         ]);
       });
+    });
+  });
+
+  describe('a11y', () => {
+    it('sets the ariaLabel', () => {
+      const testId = 'ariaLabelId';
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({ ariaLabel: 'aria-label-example', testId })
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute(
+        'aria-label',
+        'aria-label-example'
+      );
+    });
+
+    it('sets the ariaLabelledBy', () => {
+      const testId = 'ariaLabelledById';
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({
+          ariaLabelledBy: 'aria-labelled-by-example',
+          testId,
+        })
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute(
+        'aria-labelledby',
+        'aria-labelled-by-example'
+      );
+    });
+
+    it('sets the tree role', () => {
+      const testId = 'treeRoleId';
+      const { getByTestId } = render(getTreeItemsOneLevel({ testId }));
+
+      expect(getByTestId(testId)).toHaveAttribute('role', 'tree');
+    });
+
+    it('when multiselect, sets the aria-multiselectable to true', () => {
+      const testId = 'multiSelectId';
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({ selectable: TreeViewSelectable.multi, testId })
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute(
+        'aria-multiselectable',
+        'true'
+      );
+    });
+
+    it('when select is off, sets the aria-multiselectable to false', () => {
+      const testId = 'multiSelectId2';
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({ selectable: TreeViewSelectable.off, testId })
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute(
+        'aria-multiselectable',
+        'false'
+      );
+    });
+
+    it('when single select, sets the aria-multiselectable to false', () => {
+      const testId = 'multiSelectId3';
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({ selectable: TreeViewSelectable.single, testId })
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute(
+        'aria-multiselectable',
+        'false'
+      );
     });
   });
 
