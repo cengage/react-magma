@@ -2,6 +2,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
 import { TreeViewSelectable } from './useTreeView';
 import React from 'react';
+import { TreeItem } from '.';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -28,6 +29,10 @@ export function calculateOffset(
   if (type === TreeNodeType.leaf) {
     if (label) {
       padding = depth * 8 + 40;
+      if (depth !== 0) {
+        // TODO: once depth is correctly calculated, this should work better
+        padding += depth * 16;
+      }
     } else if (depth === 0) {
       padding = 40;
     } else {
@@ -36,6 +41,10 @@ export function calculateOffset(
   } else if (type === TreeNodeType.branch) {
     if (label) {
       padding = depth * 8 + 8;
+      if (depth !== 0) {
+        // TODO: once depth is correctly calculated, this should work better
+        padding += depth * 16;
+      }
     } else if (depth === 0) {
       padding = 8;
     } else {
@@ -119,10 +128,12 @@ export function getMissingChildrenIds(selectedItems, childrenIds) {
   return childrenIds.filter(itemId => !selectedItems.includes(itemId));
 }
 
+// Return an array of statuses for all enabled children
 export function getChildrenCheckedStatus(childrenIds, status) {
   return childrenIds.map(child => (child.isDisabled ? null : status));
 }
 
+// Return the length of enabled children
 export function getEnabledTreeItemChildrenLength(treeItemChildren) {
   return treeItemChildren.reduce((count, child) => {
     if (!child.props.isDisabled) {
@@ -130,4 +141,13 @@ export function getEnabledTreeItemChildrenLength(treeItemChildren) {
     }
     return count;
   }, 0);
+}
+
+// Return an array of unique items from the previous state, initially selected items and the childrem item ids
+export function getUniqueSelectedItemsArray(
+  prev,
+  initialSelectedItems,
+  childrenItemIds
+) {
+  return Array.from(new Set([...prev, ...initialSelectedItems, ...childrenItemIds]));
 }

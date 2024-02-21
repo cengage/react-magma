@@ -24,7 +24,7 @@ export default {
         type: 'select',
       },
       options: TreeViewSelectable,
-      defaultValue: TreeViewSelectable.off,
+      defaultValue: TreeViewSelectable.single,
     },
     initialExpandedItems: {
       control: 'object',
@@ -79,7 +79,7 @@ export const Default = args => {
                     amet dolor sit amet
                   </>
                 }
-                itemId="2.5"
+                itemId="2ish"
               />
             </TreeItem>
             <TreeItem
@@ -195,8 +195,8 @@ export const Default = args => {
 Default.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ['000', '1', '15'],
-  // initialSelectedItems: ['8'],
+  initialExpandedItems: ['8', '000', '10'],
+  initialSelectedItems: ['8', '000'],
   testId: 'default-example',
 };
 
@@ -250,7 +250,7 @@ export const NoIcons = args => {
           <TreeItem label={<>Kitchen & Dining</>} itemId="kitchen" />
           <TreeItem label={<>Patio & Garden</>} itemId="patio">
             <TreeItem label={<>Item 1</>} itemId="patio-1" />
-            <TreeItem label={<>Item 2</>} itemId="patio2" />
+            <TreeItem label={<>Item 2</>} itemId="patio-2" />
           </TreeItem>
         </TreeView>
       </Card>
@@ -262,20 +262,39 @@ export const NoIcons = args => {
   );
 };
 
+NoIcons.args = {
+  initialExpandedItems: ['home', 'storage'],
+  initialSelectedItems: ['storage-2'],
+};
+
 export const Textbook = args => {
+  const [selectedItems, setSelectedItems] = React.useState(null);
+
+  function onSelection(items) {
+    const allTags = items.map((i: any, key) => {
+      return (
+        <Tag key={key} size={TagSize.small}>
+          {i}
+        </Tag>
+      );
+    });
+    setSelectedItems(allTags);
+  }
+
   return (
+    <>
     <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
       <Paragraph id="ah-textbook" isInverse={args.isInverse} noTopMargin>
         Art History Textbook
       </Paragraph>
-      <TreeView {...args} ariaLabelledBy={'ah-textbook'}>
+      <TreeView {...args} onSelectedItemChange={onSelection}>
         <TreeItem
           label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
           itemId="I-intro"
         >
           <TreeItem
             label={<>Art History in the 21st Century</>}
-            itemId="I-intro"
+            itemId="I-21century"
           >
             <TreeItem
               label={<>The Questions Art Historians Ask</>}
@@ -330,8 +349,17 @@ export const Textbook = args => {
         </TreeItem>
       </TreeView>
     </Card>
+    <br />
+    {args.selectable !== TreeViewSelectable.off && (
+      <>Selected: {selectedItems}</>
+    )}
+    </>
   );
 };
+
+Textbook.args = {
+  ariaLabelledBy: 'ah-textbook'
+}
 
 export const Simple = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);

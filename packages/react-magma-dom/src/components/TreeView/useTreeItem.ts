@@ -13,6 +13,7 @@ import {
   getMissingChildrenIds,
   getChildrenCheckedStatus,
   getEnabledTreeItemChildrenLength,
+  getUniqueSelectedItemsArray,
 } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -189,7 +190,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }
 
   React.useEffect(() => {
-    // TODO: something weird when using both initialSelectedItems & initialExpandedItems
     if (isDisabled || initialExpandedItems?.length === 0) {
       setExpanded(false);
     } else if (initialExpandedItems?.includes(itemId)) {
@@ -208,8 +208,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       selectable === TreeViewSelectable.multi &&
       initialSelectedItems
     ) {
-      const childrenItemIds = getChildrenItemIds(treeItemChildren);
-
+      const childrenItemIds = getChildrenItemIds(children);
       if (
         !isDisabled &&
         (initialSelectedItems?.includes(itemId) ||
@@ -224,14 +223,19 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           childrenItemIds,
           status
         );
-        setSelectedItems([...initialSelectedItems, ...childrenItemIds]);
+        setSelectedItems(prev =>
+          getUniqueSelectedItemsArray(
+            prev,
+            initialSelectedItems,
+            childrenItemIds
+          )
+        );
         setChildrenCheckedStatus(newChildrenCheckedStatus);
       }
     }
   }, [initialSelectedItems]);
 
   React.useEffect(() => {
-    // console.log(itemId, 'selectedItems', selectedItems);
     // TODO: this gets called on expanded when it shouldn't
     if (selectable !== TreeViewSelectable.off) {
       onSelectedItemChange &&
@@ -433,9 +437,17 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   const focusNext = () => {
-    (
-      treeItemRefArray?.current?.[focusIndex + 1].current as HTMLDivElement
-    ).focus();
+    const next = treeItemRefArray?.current?.[focusIndex + 1]
+      .current as HTMLDivElement;
+    console.log('next', next);
+
+    if (next) {
+      next.focus();
+    } else {
+      (
+        treeItemRefArray?.current?.[focusIndex + 2].current as HTMLDivElement
+      ).focus();
+    }
   };
 
   const focusPrev = () => {
@@ -487,11 +499,13 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     const arrLength = treeItemRefArray.current.length;
-    // console.log(focusIndex, event);
+    console.log(focusIndex, event.target);
+    // console.log(treeItemRefArray);
 
     switch (event.key) {
       case 'ArrowDown': {
         // console.log('down', focusIndex, index);
+        event.preventDefault();
         focusIndex === arrLength - 1 ? focusFirst() : focusNext();
         break;
       }
@@ -551,8 +565,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       default:
         return;
     }
-
-    event.preventDefault();
   };
 
   const contextValue = {

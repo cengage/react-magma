@@ -167,7 +167,7 @@ const StyledItemWrapper = styled.div<{
       props.nodeType
     )};
   &:focus {
-    outline-offset: 0;
+    outline-offset: -2px;
   }
 `;
 
@@ -274,32 +274,39 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const onExpandedClicked = (event: React.SyntheticEvent) => {
       setExpanded(state => !state);
 
+      event.preventDefault();
+
       onExpandedChange &&
         typeof onExpandedChange === 'function' &&
         onExpandedChange(event);
     };
 
     const focusedItem = () => {
-      if (selectable === TreeViewSelectable.single && selectedItem) {
-        return true;
-      } else if (
-        selectable === TreeViewSelectable.multi &&
-        selectedItems?.[0] === itemId
-      ) {
-        // TODO: the problem here is that selectedItems is not sorted...
-        return true;
-      } else if (selectable === TreeViewSelectable.off) {
-        if (nodeType === TreeNodeType.branch) {
-          // TODO: missing logic so that it's only the first one
-          return true;
-        }
-      } else {
-        // focus first item in all other cases (selectable is off, no item is selected)
-        return (
-          treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
-        );
-      }
+      // if (selectable === TreeViewSelectable.single && selectedItem) {
+      //   return true;
+      // } else if (
+      //   selectable === TreeViewSelectable.multi &&
+      //   selectedItems?.[0] === itemId
+      // ) {
+      //   // TODO: the problem here is that selectedItems is not sorted...
+      //   return true;
+      // } else if (selectable === TreeViewSelectable.off) {
+      //   if (nodeType === TreeNodeType.branch) {
+      //     // TODO: missing logic so that it's only the first one
+      //     return true;
+      //   }
+      // } else {
+      //   // focus first item in all other cases (selectable is off, no item is selected)
+      //   return (
+      //     treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
+      //   );
+      // }
+
+      return true;
     };
+
+    // console.log(itemId, 'focusedItem()', focusedItem());
+    
 
     return (
       <TreeItemContext.Provider value={contextValue}>
@@ -314,7 +321,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           selected={selectedItem}
           selectableType={selectable}
           id={itemId}
-          onKeyDown={handleKeyDown}
+          onKeyDown={(e) => {
+            // e.preventDefault()
+            handleKeyDown(e);
+          }
+          }
           role="treeitem"
           aria-expanded={hasOwnTreeItems ? expanded : null}
           aria-selected={selectedItem}
