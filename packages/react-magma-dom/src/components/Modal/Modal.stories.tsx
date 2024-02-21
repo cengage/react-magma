@@ -505,3 +505,37 @@ export const Inverse = () => {
     </>
   );
 };
+
+
+export const Esc = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [count, setCount] = React.useState(0);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  React.useEffect(() => {
+    console.log("Count: ", count);
+  }, [count]);
+
+  function handleOnClose() {
+
+    console.log("Count on close:", count);
+    setShowModal(false);
+    buttonRef.current?.focus();
+  }
+
+  function onClick() {
+    setCount((prev) => prev + 1);
+  }
+
+  return (
+    <>
+      <Modal header="Modal Title" onClose={handleOnClose} isOpen={showModal}>
+        <Button onClick={onClick}>Add</Button>
+      </Modal>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+        Show Modal
+        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
+}
