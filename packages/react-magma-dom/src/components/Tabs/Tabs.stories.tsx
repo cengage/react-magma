@@ -22,12 +22,7 @@ import {
 } from '../Dropdown';
 import { Combobox } from '../Combobox';
 import { Select } from '../Select';
-import {
-  EmailIcon,
-  AndroidIcon,
-  NotificationsIcon,
-  AppleIcon,
-} from 'react-magma-icons';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Heading } from '../Heading';
 import { Container } from '../Container';
@@ -288,6 +283,37 @@ const ScrollSpyTemplate: Story<TabsProps> = args => (
 
 export const ScrollSpy = ScrollSpyTemplate.bind({});
 ScrollSpy.args = {
+  ...Default.args,
+};
+ScrollSpy.parameters = { ...Default.parameters };
+
+const ScrollSpyTemplateIcons: Story<TabsProps> = args => (
+  <TabsScrollSpyContainer isInverse={args.isInverse}>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 1">
+      <Heading level={4}>Area 1</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 2">
+      <Heading level={4}>Area 2</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 3">
+      <Heading level={4}>Area 3</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 4">
+      <Heading level={4}>Area 4</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 5">
+      <Heading level={4}>Area 5</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+  </TabsScrollSpyContainer>
+);
+
+export const ScrollSpyIcons = ScrollSpyTemplateIcons.bind({});
+ScrollSpyIcons.args = {
   ...Default.args,
 };
 ScrollSpy.parameters = { ...Default.parameters };

@@ -7,7 +7,7 @@ export interface TabScrollSpyPanelProps
   /*
    * Sets a custom ID on the panel.
    */
-  customId?: string;
+  id?: string;
   /*
    * Disables a navigation Tab.
    */
@@ -18,7 +18,7 @@ export interface TabScrollSpyPanelProps
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
 
   /*
-   * Label for navigation Tab, appears chronologically.
+   * Label for navigation Tab.
    */
   tabLabel: string;
   /**
@@ -31,17 +31,18 @@ export const TabScrollSpyPanel = React.forwardRef<
   HTMLDivElement,
   TabScrollSpyPanelProps
 >((props, ref) => {
-  const { children, customId, tabLabel, testId } = props;
+  const { children, id, tabLabel, testId, ...other } = props;
 
   const tabLabelCamelCase = toCamelCase(tabLabel);
 
   return (
     <section
-      id={customId ? customId : tabLabelCamelCase}
+      id={id ? id : tabLabelCamelCase}
       data-nav-title={tabLabel}
       data-scrollspy
       data-testid={testId}
       ref={ref}
+      {...other}
     >
       {children}
     </section>

@@ -25,9 +25,8 @@ describe('TabScrollSpyPanel', () => {
       </TabsScrollSpyContainer>
     );
 
-    expect(getByTestId(`${testId}-Tab`)).toHaveTextContent(
-      `${tabLabel}-1` && `${tabLabel}-2`
-    );
+    expect(getByTestId(`${testId}-Tab`)).toHaveTextContent(`${tabLabel}-1`);
+    expect(getByTestId(`${testId}-Tab`)).toHaveTextContent(`${tabLabel}-2`);
   });
 
   it(`Should set an icon in each navigation item with 'icon'`, () => {
@@ -42,13 +41,22 @@ describe('TabScrollSpyPanel', () => {
     ).toBeInTheDocument();
   });
 
-  it(`Should set a custom ID with 'customId'`, () => {
+  it(`Should set a disabled state in each navigation item with 'disabled'`, () => {
+    const { getByText } = render(
+      <TabsScrollSpyContainer>
+        <TabScrollSpyPanel tabLabel={tabLabel} disabled />
+      </TabsScrollSpyContainer>
+    );
+
+    expect(getByText(tabLabel).parentElement).toHaveStyleRule(
+      'cursor',
+      'not-allowed'
+    );
+  });
+
+  it(`Should set a custom ID with 'id'`, () => {
     const { container } = render(
-      <TabScrollSpyPanel
-        customId="potato"
-        tabLabel={tabLabel}
-        testId={testId}
-      />
+      <TabScrollSpyPanel id="potato" tabLabel={tabLabel} testId={testId} />
     );
 
     const customId = container.querySelector('section[id="potato"]');
@@ -58,9 +66,7 @@ describe('TabScrollSpyPanel', () => {
 
   it('Tab Panels are compliant with accessibility', () => {
     const { container } = render(
-      <TabScrollSpyPanel aria-label="TabScrollSpyPanel" tabLabel={tabLabel}>
-        {TEXT}
-      </TabScrollSpyPanel>
+      <TabScrollSpyPanel tabLabel={tabLabel}>{TEXT}</TabScrollSpyPanel>
     );
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

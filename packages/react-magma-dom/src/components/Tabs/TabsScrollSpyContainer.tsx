@@ -9,10 +9,6 @@ import { toCamelCase } from '../../utils';
 export interface TabScrollSpyContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /*
-   * Disables a navigation Tab.
-   */
-  disabled?: boolean;
-  /*
    * Adds an icon to the navigation Tab.
    */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
@@ -52,7 +48,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const [isActive, setIsActive] = React.useState(0);
 
-  const [activeIndex, setActiveIndex] = React.useState();
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   //Window scroll override
   React.useEffect(() => {
@@ -63,6 +59,16 @@ export const TabsScrollSpyContainer = React.forwardRef<
   //Sets the active tab state on scroll
   React.useEffect(() => {
     options.map((option: any) => {
+      // const lastIndex = options.length - 1;
+
+      // const scrollBottom =
+      //   window.innerHeight + window.scrollY >=
+      //   document.documentElement.scrollHeight - 600;
+
+      // if (scrollBottom && activeIndex === lastIndex - 1) {
+      //   setActiveIndex(lastIndex);
+      //   console.log('bottom', lastIndex, typeof option.index);
+      // }
       if (option.hash === isActive) {
         setActiveIndex(option.index);
       }
@@ -70,19 +76,21 @@ export const TabsScrollSpyContainer = React.forwardRef<
   }, [isActive]);
 
   const onScrollUpdate = useCallback(
-    (entry, isInVewPort) => {
+    (entry, isInViewPort) => {
       const { target } = entry;
-      if (isInVewPort) {
+
+      if (isInViewPort) {
         setIsActive(toCamelCase(target.id));
       }
     },
     [setIsActive]
   );
 
-  //Prevents smooth page scroll on navigation click
-  function onClick(e) {
+  function onClick(option) {
+    //Prevents smooth page scroll on navigation click
+    window.location.href = `#${option.hash}`;
+    //Allows custom function
     props.onClick && typeof props.onClick === 'function' && props.onClick();
-    window.location.href = `#${e.hash}`;
   }
 
   const ScrollSpyNav = ({ options }) => {
@@ -133,7 +141,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
   return (
     <TabsContainer
       activeIndex={activeIndex}
-      isInverse={isInverse ? true : false}
+      isInverse={isInverse}
       ref={ref}
       testId={testId}
       {...other}
