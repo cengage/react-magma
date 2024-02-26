@@ -23,12 +23,21 @@ export default {
       control: {
         type: 'select',
       },
-      options: TreeViewSelectable,
+      options: [TreeViewSelectable.single, TreeViewSelectable.multi, TreeViewSelectable.off],
       defaultValue: TreeViewSelectable.single,
     },
     initialExpandedItems: {
       control: 'object',
       defaultValue: [],
+    },
+    testId: {
+      control: 'text',
+    },
+    ariaLabel: {
+      control: 'text',
+    },
+    ariaLabelledBy: {
+      control: 'text',
     },
     onExpandedChange: { action: 'expanded changed' },
     onSelectedItemChange: { action: 'selected item changed' },
@@ -53,10 +62,10 @@ export const Default = args => {
     <>
       <Card isInverse={args.isInverse}>
         <TreeView {...args} onSelectedItemChange={onSelection}>
-          <TreeItem label={<>Part 1: Introduction</>} itemId="000" testId="000">
+          <TreeItem label={<>Part 1: Introduction</>} itemId="0" testId="0">
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 1: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
               itemId="1"
               testId="1"
             >
@@ -65,30 +74,19 @@ export const Default = args => {
                 isDisabled
                 label={
                   <>
-                    Chapter 1 child: Lorem ipsum dolor sit amet dolor sit amet
-                    dolor sit amet
+                    Chapter 1 child: Cake donut lemon drops gingerbread
                   </>
                 }
                 itemId="2"
               />
-              <TreeItem
-                icon={<ArticleIcon />}
-                label={
-                  <>
-                    Chapter 2ish child: Lorem ipsum dolor sit amet dolor sit
-                    amet dolor sit amet
-                  </>
-                }
-                itemId="2ish"
-              />
             </TreeItem>
             <TreeItem
-              label={<>Chapter 2: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 2: Chocolate bar ice cream cake liquorice icing tart</>}
               itemId="3"
             />
             <TreeItem
               icon={<FolderIcon />}
-              label={<>Chapter 3: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>}
               isDisabled
               itemId="4"
             >
@@ -96,89 +94,88 @@ export const Default = args => {
                 icon={<ArticleIcon />}
                 label={
                   <>
-                    Section 3.1: Lorem ipsum dolor sit amet dolor sit ametdolor
-                    sit amet
+                    Section 3.1: Topping pudding marshmallow caramels I love pie
                   </>
                 }
                 itemId="5"
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 3.2: Lorem ipsum dolor sit amet</>}
+                label={<>Section 3.2: Tart sweet roll caramels candy canes sweet roll</>}
                 itemId="6"
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 3.3: Lorem ipsum dolor sit amet</>}
+                label={<>Section 3.3: Tart sweet roll caramels candy canes sweet roll</>}
                 itemId="7"
               />
             </TreeItem>
           </TreeItem>
           <TreeItem
             icon={<FolderIcon />}
-            label={<>Part 2: Lorem ipsum dolor sit amet</>}
+            label={<>Part 2: Candy powder carrot cake cotton candy marshmallow caramels croissant I love</>}
             itemId="8"
           >
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 4: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 4: I love carrot cake sweet roll I love liquorice sweet</>}
               itemId="9"
             />
             <TreeItem
               icon={<FolderIcon />}
-              label={<>Chapter 5: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 5: Wafer I love I love sesame snaps I love muffin dragée halvah</>}
               itemId="10"
             >
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 5.1: Lorem ipsum dolor sit amet</>}
+                label={<>Section 5.1: Apple pie apple pie tart macaroon topping chocolate cake</>}
                 itemId="11"
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 5.2: Lorem ipsum dolor sit amet</>}
+                label={<>Section 5.2: Jelly lollipop tart gummies pie croissant sesame snaps sesame snaps</>}
                 itemId="12"
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 5.3: Lorem ipsum dolor sit amet</>}
+                label={<>Section 5.3: Bonbon chocolate bar lollipop lollipop I love chocolate cake cupcake soufflé pie</>}
                 itemId="13"
               />
             </TreeItem>
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 6: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 6: Cupcake dragée I love cookie I love</>}
               itemId="14"
             />
           </TreeItem>
           <TreeItem
             icon={<FolderIcon />}
-            label={<>Part 3: Lorem ipsum dolor sit amet</>}
+            label={<>Part 3: Sugar plum halvah shortbread apple pie I love brownie gummi bears</>}
             itemId="15"
           >
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 7: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 7: Cheesecake lollipop tootsie roll candy canes cupcake I love dessert liquorice</>}
               itemId="16"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 8: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 8: Jelly pastry jelly-o topping cookie carrot cake shortbread</>}
               itemId="17"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 9: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>}
               itemId="18"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 10: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 10: Wafer carrot cake powder candy canes sweet roll bear claw croissant cheesecake tart</>}
               itemId="19"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 11: Lorem ipsum dolor sit amet</>}
+              label={<>Chapter 11: Apple pie chocolate cake tiramisu bonbon I love croissant. I love chupa chups croissant tiramisu toffee cake tart</>}
               itemId="20"
             />
           </TreeItem>
@@ -195,8 +192,8 @@ export const Default = args => {
 Default.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ['8', '000', '10'],
-  initialSelectedItems: ['8', '000'],
+  initialExpandedItems: ['8', '0', '10'],
+  initialSelectedItems: ['8', '0'],
   testId: 'default-example',
 };
 
@@ -563,3 +560,58 @@ Flat.args = {
 };
 
 Flat.parameters = { controls: { exclude: ['isInverse'] } };
+
+
+export const Here = (args) => {
+
+  const testId = 'testId';
+  const labelText = 'labelText';
+  const itemId = 'itemId';
+
+  return (
+    <TreeView testId={testId} {...args}>
+      <TreeItem
+        label='item1'
+        testId='item1'
+        itemId='item1'
+        onClick={() => console.log('43434')}
+        icon={<FavoriteIcon />}
+      >
+        {/* <TreeItem
+          label={`${labelText}-child`}
+          testId={`${testId}-child`}
+          itemId={`${itemId}-child`}
+          icon={<FavoriteIcon />}
+          onClick={() => console.log('child')}
+        /> */}
+      </TreeItem>
+      {/* <TreeItem
+        label='item2'
+        testId='item2'
+        itemId='item2'
+        onClick={() => console.log('43434')}
+        isDisabled
+      >
+        <TreeItem
+          label={`${labelText}-child2`}
+          testId={`${testId}-child2`}
+          itemId={`${itemId}-child2`}
+          icon={<FavoriteIcon />}
+          onClick={() => console.log('child2')}
+        /> */}
+        <TreeItem
+          label={`${labelText}-child3`}
+          testId={`${testId}-child3`}
+          itemId={`${itemId}-child3`}
+          icon={<FavoriteIcon />}
+          onClick={() => console.log('child3')}
+          
+        />
+      {/* </TreeItem> */}
+    </TreeView>
+  );
+}
+
+Here.args = {
+  initialExpandedItems: ['item1', 'item2']
+}

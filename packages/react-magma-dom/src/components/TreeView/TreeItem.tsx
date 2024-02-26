@@ -7,12 +7,11 @@ import { useIsInverse } from '../../inverse';
 import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import {
-  TreeItemContext,
   UseTreeItemProps,
   useTreeItem,
   checkedStatusToBoolean,
 } from './useTreeItem';
-import { TreeViewContext, TreeViewSelectable } from './useTreeView';
+import {TreeViewSelectable } from './useTreeView';
 import {
   FolderIcon,
   ArticleIcon,
@@ -30,6 +29,8 @@ import {
   getTreeItemWrapperCursor,
 } from './utils';
 import { transparentize } from 'polished';
+import { TreeItemContext } from './TreeItemContext';
+import { TreeViewContext } from './TreeViewContext';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -158,8 +159,7 @@ const StyledItemWrapper = styled.div<{
   isDisabled: boolean;
 }>`
   display: flex;
-  align-items: ${props =>
-    props.selectable === TreeViewSelectable.multi ? 'center' : 'flex-start'};
+  align-items: flex-start;
   cursor: ${props =>
     getTreeItemWrapperCursor(
       props.isDisabled,
@@ -234,7 +234,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         isInverse={isInverse}
         style={labelStyle}
         id={`${itemId}-label`}
-        data-testid={`${itemId}-label`}
+        data-testid={`${testId || itemId}-label`}
         onClick={(e: any) => {
           if (selectable === TreeViewSelectable.single && !isDisabled) {
             handleClick(e, itemId);
@@ -246,7 +246,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             isInverse={isInverse}
             theme={theme}
             isDisabled={isDisabled}
-            data-testid={`${itemId}-icon`}
+            data-testid={`${testId || itemId}-icon`}
           >
             {icon || defaultIcon}
           </IconWrapper>
@@ -332,6 +332,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             nodeType={nodeType}
             tabIndex={focusedItem() ? 0 : -1}
             id={`${itemId}-itemwrapper`}
+            data-testid={`${testId || itemId}-itemwrapper`}
             ref={ref}
             depth={itemDepth}
             isDisabled={isDisabled}
@@ -348,7 +349,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 isDisabled={isDisabled}
                 isInverse={isInverse}
                 aria-hidden={Boolean(!expanded)}
-                data-testid={`${itemId}-expand`}
+                data-testid={`${testId || itemId}-expand`}
                 onClick={event => {
                   if (!isDisabled && selectable !== TreeViewSelectable.off) {
                     onExpandedClicked(event);

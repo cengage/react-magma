@@ -1,87 +1,131 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
-import { TreeView, TreeItem } from '.';
-import { render } from '@testing-library/react';
+import { TreeItem } from '.';
+import { render, getByTestId } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { magma } from '../../theme/magma';
+import { transparentize } from 'polished';
 
-const TEXT = 'Test Text';
-const testId = 'test-id';
+const labelText = 'Tree Item Node 0';
+const itemId = 'node0';
+const testId = `${itemId}-tree-item`;
 
-describe.skip('TreeItem', () => {
+describe('TreeItem', () => {
   it('should render the component', () => {
-    const { container, getByText } = render(
-      <TreeItem label={TEXT} testId={testId} />
+    const { getByText } = render(
+      <TreeItem label={labelText} testId={testId} itemId={itemId} />
     );
 
-    expect(getByText(TEXT)).toBeInTheDocument();
+    expect(getByText(labelText)).toBeInTheDocument();
   });
 
   it('should find element by testId', () => {
-    const { getByTestId } = render(<TreeItem label={TEXT} testId={testId} />);
+    const { getByTestId } = render(
+      <TreeItem label={labelText} testId={testId} itemId={itemId} />
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(<TreeItem label={TEXT} testId={testId} />);
+  describe('label', () => {
+    it('the label is visible', () => {
+      const { getByText } = render(
+        <TreeItem label={labelText} testId={testId} itemId={itemId} />
+      );
+      expect(getByText(labelText)).toBeInTheDocument();
+    });
+  });
 
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
+  describe('custom styles', () => {
+    it('labelStyle: styles get applied to the label', () => {
+      const labelColor = '#E0004D';
+
+      const { getByTestId } = render(
+        <TreeItem
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+          labelStyle={{ color: labelColor }}
+        />
+      );
+
+      expect(getByTestId(`${testId}-label`)).toHaveStyle(
+        `color: ${labelColor}`
+      );
+    });
+
+    it('style: styles get applied to the li', () => {
+      const backgroundColor = '#B12FAD';
+
+      const { getByRole } = render(
+        <TreeItem
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+          style={{ backgroundColor: backgroundColor }}
+        />
+      );
+
+      expect(getByRole('treeitem')).toHaveStyle(
+        `backgroundColor: ${backgroundColor}`
+      );
     });
   });
 
   describe('isDisabled', () => {
     it('the label is disabled', () => {
       const { getByTestId } = render(
-        <TreeItem label={TEXT} testId={testId} disabled/>
+        <TreeItem
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+          isDisabled
+        />
       );
 
-      expect(getByTestId(testId)).toBeDisabled();
+      expect(getByTestId(`${testId}-label`)).toHaveStyleRule(
+        'color',
+        transparentize(0.6, magma.colors.neutral500)
+      );
     });
 
     it('the ability to expand the item is disabled', () => {
-      const {getByTestId} = render(
-        <TreeItem label={TEXT} itemId="parent" testId={testId} disabled>
-            <TreeItem label={`${TEXT}-child`} itemId="child" />
-          </TreeItem>
+      const { getByTestId } = render(
+        <TreeItem label={labelText} itemId="parent" testId={testId} isDisabled>
+          <TreeItem
+            label={`${labelText}-child`}
+            testId={`${testId}-child`}
+            itemId="child"
+          />
+        </TreeItem>
       );
 
-      expect(getByTestId(`${testId}-expand`)).toBeDisabled();
+      expect(getByTestId(`${testId}-expand`)).toHaveAttribute(
+        'aria-hidden',
+        'true'
+      );
+      expect(getByTestId(`${testId}-expand`)).toHaveStyleRule(
+        'color',
+        transparentize(0.6, magma.colors.neutral500)
+      );
     });
-
-    it('the checkbox is disabled', () => {});
-
-    it('the item is not clickable', () => {});
-  });
-
-  describe('labelStyle', () => {
-    it('custom styles get applied to the label', () => {});
   });
 
   describe('onClick', () => {
-    it('onClick function gets called when the item is clicked', () => {});
-  });
+    it('gets called when the item is clicked', () => {
+      const onClick = jest.fn();
+      const { getByText } = render(
+        <TreeItem
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+          onClick={onClick}
+        />
+      );
 
-  describe('label', () => {
-    it('the label is visible', () => {});
-  });
+      userEvent.click(getByText(labelText));
 
-  describe('icon', () => {
-    it('icon is visible', () => {});
-
-    it('if the item doe not have an icon but a sibling does, the default icon is visible', () => {});
-  });
-
-  describe('TreeViewSelectable.off', () => {
-    it('', () => {});
-  });
-
-  describe('TreeViewSelectable.single', () => {
-    it('sets the focus to the correct element on load', () => {});
-    it('selects the correct element on load', () => {});
-    it('allows an item to be selected', () => {});
-  });
-
-  describe('TreeViewSelectable.multi', () => {
-    it('', () => {});
+      expect(onClick).toHaveBeenCalled();
+    });
   });
 });

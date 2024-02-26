@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { IconProps } from 'react-magma-icons';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
-import { TreeViewContext, TreeViewSelectable } from './useTreeView';
+import { TreeViewSelectable } from './useTreeView';
 import { TreeItem } from './TreeItem';
-
+import { TreeViewContext } from './TreeViewContext';
 import { useGenerateId, useForkedRef } from '../../utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import {
@@ -74,36 +74,6 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   topLevel?: boolean;
 }
 
-interface TreeItemContextInterface {
-  itemId?: string;
-  /**
-   * Default expanded state
-   * @default: false
-   */
-  expanded: boolean;
-  setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
-  checkedStatus: IndeterminateCheckboxStatus;
-  checkboxChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  numberOfTreeItemChildren: number;
-  hasOwnTreeItems: boolean;
-  updateCheckedStatusFromChild: (
-    index: number,
-    status: IndeterminateCheckboxStatus
-  ) => void;
-  parentDepth: number;
-}
-
-export const TreeItemContext = React.createContext<TreeItemContextInterface>({
-  expanded: false,
-  setExpanded: () => {},
-  checkedStatus: IndeterminateCheckboxStatus.unchecked,
-  checkboxChangeHandler: () => {},
-  hasOwnTreeItems: false,
-  updateCheckedStatusFromChild: () => {},
-  numberOfTreeItemChildren: 0,
-  parentDepth: 0,
-});
-
 const enum StatusUpdatedByOptions {
   checkboxChange = 'checkboxChange',
   parent = 'parent',
@@ -126,6 +96,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     isDisabled = false,
     topLevel,
     itemId,
+    icon,
   } = props;
 
   const {
@@ -181,6 +152,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }, []);
 
   function setTreeViewIconVisibility() {
+    if (treeItemChildren.length === 0 && icon) {
+      setHasIcons(true);
+      return;
+    }
+    
     treeItemChildren.forEach((child: React.ReactElement<any>) => {
       if (child?.props.icon) {
         setHasIcons(true);
@@ -268,8 +244,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     if (
       parentCheckedStatus &&
       checkedStatus !== parentCheckedStatus &&
-      parentCheckedStatus !== IndeterminateCheckboxStatus.indeterminate
-      && !topLevel
+      parentCheckedStatus !== IndeterminateCheckboxStatus.indeterminate &&
+      !topLevel
     ) {
       setStatusUpdatedBy(StatusUpdatedByOptions.parent);
       setCheckedStatus(isDisabled ? null : parentCheckedStatus);

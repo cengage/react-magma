@@ -85,6 +85,10 @@ export function Example() {
     setSelectedItems(allTags);
   }
 
+  React.useEffect(() => {
+    setSelectedItems(null);
+  }, [selectableType]);
+
   return (
     <>
     <ToggleButtonGroup

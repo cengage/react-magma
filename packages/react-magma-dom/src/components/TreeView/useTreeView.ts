@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
 
 export enum TreeViewSelectable {
-  off = 'off',
   single = 'single',
   multi = 'multi',
+  off = 'off',
 }
 
 export interface UseTreeViewProps {
@@ -50,35 +50,6 @@ export interface UseTreeViewProps {
    */
   onExpandedChange?: (event: React.SyntheticEvent) => void;
 }
-
-export interface TreeViewContextInterface {
-  children?: React.ReactNode | React.ReactNode[];
-  hasIcons: boolean;
-  onSelectedItemChange?: (selectedItems: any) => void;
-  onExpandedChange?: (event: React.SyntheticEvent) => void;
-  selectable: TreeViewSelectable;
-  setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedItems: Array<string>;
-  setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
-  initialExpandedItems: Array<string>;
-  initialSelectedItems: Array<string>;
-  treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
-  registerTreeItem: (
-    itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
-    itemRef: React.MutableRefObject<Element>
-  ) => void;
-}
-
-export const TreeViewContext = React.createContext<TreeViewContextInterface>({
-  selectable: TreeViewSelectable.single,
-  hasIcons: false,
-  setHasIcons: () => {},
-  selectedItems: [],
-  setSelectedItems: () => {},
-  initialExpandedItems: [],
-  initialSelectedItems: [],
-  registerTreeItem: (elements, element) => {},
-});
 
 export function useTreeView(props: UseTreeViewProps) {
   const {

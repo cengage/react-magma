@@ -4,6 +4,8 @@ import { TreeView, TreeItem, TreeViewSelectable } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import userEvent from '@testing-library/user-event';
+import { FavoriteIcon } from 'react-magma-icons';
+import { transparentize } from 'polished';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -50,6 +52,22 @@ const getTreeItemsMultiLevel = props => (
     </TreeItem>
     <TreeItem label="Node 3" itemId="item3" testId="item3">
       <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
+    </TreeItem>
+  </TreeView>
+);
+
+const getTreeItemsWithDisabled = (props) => (
+  <TreeView testId={testId} {...props}>
+    <TreeItem label="Node 1" itemId="item1" testId="item1">
+      <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
+    </TreeItem>
+    <TreeItem
+      label="Node 2"
+      itemId="item2"
+      testId="item2"
+      isDisabled
+    >
+      <TreeItem label="Child 2" itemId="item-child2" testId="item-child2" />
     </TreeItem>
   </TreeView>
 );
@@ -151,6 +169,22 @@ describe('TreeView', () => {
       );
 
       userEvent.click(getByTestId('item0'));
+      expect(onExpandedChange).not.toHaveBeenCalled();
+    });
+
+    it('function does not get called when the item is disabled and clicked', () => {
+      const onExpandedChange = jest.fn();
+      const { getByTestId } = render(
+        getTreeItemsWithDisabled(
+          {
+            selectable: TreeViewSelectable.single,
+            initialExpandedItems: ['item1', 'item2'],
+            onExpandedChange
+          }
+        )
+      );
+
+      userEvent.click(getByTestId('item2-itemwrapper'));
       expect(onExpandedChange).not.toHaveBeenCalled();
     });
   });
@@ -287,7 +321,7 @@ describe('TreeView', () => {
         expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
       });
 
-      it('and initialSelectedItems is set to multiple items, all the TreeItems are selected', () => {
+      it('and initialSelectedItems is set to multiple items, all those TreeItems are selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             initialSelectedItems: ['item2', 'item0', 'item1'],
@@ -385,6 +419,25 @@ describe('TreeView', () => {
         userEvent.click(getByTestId('item2-label'));
         expect(onSelectedItemChange).toHaveBeenCalledWith(['item2']);
       });
+
+      it('item is visually selected', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            onSelectedItemChange,
+            selectable: TreeViewSelectable.single,
+          })
+        );
+
+        expect(getByTestId('item1-itemwrapper')).not.toHaveStyleRule(
+          'background'
+        );
+        userEvent.click(getByTestId('item1-label'));
+
+        expect(getByTestId('item1-itemwrapper')).toHaveStyle(
+          `background: ${transparentize(0.92, magma.colors.neutral900)}`
+        );
+      });
     });
 
     describe('when set to TreeViewSelectable.multi,', () => {
@@ -431,6 +484,20 @@ describe('TreeView', () => {
           'item-ggchild3',
           'item2',
         ]);
+      });
+
+      it('items look visually selected', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            onSelectedItemChange,
+            selectable: TreeViewSelectable.multi,
+          })
+        );
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', "false");
+        userEvent.click(getByTestId('item1-checkbox'));
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', "true");
       });
     });
   });
@@ -524,6 +591,80 @@ describe('TreeView', () => {
         'color',
         magma.colors.neutral100
       );
+
+      expect(getByTestId('item1-itemwrapper')).not.toHaveStyleRule(
+        'background'
+      );
+      userEvent.click(getByTestId('item1-label'));
+
+      expect(getByTestId('item1-itemwrapper')).toHaveStyle(
+        `background: ${transparentize(0.7, magma.colors.neutral900)}`
+      );
     });
   });
+
+  describe('TreeItems', () => {
+    const labelText = 'Tree Item Node 0';
+    const itemId = 'node0';
+    const testId = `${itemId}-tree-item`;
+
+    describe('icon', () => {
+      it('icon is visible when the item doesn\'t have treeItemChildren', () => {
+        const { getByTestId } = render(
+          <TreeView testId={testId} initialExpandedItems={[itemId]}>
+            <TreeItem label={labelText} testId={testId} itemId={itemId} icon={<FavoriteIcon />}/>
+          </TreeView>
+        );
+
+        expect(getByTestId(`${testId}-icon`)).toBeInTheDocument();
+      });
+
+      it('icon is visible when the item does have treeItemChildren', () => {
+        const { getByTestId } = render(
+          <TreeView testId={testId} initialExpandedItems={[itemId]}>
+            <TreeItem label={labelText} testId={testId} itemId={itemId} icon={<FavoriteIcon />}>
+            <TreeItem
+                label={`${labelText}-child`}
+                testId={`${testId}-child`}
+                itemId={`${itemId}-child`}
+                icon={<FavoriteIcon />}
+              />
+            </TreeItem>
+          </TreeView>
+        );
+
+        expect(getByTestId(`${testId}-icon`)).toBeInTheDocument();
+      });
+
+      it('if the item does not have an icon but a sibling does, the item has a visible (default) icon', () => {
+        const { getByTestId } = render(
+          <TreeView testId={testId} initialExpandedItems={[itemId]}>
+            <TreeItem label={labelText} testId={testId} itemId={itemId}>
+              <TreeItem
+                label={`${labelText}-child`}
+                testId={`${testId}-child`}
+                itemId={`${itemId}-child`}
+                icon={<FavoriteIcon />}
+              />
+            </TreeItem>
+          </TreeView>
+        );
+
+        expect(getByTestId(`${testId}-icon`)).toBeInTheDocument();
+        expect(getByTestId(`${testId}-child-icon`)).toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('TreeViewSelectable.single', () => {
+    describe.skip('focus state', () => {
+      it('sets the focus to the correct element on load', () => {
+        // expect().toHaveFocus();
+      });
+    });
+  });
+
+  describe('TreeViewSelectable.multi', () => {});
+
+  describe('TreeViewSelectable.off', () => {});
 });

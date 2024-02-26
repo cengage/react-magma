@@ -1,17 +1,15 @@
 import * as React from 'react';
 import styled from '../../theme/styled';
-
 import {
   UseTreeViewProps,
-  TreeViewContext,
   useTreeView,
   TreeViewSelectable,
 } from './useTreeView';
 import { TreeItem } from './TreeItem';
-
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { useTreeItem } from './useTreeItem';
+import { TreeViewContext } from './TreeViewContext';
 
 export interface TreeViewProps
   extends UseTreeViewProps,
@@ -80,7 +78,8 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   treeItemIndex,
                   parentDepth: 0,
                   topLevel: true,
-                  parentCheckedStatus: treeItemContextValue.checkedStatus || null,
+                  parentCheckedStatus:
+                    treeItemContextValue.checkedStatus || null,
                   updateParentCheckStatus:
                     treeItemContextValue.updateCheckedStatusFromChild,
                 });
