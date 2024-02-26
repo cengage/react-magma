@@ -175,15 +175,16 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
   (props, forwardedRef) => {
     const {
       children,
-      treeItemIndex,
       icon,
       index,
-      parentCheckedStatus,
-      updateParentCheckStatus,
-      testId,
-      label,
       isDisabled,
+      label,
       labelStyle,
+      parentCheckedStatus,
+      style,
+      testId,
+      treeItemIndex,
+      updateParentCheckStatus,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -198,17 +199,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     );
 
     const {
-      itemId,
-      expanded,
-      setExpanded,
-      checkedStatus,
       checkboxChangeHandler,
+      checkedStatus,
+      expanded,
       hasOwnTreeItems,
-      updateCheckedStatusFromChild,
       itemDepth,
+      itemId,
       parentDepth,
-      selectedItems,
       ref,
+      selectedItems,
+      setExpanded,
+      updateCheckedStatusFromChild,
     } = contextValue;
 
     let childTreeItemIndex = 0;
@@ -305,56 +306,55 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     return (
       <TreeItemContext.Provider value={contextValue}>
         <StyledTreeItem
-          theme={theme}
-          isInverse={isInverse}
-          hasOwnTreeItems
-          data-testid={testId}
-          nodeType={nodeType}
-          depth={itemDepth}
-          isDisabled={isDisabled}
-          selected={selectedItem}
-          selectableType={selectable}
-          id={itemId}
-          onKeyDown={(e) => {
-            // e.preventDefault()
-            handleKeyDown(e);
-          }
-          }
-          role="treeitem"
+          {...rest}
           aria-expanded={hasOwnTreeItems ? expanded : null}
           aria-selected={selectedItem}
           aria-checked={checkedItem}
-          {...rest}
+          data-testid={testId}
+          depth={itemDepth}
+          hasOwnTreeItems
+          id={itemId}
+          isDisabled={isDisabled}
+          isInverse={isInverse}
+          nodeType={nodeType}
+          onKeyDown={(e) => {
+            handleKeyDown(e);
+          }}
+          role="treeitem"
+          selectableType={selectable}
+          selected={selectedItem}
+          theme={theme}
         >
           <StyledItemWrapper
-            theme={theme}
-            selectable={selectable}
-            nodeType={nodeType}
-            tabIndex={focusedItem() ? 0 : -1}
-            id={`${itemId}-itemwrapper`}
             data-testid={`${testId || itemId}-itemwrapper`}
-            ref={ref}
             depth={itemDepth}
+            id={`${itemId}-itemwrapper`}
             isDisabled={isDisabled}
             isInverse={isInverse}
+            nodeType={nodeType}
             onClick={event => {
               if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
                 onExpandedClicked(event);
               }
             }}
+            ref={ref}
+            selectable={selectable}
+            style={style}
+            tabIndex={focusedItem() ? 0 : -1}
+            theme={theme}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper
-                theme={theme}
-                isDisabled={isDisabled}
-                isInverse={isInverse}
                 aria-hidden={Boolean(!expanded)}
                 data-testid={`${testId || itemId}-expand`}
+                isDisabled={isDisabled}
+                isInverse={isInverse}
                 onClick={event => {
                   if (!isDisabled && selectable !== TreeViewSelectable.off) {
                     onExpandedClicked(event);
                   }
                 }}
+                theme={theme}
               >
                 {expanded ? <ExpandMoreIcon /> : <ChevronRightIcon />}
               </StyledExpandWrapper>
@@ -390,6 +390,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                         index,
                         key: index,
                         treeItemIndex: childTreeItemIndex,
+                        itemDepth,
                         parentDepth,
                         parentCheckedStatus: checkedStatus,
                         updateParentCheckStatus: updateCheckedStatusFromChild,

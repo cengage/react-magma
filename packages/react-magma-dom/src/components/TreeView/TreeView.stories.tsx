@@ -2,7 +2,7 @@ import React from 'react';
 import { TreeView, TreeItem, TreeViewSelectable } from '.';
 import { magma } from '../../theme/magma';
 
-import { ArticleIcon, FolderIcon, FavoriteIcon } from 'react-magma-icons';
+import { ArticleIcon, FolderIcon, FavoriteIcon, StarIcon, EmergencyIcon } from 'react-magma-icons';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
 import { Paragraph } from '../Paragraph';
@@ -419,30 +419,37 @@ export const DefaultIcon = args => {
     <>
       <TreeView {...args} onSelectedItemChange={onSelection}>
         <TreeItem
-          label={<>I have an icon</>}
           icon={<FavoriteIcon />}
-          labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
-          style={{ background: magma.colors.info100 }}
-          onClick={() => console.log('item clicked')}
           itemId="1"
+          label={<>I have an icon</>}
+          labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
         />
         <TreeItem
-          label={<>Branch with no icon</>}
-          onClick={() => console.log('item clicked')}
+          icon={<StarIcon />}
           itemId="2"
+          label={<>I have an icon</>}
+          labelStyle={{ color: magma.colors.danger700, fontWeight: '700' }}
+          style={{ background: magma.colors.info100 }}
+        />
+        <TreeItem
+          itemId="3"
+          label={<>Branch with no icon</>}
         >
           <TreeItem
+            itemId="4"
             label={<>I am a leaf without an icon</>}
-            style={{ background: magma.colors.info200 }}
-            onClick={() => console.log('item clicked')}
-            itemId="3"
+            style={{ background: magma.colors.info100 }}
           />
           <TreeItem
+            icon={<EmergencyIcon />}
+            itemId="5"
             label={<>I have an icon too</>}
-            icon={<FavoriteIcon />}
-            onClick={() => console.log('item clicked')}
-            itemId="4"
-          />
+          >
+            <TreeItem
+              itemId="6"
+              label={<>Child</>}
+            />
+          </TreeItem>
         </TreeItem>
       </TreeView>
       <br />
@@ -560,58 +567,3 @@ Flat.args = {
 };
 
 Flat.parameters = { controls: { exclude: ['isInverse'] } };
-
-
-export const Here = (args) => {
-
-  const testId = 'testId';
-  const labelText = 'labelText';
-  const itemId = 'itemId';
-
-  return (
-    <TreeView testId={testId} {...args}>
-      <TreeItem
-        label='item1'
-        testId='item1'
-        itemId='item1'
-        onClick={() => console.log('43434')}
-        icon={<FavoriteIcon />}
-      >
-        {/* <TreeItem
-          label={`${labelText}-child`}
-          testId={`${testId}-child`}
-          itemId={`${itemId}-child`}
-          icon={<FavoriteIcon />}
-          onClick={() => console.log('child')}
-        /> */}
-      </TreeItem>
-      {/* <TreeItem
-        label='item2'
-        testId='item2'
-        itemId='item2'
-        onClick={() => console.log('43434')}
-        isDisabled
-      >
-        <TreeItem
-          label={`${labelText}-child2`}
-          testId={`${testId}-child2`}
-          itemId={`${itemId}-child2`}
-          icon={<FavoriteIcon />}
-          onClick={() => console.log('child2')}
-        /> */}
-        <TreeItem
-          label={`${labelText}-child3`}
-          testId={`${testId}-child3`}
-          itemId={`${itemId}-child3`}
-          icon={<FavoriteIcon />}
-          onClick={() => console.log('child3')}
-          
-        />
-      {/* </TreeItem> */}
-    </TreeView>
-  );
-}
-
-Here.args = {
-  initialExpandedItems: ['item1', 'item2']
-}

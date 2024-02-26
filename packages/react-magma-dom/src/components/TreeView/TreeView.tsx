@@ -34,14 +34,14 @@ const StyledTreeView = styled.ul<TreeViewProps>`
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
   (props, ref) => {
     const {
-      children,
-      testId,
       ariaLabel,
       ariaLabelledBy,
+      children,
       isInverse: isInverseProp,
-      selectable,
-      onSelectedItemChange,
       onExpandedChange,
+      onSelectedItemChange,
+      selectable,
+      testId,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -60,15 +60,15 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       <InverseContext.Provider value={{ isInverse }}>
         <TreeViewContext.Provider value={contextValue}>
           <StyledTreeView
-            theme={theme}
-            isInverse={isInverse}
-            ref={ref}
-            data-testid={testId}
+            {...rest}
             aria-label={ariaLabel}
             aria-labelledby={ariaLabelledBy}
             aria-multiselectable={selectable === TreeViewSelectable.multi}
+            data-testid={testId}
+            isInverse={isInverse}
+            ref={ref}
             role="tree"
-            {...rest}
+            theme={theme}
           >
             {React.Children.map(children, (child: React.ReactElement<any>) => {
               if (child.type === TreeItem) {
@@ -77,6 +77,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   key: treeItemIndex,
                   treeItemIndex,
                   parentDepth: 0,
+                  itemDepth: 0,
                   topLevel: true,
                   parentCheckedStatus:
                     treeItemContextValue.checkedStatus || null,

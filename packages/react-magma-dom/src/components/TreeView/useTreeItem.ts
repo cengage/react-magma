@@ -60,6 +60,10 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    */
   parentDepth?: number;
   /**
+   * @internal
+   */
+  itemDepth?: number;
+  /**
    * If true, element is disabled
    * @default false
    */
@@ -88,27 +92,28 @@ export const checkedStatusToBoolean = (
 export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const {
     children,
-    parentDepth,
-    index,
-    parentCheckedStatus,
-    updateParentCheckStatus,
-    onClick,
-    isDisabled = false,
-    topLevel,
-    itemId,
     icon,
+    index,
+    isDisabled = false,
+    itemDepth,
+    itemId,
+    onClick,
+    parentCheckedStatus,
+    parentDepth,
+    topLevel,
+    updateParentCheckStatus,
   } = props;
 
   const {
-    setHasIcons,
-    onSelectedItemChange,
-    selectable,
-    selectedItems,
-    setSelectedItems,
     initialExpandedItems,
     initialSelectedItems,
-    treeItemRefArray,
+    onSelectedItemChange,
     registerTreeItem,
+    selectable,
+    selectedItems,
+    setHasIcons,
+    setSelectedItems,
+    treeItemRefArray,
   } = React.useContext(TreeViewContext);
 
   const [expanded, setExpanded] = React.useState(isDisabled);
@@ -126,8 +131,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const numberOfTreeItemChildren =
     getEnabledTreeItemChildrenLength(treeItemChildren);
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
-
-  const itemDepth = parentDepth === 0 && topLevel ? 0 : parentDepth + 1;
 
   const [childrenCheckedStatus, setChildrenCheckedStatus] = React.useState<
     IndeterminateCheckboxStatus[]
@@ -156,7 +159,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setHasIcons(true);
       return;
     }
-    
+
     treeItemChildren.forEach((child: React.ReactElement<any>) => {
       if (child?.props.icon) {
         setHasIcons(true);
@@ -413,7 +416,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const focusNext = () => {
     const next = treeItemRefArray?.current?.[focusIndex + 1]
       .current as HTMLDivElement;
-    console.log('next', next);
 
     if (next) {
       next.focus();
@@ -542,19 +544,19 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   const contextValue = {
-    itemId: itemId || generatedId,
-    expanded,
-    setExpanded,
-    checkedStatus,
     checkboxChangeHandler,
+    checkedStatus,
+    expanded,
     hasOwnTreeItems,
-    updateCheckedStatusFromChild,
-    itemDepth,
-    parentDepth,
+    itemDepth: parentDepth === 0 && topLevel ? 0 : itemDepth + 1,
+    itemId: itemId || generatedId,
     numberOfTreeItemChildren,
-    selectedItems,
     parentCheckedStatus,
+    parentDepth,
     ref,
+    selectedItems,
+    setExpanded,
+    updateCheckedStatusFromChild,
   };
 
   return { contextValue, handleClick, handleKeyDown };
