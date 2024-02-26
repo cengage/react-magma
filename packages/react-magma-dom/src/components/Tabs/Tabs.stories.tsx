@@ -285,7 +285,11 @@ export const ScrollSpy = ScrollSpyTemplate.bind({});
 ScrollSpy.args = {
   ...Default.args,
 };
-ScrollSpy.parameters = { ...Default.parameters };
+ScrollSpy.parameters = {
+  controls: {
+    exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+  },
+};
 
 const ScrollSpyTemplateIcons: Story<TabsProps> = args => (
   <TabsScrollSpyContainer isInverse={args.isInverse}>
@@ -316,7 +320,11 @@ export const ScrollSpyIcons = ScrollSpyTemplateIcons.bind({});
 ScrollSpyIcons.args = {
   ...Default.args,
 };
-ScrollSpy.parameters = { ...Default.parameters };
+ScrollSpyIcons.parameters = {
+  controls: {
+    exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+  },
+};
 
 const InverseTemplate: Story<TabsProps> = args => (
   <Card isInverse={args.isInverse}>

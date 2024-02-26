@@ -5,10 +5,6 @@ import { toCamelCase } from '../../utils';
 export interface TabScrollSpyPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /*
-   * Sets a custom ID on the panel.
-   */
-  id?: string;
-  /*
    * Disables a navigation Tab.
    */
   disabled?: boolean;
@@ -16,7 +12,6 @@ export interface TabScrollSpyPanelProps
    * Adds an icon to the navigation Tab.
    */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
-
   /*
    * Label for navigation Tab.
    */
@@ -31,18 +26,18 @@ export const TabScrollSpyPanel = React.forwardRef<
   HTMLDivElement,
   TabScrollSpyPanelProps
 >((props, ref) => {
-  const { children, id, tabLabel, testId, ...other } = props;
+  const { children, tabLabel, testId, ...other } = props;
 
   const tabLabelCamelCase = toCamelCase(tabLabel);
 
   return (
     <section
-      id={id ? id : tabLabelCamelCase}
+      {...other}
+      id={tabLabelCamelCase}
       data-nav-title={tabLabel}
       data-scrollspy
       data-testid={testId}
       ref={ref}
-      {...other}
     >
       {children}
     </section>

@@ -48,7 +48,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const [isActive, setIsActive] = React.useState(0);
 
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [activeIndex, setActiveIndex] = React.useState();
 
   //Window scroll override
   React.useEffect(() => {
@@ -59,16 +59,19 @@ export const TabsScrollSpyContainer = React.forwardRef<
   //Sets the active tab state on scroll
   React.useEffect(() => {
     options.map((option: any) => {
+      // TODO: Get the last item in the array and set it to active when the user scrolls to the bottom of the page. This helps in cases where more than just the last section is visible, yet the conveyance of the active state should still remain the last item.
+
       // const lastIndex = options.length - 1;
 
-      // const scrollBottom =
-      //   window.innerHeight + window.scrollY >=
-      //   document.documentElement.scrollHeight - 600;
+      // window.onscroll = function (ev) {
+      //   if (
+      //     window.innerHeight + Math.round(window.scrollY) >=
+      //     document.body.offsetHeight
+      //   ) {
+      //     setActiveIndex(lastIndex);
+      //   }
+      // };
 
-      // if (scrollBottom && activeIndex === lastIndex - 1) {
-      //   setActiveIndex(lastIndex);
-      //   console.log('bottom', lastIndex, typeof option.index);
-      // }
       if (option.hash === isActive) {
         setActiveIndex(option.index);
       }
@@ -95,10 +98,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const ScrollSpyNav = ({ options }) => {
     return (
-      <StyledTabs
-        orientation={TabsOrientation.vertical}
-        testId={testId ? `${testId}-Tabs` : null}
-      >
+      <StyledTabs orientation={TabsOrientation.vertical}>
         {options.map(option => (
           <Tab
             disabled={option.disabled}
@@ -106,7 +106,6 @@ export const TabsScrollSpyContainer = React.forwardRef<
             key={option.hash}
             onClick={() => onClick(option)}
             data-scrollspy-id={option.hash}
-            testId={testId ? `${testId}-Tab` : null}
           >
             {option.title}
           </Tab>

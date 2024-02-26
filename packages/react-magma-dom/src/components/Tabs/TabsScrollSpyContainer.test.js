@@ -18,7 +18,7 @@ describe('TabsScrollSpyContainer', () => {
   });
 
   it('Should change the active Tab on click', () => {
-    const { container, getByTestId } = render(
+    const { container } = render(
       <TabsScrollSpyContainer testId={testIdTab}>
         <TabScrollSpyPanel tabLabel={'first'}></TabScrollSpyPanel>
         <TabScrollSpyPanel tabLabel={'second'}></TabScrollSpyPanel>
@@ -50,21 +50,19 @@ describe('TabsScrollSpyContainer', () => {
   });
 
   it('Should set the tabLabel', () => {
-    const { container, getByText, queryByText } = render(
-      <div style={{ height: '20px', width: '200px', overflow: 'auto' }}>
-        <TabsScrollSpyContainer activeIndex="" testId={testId}>
-          <TabScrollSpyPanel tabLabel={'first'}>
-            Content Area One
-          </TabScrollSpyPanel>
-        </TabsScrollSpyContainer>
-      </div>
+    const { getByText } = render(
+      <TabsScrollSpyContainer activeIndex="" testId={testId}>
+        <TabScrollSpyPanel tabLabel={'first'}>
+          Content Area One
+        </TabScrollSpyPanel>
+      </TabsScrollSpyContainer>
     );
 
     expect(getByText('first')).toBeVisible();
   });
 
   it('Should set the icon', () => {
-    const { container, getByText, queryByText } = render(
+    const { container } = render(
       <TabsScrollSpyContainer activeIndex="" testId={testId}>
         <TabScrollSpyPanel tabLabel={'first'} icon={<AndroidIcon />}>
           Content Area One
@@ -83,18 +81,18 @@ describe('TabsScrollSpyContainer', () => {
 
       const { getByTestId } = render(
         <TabsScrollSpyContainer
-          testId={testId}
+          testId={`${testId}-Tab`}
           onClick={customOnClick}
         ></TabsScrollSpyContainer>
       );
 
-      fireEvent.click(getByTestId(testId));
+      fireEvent.click(getByTestId(`${testId}-Tab`));
       expect(customOnClick).toHaveBeenCalledTimes(1);
     });
 
     it('Should set the window.location.href on click', () => {
-      const { container, getByText, queryByText } = render(
-        <TabsScrollSpyContainer activeIndex="" testId={testId}>
+      const { container } = render(
+        <TabsScrollSpyContainer testId={testId}>
           <TabScrollSpyPanel tabLabel={'first'}>
             Content Area One
           </TabScrollSpyPanel>
@@ -109,8 +107,8 @@ describe('TabsScrollSpyContainer', () => {
     });
 
     it('Should prevent disabled from being clickable', () => {
-      const { container, getByText, queryByText } = render(
-        <TabsScrollSpyContainer activeIndex="" testId={testId}>
+      const { container } = render(
+        <TabsScrollSpyContainer testId={testId}>
           <TabScrollSpyPanel tabLabel={'first'} disabled>
             Content Area One
           </TabScrollSpyPanel>
@@ -118,16 +116,14 @@ describe('TabsScrollSpyContainer', () => {
       );
       const tab1 = container.querySelector('button[data-scrollspy-id="first"]');
 
-      fireEvent.click(tab1);
-
-      expect(tab1).toHaveAttribute('aria-selected', 'false');
+      expect(tab1).toHaveAttribute('disabled');
     });
   });
 
   it('Tab Panels are compliant with accessibility', () => {
     const { container } = render(
       <TabsScrollSpyContainer aria-label="TabsScrollSpyContainer">
-        {TEXT}
+        <TabScrollSpyPanel tabLabel={'first'}>{TEXT}</TabScrollSpyPanel>
       </TabsScrollSpyContainer>
     );
     return axe(container.innerHTML).then(result => {
@@ -170,26 +166,17 @@ describe('TabScrollSpyPanel', () => {
   });
 
   it(`Should set a disabled state in each navigation item with 'disabled'`, () => {
-    const { getByText } = render(
+    const { container } = render(
       <TabsScrollSpyContainer>
-        <TabScrollSpyPanel tabLabel={tabLabel} disabled />
+        <TabScrollSpyPanel tabLabel="disabled-nav" disabled>
+          {TEXT}
+        </TabScrollSpyPanel>
       </TabsScrollSpyContainer>
     );
 
-    expect(getByText(tabLabel).parentElement).toHaveStyleRule(
-      'cursor',
-      'not-allowed'
-    );
-  });
+    const tab1 = container.querySelector('button[data-scrollspy-id="first"]');
 
-  it(`Should set a custom ID with 'id'`, () => {
-    const { container } = render(
-      <TabScrollSpyPanel id="potato" tabLabel={tabLabel} testId={testId} />
-    );
-
-    const customId = container.querySelector('section[id="potato"]');
-
-    expect(customId).toBeInTheDocument();
+    expect(tab1.parentElement).toHaveStyleRule('cursor', 'not-allowed');
   });
 
   it('Tab Panels are compliant with accessibility', () => {
