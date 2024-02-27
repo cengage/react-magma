@@ -54,10 +54,10 @@ describe('TreeItem', () => {
       );
     });
 
-    it('style: styles get applied to the li', () => {
+    it('style: styles get applied to the item wrapper', () => {
       const backgroundColor = '#B12FAD';
 
-      const { getByRole } = render(
+      const { getByTestId } = render(
         <TreeItem
           label={labelText}
           testId={testId}
@@ -66,7 +66,7 @@ describe('TreeItem', () => {
         />
       );
 
-      expect(getByRole('treeitem')).toHaveStyle(
+      expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
         `backgroundColor: ${backgroundColor}`
       );
     });
