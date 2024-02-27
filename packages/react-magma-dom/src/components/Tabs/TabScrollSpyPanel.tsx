@@ -5,13 +5,10 @@ import { toCamelCase } from '../../utils';
 export interface TabScrollSpyPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /*
-   * Disables a navigation Tab.
-   */
-  disabled?: boolean;
-  /*
    * Adds an icon to the navigation Tab.
    */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
+
   /*
    * Label for navigation Tab.
    */
