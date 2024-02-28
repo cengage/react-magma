@@ -150,3 +150,31 @@ export function getUniqueSelectedItemsArray(
 ) {
   return Array.from(new Set([...prev, ...initialSelectedItems, ...childrenItemIds]));
 }
+
+export function getSelectedItemsIndexes(selectedItems, treeItemChildren) {
+  // TODO
+  const fullSelectedItems = treeItemChildren.map(child => {
+    return selectedItems.includes(child.props.itemId)
+  });
+  return fullSelectedItems;
+}
+
+// Return the selected item with the lowest index
+export function getLowestIndexItem(selectedItems, treeItemChildren) {
+  // TODO
+  // const fullSelectedItems = getSelectedItemsIndexes(selectedItems, treeItemChildren);
+
+  if (selectedItems.length === 0) {
+    return null;
+  }
+
+  let lowestIndexItem = selectedItems[0];
+
+  for (let i = 1; i < selectedItems.length; i++) {
+    if (selectedItems[i] < lowestIndexItem) {
+      lowestIndexItem = selectedItems[i];
+    }
+  }
+
+  return lowestIndexItem;
+}

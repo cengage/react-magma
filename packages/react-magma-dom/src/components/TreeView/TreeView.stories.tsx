@@ -2,12 +2,19 @@ import React from 'react';
 import { TreeView, TreeItem, TreeViewSelectable } from '.';
 import { magma } from '../../theme/magma';
 
-import { ArticleIcon, FolderIcon, FavoriteIcon, StarIcon, EmergencyIcon } from 'react-magma-icons';
+import {
+  ArticleIcon,
+  FolderIcon,
+  FavoriteIcon,
+  StarIcon,
+  EmergencyIcon,
+} from 'react-magma-icons';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
 import { Paragraph } from '../Paragraph';
 import { Tag, TagSize, Button, Flex, FlexBehavior } from '../..';
 import { ButtonSize } from '../Button';
+import { FlexAlignContent, FlexAlignItems } from '../Flex';
 
 export default {
   component: TreeView,
@@ -23,7 +30,11 @@ export default {
       control: {
         type: 'select',
       },
-      options: [TreeViewSelectable.single, TreeViewSelectable.multi, TreeViewSelectable.off],
+      options: [
+        TreeViewSelectable.single,
+        TreeViewSelectable.multi,
+        TreeViewSelectable.off,
+      ],
       defaultValue: TreeViewSelectable.single,
     },
     initialExpandedItems: {
@@ -72,21 +83,23 @@ export const Default = args => {
               <TreeItem
                 icon={<ArticleIcon />}
                 isDisabled
-                label={
-                  <>
-                    Chapter 1 child: Cake donut lemon drops gingerbread
-                  </>
-                }
+                label={<>Chapter 1 child: Cake donut lemon drops gingerbread</>}
                 itemId="2"
               />
             </TreeItem>
             <TreeItem
-              label={<>Chapter 2: Chocolate bar ice cream cake liquorice icing tart</>}
+              label={
+                <>
+                  Chapter 2: Chocolate bar ice cream cake liquorice icing tart
+                </>
+              }
               itemId="3"
             />
             <TreeItem
               icon={<FolderIcon />}
-              label={<>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>}
+              label={
+                <>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>
+              }
               isDisabled
               itemId="4"
             >
@@ -101,44 +114,82 @@ export const Default = args => {
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 3.2: Tart sweet roll caramels candy canes sweet roll</>}
+                label={
+                  <>
+                    Section 3.2: Tart sweet roll caramels candy canes sweet roll
+                  </>
+                }
                 itemId="6"
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 3.3: Tart sweet roll caramels candy canes sweet roll</>}
+                label={
+                  <>
+                    Section 3.3: Tart sweet roll caramels candy canes sweet roll
+                  </>
+                }
                 itemId="7"
               />
             </TreeItem>
           </TreeItem>
           <TreeItem
             icon={<FolderIcon />}
-            label={<>Part 2: Candy powder carrot cake cotton candy marshmallow caramels croissant I love</>}
+            label={
+              <>
+                Part 2: Candy powder carrot cake cotton candy marshmallow
+                caramels croissant I love
+              </>
+            }
             itemId="8"
           >
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 4: I love carrot cake sweet roll I love liquorice sweet</>}
+              label={
+                <>
+                  Chapter 4: I love carrot cake sweet roll I love liquorice
+                  sweet
+                </>
+              }
               itemId="9"
             />
             <TreeItem
               icon={<FolderIcon />}
-              label={<>Chapter 5: Wafer I love I love sesame snaps I love muffin dragée halvah</>}
+              label={
+                <>
+                  Chapter 5: Wafer I love I love sesame snaps I love muffin
+                  dragée halvah
+                </>
+              }
               itemId="10"
             >
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 5.1: Apple pie apple pie tart macaroon topping chocolate cake</>}
+                label={
+                  <>
+                    Section 5.1: Apple pie apple pie tart macaroon topping
+                    chocolate cake
+                  </>
+                }
                 itemId="11"
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 5.2: Jelly lollipop tart gummies pie croissant sesame snaps sesame snaps</>}
+                label={
+                  <>
+                    Section 5.2: Jelly lollipop tart gummies pie croissant
+                    sesame snaps sesame snaps
+                  </>
+                }
                 itemId="12"
               />
               <TreeItem
                 icon={<ArticleIcon />}
-                label={<>Section 5.3: Bonbon chocolate bar lollipop lollipop I love chocolate cake cupcake soufflé pie</>}
+                label={
+                  <>
+                    Section 5.3: Bonbon chocolate bar lollipop lollipop I love
+                    chocolate cake cupcake soufflé pie
+                  </>
+                }
                 itemId="13"
               />
             </TreeItem>
@@ -150,32 +201,60 @@ export const Default = args => {
           </TreeItem>
           <TreeItem
             icon={<FolderIcon />}
-            label={<>Part 3: Sugar plum halvah shortbread apple pie I love brownie gummi bears</>}
+            label={
+              <>
+                Part 3: Sugar plum halvah shortbread apple pie I love brownie
+                gummi bears
+              </>
+            }
             itemId="15"
           >
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 7: Cheesecake lollipop tootsie roll candy canes cupcake I love dessert liquorice</>}
+              label={
+                <>
+                  Chapter 7: Cheesecake lollipop tootsie roll candy canes
+                  cupcake I love dessert liquorice
+                </>
+              }
               itemId="16"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 8: Jelly pastry jelly-o topping cookie carrot cake shortbread</>}
+              label={
+                <>
+                  Chapter 8: Jelly pastry jelly-o topping cookie carrot cake
+                  shortbread
+                </>
+              }
               itemId="17"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>}
+              label={
+                <>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>
+              }
               itemId="18"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 10: Wafer carrot cake powder candy canes sweet roll bear claw croissant cheesecake tart</>}
+              label={
+                <>
+                  Chapter 10: Wafer carrot cake powder candy canes sweet roll
+                  bear claw croissant cheesecake tart
+                </>
+              }
               itemId="19"
             />
             <TreeItem
               icon={<ArticleIcon />}
-              label={<>Chapter 11: Apple pie chocolate cake tiramisu bonbon I love croissant. I love chupa chups croissant tiramisu toffee cake tart</>}
+              label={
+                <>
+                  Chapter 11: Apple pie chocolate cake tiramisu bonbon I love
+                  croissant. I love chupa chups croissant tiramisu toffee cake
+                  tart
+                </>
+              }
               itemId="20"
             />
           </TreeItem>
@@ -217,7 +296,7 @@ export const NoIcons = args => {
         <TreeView {...args} onSelectedItemChange={onSelection}>
           <TreeItem label={<>Home</>} itemId="home">
             <TreeItem label={<>Bath</>} itemId="bath">
-              <TreeItem label={<>Bathroom Storage</>} itemId="bath">
+              <TreeItem label={<>Bathroom Storage</>} itemId="bathstorage">
                 <TreeItem label={<>Item 1</>} itemId="bath-1" />
                 <TreeItem label={<>Item 2</>} itemId="bath-2" />
               </TreeItem>
@@ -280,83 +359,83 @@ export const Textbook = args => {
 
   return (
     <>
-    <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-      <Paragraph id="ah-textbook" isInverse={args.isInverse} noTopMargin>
-        Art History Textbook
-      </Paragraph>
-      <TreeView {...args} onSelectedItemChange={onSelection}>
-        <TreeItem
-          label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
-          itemId="I-intro"
-        >
+      <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
+        <Paragraph id="ah-textbook" isInverse={args.isInverse} noTopMargin>
+          Art History Textbook
+        </Paragraph>
+        <TreeView {...args} onSelectedItemChange={onSelection}>
           <TreeItem
-            label={<>Art History in the 21st Century</>}
-            itemId="I-21century"
+            label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
+            itemId="I-intro"
           >
             <TreeItem
-              label={<>The Questions Art Historians Ask</>}
-              itemId="I-questions"
-            />
-            <TreeItem
-              label={<>The Words Art Historians Use</>}
-              itemId="I-words"
+              label={<>Art History in the 21st Century</>}
+              itemId="I-21century"
             >
-              <TreeItem label={<>Vocabulary</>} itemId="I-vocab" />
+              <TreeItem
+                label={<>The Questions Art Historians Ask</>}
+                itemId="I-questions"
+              />
+              <TreeItem
+                label={<>The Words Art Historians Use</>}
+                itemId="I-words"
+              >
+                <TreeItem label={<>Vocabulary</>} itemId="I-vocab" />
+              </TreeItem>
+              <TreeItem
+                label={<>Art History and Other Disciplines</>}
+                itemId="I-other"
+              />
             </TreeItem>
             <TreeItem
-              label={<>Art History and Other Disciplines</>}
-              itemId="I-other"
+              label={<>Different Ways of Seeing</>}
+              itemId="I-different-ways"
             />
+          </TreeItem>
+          <TreeItem label={<>1. ART IN THE STONE AGE</>} itemId="1-stone-age">
+            <TreeItem label={<>Paleolithic Art</>} itemId="1-paleolithic">
+              <TreeItem label={<>Africa</>} itemId="1-africa" />
+              <TreeItem label={<>Europe</>} itemId="1-europe" />
+            </TreeItem>
+            <TreeItem label={<>Neolithic Art</>} itemId="1-neolithic">
+              <TreeItem
+                label={<>Anatolia and Mesopotamia</>}
+                itemId="1-anatolia"
+              />
+              <TreeItem label={<>Europe</>} itemId="1-neolithic-europe" />
+            </TreeItem>
           </TreeItem>
           <TreeItem
-            label={<>Different Ways of Seeing</>}
-            itemId="I-different-ways"
-          />
-        </TreeItem>
-        <TreeItem label={<>1. ART IN THE STONE AGE</>} itemId="1-stone-age">
-          <TreeItem label={<>Paleolithic Art</>} itemId="1-paleolithic">
-            <TreeItem label={<>Africa</>} itemId="1-africa" />
-            <TreeItem label={<>Europe</>} itemId="1-europe" />
+            label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}
+            itemId="2-ancient"
+          >
+            <TreeItem label={<>Mesopotamia</>} itemId="2-mesopotamia">
+              <TreeItem label={<>Sumer</>} itemId="2-sumer" />
+              <TreeItem label={<>Akkad</>} itemId="2-akkad" />
+              <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur" />
+              <TreeItem label={<>Babylon</>} itemId="2-babylon" />
+              <TreeItem label={<>Elam</>} itemId="2-elam" />
+              <TreeItem label={<>Assyria</>} itemId="2-assyria" />
+              <TreeItem label={<>Neo-Babylonia</>} itemId="2-neo" />
+            </TreeItem>
+            <TreeItem label={<>Persia</>} itemId="2-persia">
+              <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid" />
+              <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian" />
+            </TreeItem>
           </TreeItem>
-          <TreeItem label={<>Neolithic Art</>} itemId="1-neolithic">
-            <TreeItem
-              label={<>Anatolia and Mesopotamia</>}
-              itemId="1-anatolia"
-            />
-            <TreeItem label={<>Europe</>} itemId="1-neolithic-europe" />
-          </TreeItem>
-        </TreeItem>
-        <TreeItem
-          label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}
-          itemId="2-ancient"
-        >
-          <TreeItem label={<>Mesopotamia</>} itemId="2-mesopotamia">
-            <TreeItem label={<>Sumer</>} itemId="2-sumer" />
-            <TreeItem label={<>Akkad</>} itemId="2-akkad" />
-            <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur" />
-            <TreeItem label={<>Babylon</>} itemId="2-babylon" />
-            <TreeItem label={<>Elam</>} itemId="2-elam" />
-            <TreeItem label={<>Assyria</>} itemId="2-assyria" />
-            <TreeItem label={<>Neo-Babylonia</>} itemId="2-neo" />
-          </TreeItem>
-          <TreeItem label={<>Persia</>} itemId="2-persia">
-            <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid" />
-            <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian" />
-          </TreeItem>
-        </TreeItem>
-      </TreeView>
-    </Card>
-    <br />
-    {args.selectable !== TreeViewSelectable.off && (
-      <>Selected: {selectedItems}</>
-    )}
+        </TreeView>
+      </Card>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>Selected: {selectedItems}</>
+      )}
     </>
   );
 };
 
 Textbook.args = {
-  ariaLabelledBy: 'ah-textbook'
-}
+  ariaLabelledBy: 'ah-textbook',
+};
 
 export const Simple = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
@@ -371,6 +450,7 @@ export const Simple = args => {
     });
     setSelectedItems(allTags);
   }
+
   return (
     <>
       <TreeView {...args} onSelectedItemChange={onSelection}>
@@ -431,10 +511,7 @@ export const DefaultIcon = args => {
           labelStyle={{ color: magma.colors.danger700, fontWeight: '700' }}
           style={{ background: magma.colors.info100 }}
         />
-        <TreeItem
-          itemId="3"
-          label={<>Branch with no icon</>}
-        >
+        <TreeItem itemId="3" label={<>Branch with no icon</>}>
           <TreeItem
             itemId="4"
             label={<>I am a leaf without an icon</>}
@@ -445,10 +522,7 @@ export const DefaultIcon = args => {
             itemId="5"
             label={<>I have an icon too</>}
           >
-            <TreeItem
-              itemId="6"
-              label={<>Child</>}
-            />
+            <TreeItem itemId="6" label={<>Child</>} />
           </TreeItem>
         </TreeItem>
       </TreeView>
@@ -516,14 +590,20 @@ export const Flat = args => {
   return (
     <TreeView {...args} style={{ width: '100%' }}>
       <TreeItem
-        label="Node 0"
+        label={<Paragraph noMargins>Node 0</Paragraph>}
         itemId="item0"
         style={{ background: magma.colors.neutral200 }}
       />
       <TreeItem
         label={
-          <Flex behavior={FlexBehavior.container} style={{ width: '100%' }}>
-            <span style={{ flex: '1 1 auto' }}>Node 1</span>
+          <Flex
+            behavior={FlexBehavior.container}
+            alignContent={FlexAlignContent.center}
+            alignItems={FlexAlignItems.baseline}
+          >
+            <span style={{ flex: '1 1 auto' }}>
+              <Paragraph noMargins>Node 1</Paragraph>
+            </span>
             <span style={{ flex: '0 0 auto' }}>
               <Button
                 size={ButtonSize.small}
@@ -540,24 +620,28 @@ export const Flat = args => {
       />
       <TreeItem
         label={
-          <Flex behavior={FlexBehavior.container} style={{ width: '100%' }}>
-            <span style={{ flex: '1 1 auto' }}>Node 2</span>
+          <Flex
+            behavior={FlexBehavior.container}
+            alignContent={FlexAlignContent.center}
+            alignItems={FlexAlignItems.baseline}
+          >
+            <span style={{ flex: '1 1 auto' }}>
+              <Paragraph noMargins>Node 2</Paragraph>
+            </span>
             <span style={{ flex: '0 0 auto' }}>
-              <Button
-                size={ButtonSize.small}
-                onClick={() => {
-                  console.log('action button clicked');
-                }}
-              >
-                Action
-              </Button>
+              <Tag size={TagSize.small}>One</Tag>
+              <Tag size={TagSize.small}>Two</Tag>
+              <Tag size={TagSize.small}>Three</Tag>
             </span>
           </Flex>
         }
         itemId="item2"
         style={{ background: magma.colors.neutral200 }}
       />
-      <TreeItem label="Node 3" itemId="item3" />
+      <TreeItem
+        label={<Paragraph noMargins>Node 3</Paragraph>}
+        itemId="item3"
+      />
     </TreeView>
   );
 };

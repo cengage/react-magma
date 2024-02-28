@@ -75,7 +75,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 const item = React.cloneElement(child, {
                   index: treeItemIndex,
                   key: treeItemIndex,
-                  treeItemIndex,
                   parentDepth: 0,
                   itemDepth: 0,
                   topLevel: true,

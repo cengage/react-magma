@@ -11,7 +11,7 @@ import {
   useTreeItem,
   checkedStatusToBoolean,
 } from './useTreeItem';
-import {TreeViewSelectable } from './useTreeView';
+import { TreeViewSelectable } from './useTreeView';
 import {
   FolderIcon,
   ArticleIcon,
@@ -27,6 +27,7 @@ import {
   TreeNodeType,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
+  getLowestIndexItem,
 } from './utils';
 import { transparentize } from 'polished';
 import { TreeItemContext } from './TreeItemContext';
@@ -183,8 +184,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       parentCheckedStatus,
       style,
       testId,
-      treeItemIndex,
       updateParentCheckStatus,
+      topLevel,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -210,9 +211,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectedItems,
       setExpanded,
       updateCheckedStatusFromChild,
+      treeItemChildren,
     } = contextValue;
-
-    let childTreeItemIndex = 0;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
     const selectedItem =
@@ -281,25 +281,26 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     };
 
     const focusedItem = () => {
+      const firstSelectedItem = getLowestIndexItem(
+        selectedItems,
+        treeItemChildren
+      );
+
       // TODO: FIX
       if (selectable === TreeViewSelectable.single && selectedItem) {
         return true;
       } else if (
         selectable === TreeViewSelectable.multi &&
-        selectedItems?.[0] === itemId
+        firstSelectedItem === itemId
       ) {
-        // TODO: the problem here is that selectedItems is not sorted...
         return true;
       } else if (selectable === TreeViewSelectable.off) {
-        if (nodeType === TreeNodeType.branch) {
-          // TODO: missing logic so that it's only the first one
+        if (nodeType === TreeNodeType.branch && firstSelectedItem) {
           return true;
         }
       } else {
         // focus first item in all other cases (selectable is off, no item is selected)
-        return (
-          treeItemIndex === 0 && itemDepth === 0 && childTreeItemIndex === 0
-        );
+        return itemDepth === 0 && topLevel;
       }
     };
 
@@ -317,9 +318,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           isDisabled={isDisabled}
           isInverse={isInverse}
           nodeType={nodeType}
-          onKeyDown={(e) => {
-            handleKeyDown(e);
-          }}
           role="treeitem"
           selectableType={selectable}
           selected={selectedItem}
@@ -336,6 +334,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
               if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
                 onExpandedClicked(event);
               }
+            }}
+            onKeyDown={e => {
+              handleKeyDown(e);
             }}
             ref={ref}
             selectable={selectable}
@@ -389,7 +390,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                       {React.cloneElement(child, {
                         index,
                         key: index,
-                        treeItemIndex: childTreeItemIndex,
                         itemDepth,
                         parentDepth,
                         parentCheckedStatus: checkedStatus,
@@ -400,10 +400,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 ) : (
                   child
                 );
-              if (child.type === TreeItem) {
-                childTreeItemIndex++;
-              }
-
               // hide the disabled item + the children
               if (isDisabled) return <></>;
 

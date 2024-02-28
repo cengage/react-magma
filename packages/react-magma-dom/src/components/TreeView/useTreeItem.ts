@@ -26,10 +26,9 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * Item name
    */
   label: React.ReactNode;
-
-  // private
-  treeItemIndex?: number;
-
+  /**
+   * Item id
+   */
   itemId: string;
   /**
    * @internal
@@ -455,7 +454,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           setExpanded(true);
           focusSelf();
         }
-        // TODO: this affects the parent too
       }
     }
   };
@@ -468,37 +466,58 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       if (hasOwnTreeItems) {
         setExpanded(false);
         focusSelf();
-        // TODO: this affects the parent too
+      }
+    }
+  };
+
+  const toggleMultiSelectItems = () => {
+    const status = selectedItems?.includes(itemId)
+      ? IndeterminateCheckboxStatus.unchecked
+      : IndeterminateCheckboxStatus.checked;
+    setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
+    setCheckedStatus(status);
+    updateParentCheckStatus(index, status);
+
+    if (hasOwnTreeItems) {
+      const childrenIds = getChildrenItemIds(treeItemChildren);
+      if (!selectedItems?.includes(itemId)) {
+        setSelectedItems([...selectedItems, ...childrenIds, itemId]);
+      } else {
+        const newSelectedItems = filterSelectedItems(
+          selectedItems,
+          childrenIds,
+          itemId
+        );
+        setSelectedItems(newSelectedItems);
+      }
+    } else {
+      if (!selectedItems?.includes(itemId)) {
+        setSelectedItems([...selectedItems, itemId]);
+      } else {
+        setSelectedItems(selectedItems.filter(i => i !== itemId));
       }
     }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     const arrLength = treeItemRefArray.current.length;
-    console.log(focusIndex, event.target);
-    // console.log(treeItemRefArray);
 
     switch (event.key) {
       case 'ArrowDown': {
-        // console.log('down', focusIndex, index);
-        event.preventDefault();
         focusIndex === arrLength - 1 ? focusFirst() : focusNext();
         break;
       }
       case 'ArrowUp': {
-        // console.log('up', focusIndex, index);
         focusIndex === 0 ? focusLast() : focusPrev();
         break;
       }
       case 'ArrowRight': {
-        // TODO open parent nodes
-        // console.log('right');
+        // Open parent nodes
         expandFocusedNode();
         break;
       }
       case 'ArrowLeft': {
-        // TODO close open parent nodes
-        // console.log('left');
+        // Close open parent nodes
         collapseFocusedNode();
         break;
       }
@@ -514,27 +533,29 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
       case 'Enter': {
         // Activates a node, i.e., performs its default action.
-        // In multi-select, it toggles the selection state of the focused node.
         // In single-select it selects the focused node.
-        // TODO
+        // In multi-select, it toggles the selection state of the focused node.
+        if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
+          setExpanded(!expanded);
+        } else if (selectable === TreeViewSelectable.single) {
+          setSelectedItems([itemId]);
+        } else if (selectable === TreeViewSelectable.multi) {
+          toggleMultiSelectItems();
+        }
         break;
       }
       case ' ': {
-        // console.log('space pressed');
         // Toggles the selection state of the focused node.
-
         if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
           setExpanded(!expanded);
-          // TODO: this collapses the parent
         } else if (selectable === TreeViewSelectable.single) {
           if (hasOwnTreeItems) {
             setExpanded(!expanded);
-            // TODO: this collapses the parent
           } else {
             setSelectedItems([itemId]);
           }
         } else if (selectable === TreeViewSelectable.multi) {
-          setSelectedItems([...selectedItems, itemId]);
+          toggleMultiSelectItems();
         }
         break;
       }
@@ -557,6 +578,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectedItems,
     setExpanded,
     updateCheckedStatusFromChild,
+    treeItemChildren,
   };
 
   return { contextValue, handleClick, handleKeyDown };
