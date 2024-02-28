@@ -453,7 +453,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
         } else {
           const childrenIds = getChildrenItemIds(treeItemChildren);
-
           const newChildrenCheckedStatus = getChildrenCheckedStatus(
             childrenIds,
             parentCheckedStatus
@@ -560,7 +559,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
         } else {
           const childrenIds = getChildrenItemIds(treeItemChildren);
-
           const newChildrenCheckedStatus = getChildrenCheckedStatus(
             childrenIds,
             status
