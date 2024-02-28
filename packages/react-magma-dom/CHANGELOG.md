@@ -62,6 +62,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.2
+
+### Minor Changes
+
+- ab6ffd4ed: feat(TreeView): New TreeView & TreeItem components
+
 ## 4.3.1-next.1
 
 ### Patch Changes
