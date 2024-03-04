@@ -30,6 +30,16 @@ export interface ParagraphProps
    */
   noMargins?: boolean;
   /**
+   * If true, the component will not have the default bottom margin and instead will have a value of 0
+   * @default false
+   */
+  noBottomMargin?: boolean;
+  /**
+   * If true, the component will not have the default top margin and instead will have a value of 0
+   * @default false
+   */
+  noTopMargin?: boolean;
+  /**
    * @internal
    */
   testId?: string;

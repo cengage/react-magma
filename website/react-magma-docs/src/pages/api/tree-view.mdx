@@ -1,0 +1,481 @@
+---
+pageTitle: TreeView API
+title: TreeView
+props:
+  - TreeViewProps
+  - TreeItemProps
+---
+
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="treeview" type="api">
+
+<LeadParagraph>
+TreeView provides a hierarchical list of items that can be collapsed or expanded to hide or reveal their contents.
+</LeadParagraph>
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, Paragraph } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Paragraph id="ah-textbook">Art History Textbook</Paragraph>
+      <TreeView ariaLabelledBy={"ah-textbook"}>
+        <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}itemId="I-intro">
+          <TreeItem label={<>Art History in the 21st Century</>}itemId="I-intro">
+            <TreeItem label={<>The Questions Art Historians Ask</>} itemId="I-questions"/>
+            <TreeItem label={<>The Words Art Historians Use</>}itemId="I-words">
+              <TreeItem label={<>Vocabulary</>} itemId="I-vocab"/>
+            </TreeItem>
+            <TreeItem label={<>Art History and Other Disciplines</>} itemId="I-other"/>
+          </TreeItem>
+          <TreeItem label={<>Different Ways of Seeing</>} itemId="I-different-ways"/>
+        </TreeItem>
+        <TreeItem label={<>1. ART IN THE STONE AGE</>}itemId="1-stone-age">
+          <TreeItem label={<>Paleolithic Art</>}itemId="1-paleolithic">
+            <TreeItem label={<>Africa</>} itemId="1-africa"/>
+            <TreeItem label={<>Europe</>} itemId="1-europe"/>
+          </TreeItem>
+          <TreeItem label={<>Neolithic Art</>}itemId="1-neolithic">
+            <TreeItem label={<>Anatolia and Mesopotamia</>} itemId="1-anatolia"/>
+            <TreeItem label={<>Europe</>} itemId="1-neolithic-europe"/>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}itemId="2-ancient">
+          <TreeItem label={<>Mesopotamia</>}itemId="2-mesopotamia">
+            <TreeItem label={<>Sumer</>} itemId="2-sumer"/>
+            <TreeItem label={<>Akkad</>} itemId="2-akkad"/>
+            <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur"/>
+            <TreeItem label={<>Babylon</>} itemId="2-babylon"/>
+            <TreeItem label={<>Elam</>} itemId="2-elam"/>
+            <TreeItem label={<>Assyria</>}itemId="2-assyria" />
+            <TreeItem label={<>Neo-Babylonia</>}itemId="2-neo" />
+          </TreeItem>
+          <TreeItem label={<>Persia</>}itemId="2-persia">
+            <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid"/>
+            <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian"/>
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Selectable
+
+TreeViews can have `TreeViewSelectable.off` (default), `TreeViewSelectable.single` for single select or `TreeViewSelectable.multi` for multi select with checkboxes.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable, ToggleButtonGroup, ToggleButton, Tag } from 'react-magma-dom';
+
+export function Example() {
+  const [selectableType, setSelectableType] = React.useState(TreeViewSelectable.single);
+  const [selectedItems, setSelectedItems] = React.useState(null);
+
+  function onSelection(items) {
+    const allTags = items.map((i: any, key) => {
+      return <Tag key={key} size={TagSize.small}>{i}</Tag>
+    });
+    setSelectedItems(allTags);
+  }
+
+  React.useEffect(() => {
+    setSelectedItems(null);
+  }, [selectableType]);
+
+  return (
+    <>
+    <ToggleButtonGroup
+        value={selectableType}
+        exclusive
+        noSpace
+      >
+        <ToggleButton
+          value={TreeViewSelectable.single}
+          onClick={() => setSelectableType(TreeViewSelectable.single)}
+        >
+          Single
+        </ToggleButton>
+        <ToggleButton
+          value={TreeViewSelectable.multi}
+          onClick={() => setSelectableType(TreeViewSelectable.multi)}
+        >
+          Multi
+        </ToggleButton>
+        <ToggleButton
+          value={TreeViewSelectable.off}
+          onClick={() => setSelectableType(TreeViewSelectable.off)}
+        >
+          Off
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <br/>
+      <TreeView
+        ariaLabel="course-topics"
+        selectable={selectableType}
+        onSelectedItemChange={onSelection}
+      >
+      <TreeItem label={<>Arts and Design</>} itemId="arts-design">
+        <TreeItem label={<>Animation</>} itemId="animation" />
+        <TreeItem label={<>Graphic Arts</>} itemId="graphic" />
+        <TreeItem label={<>Photography</>} itemId="photography" />
+        <TreeItem label={<>Web Design</>} itemId="webdesign" />
+      </TreeItem>
+      <TreeItem label={<>Business</>} itemId="business">
+        <TreeItem label={<>Accounting</>} itemId="accounting" />
+        <TreeItem label={<>Finance</>} itemId="finance" />
+      </TreeItem>
+      <TreeItem label={<>Computer Science</>} itemId="compsci">
+        <TreeItem label={<>Software Engineering</>} itemId="swe" />
+        <TreeItem label={<>Information Technology</>} itemId="it" />
+      </TreeItem>
+    </TreeView>
+    <br/>
+    {
+      selectableType !== TreeViewSelectable.off &&
+      (<>Selected Items: {selectedItems}</>)
+    }
+    </>
+  );
+}
+```
+
+## Icons
+
+If one `TreeItem` uses the `icon` prop, all other `TreeItems` should also have an `icon`. If one is not passed, default icons will be used: `FolderIcon` for branches and `ArticleIcon` for leafs.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="icon-example"
+      >
+      <TreeItem
+        label={<>I have an icon</>}
+        icon={<FavoriteIcon />}
+      />
+      <TreeItem
+        label={<>I am a Branch without icon</>}
+      >
+        <TreeItem
+          label={<>I am a Leaf without an icon</>}
+        />
+        <TreeItem
+          label={<>I have an icon</>}
+          icon={<FavoriteIcon />}
+        />
+      </TreeItem>
+    </TreeView>
+    </>
+  );
+}
+```
+
+## Initial Expanded Items 
+
+To have a `TreeItem` expanded initially, pass an array of `TreeItem` `itemId`s to the `TreeView`.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="single-select-treeview"
+      selectable={TreeViewSelectable.single}
+      initialExpandedItems={["item1"]}
+      >
+      <TreeItem label="Node 0" itemId="item0" />
+      <TreeItem label="Node 1" itemId="item1">
+        <TreeItem label="Child 1" itemId="item2">
+          <TreeItem label="Grandchild 1" itemId="item3">
+            <TreeItem label="Great-grandchild 1" itemId="item4" />
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 2" itemId="item5">
+        <TreeItem label="Child 2" itemId="item6">
+          <TreeItem label="Grandchild 2" itemId="item7">
+            <TreeItem label="Great-grandchild 2" itemId="item8">
+            <TreeItem label="Great-great-grandchild 2" itemId="item9" />
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 3" itemId="item10" />
+    </TreeView>
+    </>
+  );
+}
+```
+
+## Initial Selected Items
+
+To have a `TreeItem` selected initially, pass an array of `TreeItem` `itemId`s to the `TreeView`.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable, Tag } from 'react-magma-dom';
+
+export function Example() {
+  const [selectedItems, setSelectedItems] = React.useState(null);
+
+  function onSelection(items) {
+    const allTags = items.map((i: any, key) => {
+      return <Tag key={key} size={TagSize.small}>{i}</Tag>
+    });
+    setSelectedItems(allTags);
+  }
+
+  return (
+    <>
+      <TreeView ariaLabel="single-select-treeview"
+      selectable={TreeViewSelectable.multi}
+      initialSelectedItems={["item1", "item10"]}
+      >
+      <TreeItem label="Node 0" itemId="item0" />
+      <TreeItem label="Node 1" itemId="item1">
+        <TreeItem label="Child 1" itemId="item2">
+          <TreeItem label="Grandchild 1" itemId="item3">
+            <TreeItem label="Great-grandchild 1" itemId="item4" />
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 2" itemId="item5">
+        <TreeItem label="Child 2" itemId="item6">
+          <TreeItem label="Grandchild 2" itemId="item7">
+            <TreeItem label="Great-grandchild 2" itemId="item8">
+            <TreeItem label="Great-great-grandchild 2" itemId="item9" />
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 3" itemId="item10" />
+    </TreeView>
+    <br/>
+    <>Selected Items: {selectedItems}</>
+    </>
+  );
+}
+```
+
+## Aria Labels
+
+If there is visible text that labels an element, use `ariaLabelledBy`.
+
+If there is no visible name for the element you can reference, use `ariaLabel` to provide the user with a recognizable accessible name.
+
+*It's required to use either `ariaLabel` OR `ariaLabelledBy`.*
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="aria-label">
+      <TreeItem label="Node 0" itemId="item0" />
+      <TreeItem label="Node 1" itemId="item1" >
+        <TreeItem label="Child 1" itemId="item2">
+          <TreeItem label="Grandchild 1" itemId="item3">
+            <TreeItem label="Great-grandchild 1" itemId="item4" />
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 2" itemId="item5">
+        <TreeItem label="Child 2" itemId="item6">
+          <TreeItem label="Grandchild 2" itemId="item7">
+            <TreeItem label="Great-grandchild 2" itemId="item8">
+            <TreeItem label="Great-great-grandchild 2" itemId="item9" />
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 3" itemId="item10" />
+    </TreeView>
+    </>
+  );
+}
+```
+
+## Change Events
+
+The following events are available: `onSelectedItemChange` and `onExpandedChange`.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+
+  const [currentTreeEvent, setCurrentTreeEvent] = React.useState<
+    string | undefined
+  >(undefined);
+
+  function handleSelectedItemChange(event) {
+    setCurrentTreeEvent('Selected');
+  }
+
+  function handleExpandedChange(event) {
+    setCurrentTreeEvent('Expanded');
+  }
+
+  return (
+    <>
+     <p>
+        <strong>{currentTreeEvent || 'No'} event was triggered</strong>
+      </p>
+
+      <TreeView ariaLabel="ah-textbook" selectable={TreeViewSelectable.multi} onSelectedItemChange={handleSelectedItemChange} onExpandedChange={handleExpandedChange}>
+       <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}itemId="I-intro">
+          <TreeItem label={<>Art History in the 21st Century</>}itemId="I-intro">
+            <TreeItem label={<>The Questions Art Historians Ask</>} itemId="I-questions"/>
+            <TreeItem label={<>The Words Art Historians Use</>}itemId="I-words">
+              <TreeItem label={<>Vocabulary</>} itemId="I-vocab"/>
+            </TreeItem>
+            <TreeItem label={<>Art History and Other Disciplines</>} itemId="I-other"/>
+          </TreeItem>
+          <TreeItem label={<>Different Ways of Seeing</>} itemId="I-different-ways"/>
+        </TreeItem>
+        <TreeItem label={<>1. ART IN THE STONE AGE</>}itemId="1-stone-age">
+          <TreeItem label={<>Paleolithic Art</>}itemId="1-paleolithic">
+            <TreeItem label={<>Africa</>} itemId="1-africa"/>
+            <TreeItem label={<>Europe</>} itemId="1-europe"/>
+          </TreeItem>
+          <TreeItem label={<>Neolithic Art</>}itemId="1-neolithic">
+            <TreeItem label={<>Anatolia and Mesopotamia</>} itemId="1-anatolia"/>
+            <TreeItem label={<>Europe</>} itemId="1-neolithic-europe"/>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}itemId="2-ancient">
+          <TreeItem label={<>Mesopotamia</>}itemId="2-mesopotamia">
+            <TreeItem label={<>Sumer</>} itemId="2-sumer"/>
+            <TreeItem label={<>Akkad</>} itemId="2-akkad"/>
+            <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur"/>
+            <TreeItem label={<>Babylon</>} itemId="2-babylon"/>
+            <TreeItem label={<>Elam</>} itemId="2-elam"/>
+            <TreeItem label={<>Assyria</>}itemId="2-assyria" />
+            <TreeItem label={<>Neo-Babylonia</>}itemId="2-neo" />
+          </TreeItem>
+          <TreeItem label={<>Persia</>}itemId="2-persia">
+            <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid"/>
+            <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian"/>
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{padding: '12px'}}>
+      <TreeView ariaLabel="ah-textbook" isInverse>
+        <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}itemId="I-intro">
+          <TreeItem label={<>Art History in the 21st Century</>}itemId="I-intro">
+            <TreeItem label={<>The Questions Art Historians Ask</>} itemId="I-questions"/>
+            <TreeItem label={<>The Words Art Historians Use</>}itemId="I-words">
+              <TreeItem label={<>Vocabulary</>} itemId="I-vocab"/>
+            </TreeItem>
+            <TreeItem label={<>Art History and Other Disciplines</>} itemId="I-other"/>
+          </TreeItem>
+          <TreeItem label={<>Different Ways of Seeing</>} itemId="I-different-ways"/>
+        </TreeItem>
+        <TreeItem label={<>1. ART IN THE STONE AGE</>}itemId="1-stone-age">
+          <TreeItem label={<>Paleolithic Art</>}itemId="1-paleolithic">
+            <TreeItem label={<>Africa</>} itemId="1-africa"/>
+            <TreeItem label={<>Europe</>} itemId="1-europe"/>
+          </TreeItem>
+          <TreeItem label={<>Neolithic Art</>}itemId="1-neolithic">
+            <TreeItem label={<>Anatolia and Mesopotamia</>} itemId="1-anatolia"/>
+            <TreeItem label={<>Europe</>} itemId="1-neolithic-europe"/>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}itemId="2-ancient">
+          <TreeItem label={<>Mesopotamia</>}itemId="2-mesopotamia">
+            <TreeItem label={<>Sumer</>} itemId="2-sumer"/>
+            <TreeItem label={<>Akkad</>} itemId="2-akkad"/>
+            <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur"/>
+            <TreeItem label={<>Babylon</>} itemId="2-babylon"/>
+            <TreeItem label={<>Elam</>} itemId="2-elam"/>
+            <TreeItem label={<>Assyria</>}itemId="2-assyria" />
+            <TreeItem label={<>Neo-Babylonia</>}itemId="2-neo" />
+          </TreeItem>
+          <TreeItem label={<>Persia</>}itemId="2-persia">
+            <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid"/>
+            <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian"/>
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </Card>
+  );
+}
+```
+
+## Custom Styles
+
+Use the `labelStyle` prop to customize the `TreeItem` labels.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="custom-label">
+      <TreeItem label="Node 0" itemId="item0" labelStyle={{ color: magma.colors.danger600}} />
+      <TreeItem label="Node 1" itemId="item1" labelStyle={{ color: magma.colors.info700, fontWeight: '600' }} style={{ background: magma.colors.info100 }}>
+        <TreeItem label="Child 1" itemId="item2">
+          <TreeItem label="Grandchild 1" itemId="item3">
+            <TreeItem label="Great-grandchild 1" itemId="item4" labelStyle={{fontStyle: 'italic'}}/>
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 2" itemId="item5">
+        <TreeItem label="Child 2" itemId="item6">
+          <TreeItem label="Grandchild 2" itemId="item7">
+            <TreeItem label="Great-grandchild 2" itemId="item8">
+            <TreeItem label="Great-great-grandchild 2" itemId="item9" />
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Node 3" itemId="item10" labelStyle={{ color: magma.colors.success700, fontWeight: '600' }} style={{ background: magma.colors.success100 }}/>
+    </TreeView>
+    </>
+  );
+}
+```
+
+## TreeView Props
+
+**Any other props supplied will be provided to the wrapping `ul` element.**
+
+<TreeViewProps />
+
+## TreeItem Props
+
+**Any other props supplied will be provided to the wrapping `li` element.**
+
+<TreeItemProps />
+
+</PageContent>

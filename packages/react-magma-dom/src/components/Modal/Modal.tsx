@@ -45,6 +45,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   header?: React.ReactNode;
   /**
+   * If true, closing the modal handled on the consumer side
+   * @default false
+   */
+  isModalClosingControlledManually?: boolean;
+  /**
    * If true, clicking the backdrop will not dismiss the modal
    * @default false
    */
@@ -160,6 +165,17 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
+const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
+  padding: ${props => props.theme.spaceScale.spacing05}
+    ${props => props.theme.spaceScale.spacing05} 0
+    ${props => props.theme.spaceScale.spacing05};
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    padding: ${props => props.theme.spaceScale.spacing06}
+      ${props => props.theme.spaceScale.spacing06} 0
+      ${props => props.theme.spaceScale.spacing06};
+  }
+`;
+
 const ModalWrapper = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05};
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
@@ -212,7 +228,14 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const prevOpen = usePrevious(props.isOpen);
 
     React.useEffect(() => {
-      if (!prevOpen && props.isOpen) {
+      if (
+        props.isModalClosingControlledManually &&
+        prevOpen &&
+        !props.isOpen &&
+        isModalOpen
+      ) {
+        setIsModalOpen(false);
+      } else if (!prevOpen && props.isOpen) {
         setIsModalOpen(true);
       } else if (prevOpen && !props.isOpen && isModalOpen) {
         handleClose();
@@ -287,7 +310,10 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
       setTimeout(() => {
         setIsExiting(false);
-        setIsModalOpen(false);
+
+        if (!props.isModalClosingControlledManually) {
+          setIsModalOpen(false);
+        }
 
         if (lastFocus.current) {
           lastFocus.current.focus();
@@ -366,7 +392,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 theme={theme}
               >
                 {header && (
-                  <ModalWrapper theme={theme}>
+                  <ModalHeader theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
@@ -380,7 +406,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                         {header}
                       </H1>
                     )}
-                  </ModalWrapper>
+                  </ModalHeader>
                 )}
                 <ModalWrapper ref={bodyRef} theme={theme}>
                   {children}
