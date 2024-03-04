@@ -6,6 +6,8 @@ props:
   - TabsProps
   - TabPanelProps
   - TabPanelContainerProps
+  - TabScrollSpyPanelProps
+  - TabsScrollSpyContainerProps
   - TabsContainerProps
 ---
 
@@ -584,6 +586,11 @@ export function Example() {
 
 ## ScrollSpy Tabs
 
+<Alert variant="warning">
+  <strong>Important</strong>
+  &nbsp;ScrollSpy is a beta component. Please use at your own risk.
+</Alert>
+
 The `TabsScrollSpyContainer` enables a vertical nav which follows the active content in view as the user scrolls. The component requires the `TabScrollSpyPanel` to house each area and a `tabLabel` to assign it's navigation title.
 
 Please note that a containing div has been used to showcase the scrolling behavior. This isn't a requirement for the component to function.
@@ -1096,5 +1103,21 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panel content.
 
 <TabPanelProps />
+
+## TabsScrollSpyContainer Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panels.
+
+<TabsScrollSpyContainerProps />
+
+## TabScrollSpyPanel Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panel content.
+
+<TabScrollSpyPanelProps />
 
 </PageContent>

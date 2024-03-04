@@ -6,7 +6,7 @@ import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
 import { toCamelCase } from '../../utils';
 
-export interface TabScrollSpyContainerProps
+export interface TabsScrollSpyContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
 
@@ -33,7 +33,7 @@ const StyledContentWrapper = styled.div`
 
 export const TabsScrollSpyContainer = React.forwardRef<
   HTMLDivElement,
-  TabScrollSpyContainerProps
+  TabsScrollSpyContainerProps
 >((props, ref) => {
   const { children, isInverse, testId, ...other } = props;
 

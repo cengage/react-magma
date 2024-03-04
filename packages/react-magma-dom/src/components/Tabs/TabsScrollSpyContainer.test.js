@@ -90,8 +90,8 @@ describe('TabsScrollSpyContainer', () => {
         <TabScrollSpyPanel tabLabel="first">{TEXT}</TabScrollSpyPanel>
       </TabsScrollSpyContainer>
     );
-    const tab3 = container.querySelector('button[data-scrollspy-id="first"]');
-    fireEvent.click(tab3);
+    const tab0 = container.querySelector('button[data-scrollspy-id="first"]');
+    fireEvent.click(tab0);
     expect(window.location.href).toInclude('#first');
   });
 });
