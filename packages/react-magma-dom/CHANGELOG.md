@@ -62,6 +62,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.3
+
+### Minor Changes
+
+- ede3d0f62: feat(Tabs): Please note that this component is in beta. Use at your own risk. Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI.
+
 ## 4.4.0-next.2
 
 ### Minor Changes
