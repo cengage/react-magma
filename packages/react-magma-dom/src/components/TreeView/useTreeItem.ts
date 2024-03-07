@@ -12,7 +12,7 @@ import {
   filterSelectedItems,
   getMissingChildrenIds,
   getChildrenCheckedStatus,
-  getEnabledTreeItemChildrenLength,
+  // getEnabledTreeItemChildrenLength,
   getUniqueSelectedItemsArray,
   selectedItemsIncludesId,
   getUpdatedSelectedItems,
@@ -129,7 +129,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
 
-  // TODO fix
+  // TODO fix for disabled items
   // const numberOfTreeItemChildren = getEnabledTreeItemChildrenLength(treeItemChildren);
   const numberOfTreeItemChildren = treeItemChildren.length;
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
