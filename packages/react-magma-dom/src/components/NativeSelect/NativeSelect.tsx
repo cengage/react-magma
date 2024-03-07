@@ -202,7 +202,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       return props.children;
     }
 
-    if (labelPosition) {
+    if (additionalContent) {
       return (
         <AdditionalContentWrapper labelPosition={labelPosition}>
           {nativeSelect}
