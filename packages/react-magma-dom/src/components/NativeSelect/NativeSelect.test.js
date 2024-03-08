@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { NativeSelect } from '.';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { Tooltip } from '../Tooltip';
 import { IconButton } from '../IconButton';
@@ -63,6 +63,20 @@ describe('NativeSelect', () => {
       'border',
       `1px solid ${magma.colors.neutral500}`
     );
+  });
+
+  it('should update the selected option', () => {
+    const { getByTestId, getAllByTestId } = render(
+      <NativeSelect testId={testId}>
+        <option data-testid={`${testId}-option-1`}>1</option>
+        <option data-testid={`${testId}-option-2`}>2</option>
+        <option data-testid={`${testId}-option-3`}>3</option>
+      </NativeSelect>
+    );
+    fireEvent.change(getByTestId(testId), { target: { value: 2 } });
+    expect(getByTestId(`${testId}-option-1`).selected).toBeFalsy();
+    expect(getByTestId(`${testId}-option-2`).selected).toBeTruthy();
+    expect(getByTestId(`${testId}-option-3`).selected).toBeFalsy();
   });
 
   it('should render a default inverse border', () => {
@@ -158,6 +172,37 @@ describe('NativeSelect', () => {
         'display',
         'flex'
       );
+    });
+
+    it(`Shouldn't display an additional wrapper when additionalContent is unset'`, () => {
+      const { rerender, queryByTestId } = render(
+        <NativeSelect
+          labelPosition="left"
+          testId={testId}
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                testId="Icon Button"
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+        />
+      );
+      expect(
+        queryByTestId(`${testId}-additional-content-wrapper`)
+      ).toBeInTheDocument();
+
+      rerender(<NativeSelect labelPosition="left" testId={testId} />);
+
+      expect(
+        queryByTestId(`${testId}-additional-content-wrapper`)
+      ).not.toBeInTheDocument();
     });
   });
 });

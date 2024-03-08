@@ -194,7 +194,10 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         (labelPosition === LabelPosition.top && !hasLabel)
       ) {
         return (
-          <StyledAdditionalContentWrapper theme={theme}>
+          <StyledAdditionalContentWrapper
+            data-testid={`${testId}-additional-content-wrapper`}
+            theme={theme}
+          >
             {props.children}
           </StyledAdditionalContentWrapper>
         );
@@ -206,7 +209,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       return (
         <AdditionalContentWrapper labelPosition={labelPosition}>
           {nativeSelect}
-          {(labelPosition === 'left' && additionalContent) ||
+          {(labelPosition === LabelPosition.left && additionalContent) ||
             (!labelText && additionalContent)}
         </AdditionalContentWrapper>
       );
