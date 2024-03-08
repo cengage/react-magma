@@ -138,7 +138,10 @@ export function getChildrenItemIdsFlat(children) {
   React.Children.forEach(children, child => {
     if (!child.props?.isDisabled) {
       if (child.props?.itemId) {
-        itemIds.push(child.props.itemId);
+        itemIds.push({
+          itemId: child.props.itemId,
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        });
       }
 
       if (child.props?.children) {
