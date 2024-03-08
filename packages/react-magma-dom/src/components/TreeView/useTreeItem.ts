@@ -484,12 +484,20 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         statusFromChildren
       );
 
+      const updateItemStatus = getUpdatedSelectedItems(
+        selectedItems,
+        itemId,
+        statusFromChildren
+      );
+
       if (
         checkedStatus !== statusFromChildren &&
         statusUpdatedBy !== StatusUpdatedByOptions.parent
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.children);
         setCheckedStatus(statusFromChildren);
+        setSelectedItems(updateItemStatus);
+
         if (
           statusFromChildren === IndeterminateCheckboxStatus.checked ||
           statusFromChildren === IndeterminateCheckboxStatus.indeterminate
@@ -545,6 +553,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         if (!expanded) {
           updateSelectedItemsChanged();
         }
+      } else {
+        setSelectedItems(updateItemStatus);
       }
     }
   }, [childrenCheckedStatus]);
@@ -625,6 +635,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           childrenIds,
           { itemId, checkedStatus }
         );
+
         setSelectedItems(newSelectedItems);
         updateSelectedItemsChanged();
       }
