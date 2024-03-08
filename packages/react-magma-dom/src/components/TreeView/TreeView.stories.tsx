@@ -12,9 +12,17 @@ import {
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
 import { Paragraph } from '../Paragraph';
-import { Tag, TagSize, Button, Flex, FlexBehavior } from '../..';
+import {
+  Tag,
+  TagSize,
+  Button,
+  Flex,
+  FlexBehavior,
+  IndeterminateCheckboxStatus,
+} from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
+import { TagColor } from '../Tag';
 
 export default {
   component: TreeView,
@@ -57,34 +65,50 @@ export default {
 
 export const Default = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+  const [total, setTotal] = React.useState(null);
 
   function onSelection(items) {
-    const allTags = items.map((i: any, key) => {
-      return (
-        <Tag key={key} size={TagSize.small}>
-          {i}
+    const selected = items
+      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.primary}>
+          {i.itemId}
         </Tag>
-      );
-    });
-    setSelectedItems(allTags);
+      ));
+
+    const indet = items
+      .filter(
+        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+      )
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.default}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+    setTotal(items.length);
+    console.log("onSelection event:", items);
   }
 
   return (
     <>
       <Card isInverse={args.isInverse}>
         <TreeView {...args} onSelectedItemChange={onSelection}>
-          <TreeItem label={<>Part 1: Introduction</>} itemId="0" testId="0">
+          <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
               icon={<ArticleIcon />}
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
-              itemId="1"
-              testId="1"
+              itemId="pt1ch1"
+              testId="pt1ch1"
             >
               <TreeItem
                 icon={<ArticleIcon />}
-                isDisabled
-                label={<>Chapter 1 child: Cake donut lemon drops gingerbread</>}
-                itemId="2"
+                label={<>Section 1.1: Cake donut lemon drops gingerbread</>}
+                itemId="pt1ch1.1"
+                // isDisabled
               />
             </TreeItem>
             <TreeItem
@@ -93,15 +117,15 @@ export const Default = args => {
                   Chapter 2: Chocolate bar ice cream cake liquorice icing tart
                 </>
               }
-              itemId="3"
+              // isDisabled
+              itemId="pt1ch2"
             />
             <TreeItem
               icon={<FolderIcon />}
               label={
                 <>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>
               }
-              isDisabled
-              itemId="4"
+              itemId="pt1ch3"
             >
               <TreeItem
                 icon={<ArticleIcon />}
@@ -110,7 +134,7 @@ export const Default = args => {
                     Section 3.1: Topping pudding marshmallow caramels I love pie
                   </>
                 }
-                itemId="5"
+                itemId="pt1ch3.1"
               />
               <TreeItem
                 icon={<ArticleIcon />}
@@ -119,7 +143,7 @@ export const Default = args => {
                     Section 3.2: Tart sweet roll caramels candy canes sweet roll
                   </>
                 }
-                itemId="6"
+                itemId="pt1ch3.2"
               />
               <TreeItem
                 icon={<ArticleIcon />}
@@ -128,7 +152,7 @@ export const Default = args => {
                     Section 3.3: Tart sweet roll caramels candy canes sweet roll
                   </>
                 }
-                itemId="7"
+                itemId="pt1ch3.3"
               />
             </TreeItem>
           </TreeItem>
@@ -140,7 +164,7 @@ export const Default = args => {
                 caramels croissant I love
               </>
             }
-            itemId="8"
+            itemId="pt2"
           >
             <TreeItem
               icon={<ArticleIcon />}
@@ -150,7 +174,7 @@ export const Default = args => {
                   sweet
                 </>
               }
-              itemId="9"
+              itemId="pt2ch4"
             />
             <TreeItem
               icon={<FolderIcon />}
@@ -160,7 +184,7 @@ export const Default = args => {
                   dragée halvah
                 </>
               }
-              itemId="10"
+              itemId="pt2ch5"
             >
               <TreeItem
                 icon={<ArticleIcon />}
@@ -170,7 +194,7 @@ export const Default = args => {
                     chocolate cake
                   </>
                 }
-                itemId="11"
+                itemId="pt2ch5.1"
               />
               <TreeItem
                 icon={<ArticleIcon />}
@@ -180,7 +204,7 @@ export const Default = args => {
                     sesame snaps sesame snaps
                   </>
                 }
-                itemId="12"
+                itemId="pt2ch5.2"
               />
               <TreeItem
                 icon={<ArticleIcon />}
@@ -190,13 +214,13 @@ export const Default = args => {
                     chocolate cake cupcake soufflé pie
                   </>
                 }
-                itemId="13"
+                itemId="pt2ch5.3"
               />
             </TreeItem>
             <TreeItem
               icon={<ArticleIcon />}
               label={<>Chapter 6: Cupcake dragée I love cookie I love</>}
-              itemId="14"
+              itemId="pt2ch6"
             />
           </TreeItem>
           <TreeItem
@@ -207,7 +231,7 @@ export const Default = args => {
                 gummi bears
               </>
             }
-            itemId="15"
+            itemId="pt3"
           >
             <TreeItem
               icon={<ArticleIcon />}
@@ -217,7 +241,7 @@ export const Default = args => {
                   cupcake I love dessert liquorice
                 </>
               }
-              itemId="16"
+              itemId="pt3ch7"
             />
             <TreeItem
               icon={<ArticleIcon />}
@@ -227,14 +251,14 @@ export const Default = args => {
                   shortbread
                 </>
               }
-              itemId="17"
+              itemId="pt3ch8"
             />
             <TreeItem
               icon={<ArticleIcon />}
               label={
                 <>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>
               }
-              itemId="18"
+              itemId="pt3ch9"
             />
             <TreeItem
               icon={<ArticleIcon />}
@@ -244,7 +268,7 @@ export const Default = args => {
                   bear claw croissant cheesecake tart
                 </>
               }
-              itemId="19"
+              itemId="pt3ch10"
             />
             <TreeItem
               icon={<ArticleIcon />}
@@ -255,14 +279,18 @@ export const Default = args => {
                   tart
                 </>
               }
-              itemId="20"
+              itemId="pt3ch11"
             />
           </TreeItem>
         </TreeView>
       </Card>
       <br />
       {args.selectable !== TreeViewSelectable.off && (
-        <>Selected: {selectedItems}</>
+        <>
+        <p>{total} total</p>
+        <p>Selected: {selectedItems}</p>
+        <p> Indeterminate: {indeterminateItems}</p>
+        </>
       )}
     </>
   );
@@ -271,23 +299,42 @@ export const Default = args => {
 Default.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ['8', '0', '10'],
-  initialSelectedItems: ['8', '0'],
+  initialExpandedItems: ['pt1', 'pt2'],
+  initialSelectedItems: [
+    { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
+    { itemId: 'pt2ch6', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5', checkedStatus: IndeterminateCheckboxStatus.checked },
+  ],
   testId: 'default-example',
 };
 
 export const NoIcons = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
 
   function onSelection(items) {
-    const allTags = items.map((i: any, key) => {
-      return (
-        <Tag key={key} size={TagSize.small}>
-          {i}
+    const selected = items
+      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.primary}>
+          {i.itemId}
         </Tag>
-      );
-    });
-    setSelectedItems(allTags);
+      ));
+
+    const indet = items
+      .filter(
+        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+      )
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.default}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+    console.log("onSelection event:", items);
   }
 
   return (
@@ -332,7 +379,10 @@ export const NoIcons = args => {
       </Card>
       <br />
       {args.selectable !== TreeViewSelectable.off && (
-        <>Selected: {selectedItems}</>
+        <>
+          <p>Selected: {selectedItems}</p>
+        <p> Indeterminate: {indeterminateItems}</p>
+        </>
       )}
     </>
   );
@@ -340,7 +390,9 @@ export const NoIcons = args => {
 
 NoIcons.args = {
   initialExpandedItems: ['home', 'storage'],
-  initialSelectedItems: ['storage-2'],
+  initialSelectedItems: [
+    { itemId: 'storage-2', checkedStatus: IndeterminateCheckboxStatus.checked },
+  ],
 };
 
 export const Textbook = args => {
@@ -439,16 +491,30 @@ Textbook.args = {
 
 export const Simple = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
 
   function onSelection(items) {
-    const allTags = items.map((i: any, key) => {
-      return (
-        <Tag key={key} size={TagSize.small}>
-          {i}
+    const selected = items
+      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.primary}>
+          {i.itemId}
         </Tag>
-      );
-    });
-    setSelectedItems(allTags);
+      ));
+
+    const indet = items
+      .filter(
+        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+      )
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.default}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+    console.log("onSelection event:", items);
   }
 
   return (
@@ -473,7 +539,8 @@ export const Simple = args => {
       </TreeView>
       <br />
       {args.selectable !== TreeViewSelectable.off && (
-        <>Selected: {selectedItems}</>
+        <><p>Selected: {selectedItems}</p>
+        <p> Indeterminate: {indeterminateItems}</p></>
       )}
     </>
   );
@@ -483,16 +550,30 @@ Simple.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const DefaultIcon = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
 
   function onSelection(items) {
-    const allTags = items.map((i: any, key) => {
-      return (
-        <Tag key={key} size={TagSize.small}>
-          {i}
+    const selected = items
+      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.primary}>
+          {i.itemId}
         </Tag>
-      );
-    });
-    setSelectedItems(allTags);
+      ));
+
+    const indet = items
+      .filter(
+        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+      )
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.default}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+    console.log("onSelection event:", items);
   }
 
   return (
@@ -518,7 +599,7 @@ export const DefaultIcon = args => {
             style={{ background: magma.colors.info100 }}
           />
           <TreeItem
-            icon={<EmergencyIcon />}
+            icon={<EmergencyIcon style={{color: magma.colors.danger500}}/>}
             itemId="5"
             label={<>I have an icon too</>}
           >
@@ -528,7 +609,8 @@ export const DefaultIcon = args => {
       </TreeView>
       <br />
       {args.selectable !== TreeViewSelectable.off && (
-        <>Selected: {selectedItems}</>
+        <><p>Selected: {selectedItems}</p>
+        <p> Indeterminate: {indeterminateItems}</p></>
       )}
     </>
   );
@@ -581,7 +663,9 @@ export const FirstItemLeaf = args => {
 
 FirstItemLeaf.args = {
   initialExpandedItems: ['item1', 'item2', 'item-child2'],
-  initialSelectedItems: ['item6'],
+  initialSelectedItems: [
+    { itemId: 'item6', checkedStatus: IndeterminateCheckboxStatus.checked },
+  ],
 };
 
 FirstItemLeaf.parameters = { controls: { exclude: ['isInverse'] } };
@@ -651,3 +735,36 @@ Flat.args = {
 };
 
 Flat.parameters = { controls: { exclude: ['isInverse'] } };
+
+
+export const UnitTest = () => {
+  return (
+    <TreeView
+      testId={'tree-view'}
+      initialSelectedItems={[
+        { itemId: 'item0', checkedStatus: 'checked' },
+        { itemId: 'item1', checkedStatus: 'checked' },
+        // { itemId: 'item2', checkedStatus: 'checked' },
+        // { itemId: 'item-child2', checkedStatus: 'checked' },
+      ]}
+      initialExpandedItems={['item1', 'item2']}
+      selectable={TreeViewSelectable.multi}
+    >
+      <TreeItem label="Node 0" itemId="item0" testId="item0" />
+      <TreeItem label="Node 1" itemId="item1" testId="item1">
+        <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
+      </TreeItem>
+      <TreeItem label="Node 2" itemId="item2" testId="item2">
+        <TreeItem label="Child 2.1" itemId="item-child2" testId="item-child2" />
+        <TreeItem
+          label="Child 2.2"
+          itemId="item-child2.2"
+          testId="item-child2.2"
+        />
+      </TreeItem>
+      <TreeItem label="Node 3" itemId="item3" testId="item3">
+        <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
+      </TreeItem>
+    </TreeView>
+  );
+}
