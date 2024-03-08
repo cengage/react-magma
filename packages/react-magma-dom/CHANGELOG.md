@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.4.0-next.4
+
+### Minor Changes
+
+- b9626a096: feat(TreeView): TreeView & TreeItem updates
+
 ## 4.4.0-next.3
 
 ### Minor Changes
