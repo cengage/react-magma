@@ -2,6 +2,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
 import { TreeViewSelectable } from './useTreeView';
 import React from 'react';
+import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -16,20 +17,22 @@ export enum TreeNodeType {
  * Branch node - 1st level has 8px of left padding.
  * Each level after that adds 24px of left padding.
  * 8, 32, 56, 80, 104, etc.
+ *
+ * The label element (the div inside the li) gets additional spacing.
+ * In order to highlight the entire line, we need to negate the value for margin.
  */
 export function calculateOffset(
   type: TreeNodeType,
   depth: number = 0,
-  label: boolean = false,
+  labelElem: boolean = false,
   negative: boolean = false
 ) {
   let padding = 0;
 
   if (type === TreeNodeType.leaf) {
-    if (label) {
+    if (labelElem) {
       padding = depth * 8 + 40;
       if (depth !== 0) {
-        // TODO: once depth is correctly calculated, this should work better
         padding += depth * 16;
       }
     } else if (depth === 0) {
@@ -38,10 +41,9 @@ export function calculateOffset(
       padding = 56;
     }
   } else if (type === TreeNodeType.branch) {
-    if (label) {
+    if (labelElem) {
       padding = depth * 8 + 8;
       if (depth !== 0) {
-        // TODO: once depth is correctly calculated, this should work better
         padding += depth * 16;
       }
     } else if (depth === 0) {
@@ -90,6 +92,10 @@ export function getTreeItemWrapperCursor(
   return 'default';
 }
 
+export function selectedItemsIncludesId(selectedItems, itemId) {
+  return selectedItems?.some(item => item.itemId === itemId);
+}
+
 // Return an array of all the enabled children ids recursively
 export function getChildrenItemIds(children) {
   let itemIds = [];
@@ -97,7 +103,10 @@ export function getChildrenItemIds(children) {
   React.Children.forEach(children, child => {
     if (!child.props?.isDisabled) {
       if (child.props?.itemId) {
-        itemIds.push(child.props.itemId);
+        itemIds.push({
+          itemId: child.props.itemId,
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        });
       }
 
       if (child.props?.children) {
@@ -116,20 +125,22 @@ export function getAllChildrenEnabled(children) {
 }
 
 // Return an array that filters out the childrenIds & itemId from selectedItems
-// (used for deselecting undeterminate checkboxes)
+// (used for deselecting indeterminate checkboxes)
 export function filterSelectedItems(selectedItems, childrenIds, itemId) {
-  const allIds = [...childrenIds, itemId];
-  return selectedItems.filter(item => !allIds.includes(item));
+  const allItems = [...childrenIds, itemId];
+  const ids = allItems.map(item => item.itemId);
+  return selectedItems.filter(item => !ids.includes(item.itemId));
 }
 
 // Return an array of childrenIds that are missing from selectedItems
 export function getMissingChildrenIds(selectedItems, childrenIds) {
-  return childrenIds.filter(itemId => !selectedItems.includes(itemId));
+  const selectedIds = selectedItems.map(item => item.itemId);
+  return childrenIds.filter(item => !selectedIds.includes(item.itemId));
 }
 
 // Return an array of statuses for all enabled children
 export function getChildrenCheckedStatus(childrenIds, status) {
-  return childrenIds.map(child => (child.isDisabled ? null : status));
+  return childrenIds.map(child => (child.isDisabled ? IndeterminateCheckboxStatus.unchecked : status));
 }
 
 // Return the length of enabled children
@@ -142,26 +153,39 @@ export function getEnabledTreeItemChildrenLength(treeItemChildren) {
   }, 0);
 }
 
+// Updates the checkedStatus of the itemId in selectedItems and returns the selectedItems
+export function getUpdatedSelectedItems(selectedItems, itemId, checkedStatus) {
+  const updatedItems = selectedItems.map(item => {
+    if (item.itemId === itemId) {
+      return { ...item, checkedStatus };
+    }
+    return item;
+  });
+
+  return updatedItems;
+}
+
 // Return an array of unique items from the previous state, initially selected items and the childrem item ids
 export function getUniqueSelectedItemsArray(
   prev,
   initialSelectedItems,
-  childrenItemIds
+  childrenItemIds = []
 ) {
-  return Array.from(new Set([...prev, ...initialSelectedItems, ...childrenItemIds]));
+  return Array.from(
+    new Set([...prev, ...initialSelectedItems, ...childrenItemIds])  );
 }
 
+// TODO
 export function getSelectedItemsIndexes(selectedItems, treeItemChildren) {
-  // TODO
   const fullSelectedItems = treeItemChildren.map(child => {
-    return selectedItems.includes(child.props.itemId)
+    return selectedItems.includes(child.props.itemId);
   });
   return fullSelectedItems;
 }
 
+// TODO
 // Return the selected item with the lowest index
 export function getLowestIndexItem(selectedItems, treeItemChildren) {
-  // TODO
   // const fullSelectedItems = getSelectedItemsIndexes(selectedItems, treeItemChildren);
 
   if (selectedItems.length === 0) {

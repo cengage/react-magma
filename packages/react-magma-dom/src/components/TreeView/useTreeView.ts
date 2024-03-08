@@ -18,7 +18,7 @@ export interface UseTreeViewProps {
    * Array list of itemIds of items that should be selected by default
    * * @default [] (no items selected)
    */
-  initialSelectedItems?: Array<string>;
+  initialSelectedItems?: Array<Object>;
   isInverse?: boolean;
   /**
    * How many items can be selected in the tree view: single, multi, off
@@ -43,8 +43,10 @@ export interface UseTreeViewProps {
   ariaLabelledBy?: string;
   /**
    * Action that fires when an item is selected
+   * Return an array of objects.
+   * Example: [ {itemId: 'item0',checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
    */
-  onSelectedItemChange?: (selectedItems: any) => void;
+  onSelectedItemChange?: (selectedItems: Array<Object>) => void;
   /**
    * Action that fires when an item is expanded or collapsed
    */
@@ -63,6 +65,14 @@ export function useTreeView(props: UseTreeViewProps) {
   const [selectedItems, setSelectedItems] = React.useState([]);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
+
+  React.useEffect(() => {
+    if (selectable !== TreeViewSelectable.off) {
+      onSelectedItemChange &&
+        typeof onSelectedItemChange === 'function' &&
+        onSelectedItemChange(selectedItems);
+    }
+  }, [selectedItems]);
 
   const contextValue = {
     hasIcons,

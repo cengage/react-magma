@@ -76,6 +76,7 @@ const StyledTreeItem = styled.li<{
       calculateOffset(props.nodeType, props.depth, true, true)};
     padding-block-end: ${props => props.theme.spaceScale.spacing02};
     padding-block-start: ${props => props.theme.spaceScale.spacing02};
+    padding-right: ${props => props.theme.spaceScale.spacing02};
 
     ${props =>
       props.selected &&
@@ -217,7 +218,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
     const selectedItem =
       selectable === TreeViewSelectable.single
-        ? selectedItems?.[0] === itemId
+        ? selectedItems?.[0]?.['itemId'] === itemId
         : null;
 
     const checkedItem =
@@ -401,7 +402,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   child
                 );
               // hide the disabled item + the children
-              if (isDisabled) return <></>;
+              // if (isDisabled) return <></>;
 
               return component;
             }
