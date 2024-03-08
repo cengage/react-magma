@@ -66,17 +66,18 @@ describe('NativeSelect', () => {
   });
 
   it('should update the selected option', () => {
-    const { getByTestId, getAllByTestId } = render(
+    const { getByTestId } = render(
       <NativeSelect testId={testId}>
-        <option data-testid={`${testId}-option-1`}>1</option>
-        <option data-testid={`${testId}-option-2`}>2</option>
-        <option data-testid={`${testId}-option-3`}>3</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
       </NativeSelect>
     );
+    const activeOption = getByTestId(testId);
+
     fireEvent.change(getByTestId(testId), { target: { value: 2 } });
-    expect(getByTestId(`${testId}-option-1`).selected).toBeFalsy();
-    expect(getByTestId(`${testId}-option-2`).selected).toBeTruthy();
-    expect(getByTestId(`${testId}-option-3`).selected).toBeFalsy();
+
+    expect(activeOption).toHaveDisplayValue('2');
   });
 
   it('should render a default inverse border', () => {
@@ -174,7 +175,7 @@ describe('NativeSelect', () => {
       );
     });
 
-    it(`Shouldn't display an additional wrapper when additionalContent is unset'`, () => {
+    it(`Should display an additional wrapper with additionalContent'`, () => {
       const { rerender, queryByTestId } = render(
         <NativeSelect
           labelPosition="left"
@@ -197,9 +198,12 @@ describe('NativeSelect', () => {
       expect(
         queryByTestId(`${testId}-additional-content-wrapper`)
       ).toBeInTheDocument();
+    });
 
-      rerender(<NativeSelect labelPosition="left" testId={testId} />);
-
+    it(`Shouldn't display an additional wrapper without additionalContent'`, () => {
+      const { rerender, queryByTestId } = render(
+        <NativeSelect labelPosition="left" testId={testId} />
+      );
       expect(
         queryByTestId(`${testId}-additional-content-wrapper`)
       ).not.toBeInTheDocument();
