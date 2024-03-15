@@ -68,6 +68,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
   React.useEffect(() => {
     if (selectable !== TreeViewSelectable.off) {
+      // TODO: figure out how to do this more efficiently
       onSelectedItemChange &&
         typeof onSelectedItemChange === 'function' &&
         onSelectedItemChange(selectedItems);

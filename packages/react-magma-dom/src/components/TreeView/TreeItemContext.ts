@@ -14,6 +14,7 @@ interface TreeItemContextInterface {
     status: IndeterminateCheckboxStatus
   ) => void;
   parentDepth: number;
+  parentItemId: string;
 }
 
 export const TreeItemContext = React.createContext<TreeItemContextInterface>({
@@ -25,4 +26,5 @@ export const TreeItemContext = React.createContext<TreeItemContextInterface>({
   updateCheckedStatusFromChild: () => {},
   numberOfTreeItemChildren: 0,
   parentDepth: 0,
+  parentItemId: null,
 });

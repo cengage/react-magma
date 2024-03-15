@@ -90,14 +90,14 @@ export const Default = args => {
     setSelectedItems(selected);
     setIndeterminateItems(indet);
     setTotal(items.length);
-    console.log("onSelection event:", items);
+    console.log('onSelection event:', items);
   }
 
   return (
     <>
       <Card isInverse={args.isInverse}>
         <TreeView {...args} onSelectedItemChange={onSelection}>
-          <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
+          {/* <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
               icon={<ArticleIcon />}
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
@@ -155,7 +155,7 @@ export const Default = args => {
                 itemId="pt1ch3.3"
               />
             </TreeItem>
-          </TreeItem>
+          </TreeItem> */}
           <TreeItem
             icon={<FolderIcon />}
             label={
@@ -195,7 +195,29 @@ export const Default = args => {
                   </>
                 }
                 itemId="pt2ch5.1"
-              />
+              >
+                {' '}
+                <TreeItem
+                  icon={<ArticleIcon />}
+                  label={
+                    <>
+                      Section 5.1.1: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.1"
+                />
+                <TreeItem
+                  icon={<ArticleIcon />}
+                  label={
+                    <>
+                      Section 5.1.2: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.2"
+                />
+              </TreeItem>
               <TreeItem
                 icon={<ArticleIcon />}
                 label={
@@ -223,7 +245,7 @@ export const Default = args => {
               itemId="pt2ch6"
             />
           </TreeItem>
-          <TreeItem
+          {/* <TreeItem
             icon={<FolderIcon />}
             label={
               <>
@@ -281,15 +303,15 @@ export const Default = args => {
               }
               itemId="pt3ch11"
             />
-          </TreeItem>
+          </TreeItem> */}
         </TreeView>
       </Card>
       <br />
       {args.selectable !== TreeViewSelectable.off && (
         <>
-        <p>{total} total</p>
-        <p>Selected: {selectedItems}</p>
-        <p> Indeterminate: {indeterminateItems}</p>
+          <p>{total} total</p>
+          <p>Selected: {selectedItems}</p>
+          <p>Indeterminate: {indeterminateItems}</p>
         </>
       )}
     </>
@@ -299,12 +321,15 @@ export const Default = args => {
 Default.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ['pt1', 'pt2'],
+  initialExpandedItems: [],
   initialSelectedItems: [
-    { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
-    { itemId: 'pt2', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
-    { itemId: 'pt2ch6', checkedStatus: IndeterminateCheckboxStatus.checked },
-    { itemId: 'pt2ch5', checkedStatus: IndeterminateCheckboxStatus.checked },
+    // { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
+    // { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
+    // { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
+    // { itemId: 'pt2ch5', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.1.1', checkedStatus: IndeterminateCheckboxStatus.checked },
+    // { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
   testId: 'default-example',
 };
@@ -334,7 +359,7 @@ export const NoIcons = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
-    console.log("onSelection event:", items);
+    console.log('onSelection event:', items);
   }
 
   return (
@@ -381,7 +406,7 @@ export const NoIcons = args => {
       {args.selectable !== TreeViewSelectable.off && (
         <>
           <p>Selected: {selectedItems}</p>
-        <p> Indeterminate: {indeterminateItems}</p>
+          <p>Indeterminate: {indeterminateItems}</p>
         </>
       )}
     </>
@@ -514,7 +539,7 @@ export const Simple = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
-    console.log("onSelection event:", items);
+    console.log('onSelection event:', items);
   }
 
   return (
@@ -539,8 +564,10 @@ export const Simple = args => {
       </TreeView>
       <br />
       {args.selectable !== TreeViewSelectable.off && (
-        <><p>Selected: {selectedItems}</p>
-        <p> Indeterminate: {indeterminateItems}</p></>
+        <>
+          <p>Selected: {selectedItems}</p>
+          <p>Indeterminate: {indeterminateItems}</p>
+        </>
       )}
     </>
   );
@@ -573,7 +600,7 @@ export const DefaultIcon = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
-    console.log("onSelection event:", items);
+    console.log('onSelection event:', items);
   }
 
   return (
@@ -599,7 +626,7 @@ export const DefaultIcon = args => {
             style={{ background: magma.colors.info100 }}
           />
           <TreeItem
-            icon={<EmergencyIcon style={{color: magma.colors.danger500}}/>}
+            icon={<EmergencyIcon style={{ color: magma.colors.danger500 }} />}
             itemId="5"
             label={<>I have an icon too</>}
           >
@@ -609,8 +636,10 @@ export const DefaultIcon = args => {
       </TreeView>
       <br />
       {args.selectable !== TreeViewSelectable.off && (
-        <><p>Selected: {selectedItems}</p>
-        <p> Indeterminate: {indeterminateItems}</p></>
+        <>
+          <p>Selected: {selectedItems}</p>
+          <p>Indeterminate: {indeterminateItems}</p>
+        </>
       )}
     </>
   );
@@ -736,7 +765,6 @@ Flat.args = {
 
 Flat.parameters = { controls: { exclude: ['isInverse'] } };
 
-
 export const UnitTest = () => {
   return (
     <TreeView
@@ -767,4 +795,4 @@ export const UnitTest = () => {
       </TreeItem>
     </TreeView>
   );
-}
+};
