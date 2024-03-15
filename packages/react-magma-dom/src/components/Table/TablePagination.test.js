@@ -77,11 +77,16 @@ describe('Table Pagination', () => {
       );
       const rowsSelect = getByTestId('rowPerPageSelect');
 
-      fireEvent.change(rowsSelect, { target: { value: 20 }});
+      const appliedSelection = document.querySelector(
+        'select[data-testid=rowPerPageSelect]'
+      );
+
+      fireEvent.change(rowsSelect, { target: { value: 20 } });
 
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 1);
       expect(handleRowsPerPageChange).toHaveBeenCalledWith('20');
       expect(getByText(/1-20/i)).toBeInTheDocument();
+      expect(appliedSelection).toHaveDisplayValue('20');
     });
   });
 
@@ -195,9 +200,7 @@ describe('Table Pagination', () => {
   });
 
   it('should hide rows per page component when no onRowsPerPageChanged function passed', () => {
-    const { queryByText } = render(
-      <TablePagination itemCount={20}/>
-    );
+    const { queryByText } = render(<TablePagination itemCount={20} />);
 
     expect(queryByText('Rows per page:')).not.toBeInTheDocument();
   });
