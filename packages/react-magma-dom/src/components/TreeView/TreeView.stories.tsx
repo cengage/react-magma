@@ -90,7 +90,7 @@ export const Default = args => {
     setSelectedItems(selected);
     setIndeterminateItems(indet);
     setTotal(items.length);
-    console.log('onSelection event:', items);
+    // console.log('onSelection event:', items);
   }
 
   return (
@@ -196,7 +196,6 @@ export const Default = args => {
                 }
                 itemId="pt2ch5.1"
               >
-                {' '}
                 <TreeItem
                   icon={<ArticleIcon />}
                   label={
@@ -311,7 +310,7 @@ export const Default = args => {
         <>
           <p>{total} total</p>
           <p>Selected: {selectedItems}</p>
-          <p>Indeterminate: {indeterminateItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (<p>Indeterminate: {indeterminateItems}</p>)}
         </>
       )}
     </>
@@ -359,7 +358,7 @@ export const NoIcons = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
-    console.log('onSelection event:', items);
+    // console.log('onSelection event:', items);
   }
 
   return (
@@ -406,7 +405,7 @@ export const NoIcons = args => {
       {args.selectable !== TreeViewSelectable.off && (
         <>
           <p>Selected: {selectedItems}</p>
-          <p>Indeterminate: {indeterminateItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (<p>Indeterminate: {indeterminateItems}</p>)}
         </>
       )}
     </>
@@ -566,7 +565,7 @@ export const Simple = args => {
       {args.selectable !== TreeViewSelectable.off && (
         <>
           <p>Selected: {selectedItems}</p>
-          <p>Indeterminate: {indeterminateItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (<p>Indeterminate: {indeterminateItems}</p>)}
         </>
       )}
     </>
@@ -638,7 +637,7 @@ export const DefaultIcon = args => {
       {args.selectable !== TreeViewSelectable.off && (
         <>
           <p>Selected: {selectedItems}</p>
-          <p>Indeterminate: {indeterminateItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (<p>Indeterminate: {indeterminateItems}</p>)}
         </>
       )}
     </>

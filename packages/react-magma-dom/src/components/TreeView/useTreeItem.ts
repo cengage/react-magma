@@ -19,6 +19,8 @@ import {
   findCommonItems,
   areArraysEqual,
   findChildByItemId,
+  getChildrenItemIdsInTree,
+  getAllParentIds,
 } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -120,6 +122,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     setHasIcons,
     setSelectedItems,
     treeItemRefArray,
+    initialSelectedItemsNeedUpdate,
+    setInitialSelectedItemsNeedUpdate,
   } = React.useContext(TreeViewContext);
 
   const [expanded, setExpanded] = React.useState(isDisabled);
@@ -162,7 +166,16 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       if (item?.itemId === itemId) {
         const newStatus = item?.checkedStatus;
         if (checkedStatus !== newStatus) {
+          setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
           setCheckedStatus(item?.checkedStatus);
+          updateParentCheckStatus(index, newStatus);
+          setSelectedItems(prev => {
+            return getUniqueSelectedItemsArray(
+              prev,
+              [{ itemId: itemId, checkedStatus: newStatus }],
+              []
+            );
+          });
         }
         return;
       }
@@ -200,79 +213,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }, [initialExpandedItems]);
 
   React.useEffect(() => {
-    if (selectable === TreeViewSelectable.single && initialSelectedItems) {
-      if (initialSelectedItems?.[0]?.itemId === itemId && !isDisabled) {
-        setSelectedItems([
-          { itemId, checkedStatus: initialSelectedItems?.[0].checkedStatus },
-        ]);
-      }
-    } else if (
-      selectable === TreeViewSelectable.multi &&
-      initialSelectedItems
-    ) {
-      const item = initialSelectedItems.find(obj => obj.itemId === itemId);
-      const status = item?.checkedStatus;
-
-      const childrenItemIds = getChildrenItemIds(children);
-      // Items from initialSelectedItems that are children
-      const initialSelectedChildrenItems = findCommonItems(
-        initialSelectedItems,
-        childrenItemIds
-      );
-
-      if (
-        !isDisabled &&
-        (selectedItemsIncludesId(initialSelectedItems, itemId) ||
-          childrenItemIds?.includes(itemId))
-      ) {
-        setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
-        setCheckedStatus(status);
-        updateParentCheckStatus(index, status);
-
-        if (
-          childrenItemIds.length > 0 &&
-          status === IndeterminateCheckboxStatus.checked
-        ) {
-          const newChildrenCheckedStatus = getChildrenCheckedStatus(
-            childrenItemIds,
-            status
-          );
-          setChildrenCheckedStatus(newChildrenCheckedStatus);
-        }
-        setSelectedItems(prev => {
-          const allItems = getUniqueSelectedItemsArray(
-            prev,
-            initialSelectedItems,
-            childrenItemIds
-          );
-          return allItems;
-        });
-      } else if (!isDisabled && initialSelectedChildrenItems.length > 0) {
-        // Case for initialSelectedItems that are inside a collapsed item
-
-        for (const i of initialSelectedChildrenItems) {
-          const itemIdNode = findChildByItemId(children, i.itemId);
-          const childrenOfItemId = getChildrenItemIds(
-            itemIdNode?.props?.children
-          );
-
-          if (itemIdNode?.props?.children) {
-            updateStatusForItem(
-              childrenOfItemId,
-              initialSelectedChildrenItems,
-              i.itemId
-            );
-          }
-        }
-
-        updateStatusForItem(
-          childrenItemIds,
-          initialSelectedChildrenItems,
-          itemId
-        );
-      }
+    if (initialSelectedItemsNeedUpdate) {
+      updateInitialSelected();
     }
-  }, [initialSelectedItems]);
+  }, [initialSelectedItemsNeedUpdate]);
 
   const updateCheckedStatusFromChild = (
     index: number,
@@ -312,6 +256,90 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         { itemId: itemId, checkedStatus: parentStatus },
       ]);
     });
+  };
+
+  const updateInitialSelected = () => {
+    if (selectable === TreeViewSelectable.single && initialSelectedItems) {
+      if (
+        initialSelectedItems?.[0]?.itemId === itemId &&
+        !isDisabled &&
+        selectedItems.length === 0
+      ) {
+        setSelectedItems([
+          { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
+        ]);
+      }
+    } else if (
+      selectable === TreeViewSelectable.multi &&
+      initialSelectedItems
+    ) {
+      const item = initialSelectedItems.find(obj => obj.itemId === itemId);
+      const status = item?.checkedStatus;
+
+      const childrenItemIds = getChildrenItemIds(treeItemChildren);
+      // Items from initialSelectedItems that are children
+      const initialSelectedChildrenItems = findCommonItems(
+        initialSelectedItems,
+        childrenItemIds
+      );
+
+      if (
+        !isDisabled &&
+        (selectedItemsIncludesId(initialSelectedItems, itemId) ||
+          childrenItemIds?.includes(itemId))
+      ) {
+        setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
+        setCheckedStatus(status);
+        updateParentCheckStatus(index, status);
+
+        if (
+          childrenItemIds.length > 0 &&
+          status === IndeterminateCheckboxStatus.checked
+        ) {
+          const newChildrenCheckedStatus = getChildrenCheckedStatus(
+            childrenItemIds,
+            status
+          );
+          setChildrenCheckedStatus(newChildrenCheckedStatus);
+        }
+        setSelectedItems(prev => {
+          const allItems = getUniqueSelectedItemsArray(
+            prev,
+            initialSelectedItems,
+            childrenItemIds
+          );
+          return allItems;
+        });
+      } else if (!isDisabled && initialSelectedChildrenItems.length > 0) {
+        // Case for initialSelectedItems that are inside a collapsed item
+        const itemIdChildren = getChildrenItemIdsInTree(treeItemChildren);
+
+        for (const i of initialSelectedChildrenItems) {
+          const itemIdNode = findChildByItemId(treeItemChildren, i.itemId);
+          const childrenOfItemId = getChildrenItemIds(
+            itemIdNode?.props?.children
+          );
+
+          const parentIds = getAllParentIds(itemIdChildren, i.itemId);
+
+          for (const p of parentIds) {
+            updateStatusForItem(
+              childrenOfItemId,
+              initialSelectedChildrenItems,
+              p
+            );
+          }
+        }
+
+        updateStatusForItem(
+          childrenItemIds,
+          initialSelectedChildrenItems,
+          itemId
+        );
+      }
+    }
+
+    setInitialSelectedItemsNeedUpdate(false);
   };
 
   React.useEffect(() => {
@@ -367,7 +395,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.children);
         setCheckedStatus(statusFromChildren);
-        // setSelectedItems(updateItemStatus);
+        setSelectedItems(updateItemStatus);
 
         if (
           statusFromChildren === IndeterminateCheckboxStatus.checked ||

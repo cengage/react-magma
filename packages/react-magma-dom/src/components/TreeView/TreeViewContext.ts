@@ -23,6 +23,8 @@ export interface TreeViewContextInterface {
     itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
     itemRef: React.MutableRefObject<Element>
   ) => void;
+  initialSelectedItemsNeedUpdate: boolean;
+    setInitialSelectedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -34,4 +36,6 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   initialExpandedItems: [],
   initialSelectedItems: [],
   registerTreeItem: (elements, element) => {},
+  initialSelectedItemsNeedUpdate: false,
+  setInitialSelectedItemsNeedUpdate: () => {},
 });

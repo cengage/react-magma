@@ -92,6 +92,7 @@ export function getTreeItemWrapperCursor(
   return 'default';
 }
 
+// Returns boolean if selectedItems has itemId
 export function selectedItemsIncludesId(selectedItems, itemId) {
   return selectedItems?.some(item => item.itemId === itemId);
 }
@@ -117,6 +118,43 @@ export function getChildrenItemIds(children) {
   });
 
   return itemIds;
+}
+
+export function getChildrenItemIdsInTree(children) {
+  let itemIds = [];
+
+  React.Children.forEach(children, child => {
+    if (child.props?.itemId && !child.props?.isDisabled) {
+      itemIds.push({
+        itemId: child.props?.itemId,
+        children: getChildrenItemIdsInTree(child.props?.children),
+      });
+    }
+  });
+
+  return itemIds;
+}
+
+export function getAllParentIds(childrenArr, itemId, parentItemIds = []) {
+  for (const child of childrenArr) {
+    if (child.itemId === itemId) {
+      return parentItemIds; // Return the parentItemIds array if the itemId is found
+    }
+
+    if (child.children && child.children.length > 0) {
+      const updatedParentItemIds = [...parentItemIds, child.itemId];
+      const result = getAllParentIds(
+        child.children,
+        itemId,
+        updatedParentItemIds
+      );
+      if (result) {
+        return result; // Return the result if the itemId is found in the child's subtree
+      }
+    }
+  }
+
+  return null; // Return null if the itemId is not found
 }
 
 // Return the node of an itemId by traversing through the children
@@ -202,11 +240,11 @@ export function getUniqueSelectedItemsArray(
 }
 
 // Return items in both arrays
-export function findCommonItems(initialSelectedItems, childrenItemIds) {
+export function findCommonItems(initialItemsArr, childrenItemsArr) {
   const commonItems = [];
 
-  for (const initialItem of initialSelectedItems) {
-    for (const childItem of childrenItemIds) {
+  for (const initialItem of initialItemsArr) {
+    for (const childItem of childrenItemsArr) {
       if (initialItem.itemId === childItem.itemId) {
         commonItems.push(initialItem);
         break;

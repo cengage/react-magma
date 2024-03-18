@@ -63,17 +63,27 @@ export function useTreeView(props: UseTreeViewProps) {
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState([]);
+  const [initialSelectedItemsNeedUpdate, setInitialSelectedItemsNeedUpdate] =
+    React.useState(false);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
   React.useEffect(() => {
     if (selectable !== TreeViewSelectable.off) {
+      // console.log('selectedItems', selectedItems);
+      
       // TODO: figure out how to do this more efficiently
       onSelectedItemChange &&
         typeof onSelectedItemChange === 'function' &&
         onSelectedItemChange(selectedItems);
     }
   }, [selectedItems]);
+
+  React.useEffect(() => {
+    if (selectable !== TreeViewSelectable.off && initialSelectedItems) {
+      setInitialSelectedItemsNeedUpdate(true);
+    }
+  }, []);
 
   const contextValue = {
     hasIcons,
@@ -87,6 +97,8 @@ export function useTreeView(props: UseTreeViewProps) {
     initialSelectedItems,
     treeItemRefArray,
     registerTreeItem,
+    initialSelectedItemsNeedUpdate,
+    setInitialSelectedItemsNeedUpdate,
   };
 
   return { contextValue };
