@@ -347,8 +347,7 @@ describe('TreeView', () => {
           })
         );
 
-        // TODO
-        // expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'true');
         expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'true');
         expect(getByTestId('item-child1')).toHaveAttribute('aria-checked', 'true');
         expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'true');

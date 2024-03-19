@@ -218,14 +218,14 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
     const selectedItem =
       selectable === TreeViewSelectable.single
-        ? selectedItems?.[0]?.['itemId'] === itemId
+        ? selectedItems?.[0]?.itemId === itemId
         : null;
 
     const checkedItem =
       selectable === TreeViewSelectable.multi
         ? checkedStatusToBoolean(checkedStatus)
         : null;
-
+        
     const defaultIcon =
       nodeType === TreeNodeType.branch ? <FolderIcon /> : <ArticleIcon />;
 
@@ -402,7 +402,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   child
                 );
               // hide the disabled item + the children
-              // if (isDisabled) return <></>;
+              if (isDisabled) return <></>;
 
               return component;
             }

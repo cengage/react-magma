@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
+import { TreeItemSelectedInterface } from './TreeViewContext';
 
 export enum TreeViewSelectable {
   single = 'single',
@@ -18,7 +19,7 @@ export interface UseTreeViewProps {
    * Array list of itemIds of items that should be selected by default
    * * @default [] (no items selected)
    */
-  initialSelectedItems?: Array<Object>;
+  initialSelectedItems?: Array<TreeItemSelectedInterface>;
   isInverse?: boolean;
   /**
    * How many items can be selected in the tree view: single, multi, off
@@ -63,16 +64,25 @@ export function useTreeView(props: UseTreeViewProps) {
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
   const [selectedItems, setSelectedItems] = React.useState([]);
+  const [initialSelectedItemsNeedUpdate, setInitialSelectedItemsNeedUpdate] =
+    React.useState(false);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
   React.useEffect(() => {
-    if (selectable !== TreeViewSelectable.off) {
+    if (selectable !== TreeViewSelectable.off) {      
+      // TODO: figure out how to do this more efficiently
       onSelectedItemChange &&
         typeof onSelectedItemChange === 'function' &&
         onSelectedItemChange(selectedItems);
     }
   }, [selectedItems]);
+
+  React.useEffect(() => {
+    if (selectable !== TreeViewSelectable.off && initialSelectedItems) {
+      setInitialSelectedItemsNeedUpdate(true);
+    }
+  }, []);
 
   const contextValue = {
     hasIcons,
@@ -86,6 +96,8 @@ export function useTreeView(props: UseTreeViewProps) {
     initialSelectedItems,
     treeItemRefArray,
     registerTreeItem,
+    initialSelectedItemsNeedUpdate,
+    setInitialSelectedItemsNeedUpdate,
   };
 
   return { contextValue };
