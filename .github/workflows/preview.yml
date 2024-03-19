@@ -24,8 +24,8 @@ jobs:
         run: npm install -g "npm@^7.6.3"
       - name: Install
         run: npm ci
-      # - name: Test
-      #   run: npm test
+      - name: Test
+        run: npm test
       - name: Coverage
         uses: codecov/codecov-action@v1
       - name: Build Docs
