@@ -324,10 +324,10 @@ Default.args = {
   initialSelectedItems: [
     // { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     // { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
-    // { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
     // { itemId: 'pt2ch5', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.1.1', checkedStatus: IndeterminateCheckboxStatus.checked },
-    // { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
   testId: 'default-example',

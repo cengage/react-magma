@@ -50,7 +50,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const { contextValue } = useTreeView(props);
 
     const { contextValue: treeItemContextValue } = useTreeItem(
-      { label: ariaLabel, itemId: '', parentItemId: null },
+      { label: ariaLabel, itemId: '' },
       ref
     );
 
@@ -82,8 +82,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                     treeItemContextValue.checkedStatus || null,
                   updateParentCheckStatus:
                     treeItemContextValue.updateCheckedStatusFromChild,
-                  parentItemId: null,
-                  updateParentItemId: treeItemContextValue.updateParentItemId,
                 });
                 treeItemIndex++;
                 return item;

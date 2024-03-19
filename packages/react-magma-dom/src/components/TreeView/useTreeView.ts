@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
+import { TreeItemSelectedInterface } from './TreeViewContext';
 
 export enum TreeViewSelectable {
   single = 'single',
@@ -18,7 +19,7 @@ export interface UseTreeViewProps {
    * Array list of itemIds of items that should be selected by default
    * * @default [] (no items selected)
    */
-  initialSelectedItems?: Array<Object>;
+  initialSelectedItems?: Array<TreeItemSelectedInterface>;
   isInverse?: boolean;
   /**
    * How many items can be selected in the tree view: single, multi, off
@@ -69,9 +70,7 @@ export function useTreeView(props: UseTreeViewProps) {
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
   React.useEffect(() => {
-    if (selectable !== TreeViewSelectable.off) {
-      // console.log('selectedItems', selectedItems);
-      
+    if (selectable !== TreeViewSelectable.off) {      
       // TODO: figure out how to do this more efficiently
       onSelectedItemChange &&
         typeof onSelectedItemChange === 'function' &&

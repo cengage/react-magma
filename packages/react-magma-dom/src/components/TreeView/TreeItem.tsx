@@ -208,13 +208,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       itemDepth,
       itemId,
       parentDepth,
-      parentItemId,
       ref,
       selectedItems,
       setExpanded,
       updateCheckedStatusFromChild,
       treeItemChildren,
-      updateParentItemId,
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
@@ -397,17 +395,14 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                         parentDepth,
                         parentCheckedStatus: checkedStatus,
                         updateParentCheckStatus: updateCheckedStatusFromChild,
-                        parentItemId,
-                        updateParentItemId,
                       })}
                     </ul>
                   </Transition>
                 ) : (
                   child
                 );
-              // TODO
               // hide the disabled item + the children
-              // if (isDisabled) return <></>;
+              if (isDisabled) return <></>;
 
               return component;
             }
