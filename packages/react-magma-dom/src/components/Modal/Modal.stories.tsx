@@ -459,15 +459,14 @@ export const CloseModalWithConfirmation = () => {
       </Modal>
       <Modal
         size={ModalSize.small}
-        header="Confirmation Modal"
+        header="Close the modal?"
         isModalClosingControlledManually
         onClose={closeTheConfirmationModal}
         isOpen={showConfirmationModal}
       >
-        <Paragraph noTopMargin>Close the modal?</Paragraph>
         <ButtonGroup>
-          <Button onClick={closeBothModals}>Yes</Button>
-          <Button onClick={closeTheConfirmationModal}>No, go back</Button>
+          <Button onClick={closeBothModals}>Close</Button>
+          <Button onClick={closeTheConfirmationModal}>Go back</Button>
         </ButtonGroup>
       </Modal>
     </>
