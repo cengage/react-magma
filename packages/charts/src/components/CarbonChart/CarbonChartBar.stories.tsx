@@ -5,7 +5,7 @@ import { Card } from 'react-magma-dom';
 
 export default {
   component: CarbonChart,
-  title: 'CarbonChart/Simple',
+  title: 'CarbonChart/Bar Simple',
   argTypes: {
     isInverse: {
       control: {
@@ -27,7 +27,6 @@ const Template: Story<CarbonChartProps> = args => (
   </Card>
 );
 
-//Simple//
 export const VerticalSimpleBarDiscrete = Template.bind({});
 VerticalSimpleBarDiscrete.args = {
   isInverse: false,
@@ -211,31 +210,20 @@ VerticalSimpleBarTimeSeriesDenseDataTurkish.args = {
     axes: {
       left: {
         mapsTo: 'value',
-        ticks: {
-          formatter: _ => _.toLocaleString('tr-TR'),
-        },
+        ticks: {},
       },
       bottom: {
         mapsTo: 'date',
         scaleType: 'time',
-        ticks: {
-          formatter: _ =>
-            _.toLocaleDateString('tr-TR', { month: 'short', day: 'numeric' }),
-        },
+        ticks: {},
       },
     },
-    tooltip: {
-      valueFormatter: (_, e) =>
-        'x-value' == e
-          ? _.toLocaleDateString('tr-TR', { month: 'long', day: 'numeric' })
-          : 'y-value' == e
-          ? _.toLocaleString('tr-TR')
-          : _,
-    },
+    tooltip: {},
     bars: {
       maxWidth: 200,
     },
     height: '400px',
+    theme: 'g100',
   },
 };
 
@@ -399,4 +387,3 @@ HorizontalSimpleBarEmptyState.args = {
     height: '400px',
   },
 };
-//Simple//

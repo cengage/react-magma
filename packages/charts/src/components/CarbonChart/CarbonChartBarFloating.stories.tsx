@@ -5,7 +5,7 @@ import { Card } from 'react-magma-dom';
 
 export default {
   component: CarbonChart,
-  title: 'CarbonChart/Floating',
+  title: 'CarbonChart/Bar Floating',
   argTypes: {
     isInverse: {
       control: {
@@ -27,7 +27,6 @@ const Template: Story<CarbonChartProps> = args => (
   </Card>
 );
 
-//Floating//
 export const HorizontalFloatingBarTimeSeries = Template.bind({});
 HorizontalFloatingBarTimeSeries.args = {
   isInverse: false,
@@ -155,4 +154,3 @@ FloatingHorizontalBarDiscrete.args = {
     height: '400px',
   },
 };
-//Floating//

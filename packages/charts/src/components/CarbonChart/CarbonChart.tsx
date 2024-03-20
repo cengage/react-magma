@@ -10,17 +10,31 @@ import {
 import { transparentize } from 'polished';
 
 import {
-  SimpleBarChart,
-  LollipopChart,
+  AreaChart,
+  StackedAreaChart,
+  DonutChart,
   GroupedBarChart,
+  LineChart,
+  LollipopChart,
+  PieChart,
+  SimpleBarChart,
+  StackedBarChart,
 } from '@carbon/charts-react';
+
 import '@carbon/styles/css/styles.css';
 import '@carbon/charts/styles.css';
+// import { add } from 'lodash';
 
 export enum CarbonChartType {
+  area = 'area',
+  areaStacked = 'areaStacked',
   bar = 'bar',
+  barGrouped = 'barGrouped',
+  barStacked = 'barStacked',
+  donut = 'donut',
+  line = 'line',
+  pie = 'pie',
   lollipop = 'lollipop',
-  grouped = 'grouped',
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -46,6 +60,9 @@ const CarbonChartWrapper = styled.div<{
   .cds--data-table tbody tr, .cds--data-table tbody tr td, .cds--data-table tbody tr th{
     color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
   }
+  .cds--data-table tr {
+    block-size: 2.5rem;
+  }
 
   .cds--cc--tooltip .content-box .datapoint-tooltip p{
     font-size: ${props => props.theme.typeScale.size02.fontSize};
@@ -58,7 +75,7 @@ const CarbonChartWrapper = styled.div<{
   }
 
   .cds--modal-container{
-    border-radius:${props => props.theme.borderRadius};
+    clip-path:inset(0% 0% 0% 0% round ${props => props.theme.borderRadius});
     background:${props =>
       props.isInverse ? props.theme.colors.primary700 : ''};
       .cds--data-table th{
@@ -150,6 +167,18 @@ const CarbonChartWrapper = styled.div<{
   .cds--cc--grid rect.chart-grid-backdrop{
       fill:none;
   }
+  .cds--cc--scatter circle.dot.hovered{
+    padding:10px;
+  }
+  .cds--cc--scatter circle.dot.unfilled,
+  .cds--cc--scatter circle.dot.hovered {
+    stroke-width:6px;
+  }
+  .cds--cc--lollipop circle.dot.filled,
+  .cds--cc--lollipop circle.dot.hovered {
+
+    stroke-width:15px;
+  }
   
 
 .cds--overflow-menu-options__btn:focus{
@@ -228,9 +257,19 @@ const CarbonChartWrapper = styled.div<{
         border: none;
         box-shadow: none;
     }
+  .cds--modal-header{
+    background: ${props => props.theme.colors.neutral100};
+    margin-bottom: 0;
+    border-bottom: 1px solid ${props => props.theme.colors.neutral300};
+  }
+  .cds--modal-header__heading{
+    font-weight:600;
   }
 
   .cds--modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
     &:focus {
       outline: 2px solid ${props =>
         props.isInverse
@@ -242,9 +281,38 @@ const CarbonChartWrapper = styled.div<{
     }
   }
 
-.cds--modal-footer.cds--modal-footer {
-    display: flex;
-    align-items: center;
+  .cds--modal-footer.cds--modal-footer {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid ${props => props.theme.colors.neutral300};
+      background: ${props => props.theme.colors.neutral100} !important;
+  }
+  .layout-child.header {
+    height: auto !important;
+    p{
+      text-overflow:inherit;
+      overflow:auto;
+      white-space: normal;
+    }
+}
+
+  svg:not(:root){
+    overflow:visible;
+  }
+
+  //Zoom responsive tweaks
+
+  @media screen and (max-width: 760px){
+
+    .cds--modal-container{
+      overflow-y:auto;
+    }
+    .cds--chart-holder .cds--modal .cds--modal-container .cds--modal-content{
+    overflow: visible;
+  }
+  .cds--chart-holder .cds--modal .cds--modal-container .cds--modal-content table th{
+    position:relative;
+  }
 }
 
 
@@ -276,9 +344,15 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
     const allCharts = {
+      area: AreaChart,
+      areaStacked: StackedAreaChart,
       bar: SimpleBarChart,
+      barGrouped: GroupedBarChart,
+      barStacked: StackedBarChart,
+      donut: DonutChart,
+      line: LineChart,
       lollipop: LollipopChart,
-      grouped: GroupedBarChart,
+      pie: PieChart,
     };
 
     function buildColors() {
@@ -315,6 +389,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     return (
       <CarbonChartWrapper
+        aria-label="Interactive chart"
         data-testid={testId}
         ref={ref}
         isInverse={isInverse}

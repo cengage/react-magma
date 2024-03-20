@@ -107,9 +107,6 @@ LollipopHorizontalPresentation.args = {
         mapsTo: 'value',
       },
     },
-    points: {
-      radius: 7,
-    },
     height: '400px',
   },
 };

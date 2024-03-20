@@ -5,7 +5,7 @@ import { Card } from 'react-magma-dom';
 
 export default {
   component: CarbonChart,
-  title: 'CarbonChart/Grouped',
+  title: 'CarbonChart/Bar Grouped',
   argTypes: {
     isInverse: {
       control: {
@@ -31,7 +31,7 @@ const Template: Story<CarbonChartProps> = args => (
 export const VerticalGroupedBarDiscrete = Template.bind({});
 VerticalGroupedBarDiscrete.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [
     {
       group: 'Dataset 1',
@@ -152,7 +152,7 @@ VerticalGroupedBarDiscrete.args = {
 export const VerticalGroupedBarTimeSeries = Template.bind({});
 VerticalGroupedBarTimeSeries.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [
     {
       group: 'Dataset 1',
@@ -223,7 +223,7 @@ VerticalGroupedBarTimeSeries.args = {
 export const VerticalGroupedBarTimeSeriesDenseData = Template.bind({});
 VerticalGroupedBarTimeSeriesDenseData.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [
     {
       group: 'Dataset 1',
@@ -534,7 +534,7 @@ VerticalGroupedBarTimeSeriesDenseData.args = {
 export const VerticalGroupedBarEmptyState = Template.bind({});
 VerticalGroupedBarEmptyState.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [],
   options: {
     title: 'Vertical grouped bar (empty state)',
@@ -551,7 +551,7 @@ VerticalGroupedBarEmptyState.args = {
 export const VerticalGroupedBarSkeleton = Template.bind({});
 VerticalGroupedBarSkeleton.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [],
   options: {
     title: 'Vertical grouped bar (skeleton)',
@@ -570,7 +570,7 @@ VerticalGroupedBarSkeleton.args = {
 export const HorizontalGroupedBarDiscrete = Template.bind({});
 HorizontalGroupedBarDiscrete.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [
     {
       group: 'Dataset 1',
@@ -691,7 +691,7 @@ HorizontalGroupedBarDiscrete.args = {
 export const HorizontalGroupedBarTimeSeries = Template.bind({});
 HorizontalGroupedBarTimeSeries.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [
     {
       group: 'Dataset 1',
@@ -762,7 +762,7 @@ HorizontalGroupedBarTimeSeries.args = {
 export const HorizontalGroupedBarEmptyState = Template.bind({});
 HorizontalGroupedBarEmptyState.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [],
   options: {
     title: 'Horizontal grouped bar (empty state)',
@@ -779,7 +779,7 @@ HorizontalGroupedBarEmptyState.args = {
 export const HorizontalGroupedBarSkeleton = Template.bind({});
 HorizontalGroupedBarSkeleton.args = {
   isInverse: false,
-  type: CarbonChartType.bar,
+  type: CarbonChartType.barGrouped,
   dataSet: [],
   options: {
     title: 'Horizontal grouped bar (skeleton)',
