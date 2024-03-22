@@ -82,7 +82,7 @@
     "@storybook/addon-measure": "^6.5.10",
     "@storybook/addon-toolbars": "^6.5.10",
     "@storybook/addons": "^6.5.10",
-    "@storybook/react": "^6.5.10",
+    "@storybook/react": "^8.0.4",
     "@testing-library/dom": "^7.31.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
