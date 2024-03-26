@@ -150,7 +150,7 @@ LineDiscrete.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
+    // theme: 'g100',
   },
 };
 

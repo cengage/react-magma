@@ -62,6 +62,11 @@ Pie.args = {
     resizable: true,
     height: '400px',
     theme: 'g100',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
   },
 };
 
@@ -106,6 +111,11 @@ PieCentered.args = {
     },
     height: '400px',
     theme: 'g100',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
   },
 };
 
@@ -147,6 +157,11 @@ PieValueMapsToCount.args = {
     },
     height: '400px',
     theme: 'g100',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
   },
 };
 

@@ -67,6 +67,11 @@ Donut.args = {
     },
     height: '400px',
     theme: 'g100',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
   },
 };
 
@@ -105,6 +110,9 @@ DonutCentered.args = {
     resizable: true,
     legend: {
       alignment: 'center',
+      truncation: {
+        type: 'none',
+      },
     },
     donut: {
       center: {
@@ -155,6 +163,11 @@ DonutValueMapsToCount.args = {
     },
     height: '400px',
     theme: 'g100',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
   },
 };
 export const DonutEmptyState = Template.bind({});

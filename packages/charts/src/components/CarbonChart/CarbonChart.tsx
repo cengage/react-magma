@@ -53,51 +53,60 @@ const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
-
-  .cds--data-table td, .cds--data-table tbody th{
+  .cds--data-table thead tr th {
+    background: ${props =>
+      props.isInverse ? props.theme.colors.primary700 : ''} !important;
+  }
+  .cds--data-table td,
+  .cds--data-table tbody th {
     color: ${props => props.theme.colors.neutral700};
   }
-  .cds--data-table tbody tr, .cds--data-table tbody tr td, .cds--data-table tbody tr th{
+  .cds--data-table tbody tr,
+  .cds--data-table tbody tr td,
+  .cds--data-table tbody tr th {
     color: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
   }
   .cds--data-table tr {
     block-size: 2.5rem;
   }
 
-  .cds--cc--tooltip .content-box .datapoint-tooltip p{
+  .cds--cc--tooltip .content-box .datapoint-tooltip p {
     font-size: ${props => props.theme.typeScale.size02.fontSize};
     padding: ${props => props.theme.spaceScale.spacing02};
     color: ${props =>
       props.isInverse
         ? props.theme.colors.neutral100
         : props.theme.colors.neutral700};
-
   }
 
-  .cds--modal-container{
-    clip-path:inset(0% 0% 0% 0% round ${props => props.theme.borderRadius});
-    background:${props =>
+  .cds--modal-container {
+    clip-path: inset(0% 0% 0% 0% round ${props => props.theme.borderRadius});
+    background: ${props =>
       props.isInverse ? props.theme.colors.primary700 : ''};
-      .cds--data-table th{
-        background:${props =>
-          props.isInverse ? props.theme.colors.primary600 : ''};
-
-}
-    .cds--data-table td{
-      border-top:1px solid ${props =>
-        props.isInverse ? props.theme.colors.primary600 : 'inherit'};
-        border-bottom:1px solid ${props =>
-          props.isInverse ? props.theme.colors.primary600 : 'inherit'};
-      background:${props =>
-        props.isInverse ? props.theme.colors.primary700 : ''};
+    .cds--data-table th {
+      background: ${props =>
+        props.isInverse ? props.theme.colors.primary600 : ''};
     }
-    .cds--data-table tr:hover td{
-      background:${props =>
+    .cds--data-table td {
+      border-top: 1px solid
+        ${props =>
+          props.isInverse
+            ? transparentize(0.8, props.theme.colors.neutral100)
+            : 'inherit'};
+      border-bottom: 1px solid
+        ${props =>
+          props.isInverse
+            ? transparentize(0.8, props.theme.colors.neutral100)
+            : 'inherit'};
+      background: ${props => (props.isInverse ? '#202565' : '')};
+    }
+    .cds--data-table tr:hover td {
+      background: ${props =>
         props.isInverse ? props.theme.colors.primary600 : ''};
     }
   }
 
-  p, div, text, .cds--cc--axes g.axis .axis-title,
+   p, div, text, .cds--cc--axes g.axis .axis-title,
   .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
     font-family: ${props => props.theme.bodyFont} !important;
@@ -165,7 +174,7 @@ const CarbonChartWrapper = styled.div<{
   .chart-holder.cds--chart-holder.filled,
   .cds--cc--skeleton rect.chart-skeleton-backdrop,
   .cds--cc--grid rect.chart-grid-backdrop{
-      fill:none;
+      /* fill:none; */
   }
   .cds--cc--scatter circle.dot.hovered{
     padding:10px;
@@ -258,9 +267,15 @@ const CarbonChartWrapper = styled.div<{
         box-shadow: none;
     }
   .cds--modal-header{
-    background: ${props => props.theme.colors.neutral100};
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary600
+        : props.theme.colors.neutral100};
     margin-bottom: 0;
-    border-bottom: 1px solid ${props => props.theme.colors.neutral300};
+    border-bottom: 1px solid ${props =>
+      props.isInverse
+        ? transparentize(0.8, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   }
   .cds--modal-header__heading{
     font-weight:600;
@@ -284,8 +299,14 @@ const CarbonChartWrapper = styled.div<{
   .cds--modal-footer.cds--modal-footer {
       display: flex;
       align-items: center;
-      border-top: 1px solid ${props => props.theme.colors.neutral300};
-      background: ${props => props.theme.colors.neutral100} !important;
+      border-top: 1px solid ${props =>
+        props.isInverse
+          ? transparentize(0.8, props.theme.colors.neutral100)
+          : props.theme.colors.neutral300};
+        background: ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100} !important;
   }
   .layout-child.header {
     height: auto !important;
@@ -298,6 +319,10 @@ const CarbonChartWrapper = styled.div<{
 
   svg:not(:root){
     overflow:visible;
+  }
+
+  .cds--cc--chart-wrapper text{
+    font-size:${props => props.theme.typeScale.size02.fontSize};
   }
 
   //Zoom responsive tweaks
@@ -313,9 +338,7 @@ const CarbonChartWrapper = styled.div<{
   .cds--chart-holder .cds--modal .cds--modal-container .cds--modal-content table th{
     position:relative;
   }
-}
-
-
+} 
 `;
 
 // Carbon themes (https://github.com/carbon-design-system/carbon-charts/blob/master/packages/core/src/interfaces/enums.ts#L12)
