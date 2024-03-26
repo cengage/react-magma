@@ -69,5 +69,8 @@
     "serve": "gatsby serve",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\""
+  },
+  "devDependencies": {
+    "webpack": "^5.91.0"
   }
 }
