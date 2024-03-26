@@ -142,5 +142,11 @@
     "tsdx": "^0.14.1",
     "typedoc": "^0.19.2",
     "typescript": "^3.9.7"
+  },
+  "resolutions": {
+    "assert": "1.5.0"
+  },
+  "overrides": {
+    "assert": "1.5.0"
   }
 }
