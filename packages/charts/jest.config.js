@@ -14,4 +14,7 @@ module.exports = {
   projects: ['.'],
   rootDir: '../..',
   testMatch: [`**/${name}/**/?(*.)+(spec|test).{js,ts,tsx,mjs}`],
+  moduleNameMapper: {
+    '^.+\\.(css|scss)$': 'identity-obj-proxy',
+  },
 };

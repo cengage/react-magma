@@ -1,0 +1,39 @@
+---
+pageTitle: CarbonChart API
+title: CarbonChart
+---
+
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="carbonchart" type="api">
+
+<LeadParagraph>CarbonChart</LeadParagraph>
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+
+export function Example() {
+  const dataSet = [
+    {
+      group: 'Dataset 1',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 0,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 47263,
+    },
+  ];
+  return (
+    <CarbonChart dataSet={dataSet} type={CarbonChartType.area}>
+      CarbonChart content
+    </CarbonChart>
+  );
+}
+```
+
+</PageContent>
