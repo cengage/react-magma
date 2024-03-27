@@ -1,3 +1,6 @@
+import styled from '@emotion/styled/';
+global._styled = styled;
+
 const baseConfig = require('../../jest.config');
 const name = __dirname.split('/').pop();
 

@@ -16,12 +16,12 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20'
           check-latest: true
       - name: Check Node version
         run: node -v
       - name: Update NPM version
-        run: npm install -g "npm@^7.6.3"
+        run: npm install -g "npm@^10.5.0"
       - name: Install
         run: npm ci
       - name: Test
