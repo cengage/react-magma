@@ -1,12 +1,10 @@
 import React from 'react';
-// import FormRender from '@data-driven-forms/react-form-renderer/dist/cjs/form-renderer';
-
 import {
   FormRenderer,
   FormRendererProps,
   Schema as DataDrivenFormSchema,
 } from '@data-driven-forms/react-form-renderer';
-// import { componentMapper, ComponentMapper } from '../ComponentMapper';
+import { componentMapper, ComponentMapper } from '../ComponentMapper';
 import { templateMapper } from '../TemplateMapper';
 import { ValidatorMapper } from '../ValidatorMapper';
 
@@ -17,13 +15,13 @@ export interface Schema extends DataDrivenFormSchema {
 export interface SchemaRendererProps
   extends Omit<FormRendererProps, 'FormTemplate' | 'componentMapper'> {
   schema: Schema;
-  // customComponentMapper?: ComponentMapper;
+  customComponentMapper?: ComponentMapper;
   customValidatorMapper?: ValidatorMapper;
 }
 
 export const SchemaRenderer = ({
   schema,
-  // customComponentMapper = componentMapper,
+  customComponentMapper = componentMapper,
   customValidatorMapper,
   ...rest
 }: SchemaRendererProps) => {
@@ -32,8 +30,7 @@ export const SchemaRenderer = ({
       onCancel={() => {}}
       onSubmit={() => {}}
       {...rest}
-      componentMapper={{}}
-      // componentMapper={customComponentMapper}
+      componentMapper={customComponentMapper}
       validatorMapper={customValidatorMapper}
       FormTemplate={templateMapper[schema.type]}
       schema={schema}
