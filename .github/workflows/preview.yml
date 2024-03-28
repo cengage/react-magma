@@ -28,8 +28,8 @@ jobs:
         run: npm test
       - name: Coverage
         uses: codecov/codecov-action@v1
-      # - name: Build Docs
-        # run: npm run build:docs
+      - name: Build Docs
+        run: npm run build:docs
       - name: Build Storybook
         run: npm run build:storybook
       - name: Deploy Doc Preview to Netlify
