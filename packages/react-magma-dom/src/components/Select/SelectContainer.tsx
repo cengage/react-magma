@@ -7,7 +7,7 @@ import { InputMessage } from '../Input/InputMessage';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 
-export const SelectContainerElement = styled.div<{
+export const SelectContainerElement = styled('div')<{
   isLabelVisuallyHidden?: boolean;
   labelPosition?: LabelPosition;
   labelWidth?: number;
@@ -26,7 +26,7 @@ export const SelectContainerElement = styled.div<{
   }
 `;
 
-const InputMessageContainer = styled.div`
+const InputMessageContainer = styled('div')`
   flex-grow: 1;
 `;
 
@@ -48,7 +48,7 @@ interface SelectContainerInterface<T> {
   messageStyle?: React.CSSProperties;
 }
 
-const StyledAdditionalContentWrapper = styled.div<{
+const StyledAdditionalContentWrapper = styled('div')<{
   labelPosition?: LabelPosition;
   theme?: ThemeInterface;
 }>`
@@ -68,7 +68,7 @@ const StyledAdditionalContentWrapper = styled.div<{
   }
 `;
 
-const StyledAdditionalContent = styled.div<{
+const StyledAdditionalContent = styled('div')<{
   labelPosition?: LabelPosition;
   theme?: ThemeInterface;
 }>`

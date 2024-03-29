@@ -35,7 +35,7 @@ const PAGES_NO_NAV = [
   'select_migration',
 ];
 
-const TabsWrapper = styled.div`
+const TabsWrapper = styled('div')`
   position: sticky;
   top: 56px;
   z-index: 8;
@@ -82,7 +82,7 @@ const StyledTabPanelsContainer = styled(TabPanelsContainer)`
   }
 `;
 
-const Content = styled.div`
+const Content = styled('div')`
   flex: 1 1 auto;
   margin: 48px auto;
   max-width: 868px;
@@ -103,7 +103,7 @@ const ContentOutsideDocs = styled(Content)`
   max-width: 1164px;
 `;
 
-const PageNavigation = styled.div`
+const PageNavigation = styled('div')`
   flex: 0 0 auto;
   @media (max-width: ${magma.breakpoints.large}px) {
     display: none;

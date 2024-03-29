@@ -31,7 +31,7 @@ export interface AccordionButtonProps
   theme?: ThemeInterface;
 }
 
-const StyledButton = styled.button<{
+const StyledButton = styled('button')<{
   isInverse?: boolean;
   isExpanded?: boolean;
 }>`
@@ -87,7 +87,7 @@ const StyledButton = styled.button<{
   }
 `;
 
-const TextWrapper = styled.span`
+const TextWrapper = styled('span')`
   flex-grow: 1;
 `;
 

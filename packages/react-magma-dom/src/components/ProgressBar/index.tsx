@@ -71,12 +71,12 @@ function buildProgressBarBackground(props) {
   }
 }
 
-const Container = styled.div<{ isLoadingIndicator?: boolean }>`
+const Container = styled('div')<{ isLoadingIndicator?: boolean }>`
   align-items: center;
   display: ${props => (props.isLoadingIndicator ? 'block' : 'flex')};
 `;
 
-const Track = styled.div<ProgressBarProps>`
+const Track = styled('div')<ProgressBarProps>`
   background: ${props =>
     props.isInverse
       ? transparentize(0.75, props.theme.colors.neutral900)
@@ -93,7 +93,7 @@ const Track = styled.div<ProgressBarProps>`
   width: 100%;
 `;
 
-const Bar = styled.div<ProgressBarProps>`
+const Bar = styled('div')<ProgressBarProps>`
   background: ${props => buildProgressBarBackground(props)};
   border-radius: 50em;
   display: flex;
@@ -133,14 +133,14 @@ const Bar = styled.div<ProgressBarProps>`
     `}
 `;
 
-const Percentage = styled.span`
+const Percentage = styled('span')`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const TopPercentage = styled.div`
+const TopPercentage = styled('div')`
   font-size: ${props => props.theme.typeScale.size05.fontSize};
   line-height: ${props => props.theme.typeScale.size05.lineHeight};
   margin-bottom: ${props => props.theme.spaceScale.spacing03};

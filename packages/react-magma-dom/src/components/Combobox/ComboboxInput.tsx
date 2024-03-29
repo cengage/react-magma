@@ -13,7 +13,7 @@ import {
 import { SelectedItemsWrapper } from '../Select/shared';
 import { transparentize } from 'polished';
 
-const ComboBoxContainer = styled.div<{
+const ComboBoxContainer = styled('div')<{
   hasError?: boolean;
   isInverse?: boolean;
   theme?: any;
@@ -21,7 +21,7 @@ const ComboBoxContainer = styled.div<{
   display: flex;
 `;
 
-const InputContainer = styled.div<{
+const InputContainer = styled('div')<{
   hasError?: boolean;
   disabled?: boolean;
   isFocused?: boolean;
@@ -82,7 +82,7 @@ const InputContainer = styled.div<{
     `}
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled('input')`
   ${inputBaseStyles}
   border: 0;
   display: flex;

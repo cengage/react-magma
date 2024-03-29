@@ -138,7 +138,7 @@ function buildNoSpaceBorderColor(props) {
   return props.theme.colors.neutral100;
 }
 
-const StyledButtonGroup = styled.div<{
+const StyledButtonGroup = styled('div')<{
   alignment?: ButtonGroupAlignment;
   color?: ButtonColor;
   isInverse?: Boolean;

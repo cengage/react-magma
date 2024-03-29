@@ -21,7 +21,7 @@ interface CalendarMonthProps {
   setDateFocused?: (value: boolean) => void;
 }
 
-const CalendarContainer = styled.div<{ isInverse?: boolean }>`
+const CalendarContainer = styled('div')<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
@@ -31,7 +31,7 @@ const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   overflow: visible;
 `;
 
-const MonthContainer = styled.div<{ isInverse?: boolean }>`
+const MonthContainer = styled('div')<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
@@ -42,13 +42,13 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
   vertical-align: top;
 `;
 
-const Table = styled.table`
+const Table = styled('table')`
   border-collapse: collapse;
   border-spacing: 0;
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const Th = styled.th<{ isInverse?: boolean }>`
+const Th = styled('th')<{ isInverse?: boolean }>`
   border: 0;
   color: ${props =>
     props.isInverse
@@ -61,7 +61,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
   text-align: center;
 `;
 
-const HelperButton = styled.span<{ theme?: any }>`
+const HelperButton = styled('span')<{ theme?: any }>`
   margin: ${props => props.theme.spaceScale.spacing02};
   top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
@@ -69,7 +69,7 @@ const HelperButton = styled.span<{ theme?: any }>`
   z-index: 2;
 `;
 
-const CloseButton = styled.span<{ theme?: any }>`
+const CloseButton = styled('span')<{ theme?: any }>`
   position: absolute;
   right: ${props => props.theme.spaceScale.spacing01};
   top: ${props => props.theme.spaceScale.spacing01};

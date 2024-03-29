@@ -9,7 +9,7 @@ interface AmPmToggleProps
   isInverse?: boolean;
 }
 
-const StyledAmPmToggle = styled.button<{ theme: ThemeInterface, isInverse?: boolean }>`
+const StyledAmPmToggle = styled('button')<{ theme: ThemeInterface, isInverse?: boolean }>`
   background: none;
   border: 0;
   border-radius: ${props => props.theme.borderRadiusSmall};

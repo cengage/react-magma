@@ -50,11 +50,11 @@ export interface SpanProps {
   size?: ButtonSize;
 }
 
-const SpanTextLeft = styled.span<SpanProps>`
+const SpanTextLeft = styled('span')<SpanProps>`
   padding-right: ${props => getIconPadding(props)};
 `;
 
-const SpanTextRight = styled.span<SpanProps>`
+const SpanTextRight = styled('span')<SpanProps>`
   padding-left: ${props => getIconPadding(props)};
 `;
 

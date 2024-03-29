@@ -48,7 +48,7 @@ export interface ChartProps<T extends any>
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     LineChartProps<T> {}
 
-const StyledTitle = styled.span`
+const StyledTitle = styled('span')`
   color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size04.fontSize};
   font-weight: 600;

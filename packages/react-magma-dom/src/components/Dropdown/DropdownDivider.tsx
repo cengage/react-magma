@@ -13,7 +13,7 @@ export interface DropdownDividerProps
   testId?: string;
 }
 
-const StyledHr = styled.hr<{
+const StyledHr = styled('hr')<{
   isInverse?: boolean;
 }>`
   background: ${props =>

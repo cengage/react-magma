@@ -46,7 +46,7 @@ export interface ToastProps extends AlertBaseProps {
   onMouseLeave?: (event: React.SyntheticEvent) => void;
 }
 
-const ToastWrapper = styled.div<{
+const ToastWrapper = styled('div')<{
   bottomOffsetForContainer?: number;
   bottomOffsetForToast?: number;
 }>`

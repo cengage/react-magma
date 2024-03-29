@@ -26,7 +26,7 @@ export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
 }
 
-const StyledContainer = styled.div<{
+const StyledContainer = styled('div')<{
   gutterWidth: string;
   isInverse?: boolean;
   maxWidth: string;

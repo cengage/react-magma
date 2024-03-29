@@ -215,7 +215,7 @@ function getIconMargin(props) {
   }
 }
 
-export const StyledIcon = styled.span<{
+export const StyledIcon = styled('span')<{
   iconPosition: TabsIconPosition;
   isIconOnly?: boolean;
   theme: ThemeInterface;

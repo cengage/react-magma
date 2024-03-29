@@ -46,7 +46,7 @@ export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   thumbnails: boolean;
 }
 
-const Thumb = styled.div<{ file: FilePreview }>`
+const Thumb = styled('div')<{ file: FilePreview }>`
   background-image: ${({ file }) =>
     `url('${'preview' in file && file.preview}')`};
   background-repeat: no-repeat;
@@ -57,7 +57,7 @@ const Thumb = styled.div<{ file: FilePreview }>`
   width: 40px;
 `;
 
-const StatusIcons = styled.div`
+const StatusIcons = styled('div')`
   display: grid;
   grid-template-areas: 'inner-div';
   height: auto;
@@ -75,7 +75,7 @@ const IconStyles = {
   display: 'flex',
 };
 
-const Errors = styled.div`
+const Errors = styled('div')`
   border-top: 1px solid ${({ theme }) => theme.colors.neutral300};
   padding: 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
@@ -112,7 +112,7 @@ const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
   margin: 10px 0;
 `;
 
-const ErrorHeader = styled.span`
+const ErrorHeader = styled('span')`
   display: block;
 
   > div {
@@ -122,7 +122,7 @@ const ErrorHeader = styled.span`
   }
 `;
 
-const ErrorMessage = styled.span`
+const ErrorMessage = styled('span')`
   display: block;
 `;
 

@@ -37,7 +37,7 @@ export enum AppBarPosition {
   sticky = 'sticky',
 }
 
-const StyledHeader = styled.header<{
+const StyledHeader = styled('header')<{
   isCompact?: boolean;
   isInverse?: boolean;
   position: AppBarPosition;

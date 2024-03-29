@@ -27,7 +27,7 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   testId?: string;
 }
 
-const StyledSpinner = styled.span<SpinnerProps>`
+const StyledSpinner = styled('span')<SpinnerProps>`
   animation: spinner-border 0.75s linear infinite;
   border: 2px solid ${props => props.color};
   border-right-color: transparent;

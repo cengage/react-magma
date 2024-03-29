@@ -97,7 +97,7 @@ export type TablePaginationProps = BaseTablePaginationProps &
   PagePaginationProps &
   RowsPaginationProps;
 
-const StyledContainer = styled.div<{
+const StyledContainer = styled('div')<{
   isInverse?: boolean;
   theme: ThemeInterface;
   hasSquareCorners?: boolean;
@@ -125,7 +125,7 @@ const PageCount = styled(Label) <{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
 `;
 
-const RowsPerPageLabel = styled.span<{
+const RowsPerPageLabel = styled('span')<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`

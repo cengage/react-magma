@@ -86,7 +86,7 @@ const StyledGridHeroItem = styled(GridItem)`
   }
 `;
 
-const HeaderBlock = styled.div`
+const HeaderBlock = styled('div')`
   display: flex;
   align-items: center;
   padding: ${magma.spaceScale.spacing06} ${magma.spaceScale.spacing06}
@@ -124,7 +124,7 @@ const HeaderBlock = styled.div`
   }
 `;
 
-const HeaderText = styled.div`
+const HeaderText = styled('div')`
   width: 66%;
 
   @media (max-width: ${magma.breakpoints.small}px) {
@@ -132,7 +132,7 @@ const HeaderText = styled.div`
   }
 `;
 
-const CenterBlock = styled.div`
+const CenterBlock = styled('div')`
   grid-column: 1 / 3;
   text-align: center;
   margin: auto;
@@ -164,7 +164,7 @@ const HeroCardGrid = styled(Card)`
   }
 `;
 
-const CardButton = styled.div`
+const CardButton = styled('div')`
   margin-top: 1em;
 `;
 

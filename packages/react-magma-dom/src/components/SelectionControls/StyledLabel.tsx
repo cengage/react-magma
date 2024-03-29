@@ -9,7 +9,7 @@ export interface StyledLabelProps {
   style?: React.CSSProperties;
 }
 
-const StyledLabelComponent = styled.label<StyledLabelProps>`
+const StyledLabelComponent = styled('label')<StyledLabelProps>`
   align-items: flex-start;
   color: ${props =>
     props.isInverse

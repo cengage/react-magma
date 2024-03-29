@@ -120,16 +120,16 @@ export const buttonStyles = props => css`
   `}
 `;
 
-export const BaseStyledButton = styled.button`
+export const BaseStyledButton = styled('button')`
   ${buttonStyles}
 `;
 
-const SpinnerWrapper = styled.span`
+const SpinnerWrapper = styled('span')`
   position: absolute;
   display: flex;
 `;
 
-const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
+const ChildrenWrapper = styled('span')<{ isLoading: boolean; testId?: string }>`
   visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
   display: inline-flex;
   align-items: center;

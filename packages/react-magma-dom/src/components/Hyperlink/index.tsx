@@ -53,7 +53,7 @@ const linkStyles = props => css`
   }
 `;
 
-const StyledLink = styled.a<{ isInverse?: boolean; theme: ThemeInterface }>`
+const StyledLink = styled('a')<{ isInverse?: boolean; theme: ThemeInterface }>`
   ${linkStyles}
 `;
 

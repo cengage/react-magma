@@ -90,7 +90,7 @@ function buildTableRowColor(props) {
   return 'inherit';
 }
 
-const StyledTableRow = styled.tr<{
+const StyledTableRow = styled('tr')<{
   color?: string;
   hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
@@ -142,7 +142,7 @@ const StyledTableRow = styled.tr<{
     `};
 `;
 
-const SortButton = styled.button<{
+const SortButton = styled('button')<{
   density?: TableDensity;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
@@ -180,7 +180,7 @@ const SortButton = styled.button<{
   }
 `;
 
-const SortIconWrapper = styled.span`
+const SortIconWrapper = styled('span')`
   position: relative;
   top: ${props => props.theme.spaceScale.spacing01};
 `;

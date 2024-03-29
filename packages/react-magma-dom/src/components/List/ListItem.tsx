@@ -41,11 +41,11 @@ const IconStyles = props => css`
   padding: 10px;
 `;
 
-const StyledListItem = styled.li`
+const StyledListItem = styled('li')`
   ${ListItemStyles};
 `;
 
-const StyledIcon = styled.span`
+const StyledIcon = styled('span')`
   ${IconStyles};
 `;
 

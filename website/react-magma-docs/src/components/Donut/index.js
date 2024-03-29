@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 // This is an example used in the theme documentation for decoration purposes.
 
-const StyledDonut = styled.div`
+const StyledDonut = styled('div')`
   width: 288px;
   position: relative;
   left: calc(100% - 268px);
@@ -48,7 +48,7 @@ const StyledDonut = styled.div`
   }
 `;
 
-const StyledLight = styled.div`
+const StyledLight = styled('div')`
   width: 120px;
   height: 75px;
   position: absolute;
@@ -86,7 +86,7 @@ const StyledLight = styled.div`
   }
 `;
 
-const StyledShadow = styled.div`
+const StyledShadow = styled('div')`
   width: 100%;
   height: 206px;
   position: absolute;
@@ -124,7 +124,7 @@ const StyledShadow = styled.div`
   }
 `;
 
-const StyledSprinkle = styled.div`
+const StyledSprinkle = styled('div')`
   width: 25px;
   height: 5px;
   border-radius: 4px;

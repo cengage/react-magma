@@ -122,11 +122,11 @@ export interface DatePickerProps
   onInputFocus?: (event: React.FocusEvent) => void;
 }
 
-const DatePickerContainer = styled.div`
+const DatePickerContainer = styled('div')`
   position: relative;
 `;
 
-const DatePickerCalendar = styled.div<{ opened: boolean; isInverse?: boolean }>`
+const DatePickerCalendar = styled('div')<{ opened: boolean; isInverse?: boolean }>`
   border: 1px solid
     ${props =>
       props.isInverse

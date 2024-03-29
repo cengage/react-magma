@@ -100,7 +100,7 @@ export interface FormFieldContainerBaseProps {
   testId?: string;
 }
 
-const StyledFormFieldContainer = styled.div<{
+const StyledFormFieldContainer = styled('div')<{
   isInverse?: boolean;
   labelPosition?: LabelPosition;
   labelWidth?: number;
@@ -123,7 +123,7 @@ const StyledFormFieldContainer = styled.div<{
 `;
 
 // Input and helper text <div> wrapper based on labelPosition.
-const StyledInputWrapper = styled.div`
+const StyledInputWrapper = styled('div')`
   flex: 1 1 auto;
 `;
 

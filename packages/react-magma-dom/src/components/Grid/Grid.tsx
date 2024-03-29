@@ -147,7 +147,7 @@ export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
   as?: string;
 }
 
-export const Grid = styled.div<GridProps>`
+export const Grid = styled('div')<GridProps>`
   display: ${props => props.gridDisplay || GridDisplay.grid};
   grid-template-rows: ${props => props.gridTemplateRows};
   grid-template-columns: ${props => props.gridTemplateColumns};
@@ -160,7 +160,7 @@ export const Grid = styled.div<GridProps>`
   grid-auto-flow: ${props => props.gridAutoFlow};
 `;
 
-export const GridItem = styled.div<GridItemProps>`
+export const GridItem = styled('div')<GridItemProps>`
   grid-column: ${props => props.gridColumn};
   grid-row: ${props => props.gridRow};
   grid-area: ${props => props.gridArea};

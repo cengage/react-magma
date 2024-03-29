@@ -27,7 +27,7 @@ const StyledTabs = styled(Tabs)`
   }
 `;
 
-const StyledContentWrapper = styled.div`
+const StyledContentWrapper = styled('div')`
   flex: 1;
 `;
 

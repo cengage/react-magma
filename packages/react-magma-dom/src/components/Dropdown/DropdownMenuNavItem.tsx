@@ -18,7 +18,7 @@ export interface DropdownMenuNavItemProps
   to: string;
 }
 
-const StyledItem = styled.a<{
+const StyledItem = styled('a')<{
   disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;

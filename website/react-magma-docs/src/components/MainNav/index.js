@@ -13,7 +13,7 @@ import {
 } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
-const StyledWrapper = styled.div`
+const StyledWrapper = styled('div')`
   margin-top: 8px;
   *:focus {
     outline-offset: 0;
@@ -95,7 +95,7 @@ const headingStyles = `
   }
 `;
 
-const Heading2 = styled.h2`
+const Heading2 = styled('h2')`
   ${headingStyles};
 `;
 
@@ -107,7 +107,7 @@ const StyledAccordionButton = styled(AccordionButton)`
   }
 `;
 
-const Heading3 = styled.h3`
+const Heading3 = styled('h3')`
   color: ${magma.colors.neutral700};
   font-size: ${magma.typeScale.size01.fontSize};
   font-weight: 700;
@@ -117,13 +117,13 @@ const Heading3 = styled.h3`
   padding-left: ${magma.spaceScale.spacing05};
 `;
 
-const List = styled.ul`
+const List = styled('ul')`
   list-style-type: none;
   margin: 0 0 ${magma.spaceScale.spacing03} 0;
   padding: 0;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled('li')`
   list-style-type: none;
   margin: 0;
   padding: 0;

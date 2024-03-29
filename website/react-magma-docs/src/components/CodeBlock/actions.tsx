@@ -55,7 +55,7 @@ export default function App() {
 }
 `;
 
-const ActionsDiv = styled.div<{ isInverse?: boolean }>`
+const ActionsDiv = styled('div')<{ isInverse?: boolean }>`
   align-items: flex-end;
   background: ${props =>
     props.isInverse ? magma.colors.primary700 : magma.colors.neutral200};
@@ -73,7 +73,7 @@ export const Actions = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
   return <ActionsDiv {...props} isInverse={isInverse} />;
 };
 
-const ActionsLeftDiv = styled.div`
+const ActionsLeftDiv = styled('div')`
   flex-grow: 1;
 `;
 

@@ -105,17 +105,17 @@ export enum PageButtonSize {
   large = 'large',
 }
 
-const StyledNav = styled.nav`
+const StyledNav = styled('nav')`
   min-width: 0;
 `;
 
-const StyledList = styled.ul`
+const StyledList = styled('ul')`
   display: flex;
   margin: 0;
   padding: 0;
 `;
 
-const StyledListItem = styled.li`
+const StyledListItem = styled('li')`
   list-style-type: none;
   &:last-child {
     button {
@@ -140,7 +140,7 @@ export const NavButton = styled(IconButton)`
   width: ${BuildButtonSize};
 `;
 
-const StyledEllipsis = styled.li`
+const StyledEllipsis = styled('li')`
   align-items: center;
   display: flex;
   font-size: ${pageButtonTypeSize};

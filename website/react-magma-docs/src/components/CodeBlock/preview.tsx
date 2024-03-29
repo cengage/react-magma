@@ -31,7 +31,7 @@ interface PreviewProps extends HTMLAttributes<HTMLDivElement> {
   noBorder?: boolean;
 }
 
-const PreviewContainer = styled.div<{
+const PreviewContainer = styled('div')<{
   noBorder?: boolean;
   isInverse?: boolean;
 }>`

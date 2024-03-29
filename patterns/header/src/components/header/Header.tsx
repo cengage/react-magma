@@ -33,7 +33,7 @@ export interface HeaderProps extends AppBarProps {
   testId?: string;
 }
 
-const LogoWrapper = styled.span<{ isCompact?: boolean; theme: ThemeInterface }>`
+const LogoWrapper = styled('span')<{ isCompact?: boolean; theme: ThemeInterface }>`
   align-items: center;
   display: flex;
   flex-grow: 1;
@@ -53,7 +53,7 @@ const StyledLink = styled(Hyperlink)`
   white-space: nowrap;
 `;
 
-const ChildrenWrapper = styled.span`
+const ChildrenWrapper = styled('span')`
   align-items: center;
   display: flex;
   white-space: nowrap;

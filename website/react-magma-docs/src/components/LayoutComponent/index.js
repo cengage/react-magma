@@ -5,7 +5,7 @@ import { magma, Container, Heading } from 'react-magma-dom';
 import { CONTENT_MAX_WIDTH } from '../PageContent';
 import { PANEL_WIDTH } from '../SlidingDrawer';
 
-const ContentSection = styled.section`
+const ContentSection = styled('section')`
   grid-area: content;
 `;
 
@@ -17,7 +17,7 @@ const StyledHeadingContainer = styled(Container)`
   }
 `;
 
-const HeadingWrapper = styled.div`
+const HeadingWrapper = styled('div')`
   background: ${magma.colors.neutral200};
   padding: 34px 0;
   margin: 0 auto;

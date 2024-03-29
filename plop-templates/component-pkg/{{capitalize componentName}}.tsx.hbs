@@ -28,7 +28,7 @@ export interface {{capitalize componentName}}Props extends React.HTMLAttributes<
   {{/if}}
 }
 
-const Styled{{capitalize componentName}} = styled.div<{{capitalize componentName}}Props>`
+const Styled{{capitalize componentName}} = styled('div')<{{capitalize componentName}}Props>`
   {{#if useTheme}}
   {{#if useInverse}}
   background: ${props =>

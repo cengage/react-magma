@@ -113,15 +113,15 @@ function buildToggleBorderColor(props) {
   return props.theme.colors.neutral;
 }
 
-const HiddenLabelText = styled.span`
+const HiddenLabelText = styled('span')`
   ${HiddenStyles};
 `;
 
-const HiddenInput = styled.input`
+const HiddenInput = styled('input')`
   ${HiddenStyles};
 `;
 
-const Track = styled.span<{
+const Track = styled('span')<{
   isChecked?: boolean;
   disabled?: boolean;
   hasError?: boolean;
@@ -208,7 +208,7 @@ const Track = styled.span<{
   }
 `;
 
-const Thumb = styled.span<{
+const Thumb = styled('span')<{
   isChecked?: boolean;
   isInverse?: boolean;
   disabled?: boolean;
@@ -234,7 +234,7 @@ const Thumb = styled.span<{
     `}
 `;
 
-const IconContainer = styled.span<{
+const IconContainer = styled('span')<{
   disabled?: boolean;
   theme?: any;
   isChecked?: boolean;
@@ -250,11 +250,11 @@ const IconContainer = styled.span<{
   }
 `;
 
-const SpanTextLeft = styled.span`
+const SpanTextLeft = styled('span')`
   padding-right: 10px;
 `;
 
-const SpanTextRight = styled.span`
+const SpanTextRight = styled('span')`
   padding-left: 10px;
 `;
 

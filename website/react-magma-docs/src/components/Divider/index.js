@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { magma, useIsInverse } from 'react-magma-dom';
 
-const StyledHr = styled.hr`
+const StyledHr = styled('hr')`
   background: ${props =>
     props.isInverse ? magma.colors.borderInverse : magma.colors.border};
   border: none;

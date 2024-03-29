@@ -103,7 +103,7 @@ export const TableContext = React.createContext<TableContextInterface>({
   selectedItems: [],
 });
 
-export const TableContainer = styled.div<{
+export const TableContainer = styled('div')<{
   minWidth: number;
   hasSquareCorners?: boolean;
   isInverse?: boolean;
@@ -123,7 +123,7 @@ export const TableContainer = styled.div<{
   }
 `;
 
-export const StyledTable = styled.table<{
+export const StyledTable = styled('table')<{
   isInverse?: boolean;
   minWidth: number;
 }>`

@@ -13,7 +13,7 @@ export interface VisuallyHiddenProps
   testId?: string;
 }
 
-const VisuallyHiddenDiv = styled.div`
+const VisuallyHiddenDiv = styled('div')`
   ${HiddenStyles}
 `;
 

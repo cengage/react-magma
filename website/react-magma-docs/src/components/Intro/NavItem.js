@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { ThemeContext, VisuallyHidden } from 'react-magma-dom';
 
-const Item = styled.li`
+const Item = styled('li')`
   list-style: none;
   margin: 0;
   padding: 0;
   text-transform: uppercase;
 `;
 
-const StyledLink = styled.button`
+const StyledLink = styled('button')`
   background: ${props => props.theme.colors.primary700};
   border: none;
   border-bottom: 2px solid;
@@ -39,7 +39,7 @@ const StyledLink = styled.button`
   }
 `;
 
-const Num = styled.span`
+const Num = styled('span')`
   display: block;
   font-family: 'Abel', sans-serif;
 `;

@@ -59,7 +59,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   width?: string | number;
 }
 
-const Container = styled.div`
+const Container = styled('div')`
   display: inline-block;
   position: relative;
 `;

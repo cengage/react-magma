@@ -145,11 +145,11 @@ export const baseBadgeStyles = props => css`
   text-align: ${props.variant == BadgeVariant.counter ? 'center' : 'inherit'};
 `;
 
-const StyledSpan = styled.span<BadgeProps>`
+const StyledSpan = styled('span')<BadgeProps>`
   ${baseBadgeStyles};
 `;
 
-const StyledButton = styled.button<BadgeProps>`
+const StyledButton = styled('button')<BadgeProps>`
   ${baseBadgeStyles};
   cursor: pointer;
 

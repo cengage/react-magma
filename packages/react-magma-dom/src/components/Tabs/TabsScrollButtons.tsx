@@ -23,7 +23,7 @@ export interface ScrollButtonProps
   theme?: ThemeInterface;
 }
 
-const StyledScrollButton = styled.button<ScrollButtonProps>`
+const StyledScrollButton = styled('button')<ScrollButtonProps>`
   align-items: center;
   backdrop-filter: blur(1px);
   border: 0;

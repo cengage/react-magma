@@ -9,7 +9,7 @@ import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '../../theme/styled';
 
-const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
+const StyledButton = styled('div')<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}
   ${inputWrapperStyles}
 
@@ -22,7 +22,7 @@ const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   text-align: left;
 `;
 
-const ChildrenContainer = styled.div`
+const ChildrenContainer = styled('div')`
   align-items: center;
   display: flex;
   flex-grow: 1;

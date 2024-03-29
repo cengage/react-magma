@@ -12,7 +12,7 @@ interface EditorProps {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
+const Pre = styled('pre')<{ expanded?: boolean; isInverse?: boolean }>`
   background: ${props =>
     props.isInverse ? magma.colors.primary700 : magma.colors.neutral200};
   border: 1px solid

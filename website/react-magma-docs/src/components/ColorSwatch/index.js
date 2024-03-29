@@ -9,7 +9,7 @@ import {
   BadgeColor,
 } from 'react-magma-dom';
 
-const SwatchContainer = styled.div`
+const SwatchContainer = styled('div')`
   border: 1px solid
     ${props =>
       props.isInverse ? magma.colors.borderInverse : magma.colors.border};
@@ -25,14 +25,14 @@ const SwatchContainer = styled.div`
   }
 `;
 
-const SwatchColor = styled.div`
+const SwatchColor = styled('div')`
   background: ${props => props.color};
   height: 88px;
   display: flex;
   justify-content: center;
 `;
 
-const ColorDetails = styled.div`
+const ColorDetails = styled('div')`
   border-top: 1px solid
     ${props =>
       props.isInverse ? magma.colors.borderInverse : magma.colors.border};
@@ -51,7 +51,7 @@ const ColorDetails = styled.div`
   }
 `;
 
-const ColorTestContainer = styled.div`
+const ColorTestContainer = styled('div')`
   flex: 0 0 auto;
   text-align: center;
   align-self: flex-end;

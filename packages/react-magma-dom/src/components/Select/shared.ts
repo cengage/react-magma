@@ -24,18 +24,18 @@ function buildListFocusColor(props) {
   return 'transparent';
 }
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled('div')`
   position: relative;
 `;
 
-export const StyledButton = styled.div`
+export const StyledButton = styled('div')`
   ${inputBaseStyles}
   align-items: center;
   display: flex;
   text-align: left;
 `;
 
-export const SelectText = styled.span`
+export const SelectText = styled('span')`
   flex-grow: 1;
   padding: 0 8px 0 4px;
 `;
@@ -95,7 +95,7 @@ export const StyledItem = styled('li')<{
   }
 `;
 
-export const SelectedItemsWrapper = styled.span`
+export const SelectedItemsWrapper = styled('span')`
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
@@ -130,7 +130,7 @@ function buildSelectedItemButtonColor(props) {
   return props.theme.colors.neutral100;
 }
 
-export const SelectedItemButton = styled.button<{
+export const SelectedItemButton = styled('button')<{
   isInverse?: boolean;
   disabled?: boolean;
 }>`
@@ -154,6 +154,6 @@ export const SelectedItemButton = styled.button<{
   white-space: nowrap;
 `;
 
-export const IconWrapper = styled.span`
+export const IconWrapper = styled('span')`
   padding-left: 12px;
 `;

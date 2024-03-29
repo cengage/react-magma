@@ -320,19 +320,19 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   `}
 `;
 
-const InputContainer = styled.div<InputWrapperStylesProps>`
+const InputContainer = styled('div')<InputWrapperStylesProps>`
   display: flex;
 `;
 
-export const InputWrapper = styled.div<InputWrapperStylesProps>`
+export const InputWrapper = styled('div')<InputWrapperStylesProps>`
   ${inputWrapperStyles}
 `;
 
-const StyledInput = styled.input<InputBaseStylesProps>`
+const StyledInput = styled('input')<InputBaseStylesProps>`
   ${inputBaseStyles}
 `;
 
-const IconWrapper = styled.span<{
+const IconWrapper = styled('span')<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   isClearable?: boolean;
@@ -433,7 +433,7 @@ function getIconButtonTransform(props) {
   return position;
 }
 
-export const IconButtonContainer = styled.span<{
+export const IconButtonContainer = styled('span')<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   theme: ThemeInterface;
@@ -456,7 +456,7 @@ export const IconButtonContainer = styled.span<{
   }
 `;
 
-const PasswordButtonContainer = styled.span<{
+const PasswordButtonContainer = styled('span')<{
   size?: InputSize;
   theme: ThemeInterface;
   buttonWidth: number;
@@ -507,7 +507,7 @@ function getClearablePosition(props) {
   return '34px';
 }
 
-const IsClearableContainer = styled.span<{
+const IsClearableContainer = styled('span')<{
   theme: ThemeInterface;
   icon?: React.ReactElement<IconProps>;
   iconPosition?: InputIconPosition;

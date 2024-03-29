@@ -87,7 +87,7 @@ function instanceOfNavChildrenTab(object: any): object is NavTabChildrenProps {
   return !('component' in object) && 'children' in object;
 }
 
-const StyledTab = styled.a<{
+const StyledTab = styled('a')<{
   borderPosition?: any;
   iconPosition?: TabsIconPosition;
   isActive?: boolean;

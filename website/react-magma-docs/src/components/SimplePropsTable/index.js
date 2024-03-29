@@ -19,7 +19,7 @@ import styled from '@emotion/styled';
 export const SimplePropsTable = ({ propertyValues }) => {
   const isInverse = useIsInverse();
 
-  const StyledHr = styled.hr`
+  const StyledHr = styled('hr')`
     background: ${isInverse ? magma.colors.borderInverse : magma.colors.border};
     border: none;
     height: 1px;

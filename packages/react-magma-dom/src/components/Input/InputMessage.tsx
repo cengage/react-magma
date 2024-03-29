@@ -28,7 +28,7 @@ function BuildMessageColor(props) {
   return hasError ? theme.colors.danger : theme.colors.neutral500;
 }
 
-const Message = styled.div<InputMessageProps>`
+const Message = styled('div')<InputMessageProps>`
   align-items: center;
   border-radius: ${props => props.theme.borderRadius};
   color: ${props => BuildMessageColor(props)};
@@ -44,7 +44,7 @@ const Message = styled.div<InputMessageProps>`
   text-align: left;
 `;
 
-const IconWrapper = styled.span`
+const IconWrapper = styled('span')`
   display: inline-flex;
   flex-shrink: 0;
   padding-right: ${props => props.theme.spaceScale.spacing02};

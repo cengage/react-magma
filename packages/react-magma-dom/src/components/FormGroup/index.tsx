@@ -56,7 +56,7 @@ export const FormGroupContext = React.createContext<FormGroupContextInterface>({
   hasError: false,
 });
 
-const HiddenLabel = styled.label`
+const HiddenLabel = styled('label')`
   ${HiddenStyles};
 `;
 

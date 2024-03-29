@@ -86,7 +86,7 @@ export function buildCalloutBackground(
   }
 }
 
-const StyledCard = styled.div<CardProps>`
+const StyledCard = styled('div')<CardProps>`
   background: ${props =>
     props.background
       ? props.background

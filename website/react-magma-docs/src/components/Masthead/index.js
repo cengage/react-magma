@@ -40,13 +40,13 @@ const StyledHeader = styled(Header)`
   padding: 24px;
 `;
 
-const HeaderWrap = styled.div`
+const HeaderWrap = styled('div')`
   display: flex;
   justify-content: space-between;
   flex: 1;
 `;
 
-const SmallLogoWrap = styled.span`
+const SmallLogoWrap = styled('span')`
   display: none;
   margin-right: 12px;
   position: relative;
@@ -59,7 +59,7 @@ const SmallLogoWrap = styled.span`
   }
 `;
 
-const LogoWrap = styled.span`
+const LogoWrap = styled('span')`
   display: block;
   margin-right: 12px;
   position: relative;
@@ -72,7 +72,7 @@ const LogoWrap = styled.span`
   }
 `;
 
-const RepoLink = styled.span`
+const RepoLink = styled('span')`
   display: flex;
   align-items: center;
   position: relative;

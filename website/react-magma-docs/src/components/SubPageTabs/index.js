@@ -10,7 +10,7 @@ import {
   TabsOrientation,
 } from 'react-magma-dom';
 
-export const StyledTabHeading = styled.p`
+export const StyledTabHeading = styled('p')`
   font-size: ${magma.typeScale.size01.fontSize};
   line-height: ${magma.typeScale.size01.lineHeight};
   letter-spacing: ${magma.typeScale.size01.letterSpacing};
@@ -41,14 +41,14 @@ export const StyledNavTab = styled(NavTab)`
   text-transform: none;
 `;
 
-export const StyledNavTabWrapper = styled.div`
+export const StyledNavTabWrapper = styled('div')`
   border-left: 1px solid
     ${props =>
       props.isInverse ? magma.colors.primary400 : magma.colors.neutral300};
 `;
 
 export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
-  const Wrapper = styled.div`
+  const Wrapper = styled('div')`
     position: sticky;
     top: ${hasHorizontalNav ? '102px' : '80px'};
     height: calc(100vh - 200px);

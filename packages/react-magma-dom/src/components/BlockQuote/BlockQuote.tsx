@@ -32,7 +32,7 @@ const BlockQuoteStyles = props => css`
   font-family: ${props.theme.bodyFont};
 `;
 
-const StyledBlockQuote = styled.figure<BlockQuoteProps>`
+const StyledBlockQuote = styled('figure')<BlockQuoteProps>`
   ${BlockQuoteStyles};
 `;
 

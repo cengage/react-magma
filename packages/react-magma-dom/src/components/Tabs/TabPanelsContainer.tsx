@@ -10,7 +10,7 @@ interface TabPanelContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
 }
 
-const StyledContainer = styled.div`
+const StyledContainer = styled('div')`
   flex-grow: 1;
 `;
 

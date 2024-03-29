@@ -29,7 +29,7 @@ export const TabsContainerContext =
     setActiveTabIndex: () => 0,
   });
 
-const StyledTabsContainer = styled.div<{
+const StyledTabsContainer = styled('div')<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`

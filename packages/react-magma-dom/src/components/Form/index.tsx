@@ -50,7 +50,7 @@ export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
   testId?: string;
 }
 
-const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
+const StyledForm = styled('form')<{ isInverse?: boolean; theme: ThemeInterface }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary600
@@ -62,7 +62,7 @@ const StyledForm = styled.form<{ isInverse?: boolean; theme: ThemeInterface }>`
   font-family: ${props => props.theme.bodyFont};
 `;
 
-const FormActions = styled.div`
+const FormActions = styled('div')`
   display: flex;
   justify-content: flex-end;
 `;

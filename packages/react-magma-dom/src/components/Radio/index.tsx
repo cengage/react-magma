@@ -69,11 +69,11 @@ export interface RadioProps
   textPosition?: RadioTextPosition;
 }
 
-const HiddenLabelText = styled.span`
+const HiddenLabelText = styled('span')`
   ${HiddenStyles};
 `;
 
-const HiddenInput = styled.input<{ indeterminate?: boolean }>`
+const HiddenInput = styled('input')<{ indeterminate?: boolean }>`
   ${HiddenStyles};
 `;
 
@@ -103,7 +103,7 @@ export function buildErrorBorder(props) {
   return `inherit`;
 }
 
-const StyledFakeInput = styled.span<{
+const StyledFakeInput = styled('span')<{
   isChecked?: boolean;
   hasError?: boolean;
   isInverse: boolean;

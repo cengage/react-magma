@@ -30,7 +30,7 @@ interface ItemsListProps<T> {
   isLoading?: boolean;
 }
 
-const NoItemsMessage = styled.span<{
+const NoItemsMessage = styled('span')<{
   isInverse?: boolean;
 }>`
   color: ${props =>
@@ -43,7 +43,7 @@ const NoItemsMessage = styled.span<{
   text-align: center;
 `;
 
-const LoadingWrapper = styled.span<{}>`
+const LoadingWrapper = styled('span')<{}>`
   display: flex;
   align-items: center;
   justify-content: center;

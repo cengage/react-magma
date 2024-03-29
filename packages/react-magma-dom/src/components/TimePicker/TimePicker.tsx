@@ -19,7 +19,7 @@ export interface TimePickerProps extends UseTimePickerProps {
   inputStyle?: React.CSSProperties;
 }
 
-const InputsContainer = styled.div<{
+const InputsContainer = styled('div')<{
   hasError?: boolean;
   isInverse?: boolean;
 }>`
@@ -30,14 +30,14 @@ const InputsContainer = styled.div<{
   font-family: ${props => props.theme.bodyFont};
 `;
 
-const Divider = styled.span`
+const Divider = styled('span')`
   display: inline-block;
   margin: 0 2px;
   position: relative;
   top: -1px;
 `;
 
-const StyledNumInput = styled.input<{
+const StyledNumInput = styled('input')<{
   isInverse?: boolean;
 }>`
   border: 0;

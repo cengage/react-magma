@@ -89,11 +89,11 @@ export interface CheckboxProps
   textPosition?: CheckboxTextPosition;
 }
 
-export const HiddenLabelText = styled.span`
+export const HiddenLabelText = styled('span')`
   ${HiddenStyles};
 `;
 
-export const HiddenInput = styled.input`
+export const HiddenInput = styled('input')`
   ${HiddenStyles};
 `;
 
@@ -113,7 +113,7 @@ function buildCheckIconColor(props) {
   return props.theme.colors.neutral700;
 }
 
-export const StyledFakeInput = styled.span<{
+export const StyledFakeInput = styled('span')<{
   isChecked?: boolean;
   color: string;
   disabled?: boolean;

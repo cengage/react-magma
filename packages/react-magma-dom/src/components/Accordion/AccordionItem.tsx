@@ -19,7 +19,7 @@ export interface AccordionItemProps
   theme?: ThemeInterface;
 }
 
-const StyledItem = styled.div`
+const StyledItem = styled('div')`
   h1,
   h2,
   h3,

@@ -31,7 +31,7 @@ export enum HideAtBreakpointDisplayType {
   inlineFlex = 'inline-flex',
 }
 
-const Container = styled.div<HideAtBreakpointProps>`
+const Container = styled('div')<HideAtBreakpointProps>`
   display: ${props => props.displayType};
 
   @media (min-width: ${props => props.minWidth}px) {

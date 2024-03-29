@@ -53,11 +53,11 @@ export interface LoadingIndicatorState {
   messageLevel: number;
 }
 
-const StyledLoadingIndicator = styled.div`
+const StyledLoadingIndicator = styled('div')`
   text-align: center;
 `;
 
-const MessageContainer = styled.div<{ theme: ThemeInterface }>`
+const MessageContainer = styled('div')<{ theme: ThemeInterface }>`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
@@ -67,7 +67,7 @@ const MessageContainer = styled.div<{ theme: ThemeInterface }>`
   text-align: center;
 `;
 
-const Message = styled.div<{ hide?: boolean }>`
+const Message = styled('div')<{ hide?: boolean }>`
   opacity: ${props => (props.hide ? '0' : '1')};
   position: absolute;
   transition: opacity 0.3s;

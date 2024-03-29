@@ -15,7 +15,7 @@ export interface DropdownHeaderProps
   testId?: string;
 }
 
-const StyledDiv = styled.div<{ isInverse?: boolean }>`
+const StyledDiv = styled('div')<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? transparentize(0.3, props.theme.colors.neutral100)

@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { ThemeInterface } from '../../theme/magma';
 
-const StyledTabPanel = styled.div<{
+const StyledTabPanel = styled('div')<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`

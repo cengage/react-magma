@@ -290,7 +290,7 @@ const TagStyling = props => css`
   }
 `;
 
-const StyledButton = styled.button<{
+const StyledButton = styled('button')<{
   disabled?: boolean;
   isClickable?: boolean;
   isInverse?: boolean;
@@ -300,7 +300,7 @@ const StyledButton = styled.button<{
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 `;
 
-const StyledSpan = styled.span<{
+const StyledSpan = styled('span')<{
   disabled?: boolean;
   isInverse?: boolean;
   size: string;
@@ -309,7 +309,7 @@ const StyledSpan = styled.span<{
   cursor: ${props => (props.disabled ? 'not-allowed' : 'inherit')};
 `;
 
-const LabelWrap = styled.span<{
+const LabelWrap = styled('span')<{
   size: string;
   icon?: any;
 }>`

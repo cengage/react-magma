@@ -33,7 +33,7 @@ function getWidth(axis: SpacerAxis, size: number | string) {
   return axis === SpacerAxis.vertical ? '1px' : convertStyleValueToString(size);
 }
 
-const StyledSpacer = styled.span<SpacerProps>`
+const StyledSpacer = styled('span')<SpacerProps>`
   display: ${props =>
     props.axis === SpacerAxis.horizontal ? 'inline-block' : 'block'};
   height: ${props => getHeight(props.axis, props.size)};

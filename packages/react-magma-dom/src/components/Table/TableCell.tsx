@@ -51,7 +51,7 @@ export function buildCellPaddingStyle(density, theme: any) {
   }
 }
 
-const StyledCell = styled.td<{
+const StyledCell = styled('td')<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;

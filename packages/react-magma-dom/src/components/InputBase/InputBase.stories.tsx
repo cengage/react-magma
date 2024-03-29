@@ -16,7 +16,7 @@ import styled from '../../theme/styled';
 import { Meta } from '@storybook/react/types-6-0';
 import { magma } from '../../theme/magma';
 
-const Container = styled.div`
+const Container = styled('div')`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
@@ -24,11 +24,11 @@ const Container = styled.div`
   grid-template-areas: 'one two';
 `;
 
-const One = styled.div`
+const One = styled('div')`
   grid-area: one;
 `;
 
-const Two = styled.div`
+const Two = styled('div')`
   grid-area: two;
 `;
 

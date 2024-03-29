@@ -128,7 +128,7 @@ const ModalBackdrop = styled(Transition)<{
   position: fixed;
 `;
 
-const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
+const ModalContent = styled('div')<ModalProps & { isExiting?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary600
@@ -165,7 +165,7 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
-const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
+const ModalHeader = styled('div')<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05}
     ${props => props.theme.spaceScale.spacing05} 0
     ${props => props.theme.spaceScale.spacing05};
@@ -176,7 +176,7 @@ const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
   }
 `;
 
-const ModalWrapper = styled.div<{ theme?: ThemeInterface }>`
+const ModalWrapper = styled('div')<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05};
   @media (min-width: ${props => props.theme.breakpoints.small}px) {
     padding: ${props => props.theme.spaceScale.spacing06};
@@ -197,7 +197,7 @@ const H1 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
   font-weight: 600;
 `;
 
-const CloseBtn = styled.span<{ theme?: ThemeInterface }>`
+const CloseBtn = styled('span')<{ theme?: ThemeInterface }>`
   position: absolute;
   top: 0;
   right: 0;

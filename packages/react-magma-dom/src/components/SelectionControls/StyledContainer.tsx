@@ -6,7 +6,7 @@ export interface StyledContainerProps {
   style?: React.CSSProperties;
 }
 
-const StyledContainerComponent = styled.div<StyledContainerProps>`
+const StyledContainerComponent = styled('div')<StyledContainerProps>`
   align-items: baseline;
   display: flex;
   flex-wrap: nowrap;

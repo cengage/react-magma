@@ -100,7 +100,7 @@ export const MenuItemStyles = props => {
   `;
 };
 
-const StyledItem = styled.div<{
+const StyledItem = styled('div')<{
   as?: string;
   disabled?: boolean;
   isFixedWidth?: boolean;
@@ -111,7 +111,7 @@ const StyledItem = styled.div<{
   ${MenuItemStyles}
 `;
 
-export const IconWrapper = styled.span<{ isInverse?: boolean }>`
+export const IconWrapper = styled('span')<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100

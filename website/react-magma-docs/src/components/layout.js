@@ -15,7 +15,7 @@ import { Link } from 'gatsby';
 import { IconButtonProps } from '../components/IconButtonProps';
 import { ButtonProps } from '../components/ButtonProps';
 
-const ContentArticle = styled.article`
+const ContentArticle = styled('article')`
   @media (max-width: 1025px) {
     margin: 0 auto;
   }

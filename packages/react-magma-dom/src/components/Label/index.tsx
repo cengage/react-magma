@@ -29,7 +29,7 @@ export interface LabelProps
   testId?: string;
 }
 
-const StyledLabel = styled.label<{
+const StyledLabel = styled('label')<{
   iconPosition: InputIconPosition;
   isInverse: boolean;
   theme: any;

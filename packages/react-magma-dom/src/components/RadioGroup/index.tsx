@@ -8,7 +8,7 @@ import { useIsInverse } from '../../inverse';
 import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 
-const HiddenLabel = styled.label`
+const HiddenLabel = styled('label')`
   ${HiddenStyles};
 `;
 

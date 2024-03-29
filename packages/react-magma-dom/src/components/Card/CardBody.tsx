@@ -14,7 +14,7 @@ export interface CardBodyProps
   testId?: string;
 }
 
-const StyledCardBody = styled.div<CardProps>`
+const StyledCardBody = styled('div')<CardProps>`
   padding: ${props => props.theme.spaceScale.spacing05};
   text-align: ${props => props.align};
   font-family: ${props => props.theme.bodyFont};

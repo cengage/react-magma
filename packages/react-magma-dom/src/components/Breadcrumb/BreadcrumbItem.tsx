@@ -20,14 +20,14 @@ export interface BreadcrumbItemProps
   to?: string;
 }
 
-const StyledItem = styled.li`
+const StyledItem = styled('li')`
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 `;
 
-const StyledSpan = styled.span<{ isInverse?: boolean }>`
+const StyledSpan = styled('span')<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100

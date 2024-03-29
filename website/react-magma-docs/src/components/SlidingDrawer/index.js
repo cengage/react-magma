@@ -115,14 +115,14 @@ export class SlidingDrawer extends React.Component {
       }
     `;
 
-    const PanelInner = styled.div`
+    const PanelInner = styled('div')`
       display: ${props => (props.isOpen ? 'block' : 'none')};
       @media (min-width: 1025px) {
         display: block;
       }
     `;
 
-    const Overlay = styled.div`
+    const Overlay = styled('div')`
       background: rgba(0, 0, 0, 0.6);
       bottom: 0;
       left: 0;
@@ -132,7 +132,7 @@ export class SlidingDrawer extends React.Component {
       z-index: 10;
     `;
 
-    const MenuButton = styled.span`
+    const MenuButton = styled('span')`
       position: fixed;
       top: 4px;
       left: 6px;
@@ -142,7 +142,7 @@ export class SlidingDrawer extends React.Component {
       }
     `;
 
-    const SmallLogoLink = styled.div`
+    const SmallLogoLink = styled('div')`
       display: flex;
       align-items: center;
       color: ${magma.colors.neutral700};
@@ -159,7 +159,7 @@ export class SlidingDrawer extends React.Component {
       }
     `;
 
-    const CloseButton = styled.span`
+    const CloseButton = styled('span')`
       justify-content: flex-end;
       flex: 1;
       text-align: right;

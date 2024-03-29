@@ -31,7 +31,7 @@ export interface NativeSelectProps
   optionLabel?: string;
   testId?: string;
 }
-const StyledNativeSelectWrapper = styled.div<{
+const StyledNativeSelectWrapper = styled('div')<{
   disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
@@ -65,7 +65,7 @@ function borderColors(props) {
   return props.theme.colors.neutral500;
 }
 
-const StyledNativeSelect = styled.select<{
+const StyledNativeSelect = styled('select')<{
   hasError?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
@@ -100,7 +100,7 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
     `}
 `;
 
-const StyledAdditionalContentWrapper = styled.div`
+const StyledAdditionalContentWrapper = styled('div')`
   align-items: center;
   display: flex;
   label {

@@ -48,7 +48,7 @@ function buildCalendarDayColor(props) {
   return props.theme.colors.neutral;
 }
 
-const CalendarDayCell = styled.td<{
+const CalendarDayCell = styled('td')<{
   isInverse?: boolean;
 }>`
   border: 1px solid
@@ -68,7 +68,7 @@ const CalendarDayCell = styled.td<{
   width: ${props => props.theme.spaceScale.spacing09};
 `;
 
-const CalendarDayInner = styled.button<{
+const CalendarDayInner = styled('button')<{
   isChosen?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
@@ -120,12 +120,12 @@ const CalendarDayInner = styled.button<{
   }
 `;
 
-const EmptyCell = styled.td`
+const EmptyCell = styled('td')`
   border: 0;
   padding: 0;
 `;
 
-const TodayIndicator = styled.span<{
+const TodayIndicator = styled('span')<{
   isInverse?: boolean;
 }>`
   border-left: 8px solid

@@ -41,7 +41,7 @@ export interface TextareaProps
   value?: string | ReadonlyArray<string> | number;
 }
 
-const StyledTextArea = styled.textarea<
+const StyledTextArea = styled('textarea')<
   InputWrapperStylesProps & InputBaseStylesProps
 >`
   ${inputBaseStyles};
