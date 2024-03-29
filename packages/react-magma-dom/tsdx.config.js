@@ -32,4 +32,9 @@ module.exports = {
 
     return { ...config, ...overrides };
   },
+  preprocess: {
+    replace: {
+      '@emotion/styled-base': '@emotion/styled',
+    },
+  },
 };
