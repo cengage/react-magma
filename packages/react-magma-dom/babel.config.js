@@ -10,11 +10,7 @@ module.exports = function(api) {
           importMap: {
             '@emotion/styled': {
               default: {
-                canonicalImport: ['@emotion/styled', 'default'],
-                styledBaseImport: [
-                  '@emotion/styled/dist/styled-base.esm.js',
-                  'default',
-                ],
+                canonicalImport: ['@emotion/styled', 'default']
               },
             },
           },
