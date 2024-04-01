@@ -10,7 +10,7 @@ module.exports = {
     FAST_REFRESH: false, //recommended for react >= 17.0.0
   },
   plugins: [
-    {
+{
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
@@ -20,52 +20,52 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        name: 'images',
+        path: path.join(__dirname, 'src', 'images'),
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `api`,
-        path: `${__dirname}/src/pages/api`,
+        name: 'api',
+        path: path.join(__dirname, 'src', 'pages', 'api'),
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `api-intro`,
-        path: `${__dirname}/src/pages/api-intro`,
+        name: 'api-intro',
+        path: path.join(__dirname, 'src', 'pages', 'api-intro'),
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `design`,
-        path: `${__dirname}/src/pages/design`,
+        name: 'design',
+        path: path.join(__dirname, 'src', 'pages', 'design'),
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `design-intro`,
-        path: `${__dirname}/src/pages/design-intro`,
+        name: 'design-intro',
+        path: path.join(__dirname, 'src', 'pages', 'design-intro'),
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `patterns`,
-        path: `${__dirname}/src/pages/patterns`,
+        name: 'patterns',
+        path: path.join(__dirname, 'src', 'pages', 'patterns'),
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `patterns-intro`,
-        path: `${__dirname}/src/pages/patterns-intro`,
+        name: 'patterns-intro',
+        path: path.join(__dirname, 'src', 'pages', 'patterns-intro'),
       },
     },
     {
@@ -85,7 +85,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'gatsby-starter-default',
         short_name: 'starter',
