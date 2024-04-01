@@ -24,22 +24,6 @@ import {
   getMissingChildrenIds,
   getUniqueSelectedItemsArray,
   getUpdatedSelectedItems,
-  findCommonItems,
-  areArraysEqual,
-  arrayIncludesId,
-  filterSelectedItems,
-  findChildByItemId,
-  findCommonItems,
-  getAllChildrenEnabled,
-  getAllParentIds,
-  getCheckedStatus,
-  getChildrenCheckedStatus,
-  getChildrenItemIds,
-  getChildrenItemIdsFlat,
-  getChildrenItemIdsInTree,
-  getMissingChildrenIds,
-  getUniqueSelectedItemsArray,
-  getUpdatedSelectedItems,
 } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -269,12 +253,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
   }, [initialExpandedItemsNeedUpdate]);
 
-  React.useEffect(() => {
-    if (initialExpandedItemsNeedUpdate) {
-      updateInitialExpanded();
-    }
-  }, [initialExpandedItemsNeedUpdate]);
-
   const updateCheckedStatusFromChild = (
     index: number,
     status: IndeterminateCheckboxStatus,
@@ -346,20 +324,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       });
 
       setSelectedItemsChanged(true);
-    }
-  };
-
-  const updateInitialExpanded = () => {
-    if (initialExpandedItems?.length !== 0 && !isDisabled) {
-      const childrenItemIds = getChildrenItemIdsFlat(treeItemChildren);
-      const allExpanded = [...initialExpandedItems, ...childrenItemIds];
-      if (allExpanded?.some(item => item === itemId)) {
-        setExpanded(true);
-      } else {
-        setExpanded(false);
-      }
-    } else {
-      setExpanded(false);
     }
   };
 
@@ -520,12 +484,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         statusFromChildren
       );
 
-      const updateItemStatus = getUpdatedSelectedItems(
-        selectedItems,
-        itemId,
-        statusFromChildren
-      );
-
       if (
         checkedStatus !== statusFromChildren &&
         statusUpdatedBy !== StatusUpdatedByOptions.parent
@@ -581,11 +539,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           } else {
             updateSelectedItemsChanged();
           }
-        }
-      } else {
-        setSelectedItems(updateItemStatus);
-        if (!expanded) {
-          updateSelectedItemsChanged();
         }
       } else {
         setSelectedItems(updateItemStatus);

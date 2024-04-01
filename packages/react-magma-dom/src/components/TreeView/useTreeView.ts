@@ -152,15 +152,6 @@ export function useTreeView(props: UseTreeViewProps) {
     setItemToFocus(item);
   }
 
-  React.useEffect(() => {
-    if (selectable !== TreeViewSelectable.off && initialSelectedItems) {
-      setInitialSelectedItemsNeedUpdate(true);
-    }
-    if (initialExpandedItems) {
-      setInitialExpandedItemsNeedUpdate(true);
-    }
-  }, []);
-
   const contextValue = {
     hasIcons,
     itemToFocus,
