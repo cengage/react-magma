@@ -74,6 +74,8 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    */
   itemDepth?: number;
   /**
+   * TODO: improve functionality (issue #1305)
+   * @internal 
    * If true, element is disabled
    * @default false
    */
@@ -146,7 +148,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
 
-  // TODO fix for disabled items
+  // TODO fix for disabled items (issue #1305)
   // const numberOfTreeItemChildren = getEnabledTreeItemChildrenLength(treeItemChildren);
   const numberOfTreeItemChildren = treeItemChildren.length;
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
@@ -451,6 +453,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
         } else {
           const childrenIds = getChildrenItemIds(treeItemChildren);
+
           const newChildrenCheckedStatus = getChildrenCheckedStatus(
             childrenIds,
             parentCheckedStatus
@@ -474,20 +477,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         statusFromChildren
       );
 
-      const updateItemStatus = getUpdatedSelectedItems(
-        selectedItems,
-        itemId,
-        statusFromChildren
-      );
-
       if (
         checkedStatus !== statusFromChildren &&
         statusUpdatedBy !== StatusUpdatedByOptions.parent
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.children);
         setCheckedStatus(statusFromChildren);
-        setSelectedItems(updateItemStatus);
-
         if (
           statusFromChildren === IndeterminateCheckboxStatus.checked ||
           statusFromChildren === IndeterminateCheckboxStatus.indeterminate
@@ -543,8 +538,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         if (!expanded) {
           updateSelectedItemsChanged();
         }
-      } else {
-        setSelectedItems(updateItemStatus);
       }
     }
   }, [childrenCheckedStatus]);
@@ -567,6 +560,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
         } else {
           const childrenIds = getChildrenItemIds(treeItemChildren);
+
           const newChildrenCheckedStatus = getChildrenCheckedStatus(
             childrenIds,
             status
@@ -621,7 +615,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           childrenIds,
           { itemId, checkedStatus }
         );
-
         setSelectedItems(newSelectedItems);
         updateSelectedItemsChanged();
       }
