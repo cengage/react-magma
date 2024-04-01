@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.6-next.9
+
+### Patch Changes
+
+- b10feaaba: chore: Fix storybook
+
 ## 5.0.6-next.8
 
 ### Patch Changes
