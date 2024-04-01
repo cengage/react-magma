@@ -200,9 +200,7 @@ describe('Table Pagination', () => {
   });
 
   it('should hide rows per page component when no onRowsPerPageChanged function passed', () => {
-    const { queryByText } = render(
-      <TablePagination itemCount={20}/>
-    );
+    const { queryByText } = render(<TablePagination itemCount={20} />);
 
     expect(queryByText('Rows per page:')).not.toBeInTheDocument();
   });
