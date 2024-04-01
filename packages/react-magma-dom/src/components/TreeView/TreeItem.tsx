@@ -234,7 +234,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           ? 'mixed'
           : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
-
+        
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
         <FolderIcon aria-hidden={true} />
@@ -396,7 +396,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   child
                 );
               // hide the disabled item + the children
-              // if (isDisabled) return <></>;
+              if (isDisabled) return <></>;
 
               return component;
             }

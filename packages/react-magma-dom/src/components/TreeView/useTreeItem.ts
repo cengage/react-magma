@@ -75,7 +75,7 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   itemDepth?: number;
   /**
    * TODO: improve functionality (issue #1305)
-   * @internal 
+   * @internal
    * If true, element is disabled
    * @default false
    */
@@ -470,11 +470,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       )
         ? childrenCheckedStatus[0]
         : IndeterminateCheckboxStatus.indeterminate;
-      const updateItemStatus = getUpdatedSelectedItems(
-        selectedItems,
-        itemId,
-        statusFromChildren
-      );
 
       const updateItemStatus = getUpdatedSelectedItems(
         selectedItems,
@@ -488,7 +483,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.children);
         setCheckedStatus(statusFromChildren);
-        setSelectedItems(updateItemStatus);
 
         if (
           statusFromChildren === IndeterminateCheckboxStatus.checked ||
@@ -545,8 +539,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         if (!expanded) {
           updateSelectedItemsChanged();
         }
-      } else {
-        setSelectedItems(updateItemStatus);
       }
     }
   }, [childrenCheckedStatus]);

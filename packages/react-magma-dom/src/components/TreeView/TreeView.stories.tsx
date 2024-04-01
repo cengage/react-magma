@@ -153,7 +153,7 @@ export const Complex = args => {
     <>
       <Card isInverse={args.isInverse}>
         <TreeView {...args} onSelectedItemChange={onSelection}>
-          <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
+          {/* <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
               icon={<ArticleIcon aria-hidden={true} />}
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
@@ -209,7 +209,7 @@ export const Complex = args => {
                 itemId="pt1ch3.3"
               />
             </TreeItem>
-          </TreeItem>
+          </TreeItem> */}
           <TreeItem
             icon={<FolderIcon aria-hidden={true} />}
             label={
@@ -356,7 +356,7 @@ export const Complex = args => {
               }
               itemId="pt3ch11"
             />
-          </TreeItem>
+          </TreeItem> */}
         </TreeView>
       </Card>
       <br />
