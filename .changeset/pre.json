@@ -13,6 +13,7 @@
   "changesets": [
     "feat-tabsScrollSpy",
     "few-hotels-walk",
+    "fix-NativeSelectPagination",
     "little-impalas-shave",
     "modal-isModalClosingControlledManually",
     "nativeSelect-testId",
