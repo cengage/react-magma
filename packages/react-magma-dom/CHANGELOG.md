@@ -41,6 +41,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.6
+
+### Patch Changes
+
+- a869e0993: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid per ticket: https://github.com/cengage/react-magma/issues/1201
+
 ## 4.4.0-next.5
 
 ### Minor Changes
