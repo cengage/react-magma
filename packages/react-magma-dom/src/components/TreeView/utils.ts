@@ -92,6 +92,7 @@ export function getTreeItemWrapperCursor(
   return 'default';
 }
 
+// Returns boolean if selectedItems has itemId
 export function selectedItemsIncludesId(selectedItems, itemId) {
   return selectedItems?.some(item => item.itemId === itemId);
 }
@@ -117,6 +118,65 @@ export function getChildrenItemIds(children) {
   });
 
   return itemIds;
+}
+
+export function getChildrenItemIdsInTree(children) {
+  let itemIds = [];
+
+  React.Children.forEach(children, child => {
+    if (child.props?.itemId && !child.props?.isDisabled) {
+      itemIds.push({
+        itemId: child.props?.itemId,
+        children: getChildrenItemIdsInTree(child.props?.children),
+      });
+    }
+  });
+
+  return itemIds;
+}
+
+export function getAllParentIds(childrenArr, itemId, parentItemIds = []) {
+  for (const child of childrenArr) {
+    if (child.itemId === itemId) {
+      return parentItemIds; // Return the parentItemIds array if the itemId is found
+    }
+
+    if (child.children && child.children.length > 0) {
+      const updatedParentItemIds = [...parentItemIds, child.itemId];
+      const result = getAllParentIds(
+        child.children,
+        itemId,
+        updatedParentItemIds
+      );
+      if (result) {
+        return result; // Return the result if the itemId is found in the child's subtree
+      }
+    }
+  }
+
+  return null; // Return null if the itemId is not found
+}
+
+// Return the node of an itemId by traversing through the children
+export function findChildByItemId(children, itemId) {
+  if (!children) {
+    return null;
+  }
+
+  for (const child of children) {
+    if (child?.props?.itemId === itemId) {
+      return child;
+    }
+
+    if (child?.props?.children) {
+      const nestedChild = findChildByItemId(child?.props?.children, itemId);
+      if (nestedChild) {
+        return nestedChild;
+      }
+    }
+  }
+
+  return null;
 }
 
 // Return whether all the children are enabled
@@ -169,10 +229,56 @@ export function getUpdatedSelectedItems(selectedItems, itemId, checkedStatus) {
 export function getUniqueSelectedItemsArray(
   prev,
   initialSelectedItems,
-  childrenItemIds = []
+  childrenItemIds
 ) {
-  return Array.from(
-    new Set([...prev, ...initialSelectedItems, ...childrenItemIds])  );
+  const combinedArray = [...prev, ...initialSelectedItems, ...childrenItemIds];
+  const uniqueItemsMap = new Map();
+  for (const item of combinedArray) {
+    uniqueItemsMap.set(item.itemId, item);
+  }
+  return Array.from(uniqueItemsMap.values());
+}
+
+// Return items in both arrays
+export function findCommonItems(initialItemsArr, childrenItemsArr) {
+  const commonItems = [];
+
+  for (const initialItem of initialItemsArr) {
+    for (const childItem of childrenItemsArr) {
+      if (initialItem.itemId === childItem.itemId) {
+        commonItems.push(initialItem);
+        break;
+      }
+    }
+  }
+
+  return commonItems;
+}
+
+export function areArraysEqual(array1, array2) {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  for (let i = 0; i < array1.length; i++) {
+    const obj1 = array1[i];
+    const obj2 = array2[i];
+
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+
+    for (const key of keys1) {
+      if (obj1[key] !== obj2[key]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 // TODO
