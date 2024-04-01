@@ -531,7 +531,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.children);
         setCheckedStatus(statusFromChildren);
-        setSelectedItems(updateItemStatus);
 
         if (
           statusFromChildren === IndeterminateCheckboxStatus.checked ||
