@@ -50,8 +50,8 @@
   },
   "devDependencies": {
     "@emotion/core": "^10.1.1",
-    "@emotion/styled": "10.0.27",
-    "@emotion/styled-base": "10.0.27",
+    "@emotion/styled": "^10.0.27",
+    "@emotion/styled-base": "^10.0.27",
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
     "framer-motion": "^4.1.11",

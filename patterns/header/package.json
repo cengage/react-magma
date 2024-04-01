@@ -19,8 +19,8 @@
     "lint": "eslint ./src"
   },
   "peerDependencies": {
-    "@emotion/core": "10.1.1",
-    "@emotion/styled": "10.0.27",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
     "@types/uuid": "^8.3.0",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
@@ -31,8 +31,8 @@
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "@emotion/core": "10.1.1",
-    "@emotion/styled": "10.0.27",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
     "@types/uuid": "^8.3.0",
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
