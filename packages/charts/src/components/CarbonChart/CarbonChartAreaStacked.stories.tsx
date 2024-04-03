@@ -121,6 +121,9 @@ StackedAreaTimeSeries.args = {
         mapsTo: 'date',
       },
     },
+    color: {
+      scale: 10,
+    },
     curve: 'curveMonotoneX',
     height: '400px',
     theme: 'g100',

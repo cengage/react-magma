@@ -77,6 +77,8 @@ const CarbonChartWrapper = styled.div<{
       props.isInverse
         ? props.theme.colors.neutral100
         : props.theme.colors.neutral700};
+        max-width:142px;
+        white-space: normal;
   }
 
   .cds--modal-container {
@@ -106,7 +108,10 @@ const CarbonChartWrapper = styled.div<{
     }
   }
 
-   p, div, text, .cds--cc--axes g.axis .axis-title,
+  p,
+  div,
+  text,
+  .cds--cc--axes g.axis .axis-title,
   .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
     font-family: ${props => props.theme.bodyFont} !important;
@@ -120,176 +125,239 @@ const CarbonChartWrapper = styled.div<{
     overflow: visible;
   }
 
-  div.cds--cc--legend{
-    div.legend-item{
-      div.checkbox{
-        background:${props =>
+  div.cds--cc--legend {
+    div.legend-item {
+      div.checkbox {
+        background: ${props =>
           props.isInverse
             ? props.theme.colors.neutral900
             : props.theme.colors.neutral100};
         border: none;
         width: ${props => props.theme.spaceScale.spacing05};
         height: ${props => props.theme.spaceScale.spacing05};
-        svg{
+        svg {
           left: 2px;
           position: relative;
         }
       }
       p {
-        font-size:  ${props => props.theme.typeScale.size03.fontSize};
-        margin: 0  ${props => props.theme.spaceScale.spacing03} 0 0;
+        font-size: ${props => props.theme.typeScale.size03.fontSize};
+        margin: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
       }
     }
   }
-  div.cds--cc--legend.has-deactivated-items{
-    div.legend-item{
-      div.checkbox{
-        border: 1px solid ${props =>
-          props.isInverse
-            ? props.theme.colors.neutral100
-            : props.theme.colors.neutral900}
+  div.cds--cc--legend.has-deactivated-items {
+    div.legend-item {
+      div.checkbox {
+        border: 1px solid
+          ${props =>
+            props.isInverse
+              ? props.theme.colors.neutral100
+              : props.theme.colors.neutral900};
       }
-      div.checkbox.active{
+      div.checkbox.active {
         border: 1px solid transparent;
       }
     }
   }
-  .chart-holder{
-    .cds--cc--axes g.axis g.tick text{
-      fill:${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
+  .chart-holder {
+    .cds--cc--axes g.axis g.tick text {
+      fill: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
     }
     .cds--cc--axes g.axis path.domain {
-      stroke:${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
-  }
-  .cds--cc--grid g.x.grid g.tick line, .cds--cc--grid g.y.grid g.tick line{
-      stroke:${props =>
+      stroke: ${props =>
+        props.isInverse ? props.theme.colors.neutral100 : ''};
+    }
+    .cds--cc--grid g.x.grid g.tick line,
+    .cds--cc--grid g.y.grid g.tick line {
+      stroke: ${props =>
         props.isInverse
           ? transparentize(0.5, props.theme.colors.neutral100)
           : ''};
-    
-  }
-  .cds--cc--skeleton .shimmer-effect-lines{
-    filter: ${props => (props.isInverse ? 'invert(1)' : '')};
-  }
-  .chart-holder.cds--chart-holder.filled,
-  .cds--cc--skeleton rect.chart-skeleton-backdrop,
-  .cds--cc--grid rect.chart-grid-backdrop{
-      /* fill:none; */
-  }
-  .cds--cc--scatter circle.dot.hovered{
-    padding:10px;
-  }
-  .cds--cc--scatter circle.dot.unfilled,
-  .cds--cc--scatter circle.dot.hovered {
-    stroke-width:6px;
-  }
-  .cds--cc--lollipop circle.dot.filled,
-  .cds--cc--lollipop circle.dot.hovered {
+    }
+    .cds--cc--skeleton .shimmer-effect-lines {
+      filter: ${props => (props.isInverse ? 'invert(1)' : '')};
+    }
+    /* .chart-holder.cds--chart-holder.filled,
+    .cds--cc--skeleton rect.chart-skeleton-backdrop,
+    .cds--cc--grid rect.chart-grid-backdrop {
+    } */
+    .cds--cc--grid rect.chart-grid-backdrop{
+      fill:none;
+    }
+    .cds--cc--scatter circle.dot.hovered {
+      padding: 10px;
+    }
+    .cds--cc--scatter-stacked circle.dot.hovered,
+    .cds--cc--scatter-stacked circle.dot.unfilled,
+    .cds--cc--scatter circle.dot.unfilled{
+      stroke-width: 6px;
+      transition: 0.1s all linear;
+     
+    }
+    .cds--cc--scatter circle.dot.hovered {
+      stroke-width: 0.5em;
+      transition: 0.1s all linear;
+       filter: 
+        drop-shadow( 1px  0px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100}) 
+        drop-shadow(-1px  0px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100})
+        drop-shadow( 0px  1px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100}) 
+        drop-shadow( 0px -1px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100});
+      }
+    }
+      .cds--cc--lollipop circle.dot.filled,
+      .cds--cc--lollipop circle.dot.hovered {
+        stroke-width: 15px;
+      }
+      .cds--cc--scatter-stacked circle.dot.hovered,
+    .cds--cc--scatter-stacked circle.dot.unfilled,
+    .cds--cc--scatter circle.dot.unfilled,
+    .cds--cc--lollipop circle.dot.filled,
+      .cds--cc--lollipop circle.dot.hovered{
+        filter: 
+        drop-shadow( 1px  0px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100}) 
+        drop-shadow(-1px  0px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100})
+        drop-shadow( 0px  1px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100}) 
+        drop-shadow( 0px -1px 0px ${props =>
+          props.isInverse
+            ? props.theme.colors.primary600
+            : props.theme.colors.neutral100});
+      }
 
-    stroke-width:15px;
-  }
-  
+      .cds--overflow-menu-options__btn:focus {
+        outline-color: ${props =>
+          props.isInverse ? props.theme.colors.focusInverse : ''};
+      }
 
-.cds--overflow-menu-options__btn:focus{
-  outline-color: ${props =>
-    props.isInverse ? props.theme.colors.focusInverse : ''};
-}
-  
-  .cds--btn {
-    min-height: auto;
-    display: flex;
-    flex: 0 auto;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    margin: 0;
-    line-height:  ${props => props.theme.typeScale.size03.lineHeight};
-    margin: 0;
-    min-width:  ${props => props.theme.spaceScale.spacing13};
-    overflow: hidden;
-    padding: ;
-    position: relative;
-    right: ${props => props.theme.spaceScale.spacing04};
-    text-align: center;
-    height: 40px;
-    font-family: ${props => props.theme.bodyFont};
-    font-size: ${props => props.theme.typeScale.size03.fontSize};
-    border-radius: ${props => props.theme.borderRadius};
-    font-weight: 500;
-  }
-  
-  .cds--btn--primary {
-    background: ${props =>
-      props.isInverse
-        ? props.theme.colors.tertiary500
-        : props.theme.colors.primary};
-      color: ${props =>
-        props.isInverse ? props.theme.colors.neutral900 : ''} ;
-  }
+      .cds--btn {
+        min-height: auto;
+        display: flex;
+        flex: 0 auto;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        margin: 0;
+        line-height: ${props => props.theme.typeScale.size03.lineHeight};
+        margin: 0;
+        min-width: ${props => props.theme.spaceScale.spacing13};
+        overflow: hidden;
+        padding: ;
+        position: relative;
+        right: ${props => props.theme.spaceScale.spacing04};
+        text-align: center;
+        height: 40px;
+        font-family: ${props => props.theme.bodyFont};
+        font-size: ${props => props.theme.typeScale.size03.fontSize};
+        border-radius: ${props => props.theme.borderRadius};
+        font-weight: 500;
+      }
 
-  *:focus {
-    outline: 2px solid ${props =>
-      props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus} !important;
-    };
-    outline-offset: 0;
-  }
-  .cds--overflow-menu-options__btn:focus,
-  .cds--overflow-menu:focus, .cds--overflow-menu__trigger:focus,
-  .toolbar-control:focus{
-    outline: 2px solid ${props =>
-      props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus} !important;
-  }
-  div.cds--cc--legend.clickable div.legend-item:not(.additional):focus div.checkbox,
-  div.cds--cc--legend.clickable div.legend-item:not(.additional):hover div.checkbox{
-    border: ${props =>
-      props.isInverse ? `1px solid ${props.theme.colors.focusInverse}` : ''};;
-  }
-  div.cds--cc--legend.clickable div.legend-item:not(.additional):hover div.checkbox{
-    box-shadow: 0 0 0 2px ${props =>
-      props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus} !important;
-  }
+      .cds--btn--primary {
+        background: ${props =>
+          props.isInverse
+            ? props.theme.colors.tertiary500
+            : props.theme.colors.primary};
+        color: ${props =>
+          props.isInverse ? props.theme.colors.neutral900 : ''};
+      }
 
-  .cds--btn--primary {
-    &:focus {
-        outline: 2px solid ${props =>
+      *:focus {
+        outline: 2px solid
+          ${props =>
+            props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus} !important;
+      }
+      outline-offset: 0;
+    }
+    .cds--overflow-menu-options__btn:focus,
+    .cds--overflow-menu:focus,
+    .cds--overflow-menu__trigger:focus,
+    .toolbar-control:focus {
+      outline: 2px solid
+        ${props =>
           props.isInverse
             ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
-        }
-        outline-offset: 0;
-        border: none;
-        box-shadow: none;
+            : props.theme.colors.focus} !important;
     }
-  .cds--modal-header{
-    background: ${props =>
-      props.isInverse
-        ? props.theme.colors.primary600
-        : props.theme.colors.neutral100};
-    margin-bottom: 0;
-    border-bottom: 1px solid ${props =>
-      props.isInverse
-        ? transparentize(0.8, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
-  }
-  .cds--modal-header__heading{
-    font-weight:600;
-  }
+    div.cds--cc--legend.clickable
+      div.legend-item:not(.additional):focus
+      div.checkbox,
+    div.cds--cc--legend.clickable
+      div.legend-item:not(.additional):hover
+      div.checkbox {
+      border: ${props =>
+        props.isInverse ? `1px solid ${props.theme.colors.focusInverse}` : ''};
+    }
+    div.cds--cc--legend.clickable
+      div.legend-item:not(.additional):hover
+      div.checkbox {
+      box-shadow: 0 0 0 2px
+        ${props =>
+          props.isInverse
+            ? props.theme.colors.focusInverse
+            : props.theme.colors.focus} !important;
+    }
 
-  .cds--modal-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    &:focus {
-      outline: 2px solid ${props =>
+    .cds--btn--primary {
+      &:focus {
+        outline: 2px solid
+          ${props =>
+            props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus};
+      }
+      outline-offset: 0;
+      border: none;
+      box-shadow: none;
+    }
+    .cds--modal-header {
+      background: ${props =>
         props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? props.theme.colors.primary600
+          : props.theme.colors.neutral100};
+      margin-bottom: 0;
+      border-bottom: 1px solid
+        ${props =>
+          props.isInverse
+            ? transparentize(0.8, props.theme.colors.neutral100)
+            : props.theme.colors.neutral300};
+    }
+    .cds--modal-header__heading {
+      font-weight: 600;
+    }
+
+    .cds--modal-close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      &:focus {
+        outline: 2px solid
+          ${props =>
+            props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus};
       }
       outline-offset: 0;
       border: none;
@@ -297,48 +365,53 @@ const CarbonChartWrapper = styled.div<{
   }
 
   .cds--modal-footer.cds--modal-footer {
-      display: flex;
-      align-items: center;
-      border-top: 1px solid ${props =>
+    display: flex;
+    align-items: center;
+    border-top: 1px solid
+      ${props =>
         props.isInverse
           ? transparentize(0.8, props.theme.colors.neutral100)
           : props.theme.colors.neutral300};
-        background: ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100} !important;
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary600
+        : props.theme.colors.neutral100} !important;
   }
   .layout-child.header {
     height: auto !important;
-    p{
-      text-overflow:inherit;
-      overflow:auto;
+    p {
+      text-overflow: inherit;
+      overflow: auto;
       white-space: normal;
     }
-}
-
-  svg:not(:root){
-    overflow:visible;
   }
 
-  .cds--cc--chart-wrapper text{
-    font-size:${props => props.theme.typeScale.size02.fontSize};
+  svg:not(:root) {
+    overflow: visible;
+  }
+
+  .cds--cc--chart-wrapper text {
+    font-size: ${props => props.theme.typeScale.size02.fontSize};
   }
 
   //Zoom responsive tweaks
 
-  @media screen and (max-width: 760px){
-
-    .cds--modal-container{
-      overflow-y:auto;
+  @media screen and (max-width: 760px) {
+    .cds--modal-container {
+      overflow-y: auto;
     }
-    .cds--chart-holder .cds--modal .cds--modal-container .cds--modal-content{
-    overflow: visible;
+    .cds--chart-holder .cds--modal .cds--modal-container .cds--modal-content {
+      overflow: visible;
+    }
+    .cds--chart-holder
+      .cds--modal
+      .cds--modal-container
+      .cds--modal-content
+      table
+      th {
+      position: relative;
+    }
   }
-  .cds--chart-holder .cds--modal .cds--modal-container .cds--modal-content table th{
-    position:relative;
-  }
-} 
 `;
 
 // Carbon themes (https://github.com/carbon-design-system/carbon-charts/blob/master/packages/core/src/interfaces/enums.ts#L12)
@@ -406,13 +479,32 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       color: {
         scale: buildColors(),
       },
+      tooltip: {
+        truncation: {
+          type: 'none',
+        },
+      },
     };
 
     const ChartType = allCharts[type];
 
+    //Adding aria-label to main SVG container
+    React.useEffect(() => {
+      document.querySelectorAll('.graph-frame ').forEach(div => {
+        div.setAttribute('aria-label', 'Interactive chart');
+      });
+    });
+
+    //Overriding circle sizes
+
+    // React.useEffect(() => {
+    //   document.querySelectorAll('circle').forEach(circle => {
+    //     circle.setAttribute('r', '8');
+    //   });
+    // });
+
     return (
       <CarbonChartWrapper
-        aria-label="Interactive chart"
         data-testid={testId}
         ref={ref}
         isInverse={isInverse}
