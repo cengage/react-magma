@@ -4,6 +4,10 @@ import { Select, SelectOptions, SelectProps, MultiSelectProps } from './';
 import { LabelPosition } from '../Label';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
+import { Tooltip } from '../Tooltip';
+import { IconButton } from '../IconButton';
+import { HelpIcon } from 'react-magma-icons';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<SelectProps<SelectOptions>> = args => (
   <Select {...args} />
@@ -22,6 +26,11 @@ export default {
     labelWidth: {
       control: {
         type: 'number',
+      },
+    },
+    isLabelVisuallyHidden: {
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -60,6 +69,40 @@ export const Multi = (props: MultiSelectProps<SelectOptions>) => (
     ]}
   />
 );
+
+const helpLinkLabel = 'Learn more';
+const onHelpLinkClick = () => {
+  alert('Help link clicked!');
+};
+
+const WithContentTemplate: Story<SelectOptions> = args => (
+  <Select
+    additionalContent={
+      <Tooltip content={helpLinkLabel}>
+        <IconButton
+          aria-label={helpLinkLabel}
+          icon={<HelpIcon />}
+          onClick={onHelpLinkClick}
+          type={ButtonType.button}
+          size={ButtonSize.small}
+          variant={ButtonVariant.link}
+        />
+      </Tooltip>
+    }
+    labelText="Helper icon"
+    {...args}
+    items={[
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ]}
+  />
+);
+
+export const WithContent = WithContentTemplate.bind({});
+WithContent.args = {
+  isMulti: false,
+};
 
 export const ErrorMessage = Template.bind({});
 ErrorMessage.args = {

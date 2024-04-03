@@ -2,17 +2,24 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "4.0.2",
-    "@react-magma/dropzone": "4.0.1",
-    "react-magma-dom": "4.1.1",
-    "@react-magma/schema-renderer": "4.0.1",
-    "@cengage-patterns/header": "6.0.1",
-    "react-magma-docs": "5.0.3",
-    "react-magma-landing": "1.1.2"
+    "@react-magma/charts": "6.0.0",
+    "@react-magma/dropzone": "6.0.0",
+    "react-magma-dom": "4.3.0",
+    "@react-magma/schema-renderer": "6.0.0",
+    "@cengage-patterns/header": "8.0.0",
+    "react-magma-docs": "5.0.5",
+    "react-magma-landing": "1.1.3"
   },
   "changesets": [
-    "chartColors",
-    "cuddly-dolphins-yell",
-    "loud-poets-eat"
+    "feat-tabsScrollSpy",
+    "few-hotels-walk",
+    "fix-NativeSelectPagination",
+    "little-impalas-shave",
+    "modal-isModalClosingControlledManually",
+    "nativeSelect-testId",
+    "storybook-global",
+    "treeview-2",
+    "treeview-3",
+    "treeview"
   ]
 }

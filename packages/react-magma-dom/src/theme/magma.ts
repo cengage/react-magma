@@ -143,6 +143,7 @@ export interface TypeScale {
   size13: TypeScaleSize;
   size14: TypeScaleSize;
   size15: TypeScaleSize;
+  size16: TypeScaleSize;
 }
 
 export interface VisualStyle {
@@ -354,11 +355,11 @@ const typeScale = {
   },
   size11: {
     fontSize: '48px',
-    lineHeight: '56px',
+    lineHeight: '64px',
   },
   size12: {
     fontSize: '52px',
-    lineHeight: '68px',
+    lineHeight: '64px',
   },
   size13: {
     fontSize: '54px',
@@ -369,6 +370,10 @@ const typeScale = {
     lineHeight: '72px',
   },
   size15: {
+    fontSize: '64px',
+    lineHeight: '84px',
+  },
+  size16: {
     fontSize: '72px',
     lineHeight: '84px',
   },
@@ -575,43 +580,43 @@ export const magma = {
   },
   typographyExpressiveVisualStyles: {
     heading2XLarge: {
-      mobile: typeScale.size13,
+      mobile: typeScale.size11,
       desktop: typeScale.size15,
-      fontWeight: 600,
+      fontWeight: 500,
     },
     headingXLarge: {
-      mobile: typeScale.size10,
-      desktop: typeScale.size12,
-      fontWeight: 400,
+      mobile: typeScale.size09,
+      desktop: typeScale.size11,
+      fontWeight: 600,
     },
     headingLarge: {
       mobile: typeScale.size07,
       desktop: typeScale.size09,
-      fontWeight: 300,
+      fontWeight: 600,
     },
     headingMedium: {
       mobile: typeScale.size06,
       desktop: typeScale.size07,
-      fontWeight: 300,
+      fontWeight: 600,
     },
     headingSmall: {
       mobile: typeScale.size05,
       desktop: typeScale.size06,
-      fontWeight: 300,
+      fontWeight: 500,
     },
     headingXSmall: {
       mobile: typeScale.size04,
       desktop: typeScale.size05,
-      fontWeight: 300,
+      fontWeight: 500,
     },
     heading2XSmall: {
       mobile: typeScale.size03,
-      desktop: typeScale.size03,
-      fontWeight: 700,
+      desktop: typeScale.size04,
+      fontWeight: 500,
     },
     bodyLarge: {
       mobile: typeScale.size05,
-      desktop: typeScale.size06,
+      desktop: typeScale.size05,
     },
     bodyMedium: {
       mobile: typeScale.size03,

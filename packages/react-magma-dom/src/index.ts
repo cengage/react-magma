@@ -206,6 +206,8 @@ export {
 export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
+export { TabsScrollSpyContainer } from './components/Tabs/TabsScrollSpyContainer';
+export { TabScrollSpyPanel } from './components/Tabs/TabScrollSpyPanel';
 
 export { Tag, TagProps } from './components/Tag';
 
@@ -263,6 +265,7 @@ export * from './components/Tag';
 export * from './components/List';
 export * from './components/BlockQuote';
 export * from './components/ButtonGroup';
+export * from './components/TreeView';
 
 export * from './components/CharacterCounter';
 export * from './components/ToggleButton';
