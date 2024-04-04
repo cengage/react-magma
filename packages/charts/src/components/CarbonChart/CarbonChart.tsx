@@ -175,6 +175,9 @@ const CarbonChartWrapper = styled.div<{
           ? transparentize(0.5, props.theme.colors.neutral100)
           : ''};
     }
+    .cds--cc--grid rect.chart-grid-backdrop.stroked{
+      stroke: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')}
+    }
     .cds--cc--skeleton .shimmer-effect-lines {
       filter: ${props => (props.isInverse ? 'invert(1)' : '')};
     }
@@ -182,8 +185,9 @@ const CarbonChartWrapper = styled.div<{
     .cds--cc--skeleton rect.chart-skeleton-backdrop,
     .cds--cc--grid rect.chart-grid-backdrop {
     } */
+    
     .cds--cc--grid rect.chart-grid-backdrop{
-      fill:none;
+      fill:transparent;
     }
     .cds--cc--scatter circle.dot.hovered {
       padding: 10px;
@@ -226,6 +230,7 @@ const CarbonChartWrapper = styled.div<{
     .cds--cc--scatter circle.dot.unfilled,
     .cds--cc--lollipop circle.dot.filled,
       .cds--cc--lollipop circle.dot.hovered{
+        transition: 0.1s all linear;
         filter: 
         drop-shadow( 1px  0px 0px ${props =>
           props.isInverse
@@ -243,6 +248,10 @@ const CarbonChartWrapper = styled.div<{
           props.isInverse
             ? props.theme.colors.primary600
             : props.theme.colors.neutral100});
+      }
+      .cds--cc--lollipop .cds--cc--scatter circle.dot.hovered{
+        transition: 0.1s all linear;
+        stroke-width: 1.1em;
       }
 
       .cds--overflow-menu-options__btn:focus {
@@ -328,7 +337,7 @@ const CarbonChartWrapper = styled.div<{
               ? props.theme.colors.focusInverse
               : props.theme.colors.focus};
       }
-      outline-offset: 0;
+      outline-offset: 2px;
       border: none;
       box-shadow: none;
     }
@@ -392,6 +401,11 @@ const CarbonChartWrapper = styled.div<{
 
   .cds--cc--chart-wrapper text {
     font-size: ${props => props.theme.typeScale.size02.fontSize};
+  }
+
+  g.center text,
+  .pie-label{
+    fill: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')} ;
   }
 
   //Zoom responsive tweaks
