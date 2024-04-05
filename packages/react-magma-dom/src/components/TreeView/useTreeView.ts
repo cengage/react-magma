@@ -66,6 +66,8 @@ export function useTreeView(props: UseTreeViewProps) {
   const [selectedItems, setSelectedItems] = React.useState([]);
   const [initialSelectedItemsNeedUpdate, setInitialSelectedItemsNeedUpdate] =
     React.useState(false);
+  const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
+    React.useState(false);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
@@ -81,6 +83,9 @@ export function useTreeView(props: UseTreeViewProps) {
   React.useEffect(() => {
     if (selectable !== TreeViewSelectable.off && initialSelectedItems) {
       setInitialSelectedItemsNeedUpdate(true);
+    }
+    if (initialExpandedItems) {
+      setInitialExpandedItemsNeedUpdate(true)
     }
   }, []);
 
@@ -98,6 +103,8 @@ export function useTreeView(props: UseTreeViewProps) {
     registerTreeItem,
     initialSelectedItemsNeedUpdate,
     setInitialSelectedItemsNeedUpdate,
+    initialExpandedItemsNeedUpdate,
+    setInitialExpandedItemsNeedUpdate,
   };
 
   return { contextValue };
