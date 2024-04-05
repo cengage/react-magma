@@ -496,6 +496,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
         } else {
           const childrenIds = getChildrenItemIds(treeItemChildren);
+
           const newChildrenCheckedStatus = getChildrenCheckedStatus(
             childrenIds,
             parentCheckedStatus
@@ -613,7 +614,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             Array(numberOfTreeItemChildren).fill(status)
           );
         } else {
-          const childrenIds = getChildrenItemIds(treeItemChildren);
+          const childrenIds = getChildrenItemIds(treeItemChildren, 'something');
+
           const newChildrenCheckedStatus = getChildrenCheckedStatus(
             childrenIds,
             status
