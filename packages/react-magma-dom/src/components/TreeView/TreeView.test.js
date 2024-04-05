@@ -466,6 +466,7 @@ describe('TreeView', () => {
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           { itemId: 'item2', checkedStatus: IndeterminateCheckboxStatus.checked },
         ]);
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
       });
 
       it('item is visually selected', () => {
@@ -539,6 +540,7 @@ describe('TreeView', () => {
         userEvent.click(getByTestId('item-gchild2-expand'));
 
         userEvent.click(getByTestId('item-ggchild2-checkbox'));
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           { itemId: 'item-ggchild3', checkedStatus: IndeterminateCheckboxStatus.checked },
           { itemId: 'item-gchild2', checkedStatus: IndeterminateCheckboxStatus.indeterminate },

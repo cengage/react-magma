@@ -123,6 +123,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     initialSelectedItemsNeedUpdate,
     setInitialSelectedItemsNeedUpdate,
     initialExpandedItemsNeedUpdate,
+    selectedItemsChanged,
+    setSelectedItemsChanged,
   } = React.useContext(TreeViewContext);
 
   const [expanded, setExpanded] = React.useState(false);
@@ -508,6 +510,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
       ]);
     }
+
+    setSelectedItemsChanged(true);
   };
 
   const multiSelectChangeHandler = (
@@ -521,7 +525,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       if (event.target.checked) {
         updateParentCheckStatus(index, IndeterminateCheckboxStatus.checked);
 
-        if (!arrayIncludesId(selectedItems, itemId)) {
+        if (!arrayIncludesId(selectedItems, itemId)) {          
           setSelectedItems([
             ...selectedItems,
             ...childrenIds,
@@ -534,6 +538,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
           setSelectedItems([...selectedItems, ...missingChildren]);
         }
+        setSelectedItemsChanged(true);
       } else if (!event.target.checked) {
         const newSelectedItems = filterSelectedItems(
           selectedItems,
@@ -542,6 +547,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         );
 
         setSelectedItems(newSelectedItems);
+        setSelectedItemsChanged(true);
       }
     } else {
       if (event.target.checked) {
@@ -551,8 +557,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
           ]);
         }
+        setSelectedItemsChanged(true);
       } else if (!event.target.checked) {
         setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
+        setSelectedItemsChanged(true);
       }
     }
   };
@@ -668,6 +676,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
       }
     }
+
+    setSelectedItemsChanged(true);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
@@ -713,6 +723,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           setSelectedItems([
             { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
           ]);
+          setSelectedItemsChanged(true);
         } else if (selectable === TreeViewSelectable.multi) {
           // In multi-select, it toggles the selection state of the focused node.
           toggleMultiSelectItems();
@@ -730,6 +741,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             setSelectedItems([
               { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
             ]);
+            setSelectedItemsChanged(true);
           }
         } else if (selectable === TreeViewSelectable.multi) {
           toggleMultiSelectItems();

@@ -849,20 +849,20 @@ export const UnitTest = args => {
 
   return (
     <>
-      {/* <TreeView
+      <TreeView
         onSelectedItemChange={onSelection}
         selectable={TreeViewSelectable.multi}
-        initialExpandedItems={['item2', 'item-child2.1',]}
-        initialSelectedItems={[
-          {
-            itemId: 'item-ggchild3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-child3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-        ]}
+        // initialExpandedItems={['item2', 'item-child2.1',]}
+        // initialSelectedItems={[
+        //   {
+        //     itemId: 'item-ggchild3',
+        //     checkedStatus: IndeterminateCheckboxStatus.checked,
+        //   },
+        //   {
+        //     itemId: 'item-child3',
+        //     checkedStatus: IndeterminateCheckboxStatus.checked,
+        //   },
+        // ]}
       >
         <TreeItem label="Node 0" itemId="item0" testId="item0" />
         <TreeItem label="Node 1" itemId="item1" testId="item1">
@@ -900,10 +900,10 @@ export const UnitTest = args => {
             testId="item-child3.1"
           />
         </TreeItem>
-      </TreeView> */}
+      </TreeView>
 
       {/* one level */}
-      <TreeView
+      {/* <TreeView
         testId={'tree-view'}
         onSelectedItemChange={onSelection}
         initialSelectedItems={[
@@ -942,7 +942,7 @@ export const UnitTest = args => {
         <TreeItem label="Node 3" itemId="item3" testId="item3">
           <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
         </TreeItem>
-      </TreeView>
+      </TreeView> */}
 
       {/* single item */}
       {/* <TreeItem label={'labelText'} itemId="parent" testId={'testId'} isDisabled>
