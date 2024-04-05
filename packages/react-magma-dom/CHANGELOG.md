@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.4.0-next.7
+
+### Minor Changes
+
+- dcaa44365: feat(TreeView): TreeView & TreeItem updates
+
 ## 4.4.0-next.6
 
 ### Patch Changes
