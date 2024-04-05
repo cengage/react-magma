@@ -156,6 +156,9 @@ export function useTreeView(props: UseTreeViewProps) {
     if (selectable !== TreeViewSelectable.off && initialSelectedItems) {
       setInitialSelectedItemsNeedUpdate(true);
     }
+    if (initialExpandedItems) {
+      setInitialExpandedItemsNeedUpdate(true)
+    }
   }, []);
 
   const contextValue = {
