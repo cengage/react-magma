@@ -1083,6 +1083,59 @@ describe('TreeView', () => {
     });
   });
 
+  describe('initialExpandedItems and initialSelectedItems', () => {
+    it('when initialExpandedItems and initialSelectedItems are empty, no TreeItem is expanded or selected', () => {
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({  selectable: TreeViewSelectable.multi, initialExpandedItems: [], initialSelectedItems: []})
+      );
+
+      expect(getByTestId('item1')).toHaveAttribute('aria-expanded', 'false');
+      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'false');
+      expect(getByTestId('item3')).toHaveAttribute('aria-expanded', 'false');
+
+      expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
+    });
+
+    it('when initialExpandedItems is set and initialSelectedItems is set, the items are expanded and selected', () => {
+      const { getByTestId } = render(
+        getTreeItemsOneLevel({
+          selectable: TreeViewSelectable.multi,
+          initialExpandedItems: ['item2', 'item1'],
+          initialSelectedItems: [
+            {
+              itemId: 'item2',
+              checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+            },
+            {
+              itemId: 'item-child2.1',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item-child3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ],
+        })
+      );
+
+      expect(getByTestId('item1')).toHaveAttribute('aria-expanded', 'true');
+      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'true');
+      expect(getByTestId('item3')).toHaveAttribute('aria-expanded', 'false');
+
+      expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item-child2.1')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'true');
+
+      userEvent.click(getByTestId('item3-expand'));
+      expect(getByTestId('item-child3')).toHaveAttribute('aria-checked', 'true');
+    });
+  });
+
   describe('a11y', () => {
     it('sets the ariaLabel', () => {
       const testId = 'ariaLabelId';
