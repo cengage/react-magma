@@ -51,7 +51,7 @@ export function useTimePicker(props: UseTimePickerProps) {
     if(typeof props.value === 'undefined') {
       setHour('');
       setMinute('');
-      setAmPm('AM');
+      setAmPm(am);
       updateTime('');
     } else if (validTime(props.value)) {
       convertPassedInTime(props.value);
