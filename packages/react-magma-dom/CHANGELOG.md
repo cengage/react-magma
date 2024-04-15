@@ -62,6 +62,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.8
+
+### Patch Changes
+
+- 5e88eddbd: feat(TimePicker): Added opportunity to clear Timepicker
+
 ## 4.4.0-next.7
 
 ### Minor Changes
