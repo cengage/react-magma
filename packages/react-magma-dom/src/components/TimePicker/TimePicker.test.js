@@ -372,6 +372,17 @@ describe('TimePicker', () => {
       expect(getByTestId('amPmTimeButton')).toHaveTextContent('AM');
     });
 
+    it('should allow for the undefined value', () => {
+      const value = undefined;
+      const { getByTestId } = render(
+        <TimePicker label="label" value={value} />
+      );
+
+      expect(getByTestId('hoursTimeInput').value).toEqual('');
+      expect(getByTestId('minutesTimeInput').value).toEqual('');
+      expect(getByTestId('amPmTimeButton')).toHaveTextContent('AM');
+    });
+
     it('should call the onChange when the passed in value is valid', () => {
       const onChange = jest.fn();
       const value = '12:30 PM';
