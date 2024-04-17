@@ -123,7 +123,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     initialSelectedItemsNeedUpdate,
     setInitialSelectedItemsNeedUpdate,
     initialExpandedItemsNeedUpdate,
-    selectedItemsChanged,
+    // selectedItemsChanged,
     setSelectedItemsChanged,
   } = React.useContext(TreeViewContext);
 
@@ -163,6 +163,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectedItems.map(item => {
       if (item?.itemId === itemId) {
         const newStatus = item?.checkedStatus;
+
         if (checkedStatus !== newStatus) {
           setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
           setCheckedStatus(item?.checkedStatus);
@@ -198,6 +199,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         return;
       }
     });
+  }
+
+  function updateSelectedItemsChanged() {
+    if (topLevel) {
+      setSelectedItemsChanged(true);
+    }
   }
 
   React.useEffect(() => {
@@ -252,6 +259,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           prev
         );
       });
+
+      setSelectedItemsChanged(true);
       return;
     }
 
@@ -274,6 +283,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           prev
         );
       });
+
+      setSelectedItemsChanged(true);
     }
   };
 
@@ -301,6 +312,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         setSelectedItems([
           { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
         ]);
+
+        setSelectedItemsChanged(true);
       }
     } else if (
       selectable === TreeViewSelectable.multi &&
@@ -345,12 +358,13 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
           return allItems;
         });
+        setSelectedItemsChanged(true);
       } else if (!isDisabled && initialSelectedChildrenItems.length > 0) {
         // Case for initialSelectedItems that are inside a collapsed item
         const itemIdChildren = getChildrenItemIdsInTree(treeItemChildren);
 
         for (const i of initialSelectedChildrenItems) {
-          const itemIdNode = findChildByItemId(treeItemChildren, i.itemId);          
+          const itemIdNode = findChildByItemId(treeItemChildren, i.itemId);
           const childrenOfItemId = getChildrenItemIds(
             itemIdNode?.props?.children,
             status
@@ -444,13 +458,16 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
               ...selectedItems,
               { itemId, checkedStatus: statusFromChildren },
             ]);
+            updateSelectedItemsChanged();
           } else {
             setSelectedItems(updateItemStatus);
+            updateSelectedItemsChanged();
           }
         } else if (
           statusFromChildren === IndeterminateCheckboxStatus.unchecked
         ) {
           setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
+          updateSelectedItemsChanged();
         }
       } else if (
         checkedStatus === statusFromChildren &&
@@ -462,11 +479,17 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             ...selectedItems,
             { itemId, checkedStatus: statusFromChildren },
           ]);
+          updateSelectedItemsChanged();
         } else {
           setSelectedItems([...selectedItems]);
+          // TODO: may need to check this again
+          updateSelectedItemsChanged();
         }
       } else {
         setSelectedItems(updateItemStatus);
+        if (!expanded) {
+          updateSelectedItemsChanged();
+        }
       }
     }
   }, [childrenCheckedStatus]);
@@ -488,7 +511,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             Array(numberOfTreeItemChildren).fill(status)
           );
         } else {
-          const childrenIds = getChildrenItemIds(treeItemChildren, 'something');
+          const childrenIds = getChildrenItemIds(treeItemChildren);
 
           const newChildrenCheckedStatus = getChildrenCheckedStatus(
             childrenIds,
@@ -509,9 +532,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setSelectedItems([
         { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
       ]);
+      updateSelectedItemsChanged();
     }
-
-    setSelectedItemsChanged(true);
   };
 
   const multiSelectChangeHandler = (
@@ -524,8 +546,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       );
       if (event.target.checked) {
         updateParentCheckStatus(index, IndeterminateCheckboxStatus.checked);
-
-        if (!arrayIncludesId(selectedItems, itemId)) {          
+        if (!arrayIncludesId(selectedItems, itemId)) {
           setSelectedItems([
             ...selectedItems,
             ...childrenIds,
@@ -538,7 +559,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
           setSelectedItems([...selectedItems, ...missingChildren]);
         }
-        setSelectedItemsChanged(true);
       } else if (!event.target.checked) {
         const newSelectedItems = filterSelectedItems(
           selectedItems,
@@ -547,7 +567,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         );
 
         setSelectedItems(newSelectedItems);
-        setSelectedItemsChanged(true);
       }
     } else {
       if (event.target.checked) {
@@ -556,11 +575,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             ...selectedItems,
             { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
           ]);
+          updateSelectedItemsChanged();
         }
-        setSelectedItemsChanged(true);
       } else if (!event.target.checked) {
         setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
-        setSelectedItemsChanged(true);
+        updateSelectedItemsChanged();
       }
     }
   };
@@ -676,7 +695,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
       }
     }
-
     setSelectedItemsChanged(true);
   };
 

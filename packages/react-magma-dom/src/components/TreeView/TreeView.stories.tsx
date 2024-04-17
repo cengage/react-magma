@@ -998,39 +998,15 @@ export const Animals = () => {
         selectable={TreeViewSelectable.multi}
         initialSelectedItems={[
           {
-            itemId: 'Parrots',
+            itemId: 'Labrador Retriever',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'African Grey',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Cockatiel',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Budgerigar',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Birds of Prey',
+            itemId: 'Dogs',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'Eagles',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Falcons',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          //   {
-          //     "itemId": "Hawks",
-          //     "checkedStatus": IndeterminateCheckboxStatus.checked
-          // },
-          {
-            itemId: 'Birds',
+            itemId: 'Mammals',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
         ]}

@@ -108,7 +108,10 @@ export function getChildrenItemIds(children, status = '') {
           ? IndeterminateCheckboxStatus.checked
           : IndeterminateCheckboxStatus.unchecked;
 
-      if (child.props?.itemId) {
+      if (
+        child.props?.itemId &&
+        childStatus !== IndeterminateCheckboxStatus.unchecked
+      ) {
         itemIds.push({
           itemId: child.props.itemId,
           checkedStatus: childStatus,
