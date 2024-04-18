@@ -58,6 +58,11 @@ const getTreeItemsMultiLevel = props => (
           testId="item-gchild2"
         >
           <TreeItem
+            label="Great-grandchild 1"
+            itemId="item-ggchild1"
+            testId="item-ggchild1"
+          />
+          <TreeItem
             label="Great-grandchild 2"
             itemId="item-ggchild2"
             testId="item-ggchild2"
@@ -603,13 +608,17 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
             itemId: 'item-ggchild2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
             itemId: 'item-ggchild3',
             checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
+          },          
           {
             itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -623,6 +632,10 @@ describe('TreeView', () => {
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
             itemId: 'item-ggchild3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
@@ -640,6 +653,124 @@ describe('TreeView', () => {
         ]);
 
         expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+      });
+
+      it('function returns the selected items when different items are checked and unchecked', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsMultiLevel({
+            onSelectedItemChange,
+            selectable: TreeViewSelectable.multi,
+          })
+        );
+
+        userEvent.click(getByTestId('item2-checkbox'));
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item-child2.1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-gchild2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },          
+          {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+        userEvent.click(getByTestId('item2-expand'));
+        userEvent.click(getByTestId('item-child2.1-expand'));
+        userEvent.click(getByTestId('item-gchild2-expand'));
+
+        userEvent.click(getByTestId('item-ggchild2-checkbox'));
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item-ggchild3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-gchild2',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child2.1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+        ]);
+
+        userEvent.click(getByTestId('item-ggchild3-checkbox'));
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-gchild2',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child2.1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+        ]);
+
+        userEvent.click(getByTestId('item-ggchild1-checkbox'));
+        expect(onSelectedItemChange).toHaveBeenCalledWith([]);
+
+        userEvent.click(getByTestId('item2-checkbox'));
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item-child2.1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-gchild2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },          
+          {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(5);
       });
 
       it('items look visually selected', () => {

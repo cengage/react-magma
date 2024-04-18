@@ -312,6 +312,16 @@ export function areArraysEqual(array1, array2) {
   return true;
 }
 
+// Return the checkedStatus of an itemId
+export function getCheckedStatus(itemId, selectedItems) {
+  for (const item of selectedItems) {
+    if (item.itemId === itemId) {
+      return item.checkedStatus;
+    }
+  }
+  return null;
+}
+
 // TODO
 export function getSelectedItemsIndexes(selectedItems, treeItemChildren) {
   const fullSelectedItems = treeItemChildren.map(child => {

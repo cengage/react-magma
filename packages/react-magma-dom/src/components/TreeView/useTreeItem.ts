@@ -22,6 +22,7 @@ import {
   getChildrenItemIdsInTree,
   getAllParentIds,
   getChildrenItemIdsFlat,
+  getCheckedStatus,
 } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -482,8 +483,13 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           updateSelectedItemsChanged();
         } else {
           setSelectedItems([...selectedItems]);
-          // TODO: may need to check this again
-          updateSelectedItemsChanged();
+          const itemStatus = getCheckedStatus(itemId, selectedItems);
+
+          if (itemStatus === parentCheckedStatus) {
+            setSelectedItemsChanged(true);
+          } else {
+            updateSelectedItemsChanged();
+          }
         }
       } else {
         setSelectedItems(updateItemStatus);
@@ -546,18 +552,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       );
       if (event.target.checked) {
         updateParentCheckStatus(index, IndeterminateCheckboxStatus.checked);
+
         if (!arrayIncludesId(selectedItems, itemId)) {
           setSelectedItems([
             ...selectedItems,
             ...childrenIds,
-            { itemId, checkedStatus },
+            { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
           ]);
+          updateSelectedItemsChanged();
         } else {
           const missingChildren = getMissingChildrenIds(
             selectedItems,
             childrenIds
           );
           setSelectedItems([...selectedItems, ...missingChildren]);
+          updateSelectedItemsChanged();
         }
       } else if (!event.target.checked) {
         const newSelectedItems = filterSelectedItems(
@@ -567,6 +576,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         );
 
         setSelectedItems(newSelectedItems);
+        updateSelectedItemsChanged();
       }
     } else {
       if (event.target.checked) {
