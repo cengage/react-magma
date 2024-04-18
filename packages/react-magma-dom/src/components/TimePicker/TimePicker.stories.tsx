@@ -3,7 +3,6 @@ import { TimePicker, TimePickerProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { LabelPosition } from '../Label';
-import { Button } from '../Button';
 
 const Template: Story<TimePickerProps> = args => (
   <TimePicker {...args} labelText="Time Due" />
@@ -58,19 +57,3 @@ Inverse.decorators = [
     </Card>
   ),
 ];
-
-export const Clearable = () => {
-  const [timeValue, setTimeValue] = React.useState<string | undefined>('');
-
-  function handleOnChange(value) {
-    setTimeValue(value);
-  }
-
-  return (
-    <>
-      <TimePicker labelText="Time Due" onChange={handleOnChange} value={timeValue} />
-      <br />
-      <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
-    </>
-  );
-};

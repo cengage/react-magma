@@ -125,31 +125,6 @@ export function Example() {
 }
 ```
 
-## Clear value
-
-The `value` and `onChange` props can be used for clear value.
-
-```tsx
-import React from 'react';
-import { Button, TimePicker } from 'react-magma-dom';
-
-export function Example() {
-  const [timeValue, setTimeValue] = React.useState<string | undefined>('');
-
-  function handleOnChange(value) {
-    setTimeValue(value);
-  }
-
-  return (
-    <>
-      <TimePicker labelText="Time Due" onChange={handleOnChange} value={timeValue} />
-      <br />
-      <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
-    </>
-  );
-}
-```
-
 ## Custom Styles
 
 The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be used for custom styling.

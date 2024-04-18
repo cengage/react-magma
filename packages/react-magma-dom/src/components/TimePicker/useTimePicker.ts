@@ -21,9 +21,9 @@ export interface UseTimePickerProps
    */
   minutesStep?: number;
   /**
-   * Full time value passed in and converted to use in hour, minute, and AM/PM fields. To clear the TimePicker - send the undefined value.
+   * Full time value passed in and converted to use in hour, minute, and AM/PM fields
    */
-  value?: string | undefined;
+  value?: string;
   /**
    * Function called when the component is changed to a new time
    */
@@ -48,12 +48,7 @@ export function useTimePicker(props: UseTimePickerProps) {
   const id = useGenerateId(props.id);
 
   React.useEffect(() => {
-    if(typeof props.value === 'undefined') {
-      setHour('');
-      setMinute('');
-      setAmPm(am);
-      updateTime('');
-    } else if (validTime(props.value)) {
+    if (validTime(props.value)) {
       convertPassedInTime(props.value);
     }
   }, [props.value]);
