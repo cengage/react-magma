@@ -13,7 +13,6 @@
   "changesets": [
     "feat-tabsScrollSpy",
     "few-hotels-walk",
-    "fix-BadgeHeight",
     "fix-NativeSelectPagination",
     "little-impalas-shave",
     "modal-isModalClosingControlledManually",
