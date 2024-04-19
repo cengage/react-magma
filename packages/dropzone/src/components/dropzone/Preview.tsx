@@ -60,7 +60,7 @@ const Thumb = typedStyled.div<{ file: FilePreview }>`
   width: 40px;
 `;
 
-const StatusIcons = styled.div`
+const StatusIcons = typedStyled.div`
   display: grid;
   grid-template-areas: 'inner-div';
   height: auto;
@@ -78,21 +78,21 @@ const IconStyles = {
   display: 'flex',
 };
 
-const Errors = styled.div`
+const Errors = typedStyled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.neutral300};
   padding: 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
-const StyledFlex = styled(Flex)`
+const StyledFlex = typedStyled(Flex)`
   height: 56px;
   padding: 0 8px 0 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
-const FileName = styled(Flex)`
+const FileName = typedStyled(Flex)`
   overflow: hidden;
   white-space: nowrap;
   align-items: center;
@@ -103,7 +103,7 @@ const FileName = styled(Flex)`
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
-const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
+const StyledCard = typedStyled(Card)<{ file: FilePreview; isInverse: boolean }>`
   background-color: none;
   border-color: ${({ file, theme, isInverse }) =>
     file.errors
