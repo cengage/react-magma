@@ -37,6 +37,8 @@ export interface DropdownMenuItemProps
   value?: string | number;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 export function menuColors(props) {
   if (props.disabled) {
     if (props.isInverse) {
@@ -111,7 +113,7 @@ const StyledItem = styled.div<{
   ${MenuItemStyles}
 `;
 
-export const IconWrapper = styled.span<{ isInverse?: boolean }>`
+export const IconWrapper = typedStyled.span<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100

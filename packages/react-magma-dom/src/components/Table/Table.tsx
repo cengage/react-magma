@@ -91,6 +91,8 @@ interface TableContextInterface {
   isSortableBySelected?: boolean;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
@@ -103,7 +105,7 @@ export const TableContext = React.createContext<TableContextInterface>({
   selectedItems: [],
 });
 
-export const TableContainer = styled.div<{
+export const TableContainer = typedStyled.div<{
   minWidth: number;
   hasSquareCorners?: boolean;
   isInverse?: boolean;
@@ -123,7 +125,7 @@ export const TableContainer = styled.div<{
   }
 `;
 
-export const StyledTable = styled.table<{
+export const StyledTable = typedStyled.table<{
   isInverse?: boolean;
   minWidth: number;
 }>`

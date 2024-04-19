@@ -56,12 +56,14 @@ export interface ITooltipState {
   isVisible?: boolean;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 const TooltipContainer = styled.div`
   display: inline;
   pointer-events: auto;
 `;
 
-export const TooltipArrow = styled.span<{
+export const TooltipArrow = typedStyled.span<{
   position?: any;
   isInverse?: boolean;
 }>`
@@ -84,7 +86,7 @@ export const TooltipArrow = styled.span<{
   }
 `;
 
-export const StyledTooltip = styled.div<{
+export const StyledTooltip = typedStyled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
   position: TooltipPosition;

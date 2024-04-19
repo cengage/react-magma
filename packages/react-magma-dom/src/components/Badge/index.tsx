@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { transparentize } from 'polished';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -151,7 +152,7 @@ const StyledSpan = styled.span<BadgeProps>`
   ${baseBadgeStyles};
 `;
 
-const StyledButton = styled.button<BadgeProps>`
+const StyledButton = typedStyled.button<BadgeProps>`
   ${baseBadgeStyles};
   cursor: pointer;
 

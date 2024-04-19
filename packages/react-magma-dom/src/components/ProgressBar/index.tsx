@@ -50,6 +50,8 @@ export enum ProgressBarColor {
   success = 'success',
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 function buildProgressBarBackground(props) {
   if (props.isInverse) {
     if (
@@ -84,7 +86,7 @@ const Container = styled.div<{ isLoadingIndicator?: boolean }>`
   display: ${props => (props.isLoadingIndicator ? 'block' : 'flex')};
 `;
 
-const Track = styled.div<ProgressBarProps>`
+const Track = typedStyled.div<ProgressBarProps>`
   background: ${props =>
     props.isInverse
       ? transparentize(0.75, props.theme.colors.neutral900)
@@ -141,14 +143,14 @@ const Bar = styled.div<ProgressBarProps>`
     `}
 `;
 
-const Percentage = styled.span`
+const Percentage = typedStyled.span`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const TopPercentage = styled.div`
+const TopPercentage = typedStyled.div`
   font-size: ${props => props.theme.typeScale.size05.fontSize};
   line-height: ${props => props.theme.typeScale.size05.lineHeight};
   margin-bottom: ${props => props.theme.spaceScale.spacing03};

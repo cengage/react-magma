@@ -15,7 +15,9 @@ export interface DropdownExpandableMenuButtonProps
   testId?: string;
 }
 
-const StyledAccordionButton = styled(AccordionButton)<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledAccordionButton = typedStyled(AccordionButton)<{
   expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
   isMenuItemContextDisabled?: boolean;
