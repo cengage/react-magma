@@ -35,6 +35,9 @@ import { CloudUploadIcon } from 'react-magma-icons';
 import { Preview } from './Preview';
 import { FilePreview, FileError } from './FilePreview';
 import { transparentize } from 'polished';
+import styled, { CreateStyled } from '@emotion/styled';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export interface OnSendFileProps {
   file: FilePreview;
@@ -130,7 +133,7 @@ export interface DropzoneProps
   thumbnails?: boolean;
 }
 
-const Container = styled(Flex)<
+const Container = typedStyled(Flex)<
   DropzoneRootProps &
     FlexProps & {
       dragState?: DragState;
@@ -169,7 +172,7 @@ const Container = styled(Flex)<
   transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
 
-const HelperMessage = styled.span<{ isInverse?: boolean }>`
+const HelperMessage = typedStyled.span<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
     isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
   display: block;
@@ -177,7 +180,7 @@ const HelperMessage = styled.span<{ isInverse?: boolean }>`
   margin: -8px 0 16px 0;
 `;
 
-const Wrapper = styled.div<{ isInverse?: boolean }>`
+const Wrapper = typedStyled.div<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
     isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
   margin: 0 0 24px 0;

@@ -9,7 +9,6 @@ module.exports = {
         file: null,
         dir: 'dist',
         entryFileNames: 'esm/[name].js',
-        banner: `import _styled from '@emotion/styled';`,
       },
       external: [
         'react',
