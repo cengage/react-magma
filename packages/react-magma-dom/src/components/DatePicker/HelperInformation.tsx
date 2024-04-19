@@ -17,14 +17,16 @@ interface HelperInformationProps {
   onClose?: (event?: React.SyntheticEvent) => void;
 }
 
-const List = styled.ul`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const List = typedStyled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: left;
 `;
 
-const Item = styled.li`
+const Item = typedStyled.li`
   display: flex;
   list-style: none;
   margin-bottom: 12px;
@@ -44,7 +46,7 @@ const Item = styled.li`
   }
 `;
 
-const KeyboardShortcutButtonWrapper = styled.span<{
+const KeyboardShortcutButtonWrapper = typedStyled.span<{
   isInverse?: boolean;
 }>`
   background: ${props =>
@@ -70,7 +72,7 @@ const StyledNavContainer = styled.div`
   justify-content: space-between;
   padding: 2px;
 `;
-const StyledContent = styled.div<{
+const StyledContent = typedStyled.div<{
   isInverse?: boolean;
 }>`
   z-index: 9999;
@@ -85,7 +87,7 @@ const StyledContent = styled.div<{
   }
 `;
 
-const StyledDescription = styled.p`
+const StyledDescription = typedStyled.p`
   font-family: ${props => props.theme.bodyFont};
   margin: 0;
 `;

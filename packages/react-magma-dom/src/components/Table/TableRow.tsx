@@ -54,6 +54,8 @@ export interface TableRowProps
   testId?: string;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 function buildTableRowBackground(props) {
   if (props.isInverse) {
     switch (props.color) {
@@ -95,7 +97,7 @@ function buildTableRowColor(props) {
   return 'inherit';
 }
 
-const StyledTableRow = styled.tr<{
+const StyledTableRow = typedStyled.tr<{
   color?: string;
   hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
@@ -147,7 +149,7 @@ const StyledTableRow = styled.tr<{
     `};
 `;
 
-const SortButton = styled.button<{
+const SortButton = typedStyled.button<{
   density?: TableDensity;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
@@ -185,7 +187,7 @@ const SortButton = styled.button<{
   }
 `;
 
-const SortIconWrapper = styled.span`
+const SortIconWrapper = typedStyled.span`
   position: relative;
   top: ${props => props.theme.spaceScale.spacing01};
 `;

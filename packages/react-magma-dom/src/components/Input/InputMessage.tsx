@@ -18,6 +18,8 @@ export interface InputMessageProps
   maxCount?: number;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 function BuildMessageColor(props) {
   const { isInverse, hasError, theme } = props;
   if (isInverse) {
@@ -44,7 +46,7 @@ const Message = styled.div<InputMessageProps>`
   text-align: left;
 `;
 
-const IconWrapper = styled.span`
+const IconWrapper = typedStyled.span`
   display: inline-flex;
   flex-shrink: 0;
   padding-right: ${props => props.theme.spaceScale.spacing02};

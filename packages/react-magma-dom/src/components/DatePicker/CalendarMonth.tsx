@@ -32,7 +32,7 @@ const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   overflow: visible;
 `;
 
-const MonthContainer = styled.div<{ isInverse?: boolean }>`
+const MonthContainer = typedStyled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
@@ -43,13 +43,13 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
   vertical-align: top;
 `;
 
-const Table = styled.table`
+const Table = typedStyled.table`
   border-collapse: collapse;
   border-spacing: 0;
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const Th = styled.th<{ isInverse?: boolean }>`
+const Th = typedStyled.th<{ isInverse?: boolean }>`
   border: 0;
   color: ${props =>
     props.isInverse

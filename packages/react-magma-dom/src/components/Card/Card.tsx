@@ -54,6 +54,8 @@ export enum CardCalloutType {
   info = 'info',
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 export function buildCalloutBackground(
   props: CardProps & { theme: ThemeInterface }
 ) {
@@ -86,7 +88,7 @@ export function buildCalloutBackground(
   }
 }
 
-const StyledCard = styled.div<CardProps>`
+const StyledCard = typedStyled.div<CardProps>`
   background: ${props =>
     props.background
       ? props.background

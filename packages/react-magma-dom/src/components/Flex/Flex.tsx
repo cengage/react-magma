@@ -122,7 +122,7 @@ function getWidth(size) {
   return `${Math.round((size / 12) * 10e7) / 10e5}%`;
 }
 
-const StyledFlex = styled.div<FlexProps>`
+const StyledFlex = typedStyled.div<FlexProps>`
   ${props =>
     props.behavior !== FlexBehavior.item &&
     css`
