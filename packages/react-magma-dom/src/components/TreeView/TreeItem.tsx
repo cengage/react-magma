@@ -4,7 +4,6 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 
-import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import {
   UseTreeItemProps,
@@ -32,6 +31,7 @@ import {
 import { transparentize } from 'polished';
 import { TreeItemContext } from './TreeItemContext';
 import { TreeViewContext } from './TreeViewContext';
+import styled from '@emotion/styled';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 

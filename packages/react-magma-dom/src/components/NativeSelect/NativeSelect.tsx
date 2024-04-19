@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import {
@@ -14,6 +13,7 @@ import { useGenerateId } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
 import { LabelPosition } from '../Label';
+import styled, { CreateStyled } from '@emotion/styled';
 
 /**
  * @children required
@@ -31,6 +31,9 @@ export interface NativeSelectProps
   optionLabel?: string;
   testId?: string;
 }
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 const StyledNativeSelectWrapper = styled.div<{
   disabled?: boolean;
   hasError?: boolean;
@@ -100,7 +103,7 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
     `}
 `;
 
-const StyledAdditionalContentWrapper = styled.div`
+const StyledAdditionalContentWrapper = typedStyled.div`
   align-items: center;
   display: flex;
   label {

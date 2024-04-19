@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import styled from '@emotion/styled';
 
 export interface ProgressRingProps
   extends React.HTMLAttributes<HTMLDivElement> {

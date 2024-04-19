@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { StyledButton } from '../StyledButton';
 import {
   ButtonProps,
@@ -14,6 +13,7 @@ import { omit, Omit, resolveProps, XOR } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
+import styled from '@emotion/styled';
 
 export enum ButtonIconPosition {
   left = 'left',

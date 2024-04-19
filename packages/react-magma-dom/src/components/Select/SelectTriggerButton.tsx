@@ -7,7 +7,10 @@ import {
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '../../theme/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}
@@ -22,7 +25,7 @@ const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   text-align: left;
 `;
 
-const ChildrenContainer = styled.div`
+const ChildrenContainer = typedStyled.div`
   align-items: center;
   display: flex;
   flex-grow: 1;
