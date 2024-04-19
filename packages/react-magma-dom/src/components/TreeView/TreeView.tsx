@@ -15,7 +15,9 @@ export interface TreeViewProps
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'children'>,
     UseTreeViewProps {}
 
-const StyledTreeView = styled.ul<TreeViewProps>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledTreeView = typedStyled.ul<TreeViewProps>`
   padding: 0;
   margin: 0;
   color: ${props =>

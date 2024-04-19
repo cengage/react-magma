@@ -43,7 +43,9 @@ export interface BannerProps extends AlertProps {
   isInverse?: boolean;
 }
 
-const StyledBanner = styled.div<AlertProps>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledBanner = typedStyled.div<AlertProps>`
   align-items: stretch;
   background: ${props => buildAlertBackground(props)};
   color: ${props => buildAlertColor(props)};
@@ -62,7 +64,7 @@ const StyledBanner = styled.div<AlertProps>`
   }
 `;
 
-const BannerContents = styled.div<{
+const BannerContents = typedStyled.div<{
   additionalContent?: React.ReactNode;
   variant?: AlertVariant;
   isDismissible?: boolean;
@@ -125,7 +127,7 @@ function buildDismissButtonColor(props) {
   }
 }
 
-const DismissButton = styled(IconButton, { shouldForwardProp })<{
+const DismissButton = typedStyled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
   isInverse?: boolean;
 }>`
@@ -165,7 +167,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
 `;
 
-const IconWrapper = styled.span`
+const IconWrapper = typedStyled.span`
   display: inline-flex;
   padding-right: ${props => props.theme.spaceScale.spacing03};
 

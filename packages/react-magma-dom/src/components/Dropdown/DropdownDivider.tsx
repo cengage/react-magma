@@ -13,7 +13,9 @@ export interface DropdownDividerProps
   testId?: string;
 }
 
-const StyledHr = styled.hr<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledHr = typedStyled.hr<{
   isInverse?: boolean;
 }>`
   background: ${props =>

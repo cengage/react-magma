@@ -60,7 +60,9 @@ export enum TableHeaderCellScope {
   rowgroup = 'rowgroup',
 }
 
-const StyledTableHeaderCell = styled.th<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledTableHeaderCell = typedStyled.th<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
@@ -97,7 +99,7 @@ const StyledTableHeaderCell = styled.th<{
     `}
 `;
 
-const SortButton = styled.button<{
+const SortButton = typedStyled.button<{
   density?: TableDensity;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
@@ -143,7 +145,7 @@ const SortButton = styled.button<{
   }
 `;
 
-const IconWrapper = styled.span`
+const IconWrapper = typedStyled.span`
   padding-left: ${props => props.theme.spaceScale.spacing03};
   position: relative;
   top: ${props => props.theme.spaceScale.spacing02};
