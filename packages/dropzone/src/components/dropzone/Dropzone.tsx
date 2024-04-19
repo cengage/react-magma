@@ -26,7 +26,6 @@ import {
   InverseContext,
   ThemeContext,
   ThemeInterface,
-  styled,
   useGenerateId,
   useIsInverse,
 } from 'react-magma-dom';
@@ -35,6 +34,9 @@ import { CloudUploadIcon } from 'react-magma-icons';
 import { Preview } from './Preview';
 import { FilePreview, FileError } from './FilePreview';
 import { transparentize } from 'polished';
+import styled, { CreateStyled } from '@emotion/styled';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export interface OnSendFileProps {
   file: FilePreview;
@@ -130,7 +132,7 @@ export interface DropzoneProps
   thumbnails?: boolean;
 }
 
-const Container = styled(Flex)<
+const Container = typedStyled(Flex)<
   DropzoneRootProps &
     FlexProps & {
       dragState?: DragState;

@@ -23,13 +23,16 @@ import {
   ThemeInterface,
   Transition,
   Spinner,
-  styled,
   useIsInverse,
 } from 'react-magma-dom';
 
 import { FileIcon } from './FileIcon';
 import { FilePreview } from './FilePreview';
 import { formatFileSize } from './utils';
+
+import styled, { CreateStyled } from '@emotion/styled';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   accept?: string | string[];
@@ -46,7 +49,7 @@ export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   thumbnails: boolean;
 }
 
-const Thumb = styled.div<{ file: FilePreview }>`
+const Thumb = typedStyled.div<{ file: FilePreview }>`
   background-image: ${({ file }) =>
     `url('${'preview' in file && file.preview}')`};
   background-repeat: no-repeat;
