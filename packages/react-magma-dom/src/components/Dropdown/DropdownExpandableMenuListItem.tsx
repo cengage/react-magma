@@ -1,11 +1,11 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
 import { Omit, useForkedRef } from '../../utils';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { DropdownMenuItem, DropdownMenuItemProps } from './DropdownMenuItem';
 import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
+import styled from '@emotion/styled';
 
 export interface DropdownExpandableMenuListItemProps
   extends Omit<DropdownMenuItemProps, 'icon'> {

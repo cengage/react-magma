@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SkipLink should render the skip link component 1`] = `
-.emotion-0 {
+.emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -52,19 +52,19 @@ exports[`SkipLink should render the skip link component 1`] = `
   top: -9999px;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-1:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -83,12 +83,12 @@ exports[`SkipLink should render the skip link component 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-1:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -98,19 +98,19 @@ exports[`SkipLink should render the skip link component 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-1 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0:focus {
+.emotion-1:focus {
   left: 10px;
   top: 10px;
   z-index: 99999;
 }
 
-.emotion-0 {
+.emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -161,19 +161,19 @@ exports[`SkipLink should render the skip link component 1`] = `
   top: -9999px;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-1:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -192,12 +192,12 @@ exports[`SkipLink should render the skip link component 1`] = `
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-1:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%,-50%) scale(0);
   -ms-transform: translate(-50%,-50%) scale(0);
@@ -207,20 +207,20 @@ exports[`SkipLink should render the skip link component 1`] = `
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-1 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-0:focus {
+.emotion-1:focus {
   left: 10px;
   top: 10px;
   z-index: 99999;
 }
 
 <a
-  class="emotion-0 emotion-1"
+  class="emotion-0 emotion-1 emotion-2"
   color="primary"
   href="#reactMagmaMainContent"
 >

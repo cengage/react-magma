@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { AccordionButton, AccordionButtonProps } from '../Accordion';
 import { IconWrapper, menuBackground } from './DropdownMenuItem';
 import { IconProps } from 'react-magma-icons';
@@ -8,6 +7,8 @@ import { DropdownContext } from './Dropdown';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { useForkedRef } from '../../utils';
 import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
@@ -15,7 +16,9 @@ export interface DropdownExpandableMenuButtonProps
   testId?: string;
 }
 
-const StyledAccordionButton = styled(AccordionButton)<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledAccordionButton = typedStyled(AccordionButton)<{
   expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
   isMenuItemContextDisabled?: boolean;

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { InputMessage } from '../Input/InputMessage';
-import { magma } from '../../theme/magma';
+import { ThemeInterface, magma } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
+import styled, { CreateStyled } from '@emotion/styled';
 
 export interface CharacterCounterProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -37,6 +37,8 @@ export interface CharacterCounterProps
   testId?: string;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 // Changes the font weight to bold based on maxCount.
 function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   if (
@@ -48,7 +50,7 @@ function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   return 'inherit';
 }
 
-const StyledInputMessage = styled(InputMessage)<{
+const StyledInputMessage = typedStyled(InputMessage)<{
   hasCharacterCounter?: boolean;
   inputLength: number;
   maxLength: number;

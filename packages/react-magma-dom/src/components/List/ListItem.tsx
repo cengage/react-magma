@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { getListDisplay, ListProps } from './';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
+import styled from '@emotion/styled';
 
 /**
  * @children required

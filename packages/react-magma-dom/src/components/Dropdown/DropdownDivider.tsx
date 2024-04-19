@@ -1,8 +1,9 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { DropdownContext } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { transparentize } from 'polished';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface DropdownDividerProps
   extends React.HTMLAttributes<HTMLHRElement> {
@@ -13,7 +14,9 @@ export interface DropdownDividerProps
   testId?: string;
 }
 
-const StyledHr = styled.hr<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledHr = typedStyled.hr<{
   isInverse?: boolean;
 }>`
   background: ${props =>

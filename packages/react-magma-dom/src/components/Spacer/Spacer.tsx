@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { convertStyleValueToString } from '../../utils';
+import styled from '@emotion/styled';
 
 export interface SpacerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**

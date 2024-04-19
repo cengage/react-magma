@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled from '@emotion/styled';
 import { CardContext } from './Card';
 import { Heading } from '../Heading';
 import { TypographyColor, TypographyVisualStyle } from '../Typography';
