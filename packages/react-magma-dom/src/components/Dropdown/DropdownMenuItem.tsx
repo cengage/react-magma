@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { DropdownContext } from './Dropdown';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 import { Omit, useForkedRef } from '../../utils';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -36,6 +37,8 @@ export interface DropdownMenuItemProps
    */
   value?: string | number;
 }
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function menuColors(props) {
   if (props.disabled) {
@@ -111,7 +114,7 @@ const StyledItem = styled.div<{
   ${MenuItemStyles}
 `;
 
-export const IconWrapper = styled.span<{ isInverse?: boolean }>`
+export const IconWrapper = typedStyled.span<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100

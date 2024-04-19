@@ -2,10 +2,10 @@ import * as React from 'react';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
-import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
+import styled from '@emotion/styled';
 
 /**
  * @children required

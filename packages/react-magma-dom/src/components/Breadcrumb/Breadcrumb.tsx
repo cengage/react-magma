@@ -1,9 +1,10 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -20,7 +21,9 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   testId?: string;
 }
 
-const StyledList = styled('ol', {
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledList = typedStyled('ol', {
   shouldForwardProp: isPropValid,
 })<BreadcrumbProps>`
   display: flex;

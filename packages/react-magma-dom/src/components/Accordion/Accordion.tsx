@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -10,6 +9,7 @@ import {
 } from './useAccordion';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
+import styled, { CreateStyled } from '@emotion/styled';
 
 /**
  * @children required
@@ -97,7 +97,9 @@ export type AccordionProps =
   | AccordionMultipleControlledProps
   | AccordionSingleControlledProps;
 
-const StyledAccordion = styled.div<AccordionProps>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledAccordion = typedStyled.div<AccordionProps>`
   background: transparent;
   border-bottom: 1px solid
     ${props =>

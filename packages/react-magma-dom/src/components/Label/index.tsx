@@ -1,8 +1,8 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InputIconPosition, InputSize } from '../InputBase';
 import { useIsInverse } from '../../inverse';
+import styled from '@emotion/styled';
 
 export enum LabelPosition {
   left = 'left',
