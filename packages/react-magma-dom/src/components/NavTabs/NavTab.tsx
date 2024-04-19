@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { jsx } from '@emotion/core';
 
 import { NavTabsContext } from './NavTabs';

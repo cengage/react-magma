@@ -2,7 +2,7 @@ import React from 'react';
 import { inputBaseStyles } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import {
   UseComboboxGetToggleButtonPropsOptions,

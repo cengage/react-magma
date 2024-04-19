@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { transparentize } from 'polished';
 import { TabsOrientation } from './shared';

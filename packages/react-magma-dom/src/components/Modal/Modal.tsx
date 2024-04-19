@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { Global, css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { magma } from '../../theme/magma';

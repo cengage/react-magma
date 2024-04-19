@@ -13,7 +13,7 @@ import { InputMessage } from '../Input/InputMessage';
 import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { omit, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
@@ -77,7 +77,7 @@ export interface CheckboxProps
   /**
    * Action that fires when selected value of the checkbox changes
    */
-   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /**
    * @internal
    */

@@ -3,7 +3,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { convertStyleValueToString } from '../../utils';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 
 /**
  * @children required

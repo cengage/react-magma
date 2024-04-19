@@ -6,7 +6,7 @@ import { Paragraph } from '../Paragraph';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
 
 /**

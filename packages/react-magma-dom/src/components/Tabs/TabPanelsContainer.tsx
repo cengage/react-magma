@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { TabsContainerContext } from './TabsContainer';
 
 interface TabPanelContainerProps extends React.HTMLAttributes<HTMLDivElement> {

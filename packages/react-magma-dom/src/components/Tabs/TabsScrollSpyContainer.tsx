@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ScrollSpy } from './utils';
 import { Tabs, TabsOrientation } from './Tabs';
 import { Tab } from './Tab';

@@ -3,7 +3,7 @@ import { IconButton } from '../IconButton';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { EastIcon, WestIcon } from 'react-magma-icons';
 import { Label } from '../Label';
-import styled from '@emotion/styled';
+import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
@@ -109,19 +109,19 @@ const StyledContainer = styled.div<{
       : props.theme.colors.neutral200};
   border-top: 1px solid
     ${props =>
-    props.isInverse
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
+      props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
-  border-radius: ${props => 
-    props.hasSquareCorners 
-    ? "0"
-    : `0 0 ${props.theme.borderRadius} ${props.theme.borderRadius}`};
+  border-radius: ${props =>
+    props.hasSquareCorners
+      ? '0'
+      : `0 0 ${props.theme.borderRadius} ${props.theme.borderRadius}`};
 `;
 
-const PageCount = styled(Label) <{ theme: ThemeInterface }>`
+const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
 `;
 
@@ -149,45 +149,38 @@ interface RowsPerPageControllerProps {
   isInverse?: boolean;
 }
 
-const RowsPerPageController = ((props: RowsPerPageControllerProps) => {
-  const {
-    handleRowsPerPageChange,
-    rowsPerPageValues,
-    isInverse,
-  } = props;
+const RowsPerPageController = (props: RowsPerPageControllerProps) => {
+  const { handleRowsPerPageChange, rowsPerPageValues, isInverse } = props;
 
-    const theme = React.useContext(ThemeContext);
-    const i18n = React.useContext(I18nContext);
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
-    const rowsPerPageItems = rowsPerPageValues.map(value => ({
-      label: value.toString(),
-      value,
-    }));
+  const rowsPerPageItems = rowsPerPageValues.map(value => ({
+    label: value.toString(),
+    value,
+  }));
 
   return (
     <>
       <RowsPerPageLabel isInverse={isInverse} theme={theme}>
-          {i18n.table.pagination.rowsPerPageLabel}:
-      </RowsPerPageLabel> 
+        {i18n.table.pagination.rowsPerPageLabel}:
+      </RowsPerPageLabel>
       <NativeSelect
-        onChange={(event) => handleRowsPerPageChange(event.target.value)}
+        onChange={event => handleRowsPerPageChange(event.target.value)}
         aria-label={i18n.table.pagination.rowsPerPageLabel}
-        style={{minWidth: 80}}
-        testId="rowPerPageSelect" 
+        style={{ minWidth: 80 }}
+        testId="rowPerPageSelect"
         fieldId={''}
       >
         {rowsPerPageItems.map((row, index) => (
-          <option
-            key={index}
-            value={row.value}
-          >
+          <option key={index} value={row.value}>
             {row.label}
           </option>
         ))}
-      </NativeSelect> 
+      </NativeSelect>
     </>
-  )
-});
+  );
+};
 
 export const TablePagination = React.forwardRef<
   HTMLDivElement,
@@ -211,7 +204,8 @@ export const TablePagination = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
-  const hasRowPerPageChangeFunction = onRowsPerPageChange && typeof onRowsPerPageChange === 'function';
+  const hasRowPerPageChangeFunction =
+    onRowsPerPageChange && typeof onRowsPerPageChange === 'function';
 
   const isInverse = useIsInverse(props.isInverse);
 
@@ -247,8 +241,7 @@ export const TablePagination = React.forwardRef<
       setRowsPerPageState(value);
     }
 
-    hasRowPerPageChangeFunction &&
-      onRowsPerPageChange(value);
+    hasRowPerPageChangeFunction && onRowsPerPageChange(value);
   }
 
   const previousButton = pageButtons[0];
@@ -263,14 +256,14 @@ export const TablePagination = React.forwardRef<
       ref={ref}
       theme={theme}
     >
-      { hasRowPerPageChangeFunction &&
-          <RowsPerPageController
-            isInverse={isInverse}
-            handleRowsPerPageChange={handleRowsPerPageChange}
-            rowsPerPageValues={rowsPerPageValues}
+      {hasRowPerPageChangeFunction && (
+        <RowsPerPageController
+          isInverse={isInverse}
+          handleRowsPerPageChange={handleRowsPerPageChange}
+          rowsPerPageValues={rowsPerPageValues}
         />
-      }
-      
+      )}
+
       <PageCount isInverse={isInverse} theme={theme}>
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
