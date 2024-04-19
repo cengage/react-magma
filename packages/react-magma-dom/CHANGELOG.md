@@ -21,6 +21,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.10
+
+### Patch Changes
+
+- c1ef7d0cb: build: Update references to \_styled
+
 ## 4.4.0-next.9
 
 ### Patch Changes
