@@ -124,8 +124,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     initialSelectedItemsNeedUpdate,
     setInitialSelectedItemsNeedUpdate,
     initialExpandedItemsNeedUpdate,
-    // selectedItemsChanged,
     setSelectedItemsChanged,
+    selectedItemsChanged,
   } = React.useContext(TreeViewContext);
 
   const [expanded, setExpanded] = React.useState(false);
@@ -203,7 +203,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }
 
   function updateSelectedItemsChanged() {
-    if (topLevel) {
+    if (topLevel && !selectedItemsChanged) {
       setSelectedItemsChanged(true);
     }
   }
@@ -443,13 +443,13 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         statusFromChildren
       );
 
+
       if (
         checkedStatus !== statusFromChildren &&
         statusUpdatedBy !== StatusUpdatedByOptions.parent
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.children);
         setCheckedStatus(statusFromChildren);
-
         if (
           statusFromChildren === IndeterminateCheckboxStatus.checked ||
           statusFromChildren === IndeterminateCheckboxStatus.indeterminate
@@ -473,7 +473,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       } else if (
         checkedStatus === statusFromChildren &&
         statusUpdatedBy !== StatusUpdatedByOptions.parent &&
-        statusFromChildren === IndeterminateCheckboxStatus.indeterminate
+        statusFromChildren === IndeterminateCheckboxStatus.indeterminate &&
+        expanded
       ) {
         if (!arrayIncludesId(selectedItems, itemId)) {
           setSelectedItems([
@@ -482,11 +483,18 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           ]);
           updateSelectedItemsChanged();
         } else {
-          setSelectedItems([...selectedItems]);
+          // When it gets here, the setSelectedItems array already has the item and parent is indet
+          // TODO: this gets called when the accordion is expanded and it shouldn't
           const itemStatus = getCheckedStatus(itemId, selectedItems);
 
           if (itemStatus === parentCheckedStatus) {
-            setSelectedItemsChanged(true);
+            if (!selectedItemsChanged) {
+              if (!topLevel && updateParentCheckStatus) {
+                setSelectedItemsChanged(true);
+              } else {
+                updateSelectedItemsChanged();
+              }
+            }
           } else {
             updateSelectedItemsChanged();
           }
@@ -510,7 +518,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setCheckedStatus(status);
       setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
       updateParentCheckStatus(index, status);
-
+      
       if (hasOwnTreeItems) {
         if (getAllChildrenEnabled(treeItemChildren)) {
           setChildrenCheckedStatus(
@@ -538,7 +546,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setSelectedItems([
         { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
       ]);
-      updateSelectedItemsChanged();
+      setSelectedItemsChanged(true);
     }
   };
 
@@ -552,7 +560,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       );
       if (event.target.checked) {
         updateParentCheckStatus(index, IndeterminateCheckboxStatus.checked);
-
         if (!arrayIncludesId(selectedItems, itemId)) {
           setSelectedItems([
             ...selectedItems,
@@ -574,7 +581,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           childrenIds,
           { itemId, checkedStatus }
         );
-
         setSelectedItems(newSelectedItems);
         updateSelectedItemsChanged();
       }
@@ -585,11 +591,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             ...selectedItems,
             { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
           ]);
-          updateSelectedItemsChanged();
+            updateSelectedItemsChanged();
         }
       } else if (!event.target.checked) {
         setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
-        updateSelectedItemsChanged();
+          updateSelectedItemsChanged();
       }
     }
   };

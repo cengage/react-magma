@@ -443,6 +443,68 @@ describe('TreeView', () => {
           'true'
         );
       });
+
+      it('and initialSelectedItems is set to multiple items, onSelectedItemChange is called when the component loads', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId } = render(<TreeView testId={testId} initialSelectedItems={[
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]} selectable={TreeViewSelectable.multi} onSelectedItemChange={onSelectedItemChange}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
+            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2" />
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2">
+            <TreeItem
+              label="Child 2.1"
+              itemId="item-child2.1"
+              testId="item-child2.1"
+            />
+            <TreeItem
+              label="Child 2.2"
+              itemId="item-child2.2"
+              testId="item-child2.2"
+            />
+          </TreeItem>
+          <TreeItem label="Node 3" itemId="item3" testId="item3">
+            <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
+          </TreeItem>
+        </TreeView>);
+
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'true');
+
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item-child2.1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child2.2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+        userEvent.click(getByTestId('item1-expand'));
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+      });
     });
   });
 
