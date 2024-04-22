@@ -140,6 +140,7 @@ export function useTimePicker(props: UseTimePickerProps) {
     if (event.key === 'Backspace') {
       hourChangeFunc(event);
       setHour('');
+      updateTime('');
     }
 
     if (event.key === 'ArrowRight') {
@@ -151,6 +152,7 @@ export function useTimePicker(props: UseTimePickerProps) {
     if (event.key === 'Backspace') {
       minChangeFunc(event);
       setMinute('');
+      updateTime('');
     }
 
     if (event.key === 'ArrowLeft') {
