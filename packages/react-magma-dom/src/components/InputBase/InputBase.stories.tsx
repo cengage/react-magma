@@ -12,9 +12,9 @@ import { RadioGroup } from '../RadioGroup';
 import { Toggle } from '../Toggle';
 import { Combobox } from '../Combobox';
 import { Select } from '../Select';
-import styled from '../../theme/styled';
 import { Meta } from '@storybook/react/types-6-0';
 import { magma } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 const Container = styled.div`
   display: grid;

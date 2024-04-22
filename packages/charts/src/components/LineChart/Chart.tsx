@@ -1,10 +1,4 @@
 import * as React from 'react';
-import {
-  I18nContext,
-  styled,
-  ThemeContext,
-  useDescendants,
-} from 'react-magma-dom';
 import { css } from '@emotion/core';
 import { KeyboardIcon } from 'react-magma-icons';
 
@@ -14,16 +8,23 @@ import {
   Announce,
   ButtonVariant,
   Card,
+  I18nContext,
   IconButton,
   Paragraph,
-  TabsContainer,
-  Tabs,
   Tab,
-  TabPanelsContainer,
   TabPanel,
+  TabPanelsContainer,
+  Tabs,
+  TabsContainer,
+  ThemeContext,
+  ThemeInterface,
   Tooltip,
   TypographyVisualStyle,
+  useDescendants,
 } from 'react-magma-dom';
+
+import styled, { CreateStyled } from '@emotion/styled';
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 interface BaseChartProps {
   /**
@@ -48,7 +49,7 @@ export interface ChartProps<T extends any>
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     LineChartProps<T> {}
 
-const StyledTitle = styled.span`
+const StyledTitle = typedStyled.span`
   color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size04.fontSize};
   font-weight: 600;
@@ -57,23 +58,23 @@ const StyledTitle = styled.span`
   margin: 0 0 12px 0;
 `;
 
-const StyledParagraph = styled(Paragraph)`
+const StyledParagraph = typedStyled(Paragraph)`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   margin: 0 0 18px 0;
 `;
 
-const StyledTabsContainer = styled(TabsContainer)`
+const StyledTabsContainer = typedStyled(TabsContainer)`
   width: 800px;
   ul {
     box-shadow: inset 0 -1px 0 ${props => props.theme.colors.neutral300};
   }
 `;
 
-const StyledTabPanel = styled(TabPanel)`
+const StyledTabPanel = typedStyled(TabPanel)`
   padding: 22px 0;
 `;
 
-const KeyboardInstructionsCard = styled(Card)<{
+const KeyboardInstructionsCard = typedStyled(Card)<{
   isOpen?: boolean;
   maxHeight?: string;
   width?: string;

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { transparentize } from 'polished';
 
@@ -9,6 +8,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { Omit, XOR, getNodeText } from '../../utils';
 import { I18nContext } from '../../i18n';
+import styled from '@emotion/styled';
 
 export enum TagColor {
   default = 'default', // default

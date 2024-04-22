@@ -13,7 +13,6 @@ import {
   isMatch,
 } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '../../theme/styled';
 import { EventIcon } from 'react-magma-icons';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
@@ -28,6 +27,8 @@ import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface DatePickerProps
   extends Omit<
@@ -122,11 +123,13 @@ export interface DatePickerProps
   onInputFocus?: (event: React.FocusEvent) => void;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 const DatePickerContainer = styled.div`
   position: relative;
 `;
 
-const DatePickerCalendar = styled.div<{ opened: boolean; isInverse?: boolean }>`
+const DatePickerCalendar = typedStyled.div<{ opened: boolean; isInverse?: boolean }>`
   border: 1px solid
     ${props =>
       props.isInverse

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { stringIncludesUnit } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**

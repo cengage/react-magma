@@ -1,5 +1,29 @@
 ## 4.3.0
 
+## 4.4.0-next.10
+
+### Patch Changes
+
+- c1ef7d0cb: build: Update references to \_styled
+
+## 4.4.0-next.9
+
+### Patch Changes
+
+- e8a395ed1: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
+
+## 4.4.0-next.8
+
+### Patch Changes
+
+- 5e88eddbd: feat(TimePicker): Added opportunity to clear Timepicker
+
+## 4.4.0-next.7
+
+### Minor Changes
+
+- dcaa44365: feat(TreeView): TreeView & TreeItem updates
+
 ## 4.4.0-next.6
 
 ### Patch Changes
