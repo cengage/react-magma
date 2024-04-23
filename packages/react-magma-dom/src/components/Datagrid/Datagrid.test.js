@@ -4,7 +4,7 @@ import { Datagrid } from '.';
 import { TableRowColor } from '../Table';
 import { Button } from '../Button';
 import { usePagination } from '../Pagination/usePagination';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 const columns = [
@@ -722,7 +722,15 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.change(getByTestId('rowPerPageSelect'), { target: { value: 20 }});
+      fireEvent.change(getByTestId('rowPerPageSelect'), {
+        target: { value: 20 },
+      });
+
+      const appliedSelection = document.querySelector(
+        'select[data-testid=rowPerPageSelect]'
+      );
+
+      expect(appliedSelection).toHaveDisplayValue('20');
 
       expect(onRowsPerPageChange).toBeCalledWith(
         pagination.rowsPerPageValues[1].toString()
