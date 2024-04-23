@@ -444,8 +444,7 @@ describe('TreeView', () => {
         );
       });
 
-      // TODO
-      it.skip('and initialSelectedItems is set to multiple items, onSelectedItemChange is called when the component loads', () => {
+      it('and initialSelectedItems is set to multiple items, onSelectedItemChange is called when the component loads', () => {
         const onSelectedItemChange = jest.fn();
         const { getByTestId } = render(<TreeView testId={testId} initialSelectedItems={[
           {
@@ -491,11 +490,11 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'item-child1',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'item1',
+            itemId: 'item-child1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
