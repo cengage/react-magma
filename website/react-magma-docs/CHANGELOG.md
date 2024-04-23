@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.0.6-next.16
+
+### Patch Changes
+
+- Updated dependencies [cf3c10fda]
+  - react-magma-dom@4.4.0-next.13
+
 ## 5.0.6-next.15
 
 ### Patch Changes
