@@ -130,6 +130,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.14
+
+### Patch Changes
+
+- 2f95d6072: fix(TimePicker): Returns empty when backspace is pressed
+
 ## 4.4.0-next.13
 
 ### Minor Changes
