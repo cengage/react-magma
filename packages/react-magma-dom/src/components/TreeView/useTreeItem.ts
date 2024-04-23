@@ -497,7 +497,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         statusFromChildren
       );
 
-
       if (
         checkedStatus !== statusFromChildren &&
         statusUpdatedBy !== StatusUpdatedByOptions.parent
@@ -573,7 +572,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setCheckedStatus(status);
       setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
       updateParentCheckStatus(index, status);
-      
+
       if (hasOwnTreeItems) {
         if (getAllChildrenEnabled(treeItemChildren)) {
           setChildrenCheckedStatus(
