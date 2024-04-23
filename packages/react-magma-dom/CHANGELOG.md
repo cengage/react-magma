@@ -130,6 +130,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.13
+
+### Minor Changes
+
+- cf3c10fda: feat(TreeView): TreeView & TreeItem updates
+
 ## 4.4.0-next.12
 
 ### Patch Changes
