@@ -61,7 +61,8 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    */
   updateParentCheckStatus?: (
     index: number,
-    status: IndeterminateCheckboxStatus
+    status: IndeterminateCheckboxStatus,
+    isInitialRender?: boolean
   ) => void;
   /**
    * @internal
@@ -128,6 +129,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectedItemsChanged,
   } = React.useContext(TreeViewContext);
 
+  // Needs to skip sending an "onSelection" event during the initial render of items
+  const [isSkipSelectedItemsUpdate, setIsSkipSelectedItemsUpdate] =
+  React.useState(false);
+
   const [expanded, setExpanded] = React.useState(false);
   const [checkedStatus, setCheckedStatus] =
     React.useState<IndeterminateCheckboxStatus>(
@@ -168,7 +173,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         if (checkedStatus !== newStatus) {
           setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
           setCheckedStatus(item?.checkedStatus);
-          updateParentCheckStatus(index, newStatus);
+
+          // Pass "true" as isInitialRender value to skip sending an "onSelection" event
+          // Required since this useEffect handles initial rendering of the item
+          updateParentCheckStatus(index, newStatus, true);
           setSelectedItems(prev => {
             return getUniqueSelectedItemsArray(
               [{ itemId: itemId, checkedStatus: newStatus }],
@@ -222,8 +230,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const updateCheckedStatusFromChild = (
     index: number,
-    status: IndeterminateCheckboxStatus
+    status: IndeterminateCheckboxStatus,
+    isInitialRender?: boolean
   ) => {
+     // Set isSkipSelectedItemsUpdate as true if this update caused by the initial render of children during expanding
+     setIsSkipSelectedItemsUpdate(Boolean(isInitialRender));
     setStatusUpdatedBy(StatusUpdatedByOptions.children);
     setChildrenCheckedStatus(prev => {
       const newChildrenCheckedStatus = [...prev];
@@ -359,7 +370,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           );
           return allItems;
         });
-        setSelectedItemsChanged(true);
+
       } else if (!isDisabled && initialSelectedChildrenItems.length > 0) {
         // Case for initialSelectedItems that are inside a collapsed item
         const itemIdChildren = getChildrenItemIdsInTree(treeItemChildren);
@@ -483,11 +494,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           ]);
           updateSelectedItemsChanged();
         } else {
-          // When it gets here, the setSelectedItems array already has the item and parent is indet
-          // TODO: this gets called when the accordion is expanded and it shouldn't
           const itemStatus = getCheckedStatus(itemId, selectedItems);
 
           if (itemStatus === parentCheckedStatus) {
+            // Skip updating items if instructed to do so
+            if (isSkipSelectedItemsUpdate) return;
+
             if (!selectedItemsChanged) {
               if (!topLevel && updateParentCheckStatus) {
                 setSelectedItemsChanged(true);
