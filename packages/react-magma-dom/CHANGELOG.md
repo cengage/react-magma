@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.4.0-next.12
+
+### Patch Changes
+
+- b7ad3aa90: chore: Update nvm to v16.20.2
+
 ## 4.4.0-next.11
 
 ### Patch Changes
