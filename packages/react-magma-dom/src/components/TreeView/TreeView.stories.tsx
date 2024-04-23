@@ -103,7 +103,7 @@ export const Default = args => {
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
               itemId="pt1ch1"
               testId="pt1ch1"
-              isDisabled
+              // isDisabled
             >
               <TreeItem
                 icon={<ArticleIcon />}
@@ -852,17 +852,17 @@ export const UnitTest = args => {
       {/* <TreeView
         onSelectedItemChange={onSelection}
         selectable={TreeViewSelectable.multi}
-        initialExpandedItems={['item2', 'item-child2.1',]}
-        initialSelectedItems={[
-          {
-            itemId: 'item-ggchild3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-child3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-        ]}
+        // initialExpandedItems={['item2', 'item-child2.1',]}
+        // initialSelectedItems={[
+        //   {
+        //     itemId: 'item-ggchild3',
+        //     checkedStatus: IndeterminateCheckboxStatus.checked,
+        //   },
+        //   {
+        //     itemId: 'item-child3',
+        //     checkedStatus: IndeterminateCheckboxStatus.checked,
+        //   },
+        // ]}
       >
         <TreeItem label="Node 0" itemId="item0" testId="item0" />
         <TreeItem label="Node 1" itemId="item1" testId="item1">
@@ -880,6 +880,10 @@ export const UnitTest = args => {
               testId="item-gchild2"
             >
               <TreeItem
+                label="Great-grandchild 1"
+                itemId="item-ggchild1"
+                testId="item-ggchild1"
+              /><TreeItem
                 label="Great-grandchild 2"
                 itemId="item-ggchild2"
                 testId="item-ggchild2"
@@ -908,24 +912,21 @@ export const UnitTest = args => {
         onSelectedItemChange={onSelection}
         initialSelectedItems={[
           {
-            itemId: 'item2',
-            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
-          },
-          {
-            itemId: 'item-child2.1',
+            itemId: 'item-child1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'item-child3',
+            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]}
-        initialExpandedItems={['item2', 'item1']}
+        // initialExpandedItems={['item1', 'item2']}
         selectable={TreeViewSelectable.multi}
       >
-        <TreeItem label="Node 0" itemId="item0" testId="item0" />
+        {/* <TreeItem label="Node 0" itemId="item0" testId="item0" /> */}
         <TreeItem label="Node 1" itemId="item1" testId="item1">
           <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
+          <TreeItem label="Child 2" itemId="item-child2" testId="item-child2" />
         </TreeItem>
         <TreeItem label="Node 2" itemId="item2" testId="item2">
           <TreeItem
@@ -937,6 +938,11 @@ export const UnitTest = args => {
             label="Child 2.2"
             itemId="item-child2.2"
             testId="item-child2.2"
+          />{' '}
+          <TreeItem
+            label="Child 2.3"
+            itemId="item-child2.3"
+            testId="item-child2.3"
           />
         </TreeItem>
         <TreeItem label="Node 3" itemId="item3" testId="item3">
@@ -998,39 +1004,15 @@ export const Animals = () => {
         selectable={TreeViewSelectable.multi}
         initialSelectedItems={[
           {
-            itemId: 'Parrots',
+            itemId: 'Labrador Retriever',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'African Grey',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Cockatiel',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Budgerigar',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Birds of Prey',
+            itemId: 'Dogs',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'Eagles',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Falcons',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          //   {
-          //     "itemId": "Hawks",
-          //     "checkedStatus": IndeterminateCheckboxStatus.checked
-          // },
-          {
-            itemId: 'Birds',
+            itemId: 'Mammals',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
         ]}

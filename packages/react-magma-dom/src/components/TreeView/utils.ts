@@ -108,7 +108,10 @@ export function getChildrenItemIds(children, status = '') {
           ? IndeterminateCheckboxStatus.checked
           : IndeterminateCheckboxStatus.unchecked;
 
-      if (child.props?.itemId) {
+      if (
+        child.props?.itemId &&
+        childStatus !== IndeterminateCheckboxStatus.unchecked
+      ) {
         itemIds.push({
           itemId: child.props.itemId,
           checkedStatus: childStatus,
@@ -307,6 +310,16 @@ export function areArraysEqual(array1, array2) {
   }
 
   return true;
+}
+
+// Return the checkedStatus of an itemId
+export function getCheckedStatus(itemId, selectedItems) {
+  for (const item of selectedItems) {
+    if (item.itemId === itemId) {
+      return item.checkedStatus;
+    }
+  }
+  return null;
 }
 
 // TODO

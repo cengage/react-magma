@@ -68,24 +68,26 @@ export function useTreeView(props: UseTreeViewProps) {
     React.useState(false);
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);
+  const [selectedItemsChanged, setSelectedItemsChanged] = React.useState(false);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
   React.useEffect(() => {
-    if (selectable !== TreeViewSelectable.off) {      
-      // TODO: figure out how to do this more efficiently
+    if (selectable !== TreeViewSelectable.off && selectedItemsChanged) {
       onSelectedItemChange &&
         typeof onSelectedItemChange === 'function' &&
         onSelectedItemChange(selectedItems);
+
+      setSelectedItemsChanged(false);
     }
-  }, [selectedItems]);
+  }, [selectedItemsChanged]);
 
   React.useEffect(() => {
     if (selectable !== TreeViewSelectable.off && initialSelectedItems) {
       setInitialSelectedItemsNeedUpdate(true);
     }
     if (initialExpandedItems) {
-      setInitialExpandedItemsNeedUpdate(true)
+      setInitialExpandedItemsNeedUpdate(true);
     }
   }, []);
 
@@ -105,6 +107,8 @@ export function useTreeView(props: UseTreeViewProps) {
     setInitialSelectedItemsNeedUpdate,
     initialExpandedItemsNeedUpdate,
     setInitialExpandedItemsNeedUpdate,
+    selectedItemsChanged,
+    setSelectedItemsChanged,
   };
 
   return { contextValue };
