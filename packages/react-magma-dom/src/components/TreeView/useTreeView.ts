@@ -157,7 +157,7 @@ export function useTreeView(props: UseTreeViewProps) {
       setInitialSelectedItemsNeedUpdate(true);
     }
     if (initialExpandedItems) {
-      setInitialExpandedItemsNeedUpdate(true)
+      setInitialExpandedItemsNeedUpdate(true);
     }
   }, []);
 

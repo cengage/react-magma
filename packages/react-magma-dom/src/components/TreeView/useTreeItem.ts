@@ -30,6 +30,7 @@ import {
   getChildrenItemIdsInTree,
   getAllParentIds,
   getChildrenItemIdsFlat,
+  getCheckedStatus,
 } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -522,7 +523,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.children);
         setCheckedStatus(statusFromChildren);
-
         if (
           statusFromChildren === IndeterminateCheckboxStatus.checked ||
           statusFromChildren === IndeterminateCheckboxStatus.indeterminate
@@ -580,6 +580,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         }
       } else {
         setSelectedItems(updateItemStatus);
+        if (!expanded) {
+          updateSelectedItemsChanged();
+        }
       }
     }
   }, [childrenCheckedStatus]);
@@ -660,7 +663,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           childrenIds,
           { itemId, checkedStatus }
         );
-
         setSelectedItems(newSelectedItems);
         updateSelectedItemsChanged();
       }
