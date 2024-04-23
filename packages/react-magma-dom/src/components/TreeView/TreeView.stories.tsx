@@ -923,10 +923,10 @@ export const UnitTest = args => {
         // initialExpandedItems={['item1', 'item2']}
         selectable={TreeViewSelectable.multi}
       >
-        {/* <TreeItem label="Node 0" itemId="item0" testId="item0" /> */}
+        <TreeItem label="Node 0" itemId="item0" testId="item0" />
         <TreeItem label="Node 1" itemId="item1" testId="item1">
-          <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
-          <TreeItem label="Child 2" itemId="item-child2" testId="item-child2" />
+          <TreeItem label="Child 1.1" itemId="item-child11" testId="item-child1" />
+          <TreeItem label="Child 1.2" itemId="item-child12" testId="item-child2" />
         </TreeItem>
         <TreeItem label="Node 2" itemId="item2" testId="item2">
           <TreeItem
@@ -938,7 +938,7 @@ export const UnitTest = args => {
             label="Child 2.2"
             itemId="item-child2.2"
             testId="item-child2.2"
-          />{' '}
+          />
           <TreeItem
             label="Child 2.3"
             itemId="item-child2.3"
