@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.4.0-next.16
+
+### Patch Changes
+
+- fac89e708: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
+
 ## 4.4.0-next.15
 
 ### Minor Changes
