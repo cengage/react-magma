@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.4.0-next.11
+
+### Patch Changes
+
+- aff7e0a7e: fix(Search): Reset the value for clearable search when the X is click…
+
 ## 4.4.0-next.10
 
 ### Patch Changes
