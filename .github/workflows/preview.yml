@@ -16,7 +16,7 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v2
         with:
-          node-version: '14.21.3'
+          node-version: '15.14.0'
           check-latest: true
       - name: Check Node version
         run: node -v
