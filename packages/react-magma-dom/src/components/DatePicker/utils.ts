@@ -94,8 +94,6 @@ export function handleKeyPress(
       break;
 
     default:
-      console.log('othhth');
-      
       break;
   }
 }
