@@ -19,9 +19,6 @@ import {
   Flex,
   FlexBehavior,
   IndeterminateCheckboxStatus,
-  Dropdown,
-  DropdownButton,
-  DropdownContent,
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';

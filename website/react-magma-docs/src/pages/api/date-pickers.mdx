@@ -34,7 +34,7 @@ import React from 'react';
 import { DatePicker } from 'react-magma-dom';
 
 export function Example() {
-  return <DatePicker defaultDate="07/23/2019" labelText="Date" />;
+  return <DatePicker defaultDate="07/23/2024" labelText="Date" />;
 }
 ```
 
@@ -48,7 +48,7 @@ import { DatePicker } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <DatePicker defaultDate="07/23/2019" labelText="Date" value="03/12/2019" />
+    <DatePicker defaultDate="07/23/2024" labelText="Date" value="03/12/2024" />
   );
 }
 ```
@@ -60,14 +60,13 @@ Minimum and Maximum dates can be passed in as `props` to disallow the selection 
 ```tsx
 import React from 'react';
 import { DatePicker, getDateFromString, inDateRange } from 'react-magma-dom';
-import { isValid } from 'date-fns';
 
 export function Example() {
    const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
     undefined
   );
-  const minDate = '01/09/2020';
-  const maxDate = '02/10/2020';
+  const minDate = '01/09/2024';
+  const maxDate = '02/10/2024';
 
   function handleDateChange(newChosenDate: Date) {
     setChosenDate(newChosenDate);
@@ -77,13 +76,9 @@ export function Example() {
     const convertedMinDate = getDateFromString(minDate);
     const convertedMaxDate = getDateFromString(maxDate);
 
-    if (!chosenDate) {
-      return;
-    } else if (!inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
+    if (chosenDate && !inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
       return `Please enter a date within the range ${minDate} - ${maxDate}`;
-    } else if (!isValid(chosenDate)) {
-      return 'Please enter a valid date';
-    }
+    } 
 
     return;
   }
