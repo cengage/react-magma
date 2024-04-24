@@ -19,6 +19,9 @@ import {
   Flex,
   FlexBehavior,
   IndeterminateCheckboxStatus,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
@@ -1049,6 +1052,91 @@ export const Animals = () => {
         <p>Selected: {selectedItems}</p>
         <p>Indeterminate: {indeterminateItems}</p>
       </>
+    </>
+  );
+};
+
+export const InsideDropdown = args => {
+  const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+
+  function onSelection(items) {
+    const selected = items
+      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.primary}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    const indet = items
+      .filter(
+        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+      )
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.default}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+    // console.log('onSelection event:', items);
+  }
+
+  return (
+    <>
+      <Dropdown isInverse={args.isInverse}>
+      <DropdownButton>Full Content Dropdown</DropdownButton>
+      <DropdownContent>
+        <TreeView {...args} onSelectedItemChange={onSelection}>
+          <TreeItem label={<>Home</>} itemId="home">
+            <TreeItem label={<>Bath</>} itemId="bath">
+              <TreeItem label={<>Bathroom Storage</>} itemId="bathstorage">
+                <TreeItem label={<>Item 1</>} itemId="bath-1" />
+                <TreeItem label={<>Item 2</>} itemId="bath-2" />
+              </TreeItem>
+              <TreeItem
+                label={<>Shower Curtains & Accessories</>}
+                itemId="shower"
+              />
+              <TreeItem label={<>Bath Towels</>} itemId="towels">
+                <TreeItem label={<>Item 1</>} itemId="towels-1" />
+                <TreeItem label={<>Item 2</>} itemId="towels-2" isDisabled />
+              </TreeItem>
+            </TreeItem>
+            <TreeItem label={<>Bedding</>} itemId="bedding">
+              <TreeItem label={<>Item 1</>} itemId="bedding-1" />
+              <TreeItem label={<>Item 2</>} itemId="bedding-2" />
+            </TreeItem>
+            <TreeItem label={<>Arts & Crafts</>} itemId="arts" />
+            <TreeItem label={<>Storage & Organization</>} itemId="storage">
+              <TreeItem label={<>Item 1</>} itemId="storage-1" />
+              <TreeItem label={<>Item 2</>} itemId="storage-2" />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem label={<>Furniture</>} itemId="furniture">
+            <TreeItem label={<>Item 1</>} itemId="furniture-1" />
+            <TreeItem label={<>Item 2</>} itemId="furniture-2" />
+          </TreeItem>
+          <TreeItem label={<>Kitchen & Dining</>} itemId="kitchen" />
+          <TreeItem label={<>Patio & Garden</>} itemId="patio">
+            <TreeItem label={<>Item 1</>} itemId="patio-1" />
+            <TreeItem label={<>Item 2</>} itemId="patio-2" />
+          </TreeItem>
+        </TreeView>
+        </DropdownContent>
+      </Dropdown>
+
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>
+          <p>Selected: {selectedItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (
+            <p>Indeterminate: {indeterminateItems}</p>
+          )}
+        </>
+      )}
     </>
   );
 };

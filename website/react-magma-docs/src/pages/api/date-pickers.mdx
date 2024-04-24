@@ -59,7 +59,8 @@ Minimum and Maximum dates can be passed in as `props` to disallow the selection 
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker, getDateFromString, inDateRange } from 'react-magma-dom';
+import { isValid } from 'date-fns';
 
 export function Example() {
    const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
