@@ -4,14 +4,7 @@ import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { InputType } from '../InputBase';
-import {
-  isAfter,
-  isBefore,
-  isValid,
-  isSameDay,
-  parse,
-  isMatch,
-} from 'date-fns';
+import { isValid, parse, isMatch } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { EventIcon } from 'react-magma-icons';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -22,6 +15,7 @@ import {
   getNextMonthFromDate,
   i18nFormat as format,
   getDateFromString,
+  inDateRange,
 } from './utils';
 import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
@@ -129,7 +123,10 @@ const DatePickerContainer = styled.div`
   position: relative;
 `;
 
-const DatePickerCalendar = typedStyled.div<{ opened: boolean; isInverse?: boolean }>`
+const DatePickerCalendar = typedStyled.div<{
+  opened: boolean;
+  isInverse?: boolean;
+}>`
   border: 1px solid
     ${props =>
       props.isInverse
@@ -222,21 +219,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       }
     }
 
-    function inDateRange(
-      date: Date,
-      minDateValue?: Date,
-      maxDateValue?: Date
-    ): boolean {
-      return (
-        (maxDateValue
-          ? isBefore(date, maxDateValue) || isSameDay(date, maxDateValue)
-          : true) &&
-        (minDateValue
-          ? isAfter(date, minDateValue) || isSameDay(date, minDateValue)
-          : true)
-      );
-    }
-
     function buildCalendarMonth(date: Date, enableOutsideDates: boolean) {
       const days = [
         'sunday',
@@ -307,13 +289,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     function handleInputBlur(event: React.FocusEvent) {
       const { value } = inputRef.current;
       const day = parse(value, i18n.dateFormat, new Date());
-      const convertedMinDate = getDateFromString(props.minDate);
-      const convertedMaxDate = getDateFromString(props.maxDate);
 
-      if (
-        isValidDateFromString(value, day) &&
-        inDateRange(day, convertedMinDate, convertedMaxDate)
-      ) {
+      if (isValidDateFromString(value, day)) {
         handleDateChange(day, event);
       } else {
         reset && typeof reset === 'function' && reset();

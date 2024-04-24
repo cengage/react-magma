@@ -1,19 +1,37 @@
 import {
-  subDays,
-  subWeeks,
-  subMonths,
   addDays,
-  addWeeks,
   addMonths,
-  getDay,
-  format,
-  startOfWeek,
-  endOfWeek,
-  startOfMonth,
-  endOfMonth,
+  addWeeks,
   differenceInDays,
+  endOfMonth,
+  endOfWeek,
+  format,
+  getDay,
+  isAfter,
+  isBefore,
+  isSameDay,
+  startOfMonth,
+  startOfWeek,
+  subDays,
+  subMonths,
+  subWeeks,
 } from 'date-fns';
 import { enUS } from 'date-fns/locale';
+
+export function inDateRange(
+  date: Date,
+  minDateValue?: Date,
+  maxDateValue?: Date
+): boolean {
+  return (
+    (maxDateValue
+      ? isBefore(date, maxDateValue) || isSameDay(date, maxDateValue)
+      : true) &&
+    (minDateValue
+      ? isAfter(date, minDateValue) || isSameDay(date, minDateValue)
+      : true)
+  );
+}
 
 export function handleKeyPress(
   e: React.KeyboardEvent,
@@ -76,6 +94,8 @@ export function handleKeyPress(
       break;
 
     default:
+      console.log('othhth');
+      
       break;
   }
 }

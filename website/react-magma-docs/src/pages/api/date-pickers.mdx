@@ -125,7 +125,7 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <DatePicker isInverse />
+        <DatePicker labelText="Date" isInverse />
       </CardBody>
     </Card>
   );
@@ -177,7 +177,7 @@ export function Example() {
         <strong>Input Value: </strong>
         {inputValue}
       </p>
-      <DatePicker onInputChange={handleInputChange} />
+      <DatePicker labelText="Date" onInputChange={handleInputChange} />
     </div>
   );
 }
@@ -189,7 +189,7 @@ The `onDateChange` function is called when the user changes a date using the cal
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker, getDateFromString } from 'react-magma-dom';
 
 export function Example() {
   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
@@ -198,6 +198,21 @@ export function Example() {
 
   function handleDateChange(newChosenDate: Date) {
     setChosenDate(newChosenDate);
+  }
+
+   function hasErrorMessage() {
+    const convertedMinDate = getDateFromString(args.minDate);
+    const convertedMaxDate = getDateFromString(args.maxDate);
+
+    if (!chosenDate) {
+      return;
+    } else if (!inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
+      return `Please enter a date within the range ${args.minDate} - ${args.maxDate}`;
+    } else if (!isValid(chosenDate)) {
+      return 'Please enter a valid date';
+    }
+
+    return;
   }
 
   return (
@@ -212,7 +227,7 @@ export function Example() {
           </span>
         )}
       </p>
-      <DatePicker onDateChange={handleDateChange} />
+      <DatePicker labelText="Date" onDateChange={handleDateChange} errorMessage={hasErrorMessage()} />
     </div>
   );
 }
@@ -244,6 +259,7 @@ export function Example() {
       <DatePicker
         onInputBlur={handleInputBlur}
         onInputFocus={handleInputFocus}
+        labelText="Date"
       />
     </div>
   );
@@ -275,7 +291,7 @@ export function Example() {
         <strong>Changed Value: </strong>
         {changedValue}
       </p>
-      <DatePicker onChange={handleChange} />
+      <DatePicker onChange={handleChange} labelText="Date" />
     </div>
   );
 }
