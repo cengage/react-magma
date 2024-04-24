@@ -41,6 +41,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.17
+
+### Patch Changes
+
+- 2dc651c9f: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date
+
 ## 4.4.0-next.16
 
 ### Patch Changes
