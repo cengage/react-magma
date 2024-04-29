@@ -31,6 +31,8 @@ export interface TreeViewContextInterface {
   setInitialExpandedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
   selectedItemsChanged: boolean;
   setSelectedItemsChanged:React.Dispatch<React.SetStateAction<any>>;
+  needsUpdate: boolean;
+  setNeedsUpdate:React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -48,4 +50,6 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   setInitialExpandedItemsNeedUpdate: () => {},
   selectedItemsChanged: false,
   setSelectedItemsChanged: () => {},
+  needsUpdate: false,
+  setNeedsUpdate: () => {},
 });

@@ -45,13 +45,17 @@ export interface UseTreeViewProps {
   /**
    * Action that fires when an item is selected
    * Return an array of objects.
-   * Example: [ {itemId: 'item0',checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
+   * Example: [ {itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
    */
   onSelectedItemChange?: (selectedItems: Array<Object>) => void;
   /**
    * Action that fires when an item is expanded or collapsed
    */
   onExpandedChange?: (event: React.SyntheticEvent) => void;
+  /**
+   * @internal
+   */
+  selection?: Array<TreeItemSelectedInterface>;
 }
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -61,16 +65,28 @@ export function useTreeView(props: UseTreeViewProps) {
     onExpandedChange,
     initialExpandedItems,
     initialSelectedItems,
+    selection,
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [selectedItems, setSelectedItems] = React.useState(selection || []);
   const [initialSelectedItemsNeedUpdate, setInitialSelectedItemsNeedUpdate] =
     React.useState(false);
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);
   const [selectedItemsChanged, setSelectedItemsChanged] = React.useState(false);
 
+  // TODO new name prob
+  const [needsUpdate, setNeedsUpdate] = React.useState(false);
+
   const [treeItemRefArray, registerTreeItem] = useDescendants();
+
+  React.useEffect(() => {
+    if (selection && selection !== selectedItems && !needsUpdate) {
+      setSelectedItems(selection);
+      setNeedsUpdate(true);
+    }
+  }, [selection]);
+
 
   React.useEffect(() => {
     if (selectable !== TreeViewSelectable.off && selectedItemsChanged) {
@@ -78,6 +94,7 @@ export function useTreeView(props: UseTreeViewProps) {
         typeof onSelectedItemChange === 'function' &&
         onSelectedItemChange(selectedItems);
 
+      console.log('selectedItems changed:', selectedItems);
       setSelectedItemsChanged(false);
     }
   }, [selectedItemsChanged]);
@@ -109,6 +126,8 @@ export function useTreeView(props: UseTreeViewProps) {
     setInitialExpandedItemsNeedUpdate,
     selectedItemsChanged,
     setSelectedItemsChanged,
+    needsUpdate, 
+    setNeedsUpdate,
   };
 
   return { contextValue };

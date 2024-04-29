@@ -335,6 +335,8 @@ export function getSelectedItemsIndexes(selectedItems, treeItemChildren) {
 export function getLowestIndexItem(selectedItems, treeItemChildren) {
   // const fullSelectedItems = getSelectedItemsIndexes(selectedItems, treeItemChildren);
 
+  if (!selectedItems) return;
+
   if (selectedItems.length === 0) {
     return null;
   }
