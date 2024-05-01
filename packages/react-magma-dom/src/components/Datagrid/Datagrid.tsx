@@ -188,12 +188,12 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     });
 
     React.useEffect(() => {
-      setRowsToShow(hasPagination ? getPageItems(currentPage) : rows);
-    }, [currentPage, rowsPerPage]);
-
-    React.useEffect(() => {
       setRowsToShow(rows);
     }, [rows]);
+
+    React.useEffect(() => {
+      setRowsToShow(hasPagination ? getPageItems(currentPage) : rows);
+    }, [currentPage, rowsPerPage]);
 
     const { Pagination } = defaultComponents({
       ...customComponents,

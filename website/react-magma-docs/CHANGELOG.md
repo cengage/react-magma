@@ -1,5 +1,82 @@
 # Change Log
 
+## 5.0.6-next.20
+
+### Patch Changes
+
+- Updated dependencies [2dc651c9f]
+  - react-magma-dom@4.4.0-next.17
+
+## 5.0.6-next.19
+
+### Patch Changes
+
+- Updated dependencies [fac89e708]
+  - react-magma-dom@4.4.0-next.16
+
+## 5.0.6-next.18
+
+### Patch Changes
+
+- Updated dependencies [e39db7b0f]
+  - react-magma-dom@4.4.0-next.15
+
+## 5.0.6-next.17
+
+### Patch Changes
+
+- Updated dependencies [2f95d6072]
+  - react-magma-dom@4.4.0-next.14
+
+## 5.0.6-next.16
+
+### Patch Changes
+
+- Updated dependencies [cf3c10fda]
+  - react-magma-dom@4.4.0-next.13
+
+## 5.0.6-next.15
+
+### Patch Changes
+
+- Updated dependencies [b7ad3aa90]
+  - react-magma-dom@4.4.0-next.12
+
+## 5.0.6-next.14
+
+### Patch Changes
+
+- Updated dependencies [aff7e0a7e]
+  - react-magma-dom@4.4.0-next.11
+
+## 5.0.6-next.13
+
+### Patch Changes
+
+- Updated dependencies [c1ef7d0cb]
+  - react-magma-dom@4.4.0-next.10
+
+## 5.0.6-next.12
+
+### Patch Changes
+
+- Updated dependencies [e8a395ed1]
+  - react-magma-dom@4.4.0-next.9
+
+## 5.0.6-next.11
+
+### Patch Changes
+
+- Updated dependencies [5e88eddbd]
+  - react-magma-dom@4.4.0-next.8
+
+## 5.0.6-next.10
+
+### Patch Changes
+
+- Updated dependencies [dcaa44365]
+  - react-magma-dom@4.4.0-next.7
+
 ## 5.0.6-next.9
 
 ### Patch Changes

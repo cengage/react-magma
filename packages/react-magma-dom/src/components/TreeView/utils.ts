@@ -92,26 +92,37 @@ export function getTreeItemWrapperCursor(
   return 'default';
 }
 
-// Returns boolean if selectedItems has itemId
-export function selectedItemsIncludesId(selectedItems, itemId) {
-  return selectedItems?.some(item => item.itemId === itemId);
+// Returns boolean if itemsArray has itemId
+export function arrayIncludesId(itemsArray, itemId) {
+  return itemsArray?.some(item => item.itemId === itemId);
 }
 
-// Return an array of all the enabled children ids recursively
-export function getChildrenItemIds(children) {
+// Return an array of objects of all the enabled children ids recursively
+export function getChildrenItemIds(children, status = '') {
   let itemIds = [];
 
   React.Children.forEach(children, child => {
     if (!child.props?.isDisabled) {
-      if (child.props?.itemId) {
+      const childStatus =
+        status === IndeterminateCheckboxStatus.checked
+          ? IndeterminateCheckboxStatus.checked
+          : IndeterminateCheckboxStatus.unchecked;
+
+      if (
+        child.props?.itemId &&
+        childStatus !== IndeterminateCheckboxStatus.unchecked
+      ) {
         itemIds.push({
           itemId: child.props.itemId,
-          checkedStatus: IndeterminateCheckboxStatus.checked,
+          checkedStatus: childStatus,
         });
       }
 
       if (child.props?.children) {
-        const nestedItemIds = getChildrenItemIds(child.props.children);
+        const nestedItemIds = getChildrenItemIds(
+          child.props.children,
+          childStatus
+        );
         itemIds = itemIds.concat(nestedItemIds);
       }
     }
@@ -120,6 +131,27 @@ export function getChildrenItemIds(children) {
   return itemIds;
 }
 
+// Return an array of strings of all enabled children ids recursively
+export function getChildrenItemIdsFlat(children) {
+  let itemIds = [];
+
+  React.Children.forEach(children, child => {
+    if (!child.props?.isDisabled) {
+      if (child.props?.itemId) {
+        itemIds.push(child.props.itemId);
+      }
+
+      if (child.props?.children) {
+        const nestedItemIds = getChildrenItemIdsFlat(child.props.children);
+        itemIds = itemIds.concat(nestedItemIds);
+      }
+    }
+  });
+
+  return itemIds;
+}
+
+// Return an array of objects where all children are items are nested in the parents
 export function getChildrenItemIdsInTree(children) {
   let itemIds = [];
 
@@ -169,7 +201,8 @@ export function findChildByItemId(children, itemId) {
     }
 
     if (child?.props?.children) {
-      const nestedChild = findChildByItemId(child?.props?.children, itemId);
+      const nestedChild = findChildByItemId([child?.props?.children], itemId);
+
       if (nestedChild) {
         return nestedChild;
       }
@@ -200,7 +233,9 @@ export function getMissingChildrenIds(selectedItems, childrenIds) {
 
 // Return an array of statuses for all enabled children
 export function getChildrenCheckedStatus(childrenIds, status) {
-  return childrenIds.map(child => (child.isDisabled ? IndeterminateCheckboxStatus.unchecked : status));
+  return childrenIds.map(child =>
+    child.isDisabled ? IndeterminateCheckboxStatus.unchecked : status
+  );
 }
 
 // Return the length of enabled children
@@ -226,12 +261,8 @@ export function getUpdatedSelectedItems(selectedItems, itemId, checkedStatus) {
 }
 
 // Return an array of unique items from the previous state, initially selected items and the childrem item ids
-export function getUniqueSelectedItemsArray(
-  prev,
-  initialSelectedItems,
-  childrenItemIds
-) {
-  const combinedArray = [...prev, ...initialSelectedItems, ...childrenItemIds];
+export function getUniqueSelectedItemsArray(itemArr0, itemArr1, itemArr2) {
+  const combinedArray = [...itemArr0, ...itemArr2, ...itemArr1];
   const uniqueItemsMap = new Map();
   for (const item of combinedArray) {
     uniqueItemsMap.set(item.itemId, item);
@@ -279,6 +310,16 @@ export function areArraysEqual(array1, array2) {
   }
 
   return true;
+}
+
+// Return the checkedStatus of an itemId
+export function getCheckedStatus(itemId, selectedItems) {
+  for (const item of selectedItems) {
+    if (item.itemId === itemId) {
+      return item.checkedStatus;
+    }
+  }
+  return null;
 }
 
 // TODO

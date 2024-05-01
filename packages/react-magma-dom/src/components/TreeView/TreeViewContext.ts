@@ -4,13 +4,15 @@ import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export interface TreeItemSelectedInterface {
   itemId?: string;
-  checkedStatus: IndeterminateCheckboxStatus
-};
+  checkedStatus: IndeterminateCheckboxStatus;
+}
 
 export interface TreeViewContextInterface {
   children?: React.ReactNode | React.ReactNode[];
   hasIcons: boolean;
-  onSelectedItemChange?: (selectedItems: Array<TreeItemSelectedInterface>) => void;
+  onSelectedItemChange?: (
+    selectedItems: Array<TreeItemSelectedInterface>
+  ) => void;
   onExpandedChange?: (event: React.SyntheticEvent) => void;
   selectable: TreeViewSelectable;
   setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,7 +26,11 @@ export interface TreeViewContextInterface {
     itemRef: React.MutableRefObject<Element>
   ) => void;
   initialSelectedItemsNeedUpdate: boolean;
-    setInitialSelectedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
+  setInitialSelectedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
+  initialExpandedItemsNeedUpdate: boolean;
+  setInitialExpandedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
+  selectedItemsChanged: boolean;
+  setSelectedItemsChanged:React.Dispatch<React.SetStateAction<any>>;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -38,4 +44,8 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   registerTreeItem: (elements, element) => {},
   initialSelectedItemsNeedUpdate: false,
   setInitialSelectedItemsNeedUpdate: () => {},
+  initialExpandedItemsNeedUpdate: false,
+  setInitialExpandedItemsNeedUpdate: () => {},
+  selectedItemsChanged: false,
+  setSelectedItemsChanged: () => {},
 });

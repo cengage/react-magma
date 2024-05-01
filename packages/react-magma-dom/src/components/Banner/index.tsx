@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import isPropValid from '@emotion/is-prop-valid';
 import { AlertProps } from '../Alert';
 import {
@@ -18,6 +17,8 @@ import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -43,7 +44,9 @@ export interface BannerProps extends AlertProps {
   isInverse?: boolean;
 }
 
-const StyledBanner = styled.div<AlertProps>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledBanner = typedStyled.div<AlertProps>`
   align-items: stretch;
   background: ${props => buildAlertBackground(props)};
   color: ${props => buildAlertColor(props)};
@@ -62,7 +65,7 @@ const StyledBanner = styled.div<AlertProps>`
   }
 `;
 
-const BannerContents = styled.div<{
+const BannerContents = typedStyled.div<{
   additionalContent?: React.ReactNode;
   variant?: AlertVariant;
   isDismissible?: boolean;
@@ -125,7 +128,7 @@ function buildDismissButtonColor(props) {
   }
 }
 
-const DismissButton = styled(IconButton, { shouldForwardProp })<{
+const DismissButton = typedStyled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
   isInverse?: boolean;
 }>`
@@ -165,7 +168,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
 `;
 
-const IconWrapper = styled.span`
+const IconWrapper = typedStyled.span`
   display: inline-flex;
   padding-right: ${props => props.theme.spaceScale.spacing03};
 

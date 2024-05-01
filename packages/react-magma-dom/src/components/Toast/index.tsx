@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { AlertBase, AlertBaseProps, AlertVariant, transitionDuration } from '../AlertBase';
 import { getTrapElements } from '../../utils';
 import { useGenerateId } from '../../utils';
 import { ToastsContext } from './ToastsContainer';
+import styled from '@emotion/styled';
 
 /**
  * @children required
