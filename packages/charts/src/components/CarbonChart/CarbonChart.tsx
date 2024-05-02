@@ -4,10 +4,12 @@ import {
   ThemeInterface,
   ThemeContext,
   useIsInverse,
-  styled,
 } from 'react-magma-dom';
 
 import { transparentize } from 'polished';
+
+import styled, { CreateStyled } from '@emotion/styled';
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 import {
   AreaChart,
@@ -49,7 +51,7 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
   options: Object;
 }
 
-const CarbonChartWrapper = styled.div<{
+const CarbonChartWrapper = typedStyled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
