@@ -70,7 +70,7 @@ export const Preview = ({ ...props }: PreviewProps) => {
           ...HEADER,
           ...SCHEMA,
           ...DROPZONE,
-          ...CHARTS,
+          // ...CHARTS,
         }}
         noInline
         transformCode={transformCode}
