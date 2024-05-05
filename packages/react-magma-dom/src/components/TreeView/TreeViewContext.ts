@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { TreeViewSelectable } from './useTreeView';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { TreeViewSelectable } from './useTreeView';
 
 export interface TreeItemSelectedInterface {
   itemId?: string;
@@ -10,46 +10,40 @@ export interface TreeItemSelectedInterface {
 export interface TreeViewContextInterface {
   children?: React.ReactNode | React.ReactNode[];
   hasIcons: boolean;
+  initialExpandedItems: Array<string>;
+  onExpandedChange?: (event: React.SyntheticEvent) => void;
   onSelectedItemChange?: (
     selectedItems: Array<TreeItemSelectedInterface>
   ) => void;
-  onExpandedChange?: (event: React.SyntheticEvent) => void;
-  selectable: TreeViewSelectable;
-  setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedItems: Array<TreeItemSelectedInterface>;
-  setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
-  initialExpandedItems: Array<string>;
-  initialSelectedItems: Array<TreeItemSelectedInterface>;
-  treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   registerTreeItem: (
     itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
     itemRef: React.MutableRefObject<Element>
   ) => void;
-  initialSelectedItemsNeedUpdate: boolean;
-  setInitialSelectedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
-  initialExpandedItemsNeedUpdate: boolean;
-  setInitialExpandedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
+  selectable: TreeViewSelectable;
+  selectedItems: Array<TreeItemSelectedInterface>;
   selectedItemsChanged: boolean;
-  setSelectedItemsChanged:React.Dispatch<React.SetStateAction<any>>;
-  needsUpdate: boolean;
-  setNeedsUpdate:React.Dispatch<React.SetStateAction<any>>;
+  setHasIcons: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
+  setSelectedItemsChanged: React.Dispatch<React.SetStateAction<any>>;
+  setUpdateInitialExpandedItems: React.Dispatch<React.SetStateAction<any>>;
+  setUpdatePreselectedItems: React.Dispatch<React.SetStateAction<any>>;
+  treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
+  updateInitialExpandedItems: boolean;
+  updatePreselectedItems: boolean;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
-  selectable: TreeViewSelectable.single,
   hasIcons: false,
-  setHasIcons: () => {},
-  selectedItems: [],
-  setSelectedItems: () => {},
   initialExpandedItems: [],
-  initialSelectedItems: [],
   registerTreeItem: (elements, element) => {},
-  initialSelectedItemsNeedUpdate: false,
-  setInitialSelectedItemsNeedUpdate: () => {},
-  initialExpandedItemsNeedUpdate: false,
-  setInitialExpandedItemsNeedUpdate: () => {},
+  selectable: TreeViewSelectable.single,
+  selectedItems: [],
   selectedItemsChanged: false,
+  setHasIcons: () => {},
+  setSelectedItems: () => {},
   setSelectedItemsChanged: () => {},
-  needsUpdate: false,
-  setNeedsUpdate: () => {},
+  setUpdateInitialExpandedItems: () => {},
+  setUpdatePreselectedItems: () => {},
+  updateInitialExpandedItems: false,
+  updatePreselectedItems: false,
 });

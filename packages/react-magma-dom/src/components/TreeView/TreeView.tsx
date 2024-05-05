@@ -1,16 +1,16 @@
 import * as React from 'react';
+import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { ThemeInterface } from '../../theme/magma';
+import { TreeItem } from './TreeItem';
+import { TreeViewContext } from './TreeViewContext';
+import { useTreeItem } from './useTreeItem';
 import {
   UseTreeViewProps,
   useTreeView,
   TreeViewSelectable,
 } from './useTreeView';
-import { TreeItem } from './TreeItem';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, useIsInverse } from '../../inverse';
-import { useTreeItem } from './useTreeItem';
-import { TreeViewContext } from './TreeViewContext';
 import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
 
 export interface TreeViewProps
   extends UseTreeViewProps,

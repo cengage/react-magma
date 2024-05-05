@@ -23,7 +23,7 @@ import {
   DropdownButton,
   DropdownContent,
 } from '../..';
-import {  ButtonSize } from '../Button';
+import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
 import { TagColor } from '../Tag';
 
@@ -90,51 +90,57 @@ function setSelectedTags(items) {
 }
 
 export const Default = args => {
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [selectedItems, setSelectedItems] = React.useState([
+    { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
+    { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.1',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
+    { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
+  ]);
   const [selectedItemsTags, setSelectedItemsTags] = React.useState([]);
   const [total, setTotal] = React.useState(0);
-  
-  React.useEffect(() => {
-    setSelectedItems(args.initialSelectedItems);
-  }, []);
 
   React.useEffect(() => {
-    setTotal(selectedItems.length)
+    setTotal(selectedItems.length);
     createTags(selectedItems);
   }, [selectedItems]);
-  
 
   function onDelete(item) {
     setSelectedItems(prev => {
       const updatedItems = prev?.filter(obj => {
-        return obj.itemId !== item.itemId
+        return obj.itemId !== item.itemId;
       });
-      return updatedItems || []}
-    );
+      return updatedItems || [];
+    });
   }
 
   function createTags(items) {
     const selectedTags = items.map((i, key) => {
       return (
-      <Tag
-        key={key}
-        size={TagSize.small}
-        color={
-          i.checkedStatus === IndeterminateCheckboxStatus.checked
-            ? TagColor.primary
-            : TagColor.default
-        }
-        onDelete={() => onDelete(i)}
-      >
-        {i.itemId}
-      </Tag>
-    )});
+        <Tag
+          key={key}
+          size={TagSize.small}
+          color={
+            i.checkedStatus === IndeterminateCheckboxStatus.checked
+              ? TagColor.primary
+              : TagColor.default
+          }
+          onDelete={() => onDelete(i)}
+        >
+          {i.itemId}
+        </Tag>
+      );
+    });
 
     setSelectedItemsTags(selectedTags || <></>);
   }
 
   function onSelection(items) {
-    setSelectedItems(items)
+    setSelectedItems(items);
     createTags(items);
     setTotal(items.length || 0);
     console.log('onSelection', items);
@@ -143,7 +149,11 @@ export const Default = args => {
   return (
     <>
       <Card isInverse={args.isInverse}>
-        <TreeView {...args} onSelectedItemChange={onSelection}>
+        <TreeView
+          {...args}
+          onSelectedItemChange={onSelection}
+          preselectedItems={selectedItems}
+        >
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
               icon={<ArticleIcon />}
@@ -367,17 +377,6 @@ Default.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
   initialExpandedItems: ['pt1', 'pt1ch1'],
-  initialSelectedItems: [
-    { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
-    { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
-    { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
-    {
-      itemId: 'pt2ch5.1.1',
-      checkedStatus: IndeterminateCheckboxStatus.checked,
-    },
-    { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
-    { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
-  ],
   testId: 'default-example',
 };
 
@@ -447,7 +446,7 @@ export const NoIcons = args => {
 
 NoIcons.args = {
   initialExpandedItems: ['home', 'storage'],
-  initialSelectedItems: [
+  preselectedItems: [
     { itemId: 'storage-2', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
 };
@@ -704,8 +703,8 @@ export const FirstItemLeaf = args => {
 
 FirstItemLeaf.args = {
   initialExpandedItems: ['item1', 'item2', 'item-child2'],
-  initialSelectedItems: [
-    { itemId: 'item6', checkedStatus: IndeterminateCheckboxStatus.checked },
+  preselectedItems: [
+    { itemId: 'item3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
 };
 
@@ -777,7 +776,6 @@ Flat.args = {
 
 Flat.parameters = { controls: { exclude: ['isInverse'] } };
 
-
 const initialAnimalItems = [
   {
     itemId: 'Labrador Retriever',
@@ -787,58 +785,66 @@ const initialAnimalItems = [
     itemId: 'Dogs',
     checkedStatus: IndeterminateCheckboxStatus.indeterminate,
   },
+  // {
+  //   itemId: 'Mammals',
+  //   checkedStatus: IndeterminateCheckboxStatus.checked,
+  // },
+  // {
+  //   itemId: 'Dogs',
+  //   checkedStatus: IndeterminateCheckboxStatus.checked,
+  // },
+  // {
+  //   itemId: 'Cats',
+  //   checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+  // },
   {
-    itemId: 'Mammals',
-    checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+    itemId: 'Siamese',
+    checkedStatus: IndeterminateCheckboxStatus.checked,
   },
 ];
 
-export const Animals = (args) => {
-  const [selectedItems, setSelectedItems] = React.useState([]);
+export const Animals = args => {
+  const [selectedItems, setSelectedItems] = React.useState(initialAnimalItems);
   const [selectedItemsTags, setSelectedItemsTags] = React.useState([]);
   const [total, setTotal] = React.useState(0);
-  
-  React.useEffect(() => {
-    setSelectedItems(args.initialSelectedItems);
-  }, []);
 
   React.useEffect(() => {
-    setTotal(selectedItems.length)
+    setTotal(selectedItems.length);
     createTags(selectedItems);
   }, [selectedItems]);
-  
 
   function onDelete(item) {
     setSelectedItems(prev => {
       const updatedItems = prev?.filter(obj => {
-        return obj.itemId !== item.itemId
+        return obj.itemId !== item.itemId;
       });
-      return updatedItems || []}
-    );
+      return updatedItems || [];
+    });
   }
 
   function createTags(items) {
     const selectedTags = items.map((i, key) => {
       return (
-      <Tag
-        key={key}
-        size={TagSize.small}
-        color={
-          i.checkedStatus === IndeterminateCheckboxStatus.checked
-            ? TagColor.primary
-            : TagColor.default
-        }
-        onDelete={() => onDelete(i)}
-      >
-        {i.itemId}
-      </Tag>
-    )});
+        <Tag
+          key={key}
+          size={TagSize.small}
+          color={
+            i.checkedStatus === IndeterminateCheckboxStatus.checked
+              ? TagColor.primary
+              : TagColor.default
+          }
+          onDelete={() => onDelete(i)}
+        >
+          {i.itemId}
+        </Tag>
+      );
+    });
 
     setSelectedItemsTags(selectedTags || <></>);
   }
 
   function onSelection(items) {
-    setSelectedItems(items)
+    setSelectedItems(items);
     createTags(items);
     setTotal(items.length || 0);
     console.log('onSelection', items);
@@ -849,21 +855,21 @@ export const Animals = (args) => {
       <TreeView
         {...args}
         onSelectedItemChange={onSelection}
-        selection={selectedItems}
+        preselectedItems={selectedItems}
       >
         <TreeItem label="Mammals" itemId="Mammals">
           <TreeItem label="Dogs" itemId="Dogs">
             <TreeItem label="German Shepherd" itemId="German Shepherd" />
             <TreeItem label="Labrador Retriever" itemId="Labrador Retriever" />
-            <TreeItem label="American Bully" itemId="American Bully" />
+            {/* <TreeItem label="American Bully" itemId="American Bully" /> */}
           </TreeItem>
           <TreeItem label="Cats" itemId="Cats">
             <TreeItem label="Siamese" itemId="Siamese" />
-            <TreeItem label="Persian" itemId="Persian" />
-            <TreeItem label="Bengal" itemId="Bengal" />
+            {/* <TreeItem label="Persian" itemId="Persian" /> */}
+            {/* <TreeItem label="Bengal" itemId="Bengal" /> */}
           </TreeItem>
         </TreeItem>
-        <TreeItem label="Birds" itemId="Birds">
+        {/* <TreeItem label="Birds" itemId="Birds">
           <TreeItem label="Parrots" itemId="Parrots">
             <TreeItem label="African Grey" itemId="African Grey" />
             <TreeItem label="Cockatiel" itemId="Cockatiel" />
@@ -874,8 +880,8 @@ export const Animals = (args) => {
             <TreeItem label="Hawks" itemId="Hawks" />
             <TreeItem label="Falcons" itemId="Falcons" />
           </TreeItem>
-        </TreeItem>
-        <TreeItem label="Amphibians" itemId="Amphibians" />
+        </TreeItem>*/}
+        <TreeItem label="Amphibians" itemId="Amphibians" /> 
       </TreeView>
       <>
         <p>{total} total</p>
@@ -886,24 +892,9 @@ export const Animals = (args) => {
 };
 
 Animals.args = {
-  ariaLabel: 'initial-selected-treeview',
+  ariaLabel: 'animals-treeview',
   selectable: TreeViewSelectable.multi,
-  // initialExpandedItems: ['Mammals', 'Dogs'],
-  initialSelectedItems: initialAnimalItems,
-  // initialSelectedItems: [
-  //   {
-  //     itemId: 'Labrador Retriever',
-  //     checkedStatus: IndeterminateCheckboxStatus.checked,
-  //   },
-  //   {
-  //     itemId: 'Dogs',
-  //     checkedStatus: IndeterminateCheckboxStatus.indeterminate,
-  //   },
-  //   {
-  //     itemId: 'Mammals',
-  //     checkedStatus: IndeterminateCheckboxStatus.indeterminate,
-  //   },
-  // ],
+  initialExpandedItems: ['Mammals', 'Dogs', 'Cats'],
 };
 
 Animals.parameters = { controls: { exclude: ['isInverse'] } };
@@ -1007,7 +998,7 @@ export const InsideDropdown = args => {
 // DELETE BEFORE MERGING
 // export const UnitTest = args => {
 //   return (
-//     <TreeView selection={[
+//     <TreeView preselectedItems={[
 //       {
 //         itemId: 'item0',
 //         checkedStatus: IndeterminateCheckboxStatus.checked,
