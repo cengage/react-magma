@@ -785,18 +785,14 @@ const initialAnimalItems = [
     itemId: 'Dogs',
     checkedStatus: IndeterminateCheckboxStatus.indeterminate,
   },
-  // {
-  //   itemId: 'Mammals',
-  //   checkedStatus: IndeterminateCheckboxStatus.checked,
-  // },
-  // {
-  //   itemId: 'Dogs',
-  //   checkedStatus: IndeterminateCheckboxStatus.checked,
-  // },
-  // {
-  //   itemId: 'Cats',
-  //   checkedStatus: IndeterminateCheckboxStatus.indeterminate,
-  // },
+  {
+    itemId: 'Mammals',
+    checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+  },
+  {
+    itemId: 'Cats',
+    checkedStatus: IndeterminateCheckboxStatus.checked,
+  },
   {
     itemId: 'Siamese',
     checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -854,7 +850,7 @@ export const Animals = args => {
     <>
       <TreeView
         {...args}
-        onSelectedItemChange={onSelection}
+        // onSelectedItemChange={onSelection}
         preselectedItems={selectedItems}
       >
         <TreeItem label="Mammals" itemId="Mammals">
@@ -865,11 +861,11 @@ export const Animals = args => {
           </TreeItem>
           <TreeItem label="Cats" itemId="Cats">
             <TreeItem label="Siamese" itemId="Siamese" />
-            {/* <TreeItem label="Persian" itemId="Persian" /> */}
-            {/* <TreeItem label="Bengal" itemId="Bengal" /> */}
+            <TreeItem label="Persian" itemId="Persian" />
+            <TreeItem label="Bengal" itemId="Bengal" />
           </TreeItem>
         </TreeItem>
-        {/* <TreeItem label="Birds" itemId="Birds">
+        <TreeItem label="Birds" itemId="Birds">
           <TreeItem label="Parrots" itemId="Parrots">
             <TreeItem label="African Grey" itemId="African Grey" />
             <TreeItem label="Cockatiel" itemId="Cockatiel" />
@@ -880,8 +876,8 @@ export const Animals = args => {
             <TreeItem label="Hawks" itemId="Hawks" />
             <TreeItem label="Falcons" itemId="Falcons" />
           </TreeItem>
-        </TreeItem>*/}
-        <TreeItem label="Amphibians" itemId="Amphibians" /> 
+        </TreeItem>
+        <TreeItem label="Amphibians" itemId="Amphibians" />
       </TreeView>
       <>
         <p>{total} total</p>
@@ -894,7 +890,7 @@ export const Animals = args => {
 Animals.args = {
   ariaLabel: 'animals-treeview',
   selectable: TreeViewSelectable.multi,
-  initialExpandedItems: ['Mammals', 'Dogs', 'Cats'],
+  initialExpandedItems: ['Mammals', 'Dogs'],
 };
 
 Animals.parameters = { controls: { exclude: ['isInverse'] } };
@@ -995,44 +991,45 @@ export const InsideDropdown = args => {
   );
 };
 
-// DELETE BEFORE MERGING
-// export const UnitTest = args => {
-//   return (
-//     <TreeView preselectedItems={[
-//       {
-//         itemId: 'item0',
-//         checkedStatus: IndeterminateCheckboxStatus.checked,
-//       },
-//       {
-//         itemId: 'item1',
-//         checkedStatus: IndeterminateCheckboxStatus.checked,
-//       },
-//       {
-//         itemId: 'item2',
-//         checkedStatus: IndeterminateCheckboxStatus.checked,
-//       },
-//     ]}
-//     // initialExpandedItems={['item1']}
-//     selectable={TreeViewSelectable.multi}>
-//     <TreeItem label="Node 0" itemId="item0" testId="item0" />
-//     <TreeItem label="Node 1" itemId="item1" testId="item1">
-//       <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
-//     </TreeItem>
-//     <TreeItem label="Node 2" itemId="item2" testId="item2">
-//       <TreeItem
-//         label="Child 2.1"
-//         itemId="item-child2.1"
-//         testId="item-child2.1"
-//       />
-//       <TreeItem
-//         label="Child 2.2"
-//         itemId="item-child2.2"
-//         testId="item-child2.2"
-//       />
-//     </TreeItem>
-//     <TreeItem label="Node 3" itemId="item3" testId="item3">
-//       <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
-//     </TreeItem>
-//   </TreeView>
-//   )
-// }
+export const UnitTest = args => {
+  return (
+    <TreeView
+      preselectedItems={[
+        {
+          itemId: 'item0',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]}
+      initialExpandedItems={['item1', 'item2']}
+      selectable={TreeViewSelectable.multi}
+    >
+      <TreeItem label="Node 0" itemId="item0" testId="item0" />
+      <TreeItem label="Node 1" itemId="item1" testId="item1">
+        <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
+      </TreeItem>
+      <TreeItem label="Node 2" itemId="item2" testId="item2">
+        <TreeItem
+          label="Child 2.1"
+          itemId="item-child2.1"
+          testId="item-child2.1"
+        />
+        <TreeItem
+          label="Child 2.2"
+          itemId="item-child2.2"
+          testId="item-child2.2"
+        />
+      </TreeItem>
+      <TreeItem label="Node 3" itemId="item3" testId="item3">
+        <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
+      </TreeItem>
+    </TreeView>
+  );
+};
