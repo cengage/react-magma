@@ -10,7 +10,8 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
       extensions: ['*', '.mjs', '.js', '.json'],
       alias: {
         path: require.resolve('path-browserify'),
-      },
+        assert: require.resolve("assert"),
+      }
     },
     module: {
       rules: [
