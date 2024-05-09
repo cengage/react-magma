@@ -323,7 +323,7 @@ Default.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
   initialExpandedItems: ['pt1', 'pt1ch1'],
-  initialSelectedItems: [
+  preselectedItems: [
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
     { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
@@ -421,7 +421,7 @@ export const NoIcons = args => {
 
 NoIcons.args = {
   initialExpandedItems: ['home', 'storage'],
-  initialSelectedItems: [
+  preselectedItems: [
     { itemId: 'storage-2', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
 };
@@ -746,7 +746,7 @@ export const FirstItemLeaf = args => {
 
 FirstItemLeaf.args = {
   initialExpandedItems: ['item1', 'item2', 'item-child2'],
-  initialSelectedItems: [
+  preselectedItems: [
     { itemId: 'item6', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
 };
@@ -853,7 +853,7 @@ export const UnitTest = args => {
         onSelectedItemChange={onSelection}
         selectable={TreeViewSelectable.multi}
         // initialExpandedItems={['item2', 'item-child2.1',]}
-        // initialSelectedItems={[
+        // preselectedItems={[
         //   {
         //     itemId: 'item-ggchild3',
         //     checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -910,7 +910,7 @@ export const UnitTest = args => {
       <TreeView
         testId={'tree-view'}
         onSelectedItemChange={onSelection}
-        initialSelectedItems={[
+        preselectedItems={[
           {
             itemId: 'item-child1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -967,34 +967,38 @@ export const UnitTest = args => {
   );
 };
 
-export const Animals = () => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
-  const [total, setTotal] = React.useState(null);
+export const Animals = (args) => {
+  const [selectedItems, setSelectedItems] = React.useState([
+    { itemId: 'Dogs', checkedStatus: IndeterminateCheckboxStatus.checked },
+  ]);
+  const [selectedItemsTags, setSelectedItemsTags] = React.useState([]);
+  const [total, setTotal] = React.useState(0);
+
+
+function createTags(items) {
+  const selectedTags = items.map((i, key) => {
+    return (
+      <Tag
+        key={key}
+        size={TagSize.small}
+        color={
+          i.checkedStatus === IndeterminateCheckboxStatus.checked
+            ? TagColor.primary
+            : TagColor.default
+        }
+      >
+        {i.itemId}
+      </Tag>
+    );
+  });
+  setSelectedItemsTags(selectedTags || <></>);
+}
 
   function onSelection(items) {
-    const selected = items
-      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
-      .map((i, key) => (
-        <Tag key={key} size={TagSize.small} color={TagColor.primary}>
-          {i.itemId}
-        </Tag>
-      ));
-
-    const indet = items
-      .filter(
-        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
-      )
-      .map((i, key) => (
-        <Tag key={key} size={TagSize.small} color={TagColor.default}>
-          {i.itemId}
-        </Tag>
-      ));
-
-    setSelectedItems(selected);
-    setIndeterminateItems(indet);
-    setTotal(items.length);
-    console.log('onSelection event:', items);
+    setSelectedItems(items);
+    createTags(items);
+    setTotal(items.length || 0);
+    console.log('onSelection', items);
   }
 
   return (
@@ -1002,20 +1006,7 @@ export const Animals = () => {
       <TreeView
         ariaLabel="initial-selected-treeview"
         selectable={TreeViewSelectable.multi}
-        initialSelectedItems={[
-          {
-            itemId: 'Labrador Retriever',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'Dogs',
-            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
-          },
-          {
-            itemId: 'Mammals',
-            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
-          },
-        ]}
+        preselectedItems={selectedItems}
         onSelectedItemChange={onSelection}
       >
         <TreeItem label="Mammals" itemId="Mammals">
@@ -1046,8 +1037,7 @@ export const Animals = () => {
       </TreeView>
       <>
         <p>{total} total</p>
-        <p>Selected: {selectedItems}</p>
-        <p>Indeterminate: {indeterminateItems}</p>
+        <p>Selected: {selectedItemsTags}</p>
       </>
     </>
   );
