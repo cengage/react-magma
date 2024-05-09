@@ -34,15 +34,16 @@
     "react-magma-icons": "^3.0.0"
   },
   "dependencies": {
+    "@carbon/charts-react": "^1.15.7",
+    "assert": "1.5.0",
+    "d3": "^7.9.0",
+    "d3-cloud": "^1.2.7",
+    "d3-sankey": "^0.12.3",
     "victory": "^35.4.12"
   },
   "devDependencies": {
-    "@carbon/charts": "1.7.1",
-    "@carbon/charts-react": "1.7.1",
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
-    "d3": "^7.0.0",
-    "dom-to-image-more": "3.1.4",
     "identity-obj-proxy": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

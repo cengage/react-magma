@@ -2,6 +2,12 @@ import React from 'react';
 import { CarbonChart, CarbonChartType } from '.';
 import { render } from '@testing-library/react';
 
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}))
+
 const TEXT = 'Vertical simple bar (discrete)';
 const dataSet = [
   {
