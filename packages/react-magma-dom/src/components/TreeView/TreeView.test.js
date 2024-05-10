@@ -340,7 +340,30 @@ describe('TreeView', () => {
         expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
       });
 
-      it('and preselectedItems is set to one item, that TreeItem is selected', () => {
+      it('and preselectedItems is set to one leaf item, that TreeItem alone is selected', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            preselectedItems: [
+              {
+                itemId: 'item0',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ],
+            selectable: TreeViewSelectable.multi,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+      });
+
+      it('and preselectedItems is set to one branch item, that TreeItem is selected along with its children', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             preselectedItems: [
@@ -361,6 +384,11 @@ describe('TreeView', () => {
         expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+
+        userEvent.click(getByTestId('item2-expand'));
+
+        expect(getByTestId('item-child2.1')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item-child2.2')).toHaveAttribute('aria-checked', 'true');
       });
 
       it('and preselectedItems is set to multiple items, all those TreeItems are selected', () => {
@@ -393,6 +421,9 @@ describe('TreeView', () => {
         );
         expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'true');
         expect(getByTestId('item-child2.1')).toHaveAttribute(
+          'aria-checked',
+          'true'
+        );        expect(getByTestId('item-child2.2')).toHaveAttribute(
           'aria-checked',
           'true'
         );
@@ -494,11 +525,11 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'item-child1',
+            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'item2',
+            itemId: 'item-child1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);

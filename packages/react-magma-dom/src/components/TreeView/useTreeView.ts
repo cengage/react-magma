@@ -63,7 +63,7 @@ export function useTreeView(props: UseTreeViewProps) {
     preselectedItems,
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [selectedItems, setSelectedItems] = React.useState(preselectedItems || []);
 
   const [preselectedItemsNeedUpdate, setPreselectedItemsNeedUpdate] =
     React.useState(false);
