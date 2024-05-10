@@ -26,11 +26,20 @@ import {
   getUpdatedSelectedItems,
   findCommonItems,
   areArraysEqual,
+  arrayIncludesId,
+  filterSelectedItems,
   findChildByItemId,
-  getChildrenItemIdsInTree,
+  findCommonItems,
+  getAllChildrenEnabled,
   getAllParentIds,
-  getChildrenItemIdsFlat,
   getCheckedStatus,
+  getChildrenCheckedStatus,
+  getChildrenItemIds,
+  getChildrenItemIdsFlat,
+  getChildrenItemIdsInTree,
+  getMissingChildrenIds,
+  getUniqueSelectedItemsArray,
+  getUpdatedSelectedItems,
 } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -220,6 +229,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         return;
       }
     });
+
 
     if (!isDisabled && ownRef.current !== null) {
       registerTreeItem(treeItemRefArray, ownRef);
