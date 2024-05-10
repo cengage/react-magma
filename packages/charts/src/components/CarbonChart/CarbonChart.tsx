@@ -9,7 +9,6 @@ import {
 import { transparentize } from 'polished';
 
 import styled, { CreateStyled } from '@emotion/styled';
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 import {
   AreaChart,
@@ -23,9 +22,9 @@ import {
   StackedBarChart,
 } from '@carbon/charts-react';
 
-import '@carbon/styles/css/styles.css';
-import '@carbon/charts/styles.css';
+import '@carbon/charts-react/styles.css';
 // import { add } from 'lodash';
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export enum CarbonChartType {
   area = 'area',
@@ -479,7 +478,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
       uniqueGroups.forEach((group, i) => {
         if (uniqueGroups.length <= theme.chartColors.length) {
-          return (scaleColorsObj[group || 'null'] = isInverse
+          return (scaleColorsObj[group || 'null' as any] = isInverse
             ? theme.chartColorsInverse[i]
             : theme.chartColors[i]);
         }
@@ -502,7 +501,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       },
     };
 
-    const ChartType = allCharts[type];
+    const ChartType = allCharts[type] as any;
 
     //Adding aria-label to main SVG container
     React.useEffect(() => {
