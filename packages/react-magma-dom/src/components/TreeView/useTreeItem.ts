@@ -212,6 +212,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
     });
 
+
     if (!isDisabled && ownRef.current !== null) {
       registerTreeItem(treeItemRefArray, ownRef);
     }
