@@ -365,7 +365,7 @@ export const Complex = args => {
               }
               itemId="pt3ch11"
             />
-          </TreeItem> */}
+          </TreeItem>
         </TreeView>
       </Card>
       <br />
