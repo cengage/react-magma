@@ -62,6 +62,12 @@
 
 ## 4.3.0
 
+## 4.4.0-next.18
+
+### Minor Changes
+
+- c4044956a: feat(TreeView): Refactor prop names
+
 ## 4.4.0-next.17
 
 ### Patch Changes
