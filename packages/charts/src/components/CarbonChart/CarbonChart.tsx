@@ -22,7 +22,7 @@ import {
   StackedBarChart,
 } from '@carbon/charts-react';
 
-import '@carbon/charts-react/styles.css';
+import '@carbon/charts/styles.css';
 // import { add } from 'lodash';
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
