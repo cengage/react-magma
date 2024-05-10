@@ -1,28 +1,28 @@
 import * as React from 'react';
 import { IconProps } from 'react-magma-icons';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
-import { TreeViewSelectable } from './useTreeView';
 import { TreeItem } from './TreeItem';
 import { TreeViewContext } from './TreeViewContext';
-import { useGenerateId, useForkedRef } from '../../utils';
+import { TreeViewSelectable } from './useTreeView';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
+import { useGenerateId, useForkedRef } from '../../utils';
 import {
-  getChildrenItemIds,
-  getAllChildrenEnabled,
-  filterSelectedItems,
-  getMissingChildrenIds,
-  getChildrenCheckedStatus,
   // getEnabledTreeItemChildrenLength,
-  getUniqueSelectedItemsArray,
-  arrayIncludesId,
-  getUpdatedSelectedItems,
-  findCommonItems,
   areArraysEqual,
+  arrayIncludesId,
+  filterSelectedItems,
   findChildByItemId,
-  getChildrenItemIdsInTree,
+  findCommonItems,
+  getAllChildrenEnabled,
   getAllParentIds,
-  getChildrenItemIdsFlat,
   getCheckedStatus,
+  getChildrenCheckedStatus,
+  getChildrenItemIds,
+  getChildrenItemIdsFlat,
+  getChildrenItemIdsInTree,
+  getMissingChildrenIds,
+  getUniqueSelectedItemsArray,
+  getUpdatedSelectedItems,
 } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
@@ -115,15 +115,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const {
     initialExpandedItems,
-    initialSelectedItems,
     registerTreeItem,
     selectable,
     selectedItems,
     setHasIcons,
     setSelectedItems,
     treeItemRefArray,
-    initialSelectedItemsNeedUpdate,
-    setInitialSelectedItemsNeedUpdate,
+    preselectedItemsNeedUpdate,
+    setPreselectedItemsNeedUpdate,
     initialExpandedItemsNeedUpdate,
     setSelectedItemsChanged,
     selectedItemsChanged,
@@ -171,6 +170,16 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         const newStatus = item?.checkedStatus;
 
         if (checkedStatus !== newStatus) {
+          const childrenOfItemId = getChildrenItemIds(
+            treeItemChildren,
+            IndeterminateCheckboxStatus.checked
+          );
+
+          const itemIdChildrenInTree = getChildrenItemIdsInTree(treeItemChildren);
+          const parentIds = itemId && itemIdChildrenInTree.length > 0 ? getAllParentIds(itemIdChildrenInTree, itemId) : [];
+
+          const additionalItems = parentIds && hasOwnTreeItems && newStatus === IndeterminateCheckboxStatus.checked ? [...childrenOfItemId, ...parentIds] : [];
+
           setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
           setCheckedStatus(item?.checkedStatus);
 
@@ -181,13 +190,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             return getUniqueSelectedItemsArray(
               [{ itemId: itemId, checkedStatus: newStatus }],
               prev,
-              []
+              additionalItems,
             );
           });
         }
         return;
       }
     });
+
 
     if (!isDisabled && ownRef.current !== null) {
       registerTreeItem(treeItemRefArray, ownRef);
@@ -217,10 +227,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }
 
   React.useEffect(() => {
-    if (initialSelectedItemsNeedUpdate) {
+    if (preselectedItemsNeedUpdate) {
       updateInitialSelected();
     }
-  }, [initialSelectedItemsNeedUpdate]);
+  }, [preselectedItemsNeedUpdate]);
 
   React.useEffect(() => {
     if (initialExpandedItemsNeedUpdate) {
@@ -245,29 +255,29 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const updateStatusForItem = (
     childrenItemIds,
-    initialSelectedChildrenItems,
+    preselectedChildrenItems,
     itemId,
     itemIdChildren
   ) => {
-    const item = initialSelectedChildrenItems.find(
+    const item = preselectedChildrenItems.find(
       child => child.itemId === itemId
     );
 
-    const parentStatus =
+    const itemStatus =
       item?.checkedStatus ||
-      areArraysEqual(initialSelectedChildrenItems, childrenItemIds)
+      areArraysEqual(preselectedChildrenItems, childrenItemIds)
         ? IndeterminateCheckboxStatus.checked
         : IndeterminateCheckboxStatus.indeterminate;
 
     setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
-    setCheckedStatus(parentStatus);
-    updateParentCheckStatus(index, parentStatus);
+    setCheckedStatus(itemStatus);
+    updateParentCheckStatus(index, itemStatus);
 
     if (!item) {
       setSelectedItems(prev => {
-        return getUniqueSelectedItemsArray(
-          [{ itemId: itemId, checkedStatus: parentStatus }],
-          initialSelectedChildrenItems,
+       return getUniqueSelectedItemsArray(
+          [{ itemId: itemId, checkedStatus: itemStatus }],
+          preselectedChildrenItems,
           prev
         );
       });
@@ -290,7 +300,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
       setSelectedItems(prev => {
         return getUniqueSelectedItemsArray(
-          [{ itemId: itemId, checkedStatus: parentStatus }],
+          [{ itemId: itemId, checkedStatus: itemStatus }],
           newChildren,
           prev
         );
@@ -315,9 +325,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   const updateInitialSelected = () => {
-    if (selectable === TreeViewSelectable.single && initialSelectedItems) {
+    if (selectable === TreeViewSelectable.single && selectedItems) {
       if (
-        initialSelectedItems?.[0]?.itemId === itemId &&
+        selectedItems?.[0]?.itemId === itemId &&
         !isDisabled &&
         selectedItems.length === 0
       ) {
@@ -329,23 +339,23 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
     } else if (
       selectable === TreeViewSelectable.multi &&
-      initialSelectedItems
+      selectedItems
     ) {
-      const item = initialSelectedItems.find(obj => obj.itemId === itemId);
+      const item = selectedItems.find(obj => obj.itemId === itemId);
       const status = item?.checkedStatus;
       const childrenItemIds = getChildrenItemIds(
         treeItemChildren,
         status || IndeterminateCheckboxStatus.checked
       );
-      // Items from initialSelectedItems that are children
-      const initialSelectedChildrenItems = findCommonItems(
+      // Items from selectedItems that are children
+      const preselectedChildrenItems = findCommonItems(
         childrenItemIds,
-        initialSelectedItems
+        selectedItems
       );
 
       if (
         !isDisabled &&
-        (arrayIncludesId(initialSelectedItems, itemId) ||
+        (arrayIncludesId(selectedItems, itemId) ||
           childrenItemIds?.includes(itemId))
       ) {
         setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
@@ -365,20 +375,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         setSelectedItems(prev => {
           const allItems = getUniqueSelectedItemsArray(
             childrenItemIds,
-            initialSelectedItems,
+            selectedItems,
             prev
           );
           return allItems;
         });
-      } else if (!isDisabled && initialSelectedChildrenItems.length > 0) {
-        // Case for initialSelectedItems that are inside a collapsed item
+        updateSelectedItemsChanged();
+      } else if (!isDisabled && preselectedChildrenItems.length > 0) {
+        // Case for selectedItems that are inside a collapsed item
         const itemIdChildren = getChildrenItemIdsInTree(treeItemChildren);
 
-        for (const i of initialSelectedChildrenItems) {
+        for (const i of preselectedChildrenItems) {
           const itemIdNode = findChildByItemId(treeItemChildren, i.itemId);
           const childrenOfItemId = getChildrenItemIds(
             itemIdNode?.props?.children,
-            status
+            IndeterminateCheckboxStatus.checked
           );
 
           const parentIds = getAllParentIds(itemIdChildren, i.itemId);
@@ -386,7 +397,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           for (const p of parentIds) {
             updateStatusForItem(
               childrenOfItemId,
-              initialSelectedChildrenItems,
+              preselectedChildrenItems,
               p,
               itemIdChildren
             );
@@ -395,14 +406,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
         updateStatusForItem(
           childrenItemIds,
-          initialSelectedChildrenItems,
+          preselectedChildrenItems,
           itemId,
           itemIdChildren
         );
       }
     }
 
-    setInitialSelectedItemsNeedUpdate(false);
+    setPreselectedItemsNeedUpdate(false);
   };
 
   React.useEffect(() => {

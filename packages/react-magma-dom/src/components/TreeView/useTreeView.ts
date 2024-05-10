@@ -10,27 +10,6 @@ export enum TreeViewSelectable {
 
 export interface UseTreeViewProps {
   /**
-   * Array list of itemIds of items that should be expanded by default.
-   * For all items expanded, provide an array with all the indexes
-   * @default [] (no items expanded)
-   */
-  initialExpandedItems?: Array<string>;
-  /**
-   * Array list of itemIds of items that should be selected by default
-   * * @default [] (no items selected)
-   */
-  initialSelectedItems?: Array<TreeItemSelectedInterface>;
-  isInverse?: boolean;
-  /**
-   * How many items can be selected in the tree view: single, multi, off
-   * @default TreeViewSelectable.single
-   */
-  selectable?: TreeViewSelectable;
-  /**
-   * @internal
-   */
-  testId?: string;
-  /**
    * Text for aria-label attribute for the tree.
    * If there is no visible name for the element you can reference, use aria-label to provide the user with a recognizable accessible name.
    * It's required to use either `ariaLabel` OR `ariaLabelledBy`.
@@ -43,15 +22,36 @@ export interface UseTreeViewProps {
    */
   ariaLabelledBy?: string;
   /**
-   * Action that fires when an item is selected
-   * Return an array of objects.
-   * Example: [ {itemId: 'item0',checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
+   * Array list of itemIds of items that should be expanded by default.
+   * For all items expanded, provide an array with all the indexes
+   * @default [] (no items expanded)
    */
-  onSelectedItemChange?: (selectedItems: Array<Object>) => void;
+  initialExpandedItems?: Array<string>;
+  isInverse?: boolean;
+  /**
+   * Array list of itemIds of items that should be selected when the component renders
+   * * @default [] (no items selected)
+   */
+  preselectedItems?: Array<TreeItemSelectedInterface>;
+  /**
+   * How many items can be selected in the tree view: single, multi, off
+   * @default TreeViewSelectable.single
+   */
+  selectable?: TreeViewSelectable;
+  /**
+   * @internal
+   */
+  testId?: string;
   /**
    * Action that fires when an item is expanded or collapsed
    */
   onExpandedChange?: (event: React.SyntheticEvent) => void;
+  /**
+   * Action that fires when an item is selected
+   * Return an array of objects.
+   * Example: [ {itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
+   */
+  onSelectedItemChange?: (selectedItems: Array<Object>) => void;
 }
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -60,17 +60,27 @@ export function useTreeView(props: UseTreeViewProps) {
     onSelectedItemChange,
     onExpandedChange,
     initialExpandedItems,
-    initialSelectedItems,
+    preselectedItems,
   } = props;
   const [hasIcons, setHasIcons] = React.useState(false);
-  const [selectedItems, setSelectedItems] = React.useState([]);
-  const [initialSelectedItemsNeedUpdate, setInitialSelectedItemsNeedUpdate] =
+  const [selectedItems, setSelectedItems] = React.useState(preselectedItems || []);
+
+  const [preselectedItemsNeedUpdate, setPreselectedItemsNeedUpdate] =
     React.useState(false);
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);
   const [selectedItemsChanged, setSelectedItemsChanged] = React.useState(false);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
+
+  React.useEffect(() => {
+    if (selectable !== TreeViewSelectable.off && preselectedItems) {
+      setPreselectedItemsNeedUpdate(true);
+    }
+    if (initialExpandedItems) {
+      setInitialExpandedItemsNeedUpdate(true);
+    }
+  }, []);
 
   React.useEffect(() => {
     if (selectable !== TreeViewSelectable.off && selectedItemsChanged) {
@@ -82,15 +92,6 @@ export function useTreeView(props: UseTreeViewProps) {
     }
   }, [selectedItemsChanged]);
 
-  React.useEffect(() => {
-    if (selectable !== TreeViewSelectable.off && initialSelectedItems) {
-      setInitialSelectedItemsNeedUpdate(true);
-    }
-    if (initialExpandedItems) {
-      setInitialExpandedItemsNeedUpdate(true);
-    }
-  }, []);
-
   const contextValue = {
     hasIcons,
     onSelectedItemChange,
@@ -100,11 +101,10 @@ export function useTreeView(props: UseTreeViewProps) {
     selectedItems,
     setSelectedItems,
     initialExpandedItems,
-    initialSelectedItems,
     treeItemRefArray,
     registerTreeItem,
-    initialSelectedItemsNeedUpdate,
-    setInitialSelectedItemsNeedUpdate,
+    preselectedItemsNeedUpdate,
+    setPreselectedItemsNeedUpdate,
     initialExpandedItemsNeedUpdate,
     setInitialExpandedItemsNeedUpdate,
     selectedItemsChanged,
