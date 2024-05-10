@@ -207,12 +207,12 @@ describe('TreeView', () => {
     });
   });
 
-  describe('initialSelectedItems', () => {
+  describe('preselectedItems', () => {
     describe('when set to TreeViewSelectable.off,', () => {
-      it('and initialSelectedItems is set to empty, no TreeItem is selected', () => {
+      it('and preselectedItems is set to empty, no TreeItem is selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [],
+            preselectedItems: [],
             selectable: TreeViewSelectable.off,
           })
         );
@@ -227,10 +227,10 @@ describe('TreeView', () => {
         expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
       });
 
-      it('and initialSelectedItems is set, no TreeItem is selected', () => {
+      it('and preselectedItems is set, no TreeItem is selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [
+            preselectedItems: [
               {
                 itemId: 'item2',
                 checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -252,10 +252,10 @@ describe('TreeView', () => {
     });
 
     describe('when set to TreeViewSelectable.single,', () => {
-      it('and initialSelectedItems is set to empty, no TreeItem is selected', () => {
+      it('and preselectedItems is set to empty, no TreeItem is selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [],
+            preselectedItems: [],
             selectable: TreeViewSelectable.single,
           })
         );
@@ -270,10 +270,10 @@ describe('TreeView', () => {
         expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
       });
 
-      it('and initialSelectedItems is set to one item, that TreeItem is selected', () => {
+      it('and preselectedItems is set to one item, that TreeItem is selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [
+            preselectedItems: [
               {
                 itemId: 'item2',
                 checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -293,10 +293,10 @@ describe('TreeView', () => {
         expect(getByTestId('item3')).not.toHaveAttribute('aria-checked');
       });
 
-      it('and initialSelectedItems is set to multiple items, only the first TreeItem is selected', () => {
+      it('and preselectedItems is set to multiple items, only the first TreeItem is selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [
+            preselectedItems: [
               {
                 itemId: 'item2',
                 checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -322,10 +322,10 @@ describe('TreeView', () => {
     });
 
     describe('when set to TreeViewSelectable.multi,', () => {
-      it('and initialSelectedItems is set to empty, no TreeItem is selected', () => {
+      it('and preselectedItems is set to empty, no TreeItem is selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [],
+            preselectedItems: [],
             selectable: TreeViewSelectable.multi,
           })
         );
@@ -340,10 +340,33 @@ describe('TreeView', () => {
         expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
       });
 
-      it('and initialSelectedItems is set to one item, that TreeItem is selected', () => {
+      it('and preselectedItems is set to one leaf item, that TreeItem alone is selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [
+            preselectedItems: [
+              {
+                itemId: 'item0',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ],
+            selectable: TreeViewSelectable.multi,
+          })
+        );
+        expect(getByTestId('item0')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
+
+        expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
+        expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+      });
+
+      it('and preselectedItems is set to one branch item, that TreeItem is selected along with its children', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            preselectedItems: [
               {
                 itemId: 'item2',
                 checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -361,12 +384,17 @@ describe('TreeView', () => {
         expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
+
+        userEvent.click(getByTestId('item2-expand'));
+
+        expect(getByTestId('item-child2.1')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item-child2.2')).toHaveAttribute('aria-checked', 'true');
       });
 
-      it('and initialSelectedItems is set to multiple items, all those TreeItems are selected', () => {
+      it('and preselectedItems is set to multiple items, all those TreeItems are selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [
+            preselectedItems: [
               {
                 itemId: 'item0',
                 checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -395,6 +423,9 @@ describe('TreeView', () => {
         expect(getByTestId('item-child2.1')).toHaveAttribute(
           'aria-checked',
           'true'
+        );        expect(getByTestId('item-child2.2')).toHaveAttribute(
+          'aria-checked',
+          'true'
         );
         expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
 
@@ -404,10 +435,10 @@ describe('TreeView', () => {
         expect(getByTestId('item3')).not.toHaveAttribute('aria-selected');
       });
 
-      it('and initialSelectedItems is set to multiple items at different depths, all those TreeItems are selected', () => {
+      it('and preselectedItems is set to multiple items at different depths, all those TreeItems are selected', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevel({
-            initialSelectedItems: [
+            preselectedItems: [
               {
                 itemId: 'item2',
                 checkedStatus: IndeterminateCheckboxStatus.indeterminate,
@@ -444,9 +475,9 @@ describe('TreeView', () => {
         );
       });
 
-      it('and initialSelectedItems is set to multiple items, onSelectedItemChange is called when the component loads', () => {
+      it('and preselectedItems is set to multiple items, onSelectedItemChange is called when the component loads', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId } = render(<TreeView testId={testId} initialSelectedItems={[
+        const { getByTestId } = render(<TreeView testId={testId} preselectedItems={[
           {
             itemId: 'item-child1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -494,11 +525,11 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'item-child1',
+            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'item2',
+            itemId: 'item-child1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
@@ -851,13 +882,13 @@ describe('TreeView', () => {
     });
   });
 
-  describe('initialExpandedItems and initialSelectedItems', () => {
-    it('when initialExpandedItems and initialSelectedItems are empty, no TreeItem is expanded or selected', () => {
+  describe('initialExpandedItems and preselectedItems', () => {
+    it('when initialExpandedItems and preselectedItems are empty, no TreeItem is expanded or selected', () => {
       const { getByTestId } = render(
         getTreeItemsOneLevel({
           selectable: TreeViewSelectable.multi,
           initialExpandedItems: [],
-          initialSelectedItems: [],
+          preselectedItems: [],
         })
       );
 
@@ -871,12 +902,12 @@ describe('TreeView', () => {
       expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
     });
 
-    it('when initialExpandedItems is set and initialSelectedItems is set, the items are expanded and selected', () => {
+    it('when initialExpandedItems is set and preselectedItems is set, the items are expanded and selected', () => {
       const { getByTestId } = render(
         getTreeItemsOneLevel({
           selectable: TreeViewSelectable.multi,
           initialExpandedItems: ['item2', 'item1'],
-          initialSelectedItems: [
+          preselectedItems: [
             {
               itemId: 'item2',
               checkedStatus: IndeterminateCheckboxStatus.indeterminate,

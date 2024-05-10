@@ -249,7 +249,7 @@ export function Example() {
 }
 ```
 
-## Initial Selected Items
+## Preselected Items
 
 To have a `TreeItem` selected initially, pass an array of `{itemId: 'itemId', checkedStatus: 'checked'}` objects to the `TreeView`.
 
@@ -259,7 +259,7 @@ import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <TreeView ariaLabel="initial-selected-treeview" selectable={TreeViewSelectable.multi} initialSelectedItems={[{itemId: "Birds", checkedStatus: 'checked'}, {itemId: "Amphibians", checkedStatus: 'checked'}]}>
+    <TreeView ariaLabel="preselected-treeview" selectable={TreeViewSelectable.multi} preselectedItems={[{itemId: "Birds", checkedStatus: 'checked'}, {itemId: "Amphibians", checkedStatus: 'checked'}]}>
       <TreeItem label="Mammals" itemId="Mammals">
         <TreeItem label="Dogs" itemId="Dogs">
           <TreeItem label="German Shepherd" itemId="German Shepherd"/>
