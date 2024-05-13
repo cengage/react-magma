@@ -121,7 +121,7 @@ export function Select<T>(props: SelectProps<T>) {
   const toggleButtonProps = getToggleButtonProps({
     disabled: disabled,
     onBlur,
-    onKeyDown: event => {
+    onKeyDown: (event: any) => {
       if (
         getToggleButtonProps().id === document.activeElement.id &&
         (event.key === 'Enter' || event.key === ' ')

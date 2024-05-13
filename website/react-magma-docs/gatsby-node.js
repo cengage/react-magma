@@ -9,6 +9,12 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
     resolve: {
       extensions: ['*', '.mjs', '.js', '.json'],
+      alias: {
+        path: require.resolve('path-browserify'),
+      },
+      fallback: {
+        'object.assign/polyfill': require.resolve("object.assign/polyfill.js"),
+      }
     },
     module: {
       rules: [

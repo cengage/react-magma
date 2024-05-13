@@ -258,8 +258,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
 
     onInputKeyDown &&
-    typeof onInputKeyDown === 'function' &&
-    onInputKeyDown(event);
+      typeof onInputKeyDown === 'function' &&
+      onInputKeyDown(event);
   }
 
   return (
