@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 7.0.0-next.2
+
+### Minor Changes
+
+- 1bb49bb0c: feat(CarbonCharts): Support Carbon Charts
+
 ## 7.0.0-next.1
 
 ### Patch Changes
