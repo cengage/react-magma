@@ -1,18 +1,32 @@
 ---
 pageTitle: CarbonChart API
 title: CarbonChart
+props:
+  - CarbonChartProps
 ---
 
 import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="carbonchart" type="api">
 
-<LeadParagraph>CarbonChart</LeadParagraph>
+<LeadParagraph>CarbonCharts are a wrapper for the [Carbon Design System Simple Charts](https://carbondesignsystem.com/data-visualization/simple-charts/). </LeadParagraph>
+
+We currently support the following charts:
+- AreaChart
+- StackedAreaChart
+- DonutChart
+- GroupedBarChart
+- LineChart
+- LollipopChart
+- PieChart
+- SimpleBarChart
+- StackedBarChart
 
 ## Donut Chart
 
 ```typescript
 import React from 'react';
+import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
 
 export function Example() {
@@ -60,9 +74,15 @@ export function Example() {
   };
 
   return (
-    <CarbonChart dataSet={dataSet} type={CarbonChartType.donut} options={options} />
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart dataSet={dataSet} type={CarbonChartType.donut} options={options} />
+    </Card>
   );
 }
 ```
+
+## CarbonChart Props
+
+<CarbonChartProps />
 
 </PageContent>

@@ -30,15 +30,21 @@ export enum CarbonChartType {
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
-  testId?: string;
+  dataSet: Array<Object>;
   isInverse?: boolean;
+  /**
+   * For a complete list of options, see Carbon Charts documentation
+   */
+  options: Object;
+  testId?: string;
   /**
    * @internal
    */
   theme?: ThemeInterface;
+  /**
+   * Type of Chart: area, bar, donut, line, etc.
+   */
   type: CarbonChartType;
-  dataSet: Array<Object>;
-  options: Object;
 }
 
 const CarbonChartWrapper = typedStyled.div<{
@@ -420,10 +426,12 @@ const CarbonChartWrapper = typedStyled.div<{
   }
 `;
 
-// Carbon themes (https://github.com/carbon-design-system/carbon-charts/blob/master/packages/core/src/interfaces/enums.ts#L12)
+/* Carbon themes
+https://github.com/carbon-design-system/carbon-charts/blob/master/packages/core/src/interfaces/enums.ts#L12)
+*/
 enum ChartTheme {
-  WHITE = 'white',
-  G100 = 'g100',
+  WHITE = 'white', // default
+  G100 = 'g100', // isInverse
   G90 = 'g90',
   G10 = 'g10',
 }
