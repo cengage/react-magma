@@ -1,0 +1,88 @@
+---
+pageTitle: CarbonChart API
+title: CarbonChart
+props:
+  - CarbonChartProps
+---
+
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="carbonchart" type="api">
+
+<LeadParagraph>CarbonCharts are a wrapper for the [Carbon Design System Simple Charts](https://carbondesignsystem.com/data-visualization/simple-charts/). </LeadParagraph>
+
+We currently support the following charts:
+- AreaChart
+- StackedAreaChart
+- DonutChart
+- GroupedBarChart
+- LineChart
+- LollipopChart
+- PieChart
+- SimpleBarChart
+- StackedBarChart
+
+## Donut Chart
+
+```typescript
+import React from 'react';
+import { Card } from 'react-magma-dom';
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+
+export function Example() {
+  const dataSet = [
+    {
+      group: '2V2N 9KYPM version 1',
+      value: 20000,
+    },
+    {
+      group: 'L22I P66EP L22I P66EP L22I P66EP',
+      value: 65000,
+    },
+    {
+      group: 'JQAI 2M4L1',
+      value: 75000,
+    },
+    {
+      group: 'J9DZ F37AP',
+      value: 1200,
+    },
+    {
+      group: 'YEL48 Q6XK YEL48',
+      value: 10000,
+    },
+    {
+      group: 'Misc',
+      value: 25000,
+    },
+  ];
+
+  const options = {
+    title: 'Donut',
+    resizable: true,
+    donut: {
+      center: {
+        label: 'Browsers',
+      },
+    },
+    height: '400px',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart dataSet={dataSet} type={CarbonChartType.donut} options={options} />
+    </Card>
+  );
+}
+```
+
+## CarbonChart Props
+
+<CarbonChartProps />
+
+</PageContent>
