@@ -3,9 +3,6 @@ import * as React from 'react';
 import { GlobalStyles } from '../packages/react-magma-dom/src/theme/GlobalStyles';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-import styled from '@emotion/styled';
-global._styled = styled;
-
 const withMagma = (StoryFn: Function, context: StoryContext) => {
   return (
     <div>
