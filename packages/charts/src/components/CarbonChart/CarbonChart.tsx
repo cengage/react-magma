@@ -1,15 +1,7 @@
 import * as React from 'react';
-
-import {
-  ThemeInterface,
-  ThemeContext,
-  useIsInverse,
-} from 'react-magma-dom';
-
+import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 import { transparentize } from 'polished';
-
 import styled, { CreateStyled } from '@emotion/styled';
-
 import {
   AreaChart,
   StackedAreaChart,
@@ -21,9 +13,8 @@ import {
   SimpleBarChart,
   StackedBarChart,
 } from '@carbon/charts-react';
-
 import '@carbon/charts/styles.css';
-// import { add } from 'lodash';
+
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export enum CarbonChartType {
@@ -409,7 +400,7 @@ const CarbonChartWrapper = typedStyled.div<{
     fill: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')} ;
   }
 
-  //Zoom responsive tweaks
+  // Zoom responsive tweaks
 
   @media screen and (max-width: 760px) {
     .cds--modal-container {
@@ -478,7 +469,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
       uniqueGroups.forEach((group, i) => {
         if (uniqueGroups.length <= theme.chartColors.length) {
-          return (scaleColorsObj[group || 'null' as any] = isInverse
+          return (scaleColorsObj[group || ('null' as any)] = isInverse
             ? theme.chartColorsInverse[i]
             : theme.chartColors[i]);
         }
@@ -503,20 +494,12 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const ChartType = allCharts[type] as any;
 
-    //Adding aria-label to main SVG container
+    // Adding aria-label to main SVG container
     React.useEffect(() => {
       document.querySelectorAll('.graph-frame ').forEach(div => {
         div.setAttribute('aria-label', 'Interactive chart');
       });
     });
-
-    //Overriding circle sizes
-
-    // React.useEffect(() => {
-    //   document.querySelectorAll('circle').forEach(circle => {
-    //     circle.setAttribute('r', '8');
-    //   });
-    // });
 
     return (
       <CarbonChartWrapper

@@ -23,7 +23,7 @@ export default {
 
 const Template: Story<CarbonChartProps> = args => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-    <CarbonChart {...args}>Sample text</CarbonChart>
+    <CarbonChart {...args} />
   </Card>
 );
 

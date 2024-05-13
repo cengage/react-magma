@@ -23,7 +23,7 @@ export default {
 
 const Template: Story<CarbonChartProps> = args => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-    <CarbonChart {...args}>Sample text</CarbonChart>
+    <CarbonChart {...args} />
   </Card>
 );
 
@@ -61,7 +61,6 @@ Pie.args = {
     title: 'Pie',
     resizable: true,
     height: '400px',
-    theme: 'g100',
     legend: {
       truncation: {
         type: 'none',
@@ -103,14 +102,10 @@ PieCentered.args = {
   options: {
     title: 'Pie (centered)',
     resizable: true,
-    legend: {
-      alignment: 'center',
-    },
     pie: {
       alignment: 'center',
     },
     height: '400px',
-    theme: 'g100',
     legend: {
       truncation: {
         type: 'none',
@@ -156,7 +151,6 @@ PieValueMapsToCount.args = {
       valueMapsTo: 'count',
     },
     height: '400px',
-    theme: 'g100',
     legend: {
       truncation: {
         type: 'none',
@@ -174,7 +168,6 @@ PieEmptyState.args = {
     title: 'Pie (empty state)',
     resizable: true,
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -190,6 +183,5 @@ PieSkeleton.args = {
       loading: true,
     },
     height: '400px',
-    theme: 'g100',
   },
 };

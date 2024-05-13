@@ -23,7 +23,7 @@ export default {
 
 const Template: Story<CarbonChartProps> = args => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-    <CarbonChart {...args}>Sample text</CarbonChart>
+    <CarbonChart {...args} />
   </Card>
 );
 
@@ -98,7 +98,6 @@ AreaTimeSeriesNaturalCurve.args = {
     },
     curve: 'curveNatural',
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -199,7 +198,6 @@ AreaTimeSeries.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -267,7 +265,6 @@ BoundedAreaTimeSeriesNaturalCurve.args = {
     },
     curve: 'curveNatural',
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -335,7 +332,6 @@ AreaSkeleton.args = {
       loading: true,
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -357,6 +353,5 @@ AreaEmptyState.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };

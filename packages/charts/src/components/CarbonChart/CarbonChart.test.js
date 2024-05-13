@@ -6,9 +6,8 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),
   disconnect: jest.fn(),
-}))
+}));
 
-const TEXT = 'Vertical simple bar (discrete)';
 const dataSet = [
   {
     group: 'Qty',
@@ -53,12 +52,10 @@ describe('CarbonChart', () => {
         dataSet={dataSet}
         options={chartOptions}
         type={CarbonChartType.bar}
-      >
-        {TEXT}
-      </CarbonChart>
+      />
     );
 
-    expect(getByText(TEXT)).toBeInTheDocument();
+    expect(getByText(chartOptions.title)).toBeInTheDocument();
   });
 
   it('should find element by testId', () => {
@@ -69,9 +66,7 @@ describe('CarbonChart', () => {
         dataSet={dataSet}
         options={chartOptions}
         type={CarbonChartType.bar}
-      >
-        {TEXT}
-      </CarbonChart>
+      />
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();

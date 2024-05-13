@@ -23,7 +23,7 @@ export default {
 
 const Template: Story<CarbonChartProps> = args => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-    <CarbonChart {...args}>Sample text</CarbonChart>
+    <CarbonChart {...args} />
   </Card>
 );
 
@@ -146,7 +146,6 @@ VerticalStackedBarDiscrete.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -269,7 +268,6 @@ VerticalStackedBarDivergent.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -392,7 +390,6 @@ VerticalStackedBarTimeSeries.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -515,7 +512,6 @@ VerticalStackedBarShortIntervalTimeSeries.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -533,7 +529,6 @@ VerticalStackedBarEmptyState.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 export const VerticalStackedBarSkeleton = Template.bind({});
@@ -553,7 +548,6 @@ VerticalStackedBarSkeleton.args = {
       loading: true,
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -676,7 +670,6 @@ HorizontalStackedBarDiscrete.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -799,7 +792,6 @@ HorizontalStackedBarTimeSeries.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -817,7 +809,6 @@ HorizontalStackedBarEmptyState.args = {
       bottom: {},
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -838,6 +829,5 @@ HorizontalStackedBarSkeleton.args = {
       loading: true,
     },
     height: '400px',
-    theme: 'g100',
   },
 };

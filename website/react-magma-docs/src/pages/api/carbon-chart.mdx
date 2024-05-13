@@ -9,7 +9,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 <LeadParagraph>CarbonChart</LeadParagraph>
 
-## Basic Usage
+## Donut Chart
 
 ```typescript
 import React from 'react';
@@ -18,20 +18,49 @@ import { CarbonChart, CarbonChartType } from '@react-magma/charts';
 export function Example() {
   const dataSet = [
     {
-      group: 'Dataset 1',
-      date: '2019-01-01T05:00:00.000Z',
-      value: 0,
+      group: '2V2N 9KYPM version 1',
+      value: 20000,
     },
     {
-      group: 'Dataset 2',
-      date: '2019-01-01T05:00:00.000Z',
-      value: 47263,
+      group: 'L22I P66EP L22I P66EP L22I P66EP',
+      value: 65000,
+    },
+    {
+      group: 'JQAI 2M4L1',
+      value: 75000,
+    },
+    {
+      group: 'J9DZ F37AP',
+      value: 1200,
+    },
+    {
+      group: 'YEL48 Q6XK YEL48',
+      value: 10000,
+    },
+    {
+      group: 'Misc',
+      value: 25000,
     },
   ];
+
+  const options = {
+    title: 'Donut',
+    resizable: true,
+    donut: {
+      center: {
+        label: 'Browsers',
+      },
+    },
+    height: '400px',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
+  };
+
   return (
-    <CarbonChart dataSet={dataSet} type={CarbonChartType.area}>
-      CarbonChart content
-    </CarbonChart>
+    <CarbonChart dataSet={dataSet} type={CarbonChartType.donut} options={options} />
   );
 }
 ```

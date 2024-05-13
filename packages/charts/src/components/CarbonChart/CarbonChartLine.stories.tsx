@@ -23,7 +23,7 @@ export default {
 
 const Template: Story<CarbonChartProps> = args => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-    <CarbonChart {...args}>Sample text</CarbonChart>
+    <CarbonChart {...args} />
   </Card>
 );
 
@@ -150,7 +150,6 @@ LineDiscrete.args = {
       },
     },
     height: '400px',
-    // theme: 'g100',
   },
 };
 
@@ -296,7 +295,6 @@ LineTimeSeries.args = {
     },
     curve: 'curveMonotoneX',
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -522,7 +520,6 @@ LineDenseTimeSeries.args = {
     },
     curve: 'curveMonotoneX',
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -622,7 +619,6 @@ LineLineDualDualAxes.args = {
     },
     curve: 'curveMonotoneX',
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -647,7 +643,6 @@ LineEmptyState.args = {
     },
     curve: 'curveMonotoneX',
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -675,6 +670,5 @@ LineSkeleton.args = {
       loading: true,
     },
     height: '400px',
-    theme: 'g100',
   },
 };

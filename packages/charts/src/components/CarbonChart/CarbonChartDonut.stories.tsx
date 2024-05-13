@@ -66,7 +66,6 @@ Donut.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
     legend: {
       truncation: {
         type: 'none',
@@ -121,7 +120,6 @@ DonutCentered.args = {
       alignment: 'center',
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 
@@ -162,7 +160,6 @@ DonutValueMapsToCount.args = {
       valueMapsTo: 'count',
     },
     height: '400px',
-    theme: 'g100',
     legend: {
       truncation: {
         type: 'none',
@@ -184,7 +181,6 @@ DonutEmptyState.args = {
       },
     },
     height: '400px',
-    theme: 'g100',
   },
 };
 export const DonutSkeleton = Template.bind({});
@@ -204,6 +200,5 @@ DonutSkeleton.args = {
       loading: true,
     },
     height: '400px',
-    theme: 'g100',
   },
 };
