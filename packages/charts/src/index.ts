@@ -1,2 +1,6 @@
 export * from './components/LineChart';
-export * from './components/CarbonChart';
+export {
+  CarbonChart,
+  CarbonChartProps,
+  CarbonChartType,
+} from './components/CarbonChart';
