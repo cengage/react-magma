@@ -175,29 +175,39 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             IndeterminateCheckboxStatus.checked
           );
 
-          const itemIdChildrenInTree = getChildrenItemIdsInTree(treeItemChildren);
-          const parentIds = itemId && itemIdChildrenInTree.length > 0 ? getAllParentIds(itemIdChildrenInTree, itemId) : [];
+          const itemIdChildrenInTree =
+            getChildrenItemIdsInTree(treeItemChildren);
+          const parentIds =
+            itemId && itemIdChildrenInTree.length > 0
+              ? getAllParentIds(itemIdChildrenInTree, itemId)
+              : [];
 
-          const additionalItems = parentIds && hasOwnTreeItems && newStatus === IndeterminateCheckboxStatus.checked ? [...childrenOfItemId, ...parentIds] : [];
+          const additionalItems =
+            parentIds &&
+            hasOwnTreeItems &&
+            newStatus === IndeterminateCheckboxStatus.checked
+              ? [...childrenOfItemId, ...parentIds]
+              : [];
 
           setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
           setCheckedStatus(item?.checkedStatus);
 
-          // Pass "true" as isInitialRender value to skip sending an "onSelection" event
-          // Required since this useEffect handles initial rendering of the item
-          updateParentCheckStatus(index, newStatus, true);
+          if (selectable === TreeViewSelectable.multi) {
+            // Pass "true" as isInitialRender value to skip sending an "onSelection" event
+            // Required since this useEffect handles initial rendering of the item
+            updateParentCheckStatus(index, newStatus, true);
+          }
           setSelectedItems(prev => {
             return getUniqueSelectedItemsArray(
               [{ itemId: itemId, checkedStatus: newStatus }],
               prev,
-              additionalItems,
+              additionalItems
             );
           });
         }
         return;
       }
     });
-
 
     if (!isDisabled && ownRef.current !== null) {
       registerTreeItem(treeItemRefArray, ownRef);
@@ -275,7 +285,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     if (!item) {
       setSelectedItems(prev => {
-       return getUniqueSelectedItemsArray(
+        return getUniqueSelectedItemsArray(
           [{ itemId: itemId, checkedStatus: itemStatus }],
           preselectedChildrenItems,
           prev
@@ -326,21 +336,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const updateInitialSelected = () => {
     if (selectable === TreeViewSelectable.single && selectedItems) {
-      if (
-        selectedItems?.[0]?.itemId === itemId &&
-        !isDisabled &&
-        selectedItems.length === 0
-      ) {
-        setSelectedItems([
-          { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
-        ]);
-
+      const firstItemId = selectedItems?.[0]?.itemId;
+      if (firstItemId && !isDisabled) {
+        setSelectedItems(prev => {
+          if (!arrayIncludesId(prev, firstItemId)) {
+            return [
+              {
+                itemId: firstItemId,
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ];
+          }
+        });
         setSelectedItemsChanged(true);
       }
-    } else if (
-      selectable === TreeViewSelectable.multi &&
-      selectedItems
-    ) {
+    } else if (selectable === TreeViewSelectable.multi && selectedItems) {
       const item = selectedItems.find(obj => obj.itemId === itemId);
       const status = item?.checkedStatus;
       const childrenItemIds = getChildrenItemIds(

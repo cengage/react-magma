@@ -286,6 +286,7 @@ export function findCommonItems(initialItemsArr, childrenItemsArr) {
   return commonItems;
 }
 
+// Compares two arrays
 export function areArraysEqual(array1, array2) {
   if (array1.length !== array2.length) {
     return false;
@@ -322,30 +323,53 @@ export function getCheckedStatus(itemId, selectedItems) {
   return null;
 }
 
-// TODO
-export function getSelectedItemsIndexes(selectedItems, treeItemChildren) {
-  const fullSelectedItems = treeItemChildren.map(child => {
-    return selectedItems.includes(child.props.itemId);
-  });
-  return fullSelectedItems;
+// Return first child that is a branch
+export function findFirstBranchNode(children) {
+  for (const item of children) {
+    if (item.props?.children && item.props?.children) {
+      return item;
+    }
+    if (item.props?.children && item.props?.children.length === 0) {
+      const childResult = findFirstBranchNode(item.props?.children);
+      if (childResult) {
+        return childResult;
+      }
+    }
+  }
+  return null;
 }
 
-// TODO
-// Return the selected item with the lowest index
-export function getLowestIndexItem(selectedItems, treeItemChildren) {
-  // const fullSelectedItems = getSelectedItemsIndexes(selectedItems, treeItemChildren);
-
-  if (selectedItems.length === 0) {
-    return null;
+// Returns the first item in the tree from the array of selected items
+export function getFirstItemInTree(arr, children) {
+  // If there's only 1 item, return that one first
+  if (arr.length === 1) {
+    return arr[0]?.itemId;
   }
+  
+  let allFoundItems = [];
+  
+  for (const item of arr) {
+    const foundItem = Array.isArray(children)
+      ? children.find(child => child.props?.itemId === item.itemId)
+      : children.props?.itemId === item.itemId;
 
-  let lowestIndexItem = selectedItems[0];
-
-  for (let i = 1; i < selectedItems.length; i++) {
-    if (selectedItems[i] < lowestIndexItem) {
-      lowestIndexItem = selectedItems[i];
+    if (foundItem) {
+      allFoundItems.push(foundItem.props?.itemId);
+    } else if (children.props?.children) {
+      const result = getFirstItemInTree(arr, children.props.children);
+      if (result) {
+        allFoundItems.push(result);
+      }
     }
   }
 
-  return lowestIndexItem;
+  // After finding all the items, return the one that comes first on the tree (top to bottom)
+  if (allFoundItems.length === 1) {
+    return allFoundItems[0];
+  } else if (allFoundItems.length > 1) {
+    for (const ch of children) {
+      return allFoundItems.find(i => i === ch.props?.itemId);
+    }
+  }
+  return null;
 }

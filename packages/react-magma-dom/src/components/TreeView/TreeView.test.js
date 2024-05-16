@@ -387,8 +387,14 @@ describe('TreeView', () => {
 
         userEvent.click(getByTestId('item2-expand'));
 
-        expect(getByTestId('item-child2.1')).toHaveAttribute('aria-checked', 'true');
-        expect(getByTestId('item-child2.2')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('item-child2.1')).toHaveAttribute(
+          'aria-checked',
+          'true'
+        );
+        expect(getByTestId('item-child2.2')).toHaveAttribute(
+          'aria-checked',
+          'true'
+        );
       });
 
       it('and preselectedItems is set to multiple items, all those TreeItems are selected', () => {
@@ -423,7 +429,8 @@ describe('TreeView', () => {
         expect(getByTestId('item-child2.1')).toHaveAttribute(
           'aria-checked',
           'true'
-        );        expect(getByTestId('item-child2.2')).toHaveAttribute(
+        );
+        expect(getByTestId('item-child2.2')).toHaveAttribute(
           'aria-checked',
           'true'
         );
@@ -477,36 +484,55 @@ describe('TreeView', () => {
 
       it('and preselectedItems is set to multiple items, onSelectedItemChange is called when the component loads', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId } = render(<TreeView testId={testId} preselectedItems={[
-          {
-            itemId: 'item-child1',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item2',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-        ]} selectable={TreeViewSelectable.multi} onSelectedItemChange={onSelectedItemChange}>
-          <TreeItem label="Node 1" itemId="item1" testId="item1">
-            <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
-            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2" />
-          </TreeItem>
-          <TreeItem label="Node 2" itemId="item2" testId="item2">
-            <TreeItem
-              label="Child 2.1"
-              itemId="item-child2.1"
-              testId="item-child2.1"
-            />
-            <TreeItem
-              label="Child 2.2"
-              itemId="item-child2.2"
-              testId="item-child2.2"
-            />
-          </TreeItem>
-          <TreeItem label="Node 3" itemId="item3" testId="item3">
-            <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
-          </TreeItem>
-        </TreeView>);
+        const { getByTestId } = render(
+          <TreeView
+            testId={testId}
+            preselectedItems={[
+              {
+                itemId: 'item-child1',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+              {
+                itemId: 'item2',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ]}
+            selectable={TreeViewSelectable.multi}
+            onSelectedItemChange={onSelectedItemChange}
+          >
+            <TreeItem label="Node 1" itemId="item1" testId="item1">
+              <TreeItem
+                label="Child 1"
+                itemId="item-child1"
+                testId="item-child1"
+              />
+              <TreeItem
+                label="Child 2"
+                itemId="item-child2"
+                testId="item-child2"
+              />
+            </TreeItem>
+            <TreeItem label="Node 2" itemId="item2" testId="item2">
+              <TreeItem
+                label="Child 2.1"
+                itemId="item-child2.1"
+                testId="item-child2.1"
+              />
+              <TreeItem
+                label="Child 2.2"
+                itemId="item-child2.2"
+                testId="item-child2.2"
+              />
+            </TreeItem>
+            <TreeItem label="Node 3" itemId="item3" testId="item3">
+              <TreeItem
+                label="Child 3"
+                itemId="item-child3"
+                testId="item-child3"
+              />
+            </TreeItem>
+          </TreeView>
+        );
 
         expect(getByTestId('item1')).toHaveAttribute('aria-checked', 'false');
         expect(getByTestId('item2')).toHaveAttribute('aria-checked', 'true');
@@ -592,6 +618,29 @@ describe('TreeView', () => {
         expect(onSelectedItemChange).toHaveBeenCalled();
       });
 
+      it('function gets called when it has a preselected item', () => {
+        const onSelectedItemChange = jest.fn();
+        render(
+          getTreeItemsOneLevel({
+            onSelectedItemChange,
+            selectable: TreeViewSelectable.single,
+            preselectedItems: [
+              {
+                itemId: 'item1',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ],
+          })
+        );
+
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+      });
+
       it('function returns the selected item when it is a leaf', () => {
         const onSelectedItemChange = jest.fn();
         const { getByTestId } = render(
@@ -663,6 +712,33 @@ describe('TreeView', () => {
         expect(onSelectedItemChange).toHaveBeenCalled();
       });
 
+      it('function gets called when it has a preselected item', () => {
+        const onSelectedItemChange = jest.fn();
+        render(
+          getTreeItemsOneLevel({
+            onSelectedItemChange,
+            selectable: TreeViewSelectable.multi,
+            preselectedItems: [
+              {
+                itemId: 'item1',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ],
+          })
+        );
+
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+      });
+
       it('function returns the selected item when it is a leaf', () => {
         const onSelectedItemChange = jest.fn();
         const { getByTestId } = render(
@@ -711,7 +787,7 @@ describe('TreeView', () => {
           {
             itemId: 'item-ggchild3',
             checkedStatus: IndeterminateCheckboxStatus.checked,
-          },          
+          },
           {
             itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -778,7 +854,7 @@ describe('TreeView', () => {
           {
             itemId: 'item-ggchild3',
             checkedStatus: IndeterminateCheckboxStatus.checked,
-          },          
+          },
           {
             itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -856,7 +932,7 @@ describe('TreeView', () => {
           {
             itemId: 'item-ggchild3',
             checkedStatus: IndeterminateCheckboxStatus.checked,
-          },          
+          },
           {
             itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -1106,164 +1182,199 @@ describe('TreeView', () => {
     });
   });
 
-  describe.skip('keyboard navigation', () => {
-    it('should navigate to the next item and back to the first item when pressing the down arrow', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
+  describe('keyboard navigation and focus', () => {
+    describe.skip('for all TreeViewSelectable types', () => {
+      it('should navigate to the next item and back to the first item when pressing the down arrow', () => {
+        const { getByTestId, container } = render(
+          <TreeView testId={testId}>
+            <TreeItem label="Node 0" itemId="item0" testId="item0" />
+            <TreeItem label="Node 1" itemId="item1" testId="item1" />
+          </TreeView>
+        );
 
-      const item0 = getByTestId('item0');
-      const item1 = getByTestId('item1');
 
-      fireEvent.focus(item0);
-      fireEvent.keyDown(item0, { key: 'ArrowDown' });
-
-      expect(item1).toHaveFocus();
-
-      fireEvent.keyDown(item1, { key: 'ArrowDown' });
-      expect(item0).toHaveFocus();
-    });
-
-    it('should navigate to the previous item and back to the last item when pressing the up arrow', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
-      const item0 = getByTestId('item0');
-      const item1 = getByTestId('item1');
-
-      fireEvent.focus(item1);
-      fireEvent.keyDown(item1, { key: 'ArrowUp' });
-
-      expect(item0).toHaveFocus();
-
-      fireEvent.keyDown(item0, { key: 'ArrowUp' });
-      expect(item1).toHaveFocus();
-    });
-
-    it('should expand the focused branch item when pressing the right arrow', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
-      const item1 = getByTestId('item1');
-
-      fireEvent.focus(item1);
-      fireEvent.keyDown(item1, { key: 'ArrowRight' });
-
-      expect(item1).toHaveFocus();
-      expect(item1).toHaveAttribute('aria-expanded', 'true');
-    });
-
-    it('should navigate to the next item when focus is on an expanded branch item and when pressing the right arrow', () => {
-      const { getByTestId } = render(
-        getTreeItemsOneLevelSmall({ initialExpandedItems: ['item1'] })
-      );
-
-      const item1 = getByTestId('item1');
-      const item1child = getByTestId('item-child1');
-
-      fireEvent.focus(item1);
-      fireEvent.keyDown(item1, { key: 'ArrowRight' });
-
-      expect(item1).toHaveAttribute('aria-expanded', 'true');
-      expect(item1child).toHaveFocus();
-    });
-
-    it('should maintain focus when pressing the right arrow on a leaf item', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
-      const item0 = getByTestId('item0');
-
-      fireEvent.focus(item0);
-      fireEvent.keyDown(item0, { key: 'ArrowRight' });
-
-      expect(item0).toHaveFocus();
-    });
-
-    it('should collapse the focused branch item when pressing the left arrow', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
-      const item1 = getByTestId('item1');
-
-      fireEvent.focus(item1);
-      fireEvent.keyDown(item1, { key: 'ArrowLeft' });
-
-      expect(item1).toHaveFocus();
-      expect(item1).toHaveAttribute('aria-expanded', 'false');
-    });
-
-    it('should maintain focus when pressing the left arrow on a leaf item', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
-      const item0 = getByTestId('item0');
-
-      fireEvent.focus(item0);
-      fireEvent.keyDown(item0, { key: 'ArrowLeft' });
-
-      expect(item0).toHaveFocus();
-    });
-
-    it('should focus to the first item when pressing the home key', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
-      const item0 = getByTestId('item0');
-      const item1 = getByTestId('item1');
-
-      fireEvent.focus(item1);
-      fireEvent.keyDown(item1, { key: 'Home' });
-
-      expect(item0).toHaveFocus();
-    });
-
-    it('should focus to the last item when pressing the end key', () => {
-      const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
-      const item0 = getByTestId('item0');
-      const item1 = getByTestId('item-child1');
-
-      fireEvent.focus(item0);
-      fireEvent.keyDown(item0, { key: 'End' });
-
-      expect(item1).toHaveFocus();
-    });
-  });
-
-  describe.skip('TreeViewSelectable.single', () => {
-    describe('focus state', () => {
-      it('sets the focus to the first element on load when nothing is selected', () => {
-        // expect().toHaveFocus();
+      fireEvent.keyDown(container.querySelector('ul'), {
+        key: 'Tab',
       });
 
-      it('sets the focus to the first selected element on load', () => {
-        // expect().toHaveFocus();
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+
+        fireEvent.click(item0);
+        // fireEvent.focus(item0);
+        fireEvent.keyDown(item0, { key: 'ArrowDown' });
+
+        expect(item1).toHaveFocus();
+
+        fireEvent.keyDown(item1, { key: 'ArrowDown' });
+        expect(item0).toHaveFocus();
+      });
+
+      it('should navigate to the previous item and back to the last item when pressing the up arrow', () => {
+        const { getByTestId } = render(
+          <TreeView testId={testId}>
+            <TreeItem label="Node 0" itemId="item0" testId="item0" />
+            <TreeItem label="Node 1" itemId="item1" testId="item1" />
+          </TreeView>
+        );
+
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+
+        fireEvent.focus(item1);
+        fireEvent.keyDown(item1, { key: 'ArrowUp' });
+
+        expect(item0).toHaveFocus();
+
+        fireEvent.keyDown(item0, { key: 'ArrowUp' });
+        expect(item1).toHaveFocus();
+      });
+
+      it('should expand the focused branch item when pressing the right arrow', () => {
+        const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
+
+        const item1 = getByTestId('item1');
+
+        fireEvent.focus(item1);
+        fireEvent.keyDown(item1, { key: 'ArrowRight' });
+
+        expect(item1).toHaveFocus();
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+      });
+
+      it('should navigate to the next item when focus is on an expanded branch item and when pressing the right arrow', () => {
+        const { getByTestId } = render(
+          getTreeItemsOneLevelSmall({ initialExpandedItems: ['item1'] })
+        );
+
+        const item1 = getByTestId('item1');
+        const item1child = getByTestId('item-child1');
+
+        fireEvent.focus(item1);
+        fireEvent.keyDown(item1, { key: 'ArrowRight' });
+
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+        expect(item1child).toHaveFocus();
+      });
+
+      it('should maintain focus when pressing the right arrow on a leaf item', () => {
+        const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
+
+        const item0 = getByTestId('item0');
+
+        fireEvent.focus(item0);
+        fireEvent.keyDown(item0, { key: 'ArrowRight' });
+
+        expect(item0).toHaveFocus();
+      });
+
+      it('should collapse the focused branch item when pressing the left arrow', () => {
+        const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
+
+        const item1 = getByTestId('item1');
+
+        fireEvent.focus(item1);
+        fireEvent.keyDown(item1, { key: 'ArrowLeft' });
+
+        expect(item1).toHaveFocus();
+        expect(item1).toHaveAttribute('aria-expanded', 'false');
+      });
+
+      it('should maintain focus when pressing the left arrow on a leaf item', () => {
+        const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
+
+        const item0 = getByTestId('item0');
+
+        fireEvent.focus(item0);
+        fireEvent.keyDown(item0, { key: 'ArrowLeft' });
+
+        expect(item0).toHaveFocus();
+      });
+
+      it('should focus to the first item when pressing the home key', () => {
+        const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
+
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+
+        fireEvent.focus(item1);
+        fireEvent.keyDown(item1, { key: 'Home' });
+
+        expect(item0).toHaveFocus();
+      });
+
+      it('should focus to the last item when pressing the end key', () => {
+        const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
+
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item-child1');
+
+        fireEvent.focus(item0);
+        fireEvent.keyDown(item0, { key: 'End' });
+
+        expect(item1).toHaveFocus();
       });
     });
 
-    describe('keyboard navigation', () => {
-      it('should select the item when pressing the Enter key', () => {});
-
-      it('should select the leaf item when pressing the Space key', () => {});
-
-      it('should toggle expand the branch item when pressing the Space key', () => {});
+    describe('TreeViewSelectable.off', () => {
+      describe('keyboard navigation', () => {
+        it('should toggle expand the branch item when pressing the Space key', () => {
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({selectable: TreeViewSelectable.off})
+          );
+  
+          const item1 = getByTestId('item1');
+  
+          fireEvent.focus(item1);
+          fireEvent.keyDown(item1, { key: 'Space' });
+  
+          expect(item1).toHaveAttribute('aria-expanded', 'true');
+        });
+      });
+      describe('focus state', () => {
+        it('sets the focus to the first element on load', () => {
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({selectable: TreeViewSelectable.off})
+          );
+          const item0 = getByTestId('item0');
+          expect(item0).toHaveFocus();
+        });
+      });
     });
-  });
 
-  describe.skip('TreeViewSelectable.multi', () => {
-    describe('focus state', () => {
-      it('sets the focus to the first element on load when nothing is selected', () => {});
+    describe.skip('TreeViewSelectable.single', () => {
+      describe('focus state', () => {
+        it('sets the focus to the first element on load when nothing is selected', () => {
+          // expect().toHaveFocus();
+        });
 
-      it('sets the focus to the first selected element on load', () => {});
+        it('sets the focus to the first selected element on load', () => {
+          // expect().toHaveFocus();
+        });
+      });
+
+      describe('keyboard navigation', () => {
+        it('should select the item when pressing the Enter key', () => {});
+
+        it('should select the leaf item when pressing the Space key', () => {});
+
+        it('should toggle expand the branch item when pressing the Space key', () => {});
+      });
     });
 
-    describe('keyboard navigation', () => {
-      it('should toggle select a leaf item when pressing the Enter key', () => {});
-      it('should toggle select a leaf item when pressing the Space key', () => {});
-      it('should toggle select a branch item + its children when pressing the Enter key', () => {});
-      it('should toggle select a branch item + its children when pressing the Space key', () => {});
-    });
-  });
+    describe.skip('TreeViewSelectable.multi', () => {
+      describe('focus state', () => {
+        it('sets the focus to the first element on load when nothing is selected', () => {});
 
-  describe.skip('TreeViewSelectable.off', () => {
-    describe('keyboard navigation', () => {
-      it('should toggle expand the branch item when pressing the Space key', () => {});
-    });
-    describe('focus state', () => {
-      it('sets the focus to the first element on load', () => {});
+        it('sets the focus to the first selected element on load', () => {});
+      });
+
+      describe('keyboard navigation', () => {
+        it('should toggle select a leaf item when pressing the Enter key', () => {});
+        it('should toggle select a leaf item when pressing the Space key', () => {});
+        it('should toggle select a branch item + its children when pressing the Enter key', () => {});
+        it('should toggle select a branch item + its children when pressing the Space key', () => {});
+      });
     });
   });
 });

@@ -630,6 +630,7 @@ export const FirstItemLeaf = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
+    console.log('onSelection', items);
   }
 
   return (
@@ -669,7 +670,7 @@ export const FirstItemLeaf = args => {
 FirstItemLeaf.args = {
   initialExpandedItems: ['item1', 'item2', 'item-child2'],
   preselectedItems: [
-    { itemId: 'item6', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'item-gchild2', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
 };
 

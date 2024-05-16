@@ -25,6 +25,7 @@ export interface TreeViewContextInterface {
   setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
   setSelectedItemsChanged:React.Dispatch<React.SetStateAction<any>>;
   treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
+  itemToFocus?: string;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
