@@ -257,16 +257,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
-      id: `${itemId}-checkbox`,
-      testId: `${itemId}-checkbox`,
-      labelText: labelText,
-      onChange: checkboxChangeHandler,
       disabled: isDisabled,
+      hideFocus: true,
+      id: `${itemId}-checkbox`,
       inputStyle: { marginRight: theme.spaceScale.spacing03 },
       labelStyle: {
         padding: 0,
       },
+      labelText: labelText,
+      onChange: checkboxChangeHandler,
       tabIndex: -1,
+      testId: `${itemId}-checkbox`,
     };
 
     const onExpandedClicked = (event: React.SyntheticEvent) => {

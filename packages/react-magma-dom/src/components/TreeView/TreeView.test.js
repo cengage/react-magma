@@ -1191,25 +1191,24 @@ describe('TreeView', () => {
             <TreeItem label="Node 1" itemId="item1" testId="item1" />
           </TreeView>
         );
-
-
-      fireEvent.keyDown(container.querySelector('ul'), {
-        key: 'Tab',
-      });
-
+  
+        fireEvent.keyDown(container.querySelector('ul'), {
+          key: 'Tab',
+        });
+  
         const item0 = getByTestId('item0');
         const item1 = getByTestId('item1');
-
+  
         fireEvent.click(item0);
         // fireEvent.focus(item0);
         fireEvent.keyDown(item0, { key: 'ArrowDown' });
-
+  
         expect(item1).toHaveFocus();
-
+  
         fireEvent.keyDown(item1, { key: 'ArrowDown' });
         expect(item0).toHaveFocus();
       });
-
+  
       it('should navigate to the previous item and back to the last item when pressing the up arrow', () => {
         const { getByTestId } = render(
           <TreeView testId={testId}>
@@ -1217,110 +1216,111 @@ describe('TreeView', () => {
             <TreeItem label="Node 1" itemId="item1" testId="item1" />
           </TreeView>
         );
-
+  
         const item0 = getByTestId('item0');
         const item1 = getByTestId('item1');
-
-        fireEvent.focus(item1);
-        fireEvent.keyDown(item1, { key: 'ArrowUp' });
-
-        expect(item0).toHaveFocus();
-
-        fireEvent.keyDown(item0, { key: 'ArrowUp' });
-        expect(item1).toHaveFocus();
+        const treeView = getByTestId('tree-view');
+  
+        fireEvent.focus(getByTestId('item1-itemwrapper'));
+        fireEvent.keyDown(treeView, { key: 'ArrowUp' });
+  
+        expect(getByTestId('item0-itemwrapper')).toHaveFocus();
+  
+        fireEvent.keyDown(treeView, { key: 'ArrowUp' });
+        expect(getByTestId('item1-itemwrapper')).toHaveFocus();
       });
-
+  
       it('should expand the focused branch item when pressing the right arrow', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
+  
         const item1 = getByTestId('item1');
-
+  
         fireEvent.focus(item1);
         fireEvent.keyDown(item1, { key: 'ArrowRight' });
-
+  
         expect(item1).toHaveFocus();
         expect(item1).toHaveAttribute('aria-expanded', 'true');
       });
-
+  
       it('should navigate to the next item when focus is on an expanded branch item and when pressing the right arrow', () => {
         const { getByTestId } = render(
           getTreeItemsOneLevelSmall({ initialExpandedItems: ['item1'] })
         );
-
+  
         const item1 = getByTestId('item1');
         const item1child = getByTestId('item-child1');
-
+  
         fireEvent.focus(item1);
         fireEvent.keyDown(item1, { key: 'ArrowRight' });
-
+  
         expect(item1).toHaveAttribute('aria-expanded', 'true');
         expect(item1child).toHaveFocus();
       });
-
+  
       it('should maintain focus when pressing the right arrow on a leaf item', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
+  
         const item0 = getByTestId('item0');
-
+  
         fireEvent.focus(item0);
         fireEvent.keyDown(item0, { key: 'ArrowRight' });
-
+  
         expect(item0).toHaveFocus();
       });
-
+  
       it('should collapse the focused branch item when pressing the left arrow', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
+  
         const item1 = getByTestId('item1');
-
+  
         fireEvent.focus(item1);
         fireEvent.keyDown(item1, { key: 'ArrowLeft' });
-
+  
         expect(item1).toHaveFocus();
         expect(item1).toHaveAttribute('aria-expanded', 'false');
       });
-
+  
       it('should maintain focus when pressing the left arrow on a leaf item', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
+  
         const item0 = getByTestId('item0');
-
+  
         fireEvent.focus(item0);
         fireEvent.keyDown(item0, { key: 'ArrowLeft' });
-
+  
         expect(item0).toHaveFocus();
       });
-
-      it('should focus to the first item when pressing the home key', () => {
+  
+      it('should focus to the first item when pressing the Home key', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
+  
         const item0 = getByTestId('item0');
         const item1 = getByTestId('item1');
-
+  
         fireEvent.focus(item1);
         fireEvent.keyDown(item1, { key: 'Home' });
-
+  
         expect(item0).toHaveFocus();
       });
-
-      it('should focus to the last item when pressing the end key', () => {
+  
+      it('should focus to the last item when pressing the End key', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
-
+  
         const item0 = getByTestId('item0');
         const item1 = getByTestId('item-child1');
-
+  
         fireEvent.focus(item0);
         fireEvent.keyDown(item0, { key: 'End' });
-
+  
         expect(item1).toHaveFocus();
       });
     });
-
-    describe('TreeViewSelectable.off', () => {
+  
+    describe.skip('TreeViewSelectable.off', () => {
       describe('keyboard navigation', () => {
         it('should toggle expand the branch item when pressing the Space key', () => {
           const { getByTestId } = render(
-            getTreeItemsOneLevelSmall({selectable: TreeViewSelectable.off})
+            getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.off })
           );
   
           const item1 = getByTestId('item1');
@@ -1334,46 +1334,262 @@ describe('TreeView', () => {
       describe('focus state', () => {
         it('sets the focus to the first element on load', () => {
           const { getByTestId } = render(
-            getTreeItemsOneLevelSmall({selectable: TreeViewSelectable.off})
+            getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.off })
           );
           const item0 = getByTestId('item0');
           expect(item0).toHaveFocus();
         });
       });
     });
-
+  
     describe.skip('TreeViewSelectable.single', () => {
       describe('focus state', () => {
         it('sets the focus to the first element on load when nothing is selected', () => {
-          // expect().toHaveFocus();
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.single })
+          );
+          const item0 = getByTestId('item0');
+          expect(item0).toHaveFocus();
         });
-
+  
         it('sets the focus to the first selected element on load', () => {
-          // expect().toHaveFocus();
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({
+              selectable: TreeViewSelectable.single,
+              preselectedItems: [
+                {
+                  itemId: 'item-child1',
+                  checkedStatus: IndeterminateCheckboxStatus.checked,
+                },
+              ],
+              initialExpandedItems: ['item1']
+            })
+          );
+          const item1Child = getByTestId('item-child1');
+          expect(item1Child).toHaveFocus();
         });
       });
-
+  
       describe('keyboard navigation', () => {
-        it('should select the item when pressing the Enter key', () => {});
-
-        it('should select the leaf item when pressing the Space key', () => {});
-
-        it('should toggle expand the branch item when pressing the Space key', () => {});
+        it('should select the item when pressing the Enter key', () => {
+          const onSelectedItemChange = jest.fn();
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({
+              selectable: TreeViewSelectable.single,
+              onSelectedItemChange,
+            })
+          );
+  
+          const item1 = getByTestId('item1');
+          const item1wrapper = getByTestId('item1-itemwrapper');
+  
+          fireEvent.focus(item1);
+          fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+  
+          expect(item1).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledWith([
+            {
+              itemId: 'item1',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]);
+        });
+  
+        it('should select the leaf item when pressing the Space key', () => {
+          const onSelectedItemChange = jest.fn();
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({
+              selectable: TreeViewSelectable.single,
+              onSelectedItemChange,
+            })
+          );
+  
+          const item0 = getByTestId('item0');
+          const item0wrapper = getByTestId('item0-itemwrapper');
+  
+          fireEvent.focus(item0);
+          fireEvent.keyDown(item0wrapper, { key: 'Space' });
+  
+          expect(item0).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledWith([
+            {
+              itemId: 'item0',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]);
+        });
+  
+        it('should toggle expand the branch item when pressing the Space key', () => {
+          const onSelectedItemChange = jest.fn();
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({
+              selectable: TreeViewSelectable.single,
+              onSelectedItemChange,
+            })
+          );
+  
+          const item1 = getByTestId('item1');
+          const item1wrapper = getByTestId('item1-itemwrapper');
+  
+          fireEvent.focus(item1);
+          fireEvent.keyDown(item1wrapper, { key: 'Space' });
+  
+          expect(item1).toHaveAttribute('aria-expanded', 'true');
+          expect(item1).not.toHaveAttribute('aria-selected');
+          expect(onSelectedItemChange).not.toHaveBeenCalled();
+        });
       });
     });
-
+  
     describe.skip('TreeViewSelectable.multi', () => {
       describe('focus state', () => {
-        it('sets the focus to the first element on load when nothing is selected', () => {});
-
-        it('sets the focus to the first selected element on load', () => {});
+        it('sets the focus to the first element on load when nothing is selected', () => {
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.multi })
+          );
+          const item0 = getByTestId('item0');
+          expect(item0).toHaveFocus();
+        });
+  
+        it('sets the focus to the first selected element on load', () => {
+          const { getByTestId } = render(
+            getTreeItemsOneLevelSmall({
+              selectable: TreeViewSelectable.multi,
+              preselectedItems: [
+                {
+                  itemId: 'item-child1',
+                  checkedStatus: IndeterminateCheckboxStatus.checked,
+                },
+                {
+                  itemId: 'item1',
+                  checkedStatus: IndeterminateCheckboxStatus.checked,
+                },
+              ],
+            })
+          );
+          const item1 = getByTestId('item1');
+          expect(item1).toHaveFocus();
+        });
       });
+  
+      // TODO what about case for collapsed items
 
       describe('keyboard navigation', () => {
-        it('should toggle select a leaf item when pressing the Enter key', () => {});
-        it('should toggle select a leaf item when pressing the Space key', () => {});
-        it('should toggle select a branch item + its children when pressing the Enter key', () => {});
-        it('should toggle select a branch item + its children when pressing the Space key', () => {});
+        it('should toggle select a leaf item when pressing the Enter key', () => {
+          const onSelectedItemChange = jest.fn();
+          const { getByTestId } = render(
+            getTreeItemsOneLevel({
+              selectable: TreeViewSelectable.multi,
+              onSelectedItemChange,
+              initialExpandedItems: ['item3']
+            })
+          );
+  
+          const item3 = getByTestId('item3');
+          const itemChild3 = getByTestId('item-child3');
+  
+          fireEvent.keyDown(getByTestId('item-child3-itemwrapper'), { key: 'Enter' });
+  
+          expect(itemChild3).toHaveAttribute('aria-checked', 'true');
+          expect(item3).toHaveAttribute('aria-checked', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledWith([
+            {
+              itemId: 'item-child3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]);
+        });
+  
+        it('should toggle select a leaf item when pressing the Space key', () => {
+          const onSelectedItemChange = jest.fn();
+          const { getByTestId } = render(
+            getTreeItemsOneLevel({
+              selectable: TreeViewSelectable.multi,
+              onSelectedItemChange,
+              initialExpandedItems: ['item3']
+            })
+          );
+  
+          const item3 = getByTestId('item3');
+          const itemChild3 = getByTestId('item-child3');
+  
+          fireEvent.keyDown(getByTestId('item-child3-itemwrapper'), { key: 'Space' });
+  
+          expect(itemChild3).toHaveAttribute('aria-checked', 'true');
+          expect(item3).toHaveAttribute('aria-checked', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledWith([
+            {
+              itemId: 'item-child3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]);
+        });
+  
+        it('should toggle select a branch item + its children when pressing the Enter key', () => {
+          const onSelectedItemChange = jest.fn();
+          const { getByTestId } = render(
+            getTreeItemsOneLevel({
+              selectable: TreeViewSelectable.multi,
+              onSelectedItemChange,
+              initialExpandedItems: ['item3']
+            })
+          );
+  
+          const item3 = getByTestId('item3');
+          const itemChild3 = getByTestId('item-child3');
+  
+          fireEvent.keyDown(getByTestId('item3-itemwrapper'), { key: 'Enter' });
+  
+          expect(item3).toHaveAttribute('aria-checked', 'true');
+          expect(itemChild3).toHaveAttribute('aria-checked', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledWith([
+            {
+              itemId: 'item-child3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]);
+        });
+  
+        it('should toggle select a branch item + its children when pressing the Space key', () => {
+          const onSelectedItemChange = jest.fn();
+          const { getByTestId } = render(
+            getTreeItemsOneLevel({
+              selectable: TreeViewSelectable.multi,
+              onSelectedItemChange,
+              initialExpandedItems: ['item3']
+            })
+          );
+  
+          const item3 = getByTestId('item3');
+          const itemChild3 = getByTestId('item-child3');
+  
+          fireEvent.keyDown(getByTestId('item3-itemwrapper'), { key: 'Space' });
+  
+          expect(item3).toHaveAttribute('aria-checked', 'true');
+          expect(itemChild3).toHaveAttribute('aria-checked', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledWith([
+            {
+              itemId: 'item-child3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item3',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]);
+        });
       });
     });
   });

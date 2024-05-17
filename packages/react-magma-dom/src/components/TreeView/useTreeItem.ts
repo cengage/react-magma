@@ -720,7 +720,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     updateParentCheckStatus(index, status);
 
     if (hasOwnTreeItems) {
-      const childrenIds = getChildrenItemIds(treeItemChildren, status);
+      const childrenIds = getChildrenItemIds(
+        treeItemChildren,
+        IndeterminateCheckboxStatus.checked
+      );
       if (!arrayIncludesId(selectedItems, itemId)) {
         setSelectedItems([
           ...selectedItems,
@@ -737,12 +740,15 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
     } else {
       if (!arrayIncludesId(selectedItems, itemId)) {
-        setSelectedItems([...selectedItems, { itemId, checkedStatus: status }]);
+        setSelectedItems([
+          ...selectedItems,
+          { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
+        ]);
       } else {
         setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
       }
     }
-    setSelectedItemsChanged(true);
+    updateSelectedItemsChanged();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
