@@ -21,7 +21,7 @@ export default {
 
 const Template: Story<StepperProps> = args => {
   return (
-    <Stepper hasPrevious hasNext {...args}>
+    <Stepper {...args}>
       <Step label="First Step" description="Summary One">
         Step One
       </Step>
