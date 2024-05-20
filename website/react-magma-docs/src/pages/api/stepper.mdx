@@ -1,0 +1,70 @@
+---
+pageTitle: Stepper API
+title: Stepper
+props:
+  - StepperProps
+---
+
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="Stepper" type="api">
+
+<LeadParagraph>Multi-step feedback UI</LeadParagraph>
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  return <Stepper><Step>1</Step></Stepper>;
+}
+```
+
+## InverseContext
+
+The `isInverse` prop will render a dark background and light text. The children will
+inherit the `isInverse` prop unless specified otherwise.
+
+```typescript
+import React from 'react';
+import { Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  return <Stepper isInverse><Step>1</Step></Stepper>;
+}
+```
+
+## Internationalization
+
+If you're using strings in your component, they must be internationalized.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+import { es } from 'date-fns/locale';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        example: 'example i18n',
+      }}
+    >
+      <Stepper>override default i18n value: </Stepper>
+    </I18nContext.Provider>
+  );
+}
+```
+
+# Stepper Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<StepperProps />
+
+</PageContent>
