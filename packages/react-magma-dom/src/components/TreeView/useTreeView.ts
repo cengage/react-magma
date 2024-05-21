@@ -57,7 +57,7 @@ export interface UseTreeViewProps {
    * Example: [ {itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
    */
   onSelectedItemChange?: (selectedItems: Array<Object>) => void;
-  children?: any;
+  children?: React.ReactNode[];
 }
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -120,7 +120,7 @@ export function useTreeView(props: UseTreeViewProps) {
         If there is at least one node with a branch, focus is set on the first branch node.
         If there are no nodes with branches, the first item is focused and the tree can be traversed
       */
-        item = firstBranchNode || allChildrenInTree?.[0].props?.itemId;
+        item = firstBranchNode || allChildrenInTree?.[0].itemId;
       } else {
         // Same behavior for Single and Multiple
         if (selectedItems.length === 0) {

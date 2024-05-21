@@ -10,6 +10,7 @@ import {
   // getEnabledTreeItemChildrenLength,
   areArraysEqual,
   arrayIncludesId,
+  filterNullEntries,
   filterSelectedItems,
   findChildByItemId,
   findCommonItems,
@@ -664,13 +665,15 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   const focusNext = () => {
-    const next = treeItemRefArray?.current?.[focusIndex + 1]
-      .current as HTMLDivElement;
+    // const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const next = treeItemRefArray?.current?.[focusIndex + 1].current as HTMLDivElement;
+    // const next = filteredRefArray['current']?.[focusIndex + 1].current as HTMLDivElement;
 
     if (next) {
       next.focus();
     } else {
       (
+        // filteredRefArray['current']?.[focusIndex + 2].current as HTMLDivElement
         treeItemRefArray?.current?.[focusIndex + 2].current as HTMLDivElement
       ).focus();
     }
@@ -683,9 +686,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   const focusLast = () => {
-    const arrLength = treeItemRefArray.current.length;
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const arrLength = filteredRefArray['current'].length;
     (
-      treeItemRefArray?.current?.[arrLength - 1].current as HTMLDivElement
+      filteredRefArray['current']?.[arrLength - 1].current as HTMLDivElement
     ).focus();
   };
 
