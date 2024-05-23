@@ -642,6 +642,7 @@ export const FirstItemLeaf = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
+    console.log('onSelection', items);
   }
 
   return (
