@@ -1186,25 +1186,19 @@ describe('TreeView', () => {
     describe('for all TreeViewSelectable types', () => {
       it('should navigate up and down the tree when pressing ArrowDown and ArrowUp', () => {
         const { getByTestId } = render(
-          getTreeItemsOneLevel({ initialExpandedItems: ['item1'] })
+          getTreeItemsOneLevel({
+            selectable: TreeViewSelectable.off,
+          })
         );
 
-        const item0 = getByTestId('item0-itemwrapper');
         const item1 = getByTestId('item1-itemwrapper');
-        const item1child = getByTestId('item-child1-itemwrapper');
         const item2 = getByTestId('item2-itemwrapper');
         const item3 = getByTestId('item3-itemwrapper');
 
         userEvent.tab();
-        expect(item0).toHaveFocus();
-
-        fireEvent.keyDown(item0, { key: 'ArrowDown' });
         expect(item1).toHaveFocus();
 
         fireEvent.keyDown(item1, { key: 'ArrowDown' });
-        expect(item1child).toHaveFocus();
-
-        fireEvent.keyDown(item1child, { key: 'ArrowDown' });
         expect(item2).toHaveFocus();
 
         fireEvent.keyDown(item2, { key: 'ArrowDown' });
@@ -1214,15 +1208,22 @@ describe('TreeView', () => {
         expect(item2).toHaveFocus();
 
         fireEvent.keyDown(item2, { key: 'ArrowUp' });
+        expect(item1).toHaveFocus();
+
+        // expand item
+        fireEvent.keyDown(item1, { key: 'ArrowRight' });
+        const item1child = getByTestId('item-child1-itemwrapper');
+        expect(getByTestId('item1')).toHaveAttribute('aria-expanded', 'true');
+        expect(item1).toHaveFocus();
+
+        fireEvent.keyDown(item1, { key: 'ArrowDown' });
         expect(item1child).toHaveFocus();
 
         fireEvent.keyDown(item1child, { key: 'ArrowUp' });
         expect(item1).toHaveFocus();
 
-        // collapse item
         fireEvent.keyDown(item1, { key: 'ArrowLeft' });
-        fireEvent.keyDown(item1, { key: 'ArrowDown' });
-        expect(item2).toHaveFocus();
+        expect(item1).toHaveFocus();
       });
 
       it('should navigate to the next item and back to the first item when pressing ArrowDown', () => {
@@ -1367,19 +1368,23 @@ describe('TreeView', () => {
       });
 
       it('should focus to the last visible item when pressing the End key', () => {
-        const { getByTestId } = render(getTreeItemsOneLevel({}));
+        const { getByTestId, rerender } = render(
+          getTreeItemsOneLevel({ initialExpandedItems: ['item-3'] })
+        );
 
         const item0 = getByTestId('item0-itemwrapper');
+        const item2 = getByTestId('item2-itemwrapper');
         const item3 = getByTestId('item3-itemwrapper');
 
         userEvent.tab();
         fireEvent.keyDown(item0, { key: 'End' });
         expect(item3).toHaveFocus();
 
-        // expand and collapse last item with child
-        fireEvent.keyDown(item3, { key: 'ArrowRight' });
+        // collapse last item with child
         fireEvent.keyDown(item3, { key: 'ArrowLeft' });
 
+        fireEvent.keyDown(item3, { key: 'ArrowUp' });
+        expect(item2).toHaveFocus();
         fireEvent.focus(item0);
         fireEvent.keyDown(item0, { key: 'End' });
         expect(item3).toHaveFocus();

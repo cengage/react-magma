@@ -86,7 +86,56 @@ function createTags(items) {
   };
 }
 
-export const Default = args => {
+export const Simple = args => {
+  const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+  const [total, setTotal] = React.useState(selectedItems?.length || 0);
+
+  function onSelection(items) {
+    const selected = createTags(items).selected;
+    const indet = createTags(items).indeterminate;
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+    setTotal(items.length);
+  }
+
+  return (
+    <>
+      <TreeView {...args} onSelectedItemChange={onSelection}>
+        <TreeItem label="0.0" itemId="0.0" />
+        <TreeItem label="0.1" itemId="0.1">
+          <TreeItem label="0.1.1" itemId="0.1.1" />
+          <TreeItem label="0.1.2" itemId="0.1.2">
+            <TreeItem label="0.1.2.1" itemId="0.1.2.1" />
+            <TreeItem label="0.1.2.2" itemId="0.1.2.2">
+              <TreeItem label="0.1.2.2.1" itemId="0.1.2.2.1" />
+              <TreeItem label="0.1.2.2.2" itemId="0.1.2.2.2">
+                <TreeItem label="0.1.2.2.2.1" itemId="0.1.2.2.2.1" />
+                <TreeItem label="0.1.2.2.2.2" itemId="0.1.2.2.2.2">
+                  <TreeItem label="0.1.2.2.2.2.1" itemId="0.1.2.2.2.2.1" />
+                </TreeItem>
+              </TreeItem>
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>
+          <p>{total} total</p>
+          <p>Selected: {selectedItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (
+            <p>Indeterminate: {indeterminateItems}</p>
+          )}
+        </>
+      )}
+    </>
+  );
+};
+
+Simple.parameters = { controls: { exclude: ['isInverse'] } };
+
+export const Complex = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
   const [indeterminateItems, setIndeterminateItems] = React.useState(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
@@ -326,7 +375,7 @@ export const Default = args => {
   );
 };
 
-Default.args = {
+Complex.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
   initialExpandedItems: ['pt1', 'pt1ch1'],
@@ -341,7 +390,7 @@ Default.args = {
     { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
-  testId: 'default-example',
+  testId: 'complex-example',
 };
 
 export const NoIcons = args => {
@@ -514,55 +563,6 @@ Textbook.args = {
   ariaLabelledBy: 'ah-textbook',
 };
 
-export const Simple = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
-  const [total, setTotal] = React.useState(selectedItems?.length || 0);
-
-  function onSelection(items) {
-    const selected = createTags(items).selected;
-    const indet = createTags(items).indeterminate;
-    setSelectedItems(selected);
-    setIndeterminateItems(indet);
-    setTotal(items.length);
-  }
-
-  return (
-    <>
-      <TreeView {...args} onSelectedItemChange={onSelection}>
-        <TreeItem label="0.0" itemId="0.0" />
-        <TreeItem label="0.1" itemId="0.1">
-          <TreeItem label="0.1.1" itemId="0.1.1" />
-          <TreeItem label="0.1.2" itemId="0.1.2">
-            <TreeItem label="0.1.2.1" itemId="0.1.2.1" />
-            <TreeItem label="0.1.2.2" itemId="0.1.2.2">
-              <TreeItem label="0.1.2.2.1" itemId="0.1.2.2.1" />
-              <TreeItem label="0.1.2.2.2" itemId="0.1.2.2.2">
-                <TreeItem label="0.1.2.2.2.1" itemId="0.1.2.2.2.1" />
-                <TreeItem label="0.1.2.2.2.2" itemId="0.1.2.2.2.2">
-                  <TreeItem label="0.1.2.2.2.2.1" itemId="0.1.2.2.2.2.1" />
-                </TreeItem>
-              </TreeItem>
-            </TreeItem>
-          </TreeItem>
-        </TreeItem>
-      </TreeView>
-      <br />
-      {args.selectable !== TreeViewSelectable.off && (
-        <>
-          <p>{total} total</p>
-          <p>Selected: {selectedItems}</p>
-          {args.selectable === TreeViewSelectable.multi && (
-            <p>Indeterminate: {indeterminateItems}</p>
-          )}
-        </>
-      )}
-    </>
-  );
-};
-
-Simple.parameters = { controls: { exclude: ['isInverse'] } };
-
 export const DefaultIcon = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
   const [indeterminateItems, setIndeterminateItems] = React.useState(null);
@@ -676,7 +676,7 @@ FirstItemLeaf.args = {
 
 FirstItemLeaf.parameters = { controls: { exclude: ['isInverse'] } };
 
-export const Animals = args => {
+export const FirstItemBranch = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
   const [indeterminateItems, setIndeterminateItems] = React.useState(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
@@ -734,7 +734,7 @@ export const Animals = args => {
   );
 };
 
-Animals.args = {
+FirstItemBranch.args = {
   ariaLabel: 'initial-selected-treeview',
   selectable: TreeViewSelectable.multi,
   preselectedItems: [
@@ -743,7 +743,7 @@ Animals.args = {
   initialExpandedItems: ['Birds', 'Parrots'],
 };
 
-export const Flat = args => {
+export const FlatTree = args => {
   return (
     <TreeView {...args} style={{ width: '100%' }}>
       <TreeItem
@@ -803,9 +803,8 @@ export const Flat = args => {
   );
 };
 
-Flat.args = {
+FlatTree.args = {
   selectable: TreeViewSelectable.off,
 };
 
-Flat.parameters = { controls: { exclude: ['isInverse'] } };
-
+FlatTree.parameters = { controls: { exclude: ['isInverse'] } };

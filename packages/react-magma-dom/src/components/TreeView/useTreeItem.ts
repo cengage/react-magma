@@ -643,12 +643,17 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
   };
 
-  const focusIndex = treeItemRefArray?.current?.findIndex(
-    ({ current: item }) => {
-      if (!item || !ownRef.current) return false;
-      return item === ownRef.current;
-    }
-  );
+  function getFocusIndex(filteredArrayCurrent) {
+    return (
+      itemId &&
+      filteredArrayCurrent?.findIndex(({ current: item }) => {
+        if (!item || !ownRef.current) return false;
+        return item === ownRef.current;
+      })
+    );
+  }
+
+  let focusIndex = getFocusIndex(treeItemRefArray?.current);
 
   React.useEffect(() => {
     treeItemRefArray?.current.map(itemRef => {
@@ -661,40 +666,72 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }, [treeItemRefArray]);
 
   const focusFirst = () => {
-    (treeItemRefArray?.current?.[0].current as HTMLDivElement).focus();
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+
+    (curr?.[0].current as HTMLDivElement).focus();
   };
 
   const focusNext = () => {
-    // const filteredRefArray = filterNullEntries(treeItemRefArray);
-    const next = treeItemRefArray?.current?.[focusIndex + 1].current as HTMLDivElement;
-    // const next = filteredRefArray['current']?.[focusIndex + 1].current as HTMLDivElement;
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+    const arrLength = curr.length;
+    focusIndex = getFocusIndex(curr);
+
+    let newIndex = focusIndex + 1;
+    let next = curr?.[newIndex]?.current as HTMLDivElement;
+
+    while (!next && newIndex < arrLength) {
+      newIndex++;
+      next = curr?.[newIndex]?.current as HTMLDivElement;
+    }
 
     if (next) {
       next.focus();
     } else {
-      (
-        // filteredRefArray['current']?.[focusIndex + 2].current as HTMLDivElement
-        treeItemRefArray?.current?.[focusIndex + 2].current as HTMLDivElement
-      ).focus();
+      const nextNext = curr?.[focusIndex + 2]?.current as HTMLDivElement;
+      if (nextNext) {
+        nextNext.focus();
+      } else {
+        focusFirst();
+      }
     }
   };
 
   const focusPrev = () => {
-    (
-      treeItemRefArray?.current?.[focusIndex - 1].current as HTMLDivElement
-    ).focus();
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+
+    focusIndex = getFocusIndex(curr);
+
+    let newIndex = focusIndex - 1;
+    let itemToFocus = curr?.[newIndex]?.current as HTMLDivElement;
+
+    while (!itemToFocus && newIndex >= 0) {
+      newIndex--;
+      itemToFocus = curr?.[newIndex]?.current as HTMLDivElement;
+    }
+
+    if (itemToFocus) {
+      itemToFocus.focus();
+    }
   };
 
   const focusLast = () => {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
     const arrLength = filteredRefArray['current'].length;
+
     (
       filteredRefArray['current']?.[arrLength - 1].current as HTMLDivElement
     ).focus();
   };
 
   const focusSelf = () => {
-    (treeItemRefArray?.current?.[focusIndex].current as HTMLDivElement).focus();
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+    focusIndex = getFocusIndex(curr);
+
+    (curr?.[focusIndex].current as HTMLDivElement).focus();
   };
 
   const expandFocusedNode = () => {
@@ -756,7 +793,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    const arrLength = treeItemRefArray.current.length;
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+    const arrLength = curr.length;
 
     switch (event.key) {
       case 'ArrowDown': {

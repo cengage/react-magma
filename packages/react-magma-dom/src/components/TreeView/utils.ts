@@ -374,15 +374,13 @@ export function getFirstItemInTree(arr, children) {
   return null;
 }
 
+// Return a treeItemRefArray object with no null children
 export function filterNullEntries(obj) {
-  const result = {};
-  for (const key in obj) {
-    if (Array.isArray(obj[key])) {
-      const filteredArray = obj[key].filter(item => item.current !== null);
-      if (filteredArray.length > 0) {
-        result[key] = filteredArray;
-      }
+  if (Array.isArray(obj.current)) {
+    const filteredArray = obj.current.filter(item => item?.current !== null);
+    if (filteredArray.length > 0) {
+      return { current: filteredArray };
     }
   }
-  return result;
+  return {};
 }
