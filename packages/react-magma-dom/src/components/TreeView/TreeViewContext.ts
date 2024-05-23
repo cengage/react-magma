@@ -8,14 +8,19 @@ export interface TreeItemSelectedInterface {
 }
 
 export interface TreeViewContextInterface {
-  children?: React.ReactNode | React.ReactNode[];
+  children?: React.ReactNode[];
   hasIcons: boolean;
   initialExpandedItems: Array<string>;
   initialExpandedItemsNeedUpdate: boolean;
   onExpandedChange?: (event: React.SyntheticEvent) => void;
-  onSelectedItemChange?: (selectedItems: Array<TreeItemSelectedInterface>) => void;
+  onSelectedItemChange?: (
+    selectedItems: Array<TreeItemSelectedInterface>
+  ) => void;
   preselectedItemsNeedUpdate: boolean;
-  registerTreeItem: (itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,itemRef: React.MutableRefObject<Element>) => void;
+  registerTreeItem: (
+    itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
+    itemRef: React.MutableRefObject<Element>
+  ) => void;
   selectable: TreeViewSelectable;
   selectedItems: Array<TreeItemSelectedInterface>;
   selectedItemsChanged: boolean;
@@ -23,7 +28,7 @@ export interface TreeViewContextInterface {
   setInitialExpandedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
   setPreselectedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
   setSelectedItems: React.Dispatch<React.SetStateAction<any>>;
-  setSelectedItemsChanged:React.Dispatch<React.SetStateAction<any>>;
+  setSelectedItemsChanged: React.Dispatch<React.SetStateAction<any>>;
   treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   itemToFocus?: string;
 }
