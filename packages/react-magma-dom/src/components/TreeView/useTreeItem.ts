@@ -10,6 +10,7 @@ import {
   // getEnabledTreeItemChildrenLength,
   areArraysEqual,
   arrayIncludesId,
+  filterNullEntries,
   filterSelectedItems,
   findChildByItemId,
   findCommonItems,
@@ -175,29 +176,39 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             IndeterminateCheckboxStatus.checked
           );
 
-          const itemIdChildrenInTree = getChildrenItemIdsInTree(treeItemChildren);
-          const parentIds = itemId && itemIdChildrenInTree.length > 0 ? getAllParentIds(itemIdChildrenInTree, itemId) : [];
+          const itemIdChildrenInTree =
+            getChildrenItemIdsInTree(treeItemChildren);
+          const parentIds =
+            itemId && itemIdChildrenInTree.length > 0
+              ? getAllParentIds(itemIdChildrenInTree, itemId)
+              : [];
 
-          const additionalItems = parentIds && hasOwnTreeItems && newStatus === IndeterminateCheckboxStatus.checked ? [...childrenOfItemId, ...parentIds] : [];
+          const additionalItems =
+            parentIds &&
+            hasOwnTreeItems &&
+            newStatus === IndeterminateCheckboxStatus.checked
+              ? [...childrenOfItemId, ...parentIds]
+              : [];
 
           setStatusUpdatedBy(StatusUpdatedByOptions.checkboxChange);
           setCheckedStatus(item?.checkedStatus);
 
-          // Pass "true" as isInitialRender value to skip sending an "onSelection" event
-          // Required since this useEffect handles initial rendering of the item
-          updateParentCheckStatus(index, newStatus, true);
+          if (selectable === TreeViewSelectable.multi) {
+            // Pass "true" as isInitialRender value to skip sending an "onSelection" event
+            // Required since this useEffect handles initial rendering of the item
+            updateParentCheckStatus(index, newStatus, true);
+          }
           setSelectedItems(prev => {
             return getUniqueSelectedItemsArray(
               [{ itemId: itemId, checkedStatus: newStatus }],
               prev,
-              additionalItems,
+              additionalItems
             );
           });
         }
         return;
       }
     });
-
 
     if (!isDisabled && ownRef.current !== null) {
       registerTreeItem(treeItemRefArray, ownRef);
@@ -275,7 +286,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     if (!item) {
       setSelectedItems(prev => {
-       return getUniqueSelectedItemsArray(
+        return getUniqueSelectedItemsArray(
           [{ itemId: itemId, checkedStatus: itemStatus }],
           preselectedChildrenItems,
           prev
@@ -326,21 +337,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const updateInitialSelected = () => {
     if (selectable === TreeViewSelectable.single && selectedItems) {
-      if (
-        selectedItems?.[0]?.itemId === itemId &&
-        !isDisabled &&
-        selectedItems.length === 0
-      ) {
-        setSelectedItems([
-          { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
-        ]);
-
+      const firstItemId = selectedItems?.[0]?.itemId;
+      if (firstItemId && !isDisabled) {
+        setSelectedItems(prev => {
+          if (!arrayIncludesId(prev, firstItemId)) {
+            return [
+              {
+                itemId: firstItemId,
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ];
+          }
+        });
         setSelectedItemsChanged(true);
       }
-    } else if (
-      selectable === TreeViewSelectable.multi &&
-      selectedItems
-    ) {
+    } else if (selectable === TreeViewSelectable.multi && selectedItems) {
       const item = selectedItems.find(obj => obj.itemId === itemId);
       const status = item?.checkedStatus;
       const childrenItemIds = getChildrenItemIds(
@@ -632,12 +643,17 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
   };
 
-  const focusIndex = treeItemRefArray?.current?.findIndex(
-    ({ current: item }) => {
-      if (!item || !ownRef.current) return false;
-      return item === ownRef.current;
-    }
-  );
+  function getFocusIndex(filteredArrayCurrent) {
+    return (
+      itemId &&
+      filteredArrayCurrent?.findIndex(({ current: item }) => {
+        if (!item || !ownRef.current) return false;
+        return item === ownRef.current;
+      })
+    );
+  }
+
+  let focusIndex = getFocusIndex(treeItemRefArray?.current);
 
   React.useEffect(() => {
     treeItemRefArray?.current.map(itemRef => {
@@ -650,37 +666,72 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }, [treeItemRefArray]);
 
   const focusFirst = () => {
-    (treeItemRefArray?.current?.[0].current as HTMLDivElement).focus();
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+
+    (curr?.[0].current as HTMLDivElement).focus();
   };
 
   const focusNext = () => {
-    const next = treeItemRefArray?.current?.[focusIndex + 1]
-      .current as HTMLDivElement;
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+    const arrLength = curr.length;
+    focusIndex = getFocusIndex(curr);
+
+    let newIndex = focusIndex + 1;
+    let next = curr?.[newIndex]?.current as HTMLDivElement;
+
+    while (!next && newIndex < arrLength) {
+      newIndex++;
+      next = curr?.[newIndex]?.current as HTMLDivElement;
+    }
 
     if (next) {
       next.focus();
     } else {
-      (
-        treeItemRefArray?.current?.[focusIndex + 2].current as HTMLDivElement
-      ).focus();
+      const nextNext = curr?.[focusIndex + 2]?.current as HTMLDivElement;
+      if (nextNext) {
+        nextNext.focus();
+      } else {
+        focusFirst();
+      }
     }
   };
 
   const focusPrev = () => {
-    (
-      treeItemRefArray?.current?.[focusIndex - 1].current as HTMLDivElement
-    ).focus();
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+
+    focusIndex = getFocusIndex(curr);
+
+    let newIndex = focusIndex - 1;
+    let itemToFocus = curr?.[newIndex]?.current as HTMLDivElement;
+
+    while (!itemToFocus && newIndex >= 0) {
+      newIndex--;
+      itemToFocus = curr?.[newIndex]?.current as HTMLDivElement;
+    }
+
+    if (itemToFocus) {
+      itemToFocus.focus();
+    }
   };
 
   const focusLast = () => {
-    const arrLength = treeItemRefArray.current.length;
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const arrLength = filteredRefArray['current'].length;
+
     (
-      treeItemRefArray?.current?.[arrLength - 1].current as HTMLDivElement
+      filteredRefArray['current']?.[arrLength - 1].current as HTMLDivElement
     ).focus();
   };
 
   const focusSelf = () => {
-    (treeItemRefArray?.current?.[focusIndex].current as HTMLDivElement).focus();
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+    focusIndex = getFocusIndex(curr);
+
+    (curr?.[focusIndex].current as HTMLDivElement).focus();
   };
 
   const expandFocusedNode = () => {
@@ -710,7 +761,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     updateParentCheckStatus(index, status);
 
     if (hasOwnTreeItems) {
-      const childrenIds = getChildrenItemIds(treeItemChildren, status);
+      const childrenIds = getChildrenItemIds(
+        treeItemChildren,
+        IndeterminateCheckboxStatus.checked
+      );
       if (!arrayIncludesId(selectedItems, itemId)) {
         setSelectedItems([
           ...selectedItems,
@@ -727,16 +781,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       }
     } else {
       if (!arrayIncludesId(selectedItems, itemId)) {
-        setSelectedItems([...selectedItems, { itemId, checkedStatus: status }]);
+        setSelectedItems([
+          ...selectedItems,
+          { itemId, checkedStatus: IndeterminateCheckboxStatus.checked },
+        ]);
       } else {
         setSelectedItems(selectedItems.filter(obj => obj.itemId !== itemId));
       }
     }
-    setSelectedItemsChanged(true);
+    updateSelectedItemsChanged();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    const arrLength = treeItemRefArray.current.length;
+    const filteredRefArray = filterNullEntries(treeItemRefArray);
+    const curr = filteredRefArray['current'];
+    const arrLength = curr.length;
 
     switch (event.key) {
       case 'ArrowDown': {

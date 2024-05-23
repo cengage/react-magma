@@ -77,7 +77,7 @@ export interface CheckboxProps
   /**
    * Action that fires when selected value of the checkbox changes
    */
-   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   /**
    * @internal
    */
@@ -87,6 +87,10 @@ export interface CheckboxProps
    * @default CheckboxTextPosition.right
    */
   textPosition?: CheckboxTextPosition;
+  /**
+   * @internal
+   */
+  hideFocus?: boolean;
 }
 
 export const HiddenLabelText = styled.span`
@@ -120,6 +124,7 @@ export const StyledFakeInput = styled.span<{
   isIndeterminate?: boolean;
   isInverse?: boolean;
   hasError?: boolean;
+  hideFocus?: boolean;
   textPosition?: CheckboxTextPosition;
   theme?: any;
 }>`
@@ -141,7 +146,7 @@ export const StyledFakeInput = styled.span<{
 
   ${HiddenInput}:focus + label & {
     &:before {
-      ${props => buildDisplayInputFocusStyles(props)};
+      ${props => !props.hideFocus && buildDisplayInputFocusStyles(props)};
     }
   }
 
@@ -244,6 +249,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               color={color}
               disabled={disabled}
               hasError={hasError}
+              hideFocus={props.hideFocus}
               isInverse={isInverse}
               style={inputStyle}
               textPosition={textPosition}

@@ -26,7 +26,6 @@ import {
   TreeNodeType,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
-  getLowestIndexItem,
 } from './utils';
 import { transparentize } from 'polished';
 import { TreeItemContext } from './TreeItemContext';
@@ -192,7 +191,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse();
 
-    const { selectable, hasIcons, onExpandedChange } =
+    const { selectable, hasIcons, onExpandedChange, itemToFocus } =
       React.useContext(TreeViewContext);
 
     const { contextValue, handleClick, handleKeyDown } = useTreeItem(
@@ -212,7 +211,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectedItems,
       setExpanded,
       updateCheckedStatusFromChild,
-      treeItemChildren,
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
@@ -225,7 +223,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi
         ? checkedStatusToBoolean(checkedStatus)
         : null;
-        
+
     const defaultIcon =
       nodeType === TreeNodeType.branch ? <FolderIcon /> : <ArticleIcon />;
 
@@ -259,16 +257,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
-      id: `${itemId}-checkbox`,
-      testId: `${itemId}-checkbox`,
-      labelText: labelText,
-      onChange: checkboxChangeHandler,
       disabled: isDisabled,
+      hideFocus: true,
+      id: `${itemId}-checkbox`,
       inputStyle: { marginRight: theme.spaceScale.spacing03 },
       labelStyle: {
         padding: 0,
       },
+      labelText: labelText,
+      onChange: checkboxChangeHandler,
       tabIndex: -1,
+      testId: `${itemId}-checkbox`,
     };
 
     const onExpandedClicked = (event: React.SyntheticEvent) => {
@@ -279,30 +278,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       onExpandedChange &&
         typeof onExpandedChange === 'function' &&
         onExpandedChange(event);
-    };
-
-    const focusedItem = () => {
-      const firstSelectedItem = getLowestIndexItem(
-        selectedItems,
-        treeItemChildren
-      );
-
-      // TODO: FIX
-      if (selectable === TreeViewSelectable.single && selectedItem) {
-        return true;
-      } else if (
-        selectable === TreeViewSelectable.multi &&
-        firstSelectedItem === itemId
-      ) {
-        return true;
-      } else if (selectable === TreeViewSelectable.off) {
-        if (nodeType === TreeNodeType.branch && firstSelectedItem) {
-          return true;
-        }
-      } else {
-        // focus first item in all other cases (selectable is off, no item is selected)
-        return itemDepth === 0 && topLevel;
-      }
     };
 
     return (
@@ -342,7 +317,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             ref={ref}
             selectable={selectable}
             style={style}
-            tabIndex={focusedItem() ? 0 : -1}
+            tabIndex={itemToFocus === itemId ? 0 : -1}
             theme={theme}
           >
             {hasOwnTreeItems && (
