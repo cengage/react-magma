@@ -234,7 +234,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           ? 'mixed'
           : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
-        
+
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
         <FolderIcon aria-hidden={true} />
