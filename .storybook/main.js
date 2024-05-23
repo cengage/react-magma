@@ -29,7 +29,7 @@ module.exports = {
     config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
       return {
         ...config,
-        devtool: false,
+        // devtool: false,
         module: {
           ...config.module,
       },

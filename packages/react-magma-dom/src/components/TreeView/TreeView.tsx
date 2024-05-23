@@ -13,8 +13,8 @@ import styled, { CreateStyled } from '@emotion/styled';
 import { ThemeInterface } from '../../theme/magma';
 
 export interface TreeViewProps
-  extends UseTreeViewProps,
-    React.HTMLAttributes<HTMLUListElement> {}
+  extends Omit<React.HTMLAttributes<HTMLUListElement>, 'children'>,
+    UseTreeViewProps {}
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
