@@ -95,12 +95,13 @@ const StyledTreeItem = styled.li<{
 
     &:hover {
       background: ${props =>
-        !props.isDisabled &&
-        props.selectableType !== TreeViewSelectable.off &&
-        transparentize(0.95, props.theme.colors.neutral900)};
+        !props.isDisabled
+          ? props.isInverse
+            ? transparentize(0.8, props.theme.colors.neutral900)
+            : transparentize(0.95, props.theme.colors.neutral900)
+          : undefined}
     }
-  }
-`;
+  `;
 
 const IconWrapper = styled.span<{
   theme?: ThemeInterface;
@@ -169,6 +170,11 @@ const StyledItemWrapper = styled.div<{
     )};
   &:focus {
     outline-offset: -2px;
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
   }
 `;
 
@@ -333,7 +339,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 }}
                 theme={theme}
               >
-                {expanded ? <ExpandMoreIcon /> : <ChevronRightIcon />}
+                {expanded ? (
+                  <ExpandMoreIcon aria-hidden={true} />
+                ) : (
+                  <ChevronRightIcon aria-hidden={true} />
+                )}
               </StyledExpandWrapper>
             )}
 
