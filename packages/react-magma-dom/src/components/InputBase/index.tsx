@@ -136,6 +136,10 @@ export interface InputBaseProps
    * @default "auto"
    */
   width?: string;
+ /**
+   * Style properties for the outmost component container element
+   */
+    wrapperContainerStyle?: React.CSSProperties;
 }
 
 export interface InputWrapperStylesProps {
@@ -575,6 +579,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       inputStyle,
       testId,
       type,
+      wrapperContainerStyle,
       ...other
     } = props;
 
@@ -638,7 +643,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     };
 
     return (
-      <InputContainer>
+      <InputContainer style={wrapperContainerStyle}>
         <InputWrapper
           disabled={disabled}
           iconPosition={iconPosition}
