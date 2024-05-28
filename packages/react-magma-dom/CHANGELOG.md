@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.4.0-next.21
+
+### Minor Changes
+
+- 63ba07d06: feat(TreeView): TreeView & TreeItem style updates
+
 ## 4.4.0-next.20
 
 ### Patch Changes
