@@ -1,5 +1,11 @@
 ## 4.3.0
 
+## 4.4.0-next.20
+
+### Patch Changes
+
+- ad0c58ace: fix(Select/Combobox): Update event types
+
 ## 4.4.0-next.19
 
 ### Minor Changes
