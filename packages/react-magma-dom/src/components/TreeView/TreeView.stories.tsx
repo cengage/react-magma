@@ -159,7 +159,6 @@ export const Complex = args => {
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
               itemId="pt1ch1"
               testId="pt1ch1"
-              // isDisabled
             >
               <TreeItem
                 icon={<ArticleIcon aria-hidden={true} />}
