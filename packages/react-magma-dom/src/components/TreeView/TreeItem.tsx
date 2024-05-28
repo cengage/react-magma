@@ -18,7 +18,10 @@ import {
   ChevronRightIcon,
 } from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
-import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
+import {
+  IndeterminateCheckbox,
+  IndeterminateCheckboxStatus,
+} from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
 
 import {
@@ -95,12 +98,13 @@ const StyledTreeItem = styled.li<{
 
     &:hover {
       background: ${props =>
-        !props.isDisabled &&
-        props.selectableType !== TreeViewSelectable.off &&
-        transparentize(0.95, props.theme.colors.neutral900)};
+        !props.isDisabled
+          ? props.isInverse
+            ? transparentize(0.8, props.theme.colors.neutral900)
+            : transparentize(0.95, props.theme.colors.neutral900)
+          : undefined}
     }
-  }
-`;
+  `;
 
 const IconWrapper = styled.span<{
   theme?: ThemeInterface;
@@ -169,6 +173,11 @@ const StyledItemWrapper = styled.div<{
     )};
   &:focus {
     outline-offset: -2px;
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
   }
 `;
 
@@ -219,13 +228,19 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         ? selectedItems?.[0]?.itemId === itemId
         : null;
 
-    const checkedItem =
+    const ariaCheckedValue =
       selectable === TreeViewSelectable.multi
-        ? checkedStatusToBoolean(checkedStatus)
+        ? checkedStatus === IndeterminateCheckboxStatus.indeterminate
+          ? 'mixed'
+          : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
 
     const defaultIcon =
-      nodeType === TreeNodeType.branch ? <FolderIcon /> : <ArticleIcon />;
+      nodeType === TreeNodeType.branch ? (
+        <FolderIcon aria-hidden={true} />
+      ) : (
+        <ArticleIcon aria-hidden={true} />
+      );
 
     const labelText = (
       <StyledLabelWrapper
@@ -286,7 +301,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           {...rest}
           aria-expanded={hasOwnTreeItems ? expanded : null}
           aria-selected={selectedItem}
-          aria-checked={checkedItem}
+          aria-checked={ariaCheckedValue}
           data-testid={testId}
           depth={itemDepth}
           hasOwnTreeItems
@@ -333,7 +348,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 }}
                 theme={theme}
               >
-                {expanded ? <ExpandMoreIcon /> : <ChevronRightIcon />}
+                {expanded ? (
+                  <ExpandMoreIcon aria-hidden={true} />
+                ) : (
+                  <ChevronRightIcon aria-hidden={true} />
+                )}
               </StyledExpandWrapper>
             )}
 
