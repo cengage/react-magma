@@ -18,7 +18,10 @@ import {
   ChevronRightIcon,
 } from 'react-magma-icons';
 import { Checkbox } from '../Checkbox';
-import { IndeterminateCheckbox } from '../IndeterminateCheckbox';
+import {
+  IndeterminateCheckbox,
+  IndeterminateCheckboxStatus,
+} from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
 
 import {
@@ -225,9 +228,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         ? selectedItems?.[0]?.itemId === itemId
         : null;
 
-    const checkedItem =
+    const ariaCheckedValue =
       selectable === TreeViewSelectable.multi
-        ? checkedStatusToBoolean(checkedStatus)
+        ? checkedStatus === IndeterminateCheckboxStatus.indeterminate
+          ? 'mixed'
+          : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
 
     const defaultIcon =
@@ -296,7 +301,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           {...rest}
           aria-expanded={hasOwnTreeItems ? expanded : null}
           aria-selected={selectedItem}
-          aria-checked={checkedItem}
+          aria-checked={ariaCheckedValue}
           data-testid={testId}
           depth={itemDepth}
           hasOwnTreeItems
