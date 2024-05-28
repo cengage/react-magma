@@ -17,8 +17,8 @@ TreeView provides a hierarchical list of items that can be collapsed or expanded
 ## Basic Usage
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem, Heading } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem, Heading } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -101,8 +101,8 @@ export function Example() {
 TreeViews can have `TreeViewSelectable.single` for single select (default), `TreeViewSelectable.multi` for multi select with checkboxes, or `TreeViewSelectable.off` for no selection. 
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem, TreeViewSelectable, Tag } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable, Tag } from 'react-magma-dom';
 
 export function Example() {
   const [selectedItems, setSelectedItems] = React.useState(null);
@@ -226,8 +226,8 @@ export function Example() {
 If one `TreeItem` uses the `icon` prop, all other `TreeItems` should also have an `icon`. If one is not passed, default icons will be used: `FolderIcon` for branches and `ArticleIcon` for leafs.
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem, magma } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem, magma } from 'react-magma-dom';
 import { FavoriteIcon } from "react-magma-icons";
 
 export function Example() {
@@ -313,8 +313,8 @@ export function Example() {
 To have a `TreeItem` selected initially, pass an array of `{itemId: 'itemId', checkedStatus: 'checked'}` objects to the `TreeView`.
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem, TreeViewSelectable } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -368,8 +368,8 @@ If there is no visible name for the element you can reference, use `ariaLabel` t
 *It's required to use either `ariaLabel` OR `ariaLabelledBy`.*
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -434,8 +434,8 @@ export function Example() {
 The following events are available: `onSelectedItemChange` and `onExpandedChange`.
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem, TreeViewSelectable } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
   const [currentTreeEvent, setCurrentTreeEvent] = React.useState<
@@ -485,8 +485,8 @@ export function Example() {
 ## Inverse
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem, Card } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem, Card } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -534,8 +534,8 @@ export function Example() {
 Use the `labelStyle` prop to customize the `TreeItem` labels.
 
 ```typescript
-import React from "react";
-import { TreeView, TreeItem, magma } from "react-magma-dom";
+import React from 'react';
+import { TreeView, TreeItem, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
