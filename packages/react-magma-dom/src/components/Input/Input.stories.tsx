@@ -266,8 +266,8 @@ export const NumberInput = args => {
       isInverse={args.isInverse}
     >
       <Input
-        labelText="Number 1-40"
-        wrapperContainerStyle={{ width: '60px' }}
+        labelText="Number 1-40 with long long long long label"
+        inputWrapperStyle={{ width: '64px' }}
         type={InputType.number}
         errorMessage={hasError ? 'Please enter a number between 1 - 40' : null}
         min={1}
@@ -283,6 +283,7 @@ export const NumberInput = args => {
 NumberInput.args = {
   disabled: false,
   helperMessage: 'Enter a number 1 - 40',
+  isClearable: true,
 };
 
 NumberInput.parameters = {

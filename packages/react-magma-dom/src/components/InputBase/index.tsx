@@ -79,6 +79,10 @@ export interface InputBaseProps
    */
   inputStyle?: React.CSSProperties;
   /**
+   * Style properties for input wrapper element
+   */
+  inputWrapperStyle?: React.CSSProperties;
+  /**
    * Total number of characters in an input.
    */
   inputLength?: number;
@@ -136,10 +140,6 @@ export interface InputBaseProps
    * @default "auto"
    */
   width?: string;
- /**
-   * Style properties for the outmost component container element
-   */
-    wrapperContainerStyle?: React.CSSProperties;
 }
 
 export interface InputWrapperStylesProps {
@@ -577,9 +577,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       inputLength,
       inputSize,
       inputStyle,
+      inputWrapperStyle,
       testId,
       type,
-      wrapperContainerStyle,
       ...other
     } = props;
 
@@ -643,7 +643,10 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     };
 
     return (
-      <InputContainer style={wrapperContainerStyle}>
+      <InputContainer
+        style={inputWrapperStyle}
+        data-testid={`${testId}-wrapper`}
+      >
         <InputWrapper
           disabled={disabled}
           iconPosition={iconPosition}
@@ -663,7 +666,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             hasCharacterCounter={hasCharacterCounter}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
-            isClearable={isClearable && inputLength > 0}
+            isClearable={
+              inputWrapperStyle?.width
+                ? isClearable
+                : isClearable && inputLength > 0
+            }
             isInverse={useIsInverse(props.isInverse)}
             isPredictive={isPredictive}
             hasError={hasError}
