@@ -231,7 +231,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         : null;
 
     const defaultIcon =
-      nodeType === TreeNodeType.branch ? <FolderIcon /> : <ArticleIcon />;
+      nodeType === TreeNodeType.branch ? (
+        <FolderIcon aria-hidden={true} />
+      ) : (
+        <ArticleIcon aria-hidden={true} />
+      );
 
     const labelText = (
       <StyledLabelWrapper

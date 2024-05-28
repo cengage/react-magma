@@ -155,14 +155,13 @@ export const Complex = args => {
         <TreeView {...args} onSelectedItemChange={onSelection}>
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
               itemId="pt1ch1"
               testId="pt1ch1"
-              // isDisabled
             >
               <TreeItem
-                icon={<ArticleIcon />}
+                icon={<ArticleIcon aria-hidden={true} />}
                 label={<>Section 1.1: Cake donut lemon drops gingerbread</>}
                 itemId="pt1ch1.1"
               />
@@ -173,18 +172,17 @@ export const Complex = args => {
                   Chapter 2: Chocolate bar ice cream cake liquorice icing tart
                 </>
               }
-              // isDisabled
               itemId="pt1ch2"
             />
             <TreeItem
-              icon={<FolderIcon />}
+              icon={<FolderIcon aria-hidden={true} />}
               label={
                 <>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>
               }
               itemId="pt1ch3"
             >
               <TreeItem
-                icon={<ArticleIcon />}
+                icon={<ArticleIcon aria-hidden={true} />}
                 label={
                   <>
                     Section 3.1: Topping pudding marshmallow caramels I love pie
@@ -193,7 +191,7 @@ export const Complex = args => {
                 itemId="pt1ch3.1"
               />
               <TreeItem
-                icon={<ArticleIcon />}
+                icon={<ArticleIcon aria-hidden={true} />}
                 label={
                   <>
                     Section 3.2: Tart sweet roll caramels candy canes sweet roll
@@ -202,7 +200,7 @@ export const Complex = args => {
                 itemId="pt1ch3.2"
               />
               <TreeItem
-                icon={<ArticleIcon />}
+                icon={<ArticleIcon aria-hidden={true} />}
                 label={
                   <>
                     Section 3.3: Tart sweet roll caramels candy canes sweet roll
@@ -213,7 +211,7 @@ export const Complex = args => {
             </TreeItem>
           </TreeItem>
           <TreeItem
-            icon={<FolderIcon />}
+            icon={<FolderIcon aria-hidden={true} />}
             label={
               <>
                 Part 2: Candy powder carrot cake cotton candy marshmallow
@@ -223,7 +221,7 @@ export const Complex = args => {
             itemId="pt2"
           >
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={
                 <>
                   Chapter 4: I love carrot cake sweet roll I love liquorice
@@ -233,7 +231,7 @@ export const Complex = args => {
               itemId="pt2ch4"
             />
             <TreeItem
-              icon={<FolderIcon />}
+              icon={<FolderIcon aria-hidden={true} />}
               label={
                 <>
                   Chapter 5: Wafer I love I love sesame snaps I love muffin
@@ -243,7 +241,7 @@ export const Complex = args => {
               itemId="pt2ch5"
             >
               <TreeItem
-                icon={<ArticleIcon />}
+                icon={<ArticleIcon aria-hidden={true} />}
                 label={
                   <>
                     Section 5.1: Apple pie apple pie tart macaroon topping
@@ -253,7 +251,7 @@ export const Complex = args => {
                 itemId="pt2ch5.1"
               >
                 <TreeItem
-                  icon={<ArticleIcon />}
+                  icon={<ArticleIcon aria-hidden={true} />}
                   label={
                     <>
                       Section 5.1.1: Apple pie apple pie tart macaroon topping
@@ -263,7 +261,7 @@ export const Complex = args => {
                   itemId="pt2ch5.1.1"
                 />
                 <TreeItem
-                  icon={<ArticleIcon />}
+                  icon={<ArticleIcon aria-hidden={true} />}
                   label={
                     <>
                       Section 5.1.2: Apple pie apple pie tart macaroon topping
@@ -274,7 +272,7 @@ export const Complex = args => {
                 />
               </TreeItem>
               <TreeItem
-                icon={<ArticleIcon />}
+                icon={<ArticleIcon aria-hidden={true} />}
                 label={
                   <>
                     Section 5.2: Jelly lollipop tart gummies pie croissant
@@ -284,7 +282,7 @@ export const Complex = args => {
                 itemId="pt2ch5.2"
               />
               <TreeItem
-                icon={<ArticleIcon />}
+                icon={<ArticleIcon aria-hidden={true} />}
                 label={
                   <>
                     Section 5.3: Bonbon chocolate bar lollipop lollipop I love
@@ -295,13 +293,13 @@ export const Complex = args => {
               />
             </TreeItem>
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={<>Chapter 6: Cupcake dragée I love cookie I love</>}
               itemId="pt2ch6"
             />
           </TreeItem>
           <TreeItem
-            icon={<FolderIcon />}
+            icon={<FolderIcon aria-hidden={true} />}
             label={
               <>
                 Part 3: Sugar plum halvah shortbread apple pie I love brownie
@@ -311,7 +309,7 @@ export const Complex = args => {
             itemId="pt3"
           >
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={
                 <>
                   Chapter 7: Cheesecake lollipop tootsie roll candy canes
@@ -321,7 +319,7 @@ export const Complex = args => {
               itemId="pt3ch7"
             />
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={
                 <>
                   Chapter 8: Jelly pastry jelly-o topping cookie carrot cake
@@ -331,14 +329,14 @@ export const Complex = args => {
               itemId="pt3ch8"
             />
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={
                 <>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>
               }
               itemId="pt3ch9"
             />
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={
                 <>
                   Chapter 10: Wafer carrot cake powder candy canes sweet roll
@@ -348,7 +346,7 @@ export const Complex = args => {
               itemId="pt3ch10"
             />
             <TreeItem
-              icon={<ArticleIcon />}
+              icon={<ArticleIcon aria-hidden={true} />}
               label={
                 <>
                   Chapter 11: Apple pie chocolate cake tiramisu bonbon I love
@@ -420,7 +418,7 @@ export const NoIcons = args => {
               />
               <TreeItem label={<>Bath Towels</>} itemId="towels">
                 <TreeItem label={<>Item 1</>} itemId="towels-1" />
-                <TreeItem label={<>Item 2</>} itemId="towels-2" isDisabled />
+                <TreeItem label={<>Item 2</>} itemId="towels-2" />
               </TreeItem>
             </TreeItem>
             <TreeItem label={<>Bedding</>} itemId="bedding">
@@ -578,13 +576,13 @@ export const DefaultIcon = args => {
     <>
       <TreeView {...args} onSelectedItemChange={onSelection}>
         <TreeItem
-          icon={<FavoriteIcon />}
+          icon={<FavoriteIcon aria-hidden={true} />}
           itemId="1"
           label={<>I have an icon</>}
           labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
         />
         <TreeItem
-          icon={<StarIcon />}
+          icon={<StarIcon aria-hidden={true} />}
           itemId="2"
           label={<>I have an icon</>}
           labelStyle={{ color: magma.colors.danger700, fontWeight: '700' }}
@@ -597,7 +595,7 @@ export const DefaultIcon = args => {
             style={{ background: magma.colors.info100 }}
           />
           <TreeItem
-            icon={<EmergencyIcon style={{ color: magma.colors.danger500 }} />}
+            icon={<EmergencyIcon style={{ color: magma.colors.danger500 }} aria-hidden={true} />}
             itemId="5"
             label={<>I have an icon too</>}
           >

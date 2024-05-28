@@ -25,10 +25,10 @@ export function Example() {
     <>
       <Heading level={3} id="ah-textbook">Gardner's Art through the ages</Heading>
       <TreeView ariaLabelledBy={"ah-textbook"}>
-        <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}itemId="I-intro">
-          <TreeItem label={<>Art History in the 21st Century</>}itemId="I-intro">
+        <TreeItem label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>} itemId="I-intro">
+          <TreeItem label={<>Art History in the 21st Century</>} itemId="I-intro">
             <TreeItem label={<>The Questions Art Historians Ask</>} itemId="I-questions"/>
-            <TreeItem label={<>The Words Art Historians Use</>}itemId="I-words">
+            <TreeItem label={<>The Words Art Historians Use</>} itemId="I-words">
               <TreeItem label={<>Vocabulary</>} itemId="I-vocab"/>
             </TreeItem>
             <TreeItem label={<>Art History and Other Disciplines</>} itemId="I-other"/>
@@ -36,26 +36,26 @@ export function Example() {
           <TreeItem label={<>Different Ways of Seeing</>} itemId="I-different-ways"/>
         </TreeItem>
         <TreeItem label={<>1. ART IN THE STONE AGE</>}itemId="1-stone-age">
-          <TreeItem label={<>Paleolithic Art</>}itemId="1-paleolithic">
+          <TreeItem label={<>Paleolithic Art</>} itemId="1-paleolithic">
             <TreeItem label={<>Africa</>} itemId="1-africa"/>
             <TreeItem label={<>Europe</>} itemId="1-europe"/>
           </TreeItem>
-          <TreeItem label={<>Neolithic Art</>}itemId="1-neolithic">
+          <TreeItem label={<>Neolithic Art</>} itemId="1-neolithic">
             <TreeItem label={<>Anatolia and Mesopotamia</>} itemId="1-anatolia"/>
             <TreeItem label={<>Europe</>} itemId="1-neolithic-europe" isDisabled/>
           </TreeItem>
         </TreeItem>
-        <TreeItem label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}itemId="2-ancient">
-          <TreeItem label={<>Mesopotamia</>}itemId="2-mesopotamia">
+        <TreeItem label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>} itemId="2-ancient">
+          <TreeItem label={<>Mesopotamia</>} itemId="2-mesopotamia">
             <TreeItem label={<>Sumer</>} itemId="2-sumer"/>
             <TreeItem label={<>Akkad</>} itemId="2-akkad"/>
             <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur"/>
             <TreeItem label={<>Babylon</>} itemId="2-babylon"/>
             <TreeItem label={<>Elam</>} itemId="2-elam"/>
-            <TreeItem label={<>Assyria</>}itemId="2-assyria" />
-            <TreeItem label={<>Neo-Babylonia</>}itemId="2-neo" />
+            <TreeItem label={<>Assyria</>} itemId="2-assyria" />
+            <TreeItem label={<>Neo-Babylonia</>} itemId="2-neo" />
           </TreeItem>
-          <TreeItem label={<>Persia</>}itemId="2-persia">
+          <TreeItem label={<>Persia</>} itemId="2-persia">
             <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid"/>
             <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian"/>
           </TreeItem>
@@ -185,7 +185,7 @@ export function Example() {
       >
       <TreeItem
         label={<>I have an icon</>}
-        icon={<FavoriteIcon style={{color: magma.colors.primary500}} />}
+        icon={<FavoriteIcon style={{color: magma.colors.primary500}} aria-hidden={true} />}
       />
       <TreeItem
         label={<>I am a Branch without icon</>}
@@ -195,7 +195,7 @@ export function Example() {
         />
         <TreeItem
           label={<>I have an icon</>}
-          icon={<FavoriteIcon style={{color: magma.colors.primary500}} />}
+          icon={<FavoriteIcon style={{color: magma.colors.primary500}} aria-hidden={true} />}
         />
       </TreeItem>
     </TreeView>
