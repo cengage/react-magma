@@ -20,6 +20,7 @@
     "fix-BadgeHeight",
     "fix-NativeSelectPagination",
     "fix-datagrid",
+    "fix-events",
     "little-impalas-shave",
     "modal-isModalClosingControlledManually",
     "nativeSelect-testId",
