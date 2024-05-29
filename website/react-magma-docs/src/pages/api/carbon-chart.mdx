@@ -1,8 +1,6 @@
 ---
 pageTitle: CarbonChart API
 title: CarbonChart
-props:
-  - CarbonChartProps
 ---
 
 import { LeadParagraph } from '../../components/LeadParagraph';
@@ -28,6 +26,7 @@ We currently support the following charts:
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import './styles.min.css';
 
 export function Example() {
   const dataSet = [
@@ -83,6 +82,52 @@ export function Example() {
 
 ## CarbonChart Props
 
-<CarbonChartProps />
+<SimplePropsTable
+  propertyValues={{
+    componentProps: {
+      type: {
+        name: 'enum',
+        options: [
+          'CarbonChartType.area',
+          'CarbonChartType.areaStacked',
+          'CarbonChartType.bar',
+          'CarbonChartType.barGrouped',
+          'CarbonChartType.barStacked',
+          'CarbonChartType.donut',
+          'CarbonChartType.line',
+          'CarbonChartType.pie',
+          'CarbonChartType.lollipop',
+        ],
+      },
+      required: true,
+      description:
+        'Type of Chart: area, bar, donut, line, etc.',
+    },
+    dataSet: {
+      type: {
+        name: 'array',
+      },
+      required: true,
+      description: 'Data used to build the chart',
+      defaultValue: '[]',
+    },
+    options: {
+      type: {
+        name: 'object',
+      },
+      required: true,
+      description: 'For a complete list of options, see Carbon Charts documentation',
+      defaultValue: '{}',
+    },
+    isInverse: {
+      type: {
+        name: 'boolean',
+      },
+      required: true,
+      defaultValue: false,
+    },
+    
+  }}
+/>
 
 </PageContent>
