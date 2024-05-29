@@ -53,6 +53,7 @@
     "react-magma-icons": "^3.0.0"
   },
   "exports": {
-    "src/components/CarbonChart/": "./styles.min.css"
+    ".": "./styles.min.css",
+    "./src/components/CarbonChart/": "./styles.min.css"
   }
 }

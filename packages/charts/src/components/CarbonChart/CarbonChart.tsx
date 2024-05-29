@@ -13,6 +13,7 @@ import {
   SimpleBarChart,
   StackedBarChart,
 } from '@carbon/charts-react';
+// import '@carbon/charts/styles.css';
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
