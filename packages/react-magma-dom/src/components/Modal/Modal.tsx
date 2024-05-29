@@ -318,9 +318,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         if (lastFocus.current) {
           lastFocus.current.focus();
         }
-
-        props.onClose && typeof props.onClose === 'function' && props.onClose();
       }, 300);
+
+      setTimeout(() => {
+        props.onClose && typeof props.onClose === 'function' && props.onClose();
+      }, 10);
     }
 
     const {
