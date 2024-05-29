@@ -12,7 +12,8 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "src/components/CarbonChart/styles.min.css"
   ],
   "engines": {
     "npm": "^7.3.0",
@@ -50,5 +51,8 @@
     "react-dom": "^17.0.2",
     "react-magma-dom": "^4.4.0-next.2",
     "react-magma-icons": "^3.0.0"
+  },
+  "exports": {
+    "src/components/CarbonChart/": "./styles.min.css"
   }
 }
