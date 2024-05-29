@@ -20,13 +20,98 @@ We currently support the following charts:
 - SimpleBarChart
 - StackedBarChart
 
+## Area Chart
+
+```typescript
+import React from 'react';
+import { Card } from 'react-magma-dom';
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+
+export function Example() {
+  const dataSet = [
+    {
+      group: 'Dataset 1',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 0,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-06T05:00:00.000Z',
+      value: -37312,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-08T05:00:00.000Z',
+      value: -22392,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-15T05:00:00.000Z',
+      value: -52576,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-19T05:00:00.000Z',
+      value: 20135,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 47263,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-05T05:00:00.000Z',
+      value: 14178,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-08T05:00:00.000Z',
+      value: 23094,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-13T05:00:00.000Z',
+      value: 45281,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-19T05:00:00.000Z',
+      value: -63954,
+    },
+  ];
+
+  const options = {
+    title: 'Area (time series - natural curve)',
+    axes: {
+      bottom: {
+        title: '2024 Annual Sales Figures',
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
+      left: {
+        mapsTo: 'value',
+        scaleType: 'linear',
+      },
+    },
+    curve: 'curveNatural',
+    height: '400px',
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart dataSet={dataSet} type={CarbonChartType.area} options={options} />
+    </Card>
+  );
+}
+```
+
 ## Donut Chart
 
 ```typescript
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
-import './styles.min.css';
 
 export function Example() {
   const dataSet = [
@@ -123,7 +208,7 @@ export function Example() {
       type: {
         name: 'boolean',
       },
-      required: true,
+      required: false,
       defaultValue: false,
     },
     
