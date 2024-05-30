@@ -12,8 +12,13 @@ import { transparentize } from 'polished';
  */
 export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   testId?: string;
+  /*
+   * Custom number for specific breakpoint responsive styling
+   */
   breakpoint?: number;
-  customDescriptionLabel?: string;
+  breakpointStyle?: BreakPointStyle;
+  stepDescriptionLabel?: string;
+  completedStepDescription?: string;
   /*
    * Current step value
    */
@@ -24,8 +29,7 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   index?: number;
   isInverse?: boolean;
   isLabelVisuallyHidden?: boolean;
-  isDescriptionVisuallyHidden?: boolean;
-  summaryLabel?: boolean;
+  isSummaryView?: boolean;
   /**
    * @internal
    */
@@ -34,6 +38,11 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   theme?: ThemeInterface;
+}
+
+export enum BreakPointStyle {
+  noLabels = 'noLabels',
+  summary = 'summary',
 }
 
 function StepSeparatorBackgroundColors(props: StepperProps) {
@@ -52,7 +61,7 @@ function StepSeparatorBackgroundColors(props: StepperProps) {
 
 const StyledStepper = styled.div<StepperProps>`
   display: flex;
-  margin: 0 12.5px;
+  padding: 0 40px;
 `;
 
 const StyledSeparator = styled.div<StepperProps>`
@@ -66,35 +75,56 @@ const StyledSeparator = styled.div<StepperProps>`
 `;
 
 const StyledSummary = styled.div<StepperProps>`
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
   top: 14px;
-  margin-left: 12px;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   color: ${props =>
     props.isInverse
       ? transparentize(0.3, props.theme.colors.neutral100)
       : props.theme.colors.neutral500};
+  span {
+    display: flex;
+    text-align: left;
+  }
 `;
 
+// Stepper!
 export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
   (props, ref) => {
     const {
       breakpoint,
+      breakpointStyle,
       children,
       currentStep,
-      customDescriptionLabel,
+      stepDescriptionLabel,
       index,
       isInverse: isInverseProp,
       isLabelVisuallyHidden,
-      isDescriptionVisuallyHidden,
-      summaryLabel,
+      isSummaryView,
       testId,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
+    const [breakPointNoLabel, setBreakPointNoLabel] = React.useState(false);
+    const [breakPointSummary, setBreakPointSummary] = React.useState(false);
+
+    const breakpointSize = breakpoint && breakpoint > window.innerWidth;
+
+    React.useEffect(() => {
+      if (breakpointSize && breakpointStyle === 'noLabels') {
+        setBreakPointNoLabel(true);
+      } else if (breakpointSize && breakpointStyle === 'summary') {
+        setBreakPointSummary(true);
+      }
+    });
+
     const steps = React.Children.toArray(children);
 
+    // Step states
     const Steps = React.Children.map(
       children,
       (
@@ -110,12 +140,15 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
+            breakpointStyle,
             eachStep: index + 1,
+            key: index,
             index: steps.length,
             isInverse: isInverse,
-            isLabelVisuallyHidden,
-            summaryLabel,
-            key: index,
+            isLabelVisuallyHidden: breakPointNoLabel
+              ? true
+              : isLabelVisuallyHidden,
+            isSummaryView,
             stepStatus: stepStatusStyles,
           });
 
@@ -135,11 +168,50 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       }
     );
 
+    // When isSummaryView is set to true, this shows one step label and description at a time based on the active step below the Stepper component.
+    const StepLabels = React.Children.map(children, (child, index) => {
+      const item = child as React.ReactElement<
+        React.PropsWithChildren<StepProps>
+      >;
+      if (item.type === Step && currentStep >= index && currentStep <= index) {
+        return child;
+      } else if (
+        // Retains last Step label and description
+        item.type === Step &&
+        currentStep >= +Steps.length &&
+        currentStep <= index + 1
+      ) {
+        return child;
+      }
+    });
+
+    // Final step description
+    const completedStepDescription = props.completedStepDescription
+      ? props.completedStepDescription
+      : 'Steps Completed';
+
+    // Shows both the step count out of total steps and the step label, allows for customization of the step title.
+    const stepSummary = (
+      <StyledSummary isInverse={isInverse} theme={theme}>
+        <span>
+          {currentStep < steps.length
+            ? stepDescriptionLabel
+              ? `${stepDescriptionLabel} ${currentStep + 1} of ${steps.length}`
+              : `Step 
+          ${currentStep + 1} of ${steps.length}`
+            : completedStepDescription}
+        </span>
+        <span>{StepLabels}</span>
+      </StyledSummary>
+    );
+
     return (
       <>
         <StyledStepper
+          breakpoint={breakpoint}
+          breakpointStyle={breakpointStyle}
           currentStep={currentStep}
-          customDescriptionLabel={customDescriptionLabel}
+          stepDescriptionLabel={stepDescriptionLabel}
           data-testid={props.testId}
           isInverse={isInverse}
           ref={ref}
@@ -148,11 +220,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
         >
           {Steps}
         </StyledStepper>
-        {!isDescriptionVisuallyHidden && (
-          <StyledSummary isInverse={isInverse} theme={theme}>
-            {customDescriptionLabel ? `${customDescriptionLabel} ` : 'Step '}
-            {currentStep + 1} of {steps.length}
-          </StyledSummary>
+        {isSummaryView && !breakPointNoLabel && !isLabelVisuallyHidden && (
+          <>{stepSummary}</>
         )}
       </>
     );
