@@ -12,7 +12,7 @@ import { IconProps } from 'react-magma-icons';
 export enum HyperlinkIconPosition {
   left = 'left',
   right = 'right',
-  both = 'both'
+  both = 'both',
 }
 
 export interface HyperlinkProps
@@ -103,7 +103,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
       testId,
       hasUnderline = true,
       icon,
-      iconPosition,
+      iconPosition = null,
       ...rest
     } = props;
 
@@ -158,34 +158,53 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
       }
       // TODO: add aria-hidden=true to icons
       // TODO Dev sets spacing
-      return (
-        <HyperlinkComponent
-          {...other}
-          ref={ref}
-          data-testid={testId}
-          href={to}
-          isInverse={isInverse}
-          theme={theme}
-          style={{display: 'flex', width: 'fit-content'}}
-        >
-          {iconPosition === HyperlinkIconPosition.right && (
-              <SpanTextLeft theme={theme} style={{flex: '0 0 auto'}}>{children}</SpanTextLeft>
+      // return (
+      if (icon && iconPosition !== null) {
+        return (
+          <HyperlinkComponent
+            {...other}
+            ref={ref}
+            data-testid={testId}
+            href={to}
+            isInverse={isInverse}
+            theme={theme}
+            style={{ display: 'flex', width: 'fit-content' }}
+          >
+            {iconPosition === HyperlinkIconPosition.right && (
+              <SpanTextLeft theme={theme} style={{ flex: '0 0 auto' }}>
+                {children}
+              </SpanTextLeft>
             )}
-            <span style={{flex: '0 0 auto'}}>
-              {icon}
-              </span>
+            <span style={{ flex: '0 0 auto' }}>{icon}</span>
             {iconPosition === HyperlinkIconPosition.left && (
-              <SpanTextRight theme={theme} style={{flex: '0 0 auto'}}>{children}</SpanTextRight>
+              <SpanTextRight theme={theme} style={{ flex: '0 0 auto' }}>
+                {children}
+              </SpanTextRight>
             )}
             {iconPosition === HyperlinkIconPosition.both && (
-              <><SpanTextRight theme={theme} style={{flex: '0 0 auto'}}>{children}</SpanTextRight>
-              <span style={{flex: '0 0 auto'}}>
-              {icon}
-              </span>
+              <>
+                <SpanTextRight theme={theme} style={{ flex: '0 0 auto' }}>
+                  {children}
+                </SpanTextRight>
+                <span style={{ flex: '0 0 auto' }}>{icon}</span>
               </>
             )}
-        </HyperlinkComponent>
-      );
+          </HyperlinkComponent>
+        );
+      } else {
+        return (
+          <HyperlinkComponent
+            {...other}
+            ref={ref}
+            data-testid={testId}
+            href={to}
+            isInverse={isInverse}
+            theme={theme}
+          >
+            {children}
+          </HyperlinkComponent>
+        );
+      }
     }
   }
 );

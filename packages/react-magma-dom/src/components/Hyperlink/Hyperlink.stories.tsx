@@ -89,6 +89,7 @@ export const NoUnderline = () => {
           </Hyperlink>
           <br />
           <br />
+
           <Hyperlink
             textTransform={ButtonTextTransform.none}
             target="_blank"
@@ -144,13 +145,42 @@ export const NoUnderline = () => {
         </CardBody>
       </Card>
       <br/>
+      
       <Card>
         <CardBody>
-          <a href="https://www.google.com">
-            This is a link that does not use Hyperlink
-          </a>
+        Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar brownie lemon drops tootsie roll pudding muffin powder pudding. <Hyperlink
+            textTransform={ButtonTextTransform.none}
+            target="_blank"
+            to="https://www.cengage.com/"
+            hasUnderline={false}
+          >
+            I love chocolate cake.
+          </Hyperlink> Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears shortbread.
         </CardBody>
       </Card>
+      <br/>
+      <Card isInverse>
+        <CardBody>
+        Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar brownie lemon drops tootsie roll pudding muffin powder pudding. <Hyperlink
+            textTransform={ButtonTextTransform.none}
+            target="_blank"
+            to="https://www.cengage.com/"
+            hasUnderline={false}
+            isInverse
+          >
+            I love chocolate cake.
+          </Hyperlink> Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears shortbread.
+        </CardBody>
+      </Card>
+      <br/>
+      <Card>
+        <CardBody>
+        Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar brownie lemon drops tootsie roll pudding muffin powder pudding. <a href="https://www.google.com">
+            This is a link that does not use Hyperlink.
+          </a> Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears shortbread.
+        </CardBody>
+      </Card>
+      
     </>
   );
 };
