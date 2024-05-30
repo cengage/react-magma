@@ -7,7 +7,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="carbonchart" type="api">
 
-<LeadParagraph>CarbonCharts are a wrapper for the [Carbon Design System Simple Charts](https://carbondesignsystem.com/data-visualization/simple-charts/). </LeadParagraph>
+<LeadParagraph>CarbonCharts are a wrapper for the [Carbon Design System Simple Charts](https://carbondesignsystem.com/data-visualization/simple-charts). </LeadParagraph>
 
 We currently support the following charts:
 - AreaChart
@@ -160,6 +160,201 @@ export function Example() {
   return (
     <Card style={{ padding: '12px' }}>
       <CarbonChart dataSet={dataSet} type={CarbonChartType.donut} options={options} />
+    </Card>
+  );
+}
+```
+
+
+## Line Chart
+
+```typescript
+import React from 'react';
+import { Card } from 'react-magma-dom';
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+
+export function Example() {
+  const dataSet = [
+    {
+      group: 'Dataset 1',
+      key: 'Qty',
+      value: 34200,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'More',
+      value: 23500,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Sold',
+      value: 53100,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Restocking',
+      value: 42300,
+    },
+    {
+      group: 'Dataset 1',
+      key: 'Misc',
+      value: 12300,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Qty',
+      value: 34200,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'More',
+      value: 53200,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Sold',
+      value: 42300,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Restocking',
+      value: 21400,
+    },
+    {
+      group: 'Dataset 2',
+      key: 'Misc',
+      value: 0,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Qty',
+      value: 41200,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'More',
+      value: 18400,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Sold',
+      value: 34210,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Restocking',
+      value: 1400,
+    },
+    {
+      group: 'Dataset 3',
+      key: 'Misc',
+      value: 42100,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Qty',
+      value: 22000,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'More',
+      value: 1200,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Sold',
+      value: 9000,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Restocking',
+      value: 24000,
+      audienceSize: 10,
+    },
+    {
+      group: 'Dataset 4',
+      key: 'Misc',
+      value: 3000,
+      audienceSize: 10,
+    },
+  ];
+
+  const options = {
+    title: 'Line (discrete)',
+    axes: {
+      bottom: {
+        title: '2024 Annual Sales Figures',
+        mapsTo: 'key',
+        scaleType: 'labels',
+      },
+      left: {
+        mapsTo: 'value',
+        title: 'Conversion rate',
+        scaleType: 'linear',
+      },
+    },
+    height: '400px',
+  };
+
+  return (
+    <Card style={{ padding: '12px' }} isInverse>
+      <CarbonChart dataSet={dataSet} type={CarbonChartType.line} options={options} isInverse />
+    </Card>
+  );
+}
+```
+
+
+
+## Pie Chart
+
+```typescript
+import React from 'react';
+import { Card } from 'react-magma-dom';
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+
+export function Example() {
+  const dataSet = [
+    {
+      group: '2V2N 9KYPM version 1',
+      value: 20000,
+    },
+    {
+      group: 'L22I P66EP L22I P66EP L22I P66EP',
+      value: 65000,
+    },
+    {
+      group: 'JQAI 2M4L1',
+      value: 75000,
+    },
+    {
+      group: 'J9DZ F37AP',
+      value: 1200,
+    },
+    {
+      group: 'YEL48 Q6XK YEL48',
+      value: 10000,
+    },
+    {
+      group: 'Misc',
+      value: 25000,
+    },
+  ];
+
+  const options = {
+    title: 'Pie',
+    resizable: true,
+    height: '400px',
+    legend: {
+      truncation: {
+        type: 'none',
+      },
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }} isInverse>
+      <CarbonChart dataSet={dataSet} type={CarbonChartType.pie} options={options} isInverse />
     </Card>
   );
 }

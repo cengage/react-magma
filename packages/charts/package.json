@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "@carbon/charts-react": "^1.14.8",
-    "@carbon/styles": "^1.58.0",
     "d3": "^7.9.0",
     "d3-cloud": "^1.2.7",
     "d3-sankey": "^0.12.3",
