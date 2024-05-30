@@ -15,11 +15,6 @@ export default {
     ),
   ],
   argTypes: {
-    breakpoint: {
-      control: {
-        type: 'text',
-      },
-    },
     breakpointType: {
       control: {
         type: 'select',
@@ -72,7 +67,7 @@ const Template: Story<StepperProps> = args => {
     <>
       <Stepper
         breakpoint={800}
-        breakpointStyle={BreakPointStyle.noLabels}
+        breakpointStyle={BreakPointStyle.summary}
         currentStep={currentStep}
         {...args}
       >

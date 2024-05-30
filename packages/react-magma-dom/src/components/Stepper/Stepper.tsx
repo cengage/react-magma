@@ -109,9 +109,9 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
+    // Breakpoint states when a specific breakpoint number is set, then a breakpointStyle which results in the removal of all text or the summary view.
     const [breakPointNoLabel, setBreakPointNoLabel] = React.useState(false);
     const [breakPointSummary, setBreakPointSummary] = React.useState(false);
-
     const breakpointSize = breakpoint && breakpoint > window.innerWidth;
 
     React.useEffect(() => {
@@ -145,9 +145,10 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             key: index,
             index: steps.length,
             isInverse: isInverse,
-            isLabelVisuallyHidden: breakPointNoLabel
-              ? true
-              : isLabelVisuallyHidden,
+            isLabelVisuallyHidden:
+              breakPointNoLabel || breakPointSummary
+                ? true
+                : isLabelVisuallyHidden,
             isSummaryView,
             stepStatus: stepStatusStyles,
           });
@@ -205,6 +206,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       </StyledSummary>
     );
 
+    console.log(breakPointSummary);
+
     return (
       <>
         <StyledStepper
@@ -220,9 +223,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
         >
           {Steps}
         </StyledStepper>
-        {isSummaryView && !breakPointNoLabel && !isLabelVisuallyHidden && (
-          <>{stepSummary}</>
-        )}
+        {(isSummaryView && !breakPointNoLabel && !isLabelVisuallyHidden) ||
+          (!isSummaryView && breakPointSummary && <>{stepSummary}</>)}
       </>
     );
   }
