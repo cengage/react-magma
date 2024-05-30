@@ -13,6 +13,7 @@ import {
   SimpleBarChart,
   StackedBarChart,
 } from '@carbon/charts-react';
+import './styles.min.css';
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
@@ -364,6 +365,7 @@ const CarbonChartWrapper = typedStyled.div<{
             props.isInverse
               ? props.theme.colors.focusInverse
               : props.theme.colors.focus};
+        border-color: none;
       }
       outline-offset: 0;
       border: none;
