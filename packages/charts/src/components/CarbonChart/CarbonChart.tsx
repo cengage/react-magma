@@ -516,6 +516,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         ref={ref}
         isInverse={isInverse}
         theme={theme}
+        className="carbon-chart-wrapper"
         {...rest}
       >
         <ChartType data={dataSet} options={newOptions} />
