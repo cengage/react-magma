@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 7.0.0-next.3
+
+### Patch Changes
+
+- 8a5b4bedb: fix(CarbonCharts): Update styles
+
 ## 7.0.0-next.2
 
 ### Minor Changes
