@@ -108,7 +108,6 @@ export interface InputBaseProps
    * A number value which gives Character Counter the maximum length of allowable characters in an Input.
    * @deprecated = true
    */
-
   maxLength?: number;
   /**
    * Action that will fire when icon is clicked

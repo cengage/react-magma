@@ -283,7 +283,7 @@ export const NumberInput = args => {
 NumberInput.args = {
   disabled: false,
   helperMessage: 'Enter a number 1 - 40',
-  isClearable: true,
+  isClearable: false,
 };
 
 NumberInput.parameters = {
