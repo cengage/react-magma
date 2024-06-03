@@ -1,13 +1,16 @@
 ---
-pageTitle: CarbonChart API
-title: CarbonChart
+pageTitle: Chart API
+title: Chart
 ---
 
 import { LeadParagraph } from '../../components/LeadParagraph';
 
-<PageContent componentName="carbonchart" type="api">
+<PageContent componentName="chart" type="api">
 
-<LeadParagraph>The CarbonChart component is a wrapper for the [Carbon Design System Simple Charts](https://carbondesignsystem.com/data-visualization/simple-charts). </LeadParagraph>
+<LeadParagraph>Magma charts enable you to convey precise and compelling narratives around data through visually appealing and accessible visualizations.</LeadParagraph>
+
+The CarbonChart component is a wrapper for the [Carbon Design System Simple Charts](https://carbondesignsystem.com/data-visualization/simple-charts).
+
 
 <Alert variant="warning">
   <strong>Important!</strong> CarbonChart is imported from{' '}
@@ -15,7 +18,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
   dependency.
 </Alert>
 
-We currently support the following charts:
+We currently support the following chart types:
 - AreaChart
 - StackedAreaChart
 - DonutChart
@@ -27,6 +30,8 @@ We currently support the following charts:
 - StackedBarChart
 
 ## Area Chart
+
+Area charts share similarities with line charts, distinguished by the filled areas below the lines, adorned with colors or patterns. Stacked charts, on the other hand, prove valuable for comparing proportional contributions within a category by plotting the relative value each data series contributes to the total. 
 
 ```typescript
 import React from 'react';
@@ -173,6 +178,8 @@ export function Example() {
 
 
 ## Line Chart
+
+Line charts depict data at regular intervals, connecting the points with lines. These visualizations are valuable for illustrating trends over time and comparing multiple datasets.
 
 ```typescript
 import React from 'react';

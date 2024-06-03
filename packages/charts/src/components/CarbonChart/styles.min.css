@@ -13478,7 +13478,7 @@ optgroup.cds--select-optgroup:disabled,
 .cds--modal-content--with-form {
   padding-right: 1rem;
 }
-.cds--modal-header {
+.carbon-chart-wrapper .cds--modal-header {
   padding-top: 1rem;
   padding-right: 3rem;
   padding-left: 1rem;
