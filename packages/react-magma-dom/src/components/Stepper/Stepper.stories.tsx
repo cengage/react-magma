@@ -62,6 +62,11 @@ const Template: Story<StepperProps> = args => {
       setCurrentStep(currentStep - 1);
     }
   };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
 
   return (
     <>
@@ -71,22 +76,32 @@ const Template: Story<StepperProps> = args => {
         currentStep={currentStep}
         {...args}
       >
-        <Step label="First Step" secondaryLabel="Description One">
-          Step Content One
-        </Step>
-        <Step label="Second Step" secondaryLabel="Description Two">
-          Step Content Two
-        </Step>
-        <Step label="Third Step" secondaryLabel="Description Three">
-          Step Content Three
-        </Step>
-        <Step label="Fourth Step" secondaryLabel="Description Four">
-          Step Content Four
-        </Step>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
       </Stepper>
+
+      <Container
+        style={{
+          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
       <Container style={{ padding: '20px 0' }}>
-        <Button onClick={handleOnPrevious}>Previous</Button>
-        <Button onClick={handleOnNext}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
           {currentStep >= 4 ? 'Finish' : 'Next'}
         </Button>
       </Container>
@@ -124,8 +139,23 @@ const ErrorTemplate: Story<StepperProps> = args => {
           Step Content Four
         </Step>
       </Stepper>
+      <Container
+        style={{
+          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        <div>Step Content Three</div>
+      </Container>
+
       <Container style={{ padding: '20px 0' }}>
-        <Button disabled onClick={handleOnPrevious}>
+        <Button
+          disabled
+          style={{ marginRight: '4px' }}
+          onClick={handleOnPrevious}
+        >
           Previous
         </Button>
         <Button disabled onClick={handleOnNext}>
