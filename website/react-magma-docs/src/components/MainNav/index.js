@@ -299,6 +299,14 @@ export const MainNav = ({ ...props }) => {
               ...navFields
             }
           }
+          dataViz: allMdx(
+            filter: { fileAbsolutePath: { glob: "**/src/pages/data-viz/**" } }
+            sort: { order: ASC, fields: frontmatter___order }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
         }
       `}
       render={data => (
@@ -413,6 +421,29 @@ export const MainNav = ({ ...props }) => {
                       <Heading3>API</Heading3>
                       <List>
                         {data.apiDocs.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                          </ListItem>
+                        ))}
+                      </List>
+                    </StyledAccordionPanel>
+                  </StyledAccordionItem>
+
+                  <StyledAccordionItem
+                    isOpen={isAccordionItemOpen(location, 'api')}
+                  >
+                    <StyledAccordionButton>
+                      <Heading2>Data Visualization</Heading2>
+                    </StyledAccordionButton>
+                    <StyledAccordionPanel>
+                      <List>
+                        {data.dataViz.edges.map(({ node }) => (
                           <ListItem key={node.fields.slug}>
                             <StyledLink2
                               activeStyle={activeStyle}
