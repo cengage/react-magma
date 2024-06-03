@@ -13,6 +13,7 @@
   "changesets": [
     "carbon-chart-styles",
     "carbon-charts",
+    "chart-docs",
     "chore-node",
     "cold-birds-appear",
     "datePicker-focus",
