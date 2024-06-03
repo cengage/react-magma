@@ -39,7 +39,7 @@ export interface HyperlinkProps
   /**
    * Icon to display within the component
    */
-  icon?: React.ReactElement<IconProps>;
+  icon?: React.ReactElement<IconProps> | Array<React.ReactElement<IconProps>>;
   /**
    * Position within the link for the icon to appear
    * @default HyperlinkIconPosition.right
@@ -53,6 +53,9 @@ const linkStyles = props => css`
     : props.theme.colors.primary};
   text-decoration: ${props.hasUnderline ? 'underline' : 'none'};
   font-family: ${props.theme.bodyFont};
+  width: fit-content;
+  display: inline-flex;
+  align-items: flex-start;
   &:not([disabled]) {
     &:hover,
     &:focus {
@@ -88,10 +91,25 @@ function getIconPadding(props) {
 
 const SpanTextLeft = styled.span`
   padding-right: ${props => getIconPadding(props)};
+  line-height: normal;
+  flex: 0 0 auto;
 `;
 
 const SpanTextRight = styled.span`
   padding-left: ${props => getIconPadding(props)};
+  line-height: normal;
+  flex: 0 0 auto;
+`;
+
+const SpanTextBoth = styled.span`
+  padding-right: ${props => getIconPadding(props)};
+  padding-left: ${props => getIconPadding(props)};
+  line-height: normal;
+  flex: 0 0 auto;
+`;
+
+const SpanFlex = styled.span`
+  flex: 0 0 auto;
 `;
 
 export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
@@ -110,6 +128,8 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
     const other = omit(['positionTop', 'positionLeft', 'type'], rest);
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(props.isInverse);
+
+    const hasMultiIcons = icon && icon instanceof Array && icon?.length > 0;
 
     if (typeof children === 'function') {
       const composedStyle =
@@ -156,9 +176,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
           </LinkStyledAsButton>
         );
       }
-      // TODO: add aria-hidden=true to icons
-      // TODO Dev sets spacing
-      // return (
+
       if (icon && iconPosition !== null) {
         return (
           <HyperlinkComponent
@@ -168,25 +186,21 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
             href={to}
             isInverse={isInverse}
             theme={theme}
-            style={{ display: 'flex', width: 'fit-content' }}
           >
             {iconPosition === HyperlinkIconPosition.right && (
-              <SpanTextLeft theme={theme} style={{ flex: '0 0 auto' }}>
-                {children}
-              </SpanTextLeft>
+              <SpanTextLeft theme={theme}>{children}</SpanTextLeft>
             )}
-            <span style={{ flex: '0 0 auto' }}>{icon}</span>
+
+            <SpanFlex>{hasMultiIcons ? icon[0] : icon}</SpanFlex>
+
             {iconPosition === HyperlinkIconPosition.left && (
-              <SpanTextRight theme={theme} style={{ flex: '0 0 auto' }}>
-                {children}
-              </SpanTextRight>
+              <SpanTextRight theme={theme}>{children}</SpanTextRight>
             )}
-            {iconPosition === HyperlinkIconPosition.both && (
+
+            {iconPosition === HyperlinkIconPosition.both && hasMultiIcons && (
               <>
-                <SpanTextRight theme={theme} style={{ flex: '0 0 auto' }}>
-                  {children}
-                </SpanTextRight>
-                <span style={{ flex: '0 0 auto' }}>{icon}</span>
+                <SpanTextBoth theme={theme}>{children}</SpanTextBoth>
+                <SpanFlex>{icon[1]}</SpanFlex>
               </>
             )}
           </HyperlinkComponent>
