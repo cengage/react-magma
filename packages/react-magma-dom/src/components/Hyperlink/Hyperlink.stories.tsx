@@ -1,20 +1,20 @@
 import React from 'react';
+import { ButtonColor, ButtonTextTransform } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Hyperlink, HyperlinkIconPosition } from '.';
-import { ButtonColor, ButtonTextTransform } from '../Button';
+import { Flex, FlexBehavior, FlexJustify } from '../Flex';
 import { Meta } from '@storybook/react/types-6-0';
+import { magma } from '../../theme/magma';
+import { Paragraph } from '../Paragraph';
+import { Spacer, SpacerAxis } from '../Spacer';
+import { TypographyVisualStyle } from '../Typography';
 import {
   CakeIcon,
   CalendarTodayIcon,
-  CheckCircleIcon,
   KeyboardArrowLeftIcon,
   KeyboardArrowRightIcon,
   OpenInNewIcon,
 } from 'react-magma-icons';
-import { Paragraph } from '../Paragraph';
-import { TypographyVisualStyle } from '../Typography';
-import { Flex, FlexBehavior, FlexJustify } from '../Flex';
-import { magma } from '../../theme/magma';
 
 export default {
   component: Hyperlink,
@@ -28,28 +28,12 @@ export const Default = () => {
         <CardBody>
           <Hyperlink
             textTransform={ButtonTextTransform.none}
-            styledAs="Button"
             target="_blank"
             to="https://www.google.com"
           >
             Google
           </Hyperlink>
-          <Hyperlink
-            color={ButtonColor.secondary}
-            styledAs="Button"
-            target="_blank"
-            to="https://www.google.com"
-          >
-            Google
-          </Hyperlink>
-          <Hyperlink
-            color={ButtonColor.danger}
-            styledAs="Button"
-            target="_blank"
-            to="https://www.google.com"
-          >
-            Google
-          </Hyperlink>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
           <Hyperlink
             color={ButtonColor.marketing}
             styledAs="Button"
@@ -58,33 +42,47 @@ export const Default = () => {
           >
             Google
           </Hyperlink>
-        </CardBody>
-      </Card>
-      <Card>
-        <CardBody>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
           <Hyperlink
-            textTransform={ButtonTextTransform.none}
+            styledAs="Button"
             target="_blank"
             to="https://www.google.com"
+            hasUnderline={false}
+            icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.left}
           >
-            Google
+            Back
+          </Hyperlink>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
+          <Hyperlink
+            color={ButtonColor.danger}
+            styledAs="Button"
+            target="_blank"
+            to="https://www.google.com"
+            hasUnderline={false}
+            icon={[
+              <KeyboardArrowLeftIcon aria-hidden={true} key={0} />,
+              <KeyboardArrowRightIcon aria-hidden={true} key={1} />,
+            ]}
+            iconPosition={HyperlinkIconPosition.both}
+          >
+            Guess
+          </Hyperlink>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
+          <Hyperlink
+            color={ButtonColor.secondary}
+            styledAs="Button"
+            target="_blank"
+            to="https://www.google.com"
+            hasUnderline={false}
+            icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.right}
+          >
+            Next
           </Hyperlink>
         </CardBody>
       </Card>
-      <Card>
-        <CardBody>
-          <a href="https://www.google.com">
-            This is a link that does not use Hyperlink
-          </a>
-        </CardBody>
-      </Card>
-    </>
-  );
-};
-
-export const NoUnderline = () => {
-  return (
-    <>
+      <Spacer size={'12px'} />
       <Card>
         <CardBody>
           <Flex
@@ -95,101 +93,67 @@ export const NoUnderline = () => {
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
                 target="_blank"
-                to="https://www.google.com"
+                to="#"
                 hasUnderline={false}
                 icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
                 iconPosition={HyperlinkIconPosition.left}
               >
-                Follow this link
+                Brownie
               </Hyperlink>
             </span>
             <span style={{ flex: '0 0 auto' }}>
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
                 target="_blank"
-                to="https://www.google.com"
+                to="#"
                 hasUnderline={false}
                 icon={<KeyboardArrowRightIcon aria-hidden={true} />}
                 iconPosition={HyperlinkIconPosition.right}
               >
-                Follow this link
+                Muffin
               </Hyperlink>
             </span>
           </Flex>
         </CardBody>
       </Card>
-      <br />
-      <Flex
-        behavior={FlexBehavior.container}
-        justify={FlexJustify.spaceBetween}
-      >
-        <Flex behavior={FlexBehavior.item}>
-          <Card>
-            <CardBody>
-              <Hyperlink
-                textTransform={ButtonTextTransform.none}
-                styledAs="Button"
-                target="_blank"
-                to="https://www.google.com"
-                hasUnderline={false}
-                icon={<KeyboardArrowRightIcon aria-hidden={true} />}
-                iconPosition={HyperlinkIconPosition.right}
-              >
-                Back Button
-              </Hyperlink>
-              <br />
-              <br />
-              <Hyperlink
-                textTransform={ButtonTextTransform.none}
-                target="_blank"
-                to="https://www.google.com"
-                hasUnderline={false}
-                icon={<CheckCircleIcon aria-hidden={true} />}
-                iconPosition={HyperlinkIconPosition.left}
-              >
-                Powder apple pie sugar plum cupcake
-              </Hyperlink>
-              <br />
-            </CardBody>
-          </Card>
-        </Flex>
-        <Flex behavior={FlexBehavior.item}>
-          <Card isInverse>
-            <CardBody>
-              <Hyperlink
-                textTransform={ButtonTextTransform.none}
-                styledAs="Button"
-                target="_blank"
-                to="https://www.google.com"
-                hasUnderline={false}
-                isInverse
-                icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
-                iconPosition={HyperlinkIconPosition.left}
-              >
-                Back Button
-              </Hyperlink>
-              <br />
-              <br />
-              <Hyperlink
-                textTransform={ButtonTextTransform.none}
-                target="_blank"
-                to="https://www.google.com"
-                hasUnderline={false}
-                isInverse
-                icon={<CheckCircleIcon aria-hidden={true} />}
-                iconPosition={HyperlinkIconPosition.right}
-              >
-                Sweet roll cotton candy carrot cake
-              </Hyperlink>
-            </CardBody>
-          </Card>
-        </Flex>
-      </Flex>
-      <br />
+      <Spacer size={'12px'} />
       <Card>
         <CardBody>
-          <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
-            Something something{' '}
+          Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
+          brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
+          <Hyperlink
+            textTransform={ButtonTextTransform.none}
+            target="_blank"
+            to="https://www.cengage.com/"
+            icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.left}
+          >
+            I love chocolate cake
+          </Hyperlink>{' '}
+          Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
+          plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
+          shortbread.
+        </CardBody>
+      </Card>
+      <Spacer size={'12px'} />
+      <Card>
+        <CardBody>
+          Apple pie danish apple pie tootsie roll tiramisu dessert danish.{' '}
+          <a href="https://www.google.com">
+            This is a link that does not use Hyperlink.
+          </a>{' '}
+          Marzipan candy danish chupa chups icing jelly-o danish halvah jelly.
+          Cake dragée candy canes liquorice cheesecake tootsie roll danish.
+        </CardBody>
+      </Card>
+      <Spacer size={'12px'} />
+      <Card>
+        <CardBody>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.headingSmall}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            You can{' '}
             <Hyperlink
               textTransform={ButtonTextTransform.none}
               target="_blank"
@@ -210,13 +174,17 @@ export const NoUnderline = () => {
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
             >
-              Schedule an appointment
+              schedule an appointment
             </Hyperlink>{' '}
-            Other things
+            to meet with us.
           </Paragraph>
-          <Paragraph visualStyle={TypographyVisualStyle.bodyLarge}>
-            Something something{' '}
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodyLarge}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            You can{' '}
             <Hyperlink
               textTransform={ButtonTextTransform.none}
               target="_blank"
@@ -235,13 +203,17 @@ export const NoUnderline = () => {
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
             >
-              Schedule an appointment
+              schedule an appointment
             </Hyperlink>{' '}
-            Other things
+            to meet with us.
           </Paragraph>
-          <Paragraph visualStyle={TypographyVisualStyle.bodyMedium}>
-            Something something{' '}
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodyMedium}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            You can{' '}
             <Hyperlink
               textTransform={ButtonTextTransform.none}
               target="_blank"
@@ -260,13 +232,17 @@ export const NoUnderline = () => {
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
             >
-              Schedule an appointment
+              schedule an appointment
             </Hyperlink>{' '}
-            Other things
+            to meet with us.
           </Paragraph>
-          <Paragraph visualStyle={TypographyVisualStyle.bodySmall}>
-            Something something{' '}
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodySmall}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            You can{' '}
             <Hyperlink
               textTransform={ButtonTextTransform.none}
               target="_blank"
@@ -285,13 +261,17 @@ export const NoUnderline = () => {
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
             >
-              Schedule an appointment
+              schedule an appointment
             </Hyperlink>{' '}
-            Other things
+            to meet with us.
           </Paragraph>
-          <Paragraph visualStyle={TypographyVisualStyle.bodyXSmall}>
-            Something something{' '}
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodyXSmall}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            You can{' '}
             <Hyperlink
               textTransform={ButtonTextTransform.none}
               target="_blank"
@@ -310,65 +290,12 @@ export const NoUnderline = () => {
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
             >
-              Schedule an appointment
+              schedule an appointment
             </Hyperlink>{' '}
-            Other things
+            to meet with us.
           </Paragraph>
-        </CardBody>
-      </Card>
-      <br />
-      <Card>
-        <CardBody>
-          Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
-          brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
-          <Hyperlink
-            textTransform={ButtonTextTransform.none}
-            target="_blank"
-            to="https://www.cengage.com/"
-            hasUnderline={false}
-            icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
-            iconPosition={HyperlinkIconPosition.left}
-          >
-            I love chocolate cake.
-          </Hyperlink>{' '}
-          Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
-          plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
-          shortbread.
-        </CardBody>
-      </Card>
-      <br />
-      <Card isInverse>
-        <CardBody>
-          Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
-          brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
-          <Hyperlink
-            textTransform={ButtonTextTransform.none}
-            target="_blank"
-            to="https://www.cengage.com/"
-            hasUnderline={false}
-            isInverse
-            icon={<CakeIcon aria-hidden={true} />}
-            iconPosition={HyperlinkIconPosition.right}
-          >
-            I love chocolate cake
-          </Hyperlink>{' '}
-          Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
-          plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
-          shortbread.
-        </CardBody>
-      </Card>
-      <br />
-      <Card>
-        <CardBody>
-          Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
-          brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
-          <a href="https://www.google.com">
-            This is a link that does not use Hyperlink.
-          </a>{' '}
-          Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
-          plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
-          shortbread.
         </CardBody>
       </Card>
     </>
@@ -382,31 +309,13 @@ export const Inverse = () => {
         <CardBody>
           <Hyperlink
             textTransform={ButtonTextTransform.none}
-            styledAs="Button"
             target="_blank"
             to="https://www.google.com"
             isInverse
           >
             Google
           </Hyperlink>
-          <Hyperlink
-            color={ButtonColor.secondary}
-            styledAs="Button"
-            target="_blank"
-            to="https://www.google.com"
-            isInverse
-          >
-            Google
-          </Hyperlink>
-          <Hyperlink
-            color={ButtonColor.danger}
-            styledAs="Button"
-            target="_blank"
-            to="https://www.google.com"
-            isInverse
-          >
-            Google
-          </Hyperlink>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
           <Hyperlink
             color={ButtonColor.marketing}
             styledAs="Button"
@@ -416,18 +325,265 @@ export const Inverse = () => {
           >
             Google
           </Hyperlink>
-        </CardBody>
-      </Card>
-      <Card isInverse>
-        <CardBody>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
           <Hyperlink
-            textTransform={ButtonTextTransform.none}
+            styledAs="Button"
             target="_blank"
             to="https://www.google.com"
             isInverse
+            hasUnderline={false}
+            icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.left}
           >
-            Google
+            Back
           </Hyperlink>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
+          <Hyperlink
+            color={ButtonColor.danger}
+            styledAs="Button"
+            target="_blank"
+            to="https://www.google.com"
+            isInverse
+            hasUnderline={false}
+            icon={[
+              <KeyboardArrowLeftIcon aria-hidden={true} key={0} />,
+              <KeyboardArrowRightIcon aria-hidden={true} key={1} />,
+            ]}
+            iconPosition={HyperlinkIconPosition.both}
+          >
+            Guess
+          </Hyperlink>
+          <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
+          <Hyperlink
+            color={ButtonColor.secondary}
+            styledAs="Button"
+            target="_blank"
+            to="https://www.google.com"
+            hasUnderline={false}
+            isInverse
+            icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.right}
+          >
+            Next
+          </Hyperlink>
+        </CardBody>
+      </Card>
+      <Spacer size={'12px'} />
+      <Card isInverse>
+        <CardBody>
+          <Flex
+            behavior={FlexBehavior.container}
+            justify={FlexJustify.spaceBetween}
+          >
+            <span style={{ flex: '0 0 auto' }}>
+              <Hyperlink
+                textTransform={ButtonTextTransform.none}
+                target="_blank"
+                to="#"
+                hasUnderline={false}
+                icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+                iconPosition={HyperlinkIconPosition.left}
+                isInverse
+              >
+                Brownie
+              </Hyperlink>
+            </span>
+            <span style={{ flex: '0 0 auto' }}>
+              <Hyperlink
+                textTransform={ButtonTextTransform.none}
+                target="_blank"
+                to="#"
+                hasUnderline={false}
+                icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+                iconPosition={HyperlinkIconPosition.right}
+                isInverse
+              >
+                Muffin
+              </Hyperlink>
+            </span>
+          </Flex>
+        </CardBody>
+      </Card>
+      <Spacer size={'12px'} />
+      <Card isInverse>
+        <CardBody>
+          Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
+          brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
+          <Hyperlink
+            textTransform={ButtonTextTransform.none}
+            target="_blank"
+            to="https://www.cengage.com/"
+            icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.right}
+            isInverse
+          >
+            I love chocolate cake
+          </Hyperlink>{' '}
+          Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
+          plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
+          shortbread.
+        </CardBody>
+      </Card>
+      <Spacer size={'12px'} />
+      <Card isInverse>
+        <CardBody>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.headingSmall}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            isInverse
+          >
+            You can{' '}
+            <Hyperlink
+              isInverse
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.google.com"
+              hasUnderline={false}
+              icon={[
+                <CalendarTodayIcon
+                  key={0}
+                  size={magma.iconSizes.xLarge}
+                  style={{ marginRight: magma.spaceScale.spacing03 }}
+                  aria-hidden={true}
+                />,
+                <OpenInNewIcon
+                  key={1}
+                  size={magma.iconSizes.xLarge}
+                  style={{ marginLeft: magma.spaceScale.spacing03 }}
+                  aria-hidden={true}
+                />,
+              ]}
+              iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
+            >
+              schedule an appointment
+            </Hyperlink>{' '}
+            to meet with us.
+          </Paragraph>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodyLarge}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            isInverse
+          >
+            You can{' '}
+            <Hyperlink
+              isInverse
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.google.com"
+              hasUnderline={false}
+              icon={[
+                <CalendarTodayIcon
+                  key={0}
+                  size={magma.iconSizes.large}
+                  aria-hidden={true}
+                />,
+                <OpenInNewIcon
+                  key={1}
+                  size={magma.iconSizes.large}
+                  aria-hidden={true}
+                />,
+              ]}
+              iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
+            >
+              schedule an appointment
+            </Hyperlink>{' '}
+            to meet with us.
+          </Paragraph>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodyMedium}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            isInverse
+          >
+            You can{' '}
+            <Hyperlink
+              isInverse
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.google.com"
+              hasUnderline={false}
+              icon={[
+                <CalendarTodayIcon
+                  key={0}
+                  size={magma.iconSizes.medium}
+                  aria-hidden={true}
+                />,
+                <OpenInNewIcon
+                  key={1}
+                  size={magma.iconSizes.medium}
+                  aria-hidden={true}
+                />,
+              ]}
+              iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
+            >
+              schedule an appointment
+            </Hyperlink>{' '}
+            to meet with us.
+          </Paragraph>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodySmall}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+            isInverse
+          >
+            You can{' '}
+            <Hyperlink
+              isInverse
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.google.com"
+              hasUnderline={false}
+              icon={[
+                <CalendarTodayIcon
+                  key={0}
+                  size={magma.iconSizes.small}
+                  aria-hidden={true}
+                />,
+                <OpenInNewIcon
+                  key={1}
+                  size={magma.iconSizes.small}
+                  aria-hidden={true}
+                />,
+              ]}
+              iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
+            >
+              schedule an appointment
+            </Hyperlink>{' '}
+            to meet with us.
+          </Paragraph>
+          <Paragraph
+            isInverse
+            visualStyle={TypographyVisualStyle.bodyXSmall}
+            style={{ display: 'inline-flex', alignItems: 'center' }}
+          >
+            You can{' '}
+            <Hyperlink
+              isInverse
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.google.com"
+              hasUnderline={false}
+              icon={[
+                <CalendarTodayIcon
+                  key={0}
+                  size={magma.iconSizes.xSmall}
+                  aria-hidden={true}
+                />,
+                <OpenInNewIcon
+                  key={1}
+                  size={magma.iconSizes.xSmall}
+                  aria-hidden={true}
+                />,
+              ]}
+              iconPosition={HyperlinkIconPosition.both}
+              style={{ margin: `0 ${magma.spaceScale.spacing03}` }}
+            >
+              schedule an appointment
+            </Hyperlink>{' '}
+            to meet with us.
+          </Paragraph>
         </CardBody>
       </Card>
     </>
