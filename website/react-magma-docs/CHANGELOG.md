@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.6-next.25
+
+### Patch Changes
+
+- 4747977e3: docs(TreeView): Update example with duplicate IDs
+
 ## 5.0.6-next.24
 
 ### Patch Changes
