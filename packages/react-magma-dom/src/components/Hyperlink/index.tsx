@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonStyles } from '../Button';
+import { ButtonSize, ButtonStyles } from '../Button';
 import styled from '@emotion/styled';
 import { css, ClassNames } from '@emotion/core';
 import { omit, Omit } from '../../utils';
@@ -89,19 +89,19 @@ function getIconPadding(props) {
   }
 }
 
-const SpanTextLeft = styled.span`
+const SpanTextLeft = styled.span<{ size?: ButtonSize }>`
   padding-right: ${props => getIconPadding(props)};
   line-height: normal;
   flex: 0 0 auto;
 `;
 
-const SpanTextRight = styled.span`
+const SpanTextRight = styled.span<{ size?: ButtonSize }>`
   padding-left: ${props => getIconPadding(props)};
   line-height: normal;
   flex: 0 0 auto;
 `;
 
-const SpanTextBoth = styled.span`
+const SpanTextBoth = styled.span<{ size?: ButtonSize }>`
   padding-right: ${props => getIconPadding(props)};
   padding-left: ${props => getIconPadding(props)};
   line-height: normal;
@@ -164,16 +164,22 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
             theme={theme}
           >
             {iconPosition === HyperlinkIconPosition.right && (
-              <SpanTextLeft theme={theme}>{children}</SpanTextLeft>
+              <SpanTextLeft theme={theme} size={props.size}>
+                {children}
+              </SpanTextLeft>
             )}
             {hasMultiIcons ? icon[0] : icon}
             {iconPosition === HyperlinkIconPosition.left && (
-              <SpanTextRight theme={theme}>{children}</SpanTextRight>
+              <SpanTextRight theme={theme} size={props.size}>
+                {children}
+              </SpanTextRight>
             )}
 
             {iconPosition === HyperlinkIconPosition.both && hasMultiIcons && (
               <>
-                <SpanTextBoth theme={theme}>{children}</SpanTextBoth>
+                <SpanTextBoth theme={theme} size={props.size}>
+                  {children}
+                </SpanTextBoth>
                 {icon[1]}
               </>
             )}

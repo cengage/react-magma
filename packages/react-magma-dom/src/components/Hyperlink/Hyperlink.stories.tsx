@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonColor, ButtonTextTransform } from '../Button';
+import { ButtonColor, ButtonSize, ButtonTextTransform } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Hyperlink, HyperlinkIconPosition } from '.';
 import { Flex, FlexBehavior, FlexJustify } from '../Flex';
@@ -47,7 +47,6 @@ export const Default = () => {
             styledAs="Button"
             target="_blank"
             to="https://www.google.com"
-            hasUnderline={false}
             icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
             iconPosition={HyperlinkIconPosition.left}
           >
@@ -59,7 +58,6 @@ export const Default = () => {
             styledAs="Button"
             target="_blank"
             to="https://www.google.com"
-            hasUnderline={false}
             icon={[
               <KeyboardArrowLeftIcon aria-hidden={true} key={0} />,
               <KeyboardArrowRightIcon aria-hidden={true} key={1} />,
@@ -74,7 +72,6 @@ export const Default = () => {
             styledAs="Button"
             target="_blank"
             to="https://www.google.com"
-            hasUnderline={false}
             icon={<KeyboardArrowRightIcon aria-hidden={true} />}
             iconPosition={HyperlinkIconPosition.right}
           >
