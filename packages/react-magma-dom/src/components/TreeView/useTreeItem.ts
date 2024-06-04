@@ -74,6 +74,8 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    */
   itemDepth?: number;
   /**
+   * TODO: improve functionality (issue #1305)
+   * @internal 
    * If true, element is disabled
    * @default false
    */
@@ -146,7 +148,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
 
-  // TODO fix for disabled items
+  // TODO fix for disabled items (issue #1305)
   // const numberOfTreeItemChildren = getEnabledTreeItemChildrenLength(treeItemChildren);
   const numberOfTreeItemChildren = treeItemChildren.length;
   const hasOwnTreeItems = numberOfTreeItemChildren > 0;
