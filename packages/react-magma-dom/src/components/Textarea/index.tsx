@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import styled from '../../theme/styled';
 import {
   inputBaseStyles,
   InputBaseStylesProps,
@@ -14,6 +13,7 @@ import {
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId, Omit } from '../../utils';
 import { useIsInverse } from '../../inverse';
+import styled from '@emotion/styled';
 
 export interface TextareaProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'>,

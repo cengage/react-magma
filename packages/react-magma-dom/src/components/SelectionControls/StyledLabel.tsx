@@ -1,6 +1,7 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface StyledLabelProps {
   children?: any;
@@ -9,7 +10,9 @@ export interface StyledLabelProps {
   style?: React.CSSProperties;
 }
 
-const StyledLabelComponent = styled.label<StyledLabelProps>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledLabelComponent = typedStyled.label<StyledLabelProps>`
   align-items: flex-start;
   color: ${props =>
     props.isInverse

@@ -1,0 +1,612 @@
+---
+pageTitle: TreeView API
+title: TreeView
+props:
+  - TreeViewProps
+  - TreeItemProps
+---
+
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="treeview" type="api">
+
+<LeadParagraph>
+TreeView provides a hierarchical list of items that can be collapsed or expanded to hide or reveal their contents.
+</LeadParagraph>
+
+## Basic Usage
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, Heading } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Heading level={3} id="ah-textbook">
+        Gardner's Art through the ages
+      </Heading>
+      <TreeView ariaLabelledBy={"ah-textbook"}>
+        <TreeItem
+          label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
+          itemId="I-intro"
+        >
+          <TreeItem
+            label={<>Art History in the 21st Century</>}
+            itemId="I-intro"
+          >
+            <TreeItem
+              label={<>The Questions Art Historians Ask</>}
+              itemId="I-questions"
+            />
+            <TreeItem
+              label={<>The Words Art Historians Use</>}
+              itemId="I-words"
+            >
+              <TreeItem label={<>Vocabulary</>} itemId="I-vocab" />
+            </TreeItem>
+            <TreeItem
+              label={<>Art History and Other Disciplines</>}
+              itemId="I-other"
+            />
+          </TreeItem>
+          <TreeItem
+            label={<>Different Ways of Seeing</>}
+            itemId="I-different-ways"
+          />
+        </TreeItem>
+        <TreeItem label={<>1. ART IN THE STONE AGE</>} itemId="1-stone-age">
+          <TreeItem label={<>Paleolithic Art</>} itemId="1-paleolithic">
+            <TreeItem label={<>Africa</>} itemId="1-africa" />
+            <TreeItem label={<>Europe</>} itemId="1-europe" />
+          </TreeItem>
+          <TreeItem label={<>Neolithic Art</>} itemId="1-neolithic">
+            <TreeItem
+              label={<>Anatolia and Mesopotamia</>}
+              itemId="1-anatolia"
+            />
+            <TreeItem
+              label={<>Europe</>}
+              itemId="1-neolithic-europe"
+              isDisabled
+            />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem
+          label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}
+          itemId="2-ancient"
+        >
+          <TreeItem label={<>Mesopotamia</>} itemId="2-mesopotamia">
+            <TreeItem label={<>Sumer</>} itemId="2-sumer" />
+            <TreeItem label={<>Akkad</>} itemId="2-akkad" />
+            <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur" />
+            <TreeItem label={<>Babylon</>} itemId="2-babylon" />
+            <TreeItem label={<>Elam</>} itemId="2-elam" />
+            <TreeItem label={<>Assyria</>} itemId="2-assyria" />
+            <TreeItem label={<>Neo-Babylonia</>} itemId="2-neo" />
+          </TreeItem>
+          <TreeItem label={<>Persia</>} itemId="2-persia">
+            <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid" />
+            <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Selectable
+
+TreeViews can have `TreeViewSelectable.single` for single select (default), `TreeViewSelectable.multi` for multi select with checkboxes, or `TreeViewSelectable.off` for no selection. 
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable, Tag } from 'react-magma-dom';
+
+export function Example() {
+  const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+
+  function onSelection(items) {
+    const selected = items
+      .filter((i) => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.primary}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    const indeterminate = items
+      .filter(
+        (i) => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+      )
+      .map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.default}>
+          {i.itemId}
+        </Tag>
+      ));
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indeterminate);
+  }
+
+  return (
+    <>
+      <Heading level={3} id="animals-off">
+        TreeViewSelectable.off
+      </Heading>
+      <TreeView
+        ariaLabelledBy="animals-off"
+        selectable={TreeViewSelectable.off}
+      >
+        <TreeItem label="Mammals" itemId="selectable-Mammals">
+          <TreeItem label="Dogs" itemId="selectable-Dogs">
+            <TreeItem
+              label="German Shepherd"
+              itemId="selectable-German Shepherd"
+            />
+            <TreeItem
+              label="Labrador Retriever"
+              itemId="selectable-Labrador Retriever"
+            />
+            <TreeItem
+              label="American Bully"
+              itemId="selectable-American Bully"
+            />
+          </TreeItem>
+          <TreeItem label="Cats" itemId="selectable-Cats">
+            <TreeItem label="Siamese" itemId="selectable-Siamese" />
+            <TreeItem label="Persian" itemId="selectable-Persian" />
+            <TreeItem label="Bengal" itemId="selectable-Bengal" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Reptiles" itemId="selectable-Reptiles">
+          <TreeItem label="Snakes" itemId="selectable-Snakes">
+            <TreeItem label="Python" itemId="selectable-Python" />
+            <TreeItem
+              label="Boa Constrictor"
+              itemId="selectable-Boa Constrictor"
+            />
+            <TreeItem label="Corn Snake" itemId="selectable-Corn Snake" />
+          </TreeItem>
+          <TreeItem label="Lizards" itemId="selectable-Lizards">
+            <TreeItem label="Geckos" itemId="selectable-Geckos" />
+            <TreeItem label="Iguanas" itemId="selectable-Iguanas" />
+            <TreeItem label="Chameleons" itemId="selectable-Chameleons" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+      <Heading level={3} id="animals-multi">
+        TreeViewSelectable.multi
+      </Heading>
+      <TreeView
+        ariaLabelledBy="animals-multi"
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={onSelection}
+      >
+        <TreeItem label="Birds" itemId="selectable-Birds">
+          <TreeItem label="Parrots" itemId="selectable-Parrots">
+            <TreeItem label="African Grey" itemId="selectable-African Grey" />
+            <TreeItem label="Cockatiel" itemId="selectable-Cockatiel" />
+            <TreeItem label="Budgerigar" itemId="selectable-Budgerigar" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="selectable-Birds of Prey">
+            <TreeItem label="Eagles" itemId="selectable-Eagles" />
+            <TreeItem label="Hawks" itemId="selectable-Hawks" />
+            <TreeItem label="Falcons" itemId="selectable-Falcons" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Aquatic Animals" itemId="selectable-Aquatic Animals">
+          <TreeItem label="Fish" itemId="selectable-Fish">
+            <TreeItem label="Goldfish" itemId="selectable-Goldfish" />
+            <TreeItem label="Betta Fish" itemId="selectable-Betta Fish" />
+            <TreeItem label="Guppies" itemId="selectable-Guppies" />
+          </TreeItem>
+          <TreeItem label="Marine Mammals" itemId="selectable-Marine Mammals">
+            <TreeItem label="Dolphins" itemId="selectable-Dolphins" />
+            <TreeItem label="Whales" itemId="selectable-Whales" />
+            <TreeItem label="Seals" itemId="selectable-Seals" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+      <br />
+      <>
+        <p>Selected: {selectedItems}</p>
+        <p> Indeterminate: {indeterminateItems}</p>
+      </>
+    </>
+  );
+}
+
+```
+
+## Icons
+
+If one `TreeItem` uses the `icon` prop, all other `TreeItems` should also have an `icon`. If one is not passed, default icons will be used: `FolderIcon` for branches and `ArticleIcon` for leafs.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, magma } from 'react-magma-dom';
+import { FavoriteIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="icon-example">
+        <TreeItem
+          label={<>I have an icon</>}
+          icon={
+            <FavoriteIcon
+              style={{ color: magma.colors.primary500 }}
+              aria-hidden={true}
+            />
+          }
+          itemId="1"
+        />
+        <TreeItem label={<>I am a Branch without icon</>} itemId="2">
+          <TreeItem label={<>I am a Leaf without an icon</>} itemId="3" />
+          <TreeItem
+            label={<>I have an icon</>}
+            icon={
+              <FavoriteIcon
+                style={{ color: magma.colors.primary500 }}
+                aria-hidden={true}
+              />
+            }
+            itemId="4"
+          />
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Initial Expanded Items 
+
+To have a `TreeItem` expanded initially, pass an array of `TreeItem` `itemId`s to the `TreeView`.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="single-select-treeview"
+      selectable={TreeViewSelectable.single}
+      initialExpandedItems={["Mammals", "Cats"]}
+      >
+        <TreeItem label="Mammals" itemId="initExpanded-Mammals">
+          <TreeItem label="Dogs" itemId="initExpanded-Dogs">
+            <TreeItem label="German Shepherd" itemId="German initExpanded-Shepherd"/>
+            <TreeItem label="Labrador Retriever" itemId="Labrador initExpanded-Retriever"/>
+            <TreeItem label="American Bully" itemId="American initExpanded-Bully"/>
+          </TreeItem>
+          <TreeItem label="Cats" itemId="initExpanded-Cats">
+            <TreeItem label="Siamese" itemId="initExpanded-Siamese"/>
+            <TreeItem label="Persian" itemId="initExpanded-Persian"/>
+            <TreeItem label="Bengal" itemId="initExpanded-Bengal"/>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Birds" itemId="initExpanded-Birds">
+          <TreeItem label="Parrots" itemId="initExpanded-Parrots">
+            <TreeItem label="African Grey" itemId="African initExpanded-Grey"/>
+            <TreeItem label="Cockatiel" itemId="initExpanded-Cockatiel"/>
+            <TreeItem label="Budgerigar" itemId="initExpanded-Budgerigar"/>
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="Birds of initExpanded-Prey">
+            <TreeItem label="Eagles" itemId="initExpanded-Eagles"/>
+            <TreeItem label="Hawks" itemId="initExpanded-Hawks"/>
+            <TreeItem label="Falcons" itemId="initExpanded-Falcons"/>
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Preselected Items
+
+To have a `TreeItem` selected initially, pass an array of `{itemId: 'itemId', checkedStatus: 'checked'}` objects to the `TreeView`.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TreeView
+      ariaLabel="preselected-treeview"
+      selectable={TreeViewSelectable.multi}
+      preselectedItems={[
+        { itemId: "Birds", checkedStatus: "checked" },
+        { itemId: "Amphibians", checkedStatus: "checked" },
+      ]}
+    >
+      <TreeItem label="Mammals" itemId="presel-Mammals">
+        <TreeItem label="Dogs" itemId="presel-Dogs">
+          <TreeItem label="German Shepherd" itemId="presel-German Shepherd" />
+          <TreeItem
+            label="Labrador Retriever"
+            itemId="presel-Labrador Retriever"
+          />
+          <TreeItem label="American Bully" itemId="presel-American Bully" />
+        </TreeItem>
+        <TreeItem label="Cats" itemId="presel-Cats">
+          <TreeItem label="Siamese" itemId="presel-Siamese" />
+          <TreeItem label="Persian" itemId="presel-Persian" />
+          <TreeItem label="Bengal" itemId="presel-Bengal" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Birds" itemId="presel-Birds">
+        <TreeItem label="Parrots" itemId="presel-Parrots">
+          <TreeItem label="African Grey" itemId="presel-African Grey" />
+          <TreeItem label="Cockatiel" itemId="presel-Cockatiel" />
+          <TreeItem label="Budgerigar" itemId="presel-Budgerigar" />
+        </TreeItem>
+        <TreeItem label="Birds of Prey" itemId="presel-Birds of Prey">
+          <TreeItem label="Eagles" itemId="presel-Eagles" />
+          <TreeItem label="Hawks" itemId="presel-Hawks" />
+          <TreeItem label="Falcons" itemId="presel-Falcons" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Amphibians" itemId="presel-Amphibians" />
+    </TreeView>
+  );
+}
+```
+
+## Aria Labels
+
+If there is visible text that labels an element, use `ariaLabelledBy`.
+
+If there is no visible name for the element you can reference, use `ariaLabel` to provide the user with a recognizable accessible name.
+
+*It's required to use either `ariaLabel` OR `ariaLabelledBy`.*
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="animals">
+        <TreeItem label="Mammals" itemId="Mammals">
+          <TreeItem label="Dogs" itemId="Dogs">
+            <TreeItem label="German Shepherd" itemId="German Shepherd" />
+            <TreeItem label="Labrador Retriever" itemId="Labrador Retriever" />
+            <TreeItem label="American Bully" itemId="American Bully" />
+          </TreeItem>
+          <TreeItem label="Cats" itemId="Cats">
+            <TreeItem label="Siamese" itemId="Siamese" />
+            <TreeItem label="Persian" itemId="Persian" />
+            <TreeItem label="Bengal" itemId="Bengal" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Birds" itemId="Birds">
+          <TreeItem label="Parrots" itemId="Parrots">
+            <TreeItem label="African Grey" itemId="African Grey" />
+            <TreeItem label="Cockatiel" itemId="Cockatiel" />
+            <TreeItem label="Budgerigar" itemId="Budgerigar" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="Birds of Prey">
+            <TreeItem label="Eagles" itemId="Eagles" />
+            <TreeItem label="Hawks" itemId="Hawks" />
+            <TreeItem label="Falcons" itemId="Falcons" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Reptiles" itemId="Reptiles" isDisabled>
+          <TreeItem label="Snakes" itemId="Snakes">
+            <TreeItem label="Python" itemId="Python" />
+            <TreeItem label="Boa Constrictor" itemId="Boa Constrictor" />
+            <TreeItem label="Corn Snake" itemId="Corn Snake" />
+          </TreeItem>
+          <TreeItem label="Lizards" itemId="Lizards">
+            <TreeItem label="Geckos" itemId="Geckos" />
+            <TreeItem label="Iguanas" itemId="Iguanas" />
+            <TreeItem label="Chameleons" itemId="Chameleons" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Aquatic Animals" itemId="Aquatic Animals">
+          <TreeItem label="Fish" itemId="Fish">
+            <TreeItem label="Goldfish" itemId="Goldfish" />
+            <TreeItem label="Betta Fish" itemId="Betta Fish" />
+            <TreeItem label="Guppies" itemId="Guppies" />
+          </TreeItem>
+          <TreeItem label="Marine Mammals" itemId="Marine Mammals">
+            <TreeItem label="Dolphins" itemId="Dolphins" />
+            <TreeItem label="Whales" itemId="Whales" />
+            <TreeItem label="Seals" itemId="Seals" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Change Events
+
+The following events are available: `onSelectedItemChange` and `onExpandedChange`.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  const [currentTreeEvent, setCurrentTreeEvent] = React.useState<
+    string | undefined
+  >(undefined);
+
+  function handleSelectedItemChange(event) {
+    setCurrentTreeEvent("Selected");
+  }
+
+  function handleExpandedChange(event) {
+    setCurrentTreeEvent("Expanded");
+  }
+
+  return (
+    <>
+      <p>
+        <strong>{currentTreeEvent || "No"} event was triggered</strong>
+      </p>
+
+      <TreeView
+        ariaLabel="course-topics-change-events"
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={handleSelectedItemChange}
+        onExpandedChange={handleExpandedChange}
+      >
+        <TreeItem label={<>Arts and Design</>} itemId="arts-design">
+          <TreeItem label={<>Animation</>} itemId="animation" />
+          <TreeItem label={<>Graphic Arts</>} itemId="graphic" />
+          <TreeItem label={<>Photography</>} itemId="photography" />
+          <TreeItem label={<>Web Design</>} itemId="webdesign" />
+        </TreeItem>
+        <TreeItem label={<>Business</>} itemId="business">
+          <TreeItem label={<>Accounting</>} itemId="accounting" />
+          <TreeItem label={<>Finance</>} itemId="finance" />
+        </TreeItem>
+        <TreeItem label={<>Computer Science</>} itemId="compsci">
+          <TreeItem label={<>Software Engineering</>} itemId="swe" />
+          <TreeItem label={<>Information Technology</>} itemId="it" />
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ padding: "12px" }}>
+      <TreeView ariaLabel="animals" isInverse>
+        <TreeItem label="Mammals" itemId="inverse-Mammals">
+          <TreeItem label="Dogs" itemId="inverse-Dogs">
+            <TreeItem
+              label="German Shepherd"
+              itemId="inverse-German Shepherd"
+            />
+            <TreeItem
+              label="Labrador Retriever"
+              itemId="inverse-Labrador Retriever"
+            />
+            <TreeItem label="American Bully" itemId="inverse-American Bully" />
+          </TreeItem>
+          <TreeItem label="Cats" itemId="inverse-Cats">
+            <TreeItem label="Siamese" itemId="inverse-Siamese" />
+            <TreeItem label="Persian" itemId="inverse-Persian" />
+            <TreeItem label="Bengal" itemId="inverse-Bengal" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Birds" itemId="inverse-Birds">
+          <TreeItem label="Parrots" itemId="inverse-Parrots">
+            <TreeItem label="African Grey" itemId="inverse-African Grey" />
+            <TreeItem label="Cockatiel" itemId="inverse-Cockatiel" />
+            <TreeItem label="Budgerigar" itemId="inverse-Budgerigar" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="inverse-Birds of Prey">
+            <TreeItem label="Eagles" itemId="inverse-Eagles" />
+            <TreeItem label="Hawks" itemId="inverse-Hawks" />
+            <TreeItem label="Falcons" itemId="inverse-Falcons" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </Card>
+  );
+}
+
+```
+
+## Custom Styles
+
+Use the `labelStyle` prop to customize the `TreeItem` labels.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, magma } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView ariaLabel="custom-label">
+        <TreeItem
+          label="Reptiles"
+          itemId="custom-Reptiles"
+          labelStyle={{ color: magma.colors.danger600 }}
+        >
+          <TreeItem
+            label="Snakes"
+            itemId="custom-Snakes"
+            labelStyle={{ color: magma.colors.info700, fontWeight: "600" }}
+            style={{ background: magma.colors.info100 }}
+          >
+            <TreeItem label="Python" itemId="custom-Python" />
+            <TreeItem label="Boa Constrictor" itemId="custom-Boa Constrictor" />
+            <TreeItem label="Corn Snake" itemId="custom-Corn Snake" />
+          </TreeItem>
+          <TreeItem label="Lizards" itemId="custom-Lizards">
+            <TreeItem
+              label="Geckos"
+              itemId="custom-Geckos"
+              labelStyle={{ fontStyle: "italic" }}
+            />
+            <TreeItem
+              label="Iguanas"
+              itemId="custom-Iguanas"
+              labelStyle={{ fontStyle: "italic" }}
+            />
+            <TreeItem
+              label="Chameleons"
+              itemId="custom-Chameleons"
+              labelStyle={{ fontStyle: "italic" }}
+            />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Aquatic Animals" itemId="custom-Aquatic Animals">
+          <TreeItem label="Fish" itemId="custom-Fish">
+            <TreeItem label="Goldfish" itemId="custom-Goldfish" />
+            <TreeItem label="Betta Fish" itemId="custom-Betta Fish" />
+            <TreeItem label="Guppies" itemId="custom-Guppies" />
+          </TreeItem>
+          <TreeItem
+            label="Marine Mammals"
+            itemId="custom-Marine Mammals"
+            labelStyle={{ color: magma.colors.success700, fontWeight: "600" }}
+            style={{ background: magma.colors.success100 }}
+          >
+            <TreeItem label="Dolphins" itemId="custom-Dolphins" />
+            <TreeItem label="Whales" itemId="custom-Whales" />
+            <TreeItem label="Seals" itemId="custom-Seals" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## TreeView Props
+
+**Any other props supplied will be provided to the wrapping `ul` element.**
+
+<TreeViewProps />
+
+## TreeItem Props
+
+**Any other props supplied will be provided to the wrapping `li` element.**
+
+<TreeItemProps />
+
+</PageContent>

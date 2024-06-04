@@ -1,22 +1,184 @@
 # Change Log
 
-## 5.0.5
+## 5.0.6-next.24
 
 ### Patch Changes
 
-- cfc20a479: build: Resolve merge conflicts when pulling main -> dev
-- cfc20a479: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
-- Updated dependencies [cfc20a479]
-- Updated dependencies [cfc20a479]
-- Updated dependencies [cfc20a479]
-- Updated dependencies [cfc20a479]
-- Updated dependencies [cfc20a479]
-- Updated dependencies [cfc20a479]
-  - react-magma-dom@4.3.0
-  - @react-magma/charts@6.0.0
-  - @react-magma/dropzone@6.0.0
-  - @react-magma/schema-renderer@6.0.0
-  - @cengage-patterns/header@8.0.0
+- Updated dependencies [63ba07d06]
+  - react-magma-dom@4.4.0-next.21
+
+## 5.0.6-next.23
+
+### Patch Changes
+
+- Updated dependencies [ad0c58ace]
+  - react-magma-dom@4.4.0-next.20
+
+## 5.0.6-next.22
+
+### Patch Changes
+
+- Updated dependencies [bb103295a]
+  - react-magma-dom@4.4.0-next.19
+
+## 5.0.6-next.21
+
+### Patch Changes
+
+- Updated dependencies [c4044956a]
+  - react-magma-dom@4.4.0-next.18
+
+## 5.0.6-next.20
+
+### Patch Changes
+
+- Updated dependencies [2dc651c9f]
+  - react-magma-dom@4.4.0-next.17
+
+## 5.0.6-next.19
+
+### Patch Changes
+
+- Updated dependencies [fac89e708]
+  - react-magma-dom@4.4.0-next.16
+
+## 5.0.6-next.18
+
+### Patch Changes
+
+- Updated dependencies [e39db7b0f]
+  - react-magma-dom@4.4.0-next.15
+
+## 5.0.6-next.17
+
+### Patch Changes
+
+- Updated dependencies [2f95d6072]
+  - react-magma-dom@4.4.0-next.14
+
+## 5.0.6-next.16
+
+### Patch Changes
+
+- Updated dependencies [cf3c10fda]
+  - react-magma-dom@4.4.0-next.13
+
+## 5.0.6-next.15
+
+### Patch Changes
+
+- Updated dependencies [b7ad3aa90]
+  - react-magma-dom@4.4.0-next.12
+
+## 5.0.6-next.14
+
+### Patch Changes
+
+- Updated dependencies [aff7e0a7e]
+  - react-magma-dom@4.4.0-next.11
+
+## 5.0.6-next.13
+
+### Patch Changes
+
+- Updated dependencies [c1ef7d0cb]
+  - react-magma-dom@4.4.0-next.10
+
+## 5.0.6-next.12
+
+### Patch Changes
+
+- Updated dependencies [e8a395ed1]
+  - react-magma-dom@4.4.0-next.9
+
+## 5.0.6-next.11
+
+### Patch Changes
+
+- Updated dependencies [5e88eddbd]
+  - react-magma-dom@4.4.0-next.8
+
+## 5.0.6-next.10
+
+### Patch Changes
+
+- Updated dependencies [dcaa44365]
+  - react-magma-dom@4.4.0-next.7
+
+## 5.0.6-next.9
+
+### Patch Changes
+
+- b10feaaba: chore: Fix storybook
+
+## 5.0.6-next.8
+
+### Patch Changes
+
+- Updated dependencies [a869e0993]
+  - react-magma-dom@4.4.0-next.6
+
+## 5.0.6-next.7
+
+### Patch Changes
+
+- Updated dependencies [61a5ea0c1]
+  - react-magma-dom@4.4.0-next.5
+
+## 5.0.6-next.6
+
+### Patch Changes
+
+- Updated dependencies [b9626a096]
+  - react-magma-dom@4.4.0-next.4
+
+## 5.0.6-next.5
+
+### Patch Changes
+
+- Updated dependencies [ede3d0f62]
+  - react-magma-dom@4.4.0-next.3
+
+## 5.0.6-next.4
+
+### Patch Changes
+
+- Updated dependencies [ab6ffd4ed]
+  - react-magma-dom@4.4.0-next.2
+  - @react-magma/charts@7.0.0-next.1
+  - @react-magma/dropzone@7.0.0-next.1
+  - @react-magma/schema-renderer@7.0.0-next.1
+  - @cengage-patterns/header@9.0.0-next.1
+
+## 5.0.6-next.3
+
+### Patch Changes
+
+- 731e9c217: build(deps): bump ip from 2.0.0 to 2.0.1
+
+## 5.0.6-next.2
+
+### Patch Changes
+
+- Updated dependencies [9a536bcda]
+  - react-magma-dom@4.3.1-next.1
+
+## 5.0.6-next.1
+
+### Patch Changes
+
+- Updated dependencies [3e14d4bd8]
+  - react-magma-dom@4.3.1-next.0
+  - @react-magma/charts@6.0.1-next.0
+  - @react-magma/dropzone@6.0.1-next.0
+  - @react-magma/schema-renderer@6.0.1-next.0
+  - @cengage-patterns/header@8.0.1-next.0
+
+## 5.0.6-next.0
+
+### Patch Changes
+
+- f54eb31c9: build: Resolve merge conflicts when pulling main -> dev (4.3.0)
 
 ## 5.0.5-next.9
 

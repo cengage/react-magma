@@ -2,7 +2,7 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { NativeSelect } from '.';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { Tooltip } from '../Tooltip';
 import { IconButton } from '../IconButton';
@@ -63,6 +63,21 @@ describe('NativeSelect', () => {
       'border',
       `1px solid ${magma.colors.neutral500}`
     );
+  });
+
+  it('should update the selected option', () => {
+    const { getByTestId } = render(
+      <NativeSelect testId={testId}>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+      </NativeSelect>
+    );
+    const activeOption = getByTestId(testId);
+
+    fireEvent.change(getByTestId(testId), { target: { value: 2 } });
+
+    expect(activeOption).toHaveDisplayValue('2');
   });
 
   it('should render a default inverse border', () => {
@@ -158,6 +173,40 @@ describe('NativeSelect', () => {
         'display',
         'flex'
       );
+    });
+
+    it(`Should display an additional wrapper with additionalContent'`, () => {
+      const { queryByTestId } = render(
+        <NativeSelect
+          labelPosition="left"
+          testId={testId}
+          additionalContent={
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                testId="Icon Button"
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+        />
+      );
+      expect(
+        queryByTestId(`${testId}-additional-content-wrapper`)
+      ).toBeInTheDocument();
+    });
+
+    it(`Shouldn't display an additional wrapper without additionalContent'`, () => {
+      const { queryByTestId } = render(
+        <NativeSelect labelPosition="left" testId={testId} />
+      );
+      expect(
+        queryByTestId(`${testId}-additional-content-wrapper`)
+      ).not.toBeInTheDocument();
     });
   });
 });

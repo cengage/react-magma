@@ -56,7 +56,7 @@ describe('Search', () => {
     });
 
     fireEvent.click(container.querySelector('button'));
-    expect(onSearchSpy).toBeCalledWith(targetValue);
+    expect(onSearchSpy).toHaveBeenCalledWith(targetValue);
   });
 
   it('should fire the onSearch event when enter is pressed', () => {
@@ -70,7 +70,7 @@ describe('Search', () => {
       keyCode: 13,
     });
 
-    expect(onSearchSpy).toBeCalledWith('test value');
+    expect(onSearchSpy).toHaveBeenCalledWith('test value');
   });
 
   it('should trigger the passed in onChange when value of the input is changed', () => {
@@ -94,6 +94,38 @@ describe('Search', () => {
     );
 
     expect(getByLabelText(defaultI18n.spinner.ariaLabel)).toBeInTheDocument();
+  });
+
+  it('should clear the state for uncontrolled Search when the clear input button is clicked', () => {
+    const onClear = jest.fn();
+    const labelText = 'Search input';
+    const value = 'Test Value';
+    
+    const { getByTestId, getByLabelText } = render(
+      <Search
+        labelText={labelText}
+        onSearch={onSearchSpy}
+        onClear={onClear}
+        isClearable
+      />
+    );
+
+    const searchButton = getByLabelText('Search', { selector: 'button' })
+    
+    fireEvent.click(searchButton);
+    expect(onSearchSpy).toHaveBeenCalledWith(undefined);
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value },
+    });
+    fireEvent.click(searchButton);
+    expect(onSearchSpy).toHaveBeenCalledWith(value);
+
+    fireEvent.click(getByTestId('clear-button'));
+    expect(onClear).toHaveBeenCalled();
+    expect(getByLabelText(labelText)).toHaveAttribute('value', '');
+    fireEvent.click(searchButton);
+    expect(onSearchSpy).toHaveBeenCalledWith(undefined);
   });
 
   describe('i18n', () => {

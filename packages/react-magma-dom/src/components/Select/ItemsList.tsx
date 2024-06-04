@@ -12,9 +12,10 @@ import {
   SelectComponents,
   ItemRenderOptions,
 } from './components';
-import styled from '../../theme/styled';
 import { convertStyleValueToString } from '../../utils';
 import { Spinner } from '../Spinner';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
@@ -30,7 +31,9 @@ interface ItemsListProps<T> {
   isLoading?: boolean;
 }
 
-const NoItemsMessage = styled.span<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const NoItemsMessage = typedStyled.span<{
   isInverse?: boolean;
 }>`
   color: ${props =>

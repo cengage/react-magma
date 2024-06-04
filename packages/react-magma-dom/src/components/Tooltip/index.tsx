@@ -1,9 +1,10 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';
 import { useIsInverse } from '../../inverse';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -30,7 +31,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The content of the tooltip
    */
-  content: React.ReactNode;
+  content: any;
   isInverse?: boolean;
   /**
    * Override the default opening of the tooltip on hover/focus to remain open
@@ -56,12 +57,14 @@ export interface ITooltipState {
   isVisible?: boolean;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 const TooltipContainer = styled.div`
   display: inline;
   pointer-events: auto;
 `;
 
-export const TooltipArrow = styled.span<{
+export const TooltipArrow = typedStyled.span<{
   position?: any;
   isInverse?: boolean;
 }>`
@@ -84,7 +87,7 @@ export const TooltipArrow = styled.span<{
   }
 `;
 
-export const StyledTooltip = styled.div<{
+export const StyledTooltip = typedStyled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
   position: TooltipPosition;

@@ -11,9 +11,9 @@ import {
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {

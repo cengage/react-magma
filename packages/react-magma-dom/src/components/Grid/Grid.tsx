@@ -1,6 +1,6 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import * as CSS from 'csstype';
+import styled from '@emotion/styled';
 
 export enum GridDisplay {
   grid = 'grid', // default

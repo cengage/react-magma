@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/charts",
-  "version": "6.0.0",
+  "version": "7.0.0-next.4",
   "publishConfig": {
     "access": "public"
   },
@@ -12,7 +12,8 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src"
+    "src",
+    "src/components/CarbonChart/styles.min.css"
   ],
   "engines": {
     "npm": "^7.3.0",
@@ -30,18 +31,28 @@
     "@emotion/styled": "^10.0.27",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.3.0-next.2",
+    "react-magma-dom": "^4.4.0-next.2",
     "react-magma-icons": "^3.0.0"
   },
   "dependencies": {
+    "@carbon/charts-react": "^1.14.8",
+    "d3": "^7.9.0",
+    "d3-cloud": "^1.2.7",
+    "d3-sankey": "^0.12.3",
     "victory": "^35.4.12"
   },
   "devDependencies": {
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
+    "dom-to-image-more": "3.1.4",
+    "identity-obj-proxy": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.3.0",
+    "react-magma-dom": "^4.4.0-next.2",
     "react-magma-icons": "^3.0.0"
+  },
+  "exports": {
+    ".": "./src",
+    "./src/components/CarbonChart/": "./styles.min.css"
   }
 }
