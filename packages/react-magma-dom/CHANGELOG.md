@@ -4,7 +4,7 @@
 ### Minor Changes
 
 - ab6ffd4ed: feat(TreeView): New TreeView & TreeItem components
-- ede3d0f62: feat(TabsScrollSpy): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk. 
+- ede3d0f62: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk. 
 
 ### Patch Changes
 
