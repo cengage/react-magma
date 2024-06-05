@@ -40,7 +40,7 @@
     "gatsby-source-filesystem": "^2.1.46",
     "gatsby-transformer-sharp": "^2.3.13",
     "prism-react-renderer": "^1.1.1",
-    "react": "^16.10.0",
+    "react": "^16.10.0 || ^17.2.0",
     "react-animate-on-scroll": "^2.1.5",
     "react-codesandboxer": "^3.1.5",
     "react-copy-to-clipboard": "^5.0.3",
