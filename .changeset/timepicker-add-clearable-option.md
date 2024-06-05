@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-feat(TimePicker): Added opportunity to clear Timepicker
+feat(TimePicker): Added support for clearing Timepicker
