@@ -53,7 +53,6 @@ const linkStyles = props => css`
     : props.theme.colors.primary};
   text-decoration: ${props.hasUnderline ? 'underline' : 'none'};
   font-family: ${props.theme.bodyFont};
-  width: fit-content;
   display: inline-flex;
   align-items: center;
   &:not([disabled]) {
