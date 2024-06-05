@@ -1,24 +1,5 @@
 
-## 4.4.0
 
-### Minor Changes
-
-- ab6ffd4ed: feat(TreeView): New TreeView & TreeItem components
-- ede3d0f62: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk. 
-
-### Patch Changes
-
-- 2dc651c9f: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date
-- fac89e708: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
-- 2f95d6072: fix(TimePicker): Returns empty when backspace is pressed
-- b7ad3aa90: chore: Update nvm to `v16.20.2`
-- aff7e0a7e: fix(Search): Reset the value for clearable search when the X is clicked
-- c1ef7d0cb: build: Update references to \_styled
-- e8a395ed1: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
-- 5e88eddbd: feat(TimePicker): Added support for clearing Timepicker
-- a869e0993: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid
-- 9a536bcda: feat(modal): Added new `isModalClosingControlledManually` property that allows handling closing the modal on the consumer side
-- 3e14d4bd8: fix(NativeSelect): Fix issue with data-testid
 
 ## 4.3.0
 
