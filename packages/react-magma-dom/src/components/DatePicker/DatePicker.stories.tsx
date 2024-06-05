@@ -5,6 +5,8 @@ import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { LabelPosition } from '../Label';
 import { Meta } from '@storybook/react/types-6-0';
+import { isValid } from 'date-fns';
+import { getDateFromString, inDateRange } from './utils';
 
 const today: Date = new Date();
 
@@ -102,4 +104,55 @@ export const Inverse = args => {
 Inverse.args = {
   ...Default.args,
   isInverse: true,
+};
+
+export const Events = args => {
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+
+  function handleDateChange(newChosenDate: Date) {
+    setChosenDate(newChosenDate);
+  }
+
+  function hasErrorMessage() {
+    const convertedMinDate = getDateFromString(args.minDate);
+    const convertedMaxDate = getDateFromString(args.maxDate);
+
+    if (!chosenDate) {
+      return;
+    } else if (!inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
+      return `Please enter a date within the range ${args.minDate} - ${args.maxDate}`;
+    } else if (!isValid(chosenDate)) {
+      return 'Please enter a valid date';
+    }
+
+    return;
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DatePicker
+        {...args}
+        onDateChange={handleDateChange}
+        errorMessage={hasErrorMessage()}
+      />
+    </div>
+  );
+};
+
+Events.args = {
+  ...Default.args,
+  minDate: '04/23/2024',
+  maxDate: '04/20/2025',
 };

@@ -247,7 +247,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemToString(selectedItem));
 
-  function handleOnKeyDown(event: React.KeyboardEvent) {
+  function handleOnKeyDown(event: any) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
     if (event.key === 'Escape') {
@@ -258,8 +258,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
 
     onInputKeyDown &&
-    typeof onInputKeyDown === 'function' &&
-    onInputKeyDown(event);
+      typeof onInputKeyDown === 'function' &&
+      onInputKeyDown(event);
   }
 
   return (

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { XOR } from '../../utils';
 import { css } from '@emotion/core';
 import { transparentize } from 'polished';
@@ -11,6 +10,7 @@ import { ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { IconProps } from 'react-magma-icons';
 import { ToggleButtonGroupContext } from '../ToggleButtonGroup/ToggleButtonGroup';
+import styled from '@emotion/styled';
 
 export interface ToggleButtonTextProps extends ButtonProps {
   /**

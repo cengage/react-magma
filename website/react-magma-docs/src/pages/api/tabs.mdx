@@ -6,6 +6,8 @@ props:
   - TabsProps
   - TabPanelProps
   - TabPanelContainerProps
+  - TabScrollSpyPanelProps
+  - TabsScrollSpyContainerProps
   - TabsContainerProps
 ---
 
@@ -582,6 +584,141 @@ export function Example() {
 }
 ```
 
+## ScrollSpy Tabs
+
+<Alert variant="warning">
+  <strong>Important</strong>
+  &nbsp;ScrollSpy is a beta component. Please use at your own risk.
+</Alert>
+
+The `TabsScrollSpyContainer` enables a vertical nav which follows the active content in view as the user scrolls. The component requires the `TabScrollSpyPanel` to house each area and a `tabLabel` to assign it's navigation title.
+
+Please note that a containing div has been used to showcase the scrolling behavior. This isn't a requirement for the component to function.
+
+```tsx
+import React from 'react';
+import {
+  TabsScrollSpyContainer,
+  TabScrollSpyPanel,
+  magma,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TabsScrollSpyContainer>
+      <div style={{ height: '300px', overflow: 'auto' }}>
+        <TabScrollSpyPanel tabLabel="Card 1">
+          Card 1
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+        </TabScrollSpyPanel>
+        <TabScrollSpyPanel tabLabel="Card 2">
+          Card 2
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+          <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </TabScrollSpyPanel>
+        <TabScrollSpyPanel tabLabel="Card 3">
+          Card 3
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+          <p>
+            Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in
+            metus vulputate eu scelerisque felis imperdiet. Tristique
+            sollicitudin nibh sit amet commodo nulla facilisi nullam. Facilisis
+            sed odio morbi quis commodo odio aenean. Odio tempor orci dapibus
+            ultrices in iaculis nunc sed augue. In arcu cursus euismod quis
+            viverra nibh cras. Tincidunt ornare massa eget egestas purus viverra
+            accumsan in nisl. Porta nibh venenatis cras sed felis. Felis donec
+            et odio pellentesque diam. Aliquam ut porttitor leo a diam
+            sollicitudin. Sed sed risus pretium quam vulputate dignissim
+            suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel
+            elit scelerisque mauris pellentesque pulvinar.
+          </p>
+        </TabScrollSpyPanel>
+      </div>
+    </TabsScrollSpyContainer>
+  );
+}
+```
+
 ## Icon
 
 The `icon` prop can be used to display an icon inside the individual `Tab` components.
@@ -966,5 +1103,21 @@ All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web
 All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panel content.
 
 <TabPanelProps />
+
+## TabsScrollSpyContainer Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panels.
+
+<TabsScrollSpyContainerProps />
+
+## TabScrollSpyPanel Props
+
+**This component uses `forwardRef`. The ref is applied to the outer `div` element.**
+
+All of the [global HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes) can be provided as props and will be applied to the `div` element that that wraps the tab panel content.
+
+<TabScrollSpyPanelProps />
 
 </PageContent>

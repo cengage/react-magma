@@ -345,7 +345,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </>
     ) : null;
 
-  function handleOnKeyDown(event: React.KeyboardEvent) {
+  function handleOnKeyDown(event: any) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
     if (event.key === 'Escape') {

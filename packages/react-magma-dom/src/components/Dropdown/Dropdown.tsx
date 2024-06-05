@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { useDescendants } from '../../hooks/useDescendants';
 import { resolveProps, useForkedRef } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
+import styled from '@emotion/styled';
 
 export enum DropdownDropDirection {
   down = 'down', //default

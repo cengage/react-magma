@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
+import styled, { CreateStyled } from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -31,7 +31,9 @@ export interface AccordionButtonProps
   theme?: ThemeInterface;
 }
 
-const StyledButton = styled.button<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledButton = typedStyled.button<{
   isInverse?: boolean;
   isExpanded?: boolean;
 }>`
