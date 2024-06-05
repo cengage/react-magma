@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonColor, ButtonSize, ButtonTextTransform } from '../Button';
+import { ButtonColor, ButtonTextTransform } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Hyperlink, HyperlinkIconPosition } from '.';
 import { Flex, FlexBehavior, FlexJustify } from '../Flex';

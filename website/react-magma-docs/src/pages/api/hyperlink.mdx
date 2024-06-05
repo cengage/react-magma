@@ -105,6 +105,220 @@ export function Example() {
 }
 ```
 
+## Icon
+
+```tsx
+import React from 'react';
+import {
+  Hyperlink,
+  HyperlinkIconPosition,
+  Spacer,
+  SpacerAxis,
+  ButtonTextTransform,
+  Flex,
+  FlexBehavior,
+  FlexJustify,
+} from 'react-magma-dom';
+import {
+  KeyboardArrowLeftIcon,
+  KeyboardArrowRightIcon,
+  CalendarTodayIcon,
+  OpenInNewIcon
+} from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <Flex
+        behavior={FlexBehavior.container}
+        justify={FlexJustify.spaceBetween}
+      >
+        <span style={{ flex: '0 0 auto' }}>
+          <Hyperlink
+            target="_blank"
+            to="./"
+            hasUnderline={false}
+            icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.left}
+          >
+            Back
+          </Hyperlink>
+        </span>
+        <span style={{ flex: '0 0 auto' }}>
+          <Hyperlink
+            target="_blank"
+            to="./"
+            hasUnderline={false}
+            icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.right}
+          >
+            Next
+          </Hyperlink>
+        </span>
+      </Flex>
+      <Spacer size={'8px'} axis={SpacerAxis.both} />
+      <Hyperlink
+        styledAs="Button"
+        target="_blank"
+        to="./"
+        icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+        iconPosition={HyperlinkIconPosition.left}
+      >
+        Back
+      </Hyperlink>
+      <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
+      <Hyperlink
+        styledAs="Button"
+        target="_blank"
+        to="./"
+        icon={[
+          <KeyboardArrowLeftIcon aria-hidden={true} key={0} />,
+          <KeyboardArrowRightIcon aria-hidden={true} key={1} />,
+        ]}
+        iconPosition={HyperlinkIconPosition.both}
+      >
+        Guess
+      </Hyperlink>
+      <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
+      <Hyperlink
+        styledAs="Button"
+        target="_blank"
+        to="./"
+        icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+        iconPosition={HyperlinkIconPosition.right}
+      >
+        Next
+      </Hyperlink>
+      <Spacer size={'8px'} axis={SpacerAxis.both} />
+      <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+        <Hyperlink
+          target="_blank"
+          to="https://www.google.com"
+          hasUnderline={false}
+          icon={[
+            <CalendarTodayIcon
+              key={0}
+              size={magma.iconSizes.xLarge}
+              style={{ marginRight: magma.spaceScale.spacing03 }}
+              aria-hidden={true}
+            />,
+            <OpenInNewIcon
+              key={1}
+              size={magma.iconSizes.xLarge}
+              style={{ marginLeft: magma.spaceScale.spacing03 }}
+              aria-hidden={true}
+            />,
+          ]}
+          iconPosition={HyperlinkIconPosition.both}
+        >
+          Schedule an appointment
+        </Hyperlink>
+      </Paragraph>
+      <Paragraph visualStyle={TypographyVisualStyle.bodyLarge}>
+        <Hyperlink
+          target="_blank"
+          to="https://www.google.com"
+          hasUnderline={false}
+          icon={[
+            <CalendarTodayIcon
+              key={0}
+              size={magma.iconSizes.large}
+              aria-hidden={true}
+            />,
+            <OpenInNewIcon
+              key={1}
+              size={magma.iconSizes.large}
+              aria-hidden={true}
+            />,
+          ]}
+          iconPosition={HyperlinkIconPosition.both}
+        >
+          Schedule an appointment
+        </Hyperlink>
+      </Paragraph>
+      <Paragraph visualStyle={TypographyVisualStyle.bodySmall}>
+        <Hyperlink
+          target="_blank"
+          to="https://www.google.com"
+          hasUnderline={false}
+          icon={[
+            <CalendarTodayIcon
+              key={0}
+              size={magma.iconSizes.small}
+              aria-hidden={true}
+            />,
+            <OpenInNewIcon
+              key={1}
+              size={magma.iconSizes.small}
+              aria-hidden={true}
+            />,
+          ]}
+          iconPosition={HyperlinkIconPosition.both}
+        >
+          Schedule an appointment
+        </Hyperlink>
+      </Paragraph>
+      <Paragraph visualStyle={TypographyVisualStyle.bodyXSmall}>
+        <Hyperlink
+          target="_blank"
+          to="https://www.google.com"
+          hasUnderline={false}
+          icon={[
+            <CalendarTodayIcon
+              key={0}
+              size={magma.iconSizes.xSmall}
+              aria-hidden={true}
+            />,
+            <OpenInNewIcon
+              key={1}
+              size={magma.iconSizes.xSmall}
+              aria-hidden={true}
+            />,
+          ]}
+          iconPosition={HyperlinkIconPosition.both}
+        >
+          Schedule an appointment
+        </Hyperlink>
+      </Paragraph>
+    </>
+  );
+}
+```
+
+## hasUnderline
+
+The underline text decoration can be turned off. When a hyperlink is used within other elements like paragraphs, the underline is still mandatory.
+
+```tsx
+import React from 'react';
+import { Hyperlink, Spacer, SpacerAxis, magma, HyperlinkIconPosition } from 'react-magma-dom';
+import { CakeIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+    <Hyperlink target="_blank" to="https://www.google.com" hasUnderline={false}>
+      Google
+    </Hyperlink>
+    <Spacer size={'8px'} axis={SpacerAxis.both} />
+      Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
+      brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
+      <Hyperlink
+        target="_blank"
+        to="https://sallysbakingaddiction.com/triple-chocolate-layer-cake/"
+        icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
+        iconPosition={HyperlinkIconPosition.left}
+      >
+        I love chocolate cake
+      </Hyperlink>{' '}
+      Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
+      plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
+      shortbread.
+    </>
+  );
+}
+```
+
 ## Render Props Usage
 
 Use this when you want to render something that is from another library. For example, the `Link` component from `react-router`.
