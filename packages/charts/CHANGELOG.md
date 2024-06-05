@@ -1,5 +1,10 @@
 # @react-magma/charts
 
+## 7.0.0
+
+### Minor Changes
+
+- 308563ced: feat(CarbonCharts): Support Carbon Charts: AreaChart, StackedAreaChart, DonutChart, GroupedBarChart, LineChart, LollipopChart, PieChart, SimpleBarChart, StackedBarChart.
 
 ## 7.0.0-next.1
 
