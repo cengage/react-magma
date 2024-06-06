@@ -57,23 +57,28 @@ describe('Input', () => {
     const divColor = '#000000';
     const inputColor = '#cccccc';
     const labelColor = '#ffffff';
+    const wrapperWidth = '60px';
 
-    const { container, getByText, getByLabelText } = render(
+    const { container, getByText, getByLabelText, getByTestId } = render(
       <Input
         labelText={labelText}
         inputStyle={{ color: inputColor }}
         labelStyle={{ color: labelColor }}
         containerStyle={{ color: divColor }}
+        inputWrapperStyle={{ width: wrapperWidth }}
+        testId="input"
       />
     );
 
     const div = container.querySelector('div');
     const label = getByText(labelText);
     const input = getByLabelText(labelText);
+    const wrapper = getByTestId('input-wrapper');
 
     expect(div).toHaveStyle(`color: ${divColor}`);
     expect(input).toHaveStyle(`color: ${inputColor}`);
     expect(label).toHaveStyle(`color: ${labelColor}`);
+    expect(wrapper).toHaveStyle(`width: ${wrapperWidth}`);
   });
 
   it('should render an inverse input with the correct styles', () => {

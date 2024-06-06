@@ -79,6 +79,10 @@ export interface InputBaseProps
    */
   inputStyle?: React.CSSProperties;
   /**
+   * Style properties for input wrapper element
+   */
+  inputWrapperStyle?: React.CSSProperties;
+  /**
    * Total number of characters in an input.
    */
   inputLength?: number;
@@ -104,7 +108,6 @@ export interface InputBaseProps
    * A number value which gives Character Counter the maximum length of allowable characters in an Input.
    * @deprecated = true
    */
-
   maxLength?: number;
   /**
    * Action that will fire when icon is clicked
@@ -573,6 +576,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       inputLength,
       inputSize,
       inputStyle,
+      inputWrapperStyle,
       testId,
       type,
       ...other
@@ -638,7 +642,10 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     };
 
     return (
-      <InputContainer>
+      <InputContainer
+        style={inputWrapperStyle}
+        data-testid={`${testId}-wrapper`}
+      >
         <InputWrapper
           disabled={disabled}
           iconPosition={iconPosition}
@@ -658,7 +665,11 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             hasCharacterCounter={hasCharacterCounter}
             iconPosition={iconPosition}
             inputSize={inputSize ? inputSize : InputSize.medium}
-            isClearable={isClearable && inputLength > 0}
+            isClearable={
+              inputWrapperStyle?.width
+                ? isClearable
+                : isClearable && inputLength > 0
+            }
             isInverse={useIsInverse(props.isInverse)}
             isPredictive={isPredictive}
             hasError={hasError}

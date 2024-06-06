@@ -32,7 +32,7 @@ function BuildMessageColor(props) {
 }
 
 const Message = typedStyled.div<InputMessageProps>`
-  align-items: center;
+  align-items: flex-start;
   border-radius: ${props => props.theme.borderRadius};
   color: ${props => BuildMessageColor(props)};
   display: flex;
