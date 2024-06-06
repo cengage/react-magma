@@ -1,0 +1,16 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@react-magma/charts": "6.0.0",
+    "@react-magma/dropzone": "6.0.0",
+    "react-magma-dom": "4.3.0",
+    "@react-magma/schema-renderer": "6.0.0",
+    "@cengage-patterns/header": "8.0.0",
+    "react-magma-docs": "5.0.5",
+    "react-magma-landing": "1.1.3"
+  },
+  "changesets": [
+    "chore-sync"
+  ]
+}
