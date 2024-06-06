@@ -1,6 +1,16 @@
 # Change Log
 
+<<<<<<< HEAD
 ## 5.0.8
+=======
+## 5.0.7-next.2
+
+### Patch Changes
+
+- 7118b03b3: Add Toast warning
+
+## 5.0.7-next.1
+>>>>>>> a8e496490 (chore: enter prerelease mode)
 
 ### Patch Changes
 
