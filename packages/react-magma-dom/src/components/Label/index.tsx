@@ -69,7 +69,7 @@ const StyledLabel = styled.label<{
     props.iconPosition === InputIconPosition.top ||
     props.labelPosition === LabelPosition.left
       ? 'inherit'
-      : 'nowrap'};
+      : 'normal'};
 `;
 
 const StyledSpan = StyledLabel.withComponent('span');
