@@ -11,6 +11,6 @@
     "react-magma-landing": "1.1.3"
   },
   "changesets": [
-    
+    "chore-sync"
   ]
 }
