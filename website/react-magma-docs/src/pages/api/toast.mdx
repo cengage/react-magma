@@ -13,8 +13,12 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 <LeadParagraph>
   Toast components use the <Link to="/api/alert">Alert component</Link>{' '}
   internally for its content and styles. Any props that can be passed to an
-  Alert can be passed to a Toast component. Note that Toast messages can only be 1 or 2 lines long.
+  Alert can be passed to a Toast component.
 </LeadParagraph>
+
+<Alert variant="warning">
+  Toast messages can only be 1 or 2 lines long and have a max-width of 600px. If your message is longer than that, please shorten it or use a different component.
+</Alert>
 
 ## Basic Usage
 
