@@ -434,6 +434,10 @@ describe('TreeView', () => {
           'aria-checked',
           'true'
         );
+        expect(getByTestId('item-child2.2')).toHaveAttribute(
+          'aria-checked',
+          'true'
+        );
         expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
 
         expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');

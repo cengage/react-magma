@@ -1,10 +1,30 @@
 # Change Log
 
-## 5.0.6-next.25
+## 5.0.6
 
 ### Patch Changes
 
-- 4747977e3: docs(TreeView): Update example with duplicate IDs
+- 308563ced: build(deps): bump ip from 2.0.0 to 2.0.1
+- 308563ced: chore: Fix storybook
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+- Updated dependencies [308563ced]
+  - @react-magma/charts@7.0.0
+  - react-magma-dom@4.4.0
+  - @react-magma/dropzone@7.0.0
+  - @react-magma/schema-renderer@7.0.0
+  - @cengage-patterns/header@9.0.0
 
 ## 5.0.6-next.24
 
