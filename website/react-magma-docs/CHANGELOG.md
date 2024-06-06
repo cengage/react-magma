@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.7-next.2
+
+### Patch Changes
+
+- 7118b03b3: Add Toast warning
+
 ## 5.0.7-next.1
 
 ### Patch Changes
