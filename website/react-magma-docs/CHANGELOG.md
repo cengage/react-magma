@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.7-next.0
+
+### Patch Changes
+
+- ff8fe059d: chore: Resync dev branch
+
 ## 5.0.6
 
 ### Patch Changes
