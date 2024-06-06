@@ -1,14 +1,17 @@
 import React from 'react';
+import { Modal, ModalSize } from '.';
 import { Button, ButtonColor } from '../Button';
-import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
-import { Combobox } from '../Combobox';
-import { Container } from '../Container';
-import { DatePicker } from '../DatePicker';
-import { Modal, ModalSize, NativeSelect, Toggle, VisuallyHidden } from '../..';
-import { Paragraph } from '../Paragraph';
+import { VisuallyHidden } from '../VisuallyHidden';
+import { Toggle } from '../Toggle';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
+import { DatePicker } from '../DatePicker';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+import { Container } from '../Container';
+import { NativeSelect } from '../NativeSelect';
+import { Paragraph } from '../Paragraph';
 import { Spacer } from '../Spacer';
+import { Combobox } from '../Combobox';
 import {
   Dropdown,
   DropdownButton,

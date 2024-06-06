@@ -251,12 +251,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
   }, [initialExpandedItemsNeedUpdate]);
 
-  React.useEffect(() => {
-    if (initialExpandedItemsNeedUpdate) {
-      updateInitialExpanded();
-    }
-  }, [initialExpandedItemsNeedUpdate]);
-
   const updateCheckedStatusFromChild = (
     index: number,
     status: IndeterminateCheckboxStatus,
@@ -326,20 +320,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       });
 
       setSelectedItemsChanged(true);
-    }
-  };
-
-  const updateInitialExpanded = () => {
-    if (initialExpandedItems?.length !== 0 && !isDisabled) {
-      const childrenItemIds = getChildrenItemIdsFlat(treeItemChildren);
-      const allExpanded = [...initialExpandedItems, ...childrenItemIds];
-      if (allExpanded?.some(item => item === itemId)) {
-        setExpanded(true);
-      } else {
-        setExpanded(false);
-      }
-    } else {
-      setExpanded(false);
     }
   };
 
