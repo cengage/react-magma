@@ -1,10 +1,6 @@
 {
   "name": "@react-magma/dropzone",
-<<<<<<< HEAD
   "version": "7.0.0",
-=======
-  "version": "7.0.0-next.1",
->>>>>>> dev
   "publishConfig": {
     "access": "public"
   },
@@ -46,11 +42,7 @@
     "@emotion/styled": "^10.0.27",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-<<<<<<< HEAD
     "react-magma-dom": "^4.4.0",
-=======
-    "react-magma-dom": "^4.4.0-next.2",
->>>>>>> dev
     "react-magma-icons": "^3.0.0"
   }
 }
