@@ -41,6 +41,12 @@
 
 ## 4.4.0
 
+## 4.4.1-next.0
+
+### Patch Changes
+
+- 9f1e0956a: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
+
 ### Minor Changes
 
 - 308563ced: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
