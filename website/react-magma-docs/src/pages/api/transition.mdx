@@ -25,13 +25,15 @@ Collapse will transition the child components from 100% height to 0px.
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;
@@ -56,13 +58,15 @@ To have the child components fade from completely transparent use the fade trans
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;
@@ -87,13 +91,15 @@ The Nudge transitions (`nudgeLeft`, `nudgeRight`, `nudgeTop`, `nudgeBottom`) mov
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;
@@ -118,13 +124,15 @@ The rotate transitions (`rotate45`, `rotate90`, `rotate180`) will rotate the chi
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 50px;
     margin: 0 auto;
@@ -152,13 +160,15 @@ The scale transition will scale the child components from 95% to 100%. This alon
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;
@@ -184,13 +194,15 @@ The slide transitions (`slideRight`, `slideLeft`, `slideTop`, `slideBottom`) wil
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 100%;
     width: 250px;
     background: #bada55;
@@ -215,13 +227,15 @@ Transitions can be combined to create more advanced effects.
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;
@@ -247,13 +261,15 @@ Using the prop `unmountOnExit` will remove the children from the DOM completely 
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;
@@ -278,13 +294,15 @@ The magma theme has several sane defaults to create a consistent experience acro
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;
@@ -336,14 +354,16 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
-import { Button, Transition, Checkbox } from 'react-magma-dom';
+import styled, { CreateStyled } from '@emotion/styled';
+import { Button, Transition, ThemeInterface } from 'react-magma-dom';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [properties, setProperties] = React.useState({});
 
-  const Box = styled.div`
+  const Box = typedStyled.div`
     height: 250px;
     width: 250px;
     background: #bada55;

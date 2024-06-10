@@ -630,7 +630,7 @@ import {
 
 import { InfoIcon } from 'react-magma-icons';
 
-import styled from '../../theme/styled';
+import styled, { CreateStyled } from '@emotion/styled';
 
 const springfieldDonut = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
@@ -934,7 +934,9 @@ const springfieldDonut = Object.assign({}, magma, {
   },
 });
 
-const StyledCardHeading = styled.h1`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledCardHeading = typedStyled.h1`
   color: #f7db7f;
   font-size: 40px;
   position: relative;
