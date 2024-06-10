@@ -33,18 +33,17 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   currentStep?: number;
   /*
-   * Index of total steps
+   * Inverse styling
    */
-  index?: number;
   isInverse?: boolean;
   /*
    * Hides the Step labels
    */
-  isLabelVisuallyHidden?: boolean;
+  hideLabels?: boolean;
   /*
    * Changes from Step labels on each Step to one label at a time.
    */
-  isSummaryView?: boolean;
+  summaryView?: boolean;
   /**
    * @internal
    */
@@ -56,8 +55,8 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export enum BreakPointStyle {
-  noLabels = 'noLabels',
-  summary = 'summary',
+  hideLabels = 'hideLabels',
+  summaryView = 'summaryView',
 }
 
 function StepSeparatorBackgroundColors(props: StepperProps) {
@@ -76,8 +75,15 @@ function StepSeparatorBackgroundColors(props: StepperProps) {
 
 const StyledStepper = styled.div<StepperProps>`
   display: flex;
+  flex: 1;
   flex-direction: column;
-  padding: 0 40px;
+  padding: ${props =>
+    props.summaryView ||
+    (props.breakpoint > window.innerWidth &&
+      props.breakpointStyle === BreakPointStyle.summaryView) ||
+    props.breakpointStyle === BreakPointStyle.hideLabels
+      ? ''
+      : '0 40px'};
 `;
 
 const StyledStepContent = styled.div<StepperProps>`
@@ -103,6 +109,9 @@ const StyledSummary = styled.div<StepperProps>`
     props.isInverse
       ? transparentize(0.3, props.theme.colors.neutral100)
       : props.theme.colors.neutral500};
+  div div {
+    margin: 4px 0 0 0;
+  }
   span {
     display: flex;
     text-align: left;
@@ -118,28 +127,48 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       children,
       currentStep,
       stepDescriptionLabel,
-      index,
       isInverse: isInverseProp,
-      isLabelVisuallyHidden,
-      isSummaryView: isSummaryView,
+      hideLabels,
+      summaryView,
       testId,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
+    let [breakPointHideLabels, setBreakPointHideLabels] = React.useState(false);
+    let [breakPointSummaryView, setBreakPointSummaryView] =
+      React.useState(false);
+
     // Breakpoint states when a specific breakpoint number is set, then a breakpointStyle which results in the removal of all text or the summary view.
-    const [breakPointNoLabel, setBreakPointNoLabel] = React.useState(false);
-    const [breakPointSummary, setBreakPointSummary] = React.useState(false);
-    const breakpointSize = breakpoint && breakpoint > window.innerWidth;
+    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+
+    const breakpointActivate = breakpoint > windowWidth;
 
     React.useEffect(() => {
-      if (breakpointSize && breakpointStyle === 'noLabels') {
-        setBreakPointNoLabel(true);
-      } else if (breakpointSize && breakpointStyle === 'summary') {
-        setBreakPointSummary(true);
+      function handleResize() {
+        setWindowWidth(window.innerWidth);
       }
-    });
+      window.addEventListener('resize', handleResize);
+      handleResize();
+
+      if (
+        breakpointActivate &&
+        breakpointStyle === BreakPointStyle.summaryView
+      ) {
+        setBreakPointSummaryView(true);
+      } else if (
+        breakpointActivate &&
+        breakpointStyle === BreakPointStyle.hideLabels
+      ) {
+        setBreakPointHideLabels(true);
+      } else {
+        setBreakPointSummaryView(false);
+        setBreakPointHideLabels(false);
+      }
+
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Sets aria-current based on the active step, else false.
     const ariaCurrent = index => {
@@ -172,11 +201,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             key: index,
             index: steps.length,
             isInverse: isInverse,
-            isLabelVisuallyHidden:
-              breakPointNoLabel || breakPointSummary
-                ? true
-                : isLabelVisuallyHidden,
-            isSummaryView,
+            hideLabels: breakPointHideLabels ? true : hideLabels,
+            summaryView: summaryView || breakPointSummaryView,
             stepStatus: stepStatusStyles,
             tabIndex: 0,
           });
@@ -197,23 +223,34 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       }
     );
 
-    // When isSummaryView is set to true, this shows one step label and description at a time based on the active step below the Stepper component.
+    // When summaryView is set to true, this shows one step label and description at a time based on the active step below the Stepper component.
 
-    const StepLabels = React.Children.map(children, (child, index) => {
-      const item = child as React.ReactElement<
-        React.PropsWithChildren<StepProps>
-      >;
-      if (item.type === Step && currentStep >= index && currentStep <= index) {
-        return child;
-      } else if (
-        // Retains last Step label and description
-        item.type === Step &&
-        currentStep >= +Steps.length &&
-        currentStep <= index + 1
-      ) {
-        return child;
+    const StepLabels = React.Children.map(
+      children,
+      (
+        child: React.ReactElement<React.PropsWithChildren<StepProps>>,
+        index
+      ) => {
+        const item = child as React.ReactElement<
+          React.PropsWithChildren<StepProps>
+        >;
+
+        if (
+          item.type === Step &&
+          currentStep >= index &&
+          currentStep <= index
+        ) {
+          return child;
+        } else if (
+          // Retains last Step label and description
+          item.type === Step &&
+          currentStep >= +Steps.length &&
+          currentStep <= index + 1
+        ) {
+          return child;
+        }
       }
-    });
+    );
 
     // Final step description
     const completedStepDescription = props.completedStepDescription
@@ -223,21 +260,34 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     // Shows both the step count out of total steps and the step label, allows for customization of the step title.
     const stepSummary = (
       <StyledSummary
+        data-testid="stepper summary"
         isInverse={isInverse}
-        isSummaryView={isSummaryView}
+        summaryView={breakPointSummaryView ? true : summaryView}
         theme={theme}
       >
-        <span>
-          {currentStep < steps.length
-            ? stepDescriptionLabel
-              ? `${stepDescriptionLabel} ${currentStep + 1} of ${steps.length}`
-              : `Step 
+        {currentStep < steps.length
+          ? stepDescriptionLabel
+            ? `${stepDescriptionLabel} ${currentStep + 1} of ${steps.length}`
+            : `Step 
           ${currentStep + 1} of ${steps.length}`
-            : completedStepDescription}
-        </span>
-        <span>{StepLabels}</span>
+          : completedStepDescription}
+        {StepLabels}
       </StyledSummary>
     );
+
+    // console.log(
+    //   `breakpoint: ${breakpoint}, breakpointStyle: ${breakpointStyle}, breakPointHideLabels: ${breakPointHideLabels}, breakPointSummaryView: ${breakPointSummaryView}, useWindowResize ${useWindowResize()}, summaryView ${summaryView}`
+    // );
+
+    // Shows summary view via the summaryView prop or the breakpointStyle of BreakPointStyle.summaryView
+    function isSummaryView() {
+      if (
+        (summaryView && !breakPointHideLabels && !hideLabels) ||
+        breakPointSummaryView
+      ) {
+        return stepSummary;
+      }
+    }
 
     return (
       <>
@@ -247,17 +297,15 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           currentStep={currentStep}
           stepDescriptionLabel={stepDescriptionLabel}
           data-testid={props.testId}
+          hideLabels={hideLabels}
+          summaryView={summaryView || breakPointSummaryView ? true : null}
           isInverse={isInverse}
           ref={ref}
           theme={theme}
           {...rest}
         >
           <StyledStepContent>{Steps}</StyledStepContent>
-          <StyledStepContent>
-            {isSummaryView && !breakPointNoLabel && !isLabelVisuallyHidden && (
-              <>{stepSummary}</>
-            )}
-          </StyledStepContent>
+          <StyledStepContent>{isSummaryView()}</StyledStepContent>
         </StyledStepper>
       </>
     );

@@ -9,54 +9,576 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="Stepper" type="api">
 
-<LeadParagraph>Multi-step feedback UI</LeadParagraph>
+<LeadParagraph>
+  Stepper displays progressional multi-step content.
+</LeadParagraph>
 
 ## Basic Usage
 
-```typescript
-import React from 'react';
-import { Stepper, Step } from 'react-magma-dom';
+The Stepper consists of a `Stepper` wrapper around each `Step`. The `currentStep` prop is used to give back the current step number in a series which allows for the incomplete, active, and complete styling to function.
 
-export function Example() {
-  return <Stepper><Step>1</Step></Stepper>;
-}
-```
-
-## InverseContext
-
-The `isInverse` prop will render a dark background and light text. The children will
-inherit the `isInverse` prop unless specified otherwise.
+Steps may consist of a `label`, `secondaryLabel` or no labels.
 
 ```typescript
 import React from 'react';
-import { Stepper, Step } from 'react-magma-dom';
+import { Container, Stepper, Step } from 'react-magma-dom';
 
 export function Example() {
-  return <Stepper isInverse><Step>1</Step></Stepper>;
-}
-```
+  const [currentStep, setCurrentStep] = React.useState(0);
 
-## Internationalization
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
 
-If you're using strings in your component, they must be internationalized.
-
-Full example of <Link to="/api/internationalization">internationalization override options</Link>
-
-```tsx
-import React from 'react';
-import { es } from 'date-fns/locale';
-import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
-
-export function Example() {
   return (
-    <I18nContext.Provider
-      value={{
-        ...defaultI18n,
-        example: 'example i18n',
-      }}
-    >
-      <Stepper>override default i18n value: </Stepper>
-    </I18nContext.Provider>
+    <>
+      <Stepper currentStep={currentStep}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
+## Summary View
+
+The summary view consolidates each step label and description to display one at a time in conjunction with a progress counter.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper summaryView currentStep={currentStep}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
+## Custom Step label
+
+When using `summaryView`, the option to change the count title may be done with the `stepDescriptionLabel` which takes a string and replaces the default "Step" label.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        summaryView
+        currentStep={currentStep}
+        stepDescriptionLabel="Module"
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
+## Completed Step Description
+
+When using `summaryView`, after all of the steps are complete, the `completedStepDescription` prop takes a string and changes the title.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(4);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        completedStepDescription="Steps Complete!"
+        summaryView
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
+## Hide Labels
+
+To hide all labels, `hideLabels` toggles off both the `label` and `secondaryLabel` while retaining the proper accessibility guidelines for screenreaders.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper hideLabels currentStep={currentStep}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
+## Breakpoints
+
+For responsive layouts, the `breakpoint` prop used along with `breakpointStyle` hides certain elements of the `Stepper` at a specified screen width. `breakpoint` takes a number for the screen width and `breakpointStyle` hides either labels or shows just the summary view. By default, step labels will display if no responsive props are used.
+
+#### Breakpoint - Hide Labels
+
+```typescript
+import React from 'react';
+import { BreakPointStyle, Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        breakpoint={1500}
+        breakpointStyle={BreakPointStyle.hideLabels}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
+#### Breakpoint - Summary View
+
+```typescript
+import React from 'react';
+import { BreakPointStyle, Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        breakpoint={1500}
+        breakpointStyle={BreakPointStyle.summaryView}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </>
+  );
+}
+```
+
+## Error State
+
+When an error state is needed in the `Stepper`, add `hasError` on a `Step` to change the styling.
+
+```typescript
+import React from 'react';
+import { BreakPointStyle, Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  return (
+    <>
+      <Stepper currentStep={2}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" hasError secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        <div>Step Content Three</div>{' '}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button disabled style={{ marginRight: '4px' }}>
+          Previous
+        </Button>
+        <Button disabled>Next</Button>
+      </Container>
+    </>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <Container isInverse style={{ padding: '20px' }}>
+      <Stepper currentStep={currentStep} isInverse>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#1A1E51',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
+          Previous
+        </Button>
+        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+          {currentStep >= 4 ? 'Finish' : 'Next'}
+        </Button>
+      </Container>
+    </Container>
   );
 }
 ```

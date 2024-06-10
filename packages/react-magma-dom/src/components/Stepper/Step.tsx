@@ -31,12 +31,12 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
    * Hides label and secondaryLabel
    * @default false
    */
-  isLabelVisuallyHidden?: boolean;
+  hideLabels?: boolean;
   /**
    * Hides label and secondaryLabel in place of summary view
    * @default false
    */
-  isSummaryView?: boolean;
+  summaryView?: boolean;
   /**
    * Label beneath each step
    */
@@ -131,10 +131,9 @@ function StepSvgColors(props: StepProps) {
 const StyledStep = styled.div<StepProps>`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: ${props => (props.summaryView ? '' : 'center')};
   justify-content: center;
   text-align: center;
-  z-index: 10;
 `;
 
 const StyledStepIndicator = styled.span<StepProps>`
@@ -151,7 +150,6 @@ const StyledStepIndicator = styled.span<StepProps>`
         ? StepCircleOutlineColors
         : 'none'};
   background: ${StepCircleBackgroundColors};
-  z-index: 9;
   svg {
     color: ${StepSvgColors};
     width: ${props => props.theme.spaceScale.spacing05};
@@ -163,9 +161,8 @@ const StyledStepTextWrapper = styled.div<StepProps>`
   flex: 1;
   display: flex;
   flex-direction: column;
-  /* width: 7em; */
   position: relative;
-  margin: ${props => (props.isSummaryView ? '0' : '6px -10em 0')};
+  margin: ${props => (props.summaryView ? '0' : '6px -10em 0')};
 `;
 
 const StyledLabel = styled.span<StepProps>`
@@ -190,8 +187,8 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
       currentStep,
       hasError,
       index,
-      isLabelVisuallyHidden,
-      isSummaryView,
+      hideLabels,
+      summaryView,
       label,
       secondaryLabel,
       testId,
@@ -202,14 +199,13 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
-    console.log(`Where is Summary view? ${isSummaryView}`);
-
     return (
       <>
         <StyledStep
           currentStep={currentStep}
           theme={theme}
           isInverse={isInverse}
+          summaryView={summaryView}
           index={index}
           ref={ref}
           data-testid={testId}
@@ -227,12 +223,12 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
             </StyledStepIndicator>
           )}
           <StyledStepTextWrapper
-            isSummaryView={isSummaryView}
             theme={theme}
             isInverse={isInverse}
+            summaryView={summaryView}
             tabIndex={0}
           >
-            {!isSummaryView && !isLabelVisuallyHidden ? (
+            {!summaryView && !hideLabels ? (
               <>
                 {label && (
                   <StyledLabel
@@ -261,7 +257,6 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
             )}
           </StyledStepTextWrapper>
         </StyledStep>
-        {/* {children} */}
       </>
     );
   }

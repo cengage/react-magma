@@ -15,12 +15,17 @@ export default {
     ),
   ],
   argTypes: {
-    breakpointType: {
-      control: {
-        type: 'select',
-        options: BreakPointStyle,
-      },
-    },
+    // breakpoint: {
+    //   control: {
+    //     type: 'text',
+    //   },
+    // },
+    // breakpointType: {
+    //   control: {
+    //     type: 'select',
+    //     options: BreakPointStyle,
+    //   },
+    // },
     completedStepDescription: {
       control: {
         type: 'text',
@@ -36,12 +41,12 @@ export default {
         type: 'boolean',
       },
     },
-    isLabelVisuallyHidden: {
+    hideLabels: {
       control: {
         type: 'boolean',
       },
     },
-    isSummaryView: {
+    summaryView: {
       control: {
         type: 'boolean',
       },
@@ -71,8 +76,8 @@ const Template: Story<StepperProps> = args => {
   return (
     <>
       <Stepper
-        breakpoint={800}
-        breakpointStyle={BreakPointStyle.summary}
+        breakpoint={1500}
+        breakpointStyle={BreakPointStyle.hideLabels}
         currentStep={currentStep}
         {...args}
       >
@@ -167,12 +172,7 @@ const ErrorTemplate: Story<StepperProps> = args => {
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  stepDescriptionLabel: null,
-  isInverse: false,
-  isLabelVisuallyHidden: false,
-  isSummaryView: false,
-};
+Default.args = {};
 
 export const WithError = ErrorTemplate.bind({});
 Default.args = {};
