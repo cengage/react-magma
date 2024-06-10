@@ -1180,13 +1180,12 @@ we use internally.
 
 ```tsx
 import React from 'react';
-import styled, { CreateStyled } from '@emotion/styled';
-import { Combobox, ThemeInterface } from 'react-magma-dom';
+import styled from '@emotion/styled';
+import { Combobox, styled } from 'react-magma-dom';
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function Example() {
-  const CustomStyledItem = typedStyled.li(props => ({
+  const CustomStyledItem = styled.li(props => ({
     alignSelf: 'center',
     background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
     lineHeight: '24px',
@@ -1194,12 +1193,12 @@ export function Example() {
     padding: '8px 16px',
   }));
 
-  const ContainerSpan = typedStyled.span(props => ({
+  const ContainerSpan = styled.span(props => ({
     display: 'flex',
     alignItems: 'center',
   }));
 
-  const Hex = typedStyled.span(props => ({
+  const Hex = styled.span(props => ({
     background: props.color,
     border: `2px solid ${props.theme.colors.neutral}`,
     borderRadius: props.theme.borderRadius,
@@ -1209,7 +1208,7 @@ export function Example() {
     width: '16px',
   }));
 
-  const Description = typedStyled.div(props => ({
+  const Description = styled.div(props => ({
     fontSize: '12px',
     color: props.theme.colors.neutral500,
   }));

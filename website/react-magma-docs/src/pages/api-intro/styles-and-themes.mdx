@@ -613,6 +613,7 @@ import {
   Radio,
   RadioGroup,
   Spacer,
+  styled,
   Table,
   TableHead,
   TableRow,
@@ -629,8 +630,6 @@ import {
 } from 'react-magma-dom';
 
 import { InfoIcon } from 'react-magma-icons';
-
-import styled, { CreateStyled } from '@emotion/styled';
 
 const springfieldDonut = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
@@ -934,9 +933,7 @@ const springfieldDonut = Object.assign({}, magma, {
   },
 });
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledCardHeading = typedStyled.h1`
+const StyledCardHeading = styled.h1`
   color: #f7db7f;
   font-size: 40px;
   position: relative;
