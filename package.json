@@ -138,6 +138,7 @@
     "react-dom": "^16.10.0 || ^17.2.0",
     "react-test-renderer": "^15.0.0 || ^16.0.0 || ^17.2.0",
     "regenerator-runtime": "^0.13.7",
+    "sharp": "^0.28.3",
     "shelljs": "^0.8.4",
     "ts-node": "^9.1.1",
     "tsdx": "^0.14.1",
