@@ -16,7 +16,7 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v2
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: '14'
           check-latest: true
       - name: Check Node version
         run: node -v
