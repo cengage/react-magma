@@ -131,6 +131,7 @@
     "lint-staged": "^10.5.4",
     "lodash": "^4.17.21",
     "microbundle": "^0.13.3",
+    "node-gyp": "^10.1.0",
     "node-plop": "^0.26.2",
     "object.assign": "^4.1.5",
     "prettier": "^2.2.1",
