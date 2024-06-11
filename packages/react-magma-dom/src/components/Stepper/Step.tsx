@@ -24,10 +24,6 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   hasError?: boolean;
   /**
-   * Total number of steps
-   */
-  index?: number;
-  /**
    * Hides label and secondaryLabel
    * @default false
    */
@@ -45,10 +41,6 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
    * Sub label beneath each step
    */
   secondaryLabel?: string;
-  /**
-   * Uses step description count instead of custom labels
-   * @default false
-   */
   /**
    * @internal
    */
@@ -131,9 +123,9 @@ function StepSvgColors(props: StepProps) {
 const StyledStep = styled.div<StepProps>`
   display: flex;
   flex-direction: column;
-  align-items: ${props => (props.summaryView ? '' : 'center')};
   justify-content: center;
   text-align: center;
+  align-self: self-start;
 `;
 
 const StyledStepIndicator = styled.span<StepProps>`
@@ -160,9 +152,10 @@ const StyledStepIndicator = styled.span<StepProps>`
 const StyledStepTextWrapper = styled.div<StepProps>`
   flex: 1;
   display: flex;
+  align-self: center;
   flex-direction: column;
   position: relative;
-  margin: ${props => (props.summaryView ? '0' : '6px -10em 0')};
+  margin: 6px -10em 0;
 `;
 
 const StyledLabel = styled.span<StepProps>`
@@ -186,7 +179,6 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
       children,
       currentStep,
       hasError,
-      index,
       hideLabels,
       summaryView,
       label,
@@ -200,64 +192,51 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
     const isInverse = useIsInverse(isInverseProp);
 
     return (
-      <>
-        <StyledStep
-          currentStep={currentStep}
-          theme={theme}
-          isInverse={isInverse}
-          summaryView={summaryView}
-          index={index}
-          ref={ref}
-          data-testid={testId}
-          {...rest}
-        >
-          {stepStatus && (
-            <StyledStepIndicator
-              hasError={hasError}
-              isInverse={isInverse}
-              stepStatus={stepStatus}
-              theme={theme}
-            >
-              {stepStatus === 'complete' && !hasError && <CheckIcon />}
-              {hasError && <CrossIcon />}
-            </StyledStepIndicator>
-          )}
-          <StyledStepTextWrapper
-            theme={theme}
+      <StyledStep
+        currentStep={currentStep}
+        theme={theme}
+        isInverse={isInverse}
+        ref={ref}
+        data-testid={testId}
+        {...rest}
+      >
+        {stepStatus && (
+          <StyledStepIndicator
+            hasError={hasError}
             isInverse={isInverse}
-            summaryView={summaryView}
-            tabIndex={0}
+            stepStatus={stepStatus}
+            theme={theme}
           >
-            {!summaryView && !hideLabels ? (
-              <>
-                {label && (
-                  <StyledLabel
-                    label={label}
-                    isInverse={isInverse}
-                    theme={theme}
-                  >
-                    {label}
-                  </StyledLabel>
-                )}
-                {secondaryLabel && (
-                  <StyledSecondaryLabel
-                    secondaryLabel={secondaryLabel}
-                    isInverse={isInverse}
-                    theme={theme}
-                  >
-                    {secondaryLabel}
-                  </StyledSecondaryLabel>
-                )}
-              </>
-            ) : (
-              <HiddenLabelText>
-                {label}
-                {secondaryLabel}
-              </HiddenLabelText>
-            )}
-          </StyledStepTextWrapper>
-        </StyledStep>
-      </>
+            {stepStatus === 'complete' && !hasError && <CheckIcon />}
+            {hasError && <CrossIcon />}
+          </StyledStepIndicator>
+        )}
+        <StyledStepTextWrapper theme={theme} isInverse={isInverse} tabIndex={0}>
+          {!summaryView && !hideLabels ? (
+            <>
+              {label && (
+                <StyledLabel label={label} isInverse={isInverse} theme={theme}>
+                  {label}
+                </StyledLabel>
+              )}
+              {secondaryLabel && (
+                <StyledSecondaryLabel
+                  secondaryLabel={secondaryLabel}
+                  isInverse={isInverse}
+                  theme={theme}
+                >
+                  {secondaryLabel}
+                </StyledSecondaryLabel>
+              )}
+            </>
+          ) : (
+            <HiddenLabelText>
+              {label}
+              {secondaryLabel}
+            </HiddenLabelText>
+          )}
+        </StyledStepTextWrapper>
+      </StyledStep>
     );
   }
 );

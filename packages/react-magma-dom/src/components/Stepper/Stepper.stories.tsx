@@ -15,17 +15,6 @@ export default {
     ),
   ],
   argTypes: {
-    // breakpoint: {
-    //   control: {
-    //     type: 'text',
-    //   },
-    // },
-    // breakpointType: {
-    //   control: {
-    //     type: 'select',
-    //     options: BreakPointStyle,
-    //   },
-    // },
     completedStepDescription: {
       control: {
         type: 'text',
@@ -75,12 +64,7 @@ const Template: Story<StepperProps> = args => {
 
   return (
     <>
-      <Stepper
-        breakpoint={1500}
-        breakpointStyle={BreakPointStyle.hideLabels}
-        currentStep={currentStep}
-        {...args}
-      >
+      <Stepper currentStep={currentStep} {...args}>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -173,6 +157,28 @@ const ErrorTemplate: Story<StepperProps> = args => {
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const SummaryView = Template.bind({});
+SummaryView.args = {
+  summaryView: true,
+};
+
+export const HideLabels = Template.bind({});
+HideLabels.args = {
+  hideLabels: true,
+};
+
+export const BeakpointSummaryView = Template.bind({});
+BeakpointSummaryView.args = {
+  breakpoint: 2000,
+  breakpointStyle: BreakPointStyle.summaryView,
+};
+
+export const BeakpointHideLabels = Template.bind({});
+BeakpointHideLabels.args = {
+  breakpoint: 2000,
+  breakpointStyle: BreakPointStyle.hideLabels,
+};
 
 export const WithError = ErrorTemplate.bind({});
 Default.args = {};

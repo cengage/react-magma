@@ -1,4 +1,5 @@
 import React from 'react';
+import { act } from 'react-dom/test-utils';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Stepper, Step, BreakPointStyle } from '.';
@@ -310,10 +311,10 @@ describe('Stepper', () => {
             <Step label={`${TEXT}-2`} />
           </Stepper>
         );
-
-        global.innerWidth = 1400;
-        global.dispatchEvent(new Event('resize'));
-
+        act(() => {
+          global.innerWidth = 1400;
+          global.dispatchEvent(new Event('resize'));
+        });
         const label1 = getByText(`${TEXT}-1`);
 
         expect(label1).toHaveStyleRule('height', '1px');
@@ -336,10 +337,10 @@ describe('Stepper', () => {
             <Step label={`${TEXT}-2`} />
           </Stepper>
         );
-
-        global.innerWidth = 1400;
-        global.dispatchEvent(new Event('resize'));
-
+        act(() => {
+          global.innerWidth = 1400;
+          global.dispatchEvent(new Event('resize'));
+        });
         expect(getByTestId(`stepper summary`)).toBeVisible();
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });
