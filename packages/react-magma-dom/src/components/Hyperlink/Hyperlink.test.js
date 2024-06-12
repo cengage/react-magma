@@ -73,7 +73,7 @@ describe('Hyperlink', () => {
     const element = getByTestId(testId);
 
     expect(element).toHaveStyleRule('color', magma.colors.tertiary);
-    expect(element).toHaveStyleRule('color', magma.colors.primary100, {
+    expect(element).toHaveStyleRule('color', magma.colors.neutral100, {
       target: ':hover',
     });
   });

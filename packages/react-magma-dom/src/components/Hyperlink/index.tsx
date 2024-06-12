@@ -53,7 +53,7 @@ const linkStyles = props => css`
     : props.theme.colors.primary};
   text-decoration: ${props.hasUnderline ? 'underline' : 'none'};
   font-family: ${props.theme.bodyFont};
-  display: inline;
+  display: inline-flex;
   &:not([disabled]) {
     &:hover,
     &:focus {
@@ -87,23 +87,20 @@ function getIconPadding(props) {
   }
 }
 
-const SpanTextLeft = styled.span<{ size?: ButtonSize }>`
-  padding-right: ${props => getIconPadding(props)};
-  line-height: inherit;
-  flex: 0 0 auto;
-`;
-
-const SpanTextRight = styled.span<{ size?: ButtonSize }>`
-  padding-left: ${props => getIconPadding(props)};
-  line-height: inherit;
-  flex: 0 0 auto;
-`;
-
-const SpanTextBoth = styled.span<{ size?: ButtonSize }>`
-  padding-right: ${props => getIconPadding(props)};
-  padding-left: ${props => getIconPadding(props)};
-  line-height: inherit;
-  flex: 0 0 auto;
+const IconWrapper = styled.span<{
+  size?: ButtonSize;
+  position?: HyperlinkIconPosition;
+}>`
+  align-self: center;
+  display: inline-flex;
+  padding-left: ${props =>
+    (props.position === HyperlinkIconPosition.right ||
+      props.position === HyperlinkIconPosition.both) &&
+    getIconPadding(props)};
+  padding-right: ${props =>
+    (props.position === HyperlinkIconPosition.left ||
+      props.position === HyperlinkIconPosition.both) &&
+    getIconPadding(props)};
 `;
 
 export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
@@ -161,25 +158,34 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
             ref={ref}
             theme={theme}
           >
-            {iconPosition === HyperlinkIconPosition.right && (
-              <SpanTextLeft theme={theme} size={props.size}>
-                {children}
-              </SpanTextLeft>
-            )}
-            {hasMultiIcons ? icon[0] : icon}
-            {/* {hasMultiIcons ? icon[0] : <span style={{alignSelf: 'center'}}>{icon}</span>} */}
-            {iconPosition === HyperlinkIconPosition.left && (
-              <SpanTextRight theme={theme} size={props.size}>
-                {children}
-              </SpanTextRight>
-            )}
+            {iconPosition === HyperlinkIconPosition.right && <>{children}</>}
+            <IconWrapper
+              theme={theme}
+              size={props.size}
+              position={
+                iconPosition === HyperlinkIconPosition.both
+                  ? HyperlinkIconPosition.left
+                  : iconPosition
+              }
+            >
+              {hasMultiIcons ? icon[0] : icon}
+            </IconWrapper>
+            {iconPosition === HyperlinkIconPosition.left && <>{children}</>}
 
             {iconPosition === HyperlinkIconPosition.both && hasMultiIcons && (
               <>
-                <SpanTextBoth theme={theme} size={props.size}>
-                  {children}
-                </SpanTextBoth>
-                {icon[1]}
+                {children}
+                <IconWrapper
+                  theme={theme}
+                  size={props.size}
+                  position={
+                    iconPosition === HyperlinkIconPosition.both
+                      ? HyperlinkIconPosition.right
+                      : iconPosition
+                  }
+                >
+                  {icon[1]}
+                </IconWrapper>
               </>
             )}
           </HyperlinkComponent>

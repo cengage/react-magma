@@ -167,7 +167,8 @@ export const All = args => {
             iconPosition={HyperlinkIconPosition.left}
           >
             Ice cream
-          </Hyperlink>{' '}toffee pie macaroon apple pie gummi bears gummi bears
+          </Hyperlink>{' '}toffee pie macaroon <Hyperlink target="_blank"
+            to="https://www.apple.com/">apple</Hyperlink> pie gummi bears gummi bears
           shortbread.
         </CardBody>
       </Card>
