@@ -53,13 +53,12 @@ const linkStyles = props => css`
     : props.theme.colors.primary};
   text-decoration: ${props.hasUnderline ? 'underline' : 'none'};
   font-family: ${props.theme.bodyFont};
-  display: inline-flex;
-  align-items: center;
+  display: inline;
   &:not([disabled]) {
     &:hover,
     &:focus {
       color: ${props.isInverse
-        ? props.theme.colors.primary100
+        ? props.theme.colors.neutral100
         : props.theme.colors.primary700};
       text-decoration: underline;
     }
@@ -90,20 +89,20 @@ function getIconPadding(props) {
 
 const SpanTextLeft = styled.span<{ size?: ButtonSize }>`
   padding-right: ${props => getIconPadding(props)};
-  line-height: normal;
+  line-height: inherit;
   flex: 0 0 auto;
 `;
 
 const SpanTextRight = styled.span<{ size?: ButtonSize }>`
   padding-left: ${props => getIconPadding(props)};
-  line-height: normal;
+  line-height: inherit;
   flex: 0 0 auto;
 `;
 
 const SpanTextBoth = styled.span<{ size?: ButtonSize }>`
   padding-right: ${props => getIconPadding(props)};
   padding-left: ${props => getIconPadding(props)};
-  line-height: normal;
+  line-height: inherit;
   flex: 0 0 auto;
 `;
 
@@ -168,6 +167,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
               </SpanTextLeft>
             )}
             {hasMultiIcons ? icon[0] : icon}
+            {/* {hasMultiIcons ? icon[0] : <span style={{alignSelf: 'center'}}>{icon}</span>} */}
             {iconPosition === HyperlinkIconPosition.left && (
               <SpanTextRight theme={theme} size={props.size}>
                 {children}

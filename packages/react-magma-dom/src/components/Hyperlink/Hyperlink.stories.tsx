@@ -11,6 +11,7 @@ import { TypographyVisualStyle } from '../Typography';
 import {
   CakeIcon,
   CalendarTodayIcon,
+  IcecreamIcon,
   KeyboardArrowLeftIcon,
   KeyboardArrowRightIcon,
   OpenInNewIcon,
@@ -19,9 +20,39 @@ import {
 export default {
   component: Hyperlink,
   title: 'Hyperlink',
+  argTypes: {
+    iconPosition: {
+      control: {
+        type: 'select',
+        options: HyperlinkIconPosition,
+      },
+    },
+    styledAs: {
+      control: {
+        type: 'select',
+        options: ['Button', 'Link'],
+      },
+    },
+  },
 } as Meta;
 
-export const Default = () => {
+export const Default = args => {
+  return (
+    <Hyperlink target="_blank" {...args}>
+      Next
+    </Hyperlink>
+  );
+};
+Default.args = {
+  styledAs: 'Link',
+  isInverse: false,
+  to: 'https://www.google.com',
+  hasUnderline: false,
+  icon: <KeyboardArrowRightIcon aria-hidden={true} />,
+  iconPosition: HyperlinkIconPosition.right,
+};
+
+export const All = args => {
   return (
     <>
       <Card>
@@ -123,12 +154,20 @@ export const Default = () => {
             target="_blank"
             to="https://www.cengage.com/"
             icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
-            iconPosition={HyperlinkIconPosition.left}
+            iconPosition={HyperlinkIconPosition.right}
           >
             I love chocolate cake
           </Hyperlink>{' '}
           Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
-          plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
+          plum bonbon. {' '}<Hyperlink
+            textTransform={ButtonTextTransform.none}
+            target="_blank"
+            to="https://www.cengage.com/"
+            icon={<IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.left}
+          >
+            Ice cream
+          </Hyperlink>{' '}toffee pie macaroon apple pie gummi bears gummi bears
           shortbread.
         </CardBody>
       </Card>
@@ -298,8 +337,10 @@ export const Default = () => {
     </>
   );
 };
+All.args = {};
+All.parameters = { controls: { exclude: ['iconPosition', 'styledAs'] } };
 
-export const Inverse = () => {
+export const Inverse = args => {
   return (
     <>
       <Card isInverse>
@@ -417,7 +458,16 @@ export const Inverse = () => {
             I love chocolate cake
           </Hyperlink>{' '}
           Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
-          plum bonbon. Toffee pie macaroon apple pie gummi bears gummi bears
+          plum bonbon.{' '}<Hyperlink
+            textTransform={ButtonTextTransform.none}
+            target="_blank"
+            to="https://www.cengage.com/"
+            icon={<IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />}
+            iconPosition={HyperlinkIconPosition.left}
+            isInverse
+          >
+            Ice cream
+          </Hyperlink>{' '}toffee pie macaroon apple pie gummi bears gummi bears
           shortbread.
         </CardBody>
       </Card>
@@ -586,3 +636,5 @@ export const Inverse = () => {
     </>
   );
 };
+Inverse.args = {};
+Inverse.parameters = { controls: { exclude: ['iconPosition', 'styledAs'] } };
