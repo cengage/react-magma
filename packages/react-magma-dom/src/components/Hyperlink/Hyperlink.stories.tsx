@@ -147,29 +147,39 @@ export const All = args => {
       <Spacer size={'12px'} />
       <Card>
         <CardBody>
-          Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
-          brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
-          <Hyperlink
-            textTransform={ButtonTextTransform.none}
-            target="_blank"
-            to="https://www.cengage.com/"
-            icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
-            iconPosition={HyperlinkIconPosition.right}
-          >
-            I love chocolate cake
-          </Hyperlink>{' '}
-          Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
-          plum bonbon. {' '}<Hyperlink
-            textTransform={ButtonTextTransform.none}
-            target="_blank"
-            to="https://www.cengage.com/"
-            icon={<IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />}
-            iconPosition={HyperlinkIconPosition.left}
-          >
-            Ice cream
-          </Hyperlink>{' '}toffee pie macaroon <Hyperlink target="_blank"
-            to="https://www.apple.com/">apple</Hyperlink> pie gummi bears gummi bears
-          shortbread.
+          <p>
+            Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
+            brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
+            <Hyperlink
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.cengage.com/"
+              icon={
+                <CakeIcon size={magma.iconSizes.small} aria-hidden={true} />
+              }
+              iconPosition={HyperlinkIconPosition.right}
+            >
+              I love chocolate cake
+            </Hyperlink>{' '}
+            Pastry dragée cheesecake chocolate bar donut jujubes candy canes
+            sugar plum bonbon.{' '}
+            <Hyperlink
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.cengage.com/"
+              icon={
+                <IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />
+              }
+              iconPosition={HyperlinkIconPosition.left}
+            >
+              Ice cream
+            </Hyperlink>{' '}
+            toffee pie macaroon{' '}
+            <Hyperlink target="_blank" to="https://www.apple.com/">
+              apple
+            </Hyperlink>{' '}
+            pie gummi bears gummi bears shortbread.
+          </p>
         </CardBody>
       </Card>
       <Spacer size={'12px'} />
@@ -217,6 +227,7 @@ export const All = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyLarge}
             style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -246,6 +257,7 @@ export const All = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyMedium}
             style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -275,6 +287,7 @@ export const All = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodySmall}
             style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -304,6 +317,7 @@ export const All = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyXSmall}
             style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -446,30 +460,37 @@ export const Inverse = args => {
       <Spacer size={'12px'} />
       <Card isInverse>
         <CardBody>
-          Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
-          brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
-          <Hyperlink
-            textTransform={ButtonTextTransform.none}
-            target="_blank"
-            to="https://www.cengage.com/"
-            icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
-            iconPosition={HyperlinkIconPosition.right}
-            isInverse
-          >
-            I love chocolate cake
-          </Hyperlink>{' '}
-          Pastry dragée cheesecake chocolate bar donut jujubes candy canes sugar
-          plum bonbon.{' '}<Hyperlink
-            textTransform={ButtonTextTransform.none}
-            target="_blank"
-            to="https://www.cengage.com/"
-            icon={<IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />}
-            iconPosition={HyperlinkIconPosition.left}
-            isInverse
-          >
-            Ice cream
-          </Hyperlink>{' '}toffee pie macaroon apple pie gummi bears gummi bears
-          shortbread.
+          <p>
+            Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
+            brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
+            <Hyperlink
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.cengage.com/"
+              icon={
+                <CakeIcon size={magma.iconSizes.small} aria-hidden={true} />
+              }
+              iconPosition={HyperlinkIconPosition.right}
+              isInverse
+            >
+              I love chocolate cake
+            </Hyperlink>{' '}
+            Pastry dragée cheesecake chocolate bar donut jujubes candy canes
+            sugar plum bonbon.{' '}
+            <Hyperlink
+              textTransform={ButtonTextTransform.none}
+              target="_blank"
+              to="https://www.cengage.com/"
+              icon={
+                <IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />
+              }
+              iconPosition={HyperlinkIconPosition.left}
+              isInverse
+            >
+              Ice cream
+            </Hyperlink>{' '}
+            toffee pie macaroon apple pie gummi bears gummi bears shortbread.
+          </p>
         </CardBody>
       </Card>
       <Spacer size={'12px'} />
@@ -508,6 +529,7 @@ export const Inverse = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyLarge}
             style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -539,6 +561,7 @@ export const Inverse = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyMedium}
             style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -570,6 +593,7 @@ export const Inverse = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodySmall}
             style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -601,6 +625,7 @@ export const Inverse = args => {
             </Hyperlink>{' '}
             to meet with us.
           </Paragraph>
+          <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             isInverse
             visualStyle={TypographyVisualStyle.bodyXSmall}

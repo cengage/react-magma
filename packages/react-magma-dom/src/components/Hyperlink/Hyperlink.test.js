@@ -183,7 +183,7 @@ describe('Hyperlink', () => {
 
   describe('with icons', () => {
     it('displays icon on the left', () => {
-      const { container, getByText } = render(
+      const { container } = render(
         <Hyperlink
           to="https://www.google.com"
           icon={<KeyboardArrowRightIcon />}
@@ -192,15 +192,16 @@ describe('Hyperlink', () => {
           Back
         </Hyperlink>
       );
-      expect(getByText('Back')).toHaveStyleRule(
-        'padding-left',
+      const icon = container.querySelector('svg');
+      expect(icon.parentElement).toHaveStyleRule(
+        'padding-right',
         magma.spaceScale.spacing03
       );
-      expect(container.querySelector('svg')).toBeInTheDocument();
+      expect(icon).toBeInTheDocument();
     });
 
     it('displays icon on the right', () => {
-      const { container, getByText } = render(
+      const { container } = render(
         <Hyperlink
           to="https://www.google.com"
           icon={<KeyboardArrowRightIcon />}
@@ -209,15 +210,16 @@ describe('Hyperlink', () => {
           Back
         </Hyperlink>
       );
-      expect(getByText('Back')).toHaveStyleRule(
-        'padding-right',
+      const icon = container.querySelector('svg');
+      expect(icon.parentElement).toHaveStyleRule(
+        'padding-left',
         magma.spaceScale.spacing03
       );
-      expect(container.querySelector('svg')).toBeInTheDocument();
+      expect(icon).toBeInTheDocument();
     });
 
     it('displays two icons when an array is passed and position is both', () => {
-      const { container, getByText } = render(
+      const { container } = render(
         <Hyperlink
           to="https://www.google.com"
           icon={[
@@ -229,21 +231,22 @@ describe('Hyperlink', () => {
           Back
         </Hyperlink>
       );
-      expect(getByText('Back')).toHaveStyleRule(
+      const allIcons = container.querySelectorAll('svg');
+      expect(allIcons[0].parentElement).toHaveStyleRule(
         'padding-right',
         magma.spaceScale.spacing03
       );
-      expect(getByText('Back')).toHaveStyleRule(
+      expect(allIcons[1].parentElement).toHaveStyleRule(
         'padding-left',
         magma.spaceScale.spacing03
       );
-      expect(container.querySelectorAll('svg').length).toBe(2);
-      expect(container.querySelectorAll('svg')[0]).toBeInTheDocument();
-      expect(container.querySelectorAll('svg')[1]).toBeInTheDocument();
+      expect(allIcons.length).toBe(2);
+      expect(allIcons[0]).toBeInTheDocument();
+      expect(allIcons[1]).toBeInTheDocument();
     });
 
     it('displays one icon when an array is passed and position is left', () => {
-      const { container, getByText } = render(
+      const { container } = render(
         <Hyperlink
           to="https://www.google.com"
           icon={[
@@ -255,16 +258,18 @@ describe('Hyperlink', () => {
           Back
         </Hyperlink>
       );
-      expect(getByText('Back')).toHaveStyleRule(
-        'padding-left',
+      const icon = container.querySelector('svg');
+      const allIcons = container.querySelectorAll('svg');
+      expect(icon.parentElement).toHaveStyleRule(
+        'padding-right',
         magma.spaceScale.spacing03
       );
-      expect(container.querySelectorAll('svg').length).toBe(1);
-      expect(container.querySelectorAll('svg')[0]).toBeInTheDocument();
+      expect(allIcons.length).toBe(1);
+      expect(allIcons[0]).toBeInTheDocument();
     });
 
     it('has larger padding when size is large', () => {
-      const { container, getByText } = render(
+      const { container } = render(
         <Hyperlink
           to="https://www.google.com"
           icon={<KeyboardArrowRightIcon />}
@@ -274,11 +279,12 @@ describe('Hyperlink', () => {
           Back
         </Hyperlink>
       );
-      expect(getByText('Back')).toHaveStyleRule(
-        'padding-left',
+      const icon = container.querySelector('svg');
+      expect(icon.parentElement).toHaveStyleRule(
+        'padding-right',
         magma.spaceScale.spacing05
       );
-      expect(container.querySelector('svg')).toBeInTheDocument();
+      expect(icon).toBeInTheDocument();
     });
 
     it('has smaller padding when size is large', () => {
@@ -292,11 +298,12 @@ describe('Hyperlink', () => {
           Back
         </Hyperlink>
       );
-      expect(getByText('Back')).toHaveStyleRule(
-        'padding-left',
+      const icon = container.querySelector('svg');
+      expect(icon.parentElement).toHaveStyleRule(
+        'padding-right',
         magma.spaceScale.spacing02
       );
-      expect(container.querySelector('svg')).toBeInTheDocument();
+      expect(icon).toBeInTheDocument();
     });
   });
 });

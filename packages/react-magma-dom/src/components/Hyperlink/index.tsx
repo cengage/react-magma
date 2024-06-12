@@ -54,6 +54,7 @@ const linkStyles = props => css`
   text-decoration: ${props.hasUnderline ? 'underline' : 'none'};
   font-family: ${props.theme.bodyFont};
   display: inline-flex;
+  align-items: center;
   &:not([disabled]) {
     &:hover,
     &:focus {
