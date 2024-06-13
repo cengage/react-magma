@@ -292,7 +292,7 @@ The underline text decoration can be turned off. When a hyperlink is used within
 ```tsx
 import React from 'react';
 import { Hyperlink, Spacer, SpacerAxis, magma, HyperlinkIconPosition } from 'react-magma-dom';
-import { CakeIcon } from 'react-magma-icons';
+import { OpenInNewIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -306,8 +306,8 @@ export function Example() {
       <Hyperlink
         target="_blank"
         to="https://sallysbakingaddiction.com/triple-chocolate-layer-cake/"
-        icon={<CakeIcon size={magma.iconSizes.small} aria-hidden={true} />}
-        iconPosition={HyperlinkIconPosition.left}
+        icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden={true} />}
+        iconPosition={HyperlinkIconPosition.right}
       >
         I love chocolate cake
       </Hyperlink>{' '}

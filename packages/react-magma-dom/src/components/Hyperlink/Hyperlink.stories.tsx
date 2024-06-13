@@ -9,9 +9,7 @@ import { Paragraph } from '../Paragraph';
 import { Spacer, SpacerAxis } from '../Spacer';
 import { TypographyVisualStyle } from '../Typography';
 import {
-  CakeIcon,
   CalendarTodayIcon,
-  IcecreamIcon,
   KeyboardArrowLeftIcon,
   KeyboardArrowRightIcon,
   OpenInNewIcon,
@@ -37,10 +35,22 @@ export default {
 } as Meta;
 
 export const Default = args => {
+  const { iconPosition } = args;
+
   return (
-    <Hyperlink target="_blank" {...args}>
-      Next
-    </Hyperlink>
+    <>
+      <Hyperlink
+        target="_blank"
+        {...args}
+        icon={
+          iconPosition === HyperlinkIconPosition.both
+            ? [args.icon, <KeyboardArrowLeftIcon aria-hidden={true} key={0} />]
+            : args.icon
+        }
+      >
+        Next
+      </Hyperlink>
+    </>
   );
 };
 Default.args = {
@@ -155,26 +165,17 @@ export const All = args => {
               target="_blank"
               to="https://www.cengage.com/"
               icon={
-                <CakeIcon size={magma.iconSizes.small} aria-hidden={true} />
+                <OpenInNewIcon
+                  size={magma.iconSizes.small}
+                  aria-hidden={true}
+                />
               }
               iconPosition={HyperlinkIconPosition.right}
             >
               I love chocolate cake
             </Hyperlink>{' '}
             Pastry dragée cheesecake chocolate bar donut jujubes candy canes
-            sugar plum bonbon.{' '}
-            <Hyperlink
-              textTransform={ButtonTextTransform.none}
-              target="_blank"
-              to="https://www.cengage.com/"
-              icon={
-                <IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />
-              }
-              iconPosition={HyperlinkIconPosition.left}
-            >
-              Ice cream
-            </Hyperlink>{' '}
-            toffee pie macaroon{' '}
+            sugar plum bonbon. Toffee pie macaroon{' '}
             <Hyperlink target="_blank" to="https://www.apple.com/">
               apple
             </Hyperlink>{' '}
@@ -198,7 +199,11 @@ export const All = args => {
         <CardBody>
           <Paragraph
             visualStyle={TypographyVisualStyle.headingSmall}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
           >
             You can{' '}
             <Hyperlink
@@ -230,7 +235,11 @@ export const All = args => {
           <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyLarge}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
           >
             You can{' '}
             <Hyperlink
@@ -260,7 +269,11 @@ export const All = args => {
           <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyMedium}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
           >
             You can{' '}
             <Hyperlink
@@ -290,7 +303,11 @@ export const All = args => {
           <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodySmall}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
           >
             You can{' '}
             <Hyperlink
@@ -320,7 +337,11 @@ export const All = args => {
           <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyXSmall}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
           >
             You can{' '}
             <Hyperlink
@@ -468,7 +489,10 @@ export const Inverse = args => {
               target="_blank"
               to="https://www.cengage.com/"
               icon={
-                <CakeIcon size={magma.iconSizes.small} aria-hidden={true} />
+                <OpenInNewIcon
+                  size={magma.iconSizes.small}
+                  aria-hidden={true}
+                />
               }
               iconPosition={HyperlinkIconPosition.right}
               isInverse
@@ -476,20 +500,11 @@ export const Inverse = args => {
               I love chocolate cake
             </Hyperlink>{' '}
             Pastry dragée cheesecake chocolate bar donut jujubes candy canes
-            sugar plum bonbon.{' '}
-            <Hyperlink
-              textTransform={ButtonTextTransform.none}
-              target="_blank"
-              to="https://www.cengage.com/"
-              icon={
-                <IcecreamIcon size={magma.iconSizes.small} aria-hidden={true} />
-              }
-              iconPosition={HyperlinkIconPosition.left}
-              isInverse
-            >
-              Ice cream
+            sugar plum bonbon. Toffee pie macaroon{' '}
+            <Hyperlink target="_blank" to="https://www.apple.com/" isInverse>
+              apple
             </Hyperlink>{' '}
-            toffee pie macaroon apple pie gummi bears gummi bears shortbread.
+            pie gummi bears gummi bears shortbread.
           </p>
         </CardBody>
       </Card>
@@ -498,7 +513,11 @@ export const Inverse = args => {
         <CardBody>
           <Paragraph
             visualStyle={TypographyVisualStyle.headingSmall}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
             isInverse
           >
             You can{' '}
@@ -532,7 +551,11 @@ export const Inverse = args => {
           <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyLarge}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
             isInverse
           >
             You can{' '}
@@ -564,7 +587,11 @@ export const Inverse = args => {
           <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodyMedium}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
             isInverse
           >
             You can{' '}
@@ -596,7 +623,11 @@ export const Inverse = args => {
           <Spacer size={'8px'} axis={SpacerAxis.vertical} />
           <Paragraph
             visualStyle={TypographyVisualStyle.bodySmall}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
             isInverse
           >
             You can{' '}
@@ -629,7 +660,11 @@ export const Inverse = args => {
           <Paragraph
             isInverse
             visualStyle={TypographyVisualStyle.bodyXSmall}
-            style={{ display: 'inline-flex', alignItems: 'center' }}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}
           >
             You can{' '}
             <Hyperlink
