@@ -1,6 +1,5 @@
 # Change Log
 
-<<<<<<< HEAD
 ## 4.0.0-next.0
 
 ### Patch Changes
@@ -14,8 +13,6 @@
 - Updated dependencies [049a124db]
   - react-magma-dom@3.7.0-next.0
 
-=======
->>>>>>> 0b9ee65a5 (chore: exit prerelease mode)
 ## 2.0.2
 
 ## 2.0.2-next.0
