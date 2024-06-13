@@ -34,7 +34,7 @@ import React from 'react';
 import { DatePicker } from 'react-magma-dom';
 
 export function Example() {
-  return <DatePicker defaultDate="07/23/2019" labelText="Date" />;
+  return <DatePicker defaultDate="07/23/2024" labelText="Date" />;
 }
 ```
 
@@ -48,7 +48,7 @@ import { DatePicker } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <DatePicker defaultDate="07/23/2019" labelText="Date" value="03/12/2019" />
+    <DatePicker defaultDate="07/23/2024" labelText="Date" value="03/12/2024" />
   );
 }
 ```
@@ -59,14 +59,37 @@ Minimum and Maximum dates can be passed in as `props` to disallow the selection 
 
 ```tsx
 import React from 'react';
-import { DatePicker } from 'react-magma-dom';
+import { DatePicker, getDateFromString, inDateRange } from 'react-magma-dom';
 
 export function Example() {
+   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+  const minDate = '01/09/2024';
+  const maxDate = '02/10/2024';
+
+  function handleDateChange(newChosenDate: Date) {
+    setChosenDate(newChosenDate);
+  }
+
+  function hasErrorMessage() {
+    const convertedMinDate = getDateFromString(minDate);
+    const convertedMaxDate = getDateFromString(maxDate);
+
+    if (chosenDate && !inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
+      return `Please enter a date within the range ${minDate} - ${maxDate}`;
+    } 
+
+    return;
+  }
+
   return (
     <DatePicker
       labelText="Date"
-      minDate={'01/09/2020'}
-      maxDate={'02/10/2020'}
+      minDate={minDate}
+      maxDate={maxDate}
+      onDateChange={handleDateChange}
+      errorMessage={hasErrorMessage()}
     />
   );
 }
@@ -125,7 +148,7 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <DatePicker isInverse />
+        <DatePicker labelText="Date" isInverse />
       </CardBody>
     </Card>
   );
@@ -177,7 +200,7 @@ export function Example() {
         <strong>Input Value: </strong>
         {inputValue}
       </p>
-      <DatePicker onInputChange={handleInputChange} />
+      <DatePicker labelText="Date" onInputChange={handleInputChange} />
     </div>
   );
 }
@@ -212,7 +235,7 @@ export function Example() {
           </span>
         )}
       </p>
-      <DatePicker onDateChange={handleDateChange} />
+      <DatePicker labelText="Date" onDateChange={handleDateChange} />
     </div>
   );
 }
@@ -244,6 +267,7 @@ export function Example() {
       <DatePicker
         onInputBlur={handleInputBlur}
         onInputFocus={handleInputFocus}
+        labelText="Date"
       />
     </div>
   );
@@ -275,7 +299,7 @@ export function Example() {
         <strong>Changed Value: </strong>
         {changedValue}
       </p>
-      <DatePicker onChange={handleChange} />
+      <DatePicker onChange={handleChange} labelText="Date" />
     </div>
   );
 }

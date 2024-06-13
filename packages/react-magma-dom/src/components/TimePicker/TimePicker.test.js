@@ -59,7 +59,7 @@ describe('TimePicker', () => {
       expect(hoursInput.value).toEqual('');
     });
 
-    it('should call the onChange when backspace is clicked on the hours input', () => {
+    it('should call the onKeyDown when backspace is clicked on the hours input', () => {
       const onKeyDown = jest.fn();
       const { getByTestId } = render(
         <TimePicker label="label" onKeyDown={onKeyDown} />
@@ -70,19 +70,19 @@ describe('TimePicker', () => {
       fireEvent.keyDown(hoursInput, { key: 'Backspace' });
 
       expect(onKeyDown).toHaveBeenCalled();
-    });
-
-    it('should call the onChange when backspace is clicked on the minutes input', () => {
-      const onKeyDown = jest.fn();
+    });    
+    
+    it('should call the onChange when backspace is clicked on the hours input', () => {
+      const onChange = jest.fn();
       const { getByTestId } = render(
-        <TimePicker label="label" onKeyDown={onKeyDown} />
+        <TimePicker label="label" onChange={onChange} value={'02:04 AM'}/>
       );
 
-      const minsInput = getByTestId('minutesTimeInput');
+      const hoursInput = getByTestId('hoursTimeInput');
 
-      fireEvent.keyDown(minsInput, { key: 'Backspace' });
+      fireEvent.keyDown(hoursInput, { key: 'Backspace' });
 
-      expect(onKeyDown).toHaveBeenCalled();
+      expect(onChange).toHaveBeenCalledWith('');
     });
 
     it('should focus the minute input if the right arrow key is clicked', () => {
@@ -163,6 +163,7 @@ describe('TimePicker', () => {
       fireEvent.keyDown(minutesInput, { key: 'Backspace' });
 
       expect(minutesInput.value).toEqual('');
+
     });
 
     it('should focus the hour input if the left arrow key is clicked', () => {
@@ -185,6 +186,32 @@ describe('TimePicker', () => {
       fireEvent.keyDown(minutesInput, { key: 'ArrowRight' });
 
       expect(getByTestId('amPmTimeButton')).toHaveFocus();
+    });
+
+    it('should call the onKeyDown when backspace is clicked on the minutes input', () => {
+      const onKeyDown = jest.fn();
+      const { getByTestId } = render(
+        <TimePicker label="label" onKeyDown={onKeyDown} />
+      );
+
+      const minsInput = getByTestId('minutesTimeInput');
+
+      fireEvent.keyDown(minsInput, { key: 'Backspace' });
+
+      expect(onKeyDown).toHaveBeenCalled();
+    });
+    
+    it('should call the onChange when backspace is clicked on the minutes input', () => {
+      const onChange = jest.fn();
+      const { getByTestId } = render(
+        <TimePicker label="label" onChange={onChange} value={'02:04 AM'}/>
+      );
+
+      const minsInput = getByTestId('minutesTimeInput');
+
+      fireEvent.keyDown(minsInput, { key: 'Backspace' });
+
+      expect(onChange).toHaveBeenCalledWith('');
     });
 
     it('should call the onChange for a valid minute entered', () => {
@@ -363,6 +390,17 @@ describe('TimePicker', () => {
 
     it('should not allow for a bad format to be passed in', () => {
       const value = '123:80 CX';
+      const { getByTestId } = render(
+        <TimePicker label="label" value={value} />
+      );
+
+      expect(getByTestId('hoursTimeInput').value).toEqual('');
+      expect(getByTestId('minutesTimeInput').value).toEqual('');
+      expect(getByTestId('amPmTimeButton')).toHaveTextContent('AM');
+    });
+
+    it('should allow for the undefined value', () => {
+      const value = undefined;
       const { getByTestId } = render(
         <TimePicker label="label" value={value} />
       );

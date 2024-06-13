@@ -115,9 +115,9 @@ interface ComboboxInputProps<T> {
   isTypeahead?: boolean;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
-  onInputKeyDown?: (event: React.KeyboardEvent) => void;
-  onInputKeyPress?: (event: React.KeyboardEvent) => void;
-  onInputKeyUp?: (event: React.KeyboardEvent) => void;
+  onInputKeyDown?: (event: any) => void;
+  onInputKeyPress?: (event: any) => void;
+  onInputKeyUp?: (event: any) => void;
   placeholder?: string;
   selectedItems?: React.ReactNode;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;

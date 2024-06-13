@@ -32,6 +32,10 @@ export interface IndeterminateCheckboxProps
    * @internal
    */
   testId?: string;
+  /**
+   * @internal
+   */
+  hideFocus?: boolean;
 }
 
 export enum IndeterminateCheckboxStatus {
@@ -159,6 +163,7 @@ export const IndeterminateCheckbox = React.forwardRef<
             color={color}
             disabled={disabled}
             hasError={hasError}
+            hideFocus={props.hideFocus}
             isIndeterminate={isIndeterminate}
             isInverse={isInverse}
             style={inputStyle}

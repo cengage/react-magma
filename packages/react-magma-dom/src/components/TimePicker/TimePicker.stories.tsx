@@ -3,6 +3,8 @@ import { TimePicker, TimePickerProps } from '.';
 import { Card, CardBody } from '../Card';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { LabelPosition } from '../Label';
+import { Button } from '../Button';
+import { Paragraph } from '../Paragraph';
 
 const Template: Story<TimePickerProps> = args => (
   <TimePicker {...args} labelText="Time Due" />
@@ -57,3 +59,30 @@ Inverse.decorators = [
     </Card>
   ),
 ];
+
+export const Events = () => {
+  const [timeValue, setTimeValue] = React.useState<string | undefined>('');
+  const [onChangeCalledTimes, setOnChangeCalledTimes] = React.useState(0);
+
+  function handleOnChange(value) {
+    setTimeValue(value);
+    setOnChangeCalledTimes(onChangeCalledTimes + 1);
+  }
+
+  return (
+    <>
+      <Paragraph noMargins>
+        <strong>Time Value:</strong> {timeValue}
+      </Paragraph>
+      <Paragraph>onChange called {onChangeCalledTimes} times</Paragraph>
+
+      <TimePicker
+        labelText="Time Due"
+        onChange={handleOnChange}
+        value={timeValue}
+      />
+      <br />
+      <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
+    </>
+  );
+};

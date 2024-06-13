@@ -1,5 +1,4 @@
 import * as React from 'react';
-import styled from '../../theme/styled';
 import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
@@ -10,6 +9,7 @@ import {
   TypographyContextVariant,
   TypographyComponent,
 } from '../Typography';
+import styled from '@emotion/styled';
 /**
  * @children required
  */
