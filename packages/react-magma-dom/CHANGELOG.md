@@ -64,6 +64,36 @@
 
 ## 3.6.0
 
+## 3.7.0-next.1
+
+### Minor Changes
+
+- 825338660: feat(Tabs): Please note that this component is in beta. Use at your own risk. Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI.
+- 825338660: feat(TreeView): TreeView & TreeItem updates
+- 825338660: feat(TreeView): TreeView & TreeItem updates
+- 825338660: feat(TreeView): TreeView & TreeItem updates
+- 825338660: feat(TreeView): TreeView & TreeItem updates
+- 825338660: feat(TreeView): TreeView & TreeItem updates
+- 825338660: feat(TreeView): TreeView & TreeItem updates
+- 825338660: feat(TreeView): Refactor prop names
+- 825338660: feat(TreeView): TreeView & TreeItem style updates
+- 825338660: feat(TreeView): New TreeView & TreeItem components
+
+### Patch Changes
+
+- 825338660: chore: Update nvm to v16.20.2
+- 825338660: fix(Search): Reset the value for clearable search when the X is click…
+- 825338660: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date
+- 825338660: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
+- 825338660: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid per ticket: https://github.com/cengage/react-magma/issues/1201
+- 825338660: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
+- 825338660: fix(Select/Combobox): Update event types
+- 825338660: feat(modal): Added new isModalClosingControlledManually property that allows handling closing the modal on the consumer side
+- 825338660: fix(NativeSelect): Fix issue with data-testid
+- 825338660: fix(TimePicker): Returns empty when backspace is pressed
+- 825338660: feat(TimePicker): Added opportunity to clear Timepicker
+- 825338660: build: Update references to \_styled
+
 ## 3.7.0-next.0
 
 ### Minor Changes
