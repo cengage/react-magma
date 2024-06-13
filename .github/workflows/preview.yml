@@ -9,7 +9,7 @@ on:
     types: [opened, edited, synchronize, reopened]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-13
     steps:
       - name: Checkout
         uses: actions/checkout@v1
