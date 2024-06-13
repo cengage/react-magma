@@ -1,5 +1,40 @@
 # Change Log
 
+## 5.0.4-next.2
+
+### Patch Changes
+
+- 825338660: build(deps): bump ip from 2.0.0 to 2.0.1
+- 825338660: chore: Fix storybook
+- 825338660: docs(TreeView): Update example with duplicate IDs
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+  - @react-magma/charts@6.1.0-next.0
+  - react-magma-dom@3.7.0-next.1
+
 ## 5.0.4-next.1
 
 ### Patch Changes

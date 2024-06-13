@@ -1,5 +1,16 @@
 # @react-magma/charts
 
+## 6.1.0-next.0
+
+### Minor Changes
+
+- 825338660: feat(CarbonCharts): Support Carbon Charts
+- 825338660: Update CarbonCharts broken style and docs
+
+### Patch Changes
+
+- 825338660: fix(CarbonCharts): Update styles
+
 ## 4.0.0-next.0
 
 ### Patch Changes
