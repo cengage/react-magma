@@ -18,7 +18,7 @@
     "@emotion/styled-base": "^10.0.27",
     "@mdx-js/mdx": "^1.5.5",
     "@mdx-js/react": "^1.5.5",
-    "@react-magma/charts": "^4.0.0-next.0",
+    "@react-magma/charts": "6.0.0",
     "@react-magma/dropzone": "4.0.0-next.0",
     "@react-magma/schema-renderer": "^4.0.0-next.0",
     "buble": "0.19.4",
