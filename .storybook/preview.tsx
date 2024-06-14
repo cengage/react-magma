@@ -21,4 +21,5 @@ export const parameters = {
   viewport: {
     viewports: INITIAL_VIEWPORTS,
   },
+  docs: { source: { type: 'code' } }, // required for https://github.com/storybookjs/storybook/issues/19575
 };
