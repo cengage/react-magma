@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.4.1-next.2
+
+### Patch Changes
+
+- 506904fd8: build(deps): bump express from 4.18.1 to 4.19.2
+
 ## 4.4.1-next.1
 
 ### Patch Changes
