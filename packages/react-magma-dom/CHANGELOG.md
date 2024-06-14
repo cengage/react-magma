@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.4.1-next.3
+
+### Patch Changes
+
+- ec35223de: build(deps): bump tar from 6.1.11 to 6.2.1
+
 ## 4.4.1-next.2
 
 ### Patch Changes
