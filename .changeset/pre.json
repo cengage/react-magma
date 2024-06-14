@@ -10,5 +10,20 @@
     "react-magma-docs": "5.0.4",
     "react-magma-landing": "1.1.3"
   },
-  "changesets": []
+  "changesets": [
+    "chore-node",
+    "cold-birds-appear",
+    "datePicker-focus",
+    "feat-tabsScrollSpy",
+    "fix-BadgeHeight",
+    "fix-NativeSelectPagination",
+    "fix-datagrid",
+    "modal-isModalClosingControlledManually",
+    "nativeSelect-testId",
+    "storybook-global",
+    "time-picker-onchange",
+    "timepicker-add-clearable-option",
+    "treeview",
+    "two-spoons-poke"
+  ]
 }
