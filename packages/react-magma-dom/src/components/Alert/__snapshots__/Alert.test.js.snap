@@ -370,7 +370,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   color: #D32821;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
@@ -473,7 +473,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   color: #D32821;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
@@ -615,7 +615,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
@@ -718,7 +718,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
@@ -860,7 +860,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   color: #AD5115;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FCEEE5;
   border: 1px solid #AD5115;
   border-radius: 8px;
@@ -963,7 +963,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   color: #AD5115;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FCEEE5;
   border: 1px solid #AD5115;
   border-radius: 8px;
@@ -1105,7 +1105,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
@@ -1208,7 +1208,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
