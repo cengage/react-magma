@@ -146,7 +146,7 @@ export function Example() {
 
 ## Custom Step label
 
-When using `layout` with `StepperLayout.summaryView`, the option to change the count title may be done with the `stepDescriptionLabel` which takes a string and replaces the default "Step" label.
+When using `layout` with `StepperLayout.summaryView`, the option to change the count title may be done with the `customStepLabel` which takes a string and replaces the default "Step" label.
 
 ```typescript
 import React from 'react';
@@ -176,7 +176,7 @@ export function Example() {
       <Stepper
         layout={StepperLayout.summaryView}
         currentStep={currentStep}
-        stepDescriptionLabel="Module"
+        customStepLabel="Module"
       >
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />

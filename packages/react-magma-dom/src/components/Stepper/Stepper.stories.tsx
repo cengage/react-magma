@@ -37,7 +37,7 @@ export default {
         type: 'text',
       },
     },
-    stepDescriptionLabel: {
+    customStepLabel: {
       control: {
         type: 'text',
       },
