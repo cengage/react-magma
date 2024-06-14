@@ -628,7 +628,7 @@ import {
   Tag,
   Tooltip,
 } from 'react-magma-dom';
-
+import styled from '@emotion/styled';
 import { InfoIcon } from 'react-magma-icons';
 
 const springfieldDonut = Object.assign({}, magma, {
@@ -933,7 +933,7 @@ const springfieldDonut = Object.assign({}, magma, {
   },
 });
 
-const StyledCardHeading = styled.h1`
+const StyledCardHeading = styled(Heading)`
   color: #f7db7f;
   font-size: 40px;
   position: relative;
