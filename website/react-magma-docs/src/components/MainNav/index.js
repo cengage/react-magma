@@ -426,7 +426,6 @@ export const MainNav = ({ ...props }) => {
                       </List>
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
-
                   <StyledAccordionItem
                     isOpen={isAccordionItemOpen(location, 'patterns')}
                   >

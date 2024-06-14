@@ -5,10 +5,13 @@ import {
   TooltipArrow,
   TooltipPosition,
   ThemeInterface,
-  styled,
 } from 'react-magma-dom';
 
-const StyledGraphTooltip = styled(StyledTooltip)`
+import styled, { CreateStyled } from '@emotion/styled';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledGraphTooltip = typedStyled(StyledTooltip)`
   background: ${(props: any) => props.theme.colors.neutral100};
   border: 1px solid ${(props: any) => props.theme.colors.neutral300};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
@@ -30,7 +33,7 @@ const StyledGraphTooltip = styled(StyledTooltip)`
   }
 `;
 
-const TooltipColorSwatch = styled.span`
+const TooltipColorSwatch = typedStyled.span`
   background: ${(props: any) => props.color};
   border: ${(props: any) => (props.color ? 'none' : '3px solid black')};
   border-radius: 4px;

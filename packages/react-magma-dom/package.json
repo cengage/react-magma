@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "3.7.0",
+  "version": "3.7.0-next.1",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
@@ -37,8 +37,8 @@
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
     "framer-motion": "^4.1.11",
-    "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0",
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0",
     "react-magma-icons": "2.3.6",
     "uuid": "^8.3.0"
   },

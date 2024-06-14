@@ -110,6 +110,7 @@ export const Search = React.forwardRef<HTMLInputElement, SearchProps>(
 
     function handleClear() {
       onClear && typeof onClear === 'function' && onClear();
+      setValue(undefined);
     }
 
     return (

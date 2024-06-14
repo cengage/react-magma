@@ -6,6 +6,8 @@ import {
   TabsBorderPosition,
   TabsOrientation,
   TabsProps,
+  TabsScrollSpyContainer,
+  TabScrollSpyPanel,
 } from '.';
 import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
@@ -22,10 +24,19 @@ import { Combobox } from '../Combobox';
 import { Select } from '../Select';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { Heading } from '../Heading';
+import { Container } from '../Container';
 
 export default {
   title: 'Tabs',
   component: Tabs,
+  decorators: [
+    (Story, context) => (
+      <Container isInverse={context.args.isInverse} style={{ padding: '20px' }}>
+        <Story />
+      </Container>
+    ),
+  ],
   argTypes: {
     alignment: {
       control: {
@@ -49,6 +60,11 @@ export default {
       control: {
         type: 'select',
         options: TabsOrientation,
+      },
+    },
+    isInverse: {
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -200,6 +216,115 @@ const ScrollingTemplate: Story<TabsProps> = args => (
 export const Scrolling = ScrollingTemplate.bind({});
 Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
 Scrolling.parameters = { ...Default.parameters };
+
+const scrollContent = (
+  <>
+    <p>
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
+      vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh sit
+      amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis commodo
+      odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc sed augue.
+      In arcu cursus euismod quis viverra nibh cras. Tincidunt ornare massa eget
+      egestas purus viverra accumsan in nisl. Porta nibh venenatis cras sed
+      felis. Felis donec et odio pellentesque diam. Aliquam ut porttitor leo a
+      diam sollicitudin. Sed sed risus pretium quam vulputate dignissim
+      suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel elit
+      scelerisque mauris pellentesque pulvinar.
+    </p>
+    <p>
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+      dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <p>
+      Amet aliquam id diam maecenas ultricies mi. Venenatis tellus in metus
+      vulputate eu scelerisque felis imperdiet. Tristique sollicitudin nibh sit
+      amet commodo nulla facilisi nullam. Facilisis sed odio morbi quis commodo
+      odio aenean. Odio tempor orci dapibus ultrices in iaculis nunc sed augue.
+      In arcu cursus euismod quis viverra nibh cras. Tincidunt ornare massa eget
+      egestas purus viverra accumsan in nisl. Porta nibh venenatis cras sed
+      felis. Felis donec et odio pellentesque diam. Aliquam ut porttitor leo a
+      diam sollicitudin. Sed sed risus pretium quam vulputate dignissim
+      suspendisse in. Fringilla ut morbi tincidunt augue interdum. Vel elit
+      scelerisque mauris pellentesque pulvinar.
+    </p>
+  </>
+);
+
+const ScrollSpyTemplate: Story<TabsProps> = args => (
+  <TabsScrollSpyContainer isInverse={args.isInverse}>
+    <TabScrollSpyPanel tabLabel="Card 1">
+      <Heading level={4}>Area 1</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 2">
+      <Heading level={4}>Area 2</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 3">
+      <Heading level={4}>Area 3</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 4">
+      <Heading level={4}>Area 4</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel tabLabel="Card 5">
+      <Heading level={4}>Area 5</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+  </TabsScrollSpyContainer>
+);
+
+export const ScrollSpy = ScrollSpyTemplate.bind({});
+ScrollSpy.args = {
+  ...Default.args,
+};
+ScrollSpy.parameters = {
+  controls: {
+    exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+  },
+};
+
+const ScrollSpyTemplateIcons: Story<TabsProps> = args => (
+  <TabsScrollSpyContainer isInverse={args.isInverse}>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 1">
+      <Heading level={4}>Area 1</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 2">
+      <Heading level={4}>Area 2</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 3">
+      <Heading level={4}>Area 3</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 4">
+      <Heading level={4}>Area 4</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+    <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 5">
+      <Heading level={4}>Area 5</Heading>
+      {scrollContent}
+    </TabScrollSpyPanel>
+  </TabsScrollSpyContainer>
+);
+
+export const ScrollSpyIcons = ScrollSpyTemplateIcons.bind({});
+ScrollSpyIcons.args = {
+  ...Default.args,
+};
+ScrollSpyIcons.parameters = {
+  controls: {
+    exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+  },
+};
 
 const InverseTemplate: Story<TabsProps> = args => (
   <Card isInverse={args.isInverse}>

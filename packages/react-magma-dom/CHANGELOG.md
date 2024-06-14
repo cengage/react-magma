@@ -1,18 +1,21 @@
-## 3.6.0
+
+
 
 ## 3.7.0
 
 ### Minor Changes
 
-- 4e016ebd6: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
-- 4e016ebd6: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
-- 4e016ebd6: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
+- dc443a912: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
+- ef243baf1: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
+- 8f09b0e45: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
 
 ### Patch Changes
 
-- 4e016ebd6: fix: Updates to the expressive font styles for both desktop and mobile.
-- 4e016ebd6: fix(Modal): Fixed bottom padding on the Modal header.
-- 4e016ebd6: fix(Modal): Fixed Storybook Inverse example.
+- 421b9091a: fix(Modal): Fixed bottom padding on the Modal header
+- 1fb88b6fc: fix: Updates to the expressive font styles for both desktop and mobile
+- fc3098851: build(deps): bump browserify-sign from 4.2.1 to 4.2.2
+
+## 3.6.0
 
 ### Minor Changes
 
@@ -73,6 +76,26 @@
 **We accidentally skipped version 3.4.0. Please use 3.5.0 instead**
 
 ## 3.3.0
+
+### Minor Changes
+
+- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- 17fc12212: feat(toggleButton): New Toggle Button component.
+- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+  Deprecations: dropdownDropDirection prop is now deprecated
+
+### Patch Changes
+
+- 17fc12212: Set fallback font-family for all components.
+- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- 17fc12212: chore: Fix broken build
+- 17fc12212: chore: Fixed warnings in the console.
+- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 17fc12212: fix(heading): Fix error that "Property 'css' is missing"
+- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 17fc12212: fix(toggleButton): Fix hover states
+
+## 3.5.0
 
 ### Minor Changes
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Button, ButtonColor, ButtonProps, ButtonVariant } from '../Button';
-import styled from '../../theme/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
+import styled from '@emotion/styled';
 
 export interface PageButtonProps extends ButtonProps {
   isSelected?: boolean;

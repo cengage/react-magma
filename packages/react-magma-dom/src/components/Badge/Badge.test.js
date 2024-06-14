@@ -115,6 +115,10 @@ describe('Badge', () => {
         'background',
         magma.colors.primary
       );
+      expect(getByText(TEXT)).toHaveStyleRule(
+        'padding',
+        `3px ${magma.spaceScale.spacing02}`
+      );
     });
 
     describe('inverse', () => {

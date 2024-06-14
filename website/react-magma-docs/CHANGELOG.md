@@ -1,18 +1,57 @@
 # Change Log
 
-## 5.0.5
+## 5.0.4-next.2
 
 ### Patch Changes
 
-- 4e016ebd6: build: Resolve merge conflicts when pulling main -> dev
-- 4e016ebd6: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
-- Updated dependencies [4e016ebd6]
-- Updated dependencies [4e016ebd6]
-- Updated dependencies [4e016ebd6]
-- Updated dependencies [4e016ebd6]
-- Updated dependencies [4e016ebd6]
-- Updated dependencies [4e016ebd6]
-  - react-magma-dom@3.7.0
+- 825338660: build(deps): bump ip from 2.0.0 to 2.0.1
+- 825338660: chore: Fix storybook
+- 825338660: docs(TreeView): Update example with duplicate IDs
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+  - @react-magma/charts@6.1.0-next.0
+  - react-magma-dom@3.7.0-next.1
+
+## 5.0.4-next.1
+
+### Patch Changes
+
+- 5b630cc0d: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
+- Updated dependencies [498c1fd5a]
+- Updated dependencies [dc443a912]
+- Updated dependencies [ef243baf1]
+- Updated dependencies [8f09b0e45]
+- Updated dependencies [cf4ba4d4b]
+- Updated dependencies [dfbee0b3a]
+- Updated dependencies [049a124db]
+  - react-magma-dom@3.7.0-next.0
+  - @react-magma/charts@4.0.0-next.0
+  - @react-magma/dropzone@4.0.0-next.0
+  - @react-magma/schema-renderer@4.0.0-next.0
+  - @cengage-patterns/header@6.0.0-next.0
 
 ## 5.0.4-next.0
 

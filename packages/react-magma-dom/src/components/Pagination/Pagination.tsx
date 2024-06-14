@@ -4,10 +4,10 @@ import { I18nContext } from '../../i18n';
 import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
-import styled from '../../theme/styled';
 import { SimplePagination } from '../Pagination/SimplePagination';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { usePagination } from './usePagination';
+import styled from '@emotion/styled';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {

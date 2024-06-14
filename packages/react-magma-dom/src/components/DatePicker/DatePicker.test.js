@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import {
   format,
   subWeeks,
@@ -100,6 +101,64 @@ describe('Date Picker', () => {
     );
 
     expect(getByLabelText('Date Picker Label')).toHaveAttribute('value', '');
+  });
+
+  it('should keep the user inputted date in the input even if it is before the minDate', () => {
+    const labelText = 'Date Picker Label';
+    const valueDate = '01/20/2020';
+    const minDate = '02/02/2020';
+    const defaultDate = '02/20/2020';
+
+    const { getByLabelText } = render(
+      <DatePicker
+        labelText={labelText}
+        minDate={minDate}
+        defaultDate={defaultDate}
+      />
+    );
+
+    const datePickerInput = getByLabelText('Date Picker Label');
+    expect(datePickerInput).toHaveAttribute('value', defaultDate);
+
+    userEvent.type(
+      getByLabelText(labelText),
+      `{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}${valueDate}`
+    );
+
+    expect(datePickerInput).toHaveAttribute('value', valueDate);
+
+    getByLabelText('Toggle Calendar Widget').focus();
+    expect(datePickerInput).not.toHaveFocus();
+    expect(datePickerInput).toHaveAttribute('value', valueDate);
+  });
+
+  it('should keep the user inputted date in the input even if it is before the maxDate', () => {
+    const labelText = 'Date Picker Label';
+    const valueDate = '03/20/2020';
+    const maxDate = '02/02/2020';
+    const defaultDate = '01/20/2020';
+
+    const { getByLabelText } = render(
+      <DatePicker
+        labelText={labelText}
+        maxDate={maxDate}
+        defaultDate={defaultDate}
+      />
+    );
+
+    const datePickerInput = getByLabelText('Date Picker Label');
+    expect(datePickerInput).toHaveAttribute('value', defaultDate);
+
+    userEvent.type(
+      getByLabelText(labelText),
+      `{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}${valueDate}`
+    );
+
+    expect(datePickerInput).toHaveAttribute('value', valueDate);
+
+    getByLabelText('Toggle Calendar Widget').focus();
+    expect(datePickerInput).not.toHaveFocus();
+    expect(datePickerInput).toHaveAttribute('value', valueDate);
   });
 
   it('should disable a date the does not fall in the min and max date range', () => {

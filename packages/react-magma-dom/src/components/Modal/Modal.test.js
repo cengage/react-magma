@@ -234,6 +234,86 @@ describe('Modal', () => {
       expect(onCloseSpy).toHaveBeenCalled();
     });
 
+    it('should close when isModalClosingControlledManually is true and isOpen prop changed to false', async () => {
+      const onCloseSpy = jest.fn();
+      const { rerender, queryByText } = render(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={onCloseSpy}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={onCloseSpy}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onCloseSpy).not.toHaveBeenCalled();
+      expect(queryByText('Modal Content')).not.toBeInTheDocument();
+    });
+
+    it('should not force close when clicking the close button if isModalClosingControlledManually is true', async () => {
+      const onCloseSpy = jest.fn();
+      const { rerender, getByText, getByTestId } = render(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={onCloseSpy}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={onCloseSpy}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.click(getByTestId('modal-closebtn'));
+
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onCloseSpy).toHaveBeenCalled();
+      expect(getByText('Modal Content')).toBeInTheDocument();
+    });
+
     it('should close when pressing the escape button', async () => {
       const onCloseSpy = jest.fn();
       const { rerender, getByText } = render(
@@ -266,6 +346,51 @@ describe('Modal', () => {
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should not force close when pressing the escape button if isModalClosingControlledManually is true', async () => {
+      const onCloseSpy = jest.fn();
+      const { rerender, getByText } = render(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={onCloseSpy}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={onCloseSpy}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.keyDown(getByText('Modal Content'), {
+        key: 'Escape',
+        keyCode: 27,
+      });
+
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onCloseSpy).toHaveBeenCalled();
+      expect(getByText('Modal Content')).toBeInTheDocument();
     });
 
     it('should call the passed in onEscKeyDown function', async () => {
@@ -348,6 +473,51 @@ describe('Modal', () => {
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should not force close when clicking on the backdrop if isModalClosingControlledManually is true', async () => {
+      const testId = 'modal-container';
+      const onCloseSpy = jest.fn();
+      const { rerender, getByText, getByTestId } = render(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={false}
+            onClose={onCloseSpy}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.focus(getByText('Open'));
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal
+            header="Hello"
+            isOpen={true}
+            onClose={onCloseSpy}
+            testId={testId}
+            isModalClosingControlledManually
+          >
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      fireEvent.mouseDown(getByTestId(testId));
+      fireEvent.click(getByTestId(testId));
+
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onCloseSpy).toHaveBeenCalled();
+      expect(getByText('Modal Content')).toBeInTheDocument();
     });
 
     it('should not close when mouse in happened inside the modal but mouse up happened on the backdrop', async () => {
