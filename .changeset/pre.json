@@ -13,6 +13,7 @@
   "changesets": [
     "chore-sync",
     "docs-styles",
+    "empty-monkeys-collect",
     "hyperlink",
     "input-wrapperStyle",
     "toast-docs"
