@@ -72,17 +72,16 @@ For more information about colors, see the <Link to="../../design-intro/colors/"
 ```tsx
 import React from 'react';
 import { magma } from 'react-magma-dom';
-import styled, { CreateStyled } from '@emotion/styled';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
+import styled from '@emotion/styled';
 
 function Example() {
-  const StyledDiv = typedStyled.div`
-    background: ${magma.colors.neutral};
-    color: ${magma.colors.neutral100};
-  `;
+  const StyledDiv = styled('div')(props => ({
+    background: props.theme.colors.neutral,
+    color: props.theme.colors.neutral100,
+    padding: props.theme.spaceScale.spacing02,
+  }));
 
-  return <StyledDiv>Hello world</StyledDiv>;
+  return <StyledDiv theme={magma}>Hello worlddd</StyledDiv>;
 }
 ```
 
