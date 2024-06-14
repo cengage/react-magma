@@ -1,5 +1,7 @@
 ## 3.8.0
 
+### Minor Changes
+
 - fa9662d1c: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
 - fa9662d1c: feat(TreeView): New TreeView & TreeItem components
 
