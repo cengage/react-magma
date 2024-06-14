@@ -3,6 +3,7 @@ pageTitle: Stepper API
 title: Stepper
 props:
   - StepperProps
+  - StepProps
 ---
 
 import { LeadParagraph } from '../../components/LeadParagraph';
@@ -108,7 +109,7 @@ export function Example() {
 
   return (
     <>
-      <Stepper summaryView currentStep={currentStep}>
+      <Stepper layout={StepperLayout.summaryView} currentStep={currentStep}>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -145,7 +146,7 @@ export function Example() {
 
 ## Custom Step label
 
-When using `summaryView`, the option to change the count title may be done with the `stepDescriptionLabel` which takes a string and replaces the default "Step" label.
+When using `layout` with `StepperLayout.summaryView`, the option to change the count title may be done with the `stepDescriptionLabel` which takes a string and replaces the default "Step" label.
 
 ```typescript
 import React from 'react';
@@ -173,7 +174,7 @@ export function Example() {
   return (
     <>
       <Stepper
-        summaryView
+        layout={StepperLayout.summaryView}
         currentStep={currentStep}
         stepDescriptionLabel="Module"
       >
@@ -213,7 +214,7 @@ export function Example() {
 
 ## Completed Step Description
 
-When using `summaryView`, after all of the steps are complete, the `completedStepDescription` prop takes a string and changes the title.
+When using layout `StepperLayout.summaryView`, after all of the steps are complete, the `completedStepDescription` prop takes a string and changes the title.
 
 ```typescript
 import React from 'react';
@@ -242,7 +243,7 @@ export function Example() {
     <>
       <Stepper
         completedStepDescription="Steps Complete!"
-        summaryView
+        layout={StepperLayout.summaryView}
         currentStep={currentStep}
       >
         <Step label="First Step" secondaryLabel="Description One" />
@@ -281,11 +282,11 @@ export function Example() {
 
 ## Hide Labels
 
-To hide all labels, `hideLabels` toggles off both the `label` and `secondaryLabel` while retaining the proper accessibility guidelines for screenreaders.
+To hide all labels, the prop of `layout` with `StepperLayout.hideLabels` toggles off both the `label` and `secondaryLabel` while retaining the proper accessibility guidelines for screenreaders.
 
 ```typescript
 import React from 'react';
-import { Container, Stepper, Step } from 'react-magma-dom';
+import { Container, Stepper, StepperLayout, Step } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -308,7 +309,7 @@ export function Example() {
 
   return (
     <>
-      <Stepper hideLabels currentStep={currentStep}>
+      <Stepper layout={StepperLayout.hideLabels} currentStep={currentStep}>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -345,13 +346,13 @@ export function Example() {
 
 ## Breakpoints
 
-For responsive layouts, the `breakpoint` prop used along with `breakpointStyle` hides certain elements of the `Stepper` at a specified screen width. `breakpoint` takes a number for the screen width and `breakpointStyle` hides either labels or shows just the summary view. By default, step labels will display if no responsive props are used.
+For responsive layouts, the `breakpoint` prop used along with `breakpointLayout` hides certain elements of the `Stepper` at a specified screen width. `breakpoint` takes a number for the screen width and `breakpointLayout` hides either labels or shows just the summary view. By default, step labels will display if no responsive props are used.
 
 #### Breakpoint - Hide Labels
 
 ```typescript
 import React from 'react';
-import { BreakPointStyle, Container, Stepper, Step } from 'react-magma-dom';
+import { StepperLayout, Container, Stepper, Step } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -376,7 +377,7 @@ export function Example() {
     <>
       <Stepper
         breakpoint={1500}
-        breakpointStyle={BreakPointStyle.hideLabels}
+        breakpointLayout={StepperLayout.hideLabels}
         currentStep={currentStep}
       >
         <Step label="First Step" secondaryLabel="Description One" />
@@ -417,7 +418,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { BreakPointStyle, Container, Stepper, Step } from 'react-magma-dom';
+import { StepperLayout, Container, Stepper, Step } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -442,7 +443,7 @@ export function Example() {
     <>
       <Stepper
         breakpoint={1500}
-        breakpointStyle={BreakPointStyle.summaryView}
+        breakpointLayout={StepperLayout.summaryView}
         currentStep={currentStep}
       >
         <Step label="First Step" secondaryLabel="Description One" />
@@ -485,7 +486,7 @@ When an error state is needed in the `Stepper`, add `hasError` on a `Step` to ch
 
 ```typescript
 import React from 'react';
-import { BreakPointStyle, Container, Stepper, Step } from 'react-magma-dom';
+import { Container, Stepper, Step } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -582,6 +583,12 @@ export function Example() {
   );
 }
 ```
+
+# Step Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<StepProps />
 
 # Stepper Props
 

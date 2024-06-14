@@ -2,9 +2,11 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { Stepper, Step, BreakPointStyle } from '.';
-import { fireEvent, render } from '@testing-library/react';
+import { Stepper, Step, StepperLayout } from '.';
+import { getByTestId, render } from '@testing-library/react';
 import { transparentize } from 'polished';
+import { I18nContext } from '../../i18n';
+import { defaultI18n } from '../../i18n/default';
 
 const TEXT = 'Test Text';
 const testId = 'test-id';
@@ -21,6 +23,50 @@ describe('Stepper', () => {
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
+    });
+  });
+
+  describe('i18n', () => {
+    it('should use the completion label', () => {
+      const completionLabel = 'completion label';
+      const { getByText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            stepper: {
+              completionLabel,
+            },
+          }}
+        >
+          <Stepper currentStep={2} layout={StepperLayout.summaryView}>
+            <Step />
+            <Step />
+          </Stepper>
+        </I18nContext.Provider>
+      );
+
+      expect(getByText(completionLabel)).toHaveTextContent(completionLabel);
+    });
+
+    it('should use the step label', () => {
+      const stepLabel = 'Steppin';
+      const { getByText } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            stepper: {
+              stepLabel,
+            },
+          }}
+        >
+          <Stepper currentStep={0} layout={StepperLayout.summaryView}>
+            <Step />
+            <Step />
+          </Stepper>
+        </I18nContext.Provider>
+      );
+
+      expect(getByText(stepLabel + ' 1 of 2')).toBeInTheDocument();
     });
   });
 
@@ -262,9 +308,9 @@ describe('Stepper', () => {
     });
 
     describe('States', () => {
-      it('should hide labels with prop hideLabels', () => {
+      it('should hide labels when layout is set to "hideLabels"', () => {
         const { getByText } = render(
-          <Stepper hideLabels currentStep={1}>
+          <Stepper layout={StepperLayout.hideLabels} currentStep={1}>
             <Step label={`${TEXT}-1`} />
             <Step label={`${TEXT}-2`} />
           </Stepper>
@@ -290,7 +336,11 @@ describe('Stepper', () => {
 
       it('should only show one step label and description at a time along with a counter when using the prop summaryView', () => {
         const { getByTestId } = render(
-          <Stepper testId={testId} summaryView currentStep={0}>
+          <Stepper
+            testId={testId}
+            layout={StepperLayout.summaryView}
+            currentStep={0}
+          >
             <Step label={`${TEXT}-1`} />
             <Step label={`${TEXT}-2`} />
           </Stepper>
@@ -300,11 +350,11 @@ describe('Stepper', () => {
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });
 
-      it('should hide labels when breakpointStyle is set to "hideLabels" if viewport is smaller than set breakpoint prop', () => {
+      it('should hide labels when breakpointLayout is set to "hideLabels" if viewport is smaller than set breakpoint prop', () => {
         const { getByText } = render(
           <Stepper
             breakpoint={1500}
-            breakpointStyle={BreakPointStyle.hideLabels}
+            breakpointLayout={StepperLayout.hideLabels}
             currentStep={0}
           >
             <Step label={`${TEXT}-1`} />
@@ -330,7 +380,7 @@ describe('Stepper', () => {
           <Stepper
             testId={testId}
             breakpoint={1500}
-            breakpointStyle={BreakPointStyle.summaryView}
+            breakpointLayout={StepperLayout.summaryView}
             currentStep={0}
           >
             <Step label={`${TEXT}-1`} />

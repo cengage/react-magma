@@ -276,6 +276,10 @@ export const defaultI18n: I18nInterface = {
   spinner: {
     ariaLabel: 'Loading',
   },
+  stepper: {
+    completionLabel: 'All steps completed',
+    stepLabel: 'Step',
+  },
   table: {
     pagination: {
       ofLabel: 'of',

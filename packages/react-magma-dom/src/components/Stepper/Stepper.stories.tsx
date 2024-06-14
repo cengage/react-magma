@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../Button';
-import { Stepper, StepperProps, Step, BreakPointStyle } from './';
+import { Stepper, StepperProps, Step, StepperLayout } from './';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Container } from '../Container';
 
@@ -15,7 +15,24 @@ export default {
     ),
   ],
   argTypes: {
-    completedStepDescription: {
+    breakpoint: {
+      control: {
+        type: 'number',
+      },
+    },
+    breakpointLayout: {
+      control: {
+        type: 'select',
+        options: StepperLayout,
+      },
+    },
+    layout: {
+      control: {
+        type: 'select',
+        options: StepperLayout,
+      },
+    },
+    completionLabel: {
       control: {
         type: 'text',
       },
@@ -26,16 +43,6 @@ export default {
       },
     },
     isInverse: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    hideLabels: {
-      control: {
-        type: 'boolean',
-      },
-    },
-    summaryView: {
       control: {
         type: 'boolean',
       },
@@ -158,27 +165,24 @@ const ErrorTemplate: Story<StepperProps> = args => {
 export const Default = Template.bind({});
 Default.args = {};
 
-export const SummaryView = Template.bind({});
-SummaryView.args = {
-  summaryView: true,
-};
+// export const HideLabelsWithBreakpointSummaryView = Template.bind({});
+// HideLabelsWithBreakpointSummaryView.args = {
+//   layout: StepperLayout.hideLabels,
+//   breakpoint: 1000,
+//   breakpointLayout: StepperLayout.summaryView,
+// };
 
-export const HideLabels = Template.bind({});
-HideLabels.args = {
-  hideLabels: true,
-};
+// export const BreakpointSummaryView = Template.bind({});
+// BreakpointSummaryView.args = {
+//   breakpoint: 1000,
+//   breakpointLayout: StepperLayout.summaryView,
+// };
 
-export const BeakpointSummaryView = Template.bind({});
-BeakpointSummaryView.args = {
-  breakpoint: 2000,
-  breakpointStyle: BreakPointStyle.summaryView,
-};
-
-export const BeakpointHideLabels = Template.bind({});
-BeakpointHideLabels.args = {
-  breakpoint: 2000,
-  breakpointStyle: BreakPointStyle.hideLabels,
-};
+// export const BreakpointHideLabels = Template.bind({});
+// BreakpointHideLabels.args = {
+//   breakpoint: 1000,
+//   breakpointLayout: StepperLayout.hideLabels,
+// };
 
 export const WithError = ErrorTemplate.bind({});
 Default.args = {};

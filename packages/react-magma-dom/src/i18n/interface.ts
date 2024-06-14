@@ -260,6 +260,10 @@ export interface I18nInterface {
   spinner: {
     ariaLabel: string;
   };
+  stepper: {
+    completionLabel: string;
+    stepLabel: string;
+  };
   table: {
     pagination: {
       ofLabel: string;

@@ -6,33 +6,25 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
-import { BreakPointStyle } from './Stepper';
-import { HiddenLabelText } from '../Checkbox';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 
 /**
  * @children required
  */
 export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
-  breakpointStyle?: BreakPointStyle;
-  /*
-   * Index set by Stepper component
-   */
-  currentStep?: number;
   /**
    * Error state for each step
    * @default false
    */
   hasError?: boolean;
   /**
-   * Hides label and secondaryLabel
-   * @default false
+   * @internal
    */
-  hideLabels?: boolean;
+  hasHideLabels?: boolean;
   /**
-   * Hides label and secondaryLabel in place of summary view
-   * @default false
+   * @internal
    */
-  summaryView?: boolean;
+  hasSummaryView?: boolean;
   /**
    * Label beneath each step
    */
@@ -45,7 +37,13 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   stepStatus?: StepStatus;
+  /**
+   * @internal
+   */
   isInverse?: boolean;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -59,41 +57,46 @@ export enum StepStatus {
   incomplete = 'incomplete',
 }
 
-function StepCircleOutlineColors(props: StepProps) {
+export const HiddenLabelText = styled.span`
+  ${HiddenStyles};
+`;
+
+function stepCircleOutlineColors(props: StepProps) {
   if (props.isInverse && !props.hasError) {
-    if (props.stepStatus === 'active') {
+    if (props.stepStatus === StepStatus.active) {
       return props.theme.colors.tertiary500;
-    } else if (props.stepStatus === 'incomplete') {
+    } else if (props.stepStatus === StepStatus.incomplete) {
       return props.theme.colors.primary400;
     }
   } else {
     if (!props.isInverse && !props.hasError) {
-      if (props.stepStatus === 'active') {
+      if (props.stepStatus === StepStatus.active) {
         return props.theme.colors.primary500;
-      } else if (props.stepStatus === 'incomplete') {
+      } else if (props.stepStatus === StepStatus.incomplete) {
         return props.theme.colors.neutral300;
       }
     }
   }
 }
 
-function StepCircleBackgroundColors(props: StepProps) {
-  if (props.isInverse) {
-    if (props.stepStatus === 'complete' && !props.hasError) {
-      return props.theme.colors.tertiary500;
-    } else if (props.hasError) {
-      return props.theme.colors.danger500;
+function stepCircleBackgroundColors(props: StepProps) {
+  const { isInverse, stepStatus, hasError, theme } = props;
+  if (isInverse) {
+    if (stepStatus === StepStatus.complete && !hasError) {
+      return theme.colors.tertiary500;
+    } else if (hasError) {
+      return theme.colors.danger500;
     }
   } else {
-    if (props.stepStatus === 'complete' && !props.hasError) {
-      return props.theme.colors.primary500;
-    } else if (props.hasError) {
-      return props.theme.colors.danger500;
+    if (stepStatus === StepStatus.complete && !hasError) {
+      return theme.colors.primary500;
+    } else if (hasError) {
+      return theme.colors.danger500;
     }
   }
 }
 
-function StepLabelColors(props: StepProps) {
+function stepLabelColors(props: StepProps) {
   if (props.isInverse) {
     if (props.label) {
       return props.theme.colors.neutral100;
@@ -109,7 +112,7 @@ function StepLabelColors(props: StepProps) {
   }
 }
 
-function StepSvgColors(props: StepProps) {
+function stepSvgColors(props: StepProps) {
   if (props.isInverse) {
     if (props.hasError) {
       return props.theme.colors.neutral100;
@@ -120,7 +123,7 @@ function StepSvgColors(props: StepProps) {
   }
 }
 
-const StyledStep = styled.div<StepProps>`
+const StyledStep = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,19 +140,19 @@ const StyledStepIndicator = styled.span<StepProps>`
   height: 24px;
   box-shadow: inset 0 0 0 2px
     ${props =>
-      (props.stepStatus === 'incomplete' && !props.hasError) ||
-      (props.stepStatus === 'active' && !props.hasError)
-        ? StepCircleOutlineColors
+      (props.stepStatus === StepStatus.incomplete && !props.hasError) ||
+      (props.stepStatus === StepStatus.active && !props.hasError)
+        ? stepCircleOutlineColors
         : 'none'};
-  background: ${StepCircleBackgroundColors};
+  background: ${stepCircleBackgroundColors};
   svg {
-    color: ${StepSvgColors};
-    width: ${props => props.theme.spaceScale.spacing05};
-    height: ${props => props.theme.spaceScale.spacing05};
+    color: ${stepSvgColors};
+    width: ${props => props.theme.iconSizes.xSmall}px;
+    height: ${props => props.theme.iconSizes.xSmall}px;
   }
 `;
 
-const StyledStepTextWrapper = styled.div<StepProps>`
+const StyledStepTextWrapper = styled.div`
   flex: 1;
   display: flex;
   align-self: center;
@@ -159,28 +162,34 @@ const StyledStepTextWrapper = styled.div<StepProps>`
 `;
 
 const StyledLabel = styled.span<StepProps>`
-  color: ${StepLabelColors};
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  color: ${stepLabelColors};
   font-weight: 600;
-  line-height: normal;
+  font-size: ${props =>
+    props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
+  letter-spacing: ${props =>
+    props.theme.typographyVisualStyles.bodySmall.desktop.letterSpacing};
+  line-height: ${props =>
+    props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight};
 `;
 
 const StyledSecondaryLabel = styled.span<StepProps>`
-  color: ${StepLabelColors};
-  font-size: ${props => props.theme.typeScale.size01.fontSize};
-  line-height: normal;
+  color: ${stepLabelColors};
+  font-size: ${props =>
+    props.theme.typographyVisualStyles.bodyXSmall.desktop.fontSize};
+  letter-spacing: ${props =>
+    props.theme.typographyVisualStyles.bodyXSmall.desktop.letterSpacing};
+  line-height: ${props =>
+    props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight};
   margin: 5px 0;
 `;
 
 export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   (props, ref) => {
     const {
-      breakpointStyle,
       children,
-      currentStep,
       hasError,
-      hideLabels,
-      summaryView,
+      hasHideLabels,
+      hasSummaryView,
       label,
       secondaryLabel,
       testId,
@@ -192,14 +201,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
     const isInverse = useIsInverse(isInverseProp);
 
     return (
-      <StyledStep
-        currentStep={currentStep}
-        theme={theme}
-        isInverse={isInverse}
-        ref={ref}
-        data-testid={testId}
-        {...rest}
-      >
+      <StyledStep {...rest} ref={ref} data-testid={testId}>
         {stepStatus && (
           <StyledStepIndicator
             hasError={hasError}
@@ -207,12 +209,15 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
             stepStatus={stepStatus}
             theme={theme}
           >
-            {stepStatus === 'complete' && !hasError && <CheckIcon />}
-            {hasError && <CrossIcon />}
+            {stepStatus === StepStatus.complete && !hasError && (
+              <CheckIcon aria-hidden="true" />
+            )}
+            {hasError && <CrossIcon aria-hidden="true" />}
           </StyledStepIndicator>
         )}
-        <StyledStepTextWrapper theme={theme} isInverse={isInverse} tabIndex={0}>
-          {!summaryView && !hideLabels ? (
+
+        <StyledStepTextWrapper>
+          {!hasSummaryView && !hasHideLabels ? (
             <>
               {label && (
                 <StyledLabel label={label} isInverse={isInverse} theme={theme}>

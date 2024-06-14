@@ -6,28 +6,36 @@ import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { Step, StepProps, StepStatus } from './Step';
 import { transparentize } from 'polished';
+import { I18nContext } from '../../i18n';
 
 /**
  * @children required
  */
 export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @internal
+   */
   testId?: string;
   /*
    * Custom number for specific breakpoint responsive styling
    */
   breakpoint?: number;
   /*
-   * Determines the Stepper view based on a minimum breakpoint number.
+   * Changes the Stepper view for responsive layouts, needs a minimum 'breakpoint' number.
    */
-  breakpointStyle?: BreakPointStyle;
+  breakpointLayout?: StepperLayout;
+  /*
+   * Changes the Stepper view.
+   */
+  layout?: StepperLayout;
   /*
    * Sets a custom label for the Step count # of #.
    */
-  stepDescriptionLabel?: string;
+  customStepLabel?: string;
   /*
    * Sets a custom label for the completed Step.
    */
-  completedStepDescription?: string;
+  completionLabel?: string;
   /*
    * Current step value
    */
@@ -40,14 +48,10 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    * Inverse styling
    */
   isInverse?: boolean;
-  /*
-   * Hides the Step labels
+  /**
+   * @internal
    */
-  hideLabels?: boolean;
-  /*
-   * Changes from Step labels on each Step to one label at a time.
-   */
-  summaryView?: boolean;
+  showLabelsLayout?: boolean;
   /**
    * @internal
    */
@@ -58,22 +62,24 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: ThemeInterface;
 }
 
-export enum BreakPointStyle {
+export enum StepperLayout {
+  showLabels = 'showLabels', //default
   hideLabels = 'hideLabels',
   summaryView = 'summaryView',
 }
 
-function StepSeparatorBackgroundColors(props: StepperProps) {
-  if (props.isInverse) {
-    if (props.stepStatus === 'complete') {
-      return props.theme.colors.tertiary500;
+function stepSeparatorBackgroundColors(props: StepperProps) {
+  const { isInverse, theme, stepStatus } = props;
+  if (isInverse) {
+    if (stepStatus === StepStatus.complete) {
+      return theme.colors.tertiary500;
     }
-    return props.theme.colors.primary400;
+    return theme.colors.primary400;
   } else {
-    if (props.stepStatus === 'complete') {
-      return props.theme.colors.primary500;
+    if (stepStatus === StepStatus.complete) {
+      return theme.colors.primary500;
     }
-    return props.theme.colors.neutral300;
+    return theme.colors.neutral300;
   }
 }
 
@@ -81,21 +87,15 @@ const StyledStepper = styled.div<StepperProps>`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: ${props =>
-    props.summaryView ||
-    props.hideLabels ||
-    (props.hasBreakpoint && BreakPointStyle.summaryView) ||
-    (props.hasBreakpoint && BreakPointStyle.hideLabels)
-      ? ''
-      : '0 40px'};
 `;
 
 const StyledStepContent = styled.div<StepperProps>`
   display: flex;
+  padding: ${props => (props.showLabelsLayout ? '0 40px' : '')};
 `;
 
 const StyledSeparator = styled.div<StepperProps>`
-  background: ${StepSeparatorBackgroundColors};
+  background: ${stepSeparatorBackgroundColors};
   width: 100%;
   height: 2px;
   top: 12px;
@@ -108,7 +108,12 @@ const StyledSummary = styled.div<StepperProps>`
   display: flex;
   flex-direction: column;
   top: 14px;
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  font-size: ${props =>
+    props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
+  letter-spacing: ${props =>
+    props.theme.typographyVisualStyles.bodySmall.desktop.letterSpacing};
+  line-height: ${props =>
+    props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight};
   color: ${props =>
     props.isInverse
       ? transparentize(0.3, props.theme.colors.neutral100)
@@ -127,64 +132,82 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
   (props, ref) => {
     const {
       breakpoint,
-      breakpointStyle,
+      breakpointLayout,
       children,
       currentStep,
-      stepDescriptionLabel,
+      layout = StepperLayout.showLabels,
+      customStepLabel,
       isInverse: isInverseProp,
-      hideLabels,
-      summaryView,
       testId,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
+    const i18n = React.useContext(I18nContext);
     const isInverse = useIsInverse(isInverseProp);
 
-    let [breakPointHideLabels, setBreakPointHideLabels] = React.useState(false);
-    let [breakPointSummaryView, setBreakPointSummaryView] =
-      React.useState(false);
+    // Controls the varying layouts with a set breakpoint number between a breakpointLayout type and / or a layout type.
 
-    // Breakpoint states when a specific breakpoint number is set, then a breakpointStyle which results in the removal of all text or the summary view.
+    let [showLabelsLayout, setShowLabelsLayout] = React.useState(false);
+    let [hideLabelsLayout, setHideLabelsLayout] = React.useState(false);
+    let [summaryViewLayout, setSummaryViewLayout] = React.useState(false);
+
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-
-    const hasBreakpoint = breakpoint > windowWidth;
-    const beyondBreakpoint = breakpoint < windowWidth;
 
     React.useEffect(() => {
       function handleResize() {
         setWindowWidth(window.innerWidth);
+        if (window.innerWidth < breakpoint && breakpoint) {
+          if (layout === StepperLayout.showLabels) {
+            setShowLabelsLayout(false);
+          } else if (layout === StepperLayout.hideLabels) {
+            setHideLabelsLayout(false);
+          } else if (layout === StepperLayout.summaryView) {
+            setSummaryViewLayout(false);
+          }
+          if (breakpointLayout === StepperLayout.showLabels) {
+            setShowLabelsLayout(true);
+          } else if (breakpointLayout === StepperLayout.hideLabels) {
+            setHideLabelsLayout(true);
+          } else if (breakpointLayout === StepperLayout.summaryView) {
+            setSummaryViewLayout(true);
+          }
+        }
+        if (window.innerWidth > breakpoint || !breakpoint) {
+          if (breakpointLayout === StepperLayout.showLabels) {
+            setShowLabelsLayout(false);
+          } else if (breakpointLayout === StepperLayout.hideLabels) {
+            setHideLabelsLayout(false);
+          } else if (breakpointLayout === StepperLayout.summaryView) {
+            setSummaryViewLayout(false);
+          }
+          if (layout === StepperLayout.showLabels) {
+            setShowLabelsLayout(true);
+          } else if (layout === StepperLayout.hideLabels) {
+            setHideLabelsLayout(true);
+          } else if (layout === StepperLayout.summaryView) {
+            setSummaryViewLayout(true);
+          }
+        }
+        if (showLabelsLayout) {
+          setHideLabelsLayout(false);
+          setSummaryViewLayout(false);
+        } else if (hideLabelsLayout) {
+          setShowLabelsLayout(false);
+          setSummaryViewLayout(false);
+        } else if (summaryViewLayout) {
+          setShowLabelsLayout(false);
+          setHideLabelsLayout(false);
+        }
       }
+
       window.addEventListener('resize', handleResize);
       handleResize();
 
-      if (hasBreakpoint && breakpointStyle === BreakPointStyle.summaryView) {
-        setBreakPointSummaryView(true);
-      } else if (
-        hasBreakpoint &&
-        breakpointStyle === BreakPointStyle.hideLabels
-      ) {
-        setBreakPointHideLabels(true);
-      } else if (
-        (beyondBreakpoint && breakpointStyle === BreakPointStyle.hideLabels) ||
-        (beyondBreakpoint && BreakPointStyle.summaryView)
-      ) {
-        setBreakPointSummaryView(false);
-        setBreakPointHideLabels(false);
-      }
-
       return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    // Sets aria-current based on the active step, else false.
-    const ariaCurrent = index => {
-      if (currentStep === index) {
-        return true;
-      }
-      return false;
-    };
+    }, [windowWidth]);
 
     // Step states
-    const steps = React.Children.toArray(children);
+    const step = React.Children.toArray(children);
 
     const Steps = React.Children.map(
       children,
@@ -201,19 +224,19 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
-            'aria-current': ariaCurrent(index),
+            'aria-current': currentStep === index,
             children: currentStep === index ? child : null,
             key: index,
             isInverse: isInverse,
-            hideLabels: breakPointHideLabels ? true : hideLabels,
-            summaryView: summaryView || breakPointSummaryView,
+            hasHideLabels: hideLabelsLayout,
+            hasSummaryView: summaryViewLayout,
             stepStatus: stepStatusStyles,
           });
 
           return (
             <>
               {item}
-              {index !== steps.length - 1 && (
+              {index !== step.length - 1 && (
                 <StyledSeparator
                   isInverse={isInverse}
                   stepStatus={stepStatusStyles}
@@ -244,68 +267,53 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           currentStep <= index
         ) {
           return child;
-        } else if (
-          // Retains last Step label and description
-          item.type === Step &&
-          currentStep >= +Steps.length &&
-          currentStep <= index + 1
-        ) {
-          return child;
         }
       }
     );
 
     // Final step description
-    const completedStepDescription = props.completedStepDescription
-      ? props.completedStepDescription
-      : 'Steps Completed';
+    const completionLabel = props.completionLabel
+      ? props.completionLabel
+      : i18n.stepper.completionLabel;
 
     // Shows both the step count out of total steps and the step label, allows for customization of the step title.
     const stepSummary = (
       <StyledSummary
         data-testid="stepper summary"
         isInverse={isInverse}
-        summaryView={summaryView}
+        layout={layout}
         theme={theme}
       >
-        {currentStep < steps.length
-          ? stepDescriptionLabel
-            ? `${stepDescriptionLabel} ${currentStep + 1} of ${steps.length}`
-            : `Step 
-          ${currentStep + 1} of ${steps.length}`
-          : completedStepDescription}
+        {currentStep < step.length
+          ? customStepLabel
+            ? `${customStepLabel} ${currentStep + 1} of ${step.length}`
+            : `${i18n.stepper.stepLabel} 
+          ${currentStep + 1} of ${step.length}`
+          : completionLabel}
         {StepLabels}
       </StyledSummary>
     );
 
-    // Shows summary view via the summaryView prop or the breakpointStyle of BreakPointStyle.summaryView
-    function isSummaryView() {
-      if (
-        (summaryView && !breakPointHideLabels && !hideLabels) ||
-        breakPointSummaryView
-      ) {
-        return stepSummary;
-      }
-    }
-
     return (
       <>
         <StyledStepper
+          {...rest}
           breakpoint={breakpoint}
-          breakpointStyle={breakpointStyle}
-          hasBreakpoint={hasBreakpoint}
+          breakpointLayout={breakpointLayout}
           currentStep={currentStep}
-          stepDescriptionLabel={stepDescriptionLabel}
-          data-testid={props.testId}
-          hideLabels={hideLabels}
-          summaryView={summaryView}
+          data-testid={testId}
+          layout={layout}
           isInverse={isInverse}
           ref={ref}
+          customStepLabel={customStepLabel}
           theme={theme}
-          {...rest}
         >
-          <StyledStepContent>{Steps}</StyledStepContent>
-          <StyledStepContent>{isSummaryView()}</StyledStepContent>
+          <StyledStepContent showLabelsLayout={showLabelsLayout}>
+            {Steps}
+          </StyledStepContent>
+          <StyledStepContent>
+            {summaryViewLayout && stepSummary}
+          </StyledStepContent>
         </StyledStepper>
       </>
     );
