@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.7-next.3
+
+### Patch Changes
+
+- 0a0ca608b: docs: Fix `TypeError: styled.h1 is not a function` errors
+
 ## 5.0.7-next.2
 
 ### Patch Changes
