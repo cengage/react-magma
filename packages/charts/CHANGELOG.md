@@ -1,5 +1,6 @@
 # @react-magma/charts
 
+## 6.1.0
 
 ## 4.0.0-next.0
 

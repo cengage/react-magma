@@ -1,5 +1,30 @@
 # Change Log
 
+## 5.0.4
+
+### Patch Changes
+
+- a0c869034: docs: Fix `TypeError: styled.h1 is not a function` errors
+- a0c869034: chore: Fix storybook
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+- Updated dependencies [a0c869034]
+  - react-magma-dom@3.7.0
+  - @react-magma/charts@6.1.0
+  - @react-magma/dropzone@4.0.0
+  - @react-magma/schema-renderer@4.0.0
+  - @cengage-patterns/header@6.0.0
+
 ## 5.0.4-next.2
 
 ### Patch Changes
