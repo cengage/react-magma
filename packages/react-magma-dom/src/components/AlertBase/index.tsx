@@ -314,7 +314,7 @@ const IconWrapperStyles = css`
   margin-right: 1px;
 `;
 
-const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
+const IconWrapper = typedStyled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
     props.theme.spaceScale.spacing04};
