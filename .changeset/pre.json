@@ -12,6 +12,7 @@
   },
   "changesets": [
     "chore-sync",
+    "docs-styles",
     "input-wrapperStyle",
     "toast-docs"
   ]
