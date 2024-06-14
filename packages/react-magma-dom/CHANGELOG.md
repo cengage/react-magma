@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.4.1-next.1
+
+### Patch Changes
+
+- cd101c769: fix(Hyperlink): Support Icons and toggling underline styling
+
 ## 4.4.1-next.0
 
 ### Patch Changes
