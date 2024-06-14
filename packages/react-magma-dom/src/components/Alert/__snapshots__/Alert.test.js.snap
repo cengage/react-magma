@@ -355,7 +355,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -368,12 +368,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -397,7 +397,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -407,23 +407,23 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #7F1714;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #D32821;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
@@ -461,7 +461,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -474,12 +474,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -503,7 +503,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -513,23 +513,23 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #7F1714;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #D32821;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FDEFEE;
   border: 1px solid #D32821;
   border-radius: 8px;
@@ -543,15 +543,15 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 <div>
   <div
-    class="emotion-4"
+    class="emotion-3"
     id="auto-generated-id"
     tabindex="-1"
   >
     <div
-      class="emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-0"
       >
         <svg
           class="icon"
@@ -568,7 +568,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-2"
+        class="emotion-1"
       >
         <span>
           Test Alert Text
@@ -580,7 +580,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 `;
 
 exports[`Alert Variants should render an alert with info variant 1`] = `
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -604,7 +604,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -614,23 +614,23 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
@@ -668,7 +668,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -681,12 +681,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -710,7 +710,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -720,23 +720,23 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
@@ -774,7 +774,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -787,22 +787,22 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
 <div>
   <div
-    class="emotion-4"
+    class="emotion-3"
     id="auto-generated-id"
     tabindex="-1"
   >
     <div
-      class="emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-0"
       >
         <svg
           class="icon"
@@ -819,7 +819,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-2"
+        class="emotion-1"
       >
         <span>
           Test Alert Text
@@ -857,7 +857,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -870,12 +870,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -899,7 +899,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -909,23 +909,23 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #6E340E;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #AD5115;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FCEEE5;
   border: 1px solid #AD5115;
   border-radius: 8px;
@@ -963,7 +963,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -976,12 +976,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -1005,7 +1005,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -1015,23 +1015,23 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #6E340E;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #AD5115;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #FCEEE5;
   border: 1px solid #AD5115;
   border-radius: 8px;
@@ -1045,15 +1045,15 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 <div>
   <div
-    class="emotion-4"
+    class="emotion-3"
     id="auto-generated-id"
     tabindex="-1"
   >
     <div
-      class="emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-0"
       >
         <svg
           class="icon"
@@ -1070,7 +1070,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-2"
+        class="emotion-1"
       >
         <span>
           Test Alert Text
@@ -1082,7 +1082,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 `;
 
 exports[`Alert should render an alert with default variant 1`] = `
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -1106,7 +1106,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -1116,23 +1116,23 @@ exports[`Alert should render an alert with default variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
@@ -1170,7 +1170,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -1183,12 +1183,12 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
-.emotion-4 {
+.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -1212,7 +1212,7 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-4 {
+  .emotion-3 {
     font-size: 14px;
     -webkit-letter-spacing: .16px;
     -moz-letter-spacing: .16px;
@@ -1222,23 +1222,23 @@ exports[`Alert should render an alert with default variant 1`] = `
   }
 }
 
-.emotion-4:focus {
+.emotion-3:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-4 a {
+.emotion-3 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-4 a:not([disabled]):focus,
-.emotion-4 a:not([disabled]):hover {
+.emotion-3 a:not([disabled]):focus,
+.emotion-3 a:not([disabled]):hover {
   color: #0074B7;
 }
 
-.emotion-3 {
+.emotion-2 {
   background: #E8F5FC;
   border: 1px solid #0074B7;
   border-radius: 8px;
@@ -1276,7 +1276,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   }
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -1289,22 +1289,22 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 @media (max-width:600px) {
-  .emotion-2 {
+  .emotion-1 {
     padding-left: 0;
   }
 }
 
 <div>
   <div
-    class="emotion-4"
+    class="emotion-3"
     id="defaultVariant"
     tabindex="-1"
   >
     <div
-      class="emotion-3"
+      class="emotion-2"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-0"
       >
         <svg
           class="icon"
@@ -1321,7 +1321,7 @@ exports[`Alert should render an alert with default variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-2"
+        class="emotion-1"
       >
         <span>
           Test Alert Text
