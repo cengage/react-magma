@@ -165,24 +165,5 @@ const ErrorTemplate: Story<StepperProps> = args => {
 export const Default = Template.bind({});
 Default.args = {};
 
-// export const HideLabelsWithBreakpointSummaryView = Template.bind({});
-// HideLabelsWithBreakpointSummaryView.args = {
-//   layout: StepperLayout.hideLabels,
-//   breakpoint: 1000,
-//   breakpointLayout: StepperLayout.summaryView,
-// };
-
-// export const BreakpointSummaryView = Template.bind({});
-// BreakpointSummaryView.args = {
-//   breakpoint: 1000,
-//   breakpointLayout: StepperLayout.summaryView,
-// };
-
-// export const BreakpointHideLabels = Template.bind({});
-// BreakpointHideLabels.args = {
-//   breakpoint: 1000,
-//   breakpointLayout: StepperLayout.hideLabels,
-// };
-
 export const WithError = ErrorTemplate.bind({});
 Default.args = {};
