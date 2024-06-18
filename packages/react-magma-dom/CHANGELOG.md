@@ -1,38 +1,10 @@
+
 ## 3.8.0
 
 ### Minor Changes
 
 - fa9662d1c: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
 - fa9662d1c: feat(TreeView): New TreeView & TreeItem components
-
-## 3.6.0-next.3
-
-### Minor Changes
-
-- 6cc99c6de: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-- 6cc99c6de: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
-
-### Patch Changes
-
-- 9b76cb2fb: fix(DropdownExpandableMenuListItem): Add `role="menuitem"`
-- 9b76cb2fb: fix(DropdownContent): Handle `false` as child
-- 9b76cb2fb: fix(DatePicker): Escape key only closes the panel
-- 9b76cb2fb: fix(Dropdown): Fixes from QA review of the Dropdown Expandable sub component disabled states.
-- 9b76cb2fb: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-- 9b76cb2fb: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
-- 9b76cb2fb: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
-- 9b76cb2fb: fix(PasswordInput): Update placement of Show/Hide button on Large input size
-- 9b76cb2fb: fix(RadioGroup): Radio Group label is now a span to improve a11y
-- 9b76cb2fb: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
-- 9b76cb2fb: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
-- 9b76cb2fb: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
-- 9b76cb2fb: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
-
-## 3.5.1-next.2
-
-### Patch Changes
-
-- 7c8a9f5ad: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field.
 
 ### Patch Changes
 
@@ -64,51 +36,6 @@
 
 ## 3.6.0
 
-## 3.7.0-next.1
-
-### Minor Changes
-
-- 825338660: feat(Tabs): Please note that this component is in beta. Use at your own risk. Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI.
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): Refactor prop names
-- 825338660: feat(TreeView): TreeView & TreeItem style updates
-- 825338660: feat(TreeView): New TreeView & TreeItem components
-
-### Patch Changes
-
-- 825338660: chore: Update nvm to v16.20.2
-- 825338660: fix(Search): Reset the value for clearable search when the X is click…
-- 825338660: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date
-- 825338660: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
-- 825338660: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid per ticket: https://github.com/cengage/react-magma/issues/1201
-- 825338660: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
-- 825338660: fix(Select/Combobox): Update event types
-- 825338660: feat(modal): Added new isModalClosingControlledManually property that allows handling closing the modal on the consumer side
-- 825338660: fix(NativeSelect): Fix issue with data-testid
-- 825338660: fix(TimePicker): Returns empty when backspace is pressed
-- 825338660: feat(TimePicker): Added opportunity to clear Timepicker
-- 825338660: build: Update references to \_styled
-
-## 3.7.0-next.0
-
-### Minor Changes
-
-- dc443a912: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
-- ef243baf1: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
-- 8f09b0e45: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
-
-### Patch Changes
-
-- 498c1fd5a: Adding in chartColors to theme.
-- cf4ba4d4b: fix: Updates to the expressive font styles for both desktop and mobile.
-- dfbee0b3a: fix(Modal): Fixed bottom padding on the Modal header.
-- 049a124db: fix(Modal): Fixed Storybook Inverse example.
-
 ### Minor Changes
 
 - 6cc99c6de: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
@@ -131,16 +58,6 @@
 - 6cc99c6de: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
 
 ## 3.5.1
-
-### Patch Changes
-
-- e8c968bb8: fix(CharacterCounter): Add `ref` to Character Counter. Removes related test console warning.
-- 1c91ac394: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
-  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
-
-## 3.5.0
-
-## 3.5.1-next.0
 
 ### Patch Changes
 
