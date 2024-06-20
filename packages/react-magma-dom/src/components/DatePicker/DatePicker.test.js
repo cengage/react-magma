@@ -509,14 +509,12 @@ describe('Date Picker', () => {
       key: 'Escape',
       code: 27,
     });
-
     setTimeout(() => {
       expect(getByTestId('calendarContainer')).toHaveStyleRule(
         'display',
         'none'
       );
     }, 500);
-
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 

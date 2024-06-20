@@ -1,36 +1,25 @@
-## 3.6.0
-
-## 3.7.0-next.1
+## 3.8.0
 
 ### Minor Changes
 
-- 825338660: feat(Tabs): Please note that this component is in beta. Use at your own risk. Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI.
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): TreeView & TreeItem updates
-- 825338660: feat(TreeView): Refactor prop names
-- 825338660: feat(TreeView): TreeView & TreeItem style updates
-- 825338660: feat(TreeView): New TreeView & TreeItem components
+- fa9662d1c: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
+- fa9662d1c: feat(TreeView): New TreeView & TreeItem components
 
 ### Patch Changes
 
-- 825338660: chore: Update nvm to v16.20.2
-- 825338660: fix(Search): Reset the value for clearable search when the X is click…
-- 825338660: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date
-- 825338660: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
-- 825338660: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid per ticket: https://github.com/cengage/react-magma/issues/1201
-- 825338660: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
-- 825338660: fix(Select/Combobox): Update event types
-- 825338660: feat(modal): Added new isModalClosingControlledManually property that allows handling closing the modal on the consumer side
-- 825338660: fix(NativeSelect): Fix issue with data-testid
-- 825338660: fix(TimePicker): Returns empty when backspace is pressed
-- 825338660: feat(TimePicker): Added opportunity to clear Timepicker
-- 825338660: build: Update references to \_styled
+- fa9662d1c: chore: Update nvm to `v16.20.2`
+- fa9662d1c: fix(Search): Reset the value for clearable search when the X is clicked
+- fa9662d1c: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date.
+- fa9662d1c: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
+- fa9662d1c: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid
+- fa9662d1c: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
+- fa9662d1c: feat(modal): Added new `isModalClosingControlledManually` property that allows handling closing the modal on the consumer side
+- fa9662d1c: fix(NativeSelect): Fix issue with data-testid
+- fa9662d1c: fix(TimePicker): Returns empty when backspace is pressed
+- fa9662d1c: feat(TimePicker): Added support for clearing Timepicker
+- fa9662d1c: build: Update references to \_styled
 
-## 3.7.0-next.0
+## 3.7.0
 
 ### Minor Changes
 
@@ -40,10 +29,11 @@
 
 ### Patch Changes
 
-- 498c1fd5a: Adding in chartColors to theme.
-- cf4ba4d4b: fix: Updates to the expressive font styles for both desktop and mobile.
-- dfbee0b3a: fix(Modal): Fixed bottom padding on the Modal header.
-- 049a124db: fix(Modal): Fixed Storybook Inverse example.
+- 421b9091a: fix(Modal): Fixed bottom padding on the Modal header
+- 1fb88b6fc: fix: Updates to the expressive font styles for both desktop and mobile
+- fc3098851: build(deps): bump browserify-sign from 4.2.1 to 4.2.2
+
+## 3.6.0
 
 ### Minor Changes
 
@@ -65,6 +55,14 @@
 - 6cc99c6de: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
 - 6cc99c6de: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
 - 6cc99c6de: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
+
+## 3.5.1
+
+### Patch Changes
+
+- e8c968bb8: fix(CharacterCounter): Add `ref` to Character Counter. Removes related test console warning.
+- 1c91ac394: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
+  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
 
 ## 3.5.0
 
@@ -96,6 +94,26 @@
 **We accidentally skipped version 3.4.0. Please use 3.5.0 instead**
 
 ## 3.3.0
+
+### Minor Changes
+
+- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- 17fc12212: feat(toggleButton): New Toggle Button component.
+- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+  Deprecations: dropdownDropDirection prop is now deprecated
+
+### Patch Changes
+
+- 17fc12212: Set fallback font-family for all components.
+- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- 17fc12212: chore: Fix broken build
+- 17fc12212: chore: Fixed warnings in the console.
+- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 17fc12212: fix(heading): Fix error that "Property 'css' is missing"
+- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 17fc12212: fix(toggleButton): Fix hover states
+
+## 3.5.0
 
 ### Minor Changes
 

@@ -1,5 +1,24 @@
 # Change Log
 
+## 5.0.5
+
+### Patch Changes
+
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+  - react-magma-dom@3.8.0
+
 ## 5.0.4-next.2
 
 ### Patch Changes
