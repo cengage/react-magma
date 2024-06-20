@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.4-next.1
+
+### Patch Changes
+
+- 88b7fd1f7: fix: Remove card with version `^15.0.0`
+
 ## 1.1.4-next.0
 
 ### Patch Changes
