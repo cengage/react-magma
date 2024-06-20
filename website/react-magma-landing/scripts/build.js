@@ -33,10 +33,12 @@ const versionsByReactDependency = ({ versions, time, tags }) => {
 
   var versionsByReactDep = new Map();
   allVersions.forEach(versionObj => {
-    if (!versionsByReactDep.has(versionObj?.reactDependency)) {
-      versionsByReactDep.set(versionObj?.reactDependency, []);
+    if (!versionObj?.reactDependency.includes('^15.0.0')) {
+      if (!versionsByReactDep.has(versionObj?.reactDependency)) {
+        versionsByReactDep.set(versionObj?.reactDependency, []);
+      }
+      versionsByReactDep.get(versionObj?.reactDependency).push(versionObj);
     }
-    versionsByReactDep.get(versionObj?.reactDependency).push(versionObj);
   });
 
   const latestVersions = [];
