@@ -44,7 +44,7 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Index of total Steps.
    */
-  index?: number;
+  numberOfSteps?: number;
   /**
    * Inverse styling.
    */

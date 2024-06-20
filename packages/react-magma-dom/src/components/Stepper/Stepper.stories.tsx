@@ -48,7 +48,7 @@ export default {
         type: 'boolean',
       },
     },
-    index: {
+    numberOfSteps: {
       control: {
         type: 'number',
       },
@@ -60,7 +60,7 @@ const Template: Story<StepperProps> = args => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const handleOnNext = () => {
-    if (currentStep <= args.index) {
+    if (currentStep <= args.numberOfSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -70,12 +70,12 @@ const Template: Story<StepperProps> = args => {
     }
   };
   const handleFinish = () => {
-    if (currentStep === args.index) {
+    if (currentStep === args.numberOfSteps) {
       setCurrentStep(0);
     }
   };
 
-  const steps = args.index;
+  const steps = args.numberOfSteps;
 
   const step = [...Array(steps)].map((_, i) => {
     ++i;
@@ -102,7 +102,7 @@ const Template: Story<StepperProps> = args => {
         }}
       >
         <div>
-          {currentStep < args.index
+          {currentStep < args.numberOfSteps
             ? `Step Content ${currentStep + 1}`
             : `Steps Completed`}
         </div>
@@ -112,9 +112,11 @@ const Template: Story<StepperProps> = args => {
         <ButtonGroup>
           <Button onClick={handleOnPrevious}>Previous</Button>
           <Button
-            onClick={currentStep < args.index ? handleOnNext : handleFinish}
+            onClick={
+              currentStep < args.numberOfSteps ? handleOnNext : handleFinish
+            }
           >
-            {currentStep < args.index ? 'Next' : 'Finish'}
+            {currentStep < args.numberOfSteps ? 'Next' : 'Finish'}
           </Button>
         </ButtonGroup>
       </Container>
