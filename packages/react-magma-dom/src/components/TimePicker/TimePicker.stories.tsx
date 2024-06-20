@@ -82,7 +82,7 @@ export const Events = () => {
         value={timeValue}
       />
       <br />
-      <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
+      <Button onClick={() => setTimeValue(undefined)}>Clear Time</Button>
     </>
   );
 };
