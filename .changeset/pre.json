@@ -4,26 +4,11 @@
   "initialVersions": {
     "@react-magma/charts": "6.1.0",
     "@react-magma/dropzone": "4.0.0",
-    "react-magma-dom": "3.7.0",
+    "react-magma-dom": "3.8.0",
     "@react-magma/schema-renderer": "4.0.0",
     "@cengage-patterns/header": "6.0.0",
     "react-magma-docs": "5.0.4",
     "react-magma-landing": "1.1.3"
   },
-  "changesets": [
-    "chore-node",
-    "cold-birds-appear",
-    "datePicker-focus",
-    "feat-tabsScrollSpy",
-    "fix-BadgeHeight",
-    "fix-NativeSelectPagination",
-    "fix-datagrid",
-    "modal-isModalClosingControlledManually",
-    "nativeSelect-testId",
-    "storybook-global",
-    "time-picker-onchange",
-    "timepicker-add-clearable-option",
-    "treeview",
-    "two-spoons-poke"
-  ]
+  "changesets": []
 }
