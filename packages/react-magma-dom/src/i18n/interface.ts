@@ -263,6 +263,7 @@ export interface I18nInterface {
   stepper: {
     completionLabel: string;
     stepLabel: string;
+    stepOfLabel: string;
   };
   table: {
     pagination: {

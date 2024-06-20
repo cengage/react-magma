@@ -50,12 +50,14 @@ describe('Stepper', () => {
 
     it('should use the step label', () => {
       const stepLabel = 'Steppin';
+      const stepOfLabel = 'of';
       const { getByText } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
             stepper: {
               stepLabel,
+              stepOfLabel,
             },
           }}
         >
@@ -346,7 +348,7 @@ describe('Stepper', () => {
           </Stepper>
         );
 
-        expect(getByTestId(`stepper summary`)).toBeVisible();
+        expect(getByTestId(`${testId}-stepper summary`)).toBeVisible();
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });
 
@@ -391,7 +393,7 @@ describe('Stepper', () => {
           global.innerWidth = 1400;
           global.dispatchEvent(new Event('resize'));
         });
-        expect(getByTestId(`stepper summary`)).toBeVisible();
+        expect(getByTestId(`${testId}-stepper summary`)).toBeVisible();
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });
     });

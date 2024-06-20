@@ -3,6 +3,7 @@ import { Button } from '../Button';
 import { Stepper, StepperProps, Step, StepperLayout } from './';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Container } from '../Container';
+import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   title: 'Stepper',
@@ -47,6 +48,11 @@ export default {
         type: 'boolean',
       },
     },
+    index: {
+      control: {
+        type: 'number',
+      },
+    },
   },
 } as Meta;
 
@@ -54,7 +60,7 @@ const Template: Story<StepperProps> = args => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const handleOnNext = () => {
-    if (currentStep !== 4) {
+    if (currentStep <= args.index) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -64,18 +70,27 @@ const Template: Story<StepperProps> = args => {
     }
   };
   const handleFinish = () => {
-    if (currentStep === 4) {
+    if (currentStep === args.index) {
       setCurrentStep(0);
     }
   };
 
+  const steps = args.index;
+
+  const step = [...Array(steps)].map((_, i) => {
+    ++i;
+    return (
+      <Step
+        label={`Step ${i}`}
+        secondaryLabel={`Description area in secondaryLabel component ${i}`}
+      />
+    );
+  });
+
   return (
     <>
       <Stepper currentStep={currentStep} {...args}>
-        <Step label="First Step" secondaryLabel="Description One" />
-        <Step label="Second Step" secondaryLabel="Description Two" />
-        <Step label="Third Step" secondaryLabel="Description Three" />
-        <Step label="Fourth Step" secondaryLabel="Description Four" />
+        {step}
       </Stepper>
 
       <Container
@@ -86,39 +101,28 @@ const Template: Story<StepperProps> = args => {
           padding: '20px',
         }}
       >
-        {currentStep === 0 && <div>Step Content One</div>}
-        {currentStep === 1 && <div>Step Content Two</div>}
-        {currentStep === 2 && <div>Step Content Three</div>}
-        {currentStep === 3 && <div>Step Content Four</div>}
-        {currentStep === 4 && <div>Steps Completed</div>}
+        <div>
+          {currentStep < args.index
+            ? `Step Content ${currentStep + 1}`
+            : `Steps Completed`}
+        </div>
       </Container>
 
       <Container style={{ padding: '20px 0' }}>
-        <Button style={{ marginRight: '4px' }} onClick={handleOnPrevious}>
-          Previous
-        </Button>
-        <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
-          {currentStep >= 4 ? 'Finish' : 'Next'}
-        </Button>
+        <ButtonGroup>
+          <Button onClick={handleOnPrevious}>Previous</Button>
+          <Button
+            onClick={currentStep < args.index ? handleOnNext : handleFinish}
+          >
+            {currentStep < args.index ? 'Next' : 'Finish'}
+          </Button>
+        </ButtonGroup>
       </Container>
     </>
   );
 };
 
 const ErrorTemplate: Story<StepperProps> = args => {
-  const [currentStep, setCurrentStep] = React.useState(0);
-
-  const handleOnNext = () => {
-    if (currentStep !== 4) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-  const handleOnPrevious = () => {
-    if (currentStep !== 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
   return (
     <>
       <Stepper currentStep={2} {...args}>
@@ -147,16 +151,10 @@ const ErrorTemplate: Story<StepperProps> = args => {
       </Container>
 
       <Container style={{ padding: '20px 0' }}>
-        <Button
-          disabled
-          style={{ marginRight: '4px' }}
-          onClick={handleOnPrevious}
-        >
-          Previous
-        </Button>
-        <Button disabled onClick={handleOnNext}>
-          {currentStep >= 4 ? 'Finish' : 'Next'}
-        </Button>
+        <ButtonGroup>
+          <Button disabled>Previous</Button>
+          <Button disabled>Next</Button>
+        </ButtonGroup>
       </Container>
     </>
   );

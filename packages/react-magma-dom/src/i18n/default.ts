@@ -279,6 +279,7 @@ export const defaultI18n: I18nInterface = {
   stepper: {
     completionLabel: 'All steps completed',
     stepLabel: 'Step',
+    stepOfLabel: 'of',
   },
   table: {
     pagination: {

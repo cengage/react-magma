@@ -1,6 +1,7 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 import { CheckIcon, CrossIcon } from 'react-magma-icons';
+import styled from '@emotion/styled';
+import { CreateStyled } from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -8,29 +9,22 @@ import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
-/**
- * @children required
- */
 export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Error state for each step
+   * Error state for each step.
    * @default false
    */
   hasError?: boolean;
   /**
    * @internal
    */
-  hasHideLabels?: boolean;
+  areLabelsVisible?: boolean;
   /**
-   * @internal
-   */
-  hasSummaryView?: boolean;
-  /**
-   * Label beneath each step
+   * Label beneath each step.
    */
   label?: string;
   /**
-   * Sub label beneath each step
+   * Sub label beneath each step.
    */
   secondaryLabel?: string;
   /**
@@ -61,25 +55,27 @@ export const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-function stepCircleOutlineColors(props: StepProps) {
-  if (props.isInverse && !props.hasError) {
-    if (props.stepStatus === StepStatus.active) {
-      return props.theme.colors.tertiary500;
-    } else if (props.stepStatus === StepStatus.incomplete) {
-      return props.theme.colors.primary400;
+function buildStepCircleOutlineColors(props) {
+  const { isInverse, stepStatus, hasError, theme } = props;
+
+  if (isInverse && !hasError) {
+    if (stepStatus === StepStatus.active) {
+      return theme.colors.tertiary500;
+    } else if (stepStatus === StepStatus.incomplete) {
+      return theme.colors.primary400;
     }
   } else {
-    if (!props.isInverse && !props.hasError) {
-      if (props.stepStatus === StepStatus.active) {
-        return props.theme.colors.primary500;
-      } else if (props.stepStatus === StepStatus.incomplete) {
-        return props.theme.colors.neutral300;
+    if (!isInverse && !hasError) {
+      if (stepStatus === StepStatus.active) {
+        return theme.colors.primary500;
+      } else if (stepStatus === StepStatus.incomplete) {
+        return theme.colors.neutral300;
       }
     }
   }
 }
 
-function stepCircleBackgroundColors(props: StepProps) {
+function buildStepCircleBackgroundColors(props) {
   const { isInverse, stepStatus, hasError, theme } = props;
   if (isInverse) {
     if (stepStatus === StepStatus.complete && !hasError) {
@@ -96,42 +92,54 @@ function stepCircleBackgroundColors(props: StepProps) {
   }
 }
 
-function stepLabelColors(props: StepProps) {
-  if (props.isInverse) {
-    if (props.label) {
-      return props.theme.colors.neutral100;
-    } else if (props.secondaryLabel) {
-      return transparentize(0.3, props.theme.colors.neutral100);
+function buildStepLabelColors(props) {
+  const { label, secondaryLabel, theme, isInverse } = props;
+
+  if (isInverse) {
+    if (label) {
+      return theme.colors.neutral100;
+    } else if (secondaryLabel) {
+      return transparentize(0.3, theme.colors.neutral100);
     }
   } else {
-    if (props.label) {
-      return props.theme.colors.neutral700;
-    } else if (props.secondaryLabel) {
-      return props.theme.colors.neutral500;
+    if (label) {
+      return theme.colors.neutral700;
+    } else if (secondaryLabel) {
+      return theme.colors.neutral500;
     }
   }
 }
 
-function stepSvgColors(props: StepProps) {
-  if (props.isInverse) {
-    if (props.hasError) {
-      return props.theme.colors.neutral100;
+function buildStepSvgColors(props) {
+  const { theme, hasError, isInverse } = props;
+  if (isInverse) {
+    if (hasError) {
+      return theme.colors.neutral100;
     }
-    return props.theme.colors.primary600;
+    return theme.colors.primary600;
   } else {
-    return props.theme.colors.neutral100;
+    return theme.colors.neutral100;
   }
 }
 
-const StyledStep = styled.div`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledStep = typedStyled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-self: self-start;
+  align-items: center;
+
 `;
 
-const StyledStepIndicator = styled.span<StepProps>`
+const StyledStepIndicator = styled.span<{
+  hasError?: boolean;
+  stepStatus?: StepStatus;
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,27 +150,31 @@ const StyledStepIndicator = styled.span<StepProps>`
     ${props =>
       (props.stepStatus === StepStatus.incomplete && !props.hasError) ||
       (props.stepStatus === StepStatus.active && !props.hasError)
-        ? stepCircleOutlineColors
+        ? buildStepCircleOutlineColors
         : 'none'};
-  background: ${stepCircleBackgroundColors};
+  background: ${buildStepCircleBackgroundColors};
   svg {
-    color: ${stepSvgColors};
+    color: ${buildStepSvgColors};
     width: ${props => props.theme.iconSizes.xSmall}px;
     height: ${props => props.theme.iconSizes.xSmall}px;
   }
 `;
 
-const StyledStepTextWrapper = styled.div`
+const StyledStepTextWrapper = typedStyled.div`
   flex: 1;
   display: flex;
   align-self: center;
   flex-direction: column;
   position: relative;
-  margin: 6px -10em 0;
+  margin: 6px 0;
 `;
 
-const StyledLabel = styled.span<StepProps>`
-  color: ${stepLabelColors};
+const StyledLabel = styled.span<{
+  isInverse?: boolean;
+  label?: string;
+  theme?: ThemeInterface;
+}>`
+  color: ${buildStepLabelColors};
   font-weight: 600;
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
@@ -172,24 +184,26 @@ const StyledLabel = styled.span<StepProps>`
     props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight};
 `;
 
-const StyledSecondaryLabel = styled.span<StepProps>`
-  color: ${stepLabelColors};
+const StyledSecondaryLabel = styled.span<{
+  isInverse?: boolean;
+  secondaryLabel?: string;
+  theme?: ThemeInterface;
+}>`
+  color: ${buildStepLabelColors};
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.fontSize};
   letter-spacing: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.letterSpacing};
   line-height: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight};
-  margin: 5px 0;
+  margin: 5px 12px;
 `;
 
 export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   (props, ref) => {
     const {
-      children,
       hasError,
-      hasHideLabels,
-      hasSummaryView,
+      areLabelsVisible,
       label,
       secondaryLabel,
       testId,
@@ -202,25 +216,28 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
 
     return (
       <StyledStep {...rest} ref={ref} data-testid={testId}>
-        {stepStatus && (
-          <StyledStepIndicator
-            hasError={hasError}
-            isInverse={isInverse}
-            stepStatus={stepStatus}
-            theme={theme}
-          >
-            {stepStatus === StepStatus.complete && !hasError && (
-              <CheckIcon aria-hidden="true" />
-            )}
-            {hasError && <CrossIcon aria-hidden="true" />}
-          </StyledStepIndicator>
-        )}
+        <StyledStepIndicator
+          hasError={hasError}
+          isInverse={isInverse}
+          stepStatus={stepStatus}
+          theme={theme}
+        >
+          {stepStatus === StepStatus.complete && !hasError && (
+            <CheckIcon aria-hidden="true" />
+          )}
+          {hasError && <CrossIcon aria-hidden="true" />}
+        </StyledStepIndicator>
 
         <StyledStepTextWrapper>
-          {!hasSummaryView && !hasHideLabels ? (
+          {!areLabelsVisible ? (
             <>
               {label && (
-                <StyledLabel label={label} isInverse={isInverse} theme={theme}>
+                <StyledLabel
+                  label={label}
+                  isInverse={isInverse}
+                  data-testId={testId}
+                  theme={theme}
+                >
                   {label}
                 </StyledLabel>
               )}
@@ -228,6 +245,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
                 <StyledSecondaryLabel
                   secondaryLabel={secondaryLabel}
                   isInverse={isInverse}
+                  data-testId={testId}
                   theme={theme}
                 >
                   {secondaryLabel}

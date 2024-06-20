@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { CreateStyled } from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -8,50 +9,46 @@ import { Step, StepProps, StepStatus } from './Step';
 import { transparentize } from 'polished';
 import { I18nContext } from '../../i18n';
 
-/**
- * @children required
- */
 export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
   testId?: string;
-  /*
-   * Custom number for specific breakpoint responsive styling
+  /**
+   * Custom number for responsive styling, uses a minimum 'breakpoint' width from the set number.
    */
   breakpoint?: number;
-  /*
+  /**
    * Changes the Stepper view for responsive layouts, needs a minimum 'breakpoint' number.
    */
   breakpointLayout?: StepperLayout;
-  /*
-   * Changes the Stepper view.
+  /**
+   * Sets the Stepper view
+   * @default StepperLayout.showLabels
    */
   layout?: StepperLayout;
-  /*
+  /**
    * Sets a custom label for the Step count # of #.
+   * @default 'Step'
    */
-  customStepLabel?: string;
-  /*
+  stepLabel?: string;
+  /**
    * Sets a custom label for the completed Step.
+   * @default 'All steps completed'
    */
   completionLabel?: string;
-  /*
-   * Current step value
+  /**
+   * Current step value.
    */
   currentStep?: number;
   /**
-   * @internal
+   * Index of total Steps.
    */
-  hasBreakpoint?: boolean;
-  /*
-   * Inverse styling
+  index?: number;
+  /**
+   * Inverse styling.
    */
   isInverse?: boolean;
-  /**
-   * @internal
-   */
-  showLabelsLayout?: boolean;
   /**
    * @internal
    */
@@ -68,7 +65,7 @@ export enum StepperLayout {
   summaryView = 'summaryView',
 }
 
-function stepSeparatorBackgroundColors(props: StepperProps) {
+function buildSeparatorBackgroundColors(props: StepperProps) {
   const { isInverse, theme, stepStatus } = props;
   if (isInverse) {
     if (stepStatus === StepStatus.complete) {
@@ -83,31 +80,48 @@ function stepSeparatorBackgroundColors(props: StepperProps) {
   }
 }
 
-const StyledStepper = styled.div<StepperProps>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledStepper = typedStyled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
 `;
 
-const StyledStepContent = styled.div<StepperProps>`
+const StyledStepContent = typedStyled.div<{
+  showLabelsLayout?: boolean;
+  theme?: ThemeInterface;
+}>`
   display: flex;
-  padding: ${props => (props.showLabelsLayout ? '0 40px' : '')};
+  
 `;
 
-const StyledSeparator = styled.div<StepperProps>`
-  background: ${stepSeparatorBackgroundColors};
-  width: 100%;
+const StyledWrapper = typedStyled.div`
+    position:relative;
+    flex:1;
+`;
+
+const StyledSeparator = typedStyled.div<{
+  isInverse?: boolean;
+  showLabelsLayout?: boolean;
+  stepStatus: StepStatus;
+  theme?: ThemeInterface;
+}>`
+  background: ${buildSeparatorBackgroundColors};
+  width: ${props => (props.showLabelsLayout ? 'calc(100% - 24px)' : '100%')};
   height: 2px;
-  top: 12px;
-  position: relative;
+  top: 11px;
+  left: ${props => (props.showLabelsLayout ? 'calc(50% + 12px)' : '')};
+  position: ${props => (props.showLabelsLayout ? 'absolute' : 'relative')};
   align-self: baseline;
   transition: all 0.4s ease;
 `;
 
-const StyledSummary = styled.div<StepperProps>`
+const StyledSummary = typedStyled.div<StepperProps>`
   display: flex;
   flex-direction: column;
-  top: 14px;
+  top: -5px;
+  position:relative;
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
   letter-spacing: ${props =>
@@ -118,13 +132,22 @@ const StyledSummary = styled.div<StepperProps>`
     props.isInverse
       ? transparentize(0.3, props.theme.colors.neutral100)
       : props.theme.colors.neutral500};
-  div > div {
-    margin: 4px 0 0 0;
-  }
   span {
     display: flex;
     text-align: left;
   }
+  div > span{
+    height: auto;
+  }
+  div div {
+    margin:3px 0;
+    span{
+      margin:0
+    }
+  }
+  div div span:last-child{
+    margin: 4px 0 0 0;
+  } 
 `;
 
 // Stepper!
@@ -136,7 +159,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       children,
       currentStep,
       layout = StepperLayout.showLabels,
-      customStepLabel,
+      stepLabel,
       isInverse: isInverseProp,
       testId,
       ...rest
@@ -147,9 +170,21 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
 
     // Controls the varying layouts with a set breakpoint number between a breakpointLayout type and / or a layout type.
 
-    let [showLabelsLayout, setShowLabelsLayout] = React.useState(false);
-    let [hideLabelsLayout, setHideLabelsLayout] = React.useState(false);
-    let [summaryViewLayout, setSummaryViewLayout] = React.useState(false);
+    const [showLabelsLayout, setShowLabelsLayout] = React.useState(false);
+    const [hideLabelsLayout, setHideLabelsLayout] = React.useState(false);
+    const [summaryViewLayout, setSummaryViewLayout] = React.useState(false);
+
+    React.useEffect(() => {
+      setHideLabelsLayout(layout === StepperLayout.hideLabels);
+      setShowLabelsLayout(layout === StepperLayout.showLabels);
+      setSummaryViewLayout(layout === StepperLayout.summaryView);
+    }, [layout]);
+
+    React.useEffect(() => {
+      setHideLabelsLayout(breakpointLayout === StepperLayout.hideLabels);
+      setShowLabelsLayout(breakpointLayout === StepperLayout.showLabels);
+      setSummaryViewLayout(breakpointLayout === StepperLayout.summaryView);
+    }, [breakpointLayout]);
 
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
@@ -157,36 +192,15 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       function handleResize() {
         setWindowWidth(window.innerWidth);
         if (window.innerWidth < breakpoint && breakpoint) {
-          if (layout === StepperLayout.showLabels) {
-            setShowLabelsLayout(false);
-          } else if (layout === StepperLayout.hideLabels) {
-            setHideLabelsLayout(false);
-          } else if (layout === StepperLayout.summaryView) {
-            setSummaryViewLayout(false);
-          }
-          if (breakpointLayout === StepperLayout.showLabels) {
-            setShowLabelsLayout(true);
-          } else if (breakpointLayout === StepperLayout.hideLabels) {
-            setHideLabelsLayout(true);
-          } else if (breakpointLayout === StepperLayout.summaryView) {
-            setSummaryViewLayout(true);
-          }
+          setShowLabelsLayout(breakpointLayout === StepperLayout.showLabels);
+          setHideLabelsLayout(breakpointLayout === StepperLayout.hideLabels);
+          setSummaryViewLayout(breakpointLayout === StepperLayout.summaryView);
         }
+
         if (window.innerWidth > breakpoint || !breakpoint) {
-          if (breakpointLayout === StepperLayout.showLabels) {
-            setShowLabelsLayout(false);
-          } else if (breakpointLayout === StepperLayout.hideLabels) {
-            setHideLabelsLayout(false);
-          } else if (breakpointLayout === StepperLayout.summaryView) {
-            setSummaryViewLayout(false);
-          }
-          if (layout === StepperLayout.showLabels) {
-            setShowLabelsLayout(true);
-          } else if (layout === StepperLayout.hideLabels) {
-            setHideLabelsLayout(true);
-          } else if (layout === StepperLayout.summaryView) {
-            setSummaryViewLayout(true);
-          }
+          setShowLabelsLayout(layout === StepperLayout.showLabels);
+          setHideLabelsLayout(layout === StepperLayout.hideLabels);
+          setSummaryViewLayout(layout === StepperLayout.summaryView);
         }
         if (showLabelsLayout) {
           setHideLabelsLayout(false);
@@ -207,9 +221,9 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     }, [windowWidth]);
 
     // Step states
-    const step = React.Children.toArray(children);
+    const stepLength = React.Children.toArray(children).length;
 
-    const Steps = React.Children.map(
+    const stepContent = React.Children.map(
       children,
       (
         child: React.ReactElement<React.PropsWithChildren<StepProps>>,
@@ -224,96 +238,89 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
-            'aria-current': currentStep === index,
-            children: currentStep === index ? child : null,
+            'aria-current': !showLabelsLayout ? currentStep === index : null,
             key: index,
             isInverse: isInverse,
-            hasHideLabels: hideLabelsLayout,
-            hasSummaryView: summaryViewLayout,
+            areLabelsVisible: hideLabelsLayout || summaryViewLayout,
             stepStatus: stepStatusStyles,
           });
 
-          return (
-            <>
-              {item}
-              {index !== step.length - 1 && (
+          const stepAndSeparator = () => {
+            return [
+              item,
+              index !== stepLength - 1 && (
                 <StyledSeparator
+                  key={`separator-${index}`}
                   isInverse={isInverse}
+                  showLabelsLayout={showLabelsLayout}
                   stepStatus={stepStatusStyles}
                   theme={theme}
                 />
-              )}
-            </>
+              ),
+            ];
+          };
+
+          const stepsAndSeparators = showLabelsLayout ? (
+            <StyledWrapper aria-current={currentStep === index}>
+              {stepAndSeparator()}
+            </StyledWrapper>
+          ) : (
+            <>{stepAndSeparator()}</>
           );
+
+          return stepsAndSeparators;
         }
       }
     );
 
     // When summaryView is set to true, this shows one step label and description at a time based on the active step below the Stepper component.
 
-    const StepLabels = React.Children.map(
-      children,
-      (
-        child: React.ReactElement<React.PropsWithChildren<StepProps>>,
-        index
-      ) => {
+    const getSummaryStepLabels = () =>
+      React.Children.map(children, (child, index) => {
         const item = child as React.ReactElement<
           React.PropsWithChildren<StepProps>
         >;
 
-        if (
-          item.type === Step &&
-          currentStep >= index &&
-          currentStep <= index
-        ) {
-          return child;
+        if (item.type === Step && currentStep === index) {
+          return item;
         }
-      }
-    );
+      });
 
     // Final step description
-    const completionLabel = props.completionLabel
-      ? props.completionLabel
-      : i18n.stepper.completionLabel;
-
-    // Shows both the step count out of total steps and the step label, allows for customization of the step title.
-    const stepSummary = (
-      <StyledSummary
-        data-testid="stepper summary"
-        isInverse={isInverse}
-        layout={layout}
-        theme={theme}
-      >
-        {currentStep < step.length
-          ? customStepLabel
-            ? `${customStepLabel} ${currentStep + 1} of ${step.length}`
-            : `${i18n.stepper.stepLabel} 
-          ${currentStep + 1} of ${step.length}`
-          : completionLabel}
-        {StepLabels}
-      </StyledSummary>
-    );
+    const completionLabel =
+      props.completionLabel || i18n.stepper.completionLabel;
 
     return (
       <>
         <StyledStepper
           {...rest}
-          breakpoint={breakpoint}
-          breakpointLayout={breakpointLayout}
-          currentStep={currentStep}
+          aria-label="progress"
+          role="contentinfo"
           data-testid={testId}
-          layout={layout}
-          isInverse={isInverse}
           ref={ref}
-          customStepLabel={customStepLabel}
-          theme={theme}
         >
-          <StyledStepContent showLabelsLayout={showLabelsLayout}>
-            {Steps}
+          <StyledStepContent showLabelsLayout={showLabelsLayout} theme={theme}>
+            {stepContent}
           </StyledStepContent>
-          <StyledStepContent>
-            {summaryViewLayout && stepSummary}
-          </StyledStepContent>
+          {summaryViewLayout && (
+            <StyledStepContent>
+              <StyledSummary
+                data-testid={testId && `${testId}-stepper summary`}
+                isInverse={isInverse}
+                theme={theme}
+              >
+                {currentStep < stepLength
+                  ? stepLabel
+                    ? `${stepLabel} ${currentStep + 1} ${
+                        i18n.stepper.stepOfLabel
+                      } ${stepLength}`
+                    : `${i18n.stepper.stepLabel} 
+          ${currentStep + 1} ${i18n.stepper.stepOfLabel} ${stepLength}`
+                  : completionLabel}
+                {getSummaryStepLabels()}
+              </StyledSummary>
+            </StyledStepContent>
+          )}
         </StyledStepper>
       </>
     );
