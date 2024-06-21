@@ -35,7 +35,7 @@ import styled, { CreateStyled } from '@emotion/styled';
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
-  accept?: string | string[];
+  accept?: Object;
   file: FilePreview;
   isInverse?: boolean;
   maxSize?: number;
@@ -320,7 +320,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               {file.errors.slice(0, 1).map(({ code, ...rest }) => {
                 const { header = '', message } = formatError(
                   { code, ...rest, ...i18n.dropzone.errors[code] },
-                  { accept, minSize, maxSize },
+                  { ...accept, minSize, maxSize },
                   i18n.dropzone.bytes
                 );
                 return (

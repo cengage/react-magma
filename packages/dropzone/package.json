@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "polished": "^3.2.0",
-    "react-dropzone": "11.3.2"
+    "react-dropzone": "14.2.3"
   },
   "devDependencies": {
     "@emotion/core": "^10.1.1",

@@ -88,11 +88,10 @@ describe('File Uploader', () => {
   });
 
   it('sets {accept} prop on the <input>', () => {
-    const accept = 'image/jpeg';
-    const { container } = render(<Dropzone accept={accept} />);
+    const { container } = render(<Dropzone accept={{ 'image/*': ['.jpg'] }} />);
 
     const input = container.querySelector('input');
-    expect(input).toHaveAttribute('accept', accept);
+    expect(input).toHaveAttribute('accept', "image/*,.jpg");
   });
 
   it('sets {multiple} prop on the <input>', () => {
@@ -134,7 +133,7 @@ describe('File Uploader', () => {
   it('border color changes for rejection', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
-    const ui = <Dropzone accept="image/*" testId={testId} />;
+    const ui = <Dropzone accept={{ 'image/*': ['.jpg'] }} testId={testId} />;
     const { getByTestId, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
@@ -277,7 +276,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles([images[0]]);
     const testId = 'testId';
 
-    const ui = <Dropzone accept={['.png']} testId={testId} />;
+    const ui = <Dropzone accept={{ 'image/*': ['.png'] }} testId={testId} />;
 
     const { getByTestId, getByRole, rerender } = render(ui);
 
@@ -295,7 +294,7 @@ describe('File Uploader', () => {
     const testId = 'testId';
 
     const ui = (
-      <Dropzone thumbnails={false} accept={['.png']} testId={testId} />
+      <Dropzone thumbnails={false} accept={{ 'image/*': ['.png'] }} testId={testId} />
     );
 
     const { getByTestId, queryByRole, rerender } = render(ui);
@@ -312,7 +311,7 @@ describe('File Uploader', () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
-    const ui = <Dropzone accept={['.png']} testId={testId} />;
+    const ui = <Dropzone accept={{ 'image/*': ['.png'] }} testId={testId} />;
 
     const { getByTestId, getByText, rerender } = render(ui);
 
