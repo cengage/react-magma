@@ -90,7 +90,7 @@ export const Default = (args: DropzoneProps) => {
     >
       <Dropzone
         {...args}
-        accept={['.png', '.jpg', '.svg']}
+        accept={{ 'image/*': ['.png', '.jpg', '.svg'] }}
         maxFiles={5}
         maxSize={1024 * 1024}
         onSendFile={onSendFile}
@@ -153,7 +153,7 @@ export const Image = (args: DropzoneProps) => {
       <Dropzone
         {...args}
         onSendFile={onSendFile}
-        accept={['image/*']}
+        accept={{ 'image/*': ['.png', '.jpg', '.svg'] }}
         helperMessage="Only Image files"
         sendFiles
         onDeleteFile={onDeleteFile}
@@ -196,7 +196,7 @@ export const Text = (args: DropzoneProps) => {
       <Dropzone
         {...args}
         onSendFile={onSendFile}
-        accept={['.txt', '.csv']}
+        accept={{ 'text/plain': ['.txt', '.csv'] }}
         helperMessage="Only TXT or CSV files"
         sendFiles
         onDeleteFile={onDeleteFile}
@@ -240,7 +240,7 @@ export const Csv = (args: DropzoneProps) => {
       <Dropzone
         {...args}
         onSendFile={onSendFile}
-        accept={['.csv']}
+        accept={{ 'text/plain': ['.csv'] }}
         helperMessage="Only CSV files"
         sendFiles
         onDeleteFile={onDeleteFile}
