@@ -13,7 +13,7 @@ const testId = 'test-id';
 
 describe('Stepper', () => {
   it('should find element by testId', () => {
-    const { getByTestId } = render(<Stepper testId={testId}>{TEXT}</Stepper>);
+    const { getByTestId } = render(<Stepper testId={testId}></Stepper>);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
@@ -24,6 +24,28 @@ describe('Stepper', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should use the default completion label', () => {
+    const { getByText } = render(
+      <Stepper currentStep={2} layout={StepperLayout.summaryView}>
+        <Step />
+        <Step />
+      </Stepper>
+    );
+
+    expect(getByText('All steps completed')).toBeInTheDocument();
+  });
+
+  it('should use the default step label', () => {
+    const { getByText } = render(
+      <Stepper currentStep={0} layout={StepperLayout.summaryView}>
+        <Step />
+        <Step />
+      </Stepper>
+    );
+
+    expect(getByText('Step 1 of 2')).toBeInTheDocument();
   });
 
   describe('i18n', () => {
@@ -134,7 +156,7 @@ describe('Stepper', () => {
     it('should have a primary label', () => {
       const { getByText } = render(
         <Stepper currentStep={1}>
-          <Step label={TEXT} hasError testId={testId} />
+          <Step label={TEXT} testId={testId} />
           <Step />
         </Stepper>
       );
@@ -336,7 +358,7 @@ describe('Stepper', () => {
         expect(label2).toHaveStyleRule('width', '1px');
       });
 
-      it('should only show one step label and description at a time along with a counter when using the prop summaryView', () => {
+      it('should only show one step label and description at a time along with a counter when layout is set to summaryView', () => {
         const { getByTestId } = render(
           <Stepper
             testId={testId}
@@ -348,8 +370,28 @@ describe('Stepper', () => {
           </Stepper>
         );
 
-        expect(getByTestId(`${testId}-stepper summary`)).toBeVisible();
+        expect(getByTestId(`${testId}-stepper-summary`)).toBeVisible();
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
+      });
+
+      it('should show labels when layout is set to showLabels', () => {
+        const { getByText } = render(
+          <Stepper layout={StepperLayout.showLabels} currentStep={0}>
+            <Step label={`${TEXT}-1`} />
+            <Step label={`${TEXT}-2`} />
+          </Stepper>
+        );
+        const label1 = getByText(`${TEXT}-1`);
+
+        expect(label1).toHaveStyleRule('color', magma.colors.neutral700);
+        expect(label1).toHaveStyleRule(
+          'font-size',
+          magma.typographyVisualStyles.bodySmall.desktop.fontSize
+        );
+        expect(label1).toHaveStyleRule(
+          'line-height',
+          magma.typographyVisualStyles.bodySmall.desktop.lineHeight
+        );
       });
 
       it('should hide labels when breakpointLayout is set to "hideLabels" if viewport is smaller than set breakpoint prop', () => {
@@ -377,6 +419,34 @@ describe('Stepper', () => {
         expect(label1).toHaveStyleRule('width', '1px');
       });
 
+      it('should show labels when breakpointLayout is set to "showLabels" if viewport is smaller than set breakpoint prop', () => {
+        const { getByText } = render(
+          <Stepper
+            breakpoint={1500}
+            breakpointLayout={StepperLayout.showLabels}
+            currentStep={0}
+          >
+            <Step label={`${TEXT}-1`} />
+            <Step label={`${TEXT}-2`} />
+          </Stepper>
+        );
+        act(() => {
+          global.innerWidth = 1400;
+          global.dispatchEvent(new Event('resize'));
+        });
+        const label1 = getByText(`${TEXT}-1`);
+
+        expect(label1).toHaveStyleRule('color', magma.colors.neutral700);
+        expect(label1).toHaveStyleRule(
+          'font-size',
+          magma.typographyVisualStyles.bodySmall.desktop.fontSize
+        );
+        expect(label1).toHaveStyleRule(
+          'line-height',
+          magma.typographyVisualStyles.bodySmall.desktop.lineHeight
+        );
+      });
+
       it('should show summaryView when breakpointStyle is set to "summaryView" if viewport is smaller than set breakpoint prop', () => {
         const { getByTestId } = render(
           <Stepper
@@ -393,7 +463,7 @@ describe('Stepper', () => {
           global.innerWidth = 1400;
           global.dispatchEvent(new Event('resize'));
         });
-        expect(getByTestId(`${testId}-stepper summary`)).toBeVisible();
+        expect(getByTestId(`${testId}-stepper-summary`)).toBeVisible();
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });
     });

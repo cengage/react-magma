@@ -42,17 +42,9 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   currentStep?: number;
   /**
-   * Index of total Steps.
-   */
-  numberOfSteps?: number;
-  /**
    * Inverse styling.
    */
   isInverse?: boolean;
-  /**
-   * @internal
-   */
-  stepStatus?: StepStatus;
   /**
    * @internal
    */
@@ -65,7 +57,7 @@ export enum StepperLayout {
   summaryView = 'summaryView',
 }
 
-function buildSeparatorBackgroundColors(props: StepperProps) {
+function buildSeparatorBackgroundColors(props) {
   const { isInverse, theme, stepStatus } = props;
   if (isInverse) {
     if (stepStatus === StepStatus.complete) {
@@ -135,6 +127,9 @@ const StyledSummary = typedStyled.div<StepperProps>`
   span {
     display: flex;
     text-align: left;
+  }
+  svg{
+    height:0;
   }
   div > span{
     height: auto;
@@ -260,15 +255,13 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             ];
           };
 
-          const stepsAndSeparators = showLabelsLayout ? (
+          return showLabelsLayout ? (
             <StyledWrapper aria-current={currentStep === index}>
               {stepAndSeparator()}
             </StyledWrapper>
           ) : (
             <>{stepAndSeparator()}</>
           );
-
-          return stepsAndSeparators;
         }
       }
     );
@@ -305,7 +298,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           {summaryViewLayout && (
             <StyledStepContent>
               <StyledSummary
-                data-testid={testId && `${testId}-stepper summary`}
+                data-testid={testId && `${testId}-stepper-summary`}
                 isInverse={isInverse}
                 theme={theme}
               >

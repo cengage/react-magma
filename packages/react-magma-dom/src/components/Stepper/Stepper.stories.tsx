@@ -1,9 +1,14 @@
 import React from 'react';
+import { ComponentProps } from 'react';
 import { Button } from '../Button';
-import { Stepper, StepperProps, Step, StepperLayout } from './';
+import { Stepper, Step, StepperLayout } from './';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Container } from '../Container';
 import { ButtonGroup } from '../ButtonGroup';
+
+type CustomStepProps = ComponentProps<typeof Stepper> & {
+  numberOfSteps: number;
+};
 
 export default {
   title: 'Stepper',
@@ -38,7 +43,7 @@ export default {
         type: 'text',
       },
     },
-    customStepLabel: {
+    stepLabel: {
       control: {
         type: 'text',
       },
@@ -48,19 +53,19 @@ export default {
         type: 'boolean',
       },
     },
-    numberOfSteps: {
-      control: {
-        type: 'number',
-      },
+  },
+  numberOfSteps: {
+    control: {
+      type: 'number',
     },
   },
-} as Meta;
+} as Meta<CustomStepProps>;
 
-const Template: Story<StepperProps> = args => {
+const Template: Story<CustomStepProps> = ({ numberOfSteps, ...args }) => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const handleOnNext = () => {
-    if (currentStep <= args.numberOfSteps) {
+    if (currentStep <= numberOfSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -70,17 +75,19 @@ const Template: Story<StepperProps> = args => {
     }
   };
   const handleFinish = () => {
-    if (currentStep === args.numberOfSteps) {
+    if (currentStep === numberOfSteps) {
       setCurrentStep(0);
     }
   };
 
-  const steps = args.numberOfSteps;
+  const steps = numberOfSteps;
 
   const step = [...Array(steps)].map((_, i) => {
     ++i;
     return (
       <Step
+        {...args}
+        key={i}
         label={`Step ${i}`}
         secondaryLabel={`Description area in secondaryLabel component ${i}`}
       />
@@ -102,7 +109,7 @@ const Template: Story<StepperProps> = args => {
         }}
       >
         <div>
-          {currentStep < args.numberOfSteps
+          {currentStep < numberOfSteps
             ? `Step Content ${currentStep + 1}`
             : `Steps Completed`}
         </div>
@@ -112,11 +119,9 @@ const Template: Story<StepperProps> = args => {
         <ButtonGroup>
           <Button onClick={handleOnPrevious}>Previous</Button>
           <Button
-            onClick={
-              currentStep < args.numberOfSteps ? handleOnNext : handleFinish
-            }
+            onClick={currentStep < numberOfSteps ? handleOnNext : handleFinish}
           >
-            {currentStep < args.numberOfSteps ? 'Next' : 'Finish'}
+            {currentStep < numberOfSteps ? 'Next' : 'Finish'}
           </Button>
         </ButtonGroup>
       </Container>
@@ -124,7 +129,7 @@ const Template: Story<StepperProps> = args => {
   );
 };
 
-const ErrorTemplate: Story<StepperProps> = args => {
+const ErrorTemplate: Story<CustomStepProps> = args => {
   return (
     <>
       <Stepper currentStep={2} {...args}>
@@ -163,7 +168,11 @@ const ErrorTemplate: Story<StepperProps> = args => {
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  numberOfSteps: 6,
+};
 
 export const WithError = ErrorTemplate.bind({});
-Default.args = {};
+WithError.args = {
+  numberOfSteps: 4,
+};

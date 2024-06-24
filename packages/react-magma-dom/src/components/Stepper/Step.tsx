@@ -51,10 +51,6 @@ export enum StepStatus {
   incomplete = 'incomplete',
 }
 
-export const HiddenLabelText = styled.span`
-  ${HiddenStyles};
-`;
-
 function buildStepCircleOutlineColors(props) {
   const { isInverse, stepStatus, hasError, theme } = props;
 
@@ -124,6 +120,10 @@ function buildStepSvgColors(props) {
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
+export const HiddenLabelText = typedStyled.span`
+  ${HiddenStyles};
+`;
+
 const StyledStep = typedStyled.div`
   display: flex;
   flex-direction: column;
@@ -169,7 +169,7 @@ const StyledStepTextWrapper = typedStyled.div`
   margin: 6px 0;
 `;
 
-const StyledLabel = styled.span<{
+const StyledLabel = typedStyled.span<{
   isInverse?: boolean;
   label?: string;
   theme?: ThemeInterface;
@@ -184,7 +184,7 @@ const StyledLabel = styled.span<{
     props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight};
 `;
 
-const StyledSecondaryLabel = styled.span<{
+const StyledSecondaryLabel = typedStyled.span<{
   isInverse?: boolean;
   secondaryLabel?: string;
   theme?: ThemeInterface;
@@ -196,7 +196,7 @@ const StyledSecondaryLabel = styled.span<{
     props.theme.typographyVisualStyles.bodyXSmall.desktop.letterSpacing};
   line-height: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight};
-  margin: 5px 12px;
+  margin: 2px 12px 0 12px;
 `;
 
 export const Step = React.forwardRef<HTMLDivElement, StepProps>(
@@ -235,7 +235,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
                 <StyledLabel
                   label={label}
                   isInverse={isInverse}
-                  data-testId={testId}
+                  data-testid={`${testId}-label`}
                   theme={theme}
                 >
                   {label}
@@ -245,7 +245,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
                 <StyledSecondaryLabel
                   secondaryLabel={secondaryLabel}
                   isInverse={isInverse}
-                  data-testId={testId}
+                  data-testid={`${testId}-secondaryLabel`}
                   theme={theme}
                 >
                   {secondaryLabel}
@@ -255,6 +255,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
           ) : (
             <HiddenLabelText>
               {label}
+              {''}
               {secondaryLabel}
             </HiddenLabelText>
           )}

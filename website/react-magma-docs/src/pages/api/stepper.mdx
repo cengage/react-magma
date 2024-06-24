@@ -16,13 +16,20 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-The Stepper consists of a `Stepper` wrapper around each `Step`. The `currentStep` prop is used to give back the current step number in a series which allows for the incomplete, active, and complete styling to function.
+The Stepper consists of two components, the `Stepper` which acts like a wrapper and `Step` that houses an optional `label`, and `secondaryLabel`.
 
-Steps may consist of a `label`, `secondaryLabel` or no labels.
+Throughout the series of `Step`s, the prop `currentStep` sets the appropriate styling between incomplete, active, and complete.
 
 ```typescript
 import React from 'react';
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import {
+  Container,
+  Heading,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -45,11 +52,14 @@ export function Example() {
 
   return (
     <>
+      <Heading level={4} style={{ textAlign: 'center' }}>
+        Course Selector
+      </Heading>
       <Stepper currentStep={currentStep}>
-        <Step label="First Step" secondaryLabel="Description One" />
-        <Step label="Second Step" secondaryLabel="Description Two" />
-        <Step label="Third Step" secondaryLabel="Description Three" />
-        <Step label="Fourth Step" secondaryLabel="Description Four" />
+        <Step label="Choose materials" />
+        <Step label="Additional details" />
+        <Step label="Confirm" />
+        <Step label="Finish" />
       </Stepper>
 
       <Container
@@ -86,13 +96,20 @@ The summary view consolidates each step label and description to display one at 
 
 ```typescript
 import React from 'react';
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import {
+  Container,
+  Stepper,
+  StepperLayout,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const handleOnNext = () => {
-    if (currentStep !== 4) {
+    if (currentStep !== 3) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -102,7 +119,7 @@ export function Example() {
     }
   };
   const handleFinish = () => {
-    if (currentStep === 4) {
+    if (currentStep >= 3) {
       setCurrentStep(0);
     }
   };
@@ -113,7 +130,6 @@ export function Example() {
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
-        <Step label="Fourth Step" secondaryLabel="Description Four" />
       </Stepper>
 
       <Container
@@ -127,15 +143,13 @@ export function Example() {
         {currentStep === 0 && <div>Step Content One</div>}
         {currentStep === 1 && <div>Step Content Two</div>}
         {currentStep === 2 && <div>Step Content Three</div>}
-        {currentStep === 3 && <div>Step Content Four</div>}
-        {currentStep === 4 && <div>Steps Completed</div>}
       </Container>
 
       <Container style={{ padding: '20px 0' }}>
         <ButtonGroup>
           <Button onClick={handleOnPrevious}>Previous</Button>
-          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
-            {currentStep >= 4 ? 'Finish' : 'Next'}
+          <Button onClick={currentStep >= 3 ? handleFinish : handleOnNext}>
+            {currentStep >= 3 ? 'Finish' : 'Next'}
           </Button>
         </ButtonGroup>
       </Container>
@@ -144,9 +158,9 @@ export function Example() {
 }
 ```
 
-## Custom Step label
+## Step label
 
-When using `layout` with `StepperLayout.summaryView`, the option to change the step label may be done with the `customStepLabel` which takes a string and replaces the default "Step" label.
+When using `layout` with `StepperLayout.summaryView`, the option to change the step label may be done with the `stepLabel` which takes a string and replaces the default "Step" label.
 
 ```typescript
 import React from 'react';
@@ -156,7 +170,7 @@ export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const handleOnNext = () => {
-    if (currentStep !== 4) {
+    if (currentStep !== 3) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -166,7 +180,7 @@ export function Example() {
     }
   };
   const handleFinish = () => {
-    if (currentStep === 4) {
+    if (currentStep >= 3) {
       setCurrentStep(0);
     }
   };
@@ -176,12 +190,11 @@ export function Example() {
       <Stepper
         layout={StepperLayout.summaryView}
         currentStep={currentStep}
-        customStepLabel="Module"
+        stepLabel="Module"
       >
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
-        <Step label="Fourth Step" secondaryLabel="Description Four" />
       </Stepper>
 
       <Container
@@ -195,15 +208,13 @@ export function Example() {
         {currentStep === 0 && <div>Step Content One</div>}
         {currentStep === 1 && <div>Step Content Two</div>}
         {currentStep === 2 && <div>Step Content Three</div>}
-        {currentStep === 3 && <div>Step Content Four</div>}
-        {currentStep === 4 && <div>Steps Completed</div>}
       </Container>
 
       <Container style={{ padding: '20px 0' }}>
         <ButtonGroup>
           <Button onClick={handleOnPrevious}>Previous</Button>
-          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
-            {currentStep >= 4 ? 'Finish' : 'Next'}
+          <Button onClick={currentStep >= 3 ? handleFinish : handleOnNext}>
+            {currentStep >= 3 ? 'Finish' : 'Next'}
           </Button>
         </ButtonGroup>
       </Container>
@@ -352,6 +363,148 @@ export function Example() {
 ```
 
 ## Layout
+
+For alternative layouts, the `layout` prop hides either labels or shows just the summary view. By default, step labels will display if `layout` isn't used.
+
+#### Layout - Hide Labels
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper layout={StepperLayout.hideLabels} currentStep={currentStep}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button onClick={handleOnPrevious}>Previous</Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+#### Layout - Summary View
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper layout={StepperLayout.summaryView} currentStep={currentStep}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button onClick={handleOnPrevious}>Previous</Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Breakpoint Layout
 
 For responsive layouts, the `breakpoint` prop used along with `breakpointLayout` hides certain elements of the `Stepper` at a specified screen width. `breakpoint` takes a number for the screen width max and `breakpointLayout` hides either labels or shows just the summary view. By default, step labels will display if no responsive props are used.
 
