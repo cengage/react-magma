@@ -28,6 +28,10 @@ export enum ModalSize {
  */
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
+   * Custom aria label ONLY for modals that do not have a header
+   */
+  ariaLabel?: string;
+  /**
    * The text read by screen readers for the close button
    * @default "Close dialog"
    */
@@ -324,6 +328,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     }
 
     const {
+      ariaLabel,
       children,
       closeAriaLabel,
       closeButtonSize,
@@ -367,8 +372,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             />
             <ModalContainer
               aria-labelledby={header ? headingId : null}
-              aria-label="modal"
-              aria-describedby="modal"
+              aria-label={!header ? ariaLabel : null}
               aria-modal={true}
               data-testid={testId}
               id={id}
