@@ -29150,8 +29150,68 @@ div.container.intro span.netlify a {
   color: #fff;
   font-weight: 700;
 }
-div.container.tutorial {
-  @import '~highlight.js/styles/sunburst.css';
+div.container.tutorial .hljs {
+  background: #000;
+  color: #f8f8f8;
+}
+div.container.tutorial .hljs-comment, div.container.tutorial .hljs-quote {
+  color: #aeaeae;
+  font-style: italic;
+}
+div.container.tutorial .hljs-keyword, div.container.tutorial .hljs-selector-tag, div.container.tutorial .hljs-type {
+  color: #e28964;
+}
+div.container.tutorial .hljs-string {
+  color: #65b042;
+}
+div.container.tutorial .hljs-subst {
+  color: #daefa3;
+}
+div.container.tutorial .hljs-regexp, div.container.tutorial .hljs-link {
+  color: #e9c062;
+}
+div.container.tutorial .hljs-title, div.container.tutorial .hljs-section, div.container.tutorial .hljs-tag, div.container.tutorial .hljs-name {
+  color: #89bdff;
+}
+div.container.tutorial .hljs-title.class_, div.container.tutorial .hljs-class .hljs-title, div.container.tutorial .hljs-doctag {
+  text-decoration: underline;
+}
+div.container.tutorial .hljs-symbol, div.container.tutorial .hljs-bullet, div.container.tutorial .hljs-number {
+  color: #3387cc;
+}
+div.container.tutorial .hljs-params, div.container.tutorial .hljs-variable, div.container.tutorial .hljs-template-variable {
+  color: #3e87e3;
+}
+div.container.tutorial .hljs-attribute {
+  color: #cda869;
+}
+div.container.tutorial .hljs-meta {
+  color: #8996a8;
+}
+div.container.tutorial .hljs-formula {
+  background-color: #0e2231;
+  color: #f8f8f8;
+  font-style: italic;
+}
+div.container.tutorial .hljs-addition {
+  background-color: #253b22;
+  color: #f8f8f8;
+}
+div.container.tutorial .hljs-deletion {
+  background-color: #420e09;
+  color: #f8f8f8;
+}
+div.container.tutorial .hljs-selector-class {
+  color: #9b703f;
+}
+div.container.tutorial .hljs-selector-id {
+  color: #8b98ab;
+}
+div.container.tutorial .hljs-emphasis {
+  font-style: italic;
+}
+div.container.tutorial .hljs-strong {
+  font-weight: bold;
 }
 div.container.tutorial h1,
 div.container.tutorial h2,
