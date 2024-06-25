@@ -41,6 +41,12 @@
 
 ## 4.4.0
 
+## 4.4.1-next.4
+
+### Patch Changes
+
+- da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
+
 ## 4.4.1-next.3
 
 ### Patch Changes
