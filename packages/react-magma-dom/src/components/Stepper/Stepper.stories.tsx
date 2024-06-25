@@ -1,14 +1,11 @@
 import React from 'react';
-import { ComponentProps } from 'react';
 import { Button } from '../Button';
-import { Stepper, Step, StepperLayout } from './';
+import { Stepper, StepperProps, Step, StepperLayout } from './';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Container } from '../Container';
 import { ButtonGroup } from '../ButtonGroup';
 
-type CustomStepProps = ComponentProps<typeof Stepper> & {
-  numberOfSteps: number;
-};
+let numberOfSteps = 4;
 
 export default {
   title: 'Stepper',
@@ -53,15 +50,16 @@ export default {
         type: 'boolean',
       },
     },
-  },
-  numberOfSteps: {
-    control: {
-      type: 'number',
+    numberOfSteps: {
+      control: {
+        options: numberOfSteps,
+        type: 'number',
+      },
     },
   },
-} as Meta<CustomStepProps>;
+} as Meta;
 
-const Template: Story<CustomStepProps> = ({ numberOfSteps, ...args }) => {
+const Template: Story<StepperProps> = args => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const handleOnNext = () => {
@@ -86,7 +84,6 @@ const Template: Story<CustomStepProps> = ({ numberOfSteps, ...args }) => {
     ++i;
     return (
       <Step
-        {...args}
         key={i}
         label={`Step ${i}`}
         secondaryLabel={`Description area in secondaryLabel component ${i}`}
@@ -129,14 +126,22 @@ const Template: Story<CustomStepProps> = ({ numberOfSteps, ...args }) => {
   );
 };
 
-const ErrorTemplate: Story<CustomStepProps> = args => {
+const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
       <Stepper currentStep={2} {...args}>
-        <Step label="First Step" secondaryLabel="Description One" />
-        <Step label="Second Step" secondaryLabel="Description Two" />
-        <Step label="Third Step" hasError secondaryLabel="Description Three" />
-        <Step label="Fourth Step" secondaryLabel="Description Four" />
+        <Step label="First Step" secondaryLabel="Description One">
+          Step Content One
+        </Step>
+        <Step label="Second Step" secondaryLabel="Description Two">
+          Step Content Two
+        </Step>
+        <Step label="Third Step" hasError secondaryLabel="Description Three">
+          Step Content Three
+        </Step>
+        <Step label="Fourth Step" secondaryLabel="Description Four">
+          Step Content Four
+        </Step>
       </Stepper>
       <Container
         style={{
@@ -161,10 +166,10 @@ const ErrorTemplate: Story<CustomStepProps> = args => {
 
 export const Default = Template.bind({});
 Default.args = {
-  numberOfSteps: 6,
+  // numberOfSteps: 6,
 };
 
 export const WithError = ErrorTemplate.bind({});
 WithError.args = {
-  numberOfSteps: 4,
+  // numberOfSteps: 4,
 };
