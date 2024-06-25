@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 7.0.1-next.1
+
+### Patch Changes
+
+- 2f317e12d: fix(CarbonCharts): Remove exports & remove highlight import
+
 ## 7.0.1-next.0
 
 ### Patch Changes
