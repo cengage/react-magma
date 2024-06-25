@@ -133,18 +133,10 @@ const ErrorTemplate: Story<CustomStepProps> = args => {
   return (
     <>
       <Stepper currentStep={2} {...args}>
-        <Step label="First Step" secondaryLabel="Description One">
-          Step Content One
-        </Step>
-        <Step label="Second Step" secondaryLabel="Description Two">
-          Step Content Two
-        </Step>
-        <Step label="Third Step" hasError secondaryLabel="Description Three">
-          Step Content Three
-        </Step>
-        <Step label="Fourth Step" secondaryLabel="Description Four">
-          Step Content Four
-        </Step>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" hasError secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
       </Stepper>
       <Container
         style={{
