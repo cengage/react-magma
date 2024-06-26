@@ -18,7 +18,7 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
-  areLabelsVisible?: boolean;
+  areLabelsHidden?: boolean;
   /**
    * Label beneath each step.
    */
@@ -134,7 +134,7 @@ const StyledStep = typedStyled.div`
 
 `;
 
-const StyledStepIndicator = styled.span<{
+const StyledStepIndicator = typedStyled.span<{
   hasError?: boolean;
   stepStatus?: StepStatus;
   isInverse?: boolean;
@@ -166,7 +166,7 @@ const StyledStepTextWrapper = typedStyled.div`
   align-self: center;
   flex-direction: column;
   position: relative;
-  margin: 6px 0;
+  margin: 6px 8px 0;
 `;
 
 const StyledLabel = typedStyled.span<{
@@ -203,7 +203,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   (props, ref) => {
     const {
       hasError,
-      areLabelsVisible,
+      areLabelsHidden,
       label,
       secondaryLabel,
       testId,
@@ -229,13 +229,13 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
         </StyledStepIndicator>
 
         <StyledStepTextWrapper>
-          {!areLabelsVisible ? (
+          {!areLabelsHidden ? (
             <>
               {label && (
                 <StyledLabel
                   label={label}
                   isInverse={isInverse}
-                  data-testid={`${testId}-label`}
+                  data-testid={testId && `${testId}-label`}
                   theme={theme}
                 >
                   {label}
@@ -245,7 +245,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
                 <StyledSecondaryLabel
                   secondaryLabel={secondaryLabel}
                   isInverse={isInverse}
-                  data-testid={`${testId}-secondaryLabel`}
+                  data-testid={testId && `${testId}-secondaryLabel`}
                   theme={theme}
                 >
                   {secondaryLabel}

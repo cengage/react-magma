@@ -19,7 +19,7 @@ describe('Stepper', () => {
   });
 
   it('Does not violate accessibility standards', () => {
-    const { container } = render(<Stepper>{TEXT}</Stepper>);
+    const { container } = render(<Stepper></Stepper>);
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

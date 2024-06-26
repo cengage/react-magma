@@ -90,74 +90,6 @@ export function Example() {
 }
 ```
 
-## Summary View
-
-The summary view consolidates each step label and description to display one at a time in conjunction with a progress counter.
-
-```typescript
-import React from 'react';
-import {
-  Container,
-  Stepper,
-  StepperLayout,
-  Step,
-  Button,
-  ButtonGroup,
-} from 'react-magma-dom';
-
-export function Example() {
-  const [currentStep, setCurrentStep] = React.useState(0);
-
-  const handleOnNext = () => {
-    if (currentStep !== 3) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-  const handleOnPrevious = () => {
-    if (currentStep !== 0) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-  const handleFinish = () => {
-    if (currentStep >= 3) {
-      setCurrentStep(0);
-    }
-  };
-
-  return (
-    <>
-      <Stepper layout={StepperLayout.summaryView} currentStep={currentStep}>
-        <Step label="First Step" secondaryLabel="Description One" />
-        <Step label="Second Step" secondaryLabel="Description Two" />
-        <Step label="Third Step" secondaryLabel="Description Three" />
-      </Stepper>
-
-      <Container
-        style={{
-          background: '#F5F5F5',
-          borderRadius: '6px',
-          margin: '20px 0 0',
-          padding: '20px',
-        }}
-      >
-        {currentStep === 0 && <div>Step Content One</div>}
-        {currentStep === 1 && <div>Step Content Two</div>}
-        {currentStep === 2 && <div>Step Content Three</div>}
-      </Container>
-
-      <Container style={{ padding: '20px 0' }}>
-        <ButtonGroup>
-          <Button onClick={handleOnPrevious}>Previous</Button>
-          <Button onClick={currentStep >= 3 ? handleFinish : handleOnNext}>
-            {currentStep >= 3 ? 'Finish' : 'Next'}
-          </Button>
-        </ButtonGroup>
-      </Container>
-    </>
-  );
-}
-```
-
 ## Step label
 
 When using `layout` with `StepperLayout.summaryView`, the option to change the step label may be done with the `stepLabel` which takes a string and replaces the default "Step" label.
@@ -291,19 +223,21 @@ export function Example() {
 }
 ```
 
-## Hide Labels
+## Layout
 
-To hide all labels, the prop of `layout` with `StepperLayout.hideLabels` toggles off both the `label` and `secondaryLabel` while retaining the proper accessibility guidelines for screenreaders.
+For alternative layouts, the `layout` prop hides either labels or shows just the summary view. By default, step labels will display if `layout` isn't used.
+
+#### Layout - Hide Labels
 
 ```typescript
 import React from 'react';
 import {
+  StepperLayout,
   Container,
   Stepper,
   Step,
   Button,
-  ButtonGroupperLayout,
-  Step,
+  ButtonGroup,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -362,11 +296,7 @@ export function Example() {
 }
 ```
 
-## Layout
-
-For alternative layouts, the `layout` prop hides either labels or shows just the summary view. By default, step labels will display if `layout` isn't used.
-
-#### Layout - Hide Labels
+#### Layout - Show Labels
 
 ```typescript
 import React from 'react';
@@ -400,7 +330,7 @@ export function Example() {
 
   return (
     <>
-      <Stepper layout={StepperLayout.hideLabels} currentStep={currentStep}>
+      <Stepper layout={StepperLayout.showLabels} currentStep={currentStep}>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />

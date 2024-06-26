@@ -236,7 +236,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             'aria-current': !showLabelsLayout ? currentStep === index : null,
             key: index,
             isInverse: isInverse,
-            areLabelsVisible: hideLabelsLayout || summaryViewLayout,
+            areLabelsHidden: hideLabelsLayout || summaryViewLayout,
             stepStatus: stepStatusStyles,
           });
 
@@ -256,7 +256,10 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           };
 
           return showLabelsLayout ? (
-            <StyledWrapper aria-current={currentStep === index}>
+            <StyledWrapper
+              aria-current={currentStep === index}
+              data-testid={testId}
+            >
               {stepAndSeparator()}
             </StyledWrapper>
           ) : (
@@ -284,38 +287,36 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       props.completionLabel || i18n.stepper.completionLabel;
 
     return (
-      <>
-        <StyledStepper
-          {...rest}
-          aria-label="progress"
-          role="contentinfo"
-          data-testid={testId}
-          ref={ref}
-        >
-          <StyledStepContent showLabelsLayout={showLabelsLayout} theme={theme}>
-            {stepContent}
-          </StyledStepContent>
-          {summaryViewLayout && (
-            <StyledStepContent>
-              <StyledSummary
-                data-testid={testId && `${testId}-stepper-summary`}
-                isInverse={isInverse}
-                theme={theme}
-              >
-                {currentStep < stepLength
-                  ? stepLabel
-                    ? `${stepLabel} ${currentStep + 1} ${
-                        i18n.stepper.stepOfLabel
-                      } ${stepLength}`
-                    : `${i18n.stepper.stepLabel} 
+      <StyledStepper
+        {...rest}
+        aria-label="progress"
+        role="contentinfo"
+        data-testid={testId}
+        ref={ref}
+      >
+        <StyledStepContent showLabelsLayout={showLabelsLayout} theme={theme}>
+          {stepContent}
+        </StyledStepContent>
+        {summaryViewLayout && (
+          <StyledStepContent>
+            <StyledSummary
+              data-testid={testId && `${testId}-stepper-summary`}
+              isInverse={isInverse}
+              theme={theme}
+            >
+              {currentStep < stepLength
+                ? stepLabel
+                  ? `${stepLabel} ${currentStep + 1} ${
+                      i18n.stepper.stepOfLabel
+                    } ${stepLength}`
+                  : `${i18n.stepper.stepLabel} 
           ${currentStep + 1} ${i18n.stepper.stepOfLabel} ${stepLength}`
-                  : completionLabel}
-                {getSummaryStepLabels()}
-              </StyledSummary>
-            </StyledStepContent>
-          )}
-        </StyledStepper>
-      </>
+                : completionLabel}
+              {getSummaryStepLabels()}
+            </StyledSummary>
+          </StyledStepContent>
+        )}
+      </StyledStepper>
     );
   }
 );

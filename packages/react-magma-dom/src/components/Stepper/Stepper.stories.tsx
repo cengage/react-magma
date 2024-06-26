@@ -4,8 +4,10 @@ import { Stepper, StepperProps, Step, StepperLayout } from './';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Container } from '../Container';
 import { ButtonGroup } from '../ButtonGroup';
-
-let numberOfSteps = 4;
+import { InputType } from '../InputBase';
+import { Input } from '../Input';
+import { Flex, FlexAlignItems, FlexBehavior, FlexJustify } from '../Flex';
+import { LabelPosition } from '../Label';
 
 export default {
   title: 'Stepper',
@@ -50,10 +52,9 @@ export default {
         type: 'boolean',
       },
     },
-    numberOfSteps: {
+    testId: {
       control: {
-        options: numberOfSteps,
-        type: 'number',
+        type: 'text',
       },
     },
   },
@@ -62,8 +63,12 @@ export default {
 const Template: Story<StepperProps> = args => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
+  const [numberOfSteps, setNumberOfSteps] = React.useState('4');
+
+  console.log(`number of steps: ${numberOfSteps}`);
+
   const handleOnNext = () => {
-    if (currentStep <= numberOfSteps) {
+    if (currentStep <= Number(numberOfSteps)) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -73,12 +78,12 @@ const Template: Story<StepperProps> = args => {
     }
   };
   const handleFinish = () => {
-    if (currentStep === numberOfSteps) {
+    if (currentStep === Number(numberOfSteps)) {
       setCurrentStep(0);
     }
   };
 
-  const steps = numberOfSteps;
+  const steps = Number(numberOfSteps);
 
   const step = [...Array(steps)].map((_, i) => {
     ++i;
@@ -106,22 +111,42 @@ const Template: Story<StepperProps> = args => {
         }}
       >
         <div>
-          {currentStep < numberOfSteps
+          {currentStep < Number(numberOfSteps)
             ? `Step Content ${currentStep + 1}`
             : `Steps Completed`}
         </div>
       </Container>
 
-      <Container style={{ padding: '20px 0' }}>
-        <ButtonGroup>
-          <Button onClick={handleOnPrevious}>Previous</Button>
-          <Button
-            onClick={currentStep < numberOfSteps ? handleOnNext : handleFinish}
-          >
-            {currentStep < numberOfSteps ? 'Next' : 'Finish'}
-          </Button>
-        </ButtonGroup>
-      </Container>
+      <Flex
+        behavior={FlexBehavior.container}
+        alignItems={FlexAlignItems.center}
+        justify={FlexJustify.spaceBetween}
+        style={{ paddingTop: '20px' }}
+      >
+        <Flex behavior={FlexBehavior.item}>
+          <Input
+            labelPosition={LabelPosition.left}
+            labelText="Step Amount"
+            value={numberOfSteps}
+            onChange={event => setNumberOfSteps(event.target.value)}
+            type={InputType.number}
+          />
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <ButtonGroup>
+            <Button onClick={handleOnPrevious}>Previous</Button>
+            <Button
+              onClick={
+                currentStep < Number(numberOfSteps)
+                  ? handleOnNext
+                  : handleFinish
+              }
+            >
+              {currentStep < Number(numberOfSteps) ? 'Next' : 'Finish'}
+            </Button>
+          </ButtonGroup>
+        </Flex>
+      </Flex>
     </>
   );
 };
