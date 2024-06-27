@@ -2,6 +2,8 @@ import React from 'react';
 import { Card, CardBody } from '../Card';
 import { ProgressBar, ProgressBarProps, ProgressBarColor } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { magma } from '../../theme/magma';
+import { Button } from '../Button';
 
 const Template: Story<ProgressBarProps> = args => <ProgressBar {...args} />;
 
@@ -54,6 +56,50 @@ Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
+
+export const CustomColor = args => {
+  const [colorIndex, setColorIndex] = React.useState(0);
+  const [color, setColor] = React.useState(null);
+  const [inverseColor, setInverseColor] = React.useState(null);
+
+  React.useEffect(() => {
+    setColor(magma.chartColors[colorIndex]);
+    setInverseColor(magma.chartColorsInverse[colorIndex]);
+  }, [colorIndex]);
+
+  function changeBarColor() {
+    if (colorIndex < 11) {
+      setColorIndex(colorIndex + 1);
+    } else if (colorIndex === 11) {
+      setColorIndex(0);
+    }
+  }
+
+  return (
+    <>
+      <Card>
+        <CardBody>
+          <ProgressBar {...args} color={color} />
+        </CardBody>
+      </Card>
+      <br />
+      <Card isInverse>
+        <CardBody>
+          <ProgressBar {...args} color={inverseColor} isInverse />
+        </CardBody>
+      </Card>
+      <br />
+      <Button onClick={changeBarColor}>Next Color</Button>
+    </>
+  );
+};
+CustomColor.args = {
+  percentage: 50,
+  isInverse: false,
+  height: '20',
+};
+
+CustomColor.parameters = { controls: { exclude: ['color', 'isInverse'] } };
 
 Inverse.decorators = [
   Story => (
