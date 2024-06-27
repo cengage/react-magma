@@ -43,6 +43,7 @@ Default.args = {
     { label: 'Red', value: 'red' },
     { label: 'Blue', value: 'blue' },
     { label: 'Green', value: 'green' },
+    { label: 'Purple mountain majesty', value: 'purple' },
   ],
   errorMessage: '',
   helperMessage: '',
