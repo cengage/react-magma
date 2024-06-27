@@ -1,5 +1,6 @@
 # @react-magma/charts
 
+<<<<<<< HEAD
 ## 8.0.0
 
 ### Minor Changes
@@ -31,6 +32,8 @@
 
 - 9f43ba1e6: fix(CarbonCharts): Minify styles
 
+=======
+>>>>>>> 9477a7329 (chore: enter prerelease mode)
 ## 7.0.1-next.2
 
 ### Patch Changes
