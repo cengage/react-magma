@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 7.0.1-next.2
+
+### Patch Changes
+
+- f894d4a0d: chore: Deprecate LineChart
+
 ## 7.0.1-next.1
 
 ### Patch Changes
