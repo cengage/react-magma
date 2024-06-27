@@ -54,6 +54,9 @@ export interface LineChartComponentProps {
   yAxis?: VictoryAxisProps;
 }
 
+/**
+ * @deprecated Please use CarbonChart instead
+ */
 // NOTE: These props are manually copied to line-chart.mdx
 export interface LineChartProps<T extends ChartDataOptions> {
   /**
