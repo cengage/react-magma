@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.4.1-next.5
+
+### Patch Changes
+
+- 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
+
 ## 4.4.1-next.4
 
 ### Patch Changes
