@@ -20,6 +20,12 @@
 
 ## 4.4.0
 
+## 4.4.1-next.6
+
+### Patch Changes
+
+- 65d417254: fix(ProgressBar): Add support for custom colors
+
 ## 4.4.1-next.5
 
 ### Patch Changes
