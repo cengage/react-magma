@@ -48,8 +48,10 @@ const StyledNativeSelectWrapper = styled.div<{
         ? transparentize(0.6, props.theme.colors.neutral100)
         : props.disabled
         ? transparentize(0.4, props.theme.colors.neutral500)
-        : 'inherit'};
-    margin: 0 0 0 -${props => props.theme.spaceScale.spacing06};
+        : props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
+    margin: 0 ${props => props.theme.spaceScale.spacing03} 0 -${props => props.theme.spaceScale.spacing08};
     pointer-events: none;
     z-index: 1;
   }
@@ -60,10 +62,16 @@ function borderColors(props) {
     if (props.hasError) {
       return props.theme.colors.danger200;
     }
+    if (props.disabled) {
+      return transparentize(0.85, props.theme.colors.neutral100);
+    }
     return transparentize(0.5, props.theme.colors.neutral100);
   }
   if (props.hasError) {
     return props.theme.colors.danger;
+  }
+  if (props.disabled) {
+    return props.theme.colors.neutral300;
   }
   return props.theme.colors.neutral500;
 }
@@ -75,6 +83,7 @@ const StyledNativeSelect = styled.select<{
 }>`
   ${inputBaseStyles};
   height: 38px;
+  padding-right: ${props => props.theme.spaceScale.spacing08};
   // Required for Windows && Chrome support
   background: inherit;
   > option {
