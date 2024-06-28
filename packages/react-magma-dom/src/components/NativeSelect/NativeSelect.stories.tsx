@@ -43,6 +43,11 @@ export default {
         type: 'number',
       },
     },
+    errorMessage: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 

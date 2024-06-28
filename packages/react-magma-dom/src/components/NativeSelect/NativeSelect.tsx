@@ -62,10 +62,16 @@ function borderColors(props) {
     if (props.hasError) {
       return props.theme.colors.danger200;
     }
+    if (props.disabled) {
+      return transparentize(0.85, props.theme.colors.neutral100);
+    }
     return transparentize(0.5, props.theme.colors.neutral100);
   }
   if (props.hasError) {
     return props.theme.colors.danger;
+  }
+  if (props.disabled) {
+    return props.theme.colors.neutral300;
   }
   return props.theme.colors.neutral500;
 }

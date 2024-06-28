@@ -122,6 +122,7 @@ Inverse.args = {
   ...Default.args,
   isMulti: false,
   isInverse: true,
+  disabled: false,
 };
 Inverse.decorators = [
   Story => (
