@@ -65,8 +65,6 @@ const Template: Story<StepperProps> = args => {
 
   const [numberOfSteps, setNumberOfSteps] = React.useState('4');
 
-  console.log(`number of steps: ${numberOfSteps}`);
-
   const handleOnNext = () => {
     if (currentStep <= Number(numberOfSteps)) {
       setCurrentStep(currentStep + 1);
@@ -83,12 +81,21 @@ const Template: Story<StepperProps> = args => {
     }
   };
 
+  const handleOnChange = () => {
+    if (Number(numberOfSteps) > 0) {
+      return event => setNumberOfSteps(event.target.value);
+    } else {
+      return () => setNumberOfSteps('1');
+    }
+  };
+
   const steps = Number(numberOfSteps);
 
   const step = [...Array(steps)].map((_, i) => {
     ++i;
     return (
       <Step
+        {...args}
         key={i}
         label={`Step ${i}`}
         secondaryLabel={`Description area in secondaryLabel component ${i}`}
@@ -128,13 +135,18 @@ const Template: Story<StepperProps> = args => {
             labelPosition={LabelPosition.left}
             labelText="Step Amount"
             value={numberOfSteps}
-            onChange={event => setNumberOfSteps(event.target.value)}
+            onChange={handleOnChange()}
             type={InputType.number}
           />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ButtonGroup>
-            <Button onClick={handleOnPrevious}>Previous</Button>
+            <Button
+              onClick={handleOnPrevious}
+              disabled={currentStep === 0 ? true : false}
+            >
+              Previous
+            </Button>
             <Button
               onClick={
                 currentStep < Number(numberOfSteps)
@@ -190,11 +202,7 @@ const ErrorTemplate: Story<StepperProps> = args => {
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  // numberOfSteps: 6,
-};
+Default.args = {};
 
 export const WithError = ErrorTemplate.bind({});
-WithError.args = {
-  // numberOfSteps: 4,
-};
+WithError.args = {};

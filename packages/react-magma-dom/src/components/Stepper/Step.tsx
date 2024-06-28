@@ -20,6 +20,10 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   areLabelsHidden?: boolean;
   /**
+   * @internal
+   */
+  hasLabels?: boolean;
+  /**
    * Label beneath each step.
    */
   label?: string;
@@ -203,6 +207,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   (props, ref) => {
     const {
       hasError,
+      hasLabels,
       areLabelsHidden,
       label,
       secondaryLabel,
