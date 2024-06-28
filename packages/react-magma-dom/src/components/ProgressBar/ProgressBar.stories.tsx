@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
-import { ProgressBar, ProgressBarProps, ProgressBarColor } from '.';
+import { ProgressBar, ProgressBarProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
@@ -13,8 +13,7 @@ export default {
   argTypes: {
     color: {
       control: {
-        type: 'select',
-        options: ProgressBarColor,
+        type: 'text',
       },
     },
     height: {
@@ -90,6 +89,13 @@ export const CustomColor = args => {
       </Card>
       <br />
       <Button onClick={changeBarColor}>Next Color</Button>
+      <br />
+      <br />
+      <Card>
+        <CardBody>
+          <ProgressBar {...args} />
+        </CardBody>
+      </Card>
     </>
   );
 };
@@ -97,9 +103,10 @@ CustomColor.args = {
   percentage: 50,
   isInverse: false,
   height: '20',
+  color: '#711E6E',
 };
 
-CustomColor.parameters = { controls: { exclude: ['color', 'isInverse'] } };
+CustomColor.parameters = { controls: { exclude: ['isInverse'] } };
 
 Inverse.decorators = [
   Story => (
