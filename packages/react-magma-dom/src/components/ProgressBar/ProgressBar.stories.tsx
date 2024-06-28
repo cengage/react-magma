@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
-import { ProgressBar, ProgressBarProps } from '.';
+import { ProgressBar, ProgressBarColor, ProgressBarProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
+import { Input } from '../Input';
 
 const Template: Story<ProgressBarProps> = args => <ProgressBar {...args} />;
 
@@ -13,7 +14,8 @@ export default {
   argTypes: {
     color: {
       control: {
-        type: 'text',
+        type: 'select',
+        options: ProgressBarColor,
       },
     },
     height: {
@@ -60,6 +62,7 @@ export const CustomColor = args => {
   const [colorIndex, setColorIndex] = React.useState(0);
   const [color, setColor] = React.useState(null);
   const [inverseColor, setInverseColor] = React.useState(null);
+  const [customColor, setCustomColor] = React.useState('#711E6E');
 
   React.useEffect(() => {
     setColor(magma.chartColors[colorIndex]);
@@ -76,6 +79,9 @@ export const CustomColor = args => {
 
   return (
     <>
+    <Card>
+    <CardBody>
+      Chart Colors
       <Card>
         <CardBody>
           <ProgressBar {...args} color={color} />
@@ -89,11 +95,18 @@ export const CustomColor = args => {
       </Card>
       <br />
       <Button onClick={changeBarColor}>Next Color</Button>
-      <br />
+      </CardBody>
+      </Card>
       <br />
       <Card>
         <CardBody>
-          <ProgressBar {...args} />
+          Custom String Color
+          <ProgressBar {...args} color={customColor} />
+          <br />
+          <Input
+            value={customColor}
+            onChange={e => setCustomColor(e.target.value)}
+          />
         </CardBody>
       </Card>
     </>
@@ -106,7 +119,7 @@ CustomColor.args = {
   color: '#711E6E',
 };
 
-CustomColor.parameters = { controls: { exclude: ['isInverse'] } };
+CustomColor.parameters = { controls: { exclude: ['isInverse', 'color'] } };
 
 Inverse.decorators = [
   Story => (
