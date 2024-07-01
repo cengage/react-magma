@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { AnimatePresence, motion, HTMLMotionProps } from 'framer-motion';
+import { AnimatePresence, motion, HTMLMotionProps, useReducedMotion } from 'framer-motion';
 import { MotionVariants } from '../../theme/components/transition';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import { reducedMotionTransitions } from '../../theme/components/reducedMotionTransition';
 
 /**
  * @children required
@@ -119,11 +120,13 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     } = props;
 
     const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true;
+    const shouldReduceMotion = useReducedMotion();
+    const transitionsArr = shouldReduceMotion ? reducedMotionTransitions : theme.transitions;
 
     const variants = Object.keys(rest).reduce(
       (acc, key) => {
-        if (rest[key] && theme.transitions[key]) {
-          const themeVariant = theme.transitions[key];
+        if (rest[key] && transitionsArr[key]) {
+          const themeVariant = transitionsArr[key];
           rest[key] = undefined;
           return {
             baseStyle: {
