@@ -54,6 +54,7 @@ export const SiteNavigation = args => {
         onClose={() => setShowDrawer(false)}
         isOpen={showDrawer}
         position={DrawerPosition.right}
+        ariaLabel="Site Navigation Drawer"
       >
         <NavTabs orientation={TabsOrientation.vertical}>
           <NavTab to="#">One</NavTab>
