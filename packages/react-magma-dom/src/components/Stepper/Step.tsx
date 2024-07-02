@@ -20,10 +20,6 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   areLabelsHidden?: boolean;
   /**
-   * @internal
-   */
-  hasLabels?: boolean;
-  /**
    * Label beneath each step.
    */
   label?: string;
@@ -207,7 +203,6 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   (props, ref) => {
     const {
       hasError,
-      hasLabels,
       areLabelsHidden,
       label,
       secondaryLabel,
@@ -218,6 +213,16 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
+
+    const labels = () => {
+      if (label && secondaryLabel) {
+        return `${label} ${secondaryLabel}`;
+      } else if (label) {
+        return label;
+      } else if (secondaryLabel) {
+        return secondaryLabel;
+      }
+    };
 
     return (
       <StyledStep {...rest} ref={ref} data-testid={testId}>
@@ -258,11 +263,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
               )}
             </>
           ) : (
-            <HiddenLabelText>
-              {label}
-              {''}
-              {secondaryLabel}
-            </HiddenLabelText>
+            <HiddenLabelText>{labels()}</HiddenLabelText>
           )}
         </StyledStepTextWrapper>
       </StyledStep>

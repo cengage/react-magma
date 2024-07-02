@@ -26,6 +26,17 @@ describe('Stepper', () => {
     });
   });
 
+  it('should use the custom aria-label', () => {
+    const { getByLabelText } = render(
+      <Stepper ariaLabel="progress" currentStep={0}>
+        <Step />
+        <Step />
+      </Stepper>
+    );
+
+    expect(getByLabelText('progress')).toBeInTheDocument();
+  });
+
   it('should use the default completion label', () => {
     const { getByText } = render(
       <Stepper currentStep={2} layout={StepperLayout.summaryView}>
@@ -127,8 +138,8 @@ describe('Stepper', () => {
   describe('Styling', () => {
     it('should have an active styled circle', () => {
       const { getByTestId } = render(
-        <Stepper testId={testId} currentStep={0}>
-          <Step />
+        <Stepper currentStep={0}>
+          <Step testId={testId} />
           <Step />
         </Stepper>
       );
@@ -143,13 +154,13 @@ describe('Stepper', () => {
 
     it('should have an incomplete styled circle', () => {
       const { getByTestId } = render(
-        <Stepper testId={testId} currentStep={0}>
+        <Stepper currentStep={0}>
           <Step />
-          <Step />
+          <Step testId={testId} />
         </Stepper>
       );
 
-      const step = getByTestId(`${testId}-step-1`).querySelector('span');
+      const step = getByTestId(testId).querySelector('span');
 
       expect(step).toHaveStyleRule(
         'box-shadow',
@@ -159,21 +170,21 @@ describe('Stepper', () => {
 
     it('should have a completed styled circle', () => {
       const { getByTestId } = render(
-        <Stepper testId={testId} currentStep={1}>
-          <Step />
+        <Stepper currentStep={1}>
+          <Step testId={testId} />
           <Step />
         </Stepper>
       );
 
-      const step = getByTestId(`${testId}-step-0`).querySelector('span');
+      const step = getByTestId(testId).querySelector('span');
 
       expect(step).toHaveStyleRule('background', magma.colors.primary500);
     });
 
     it('should have a error styled circle', () => {
       const { getByTestId } = render(
-        <Stepper testId={testId} currentStep={1}>
-          <Step hasError />
+        <Stepper currentStep={1}>
+          <Step testId={testId} hasError />
           <Step />
         </Stepper>
       );
@@ -185,7 +196,7 @@ describe('Stepper', () => {
 
     it('should have a primary label', () => {
       const { getByText } = render(
-        <Stepper testId={testId} currentStep={1}>
+        <Stepper currentStep={1}>
           <Step label={TEXT} />
           <Step />
         </Stepper>
@@ -200,7 +211,7 @@ describe('Stepper', () => {
 
     it('should have a secondary label', () => {
       const { getByText } = render(
-        <Stepper testId={testId} currentStep={1}>
+        <Stepper currentStep={1}>
           <Step secondaryLabel={TEXT} hasError />
           <Step />
         </Stepper>
@@ -214,13 +225,13 @@ describe('Stepper', () => {
 
     it('should have an incomplete styled separator', () => {
       const { getByTestId } = render(
-        <Stepper testId={testId} currentStep={0}>
-          <Step />
+        <Stepper currentStep={0}>
+          <Step testId={testId} />
           <Step />
         </Stepper>
       );
 
-      const separator = getByTestId(`${testId}-step-0`).nextElementSibling;
+      const separator = getByTestId(testId).nextElementSibling;
 
       expect(separator).toHaveStyleRule('height', '2px');
       expect(separator).toHaveStyleRule('background', magma.colors.neutral300);
@@ -228,13 +239,13 @@ describe('Stepper', () => {
 
     it('should have a completed styled separator', () => {
       const { getByTestId } = render(
-        <Stepper testId={testId} currentStep={1}>
-          <Step />
+        <Stepper currentStep={1}>
+          <Step testId={testId} />
           <Step />
         </Stepper>
       );
 
-      const separator = getByTestId(`${testId}-step-0`).nextElementSibling;
+      const separator = getByTestId(testId).nextElementSibling;
 
       expect(separator).toHaveStyleRule('height', '2px');
       expect(separator).toHaveStyleRule('background', magma.colors.primary500);
@@ -259,13 +270,13 @@ describe('Stepper', () => {
 
       it('should have an inverse incomplete styled circle', () => {
         const { getByTestId } = render(
-          <Stepper testId={testId} isInverse currentStep={0}>
+          <Stepper isInverse currentStep={0}>
             <Step />
-            <Step />
+            <Step testId={testId} />
           </Stepper>
         );
 
-        const step = getByTestId(`${testId}-step-1`).querySelector('span');
+        const step = getByTestId(testId).querySelector('span');
 
         expect(step).toHaveStyleRule(
           'box-shadow',
@@ -273,23 +284,23 @@ describe('Stepper', () => {
         );
       });
 
-      it('should have a inverse completed styled circle', () => {
+      it('should have an inverse completed styled circle', () => {
         const { getByTestId } = render(
-          <Stepper testId={testId} isInverse currentStep={1}>
-            <Step />
+          <Stepper isInverse currentStep={1}>
+            <Step testId={testId} />
             <Step />
           </Stepper>
         );
 
-        const step = getByTestId(`${testId}-step-0`).querySelector('span');
+        const step = getByTestId(testId).querySelector('span');
 
         expect(step).toHaveStyleRule('background', magma.colors.tertiary500);
       });
 
-      it('should have a inverse error styled circle', () => {
+      it('should have an inverse error styled circle', () => {
         const { getByTestId } = render(
-          <Stepper testId={testId} isInverse currentStep={1}>
-            <Step hasError />
+          <Stepper isInverse currentStep={1}>
+            <Step testId={testId} hasError />
             <Step />
           </Stepper>
         );
@@ -299,9 +310,9 @@ describe('Stepper', () => {
         expect(step).toHaveStyleRule('background', magma.colors.danger500);
       });
 
-      it('should have a inverse primary label', () => {
+      it('should have an inverse primary label', () => {
         const { getByText } = render(
-          <Stepper testId={testId} isInverse currentStep={1}>
+          <Stepper isInverse currentStep={1}>
             <Step label={TEXT} hasError />
             <Step />
           </Stepper>
@@ -312,9 +323,9 @@ describe('Stepper', () => {
         expect(label).toHaveStyleRule('color', magma.colors.neutral100);
       });
 
-      it('should have a inverse secondary label', () => {
+      it('should have an inverse secondary label', () => {
         const { getByText } = render(
-          <Stepper testId={testId} isInverse currentStep={1}>
+          <Stepper isInverse currentStep={1}>
             <Step secondaryLabel={TEXT} hasError />
             <Step />
           </Stepper>
@@ -330,13 +341,13 @@ describe('Stepper', () => {
 
       it('should have an inverse incomplete styled separator', () => {
         const { getByTestId } = render(
-          <Stepper testId={testId} isInverse currentStep={0}>
-            <Step />
+          <Stepper isInverse currentStep={0}>
+            <Step testId={testId} />
             <Step />
           </Stepper>
         );
 
-        const separator = getByTestId(`${testId}-step-0`).nextElementSibling;
+        const separator = getByTestId(testId).nextElementSibling;
 
         expect(separator).toHaveStyleRule(
           'background',
@@ -344,15 +355,15 @@ describe('Stepper', () => {
         );
       });
 
-      it('should have a inverse completed styled separator', () => {
+      it('should have an inverse completed styled separator', () => {
         const { getByTestId } = render(
-          <Stepper testId={testId} isInverse currentStep={1}>
-            <Step />
+          <Stepper isInverse currentStep={1}>
+            <Step testId={testId} />
             <Step />
           </Stepper>
         );
 
-        const separator = getByTestId(`${testId}-step-0`).nextElementSibling;
+        const separator = getByTestId(testId).nextElementSibling;
 
         expect(separator).toHaveStyleRule(
           'background',

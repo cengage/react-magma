@@ -63,10 +63,10 @@ export default {
 const Template: Story<StepperProps> = args => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
-  const [numberOfSteps, setNumberOfSteps] = React.useState('4');
+  const [numberOfSteps, setNumberOfSteps] = React.useState(4);
 
   const handleOnNext = () => {
-    if (currentStep <= Number(numberOfSteps)) {
+    if (currentStep <= numberOfSteps) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -76,27 +76,27 @@ const Template: Story<StepperProps> = args => {
     }
   };
   const handleFinish = () => {
-    if (currentStep === Number(numberOfSteps)) {
+    if (currentStep === numberOfSteps) {
       setCurrentStep(0);
     }
   };
 
-  const handleOnChange = () => {
-    if (Number(numberOfSteps) > 0) {
-      return event => setNumberOfSteps(event.target.value);
+  const handleOnChange = event => {
+    if (numberOfSteps > 0) {
+      return setNumberOfSteps(Number(event.target.value));
     } else {
-      return () => setNumberOfSteps('1');
+      return setNumberOfSteps(1);
     }
   };
 
-  const steps = Number(numberOfSteps);
+  const steps = numberOfSteps;
 
   const step = [...Array(steps)].map((_, i) => {
     ++i;
     return (
       <Step
-        {...args}
         key={i}
+        testId={`Step ${i}`}
         label={`Step ${i}`}
         secondaryLabel={`Description area in secondaryLabel component ${i}`}
       />
@@ -118,7 +118,7 @@ const Template: Story<StepperProps> = args => {
         }}
       >
         <div>
-          {currentStep < Number(numberOfSteps)
+          {currentStep < numberOfSteps
             ? `Step Content ${currentStep + 1}`
             : `Steps Completed`}
         </div>
@@ -135,26 +135,23 @@ const Template: Story<StepperProps> = args => {
             labelPosition={LabelPosition.left}
             labelText="Step Amount"
             value={numberOfSteps}
-            onChange={handleOnChange()}
+            min={2}
+            max={20}
+            onChange={handleOnChange}
             type={InputType.number}
           />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ButtonGroup>
-            <Button
-              onClick={handleOnPrevious}
-              disabled={currentStep === 0 ? true : false}
-            >
+            <Button onClick={handleOnPrevious} disabled={currentStep === 0}>
               Previous
             </Button>
             <Button
               onClick={
-                currentStep < Number(numberOfSteps)
-                  ? handleOnNext
-                  : handleFinish
+                currentStep < numberOfSteps ? handleOnNext : handleFinish
               }
             >
-              {currentStep < Number(numberOfSteps) ? 'Next' : 'Finish'}
+              {currentStep < numberOfSteps ? 'Next' : 'Finish'}
             </Button>
           </ButtonGroup>
         </Flex>
