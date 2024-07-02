@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.7-next.4
+
+### Patch Changes
+
+- 9f43ba1e6: Update Charts examples
+- Updated dependencies [9f43ba1e6]
+  - @react-magma/charts@7.0.1-next.3
+
 ## 5.0.7-next.3
 
 ### Patch Changes

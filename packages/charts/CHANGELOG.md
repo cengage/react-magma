@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 7.0.1-next.3
+
+### Patch Changes
+
+- 9f43ba1e6: fix(CarbonCharts): Minify styles
+
 ## 7.0.1-next.2
 
 ### Patch Changes
