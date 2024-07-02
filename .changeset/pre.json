@@ -11,6 +11,8 @@
     "react-magma-landing": "1.1.3"
   },
   "changesets": [
+    "charts-docs",
+    "charts-stylesmin",
     "chore-sync",
     "docs-styles",
     "empty-monkeys-collect",
