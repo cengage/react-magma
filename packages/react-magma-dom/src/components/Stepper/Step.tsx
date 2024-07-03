@@ -214,16 +214,6 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
-    const labels = () => {
-      if (label && secondaryLabel) {
-        return `${label} ${secondaryLabel}`;
-      } else if (label) {
-        return label;
-      } else if (secondaryLabel) {
-        return secondaryLabel;
-      }
-    };
-
     return (
       <StyledStep {...rest} ref={ref} data-testid={testId}>
         <StyledStepIndicator
@@ -263,7 +253,11 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
               )}
             </>
           ) : (
-            <HiddenLabelText>{labels()}</HiddenLabelText>
+            <HiddenLabelText>
+              {label && secondaryLabel
+                ? `${label} ${secondaryLabel}`
+                : label || secondaryLabel}
+            </HiddenLabelText>
           )}
         </StyledStepTextWrapper>
       </StyledStep>

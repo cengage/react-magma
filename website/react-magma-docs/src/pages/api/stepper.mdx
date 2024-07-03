@@ -229,6 +229,72 @@ export function Example() {
 }
 ```
 
+## Aria Label
+
+For proper accessibility usage, the `ariaLabel` prop takes a string to idenitify the `Stepper` to screenreaders appropriately.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(4);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper ariaLabel="Specific aria-label!" currentStep={currentStep}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
 ## Layout
 
 For alternative layouts, the `layout` prop hides either labels or shows just the summary view. By default, step labels will display if `layout` isn't used.

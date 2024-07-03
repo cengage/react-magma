@@ -57,6 +57,11 @@ export default {
         type: 'text',
       },
     },
+    ariaLabel: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 
@@ -89,9 +94,7 @@ const Template: Story<StepperProps> = args => {
     }
   };
 
-  const steps = numberOfSteps;
-
-  const step = [...Array(steps)].map((_, i) => {
+  const step = [...Array(numberOfSteps)].map((_, i) => {
     ++i;
     return (
       <Step

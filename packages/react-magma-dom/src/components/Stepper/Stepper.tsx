@@ -299,11 +299,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             (allStepsHaveLabels || allStepsHaveSecondaryLabels)
           ) {
             return (
-              <StyledWrapper
-                aria-current={currentStep === index}
-                // data-testid={testId && `${testId}-step-${index}`}
-                theme={theme}
-              >
+              <StyledWrapper aria-current={currentStep === index} theme={theme}>
                 {stepAndSeparator()}
               </StyledWrapper>
             );
