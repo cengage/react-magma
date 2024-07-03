@@ -108,7 +108,7 @@ const Template: Story<StepperProps> = args => {
 
   return (
     <>
-      <Stepper currentStep={currentStep} {...args}>
+      <Stepper ariaLabel="progress" currentStep={currentStep} {...args}>
         {step}
       </Stepper>
 
@@ -166,7 +166,7 @@ const Template: Story<StepperProps> = args => {
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
-      <Stepper currentStep={2} {...args}>
+      <Stepper ariaLabel="progress" currentStep={2} {...args}>
         <Step label="First Step" secondaryLabel="Description One">
           Step Content One
         </Step>
