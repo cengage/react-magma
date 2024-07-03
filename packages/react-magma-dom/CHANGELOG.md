@@ -41,6 +41,12 @@
 
 ## 4.4.0
 
+## 4.5.0-next.7
+
+### Minor Changes
+
+- 9e38e9e7f: feat(Stepper): Displays step based content for use in multi-step interfaces.
+
 ## 4.4.1-next.6
 
 ### Patch Changes
