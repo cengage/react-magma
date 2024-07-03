@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.7-next.6
+
+### Patch Changes
+
+- 2837cd4fb: storybook(TimePicker): Update clear time example
+
 ## 5.0.7-next.5
 
 ### Patch Changes
