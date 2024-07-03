@@ -17,7 +17,7 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Customizable aria-label for accessibility.
    */
-  ariaLabel?: string;
+  ariaLabel: string;
   /**
    * Custom number for responsive styling, uses a minimum 'breakpoint' width from the set number.
    */

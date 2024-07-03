@@ -202,7 +202,9 @@ const ErrorTemplate: Story<StepperProps> = args => {
 };
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  ariaLabel: 'progress',
+};
 
 export const WithError = ErrorTemplate.bind({});
 WithError.args = {};
