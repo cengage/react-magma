@@ -1,7 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
-import { CreateStyled } from '@emotion/styled';
+import { css } from '@emotion/react';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -77,21 +76,19 @@ function buildSeparatorBackgroundColors(props) {
   }
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledStepper = typedStyled.div`
+const StyledStepper = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
 `;
 
-const StyledStepContent = typedStyled.ol`
+const StyledStepContent = styled.ol`
   display: flex;
   margin: 0;
   padding: 0;
 `;
 
-const StyledLiWrapper = typedStyled.li<{ hasLabels?: boolean }>`
+const StyledLiWrapper = styled.li<{ hasLabels?: boolean }>`
   list-style-type: none;
   ${props =>
     props.hasLabels
@@ -104,7 +101,7 @@ const StyledLiWrapper = typedStyled.li<{ hasLabels?: boolean }>`
         `}
 `;
 
-const StyledSeparator = typedStyled.div<{
+const StyledSeparator = styled.div<{
   isInverse?: boolean;
   bothLabels?: boolean;
   allStepsHaveLabels?: boolean;
@@ -135,13 +132,13 @@ const StyledSeparator = typedStyled.div<{
   transition: all 0.4s ease;
 `;
 
-const StyledSummary = typedStyled.div<{
+const StyledSummary = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
   display: flex;
   flex-direction: column;
-  position:relative;
+  position: relative;
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
   letter-spacing: ${props =>
@@ -166,11 +163,11 @@ const StyledSummary = typedStyled.div<{
   div span {
     margin: 3px 0;
     span:first-child {
-      margin: 0
+      margin: 0;
     }
     span:last-child {
       margin: 4px 0 0 0;
-    } 
+    }
   }
 `;
 
