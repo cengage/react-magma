@@ -76,13 +76,9 @@ export const Events = () => {
       </Paragraph>
       <Paragraph>onChange called {onChangeCalledTimes} times</Paragraph>
 
-      <TimePicker
-        labelText="Time Due"
-        onChange={handleOnChange}
-        value={timeValue}
-      />
+      <TimePicker labelText="Time Due" onChange={handleOnChange} />
       <br />
-      <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
+      <Button onClick={() => setTimeValue(undefined)}>Clear Time</Button>
     </>
   );
 };
