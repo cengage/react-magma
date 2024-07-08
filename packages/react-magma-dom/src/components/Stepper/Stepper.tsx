@@ -94,7 +94,7 @@ const StyledStepContent = typedStyled.ul<{
   
 `;
 
-const StyledWrapper = typedStyled.li`
+const StyledWrapper = typedStyled.div`
 list-style-type:none;
     position:relative;
     flex:1;
@@ -303,12 +303,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             (allStepsHaveLabels || allStepsHaveSecondaryLabels)
           ) {
             return (
-              <StyledWrapper
-                aria-current={currentStep === index ? 'step' : 'false'}
-                theme={theme}
-              >
-                {stepAndSeparator()}
-              </StyledWrapper>
+              <StyledWrapper theme={theme}>{stepAndSeparator()}</StyledWrapper>
             );
           } else {
             return <>{stepAndSeparator()}</>;

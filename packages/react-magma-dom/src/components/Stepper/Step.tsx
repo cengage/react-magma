@@ -252,7 +252,7 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
             )}
           </>
         ) : (
-          <HiddenLabelText data-testid="hello again">
+          <HiddenLabelText>
             {label && secondaryLabel
               ? `${label} ${secondaryLabel}, ${stepStatus}`
               : label || secondaryLabel}
