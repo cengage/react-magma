@@ -9,7 +9,7 @@ import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
-export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * Error state for each step.
    * @default false
@@ -124,7 +124,7 @@ export const HiddenLabelText = typedStyled.span`
   ${HiddenStyles};
 `;
 
-const StyledStep = typedStyled.div`
+const StyledStep = typedStyled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,68 +199,66 @@ const StyledSecondaryLabel = typedStyled.span<{
   margin: 2px 12px 0 12px;
 `;
 
-export const Step = React.forwardRef<HTMLDivElement, StepProps>(
-  (props, ref) => {
-    const {
-      hasError,
-      areLabelsHidden,
-      label,
-      secondaryLabel,
-      testId,
-      isInverse: isInverseProp,
-      stepStatus,
-      ...rest
-    } = props;
-    const theme = React.useContext(ThemeContext);
-    const isInverse = useIsInverse(isInverseProp);
+export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
+  const {
+    hasError,
+    areLabelsHidden,
+    label,
+    secondaryLabel,
+    testId,
+    isInverse: isInverseProp,
+    stepStatus,
+    ...rest
+  } = props;
+  const theme = React.useContext(ThemeContext);
+  const isInverse = useIsInverse(isInverseProp);
 
-    return (
-      <StyledStep {...rest} ref={ref} data-testid={testId}>
-        <StyledStepIndicator
-          hasError={hasError}
-          isInverse={isInverse}
-          stepStatus={stepStatus}
-          theme={theme}
-        >
-          {stepStatus === StepStatus.complete && !hasError && (
-            <CheckIcon aria-hidden="true" />
-          )}
-          {hasError && <CrossIcon aria-hidden="true" />}
-        </StyledStepIndicator>
+  return (
+    <StyledStep {...rest} ref={ref} data-testid={testId}>
+      <StyledStepIndicator
+        hasError={hasError}
+        isInverse={isInverse}
+        stepStatus={stepStatus}
+        theme={theme}
+      >
+        {stepStatus === StepStatus.complete && !hasError && (
+          <CheckIcon aria-hidden="true" />
+        )}
+        {hasError && <CrossIcon aria-hidden="true" />}
+      </StyledStepIndicator>
 
-        <StyledStepTextWrapper>
-          {!areLabelsHidden ? (
-            <>
-              {label && (
-                <StyledLabel
-                  label={label}
-                  isInverse={isInverse}
-                  data-testid={testId && `${testId}-label`}
-                  theme={theme}
-                >
-                  {label}
-                </StyledLabel>
-              )}
-              {secondaryLabel && (
-                <StyledSecondaryLabel
-                  secondaryLabel={secondaryLabel}
-                  isInverse={isInverse}
-                  data-testid={testId && `${testId}-secondaryLabel`}
-                  theme={theme}
-                >
-                  {secondaryLabel}
-                </StyledSecondaryLabel>
-              )}
-            </>
-          ) : (
-            <HiddenLabelText>
-              {label && secondaryLabel
-                ? `${label} ${secondaryLabel}`
-                : label || secondaryLabel}
-            </HiddenLabelText>
-          )}
-        </StyledStepTextWrapper>
-      </StyledStep>
-    );
-  }
-);
+      <StyledStepTextWrapper>
+        {!areLabelsHidden ? (
+          <>
+            {label && (
+              <StyledLabel
+                label={label}
+                isInverse={isInverse}
+                data-testid={testId && `${testId}-label`}
+                theme={theme}
+              >
+                {label}
+              </StyledLabel>
+            )}
+            {secondaryLabel && (
+              <StyledSecondaryLabel
+                secondaryLabel={secondaryLabel}
+                isInverse={isInverse}
+                data-testid={testId && `${testId}-secondaryLabel`}
+                theme={theme}
+              >
+                {secondaryLabel}
+              </StyledSecondaryLabel>
+            )}
+          </>
+        ) : (
+          <HiddenLabelText data-testid="hello again">
+            {label && secondaryLabel
+              ? `${label} ${secondaryLabel}, ${stepStatus}`
+              : label || secondaryLabel}
+          </HiddenLabelText>
+        )}
+      </StyledStepTextWrapper>
+    </StyledStep>
+  );
+});

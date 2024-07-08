@@ -84,15 +84,18 @@ const StyledStepper = typedStyled.div`
   flex-direction: column;
 `;
 
-const StyledStepContent = typedStyled.div<{
+const StyledStepContent = typedStyled.ul<{
   showLabelsLayout?: boolean;
   theme?: ThemeInterface;
 }>`
   display: flex;
+  margin:0;
+  padding:0;
   
 `;
 
-const StyledWrapper = typedStyled.div`
+const StyledWrapper = typedStyled.li`
+list-style-type:none;
     position:relative;
     flex:1;
 `;
@@ -152,16 +155,16 @@ const StyledSummary = typedStyled.div<{
   svg{
     height:0;
   }
-  div > span{
+  li > span{
     height: auto;
   }
-  div div {
+  li div {
     margin:3px 0;
     span{
       margin:0
     }
   }
-  div div span:last-child{
+  li div span:last-child{
     margin: 4px 0 0 0;
   } 
 `;
@@ -269,7 +272,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
-            'aria-current': !showLabelsLayout ? currentStep === index : null,
+            'aria-current':
+              !showLabelsLayout && currentStep === index ? 'step' : 'false',
             key: index,
             isInverse: isInverse,
             areLabelsHidden: hideLabelsLayout || summaryViewLayout,
@@ -299,7 +303,10 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             (allStepsHaveLabels || allStepsHaveSecondaryLabels)
           ) {
             return (
-              <StyledWrapper aria-current={currentStep === index} theme={theme}>
+              <StyledWrapper
+                aria-current={currentStep === index ? 'step' : 'false'}
+                theme={theme}
+              >
                 {stepAndSeparator()}
               </StyledWrapper>
             );
