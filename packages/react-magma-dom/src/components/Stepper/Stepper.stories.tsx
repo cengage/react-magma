@@ -99,8 +99,8 @@ const Template: Story<StepperProps> = args => {
     return (
       <Step
         key={i}
-        testId={`Step ${i}`}
-        label={`Step ${i}`}
+        testId={`Item ${i}`}
+        label={`Item ${i}`}
         secondaryLabel={`Description area in secondaryLabel component ${i}`}
       />
     );
@@ -122,8 +122,8 @@ const Template: Story<StepperProps> = args => {
       >
         <div>
           {currentStep < numberOfSteps
-            ? `Step Content ${currentStep + 1}`
-            : `Steps Completed`}
+            ? `Item Content ${currentStep + 1}`
+            : `Items Completed`}
         </div>
       </Container>
 
@@ -167,17 +167,17 @@ const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
       <Stepper ariaLabel="progress" currentStep={2} {...args}>
-        <Step label="First Step" secondaryLabel="Description One">
-          Step Content One
+        <Step label="First Item" secondaryLabel="Description One">
+          Item Content One
         </Step>
-        <Step label="Second Step" secondaryLabel="Description Two">
-          Step Content Two
+        <Step label="Second Item" secondaryLabel="Description Two">
+          Item Content Two
         </Step>
-        <Step label="Third Step" hasError secondaryLabel="Description Three">
-          Step Content Three
+        <Step label="Third Item" hasError secondaryLabel="Description Three">
+          Item Content Three
         </Step>
-        <Step label="Fourth Step" secondaryLabel="Description Four">
-          Step Content Four
+        <Step label="Fourth Item" secondaryLabel="Description Four">
+          Item Content Four
         </Step>
       </Stepper>
       <Container
@@ -188,7 +188,7 @@ const ErrorTemplate: Story<StepperProps> = args => {
           padding: '20px',
         }}
       >
-        <div>Step Content Three</div>
+        <div>Item Content Three</div>
       </Container>
 
       <Container style={{ padding: '20px 0' }}>

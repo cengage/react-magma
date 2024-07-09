@@ -276,7 +276,11 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               !showLabelsLayout && currentStep === index ? 'step' : 'false',
             key: index,
             isInverse: isInverse,
+            index: index,
+            hasLabels: showLabelsLayout,
             areLabelsHidden: hideLabelsLayout || summaryViewLayout,
+            isSummaryView: summaryViewLayout,
+            stepLabel: stepLabel ? stepLabel : i18n.stepper.stepLabel,
             stepStatus: stepStatusStyles,
           });
 

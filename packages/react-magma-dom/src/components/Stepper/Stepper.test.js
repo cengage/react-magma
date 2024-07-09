@@ -13,35 +13,97 @@ const testId = 'test-id';
 
 describe('Stepper', () => {
   it('should find element by testId', () => {
-    const { getByTestId } = render(<Stepper ariaLabel="progress"  testId={testId}></Stepper>);
+    const { getByTestId } = render(
+      <Stepper ariaLabel="progress" testId={testId}></Stepper>
+    );
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(<Stepper ariaLabel="progress" role="form"></Stepper>);
+  describe('Accessibility', () => {
+    it('Does not violate accessibility standards', () => {
+      const { container } = render(
+        <Stepper ariaLabel="progress" role="form"></Stepper>
+      );
 
-    return axe(container.innerHTML).then(result => {
-      return expect(result).toHaveNoViolations();
+      return axe(container.innerHTML).then(result => {
+        return expect(result).toHaveNoViolations();
+      });
     });
-  });
 
-  it('should use the custom aria-label', () => {
-    const { getByLabelText } = render(
-      <Stepper ariaLabel="custom" testId={testId}  currentStep={0}>
-        <Step />
-        <Step />
-      </Stepper>
-    );
+    it('should use the custom aria-label', () => {
+      const { getByLabelText } = render(
+        <Stepper ariaLabel="custom" testId={testId} currentStep={0}>
+          <Step />
+          <Step />
+        </Stepper>
+      );
 
-    const customAriaLabel = getByLabelText('custom', {selector: 'div'});
+      const customAriaLabel = getByLabelText('custom', { selector: 'div' });
 
-    expect(customAriaLabel).toBeInTheDocument();
+      expect(customAriaLabel).toBeInTheDocument();
+    });
+
+    it('should have hidden labels for screen readers when layout is set to "showLabels"', () => {
+      const { getByTestId } = render(
+        <Stepper
+          ariaLabel="progress"
+          layout={StepperLayout.showLabels}
+          currentStep={0}
+        >
+          <Step
+            testId={`${testId}-1-nolabels-hiddenlabeltext`}
+            label={`${TEXT}-1`}
+          />
+          <Step
+            testId={`${testId}-2-nolabels-hiddenlabeltext`}
+            label={`${TEXT}-2`}
+          />
+        </Stepper>
+      );
+
+      expect(
+        getByTestId(`${testId}-1-nolabels-hiddenlabeltext`)
+      ).toHaveTextContent(`Step 1, ${TEXT}-1, Step active`);
+      expect(
+        getByTestId(`${testId}-2-nolabels-hiddenlabeltext`)
+      ).toHaveTextContent(`Step 2, ${TEXT}-2, Step incomplete`);
+    });
+
+    it('should have hidden labels for screen readers when layout is set to "hideLabels"', () => {
+      const { getByTestId } = render(
+        <Stepper
+          ariaLabel="progress"
+          layout={StepperLayout.hideLabels}
+          currentStep={1}
+        >
+          <Step
+            testId={`${testId}-1-nolabels-hiddenlabeltext`}
+            label={`${TEXT}-1`}
+          />
+          <Step
+            testId={`${testId}-2-nolabels-hiddenlabeltext`}
+            label={`${TEXT}-2`}
+          />
+        </Stepper>
+      );
+
+      expect(
+        getByTestId(`${testId}-1-nolabels-hiddenlabeltext`)
+      ).toHaveTextContent(`Step 1, ${TEXT}-1, Step complete`);
+      expect(
+        getByTestId(`${testId}-2-nolabels-hiddenlabeltext`)
+      ).toHaveTextContent(`Step 2, ${TEXT}-2, Step active`);
+    });
   });
 
   it('should use the default completion label', () => {
     const { getByText } = render(
-      <Stepper ariaLabel="progress"  currentStep={2} layout={StepperLayout.summaryView}>
+      <Stepper
+        ariaLabel="progress"
+        currentStep={2}
+        layout={StepperLayout.summaryView}
+      >
         <Step />
         <Step />
       </Stepper>
@@ -52,7 +114,11 @@ describe('Stepper', () => {
 
   it('should use the default step label', () => {
     const { getByText } = render(
-      <Stepper ariaLabel="progress"  currentStep={0} layout={StepperLayout.summaryView}>
+      <Stepper
+        ariaLabel="progress"
+        currentStep={0}
+        layout={StepperLayout.summaryView}
+      >
         <Step />
         <Step />
       </Stepper>
@@ -63,7 +129,8 @@ describe('Stepper', () => {
 
   it('should use the custom completion label', () => {
     const { getByText } = render(
-      <Stepper ariaLabel="progress" 
+      <Stepper
+        ariaLabel="progress"
         completionLabel="You're victorious"
         currentStep={2}
         layout={StepperLayout.summaryView}
@@ -78,7 +145,8 @@ describe('Stepper', () => {
 
   it('should use the custom step label', () => {
     const { getByText } = render(
-      <Stepper ariaLabel="progress" 
+      <Stepper
+        ariaLabel="progress"
         stepLabel="Party On"
         currentStep={0}
         layout={StepperLayout.summaryView}
@@ -103,7 +171,11 @@ describe('Stepper', () => {
             },
           }}
         >
-          <Stepper ariaLabel="progress"  currentStep={2} layout={StepperLayout.summaryView}>
+          <Stepper
+            ariaLabel="progress"
+            currentStep={2}
+            layout={StepperLayout.summaryView}
+          >
             <Step />
             <Step />
           </Stepper>
@@ -126,7 +198,11 @@ describe('Stepper', () => {
             },
           }}
         >
-          <Stepper ariaLabel="progress"  currentStep={0} layout={StepperLayout.summaryView}>
+          <Stepper
+            ariaLabel="progress"
+            currentStep={0}
+            layout={StepperLayout.summaryView}
+          >
             <Step />
             <Step />
           </Stepper>
@@ -140,7 +216,7 @@ describe('Stepper', () => {
   describe('Styling', () => {
     it('should have an active styled circle', () => {
       const { getByTestId } = render(
-        <Stepper ariaLabel="progress"  currentStep={0}>
+        <Stepper ariaLabel="progress" currentStep={0}>
           <Step testId={testId} />
           <Step />
         </Stepper>
@@ -156,7 +232,7 @@ describe('Stepper', () => {
 
     it('should have an incomplete styled circle', () => {
       const { getByTestId } = render(
-        <Stepper ariaLabel="progress"  currentStep={0}>
+        <Stepper ariaLabel="progress" currentStep={0}>
           <Step />
           <Step testId={testId} />
         </Stepper>
@@ -172,7 +248,7 @@ describe('Stepper', () => {
 
     it('should have a completed styled circle', () => {
       const { getByTestId } = render(
-        <Stepper ariaLabel="progress"  currentStep={1}>
+        <Stepper ariaLabel="progress" currentStep={1}>
           <Step testId={testId} />
           <Step />
         </Stepper>
@@ -185,7 +261,7 @@ describe('Stepper', () => {
 
     it('should have a error styled circle', () => {
       const { getByTestId } = render(
-        <Stepper ariaLabel="progress"  currentStep={1}>
+        <Stepper ariaLabel="progress" currentStep={1}>
           <Step testId={testId} hasError />
           <Step />
         </Stepper>
@@ -198,7 +274,7 @@ describe('Stepper', () => {
 
     it('should have a primary label', () => {
       const { getByText } = render(
-        <Stepper ariaLabel="progress"  currentStep={1}>
+        <Stepper ariaLabel="progress" currentStep={1}>
           <Step label={TEXT} />
           <Step />
         </Stepper>
@@ -213,7 +289,7 @@ describe('Stepper', () => {
 
     it('should have a secondary label', () => {
       const { getByText } = render(
-        <Stepper ariaLabel="progress"  currentStep={1}>
+        <Stepper ariaLabel="progress" currentStep={1}>
           <Step secondaryLabel={TEXT} hasError />
           <Step />
         </Stepper>
@@ -227,7 +303,7 @@ describe('Stepper', () => {
 
     it('should have an incomplete styled separator', () => {
       const { getByTestId } = render(
-        <Stepper ariaLabel="progress"  currentStep={0}>
+        <Stepper ariaLabel="progress" currentStep={0}>
           <Step testId={testId} />
           <Step />
         </Stepper>
@@ -241,7 +317,7 @@ describe('Stepper', () => {
 
     it('should have a completed styled separator', () => {
       const { getByTestId } = render(
-        <Stepper ariaLabel="progress"  currentStep={1}>
+        <Stepper ariaLabel="progress" currentStep={1}>
           <Step testId={testId} />
           <Step />
         </Stepper>
@@ -256,7 +332,12 @@ describe('Stepper', () => {
     describe('Inverse', () => {
       it('should have an inverse active styled circle', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress"  testId={testId} isInverse currentStep={0}>
+          <Stepper
+            ariaLabel="progress"
+            testId={testId}
+            isInverse
+            currentStep={0}
+          >
             <Step />
             <Step />
           </Stepper>
@@ -272,7 +353,7 @@ describe('Stepper', () => {
 
       it('should have an inverse incomplete styled circle', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress"  isInverse currentStep={0}>
+          <Stepper ariaLabel="progress" isInverse currentStep={0}>
             <Step />
             <Step testId={testId} />
           </Stepper>
@@ -288,7 +369,7 @@ describe('Stepper', () => {
 
       it('should have an inverse completed styled circle', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress"  isInverse currentStep={1}>
+          <Stepper ariaLabel="progress" isInverse currentStep={1}>
             <Step testId={testId} />
             <Step />
           </Stepper>
@@ -301,7 +382,7 @@ describe('Stepper', () => {
 
       it('should have an inverse error styled circle', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress"  isInverse currentStep={1}>
+          <Stepper ariaLabel="progress" isInverse currentStep={1}>
             <Step testId={testId} hasError />
             <Step />
           </Stepper>
@@ -314,7 +395,7 @@ describe('Stepper', () => {
 
       it('should have an inverse primary label', () => {
         const { getByText } = render(
-          <Stepper ariaLabel="progress"  isInverse currentStep={1}>
+          <Stepper ariaLabel="progress" isInverse currentStep={1}>
             <Step label={TEXT} hasError />
             <Step />
           </Stepper>
@@ -327,7 +408,7 @@ describe('Stepper', () => {
 
       it('should have an inverse secondary label', () => {
         const { getByText } = render(
-          <Stepper ariaLabel="progress"  isInverse currentStep={1}>
+          <Stepper ariaLabel="progress" isInverse currentStep={1}>
             <Step secondaryLabel={TEXT} hasError />
             <Step />
           </Stepper>
@@ -343,7 +424,7 @@ describe('Stepper', () => {
 
       it('should have an inverse incomplete styled separator', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress"  isInverse currentStep={0}>
+          <Stepper ariaLabel="progress" isInverse currentStep={0}>
             <Step testId={testId} />
             <Step />
           </Stepper>
@@ -359,7 +440,7 @@ describe('Stepper', () => {
 
       it('should have an inverse completed styled separator', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress"  isInverse currentStep={1}>
+          <Stepper ariaLabel="progress" isInverse currentStep={1}>
             <Step testId={testId} />
             <Step />
           </Stepper>
@@ -377,14 +458,18 @@ describe('Stepper', () => {
     describe('States', () => {
       it('should hide labels when layout is set to "hideLabels"', () => {
         const { getByText } = render(
-          <Stepper ariaLabel="progress"  layout={StepperLayout.hideLabels} currentStep={1}>
+          <Stepper
+            ariaLabel="progress"
+            layout={StepperLayout.hideLabels}
+            currentStep={1}
+          >
             <Step label={`${TEXT}-1`} />
             <Step label={`${TEXT}-2`} />
           </Stepper>
         );
 
-        const label1 = getByText(`${TEXT}-1`);
-        const label2 = getByText(`${TEXT}-2`);
+        const label1 = getByText(`Step 1, ${TEXT}-1, Step complete`);
+        const label2 = getByText(`Step 2, ${TEXT}-2, Step active`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
@@ -403,7 +488,8 @@ describe('Stepper', () => {
 
       it('should only show one step label and description at a time along with a counter when layout is set to summaryView', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress" 
+          <Stepper
+            ariaLabel="progress"
             testId={testId}
             layout={StepperLayout.summaryView}
             currentStep={0}
@@ -419,7 +505,11 @@ describe('Stepper', () => {
 
       it('should show labels when layout is set to showLabels', () => {
         const { getByText } = render(
-          <Stepper ariaLabel="progress"  layout={StepperLayout.showLabels} currentStep={0}>
+          <Stepper
+            ariaLabel="progress"
+            layout={StepperLayout.showLabels}
+            currentStep={0}
+          >
             <Step label={`${TEXT}-1`} />
             <Step label={`${TEXT}-2`} />
           </Stepper>
@@ -439,7 +529,8 @@ describe('Stepper', () => {
 
       it('should hide labels when breakpointLayout is set to "hideLabels" if viewport is smaller than set breakpoint prop', () => {
         const { getByText } = render(
-          <Stepper ariaLabel="progress" 
+          <Stepper
+            ariaLabel="progress"
             breakpoint={1500}
             breakpointLayout={StepperLayout.hideLabels}
             currentStep={0}
@@ -452,7 +543,7 @@ describe('Stepper', () => {
           global.innerWidth = 1400;
           global.dispatchEvent(new Event('resize'));
         });
-        const label1 = getByText(`${TEXT}-1`);
+        const label1 = getByText(`Step 1, ${TEXT}-1, Step active`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
@@ -464,7 +555,8 @@ describe('Stepper', () => {
 
       it('should show labels when breakpointLayout is set to "showLabels" if viewport is smaller than set breakpoint prop', () => {
         const { getByText } = render(
-          <Stepper ariaLabel="progress" 
+          <Stepper
+            ariaLabel="progress"
             breakpoint={1500}
             breakpointLayout={StepperLayout.showLabels}
             currentStep={0}
@@ -492,7 +584,8 @@ describe('Stepper', () => {
 
       it('should show summaryView when breakpointStyle is set to "summaryView" if viewport is smaller than set breakpoint prop', () => {
         const { getByTestId } = render(
-          <Stepper ariaLabel="progress" 
+          <Stepper
+            ariaLabel="progress"
             testId={testId}
             breakpoint={1500}
             breakpointLayout={StepperLayout.summaryView}

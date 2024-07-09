@@ -20,6 +20,10 @@ export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
    */
   areLabelsHidden?: boolean;
   /**
+   * @internal
+   */
+  hasLabels?: boolean;
+  /**
    * Label beneath each step.
    */
   label?: string;
@@ -34,7 +38,19 @@ export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * @internal
    */
+  index?: number;
+  /**
+   * @internal
+   */
+  isSummaryView?: boolean;
+  /**
+   * @internal
+   */
   isInverse?: boolean;
+  /**
+   * @internal
+   */
+  stepLabel?: string;
   /**
    * @internal
    */
@@ -203,8 +219,12 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
   const {
     hasError,
     areLabelsHidden,
+    hasLabels,
+    index,
     label,
+    isSummaryView,
     secondaryLabel,
+    stepLabel,
     testId,
     isInverse: isInverseProp,
     stepStatus,
@@ -230,6 +250,13 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
       <StyledStepTextWrapper>
         {!areLabelsHidden ? (
           <>
+            {hasLabels && (
+              <HiddenLabelText
+                data-testid={testId && `${testId}-labels-hiddenlabeltext`}
+              >
+                {`${stepLabel} ${index + 1}, `}
+              </HiddenLabelText>
+            )}
             {label && (
               <StyledLabel
                 label={label}
@@ -250,13 +277,31 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
                 {secondaryLabel}
               </StyledSecondaryLabel>
             )}
+            {hasLabels && (
+              <HiddenLabelText
+                data-testid={testId && `${testId}-labels-hiddenlabeltext`}
+              >
+                {`, ${stepLabel} ${stepStatus}`}
+              </HiddenLabelText>
+            )}
           </>
         ) : (
-          <HiddenLabelText>
-            {label && secondaryLabel
-              ? `${label} ${secondaryLabel}, ${stepStatus}`
-              : label || secondaryLabel}
-          </HiddenLabelText>
+          !isSummaryView && (
+            <HiddenLabelText
+              data-testid={testId && `${testId}-nolabels-hiddenlabeltext`}
+            >
+              {label && secondaryLabel
+                ? `${stepLabel} ${
+                    index + 1
+                  }, ${label} ${secondaryLabel}, ${stepStatus}`
+                : `${stepLabel} ${
+                    index + 1
+                  }, ${label}, ${stepLabel} ${stepStatus}` ||
+                  `${stepLabel} ${
+                    index + 1
+                  }, ${secondaryLabel}, ${stepLabel} ${stepStatus}`}
+            </HiddenLabelText>
+          )
         )}
       </StyledStepTextWrapper>
     </StyledStep>
