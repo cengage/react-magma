@@ -272,15 +272,13 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
-            'aria-current':
-              !showLabelsLayout && currentStep === index ? 'step' : 'false',
+            'aria-current': currentStep === index ? 'step' : 'false',
             key: index,
             isInverse: isInverse,
             index: index,
-            hasLabels: showLabelsLayout,
+            layout: layout,
             areLabelsHidden: hideLabelsLayout || summaryViewLayout,
-            isSummaryView: summaryViewLayout,
-            stepLabel: stepLabel ? stepLabel : i18n.stepper.stepLabel,
+            stepLabel: stepLabel || i18n.stepper.stepLabel,
             stepStatus: stepStatusStyles,
           });
 

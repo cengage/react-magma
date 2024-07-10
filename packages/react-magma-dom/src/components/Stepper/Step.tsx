@@ -8,6 +8,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
 import { HiddenStyles } from '../../utils/UtilityStyles';
+import { StepperLayout } from './Stepper';
 
 export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
@@ -22,7 +23,7 @@ export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * @internal
    */
-  hasLabels?: boolean;
+  layout?: StepperLayout;
   /**
    * Label beneath each step.
    */
@@ -39,10 +40,6 @@ export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
    * @internal
    */
   index?: number;
-  /**
-   * @internal
-   */
-  isSummaryView?: boolean;
   /**
    * @internal
    */
@@ -219,10 +216,9 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
   const {
     hasError,
     areLabelsHidden,
-    hasLabels,
     index,
     label,
-    isSummaryView,
+    layout,
     secondaryLabel,
     stepLabel,
     testId,
@@ -250,12 +246,8 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
       <StyledStepTextWrapper>
         {!areLabelsHidden ? (
           <>
-            {hasLabels && (
-              <HiddenLabelText
-                data-testid={testId && `${testId}-labels-hiddenlabeltext`}
-              >
-                {`${stepLabel} ${index + 1}, `}
-              </HiddenLabelText>
+            {layout === StepperLayout.showLabels && (
+              <HiddenLabelText>{`${stepLabel} ${index + 1}, `}</HiddenLabelText>
             )}
             {label && (
               <StyledLabel
@@ -277,29 +269,26 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
                 {secondaryLabel}
               </StyledSecondaryLabel>
             )}
-            {hasLabels && (
-              <HiddenLabelText
-                data-testid={testId && `${testId}-labels-hiddenlabeltext`}
-              >
-                {`, ${stepLabel} ${stepStatus}`}
+            {layout === StepperLayout.showLabels && (
+              <HiddenLabelText>
+                {stepStatus === StepStatus.complete
+                  ? `, ${stepLabel} ${stepStatus}`
+                  : ''}
               </HiddenLabelText>
             )}
           </>
         ) : (
-          !isSummaryView && (
+          layout !== StepperLayout.summaryView && (
             <HiddenLabelText
-              data-testid={testId && `${testId}-nolabels-hiddenlabeltext`}
+              data-testid={testId && `${testId}-hiddenlabeltext`}
             >
-              {label && secondaryLabel
-                ? `${stepLabel} ${
-                    index + 1
-                  }, ${label} ${secondaryLabel}, ${stepStatus}`
-                : `${stepLabel} ${
-                    index + 1
-                  }, ${label}, ${stepLabel} ${stepStatus}` ||
-                  `${stepLabel} ${
-                    index + 1
-                  }, ${secondaryLabel}, ${stepLabel} ${stepStatus}`}
+              {`${stepLabel} ${index + 1}, ${label || ''}${
+                secondaryLabel ? ' ' : ''
+              }${secondaryLabel || ''}${
+                stepStatus === StepStatus.complete
+                  ? `, ${stepLabel} ${stepStatus}`
+                  : ''
+              }`}
             </HiddenLabelText>
           )
         )}

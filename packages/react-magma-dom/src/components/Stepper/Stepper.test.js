@@ -49,25 +49,27 @@ describe('Stepper', () => {
         <Stepper
           ariaLabel="progress"
           layout={StepperLayout.showLabels}
-          currentStep={0}
+          currentStep={1}
         >
-          <Step
-            testId={`${testId}-1-nolabels-hiddenlabeltext`}
-            label={`${TEXT}-1`}
-          />
-          <Step
-            testId={`${testId}-2-nolabels-hiddenlabeltext`}
-            label={`${TEXT}-2`}
-          />
+          <Step testId={`${testId}-1-hiddenlabeltext`} label={`${TEXT}-1`} />
+          <Step testId={`${testId}-2-hiddenlabeltext`} label={`${TEXT}-2`} />
         </Stepper>
       );
 
-      expect(
-        getByTestId(`${testId}-1-nolabels-hiddenlabeltext`)
-      ).toHaveTextContent(`Step 1, ${TEXT}-1, Step active`);
-      expect(
-        getByTestId(`${testId}-2-nolabels-hiddenlabeltext`)
-      ).toHaveTextContent(`Step 2, ${TEXT}-2, Step incomplete`);
+      expect(getByTestId(`${testId}-1-hiddenlabeltext`)).toHaveTextContent(
+        `Step 1, ${TEXT}-1, Step complete`
+      );
+      expect(getByTestId(`${testId}-1-hiddenlabeltext`)).toHaveAttribute(
+        'aria-current',
+        'false'
+      );
+      expect(getByTestId(`${testId}-2-hiddenlabeltext`)).toHaveTextContent(
+        `Step 2, ${TEXT}-2`
+      );
+      expect(getByTestId(`${testId}-2-hiddenlabeltext`)).toHaveAttribute(
+        'aria-current',
+        'step'
+      );
     });
 
     it('should have hidden labels for screen readers when layout is set to "hideLabels"', () => {
@@ -77,23 +79,25 @@ describe('Stepper', () => {
           layout={StepperLayout.hideLabels}
           currentStep={1}
         >
-          <Step
-            testId={`${testId}-1-nolabels-hiddenlabeltext`}
-            label={`${TEXT}-1`}
-          />
-          <Step
-            testId={`${testId}-2-nolabels-hiddenlabeltext`}
-            label={`${TEXT}-2`}
-          />
+          <Step testId={`${testId}-1-hiddenlabeltext`} label={`${TEXT}-1`} />
+          <Step testId={`${testId}-2-hiddenlabeltext`} label={`${TEXT}-2`} />
         </Stepper>
       );
 
-      expect(
-        getByTestId(`${testId}-1-nolabels-hiddenlabeltext`)
-      ).toHaveTextContent(`Step 1, ${TEXT}-1, Step complete`);
-      expect(
-        getByTestId(`${testId}-2-nolabels-hiddenlabeltext`)
-      ).toHaveTextContent(`Step 2, ${TEXT}-2, Step active`);
+      expect(getByTestId(`${testId}-1-hiddenlabeltext`)).toHaveTextContent(
+        `Step 1, ${TEXT}-1, Step complete`
+      );
+      expect(getByTestId(`${testId}-1-hiddenlabeltext`)).toHaveAttribute(
+        'aria-current',
+        'false'
+      );
+      expect(getByTestId(`${testId}-2-hiddenlabeltext`)).toHaveTextContent(
+        `Step 2, ${TEXT}-2`
+      );
+      expect(getByTestId(`${testId}-2-hiddenlabeltext`)).toHaveAttribute(
+        'aria-current',
+        'step'
+      );
     });
   });
 
@@ -469,7 +473,7 @@ describe('Stepper', () => {
         );
 
         const label1 = getByText(`Step 1, ${TEXT}-1, Step complete`);
-        const label2 = getByText(`Step 2, ${TEXT}-2, Step active`);
+        const label2 = getByText(`Step 2, ${TEXT}-2`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
@@ -543,7 +547,7 @@ describe('Stepper', () => {
           global.innerWidth = 1400;
           global.dispatchEvent(new Event('resize'));
         });
-        const label1 = getByText(`Step 1, ${TEXT}-1, Step active`);
+        const label1 = getByText(`Step 1, ${TEXT}-1`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
