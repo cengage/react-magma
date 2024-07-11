@@ -243,7 +243,13 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
         layout !== StepperLayout.summaryView ? (
           <>
             {layout === StepperLayout.showLabels && (
-              <HiddenLabelText>{`${stepLabel} ${index + 1}, `}</HiddenLabelText>
+              <HiddenLabelText>
+                {`${
+                  stepStatus === StepStatus.completed
+                    ? `${stepLabel} ${stepStatus}, `
+                    : ''
+                }`}
+              </HiddenLabelText>
             )}
             {label && (
               <StyledLabel
@@ -265,23 +271,16 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
                 {secondaryLabel}
               </StyledSecondaryLabel>
             )}
-            {layout === StepperLayout.showLabels && (
-              <HiddenLabelText>
-                {stepStatus === StepStatus.completed
-                  ? `, ${stepLabel} ${stepStatus}`
-                  : ''}
-              </HiddenLabelText>
-            )}
           </>
         ) : (
           layout !== StepperLayout.summaryView && (
             <HiddenLabelText>
-              {`${stepLabel} ${index + 1}, ${label || ''}${
-                secondaryLabel ? ' ' : ''
-              }${secondaryLabel || ''}${
+              {`${
                 stepStatus === StepStatus.completed
-                  ? `, ${stepLabel} ${stepStatus}`
+                  ? `${stepLabel} ${stepStatus}, `
                   : ''
+              }${label || ''}${secondaryLabel ? ' ' : ''}${
+                secondaryLabel || ''
               }`}
             </HiddenLabelText>
           )

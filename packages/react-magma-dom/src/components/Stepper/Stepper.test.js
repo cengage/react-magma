@@ -57,13 +57,13 @@ describe('Stepper', () => {
       );
 
       expect(getByTestId(`${testId}-1`)).toHaveTextContent(
-        `Step 1, ${TEXT}-1, Step completed`
+        `Step completed, ${TEXT}-1`
       );
       expect(getByTestId(`${testId}-1`)).toHaveAttribute(
         'aria-current',
         'false'
       );
-      expect(getByTestId(`${testId}-2`)).toHaveTextContent(`Step 2, ${TEXT}-2`);
+      expect(getByTestId(`${testId}-2`)).toHaveTextContent(`${TEXT}-2`);
       expect(getByTestId(`${testId}-2`)).toHaveAttribute(
         'aria-current',
         'step'
@@ -83,13 +83,13 @@ describe('Stepper', () => {
       );
 
       expect(getByTestId(`${testId}-1`)).toHaveTextContent(
-        `Step 1, ${TEXT}-1, Step completed`
+        `Step completed, ${TEXT}-1`
       );
       expect(getByTestId(`${testId}-1`)).toHaveAttribute(
         'aria-current',
         'false'
       );
-      expect(getByTestId(`${testId}-2`)).toHaveTextContent(`Step 2, ${TEXT}-2`);
+      expect(getByTestId(`${testId}-2`)).toHaveTextContent(`${TEXT}-2`);
       expect(getByTestId(`${testId}-2`)).toHaveAttribute(
         'aria-current',
         'step'
@@ -468,8 +468,8 @@ describe('Stepper', () => {
           </Stepper>
         );
 
-        const label1 = getByText(`Step 1, ${TEXT}-1, Step completed`);
-        const label2 = getByText(`Step 2, ${TEXT}-2`);
+        const label1 = getByText(`Step completed, ${TEXT}-1`);
+        const label2 = getByText(`${TEXT}-2`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
@@ -503,7 +503,7 @@ describe('Stepper', () => {
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
       });
 
-      it('should show labels when layout is set to showLabels', () => {
+      it('should show labels when layout is set to "showLabels"', () => {
         const { getByText } = render(
           <Stepper
             ariaLabel="progress"
@@ -543,7 +543,7 @@ describe('Stepper', () => {
           global.innerWidth = 1400;
           global.dispatchEvent(new Event('resize'));
         });
-        const label1 = getByText(`Step 1,`);
+        const label1 = getByText(`Step completed,`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
