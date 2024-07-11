@@ -19,10 +19,6 @@ export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * @internal
    */
-  areLabelsHidden?: boolean;
-  /**
-   * @internal
-   */
   layout?: StepperLayout;
   /**
    * Label beneath each step.
@@ -60,7 +56,7 @@ export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
 
 export enum StepStatus {
   active = 'active',
-  complete = 'complete',
+  completed = 'completed',
   incomplete = 'incomplete',
 }
 
@@ -87,13 +83,13 @@ function buildStepCircleOutlineColors(props) {
 function buildStepCircleBackgroundColors(props) {
   const { isInverse, stepStatus, hasError, theme } = props;
   if (isInverse) {
-    if (stepStatus === StepStatus.complete && !hasError) {
+    if (stepStatus === StepStatus.completed && !hasError) {
       return theme.colors.tertiary500;
     } else if (hasError) {
       return theme.colors.danger500;
     }
   } else {
-    if (stepStatus === StepStatus.complete && !hasError) {
+    if (stepStatus === StepStatus.completed && !hasError) {
       return theme.colors.primary500;
     } else if (hasError) {
       return theme.colors.danger500;
@@ -215,7 +211,6 @@ const StyledSecondaryLabel = typedStyled.span<{
 export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
   const {
     hasError,
-    areLabelsHidden,
     index,
     label,
     layout,
@@ -237,14 +232,15 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
         stepStatus={stepStatus}
         theme={theme}
       >
-        {stepStatus === StepStatus.complete && !hasError && (
+        {stepStatus === StepStatus.completed && !hasError && (
           <CheckIcon aria-hidden="true" />
         )}
         {hasError && <CrossIcon aria-hidden="true" />}
       </StyledStepIndicator>
 
       <StyledStepTextWrapper>
-        {!areLabelsHidden ? (
+        {layout !== StepperLayout.hideLabels &&
+        layout !== StepperLayout.summaryView ? (
           <>
             {layout === StepperLayout.showLabels && (
               <HiddenLabelText>{`${stepLabel} ${index + 1}, `}</HiddenLabelText>
@@ -271,7 +267,7 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
             )}
             {layout === StepperLayout.showLabels && (
               <HiddenLabelText>
-                {stepStatus === StepStatus.complete
+                {stepStatus === StepStatus.completed
                   ? `, ${stepLabel} ${stepStatus}`
                   : ''}
               </HiddenLabelText>
@@ -279,13 +275,11 @@ export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
           </>
         ) : (
           layout !== StepperLayout.summaryView && (
-            <HiddenLabelText
-              data-testid={testId && `${testId}-hiddenlabeltext`}
-            >
+            <HiddenLabelText>
               {`${stepLabel} ${index + 1}, ${label || ''}${
                 secondaryLabel ? ' ' : ''
               }${secondaryLabel || ''}${
-                stepStatus === StepStatus.complete
+                stepStatus === StepStatus.completed
                   ? `, ${stepLabel} ${stepStatus}`
                   : ''
               }`}

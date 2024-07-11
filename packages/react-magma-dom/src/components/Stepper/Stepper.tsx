@@ -64,12 +64,12 @@ export enum StepperLayout {
 function buildSeparatorBackgroundColors(props) {
   const { isInverse, theme, stepStatus } = props;
   if (isInverse) {
-    if (stepStatus === StepStatus.complete) {
+    if (stepStatus === StepStatus.completed) {
       return theme.colors.tertiary500;
     }
     return theme.colors.primary400;
   } else {
-    if (stepStatus === StepStatus.complete) {
+    if (stepStatus === StepStatus.completed) {
       return theme.colors.primary500;
     }
     return theme.colors.neutral300;
@@ -266,18 +266,16 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
         if (child.type === Step) {
           const stepStatusStyles =
             currentStep >= index + 1
-              ? StepStatus.complete
+              ? StepStatus.completed
               : currentStep >= index
               ? StepStatus.active
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
             'aria-current': currentStep === index ? 'step' : 'false',
-            key: index,
             isInverse: isInverse,
             index: index,
             layout: layout,
-            areLabelsHidden: hideLabelsLayout || summaryViewLayout,
             stepLabel: stepLabel || i18n.stepper.stepLabel,
             stepStatus: stepStatusStyles,
           });
@@ -336,6 +334,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
         {...rest}
         aria-label={ariaLabel}
         data-testid={testId}
+        role="form"
         ref={ref}
       >
         <StyledStepContent showLabelsLayout={showLabelsLayout} theme={theme}>
