@@ -163,6 +163,79 @@ const Template: Story<StepperProps> = args => {
   );
 };
 
+const RealisticLabels: Story<StepperProps> = args => {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep >= 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        currentStep={currentStep}
+        stepLabel="Module"
+      >
+        <Step
+          label="Fenway seating"
+          secondaryLabel="Select an area in the ball park"
+        />
+        <Step
+          label="Guest information"
+          secondaryLabel="Please fill out the registration form for your party"
+        />
+        <Step
+          label="Yankees fans?"
+          secondaryLabel="An additional surcharge may be applicable"
+        />
+        <Step
+          label="MBTA and parking information"
+          secondaryLabel="Suggested methods of transportation"
+        />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+};
+
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
@@ -203,6 +276,11 @@ const ErrorTemplate: Story<StepperProps> = args => {
 
 export const Default = Template.bind({});
 Default.args = {
+  ariaLabel: 'progress',
+};
+
+export const RealWorldExample = RealisticLabels.bind({});
+RealisticLabels.args = {
   ariaLabel: 'progress',
 };
 
