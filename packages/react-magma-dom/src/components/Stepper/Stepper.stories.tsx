@@ -21,46 +21,34 @@ export default {
   ],
   argTypes: {
     breakpoint: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     breakpointLayout: {
-      control: {
-        type: 'select',
-        options: StepperLayout,
-      },
+      control: 'select',
+      options: StepperLayout,
+      defaultValue: StepperLayout.hideLabels,
     },
     layout: {
-      control: {
-        type: 'select',
-        options: StepperLayout,
-      },
+      control: 'select',
+      options: StepperLayout,
+      defaultValue: StepperLayout.showLabels,
     },
     completionLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     stepLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     isInverse: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
+      defaultValue: false,
     },
     testId: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     ariaLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
+      defaultValue: 'progress',
     },
   },
 } as Meta;
@@ -108,7 +96,7 @@ const Template: Story<StepperProps> = args => {
 
   return (
     <>
-      <Stepper ariaLabel="progress" currentStep={currentStep} {...args}>
+      <Stepper currentStep={currentStep} {...args}>
         {step}
       </Stepper>
 
@@ -184,11 +172,7 @@ const RealisticLabels: Story<StepperProps> = args => {
 
   return (
     <>
-      <Stepper
-        ariaLabel="progress"
-        currentStep={currentStep}
-        stepLabel="Module"
-      >
+      <Stepper currentStep={currentStep} {...args}>
         <Step
           label="Fenway seating"
           secondaryLabel="Select an area in the ball park"
@@ -215,10 +199,10 @@ const RealisticLabels: Story<StepperProps> = args => {
           padding: '20px',
         }}
       >
-        {currentStep === 0 && <div>Step Content One</div>}
-        {currentStep === 1 && <div>Step Content Two</div>}
-        {currentStep === 2 && <div>Step Content Three</div>}
-        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 0 && <div>Fenway seating Content</div>}
+        {currentStep === 1 && <div>Guest information Content</div>}
+        {currentStep === 2 && <div>Yankees fans? Content</div>}
+        {currentStep === 3 && <div>MBTA and parking information Content</div>}
         {currentStep === 4 && <div>Steps completed</div>}
       </Container>
 
@@ -239,7 +223,7 @@ const RealisticLabels: Story<StepperProps> = args => {
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
-      <Stepper ariaLabel="progress" currentStep={2} {...args}>
+      <Stepper currentStep={2} {...args}>
         <Step label="First Item" secondaryLabel="Description One">
           Item Content One
         </Step>
@@ -275,13 +259,11 @@ const ErrorTemplate: Story<StepperProps> = args => {
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  ariaLabel: 'progress',
-};
+Default.args = {};
 
 export const RealWorldExample = RealisticLabels.bind({});
 RealisticLabels.args = {
-  ariaLabel: 'progress',
+  stepLabel: 'Module',
 };
 
 export const WithError = ErrorTemplate.bind({});

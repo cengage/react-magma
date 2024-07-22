@@ -23,7 +23,9 @@ describe('Stepper', () => {
   describe('Accessibility', () => {
     it('Does not violate accessibility standards', () => {
       const { container } = render(
-        <Stepper ariaLabel="progress" role="form"></Stepper>
+        <Stepper ariaLabel="progress">
+          {/* <Step testId="step1" label="step1" /> */}
+        </Stepper>
       );
 
       return axe(container.innerHTML).then(result => {
@@ -39,7 +41,7 @@ describe('Stepper', () => {
         </Stepper>
       );
 
-      const customAriaLabel = getByLabelText('custom', { selector: 'div' });
+      const customAriaLabel = getByLabelText('custom', { selector: 'ol' });
 
       expect(customAriaLabel).toBeInTheDocument();
     });

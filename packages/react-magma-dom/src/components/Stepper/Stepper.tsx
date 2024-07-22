@@ -84,20 +84,18 @@ const StyledStepper = typedStyled.div`
   flex-direction: column;
 `;
 
-const StyledStepContent = typedStyled.ul<{
+const StyledStepContent = typedStyled.ol<{
   showLabelsLayout?: boolean;
   theme?: ThemeInterface;
 }>`
   display: flex;
   margin:0;
   padding:0;
-  
 `;
 
 const StyledWrapper = typedStyled.div`
-list-style-type:none;
-    position:relative;
-    flex:1;
+  position: relative;
+  flex: 1;
 `;
 
 const StyledSeparator = typedStyled.div<{
@@ -152,7 +150,7 @@ const StyledSummary = typedStyled.div<{
     display: flex;
     text-align: left;
   }
-  svg{
+  svg {
     height:0;
   }
   li > span{
@@ -164,7 +162,7 @@ const StyledSummary = typedStyled.div<{
       margin:0
     }
   }
-  li div span:last-child{
+  li div span:last-child {
     margin: 4px 0 0 0;
   } 
 `;
@@ -330,14 +328,12 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       props.completionLabel || i18n.stepper.completionLabel;
 
     return (
-      <StyledStepper
-        {...rest}
-        aria-label={ariaLabel}
-        data-testid={testId}
-        role="form"
-        ref={ref}
-      >
-        <StyledStepContent showLabelsLayout={showLabelsLayout} theme={theme}>
+      <StyledStepper {...rest} data-testid={testId} ref={ref}>
+        <StyledStepContent
+          aria-label={ariaLabel}
+          showLabelsLayout={showLabelsLayout}
+          theme={theme}
+        >
           {stepContent}
         </StyledStepContent>
         {summaryViewLayout && (
