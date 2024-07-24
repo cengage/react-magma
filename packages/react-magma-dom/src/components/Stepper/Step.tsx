@@ -133,14 +133,13 @@ export const HiddenLabelText = typedStyled.span`
   ${HiddenStyles};
 `;
 
-const StyledStep = typedStyled.li`
+const StyledStep = typedStyled.span`
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   align-self: self-start;
   align-items: center;
-
 `;
 
 const StyledStepIndicator = typedStyled.span<{

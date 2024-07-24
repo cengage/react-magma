@@ -24,14 +24,18 @@ export default {
       control: 'number',
     },
     breakpointLayout: {
-      control: 'select',
-      options: StepperLayout,
-      defaultValue: StepperLayout.hideLabels,
+      control: {
+        type: 'select',
+        options: StepperLayout,
+        defaultValue: StepperLayout.hideLabels,
+      },
     },
     layout: {
-      control: 'select',
-      options: StepperLayout,
-      defaultValue: StepperLayout.showLabels,
+      control: {
+        type: 'select',
+        options: StepperLayout,
+        defaultValue: StepperLayout.showLabels,
+      },
     },
     completionLabel: {
       control: 'text',
@@ -174,20 +178,28 @@ const RealisticLabels: Story<StepperProps> = args => {
     <>
       <Stepper currentStep={currentStep} {...args}>
         <Step
+          key={0}
           label="Fenway seating"
           secondaryLabel="Select an area in the ball park"
+          testId="fenway0"
         />
         <Step
+          key={1}
           label="Guest information"
           secondaryLabel="Please fill out the registration form for your party"
+          testId="fenway1"
         />
         <Step
+          key={2}
           label="Yankees fans?"
           secondaryLabel="An additional surcharge may be applicable"
+          testId="fenway2"
         />
         <Step
+          key={3}
           label="MBTA and parking information"
           secondaryLabel="Suggested methods of transportation"
+          testId="fenway3"
         />
       </Stepper>
 
@@ -224,16 +236,21 @@ const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
       <Stepper currentStep={2} {...args}>
-        <Step label="First Item" secondaryLabel="Description One">
+        <Step key={0} label="First Item" secondaryLabel="Description One">
           Item Content One
         </Step>
-        <Step label="Second Item" secondaryLabel="Description Two">
+        <Step key={1} label="Second Item" secondaryLabel="Description Two">
           Item Content Two
         </Step>
-        <Step label="Third Item" hasError secondaryLabel="Description Three">
+        <Step
+          key={2}
+          label="Third Item"
+          hasError
+          secondaryLabel="Description Three"
+        >
           Item Content Three
         </Step>
-        <Step label="Fourth Item" secondaryLabel="Description Four">
+        <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
           Item Content Four
         </Step>
       </Stepper>

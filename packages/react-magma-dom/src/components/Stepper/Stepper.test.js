@@ -3,7 +3,7 @@ import { act } from 'react-dom/test-utils';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Stepper, Step, StepperLayout } from '.';
-import { getByTestId, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
@@ -14,7 +14,9 @@ const testId = 'test-id';
 describe('Stepper', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
-      <Stepper ariaLabel="progress" testId={testId}></Stepper>
+      <Stepper ariaLabel="progress" testId={testId}>
+        <Step testId="step" label="step" />
+      </Stepper>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -24,7 +26,8 @@ describe('Stepper', () => {
     it('Does not violate accessibility standards', () => {
       const { container } = render(
         <Stepper ariaLabel="progress">
-          {/* <Step testId="step1" label="step1" /> */}
+          <Step testId="step1" label="step1" />
+          <Step testId="step2" label="step2" />
         </Stepper>
       );
 
@@ -61,12 +64,12 @@ describe('Stepper', () => {
       expect(getByTestId(`${testId}-1`)).toHaveTextContent(
         `Step completed, ${TEXT}-1`
       );
-      expect(getByTestId(`${testId}-1`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-1`).closest('li')).toHaveAttribute(
         'aria-current',
         'false'
       );
       expect(getByTestId(`${testId}-2`)).toHaveTextContent(`${TEXT}-2`);
-      expect(getByTestId(`${testId}-2`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-2`).closest('li')).toHaveAttribute(
         'aria-current',
         'step'
       );
@@ -87,12 +90,12 @@ describe('Stepper', () => {
       expect(getByTestId(`${testId}-1`)).toHaveTextContent(
         `Step completed, ${TEXT}-1`
       );
-      expect(getByTestId(`${testId}-1`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-1`).closest('li')).toHaveAttribute(
         'aria-current',
         'false'
       );
       expect(getByTestId(`${testId}-2`)).toHaveTextContent(`${TEXT}-2`);
-      expect(getByTestId(`${testId}-2`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-2`).closest('li')).toHaveAttribute(
         'aria-current',
         'step'
       );
@@ -347,7 +350,7 @@ describe('Stepper', () => {
 
         const step = getByTestId(testId).querySelector('span');
 
-        expect(step).toHaveStyleRule(
+        expect(step.firstChild).toHaveStyleRule(
           'box-shadow',
           `inset 0 0 0 2px ${magma.colors.tertiary500}`
         );
