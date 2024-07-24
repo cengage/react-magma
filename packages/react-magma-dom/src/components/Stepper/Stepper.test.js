@@ -337,20 +337,15 @@ describe('Stepper', () => {
     describe('Inverse', () => {
       it('should have an inverse active styled circle', () => {
         const { getByTestId } = render(
-          <Stepper
-            ariaLabel="progress"
-            testId={testId}
-            isInverse
-            currentStep={0}
-          >
-            <Step />
+          <Stepper ariaLabel="progress" isInverse currentStep={0}>
+            <Step testId={testId} />
             <Step />
           </Stepper>
         );
 
         const step = getByTestId(testId).querySelector('span');
 
-        expect(step.firstChild).toHaveStyleRule(
+        expect(step).toHaveStyleRule(
           'box-shadow',
           `inset 0 0 0 2px ${magma.colors.tertiary500}`
         );

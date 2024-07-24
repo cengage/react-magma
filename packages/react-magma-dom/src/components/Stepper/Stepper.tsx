@@ -159,18 +159,18 @@ const StyledSummary = typedStyled.div<{
   svg {
     height: 0;
   }
-  span > span {
+  div > span:first-child {
     height: auto;
   }
-  span div {
+  div span {
     margin: 3px 0;
-    span{
+    span:first-child {
       margin: 0
     }
+    span:last-child {
+      margin: 4px 0 0 0;
+    } 
   }
-  span div span:last-child {
-    margin: 4px 0 0 0;
-  } 
 `;
 
 // Stepper!
@@ -333,10 +333,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
 
     return (
       <StyledStepper {...rest} data-testid={testId} ref={ref}>
-        <StyledStepContent
-          aria-label={ariaLabel}
-          theme={theme}
-        >
+        <StyledStepContent aria-label={ariaLabel} theme={theme}>
           {stepContent}
         </StyledStepContent>
         {summaryViewLayout && (

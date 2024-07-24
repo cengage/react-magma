@@ -10,7 +10,7 @@ import { transparentize } from 'polished';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { StepperLayout } from './Stepper';
 
-export interface StepProps extends React.HTMLAttributes<HTMLLIElement> {
+export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Error state for each step.
    * @default false
@@ -133,7 +133,7 @@ export const HiddenLabelText = typedStyled.span`
   ${HiddenStyles};
 `;
 
-const StyledStep = typedStyled.span`
+const StyledStep = typedStyled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -168,7 +168,7 @@ const StyledStepIndicator = typedStyled.span<{
   }
 `;
 
-const StyledStepTextWrapper = typedStyled.div`
+const StyledStepTextWrapper = typedStyled.span`
   flex: 1;
   display: flex;
   align-self: center;
@@ -207,84 +207,86 @@ const StyledSecondaryLabel = typedStyled.span<{
   margin: 2px 12px 0 12px;
 `;
 
-export const Step = React.forwardRef<HTMLLIElement, StepProps>((props, ref) => {
-  const {
-    hasError,
-    index,
-    label,
-    layout,
-    secondaryLabel,
-    stepLabel,
-    testId,
-    isInverse: isInverseProp,
-    stepStatus,
-    ...rest
-  } = props;
-  const theme = React.useContext(ThemeContext);
-  const isInverse = useIsInverse(isInverseProp);
+export const Step = React.forwardRef<HTMLDivElement, StepProps>(
+  (props, ref) => {
+    const {
+      hasError,
+      index,
+      label,
+      layout,
+      secondaryLabel,
+      stepLabel,
+      testId,
+      isInverse: isInverseProp,
+      stepStatus,
+      ...rest
+    } = props;
+    const theme = React.useContext(ThemeContext);
+    const isInverse = useIsInverse(isInverseProp);
 
-  return (
-    <StyledStep {...rest} ref={ref} data-testid={testId}>
-      <StyledStepIndicator
-        hasError={hasError}
-        isInverse={isInverse}
-        stepStatus={stepStatus}
-        theme={theme}
-      >
-        {stepStatus === StepStatus.completed && !hasError && (
-          <CheckIcon aria-hidden="true" />
-        )}
-        {hasError && <CrossIcon aria-hidden="true" />}
-      </StyledStepIndicator>
+    return (
+      <StyledStep {...rest} ref={ref} data-testid={testId}>
+        <StyledStepIndicator
+          hasError={hasError}
+          isInverse={isInverse}
+          stepStatus={stepStatus}
+          theme={theme}
+        >
+          {stepStatus === StepStatus.completed && !hasError && (
+            <CheckIcon aria-hidden="true" />
+          )}
+          {hasError && <CrossIcon aria-hidden="true" />}
+        </StyledStepIndicator>
 
-      <StyledStepTextWrapper>
-        {layout !== StepperLayout.hideLabels &&
-        layout !== StepperLayout.summaryView ? (
-          <>
-            {layout === StepperLayout.showLabels && (
+        <StyledStepTextWrapper>
+          {layout !== StepperLayout.hideLabels &&
+          layout !== StepperLayout.summaryView ? (
+            <>
+              {layout === StepperLayout.showLabels && (
+                <HiddenLabelText>
+                  {`${
+                    stepStatus === StepStatus.completed
+                      ? `${stepLabel} ${stepStatus}, `
+                      : ''
+                  }`}
+                </HiddenLabelText>
+              )}
+              {label && (
+                <StyledLabel
+                  label={label}
+                  isInverse={isInverse}
+                  data-testid={testId && `${testId}-label`}
+                  theme={theme}
+                >
+                  {label}
+                </StyledLabel>
+              )}
+              {secondaryLabel && (
+                <StyledSecondaryLabel
+                  secondaryLabel={secondaryLabel}
+                  isInverse={isInverse}
+                  data-testid={testId && `${testId}-secondaryLabel`}
+                  theme={theme}
+                >
+                  {secondaryLabel}
+                </StyledSecondaryLabel>
+              )}
+            </>
+          ) : (
+            layout !== StepperLayout.summaryView && (
               <HiddenLabelText>
                 {`${
                   stepStatus === StepStatus.completed
                     ? `${stepLabel} ${stepStatus}, `
                     : ''
+                }${label || ''}${secondaryLabel ? ' ' : ''}${
+                  secondaryLabel || ''
                 }`}
               </HiddenLabelText>
-            )}
-            {label && (
-              <StyledLabel
-                label={label}
-                isInverse={isInverse}
-                data-testid={testId && `${testId}-label`}
-                theme={theme}
-              >
-                {label}
-              </StyledLabel>
-            )}
-            {secondaryLabel && (
-              <StyledSecondaryLabel
-                secondaryLabel={secondaryLabel}
-                isInverse={isInverse}
-                data-testid={testId && `${testId}-secondaryLabel`}
-                theme={theme}
-              >
-                {secondaryLabel}
-              </StyledSecondaryLabel>
-            )}
-          </>
-        ) : (
-          layout !== StepperLayout.summaryView && (
-            <HiddenLabelText>
-              {`${
-                stepStatus === StepStatus.completed
-                  ? `${stepLabel} ${stepStatus}, `
-                  : ''
-              }${label || ''}${secondaryLabel ? ' ' : ''}${
-                secondaryLabel || ''
-              }`}
-            </HiddenLabelText>
-          )
-        )}
-      </StyledStepTextWrapper>
-    </StyledStep>
-  );
-});
+            )
+          )}
+        </StyledStepTextWrapper>
+      </StyledStep>
+    );
+  }
+);
