@@ -8,6 +8,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
 import { HiddenStyles } from '../../utils/UtilityStyles';
+import { StepperLayout } from './Stepper';
 
 export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -18,7 +19,7 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
-  areLabelsHidden?: boolean;
+  layout?: StepperLayout;
   /**
    * Label beneath each step.
    */
@@ -34,7 +35,15 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
+  index?: number;
+  /**
+   * @internal
+   */
   isInverse?: boolean;
+  /**
+   * @internal
+   */
+  stepLabel?: string;
   /**
    * @internal
    */
@@ -47,7 +56,7 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export enum StepStatus {
   active = 'active',
-  complete = 'complete',
+  completed = 'completed',
   incomplete = 'incomplete',
 }
 
@@ -74,13 +83,13 @@ function buildStepCircleOutlineColors(props) {
 function buildStepCircleBackgroundColors(props) {
   const { isInverse, stepStatus, hasError, theme } = props;
   if (isInverse) {
-    if (stepStatus === StepStatus.complete && !hasError) {
+    if (stepStatus === StepStatus.completed && !hasError) {
       return theme.colors.tertiary500;
     } else if (hasError) {
       return theme.colors.danger500;
     }
   } else {
-    if (stepStatus === StepStatus.complete && !hasError) {
+    if (stepStatus === StepStatus.completed && !hasError) {
       return theme.colors.primary500;
     } else if (hasError) {
       return theme.colors.danger500;
@@ -131,7 +140,6 @@ const StyledStep = typedStyled.div`
   text-align: center;
   align-self: self-start;
   align-items: center;
-
 `;
 
 const StyledStepIndicator = typedStyled.span<{
@@ -160,7 +168,7 @@ const StyledStepIndicator = typedStyled.span<{
   }
 `;
 
-const StyledStepTextWrapper = typedStyled.div`
+const StyledStepTextWrapper = typedStyled.span`
   flex: 1;
   display: flex;
   align-self: center;
@@ -203,9 +211,11 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
   (props, ref) => {
     const {
       hasError,
-      areLabelsHidden,
+      index,
       label,
+      layout,
       secondaryLabel,
+      stepLabel,
       testId,
       isInverse: isInverseProp,
       stepStatus,
@@ -222,15 +232,25 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
           stepStatus={stepStatus}
           theme={theme}
         >
-          {stepStatus === StepStatus.complete && !hasError && (
+          {stepStatus === StepStatus.completed && !hasError && (
             <CheckIcon aria-hidden="true" />
           )}
           {hasError && <CrossIcon aria-hidden="true" />}
         </StyledStepIndicator>
 
         <StyledStepTextWrapper>
-          {!areLabelsHidden ? (
+          {layout !== StepperLayout.hideLabels &&
+          layout !== StepperLayout.summaryView ? (
             <>
+              {layout === StepperLayout.showLabels && (
+                <HiddenLabelText>
+                  {`${
+                    stepStatus === StepStatus.completed
+                      ? `${stepLabel} ${stepStatus}, `
+                      : ''
+                  }`}
+                </HiddenLabelText>
+              )}
               {label && (
                 <StyledLabel
                   label={label}
@@ -253,11 +273,17 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
               )}
             </>
           ) : (
-            <HiddenLabelText>
-              {label && secondaryLabel
-                ? `${label} ${secondaryLabel}`
-                : label || secondaryLabel}
-            </HiddenLabelText>
+            layout !== StepperLayout.summaryView && (
+              <HiddenLabelText>
+                {`${
+                  stepStatus === StepStatus.completed
+                    ? `${stepLabel} ${stepStatus}, `
+                    : ''
+                }${label || ''}${secondaryLabel ? ' ' : ''}${
+                  secondaryLabel || ''
+                }`}
+              </HiddenLabelText>
+            )
           )}
         </StyledStepTextWrapper>
       </StyledStep>
