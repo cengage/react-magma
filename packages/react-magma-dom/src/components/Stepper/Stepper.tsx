@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 import { CreateStyled } from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -64,12 +65,12 @@ export enum StepperLayout {
 function buildSeparatorBackgroundColors(props) {
   const { isInverse, theme, stepStatus } = props;
   if (isInverse) {
-    if (stepStatus === StepStatus.complete) {
+    if (stepStatus === StepStatus.completed) {
       return theme.colors.tertiary500;
     }
     return theme.colors.primary400;
   } else {
-    if (stepStatus === StepStatus.complete) {
+    if (stepStatus === StepStatus.completed) {
       return theme.colors.primary500;
     }
     return theme.colors.neutral300;
@@ -84,23 +85,29 @@ const StyledStepper = typedStyled.div`
   flex-direction: column;
 `;
 
-const StyledStepContent = typedStyled.div<{
-  showLabelsLayout?: boolean;
-  theme?: ThemeInterface;
-}>`
+const StyledStepContent = typedStyled.ol`
   display: flex;
-  
+  margin: 0;
+  padding: 0;
 `;
 
-const StyledWrapper = typedStyled.div`
-    position:relative;
-    flex:1;
+const StyledLiWrapper = typedStyled.li<{ hasLabels?: boolean }>`
+  list-style-type: none;
+  ${props =>
+    props.hasLabels
+      ? css`
+          position: relative;
+          flex: 1;
+        `
+      : css`
+          display: contents;
+        `}
 `;
 
 const StyledSeparator = typedStyled.div<{
   isInverse?: boolean;
   bothLabels?: boolean;
-  label?: boolean;
+  allStepsHaveLabels?: boolean;
   secondaryLabel?: boolean;
   showLabelsLayout?: boolean;
   stepStatus: StepStatus;
@@ -109,19 +116,19 @@ const StyledSeparator = typedStyled.div<{
   background: ${buildSeparatorBackgroundColors};
   width: ${props =>
     props.showLabelsLayout &&
-    (props.bothLabels || props.label || props.secondaryLabel)
+    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
       ? 'calc(100% - 24px)'
       : '100%'};
   height: 2px;
   top: 11px;
   left: ${props =>
     props.showLabelsLayout &&
-    (props.bothLabels || props.label || props.secondaryLabel)
+    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
       ? 'calc(50% + 12px)'
       : ''};
   position: ${props =>
     props.showLabelsLayout &&
-    (props.bothLabels || props.label || props.secondaryLabel)
+    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
       ? 'absolute'
       : 'relative'};
   align-self: baseline;
@@ -149,21 +156,22 @@ const StyledSummary = typedStyled.div<{
     display: flex;
     text-align: left;
   }
-  svg{
-    height:0;
+  svg {
+    height: 0;
   }
-  div > span{
+  div > span:first-child {
     height: auto;
+    margin: 0;
   }
-  div div {
-    margin:3px 0;
-    span{
-      margin:0
+  div span {
+    margin: 3px 0;
+    span:first-child {
+      margin: 0
     }
+    span:last-child {
+      margin: 4px 0 0 0;
+    } 
   }
-  div div span:last-child{
-    margin: 4px 0 0 0;
-  } 
 `;
 
 // Stepper!
@@ -186,7 +194,6 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     const isInverse = useIsInverse(isInverseProp);
 
     // Controls the varying layouts with a set breakpoint number between a breakpointLayout type and / or a layout type.
-
     const [showLabelsLayout, setShowLabelsLayout] = React.useState(false);
     const [hideLabelsLayout, setHideLabelsLayout] = React.useState(false);
     const [summaryViewLayout, setSummaryViewLayout] = React.useState(false);
@@ -263,16 +270,20 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
         if (child.type === Step) {
           const stepStatusStyles =
             currentStep >= index + 1
-              ? StepStatus.complete
+              ? StepStatus.completed
               : currentStep >= index
               ? StepStatus.active
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
-            'aria-current': !showLabelsLayout ? currentStep === index : null,
-            key: index,
-            isInverse: isInverse,
-            areLabelsHidden: hideLabelsLayout || summaryViewLayout,
+            isInverse,
+            index,
+            layout: summaryViewLayout
+              ? StepperLayout.summaryView
+              : hideLabelsLayout
+              ? StepperLayout.hideLabels
+              : StepperLayout.showLabels,
+            stepLabel: stepLabel || i18n.stepper.stepLabel,
             stepStatus: stepStatusStyles,
           });
 
@@ -284,7 +295,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                   key={`separator-${index}`}
                   isInverse={isInverse}
                   bothLabels={allStepsHaveLabels && allStepsHaveSecondaryLabels}
-                  label={allStepsHaveLabels}
+                  allStepsHaveLabels={allStepsHaveLabels}
                   secondaryLabel={allStepsHaveSecondaryLabels}
                   showLabelsLayout={showLabelsLayout}
                   stepStatus={stepStatusStyles}
@@ -294,24 +305,22 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             ];
           };
 
-          if (
-            showLabelsLayout &&
-            (allStepsHaveLabels || allStepsHaveSecondaryLabels)
-          ) {
-            return (
-              <StyledWrapper aria-current={currentStep === index} theme={theme}>
-                {stepAndSeparator()}
-              </StyledWrapper>
-            );
-          } else {
-            return <>{stepAndSeparator()}</>;
-          }
+          return (
+            <StyledLiWrapper
+              aria-current={currentStep === index ? 'step' : false}
+              hasLabels={
+                showLabelsLayout &&
+                (allStepsHaveLabels || allStepsHaveSecondaryLabels)
+              }
+            >
+              {stepAndSeparator()}
+            </StyledLiWrapper>
+          );
         }
       }
     );
 
     // When summaryView is set to true, this shows one step label and description at a time based on the active step below the Stepper component.
-
     const getSummaryStepLabels = () =>
       React.Children.map(children, (child, index) => {
         const item = child as React.ReactElement<
@@ -328,33 +337,26 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       props.completionLabel || i18n.stepper.completionLabel;
 
     return (
-      <StyledStepper
-        {...rest}
-        aria-label={ariaLabel}
-        data-testid={testId}
-        ref={ref}
-      >
-        <StyledStepContent showLabelsLayout={showLabelsLayout} theme={theme}>
+      <StyledStepper {...rest} data-testid={testId} ref={ref}>
+        <StyledStepContent aria-label={ariaLabel} theme={theme}>
           {stepContent}
         </StyledStepContent>
         {summaryViewLayout && (
-          <StyledStepContent>
-            <StyledSummary
-              data-testid={testId && `${testId}-stepper-summary`}
-              isInverse={isInverse}
-              theme={theme}
-            >
-              {currentStep < numberOfSteps
-                ? stepLabel
-                  ? `${stepLabel} ${currentStep + 1} ${
-                      i18n.stepper.stepOfLabel
-                    } ${numberOfSteps}`
-                  : `${i18n.stepper.stepLabel} 
+          <StyledSummary
+            data-testid={testId && `${testId}-stepper-summary`}
+            isInverse={isInverse}
+            theme={theme}
+          >
+            {currentStep < numberOfSteps
+              ? stepLabel
+                ? `${stepLabel} ${currentStep + 1} ${
+                    i18n.stepper.stepOfLabel
+                  } ${numberOfSteps}`
+                : `${i18n.stepper.stepLabel} 
           ${currentStep + 1} ${i18n.stepper.stepOfLabel} ${numberOfSteps}`
-                : completionLabel}
-              {getSummaryStepLabels()}
-            </StyledSummary>
-          </StyledStepContent>
+              : completionLabel}
+            {getSummaryStepLabels()}
+          </StyledSummary>
         )}
       </StyledStepper>
     );
