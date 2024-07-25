@@ -21,46 +21,38 @@ export default {
   ],
   argTypes: {
     breakpoint: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     breakpointLayout: {
       control: {
         type: 'select',
         options: StepperLayout,
+        defaultValue: StepperLayout.hideLabels,
       },
     },
     layout: {
       control: {
         type: 'select',
         options: StepperLayout,
+        defaultValue: StepperLayout.showLabels,
       },
     },
     completionLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     stepLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     isInverse: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
+      defaultValue: false,
     },
     testId: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     ariaLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
+      defaultValue: 'progress',
     },
   },
 } as Meta;
@@ -99,8 +91,8 @@ const Template: Story<StepperProps> = args => {
     return (
       <Step
         key={i}
-        testId={`Step ${i}`}
-        label={`Step ${i}`}
+        testId={`Item ${i}`}
+        label={`Item ${i}`}
         secondaryLabel={`Description area in secondaryLabel component ${i}`}
       />
     );
@@ -108,7 +100,7 @@ const Template: Story<StepperProps> = args => {
 
   return (
     <>
-      <Stepper ariaLabel="progress" currentStep={currentStep} {...args}>
+      <Stepper currentStep={currentStep} {...args}>
         {step}
       </Stepper>
 
@@ -122,8 +114,8 @@ const Template: Story<StepperProps> = args => {
       >
         <div>
           {currentStep < numberOfSteps
-            ? `Step Content ${currentStep + 1}`
-            : `Steps Completed`}
+            ? `Item Content ${currentStep + 1}`
+            : `Items Completed`}
         </div>
       </Container>
 
@@ -163,21 +155,103 @@ const Template: Story<StepperProps> = args => {
   );
 };
 
+const RealisticLabels: Story<StepperProps> = args => {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep >= 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper currentStep={currentStep} {...args}>
+        <Step
+          key={0}
+          label="Fenway seating"
+          secondaryLabel="Select an area in the ball park"
+          testId="fenway0"
+        />
+        <Step
+          key={1}
+          label="Guest information"
+          secondaryLabel="Please fill out the registration form for your party"
+          testId="fenway1"
+        />
+        <Step
+          key={2}
+          label="Yankees fans?"
+          secondaryLabel="An additional surcharge may be applicable"
+          testId="fenway2"
+        />
+        <Step
+          key={3}
+          label="MBTA and parking information"
+          secondaryLabel="Suggested methods of transportation"
+          testId="fenway3"
+        />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Fenway seating Content</div>}
+        {currentStep === 1 && <div>Guest information Content</div>}
+        {currentStep === 2 && <div>Yankees fans? Content</div>}
+        {currentStep === 3 && <div>MBTA and parking information Content</div>}
+        {currentStep === 4 && <div>Steps completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+};
+
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
-      <Stepper ariaLabel="progress" currentStep={2} {...args}>
-        <Step label="First Step" secondaryLabel="Description One">
-          Step Content One
+      <Stepper currentStep={2} {...args}>
+        <Step key={0} label="First Item" secondaryLabel="Description One">
+          Item Content One
         </Step>
-        <Step label="Second Step" secondaryLabel="Description Two">
-          Step Content Two
+        <Step key={1} label="Second Item" secondaryLabel="Description Two">
+          Item Content Two
         </Step>
-        <Step label="Third Step" hasError secondaryLabel="Description Three">
-          Step Content Three
+        <Step
+          key={2}
+          label="Third Item"
+          hasError
+          secondaryLabel="Description Three"
+        >
+          Item Content Three
         </Step>
-        <Step label="Fourth Step" secondaryLabel="Description Four">
-          Step Content Four
+        <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
+          Item Content Four
         </Step>
       </Stepper>
       <Container
@@ -188,7 +262,7 @@ const ErrorTemplate: Story<StepperProps> = args => {
           padding: '20px',
         }}
       >
-        <div>Step Content Three</div>
+        <div>Item Content Three</div>
       </Container>
 
       <Container style={{ padding: '20px 0' }}>
@@ -202,8 +276,11 @@ const ErrorTemplate: Story<StepperProps> = args => {
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  ariaLabel: 'progress',
+Default.args = {};
+
+export const RealWorldExample = RealisticLabels.bind({});
+RealisticLabels.args = {
+  stepLabel: 'Module',
 };
 
 export const WithError = ErrorTemplate.bind({});

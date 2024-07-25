@@ -55,7 +55,7 @@ export function Example() {
       <Heading level={4} style={{ textAlign: 'center' }}>
         Course Selector
       </Heading>
-      <Stepper  ariaLabel="progress" currentStep={currentStep}>
+      <Stepper ariaLabel="progress" currentStep={currentStep}>
         <Step label="Choose materials" />
         <Step label="Additional details" />
         <Step label="Confirm" />
@@ -122,7 +122,7 @@ export function Example() {
   return (
     <>
       <Stepper
-       ariaLabel="progress" 
+        ariaLabel="progress"
         layout={StepperLayout.summaryView}
         currentStep={currentStep}
         stepLabel="Module"
@@ -190,7 +190,7 @@ export function Example() {
   return (
     <>
       <Stepper
-       ariaLabel="progress" 
+        ariaLabel="progress"
         completedStepDescription="Steps Complete!"
         layout={StepperLayout.summaryView}
         currentStep={currentStep}
@@ -260,7 +260,7 @@ export function Example() {
 
   return (
     <>
-      <Stepper  ariaLabel="progress" currentStep={currentStep}>
+      <Stepper ariaLabel="progress" currentStep={currentStep}>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -335,7 +335,11 @@ export function Example() {
 
   return (
     <>
-      <Stepper  ariaLabel="progress" layout={StepperLayout.hideLabels} currentStep={currentStep}>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.hideLabels}
+        currentStep={currentStep}
+      >
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -406,7 +410,11 @@ export function Example() {
 
   return (
     <>
-      <Stepper  ariaLabel="progress" layout={StepperLayout.showLabels} currentStep={currentStep}>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.showLabels}
+        currentStep={currentStep}
+      >
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -477,7 +485,11 @@ export function Example() {
 
   return (
     <>
-      <Stepper  ariaLabel="progress" layout={StepperLayout.summaryView} currentStep={currentStep}>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.summaryView}
+        currentStep={currentStep}
+      >
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -553,7 +565,7 @@ export function Example() {
   return (
     <>
       <Stepper
-       ariaLabel="progress" 
+        ariaLabel="progress"
         layout={StepperLayout.hideLabels}
         breakpoint={1500}
         breakpointLayout={StepperLayout.showLabels}
@@ -630,7 +642,7 @@ export function Example() {
   return (
     <>
       <Stepper
-       ariaLabel="progress" 
+        ariaLabel="progress"
         breakpoint={1500}
         breakpointLayout={StepperLayout.hideLabels}
         currentStep={currentStep}
@@ -706,7 +718,7 @@ export function Example() {
   return (
     <>
       <Stepper
-       ariaLabel="progress" 
+        ariaLabel="progress"
         breakpoint={1500}
         breakpointLayout={StepperLayout.summaryView}
         currentStep={currentStep}
@@ -760,7 +772,7 @@ export function Example() {
 
   return (
     <>
-      <Stepper  ariaLabel="progress" currentStep={2}>
+      <Stepper ariaLabel="progress" currentStep={2}>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" hasError secondaryLabel="Description Three" />
@@ -816,7 +828,7 @@ export function Example() {
 
   return (
     <Container isInverse style={{ padding: '20px' }}>
-      <Stepper  ariaLabel="progress" currentStep={currentStep} isInverse>
+      <Stepper ariaLabel="progress" currentStep={currentStep} isInverse>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />
@@ -853,13 +865,13 @@ export function Example() {
 }
 ```
 
-# Step Props
+## Step Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <StepProps />
 
-# Stepper Props
+## Stepper Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 
