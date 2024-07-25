@@ -12,6 +12,22 @@
   },
   "changesets": [
     "chore-sync",
-    "input-wrapperStyle"
+    "docs-styles",
+    "drawer-storybook",
+    "empty-monkeys-collect",
+    "feat-stepper-a11y",
+    "feat-stepper",
+    "hyperlink",
+    "input-wrapperStyle",
+    "landing-version",
+    "linechart-deprecate",
+    "modal-aria",
+    "nativeSelect-arrow",
+    "old-pugs-fix",
+    "pink-kids-dance",
+    "progressbar-color",
+    "strange-kangaroos-dream",
+    "timepicker-example",
+    "toast-docs"
   ]
 }
