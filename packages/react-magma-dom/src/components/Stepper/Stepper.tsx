@@ -91,7 +91,7 @@ const StyledStepContent = typedStyled.ol`
   padding: 0;
 `;
 
-const StyledWrapper = typedStyled.li<{ hasLabels?: boolean }>`
+const StyledLiWrapper = typedStyled.li<{ hasLabels?: boolean }>`
   list-style-type: none;
   ${props =>
     props.hasLabels
@@ -161,6 +161,7 @@ const StyledSummary = typedStyled.div<{
   }
   div > span:first-child {
     height: auto;
+    margin: 0;
   }
   div span {
     margin: 3px 0;
@@ -275,9 +276,13 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
-            isInverse: isInverse,
-            index: index,
-            layout: layout,
+            isInverse,
+            index,
+            layout: summaryViewLayout
+              ? StepperLayout.summaryView
+              : hideLabelsLayout
+              ? StepperLayout.hideLabels
+              : StepperLayout.showLabels,
             stepLabel: stepLabel || i18n.stepper.stepLabel,
             stepStatus: stepStatusStyles,
           });
@@ -301,7 +306,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           };
 
           return (
-            <StyledWrapper
+            <StyledLiWrapper
               aria-current={currentStep === index ? 'step' : false}
               hasLabels={
                 showLabelsLayout &&
@@ -309,7 +314,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               }
             >
               {stepAndSeparator()}
-            </StyledWrapper>
+            </StyledLiWrapper>
           );
         }
       }

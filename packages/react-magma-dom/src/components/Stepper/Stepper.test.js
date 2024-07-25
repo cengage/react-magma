@@ -455,7 +455,7 @@ describe('Stepper', () => {
       });
     });
 
-    describe('States', () => {
+    describe('Layout', () => {
       it('should hide labels when layout is set to "hideLabels"', () => {
         const { getByText } = render(
           <Stepper
@@ -533,6 +533,7 @@ describe('Stepper', () => {
             ariaLabel="progress"
             breakpoint={1500}
             breakpointLayout={StepperLayout.hideLabels}
+            layout={StepperLayout.showLabels}
             currentStep={1}
           >
             <Step label={`${TEXT}-1`} />
@@ -543,7 +544,7 @@ describe('Stepper', () => {
           global.innerWidth = 1400;
           global.dispatchEvent(new Event('resize'));
         });
-        const label1 = getByText(`Step completed,`);
+        const label1 = getByText(`Step completed, ${TEXT}-1`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
@@ -559,6 +560,7 @@ describe('Stepper', () => {
             ariaLabel="progress"
             breakpoint={1500}
             breakpointLayout={StepperLayout.showLabels}
+            layout={StepperLayout.hideLabels}
             currentStep={0}
           >
             <Step label={`${TEXT}-1`} />
@@ -589,6 +591,7 @@ describe('Stepper', () => {
             testId={testId}
             breakpoint={1500}
             breakpointLayout={StepperLayout.summaryView}
+            layout={StepperLayout.showLabels}
             currentStep={0}
           >
             <Step label={`${TEXT}-1`} />
