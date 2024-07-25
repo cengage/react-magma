@@ -165,7 +165,7 @@ const StyledStepIndicator = styled.span<{
   }
 `;
 
-const StyledStepTextWrapper = styled.span`
+const StyledStepTextWrapper = typedStyled.span`
   flex: 1;
   display: flex;
   align-self: center;

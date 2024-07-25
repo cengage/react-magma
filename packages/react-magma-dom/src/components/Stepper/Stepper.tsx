@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
+import { CreateStyled } from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -82,13 +83,13 @@ const StyledStepper = styled.div`
   flex-direction: column;
 `;
 
-const StyledStepContent = styled.ol`
+const StyledStepContent = typedStyled.ol`
   display: flex;
   margin: 0;
   padding: 0;
 `;
 
-const StyledLiWrapper = styled.li<{ hasLabels?: boolean }>`
+const StyledLiWrapper = typedStyled.li<{ hasLabels?: boolean }>`
   list-style-type: none;
   ${props =>
     props.hasLabels
@@ -138,7 +139,7 @@ const StyledSummary = styled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  position:relative;
+  position: relative;
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
   letter-spacing: ${props =>
@@ -163,11 +164,11 @@ const StyledSummary = styled.div<{
   div span {
     margin: 3px 0;
     span:first-child {
-      margin: 0
+      margin: 0;
     }
     span:last-child {
       margin: 4px 0 0 0;
-    } 
+    }
   }
 `;
 
