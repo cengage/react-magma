@@ -77,7 +77,9 @@ function buildSeparatorBackgroundColors(props) {
   }
 }
 
-const StyledStepper = styled.div`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledStepper = typedStyled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -102,7 +104,7 @@ const StyledLiWrapper = typedStyled.li<{ hasLabels?: boolean }>`
         `}
 `;
 
-const StyledSeparator = styled.div<{
+const StyledSeparator = typedStyled.div<{
   isInverse?: boolean;
   bothLabels?: boolean;
   allStepsHaveLabels?: boolean;
@@ -133,13 +135,13 @@ const StyledSeparator = styled.div<{
   transition: all 0.4s ease;
 `;
 
-const StyledSummary = styled.div<{
+const StyledSummary = typedStyled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
   display: flex;
   flex-direction: column;
-  position: relative;
+  position:relative;
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
   letter-spacing: ${props =>
@@ -164,11 +166,11 @@ const StyledSummary = styled.div<{
   div span {
     margin: 3px 0;
     span:first-child {
-      margin: 0;
+      margin: 0
     }
     span:last-child {
       margin: 4px 0 0 0;
-    }
+    } 
   }
 `;
 
