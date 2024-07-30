@@ -260,7 +260,7 @@ export const NoHeaderOrFocusableContent = () => {
           this. A modal should have something actionable inside it.
         </Paragraph>
       </Modal>
-      
+
       <Button onClick={onModalNoFocusShow} ref={buttonRef}>
         Show Modal with nothing focusable
       </Button>
@@ -472,6 +472,50 @@ export const CloseModalWithConfirmation = () => {
           <Button onClick={closeTheConfirmationModal}>No, go back</Button>
         </ButtonGroup>
       </Modal>
+    </>
+  );
+};
+
+export const HeaderRef = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+  const headerRef = React.useRef<HTMLDivElement>();
+
+  const onModalShow = () => {
+    setShowModal(true);
+  };
+
+  const onModalClose = () => {
+    setShowModal(false);
+    buttonRef.current.focus();
+  };
+
+  const onHeaderRefFocus = () => {
+    headerRef.current.style.boxShadow =
+      '#6d9b6d 4px 4px 0px 10px inset, #387338 -4px -4px 0px 10px inset';
+    headerRef.current.style.transition = '0.4s linear all';
+    headerRef.current.style.borderRadius = '6px 6px 0 0';
+    headerRef.current.style.height = '80px';
+  };
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        headerRef={headerRef}
+        ref={headerRef}
+        onClose={onModalClose}
+        onKeyDown={onHeaderRefFocus}
+        isOpen={showModal}
+      >
+        <ButtonGroup>
+          <Button onClick={onHeaderRefFocus}>Header Ref</Button>
+          <Button onClick={onModalClose}>Close</Button>
+        </ButtonGroup>
+      </Modal>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
     </>
   );
 };
