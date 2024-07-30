@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { NavTabsContext } from './NavTabs';
 import {

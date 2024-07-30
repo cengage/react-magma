@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 import {
   AreaChart,
   StackedAreaChart,
@@ -14,8 +14,6 @@ import {
   StackedBarChart,
 } from '@carbon/charts-react';
 import './styles.min.css';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export enum CarbonChartType {
   area = 'area',
@@ -47,7 +45,7 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
   type: CarbonChartType;
 }
 
-const CarbonChartWrapper = typedStyled.div<{
+const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`

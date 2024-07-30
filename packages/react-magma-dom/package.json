@@ -32,8 +32,7 @@
   "author": "",
   "license": "MIT",
   "peerDependencies": {
-    "@emotion/core": "^10.1.1",
-    "@emotion/styled": "^10.0.27",
+    "@emotion/styled": "^11.13.0",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
     "framer-motion": "^4.1.11",
@@ -43,15 +42,15 @@
     "uuid": "^8.3.0"
   },
   "dependencies": {
+    "@emotion/eslint-plugin": "^11.12.0",
+    "@emotion/react": "^11.13.0",
     "@popperjs/core": "^2.6.0",
     "csstype": "^3.0.8",
     "polished": "^3.2.0",
     "react-popper": "^2.2.4"
   },
   "devDependencies": {
-    "@emotion/core": "^10.1.1",
-    "@emotion/styled": "^10.0.27",
-    "@emotion/styled-base": "^10.0.27",
+    "@emotion/styled": "^11.13.0",
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
     "framer-motion": "^4.1.11",

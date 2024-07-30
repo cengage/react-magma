@@ -99,7 +99,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
       }}
       dependencies={{
         '@data-driven-forms/react-form-renderer': pkg.dependencies['@data-driven-forms/react-form-renderer'],
-        '@emotion/core': pkg.dependencies['@emotion/core'],
+        '@emotion/react': pkg.dependencies['@emotion/react'],
         '@emotion/styled': pkg.dependencies['@emotion/styled'],
         'date-fns': pkg.dependencies['date-fns'],
         downshift: pkg.dependencies['downshift'],

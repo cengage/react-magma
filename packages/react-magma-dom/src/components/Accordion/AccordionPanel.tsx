@@ -5,7 +5,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { AccordionItemContext } from './useAccordionItem';
 import { Transition } from '../Transition';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -20,9 +20,7 @@ export interface AccordionPanelProps
   theme?: ThemeInterface;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledPanel = typedStyled.div<AccordionPanelProps>`
+const StyledPanel = styled.div<AccordionPanelProps>`
   background: transparent;
   color: ${props =>
     props.isInverse

@@ -4,8 +4,7 @@ import { MenuItemStyles, IconWrapper } from './DropdownMenuItem';
 import { DropdownContext } from './Dropdown';
 import { IconProps } from 'react-magma-icons';
 import { Omit, useForkedRef } from '../../utils';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface DropdownMenuNavItemProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> {
@@ -19,9 +18,8 @@ export interface DropdownMenuNavItemProps
   to: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
-const StyledItem = typedStyled.a<{
+const StyledItem = styled.a<{
   disabled?: boolean;
   isFixedWidth?: boolean;
   isInactive?: boolean;
