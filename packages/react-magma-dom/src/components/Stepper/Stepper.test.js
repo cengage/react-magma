@@ -3,7 +3,7 @@ import { act } from 'react-dom/test-utils';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Stepper, Step, StepperLayout } from '.';
-import { getByTestId, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
@@ -14,7 +14,9 @@ const testId = 'test-id';
 describe('Stepper', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
-      <Stepper ariaLabel="progress" testId={testId}></Stepper>
+      <Stepper ariaLabel="progress" testId={testId}>
+        <Step testId="step" label="step" />
+      </Stepper>
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
@@ -23,7 +25,10 @@ describe('Stepper', () => {
   describe('Accessibility', () => {
     it('Does not violate accessibility standards', () => {
       const { container } = render(
-        <Stepper ariaLabel="progress" role="form"></Stepper>
+        <Stepper ariaLabel="progress">
+          <Step testId="step1" label="step1" />
+          <Step testId="step2" label="step2" />
+        </Stepper>
       );
 
       return axe(container.innerHTML).then(result => {
@@ -39,7 +44,7 @@ describe('Stepper', () => {
         </Stepper>
       );
 
-      const customAriaLabel = getByLabelText('custom', { selector: 'div' });
+      const customAriaLabel = getByLabelText('custom', { selector: 'ol' });
 
       expect(customAriaLabel).toBeInTheDocument();
     });
@@ -59,12 +64,12 @@ describe('Stepper', () => {
       expect(getByTestId(`${testId}-1`)).toHaveTextContent(
         `Step completed, ${TEXT}-1`
       );
-      expect(getByTestId(`${testId}-1`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-1`).closest('li')).toHaveAttribute(
         'aria-current',
         'false'
       );
       expect(getByTestId(`${testId}-2`)).toHaveTextContent(`${TEXT}-2`);
-      expect(getByTestId(`${testId}-2`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-2`).closest('li')).toHaveAttribute(
         'aria-current',
         'step'
       );
@@ -85,12 +90,12 @@ describe('Stepper', () => {
       expect(getByTestId(`${testId}-1`)).toHaveTextContent(
         `Step completed, ${TEXT}-1`
       );
-      expect(getByTestId(`${testId}-1`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-1`).closest('li')).toHaveAttribute(
         'aria-current',
         'false'
       );
       expect(getByTestId(`${testId}-2`)).toHaveTextContent(`${TEXT}-2`);
-      expect(getByTestId(`${testId}-2`)).toHaveAttribute(
+      expect(getByTestId(`${testId}-2`).closest('li')).toHaveAttribute(
         'aria-current',
         'step'
       );
@@ -332,13 +337,8 @@ describe('Stepper', () => {
     describe('Inverse', () => {
       it('should have an inverse active styled circle', () => {
         const { getByTestId } = render(
-          <Stepper
-            ariaLabel="progress"
-            testId={testId}
-            isInverse
-            currentStep={0}
-          >
-            <Step />
+          <Stepper ariaLabel="progress" isInverse currentStep={0}>
+            <Step testId={testId} />
             <Step />
           </Stepper>
         );
@@ -455,7 +455,7 @@ describe('Stepper', () => {
       });
     });
 
-    describe('States', () => {
+    describe('Layout', () => {
       it('should hide labels when layout is set to "hideLabels"', () => {
         const { getByText } = render(
           <Stepper
@@ -533,6 +533,7 @@ describe('Stepper', () => {
             ariaLabel="progress"
             breakpoint={1500}
             breakpointLayout={StepperLayout.hideLabels}
+            layout={StepperLayout.showLabels}
             currentStep={1}
           >
             <Step label={`${TEXT}-1`} />
@@ -543,7 +544,7 @@ describe('Stepper', () => {
           global.innerWidth = 1400;
           global.dispatchEvent(new Event('resize'));
         });
-        const label1 = getByText(`Step completed,`);
+        const label1 = getByText(`Step completed, ${TEXT}-1`);
 
         expect(label1).toHaveStyleRule('height', '1px');
         expect(label1).toHaveStyleRule('position', 'absolute');
@@ -559,6 +560,7 @@ describe('Stepper', () => {
             ariaLabel="progress"
             breakpoint={1500}
             breakpointLayout={StepperLayout.showLabels}
+            layout={StepperLayout.hideLabels}
             currentStep={0}
           >
             <Step label={`${TEXT}-1`} />
@@ -589,6 +591,7 @@ describe('Stepper', () => {
             testId={testId}
             breakpoint={1500}
             breakpointLayout={StepperLayout.summaryView}
+            layout={StepperLayout.showLabels}
             currentStep={0}
           >
             <Step label={`${TEXT}-1`} />

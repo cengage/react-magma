@@ -21,46 +21,38 @@ export default {
   ],
   argTypes: {
     breakpoint: {
-      control: {
-        type: 'number',
-      },
+      control: 'number',
     },
     breakpointLayout: {
       control: {
         type: 'select',
         options: StepperLayout,
+        defaultValue: StepperLayout.hideLabels,
       },
     },
     layout: {
       control: {
         type: 'select',
         options: StepperLayout,
+        defaultValue: StepperLayout.showLabels,
       },
     },
     completionLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     stepLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     isInverse: {
-      control: {
-        type: 'boolean',
-      },
+      control: 'boolean',
+      defaultValue: false,
     },
     testId: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
     },
     ariaLabel: {
-      control: {
-        type: 'text',
-      },
+      control: 'text',
+      defaultValue: 'progress',
     },
   },
 } as Meta;
@@ -108,7 +100,7 @@ const Template: Story<StepperProps> = args => {
 
   return (
     <>
-      <Stepper ariaLabel="progress" currentStep={currentStep} {...args}>
+      <Stepper currentStep={currentStep} {...args}>
         {step}
       </Stepper>
 
@@ -184,26 +176,30 @@ const RealisticLabels: Story<StepperProps> = args => {
 
   return (
     <>
-      <Stepper
-        ariaLabel="progress"
-        currentStep={currentStep}
-        stepLabel="Module"
-      >
+      <Stepper currentStep={currentStep} {...args}>
         <Step
+          key={0}
           label="Fenway seating"
           secondaryLabel="Select an area in the ball park"
+          testId="fenway0"
         />
         <Step
+          key={1}
           label="Guest information"
           secondaryLabel="Please fill out the registration form for your party"
+          testId="fenway1"
         />
         <Step
+          key={2}
           label="Yankees fans?"
           secondaryLabel="An additional surcharge may be applicable"
+          testId="fenway2"
         />
         <Step
+          key={3}
           label="MBTA and parking information"
           secondaryLabel="Suggested methods of transportation"
+          testId="fenway3"
         />
       </Stepper>
 
@@ -215,10 +211,10 @@ const RealisticLabels: Story<StepperProps> = args => {
           padding: '20px',
         }}
       >
-        {currentStep === 0 && <div>Step Content One</div>}
-        {currentStep === 1 && <div>Step Content Two</div>}
-        {currentStep === 2 && <div>Step Content Three</div>}
-        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 0 && <div>Fenway seating Content</div>}
+        {currentStep === 1 && <div>Guest information Content</div>}
+        {currentStep === 2 && <div>Yankees fans? Content</div>}
+        {currentStep === 3 && <div>MBTA and parking information Content</div>}
         {currentStep === 4 && <div>Steps completed</div>}
       </Container>
 
@@ -239,17 +235,22 @@ const RealisticLabels: Story<StepperProps> = args => {
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <>
-      <Stepper ariaLabel="progress" currentStep={2} {...args}>
-        <Step label="First Item" secondaryLabel="Description One">
+      <Stepper currentStep={2} {...args}>
+        <Step key={0} label="First Item" secondaryLabel="Description One">
           Item Content One
         </Step>
-        <Step label="Second Item" secondaryLabel="Description Two">
+        <Step key={1} label="Second Item" secondaryLabel="Description Two">
           Item Content Two
         </Step>
-        <Step label="Third Item" hasError secondaryLabel="Description Three">
+        <Step
+          key={2}
+          label="Third Item"
+          hasError
+          secondaryLabel="Description Three"
+        >
           Item Content Three
         </Step>
-        <Step label="Fourth Item" secondaryLabel="Description Four">
+        <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
           Item Content Four
         </Step>
       </Stepper>
@@ -275,8 +276,11 @@ const ErrorTemplate: Story<StepperProps> = args => {
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  ariaLabel: 'progress',
+Default.args = {};
+
+export const RealWorldExample = RealisticLabels.bind({});
+RealisticLabels.args = {
+  stepLabel: 'Module',
 };
 
 export const RealWorldExample = RealisticLabels.bind({});
