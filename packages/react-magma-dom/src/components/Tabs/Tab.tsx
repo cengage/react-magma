@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';

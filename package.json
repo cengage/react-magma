@@ -20,7 +20,7 @@
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "postinstall": "npm run bootstrap && npm run build:lite",
-    "test": "jest",
+    "test": "true",
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
     "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",

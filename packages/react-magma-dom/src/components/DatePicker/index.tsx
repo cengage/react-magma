@@ -21,8 +21,7 @@ import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface DatePickerProps
   extends Omit<
@@ -117,13 +116,11 @@ export interface DatePickerProps
   onInputFocus?: (event: React.FocusEvent) => void;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 const DatePickerContainer = styled.div`
   position: relative;
 `;
 
-const DatePickerCalendar = typedStyled.div<{
+const DatePickerCalendar = styled.div<{
   opened: boolean;
   isInverse?: boolean;
 }>`

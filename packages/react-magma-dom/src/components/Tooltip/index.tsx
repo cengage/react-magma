@@ -3,8 +3,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';
 import { useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -57,14 +56,12 @@ export interface ITooltipState {
   isVisible?: boolean;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 const TooltipContainer = styled.div`
   display: inline;
   pointer-events: auto;
 `;
 
-export const TooltipArrow = typedStyled.span<{
+export const TooltipArrow = styled.span<{
   position?: any;
   isInverse?: boolean;
 }>`
@@ -87,7 +84,7 @@ export const TooltipArrow = typedStyled.span<{
   }
 `;
 
-export const StyledTooltip = typedStyled.div<{
+export const StyledTooltip = styled.div<{
   isInverse?: boolean;
   isVisible?: boolean;
   position: TooltipPosition;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { IconButton, IconButtonProps } from '.';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import { SettingsIcon, NotificationsIcon, ExpandMoreIcon } from 'react-magma-icons';
 import {
   ButtonColor,
