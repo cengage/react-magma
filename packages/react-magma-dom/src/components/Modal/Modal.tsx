@@ -49,6 +49,10 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   header?: React.ReactNode;
   /**
+   * The reference of the modal header
+   */
+  headerRef?: React.Ref<any>;
+  /**
    * If true, closing the modal handled on the consumer side
    * @default false
    */
@@ -169,7 +173,7 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
-const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
+const ModalHeader = styled.div<ModalProps & { theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05}
     ${props => props.theme.spaceScale.spacing05} 0
     ${props => props.theme.spaceScale.spacing05};
@@ -334,6 +338,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       closeButtonSize,
       containerStyle,
       containerTransition = { slideTop: true },
+      headerRef,
       isBackgroundClickDisabled,
       isEscKeyDownDisabled,
       header,
@@ -392,11 +397,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 data-testid="modal-content"
                 id={contentId}
                 isExiting={isExiting}
-                ref={ref}
+                ref={headerRef ? null : ref}
                 theme={theme}
               >
                 {header && (
-                  <ModalHeader theme={theme}>
+                  <ModalHeader ref={ref} headerRef={ref} theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
