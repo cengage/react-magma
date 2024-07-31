@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   ButtonColor,
   ButtonSize,
@@ -83,8 +83,6 @@ export interface ButtonGroupContextInterface {
   isInverse?: boolean;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
- 
 
 export const ButtonGroupContext =
   React.createContext<ButtonGroupContextInterface>({});
@@ -141,7 +139,7 @@ function buildNoSpaceBorderColor(props) {
   return props.theme.colors.neutral100;
 }
 
-const StyledButtonGroup = typedStyled.div<{
+const StyledButtonGroup = styled.div<{
   alignment?: ButtonGroupAlignment;
   color?: ButtonColor;
   isInverse?: Boolean;

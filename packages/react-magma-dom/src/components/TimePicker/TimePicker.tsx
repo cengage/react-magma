@@ -10,8 +10,7 @@ import { VisuallyHidden } from '../VisuallyHidden';
 import { useIsInverse } from '../../inverse';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface TimePickerProps extends UseTimePickerProps {
   /**
@@ -20,9 +19,7 @@ export interface TimePickerProps extends UseTimePickerProps {
   inputStyle?: React.CSSProperties;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const InputsContainer = typedStyled.div<{
+const InputsContainer = styled.div<{
   hasError?: boolean;
   isInverse?: boolean;
 }>`
@@ -40,7 +37,7 @@ const Divider = styled.span`
   top: -1px;
 `;
 
-const StyledNumInput = typedStyled.input<{
+const StyledNumInput = styled.input<{
   isInverse?: boolean;
 }>`
   border: 0;

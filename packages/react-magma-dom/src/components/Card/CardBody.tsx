@@ -1,8 +1,7 @@
 import * as React from 'react';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 import { CardProps } from '../Card';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -15,9 +14,7 @@ export interface CardBodyProps
   testId?: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledCardBody = typedStyled.div<CardProps>`
+const StyledCardBody = styled.div<CardProps>`
   padding: ${props => props.theme.spaceScale.spacing05};
   text-align: ${props => props.align};
   font-family: ${props => props.theme.bodyFont};
