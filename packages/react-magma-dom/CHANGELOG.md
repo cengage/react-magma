@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.5.0-next.9
+
+### Patch Changes
+
+- e24db7ab4: fix(datePicker): Fix date picker calendar table role issue
+
 ## 4.5.0-next.8
 
 ### Minor Changes
