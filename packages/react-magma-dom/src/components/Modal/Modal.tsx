@@ -397,17 +397,17 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 data-testid="modal-content"
                 id={contentId}
                 isExiting={isExiting}
-                ref={headerRef ? null : ref}
+                ref={ref}
                 theme={theme}
               >
                 {header && (
-                  <ModalHeader ref={ref} headerRef={ref} theme={theme}>
+                  <ModalHeader ref={ref} theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
                         isInverse={isInverse}
                         level={1}
-                        ref={headingRef}
+                        ref={headerRef ? headerRef : headingRef}
                         visualStyle={TypographyVisualStyle.headingSmall}
                         tabIndex={-1}
                         theme={theme}

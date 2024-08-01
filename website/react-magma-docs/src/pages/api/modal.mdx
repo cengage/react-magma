@@ -340,6 +340,64 @@ export function Example() {
 }
 ```
 
+## Header Ref
+
+The `headerRef` prop enables access to the Modal header ref.
+
+```tsx
+import React from 'react';
+import {
+  Button,
+  Modal,
+  ModalSize,
+  Paragraph,
+  VisuallyHidden,
+} from 'react-magma-dom';
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+  const headerRef = React.useRef<HTMLDivElement>();
+
+  const onModalShow = () => {
+    setShowModal(true);
+  };
+
+  const onModalClose = () => {
+    setShowModal(false);
+    buttonRef.current.focus();
+  };
+
+  const onHeaderRefFocus = () => {
+    headerRef.current.style.color = 'white';
+    headerRef.current.style.background = 'rgb(57 66 176)';
+    headerRef.current.style.borderRadius = '10px';
+    headerRef.current.style.padding = '10px';
+    headerRef.current.style.fontFamily = 'serif';
+    headerRef.current.style.fontStyle = 'italic';
+    headerRef.current.style.transition = '0.1s linear all';
+  };
+
+  return (
+    <>
+      <Modal
+        header="Modal Title"
+        headerRef={headerRef}
+        onClose={onModalClose}
+        isOpen={showModal}
+      >
+        <ButtonGroup>
+          <Button onClick={onHeaderRefFocus}>Header Ref</Button>
+          <Button onClick={onModalClose}>Close</Button>
+        </ButtonGroup>
+      </Modal>
+      <Button onClick={onModalShow} ref={buttonRef}>
+        Show Modal
+      </Button>
+    </>
+  );
+}
+```
+
 ## Close Modal With Confirmation
 
 Show confirmation modal when trying to close the main modal.

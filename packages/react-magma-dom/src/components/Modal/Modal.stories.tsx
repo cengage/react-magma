@@ -491,11 +491,13 @@ export const HeaderRef = () => {
   };
 
   const onHeaderRefFocus = () => {
-    headerRef.current.style.boxShadow =
-      '#6d9b6d 4px 4px 0px 10px inset, #387338 -4px -4px 0px 10px inset';
-    headerRef.current.style.transition = '0.4s linear all';
-    headerRef.current.style.borderRadius = '6px 6px 0 0';
-    headerRef.current.style.height = '80px';
+    headerRef.current.style.color = 'white';
+    headerRef.current.style.background = 'rgb(57 66 176)';
+    headerRef.current.style.borderRadius = '10px';
+    headerRef.current.style.padding = '10px';
+    headerRef.current.style.fontFamily = 'serif';
+    headerRef.current.style.fontStyle = 'italic';
+    headerRef.current.style.transition = '0.1s linear all';
   };
 
   return (
@@ -503,9 +505,7 @@ export const HeaderRef = () => {
       <Modal
         header="Modal Title"
         headerRef={headerRef}
-        ref={headerRef}
         onClose={onModalClose}
-        onKeyDown={onHeaderRefFocus}
         isOpen={showModal}
       >
         <ButtonGroup>
