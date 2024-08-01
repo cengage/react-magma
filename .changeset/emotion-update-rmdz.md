@@ -1,5 +1,5 @@
 ---
-"react-magma": minor
+"@react-magma/dropzone": minor
 ---
 
 Updating emotion to v11
