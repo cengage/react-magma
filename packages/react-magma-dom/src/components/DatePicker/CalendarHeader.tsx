@@ -17,9 +17,7 @@ interface CalendarHeaderProps {
   isInverse?: boolean;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const CalendarHeaderContainer = typedStyled.div`
+const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
   padding: ${props => props.theme.spaceScale.spacing10} 0
@@ -27,14 +25,14 @@ const CalendarHeaderContainer = typedStyled.div`
   margin-top: -${props => props.theme.spaceScale.spacing01};
 `;
 
-const CalendarIconButton = typedStyled.div<{ next?: boolean }>`
+const CalendarIconButton = styled.div<{ next?: boolean }>`
   flex-grow: 0;
   flex-width: 10%;
   flex-basis: 10%;
   order: ${props => (props.next ? 2 : 0)};
 `;
 
-const CalendarHeaderText = typedStyled.div<{ isInverse?: boolean }>`
+const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
   caption-side: initial;
   color: ${props =>
     props.isInverse

@@ -116,8 +116,6 @@ export interface DatePickerProps
   onInputFocus?: (event: React.FocusEvent) => void;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 const DatePickerContainer = styled.div`
   position: relative;
 `;

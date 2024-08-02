@@ -103,7 +103,7 @@ export interface LineChartProps<T extends ChartDataOptions> {
   y?: keyof T;
 }
 
-const LineChartContainer = typedStyled.div`
+const LineChartContainer = styled.div`
   max-height: 600px;
   max-width: 800px;
   svg {
@@ -111,13 +111,13 @@ const LineChartContainer = typedStyled.div`
   }
 `;
 
-const VictoryChartContainer = typedStyled.div``;
+const VictoryChartContainer = styled.div``;
 
-const DataLegendsContainer = typedStyled.div`
+const DataLegendsContainer = styled.div`
   padding-bottom: 24px;
 `;
 
-const DataLegendsDescription = typedStyled.p`
+const DataLegendsDescription = styled.p`
   color: ${(props: any) => props.theme.colors.neutral};
   font-size: ${(props: any) => props.theme.typeScale.size02.fontSize};
 `;

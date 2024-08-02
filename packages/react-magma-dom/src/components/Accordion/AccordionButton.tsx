@@ -31,9 +31,7 @@ export interface AccordionButtonProps
   theme?: ThemeInterface;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledButton = typedStyled.button<{
+const StyledButton = styled.button<{
   isInverse?: boolean;
   isExpanded?: boolean;
 }>`

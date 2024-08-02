@@ -31,7 +31,7 @@ const StyledGraphTooltip = styled(StyledTooltip)`
   }
 `;
 
-const TooltipColorSwatch = typedStyled.span`
+const TooltipColorSwatch = styled.span`
   background: ${(props: any) => props.color};
   border: ${(props: any) => (props.color ? 'none' : '3px solid black')};
   border-radius: 4px;
