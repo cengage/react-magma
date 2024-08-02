@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.5.0-next.10
+
+### Minor Changes
+
+- ae668a3e5: Updating emotion to v11
+
 ## 4.5.0-next.9
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0-next.2
+
+### Minor Changes
+
+- ae668a3e5: Updating emotion to v11
+
 ## 10.0.0-next.1
 
 ### Patch Changes
