@@ -22,9 +22,7 @@ export interface DropdownContentProps
   testId?: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledCard = typedStyled(Card)<{
+const StyledCard = styled(Card)<{
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
   isInverse?: boolean;

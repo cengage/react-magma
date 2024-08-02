@@ -30,9 +30,7 @@ interface ItemsListProps<T> {
   isLoading?: boolean;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const NoItemsMessage = typedStyled.span<{
+const NoItemsMessage = styled.span<{
   isInverse?: boolean;
 }>`
   color: ${props =>

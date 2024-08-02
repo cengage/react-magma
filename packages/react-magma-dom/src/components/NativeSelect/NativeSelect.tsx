@@ -110,7 +110,7 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
     `}
 `;
 
-const StyledAdditionalContentWrapper = typedStyled.div`
+const StyledAdditionalContentWrapper = styled.div`
   align-items: center;
   display: flex;
   label {

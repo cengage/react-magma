@@ -157,8 +157,6 @@ export interface InputWrapperStylesProps {
   inputSize?: InputSize;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex: 1 1 auto;
   align-items: center;
@@ -341,7 +339,7 @@ const StyledInput = styled.input<InputBaseStylesProps>`
   ${inputBaseStyles}
 `;
 
-const IconWrapper = typedStyled.span<{
+const IconWrapper = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   isClearable?: boolean;

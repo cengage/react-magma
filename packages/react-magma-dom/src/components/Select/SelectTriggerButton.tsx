@@ -22,7 +22,7 @@ const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   text-align: left;
 `;
 
-const ChildrenContainer = typedStyled.div`
+const ChildrenContainer = styled.div`
   align-items: center;
   display: flex;
   flex-grow: 1;

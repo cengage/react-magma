@@ -26,7 +26,7 @@ function buildLabelColor(props) {
   return props.theme.colors.neutral700;
 }
 
-const StyledWrapper = typedStyled.div<{
+const StyledWrapper = styled.div<{
   disabled?: boolean;
   isInverse?: boolean;
 }>`

@@ -100,9 +100,7 @@ export interface FormFieldContainerBaseProps {
   testId?: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledFormFieldContainer = typedStyled.div<{
+const StyledFormFieldContainer = styled.div<{
   isInverse?: boolean;
   labelPosition?: LabelPosition;
   labelWidth?: number;

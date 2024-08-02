@@ -39,7 +39,7 @@ export const SelectText = styled.span`
   padding: 0 8px 0 4px;
 `;
 
-export const StyledCard = typedStyled(Card)<{
+export const StyledCard = styled(Card)<{
   isOpen?: boolean;
   isInverse?: boolean;
 }>`
@@ -72,7 +72,7 @@ export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
   overflow-y: auto;
 `;
 
-export const StyledItem = typedStyled('li')<{
+export const StyledItem = styled('li')<{
   isInverse?: boolean;
   isFocused?: boolean;
 }>`
@@ -129,7 +129,7 @@ function buildSelectedItemButtonColor(props) {
   return props.theme.colors.neutral100;
 }
 
-export const SelectedItemButton = typedStyled.button<{
+export const SelectedItemButton = styled.button<{
   isInverse?: boolean;
   disabled?: boolean;
 }>`

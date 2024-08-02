@@ -47,7 +47,7 @@ export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   thumbnails: boolean;
 }
 
-const Thumb = typedStyled.div<{ file: FilePreview }>`
+const Thumb = styled.div<{ file: FilePreview }>`
   background-image: ${({ file }) =>
     `url('${'preview' in file && file.preview}')`};
   background-repeat: no-repeat;
@@ -58,7 +58,7 @@ const Thumb = typedStyled.div<{ file: FilePreview }>`
   width: 40px;
 `;
 
-const StatusIcons = typedStyled.div`
+const StatusIcons = styled.div`
   display: grid;
   grid-template-areas: 'inner-div';
   height: auto;
@@ -76,21 +76,21 @@ const IconStyles = {
   display: 'flex',
 };
 
-const Errors = typedStyled.div`
+const Errors = styled.div`
   border-top: 1px solid ${({ theme }) => theme.colors.neutral300};
   padding: 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
-const StyledFlex = typedStyled(Flex)`
+const StyledFlex = styled(Flex)`
   height: 56px;
   padding: 0 8px 0 16px;
   font-size: ${({ theme }) => theme.typeScale.size02.fontSize};
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
-const FileName = typedStyled(Flex)`
+const FileName = styled(Flex)`
   overflow: hidden;
   white-space: nowrap;
   align-items: center;
@@ -101,7 +101,7 @@ const FileName = typedStyled(Flex)`
   line-height: ${({ theme }) => theme.typeScale.size02.lineHeight};
 `;
 
-const StyledCard = typedStyled(Card)<{ file: FilePreview; isInverse: boolean }>`
+const StyledCard = styled(Card)<{ file: FilePreview; isInverse: boolean }>`
   background-color: none;
   border-color: ${({ file, theme, isInverse }) =>
     file.errors
