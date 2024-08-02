@@ -254,7 +254,7 @@ describe('Radio', () => {
     );
     const span = getByLabelText('blue');
 
-    expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+    expect(span).toHaveStyleRule('clip', 'rect(1px, 1px, 1px, 1px)');
   });
 
   it("should be checked if selected value equals it's value", () => {

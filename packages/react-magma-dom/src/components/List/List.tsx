@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { magma, ThemeInterface } from '../../theme/magma';
 import { TypographyVisualStyle, TypographyComponent } from '../Typography';
@@ -151,7 +151,7 @@ const ListStyles = props => css`
   }
 `;
 
-const StyledList = styled(TypographyComponent)`
+const StyledList = styled(TypographyComponent)<any>`
   ${ListStyles};
 `;
 

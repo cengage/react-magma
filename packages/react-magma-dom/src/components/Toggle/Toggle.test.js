@@ -238,7 +238,7 @@ describe('Toggle', () => {
     );
     const span = getByText(testLabel);
 
-    expect(span).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+    expect(span).toHaveStyleRule('clip', 'rect(1px, 1px, 1px, 1px)');
   });
 
   it('should handle the onChange event', () => {

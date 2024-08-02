@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { TableCellAlign, TableContext, TableDensity } from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { transparentize } from 'polished';
