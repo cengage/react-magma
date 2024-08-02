@@ -37,8 +37,6 @@ export interface CharacterCounterProps
   testId?: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 // Changes the font weight to bold based on maxCount.
 function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   if (
@@ -50,7 +48,7 @@ function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   return 'inherit';
 }
 
-const StyledInputMessage = typedStyled(InputMessage)<{
+const StyledInputMessage = styled(InputMessage)<{
   hasCharacterCounter?: boolean;
   inputLength: number;
   maxLength: number;

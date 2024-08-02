@@ -151,7 +151,7 @@ const StyledSpan = styled.span<BadgeProps>`
   ${baseBadgeStyles};
 `;
 
-const StyledButton = typedStyled.button<BadgeProps>`
+const StyledButton = styled.button<BadgeProps>`
   ${baseBadgeStyles};
   cursor: pointer;
 

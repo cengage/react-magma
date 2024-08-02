@@ -165,7 +165,7 @@ export function buildLinkHoverColor(props) {
   }
 }
 
-const StyledAlert = typedStyled.div<AlertBaseProps>`
+const StyledAlert = styled.div<AlertBaseProps>`
   align-items: stretch;
   animation: ${props =>
     props.isExiting
@@ -259,7 +259,7 @@ const StyledAlert = typedStyled.div<AlertBaseProps>`
   }
 `;
 
-const StyledAlertInner = typedStyled.div<AlertBaseProps>`
+const StyledAlertInner = styled.div<AlertBaseProps>`
   background: ${buildAlertBackground};
   border: 1px solid ${buildAlertBorder};
   border-radius: ${props => props.theme.borderRadius};
@@ -278,7 +278,7 @@ const StyledAlertInner = typedStyled.div<AlertBaseProps>`
     `}
 `;
 
-const AlertContents = typedStyled.div<{
+const AlertContents = styled.div<{
   additionalContent?: React.ReactNode;
   isDismissible?: boolean;
 }>`
@@ -297,7 +297,7 @@ const AlertContents = typedStyled.div<{
   }
 `;
 
-export const AdditionalContentWrapper = typedStyled.div`
+export const AdditionalContentWrapper = styled.div`
   flex: 1 0 auto;
   justify-content: flex-end;
   display: flex;
@@ -311,7 +311,7 @@ const IconWrapperStyles = css`
   margin-right: 1px;
 `;
 
-const IconWrapper = typedStyled.span<{ isToast?: boolean; theme: any }>`
+const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
     props.theme.spaceScale.spacing04};
@@ -324,14 +324,14 @@ const IconWrapper = typedStyled.span<{ isToast?: boolean; theme: any }>`
   }
 `;
 
-const ProgressRingWrapper = typedStyled.div`
+const ProgressRingWrapper = styled.div`
   margin-top: 6px;
   position: absolute;
   top: auto;
   right: ${props => props.theme.spaceScale.spacing02};
 `;
 
-const DismissibleIconWrapper = typedStyled.span<AlertBaseProps>`
+const DismissibleIconWrapper = styled.span<AlertBaseProps>`
   ${IconWrapperStyles}
   margin-left: ${props =>
     props.additionalContent ? props.theme.spaceScale.spacing03 : ''};
@@ -343,7 +343,7 @@ const shouldForwardProp = prop => {
   return isPropValid(prop) || whitelistProps.includes(prop);
 };
 
-const DismissButton = typedStyled(IconButton, { shouldForwardProp })<{
+const DismissButton = styled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
   isInverse?: boolean;
   isToast?: boolean;

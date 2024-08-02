@@ -20,7 +20,6 @@ export interface BreadcrumbItemProps
   to?: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 const StyledItem = styled.li`
   list-style: none;
