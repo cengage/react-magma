@@ -56,7 +56,9 @@ export interface UseTreeViewProps {
    * Return an array of objects.
    * Example: [ {itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
    */
-  onSelectedItemChange?: (selectedItems: Array<Object>) => void;
+  onSelectedItemChange?: (
+    selectedItems: Array<TreeItemSelectedInterface>
+  ) => void;
   children?: React.ReactNode[];
 }
 
