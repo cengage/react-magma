@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { CheckIcon, CrossIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
-import { CreateStyled } from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -127,13 +126,11 @@ function buildStepSvgColors(props) {
   }
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-export const HiddenLabelText = typedStyled.span`
+export const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-const StyledStep = typedStyled.div`
+const StyledStep = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,7 +139,7 @@ const StyledStep = typedStyled.div`
   align-items: center;
 `;
 
-const StyledStepIndicator = typedStyled.span<{
+const StyledStepIndicator = styled.span<{
   hasError?: boolean;
   stepStatus?: StepStatus;
   isInverse?: boolean;
@@ -168,7 +165,7 @@ const StyledStepIndicator = typedStyled.span<{
   }
 `;
 
-const StyledStepTextWrapper = typedStyled.span`
+const StyledStepTextWrapper = styled.span`
   flex: 1;
   display: flex;
   align-self: center;
@@ -177,7 +174,7 @@ const StyledStepTextWrapper = typedStyled.span`
   margin: 6px 8px 0;
 `;
 
-const StyledLabel = typedStyled.span<{
+const StyledLabel = styled.span<{
   isInverse?: boolean;
   label?: string;
   theme?: ThemeInterface;
@@ -192,7 +189,7 @@ const StyledLabel = typedStyled.span<{
     props.theme.typographyVisualStyles.bodySmall.desktop.lineHeight};
 `;
 
-const StyledSecondaryLabel = typedStyled.span<{
+const StyledSecondaryLabel = styled.span<{
   isInverse?: boolean;
   secondaryLabel?: string;
   theme?: ThemeInterface;

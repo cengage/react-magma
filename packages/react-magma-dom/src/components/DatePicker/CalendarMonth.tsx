@@ -11,8 +11,7 @@ import { HelperInformation } from './HelperInformation';
 import { usePrevious } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { useFocusLock } from '../../hooks/useFocusLock';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
@@ -22,9 +21,8 @@ interface CalendarMonthProps {
   setDateFocused?: (value: boolean) => void;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
-const CalendarContainer = typedStyled.div<{ isInverse?: boolean }>`
+const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
@@ -34,7 +32,7 @@ const CalendarContainer = typedStyled.div<{ isInverse?: boolean }>`
   overflow: visible;
 `;
 
-const MonthContainer = typedStyled.div<{ isInverse?: boolean }>`
+const MonthContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
@@ -45,13 +43,13 @@ const MonthContainer = typedStyled.div<{ isInverse?: boolean }>`
   vertical-align: top;
 `;
 
-const Table = typedStyled.table`
+const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const Th = typedStyled.th<{ isInverse?: boolean }>`
+const Th = styled.th<{ isInverse?: boolean }>`
   border: 0;
   color: ${props =>
     props.isInverse

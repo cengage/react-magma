@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 import {
   AreaChart,
   StackedAreaChart,
@@ -14,8 +14,6 @@ import {
   StackedBarChart,
 } from '@carbon/charts-react';
 import './styles.min.css';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export enum CarbonChartType {
   area = 'area',
@@ -47,7 +45,7 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
   type: CarbonChartType;
 }
 
-const CarbonChartWrapper = typedStyled.div<{
+const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
@@ -217,7 +215,6 @@ const CarbonChartWrapper = typedStyled.div<{
           props.isInverse
             ? props.theme.colors.primary600
             : props.theme.colors.neutral100});
-      }
     }
       .cds--cc--lollipop circle.dot.filled,
       .cds--cc--lollipop circle.dot.hovered {
@@ -233,15 +230,15 @@ const CarbonChartWrapper = typedStyled.div<{
         drop-shadow( 1px  0px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600
-            : props.theme.colors.neutral100}) 
+            : props.theme.colors.neutral100}); 
         drop-shadow(-1px  0px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600
-            : props.theme.colors.neutral100})
+            : props.theme.colors.neutral100});
         drop-shadow( 0px  1px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600
-            : props.theme.colors.neutral100}) 
+            : props.theme.colors.neutral100});
         drop-shadow( 0px -1px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600
@@ -295,7 +292,6 @@ const CarbonChartWrapper = typedStyled.div<{
             props.isInverse
               ? props.theme.colors.focusInverse
               : props.theme.colors.focus} !important;
-      }
       outline-offset: 0;
     }
     .cds--overflow-menu-options__btn:focus,

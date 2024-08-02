@@ -1,6 +1,99 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ButtonGroup Horizontal No Space Removes the border radius around the buttons 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: start;
+  justify-content: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-left: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-right: 0;
+}
+
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-0>div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-0>div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-0>div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>button:first-child:not(:only-child) {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-0>button:nth-child(2) {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-0>button:not(:first-child) {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
+  border-right: 0;
+}
+
+.emotion-0>button:last-child:not(:only-child) {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -24,12 +117,9 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -71,11 +161,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -87,11 +177,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -101,7 +191,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -113,94 +203,95 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   align-items: center;
 }
 
-.emotion-12 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
-  -webkit-justify-content: start;
   -ms-flex-pack: start;
+  -webkit-justify-content: start;
   justify-content: start;
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   row-gap: 8px;
 }
 
-.emotion-12 > button:first-child,
-.emotion-12 > div:first-child {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-left: 0;
 }
 
-.emotion-12 > button:last-child,
-.emotion-12 > div:last-child {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-right: 0;
 }
 
-.emotion-12 > div {
+.emotion-0>div {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-12 > div:first-child:not(:only-child) button {
+.emotion-0>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-12 > div:nth-child(2) button {
+.emotion-0>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-12 > div:not(:first-child) button {
+.emotion-0>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-12 > div:last-child:not(:only-child) button {
+.emotion-0>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-12 > button {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 > button:first-child:not(:only-child) {
+.emotion-0>button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-12 > button:nth-child(2) {
+.emotion-0>button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-12 > button:not(:first-child) {
+.emotion-0>button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-12 > button:not(:first-child).emotion-12 > button:not(:last-child) {
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-12 > button:last-child:not(:only-child) {
+.emotion-0>button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
@@ -228,12 +319,9 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -275,11 +363,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -291,11 +379,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -305,7 +393,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -315,103 +403,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.emotion-12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: start;
-  -ms-flex-pack: start;
-  justify-content: start;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  row-gap: 8px;
-}
-
-.emotion-12 > button:first-child,
-.emotion-12 > div:first-child {
-  margin-left: 0;
-}
-
-.emotion-12 > button:last-child,
-.emotion-12 > div:last-child {
-  margin-right: 0;
-}
-
-.emotion-12 > div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-12 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-12 > div:first-child:not(:only-child) button {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-12 > div:nth-child(2) button {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-12 > div:not(:first-child) button {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-12 > div:not(:first-child).emotion-12 > div:not(:last-child) button {
-  border-right: 0;
-}
-
-.emotion-12 > div:last-child:not(:only-child) button {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-12 > button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-12 > button:first-child:not(:only-child) {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-12 > button:nth-child(2) {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-12 > button:not(:first-child) {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-12 > button:not(:first-child).emotion-12 > button:not(:last-child) {
-  border-right: 0;
-}
-
-.emotion-12 > button:last-child:not(:only-child) {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
 }
 
 <div>
   <div
-    class="emotion-12"
+    class="emotion-0 emotion-1"
     color="primary"
     data-testid="test-id"
     orientation="horizontal"
@@ -424,7 +420,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         1
       </span>
@@ -437,7 +433,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         2
       </span>
@@ -450,7 +446,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         3
       </span>
@@ -460,6 +456,56 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 `;
 
 exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around the buttons 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: start;
+  justify-content: start;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: start;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: start;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-top: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -483,12 +529,9 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -530,11 +573,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -546,11 +589,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -560,7 +603,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -572,18 +615,19 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: center;
 }
 
-.emotion-12 {
+.emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
-  -webkit-justify-content: start;
   -ms-flex-pack: start;
+  -webkit-justify-content: start;
   justify-content: start;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-flex-wrap: wrap;
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -593,28 +637,28 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: start;
 }
 
-.emotion-12 > button:first-child,
-.emotion-12 > div:first-child {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-top: 0;
 }
 
-.emotion-12 > button:last-child,
-.emotion-12 > div:last-child {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-12 > div {
+.emotion-0>div {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
 }
 
-.emotion-12 > div button:nth-child(2) {
+.emotion-0>div button:nth-child(2) {
   width: 40px;
 }
 
-.emotion-12 > button {
+.emotion-0>button {
   margin: 0;
   -webkit-flex: none;
   -ms-flex: none;
@@ -644,12 +688,9 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -691,11 +732,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -707,11 +748,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -721,7 +762,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -731,60 +772,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.emotion-12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: start;
-  -ms-flex-pack: start;
-  justify-content: start;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: start;
-  -webkit-box-align: start;
-  -ms-flex-align: start;
-  align-items: start;
-}
-
-.emotion-12 > button:first-child,
-.emotion-12 > div:first-child {
-  margin-top: 0;
-}
-
-.emotion-12 > button:last-child,
-.emotion-12 > div:last-child {
-  margin-bottom: 0;
-}
-
-.emotion-12 > div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-12 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-12 > button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
 }
 
 <div>
   <div
-    class="emotion-12"
+    class="emotion-0 emotion-1"
     color="primary"
     data-testid="test-id"
     orientation="vertical"
@@ -797,7 +789,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         1
       </span>
@@ -810,7 +802,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         2
       </span>
@@ -823,7 +815,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         3
       </span>
@@ -833,6 +825,53 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 `;
 
 exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-left: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-right: 0;
+}
+
+.emotion-0>div {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -856,12 +895,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -903,11 +939,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -919,11 +955,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -933,7 +969,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -945,53 +981,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   align-items: center;
 }
 
-.emotion-28 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  row-gap: 8px;
-}
-
-.emotion-28 > button:first-child,
-.emotion-28 > div:first-child {
-  margin-left: 0;
-}
-
-.emotion-28 > button:last-child,
-.emotion-28 > div:last-child {
-  margin-right: 0;
-}
-
-.emotion-28 > div {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-28 > button {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-14 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
@@ -1019,12 +1009,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -1067,11 +1054,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -1083,11 +1070,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 
 .emotion-9:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -1097,11 +1084,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   flex-shrink: 0;
 }
 
-.emotion-4 {
+.emotion-13 {
   padding-right: 8px;
 }
 
-.emotion-13 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1133,14 +1120,14 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-11 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1159,18 +1146,65 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   white-space: nowrap;
 }
 
-.emotion-11:hover,
-.emotion-11:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-11:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-11:active {
+.emotion-18:active {
   outline-color: #0074B7;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-left: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-right: 0;
+}
+
+.emotion-0>div {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
 .emotion-2 {
@@ -1196,12 +1230,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -1243,11 +1274,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -1259,11 +1290,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -1273,7 +1304,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1285,53 +1316,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   align-items: center;
 }
 
-.emotion-28 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  row-gap: 8px;
-}
-
-.emotion-28 > button:first-child,
-.emotion-28 > div:first-child {
-  margin-left: 0;
-}
-
-.emotion-28 > button:last-child,
-.emotion-28 > div:last-child {
-  margin-right: 0;
-}
-
-.emotion-28 > div {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-28 > button {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-14 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
@@ -1359,12 +1344,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -1407,11 +1389,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -1423,11 +1405,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 
 .emotion-9:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -1437,11 +1419,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   flex-shrink: 0;
 }
 
-.emotion-4 {
+.emotion-13 {
   padding-right: 8px;
 }
 
-.emotion-13 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1473,14 +1455,14 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-11 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1499,23 +1481,23 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   white-space: nowrap;
 }
 
-.emotion-11:hover,
-.emotion-11:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-11:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-11:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 <div>
   <div
-    class="emotion-28"
+    class="emotion-0 emotion-1"
     color="primary"
     orientation="horizontal"
   >
@@ -1526,13 +1508,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         1
       </span>
     </button>
     <div
-      class="emotion-14 emotion-15"
+      class="emotion-6 emotion-7"
     >
       <button
         aria-expanded="false"
@@ -1544,10 +1526,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         type="button"
       >
         <span
-          class="emotion-0 emotion-1"
+          class="emotion-4 emotion-5"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-13 emotion-14"
           >
             Dropdown 2
           </span>
@@ -1568,7 +1550,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         </span>
       </button>
       <div
-        class="emotion-13"
+        class="emotion-15 emotion-16 emotion-17"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
@@ -1578,7 +1560,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
           role="menu"
         >
           <div
-            class="emotion-11 emotion-12"
+            class="emotion-18 emotion-19"
             role="menuitem"
             tabindex="-1"
           >
@@ -1588,7 +1570,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
     </div>
     <div
-      class="emotion-14 emotion-15"
+      class="emotion-6 emotion-7"
     >
       <button
         aria-expanded="false"
@@ -1600,10 +1582,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         type="button"
       >
         <span
-          class="emotion-0 emotion-1"
+          class="emotion-4 emotion-5"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-13 emotion-14"
           >
             Dropdown 3
           </span>
@@ -1624,7 +1606,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         </span>
       </button>
       <div
-        class="emotion-13"
+        class="emotion-15 emotion-16 emotion-17"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
@@ -1634,7 +1616,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
           role="menu"
         >
           <div
-            class="emotion-11 emotion-12"
+            class="emotion-18 emotion-19"
             role="menuitem"
             tabindex="-1"
           >
@@ -1648,6 +1630,60 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 `;
 
 exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-top: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-0>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div button {
+  width: 100%;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1671,12 +1707,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -1718,11 +1751,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -1734,11 +1767,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -1748,7 +1781,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1760,60 +1793,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: center;
 }
 
-.emotion-28 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: stretch;
-  -webkit-justify-content: stretch;
-  -ms-flex-pack: stretch;
-  justify-content: stretch;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.emotion-28 > button:first-child,
-.emotion-28 > div:first-child {
-  margin-top: 0;
-}
-
-.emotion-28 > button:last-child,
-.emotion-28 > div:last-child {
-  margin-bottom: 0;
-}
-
-.emotion-28 > div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > div button {
-  width: 100%;
-}
-
-.emotion-28 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-28 > button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-14 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
@@ -1841,12 +1821,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -1889,11 +1866,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -1905,11 +1882,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 
 .emotion-9:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -1919,11 +1896,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-4 {
+.emotion-13 {
   padding-right: 8px;
 }
 
-.emotion-13 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1955,14 +1932,14 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-11 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1981,18 +1958,72 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   white-space: nowrap;
 }
 
-.emotion-11:hover,
-.emotion-11:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-11:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-11:active {
+.emotion-18:active {
   outline-color: #0074B7;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-top: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-bottom: 0;
+}
+
+.emotion-0>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div button {
+  width: 100%;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
 .emotion-2 {
@@ -2018,12 +2049,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -2065,11 +2093,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -2081,11 +2109,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -2095,7 +2123,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2107,60 +2135,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: center;
 }
 
-.emotion-28 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: stretch;
-  -webkit-justify-content: stretch;
-  -ms-flex-pack: stretch;
-  justify-content: stretch;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.emotion-28 > button:first-child,
-.emotion-28 > div:first-child {
-  margin-top: 0;
-}
-
-.emotion-28 > button:last-child,
-.emotion-28 > div:last-child {
-  margin-bottom: 0;
-}
-
-.emotion-28 > div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > div button {
-  width: 100%;
-}
-
-.emotion-28 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-28 > button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-14 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
@@ -2188,12 +2163,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -2236,11 +2208,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -2252,11 +2224,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 
 .emotion-9:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -2266,11 +2238,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-4 {
+.emotion-13 {
   padding-right: 8px;
 }
 
-.emotion-13 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -2302,14 +2274,14 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-11 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2328,23 +2300,23 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   white-space: nowrap;
 }
 
-.emotion-11:hover,
-.emotion-11:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-11:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-11:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 <div>
   <div
-    class="emotion-28"
+    class="emotion-0 emotion-1"
     color="primary"
     orientation="vertical"
   >
@@ -2355,13 +2327,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         1
       </span>
     </button>
     <div
-      class="emotion-14 emotion-15"
+      class="emotion-6 emotion-7"
     >
       <button
         aria-expanded="false"
@@ -2373,10 +2345,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         type="button"
       >
         <span
-          class="emotion-0 emotion-1"
+          class="emotion-4 emotion-5"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-13 emotion-14"
           >
             Dropdown 2
           </span>
@@ -2397,7 +2369,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         </span>
       </button>
       <div
-        class="emotion-13"
+        class="emotion-15 emotion-16 emotion-17"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
@@ -2407,7 +2379,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
           role="menu"
         >
           <div
-            class="emotion-11 emotion-12"
+            class="emotion-18 emotion-19"
             role="menuitem"
             tabindex="-1"
           >
@@ -2417,7 +2389,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
     </div>
     <div
-      class="emotion-14 emotion-15"
+      class="emotion-6 emotion-7"
     >
       <button
         aria-expanded="false"
@@ -2429,10 +2401,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         type="button"
       >
         <span
-          class="emotion-0 emotion-1"
+          class="emotion-4 emotion-5"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-13 emotion-14"
           >
             Dropdown 3
           </span>
@@ -2453,7 +2425,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         </span>
       </button>
       <div
-        class="emotion-13"
+        class="emotion-15 emotion-16 emotion-17"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
@@ -2463,7 +2435,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
           role="menu"
         >
           <div
-            class="emotion-11 emotion-12"
+            class="emotion-18 emotion-19"
             role="menuitem"
             tabindex="-1"
           >
@@ -2477,6 +2449,99 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 `;
 
 exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: start;
+  justify-content: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-left: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-right: 0;
+}
+
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-0>div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-0>div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-0>div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>button:first-child:not(:only-child) {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-0>button:nth-child(2) {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-0>button:not(:first-child) {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
+  border-right: 0;
+}
+
+.emotion-0>button:last-child:not(:only-child) {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -2500,12 +2565,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -2547,11 +2609,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -2563,11 +2625,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -2577,7 +2639,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2589,99 +2651,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   align-items: center;
 }
 
-.emotion-28 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: start;
-  -ms-flex-pack: start;
-  justify-content: start;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  row-gap: 8px;
-}
-
-.emotion-28 > button:first-child,
-.emotion-28 > div:first-child {
-  margin-left: 0;
-}
-
-.emotion-28 > button:last-child,
-.emotion-28 > div:last-child {
-  margin-right: 0;
-}
-
-.emotion-28 > div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-28 > div:first-child:not(:only-child) button {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-28 > div:nth-child(2) button {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-28 > div:not(:first-child) button {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-28 > div:not(:first-child).emotion-28 > div:not(:last-child) button {
-  border-right: 0;
-}
-
-.emotion-28 > div:last-child:not(:only-child) button {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-28 > button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > button:first-child:not(:only-child) {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-28 > button:nth-child(2) {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-28 > button:not(:first-child) {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-28 > button:not(:first-child).emotion-28 > button:not(:last-child) {
-  border-right: 0;
-}
-
-.emotion-28 > button:last-child:not(:only-child) {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-14 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
@@ -2709,12 +2679,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -2757,11 +2724,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -2773,11 +2740,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 
 .emotion-9:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -2787,11 +2754,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-4 {
+.emotion-13 {
   padding-right: 8px;
 }
 
-.emotion-13 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -2823,14 +2790,14 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-11 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2849,18 +2816,111 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   white-space: nowrap;
 }
 
-.emotion-11:hover,
-.emotion-11:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-11:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-11:active {
+.emotion-18:active {
   outline-color: #0074B7;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: start;
+  justify-content: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
+  margin-left: 0;
+}
+
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
+  margin-right: 0;
+}
+
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div:first-child:not(:only-child) button {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-0>div:nth-child(2) button {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-0>div:not(:first-child) button {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
+  border-right: 0;
+}
+
+.emotion-0>div:last-child:not(:only-child) button {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>button:first-child:not(:only-child) {
+  border-radius: 8px 0 0 8px;
+  border-right: 0;
+}
+
+.emotion-0>button:nth-child(2) {
+  border-left: 1px solid #FFFFFF;
+}
+
+.emotion-0>button:not(:first-child) {
+  border-radius: 0;
+  border-right: 1px solid #FFFFFF;
+}
+
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
+  border-right: 0;
+}
+
+.emotion-0>button:last-child:not(:only-child) {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid #FFFFFF;
 }
 
 .emotion-2 {
@@ -2886,12 +2946,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -2933,11 +2990,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -2949,11 +3006,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 
 .emotion-2:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -2963,7 +3020,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-0 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2975,99 +3032,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   align-items: center;
 }
 
-.emotion-28 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-  -webkit-justify-content: start;
-  -ms-flex-pack: start;
-  justify-content: start;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  row-gap: 8px;
-}
-
-.emotion-28 > button:first-child,
-.emotion-28 > div:first-child {
-  margin-left: 0;
-}
-
-.emotion-28 > button:last-child,
-.emotion-28 > div:last-child {
-  margin-right: 0;
-}
-
-.emotion-28 > div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-28 > div:first-child:not(:only-child) button {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-28 > div:nth-child(2) button {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-28 > div:not(:first-child) button {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-28 > div:not(:first-child).emotion-28 > div:not(:last-child) button {
-  border-right: 0;
-}
-
-.emotion-28 > div:last-child:not(:only-child) button {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-28 > button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-28 > button:first-child:not(:only-child) {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-28 > button:nth-child(2) {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-28 > button:not(:first-child) {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-28 > button:not(:first-child).emotion-28 > button:not(:last-child) {
-  border-right: 0;
-}
-
-.emotion-28 > button:last-child:not(:only-child) {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-14 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
@@ -3095,12 +3060,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -3143,11 +3105,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -3159,11 +3121,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 
 .emotion-9:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -3173,11 +3135,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   flex-shrink: 0;
 }
 
-.emotion-4 {
+.emotion-13 {
   padding-right: 8px;
 }
 
-.emotion-13 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -3209,14 +3171,14 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: opacity 0.3s;
   white-space: nowrap;
   z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-}
-
-.emotion-11 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3235,23 +3197,23 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   white-space: nowrap;
 }
 
-.emotion-11:hover,
-.emotion-11:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-11:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-11:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 <div>
   <div
-    class="emotion-28"
+    class="emotion-0 emotion-1"
     color="primary"
     orientation="horizontal"
   >
@@ -3262,13 +3224,13 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       type="button"
     >
       <span
-        class="emotion-0 emotion-1"
+        class="emotion-4 emotion-5"
       >
         1
       </span>
     </button>
     <div
-      class="emotion-14 emotion-15"
+      class="emotion-6 emotion-7"
     >
       <button
         aria-expanded="false"
@@ -3280,10 +3242,10 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         type="button"
       >
         <span
-          class="emotion-0 emotion-1"
+          class="emotion-4 emotion-5"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-13 emotion-14"
           >
             Dropdown 2
           </span>
@@ -3304,7 +3266,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         </span>
       </button>
       <div
-        class="emotion-13"
+        class="emotion-15 emotion-16 emotion-17"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
@@ -3314,7 +3276,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
           role="menu"
         >
           <div
-            class="emotion-11 emotion-12"
+            class="emotion-18 emotion-19"
             role="menuitem"
             tabindex="-1"
           >
@@ -3324,7 +3286,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
     </div>
     <div
-      class="emotion-14 emotion-15"
+      class="emotion-6 emotion-7"
     >
       <button
         aria-expanded="false"
@@ -3336,10 +3298,10 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         type="button"
       >
         <span
-          class="emotion-0 emotion-1"
+          class="emotion-4 emotion-5"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-13 emotion-14"
           >
             Dropdown 3
           </span>
@@ -3360,7 +3322,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         </span>
       </button>
       <div
-        class="emotion-13"
+        class="emotion-15 emotion-16 emotion-17"
         data-testid="dropdownContent"
         tabindex="-1"
         width="auto"
@@ -3370,7 +3332,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
           role="menu"
         >
           <div
-            class="emotion-11 emotion-12"
+            class="emotion-18 emotion-19"
             role="menuitem"
             tabindex="-1"
           >

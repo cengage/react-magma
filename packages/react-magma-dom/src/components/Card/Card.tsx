@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
-import styled, { CreateStyled } from '@emotion/styled';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
@@ -54,8 +54,6 @@ export enum CardCalloutType {
   info = 'info',
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 export function buildCalloutBackground(
   props: CardProps & { theme: ThemeInterface }
 ) {
@@ -88,7 +86,7 @@ export function buildCalloutBackground(
   }
 }
 
-const StyledCard = typedStyled.div<CardProps>`
+const StyledCard = styled.div<CardProps>`
   background: ${props =>
     props.background
       ? props.background

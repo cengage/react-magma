@@ -4,8 +4,7 @@ import { ErrorIcon } from 'react-magma-icons';
 import { Announce } from '../Announce';
 import { InputSize } from '../InputBase';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -19,8 +18,6 @@ export interface InputMessageProps
   maxCount?: number;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 function BuildMessageColor(props) {
   const { isInverse, hasError, theme } = props;
   if (isInverse) {
@@ -31,7 +28,7 @@ function BuildMessageColor(props) {
   return hasError ? theme.colors.danger : theme.colors.neutral500;
 }
 
-const Message = typedStyled.div<InputMessageProps>`
+const Message = styled.div<InputMessageProps>`
   align-items: flex-start;
   border-radius: ${props => props.theme.borderRadius};
   color: ${props => BuildMessageColor(props)};
@@ -47,7 +44,7 @@ const Message = typedStyled.div<InputMessageProps>`
   text-align: left;
 `;
 
-const IconWrapper = typedStyled.span`
+const IconWrapper = styled.span`
   display: inline-flex;
   flex-shrink: 0;
   padding-right: ${props => props.theme.spaceScale.spacing02};
