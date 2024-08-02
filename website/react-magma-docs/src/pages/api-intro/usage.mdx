@@ -75,13 +75,12 @@ import { magma } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
 function Example() {
-  const StyledDiv = styled('div')(props => ({
-    background: props.theme.colors.neutral,
-    color: props.theme.colors.neutral100,
-    padding: props.theme.spaceScale.spacing02,
-  }));
+  const StyledDiv = styled.div`
+    background: ${magma.colors.neutral};
+    color: ${magma.colors.neutral100};
+  `;
 
-  return <StyledDiv theme={magma}>Hello world</StyledDiv>;
+  return <StyledDiv>Hello world</StyledDiv>;
 }
 ```
 

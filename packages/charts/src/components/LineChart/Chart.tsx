@@ -46,7 +46,7 @@ export interface ChartProps<T extends any>
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     LineChartProps<T> {}
 
-const StyledTitle = typedStyled.span`
+const StyledTitle = styled.span`
   color: ${props => props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size04.fontSize};
   font-weight: 600;
@@ -55,23 +55,23 @@ const StyledTitle = typedStyled.span`
   margin: 0 0 12px 0;
 `;
 
-const StyledParagraph = typedStyled(Paragraph)`
+const StyledParagraph = styled(Paragraph)`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   margin: 0 0 18px 0;
 `;
 
-const StyledTabsContainer = typedStyled(TabsContainer)`
+const StyledTabsContainer = styled(TabsContainer)`
   width: 800px;
   ul {
     box-shadow: inset 0 -1px 0 ${props => props.theme.colors.neutral300};
   }
 `;
 
-const StyledTabPanel = typedStyled(TabPanel)`
+const StyledTabPanel = styled(TabPanel)`
   padding: 22px 0;
 `;
 
-const KeyboardInstructionsCard = typedStyled(Card)<{
+const KeyboardInstructionsCard = styled(Card)<{
   isOpen?: boolean;
   maxHeight?: string;
   width?: string;
