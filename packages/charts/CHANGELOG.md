@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 8.0.0-next.5
+
+### Minor Changes
+
+- ae668a3e5: Updating emotion to v11
+
 ## 8.0.0-next.4
 
 ### Patch Changes
