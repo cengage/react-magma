@@ -43,6 +43,15 @@ describe('ProgressBar', () => {
     );
   });
 
+  it('should render the progress bar component with primary as the default color', () => {
+    const { container } = render(<ProgressBar percentage={50} />);
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      magma.colors.primary
+    );
+  });
+
   it('should render the progress bar component with danger color', () => {
     const { container } = render(
       <ProgressBar percentage={50} color="danger" />
@@ -62,6 +71,28 @@ describe('ProgressBar', () => {
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',
       magma.colors.success
+    );
+  });
+
+  it('should render the progress bar component with custom color', () => {
+    const { container } = render(
+      <ProgressBar percentage={50} color="purple" />
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      'purple'
+    );
+  });
+
+  it('should render the inverse progress bar component with primary as the default color', () => {
+    const { container } = render(
+      <ProgressBar percentage={50} isInverse={true} />
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'background',
+      magma.colors.tertiary
     );
   });
 

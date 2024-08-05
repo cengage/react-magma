@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { baseTableCellStyle, buildCellPaddingStyle } from './TableCell';
 import {
   TableCellAlign,
@@ -10,8 +10,7 @@ import {
 import { ThemeContext } from '../../theme/ThemeContext';
 import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
@@ -61,9 +60,7 @@ export enum TableHeaderCellScope {
   rowgroup = 'rowgroup',
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledTableHeaderCell = typedStyled.th<{
+const StyledTableHeaderCell = styled.th<{
   density?: TableDensity;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
@@ -100,7 +97,7 @@ const StyledTableHeaderCell = typedStyled.th<{
     `}
 `;
 
-const SortButton = typedStyled.button<{
+const SortButton = styled.button<{
   density?: TableDensity;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
@@ -116,18 +113,9 @@ const SortButton = typedStyled.button<{
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
   margin: 0;
-  padding: ${props => buildCellPaddingStyle(props.density, props.theme)}};
+  padding: ${props => buildCellPaddingStyle(props.density, props.theme)};
   text-align: left;
   width: 100%;
-
-  &:focus {
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-    outline-offset: -2px;
-  }
 
   &:hover,
   &:focus {
@@ -144,9 +132,18 @@ const SortButton = typedStyled.button<{
           : props.theme.colors.neutral700};
     }
   }
+
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: -2px;
+  }
 `;
 
-const IconWrapper = typedStyled.span`
+const IconWrapper = styled.span`
   padding-left: ${props => props.theme.spaceScale.spacing03};
   position: relative;
   top: ${props => props.theme.spaceScale.spacing02};

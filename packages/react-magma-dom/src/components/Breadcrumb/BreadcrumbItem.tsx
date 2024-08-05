@@ -3,8 +3,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
 import { useIsInverse } from '../../inverse';
 import { ChevronRightIcon } from 'react-magma-icons';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -21,8 +20,6 @@ export interface BreadcrumbItemProps
   to?: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 const StyledItem = styled.li`
   list-style: none;
   margin: 0;
@@ -30,7 +27,7 @@ const StyledItem = styled.li`
   display: flex;
 `;
 
-const StyledSpan = typedStyled.span<{ isInverse?: boolean }>`
+const StyledSpan = styled.span<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100

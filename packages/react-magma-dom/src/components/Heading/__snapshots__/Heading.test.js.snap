@@ -19,7 +19,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 36px;
     line-height: 48px;
@@ -44,7 +44,7 @@ exports[`Heading Snapshot should render heading 1 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 36px;
     line-height: 48px;
@@ -80,7 +80,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 28px;
     line-height: 40px;
@@ -105,7 +105,7 @@ exports[`Heading Snapshot should render heading 2 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 28px;
     line-height: 40px;
@@ -140,7 +140,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 24px;
     line-height: 32px;
@@ -165,7 +165,7 @@ exports[`Heading Snapshot should render heading 3 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 24px;
     line-height: 32px;
@@ -200,7 +200,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 20px;
     line-height: 32px;
@@ -225,7 +225,7 @@ exports[`Heading Snapshot should render heading 4 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 20px;
     line-height: 32px;
@@ -260,7 +260,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 18px;
     line-height: 24px;
@@ -285,7 +285,7 @@ exports[`Heading Snapshot should render heading 5 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 18px;
     line-height: 24px;
@@ -309,9 +309,6 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   color: #454545;
   font-size: 12px;
   font-weight: 700;
-  -webkit-letter-spacing: .32px;
-  -moz-letter-spacing: .32px;
-  -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
   text-transform: uppercase;
@@ -325,12 +322,9 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 12px;
-    -webkit-letter-spacing: .32px;
-    -moz-letter-spacing: .32px;
-    -ms-letter-spacing: .32px;
     letter-spacing: .32px;
     line-height: 16px;
   }
@@ -343,9 +337,6 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   color: #454545;
   font-size: 12px;
   font-weight: 700;
-  -webkit-letter-spacing: .32px;
-  -moz-letter-spacing: .32px;
-  -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
   text-transform: uppercase;
@@ -359,12 +350,9 @@ exports[`Heading Snapshot should render heading 6 correctly 1`] = `
   transition: border 0.1s linear;
 }
 
-@media (min-width:600px) {
+@media (min-width: 600px) {
   .emotion-0 {
     font-size: 12px;
-    -webkit-letter-spacing: .32px;
-    -moz-letter-spacing: .32px;
-    -ms-letter-spacing: .32px;
     letter-spacing: .32px;
     line-height: 16px;
   }

@@ -28,6 +28,7 @@ import {
   ThemeInterface,
   useGenerateId,
   useIsInverse,
+  styled
 } from 'react-magma-dom';
 
 import { CloudUploadIcon } from 'react-magma-icons';

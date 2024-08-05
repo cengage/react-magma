@@ -3,8 +3,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
 import { usePopper } from 'react-popper';
 import { useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export enum TooltipPosition {
   bottom = 'bottom',

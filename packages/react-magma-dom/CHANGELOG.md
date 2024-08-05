@@ -1,5 +1,71 @@
 ## 4.4.0
 
+## 4.5.0-next.10
+
+### Minor Changes
+
+- ae668a3e5: Updating emotion to v11
+
+## 4.5.0-next.9
+
+### Patch Changes
+
+- e24db7ab4: fix(datePicker): Fix date picker calendar table role issue
+
+## 4.5.0-next.8
+
+### Minor Changes
+
+- af3afe7de: feat(Stepper): Additions to the Stepper component for accessibility compliance. The 'aria-current' attribute now reads 'step' when active, the DOM structure has been changed to a UL LI layout, and when labels are hidden, the screenreader sees the step state for each step label.
+
+## 4.5.0-next.7
+
+### Minor Changes
+
+- 9e38e9e7f: feat(Stepper): Displays step based content for use in multi-step interfaces.
+
+## 4.4.1-next.6
+
+### Patch Changes
+
+- 65d417254: fix(ProgressBar): Add support for custom colors
+
+## 4.4.1-next.5
+
+### Patch Changes
+
+- 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
+
+## 4.4.1-next.4
+
+### Patch Changes
+
+- da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
+
+## 4.4.1-next.3
+
+### Patch Changes
+
+- ec35223de: build(deps): bump tar from 6.1.11 to 6.2.1
+
+## 4.4.1-next.2
+
+### Patch Changes
+
+- 506904fd8: build(deps): bump express from 4.18.1 to 4.19.2
+
+## 4.4.1-next.1
+
+### Patch Changes
+
+- cd101c769: fix(Hyperlink): Support Icons and toggling underline styling
+
+## 4.4.1-next.0
+
+### Patch Changes
+
+- 9f1e0956a: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
+
 ### Minor Changes
 
 - 308563ced: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.

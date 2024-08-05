@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { getListDisplay, ListProps } from './';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -22,17 +22,6 @@ export interface ListItemProps
   iconColor?: keyof typeof magma.colors;
 }
 
-const ListItemStyles = props => css`
-  display: ${getListDisplay(props)};
-  margin: 0;
-  padding: 0;
-  margin-left: ${props.icon ? 'inherit' : '1.1em'};
-  color: ${props.description && !props.isInverse
-    ? props.theme.colors.neutral
-    : 'inherit'};
-  list-style-type: ${props.icon || props.description ? 'none' : 'inherit'};
-`;
-
 const IconStyles = props => css`
   background: ${props.iconBackground};
   color: ${props.iconColor};
@@ -41,11 +30,18 @@ const IconStyles = props => css`
   padding: 10px;
 `;
 
-const StyledListItem = styled.li`
-  ${ListItemStyles};
+const StyledListItem = styled.li<any>`
+  display: ${props => getListDisplay(props)};
+  margin: 0;
+  padding: 0;
+  margin-left: ${props => props.icon ? 'inherit' : '1.1em'};
+  color: ${props => props.description && !props.isInverse
+    ? props.theme.colors.neutral
+    : 'inherit'};
+  list-style-type: ${props => props.icon || props.description ? 'none' : 'inherit'};
 `;
 
-const StyledIcon = styled.span`
+const StyledIcon = styled.span<any>`
   ${IconStyles};
 `;
 
@@ -68,7 +64,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
       <InverseContext.Provider value={{ isInverse }}>
         <StyledListItem
           as={description ? 'p' : 'li'}
-          description={description}
+          description={description as any}
           icon={icon}
           iconAlign={iconAlign}
           isInverse={isInverse}

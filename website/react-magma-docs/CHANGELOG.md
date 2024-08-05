@@ -1,5 +1,78 @@
 # Change Log
 
+## 5.0.7-next.8
+
+### Patch Changes
+
+- Updated dependencies [ae668a3e5]
+- Updated dependencies [ae668a3e5]
+- Updated dependencies [ae668a3e5]
+- Updated dependencies [ae668a3e5]
+  - @cengage-patterns/header@10.0.0-next.2
+  - @react-magma/charts@8.0.0-next.5
+  - react-magma-dom@4.5.0-next.10
+  - @react-magma/dropzone@8.0.0-next.2
+
+## 5.0.7-next.7
+
+### Patch Changes
+
+- Updated dependencies [9e38e9e7f]
+  - react-magma-dom@4.5.0-next.7
+  - @react-magma/charts@8.0.0-next.4
+  - @react-magma/dropzone@8.0.0-next.1
+  - @react-magma/schema-renderer@8.0.0-next.1
+  - @cengage-patterns/header@10.0.0-next.1
+
+## 5.0.7-next.6
+
+### Patch Changes
+
+- 2837cd4fb: storybook(TimePicker): Update clear time example
+
+## 5.0.7-next.5
+
+### Patch Changes
+
+- ad137c88e: fix(Drawer): Update site navigation storybook example
+
+## 5.0.7-next.4
+
+### Patch Changes
+
+- 9f43ba1e6: Update Charts examples
+- Updated dependencies [9f43ba1e6]
+  - @react-magma/charts@7.0.1-next.3
+
+## 5.0.7-next.3
+
+### Patch Changes
+
+- 0a0ca608b: docs: Fix `TypeError: styled.h1 is not a function` errors
+
+## 5.0.7-next.2
+
+### Patch Changes
+
+- 7118b03b3: Add Toast warning
+
+## 5.0.7-next.1
+
+### Patch Changes
+
+- Updated dependencies [9f1e0956a]
+  - react-magma-dom@4.4.1-next.0
+  - @react-magma/charts@7.0.1-next.0
+  - @react-magma/dropzone@7.0.1-next.0
+  - @react-magma/schema-renderer@7.0.1-next.0
+  - @cengage-patterns/header@9.0.1-next.0
+
+## 5.0.7-next.0
+
+### Patch Changes
+
+- ff8fe059d: chore: Resync dev branch
+
 ## 5.0.6
 
 ### Patch Changes

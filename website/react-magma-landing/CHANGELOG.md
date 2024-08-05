@@ -1,16 +1,16 @@
 # Change Log
 
-## 1.1.3
+## 1.1.4-next.1
 
 ### Patch Changes
 
-- cfc20a479: build(deps-dev): bump axios from 0.21.1 to 1.6.0
+- 88b7fd1f7: fix: Remove card with version `^15.0.0`
 
-## 1.1.3-next.0
+## 1.1.4-next.0
 
 ### Patch Changes
 
-- 52d024ada: build(deps-dev): bump axios from 0.21.1 to 1.6.0
+- b6c100cb0: build(deps-dev): bump axios from 0.21.1 to 0.28.0
 
 ## 1.1.2
 

@@ -75,7 +75,7 @@ export function Example() {
 
 ## Background Color
 
-The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `primary` and `danger`, and `success`.
+The `color` prop can be used to set the background color of the progress bar. This prop takes the following values: `primary`, `danger`, `success` or a color string.
 The default value is `primary` which renders as `#3942B0`, or `magma.colors.primary`.
 
 ```tsx
@@ -91,6 +91,45 @@ export function Example() {
       <br />
       <ProgressBar color={ProgressBarColor.success} percentage={25} />
       <br />
+    </>
+  );
+}
+```
+
+### Custom Color
+
+When using a custom color, you must ensure that there is proper color contrast between the chosen color and the bar border (whether you're using the inverse color or not).
+
+```tsx
+import React from 'react';
+import { ProgressBar, magma, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Card>
+        <CardBody>
+          <ProgressBar color={magma.chartColors[8]} percentage={32} />
+          <br />
+          <ProgressBar color="#B84900" percentage={50} />
+        </CardBody>
+      </Card>
+      <br />
+      <Card isInverse>
+        <CardBody>
+          <ProgressBar
+            isInverse
+            color={magma.chartColorsInverse[8]}
+            percentage={72}
+          />
+          <br />
+          <ProgressBar
+            isInverse
+            color="#FFB685"
+            percentage={20}
+          />
+        </CardBody>
+      </Card>
     </>
   );
 }
