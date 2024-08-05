@@ -5,7 +5,7 @@ import { I18nContext } from '../../i18n';
 import { Tooltip } from '../Tooltip';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { NativeSelect } from '../NativeSelect';
+import { NativeSelect } from '../..';
 import { NavButton, PaginationProps } from './';
 import { useGenerateId } from '../../utils';
 import { Spacer } from '../Spacer';
