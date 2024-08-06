@@ -342,7 +342,7 @@ export function Example() {
 
 ## Header Ref
 
-The `headerRef` prop enables access to the Modal header ref.
+The `headerRef` prop gives focus to a custom header element.
 
 ```tsx
 import React from 'react';
@@ -355,8 +355,7 @@ import {
 } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
-  const headerRef = React.useRef<HTMLDivElement>();
+  const headerRef = React.useRef<HTMLHeadingElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -364,35 +363,21 @@ export function Example() {
 
   const onModalClose = () => {
     setShowModal(false);
-    buttonRef.current.focus();
   };
 
-  const onHeaderRefFocus = () => {
-    headerRef.current.style.color = 'white';
-    headerRef.current.style.background = 'rgb(57 66 176)';
-    headerRef.current.style.borderRadius = '10px';
-    headerRef.current.style.padding = '10px';
-    headerRef.current.style.fontFamily = 'serif';
-    headerRef.current.style.fontStyle = 'italic';
-    headerRef.current.style.transition = '0.1s linear all';
-  };
+  console.log(headerRef);
 
   return (
     <>
-      <Modal
-        header="Modal Title"
-        headerRef={headerRef}
-        onClose={onModalClose}
-        isOpen={showModal}
-      >
+      <Modal headerRef={headerRef} onClose={onModalClose} isOpen={showModal}>
+        <Heading ref={headerRef} level={4}>
+          Title
+        </Heading>
         <ButtonGroup>
-          <Button onClick={onHeaderRefFocus}>Header Ref</Button>
           <Button onClick={onModalClose}>Close</Button>
         </ButtonGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
-        Show Modal
-      </Button>
+      <Button onClick={onModalShow}>Show Modal</Button>
     </>
   );
 }

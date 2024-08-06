@@ -6,6 +6,7 @@ import { Toggle } from '../Toggle';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
 import { DatePicker } from '../DatePicker';
+import { Heading } from '../Heading';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Container } from '../Container';
 import { NativeSelect } from '../NativeSelect';
@@ -478,8 +479,7 @@ export const CloseModalWithConfirmation = () => {
 
 export const HeaderRef = () => {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
-  const headerRef = React.useRef<HTMLDivElement>();
+  const headerRef = React.useRef<HTMLHeadingElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -487,35 +487,21 @@ export const HeaderRef = () => {
 
   const onModalClose = () => {
     setShowModal(false);
-    buttonRef.current.focus();
   };
 
-  const onHeaderRefFocus = () => {
-    headerRef.current.style.color = 'white';
-    headerRef.current.style.background = 'rgb(57 66 176)';
-    headerRef.current.style.borderRadius = '10px';
-    headerRef.current.style.padding = '10px';
-    headerRef.current.style.fontFamily = 'serif';
-    headerRef.current.style.fontStyle = 'italic';
-    headerRef.current.style.transition = '0.1s linear all';
-  };
+  console.log(headerRef);
 
   return (
     <>
-      <Modal
-        header="Modal Title"
-        headerRef={headerRef}
-        onClose={onModalClose}
-        isOpen={showModal}
-      >
+      <Modal headerRef={headerRef} onClose={onModalClose} isOpen={showModal}>
+        <Heading ref={headerRef} level={4}>
+          Title
+        </Heading>
         <ButtonGroup>
-          <Button onClick={onHeaderRefFocus}>Header Ref</Button>
           <Button onClick={onModalClose}>Close</Button>
         </ButtonGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
-        Show Modal
-      </Button>
+      <Button onClick={onModalShow}>Show Modal</Button>
     </>
   );
 };

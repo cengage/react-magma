@@ -367,7 +367,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     return isModalOpen
       ? ReactDOM.createPortal(
-          <div ref={focusTrapElement}>
+          <div ref={headerRef ? headerRef : focusTrapElement}>
             <Global
               styles={css`
                 html {
@@ -401,13 +401,13 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 theme={theme}
               >
                 {header && (
-                  <ModalHeader ref={ref} theme={theme}>
+                  <ModalHeader theme={theme}>
                     {header && (
                       <H1
                         id={headingId}
                         isInverse={isInverse}
                         level={1}
-                        ref={headerRef ? headerRef : headingRef}
+                        ref={headingRef}
                         visualStyle={TypographyVisualStyle.headingSmall}
                         tabIndex={-1}
                         theme={theme}
