@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(datePicker): Fix date picker calendar table role issue
+fix(datePicker): Remove date picker calendar table role

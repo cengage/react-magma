@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(Stepper): Displays step based content for use in multi-step interfaces.
+feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
