@@ -5,7 +5,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import React from 'react';
+import React, { useImperativeHandle } from 'react';
 import {
   useDropzone,
   DropzoneOptions,
@@ -28,7 +28,7 @@ import {
   ThemeInterface,
   useGenerateId,
   useIsInverse,
-  styled
+  styled,
 } from 'react-magma-dom';
 
 import { CloudUploadIcon } from 'react-magma-icons';
@@ -253,6 +253,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       isDragActive,
       isDragReject,
       open,
+      inputRef,
     } = useDropzone({
       noClick: true,
       disabled,
@@ -263,6 +264,11 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       onDrop,
       noDrag,
     });
+
+    useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
+      ref,
+      () => inputRef.current
+    );
 
     const inputProps = getInputProps({ id });
 
@@ -423,7 +429,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             tabIndex={-1}
           >
             <input
-              ref={ref}
+              ref={inputRef}
               type={inputProps.type}
               accept={inputProps.accept}
               autoComplete={inputProps.autoComplete}
