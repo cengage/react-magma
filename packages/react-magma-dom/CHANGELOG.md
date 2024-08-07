@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.5.0-next.11
+
+### Patch Changes
+
+- e43932d45: fix(Modal): Background overlay issue on nested modals
+
 ## 4.5.0-next.10
 
 ### Minor Changes
