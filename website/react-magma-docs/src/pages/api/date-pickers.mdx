@@ -95,6 +95,48 @@ export function Example() {
 }
 ```
 
+## Clearing the Date
+
+After a date has been selected the user can programmatically clear the input field and the `Chosen Date:` field via `isClearable` X button or `Clear Date` button.
+
+```tsx
+import React from 'react';
+import { DatePicker, Button } from 'react-magma-dom';
+
+export function Example() {
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+
+  function handleDateChange(newChosenDate: Date) {
+    setChosenDate(newChosenDate);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DatePicker
+        labelText="Date"
+        value={chosenDate}
+        onDateChange={handleDateChange}
+        isClearable
+      />
+      <br />
+      <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
+    </div>
+  );
+}
+```
+
 ## Placeholder Text
 
 By default, the placeholder text of the input is 'mm/dd/yyyy'. You can override this by using the `placeholder` prop.
