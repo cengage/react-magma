@@ -148,10 +148,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           openMenu();
         }
 
-        onKeyDown && typeof onKeyDown === 'function' && onKeyDown(event);
+        onKeyDown && typeof onKeyDown === 'function' && onKeyDown?.(event);
       },
-      onKeyPress: (event: any) => onKeyPress(event),
-      onKeyUp: (event: any) => onKeyUp(event),
+      onKeyPress: (event: any) => onKeyPress?.(event),
+      onKeyUp: (event: any) => onKeyUp?.(event),
       onFocus,
       preventKeyAction: isOpen,
       ...(innerRef && { ref: innerRef }),
