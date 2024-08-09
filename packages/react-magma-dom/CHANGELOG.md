@@ -1,5 +1,11 @@
 ## 4.4.0
 
+## 4.5.0-next.12
+
+### Patch Changes
+
+- e99e480ab: fix(Select/Multiselect): Fix console errors
+
 ## 4.5.0-next.11
 
 ### Patch Changes
