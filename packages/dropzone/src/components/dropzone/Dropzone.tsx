@@ -439,6 +439,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
               onClick={inputProps.onClick}
               style={inputProps.style}
               tabIndex={inputProps.tabIndex}
+              data-testid="file-input"
             />
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>
