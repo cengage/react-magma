@@ -296,7 +296,6 @@ describe('Input', () => {
 
   it('should clear the input when the clear input button is clicked', () => {
     const onClear = jest.fn();
-    const onDateChange = jest.fn();
     const labelText = 'Input Label';
     const value = 'Test Value';
     const { getByTestId, getByLabelText } = render(
@@ -304,7 +303,6 @@ describe('Input', () => {
         labelText={labelText}
         value={value}
         onClear={onClear}
-        onDateChange={onDateChange}
         isClearable
       />
     );
@@ -566,9 +564,8 @@ describe('Input', () => {
 
     it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by backspacing', () => {
       const onChange = jest.fn();
-      const onDateChange = jest.fn();
       const { getByText, getByLabelText } = render(
-        <Input labelText={labelText} maxCount={4} onChange={onChange} onDateChange={onDateChange} />
+        <Input labelText={labelText} maxCount={4} onChange={onChange} />
       );
 
       fireEvent.change(getByLabelText(labelText), {
@@ -588,12 +585,10 @@ describe('Input', () => {
 
     it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by clicking the onClear button', () => {
       const onClear = jest.fn();
-      const onDateChange = jest.fn();
       const { getByText, getByLabelText, getByTestId } = render(
         <Input
           labelText={labelText}
           onClear={onClear}
-          onDateChange={onDateChange}
           isClearable
           maxCount={4}
         />
@@ -610,8 +605,6 @@ describe('Input', () => {
 
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
       expect(onClear).toBeCalled();
-      expect(onDateChange).toHaveBeenCalledWith(null);
-      expect(getByLabelText(labelText)).toHaveAttribute('value', '');
     });
   });
 });

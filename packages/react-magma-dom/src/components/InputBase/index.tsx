@@ -618,7 +618,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     function handleClearInput() {
       onClear && typeof onClear === 'function' && onClear();
       setValue('');
-      onDateChange(null);
+      onDateChange && typeof onDateChange === 'function' && onDateChange(null);
       inputRef.current.focus();
     }
 
@@ -628,7 +628,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         props.onChange(event);
 
       setValue(event.target.value);
-      if (!event.target.value) onDateChange(null);
+      if (!event.target.value && onDateChange && typeof onDateChange === 'function') onDateChange(null);
     }
 
     const passwordBtnWidth = () => {

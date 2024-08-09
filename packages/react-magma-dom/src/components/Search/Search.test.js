@@ -98,7 +98,6 @@ describe('Search', () => {
 
   it('should clear the state for uncontrolled Search when the clear input button is clicked', () => {
     const onClear = jest.fn();
-    const onDateChange = jest.fn();
     const labelText = 'Search input';
     const value = 'Test Value';
     
@@ -107,7 +106,6 @@ describe('Search', () => {
         labelText={labelText}
         onSearch={onSearchSpy}
         onClear={onClear}
-        onDateChange={onDateChange}
         isClearable
       />
     );
