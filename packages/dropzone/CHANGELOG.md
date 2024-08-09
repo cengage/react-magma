@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.0.0-next.3
+
+### Patch Changes
+
+- bf5537baa: fix(Dropzone): Open file browse on button click
+
 ## 8.0.0-next.2
 
 ### Minor Changes
