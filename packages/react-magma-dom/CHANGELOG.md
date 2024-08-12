@@ -41,6 +41,12 @@
 
 ## 4.4.0
 
+## 4.5.0-next.13
+
+### Patch Changes
+
+- 756d3437a: fix(datePicker): Fix date picker clearing functionality
+
 ## 4.5.0-next.12
 
 ### Patch Changes
